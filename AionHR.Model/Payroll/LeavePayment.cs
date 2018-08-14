@@ -16,12 +16,12 @@ namespace AionHR.Model.Payroll
         public DateTime effectiveDate { get; set; }
         public string paymentRef { get; set; }
         public int salary { get; set; }
-        public int days { get; set; }
+        public double days { get; set; }
         public int amount { get; set; }
-        public int earnedLeaves { get; set; }
-        public int usedLeaves { get; set; }
-        public int paidLeaves { get; set; }
-        public int leaveBalance { get; set; }
+        public double earnedLeaves { get; set; }
+        public double usedLeaves { get; set; }
+        public double paidLeaves { get; set; }
+        public double leaveBalance { get; set; }
         public int postingStatus { get; set; }
         public string dateString { get; set; }
         public string effectiveDateString { get; set; }

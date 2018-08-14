@@ -23,11 +23,16 @@ namespace AionHR.Services.Implementations
             List<Check> result = new List<Check>();
             try
             {
-
+                
                 Check em = new Check();
                 em.employeeRef = row[0].ToString();
-                em.clockStamp = DateTime.ParseExact(row[1].ToString(), "yyyy-MM-dd HH:mm:ss", new CultureInfo("en"));
-                em.udIdRef = row[2].ToString();
+                DateTime clockStamp;
+                //if (DateTime.TryParse(row[1].ToString(), out clockStamp))
+                //    em.clockStamp = clockStamp;
+                //else
+                  em.clockStamp = DateTime.Parse(row[1].ToString());
+                 //em.clockStamp = DateTime.ParseExact(row[1].ToString(), "yyyy-MM-dd HH:mm:ss", new CultureInfo("en"));
+                 em.udId = row[2].ToString();
 
 
 
@@ -37,7 +42,12 @@ namespace AionHR.Services.Implementations
             catch (Exception exp)
             {
 
+              
+           
+                exp.Source = row[0].ToString() + ";" + row[1].ToString() + ";" + row[3].ToString(); 
+                throw exp;
             }
+       
             return result;
         }
     }

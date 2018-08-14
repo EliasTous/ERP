@@ -261,4 +261,7 @@
   <data name="FieldType" xml:space="preserve">
     <value>النوع</value>
   </data>
+  <data name="PFormFullSalaryDeduction" xml:space="preserve">
+    <value>خصم كامل الراتب</value>
+  </data>
 </root>

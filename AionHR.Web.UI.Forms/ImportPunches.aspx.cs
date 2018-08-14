@@ -37,6 +37,10 @@ using AionHR.Infrastructure.Domain;
 using AionHR.Model.System;
 using AionHR.Model.LoadTracking;
 using AionHR.Model.LeaveManagement;
+using System.Resources;
+using System.Collections;
+
+
 
 namespace AionHR.Web.UI.Forms
 {
@@ -200,6 +204,17 @@ namespace AionHR.Web.UI.Forms
                 service = new PunchesImportingService(new CSVImporter(CurrentPath.Text));
                 List<Check> shifts = service.ImportUnvalidated(CurrentPath.Text);
 
+                //shifts = shifts.Distinct()
+                shifts.ForEach(x =>
+                {
+                    TimeSpan ts = new TimeSpan(x.clockStamp.Hour, x.clockStamp.Minute, 0);
+                    x.clockStamp = x.clockStamp.Date + ts;
+                });
+               
+                IEnumerable<Check> noduplicates = shifts.Distinct(new CheckComparer());
+                shifts = noduplicates.ToList();
+                shifts = shifts.OrderBy(x => x.employeeRef).ThenBy(c => c.clockStamp).ToList();
+               
                 File.Delete(CurrentPath.Text);
 
 
@@ -215,8 +230,25 @@ namespace AionHR.Web.UI.Forms
 
                 ITimeAttendanceService _timeAtt = new TimeAttendanceService(h, new TimeAttendanceRepository());
                 SystemService _system = new SystemService(new SystemRepository(), h);
-                PunchesBatchRunner runner = new PunchesBatchRunner(storage, emp, _system, _timeAtt) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
+
+
+                Dictionary<string, string> arabicErrors = new Dictionary<string, string>();
+                if (_systemService.SessionHelper.CheckIfArabicSession())
+                {
+                    System.Resources.ResourceManager MyResourceClass = new System.Resources.ResourceManager(typeof(Resources.Errors /* Reference to your resources class -- may be named differently in your case */));
+
+                    ResourceSet resourceSet = Resources.Errors.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+                    foreach (DictionaryEntry entry in resourceSet)
+                    {
+                        arabicErrors[entry.Key.ToString()] = entry.Value.ToString();
+                      
+                    }
+                }
+            
+
+                PunchesBatchRunner runner = new PunchesBatchRunner(storage, emp, _system, _timeAtt, arabicErrors) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
                 runner.Process();
+                
                 this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID);
 
 
@@ -224,7 +256,13 @@ namespace AionHR.Web.UI.Forms
             catch (Exception exp)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + " " + Resources.Common.LineNO + " " + exp.Source).Show();
+
+                string[] errorDetails = exp.Source.Split(';');
+                if (errorDetails.Length==3)
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + "<br />" + Resources.Common.LineNO +errorDetails[2]+ "<br />" + GetGlobalResourceObject("Common", "FieldDetails")+":"+errorDetails[0]+" "+ errorDetails[1] + "<br />" + GetGlobalResourceObject("Common", "ExceptionMessage") + exp.Message).Show();
+                else
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + "<br />" + Resources.Common.LineNO + errorDetails[1] + "<br />" + GetGlobalResourceObject("Common", "FieldDetails") + ":" + errorDetails[0] + "<br />" + GetGlobalResourceObject("Common", "ExceptionMessage") + exp.Message).Show();
+                //X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + "<br /> " + Resources.Common.LineNO + exp.HelpLink + "<br />" + GetGlobalResourceObject("Common", "FieldDetails") + ":" + exp.Source + " " + exp.Message).Show();
                 this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                 Viewport1.ActiveIndex = 0;
 
@@ -276,7 +314,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void DownloadResult(object sender, DirectEventArgs e)
         {
-            string attachment = "attachment; filename=MyCsvLol.csv";
+            string attachment = "attachment; filename=MyCsvLol.txt";
             //HttpContext.Current.Response.Clear();
             //HttpContext.Current.Response.ClearHeaders();
             //HttpContext.Current.Response.ClearContent();
@@ -286,7 +324,7 @@ namespace AionHR.Web.UI.Forms
             string content;
             try
             {
-                content = File.ReadAllText(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + ClassId.TACH.ToString() + ".csv"));
+                content = File.ReadAllText(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + ClassId.TACH.ToString() + ".txt"));
             }
 
             catch (Exception exp)

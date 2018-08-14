@@ -362,8 +362,8 @@
                                     </Listeners>
                                 </ext:NumberField>
 
-                                <ext:DateField runat="server" FieldLabel="<%$ Resources: FieldFrom%>"   DataIndex="startDate" ID="startDate" Name="startDate" ReadOnly="true" />
-                                <ext:DateField runat="server" FieldLabel="<%$ Resources: FieldTo%>"    DataIndex="endDate" ID="endDate" Name="endDate" ReadOnly="true" />
+                                <ext:DateField runat="server" FieldLabel="<%$ Resources: FieldFrom%>"   DataIndex="startDate" ID="startDate" Name="startDate" ReadOnly="false" />
+                                <ext:DateField runat="server" FieldLabel="<%$ Resources: FieldTo%>"    DataIndex="endDate" ID="endDate" Name="endDate" ReadOnly="false" />
 
                             </Items>
 

@@ -455,15 +455,15 @@
                                    <ext:NumberField runat="server" ReadOnly="true" ID="paidLeaves" Name="paidLeaves" FieldLabel="<%$ Resources: FieldPaidLeaves %>" />
                                    <ext:NumberField runat="server" ReadOnly="true" ID="leaveBalance" Name="leaveBalance" FieldLabel="<%$ Resources: FieldBalanceLeaves %>" />
                                  <ext:NumberField runat="server" ReadOnly="true" ID="salary" Name="salary" FieldLabel="<%$ Resources: FieldSalary %>"  />
-                                  <ext:NumberField runat="server" ID="days" Name="days" FieldLabel="<%$ Resources: FieldDays %>"  MsgTarget="None">
+                                  <ext:TextField runat="server" ID="days" Name="days" FieldLabel="<%$ Resources: FieldDays %>"  MsgTarget="None">
                                       <Listeners  >
                                          <Change Handler=" this.next().setValue((this.prev().value/30)*this.value);"   ></Change>
                                       </Listeners>
-                                       <Validator Handler=" if(this.value>0 && this.value<#{leaveBalance}.getValue()) return true;">
+                                       <Validator Handler=" if(!isNaN(this.value)&&this.value>0 && this.value<= #{leaveBalance}.getValue()) return true;">
                                            
                                        </Validator>
                               
-                                      </ext:NumberField>
+                                      </ext:TextField>
                                 
                                  <ext:NumberField runat="server" ReadOnly="true" ID="amount" Name="amount" FieldLabel="<%$ Resources: FieldAmount %>" AllowDecimals="false" >
                                    

@@ -135,7 +135,7 @@
   <data name="essString" xml:space="preserve">
     <value>Employee Social Security</value>
   </data>
-  <data name="netSalary" xml:space="preserve">
+  <data name="net" xml:space="preserve">
     <value>Net </value>
   </data>
   <data name="PaidAt" xml:space="preserve">
@@ -161,5 +161,8 @@
   </data>
   <data name="Overtime" xml:space="preserve">
     <value>Overtime</value>
+  </data>
+  <data name="netSalaryString" xml:space="preserve">
+    <value>Net Salary </value>
   </data>
 </root>

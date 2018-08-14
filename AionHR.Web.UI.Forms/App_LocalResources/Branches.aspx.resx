@@ -192,4 +192,7 @@
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>Working Calendar</value>
   </data>
+  <data name="manager" xml:space="preserve">
+    <value>Manager</value>
+  </data>
 </root>

@@ -267,4 +267,16 @@
   <data name="LateDays" xml:space="preserve">
     <value>التأخير</value>
   </data>
+  <data name="earnedLeaves" xml:space="preserve">
+    <value>مستحقات إجازة :</value>
+  </data>
+  <data name="leavesBalance" xml:space="preserve">
+    <value>رصيد الاجازات :</value>
+  </data>
+  <data name="paidLeaves" xml:space="preserve">
+    <value>بدل اجازات :</value>
+  </data>
+  <data name="usedLeaves" xml:space="preserve">
+    <value>مجموع الاجازات : </value>
+  </data>
 </root>

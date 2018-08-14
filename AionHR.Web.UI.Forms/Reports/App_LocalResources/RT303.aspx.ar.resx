@@ -127,18 +127,18 @@
     <value>يوم عمل</value>
   </data>
   <data name="status2" xml:space="preserve">
-    <value>إجازة مدفوعة</value>
+    <value>غياب مدفوع</value>
   </data>
   <data name="status3" xml:space="preserve">
-    <value>غير مكتمل</value>
+    <value>بصمة ناقصة</value>
   </data>
   <data name="Unpaid" xml:space="preserve">
     <value>غياب دون إذن</value>
   </data>
   <data name="status4" xml:space="preserve">
-    <value>إجازة غير مدفوعة</value>
+    <value>غياب غير مدفوع</value>
   </data>
   <data name="status5" xml:space="preserve">
-    <value>غياب</value>
+    <value>غياب بدون إذن</value>
   </data>
 </root>

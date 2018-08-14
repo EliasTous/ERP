@@ -192,4 +192,7 @@
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>تقويم العمل</value>
   </data>
+  <data name="manager" xml:space="preserve">
+    <value>مدير الفرع </value>
+  </data>
 </root>

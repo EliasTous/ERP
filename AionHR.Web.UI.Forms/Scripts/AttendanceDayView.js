@@ -76,6 +76,12 @@ function validateFrom(s) {
    
         
     d = s.split(':');
+    if (s.length != 5 )
+        return false;
+   
+    if (/\s/.test(s))
+        return false;
+       
     if (s.split(':').length != 2) return false;
     
     if (d[0] == '')
@@ -97,6 +103,10 @@ function validateTo(curr, prev) {
     if (curr == null || curr == '')
         return true;
     if (!validateFrom(curr))
+        return false;
+    if (curr.length != 5)
+        return false;
+    if (/\s/.test(curr))
         return false;
     var currHours = curr.split(':')[0];
     var currMins = curr.split(':')[1];

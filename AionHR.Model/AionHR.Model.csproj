@@ -31,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>E:\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -221,6 +221,7 @@
     <Compile Include="TimeAttendance\AttendanceScheduleDay.cs" />
     <Compile Include="TimeAttendance\AttendanceShift.cs" />
     <Compile Include="TimeAttendance\BiometricDevice.cs" />
+    <Compile Include="TimeAttendance\BranchAttendances.cs" />
     <Compile Include="TimeAttendance\Calendar.cs" />
     <Compile Include="TimeAttendance\CalendarAlternation.cs" />
     <Compile Include="TimeAttendance\CalendarDay.cs" />

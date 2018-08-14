@@ -444,7 +444,7 @@
                                 </ext:ComboBox>
 
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ltId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    DisplayField="name"
+                                    DisplayField="name" 
                                     ValueField="recordId" AllowBlank="false"
                                     FieldLabel="<%$ Resources: FieldLtName %>">
                                     <Store>
@@ -478,6 +478,16 @@
                                         <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
+                                    <DirectEvents>
+                                        <Select OnEvent="LoanTypeChanged" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
+                                            <ExtraParams>
+                                                <ext:Parameter Name="id" Value="#{ltId}.getValue()" Mode="Raw" />
+                                                
+                                            </ExtraParams>
+                                        </Select>
+                                    </DirectEvents>
+                                    
                                 </ext:ComboBox>
 
                                 <%--<ext:TextField ID="employeeName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeName"   AllowBlank="false"/>--%>
@@ -562,11 +572,11 @@
                                                 <ext:ListItem Text="<%$ Resources: PFromBasicSalary %>" Value="2"  />
                                                 <ext:ListItem Text="<%$ Resources: PFromLoan %>" Value="3" />
                                                 <ext:ListItem Text="<%$ Resources: FixedAmount %>" Value="4"  />
-                                              <%--  <ext:ListItem Text="<%$ Resources: FixedPayment %>" Value="5" />--%>
+                                                <ext:ListItem Text="<%$ Resources: PFormFullSalaryDeduction %>" Value="5" />
 
                                             </Items>
                                            <Listeners>
-                                               <Change Handler=" #{ldValue}.setValue(0);"></Change>
+                                               <Change Handler=" #{ldValue}.setValue(0); if(#{ldMethod}.value ==5) #{ldValue}.setValue(#{amount}.value);"></Change>
 
                                            </Listeners>
                                         </ext:ComboBox>

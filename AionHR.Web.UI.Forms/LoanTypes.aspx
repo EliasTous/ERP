@@ -29,7 +29,11 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        
+        <ext:Hidden ID="ldMethod1" runat="server" Text="<%$ Resources:PFromNetSalary  %>" />
+        <ext:Hidden ID="ldMethod2" runat="server" Text="<%$ Resources:PFromBasicSalary   %>" />
+        <ext:Hidden ID="ldMethod3" runat="server" Text="<%$ Resources:PFromLoan    %>" />
+        <ext:Hidden ID="ldMethod4" runat="server" Text="<%$ Resources:FixedAmount   %>" />
+        <ext:Hidden ID="ldMethod5" runat="server" Text="<%$ Resources:PFormFullSalaryDeduction   %>" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -49,7 +53,11 @@
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
+                        <ext:ModelField Name="ldMethod" />
                         <ext:ModelField Name="name" />
+                        <ext:ModelField Name="ldValue" />
+                        <ext:ModelField Name="disableEditing" />
+
                       
                     </Fields>
                 </ext:Model>
@@ -148,10 +156,17 @@
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                        </ext:Column>
-                                                   
-                           
+                                 
+                             
 
+                        </ext:Column>
+                                 <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" Flex="2" />                  
+                           
+                             <ext:Column ID="Column1" DataIndex="ldMethod" Text="<%$ Resources: LoanCoverageType %>" runat="server" Flex="2" >                 
+                                 <Renderer Handler="return document.getElementById('ldMethod'+record.data['ldMethod']).value;" />
+                                 </ext:Column>
+                             <ext:CheckColumn ID="Column2" DataIndex="disableEditing" Text="<%$ Resources: disableEditing %>" runat="server" width="100" />                  
+    
 
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
@@ -283,6 +298,31 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ldMethod" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    FieldLabel="<%$ Resources: LoanCoverageType %>" AllowBlank="false" SubmitValue="true">
+                                    <Items>
+                                       
+                                              
+                                                <ext:ListItem Text="<%$ Resources: PFromNetSalary %>" Value="1"  />
+                                                <ext:ListItem Text="<%$ Resources: PFromBasicSalary %>" Value="2"  />
+                                                <ext:ListItem Text="<%$ Resources: PFromLoan %>" Value="3" />
+                                                <ext:ListItem Text="<%$ Resources: FixedAmount %>" Value="4"  />
+                                                <ext:ListItem Text="<%$ Resources: PFormFullSalaryDeduction %>" Value="5" />
+
+                                            </Items>
+                                           <Listeners>
+                                               <Change Handler="#{ldValue}.setValue(0);"></Change>
+
+                                           </Listeners>
+                                        </ext:ComboBox>
+                                        <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
+                                        
+                                         <validator Handler="if(#{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else return false; } else {if (this.value<=0  ) return false;    if (#{amount}.getValue()<this.value) return false; else return true;} ">
+                                             
+                                         </validator>
+                                           
+                                            </ext:NumberField>
+                                <ext:Checkbox ID="disableEditing" runat="server" FieldLabel="<%$ Resources: disableEditing%>" Name="disableEditing" InputValue="true" />
                             </Items>
 
                         </ext:FormPanel>

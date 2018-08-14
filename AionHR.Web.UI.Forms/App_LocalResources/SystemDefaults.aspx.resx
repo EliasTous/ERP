@@ -405,4 +405,10 @@
   <data name="retirementAge" xml:space="preserve">
     <value>Retirement Age</value>
   </data>
+  <data name="employeeRefSize" xml:space="preserve">
+    <value>Employee Ref Size</value>
+  </data>
+  <data name="minPunchInterval" xml:space="preserve">
+    <value>Min Punch Interval</value>
+  </data>
 </root>

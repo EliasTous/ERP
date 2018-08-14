@@ -39,5 +39,8 @@ namespace AionHR.Model.Employees.Leaves
         [PropertyID("42000_06")]
         [ApplySecurity]
         public bool raDepLA { get; set; }
+        [PropertyID("42000_07")]
+        [ApplySecurity]
+        public bool raBrHead{ get; set; }
     }
 }

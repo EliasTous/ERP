@@ -1386,4 +1386,7 @@
   <data name="Property6010703" xml:space="preserve">
     <value>تفاصيل الشكوى</value>
   </data>
+  <data name="Property4200007" xml:space="preserve">
+    <value>مدير الفرع</value>
+  </data>
 </root>

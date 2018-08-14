@@ -26,6 +26,7 @@ using AionHR.Model.System;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
+using AionHR.Model.HelpFunction;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -37,6 +38,7 @@ namespace AionHR.Web.UI.Forms
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
         protected override void InitializeCulture()
         {
 
@@ -243,10 +245,24 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
                     return;
                 }
-                
-                //Step 2 :  remove the object from the store
-                attendanceShiftStore.Remove(index);
+                SynchronizeAttendanceDay GD = new SynchronizeAttendanceDay();
+                PostRequest<SynchronizeAttendanceDay> request = new PostRequest<SynchronizeAttendanceDay>();
+                GD.employeeId =Convert.ToInt32( CurrentEmployee.Text);
+                GD.fromDayId = CurrentDay.Text;
+                GD.toDayId = CurrentDay.Text;
+                request.entity = GD;
 
+
+                PostResponse<SynchronizeAttendanceDay> resp1 = _helpFunctionService.ChildAddOrUpdate<SynchronizeAttendanceDay>(request);
+                //Step 2 :  remove the object from the store
+             
+                if (!resp1.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp1.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp1.ErrorCode).ToString() + "<br>Technical Error: " + resp1.ErrorCode + "<br> Summary: " + resp1.Summary : resp1.Summary).Show();
+                    return;
+                }
+                attendanceShiftStore.Remove(index);
                 //Step 3 : Showing a notification for the user 
                 Notification.Show(new NotificationConfig
                 {
@@ -280,15 +296,15 @@ namespace AionHR.Web.UI.Forms
         {
 
 
-            RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-            if (sm.SelectedRows.Count() <= 0)
-                return;
-            X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteManyRecord, new MessageBoxButtonsConfig
+            //RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+            //if (sm.SelectedRows.Count() <= 0)
+            //    return;
+            X.Msg.Confirm(Resources.Common.Confirmation, GetLocalResourceObject("DeleteBranchAttendances").ToString(), new MessageBoxButtonsConfig
             {
                 //Calling DoYes the direct method for removing selecte record
                 Yes = new MessageBoxButtonConfig
                 {
-                    Handler = "App.direct.DoYes()",
+                    Handler = "App.direct.deleteBranchAttendances()",
                     Text = Resources.Common.Yes
                 },
                 No = new MessageBoxButtonConfig
@@ -301,8 +317,7 @@ namespace AionHR.Web.UI.Forms
 
         /// <summary>
         /// Direct method for removing multiple records
-        /// </summary>
-        [DirectMethod(ShowMask = true)]
+        ///    [DirectMethod(ShowMask = true)]
         public void DoYes()
         {
             try
@@ -329,6 +344,87 @@ namespace AionHR.Web.UI.Forms
                     Icon = Icon.Information,
                     Html = Resources.Common.ManyRecordDeletedSucc
                 });
+
+            }
+            catch (Exception ex)
+            {
+                //Alert in case of any failure
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+        }
+        /// </summary>
+        [DirectMethod(ShowMask = true)]
+        public void deleteBranchAttendances()
+        {
+            BranchAttendance BA = new BranchAttendance();
+            var d = jobInfo1.GetJobInfo();
+            if (d.BranchId.HasValue)
+            {
+                BA.branchId =Convert.ToInt32( d.BranchId.Value.ToString());
+              
+
+
+            }
+            else
+            {
+                BA.branchId = 0;
+              
+            }
+            
+
+            if (startDayId.SelectedDate != DateTime.MinValue)
+
+            {
+                BA.fromDayId= startDayId.SelectedDate.ToString("yyyyMMdd");
+
+
+            }
+            else
+            {
+                BA.fromDayId = "";
+            }
+            if (endDayId.SelectedDate != DateTime.MinValue)
+
+            {
+                BA.toDayId = endDayId.SelectedDate.ToString("yyyyMMdd");
+
+
+            }
+            else
+            {
+                BA.toDayId = "";
+            }
+           
+            try
+            {
+
+              
+                PostRequest<BranchAttendance> request = new PostRequest<BranchAttendance>();
+               
+                request.entity = BA;
+
+
+                PostResponse<BranchAttendance> r = _helpFunctionService.ChildAddOrUpdate<BranchAttendance>(request);
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Showing successful notification
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.ManyRecordDeletedSucc
+                    });
+                }
 
             }
             catch (Exception ex)

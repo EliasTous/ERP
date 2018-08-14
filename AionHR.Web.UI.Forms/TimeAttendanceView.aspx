@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/AttendanceDayView.js?id=20"></script>
+    <script type="text/javascript" src="Scripts/AttendanceDayView.js?id=107"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
@@ -210,10 +210,10 @@
 
 
 
-                                <ext:Button Visible="false" ID="btnDeleteSelected" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
-                                    <Listeners>
+                                <ext:Button  ID="btnDeleteSelected" runat="server" Text="<%$ Resources: DeleteAll %>" Icon="Delete">
+                                   <%-- <Listeners>
                                         <Click Handler="CheckSession();"></Click>
-                                    </Listeners>
+                                    </Listeners>--%>
                                     <DirectEvents>
                                         <Click OnEvent="btnDeleteAll">
                                             <EventMask ShowMask="true" />

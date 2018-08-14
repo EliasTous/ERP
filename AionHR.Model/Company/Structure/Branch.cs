@@ -17,7 +17,7 @@ namespace AionHR.Model.Company.Structure
         public string name { get; set; }
         [PropertyID("21020_02")]
         [ApplySecurity]
-        public string reference { get; set; }
+        public string branchRef { get; set; }
         [PropertyID("21020_03")]
         [ApplySecurity]
         public int timeZone { get; set; }
@@ -35,6 +35,9 @@ namespace AionHR.Model.Company.Structure
         public string scName { get; set; }
         public int? caId { get; set; }
         public string caName { get; set; }
+        public string managerId { get; set; }
+        public EmployeeName managerName { get; set; }
+
 
     }
 

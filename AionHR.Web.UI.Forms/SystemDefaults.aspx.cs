@@ -447,6 +447,21 @@ namespace AionHR.Web.UI.Forms
             }
 
             catch { }
+            try
+            {
+                minPunchInterval.Text = (items.Where(s => s.Key == "minPunchInterval").First().Value);
+              
+            }
+
+            catch { }
+            try
+            {
+                employeeRefSize.Text = (items.Where(s => s.Key == "employeeRefSize").First().Value);
+
+            }
+
+            catch { }
+
 
 
 
@@ -513,6 +528,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("retirementAge", values.retirementAge.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("retirementAge", ""));
+            if (values.employeeRefSize!= null && !string.IsNullOrEmpty(values.employeeRefSize.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("employeeRefSize", values.employeeRefSize.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("employeeRefSize", ""));
 
 
 
@@ -646,7 +665,12 @@ namespace AionHR.Web.UI.Forms
             else
                 submittedValues.Add(new KeyValuePair<string, string>("sourceTACA", ""));
 
+            if (!string.IsNullOrEmpty(values.minPunchInterval.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("minPunchInterval", values.minPunchInterval.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("minPunchInterval", ""));
             submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
+
             return submittedValues;
         }
 

@@ -2680,6 +2680,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Branch Manager.
+        /// </summary>
+        internal static string Property4200007 {
+            get {
+                return ResourceManager.GetString("Property4200007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leave Type.
         /// </summary>
         internal static string Property420004 {

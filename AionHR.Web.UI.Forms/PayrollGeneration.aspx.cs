@@ -82,6 +82,9 @@ namespace AionHR.Web.UI.Forms
                 Viewport1.ActiveIndex = 0;
                 yearStore.DataSource = GetYears();
                 yearStore.DataBind();
+                salaryTypeFilter.Select("5");
+                status.Select("0");
+
                 if (_systemService.SessionHelper.CheckIfIsAdmin())
                     return;
                 try
@@ -896,6 +899,8 @@ namespace AionHR.Web.UI.Forms
 
             yearStore.DataSource = GetYears();
             yearStore.DataBind();
+            salaryTypeFilter.Select("5");
+            status.Select("0");
             Viewport1.ActiveIndex = 0;
         }
 
@@ -954,6 +959,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             string seqNo = e.ExtraParams["seqNo"];
             string edSeqNo = e.ExtraParams["edSeqNo"];
+            string masterId = e.ExtraParams["masterId"];
 
             string obj = e.ExtraParams["values"];
 
@@ -963,6 +969,7 @@ namespace AionHR.Web.UI.Forms
            
             b.seqNo = seqNo;
             b.edSeqNo = edSeqNo;
+            b.masterId = masterId;
             recordID = b.EDrecordId;
 
             if (edId.SelectedItem != null)
@@ -1266,7 +1273,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     catch { y.edName = y.edName; }
                 });
-                PayrollLine line = new PayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString(), _systemService.SessionHelper.GetDateformat());
+                PayrollLine line = new PayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString(), _systemService.SessionHelper.GetDateformat(), GetLocalResourceObject("netSalaryString").ToString());
                 lines.Add(line);
             }
 

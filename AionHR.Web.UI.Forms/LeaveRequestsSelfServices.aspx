@@ -406,6 +406,9 @@
                 Maximizable="false"
                 Draggable="true"
                 Layout="Fit">
+           <DirectEvents>
+                  <BeforeShow OnEvent="FillEmployeeLeaves" />
+           </DirectEvents>
 
     <Items>
         <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
@@ -431,7 +434,27 @@
                     AutoScroll="true"
                     DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                     BodyPadding="5">
+
                     <Items>
+                          <ext:Panel runat="server" MarginSpec="0 0 0 0" ID="Panel1" Layout="TableLayout">
+                              <Items>
+                           <ext:Panel runat="server" MarginSpec="0 20 0 0" ID="left">
+                                       <Items>
+                                             <ext:TextField runat="server" ID="earnedLeaves" Name="earnedLeaves" ReadOnly="true" FieldLabel="<%$ Resources:earnedLeaves%>"   />
+                                          <ext:TextField runat="server" ID="usedLeaves" Name="usedLeaves" ReadOnly="true" FieldLabel="<%$ Resources:usedLeaves%>"   />
+                                           </Items>
+
+                                           </ext:Panel>
+                          <ext:Panel runat="server" MarginSpec="0 0 0 0" ID="rightPanel">
+                                  <Items>
+                                       <ext:TextField runat="server" ID="paidLeaves" Name="paidLeaves" ReadOnly="true" FieldLabel="<%$ Resources:paidLeaves%>"  />
+                                             <ext:TextField runat="server" ID="leavesBalance" Name="leavesBalance" ReadOnly="true" FieldLabel="<%$ Resources:leavesBalance%>"   />
+                                      </Items>
+
+                                      </ext:Panel>
+                                  </Items>
+                              </ext:Panel>
+                        
                         <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                         <ext:TextField ID="leaveRef" runat="server" Name="leaveRef"  FieldLabel="<%$ Resources:FieldLeaveRef%>" Hidden="true" />
                            

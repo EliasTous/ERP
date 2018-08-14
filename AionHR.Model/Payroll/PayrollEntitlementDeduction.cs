@@ -33,6 +33,7 @@ namespace AionHR.Model.Payroll
         [JsonProperty(PropertyName = "EDrecordId", Required = Required.Default)]
         [JsonIgnore]
         public string EDrecordId { get { return edId + seqNo + edSeqNo; }  }
+        public string masterId { get; set; }
 
 
     }

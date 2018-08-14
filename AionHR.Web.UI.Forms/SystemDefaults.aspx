@@ -331,6 +331,9 @@
                                     </Listeners>
                                 </ext:ComboBox>
                                 <ext:NumberField  runat="server" LabelWidth="150" ID="retirementAge" Name="retirementAge" FieldLabel="<%$ Resources: retirementAge %>" MinValue="0"  MaxValue="100"/>
+                                  <ext:NumberField  runat="server" LabelWidth="150" ID="employeeRefSize" Name="employeeRefSize" FieldLabel="<%$ Resources: employeeRefSize %>" MinValue="0"  MaxValue="10">
+                                      <Validator Handler="if(this.value==1 ||this.value==2 ) return false; else return true;"></Validator>
+                                      </ext:NumberField>
                          
 
                             </Items>
@@ -446,6 +449,8 @@
                                        
                                     </Items>
                                 </ext:ComboBox>
+                                 <ext:NumberField  runat="server" LabelWidth="150" ID="minPunchInterval" Name="minPunchInterval" FieldLabel="<%$ Resources: minPunchInterval %>" MinValue="0"  MaxValue="60"/>
+                                     
                                    <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" LabelWidth="150" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
 
                             </Items>

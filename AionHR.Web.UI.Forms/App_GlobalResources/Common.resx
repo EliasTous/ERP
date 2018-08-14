@@ -1165,7 +1165,7 @@
     <value>Import Employment Status</value>
   </data>
   <data name="LineNO" xml:space="preserve">
-    <value>Line Number : </value>
+    <value>Error In imported File - Line number :</value>
   </data>
   <data name="ImportPunches" xml:space="preserve">
     <value>Import Punches</value>
@@ -1175,5 +1175,8 @@
   </data>
   <data name="GenerateAttendanceShiftSucc" xml:space="preserve">
     <value>Attendance Shifts Generated Successfully</value>
+  </data>
+  <data name="ExceptionMessage" xml:space="preserve">
+    <value>Exception Message :</value>
   </data>
 </root>

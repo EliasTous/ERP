@@ -24,6 +24,7 @@ namespace AionHR.Infrastructure.Importers
         public DataTable GetRows()
         {
             string referance = "";
+            int lineNumber = 1;
             try
             {
                 DataTable tb = null;
@@ -45,7 +46,7 @@ namespace AionHR.Infrastructure.Importers
                         if (tb == null)
                         {
                             tb = new DataTable();
-                            for (int i = 0; i < values.Length; i++)
+                            for (int i = 0; i <= values.Length; i++)
                             {
                                 tb.Columns.Add();
                             }
@@ -55,6 +56,7 @@ namespace AionHR.Infrastructure.Importers
                         {
                             r[i] = values[i];
                         }
+                        r[tb.Columns.Count-1] = lineNumber++;
                         tb.Rows.Add(r);
                     }
                 }
@@ -64,7 +66,7 @@ namespace AionHR.Infrastructure.Importers
             }
             catch(Exception e)
             {
-                e.Source = referance;
+                e.Source = referance+";"+lineNumber;
                 throw;
             }
         }

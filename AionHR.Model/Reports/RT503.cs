@@ -72,6 +72,7 @@ namespace AionHR.Model.Reports
         public double essAmount { get; set; }
 
         public double cssAmount { get; set; }
+        public double netSalary { get; set; }
         public DateTime payDate { get; set; }
         public string payDateString { get; set; }
         public int calendarDays { get; set; }
@@ -87,6 +88,7 @@ namespace AionHR.Model.Reports
         //public int calendarDays { get; set; }
 
         public double basicAmount { get; set; }
+       
 
         public string BasicAmountString
         {
@@ -112,9 +114,10 @@ namespace AionHR.Model.Reports
 
                 all.AddRange(deductions);
                 all.Add(new DepartmentEntitlementDeduction() { name = dAmountString, amount = DeductionsTotal, AmountString = String.Format("{0:n0}", DeductionsTotal) });
-                all.Add(new DepartmentEntitlementDeduction() { name = netSalary, amount = NetSalary, AmountString = String.Format("{0:n0}", NetSalary) });
+                all.Add(new DepartmentEntitlementDeduction() { name = net, amount = Net, AmountString = String.Format("{0:n0}", Net) });
                 all.Add(new DepartmentEntitlementDeduction() { name = essString, amount = essAmount, AmountString = String.Format("{0:n0}", essAmount) });
                 all.Add(new DepartmentEntitlementDeduction() { name = cssString, amount = cssAmount, AmountString = String.Format("{0:n0}", cssAmount) });
+                all.Add(new DepartmentEntitlementDeduction() { name = netSalaryString, amount = netSalary, AmountString = String.Format("{0:n0}", netSalary) });
                 //all = all.Select(item => {
                 //    item.AmountString = Regex.Replace(item.AmountString, @"\s+", ""); // remove all white spaces
                 //    item.name = Regex.Replace(item.name, @"\s+", ""); // remove all white spaces
@@ -127,9 +130,10 @@ namespace AionHR.Model.Reports
         private string eAmountString;
         private string dAmountString;
         private string taxableTotalString;
-        private string netSalary;
+        private string net;
         private string essString;
         private string cssString;
+        private string netSalaryString;
 
         //public string currencyRef { get; set; }
 
@@ -140,7 +144,7 @@ namespace AionHR.Model.Reports
 
         public double DeductionsTotal { get { return deductions.Sum(x => x.amount); } }
 
-        public double NetSalary { get { return basicAmount + EntitlementsTotal + TaxableEntitlementsTotal - DeductionsTotal; } }
+        public double Net { get { return /*basicAmount +*/ EntitlementsTotal + TaxableEntitlementsTotal + DeductionsTotal; } }
 
         public void AddEn(DepartmentEntitlementDeduction en)
         {
@@ -154,7 +158,7 @@ namespace AionHR.Model.Reports
             deductions[deductions.IndexOf(de)].amount = de.amount;
             deductions[deductions.IndexOf(de)].AmountString = String.Format("{0:n0}", de.amount);
         }
-        public DepartmentPayrollLine(HashSet<DepartmentEntitlementDeduction> en, HashSet<DepartmentEntitlementDeduction> de, List<RT503> details, string taxable, string eString, string dString, string netString, string ess, string css,string format)
+        public DepartmentPayrollLine(HashSet<DepartmentEntitlementDeduction> en, HashSet<DepartmentEntitlementDeduction> de, List<RT503> details, string taxable, string eString, string dString, string net, string ess, string css,string format,string netSalaryString)
         {
             entitlements = new List<DepartmentEntitlementDeduction>();
             deductions = new List<DepartmentEntitlementDeduction>();
@@ -176,6 +180,8 @@ namespace AionHR.Model.Reports
                 departmentName = details[0].departmentName;
                 essAmount = details[0].essAmount;
                 cssAmount = details[0].cssAmount;
+                netSalary = details[0].netSalary;
+
                 //branchName = details[0].branchName;
 
                 //countryName = details[0].countryName;
@@ -195,10 +201,11 @@ namespace AionHR.Model.Reports
             }
             eAmountString = eString;
             dAmountString = dString;
-            netSalary = netString;
+            this.net = net;
             taxableTotalString = taxable;
             cssString = css;
             essString = ess;
+            this.netSalaryString = netSalaryString; 
         }
 
     }
@@ -245,12 +252,14 @@ namespace AionHR.Model.Reports
         public double basicAmount { get; set; }
         public double eAmount { get; set; }
         public double dAmount { get; set; }
-        public double netSalary { get; set; }
+       
         public string edName { get; set; }
         public double essAmount { get; set; }
         public double cssAmount { get; set; }
+        public double netSalary { get; set; }
 
-     //   public int paymentMethod { get; set; }
+
+        //   public int paymentMethod { get; set; }
         public double edAmount { get; set; }
         public bool isTaxable { get; set; }
 

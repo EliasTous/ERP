@@ -54,7 +54,7 @@ namespace AionHR.Model.Employees.Profile
         public DateTime? hireDate { get; set; }
         public double earnedLeaves { get;  set; }
         public double usedLeaves { get; set;  }
-        public int paidLeaves { get; set; }
+        public double paidLeaves { get; set; }
         public int salary { get; set; }
         public string currencyName { get; set; }
         public short status { get; set; }

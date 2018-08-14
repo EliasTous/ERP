@@ -120,6 +120,9 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>السنوات المالية </value>
   </data>
+  <data name="ErrorStartEnd" xml:space="preserve">
+    <value>وقت البداية يجب أن يكون قبل وقت نهاية السنة المالية</value>
+  </data>
   <data name="FieldFrom" xml:space="preserve">
     <value>من </value>
   </data>
