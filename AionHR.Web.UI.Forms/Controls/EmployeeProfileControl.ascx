@@ -1114,7 +1114,7 @@
                                     </Store>
 
                                 </ext:ComboBox>--%>
-                                <%--<ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="scId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="scId" FieldLabel="<%$ Resources:FieldSchedule%>" SimpleSubmit="true">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="scId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="scId" FieldLabel="<%$ Resources:FieldSchedule%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="scheduleStore">
                                             <Model>
@@ -1128,7 +1128,7 @@
                                         </ext:Store>
                                     </Store>
 
-                                </ext:ComboBox>--%>
+                                </ext:ComboBox>
                                 <ext:TextField ID="birthPlace" runat="server" FieldLabel="<%$ Resources:FieldBirthPlace%>" Name="placeOfBirth" AllowBlank="true" />
 
 

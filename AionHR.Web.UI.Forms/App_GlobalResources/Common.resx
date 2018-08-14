@@ -1179,4 +1179,10 @@
   <data name="ExceptionMessage" xml:space="preserve">
     <value>Exception Message :</value>
   </data>
+  <data name="Benefits" xml:space="preserve">
+    <value>Benefits</value>
+  </data>
+  <data name="BenefitsSchedule" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
 </root>

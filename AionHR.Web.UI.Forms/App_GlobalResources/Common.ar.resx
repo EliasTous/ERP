@@ -1182,4 +1182,10 @@
   <data name="ExceptionMessage" xml:space="preserve">
     <value>رسالة الخطأ :</value>
   </data>
+  <data name="Benefits" xml:space="preserve">
+    <value>مستحقات </value>
+  </data>
+  <data name="BenefitsSchedule" xml:space="preserve">
+    <value>جدول المستحقات </value>
+  </data>
 </root>

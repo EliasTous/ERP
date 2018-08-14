@@ -162,6 +162,9 @@
     <Content Include="AssetAllowanceSelfServices.aspx" />
     <Content Include="AssetCategories.aspx" />
     <Content Include="Banks.aspx" />
+    <Content Include="benefitAcquistions.aspx" />
+    <Content Include="Benefits.aspx" />
+    <Content Include="BenefitsSchedules.aspx" />
     <Content Include="BiometricDevices.aspx" />
     <Content Include="BonusTypes.aspx" />
     <Content Include="Branches.aspx" />
@@ -595,6 +598,27 @@
     </Compile>
     <Compile Include="Banks.aspx.designer.cs">
       <DependentUpon>Banks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="benefitAcquistions.aspx.cs">
+      <DependentUpon>benefitAcquistions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="benefitAcquistions.aspx.designer.cs">
+      <DependentUpon>benefitAcquistions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Benefits.aspx.cs">
+      <DependentUpon>Benefits.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Benefits.aspx.designer.cs">
+      <DependentUpon>Benefits.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BenefitsSchedules.aspx.cs">
+      <DependentUpon>BenefitsSchedules.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BenefitsSchedules.aspx.designer.cs">
+      <DependentUpon>BenefitsSchedules.aspx</DependentUpon>
     </Compile>
     <Compile Include="DaysAvailability.aspx.cs">
       <DependentUpon>DaysAvailability.aspx</DependentUpon>
@@ -2313,6 +2337,10 @@
     <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.ar.resx" />
     <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.resx" />
     <Content Include="App_LocalResources\Folders.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Benefits.aspx.resx" />
+    <Content Include="App_LocalResources\Benefits.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BenefitsSchedules.aspx.resx" />
+    <Content Include="App_LocalResources\BenefitsSchedules.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

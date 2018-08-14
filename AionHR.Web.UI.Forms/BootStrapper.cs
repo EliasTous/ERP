@@ -27,6 +27,7 @@ using AionHR.Web.UI.Forms.Utilities;
 using AionHR.Model.SelfService;
 using AionHR.Model.NationalQuota;
 using AionHR.Model.HelpFunction;
+using AionHR.Model.Benefits;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -75,6 +76,7 @@ namespace AionHR.Web.UI.Forms
                 For<ISelfServiceRepository>().Use<SelfServiceRepository>();
                 For<INationalQuotaRepository>().Use<NationalQuotaRepository>();
                 For<IHelpFunctionRepository>().Use<HelpFunctionRepository>();
+                For<IBenefitsRepository>().Use<BenefitsRepository>();
 
                 //Services
                 For<ISystemService>().Use<SystemService>();
@@ -95,6 +97,7 @@ namespace AionHR.Web.UI.Forms
                 For<ISelfServiceService>().Use<SelfServiceService>();
                 For<INationalQuotaService>().Use<NationalQuotaService>();
                 For<IHelpFunctionService>().Use<HelpFunctionService>();
+                For<IBenefitsService>().Use<BenefitsService>();
 
             }
         }

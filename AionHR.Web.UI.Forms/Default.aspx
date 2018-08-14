@@ -125,6 +125,13 @@
     <ext:Hidden runat="server" ID="TrType12" Text="<%$Resources:Common , TrType12 %>" />
     <ext:Hidden runat="server" ID="TrType21" Text="<%$Resources:Common , TrType21 %>" />
 
+
+     <ext:Hidden runat="server" ID="bebe" Text="<%$Resources:Common , Benefits %>" />
+     <ext:Hidden runat="server" ID="besc" Text="<%$Resources:Common , BenefitsSchedule %>" />
+
+
+    
+
     <ext:Hidden runat="server" ID="CurrentClassRef" />
     <ext:Hidden runat="server" ID="CurrentRecordId" />
     <ext:Hidden runat="server" ID="activeModule" />
@@ -592,6 +599,29 @@
                                                 </ext:Menu>
                                             </Menu>
                                         </ext:MenuItem>
+                                           <ext:MenuItem runat="server" Text="<%$ Resources:Common , Benefits %>">
+                                            <Menu>
+                                                <ext:Menu runat="server">
+                                                    <Items>
+                                                                                                        
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , Benefits%>">
+                                                              <Listeners>
+                                                                <Click Handler="openNewTab('Benefits', 'Benefits.aspx', #{bebe}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+
+                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , BenefitsSchedule%>">
+                                                              <Listeners>
+                                                                <Click Handler="openNewTab('BenefitsSchedules', 'BenefitsSchedules.aspx', #{besc}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                    
+
+                                                    </Items>
+                                                </ext:Menu>
+                                            </Menu>
+                                        </ext:MenuItem>
+
 
                                     </Items>
                                 </ext:Menu>

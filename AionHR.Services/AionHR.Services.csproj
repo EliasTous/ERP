@@ -49,6 +49,7 @@
     <Compile Include="Implementations\AttendanceBatchRunner.cs" />
     <Compile Include="Implementations\AttendanceImportingService.cs" />
     <Compile Include="Implementations\BaseService.cs" />
+    <Compile Include="Implementations\BenefitsService.cs" />
     <Compile Include="Implementations\DepartmentBatchRunner.cs" />
     <Compile Include="Implementations\DepartmentImportingService.cs" />
     <Compile Include="Implementations\EmployeeBatchRunner.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Implementations\TaskManagementService.cs" />
     <Compile Include="Implementations\TimeAttendanceService.cs" />
     <Compile Include="Interfaces\IAccessControlService.cs" />
+    <Compile Include="Interfaces\IBenefitsService.cs" />
     <Compile Include="Interfaces\ICompanyNewsService.cs" />
     <Compile Include="Interfaces\IComplaintsService.cs" />
     <Compile Include="Interfaces\IBaseService.cs" />
@@ -113,6 +115,8 @@
     <Compile Include="Interfaces\ITaskManagementService.cs" />
     <Compile Include="Interfaces\ITimeAttendanceService.cs" />
     <Compile Include="Messaging\AccessControl\AccessControlRequests.cs" />
+    <Compile Include="Messaging\Benefits\ScheduleBenefitsListRequest.cs" />
+    <Compile Include="Messaging\Benefits\ScheduleBenefitsRecordRequest.cs" />
     <Compile Include="Messaging\CaseManagement\CaseManagementRequest.cs" />
     <Compile Include="Messaging\CompanyStructure\CompanyStructureRequests.cs" />
     <Compile Include="Messaging\CompanyStructure\PositionListRequest.cs" />

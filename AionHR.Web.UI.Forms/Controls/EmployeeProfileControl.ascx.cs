@@ -317,7 +317,7 @@ namespace AionHR.Web.UI.Forms
 
             img.Hidden = isAdd;
             FillVacationSchedule();
-            //FillSchedules();
+            FillSchedules();
             panelRecordDetails.Enabled = !isAdd;
             FillCitizenShip();
 
@@ -328,18 +328,18 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        //private void FillSchedules()
-        //{
-        //    ListRequest vsRequest = new ListRequest();
-        //    ListResponse<AttendanceSchedule> resp = _timeAttendanceService.ChildGetAll<AttendanceSchedule>(vsRequest);
-        //    if (!resp.Success)
-        //    {
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
-        //        return;
-        //    }
-        //    scheduleStore.DataSource = resp.Items;
-        //    scheduleStore.DataBind();
-        //}
+        private void FillSchedules()
+        {
+            ListRequest vsRequest = new ListRequest();
+            ListResponse<AttendanceSchedule> resp = _timeAttendanceService.ChildGetAll<AttendanceSchedule>(vsRequest);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                return;
+            }
+            scheduleStore.DataSource = resp.Items;
+            scheduleStore.DataBind();
+        }
 
         private void ClearLeftPanel()
         {
