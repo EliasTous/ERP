@@ -1185,4 +1185,7 @@
   <data name="BenefitsSchedule" xml:space="preserve">
     <value>Schedule</value>
   </data>
+  <data name="BenefitAcquisition" xml:space="preserve">
+    <value>Benefit Acquisition</value>
+  </data>
 </root>

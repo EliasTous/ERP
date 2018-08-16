@@ -139,7 +139,7 @@
     <value>Requires Approval?</value>
   </data>
   <data name="isPaid" xml:space="preserve">
-    <value>is Paid </value>
+    <value>Deduct from leave balance </value>
   </data>
   <data name="LeaveType" xml:space="preserve">
     <value>Leave Type</value>

@@ -142,7 +142,7 @@
     <value>تحتاج إلى موافقة؟</value>
   </data>
   <data name="isPaid" xml:space="preserve">
-    <value>مدفوع</value>
+    <value>تخصم من رصيد الاجازات </value>
   </data>
   <data name="LeaveType" xml:space="preserve">
     <value>نوع الإجازة</value>

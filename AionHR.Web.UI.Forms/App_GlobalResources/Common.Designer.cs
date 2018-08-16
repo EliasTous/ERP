@@ -277,6 +277,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Benefit Acquisition.
+        /// </summary>
+        internal static string BenefitAcquisition {
+            get {
+                return ResourceManager.GetString("BenefitAcquisition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Benefits.
         /// </summary>
         internal static string Benefits {

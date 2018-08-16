@@ -413,7 +413,11 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             FillConfigItem(finalSettlement, "FinalSettlements", "FinalSettlements.aspx", Resources.Common.FinalSettlements, "icon-Employees", "1");
 
-         
+            Ext.Net.Node BenefitAcquisition = BuildLeafNode("BenefitAcquisition", Resources.Common.BenefitAcquisition, "Group", true, timeAt);
+
+            FillConfigItem(BenefitAcquisition, "BenefitAcquisition", "BenefitAcquisitions.aspx", Resources.Common.BenefitAcquisition, "icon-Employees", "1");
+
+
 
             nodes.Add(rootParent);
             return nodes;

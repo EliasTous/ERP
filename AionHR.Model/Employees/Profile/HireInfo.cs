@@ -49,7 +49,9 @@ namespace AionHR.Model.Employees.Profile
         public int? sponsorId { set; get; }
         public int? prevRecordId { set; get; }
         public string otherRef { set; get; }
-        
+
+        public int bsId { set; get; }
+
 
 
 

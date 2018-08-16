@@ -132,6 +132,7 @@ namespace AionHR.Web.UI.Forms
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
+
                     ScheduleBenefitsRecordRequest r = new ScheduleBenefitsRecordRequest();
                     r.bsId = bsId.Text;
                     r.benefitId = benId; 

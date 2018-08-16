@@ -48,6 +48,7 @@
     <Compile Include="Access Control\IAccessControlRepository.cs" />
     <Compile Include="Attributes\PropertyID.cs" />
     <Compile Include="Benefits\Benefit.cs" />
+    <Compile Include="Benefits\BenefitAcquisition.cs" />
     <Compile Include="Benefits\BenefitsSchedule.cs" />
     <Compile Include="Benefits\IBenefitsRepository.cs" />
     <Compile Include="Benefits\ScheduleBenefits.cs" />

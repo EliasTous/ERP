@@ -1188,4 +1188,7 @@
   <data name="BenefitsSchedule" xml:space="preserve">
     <value>جدول المستحقات </value>
   </data>
+  <data name="BenefitAcquisition" xml:space="preserve">
+    <value>اكتساب الفائدة</value>
+  </data>
 </root>

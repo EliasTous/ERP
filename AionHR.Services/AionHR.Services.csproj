@@ -115,6 +115,7 @@
     <Compile Include="Interfaces\ITaskManagementService.cs" />
     <Compile Include="Interfaces\ITimeAttendanceService.cs" />
     <Compile Include="Messaging\AccessControl\AccessControlRequests.cs" />
+    <Compile Include="Messaging\Benefits\BenefitAcquisitionsListRequest.cs" />
     <Compile Include="Messaging\Benefits\ScheduleBenefitsListRequest.cs" />
     <Compile Include="Messaging\Benefits\ScheduleBenefitsRecordRequest.cs" />
     <Compile Include="Messaging\CaseManagement\CaseManagementRequest.cs" />

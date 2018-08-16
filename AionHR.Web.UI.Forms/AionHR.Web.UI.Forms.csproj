@@ -162,6 +162,7 @@
     <Content Include="AssetAllowanceSelfServices.aspx" />
     <Content Include="AssetCategories.aspx" />
     <Content Include="Banks.aspx" />
+    <Content Include="BenefitAcquisitions.aspx" />
     <Content Include="benefitAcquistions.aspx" />
     <Content Include="Benefits.aspx" />
     <Content Include="BenefitsSchedules.aspx" />
@@ -598,6 +599,13 @@
     </Compile>
     <Compile Include="Banks.aspx.designer.cs">
       <DependentUpon>Banks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BenefitAcquisitions.aspx.cs">
+      <DependentUpon>BenefitAcquisitions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BenefitAcquisitions.aspx.designer.cs">
+      <DependentUpon>BenefitAcquisitions.aspx</DependentUpon>
     </Compile>
     <Compile Include="benefitAcquistions.aspx.cs">
       <DependentUpon>benefitAcquistions.aspx</DependentUpon>
@@ -2179,6 +2187,7 @@
     <Content Include="App_GlobalResources\AccessControl.ar.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>AccessControl.ar.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="App_LocalResources\Dashboard.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportDepartments.aspx.resx" />
@@ -2339,8 +2348,14 @@
     <Content Include="App_LocalResources\Folders.aspx.ar.resx" />
     <Content Include="App_LocalResources\Benefits.aspx.resx" />
     <Content Include="App_LocalResources\Benefits.aspx.ar.resx" />
-    <Content Include="App_LocalResources\BenefitsSchedules.aspx.resx" />
-    <Content Include="App_LocalResources\BenefitsSchedules.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BenefitsSchedules.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\BenefitsSchedules.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\BenefitAcquisitions.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BenefitAcquisitions.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
