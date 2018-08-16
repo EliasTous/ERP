@@ -27,6 +27,7 @@ using System.Threading;
 using Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.Payroll;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -37,6 +38,7 @@ namespace AionHR.Web.UI.Forms.Reports
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         protected override void InitializeCulture()
         {
 
@@ -82,10 +84,11 @@ namespace AionHR.Web.UI.Forms.Reports
                         Viewport1.Hidden = true;
                         return;
                     }
-                    dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+                 //   dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                    //FillReport(false, false);
+                    fiscalyearStore.DataSource = GetYears();
+                    fiscalyearStore.DataBind();
                 }
                 catch { }
             }
@@ -170,8 +173,14 @@ namespace AionHR.Web.UI.Forms.Reports
 
             req.Add(jobInfo1.GetJobInfo());
             req.Add(employeeCombo1.GetEmployee());
-            req.Add(dateRange1.GetRange());
+          //  req.Add(dateRange1.GetRange());
             req.Add(salaryType1.GetSalaryType());
+            FiscalYearParameter FYP = new FiscalYearParameter();
+            FYP.fiscalYear =Convert.ToInt32( fiscalYear.SelectedItem.Value);
+            req.Add(FYP);
+            PeriodIdParameter PIP = new PeriodIdParameter();
+            PIP.periodId = Convert.ToInt32(periodId.SelectedItem.Value);
+            req.Add(PIP);
 
             return req;
         }
@@ -299,6 +308,44 @@ namespace AionHR.Web.UI.Forms.Reports
         private string GetNameFormat()
         {
             return _systemService.SessionHelper.Get("nameFormat").ToString();
+        }
+
+        protected void fiscalPeriodsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            FiscalPeriodsListRequest req = new FiscalPeriodsListRequest();
+            try
+            {
+                req.Year = fiscalYear.Value.ToString();
+                req.PeriodType = (SalaryType)Convert.ToInt32(salaryType1.GetSalaryType().SalaryTypeId);
+                req.Status = "1";
+
+                ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
+                if (!resp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                    return;
+                }
+                List<object> obs = new List<Object>();
+                resp.Items.ForEach(x => obs.Add(new { recordId = x.periodId, name = x.GetFriendlyName(GetLocalResourceObject("Month").ToString(), GetLocalResourceObject("Week").ToString(), GetLocalResourceObject("Weeks").ToString(), _systemService.SessionHelper.GetDateformat()) }));
+                fiscalPeriodsStore.DataSource = obs;
+                fiscalPeriodsStore.DataBind();
+
+
+            }
+            catch { }
+        }
+        private List<FiscalYear> GetYears()
+        {
+            ListRequest l = new ListRequest();
+            ListResponse<FiscalYear> resp = _payrollService.ChildGetAll<FiscalYear>(l);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                return new List<FiscalYear>();
+            }
+            return resp.Items;
         }
     }
 }

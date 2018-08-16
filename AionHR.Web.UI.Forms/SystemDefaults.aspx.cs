@@ -462,6 +462,17 @@ namespace AionHR.Web.UI.Forms
 
             catch { }
 
+            try
+            {
+                monthWorkDays.Text = (items.Where(s => s.Key == "monthWorkDays ").First().Value);
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "monthWorkDays ").First().Value.ToString()))
+                {
+                    monthWorkDays.Text = "30";
+                }
+            }
+
+            catch { }
+
 
 
 
@@ -760,6 +771,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("PYINEDId", values.PYINEDId.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("PYINEDId", ""));
+            if (values.monthWorkDays != null && !string.IsNullOrEmpty(values.monthWorkDays.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("monthWorkDays ", values.monthWorkDays.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("monthWorkDays ", ""));
 
 
 

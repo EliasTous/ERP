@@ -326,7 +326,6 @@
     <Content Include="Reports\Controls\App_LocalResources\UserComboFilter.ascx.resx" />
     <Content Include="Reports\Controls\DateFilter.ascx" />
     <Content Include="Reports\Controls\DateRangeFilter.ascx" />
-    <Content Include="Reports\Controls\DepartmentFilter.ascx" />
     <Content Include="Reports\Controls\EmployeeFilter.ascx" />
     <Content Include="Reports\Controls\JobInfoFilter.ascx" />
     <Content Include="Reports\Controls\LeaveStatusFilter.ascx" />
@@ -1248,13 +1247,6 @@
     </Compile>
     <Compile Include="Reports\Controls\DateRangeFilter.ascx.designer.cs">
       <DependentUpon>DateRangeFilter.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Controls\DepartmentFilter.ascx.cs">
-      <DependentUpon>DepartmentFilter.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\Controls\DepartmentFilter.ascx.designer.cs">
-      <DependentUpon>DepartmentFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\EmployeeFilter.ascx.cs">
       <DependentUpon>EmployeeFilter.ascx</DependentUpon>
@@ -2354,8 +2346,14 @@
     <Content Include="App_LocalResources\BenefitsSchedules.aspx.ar.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_LocalResources\BenefitAcquisitions.aspx.ar.resx" />
-    <Content Include="App_LocalResources\BenefitAcquisitions.aspx.resx" />
+    <Content Include="App_LocalResources\BenefitAcquisitions.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\BenefitAcquisitions.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Reports\App_LocalResources\RT502.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT502.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

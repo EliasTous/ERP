@@ -987,7 +987,7 @@
                                     </Store>
 
                                 </ext:ComboBox>  
-                                                                  
+                               <ext:NumberField Width="400" runat="server" LabelWidth="160" ID="monthWorkDays " Name="monthWorkDays " FieldLabel="<%$ Resources: monthWorkDays  %>" MinValue="20" MaxValue="30" />
                             </Items>
                             <Buttons>
                                 <ext:Button Hidden="true"  ID="SavePayrollSettingsBtn" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">

@@ -1389,8 +1389,14 @@ namespace AionHR.Web.UI.Forms
             RecordResponse<LoanType> resp = _loanService.ChildGetRecord<LoanType>(new RecordRequest() { RecordID = e.ExtraParams["id"] });
             if(resp.Success)
             {
-                
+                ldMethod.Select(resp.result.ldMethod.ToString());
+                ldValue.Text = resp.result.ldValue.ToString();
+                ldMethod.ReadOnly = resp.result.disableEditing;
+                ldValue.ReadOnly= resp.result.disableEditing;
+
             }
+            else
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
 
         }
     }

@@ -66,12 +66,12 @@
                                                 <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" />
                                             </Content>
                                         </ext:Container>
-                                   <ext:Container runat="server"  Layout="FitLayout">
+                                <%--   <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                             <uc:dateRange runat="server" ID="dateRange1" />
                                              
                                             </Content>
-                                        </ext:Container>
+                                        </ext:Container>--%>
 
                                     <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
@@ -85,7 +85,58 @@
                                                      <uc:salaryTypeControl runat="server" ID="salaryType1" />
                                             </Content>
                                         </ext:Container>
-                              
+                               
+                                     <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" EmptyText="<%$ Resources: FieldYear %>" Name="fiscalYear" runat="server" DisplayField="fiscalYear" ValueField="fiscalYear" ID="fiscalYear">
+                                    <Store>
+                                        <ext:Store runat="server" ID="fiscalyearStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+
+                                                        <ext:ModelField Name="fiscalYear" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="App.fiscalPeriodsStore.reload(); ">
+                                        </Select>
+                                    </Listeners>
+                                   <%-- <DirectEvents>
+                                        <Select OnEvent="UpdateStartEndDate">
+                                            <ExtraParams>
+                                                <ext:Parameter Name="period" Value="#{periodId}.getRawValue()" Mode="Raw" />
+                                            </ExtraParams>
+                                        </Select>
+                                    </DirectEvents>--%>
+                                </ext:ComboBox>
+                                
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" EmptyText="<%$ Resources: FieldPeriod %>" Name="periodId" DisplayField="name" ValueField="recordId" runat="server" ID="periodId">
+                                    <Store>
+                                        <ext:Store runat="server" ID="fiscalPeriodsStore" OnReadData="fiscalPeriodsStore_ReadData">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                   <%-- <Listeners>
+                                        <Select Handler="App.direct.UpdateStartEndDate();">
+                                        </Select>
+                                    </Listeners>--%>
+                                     <%--  <DirectEvents>
+                                        <Select OnEvent="UpdateStartEndDate">
+                                            <ExtraParams>
+                                                <ext:Parameter Name="period" Value="#{periodId}.getRawValue()" Mode="Raw" />
+                                            </ExtraParams>
+                                        </Select>
+                                    </DirectEvents>--%>
+                                </ext:ComboBox>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >

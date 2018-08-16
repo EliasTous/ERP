@@ -408,4 +408,7 @@
   <data name="maxPunchInterval" xml:space="preserve">
     <value>الفاصل بين البصمات </value>
   </data>
+  <data name="monthWorkDays" xml:space="preserve">
+    <value>عدد ايام العمل بالشهر </value>
+  </data>
 </root>

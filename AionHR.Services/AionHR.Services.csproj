@@ -141,6 +141,7 @@
     <Compile Include="Messaging\Reports\dayStatusParameterSet.cs" />
     <Compile Include="Messaging\Reports\EmployeeParameterSet.cs" />
     <Compile Include="Messaging\Reports\EmployeeStatusParameterSet.cs" />
+    <Compile Include="Messaging\Reports\FiscalYearParameter.cs" />
     <Compile Include="Messaging\Reports\JobInfoParameterSet.cs" />
     <Compile Include="Messaging\Reports\LeaveStatusParameterSet.cs" />
     <Compile Include="Messaging\Reports\LeaveTypeParameterSet.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Messaging\Reports\MonthParameterSet.cs" />
     <Compile Include="Messaging\Reports\PaymentMethodParameterSet.cs" />
     <Compile Include="Messaging\Reports\PayRefParameterSet.cs" />
+    <Compile Include="Messaging\Reports\PeriodIdParameter.cs" />
     <Compile Include="Messaging\Reports\ReportCompositeRequest.cs" />
     <Compile Include="Messaging\Reports\ReportParameterSet.cs" />
     <Compile Include="Messaging\Reports\RightToWorkParameterSet.cs" />

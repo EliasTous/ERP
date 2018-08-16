@@ -117,28 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Paid" xml:space="preserve">
-    <value>Approved</value>
+  <data name="FieldPeriod" xml:space="preserve">
+    <value>المدة</value>
   </data>
-  <data name="status0" xml:space="preserve">
-    <value>Non-working Day</value>
+  <data name="FieldYear" xml:space="preserve">
+    <value>السنة</value>
   </data>
-  <data name="status1" xml:space="preserve">
-    <value>Working Day</value>
+  <data name="Month" xml:space="preserve">
+    <value>الشهر</value>
   </data>
-  <data name="status2" xml:space="preserve">
-    <value>Paid Leave</value>
+  <data name="Week" xml:space="preserve">
+    <value>الأسبوع</value>
   </data>
-  <data name="status3" xml:space="preserve">
-    <value>Missed punch</value>
-  </data>
-  <data name="Unpaid" xml:space="preserve">
-    <value>Unapproved</value>
-  </data>
-  <data name="status4" xml:space="preserve">
-    <value>Unpaid Leave</value>
-  </data>
-  <data name="status5" xml:space="preserve">
-    <value>leave without excuse</value>
+  <data name="Weeks" xml:space="preserve">
+    <value>الأسابيع</value>
   </data>
 </root>
