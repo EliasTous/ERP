@@ -162,6 +162,14 @@
     <Compile Include="DocumentTypesReport.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="dsSalaries.cs">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsSalaries.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeDetails.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -255,6 +263,12 @@
     </Compile>
     <Compile Include="RelationshipTypesReport.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptDepartmentsSalaries.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptDepartmentsSalaries.Designer.cs">
+      <DependentUpon>rptDepartmentsSalaries.cs</DependentUpon>
     </Compile>
     <Compile Include="SalaryChangeReasonsReport.cs">
       <SubType>Component</SubType>
@@ -579,6 +593,9 @@
     <EmbeddedResource Include="RightToWork.resx">
       <DependentUpon>RightToWork.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptDepartmentsSalaries.resx">
+      <DependentUpon>rptDepartmentsSalaries.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SalaryChangeReasonsReport.ar.resx">
       <DependentUpon>SalaryChangeReasonsReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -666,6 +683,19 @@
     <EmbeddedResource Include="YearsInService.resx">
       <DependentUpon>YearsInService.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dsSalaries.xsc">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </None>
+    <None Include="dsSalaries.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSalaries.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dsSalaries.xss">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -188,6 +188,7 @@
     <Compile Include="Reports\RT802.cs" />
     <Compile Include="Access Control\SecurityGroup.cs" />
     <Compile Include="Access Control\SecurityGroupUser.cs" />
+    <Compile Include="Reports\SalaryItem.cs" />
     <Compile Include="SelfService\AssetAllowanceSelfService.cs" />
     <Compile Include="SelfService\EmployeeComplaintSelfService.cs" />
     <Compile Include="SelfService\ISelfServiceRepository.cs" />
