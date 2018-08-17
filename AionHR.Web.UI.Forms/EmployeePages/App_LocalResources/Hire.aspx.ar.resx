@@ -159,4 +159,7 @@
   <data name="prevRecord" xml:space="preserve">
     <value>رمز الموظف القديم </value>
   </data>
+  <data name="FieldbsId" xml:space="preserve">
+    <value>جدول مستحقات</value>
+  </data>
 </root>

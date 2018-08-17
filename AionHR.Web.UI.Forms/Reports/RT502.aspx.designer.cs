@@ -121,13 +121,13 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeCombo1;
         
         /// <summary>
-        /// salaryType1 control.
+        /// salaryType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.SalaryTypeFilter salaryType1;
+        protected global::Ext.Net.ComboBox salaryType;
         
         /// <summary>
         /// fiscalYear control.

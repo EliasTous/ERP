@@ -117,37 +117,85 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FieldPeriod" xml:space="preserve">
-    <value>Period</value>
+  <data name="Approvallevel" xml:space="preserve">
+    <value>مستوى الموافقة </value>
   </data>
-  <data name="FieldSalaryType" xml:space="preserve">
-    <value>Salary type</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>معلومات نوع الإجازة</value>
   </data>
-  <data name="FieldYear" xml:space="preserve">
-    <value>Year</value>
+  <data name="branchHead" xml:space="preserve">
+    <value>مدير الفرع</value>
   </data>
-  <data name="Month" xml:space="preserve">
-    <value>Month</value>
+  <data name="Business" xml:space="preserve">
+    <value>عمل / مرضية</value>
   </data>
-  <data name="SalaryBiWeekly" xml:space="preserve">
-    <value>Bi-weekly</value>
+  <data name="departmentHead" xml:space="preserve">
+    <value>مدير القسم </value>
   </data>
-  <data name="SalaryDaily" xml:space="preserve">
-    <value>Daily</value>
+  <data name="departmentList" xml:space="preserve">
+    <value>موافقه مدراء الاقسام </value>
   </data>
-  <data name="SalaryFourWeekly" xml:space="preserve">
-    <value>Four Weekly</value>
+  <data name="departmentTree" xml:space="preserve">
+    <value> موافقه مدراء الاقسام العليا </value>
   </data>
-  <data name="SalaryMonthly" xml:space="preserve">
-    <value>Monthly</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>تعديل نوع الإجازة</value>
   </data>
-  <data name="SalaryWeekly" xml:space="preserve">
-    <value>Weekly</value>
+  <data name="FieldName" xml:space="preserve">
+    <value>الاسم</value>
   </data>
-  <data name="Week" xml:space="preserve">
-    <value>Week</value>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>الرقم</value>
   </data>
-  <data name="Weeks" xml:space="preserve">
-    <value>Weeks</value>
+  <data name="FieldReference" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
+  <data name="FieldRequiresApproval" xml:space="preserve">
+    <value>تحتاج إلى موافقة؟</value>
+  </data>
+  <data name="isPaid" xml:space="preserve">
+    <value>تخصم من رصيد الاجازات </value>
+  </data>
+  <data name="LeaveType" xml:space="preserve">
+    <value>نوع الإجازة</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>نوع أخر</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>شخصية</value>
+  </data>
+  <data name="raBrHead" xml:space="preserve">
+    <value>مدير الفرع</value>
+  </data>
+  <data name="raDepHead" xml:space="preserve">
+    <value>مدير القسم</value>
+  </data>
+  <data name="raDepHierarchy" xml:space="preserve">
+    <value>هيكل الأقسام</value>
+  </data>
+  <data name="raDepLA" xml:space="preserve">
+    <value>أقسام إخلاء الطرف</value>
+  </data>
+  <data name="raReportTo" xml:space="preserve">
+    <value>المدير المباشر</value>
+  </data>
+  <data name="reportTo" xml:space="preserve">
+    <value>المدير المباشر</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>أنواع الإجازات</value>
+  </data>
+  <data name="ApprovelDepartments" xml:space="preserve">
+    <value>الاقسام </value>
+  </data>
+  <data name="ApprovelDepartmentsWindowTitle" xml:space="preserve">
+    <value>الاقسام</value>
+  </data>
+  <data name="departmentName" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>القسم</value>
   </data>
 </root>

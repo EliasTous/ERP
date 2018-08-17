@@ -1199,7 +1199,7 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             LeaveDayListRequest req = new LeaveDayListRequest();
             req.LeaveId = Id;
-            ListResponse<Approvals> response = _leaveManagementService.ChildGetAll<Approvals>(req);
+            ListResponse<AionHR.Model.LeaveManagement.Approvals> response = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
             if (!response.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
@@ -1246,10 +1246,10 @@ namespace AionHR.Web.UI.Forms.Controls
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
                     return;
                 }
-                if (!response.result.requireApproval)
-                    status.Disabled = false;
-                else
-                    status.Disabled = true;
+                //if (!response.result.requireApproval)
+                //    status.Disabled = false;
+                //else
+                //    status.Disabled = true;
             }
         }
         private void LeaveRequestNotification(LeaveRequest b)
@@ -1259,7 +1259,7 @@ namespace AionHR.Web.UI.Forms.Controls
             RecordResponse<LeaveType> response = _leaveManagementService.ChildGetRecord<LeaveType>(r);
 
 
-            if (_systemService.SessionHelper.GetEmployeeId() != null && response.result.requireApproval == false)
+            if (_systemService.SessionHelper.GetEmployeeId() != null /*&& response.result.requireApproval == false*/)
             {
                 PostRequest<DashboardLeave> DBRequset = new PostRequest<DashboardLeave>();
                 DBRequset.entity = new DashboardLeave() { leaveId = Convert.ToInt32(b.recordId), employeeId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId()), status = b.status, notes = " " };

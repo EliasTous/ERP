@@ -1188,4 +1188,7 @@
   <data name="BenefitAcquisition" xml:space="preserve">
     <value>Benefit Acquisition</value>
   </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>Approvals</value>
+  </data>
 </root>

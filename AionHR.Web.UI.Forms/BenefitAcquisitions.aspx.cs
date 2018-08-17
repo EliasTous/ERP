@@ -749,12 +749,13 @@ namespace AionHR.Web.UI.Forms
             ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<Benefit> benefitsList = _benefitsService.ChildGetAll<Benefit>(request);
-            
+            ListResponse<BenefitsSchedule> benefitsList = _benefitsService.ChildGetAll<BenefitsSchedule>(request);
+
             if (!benefitsList.Success )
                 return;
             if (benefitsList.Items.Where(x => x.recordId == recRes.result.bsId.ToString()).ToList().Count!=0)
             bsName.Text = benefitsList.Items.Where(x => x.recordId == recRes.result.bsId.ToString()).ToList().First().name;
+
 
 
             if (routers.result == null)

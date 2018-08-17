@@ -173,8 +173,13 @@ namespace AionHR.Web.UI.Forms.Reports
 
             req.Add(jobInfo1.GetJobInfo());
             req.Add(employeeCombo1.GetEmployee());
-          //  req.Add(dateRange1.GetRange());
-            req.Add(salaryType1.GetSalaryType());
+            //  req.Add(dateRange1.GetRange());
+            SalaryTypeParameterSet STP = new SalaryTypeParameterSet();
+            if (string.IsNullOrEmpty(salaryType.Value.ToString()))
+                 STP.SalaryTypeId = 0;
+            else
+            STP.SalaryTypeId = Convert.ToInt32(salaryType.Value);
+            req.Add(STP);
             FiscalYearParameter FYP = new FiscalYearParameter();
             FYP.fiscalYear =Convert.ToInt32( fiscalYear.SelectedItem.Value);
             req.Add(FYP);
@@ -210,12 +215,12 @@ namespace AionHR.Web.UI.Forms.Reports
 
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            //string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            //string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
 
             string user = _systemService.SessionHelper.GetCurrentUser();
-            h.Parameters["From"].Value = from;
-            h.Parameters["To"].Value = to;
+            //h.Parameters["From"].Value = from;
+            //h.Parameters["To"].Value = to;
             h.Parameters["User"].Value = user;
             if (resp.Items.Count > 0)
             {
@@ -235,7 +240,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
 
                 if (req.Parameters["_salaryType"] != "0")
-                    h.Parameters["SalaryType"].Value = salaryType1.GetSalaryTypeString();
+                    h.Parameters["SalaryType"].Value = salaryType.SelectedItem.Text; 
                 else
                     h.Parameters["SalaryType"].Value = GetGlobalResourceObject("Common", "All");
 
@@ -316,7 +321,7 @@ namespace AionHR.Web.UI.Forms.Reports
             try
             {
                 req.Year = fiscalYear.Value.ToString();
-                req.PeriodType = (SalaryType)Convert.ToInt32(salaryType1.GetSalaryType().SalaryTypeId);
+                req.PeriodType = (SalaryType)Convert.ToInt32( salaryType.Value);
                 req.Status = "1";
 
                 ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);

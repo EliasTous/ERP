@@ -1191,4 +1191,7 @@
   <data name="BenefitAcquisition" xml:space="preserve">
     <value>اكتساب الفائدة</value>
   </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>التعميد</value>
+  </data>
 </root>

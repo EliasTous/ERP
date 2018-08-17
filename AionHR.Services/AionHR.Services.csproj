@@ -119,6 +119,7 @@
     <Compile Include="Messaging\Benefits\ScheduleBenefitsListRequest.cs" />
     <Compile Include="Messaging\Benefits\ScheduleBenefitsRecordRequest.cs" />
     <Compile Include="Messaging\CaseManagement\CaseManagementRequest.cs" />
+    <Compile Include="Messaging\CompanyStructure\ApprovelDepartmentListRequest.cs" />
     <Compile Include="Messaging\CompanyStructure\CompanyStructureRequests.cs" />
     <Compile Include="Messaging\CompanyStructure\PositionListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeesRequests.cs" />

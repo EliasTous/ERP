@@ -22,6 +22,7 @@ using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.Benefits;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -30,6 +31,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IBenefitsService _benefitsService = ServiceLocator.Current.GetInstance<IBenefitsService>();
         protected override void InitializeCulture()
         {
 
@@ -66,6 +68,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 FillBranchField();
                 FillSponseCombo();
                 FillPrevRecordIdField();
+                FillBenefitSchedules();
 
 
                 HireInfoRecordRequest req = new HireInfoRecordRequest();
@@ -95,6 +98,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     //    probationEndDateHidden.Value = resp.result.hireDate;
                     hireDate.Text = resp.result.hireDate.Value.ToShortDateString();
                     probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
+                    bsId.Select(resp.result.bsId.ToString());
                
 
                 }
@@ -152,6 +156,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     recruitmentInfo.Visible = false;
                     infoField.Visible = true;
                 }
+               
             }
 
         }
@@ -343,6 +348,21 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         private string GetNameFormat()
         {
             return _systemService.SessionHelper.Get("nameFormat").ToString();
+        }
+
+        private void FillBenefitSchedules()
+        {
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<BenefitsSchedule> routers = _benefitsService.ChildGetAll<BenefitsSchedule>(request);
+            if (!routers.Success)
+                return;
+            this.Store2.DataSource = routers.Items;
+          
+
+            this.Store2.DataBind();
+
         }
     }
 }

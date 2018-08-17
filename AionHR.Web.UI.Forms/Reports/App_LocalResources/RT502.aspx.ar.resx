@@ -120,11 +120,29 @@
   <data name="FieldPeriod" xml:space="preserve">
     <value>المدة</value>
   </data>
+  <data name="FieldSalaryType" xml:space="preserve">
+    <value> نوع الراتب</value>
+  </data>
   <data name="FieldYear" xml:space="preserve">
     <value>السنة</value>
   </data>
   <data name="Month" xml:space="preserve">
     <value>الشهر</value>
+  </data>
+  <data name="SalaryBiWeekly" xml:space="preserve">
+    <value>كل أسبوعين</value>
+  </data>
+  <data name="SalaryDaily" xml:space="preserve">
+    <value>يومي</value>
+  </data>
+  <data name="SalaryFourWeekly" xml:space="preserve">
+    <value>كل أربعة أسابيع</value>
+  </data>
+  <data name="SalaryMonthly" xml:space="preserve">
+    <value>شهري</value>
+  </data>
+  <data name="SalaryWeekly" xml:space="preserve">
+    <value>أسبوعي</value>
   </data>
   <data name="Week" xml:space="preserve">
     <value>الأسبوع</value>

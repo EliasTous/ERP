@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LeaveTypes.aspx.cs" Inherits="AionHR.Web.UI.Forms.LeaveTypes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Approvals.aspx.cs" Inherits="AionHR.Web.UI.Forms.Approvals" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -25,6 +25,7 @@
         <ext:Hidden ID="leaveType1" runat="server" Text="<%$ Resources: Personal %>" />
         <ext:Hidden ID="leaveType2" runat="server" Text="<%$ Resources: Business %>" />
         <ext:Hidden ID="leaveType0" runat="server" Text="<%$ Resources: Other %>" />
+            <ext:Hidden ID="apId" runat="server" Text="" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -44,12 +45,12 @@
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
-                        <ext:ModelField Name="reference" />
+                        <ext:ModelField Name="branchHead" />
+                        <ext:ModelField Name="departmentHead" />
+                        <ext:ModelField Name="reportTo" />
+                        <ext:ModelField Name="departmentTree" />
+                        <ext:ModelField Name="departmentList" />
                         <ext:ModelField Name="name" />
-                       <%-- <ext:ModelField Name="requireApproval" />--%>
-                        <ext:ModelField Name="leaveType" />
-                          <ext:ModelField Name="apId" />
-                          <ext:ModelField Name="apName" />
 
                     </Fields>
                 </ext:Model>
@@ -58,8 +59,30 @@
                 <ext:DataSorter Property="recordId" Direction="ASC" />
             </Sorters>
         </ext:Store>
+                
+       <ext:Store   ID="ApprovelDepartmentsStore" runat="server"   RemoteSort="False"
+            RemoteFilter="true"
+            OnReadData="ApprovelDepartmentsStore_RefreshData"
+            PageSize="50" IDMode="Explicit" Namespace="App" >
+                                                
+                                                                <Model>
+                                                                    <ext:Model ID="Model2" runat="server" IDProperty="departmentId">
+                                                                        <Fields>
 
+                                                                            <ext:ModelField Name="departmentName" />
+                                                                            <ext:ModelField Name="apId" />
+                                                                            <ext:ModelField Name="departmentId" />
+                                                           
 
+                                                                        </Fields>
+                                                                    </ext:Model>
+                                                                </Model>
+                                                                <Sorters>
+                                                                    <ext:DataSorter Property="departmentId" Direction="ASC" />
+                                                                </Sorters>
+                                                            </ext:Store>
+
+                                          
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
             <Items>
@@ -119,16 +142,16 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                             <ext:Column ID="ColApId" Visible="false" DataIndex="apId" runat="server" />
-                            <ext:Column ID="Column1" DataIndex="reference" Text="<%$ Resources: FieldReference%>" Width="150" runat="server" />
-                            <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                            </ext:Column>
-                            <ext:Column ID="Column2" DataIndex="leaveType" Text="<%$ Resources: LeaveType%>" Width="100" runat="server" >
-                                <Renderer Handler="return getLeaveTypeString(record.data['leaveType']);" />
-                                </ext:Column>
-                           <%-- <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: FieldRequiresApproval %>" DataIndex="requireApproval"></ext:CheckColumn>--%>
-                              <ext:Column CellCls="cellLink" ID="ColApName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldApproval%>" DataIndex="name" Flex="2" Hideable="false">
-                            </ext:Column>
+                            <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false"/>
+                           
+                         
+                            <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: branchHead %>" DataIndex="branchHead"></ext:CheckColumn>
+                             <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: departmentHead %>" DataIndex="departmentHead"></ext:CheckColumn>
+                             <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: reportTo %>" DataIndex="reportTo"></ext:CheckColumn>
+                             <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: departmentTree %>" DataIndex="departmentTree"></ext:CheckColumn>
+                             <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: departmentList %>" DataIndex="departmentList"></ext:CheckColumn>
+
+
 
 
                             <ext:Column runat="server"
@@ -260,25 +283,51 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
-                             
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" />
-                                <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" />
-
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" FieldLabel="<%$ Resources:LeaveType%>" Editable="false" ID="leaveType" DataIndex="leaveType" Name="leaveType" AllowBlank="false" ForceSelection="true">
+                                                            
+                                
+                               
+                                    
+                                <ext:FieldSet ID="ApprovalLevelFS" runat="server" Disabled="false" Title="<%$ Resources:Approvallevel %>" >
                                     <Items>
-
-                                        <ext:ListItem Text="<%$ Resources: Personal %>" Value="1"  />
-                                        <ext:ListItem Text="<%$ Resources: Business %>" Value="2" />
+                                       <ext:Checkbox runat="server" Name="branchHead" InputValue="true" ID="branchHead" DataIndex="branchHead" FieldLabel="<%$ Resources:branchHead %>" />
+                                       <ext:Checkbox runat="server" Name="departmentHead" InputValue="true" ID="departmentHead" DataIndex="departmentHead" FieldLabel="<%$ Resources:departmentHead %>" />
+                                       <ext:Checkbox runat="server" Name="reportTo" InputValue="true" ID="reportTo" DataIndex="reportTo" FieldLabel="<%$ Resources:reportTo %>" />
+                                       <ext:Checkbox runat="server" Name="departmentTree" InputValue="true" ID="departmentTree" DataIndex="departmentTree" FieldLabel="<%$ Resources:departmentTree%>" />
+                                        <ext:Checkbox runat="server" Name="departmentList" InputValue="true" ID="departmentList" DataIndex="departmentList" FieldLabel="<%$ Resources:departmentList%>" />
                                     </Items>
-                                    <Listeners>
-                                        <Change Handler="if (#{leaveType}.getValue()==2) {#{isPaid}.setDisabled(true);} else{ #{isPaid}.setDisabled(false);}"></Change>
-                                    </Listeners>
+                                </ext:FieldSet>
 
-                                </ext:ComboBox>
-                                  <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="apId" Name="apId" FieldLabel="<%$ Resources:FieldApproval%>" >
-                              
+
+
+                            </Items>
+
+                        </ext:FormPanel>
+                        <ext:GridPanel 
+                                    ID="ApprovelDepartmentsGrid"
+                                    runat="server"
+                                   StoreID="ApprovelDepartmentsStore"
+                                    PaddingSpec="0 0 1 0"
+                                    Header="false" 
+                         
+                                    Title=  "<%$ Resources: ApprovelDepartmentsWindowTitle %>"
+                                    Layout="FitLayout"
+                                    Scroll="Vertical"
+                                    Border="false"  
+                                    Icon="User"
+                                    ColumnLines="True" IDMode="Explicit" RenderXType="True" >
+                                       <Listeners>
+                                           <Activate Handler="#{ApprovelDepartmentsStore}.Reload();"/>
+                                                                                  </Listeners>
+                              <TopBar>
+                                  
+                        <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                                  <ext:ComboBox
+                                       AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" 
+                                     TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldDepartment%>" DisplayField="name" ID="departmentId" Name="departmentId"  >
                                                 <Store>
-                                                    <ext:Store runat="server" ID="ApprovalStore" OnReadData="ApprovalStory_RefreshData">
+                                                    <ext:Store runat="server" ID="departmentStore">
                                                         <Model>
                                                             <ext:Model runat="server">
                                                                 <Fields>
@@ -289,36 +338,116 @@
                                                         </Model>
                                                     </ext:Store>
                                                 </Store>
-                                                
+                                                  <RightButtons>
+                                                        <ext:Button ID="Button2" runat="server" Icon="Add" Hidden="true">
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();  " />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                <Click OnEvent="addDepartment">
+                                                                   
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                <Listeners>
+                                                    <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                    <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                </Listeners>
                                             </ext:ComboBox>
-                             <%--   <ext:Checkbox runat="server" Name="requireApproval" InputValue="true" ID="requiresApprovalCheck" DataIndex="requireApproval" FieldLabel="<%$ Resources:FieldRequiresApproval%>" >
-                                <%-- <Listeners>
-                                         <Change Handler="#{ApprovalLevelFS}.setDisabled (!this.getValue());setApprovalLevel(this.getValue());"  >
-                                         </Change>
-                                     </Listeners>
-                                     </ext:Checkbox>--%>
-                                 <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" LabelWidth="200" FieldLabel="<%$ Resources:isPaid%>" Checked="true" />
-                                    
-                              <%--  <ext:FieldSet ID="ApprovalLevelFS" runat="server" Disabled="true" Title="<%$ Resources:Approvallevel %>" >
-                                    <Items>
-                                       <ext:Checkbox runat="server" Name="raReportTo" InputValue="true" ID="raReportTo" DataIndex="raReportTo" FieldLabel="<%$ Resources:raReportTo %>" />
-                                       <ext:Checkbox runat="server" Name="raDepHead" InputValue="true" ID="raDepHead" DataIndex="raDepHead" FieldLabel="<%$ Resources:raDepHead %>" />
-                                       <ext:Checkbox runat="server" Name="raDepHierarchy" InputValue="true" ID="raDepHierarchy" DataIndex="raDepHierarchy" FieldLabel="<%$ Resources:raDepHierarchy %>" />
-                                       <ext:Checkbox runat="server" Name="raDepLA" InputValue="true" ID="raDepLA" DataIndex="raDepLA" FieldLabel="<%$ Resources:raDepLA%>" />
-                                        <ext:Checkbox runat="server" Name="raBrHead" InputValue="true" ID="raBrHead" DataIndex="raBrHead" FieldLabel="<%$ Resources:raBrHead%>" />
-                                        </Items>
-                                </ext:FieldSet>--%>
-
-                                   
-
-
-
-
 
                             </Items>
+                        </ext:Toolbar>
 
-                        </ext:FormPanel>
+                    </TopBar>
+                                            
 
+                                        <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
+                                            <Columns>
+                                                <ext:Column ID="ColapId" Visible="false" DataIndex="apId" runat="server" />
+                                                <ext:Column ID="ColdepartmentId" Visible="false" DataIndex="departmentId" runat="server" />
+                                                <ext:Column ID="ColdepartmentName" MenuDisabled="true" runat="server" Text="<%$ Resources: departmentName%>" DataIndex="departmentName" Flex="2"/>
+                                               
+                          
+                             
+                        
+                           
+
+                                                            <ext:Column runat="server"
+                                                                ID="Column3" Visible="false"
+                                                                Text="<%$ Resources: Common , Delete %>"
+                                                                Width="100"
+                                                                Align="Center"
+                                                                Fixed="true"
+                                                                Filterable="false"
+                                                                Hideable="false"
+                                                                MenuDisabled="true"
+                                                                Resizable="false">
+                                                                <Renderer Fn="deleteRender" />
+                              
+                                                        </ext:Column>
+                                                        <ext:Column runat="server"
+                                                            ID="Column4"
+                                                            Visible="false"
+                                                            Text="<%$ Resources:Common, Attach %>"
+                                                            Hideable="false"
+                                                            Width="60"
+                                                            Align="Center"
+                                                            Fixed="true"
+                                                            Filterable="false"
+                                                            MenuDisabled="true"
+                                                            Resizable="false">
+                                                            <Renderer Fn="attachRender" />
+                                                        </ext:Column>
+                            
+                                                           <ext:Column runat="server"
+                                                                ID="Column5"  Visible="true"
+                                                                Text=""
+                                                                Width="100"
+                                                                Hideable="false"
+                                                                Align="Center"
+                                                                Fixed="true"
+                                                                Filterable="false"
+                                                                MenuDisabled="true"
+                                                                Resizable="false">
+
+                                                                <Renderer handler="return  deleteRender(); " />
+
+                                                            </ext:Column>
+
+
+
+                                                        </Columns>
+                                                    </ColumnModel>
+              
+                                                    <Listeners>
+                                                        <Render Handler="this.on('cellclick', cellClick);" />
+                                                        <Activate Handler="#{ApprovelDepartmentsStore}.reload();" />
+                                                    </Listeners>
+                                                    <DirectEvents>
+                        
+                                                        <CellClick OnEvent="PoPuPAD">
+                                                            <EventMask ShowMask="true" />
+                                                            <ExtraParams>
+                                                                <ext:Parameter Name="apId" Value="record.data['apId']" Mode="Raw" />
+                                                                  <ext:Parameter Name="departmentId" Value="record.data['departmentId']" Mode="Raw" />
+                                                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                                            </ExtraParams>
+
+                                                        </CellClick>
+                                                    </DirectEvents>
+                                                    <View>
+                                                        <ext:GridView ID="GridView2" runat="server" />
+                                                    </View>
+
+                  
+                                                    <SelectionModel>
+                                                        <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single"  StopIDModeInheritance="true" />
+                       
+                                                    </SelectionModel>
+                            
+                                                </ext:GridPanel>
                     </Items>
                 </ext:TabPanel>
             </Items>

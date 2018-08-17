@@ -171,4 +171,7 @@
   <data name="raBrHead" xml:space="preserve">
     <value>Branch Manager</value>
   </data>
+  <data name="FieldApproval" xml:space="preserve">
+    <value>Aprroval </value>
+  </data>
 </root>

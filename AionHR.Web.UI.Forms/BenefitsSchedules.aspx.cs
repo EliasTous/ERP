@@ -76,7 +76,7 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
 
-
+                bsId.Text = "";
             }
 
         }
@@ -218,10 +218,11 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
 
-
-                    this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-                    this.EditRecordWindow.Show();
                     ScheduleBenefitsGrid.Disabled = false;
+                    this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
+                    panelRecordDetails.ActiveIndex = 0;
+                    this.EditRecordWindow.Show();
+                  
                     break;
 
                 case "imgDelete":
@@ -451,6 +452,7 @@ namespace AionHR.Web.UI.Forms
 
             panelRecordDetails.ActiveIndex = 0;
             this.EditRecordWindow.Show();
+            bsId.Text = "";
             ScheduleBenefitsGrid.Disabled = true;
         }
        
@@ -632,7 +634,7 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
 
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id)&& string.IsNullOrEmpty(bsId.Text))
             {
 
                 try
@@ -641,6 +643,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : Fill The object and insert in the store 
                     PostRequest<BenefitsSchedule> request = new PostRequest<BenefitsSchedule>();
 
+                    
                     request.entity = b;
                     PostResponse<BenefitsSchedule> r = _benefitsService.ChildAddOrUpdate<BenefitsSchedule>(request);
 
@@ -696,7 +699,9 @@ namespace AionHR.Web.UI.Forms
                 {
                     //getting the id of the record
                     PostRequest<BenefitsSchedule> request = new PostRequest<BenefitsSchedule>();
-                    request.entity = b;
+                    if (string.IsNullOrEmpty(id))
+                        b.recordId = bsId.Text;
+                        request.entity = b;
                     PostResponse<BenefitsSchedule> r = _benefitsService.ChildAddOrUpdate<BenefitsSchedule>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
@@ -712,9 +717,7 @@ namespace AionHR.Web.UI.Forms
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(id);
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Commit();
+                        Store1.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,

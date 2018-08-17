@@ -128,6 +128,7 @@
 
      <ext:Hidden runat="server" ID="bebe" Text="<%$Resources:Common , Benefits %>" />
      <ext:Hidden runat="server" ID="besc" Text="<%$Resources:Common , BenefitsSchedule %>" />
+     <ext:Hidden runat="server" ID="apTitle" Text="<%$Resources:Common , Approvals %>" />
 
 
     
@@ -339,6 +340,11 @@
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , Positions%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('positions', 'Positions.aspx', #{poTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                           <ext:MenuItem runat="server" Text="<%$Resources: Common , Approvals%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('Approvals', 'Approvals.aspx', #{apTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportDepartments%>">

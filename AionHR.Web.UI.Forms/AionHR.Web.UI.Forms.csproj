@@ -155,6 +155,7 @@
   <ItemGroup>
     <Content Include="Absent.aspx" />
     <Content Include="AllowanceTypes.aspx" />
+    <Content Include="Approvals.aspx" />
     <Content Include="App_LocalResources\ARForgotPassword.aspx.resx" />
     <Content Include="ARForgotPassword.aspx" />
     <Content Include="ARresetPW.aspx" />
@@ -564,6 +565,13 @@
     </Compile>
     <Compile Include="Absent.aspx.designer.cs">
       <DependentUpon>Absent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Approvals.aspx.cs">
+      <DependentUpon>Approvals.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Approvals.aspx.designer.cs">
+      <DependentUpon>Approvals.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\AccessControl.ar.designer.cs">
       <AutoGen>True</AutoGen>
@@ -2354,6 +2362,8 @@
     </Content>
     <Content Include="Reports\App_LocalResources\RT502.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT502.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Approvals.aspx.resx" />
+    <Content Include="App_LocalResources\Approvals.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

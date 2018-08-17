@@ -54,6 +54,11 @@
         <ext:Hidden ID="oldProb" runat="server" />
         <ext:Hidden ID="oldProbEnd" runat="server" />
           <ext:Hidden ID="hireDate" runat="server"  />
+
+       
+
+
+
         <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
@@ -200,6 +205,25 @@
                                    
                                 </ext:ComboBox>
       <ext:TextField runat="server"  LabelWidth="120" ID="otherRef" Name="otherRef" FieldLabel="<%$ Resources:otherRef %>" AllowBlank="true" />
+
+
+                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local"  LabelWidth="120" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="bsId" Name="bsId" FieldLabel="<%$ Resources:FieldbsId%>" >
+                            <Store>
+                                <ext:Store runat="server" ID="Store2">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="name" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+                         
+                        </ext:ComboBox>
+
+
                          </Items></ext:Panel>
                            
                            

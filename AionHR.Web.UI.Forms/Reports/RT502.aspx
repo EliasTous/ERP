@@ -79,13 +79,19 @@
                                                      <uc:employeeCombo runat="server" ID="employeeCombo1" />
                                             </Content>
                                         </ext:Container>
-                                <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                              
-                                                     <uc:salaryTypeControl runat="server" ID="salaryType1" />
-                                            </Content>
-                                        </ext:Container>
-                               
+                               <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   ID="salaryType" LabelWidth="130" Width="150" runat="server" EmptyText="<%$ Resources:FieldSalaryType%>" Name="salaryType" IDMode="Static" SubmitValue="true">
+                                            <Items>
+                                               <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="1"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryBiWeekly%>" Value="3"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryFourWeekly%>" Value="4"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="5"></ext:ListItem>
+                                            </Items>
+                                     <Listeners>
+                                        <Select Handler="App.fiscalPeriodsStore.reload(); ">
+                                        </Select>
+                                    </Listeners>
+                                        </ext:ComboBox>
                                      <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" EmptyText="<%$ Resources: FieldYear %>" Name="fiscalYear" runat="server" DisplayField="fiscalYear" ValueField="fiscalYear" ID="fiscalYear">
                                     <Store>
                                         <ext:Store runat="server" ID="fiscalyearStore">
@@ -125,10 +131,7 @@
                                             </Model>
                                         </ext:Store>
                                     </Store>
-                                   <%-- <Listeners>
-                                        <Select Handler="App.direct.UpdateStartEndDate();">
-                                        </Select>
-                                    </Listeners>--%>
+                                
                                      <%--  <DirectEvents>
                                         <Select OnEvent="UpdateStartEndDate">
                                             <ExtraParams>

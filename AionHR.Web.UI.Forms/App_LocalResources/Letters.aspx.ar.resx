@@ -165,4 +165,7 @@
   <data name="date" xml:space="preserve">
     <value>التاريخ</value>
   </data>
+  <data name="FieldApprovalName" xml:space="preserve">
+    <value>التعميد</value>
+  </data>
 </root>
