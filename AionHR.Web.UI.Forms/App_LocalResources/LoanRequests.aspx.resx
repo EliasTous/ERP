@@ -270,4 +270,7 @@
   <data name="ReturnNotes" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>Approvals</value>
+  </data>
 </root>

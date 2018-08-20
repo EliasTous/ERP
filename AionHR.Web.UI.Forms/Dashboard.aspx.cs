@@ -1048,6 +1048,53 @@ namespace AionHR.Web.UI.Forms
 
             TimeStore.DataBind();
         }
+        
+        protected void ApprovaLoan_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            //ListRequest request = new ListRequest();
+            LoanManagementListRequest request = new LoanManagementListRequest();
+            if(string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+            {
+                ApprovalLoanStore.DataSource = new List<Loan>();
+                ApprovalLoanStore.DataBind();
+                return;
+            }
+            request.approverId =Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId());
+            request.BranchId = 0;
+            request.DepartmentId = 0;
+            request.DivisionId = 0;
+            request.EmployeeId = 0;
+            request.Status = 4;
+            request.Filter = "";
+
+            request.SortBy = e.Sort[0].Property;
+            if (e.Sort[0].Property == "employeeName")
+                request.SortBy = _systemService.SessionHelper.GetNameformat();
+
+
+           
+
+            request.Size = e.Limit.ToString();
+            request.StartAt = e.Start.ToString();
+            ListResponse<Loan> routers = _loanService.GetAll<Loan>(request);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            this.ApprovalLoanStore.DataSource = routers.Items;
+            e.Total = routers.count;
+
+            this.ApprovalLoanStore.DataBind();
+        }
         protected void TimeStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             DashboardTimeListRequest r = new DashboardTimeListRequest();
@@ -1148,6 +1195,62 @@ namespace AionHR.Web.UI.Forms
             this.TimeWindow.Show();
           
         }
+
+        [DirectMethod]
+        protected void ApprovaleLoanPoPUP(object sender, DirectEventArgs e)
+        {
+            string id = e.ExtraParams["id"];
+            panelRecordDetails.ActiveIndex = 0;
+            //SetTabPanelEnable(true);
+         
+          
+          
+
+          
+                    //Step 1 : get the object from the Web Service 
+                    RecordRequest r = new RecordRequest();
+                    r.RecordID = id;
+
+                    RecordResponse<Loan> response = _loanService.Get<Loan>(r);
+                    if (!response.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                        return;
+                    }
+
+
+
+
+
+
+            ApprovalLoanEmployeeName.Text = response.result.employeeName.ToString(); 
+
+                    //    effectiveDate.Disabled = response.result.status != 3;
+                    //FillFilesStore(Convert.ToInt32(id));
+
+            //Step 2 : call setvalues with the retrieved object
+            this.ApprovalLoanForm.SetValues(response.result);
+                 
+                   
+                    status.Select(response.result.status.ToString());
+                  
+                    //if (!string.IsNullOrEmpty(response.result.branchId))
+                    //    branchId.Select(response.result.branchId);
+                 
+                    //if (!response.result.effectiveDate.HasValue)
+                    //    effectiveDate.SelectedDate = DateTime.Now;
+                  
+                    this.ApproalLoanWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.ApproalLoanWindow.Show();
+                  
+
+            
+
+               
+        
+
+        }
         [DirectMethod]
         protected void leavePoPUP(object sender, DirectEventArgs e)
         {
@@ -1187,6 +1290,12 @@ namespace AionHR.Web.UI.Forms
                     break;
             }
         }
+       
+        [DirectMethod]
+        protected void ApprovalLoanTab_load(object sender, EventArgs e)
+        {
+
+        }
         [DirectMethod]
         protected void TimeTab_Load       (object sender, EventArgs e)
         {
@@ -1195,6 +1304,62 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         protected void LeaveRecordTab_Load(object sender, EventArgs e)
         {
+
+        }
+        
+              protected void SaveApprovalLoanRecord(object sender, DirectEventArgs e)
+        {
+            string obj = e.ExtraParams["values"];
+            string id = e.ExtraParams["id"];
+            LeaveRequest LV = JsonConvert.DeserializeObject<LeaveRequest>(obj);
+            try
+            {
+                //New Mode
+                //Step 1 : Fill The object and insert in the store 
+
+                PostRequest<DashboardLeave> request = new PostRequest<DashboardLeave>();
+                request.entity = new DashboardLeave();
+                request.entity.leaveId = Convert.ToInt32(LV.recordId);
+                request.entity.employeeId = Convert.ToInt32(userSessionEmployeeId.Text);
+                request.entity.status = LV.status;
+                if (!string.IsNullOrEmpty(LV.returnNotes))
+                    request.entity.notes = LV.returnNotes;
+                else
+                    request.entity.notes = " ";
+
+
+                PostResponse<DashboardLeave> r = _leaveManagementService.ChildAddOrUpdate<DashboardLeave>(request);
+
+
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                    return;
+                }
+                else
+                {
+
+                    LeaveRequestsStore.Reload();
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordSavingSucc
+                    });
+
+                    this.LeaveRecordWindow.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
 
         }
         protected void SaveNewRecord(object sender, DirectEventArgs e)

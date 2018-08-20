@@ -267,4 +267,7 @@
   <data name="ReturnNotes" xml:space="preserve">
     <value>ملاحظات</value>
   </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>تعميد</value>
+  </data>
 </root>

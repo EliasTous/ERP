@@ -997,7 +997,7 @@
                             Layout="FitLayout"
                             Scroll="Vertical"
                             Border="false"
-                            Icon="User"
+                            Icon="User" Text="<%$ Resources: Approvals %>"
                             ColumnLines="True" IDMode="Explicit" RenderXType="True" RenderTo="playcontainer">
                             
                             <Store>
