@@ -27,19 +27,19 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 X.Call("setStatus", EnableDepartment, EnableBranch, EnablePosition, EnableDivision);
                 X.Call("setWidth", FieldWidth);
-                FillJobInfo();
+                //FillJobInfo();
              
             }
 
         }
-        private void FillJobInfo()
-        {
-            FillDepartment();
-            FillPosition();
-            FillBranch();
-            FillDivision();
+        //private void FillJobInfo()
+        //{
+        //    FillDepartment();
+        //    FillPosition();
+        //    FillBranch();
+        //    FillDivision();
 
-        }
+        //}
 
         public JobInfoParameterSet GetJobInfo()
         {
@@ -133,10 +133,10 @@ namespace AionHR.Web.UI.Forms.Reports
             UserDataRecordRequest ud = new UserDataRecordRequest();
             ud.UserId = _systemService.SessionHelper.GetCurrentUserId();
             ud.RecordID = "0";
-            ud.classId = ((ClassIdentifier)typeof(Department).GetCustomAttributes(true).Where(t=>t is ClassIdentifier).ToList()[0]).ClassID;
+            ud.classId = ((ClassIdentifier)typeof(Department).GetCustomAttributes(true).Where(t => t is ClassIdentifier).ToList()[0]).ClassID;
             RecordResponse<UserDataAccess> udR = _accessControlService.ChildGetRecord<UserDataAccess>(ud);
 
-            if (udR.result == null|| !udR.result.hasAccess)
+            if (udR.result == null || !udR.result.hasAccess)
             {
                 departmentId.Select(0);
                 X.Call("setDepartmentAllowBlank", true);

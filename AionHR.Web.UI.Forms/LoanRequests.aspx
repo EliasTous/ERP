@@ -988,6 +988,94 @@
                 </ext:GridPanel>
 
 
+                         <ext:GridPanel
+                            ID="ApprovalsGridPanel"
+                            runat="server"
+                            PaddingSpec="0 0 1 0"
+                            Header="false"
+                            MaxHeight="350"
+                            Layout="FitLayout"
+                            Scroll="Vertical"
+                            Border="false"
+                            Icon="User"
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True" RenderTo="playcontainer">
+                            
+                            <Store>
+                                <ext:Store runat="server" ID="ApprovalsStore" OnReadData="ApprovalsStore_ReadData">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                <ext:ModelField Name="departmentName" />
+                                                <ext:ModelField Name="stringStatus" />
+                                                <ext:ModelField Name="notes" />
+                                                 <ext:ModelField Name="leaveId" />
+                                                
+                                                
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+
+
+                            <ColumnModel ID="ColumnModel4" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                <Columns>
+                                    <ext:Column ID="leaveIdCO" Visible="false" DataIndex="leaveId" runat="server">
+                                    </ext:Column>
+                                        <ext:Column ID="Column8" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
+                                           <Renderer Handler=" return record.data['employeeName'].fullName; ">
+                                           </Renderer>
+                                         </ext:Column>
+                                    <ext:Column ID="departmentName" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1"/>
+                                    <ext:Column ID="stringStatus" Visible="true" DataIndex="stringStatus" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
+                                    </ext:Column>
+                                      
+                                    <ext:Column ID="Column9" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
+                                       
+                                    </ext:Column>
+                                   
+
+
+
+                                </Columns>
+                            </ColumnModel>
+
+                            <%--  alert(last.dayId);
+                                                        if(App.leaveRequest1_shouldDisableLastDay.value=='1')
+                                                             if(last.dayId==rec.data['dayId'])  
+                                                                        this.setDisabled(false);
+                                                            else this.setDisabled(true); 
+                                                        else
+                                                            this.setDisabled(true); --%>
+                            <DockedItems>
+
+                                <ext:Toolbar ID="Toolbar7" runat="server" Dock="Bottom">
+                                    <Items>
+                                        <ext:StatusBar ID="StatusBar4" runat="server" />
+                                        <ext:ToolbarFill />
+
+                                    </Items>
+                                </ext:Toolbar>
+
+                            </DockedItems>
+                             <Listeners>
+                                 <Activate Handler="ApprovalsStore.Reload();"/>
+                             </Listeners>
+
+                            <View>
+                                <ext:GridView ID="GridView4" runat="server" />
+                            </View>
+
+
+                            <SelectionModel>
+                                <ext:RowSelectionModel ID="rowSelectionModel3" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                            </SelectionModel>
+                         
+                     </ext:GridPanel>
+
+
 
                     </Items>
                 </ext:TabPanel>

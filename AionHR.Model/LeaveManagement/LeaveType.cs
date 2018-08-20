@@ -42,7 +42,7 @@ namespace AionHR.Model.Employees.Leaves
         //[PropertyID("42000_07")]
         //[ApplySecurity]
         //public bool raBrHead{ get; set; }
-        public int apId { get; set; }
+        public int? apId { get; set; }
         public string apName { get; set; }
     }
 }

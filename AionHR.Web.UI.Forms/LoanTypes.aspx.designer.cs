@@ -373,6 +373,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox ldMethod;
         
         /// <summary>
+        /// apId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox apId;
+        
+        /// <summary>
+        /// ApprovalStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store ApprovalStore;
+        
+        /// <summary>
         /// ldValue control.
         /// </summary>
         /// <remarks>

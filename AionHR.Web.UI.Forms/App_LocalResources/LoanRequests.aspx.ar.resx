@@ -264,4 +264,7 @@
   <data name="PFormFullSalaryDeduction" xml:space="preserve">
     <value>خصم كامل الراتب</value>
   </data>
+  <data name="ReturnNotes" xml:space="preserve">
+    <value>ملاحظات</value>
+  </data>
 </root>

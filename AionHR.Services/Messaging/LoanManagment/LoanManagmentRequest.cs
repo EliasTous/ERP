@@ -76,7 +76,28 @@ namespace AionHR.Services.Messaging.LoanManagment
 
       
     }
+    public class LoanApprovalListRequest : ListRequest
+    {
 
+
+
+
+        public string LoanId { get; set; }
+
+
+        public override Dictionary<string, string> Parameters
+        {
+            get
+            {
+                parameters = base.Parameters;
+                parameters.Add("_loanId", LoanId);
+
+                return parameters;
+            }
+        }
+
+
+    }
 }
 
 

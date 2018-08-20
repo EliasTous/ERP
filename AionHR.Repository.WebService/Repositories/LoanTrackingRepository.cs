@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure.Configuration;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model.LeaveManagement;
 using AionHR.Model.LoadTracking;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(LoanDeduction), "getLD");
             ChildGetLookup.Add(typeof(LoanOverride), "getEM");
             ChildGetAllLookup.Add(typeof(LoanType), "qryLT");
+            ChildGetAllLookup.Add(typeof(Approvals), "qryLA");
             ChildGetAllLookup.Add(typeof(LoanOverride), "qryEM");
             ChildAddOrUpdateLookup.Add(typeof(LoanType), "setLT");
             ChildDeleteLookup.Add(typeof(LoanType), "delLT");

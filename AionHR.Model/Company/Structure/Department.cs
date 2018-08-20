@@ -48,9 +48,9 @@ namespace AionHR.Model.Company.Structure
         [PropertyID("21040_06")]
         [ApplySecurity]
         public string scName { set; get; }
-        [PropertyID("21040_07")]
-        [ApplySecurity]
-        public bool? isLeaveAuth { get; set; }
+        //[PropertyID("21040_07")]
+        //[ApplySecurity]
+        //public bool? isLeaveAuth { get; set; }
 
         public short? type { get; set; }
         [PropertyID("21040_08")]

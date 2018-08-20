@@ -294,7 +294,7 @@
                                        <ext:Checkbox runat="server" Name="departmentHead" InputValue="true" ID="departmentHead" DataIndex="departmentHead" FieldLabel="<%$ Resources:departmentHead %>" />
                                        <ext:Checkbox runat="server" Name="reportTo" InputValue="true" ID="reportTo" DataIndex="reportTo" FieldLabel="<%$ Resources:reportTo %>" />
                                        <ext:Checkbox runat="server" Name="departmentTree" InputValue="true" ID="departmentTree" DataIndex="departmentTree" FieldLabel="<%$ Resources:departmentTree%>" />
-                                        <ext:Checkbox runat="server" Name="departmentList" InputValue="true" ID="departmentList" DataIndex="departmentList" FieldLabel="<%$ Resources:departmentList%>" />
+                                        <ext:Checkbox runat="server" Name="departmentList" InputValue="true" ID="departmentList" DataIndex="departmentList" FieldLabel="<%$ Resources:departmentList%>" Disabled="true" />
                                     </Items>
                                 </ext:FieldSet>
 

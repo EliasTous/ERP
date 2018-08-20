@@ -144,6 +144,12 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل الفرع</value>
   </data>
+  <data name="FieldAll" xml:space="preserve">
+    <value>الكل </value>
+  </data>
+  <data name="FieldApptoved" xml:space="preserve">
+    <value>موافق عليه</value>
+  </data>
   <data name="FieldBirthPlace" xml:space="preserve">
     <value>مكان الولادة</value>
   </data>
@@ -222,6 +228,9 @@
   <data name="FieldNationality" xml:space="preserve">
     <value>الجنسية</value>
   </data>
+  <data name="FieldPending" xml:space="preserve">
+    <value>قيد المعالجة </value>
+  </data>
   <data name="FieldPicturePath" xml:space="preserve">
     <value>مسار الصورة</value>
   </data>
@@ -242,6 +251,9 @@
   </data>
   <data name="FieldStartDate" xml:space="preserve">
     <value>تاريخ البداية</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>الحالة </value>
   </data>
   <data name="FieldVacationSchedule" xml:space="preserve">
     <value>جدول الإجازات</value>

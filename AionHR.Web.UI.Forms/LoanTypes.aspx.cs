@@ -33,6 +33,7 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
 
         ILoanTrackingService _loanService = ServiceLocator.Current.GetInstance<ILoanTrackingService>();
+        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         protected override void InitializeCulture()
         {
 
@@ -142,7 +143,9 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
+                    ApprovalStore.Reload();
                     this.BasicInfoTab.SetValues(response.result);
+                    apId.Select(response.result.apId); 
 
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
@@ -539,6 +542,30 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-                
+        protected void ApprovalStory_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<Approval> routers = _companyStructureService.ChildGetAll<Approval>(request);
+
+            if (!routers.Success)
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+            this.ApprovalStore.DataSource = routers.Items;
+            e.Total = routers.Items.Count; ;
+
+            this.ApprovalStore.DataBind();
+        }
+
     }
 }

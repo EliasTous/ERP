@@ -85,6 +85,13 @@
         <ext:Hidden ID="CurrentDay" runat="server" />
         <ext:Hidden ID="CurrentCA" runat="server" />
         <ext:Hidden ID="CurrentSC" runat="server" />
+
+         <ext:Hidden ID="allHF" runat="server" Text="<%$ Resources: FieldAll %>" />
+          <ext:Hidden ID="pendingHF" runat="server" Text="<%$ Resources: FieldPending %>" />
+          <ext:Hidden ID="approvedHF" runat="server" Text="<%$ Resources: FieldApptoved %>" />
+       
+
+
         <ext:Hidden ID="format" runat="server" />
         <ext:Store
             ID="Store1"
@@ -117,6 +124,7 @@
                         <ext:ModelField Name="OL_N" />
                         <ext:ModelField Name="caName" />
                         <ext:ModelField Name="scName" />
+                        <ext:ModelField Name="apStatus" />
 
                         <ext:ModelField Name="netOL" />
 
@@ -201,7 +209,17 @@
                                         <FocusLeave Handler="#{Store1}.reload()" />
                                     </Listeners>
                                 </ext:DateField>
-                               
+                                 <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
+                                    EmptyText="<%$ Resources: FieldStatus %>">
+                                    <Items>
+
+                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApptoved %>" Value="2" />
+                                    </Items>
+
+                                </ext:ComboBox>
+
                                 <ext:Button runat="server" Text="<%$ Resources: Common,Go%>" Width="100">
                                     <Listeners>
                                         <Click Handler="#{Store1}.reload()" />
@@ -209,6 +227,7 @@
                                 </ext:Button>
 
 
+                                 
 
                                 <ext:Button  ID="btnDeleteSelected" runat="server" Text="<%$ Resources: DeleteAll %>" Icon="Delete">
                                    <%-- <Listeners>
@@ -268,7 +287,10 @@
                                 <SummaryRenderer Handler="return document.getElementById('totalBreaks').innerHTML+ ' ' + #{TotalBreaksText}.value;" />
                             </ext:Column>
 
-
+                              <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldStatus%>" DataIndex="apStatus" Flex="1" Hideable="false">
+                                <Renderer Handler=" return  record.data['apStatus']==1?  #{pendingHF}.text : #{approvedHF}.text ;" />
+                            
+                            </ext:Column>
 
                             <ext:Column runat="server"
                                 ID="colEdit" Visible="true"

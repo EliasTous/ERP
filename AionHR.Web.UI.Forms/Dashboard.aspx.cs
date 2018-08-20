@@ -1018,7 +1018,36 @@ namespace AionHR.Web.UI.Forms
 
             UnpaidLeavesStore.DataBind();
         }
+       
+       protected void ApproveLoanStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            DashboardTimeListRequest r = new DashboardTimeListRequest();
+            if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+            else
+            {
+                TimeStore.DataSource = new List<Time>();
+                TimeStore.DataBind();
+                return;
+            }
+            ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
+            if (!Times.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, Times.Summary).Show();
+                return;
+            }
+            Times.Items.ForEach(x =>
+            {
+                x.timeCodeString = GetLocalResourceObject(x.timeCode + "text").ToString();
+            });
 
+            TimeStore.DataSource = Times.Items;
+            ////List<ActiveLeave> leaves = new List<ActiveLeave>();
+            //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+
+
+            TimeStore.DataBind();
+        }
         protected void TimeStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             DashboardTimeListRequest r = new DashboardTimeListRequest();
@@ -1096,14 +1125,15 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         protected void TimePoPUP(object sender, DirectEventArgs e)
         {
+            string employeeId = e.ExtraParams["employeeId"];
             string employeeName = e.ExtraParams["employeeName"];
+            string dayId = e.ExtraParams["dayId"];
             string dayIdDate = e.ExtraParams["dayIdDate"];
+            string timeCode = e.ExtraParams["timeCode"];
             string timeCodeString = e.ExtraParams["timeCodeString"];
             string status = e.ExtraParams["status"];
-            string employeeId = e.ExtraParams["employeeId"];
-            string dayId = e.ExtraParams["dayId"];
-
-            string timeCode = e.ExtraParams["timeCode"];
+         
+                      
             string notes = e.ExtraParams["notes"];
             TimeEmployeeName.Text = employeeName;
             TimedayIdDate.Text = dayIdDate;
@@ -1233,13 +1263,14 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 : Fill The object and insert in the store 
 
                 PostRequest<Time> request = new PostRequest<Time>();
-                request.entity = TI; 
-                if (!string.IsNullOrEmpty(TI.notes))
-                    request.entity.notes = TI.notes;
-                else
-                    request.entity.notes = " ";
-
-
+                request.entity = new Time();
+                request.entity.employeeId = TI.employeeId;
+                request.entity.dayId = TI.dayId;
+                request.entity.timeCode = TI.timeCode;
+                request.entity.approverId =Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId()); 
+                request.entity.status = TI.status;
+                request.entity.notes = TI.notes;
+                              
                 PostResponse<Time> r = _timeAttendanceService.ChildAddOrUpdate<Time>(request);
 
 

@@ -75,6 +75,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(OvertimeSetting), "setOT");
             ChildAddOrUpdateLookup.Add(typeof(GenerateAttendanceDay), "genAD");
             ChildAddOrUpdateLookup.Add(typeof(FlatSchedule), "setFS");
+            ChildAddOrUpdateLookup.Add(typeof(Time), "setTA");
 
             ChildDeleteLookup.Add(typeof(AttendanceBreak), "delSB");
             ChildDeleteLookup.Add(typeof(AttendanceSchedule), "delSC");

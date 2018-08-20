@@ -576,7 +576,13 @@
   <data name="otext" xml:space="preserve">
     <value>عمل إضافي</value>
   </data>
-  <data name="Times" xml:space="preserve">
-    <value>دوام</value>
+  <data name="FieldNotes" xml:space="preserve">
+    <value>ملاحظات</value>
+  </data>
+  <data name="FieldTimeCode" xml:space="preserve">
+    <value>نوع الغياب</value>
+  </data>
+  <data name="ApproveLoan" xml:space="preserve">
+    <value>القرض</value>
   </data>
 </root>

@@ -22,6 +22,7 @@ namespace AionHR.Model.LoadTracking
         [PropertyID("45000_04")]
         [ApplySecurity]
         public bool disableEditing { get; set; }
-        
+        public int? apId { get; set; }
+
     }
 }

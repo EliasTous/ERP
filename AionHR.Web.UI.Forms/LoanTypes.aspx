@@ -315,6 +315,22 @@
 
                                            </Listeners>
                                         </ext:ComboBox>
+                                 <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="apId" Name="apId" FieldLabel="<%$ Resources:FieldApproval%>" >
+                              
+                                                <Store>
+                                                    <ext:Store runat="server" ID="ApprovalStore" OnReadData="ApprovalStory_RefreshData">
+                                                        <Model>
+                                                            <ext:Model runat="server">
+                                                                <Fields>
+                                                                    <ext:ModelField Name="recordId" />
+                                                                    <ext:ModelField Name="name" />
+                                                                </Fields>
+                                                            </ext:Model>
+                                                        </Model>
+                                                    </ext:Store>
+                                                </Store>
+                                                
+                                            </ext:ComboBox>
                                         <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
                                         
                                          <validator Handler="if(#{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else return false; } else {if (this.value<=0  ) return false;    if (#{amount}.getValue()<this.value) return false; else return true;} ">

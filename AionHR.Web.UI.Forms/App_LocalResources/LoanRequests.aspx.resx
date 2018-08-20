@@ -267,4 +267,7 @@
   <data name="PFormFullSalaryDeduction" xml:space="preserve">
     <value>Full Salary Deduction</value>
   </data>
+  <data name="ReturnNotes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
 </root>

@@ -268,14 +268,16 @@
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: Personal %>" Value="1"  />
-                                        <ext:ListItem Text="<%$ Resources: Business %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: Business %>" Value="2"  />
+                                            
+                                            
                                     </Items>
                                     <Listeners>
-                                        <Change Handler="if (#{leaveType}.getValue()==2) {#{isPaid}.setDisabled(true);} else{ #{isPaid}.setDisabled(false);}"></Change>
+                                        <Change Handler="if (#{leaveType}.getValue()==2) {#{isPaid}.setDisabled(true); #{isPaid}.setValue()(false);} else{ #{isPaid}.setDisabled(false);}"></Change>
                                     </Listeners>
 
                                 </ext:ComboBox>
-                                  <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="apId" Name="apId" FieldLabel="<%$ Resources:FieldApproval%>" >
+                                  <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="apId" Name="apId" FieldLabel="<%$ Resources:FieldApproval%>" >
                               
                                                 <Store>
                                                     <ext:Store runat="server" ID="ApprovalStore" OnReadData="ApprovalStory_RefreshData">
@@ -291,12 +293,7 @@
                                                 </Store>
                                                 
                                             </ext:ComboBox>
-                             <%--   <ext:Checkbox runat="server" Name="requireApproval" InputValue="true" ID="requiresApprovalCheck" DataIndex="requireApproval" FieldLabel="<%$ Resources:FieldRequiresApproval%>" >
-                                <%-- <Listeners>
-                                         <Change Handler="#{ApprovalLevelFS}.setDisabled (!this.getValue());setApprovalLevel(this.getValue());"  >
-                                         </Change>
-                                     </Listeners>
-                                     </ext:Checkbox>--%>
+                           
                                  <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" LabelWidth="200" FieldLabel="<%$ Resources:isPaid%>" Checked="true" />
                                     
                               <%--  <ext:FieldSet ID="ApprovalLevelFS" runat="server" Disabled="true" Title="<%$ Resources:Approvallevel %>" >

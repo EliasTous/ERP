@@ -523,6 +523,12 @@ namespace AionHR.Web.UI.Forms
             req.StartAt = "1";
             req.Filter = "";
             req.SortBy = "dayId,checkIn";
+            if (string.IsNullOrEmpty(apStatus.Value.ToString()))
+                  req.apStatus = 0;
+            else
+                req.apStatus = Convert.ToInt32(apStatus.Value);  
+
+
             return req;
         }
 

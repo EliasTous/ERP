@@ -341,6 +341,7 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
             currentLoanId.Text = id;
             Store3.Reload();
+
             string type = e.ExtraParams["type"];
 
             switch (type)
@@ -1398,6 +1399,25 @@ namespace AionHR.Web.UI.Forms
             else
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
 
+        }
+
+        protected void ApprovalsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            LoanApprovalListRequest req = new LoanApprovalListRequest();
+            req.LoanId = currentLoanId.Text;
+            if(string.IsNullOrEmpty(req.LoanId))
+            {
+                ApprovalsStore.DataSource = new List<AionHR.Model.LeaveManagement.Approvals>();
+                ApprovalsStore.DataBind();
+            }
+            ListResponse<AionHR.Model.LeaveManagement.Approvals> response = _loanService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                return;
+            }
+            ApprovalsStore.DataSource = response.Items;
+            ApprovalsStore.DataBind();
         }
     }
 }

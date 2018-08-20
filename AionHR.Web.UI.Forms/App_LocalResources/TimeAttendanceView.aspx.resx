@@ -144,6 +144,12 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Branch</value>
   </data>
+  <data name="FieldAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="FieldApptoved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
   <data name="FieldBirthPlace" xml:space="preserve">
     <value>Place of Birth</value>
   </data>
@@ -222,6 +228,9 @@
   <data name="FieldNationality" xml:space="preserve">
     <value>Nationality</value>
   </data>
+  <data name="FieldPending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
   <data name="FieldPicturePath" xml:space="preserve">
     <value>PicturePath</value>
   </data>
@@ -242,6 +251,9 @@
   </data>
   <data name="FieldStartDate" xml:space="preserve">
     <value>Start Date</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>Status</value>
   </data>
   <data name="FieldVacationSchedule" xml:space="preserve">
     <value>Vacation Schedule</value>

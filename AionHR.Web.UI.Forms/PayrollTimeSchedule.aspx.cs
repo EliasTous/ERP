@@ -524,7 +524,7 @@ namespace AionHR.Web.UI.Forms
         protected void TimeCodeGridStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             List<TimeCode> TSL = new List<TimeCode>();
-            TSL.Add(new TimeCode { timeCode = "A" });
+           // TSL.Add(new TimeCode { timeCode = "A" });
             TSL.Add(new TimeCode { timeCode = "D" });
             TSL.Add(new TimeCode { timeCode = "L" });
             TSL.Add(new TimeCode { timeCode = "O" });

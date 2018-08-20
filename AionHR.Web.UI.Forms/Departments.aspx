@@ -425,7 +425,7 @@
                                    
                                 </ext:ComboBox>
                                <ext:Panel runat="server" Layout="HBoxLayout" ><Items>
-                                   <ext:Checkbox ID="isLeaveAuth" runat="server" LabelWidth="130" FieldLabel="<%$ Resources: isLeaveAuth%>" DataIndex="isLeaveAuth" Name="isLeaveAuth" InputValue="true"  />
+                                <%--   <ext:Checkbox ID="isLeaveAuth" runat="server" LabelWidth="130" FieldLabel="<%$ Resources: isLeaveAuth%>" DataIndex="isLeaveAuth" Name="isLeaveAuth" InputValue="true"  />--%>
                                  <ext:Checkbox ID="isInactiveCheck" runat="server" LabelWidth="75"  FieldLabel="<%$ Resources: FieldIsInactive%>" DataIndex="isInactive" Name="isInactive" InputValue="true"  MarginSpec="0 5 0 50" />
                                 </Items></ext:Panel>
                             </Items>

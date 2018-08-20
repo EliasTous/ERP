@@ -130,6 +130,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden CurrentSC;
         
         /// <summary>
+        /// allHF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden allHF;
+        
+        /// <summary>
+        /// pendingHF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden pendingHF;
+        
+        /// <summary>
+        /// approvedHF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden approvedHF;
+        
+        /// <summary>
         /// format control.
         /// </summary>
         /// <remarks>
@@ -229,6 +256,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.DateField endDayId;
         
         /// <summary>
+        /// apStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox apStatus;
+        
+        /// <summary>
         /// btnDeleteSelected control.
         /// </summary>
         /// <remarks>
@@ -317,6 +353,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column2;
+        
+        /// <summary>
+        /// Column4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column4;
         
         /// <summary>
         /// colEdit control.
