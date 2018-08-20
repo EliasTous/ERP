@@ -1126,8 +1126,19 @@
         <ext:Hidden ID="absent" runat="server" Text="<%$ Resources:Absent %>" />
         <ext:Hidden ID="onleave" runat="server" Text="<%$ Resources:OnLeave %>" />
 
+
+          <ext:Hidden ID="Atext" runat="server" Text="<%$ Resources: atext%>" />
+        <ext:Hidden ID="Dtext" runat="server" Text="<%$ Resources: dtext%>" />
+        <ext:Hidden ID="Ltext" runat="server" Text="<%$ Resources: ltext%>" />
+        <ext:Hidden ID="Otext" runat="server" Text="<%$ Resources: otext%>" />
+        <ext:Hidden ID="Mtext" runat="server" Text="<%$ Resources: mtext%>" />
+
         <ext:Hidden ID="daysLeft" runat="server" Text="<%$ Resources: FieldDaysLeft %>" />
         <ext:Hidden ID="userSessionEmployeeId" runat="server" Text="" />
+
+
+         <ext:Hidden ID="approved" runat="server" Text="<%$ Resources: FieldApproved%>" />
+        <ext:Hidden ID="rejected" runat="server" Text="<%$ Resources: FieldRejected%>" />
 
         <ext:Store PageSize="30"
             ID="OverDueStore"
@@ -2147,6 +2158,130 @@
                                                                 </ext:Panel>
                                                             </Items>
                                                         </ext:Panel>
+
+                                                        <ext:GridPanel MarginSpec="0 0 0 0"
+                                                            ID="GridPanel19"
+                                                            runat="server"
+                                                            PaddingSpec="0 0 1 0"
+                                                            Header="false"
+                                                            Title="<%$ Resources:Times %>"
+                                                            Layout="FitLayout"
+                                                            Scroll="Vertical"
+                                                            Border="false"
+                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
+                                                            <Store>
+                                                                <ext:Store PageSize="30"
+                                                                    ID="TimeStore"
+                                                                    runat="server" OnReadData="TimeStore_ReadData"
+                                                                    RemoteSort="false"
+                                                                    RemoteFilter="false">
+                                                                    <Proxy>
+                                                                        <ext:PageProxy>
+                                                                            <Listeners>
+                                                                                <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                                                                            </Listeners>
+                                                                        </ext:PageProxy>
+                                                                    </Proxy>
+                                                                    <Model>
+                                                                        <ext:Model ID="Model24" runat="server" >
+                                                                            <Fields>
+                                                                                                                                                            
+                                                                                
+                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="dayId" />
+                                                                                 <ext:ModelField Name="dayIdDate"  />
+                                                                                <ext:ModelField Name="employeeId" />
+                                                                                <ext:ModelField Name="timeCode" />
+                                                                                <ext:ModelField Name="timeCodeString" />
+                                                                                <ext:ModelField Name="approverId" />
+                                                                                <ext:ModelField Name="status" />
+                                                                                <ext:ModelField Name="notes" />
+                                                                            
+
+                                                                            </Fields>
+                                                                        </ext:Model>
+                                                                    </Model>
+
+                                                                </ext:Store>
+                                                            </Store>
+
+
+                                                            <ColumnModel ID="ColumnModel24" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                                                <Columns>
+                                                                   <ext:Column ID="ColTimedayId" DataIndex="dayId"  runat="server" Visible="false" />
+                                                                   <ext:Column ID="ColTimeEmployeeId" DataIndex="employeeId"  runat="server" Visible="false" />
+                                                                   <ext:Column ID="ColtimeCode" DataIndex="timeCode"  runat="server" Visible="false" />
+
+
+                                                                    <ext:Column ID="Column27" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
+                                                                    <Renderer Handler=" return record.data['employeeName'].fullName;" />
+                                                                    </ext:Column>
+                                                                
+                                                                    <ext:DateColumn ID="DateColumn5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="dayIdDate" Hideable="false" Width="100" />
+                          
+
+                                                                     <ext:Column ID="Column26" DataIndex="timeCodeString"  runat="server" Flex="1" />
+                                                                     <ext:Column ID="Column30" DataIndex="status"  runat="server" >
+                                                                         <Renderer Handler=" return (record.data['status']==2 )? App.approved.value: App.rejected.value;" />
+                                                                    </ext:Column>
+                                                                     <ext:Column ID="Column28" DataIndex="notes"  runat="server" Flex="1" />
+
+                                                                
+                                                                    <ext:Column runat="server"
+                                                                        ID="Column29" Visible="true"
+                                                                        Text=""
+                                                                        Width="100"
+                                                                        Hideable="false"
+                                                                        Align="Center"
+                                                                        Fixed="true"
+                                                                        Filterable="false"
+                                                                        MenuDisabled="true"
+                                                                        Resizable="false">
+
+                                                                        <Renderer Handler="return  appendRender(); " />
+                                                                    </ext:Column>
+
+
+
+                                                                </Columns>
+                                                            </ColumnModel>
+                                                            <Listeners>
+                                                                <Render Handler="this.on('cellclick', cellClick);" />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                
+                                                                <CellClick OnEvent="TimePoPUP">
+                                                                    <EventMask ShowMask="true" />
+                                                                      <ExtraParams>
+                                                                         <ext:Parameter Name="employeeName" Value="record.data['employeeName'].fullName" Mode="Raw" />
+                                                                         <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
+                                                                         <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
+                                                                            <ext:Parameter Name="timeCode" Value="record.data['timeCode']" Mode="Raw" />
+                                                                         <ext:Parameter Name="notes" Value="record.data['notes']" Mode="Raw" />
+
+                                                                       <ext:Parameter Name="dayIdDate" Value="record.data['dayIdDate']" Mode="Raw" />
+                                                                        <ext:Parameter Name="timeCodeString" Value="record.data['timeCodeString']" Mode="Raw" />
+                                                                          <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
+                                                                    
+                                                                    </ExtraParams>
+
+                                                             
+
+                                                                </CellClick>
+                                                            </DirectEvents>
+
+
+                                                            <View>
+                                                                <ext:GridView ID="GridView24" runat="server" />
+                                                            </View>
+
+
+                                                            <SelectionModel>
+                                                                <ext:RowSelectionModel ID="rowSelectionModel23" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                                               
+                                                            </SelectionModel>
+                                                        </ext:GridPanel>
                                                     </Items>
                                                     <Listeners>
 
@@ -3995,6 +4130,104 @@
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
+        </ext:Window>
+         <ext:Window
+            ID="TimeWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:Time%>"
+            Width="450"
+            Height="500"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Resizable="false"
+            Maximizable="false"
+            Draggable="false"
+            Layout="Fit">
+
+            <Items>
+                <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+
+                   
+          
+           
+                    <Items>
+                        <ext:FormPanel
+                            ID="TimeFormPanel" DefaultButton="SaveTimeButton"
+                            runat="server"
+                            Title="<%$ Resources:Time %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" OnLoad="TimeTab_Load"
+                            BodyPadding="5">
+                            <Items>
+                               <ext:TextField ID="TimeEmployeeName" runat="server" FieldLabel="<%$ Resources:FieldName%>" ReadOnly="true" />
+                                <ext:DateField ID="TimedayIdDate" runat="server" Name="dayIdDate"  FieldLabel="<%$ Resources:FieldDate%>"  ReadOnly="true" />
+                                <ext:TextField ID="TimeTimeCodeString" runat="server" Name="timeCodeString"  ReadOnly="true" />
+                                 
+                                <ext:TextField ID="TimeemployeeIdTF" runat="server" Name="employeeId"  ReadOnly="true"  Hidden="true"/>
+                                <ext:TextField ID="TimedayIdTF" runat="server" Name="dayId"  ReadOnly="true" Hidden="true" />
+                                <ext:TextField ID="TimeTimeCodeTF" runat="server" Name="timeCode"  ReadOnly="true" Hidden="true" />
+
+
+                            
+                              
+
+
+
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="TimeStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status"
+                                    FieldLabel="<%$ Resources: FieldStatus %>">
+                                    <Items>
+
+                                      <%--  <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />--%>
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="-1" />
+                                    </Items>
+
+                                </ext:ComboBox>
+
+
+
+
+
+                                <ext:TextArea runat="server" FieldLabel="<%$Resources: ReturnNotes %>" ID="TimeNotes" Name="notes" MaxHeight="5" />
+
+
+                            </Items>
+
+                        </ext:FormPanel>
+
+
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+
+            <Buttons>
+                <ext:Button ID="SaveTimeButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{TimeFormPanel}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveTimeRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{TimeWindow}.body}" />
+
+
+
+                            <ExtraParams>
+                               
+                                <ext:Parameter Name="values" Value="#{TimeFormPanel}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+
         </ext:Window>
         <uc:leaveControl runat="server" ID="leaveRequest1" />
 

@@ -27,6 +27,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(BiometricDevice), "getBM");
             ChildGetLookup.Add(typeof(Router), "getRO");
             ChildGetLookup.Add(typeof(Geofence), "getGF");
+
            
 
             ChildGetAllLookup.Add(typeof(DayType), "qryDT");
@@ -51,6 +52,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(LeaveCalendarDay), "qryCD2");
             ChildGetAllLookup.Add(typeof(OvertimeSetting), "qryOT");
             ChildGetAllLookup.Add(typeof(FlatSchedule), "qryFS");
+            ChildGetAllLookup.Add(typeof(Time), "qryTA");
 
 
             ChildAddOrUpdateLookup.Add(typeof(DayType), "setDT");

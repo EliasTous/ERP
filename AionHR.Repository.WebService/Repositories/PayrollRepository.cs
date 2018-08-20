@@ -89,6 +89,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(PayrollIndemnityRecognition), "getIR");
             ChildGetLookup.Add(typeof(LeavePayment), "getLP");
             ChildGetLookup.Add(typeof(Bank), "getBA");
+            ChildGetLookup.Add(typeof(TimeCode), "getTC");
         }
     }
 }

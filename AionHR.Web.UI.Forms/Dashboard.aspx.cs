@@ -33,7 +33,7 @@ using AionHR.Model.TimeAttendance;
 using AionHR.Services.Messaging.Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Access_Control;
-
+using AionHR.Services.Messaging.TimeAttendance;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -128,7 +128,7 @@ namespace AionHR.Web.UI.Forms
                         //missingPunchesStore.Reload();
                         //checkMontierStore.Reload();
                         format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                        DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
+                       DateColumn5.Format= DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
                         periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         CountDateTo.SelectedDate = DateTime.Now;
@@ -1019,6 +1019,37 @@ namespace AionHR.Web.UI.Forms
             UnpaidLeavesStore.DataBind();
         }
 
+        protected void TimeStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            DashboardTimeListRequest r = new DashboardTimeListRequest();
+            if (!string.IsNullOrEmpty( _systemService.SessionHelper.GetEmployeeId()))
+            r.approverId =Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId()); 
+            else
+            {
+                TimeStore.DataSource = new List<Time>();
+                TimeStore.DataBind();
+                return; 
+            }
+            ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
+            if (!Times.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, Times.Summary).Show();
+                return;
+            }
+            Times.Items.ForEach(x =>
+            {
+                x.timeCodeString = GetLocalResourceObject(x.timeCode + "text").ToString(); 
+            });
+
+            TimeStore.DataSource = Times.Items;
+            ////List<ActiveLeave> leaves = new List<ActiveLeave>();
+            //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+
+
+            TimeStore.DataBind();
+        }
+
+
         protected void LocalRateStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
@@ -1061,6 +1092,32 @@ namespace AionHR.Web.UI.Forms
 
 
         }
+        
+        [DirectMethod]
+        protected void TimePoPUP(object sender, DirectEventArgs e)
+        {
+            string employeeName = e.ExtraParams["employeeName"];
+            string dayIdDate = e.ExtraParams["dayIdDate"];
+            string timeCodeString = e.ExtraParams["timeCodeString"];
+            string status = e.ExtraParams["status"];
+            string employeeId = e.ExtraParams["employeeId"];
+            string dayId = e.ExtraParams["dayId"];
+
+            string timeCode = e.ExtraParams["timeCode"];
+            string notes = e.ExtraParams["notes"];
+            TimeEmployeeName.Text = employeeName;
+            TimedayIdDate.Text = dayIdDate;
+            TimeTimeCodeString.Text = timeCodeString;
+            TimeStatus.Select(status);
+
+            TimeemployeeIdTF.Text = employeeId;
+            TimedayIdTF.Text = dayId;
+            TimeTimeCodeTF.Text = timeCode;
+
+            this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
+            this.TimeWindow.Show();
+          
+        }
         [DirectMethod]
         protected void leavePoPUP(object sender, DirectEventArgs e)
         {
@@ -1099,6 +1156,11 @@ namespace AionHR.Web.UI.Forms
                     leaveRequest1.Update(id);
                     break;
             }
+        }
+        [DirectMethod]
+        protected void TimeTab_Load       (object sender, EventArgs e)
+        {
+
         }
         [DirectMethod]
         protected void LeaveRecordTab_Load(object sender, EventArgs e)
@@ -1149,6 +1211,58 @@ namespace AionHR.Web.UI.Forms
                     });
 
                     this.LeaveRecordWindow.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
+
+        }
+        protected void SaveTimeRecord(object sender, DirectEventArgs e)
+        {
+            string obj = e.ExtraParams["values"];
+            string id = e.ExtraParams["id"];
+            Time TI = JsonConvert.DeserializeObject<Time>(obj);
+            try
+            {
+                //New Mode
+                //Step 1 : Fill The object and insert in the store 
+
+                PostRequest<Time> request = new PostRequest<Time>();
+                request.entity = TI; 
+                if (!string.IsNullOrEmpty(TI.notes))
+                    request.entity.notes = TI.notes;
+                else
+                    request.entity.notes = " ";
+
+
+                PostResponse<Time> r = _timeAttendanceService.ChildAddOrUpdate<Time>(request);
+
+
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                    return;
+                }
+                else
+                {
+
+                    TimeStore.Reload();
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordSavingSucc
+                    });
+
+                    this.TimeWindow.Close();
                 }
 
             }

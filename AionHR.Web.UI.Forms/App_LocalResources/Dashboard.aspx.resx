@@ -549,4 +549,34 @@
   <data name="TermEndDate" xml:space="preserve">
     <value>Term End Date</value>
   </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="timeCode" xml:space="preserve">
+    <value>Time Code</value>
+  </data>
+  <data name="atext" xml:space="preserve">
+    <value>Absence</value>
+  </data>
+  <data name="dtext" xml:space="preserve">
+    <value>Disappear</value>
+  </data>
+  <data name="FieldRejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="ltext" xml:space="preserve">
+    <value>Lateness</value>
+  </data>
+  <data name="mtext" xml:space="preserve">
+    <value>Missed Punch </value>
+  </data>
+  <data name="multiplier" xml:space="preserve">
+    <value>Multiplier</value>
+  </data>
+  <data name="otext" xml:space="preserve">
+    <value>Overtime</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>Times</value>
+  </data>
 </root>

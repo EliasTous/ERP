@@ -28,6 +28,9 @@
             window.document.forms[0].target = '_blank';
 
         }
+
+
+     
     </script>
 
 </head>
@@ -75,6 +78,31 @@
                 <ext:DataSorter Property="recordId" Direction="ASC" />
             </Sorters>
         </ext:Store>
+          <ext:Store
+            ID="apIdStore"
+            runat="server"
+         
+            OnReadData="ApprovalStory_RefreshData"
+          >
+           
+            <Model>
+                <ext:Model ID="Model3" runat="server" IDProperty="recordId">
+                    <Fields>
+
+                        <ext:ModelField Name="recordId" />
+                        <ext:ModelField Name="name" />
+                        <%--<ext:ModelField Name="intName" />--%>
+                    </Fields>
+                </ext:Model>
+            </Model>
+            <Sorters>
+                <ext:DataSorter Property="recordId" Direction="ASC" />
+            </Sorters>
+        </ext:Store>
+
+
+        
+                                                   
 
 
 
@@ -154,7 +182,7 @@
                         </ext:Toolbar>
 
                     </TopBar>
-
+                   
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
@@ -162,7 +190,7 @@
                             </ext:Column>
 
 
-
+                            
 
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
@@ -276,7 +304,7 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="555"
+            Width="750"
             Height="320"
             AutoShow="false"
             Modal="true"
@@ -330,6 +358,9 @@
                                                 <ext:ModelField Name="deductPeriod" />
                                                 <ext:ModelField Name="fullPeriod" />
                                                 <ext:ModelField Name="multiplier" />
+                                                <ext:ModelField Name="apId" />
+                                                <ext:ModelField Name="apName" />
+                                                <ext:ModelField Name="maxAllowed" />
 
                                             </Fields>
                                         </ext:Model>
@@ -405,6 +436,48 @@
                                     </ext:WidgetColumn>
 
 
+                                       <ext:WidgetColumn ID="WidgetColumn1" Visible="true" DataIndex="apId" runat="server" Text="<%$ Resources: FieldApproval  %>">
+                                           <Widget>
+                                           <ext:ComboBox 
+                                                            runat="server" 
+                                                            Shadow="false" 
+                                                            Mode="Local" 
+                                                            TriggerAction="All" 
+                                                            ForceSelection="true"
+                                                            StoreID="apIdStore" 
+                                                            DisplayField="name" 
+                                                            ValueField="recordId"
+                                                            Name="apId"
+                                                            >
+                                                <Listeners>
+
+                                                    <Select Handler="var rec = this.getWidgetRecord(); rec.set('apId',this.value); ">
+                                                    </Select>
+                                                </Listeners>
+                                               </ext:ComboBox>
+                                  
+                
+                                               </Widget>
+                                           </ext:WidgetColumn>
+
+
+                                        <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="maxAllowed" runat="server" Text="<%$ Resources: maxAllowed  %>">
+                                        <Widget>
+                                            <ext:TextField runat="server" Name="maxAllowed" >
+                                                 <Listeners>
+
+                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('maxAllowed',this.value); ">
+                                                    </Change>
+                                                </Listeners>
+                                                <Validator Handler="return !isNaN(this.value)">
+
+                                                </Validator>
+                                                </ext:TextField>
+                                        </Widget>
+                                    </ext:WidgetColumn>
+
+
+                             
 
 
 
@@ -412,8 +485,7 @@
                                 </Columns>
                             </ColumnModel>
                         
-
-
+ 
                             <View>
                                 <ext:GridView ID="GridView2" runat="server" />
                             </View>
@@ -452,6 +524,8 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+       
+
 
 
 

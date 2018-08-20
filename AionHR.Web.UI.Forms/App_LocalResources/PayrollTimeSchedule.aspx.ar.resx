@@ -168,4 +168,16 @@
   <data name="timeCodeColumn" xml:space="preserve">
     <value>نوع الغياب </value>
   </data>
+  <data name="EditTimeCodeWindowsTitle" xml:space="preserve">
+    <value>تعديل تعميد نوع الغياب</value>
+  </data>
+  <data name="TimeCodeTabEditWindowTitle" xml:space="preserve">
+    <value>تعميد نوع الغياب</value>
+  </data>
+  <data name="FieldApproval" xml:space="preserve">
+    <value>التعميد</value>
+  </data>
+  <data name="maxAllowed" xml:space="preserve">
+    <value>الحد الاعظمي المسموح</value>
+  </data>
 </root>

@@ -32,7 +32,7 @@ namespace AionHR.Web.UI.Forms
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IPayrollService _PayrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
-
+        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
@@ -135,11 +135,12 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
-
+         
             string id = e.ExtraParams["id"];
             ScheduleID.Text = id;
             string type = e.ExtraParams["type"];
             TimeCodeGridStore.Reload();
+            apIdStore.Reload();
             switch (type)
             {
                 case "imgEdit":
@@ -189,6 +190,8 @@ namespace AionHR.Web.UI.Forms
 
 
         }
+
+      
 
         /// <summary>
         /// This direct method will be called after confirming the delete
@@ -359,7 +362,8 @@ namespace AionHR.Web.UI.Forms
 
 
 
-
+       
+        
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
 
@@ -512,6 +516,10 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
+      
+
+
+     
 
         protected void TimeCodeGridStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
@@ -547,6 +555,9 @@ namespace AionHR.Web.UI.Forms
                             local.isEnabled = remote.isEnabled;
                             local.fullPeriod = remote.fullPeriod;
                             local.deductPeriod = remote.deductPeriod;
+                            local.apId = remote.apId;
+                            local.apName = remote.apName;
+                            local.maxAllowed = remote.maxAllowed;
                         }
 
                     }
@@ -641,6 +652,32 @@ namespace AionHR.Web.UI.Forms
 
 
 
+        }
+
+
+        protected void ApprovalStory_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<Approval> routers = _companyStructureService.ChildGetAll<Approval>(request);
+
+            if (!routers.Success)
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+            this.apIdStore.DataSource = routers.Items;
+            e.Total = routers.Items.Count; ;
+
+            this.apIdStore.DataBind();
         }
     }
 }

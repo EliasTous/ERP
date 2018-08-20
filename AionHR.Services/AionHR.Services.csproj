@@ -186,6 +186,7 @@
     <Compile Include="Messaging\System\UserByEmployeeId.cs" />
     <Compile Include="Messaging\System\UsersListRequest.cs" />
     <Compile Include="Messaging\TaskManagement\TaskManagmentRequest.cs" />
+    <Compile Include="Messaging\TimeAttendance\DashboardTimeListRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeAttendanceRequests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

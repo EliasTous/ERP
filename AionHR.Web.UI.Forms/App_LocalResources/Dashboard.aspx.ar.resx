@@ -552,4 +552,31 @@
   <data name="TermEndDate" xml:space="preserve">
     <value>تاريخ انتهاء المدة</value>
   </data>
+  <data name="Time" xml:space="preserve">
+    <value>دوام</value>
+  </data>
+  <data name="timeCode" xml:space="preserve">
+    <value>نوع الغياب </value>
+  </data>
+  <data name="atext" xml:space="preserve">
+    <value>غياب بإذن</value>
+  </data>
+  <data name="dtext" xml:space="preserve">
+    <value>غياب بدون إذن </value>
+  </data>
+  <data name="FieldRejected" xml:space="preserve">
+    <value>مرفوض </value>
+  </data>
+  <data name="ltext" xml:space="preserve">
+    <value>التأخير</value>
+  </data>
+  <data name="mtext" xml:space="preserve">
+    <value>يوم غير مغلق</value>
+  </data>
+  <data name="otext" xml:space="preserve">
+    <value>عمل إضافي</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>دوام</value>
+  </data>
 </root>

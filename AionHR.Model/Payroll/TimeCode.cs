@@ -27,6 +27,10 @@ namespace AionHR.Model.Payroll
         [ApplySecurity]
         public double multiplier { get; set; }
 
+         public string apId { get; set; }
+        public string apName { get; set; }
+        public short maxAllowed { get; set; }
+        
 
     }
 }

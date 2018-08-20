@@ -171,4 +171,16 @@
   <data name="timeCodeColumn" xml:space="preserve">
     <value>Time Code</value>
   </data>
+  <data name="EditTimeCodeWindowsTitle" xml:space="preserve">
+    <value>Edit Time Code Approvals</value>
+  </data>
+  <data name="TimeCodeTabEditWindowTitle" xml:space="preserve">
+    <value>Payroll Time Code Approvals</value>
+  </data>
+  <data name="FieldApproval" xml:space="preserve">
+    <value>Approval</value>
+  </data>
+  <data name="maxAllowed" xml:space="preserve">
+    <value>maximum allowed</value>
+  </data>
 </root>

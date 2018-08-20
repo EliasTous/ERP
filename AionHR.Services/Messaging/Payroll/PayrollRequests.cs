@@ -284,3 +284,25 @@ public class LeavePaymentsListRequest : ListRequest
     }
 
 }
+public class TimeCodeRecordRequest :RecordRequest
+{
+  public string tsId { set; get; }
+public string timeCode { get; set; }
+
+
+private Dictionary<string, string> parameters;
+public override Dictionary<string, string> Parameters
+{
+    get
+    {
+        parameters = new Dictionary<string, string>();
+        parameters.Add("_tsId", tsId.ToString());
+        parameters.Add("_timeCode", timeCode);
+
+       
+
+            return parameters;
+    }
+}
+
+}
