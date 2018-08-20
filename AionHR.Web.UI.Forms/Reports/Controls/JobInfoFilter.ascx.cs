@@ -27,19 +27,19 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 X.Call("setStatus", EnableDepartment, EnableBranch, EnablePosition, EnableDivision);
                 X.Call("setWidth", FieldWidth);
-                //FillJobInfo();
+                FillJobInfo();
              
             }
 
         }
-        //private void FillJobInfo()
-        //{
-        //    FillDepartment();
-        //    FillPosition();
-        //    FillBranch();
-        //    FillDivision();
+        private void FillJobInfo()
+        {
+            FillDepartment();
+            FillPosition();
+            FillBranch();
+            FillDivision();
 
-        //}
+        }
 
         public JobInfoParameterSet GetJobInfo()
         {
