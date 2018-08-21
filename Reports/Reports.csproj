@@ -264,12 +264,6 @@
     <Compile Include="RelationshipTypesReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="rptDepartmentsSalaries.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="rptDepartmentsSalaries.Designer.cs">
-      <DependentUpon>rptDepartmentsSalaries.cs</DependentUpon>
-    </Compile>
     <Compile Include="SalaryChangeReasonsReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -592,9 +586,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RightToWork.resx">
       <DependentUpon>RightToWork.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rptDepartmentsSalaries.resx">
-      <DependentUpon>rptDepartmentsSalaries.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalaryChangeReasonsReport.ar.resx">
       <DependentUpon>SalaryChangeReasonsReport.cs</DependentUpon>

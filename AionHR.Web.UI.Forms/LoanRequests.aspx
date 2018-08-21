@@ -997,11 +997,11 @@
                             Layout="FitLayout"
                             Scroll="Vertical"
                             Border="false"
-                            Icon="User" Text="<%$ Resources: Approvals %>"
-                            ColumnLines="True" IDMode="Explicit" RenderXType="True" RenderTo="playcontainer">
+                             Title="<%$ Resources: Approvals %>"
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True" >
                             
                             <Store>
-                                <ext:Store runat="server" ID="ApprovalsStore" OnReadData="ApprovalsStore_ReadData">
+                                <ext:Store runat="server" ID="ApprovalStore" OnReadData="ApprovalsStore_ReadData">
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
@@ -1048,20 +1048,10 @@
                                                             else this.setDisabled(true); 
                                                         else
                                                             this.setDisabled(true); --%>
-                            <DockedItems>
-
-                                <ext:Toolbar ID="Toolbar7" runat="server" Dock="Bottom">
-                                    <Items>
-                                        <ext:StatusBar ID="StatusBar4" runat="server" />
-                                        <ext:ToolbarFill />
-
-                                    </Items>
-                                </ext:Toolbar>
-
-                            </DockedItems>
-                             <Listeners>
-                                 <Activate Handler="ApprovalsStore.Reload();"/>
-                             </Listeners>
+                            
+                           <Listeners>
+                               <Activate Handler="#{ApprovalStore}.reload();" />
+                           </Listeners>
 
                             <View>
                                 <ext:GridView ID="GridView4" runat="server" />

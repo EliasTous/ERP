@@ -1057,13 +1057,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.GridPanel ApprovalsGridPanel;
         
         /// <summary>
-        /// ApprovalsStore control.
+        /// ApprovalStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store ApprovalsStore;
+        protected global::Ext.Net.Store ApprovalStore;
         
         /// <summary>
         /// leaveIdCO control.
@@ -1109,24 +1109,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column9;
-        
-        /// <summary>
-        /// Toolbar7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Toolbar Toolbar7;
-        
-        /// <summary>
-        /// StatusBar4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.StatusBar StatusBar4;
         
         /// <summary>
         /// GridView4 control.

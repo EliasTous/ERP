@@ -2360,8 +2360,8 @@
                                                             <ColumnModel ID="ColumnModel25" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                                                 <Columns>
                                                                      <ext:Column ID="Column31" Visible="false" DataIndex="recordId" runat="server" />
-                                                 <ext:Column ID="Column32" DataIndex="loanRef" Text="<%$ Resources: FieldReference%>" runat="server" Visible="false" />
-                                                <ext:Column ID="Column33" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
+                                                 <ext:Column ID="Column32" DataIndex="loanRef" Text="<%$ Resources: FieldReference%>" runat="server" Hidden="true" />
+                                                <ext:Column ID="Column33" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
                                                     <Renderer Handler=" return record.data['employeeName'].fullName; ">
                                                     </Renderer>
                                                 </ext:Column>
@@ -2369,7 +2369,7 @@
                                                <%-- <ext:Column ID="Column7" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />--%>
                                                 <ext:Column ID="Column34" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
 
-                                                <ext:DateColumn ID="c" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
+                                                <ext:DateColumn ID="c" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" Hidden="true" />
 
                                                 <ext:Column ID="Column35" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Width="140">
                                                     <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['amount']; "></Renderer>
@@ -2442,16 +2442,17 @@
                                                                 </Columns>
                                                             </ColumnModel>
                                                             <Listeners>
+                                                                <Activate Handler="#{ApprovalLoanStore}.reload();" />
                                                                 <Render Handler="this.on('cellclick', cellClick);" />
                                                             </Listeners>
                                                             <DirectEvents>
 
                                                                 
-                                                                <CellClick OnEvent="ApprovaleLoanPoPUP">
+                                                                <CellClick OnEvent="ApprovalLoanPoPUP">
                                                                     <EventMask ShowMask="true" />
                                                                       <ExtraParams>
                                                                         <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                                                                                                                   
+                                                                                                                                 
                                                                                                                                                 
                                                                     </ExtraParams>
 
@@ -4424,7 +4425,7 @@
         </ext:Window>
 
          <ext:Window
-            ID="ApproalLoanWindow"
+            ID="approvalLoanWindow"
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:ApprovalLoan %>"
@@ -4449,8 +4450,8 @@
                             DefaultAnchor="100%" OnLoad="ApprovalLoanTab_load"
                             BodyPadding="5"  AutoScroll="true">
                             <Items>
-                                <ext:TextField  ID="recordId" runat="server" Name="recordId" Hidden="true" />
-                                 <ext:TextField  ID="ApprovalLoanEmployeeName" runat="server" Name="ApprovalLoanEmployeeName" />
+                                <ext:TextField  ID="ApprovalRecordId" runat="server" Name="recordId" Hidden="true" />
+                                 <ext:TextField  ID="ApprovalLoanEmployeeName" runat="server" Name="employeeName" />
                           
                                 <ext:TextField runat="server" ID="loanRef" Name="loanRef" FieldLabel="<%$ Resources: FieldReference %>" />
 
@@ -4460,9 +4461,9 @@
 
                                 <%--<ext:TextField ID="employeeName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeName"   AllowBlank="false"/>--%>
                                 <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" >
-                                     <CustomConfig>
+                                     <%--<CustomConfig>
                         <ext:ConfigItem Name="endDateField" Value="effectiveDate" Mode="Value" />
-                    </CustomConfig>
+                    </CustomConfig>--%>
                                     </ext:DateField>
 
                               
@@ -4474,7 +4475,7 @@
 
                                 <ext:TextArea ID="purpose" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />
                                  <ext:TextField ID="purposeField" InputType="Password" Visible="false" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ComboBox1" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ApprovalLoanStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false" SubmitValue="true">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
@@ -4483,15 +4484,15 @@
                                         <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
                                     </Items>
                                     <Listeners>
-                                        <Change Handler="if(this.value==3) {this.next().setDisabled(false); this.next().setValue(new Date());} else {this.next().setDisabled(true); this.next().clear();}">
-                                        </Change>
+                                        <%--<Change Handler="if(this.value==3) {this.next().setDisabled(false); this.next().setValue(new Date());} else {this.next().setDisabled(true); this.next().clear();}">
+                                        </Change>--%>
                                     </Listeners>
                                 </ext:ComboBox>
 
                                 <ext:DateField AllowBlank="false"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" Vtype="daterange"  >
-                                    <CustomConfig>
+                                   <%-- <CustomConfig>
                         <ext:ConfigItem Name="startDateField" Value="date" Mode="Value" />
-                    </CustomConfig>
+                    </CustomConfig>--%>
                                     </ext:DateField>
                                 
                                       

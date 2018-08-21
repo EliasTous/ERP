@@ -156,4 +156,7 @@
   <data name="LoanCoverageType" xml:space="preserve">
     <value>Loan Coverage Type</value>
   </data>
+  <data name="FieldApproval" xml:space="preserve">
+    <value>Approval</value>
+  </data>
 </root>

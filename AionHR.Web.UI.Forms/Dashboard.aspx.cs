@@ -1075,15 +1075,14 @@ namespace AionHR.Web.UI.Forms
             request.Status = 4;
             request.Filter = "";
 
-            request.SortBy = e.Sort[0].Property;
-            if (e.Sort[0].Property == "employeeName")
-                request.SortBy = _systemService.SessionHelper.GetNameformat();
+            request.SortBy = "recordId";
 
 
-           
 
-            request.Size = e.Limit.ToString();
-            request.StartAt = e.Start.ToString();
+
+
+            request.Size = "1000";
+            request.StartAt = "0";
             ListResponse<Loan> routers = _loanService.GetAll<Loan>(request);
             if (!routers.Success)
             {
@@ -1197,10 +1196,10 @@ namespace AionHR.Web.UI.Forms
         }
 
         [DirectMethod]
-        protected void ApprovaleLoanPoPUP(object sender, DirectEventArgs e)
+        protected void ApprovalLoanPoPUP(object sender, DirectEventArgs e)
         {
             string id = e.ExtraParams["id"];
-            panelRecordDetails.ActiveIndex = 0;
+         
             //SetTabPanelEnable(true);
          
           
@@ -1224,7 +1223,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            ApprovalLoanEmployeeName.Text = response.result.employeeName.ToString(); 
+            ApprovalLoanEmployeeName.Text = response.result.employeeName.fullName.ToString(); 
 
                     //    effectiveDate.Disabled = response.result.status != 3;
                     //FillFilesStore(Convert.ToInt32(id));
@@ -1241,8 +1240,8 @@ namespace AionHR.Web.UI.Forms
                     //if (!response.result.effectiveDate.HasValue)
                     //    effectiveDate.SelectedDate = DateTime.Now;
                   
-                    this.ApproalLoanWindow.Title = Resources.Common.EditWindowsTitle;
-                    this.ApproalLoanWindow.Show();
+                    this.approvalLoanWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.approvalLoanWindow.Show();
                   
 
             
@@ -1307,28 +1306,34 @@ namespace AionHR.Web.UI.Forms
 
         }
         
-              protected void SaveApprovalLoanRecord(object sender, DirectEventArgs e)
-        {
+           protected void SaveApprovalLoanRecord(object sender, DirectEventArgs e)
+            {
             string obj = e.ExtraParams["values"];
             string id = e.ExtraParams["id"];
-            LeaveRequest LV = JsonConvert.DeserializeObject<LeaveRequest>(obj);
+            LoanRequests LV = JsonConvert.DeserializeObject<LoanRequests>(obj);
+
+            RecordRequest loanRecordRequest = new RecordRequest();
+            loanRecordRequest.RecordID = id;
+
+            RecordResponse<Loan> loanRecord = _loanService.Get<Loan>(loanRecordRequest);
+            if (!loanRecord.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", loanRecord.ErrorCode) != null ? GetGlobalResourceObject("Errors", loanRecord.ErrorCode).ToString() + "<br>Technical Error: " + loanRecord.ErrorCode + "<br> Summary: " + loanRecord.Summary : loanRecord.Summary).Show();
+                return;
+            }
+
+
             try
             {
                 //New Mode
                 //Step 1 : Fill The object and insert in the store 
 
-                PostRequest<DashboardLeave> request = new PostRequest<DashboardLeave>();
-                request.entity = new DashboardLeave();
-                request.entity.leaveId = Convert.ToInt32(LV.recordId);
-                request.entity.employeeId = Convert.ToInt32(userSessionEmployeeId.Text);
-                request.entity.status = LV.status;
-                if (!string.IsNullOrEmpty(LV.returnNotes))
-                    request.entity.notes = LV.returnNotes;
-                else
-                    request.entity.notes = " ";
+                PostRequest<Loan> request = new PostRequest<Loan>();
+                request.entity = loanRecord.result;
+                request.entity.status =Convert.ToInt16 (ApprovalLoanStatus.Value.ToString());
 
-
-                PostResponse<DashboardLeave> r = _leaveManagementService.ChildAddOrUpdate<DashboardLeave>(request);
+                PostResponse<Loan> r = _loanService.ChildAddOrUpdate< Loan > (request);
 
 
                 //check if the insert failed
@@ -1342,7 +1347,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
 
-                    LeaveRequestsStore.Reload();
+                    ApprovalLoanStore.Reload();
                     Notification.Show(new NotificationConfig
                     {
                         Title = Resources.Common.Notification,
@@ -1350,7 +1355,7 @@ namespace AionHR.Web.UI.Forms
                         Html = Resources.Common.RecordSavingSucc
                     });
 
-                    this.LeaveRecordWindow.Close();
+                    this.approvalLoanWindow.Close();
                 }
 
             }

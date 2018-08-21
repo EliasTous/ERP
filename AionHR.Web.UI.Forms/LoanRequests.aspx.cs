@@ -341,6 +341,7 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
             currentLoanId.Text = id;
             Store3.Reload();
+            ApprovalStore.Reload();
 
             string type = e.ExtraParams["type"];
 
@@ -1407,8 +1408,8 @@ namespace AionHR.Web.UI.Forms
             req.LoanId = currentLoanId.Text;
             if(string.IsNullOrEmpty(req.LoanId))
             {
-                ApprovalsStore.DataSource = new List<AionHR.Model.LeaveManagement.Approvals>();
-                ApprovalsStore.DataBind();
+                ApprovalStore.DataSource = new List<AionHR.Model.LeaveManagement.Approvals>();
+                ApprovalStore.DataBind();
             }
             ListResponse<AionHR.Model.LeaveManagement.Approvals> response = _loanService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
             if (!response.Success)
@@ -1416,8 +1417,8 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
                 return;
             }
-            ApprovalsStore.DataSource = response.Items;
-            ApprovalsStore.DataBind();
+            ApprovalStore.DataSource = response.Items;
+            ApprovalStore.DataBind();
         }
     }
 }

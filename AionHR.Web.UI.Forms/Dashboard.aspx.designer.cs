@@ -2722,13 +2722,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button Button2;
         
         /// <summary>
-        /// ApproalLoanWindow control.
+        /// approvalLoanWindow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window ApproalLoanWindow;
+        protected global::Ext.Net.Window approvalLoanWindow;
         
         /// <summary>
         /// TabPanel2 control.
@@ -2749,13 +2749,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.FormPanel ApprovalLoanForm;
         
         /// <summary>
-        /// recordId control.
+        /// ApprovalRecordId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField recordId;
+        protected global::Ext.Net.TextField ApprovalRecordId;
         
         /// <summary>
         /// ApprovalLoanEmployeeName control.
@@ -2812,13 +2812,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField purposeField;
         
         /// <summary>
-        /// ComboBox1 control.
+        /// ApprovalLoanStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox ComboBox1;
+        protected global::Ext.Net.ComboBox ApprovalLoanStatus;
         
         /// <summary>
         /// effectiveDate control.
