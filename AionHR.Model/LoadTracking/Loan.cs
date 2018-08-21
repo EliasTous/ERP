@@ -73,6 +73,9 @@ namespace AionHR.Model.LoadTracking
         [PropertyID("45050_13")]
         [ApplySecurity]
         public int ldValue { get; set; }
+        public string statusString { get; set; }
+
+        
 
     }
 }

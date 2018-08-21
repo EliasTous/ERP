@@ -484,6 +484,12 @@ namespace AionHR.Web.UI.Forms
             Approval b = JsonConvert.DeserializeObject<Approval>(obj);
 
             string id = e.ExtraParams["id"];
+            if (string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(apId.Text))
+            {
+                id = apId.Text;
+                b.recordId = id;
+            }
+
             // Define the object to add or edit as null
 
             if (string.IsNullOrEmpty(id))
@@ -512,7 +518,7 @@ namespace AionHR.Web.UI.Forms
                         b.recordId = r.recordId;
                         apId.Text = b.recordId;
                         //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                        Store1.Reload();
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -523,9 +529,9 @@ namespace AionHR.Web.UI.Forms
                         });
 
                         //this.EditRecordWindow.Close();
-                        //RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        //sm.DeselectAll();
-                        //sm.Select(b.recordId.ToString());
+                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                        sm.DeselectAll();
+                        sm.Select(b.recordId.ToString());
                         ApprovelDepartmentsGrid.Disabled = false;
 
 
@@ -565,9 +571,10 @@ namespace AionHR.Web.UI.Forms
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(id);
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Commit();
+                        //ModelProxy record = this.Store1.GetById(id);
+                        //BasicInfoTab.UpdateRecord(record);
+                        //record.Commit();
+                        Store1.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,

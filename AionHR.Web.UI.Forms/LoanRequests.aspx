@@ -1005,11 +1005,14 @@
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
-                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                <ext:ModelField Name="approverName" IsComplex="true" />
                                                 <ext:ModelField Name="departmentName" />
-                                                <ext:ModelField Name="stringStatus" />
-                                                <ext:ModelField Name="notes" />
-                                                 <ext:ModelField Name="leaveId" />
+                                                 <ext:ModelField Name="loanId" />
+                                                <ext:ModelField Name="approverId" />
+                                                <ext:ModelField Name="status" />
+                                                 <ext:ModelField Name="statusString" />
+                                                 <ext:ModelField Name="notes" />
+                                                
                                                 
                                                 
                                             </Fields>
@@ -1021,17 +1024,19 @@
 
                             <ColumnModel ID="ColumnModel4" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                 <Columns>
-                                    <ext:Column ID="leaveIdCO" Visible="false" DataIndex="leaveId" runat="server">
-                                    </ext:Column>
-                                        <ext:Column ID="Column8" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
-                                           <Renderer Handler=" return record.data['employeeName'].fullName; ">
+                                    <ext:Column ID="loanId" Visible="false" DataIndex="loanId" runat="server" />
+                                    <ext:Column ID="approverId" Visible="false" DataIndex="approverId" runat="server" />
+                                 
+                                        <ext:Column ID="Column8" DataIndex="approverName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
+                                           <Renderer Handler=" return record.data['approverName'].fullName; ">
                                            </Renderer>
                                          </ext:Column>
                                     <ext:Column ID="departmentName" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1"/>
-                                    <ext:Column ID="stringStatus" Visible="true" DataIndex="stringStatus" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
+                                    <ext:Column ID="lAstatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
+                                       
                                     </ext:Column>
                                       
-                                    <ext:Column ID="Column9" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
+                                    <ext:Column ID="LAnotes" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
                                        
                                     </ext:Column>
                                    

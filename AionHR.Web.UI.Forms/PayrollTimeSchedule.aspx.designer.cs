@@ -436,13 +436,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.WidgetColumn Column9;
         
         /// <summary>
-        /// WidgetColumn1 control.
+        /// COapId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.WidgetColumn WidgetColumn1;
+        protected global::Ext.Net.Column COapId;
         
         /// <summary>
         /// WidgetColumn2 control.

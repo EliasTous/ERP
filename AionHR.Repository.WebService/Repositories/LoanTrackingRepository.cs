@@ -26,7 +26,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(LoanDeduction), "getLD");
             ChildGetLookup.Add(typeof(LoanOverride), "getEM");
             ChildGetAllLookup.Add(typeof(LoanType), "qryLT");
-            ChildGetAllLookup.Add(typeof(Approvals), "qryLA");
+            ChildGetAllLookup.Add(typeof(LoanApproval), "qryLA");
             ChildGetAllLookup.Add(typeof(LoanOverride), "qryEM");
             ChildAddOrUpdateLookup.Add(typeof(LoanType), "setLT");
             ChildDeleteLookup.Add(typeof(LoanType), "delLT");

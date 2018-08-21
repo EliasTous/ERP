@@ -1066,13 +1066,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store ApprovalStore;
         
         /// <summary>
-        /// leaveIdCO control.
+        /// loanId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column leaveIdCO;
+        protected global::Ext.Net.Column loanId;
+        
+        /// <summary>
+        /// approverId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column approverId;
         
         /// <summary>
         /// Column8 control.
@@ -1093,22 +1102,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column departmentName;
         
         /// <summary>
-        /// stringStatus control.
+        /// lAstatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column stringStatus;
+        protected global::Ext.Net.Column lAstatus;
         
         /// <summary>
-        /// Column9 control.
+        /// LAnotes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column9;
+        protected global::Ext.Net.Column LAnotes;
         
         /// <summary>
         /// GridView4 control.

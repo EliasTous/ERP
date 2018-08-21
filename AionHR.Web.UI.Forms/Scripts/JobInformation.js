@@ -1,5 +1,4 @@
-﻿
-var editRender = function () {
+﻿var editRender = function () {
     return '<img class="imgEdit" style="cursor:pointer;" src="../Images/Tools/edit.png" />';
 };
 

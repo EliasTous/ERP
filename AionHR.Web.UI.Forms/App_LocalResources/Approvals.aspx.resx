@@ -121,7 +121,7 @@
     <value>Approval Level</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Leave Type Info</value>
+    <value>Approvals</value>
   </data>
   <data name="branchHead" xml:space="preserve">
     <value>Branch Head</value>

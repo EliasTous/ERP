@@ -1408,15 +1408,39 @@ namespace AionHR.Web.UI.Forms
             req.LoanId = currentLoanId.Text;
             if(string.IsNullOrEmpty(req.LoanId))
             {
-                ApprovalStore.DataSource = new List<AionHR.Model.LeaveManagement.Approvals>();
+                ApprovalStore.DataSource = new List<LoanApproval>();
                 ApprovalStore.DataBind();
             }
-            ListResponse<AionHR.Model.LeaveManagement.Approvals> response = _loanService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
+            ListResponse<LoanApproval> response = _loanService.ChildGetAll<LoanApproval>(req);
+          
             if (!response.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
                 return;
             }
+            response.Items.ForEach(x =>
+            {
+
+                switch (x.status)
+                {
+                    case 1:
+                        x.statusString = StatusNew.Text;
+                        break;
+                    case 2:
+                        x.statusString = StatusInProcess.Text;
+                        ;
+                        break;
+                    case 3:
+                        x.statusString = StatusApproved.Text;
+                        ;
+                        break;
+                    case -1:
+                        x.statusString = StatusRejected.Text;
+
+                        break;
+                }
+            }
+          );
             ApprovalStore.DataSource = response.Items;
             ApprovalStore.DataBind();
         }

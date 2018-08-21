@@ -96,6 +96,14 @@ namespace AionHR.Web.UI.Forms
         }
         public void Update(string id ,string fullName)
         {
+            if (id == _systemService.SessionHelper.GetEmployeeId())
+                deleteGear.Disabled = true;
+            else
+                deleteGear.Disabled = false;
+
+          
+
+
 
             if (!_systemService.SessionHelper.GetHijriSupport())
             {
@@ -186,6 +194,9 @@ namespace AionHR.Web.UI.Forms
                 RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
                 if (modClass.result.accessLevel < 3)
                     deleteGear.Disabled = terminationGear.Disabled = true;
+
+
+                
 
             }
 
@@ -1180,13 +1191,14 @@ namespace AionHR.Web.UI.Forms
             X.Call("InitCropper", forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks);
 
             CurrentEmployeePhotoName.Text = forSummary.pictureUrl;
-            ModelProxy record = Store1.GetById(CurrentEmployee.Text);
-            record.Set("pictureUrl", imgControl.ImageUrl);
-            record.Set("departmentName", forSummary.departmentName);
-            record.Set("branchName", forSummary.branchName);
-            record.Set("divisionName", forSummary.divisionName);
-            record.Set("positionName", forSummary.positionName);
-            record.Commit();
+            Store1.Reload();
+            //ModelProxy record = Store1.GetById(CurrentEmployee.Text);
+            //record.Set("pictureUrl", imgControl.ImageUrl);
+            //record.Set("departmentName", forSummary.departmentName);
+            //record.Set("branchName", forSummary.branchName);
+            //record.Set("divisionName", forSummary.divisionName);
+            //record.Set("positionName", forSummary.positionName);
+            //record.Commit();
             img.Visible = true;
         }
 

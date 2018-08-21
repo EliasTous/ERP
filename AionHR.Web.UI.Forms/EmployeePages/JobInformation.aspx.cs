@@ -414,6 +414,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Icon = Icon.Information,
                         Html = Resources.Common.RecordDeletedSucc
                     });
+                    X.Call("parent.refreshQV");
                 }
 
             }
@@ -424,7 +425,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
 
             }
-
+         
         }
 
 
@@ -800,6 +801,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
 
             X.Call("parent.refreshQV");
+           
 
 
         }

@@ -544,25 +544,42 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
 
-                foreach (var local in TSL)
+                //foreach (var local in TSL)
+                //{
+                //    foreach (var remote in r.Items)
+                //    {
+                //        if (remote.timeCode == local.timeCode)
+                //        {
+                //            local.tsId = remote.tsId;
+                //            local.multiplier = remote.multiplier;
+                //            local.isEnabled = remote.isEnabled;
+                //            local.fullPeriod = remote.fullPeriod;
+                //            local.deductPeriod = remote.deductPeriod;
+                //            local.apId = remote.apId;
+                //            local.apName = remote.apName;
+                //            local.maxAllowed = remote.maxAllowed;
+                //        }
+
+                //    }
+
+                //}
+                TimeCode A;
+                TSL.ForEach(x =>
                 {
-                    foreach (var remote in r.Items)
+                    if (r.Items.Where(y => y.timeCode == x.timeCode).ToList().Count() != 0)
                     {
-                        if (remote.timeCode == local.timeCode)
-                        {
-                            local.tsId = remote.tsId;
-                            local.multiplier = remote.multiplier;
-                            local.isEnabled = remote.isEnabled;
-                            local.fullPeriod = remote.fullPeriod;
-                            local.deductPeriod = remote.deductPeriod;
-                            local.apId = remote.apId;
-                            local.apName = remote.apName;
-                            local.maxAllowed = remote.maxAllowed;
-                        }
-
+                        A = r.Items.Where(y => y.timeCode == x.timeCode).ToList().First();
+                        x.apId = A.apId;
+                        x.apName = A.apName;
+                        x.deductPeriod = A.deductPeriod;
+                        x.fullPeriod = A.fullPeriod;
+                        x.isEnabled = A.isEnabled;
+                        x.maxAllowed = A.maxAllowed;
+                        x.multiplier = A.multiplier;
+                        x.timeCode = A.timeCode;
+                        x.tsId = A.tsId;
                     }
-
-                }
+                });
 
 
             }

@@ -344,7 +344,8 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             LoanType b = JsonConvert.DeserializeObject<LoanType>(obj);
-
+            if (b.ldValue == null)
+                b.ldValue = 0;
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
 

@@ -1019,35 +1019,7 @@ namespace AionHR.Web.UI.Forms
             UnpaidLeavesStore.DataBind();
         }
        
-       protected void ApproveLoanStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            DashboardTimeListRequest r = new DashboardTimeListRequest();
-            if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-                r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
-            else
-            {
-                TimeStore.DataSource = new List<Time>();
-                TimeStore.DataBind();
-                return;
-            }
-            ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
-            if (!Times.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, Times.Summary).Show();
-                return;
-            }
-            Times.Items.ForEach(x =>
-            {
-                x.timeCodeString = GetLocalResourceObject(x.timeCode + "text").ToString();
-            });
-
-            TimeStore.DataSource = Times.Items;
-            ////List<ActiveLeave> leaves = new List<ActiveLeave>();
-            //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
-
-
-            TimeStore.DataBind();
-        }
+      
         
         protected void ApprovaLoan_ReadData(object sender, StoreReadDataEventArgs e)
         {
@@ -1072,7 +1044,7 @@ namespace AionHR.Web.UI.Forms
             request.DepartmentId = 0;
             request.DivisionId = 0;
             request.EmployeeId = 0;
-            request.Status = 4;
+            request.Status = 1;
             request.Filter = "";
 
             request.SortBy = "recordId";
@@ -1089,6 +1061,29 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
                 return;
             }
+            routers.Items.ForEach(x =>
+            {
+
+                switch (x.status)
+                {
+                    case 1:
+                        x.statusString = StatusNew.Text;
+                        break;
+                    case 2:
+                        x.statusString = StatusInProcess.Text;
+                        ;
+                        break;
+                    case 3:
+                        x.statusString = StatusApproved.Text;
+                        ;
+                        break;
+                    case -1:
+                        x.statusString = StatusRejected.Text;
+
+                        break;
+                }
+            }
+        );
             this.ApprovalLoanStore.DataSource = routers.Items;
             e.Total = routers.count;
 
@@ -1223,16 +1218,16 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            ApprovalLoanEmployeeName.Text = response.result.employeeName.fullName.ToString(); 
-
+          
                     //    effectiveDate.Disabled = response.result.status != 3;
                     //FillFilesStore(Convert.ToInt32(id));
 
             //Step 2 : call setvalues with the retrieved object
             this.ApprovalLoanForm.SetValues(response.result);
-                 
-                   
-                    status.Select(response.result.status.ToString());
+
+            ApprovalLoanEmployeeName.Text = response.result.employeeName.fullName.ToString();
+
+            status.Select(response.result.status.ToString());
                   
                     //if (!string.IsNullOrEmpty(response.result.branchId))
                     //    branchId.Select(response.result.branchId);
@@ -1333,7 +1328,7 @@ namespace AionHR.Web.UI.Forms
                 request.entity = loanRecord.result;
                 request.entity.status =Convert.ToInt16 (ApprovalLoanStatus.Value.ToString());
 
-                PostResponse<Loan> r = _loanService.ChildAddOrUpdate< Loan > (request);
+                PostResponse<Loan> r = _loanService.AddOrUpdate< Loan > (request);
 
 
                 //check if the insert failed

@@ -29,7 +29,13 @@
 
         }
 
-
+           function apIdRenderer(value) {
+            if (App.apIdStore.getById(value) != null) {
+                return App.apIdStore.getById(value).data.name;
+            } else {
+                return value;
+            }
+        }
      
     </script>
 
@@ -304,7 +310,7 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="750"
+            Width="800"
             Height="320"
             AutoShow="false"
             Modal="true"
@@ -339,6 +345,11 @@
                             Border="false"
                             Icon="User"
                             ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                            <Plugins>
+	<ext:CellEditing ClicksToEdit="1" >
+		
+	</ext:CellEditing>
+</Plugins> 
                             <Store>
                                 <ext:Store
                                     ID="TimeCodeGridStore"
@@ -436,8 +447,9 @@
                                     </ext:WidgetColumn>
 
 
-                                       <ext:WidgetColumn ID="WidgetColumn1" Visible="true" DataIndex="apId" runat="server" Text="<%$ Resources: FieldApproval  %>">
-                                           <Widget>
+                                       <ext:Column ID="COapId" Visible="true" DataIndex="apId" runat="server" Text="<%$ Resources: FieldApproval  %>" Flex="2">
+                                           <Renderer Handler="apIdRenderer" />
+                                           <Editor>
                                            <ext:ComboBox 
                                                             runat="server" 
                                                             Shadow="false" 
@@ -456,9 +468,9 @@
                                                 </Listeners>
                                                </ext:ComboBox>
                                   
-                
-                                               </Widget>
-                                           </ext:WidgetColumn>
+                </Editor>
+                                             
+                                           </ext:Column>
 
 
                                         <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="maxAllowed" runat="server" Text="<%$ Resources: maxAllowed  %>">

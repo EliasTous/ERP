@@ -1157,6 +1157,13 @@
         <ext:Hidden ID="rejected" runat="server" Text="<%$ Resources: FieldRejected%>" />
          <ext:Hidden ID="new" runat="server" Text="<%$ Resources: FieldNew%>" />
 
+
+
+         <ext:Hidden ID="StatusNew" runat="server" Text="<%$ Resources:FieldNew %>" />
+        <ext:Hidden ID="StatusInProcess" runat="server" Text="<%$ Resources: FieldInProcess %>" />
+        <ext:Hidden ID="StatusApproved" runat="server" Text="<%$ Resources: FieldApproved %>" />
+        <ext:Hidden ID="StatusRejected" runat="server" Text="<%$ Resources: FieldRejected %>" />
+
         <ext:Store PageSize="30"
             ID="OverDueStore"
             runat="server" OnReadData="OverDueStore_ReadData"
@@ -2338,6 +2345,7 @@
                                                                         <ext:ModelField Name="branchName" />
                                                                         <ext:ModelField Name="purpose" />
                                                                         <ext:ModelField Name="status" />
+                                                                        <ext:ModelField Name="statusString" />
                                                                         <ext:ModelField Name="currencyId" />
                                                                         <ext:ModelField Name="amount" />
                                                                         <ext:ModelField Name="payments" />
@@ -2381,8 +2389,8 @@
                                                <%-- <ext:Column ID="Column12" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="2" />--%>
 
 
-                                                <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Width="100">
-                                                    <Renderer Handler="return GetStatusName(record.data['status']);" />
+                                                <ext:Column ID="colStatus" DataIndex="statusString" Text="<%$ Resources: FieldStatus%>" runat="server" Width="100">
+                                                   
                                                 </ext:Column>
 
                                                <%-- <ext:DateColumn ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="120" Align="Center">
@@ -2451,7 +2459,7 @@
                                                                 <CellClick OnEvent="ApprovalLoanPoPUP">
                                                                     <EventMask ShowMask="true" />
                                                                       <ExtraParams>
-                                                                        <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                                        <ext:Parameter Name="id" Value="record.data['recordId']" Mode="Raw" />
                                                                                                                                  
                                                                                                                                                 
                                                                     </ExtraParams>
@@ -4451,16 +4459,16 @@
                             BodyPadding="5"  AutoScroll="true">
                             <Items>
                                 <ext:TextField  ID="ApprovalRecordId" runat="server" Name="recordId" Hidden="true" />
-                                 <ext:TextField  ID="ApprovalLoanEmployeeName" runat="server" Name="employeeName" />
+                                <ext:TextField  ID="ApprovalLoanEmployeeName" FieldLabel="<%$ Resources: FieldEmployeeName %>"  runat="server" Name="employeeName" ReadOnly="true" />
                           
-                                <ext:TextField runat="server" ID="loanRef" Name="loanRef" FieldLabel="<%$ Resources: FieldReference %>" />
+                                <ext:TextField runat="server" ID="loanRef" Name="loanRef" FieldLabel="<%$ Resources: FieldReference %>" ReadOnly="true" />
 
                                 
 
                               
 
                                 <%--<ext:TextField ID="employeeName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeName"   AllowBlank="false"/>--%>
-                                <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" >
+                                <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false"  ReadOnly="true">
                                      <%--<CustomConfig>
                         <ext:ConfigItem Name="endDateField" Value="effectiveDate" Mode="Value" />
                     </CustomConfig>--%>
@@ -4473,8 +4481,8 @@
                                 </ext:TextField>
 
 
-                                <ext:TextArea ID="purpose" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />
-                                 <ext:TextField ID="purposeField" InputType="Password" Visible="false" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />
+                                <ext:TextArea ID="purpose" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" ReadOnly="true" />
+                                 <ext:TextField ID="purposeField" InputType="Password" Visible="false" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" ReadOnly="true" />
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ApprovalLoanStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false" SubmitValue="true">
                                     <Items>
@@ -4489,14 +4497,14 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:DateField AllowBlank="false"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" Vtype="daterange"  >
+                                <ext:DateField AllowBlank="false"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" Vtype="daterange" ReadOnly="true"  >
                                    <%-- <CustomConfig>
                         <ext:ConfigItem Name="startDateField" Value="date" Mode="Value" />
                     </CustomConfig>--%>
                                     </ext:DateField>
                                 
                                       
-                                        <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
+                                        <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" ReadOnly="true" >
                                         
                                       
                                            
@@ -4514,7 +4522,7 @@
                                         <Click OnEvent="SaveApprovalLoanRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{ApprovalLoanWindow}.body}" />
                                             <ExtraParams>
-                                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                                <ext:Parameter Name="id" Value="#{ApprovalRecordId}.getValue()" Mode="Raw" />
                                                 <ext:Parameter Name="values" Value="#{ApprovalLoanForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                                             </ExtraParams>
                                         </Click>
