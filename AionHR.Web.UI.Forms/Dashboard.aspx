@@ -1983,7 +1983,7 @@
                                                             Title="<%$Resources:Loans %>"
                                                             Layout="FitLayout"
                                                             Scroll="Vertical"
-                                                            Border="false"
+                                                            Border="false" Visible="false"
                                                             ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
                                                              
                                                             <Store>
@@ -1993,15 +1993,9 @@
                                                                 <ext:Store
 
                                                                     ID="LoansStore"
-                                                                    runat="server" OnReadData="LoansStore_ReadData" RemoteFilter="false" RemoteSort="false"
+                                                                    runat="server"  RemoteFilter="false" RemoteSort="false"
                                                                     PageSize="30"  >
-                                                                     <Proxy>
-                                                                        <ext:PageProxy>
-                                                                            <Listeners>
-                                                                                <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                                                                            </Listeners>
-                                                                        </ext:PageProxy>
-                                                                    </Proxy>
+                                                                   
                                                                     <Model>
                                                                         <ext:Model ID="Model11" runat="server" IDProperty="recordId">
                                                                             <Fields>
@@ -2271,6 +2265,7 @@
                                                             </ColumnModel>
                                                             <Listeners>
                                                                 <Render Handler="this.on('cellclick', cellClick);" />
+                                                                <Activate Handler="#{TimeStore}.reload();" />
                                                             </Listeners>
                                                             <DirectEvents>
 

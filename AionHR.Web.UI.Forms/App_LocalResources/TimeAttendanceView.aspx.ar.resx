@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="atext" xml:space="preserve">
+    <value>غياب بإذن</value>
+  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Profile</value>
   </data>
@@ -132,6 +135,9 @@
   <data name="ContractEndingDate" xml:space="preserve">
     <value>تاريخ نهاية العقد</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
   <data name="DayShifts" xml:space="preserve">
     <value>تفاصيل الدوام</value>
   </data>
@@ -141,11 +147,20 @@
   <data name="DeleteBranchAttendances" xml:space="preserve">
     <value>هل أنت متأكد أنك تريد حذف دوام الفرع المحدد ضمن التاريخ المحدد؟</value>
   </data>
+  <data name="dtext" xml:space="preserve">
+    <value>غياب بدون إذن </value>
+  </data>
+  <data name="EditWindowsTimeApproval" xml:space="preserve">
+    <value>تعميد الدوام</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل الفرع</value>
   </data>
   <data name="FieldAll" xml:space="preserve">
     <value>الكل </value>
+  </data>
+  <data name="FieldApproverName" xml:space="preserve">
+    <value>المعمد </value>
   </data>
   <data name="FieldApptoved" xml:space="preserve">
     <value>موافق عليه</value>
@@ -181,6 +196,9 @@
     <value>الإدارة العليا</value>
   </data>
   <data name="FieldEmployee" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="FieldEmployeeName" xml:space="preserve">
     <value>الموظف</value>
   </data>
   <data name="FieldEndDate" xml:space="preserve">
@@ -228,6 +246,9 @@
   <data name="FieldNationality" xml:space="preserve">
     <value>الجنسية</value>
   </data>
+  <data name="FieldNotes" xml:space="preserve">
+    <value>ملاحظات </value>
+  </data>
   <data name="FieldPending" xml:space="preserve">
     <value>قيد المعالجة </value>
   </data>
@@ -255,6 +276,9 @@
   <data name="FieldStatus" xml:space="preserve">
     <value>الحالة </value>
   </data>
+  <data name="FieldTimeCode" xml:space="preserve">
+    <value>نوع الغياب</value>
+  </data>
   <data name="FieldVacationSchedule" xml:space="preserve">
     <value>جدول الإجازات</value>
   </data>
@@ -263,6 +287,12 @@
   </data>
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>التقويم</value>
+  </data>
+  <data name="ltext" xml:space="preserve">
+    <value>التأخير</value>
+  </data>
+  <data name="otext" xml:space="preserve">
+    <value>عمل إضافي</value>
   </data>
   <data name="SC" xml:space="preserve">
     <value>جدول العمل</value>

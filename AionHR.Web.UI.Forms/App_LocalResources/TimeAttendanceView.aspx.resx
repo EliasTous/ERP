@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="atext" xml:space="preserve">
+    <value>Absence</value>
+  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Shift Details</value>
   </data>
@@ -132,6 +135,9 @@
   <data name="ContractEndingDate" xml:space="preserve">
     <value>Contract Ending Date</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="DayShifts" xml:space="preserve">
     <value>Shifts</value>
   </data>
@@ -141,11 +147,20 @@
   <data name="DeleteBranchAttendances" xml:space="preserve">
     <value>Are you sure do you want to delete the selected branch attendances on the selected Date Range  ?</value>
   </data>
+  <data name="dtext" xml:space="preserve">
+    <value>Disappear</value>
+  </data>
+  <data name="EditWindowsTimeApproval" xml:space="preserve">
+    <value>Time Approval</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Branch</value>
   </data>
   <data name="FieldAll" xml:space="preserve">
     <value>All</value>
+  </data>
+  <data name="FieldApproverName" xml:space="preserve">
+    <value>Approver</value>
   </data>
   <data name="FieldApptoved" xml:space="preserve">
     <value>Approved</value>
@@ -182,6 +197,9 @@
   </data>
   <data name="FieldEmployee" xml:space="preserve">
     <value>Select an Employee</value>
+  </data>
+  <data name="FieldEmployeeName" xml:space="preserve">
+    <value>Employee</value>
   </data>
   <data name="FieldEndDate" xml:space="preserve">
     <value>End Date</value>
@@ -228,6 +246,9 @@
   <data name="FieldNationality" xml:space="preserve">
     <value>Nationality</value>
   </data>
+  <data name="FieldNotes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
   <data name="FieldPending" xml:space="preserve">
     <value>Pending</value>
   </data>
@@ -255,6 +276,9 @@
   <data name="FieldStatus" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="FieldTimeCode" xml:space="preserve">
+    <value>Time Code</value>
+  </data>
   <data name="FieldVacationSchedule" xml:space="preserve">
     <value>Vacation Schedule</value>
   </data>
@@ -263,6 +287,15 @@
   </data>
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>Calendar</value>
+  </data>
+  <data name="ltext" xml:space="preserve">
+    <value>Lateness</value>
+  </data>
+  <data name="mtext" xml:space="preserve">
+    <value>Missed Punch </value>
+  </data>
+  <data name="otext" xml:space="preserve">
+    <value>Overtime</value>
   </data>
   <data name="SC" xml:space="preserve">
     <value>Schedule</value>

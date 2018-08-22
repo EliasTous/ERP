@@ -298,10 +298,33 @@
                                     </Items>
                                 </ext:FieldSet>
 
-
+                                  
+               
+        
 
                             </Items>
+                            <Buttons>
+                          <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+                                </Buttons>
                         </ext:FormPanel>
                         <ext:GridPanel 
                                     ID="ApprovelDepartmentsGrid"
@@ -316,15 +339,13 @@
                                     Border="false"  
                                     Icon="User"
                                     ColumnLines="True" IDMode="Explicit" RenderXType="True" >
-                                       <Listeners>
-                                           <Activate Handler="#{ApprovelDepartmentsStore}.Reload();"/>
-                                                                                  </Listeners>
+                                      
                               <TopBar>
                                   
                         <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
                             <Items>
                                   <ext:ComboBox
-                                       AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" 
+                                       AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" 
                                      TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldDepartment%>" DisplayField="name" ID="departmentId" Name="departmentId"  >
                                                 <Store>
                                                     <ext:Store runat="server" ID="departmentStore">
@@ -451,28 +472,7 @@
                     </Items>
                 </ext:TabPanel>
             </Items>
-            <Buttons>
-                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
-
-                    <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
-                    </Listeners>
-                    <DirectEvents>
-                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
-                            <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
-                            </ExtraParams>
-                        </Click>
-                    </DirectEvents>
-                </ext:Button>
-                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
-                    <Listeners>
-                        <Click Handler="this.up('window').hide();" />
-                    </Listeners>
-                </ext:Button>
-            </Buttons>
+          
         </ext:Window>
 
 

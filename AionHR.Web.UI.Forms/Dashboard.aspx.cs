@@ -1092,6 +1092,8 @@ namespace AionHR.Web.UI.Forms
         protected void TimeStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             DashboardTimeListRequest r = new DashboardTimeListRequest();
+            r.dayId = "";
+            r.employeeId = 0;
             if (!string.IsNullOrEmpty( _systemService.SessionHelper.GetEmployeeId()))
             r.approverId =Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId()); 
             else

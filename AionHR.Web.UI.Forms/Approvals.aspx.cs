@@ -127,7 +127,10 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
             apId.Text = id;
-         
+            panelRecordDetails.ActiveIndex = 0;
+            departmentId.Select("");
+            ApprovelDepartmentsStore.Reload();
+
             switch (type)
             {
                 case "imgEdit":

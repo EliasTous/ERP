@@ -49,6 +49,7 @@ namespace AionHR.Model.Attendance
 
         public string scName { get; set; }
         public short apStatus { get; set; }
+        public string apStatusString { get; set; }
 
 
         public int netOL { get; set; }

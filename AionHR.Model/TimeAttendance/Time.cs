@@ -11,6 +11,7 @@ namespace AionHR.Model.TimeAttendance
   public  class Time
     {
         public EmployeeName employeeName { set; get; }
+        public EmployeeName approverName { set; get; }
         public string dayId { set; get;  }
         public DateTime? dayIdDate
         {
@@ -31,6 +32,8 @@ namespace AionHR.Model.TimeAttendance
 
         public short status { get; set; }
         public string notes { set; get; }
+
+        public string statusString { get; set; }
 
     }
 }

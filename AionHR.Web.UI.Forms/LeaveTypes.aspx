@@ -127,7 +127,7 @@
                                 <Renderer Handler="return getLeaveTypeString(record.data['leaveType']);" />
                                 </ext:Column>
                            <%-- <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: FieldRequiresApproval %>" DataIndex="requireApproval"></ext:CheckColumn>--%>
-                              <ext:Column CellCls="cellLink" ID="ColApName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldApproval%>" DataIndex="name" Flex="2" Hideable="false">
+                              <ext:Column CellCls="cellLink" ID="ColApName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldApproval%>" DataIndex="apName" Flex="2" Hideable="false">
                             </ext:Column>
 
 

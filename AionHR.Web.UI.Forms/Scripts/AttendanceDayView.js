@@ -9,6 +9,10 @@ var deleteRender = function () {
 var attachRender = function () {
     return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
 };
+var LinkRender = function (val, metaData, record, rowIndex, colIndex, store,apstatusString) {
+  
+    return '<a  class="LinkRender"  style="cursor:pointer;"  >' + apstatusString +'</a>';
+};
 
 
 
@@ -39,6 +43,12 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         commandName = t.className;
         return true;
     }
+    if (t.className == "LinkRender") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+
 
 
 
