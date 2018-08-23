@@ -11,7 +11,7 @@ var attachRender = function () {
 };
 var LinkRender = function (val, metaData, record, rowIndex, colIndex, store,apstatusString) {
   
-    return '<a  class="LinkRender"  style="cursor:pointer;"  >' + apstatusString +'</a>';
+    return '<a href="#" class="LinkRender"  style="cursor:pointer;"  >' + apstatusString +'</a>';
 };
 
 

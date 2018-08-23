@@ -553,7 +553,7 @@
     <value>تاريخ انتهاء المدة</value>
   </data>
   <data name="Time" xml:space="preserve">
-    <value>دوام</value>
+    <value>الدوام</value>
   </data>
   <data name="timeCode" xml:space="preserve">
     <value>نوع الغياب </value>
@@ -584,5 +584,8 @@
   </data>
   <data name="ApproveLoan" xml:space="preserve">
     <value>القرض</value>
+  </data>
+  <data name="Loan1" xml:space="preserve">
+    <value>السلف</value>
   </data>
 </root>
