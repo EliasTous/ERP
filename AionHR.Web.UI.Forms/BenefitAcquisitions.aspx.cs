@@ -1642,5 +1642,22 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        protected void selectAqType(object sender, DirectEventArgs e)
+        {
+            string benefitId = e.ExtraParams["benefitId"];
+            ScheduleBenefitsRecordRequest r = new ScheduleBenefitsRecordRequest();
+            r.bsId = bsIdHidden.Text;
+            r.benefitId = benefitId;
+
+            RecordResponse<ScheduleBenefits> response = _benefitsService.ChildGetRecord<ScheduleBenefits>(r);
+            if (!response.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                return;
+            }
+            aqType.Select(response.result.aqType.ToString());
+
+        }
     }
 }

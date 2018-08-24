@@ -630,29 +630,27 @@
             Layout="Fit">
 
             <Items>
+              
+                   
+                   
     <ext:GridPanel MarginSpec="0 0 0 0"
                                                             ID="TimeGridPanel"
                                                             runat="server"
                                                             PaddingSpec="0 0 1 0"
                                                             Header="false"
-                                                          Title="<%$ Resources:EditWindowsTimeApproval %>"
+                                                            Title="<%$ Resources:EditWindowsTimeApproval %>"
                                                             Layout="FitLayout"
                                                             Scroll="Vertical"
+                                                           
                                                             Border="false"
-                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
-                                                            <Store>
+                                                              ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                                                          <Store>
                                                                 <ext:Store PageSize="30"
                                                                     ID="TimeStore"
                                                                     runat="server" 
                                                                     RemoteSort="false"
                                                                     RemoteFilter="false">
-                                                                    <Proxy>
-                                                                        <ext:PageProxy>
-                                                                            <Listeners>
-                                                                                <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                                                                            </Listeners>
-                                                                        </ext:PageProxy>
-                                                                    </Proxy>
+                                                                  
                                                                     <Model>
                                                                         <ext:Model ID="Model24" runat="server" >
                                                                             <Fields>
@@ -675,9 +673,9 @@
                                                                     </Model>
 
                                                                 </ext:Store>
-                                                            </Store>
+                                                         
 
-
+                                                              </Store>
                                                             <ColumnModel ID="ColumnModel24" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                                                 <Columns>
                                                                    <ext:Column ID="ColTimedayId" DataIndex="dayId"  runat="server" Visible="false" />
@@ -688,16 +686,16 @@
                                                                     <Renderer Handler=" return record.data['approverName'].fullName;" />
                                                                     </ext:Column>
                                                                 
-                                                                    <ext:Column ID="Column27" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
+                                                                    <ext:Column Visible="false" ID="Column27" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
                                                                     <Renderer Handler=" return record.data['employeeName'].fullName;" />
                                                                     </ext:Column>
                                                                 
-                                                                    <ext:DateColumn ID="DateColumn5" MenuDisabled="true" runat="server" Text="<%$ Resources: Date %>" DataIndex="dayIdDate" Hideable="false" Width="100" />
+                                                                    <ext:DateColumn Visible="false" ID="DateColumn5" MenuDisabled="true" runat="server" Text="<%$ Resources: Date %>" DataIndex="dayIdDate" Hideable="false" Width="100" />
                           
 
-                                                                     <ext:Column ID="Column26" DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="1" />
-                                                                     <ext:Column ID="Column30" DataIndex="status" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
-                                                                         <Renderer Handler=" return getTimeStatus(record.data['status']); " />
+                                                                     <ext:Column ID="Column26"  DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="1" />
+                                                                     <ext:Column ID="Column30" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
+                                                                      
                                                                     </ext:Column>
                                                                      <ext:Column ID="Column28" DataIndex="notes" Text="<%$ Resources: FieldNotes %>" runat="server" Flex="2" />
 

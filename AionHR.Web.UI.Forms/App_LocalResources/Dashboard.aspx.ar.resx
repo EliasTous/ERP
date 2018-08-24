@@ -588,4 +588,7 @@
   <data name="Loan1" xml:space="preserve">
     <value>السلف</value>
   </data>
+  <data name="ApprovalLoan" xml:space="preserve">
+    <value>السلف</value>
+  </data>
 </root>

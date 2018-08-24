@@ -449,7 +449,13 @@
                                             </Model>
                                           </ext:Store>
                                     </Store>
-                                
+                                <DirectEvents> 
+                                    <Select OnEvent="selectAqType">
+                                        <ExtraParams>
+                                         <ext:Parameter Name="benefitId" Value="this.value" Mode="Raw" />
+                                            </ExtraParams>
+                                    </Select>
+                                </DirectEvents>
                               
                                                                      
                                 </ext:ComboBox>
@@ -474,12 +480,17 @@
                                                    </Listeners>
                                                </ext:TextField>
 
-                                             <ext:NumberField  ID="amount" runat="server" FieldLabel="<%$ Resources:amount%>" Name="amount" AllowBlank="true" MinValue="0" >
+                                             <ext:NumberField  ID="amount" runat="server" FieldLabel="<%$ Resources:amount%>" Name="amount" AllowBlank="true" MinValue="0"   >
                                                  <Listeners >
                                                      <Change Handler="  #{aqAmount}.setValue(this.value * App.aqRatio.value / 100 );#{amountDue}.setValue(this.value - App.aqAmount.value );  "/>
+                                                 <%--     <Focus Handler="this.setValue(this.getValue().replace(/[\$,]/g, ''));" />
+                                                  <Blur Handler="this.setValue(Ext.util.Format.number(#{amount}.getValue(), '0,000.00'));" />--%>
                                                  </Listeners>
+                                                 
                                                  </ext:NumberField>
-                                              <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="aqType" runat="server" FieldLabel="<%$ Resources: aqType%>" Name="aqType" IDMode="Static" SubmitValue="true">
+                                          
+       
+                                              <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="aqType" runat="server" FieldLabel="<%$ Resources: aqType%>" Name="aqType" IDMode="Static" SubmitValue="true" ReadOnly="true">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: Progressive%>" Value="1"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources: Unbound%>" Value="2"></ext:ListItem>
@@ -489,9 +500,18 @@
                                              <ext:NumberField  ID="aqAmount" runat="server" FieldLabel="<%$ Resources:aqAmount%>" Name="aqAmount" AllowBlank="true" >
                                                  <Listeners> 
                                                      <Change Handler="#{amountDue}.setValue(App.amount.value - this.value); " />
+                                                   <%--  <Focus Handler="this.setValue(this.getValue().replace(/[\$,]/g, ''));" />
+                                                  <Blur Handler="this.setValue(Ext.util.Format.number(#{amount}.getValue(), '0,000.00'));" />--%>
                                                  </Listeners>
                                                  </ext:NumberField>
-                                             <ext:NumberField  ID="amountDue" runat="server" FieldLabel="<%$ Resources:amountDue%>" Name="amountDue" AllowBlank="true" />
+                                          <ext:NumberField  ID="amountDue" runat="server" FieldLabel="<%$ Resources:amountDue%>" Name="amountDue" AllowBlank="true" > 
+                                              <%--      <ext:NumberField  ID="amountDue" runat="server" FieldLabel="<%$ Resources:amountDue%>" Name="amountDue" AllowBlank="true" MaskRe="/[0-9\$\.]/">   
+                                                  <Listeners> 
+                                                     
+                                                     <Focus Handler="this.setValue(this.getValue().replace(/[\$,]/g, ''));" />
+                                                  <Blur Handler="this.setValue(Ext.util.Format.number(#{amountDue}.getValue(), '0,000.00'));" />
+                                                 </Listeners>--%>
+                                                 </ext:NumberField>
                                            <ext:TextArea  ID="notes" runat="server" FieldLabel="<%$ Resources:notes%>" Name="notes" AllowBlank="true" />
 
                                               </Items>

@@ -808,7 +808,7 @@ namespace AionHR.Web.UI.Forms
             DashboardTimeListRequest r = new DashboardTimeListRequest();
             r.dayId = dayId.ToString();
             r.employeeId = employeeId;
-            r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+            r.approverId = 0;
           
                 
             ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
