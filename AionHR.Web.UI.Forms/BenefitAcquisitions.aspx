@@ -465,6 +465,16 @@
                                                  <Listeners>
                                                      <Change Handler="calcDays();" />
                                                  </Listeners>
+                                                 <DirectEvents>
+                                                     <Select OnEvent="getAqRatio" >
+                                                         <ExtraParams> 
+                                                             <ext:Parameter Name="dateFrom" Value="this.value" Mode="Raw" />
+                                                                <ext:Parameter Name="benefitId" Value="#{ComboBenefitId}.getValue()" Mode="Raw" />
+                                                              <ext:Parameter Name="employeeId" Value="#{employeeId}.getValue()" Mode="Raw" />
+                                                         </ExtraParams>
+                                                         </Select>
+                                                     
+                                                 </DirectEvents>
                                                  </ext:DateField>
                                              <ext:DateField    ID="dateTo" runat="server" FieldLabel="<%$ Resources:dateTo%>" Name="dateTo" AllowBlank="true" >
                                                    <Validator Handler="if(App.dateFrom.value ==null) return true; if(this.value< App.dateFrom.value) return false; else return true;" />

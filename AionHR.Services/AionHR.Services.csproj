@@ -123,6 +123,7 @@
     <Compile Include="Messaging\CompanyStructure\CompanyStructureRequests.cs" />
     <Compile Include="Messaging\CompanyStructure\PositionListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeesRequests.cs" />
+    <Compile Include="Messaging\HelpFunction\AcquisitionRateListRequest.cs" />
     <Compile Include="Messaging\LeaveManagement\LeaveManagementRequests.cs" />
     <Compile Include="Messaging\ListReponse.cs" />
     <Compile Include="Messaging\LoanManagment\LoanManagmentRequest.cs" />

@@ -33,19 +33,22 @@ using AionHR.Model.LoadTracking;
 using AionHR.Services.Implementations;
 using AionHR.Model.Benefits;
 using AionHR.Services.Messaging.Benefits;
+using AionHR.Services.Messaging.HelpFunction;
+using AionHR.Model.HelpFunction;
 
 namespace AionHR.Web.UI.Forms
 {
     public partial class BenefitAcquisitions : System.Web.UI.Page
     {
-     
-            ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
-            IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
 
-            IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
-            ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
-            ILoanTrackingService _loanService = ServiceLocator.Current.GetInstance<ILoanTrackingService>();
-            IBenefitsService _benefitsService = ServiceLocator.Current.GetInstance<IBenefitsService>();
+        ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+        IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        ILoanTrackingService _loanService = ServiceLocator.Current.GetInstance<ILoanTrackingService>();
+        IBenefitsService _benefitsService = ServiceLocator.Current.GetInstance<IBenefitsService>();
+        IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
         protected override void InitializeCulture()
         {
 
@@ -114,7 +117,7 @@ namespace AionHR.Web.UI.Forms
 
                 dateFrom.Format = dateTo.Format = aqDate.Format = ColAqDate.Format = ColdateFrom.Format = ColDateTo.Format = dateFormat.Text = _systemService.SessionHelper.GetDateformat();
                 bsIdHidden.Text = "0";
-                FillBenefits(); 
+                FillBenefits();
             }
 
 
@@ -325,7 +328,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-     
+
 
         private List<Employee> GetEmployeesFiltered(string query)
         {
@@ -366,7 +369,7 @@ namespace AionHR.Web.UI.Forms
             if (string.IsNullOrEmpty(employeeFilter.SelectedItem.Value))
                 req.employeeId = 0;
             else
-                req.employeeId = Convert.ToInt32(employeeFilter.SelectedItem.Value); 
+                req.employeeId = Convert.ToInt32(employeeFilter.SelectedItem.Value);
 
             ListResponse<BenefitAcquisition> routers = _benefitsService.ChildGetAll<BenefitAcquisition>(req);
             if (!routers.Success)
@@ -381,28 +384,28 @@ namespace AionHR.Web.UI.Forms
             this.Store1.DataBind();
         }
 
-      
+
         private void FillBenefits()
         {
-         
 
 
 
-           
+
+
             ScheduleBenefitsListRequest request = new ScheduleBenefitsListRequest();
 
             request.Filter = "";
             request.bsId = bsIdHidden.Text;
-         
+
             ListResponse<ScheduleBenefits> response = _benefitsService.ChildGetAll<ScheduleBenefits>(request);
-           
+
             if (!response.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
-                return; 
+                return;
             }
             Store3.DataSource = response.Items;
-            Store3.DataBind(); 
+            Store3.DataBind();
 
 
         }
@@ -410,17 +413,17 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
-            
-            
+
+
 
 
             string obj = e.ExtraParams["values"];
-           
+
             string employeeId = e.ExtraParams["employeeId"];
             string CoBenefitId = e.ExtraParams["ComboBenefitId"];
 
             BenefitAcquisition b = JsonConvert.DeserializeObject<BenefitAcquisition>(obj);
-            b.benefitId =Convert.ToInt32(CoBenefitId);
+            b.benefitId = Convert.ToInt32(CoBenefitId);
             b.bsId = Convert.ToInt32(bsIdHidden.Text);
             string id = e.ExtraParams["id"];
 
@@ -439,7 +442,7 @@ namespace AionHR.Web.UI.Forms
 
 
                     request.entity = b;
-               
+
                     PostResponse<BenefitAcquisition> r = _benefitsService.ChildAddOrUpdate<BenefitAcquisition>(request);
 
 
@@ -476,7 +479,7 @@ namespace AionHR.Web.UI.Forms
                             this.EditRecordWindow.Close();
                             this.setFillEmployeeInfoDisable(true);
                         }
-                    
+
 
 
 
@@ -558,10 +561,10 @@ namespace AionHR.Web.UI.Forms
             //deductionGrid.Disabled = false;
             //entitlementsGrid.Disabled = false;
             this.setFillEmployeeInfoDisable(true);
-          
+
             string type = e.ExtraParams["type"];
             string id = e.ExtraParams["recordId"];
-          
+
 
             switch (type)
             {
@@ -584,15 +587,15 @@ namespace AionHR.Web.UI.Forms
                     else
                     {
                         //Step 2 : call setvalues with the retrieved object
-                     employeeId.GetStore().Add(new object[]
-                      {
+                        employeeId.GetStore().Add(new object[]
+                         {
                                 new
                                 {
                                     recordId = r.result.employeeId,
                                     fullName =r.result.employeeName.fullName
                                 }
-                      });
-                        
+                         });
+
                         employeeId.SetValue(r.result.employeeId);
                         FillEmployeeInfo(sender, e);
                         this.BasicInfoTab.SetValues(r.result);
@@ -715,12 +718,12 @@ namespace AionHR.Web.UI.Forms
 
         protected void FillEmployeeInfo(object sender, DirectEventArgs e)
         {
-            string empId  = e.ExtraParams["EmpId"];
+            string empId = e.ExtraParams["EmpId"];
 
             if (string.IsNullOrEmpty(empId))
                 empId = employeeId.Value.ToString();
             EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
-            req.RecordID = empId; 
+            req.RecordID = empId;
             req.asOfDate = DateTime.Now;
             RecordResponse<EmployeeQuickView> routers = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
             if (!routers.Success)
@@ -740,7 +743,7 @@ namespace AionHR.Web.UI.Forms
             this.setFillEmployeeInfoDisable(false);
 
             EmployeeRecruitmentRecordRequest recReq = new EmployeeRecruitmentRecordRequest();
-            recReq.EmployeeId = empId; 
+            recReq.EmployeeId = empId;
             RecordResponse<HireInfo> recRes = _employeeService.ChildGetRecord<HireInfo>(recReq);
             if (!recRes.Success || recRes.result == null)
                 return;
@@ -751,10 +754,10 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<BenefitsSchedule> benefitsList = _benefitsService.ChildGetAll<BenefitsSchedule>(request);
 
-            if (!benefitsList.Success )
+            if (!benefitsList.Success)
                 return;
-            if (benefitsList.Items.Where(x => x.recordId == recRes.result.bsId.ToString()).ToList().Count!=0)
-            bsName.Text = benefitsList.Items.Where(x => x.recordId == recRes.result.bsId.ToString()).ToList().First().name;
+            if (benefitsList.Items.Where(x => x.recordId == recRes.result.bsId.ToString()).ToList().Count != 0)
+                bsName.Text = benefitsList.Items.Where(x => x.recordId == recRes.result.bsId.ToString()).ToList().First().name;
 
 
 
@@ -779,7 +782,7 @@ namespace AionHR.Web.UI.Forms
             loanBalance.Text = routers.result.loanBalance.ToString();
 
 
-            
+
 
 
 
@@ -1047,7 +1050,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 :  remove the object from the store
 
 
-                  //  deductionStore.Reload();
+                    //  deductionStore.Reload();
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
                     {
@@ -1657,6 +1660,32 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             aqType.Select(response.result.aqType.ToString());
+            amount.Text = response.result.defaultAmount.ToString();
+
+        }
+
+        protected void getAqRatio(object sender, DirectEventArgs e)
+        {
+            string dateFrom = e.ExtraParams["dateFrom"];
+            string employeeId = e.ExtraParams["employeeId"];
+            string benefitId = e.ExtraParams["benefitId"];
+            AcquisitionRateListRequest request = new AcquisitionRateListRequest();
+            request.employeeId = employeeId;
+            request.benefitId = benefitId;
+            request.bsId = bsIdHidden.Text;
+            request.asOfDate = dateFrom;
+            if (string.IsNullOrEmpty(employeeId) || string.IsNullOrEmpty(benefitId) || string.IsNullOrEmpty(bsIdHidden.Text))
+                return; 
+            ListResponse<BenefitAcquisitionAcquisitionRate> response = _helpFunctionService.ChildGetAll<BenefitAcquisitionAcquisitionRate>(request);
+            if (!response.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                return;
+            }
+            if (response.Items.Count!=0)
+            aqRatio.Text = response.Items.First().aqRatio.ToString(); 
+
 
         }
     }

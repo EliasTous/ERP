@@ -105,6 +105,7 @@
     <Compile Include="Employees\Profile\SalaryTree.cs" />
     <Compile Include="Employees\Profile\TeamMember.cs" />
     <Compile Include="Employees\Profile\TerminationReason.cs" />
+    <Compile Include="HelpFunction\BenefitAcquisitionAcquisitionRate.cs" />
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
     <Compile Include="HelpFunction\SynchronizeAttendanceDay.cs" />
     <Compile Include="LeaveManagement\Approvals.cs" />
