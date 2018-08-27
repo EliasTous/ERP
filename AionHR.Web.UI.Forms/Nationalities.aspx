@@ -286,10 +286,24 @@
                                                             </DirectEvents>
                                                         </ext:Button>
                                                     </RightButtons>--%>
-                                                    <Listeners>
-                                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
-                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                                    </Listeners>
+                                                   
+                                                </ext:ComboBox>
+
+                                    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="true" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="bsId" Name="bsId" FieldLabel="<%$ Resources: benefitSchedule%>" LabelWidth="150">
+                                                    <Store>
+                                                        <ext:Store runat="server" ID="bsIdStore">
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="recordId" />
+                                                                        <ext:ModelField Name="name" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                                    </Store>
+                                              
+                                                  
                                                 </ext:ComboBox>
                                
                                

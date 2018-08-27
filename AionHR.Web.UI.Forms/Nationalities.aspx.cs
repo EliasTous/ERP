@@ -23,6 +23,8 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Infrastructure.Domain;
 using AionHR.Model.Payroll;
+using AionHR.Services.Messaging.Benefits;
+using AionHR.Model.Benefits;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -32,6 +34,7 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IPayrollService _payrollService= ServiceLocator.Current.GetInstance<IPayrollService>();
+        IBenefitsService _benefitsService = ServiceLocator.Current.GetInstance<IBenefitsService>();
         protected override void InitializeCulture()
         {
 
@@ -125,6 +128,7 @@ namespace AionHR.Web.UI.Forms
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             FillSsid();
+            FillBsid();
             switch (type)
             {
                 case "imgEdit":
@@ -144,8 +148,10 @@ namespace AionHR.Web.UI.Forms
                     this.BasicInfoTab.SetValues(response.result);
                     //if(!string.IsNullOrEmpty(response.result.ssId.ToString()))
                     if (response.result.ssId != null)
-                    { ssIdCB.Select(response.result.ssId.ToString()); }
-                    
+                     ssIdCB.Select(response.result.ssId.ToString()); 
+                    if (response.result.bsId != null)
+                     bsId.Select(response.result.bsId.ToString()); 
+
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -310,6 +316,7 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             FillSsid();
+            FillBsid();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             string timeZone = Session["TimeZone"] as string;
          
@@ -485,6 +492,26 @@ namespace AionHR.Web.UI.Forms
             this.ssIdstore.DataBind(); 
 
            
+        }
+        private void FillBsid()
+        {
+
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<BenefitsSchedule> routers = _benefitsService.ChildGetAll<BenefitsSchedule>(request);
+
+            
+
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            this.bsIdStore.DataSource = routers.Items;
+            this.bsIdStore.DataBind();
+
+
         }
 
 

@@ -50,7 +50,7 @@ namespace AionHR.Model.Employees.Profile
         public int? prevRecordId { set; get; }
         public string otherRef { set; get; }
 
-        public int bsId { set; get; }
+        public int? bsId { set; get; }
 
 
 

@@ -360,6 +360,7 @@ namespace AionHR.Web.UI.Forms
 
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
+            b.apName = apId.SelectedItem.Text;
 
             if (string.IsNullOrEmpty(id))
             {
@@ -395,7 +396,7 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordSavingSucc
                         });
-
+                      
                         this.EditRecordWindow.Close();
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
@@ -438,9 +439,11 @@ namespace AionHR.Web.UI.Forms
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(id);
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Commit();
+                        //ModelProxy record = this.Store1.GetById(id);
+
+                        //BasicInfoTab.UpdateRecord(record);
+                        //record.Commit();
+                        Store1.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,

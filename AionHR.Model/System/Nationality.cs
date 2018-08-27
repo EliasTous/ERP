@@ -18,5 +18,7 @@ namespace AionHR.Model.System
         [ApplySecurity]
         public string ssId { get; set; }
         public string ssName { get; set; }
+
+        public string bsId { get; set; }
     }
 }

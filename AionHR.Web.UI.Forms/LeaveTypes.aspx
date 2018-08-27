@@ -273,7 +273,7 @@
                                             
                                     </Items>
                                     <Listeners>
-                                        <Change Handler="if (#{leaveType}.getValue()==2) {#{isPaid}.setDisabled(true); #{isPaid}.setValue()(false);} else{ #{isPaid}.setDisabled(false);}"></Change>
+                                        <Change Handler="if (#{leaveType}.getValue()==2) {#{isPaid}.setDisabled(true); #{isPaid}.setValue(false);} else{ #{isPaid}.setDisabled(false);}"></Change>
                                     </Listeners>
 
                                 </ext:ComboBox>

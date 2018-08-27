@@ -120,6 +120,9 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Nationality Info</value>
   </data>
+  <data name="benefitSchedule" xml:space="preserve">
+    <value>Benefit Schedule</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Nationality</value>
   </data>

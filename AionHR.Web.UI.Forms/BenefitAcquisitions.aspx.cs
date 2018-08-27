@@ -116,8 +116,8 @@ namespace AionHR.Web.UI.Forms
 
 
                 dateFrom.Format = dateTo.Format = aqDate.Format = ColAqDate.Format = ColdateFrom.Format = ColDateTo.Format = dateFormat.Text = _systemService.SessionHelper.GetDateformat();
-                bsIdHidden.Text = "0";
-                FillBenefits();
+                //bsIdHidden.Text = "";
+                //FillBenefits();
             }
 
 
@@ -302,6 +302,7 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.ActiveIndex = 0;
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             recordId.Text = "";
+            bsIdHidden.Text = "";
             //deductionGrid.Disabled = true;
             //entitlementsGrid.Disabled = true;
             //finalSetlemntRecordId.Text = "";
@@ -719,7 +720,7 @@ namespace AionHR.Web.UI.Forms
         protected void FillEmployeeInfo(object sender, DirectEventArgs e)
         {
             string empId = e.ExtraParams["EmpId"];
-
+         
             if (string.IsNullOrEmpty(empId))
                 empId = employeeId.Value.ToString();
             EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
@@ -729,8 +730,8 @@ namespace AionHR.Web.UI.Forms
             if (!routers.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
-
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
             }
             //RecordRequest req = new RecordRequest();
             //req.RecordID = employeeId.Value.ToString();
@@ -742,24 +743,94 @@ namespace AionHR.Web.UI.Forms
             //}
             this.setFillEmployeeInfoDisable(false);
 
-            EmployeeRecruitmentRecordRequest recReq = new EmployeeRecruitmentRecordRequest();
-            recReq.EmployeeId = empId;
-            RecordResponse<HireInfo> recRes = _employeeService.ChildGetRecord<HireInfo>(recReq);
-            if (!recRes.Success || recRes.result == null)
-                return;
-            bsIdHidden.Text = recRes.result.bsId.ToString();
-            FillBenefits();
-            ListRequest request = new ListRequest();
+            if (string.IsNullOrEmpty(bsIdHidden.Text))
+            {
 
-            request.Filter = "";
-            ListResponse<BenefitsSchedule> benefitsList = _benefitsService.ChildGetAll<BenefitsSchedule>(request);
+                EmployeeRecruitmentRecordRequest recReq = new EmployeeRecruitmentRecordRequest();
+                recReq.EmployeeId = empId;
+                RecordResponse<HireInfo> recRes = _employeeService.ChildGetRecord<HireInfo>(recReq);
+                if (!recRes.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                    return;
+                }
+                if (!string.IsNullOrEmpty(recRes.result.bsId.ToString()))
+                {
+                    bsIdHidden.Text = recRes.result.bsId.ToString();
+                }
 
-            if (!benefitsList.Success)
-                return;
-            if (benefitsList.Items.Where(x => x.recordId == recRes.result.bsId.ToString()).ToList().Count != 0)
-                bsName.Text = benefitsList.Items.Where(x => x.recordId == recRes.result.bsId.ToString()).ToList().First().name;
+                if (string.IsNullOrEmpty(bsIdHidden.Text))
+                {
+                    RecordRequest empReq = new RecordRequest();
+                    empReq.RecordID = empId;
+                    RecordResponse<Employee> empRes = _employeeService.Get<Employee>(empReq);
+                    if (!empRes.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                        return;
+                    }
+                    if (empRes.result != null)
+                    {
+                        RecordRequest naReq = new RecordRequest();
+                        naReq.RecordID = empRes.result.nationalityId.ToString();
+                        RecordResponse<Nationality> naRes = _systemService.ChildGetRecord<Nationality>(naReq);
+                        if (!naRes.Success)
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                            return;
+                        }
+                        if (naRes.result != null)
+                        {
+                            if (!string.IsNullOrEmpty(naRes.result.bsId))
+                            {
+                                bsIdHidden.Text = naRes.result.bsId.ToString();
+
+                            }
+                        }
+                    }
 
 
+                }
+                if (string.IsNullOrEmpty(bsIdHidden.Text))
+                {
+                    ListRequest deReq = new ListRequest();
+                    ListResponse<KeyValuePair<string, string>> defRes = _systemService.ChildGetAll<KeyValuePair<string, string>>(deReq);
+                    if (!defRes.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                        return;
+                    }
+                    if (defRes.Items.Where(x => x.Key == "bsId").Count() != 0)
+                        bsIdHidden.Text = defRes.Items.Where(x => x.Key == "bsId").First().Value.ToString();
+
+                }
+
+
+
+
+
+
+
+
+
+                if (!string.IsNullOrEmpty(bsIdHidden.Text))
+                    FillBenefits();
+
+                ListRequest request = new ListRequest();
+
+                request.Filter = "";
+                ListResponse<BenefitsSchedule> benefitsList = _benefitsService.ChildGetAll<BenefitsSchedule>(request);
+
+                if (!benefitsList.Success)
+                    return;
+                if (!string.IsNullOrEmpty(bsIdHidden.Text))
+                    bsName.Text = benefitsList.Items.Where(x => x.recordId == bsIdHidden.Text).ToList().First().name;
+
+            }
 
             if (routers.result == null)
                 return;

@@ -988,6 +988,23 @@
 
                                 </ext:ComboBox>  
                                <ext:NumberField Width="400" runat="server" LabelWidth="150" ID="monthWorkDays" Name="monthWorkDays" FieldLabel="<%$ Resources: monthWorkDays  %>" MinValue="20" MaxValue="30" />
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="true" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="bsId" Name="bsId" FieldLabel="<%$ Resources: benefitSchedule%>" LabelWidth="150">
+                                                    <Store>
+                                                        <ext:Store runat="server" ID="bsIdStore">
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="recordId" />
+                                                                        <ext:ModelField Name="name" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                                    </Store>
+                                              
+                                                  
+                                                </ext:ComboBox>
+                               
                             </Items>
                             <Buttons>
                                 <ext:Button Hidden="true"  ID="SavePayrollSettingsBtn" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">

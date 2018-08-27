@@ -120,6 +120,9 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>معلومات الجنسية</value>
   </data>
+  <data name="benefitSchedule" xml:space="preserve">
+    <value>جدول المستحقات</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل الجنسية</value>
   </data>

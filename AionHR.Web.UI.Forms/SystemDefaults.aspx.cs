@@ -26,6 +26,7 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
 using AionHR.Model.NationalQuota;
+using AionHR.Model.Benefits;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -38,6 +39,10 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         INationalQuotaService _nationalQuotaService = ServiceLocator.Current.GetInstance<INationalQuotaService>();
+        IBenefitsService _benefitsService = ServiceLocator.Current.GetInstance<IBenefitsService>();
+
+
+        
         protected override void InitializeCulture()
         {
 
@@ -148,6 +153,7 @@ namespace AionHR.Web.UI.Forms
             FillTsId();
             FillSsid();
             FillIndustry();
+            FillBsid();
 
 
           absenceStore.DataSource= GetDeductions();
@@ -472,7 +478,12 @@ namespace AionHR.Web.UI.Forms
             }
 
             catch { }
+            try
+            {
+                bsId.Select(items.Where(s => s.Key == "bsId").First().Value.ToString());
+            }
 
+            catch { }
 
 
 
@@ -802,6 +813,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("tsId", values.tsId.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("tsId", ""));
+            if (!string.IsNullOrEmpty(values.bsId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("bsId", values.bsId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("bsId", ""));
 
             return submittedValues;
         }
@@ -1431,6 +1446,26 @@ namespace AionHR.Web.UI.Forms
             this.NQINidStore.DataSource = routers.Items;
 
             this.NQINidStore.DataBind();
+        }
+        private void FillBsid()
+        {
+
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<BenefitsSchedule> routers = _benefitsService.ChildGetAll<BenefitsSchedule>(request);
+
+
+
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            this.bsIdStore.DataSource = routers.Items;
+            this.bsIdStore.DataBind();
+
+
         }
 
 

@@ -164,7 +164,6 @@
     <Content Include="AssetCategories.aspx" />
     <Content Include="Banks.aspx" />
     <Content Include="BenefitAcquisitions.aspx" />
-    <Content Include="benefitAcquistions.aspx" />
     <Content Include="Benefits.aspx" />
     <Content Include="BenefitsSchedules.aspx" />
     <Content Include="BiometricDevices.aspx" />
@@ -613,13 +612,6 @@
     </Compile>
     <Compile Include="BenefitAcquisitions.aspx.designer.cs">
       <DependentUpon>BenefitAcquisitions.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="benefitAcquistions.aspx.cs">
-      <DependentUpon>benefitAcquistions.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="benefitAcquistions.aspx.designer.cs">
-      <DependentUpon>benefitAcquistions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Benefits.aspx.cs">
       <DependentUpon>Benefits.aspx</DependentUpon>
