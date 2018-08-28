@@ -118,6 +118,7 @@ namespace AionHR.Web.UI.Forms
                 dateFrom.Format = dateTo.Format = aqDate.Format = ColAqDate.Format = ColdateFrom.Format = ColDateTo.Format = dateFormat.Text = _systemService.SessionHelper.GetDateformat();
                 //bsIdHidden.Text = "";
                 //FillBenefits();
+                EditMode.Text = "false";
             }
 
 
@@ -298,7 +299,7 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-
+            EditMode.Text = "false";
             panelRecordDetails.ActiveIndex = 0;
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             recordId.Text = "";
@@ -543,6 +544,7 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
+            EditMode.Text = "false";
         }
 
         [DirectMethod]
@@ -563,6 +565,7 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuP(object sender, DirectEventArgs e)
         {
             panelRecordDetails.ActiveIndex = 0;
+            EditMode.Text = "true";
             //deductionGrid.Disabled = false;
             //entitlementsGrid.Disabled = false;
             this.setFillEmployeeInfoDisable(true);
@@ -727,6 +730,9 @@ namespace AionHR.Web.UI.Forms
          
             if (string.IsNullOrEmpty(empId))
                 empId = employeeId.Value.ToString();
+            if (EditMode.Text == "false")
+                bsIdHidden.Text = ""; 
+
             EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
             req.RecordID = empId;
             req.asOfDate = DateTime.Now;
@@ -759,9 +765,12 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", recRes.ErrorCode) != null ? GetGlobalResourceObject("Errors", recRes.ErrorCode).ToString() : recRes.Summary).Show();
                     return;
                 }
-                if (!string.IsNullOrEmpty(recRes.result.bsId.ToString()))
+                if (recRes.result != null)
                 {
-                    bsIdHidden.Text = recRes.result.bsId.ToString();
+                    if (!string.IsNullOrEmpty(recRes.result.bsId.ToString()))
+                    {
+                        bsIdHidden.Text = recRes.result.bsId.ToString();
+                    }
                 }
 
                 if (string.IsNullOrEmpty(bsIdHidden.Text))
@@ -822,8 +831,12 @@ namespace AionHR.Web.UI.Forms
 
 
                 if (!string.IsNullOrEmpty(bsIdHidden.Text))
+                {
                     FillBenefits();
-
+                
+                }
+                else
+                    bsIdHidden.Text = "";
                 ListRequest request = new ListRequest();
 
                 request.Filter = "";
@@ -1758,8 +1771,10 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
                 return;
             }
-
-            aqRatio.Text = response.result.aqRatio.ToString();
+            if (response.result != null)
+                aqRatio.Text = response.result.aqRatio.ToString();
+            else
+                aqRatio.Text = "";
 
 
         }

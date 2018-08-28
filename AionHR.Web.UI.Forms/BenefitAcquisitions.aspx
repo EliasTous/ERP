@@ -28,7 +28,7 @@
                 return;
             }
            
-            App.days.setValue(parseInt(moment(App.dateTo.getValue()).diff(moment(App.dateFrom.getValue()), 'days')) + 1);
+            App.days.setValue(parseInt(moment(App.dateTo.getValue()).diff(moment(App.dateFrom.getValue()), 'days')) );
         }
     </script>
 
@@ -49,6 +49,7 @@
         <ext:Hidden ID="Seq" runat="server" Text="0" />
         <ext:Hidden ID="isAddEn" runat="server" Text="" />
          <ext:Hidden ID="bsIdHidden" runat="server" Text="" />
+         <ext:Hidden ID="EditMode" runat="server" Text="" />
 
 
           <ext:Hidden ID="finalSetlemntRecordId" runat="server" Text="" />
@@ -147,7 +148,7 @@
                                     TypeAhead="false"
                                     HideTrigger="true" SubmitValue="true"
                                     MinChars="3" FieldLabel="<%$ Resources: FieldName%>"
-                                    TriggerAction="Query" ForceSelection="true">
+                                    TriggerAction="Query" ForceSelection="true" >
                                     <Store>
                                         <ext:Store runat="server" ID="Store4" AutoLoad="false">
                                             <Model>
@@ -354,7 +355,7 @@
                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Name="employeeId"
                                     DisplayField="fullName"
                                     
-                                    ValueField="recordId" AllowBlank="true"
+                                    ValueField="recordId" AllowBlank="false"
                                     TypeAhead="false"
                                     HideTrigger="true" SubmitValue="true"
                                     MinChars="3" FieldLabel="<%$ Resources: FieldName%>"
@@ -459,8 +460,8 @@
                               
                                                                      
                                 </ext:ComboBox>
-                                             <ext:DateField    ID="aqDate" runat="server" FieldLabel="<%$ Resources:aqDate%>" Name="aqDate" AllowBlank="true" />
-                                             <ext:DateField    ID="dateFrom" runat="server" FieldLabel="<%$ Resources:dateFrom%>" Name="dateFrom" AllowBlank="true" >
+                                             <ext:DateField    ID="aqDate" runat="server" FieldLabel="<%$ Resources:aqDate%>" Name="aqDate" AllowBlank="false" />
+                                             <ext:DateField    ID="dateFrom" runat="server" FieldLabel="<%$ Resources:dateFrom%>" Name="dateFrom" AllowBlank="false" >
                                                  <Validator Handler="if(App.dateTo.value ==null) return true;   if(this.value> App.dateTo.value) return false; else return true;" />
                                                  <Listeners>
                                                      <Change Handler="calcDays();" />
@@ -476,7 +477,7 @@
                                                      
                                                  </DirectEvents>
                                                  </ext:DateField>
-                                             <ext:DateField    ID="dateTo" runat="server" FieldLabel="<%$ Resources:dateTo%>" Name="dateTo" AllowBlank="true" >
+                                             <ext:DateField    ID="dateTo" runat="server" FieldLabel="<%$ Resources:dateTo%>" Name="dateTo" AllowBlank="false" >
                                                    <Validator Handler="if(App.dateFrom.value ==null) return true; if(this.value< App.dateFrom.value) return false; else return true;" />
                                                                                       
                                                  <Listeners>
@@ -488,14 +489,16 @@
                                                <Listeners>
                                                 <Change Handler="  #{aqAmount}.setValue(this.value * App.amount.value / 100); "/>
                                                    </Listeners>
+                                          
                                                </ext:TextField>
 
-                                             <ext:NumberField  ID="amount" runat="server" FieldLabel="<%$ Resources:amount%>" Name="amount" AllowBlank="true" MinValue="0"   >
+                                             <ext:NumberField  ID="amount" runat="server" FieldLabel="<%$ Resources:amount%>" Name="amount" AllowBlank="false" MinValue="0"   >
                                                  <Listeners >
                                                      <Change Handler="  #{aqAmount}.setValue(this.value * App.aqRatio.value / 100 );#{amountDue}.setValue(this.value - App.aqAmount.value );  "/>
                                                  <%--     <Focus Handler="this.setValue(this.getValue().replace(/[\$,]/g, ''));" />
                                                   <Blur Handler="this.setValue(Ext.util.Format.number(#{amount}.getValue(), '0,000.00'));" />--%>
                                                  </Listeners>
+                                                     <Validator Handler="if (this.value>0) return true; else return false;" />
                                                  
                                                  </ext:NumberField>
                                           
@@ -514,7 +517,7 @@
                                                   <Blur Handler="this.setValue(Ext.util.Format.number(#{amount}.getValue(), '0,000.00'));" />--%>
                                                  </Listeners>
                                                  </ext:NumberField>
-                                          <ext:NumberField  ID="amountDue" runat="server" FieldLabel="<%$ Resources:amountDue%>" Name="amountDue" AllowBlank="true" > 
+                                          <ext:NumberField  ID="amountDue" runat="server" FieldLabel="<%$ Resources:amountDue%>" Name="amountDue" AllowBlank="true" MinValue="0"> 
                                               <%--      <ext:NumberField  ID="amountDue" runat="server" FieldLabel="<%$ Resources:amountDue%>" Name="amountDue" AllowBlank="true" MaskRe="/[0-9\$\.]/">   
                                                   <Listeners> 
                                                      

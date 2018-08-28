@@ -13,25 +13,25 @@ namespace AionHR.Model.Benefits
 
         public string benefitName { get; set; }
         public string bsName { get; set; }
-        public int days { get; set; }
+        public int? days { get; set; }
 
         public int employeeId { get; set; }
 
         public int bsId { get; set; }
         public int benefitId { get; set; }
-        public short aqType { get; set; }
+        public short? aqType { get; set; }
         public DateTime aqDate { get; set; }
 
         public DateTime dateFrom { get; set; }
         public DateTime dateTo { get; set; }
 
-        public bool isHijriDate { get; set; }
+        public bool? isHijriDate { get; set; }
         public int amount { get; set; }
-        public double aqRatio { get; set; }
+        public double? aqRatio { get; set; }
 
-        public int aqAmount { get; set; }
+        public int? aqAmount { get; set; }
 
-        public int amountDue { get; set; }
+        public int? amountDue { get; set; }
 
         public string notes { get; set; } 
 
