@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Services.Messaging.HelpFunction
 {
-   public class AcquisitionRateListRequest : ListRequest
+   public class AcquisitionRateListRequest : RecordRequest
     {
         public string employeeId { get; set; }
         public string bsId { get; set; }

@@ -162,4 +162,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>جداول</value>
   </data>
+  <data name="isChecked" xml:space="preserve">
+    <value>تفعيل</value>
+  </data>
 </root>

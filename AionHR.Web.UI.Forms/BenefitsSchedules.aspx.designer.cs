@@ -391,6 +391,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColdefaultAmount;
         
         /// <summary>
+        /// ColisChecked control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.CheckColumn ColisChecked;
+        
+        /// <summary>
         /// Column3 control.
         /// </summary>
         /// <remarks>
@@ -524,6 +533,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.NumberField defaultAmount;
+        
+        /// <summary>
+        /// isChecked control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox isChecked;
         
         /// <summary>
         /// Button7 control.

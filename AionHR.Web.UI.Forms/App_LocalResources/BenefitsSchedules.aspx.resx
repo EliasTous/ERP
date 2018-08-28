@@ -162,4 +162,7 @@
   <data name="benefitName" xml:space="preserve">
     <value>Benefit</value>
   </data>
+  <data name="isChecked" xml:space="preserve">
+    <value>Is Checked</value>
+  </data>
 </root>

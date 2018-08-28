@@ -34,9 +34,10 @@ namespace AionHR.Repository.WebService.Repositories
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");
             ChildGetLookup.Add(typeof(BranchSchedule), "CS01");
-           
+            ChildGetLookup.Add(typeof(BenefitAcquisitionAcquisitionRate), "BE01");
 
-            
+
+
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");
             ChildAddOrUpdateLookup.Add(typeof(FlatScheduleImport), "TA03");
             ChildAddOrUpdateLookup.Add(typeof(FlatBulkSchedule), "TA04");

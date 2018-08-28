@@ -402,4 +402,7 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit benefit acquisition</value>
   </data>
+  <data name="isChecked" xml:space="preserve">
+    <value>تفعيل </value>
+  </data>
 </root>

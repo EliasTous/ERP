@@ -444,4 +444,7 @@
   <data name="Unbound" xml:space="preserve">
     <value>Unbound</value>
   </data>
+  <data name="isChecked" xml:space="preserve">
+    <value>isChecked</value>
+  </data>
 </root>

@@ -145,23 +145,22 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
+                    this.ScheduleBenefitFormPanel.Reset();
                     this.ScheduleBenefitFormPanel.SetValues(response.result);
-                    if (response.result != null)
-                    {
+                 
                         benefitId.Select(response.result.benefitId.ToString());
-                        aqType.Select(response.result.aqType.ToString());
-                       
 
-                    }
-                    else
-                    {
-                        this.ScheduleBenefitFormPanel.Reset();
-                        benefitId.Select(benId);
-                        intervalDays.Value = "0";
-                        defaultAmount.Value = "0";
-                        aqType.Select(1);
-                    }
-                    this.ScheduleBenefitWindow.Title = Resources.Common.EditWindowsTitle;
+                      
+                    //if (!string.IsNullOrEmpty(response.result.aqType.ToString()))
+                    //    aqType.Select(response.result.aqType.ToString());
+                    if (string.IsNullOrEmpty(response.result.defaultAmount.ToString()))
+                    defaultAmount.Text = "0";
+                    if (string.IsNullOrEmpty(response.result.intervalDays.ToString()))
+                     intervalDays.Text = "0";
+
+
+
+                        this.ScheduleBenefitWindow.Title = Resources.Common.EditWindowsTitle;
                     this.ScheduleBenefitWindow.Show();
                     break;
 
@@ -308,7 +307,7 @@ namespace AionHR.Web.UI.Forms
             {
                 //Step 1 Code to delete the object from the database 
                 ScheduleBenefits s = new ScheduleBenefits();
-                s.bsId =Convert.ToInt32( bsId);
+                s.bsId =Convert.ToInt32(bsId);
                 s.benefitId = Convert.ToInt32(benefitId); 
 
 
@@ -516,7 +515,14 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             ScheduleBenefits b = JsonConvert.DeserializeObject<ScheduleBenefits>(obj);
+            //if (!b.isChecked)
+            //{
+            //    DeleteScheduleBenefitRecord(b.benefitId.ToString(), bsId.Text);
+            //    this.ScheduleBenefitWindow.Close();
+            //    return; 
+            //}
 
+            
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
 
@@ -633,7 +639,7 @@ namespace AionHR.Web.UI.Forms
 
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
-
+           
             if (string.IsNullOrEmpty(id)&& string.IsNullOrEmpty(bsId.Text))
             {
 

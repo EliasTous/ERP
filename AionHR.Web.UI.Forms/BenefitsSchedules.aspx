@@ -83,8 +83,9 @@
                           <ext:ModelField Name="aqType" />
                           <ext:ModelField Name="intervalDays" />
                           <ext:ModelField Name="defaultAmount" />
+                         <ext:ModelField Name="isChecked" />
 
-
+                        
                    
                       
                                </Fields>
@@ -281,7 +282,7 @@
                         <CellClick OnEvent="PoPuP">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="id" Value="record.data['recordId']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -429,10 +430,11 @@
                             <ext:Column ID="ColBenefitId" Visible="false" DataIndex="benefitId" runat="server" />
                             <ext:Column    ID="ColbenefitName" MenuDisabled="true" runat="server" Text="<%$ Resources: benefitName%>" DataIndex="benefitName" Flex="2"/>
                             <ext:Column ID="ColAqType" MenuDisabled="true" runat="server" Text="<%$ Resources: aqType%>" DataIndex="aqType" Flex="2" Hideable="false" >
-                                <Renderer Handler="return record.data['aqType']== 1 ? #{Progressive}.value : #{Unbound}.value;" />
+                                <Renderer Handler=" if(record.data['aqType']== 1) return #{Progressive}.value ; if (record.data['aqType']== 2 ) return #{Unbound}.value;" />
                                 </ext:Column>
                             <ext:Column     ID="ColintervalDays" MenuDisabled="true" runat="server" Text="<%$ Resources: intervalDays%>" DataIndex="intervalDays"  Flex="2"/>
                             <ext:Column    ID="ColdefaultAmount" MenuDisabled="true" runat="server" Text="<%$ Resources: defaultAmount%>" DataIndex="defaultAmount"  Flex="2"/>
+                            <ext:CheckColumn    ID="ColisChecked"  runat="server" Text="<%$ Resources: isChecked%>" DataIndex="isChecked"  width="100"/>
                    
                           
                              
@@ -595,7 +597,7 @@
                             BodyPadding="5">
                             <Items>
                               
-                               <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="benefitId" Name="benefitId" FieldLabel="<%$ Resources:FieldBenefits%>" SimpleSubmit="true">
+                               <ext:ComboBox  ReadOnly="true" AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="benefitId" Name="benefitId" FieldLabel="<%$ Resources:FieldBenefits%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="benefitsStore"  AutoLoad="true" AutoSync="true">
                                             <Model>
@@ -629,16 +631,22 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>--%>
                                 </ext:ComboBox>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="aqType" runat="server" FieldLabel="<%$ Resources: aqType%>" Name="aqType" IDMode="Static" SubmitValue="true">
+                               
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   QueryMode="Local"  ID="aqType" runat="server" FieldLabel="<%$ Resources: aqType%>" Name="aqType" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: Progressive%>" Value="1"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources: Unbound%>" Value="2"></ext:ListItem>
                                        
                                     </Items>
                                 </ext:ComboBox>
-                                  <ext:NumberField runat="server" AllowBlank="false" ID="intervalDays" Name="intervalDays"  FieldLabel="<%$ Resources:intervalDays  %>" MinValue="0" />
+                                  <ext:NumberField runat="server" AllowBlank="false" ID="intervalDays" Name="intervalDays"  FieldLabel="<%$ Resources:intervalDays  %>" MinValue="0"  />
                                   <ext:NumberField runat="server" AllowBlank="false" ID="defaultAmount" Name="defaultAmount"  FieldLabel="<%$ Resources:defaultAmount  %>" MinValue="0" />
-                                
+                            
+                                <ext:Checkbox runat="server" Visible="false" ID="isChecked" Name="isChecked"  FieldLabel="<%$ Resources:isChecked  %>"  inputValue="true" DataIndex="isChecked">
+                                    <Listeners>
+                                        <Change Handler="if(this.value) {#{aqType}.allowBlank=false; #{intervalDays}.allowBlank=false;#{defaultAmount}.allowBlank=false; #{aqType}.validate();#{intervalDays}.validate();#{defaultAmount}.validate();} else {#{aqType}.allowBlank=true; #{intervalDays}.allowBlank=true;#{defaultAmount}.allowBlank=true; #{aqType}.validate();#{intervalDays}.validate();#{defaultAmount}.validate();} " />
+                                    </Listeners>
+                                    </ext:Checkbox>
                            
                                               
                                 
@@ -659,7 +667,7 @@
                 <ext:Button ID="Button7" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                        <Click Handler="CheckSession(); if (!#{ScheduleBenefitFormPanel}.getForm().isValid()) {return false;}  " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewScheduleBenefitRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
