@@ -492,7 +492,7 @@
                                           
                                                </ext:TextField>
 
-                                             <ext:NumberField  ID="amount" runat="server" FieldLabel="<%$ Resources:amount%>" Name="amount" AllowBlank="false" MinValue="0"   >
+                                             <ext:NumberField  ID="amount" runat="server" FieldLabel="<%$ Resources:amount%>" Name="amount" AllowBlank="false" MinValue="0" AllowDecimals="false"  >
                                                  <Listeners >
                                                      <Change Handler="  #{aqAmount}.setValue(this.value * App.aqRatio.value / 100 );#{amountDue}.setValue(this.value - App.aqAmount.value );  "/>
                                                  <%--     <Focus Handler="this.setValue(this.getValue().replace(/[\$,]/g, ''));" />
@@ -510,14 +510,14 @@
                                        
                                     </Items>
                                 </ext:ComboBox>
-                                             <ext:NumberField  ID="aqAmount" runat="server" FieldLabel="<%$ Resources:aqAmount%>" Name="aqAmount" AllowBlank="true" >
+                                             <ext:NumberField  ID="aqAmount" runat="server" FieldLabel="<%$ Resources:aqAmount%>" Name="aqAmount" AllowBlank="true" AllowDecimals="false"  >
                                                  <Listeners> 
                                                      <Change Handler="#{amountDue}.setValue(App.amount.value - this.value); " />
                                                    <%--  <Focus Handler="this.setValue(this.getValue().replace(/[\$,]/g, ''));" />
                                                   <Blur Handler="this.setValue(Ext.util.Format.number(#{amount}.getValue(), '0,000.00'));" />--%>
                                                  </Listeners>
                                                  </ext:NumberField>
-                                          <ext:NumberField  ID="amountDue" runat="server" FieldLabel="<%$ Resources:amountDue%>" Name="amountDue" AllowBlank="true" MinValue="0"> 
+                                          <ext:NumberField  ID="amountDue" runat="server" FieldLabel="<%$ Resources:amountDue%>" Name="amountDue" AllowBlank="true" MinValue="0" AllowDecimals="false" > 
                                               <%--      <ext:NumberField  ID="amountDue" runat="server" FieldLabel="<%$ Resources:amountDue%>" Name="amountDue" AllowBlank="true" MaskRe="/[0-9\$\.]/">   
                                                   <Listeners> 
                                                      

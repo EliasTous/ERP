@@ -16,5 +16,6 @@ namespace AionHR.Model.LoadTracking
         public short status { get; set; }
         public string notes { get; set; }
         public string statusString { get; set; }
+       
     }
 }

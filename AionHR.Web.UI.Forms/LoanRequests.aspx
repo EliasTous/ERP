@@ -534,9 +534,12 @@
                                     <%-- <Listeners>
                                                 <Change Handler="document.getElementById('amount').value=this.getValue(); this.next().setValue(this.value);" />
                                             </Listeners>--%>
-                                    <Validator Handler="  return !isNaN(this.value)&& this.value>0;" />
-                                    <Listeners> 
+                                    <Validator Handler="  return !isNaN(this.value) && this.value>0;" />
+                                   <%-- <Listeners> 
                                         <Change Handler="if (#{ldMethod}.getValue()==4) #{ldValue}.setValue('0');"></Change>
+                                    </Listeners>--%>
+                                    <Listeners> 
+                                        <Change Handler="#{ldValue}.validate();"></Change>
                                     </Listeners>
                                 </ext:TextField>
 
@@ -582,7 +585,7 @@
                                         </ext:ComboBox>
                                         <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
                                         
-                                         <validator Handler="if(#{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else return false; } else {if (this.value<=0  ) return false;    if (#{amount}.getValue()<this.value) return false; else return true;} ">
+                                         <validator Handler="if(#{ldMethod}.getValue()!=4 ){ if (this.value>0&& this.value<100) return true ; else return false; } else {if (this.value<=0  ) return false;    if (#{amount}.getValue()<this.value) return false; else return true;} ">
                                              
                                          </validator>
                                            
@@ -1118,7 +1121,7 @@
                                    
                                 </ext:ComboBox>
                                
-                                  <ext:TextArea ID="notes" runat="server" FieldLabel="<%$ Resources:FieldNotes%>" Name="notes" AllowBlank="true"   MaxHeight="200"  Height="200"/>
+                                  <ext:TextArea ID="notes" runat="server" FieldLabel="<%$ Resources:FieldNotes%>" Name="notes" AllowBlank="true"   MaxHeight="100"  Height="100"/>
                              
                                  
 

@@ -2875,6 +2875,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.NumberField ldValue;
         
         /// <summary>
+        /// LoanNotes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextArea LoanNotes;
+        
+        /// <summary>
         /// Button1 control.
         /// </summary>
         /// <remarks>

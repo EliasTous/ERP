@@ -1466,7 +1466,7 @@
     runat="server"
     Icon="PageEdit"
     Title="<%$ Resources:ImageSelectionWindowTitle %>"
-    Width="300"
+    Width="400"
     Height="400"
     AutoShow="false"
     Modal="true"

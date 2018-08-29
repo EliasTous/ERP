@@ -1307,30 +1307,38 @@ namespace AionHR.Web.UI.Forms
             {
             string obj = e.ExtraParams["values"];
             string id = e.ExtraParams["id"];
-            LoanRequests LV = JsonConvert.DeserializeObject<LoanRequests>(obj);
+            string status = e.ExtraParams["status"];
+            string notes = e.ExtraParams["notes"];
+            //LoanApproval LV = JsonConvert.DeserializeObject<LoanApproval>(obj);
 
-            RecordRequest loanRecordRequest = new RecordRequest();
-            loanRecordRequest.RecordID = id;
+            //RecordRequest loanRecordRequest = new RecordRequest();
+            //loanRecordRequest.RecordID = id;
 
-            RecordResponse<Loan> loanRecord = _loanService.Get<Loan>(loanRecordRequest);
-            if (!loanRecord.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", loanRecord.ErrorCode) != null ? GetGlobalResourceObject("Errors", loanRecord.ErrorCode).ToString() + "<br>Technical Error: " + loanRecord.ErrorCode + "<br> Summary: " + loanRecord.Summary : loanRecord.Summary).Show();
-                return;
-            }
+            //RecordResponse<Loan> loanRecord = _loanService.Get<Loan>(loanRecordRequest);
+            //if (!loanRecord.Success)
+            //{
+            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+            //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", loanRecord.ErrorCode) != null ? GetGlobalResourceObject("Errors", loanRecord.ErrorCode).ToString() + "<br>Technical Error: " + loanRecord.ErrorCode + "<br> Summary: " + loanRecord.Summary : loanRecord.Summary).Show();
+            //    return;
+            //}
 
 
             try
             {
                 //New Mode
                 //Step 1 : Fill The object and insert in the store 
+                LoanApproval LA = new LoanApproval();
+               
+                LA.status = Convert.ToInt16(status);
+                LA.notes = notes;
+                LA.loanId = Convert.ToInt32(id);
+                LA.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
 
-                PostRequest<Loan> request = new PostRequest<Loan>();
-                request.entity = loanRecord.result;
-                request.entity.status =Convert.ToInt16 (ApprovalLoanStatus.Value.ToString());
+                PostRequest<LoanApproval> request = new PostRequest<LoanApproval>();
+                request.entity = LA;
+              
 
-                PostResponse<Loan> r = _loanService.AddOrUpdate< Loan > (request);
+                PostResponse<LoanApproval> r = _loanService.ChildAddOrUpdate<LoanApproval> (request);
 
 
                 //check if the insert failed

@@ -310,7 +310,7 @@ namespace AionHR.Web.UI.Forms
             //entitlementsGrid.Disabled = true;
             //finalSetlemntRecordId.Text = "";
             //dateId.Value = DateTime.Now;
-            this.setFillEmployeeInfoDisable(true);
+      //      this.setFillEmployeeInfoDisable(true);
             this.EditRecordWindow.Show();
         }
 
@@ -474,17 +474,12 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
                         Store1.Reload();
-
+                        this.EditRecordWindow.Close();
 
                         //entitlementsGrid.Disabled = false;
                         //deductionGrid.Disabled = false;
 
-                        if (!string.IsNullOrEmpty(finalSetlemntRecordId.Text))
-                        {
-
-                            this.EditRecordWindow.Close();
-                            this.setFillEmployeeInfoDisable(true);
-                        }
+                      
 
 
 
@@ -568,7 +563,7 @@ namespace AionHR.Web.UI.Forms
             EditMode.Text = "true";
             //deductionGrid.Disabled = false;
             //entitlementsGrid.Disabled = false;
-            this.setFillEmployeeInfoDisable(true);
+       //     this.setFillEmployeeInfoDisable(true);
 
             string type = e.ExtraParams["type"];
             string id = e.ExtraParams["recordId"];
@@ -579,7 +574,7 @@ namespace AionHR.Web.UI.Forms
                 case "imgEdit":
                     //entitlementsStore.Reload();
                     //deductionStore.Reload();
-                    setFillEmployeeInfoDisable(false);
+              //      setFillEmployeeInfoDisable(false);
 
                     //Step 1 : get the object from the Web Service 
                     RecordRequest req = new RecordRequest();
@@ -751,7 +746,7 @@ namespace AionHR.Web.UI.Forms
             //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
             //    return;
             //}
-            this.setFillEmployeeInfoDisable(false);
+       //     this.setFillEmployeeInfoDisable(false);
 
             if (string.IsNullOrEmpty(bsIdHidden.Text))
             {
@@ -876,52 +871,52 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-        private void setFillEmployeeInfoDisable(bool YES)
-        {
-            if (!YES)
-            {
-                branchNameTx.Disabled = false;
-                departmentNameTx.Disabled = false;
-                positionNameTx.Disabled = false;
-                hireDateDf.Disabled = false;
-                nationalityTx.Disabled = false;
-                divisionName.Disabled = false;
-                reportToName.Disabled = false;
-                eosBalance.Disabled = false;
-                lastLeaveStartDate.Disabled = false;
-                lastLeaveEndDate.Disabled = false;
-                leavesBalance.Disabled = false;
-                allowedLeaveYtd.Disabled = false;
-                serviceDuration.Disabled = false;
-                esName.Disabled = false;
-                paidLeavesYTD.Disabled = false;
-                loanBalance.Disabled = false;
+        //private void setFillEmployeeInfoDisable(bool YES)
+        //{
+        //    if (!YES)
+        //    {
+        //        branchNameTx.Disabled = false;
+        //        departmentNameTx.Disabled = false;
+        //        positionNameTx.Disabled = false;
+        //        hireDateDf.Disabled = false;
+        //        nationalityTx.Disabled = false;
+        //        divisionName.Disabled = false;
+        //        reportToName.Disabled = false;
+        //        eosBalance.Disabled = false;
+        //        lastLeaveStartDate.Disabled = false;
+        //        lastLeaveEndDate.Disabled = false;
+        //        leavesBalance.Disabled = false;
+        //        allowedLeaveYtd.Disabled = false;
+        //        serviceDuration.Disabled = false;
+        //        esName.Disabled = false;
+        //        paidLeavesYTD.Disabled = false;
+        //        loanBalance.Disabled = false;
 
 
 
-            }
-            else
-            {
-                branchNameTx.Disabled = true;
-                departmentNameTx.Disabled = true;
-                positionNameTx.Disabled = true;
-                hireDateDf.Disabled = true;
-                nationalityTx.Disabled = true;
-                divisionName.Disabled = true;
-                reportToName.Disabled = true;
-                eosBalance.Disabled = true;
-                lastLeaveStartDate.Disabled = true;
-                lastLeaveEndDate.Disabled = true;
-                leavesBalance.Disabled = true;
-                allowedLeaveYtd.Disabled = true;
-                serviceDuration.Disabled = true;
-                esName.Disabled = true;
-                paidLeavesYTD.Disabled = true;
-                loanBalance.Disabled = true;
+        //    }
+        //    else
+        //    {
+        //        branchNameTx.Disabled = true;
+        //        departmentNameTx.Disabled = true;
+        //        positionNameTx.Disabled = true;
+        //        hireDateDf.Disabled = true;
+        //        nationalityTx.Disabled = true;
+        //        divisionName.Disabled = true;
+        //        reportToName.Disabled = true;
+        //        eosBalance.Disabled = true;
+        //        lastLeaveStartDate.Disabled = true;
+        //        lastLeaveEndDate.Disabled = true;
+        //        leavesBalance.Disabled = true;
+        //        allowedLeaveYtd.Disabled = true;
+        //        serviceDuration.Disabled = true;
+        //        esName.Disabled = true;
+        //        paidLeavesYTD.Disabled = true;
+        //        loanBalance.Disabled = true;
 
-            }
+        //    }
 
-        }
+        //}
         //protected void PoPuPEN(object sender, DirectEventArgs e)
         //{
 

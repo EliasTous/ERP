@@ -4504,6 +4504,7 @@
                                       
                                            
                                             </ext:NumberField>
+                                   <ext:TextArea ID="LoanNotes" runat="server" FieldLabel="<%$ Resources:FieldNotes%>" Name="notes" AllowBlank="true"   MaxHeight="200"  Height="100"/>
                                 
 
                             </Items>
@@ -4518,6 +4519,9 @@
                                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{ApprovalLoanWindow}.body}" />
                                             <ExtraParams>
                                                 <ext:Parameter Name="id" Value="#{ApprovalRecordId}.getValue()" Mode="Raw" />
+                                                <ext:Parameter Name="status" Value="#{ApprovalLoanStatus}.getValue()" Mode="Raw" />
+                                                  <ext:Parameter Name="notes" Value="#{LoanNotes}.getValue()" Mode="Raw" />
+                                                 
                                                 <ext:Parameter Name="values" Value="#{ApprovalLoanForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                                             </ExtraParams>
                                         </Click>

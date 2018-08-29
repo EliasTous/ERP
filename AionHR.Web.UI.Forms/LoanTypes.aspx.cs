@@ -300,7 +300,7 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-
+            ApprovalStore.Reload();
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
