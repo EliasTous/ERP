@@ -1750,12 +1750,21 @@ namespace AionHR.Web.UI.Forms
         protected void getAqRatio(object sender, DirectEventArgs e)
         {
             string dateFrom = e.ExtraParams["dateFrom"];
+
+            //new 
+            DateTime DF = new DateTime();
+            DF = DateTime.Parse(dateFrom);
+            dateFrom = DF.ToString("yyyyMMdd");
+
+
+
             string employeeId = e.ExtraParams["employeeId"];
             string benefitId = e.ExtraParams["benefitId"];
             AcquisitionRateListRequest request = new AcquisitionRateListRequest();
             request.employeeId = employeeId;
             request.benefitId = benefitId;
             request.bsId = bsIdHidden.Text;
+            //request.asOfDate = dateFrom;
             request.asOfDate = dateFrom;
             if (string.IsNullOrEmpty(employeeId) || string.IsNullOrEmpty(benefitId) || string.IsNullOrEmpty(bsIdHidden.Text))
                 return; 

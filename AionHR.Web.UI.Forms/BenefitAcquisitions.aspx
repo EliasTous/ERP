@@ -30,6 +30,16 @@
            
             App.days.setValue(parseInt(moment(App.dateTo.getValue()).diff(moment(App.dateFrom.getValue()), 'days')) );
         }
+        function calcToDate() {
+           
+
+            var d;
+            //if (App.probationPeriod.value == 1)
+            //    d = moment(App.hireDate.getValue());
+            //else
+            d = moment(App.dateFrom.getValue()).add(parseInt(App.days.value), 'days');
+            App.dateTo.setValue(new Date(d.toDate()));
+        }
     </script>
 
 
@@ -50,6 +60,7 @@
         <ext:Hidden ID="isAddEn" runat="server" Text="" />
          <ext:Hidden ID="bsIdHidden" runat="server" Text="" />
          <ext:Hidden ID="EditMode" runat="server" Text="" />
+              <ext:Hidden ID="oldDays" runat="server" />
 
 
           <ext:Hidden ID="finalSetlemntRecordId" runat="server" Text="" />
@@ -336,7 +347,7 @@
             AutoShow="false"
             Modal="true"
             Hidden="true"
-            Layout="Fit">
+            Layout="Fit" Draggable="true">
 
             <Items>
                 <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
@@ -484,7 +495,11 @@
                                                       <Change Handler="calcDays();" />
                                                      </Listeners>
                                                  </ext:DateField>
-                                             <ext:NumberField  ID="days" runat="server" FieldLabel="<%$ Resources:days%>" Name="days" AllowBlank="true" />
+                                             <ext:NumberField  ID="days" runat="server" FieldLabel="<%$ Resources:days%>" Name="days" AllowBlank="true" >
+                                                 <Listeners>
+                                                    <Change Handler ="if(this.value== #{oldDays}.value) {return false;} #{oldDays}.value = this.value; calcToDate();"></Change>
+                                                     </Listeners>
+                                                 </ext:NumberField>
                                            <ext:TextField  ID="aqRatio" runat="server" FieldLabel="<%$ Resources:aqRatio%>" Name="aqRatio" AllowBlank="true" >
                                                <Listeners>
                                                 <Change Handler="  #{aqAmount}.setValue(this.value * App.amount.value / 100); "/>
@@ -537,53 +552,53 @@
                                  
                              
 
-                                <ext:TextField  ReadOnly="true" Disabled="true" ID="nationalityTx" runat="server" FieldLabel="<%$ Resources:nationality%>" Name="nationality" AllowBlank="true">
+                                <ext:TextField  ReadOnly="true"  ID="nationalityTx" runat="server" FieldLabel="<%$ Resources:nationality%>" Name="nationality" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                <ext:TextField ReadOnly="true" Disabled="true" ID="branchNameTx" runat="server" FieldLabel="<%$ Resources:branchName%>" Name="branchName" AllowBlank="true">
+                                <ext:TextField ReadOnly="true"  ID="branchNameTx" runat="server" FieldLabel="<%$ Resources:branchName%>" Name="branchName" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                 <ext:TextField ReadOnly="true" Disabled="true" ID="departmentNameTx" runat="server" FieldLabel="<%$ Resources:departmentName%>" Name="departmentName" AllowBlank="true">
+                                 <ext:TextField ReadOnly="true"  ID="departmentNameTx" runat="server" FieldLabel="<%$ Resources:departmentName%>" Name="departmentName" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                 <ext:TextField ReadOnly="true" Disabled="true" ID="positionNameTx" runat="server" FieldLabel="<%$ Resources:positionName%>" Name="positionName" AllowBlank="true">
+                                 <ext:TextField ReadOnly="true"  ID="positionNameTx" runat="server" FieldLabel="<%$ Resources:positionName%>" Name="positionName" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                 <ext:DateField ReadOnly="true" Disabled="true"  ID="hireDateDf" runat="server" FieldLabel="<%$ Resources:hireDate%>" Name="hireDate" AllowBlank="true">
+                                 <ext:DateField ReadOnly="true"   ID="hireDateDf" runat="server" FieldLabel="<%$ Resources:hireDate%>" Name="hireDate" AllowBlank="true">
                                     
                                 </ext:DateField>
                                         
-                                 <ext:TextField ReadOnly="true" Disabled="true" ID="esName" runat="server" FieldLabel="<%$ Resources:esName%>" Name="esName" AllowBlank="true">
+                                 <ext:TextField ReadOnly="true"  ID="esName" runat="server" FieldLabel="<%$ Resources:esName%>" Name="esName" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                <ext:TextField ReadOnly="true" Disabled="true" ID="loanBalance" runat="server" FieldLabel="<%$ Resources:loanBalance%>" Name="loanBalance" AllowBlank="true">
+                                <ext:TextField ReadOnly="true"  ID="loanBalance" runat="server" FieldLabel="<%$ Resources:loanBalance%>" Name="loanBalance" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                 <ext:TextField ReadOnly="true" Disabled="true" ID="divisionName" runat="server" FieldLabel="<%$ Resources:FieldDivision%>" Name="divisionName" AllowBlank="true">
+                                 <ext:TextField ReadOnly="true"  ID="divisionName" runat="server" FieldLabel="<%$ Resources:FieldDivision%>" Name="divisionName" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                 <ext:TextField ReadOnly="true" Disabled="true" ID="reportToName" runat="server" FieldLabel="<%$ Resources:FieldReportsTo%>" Name="reportToName" AllowBlank="true">
+                                 <ext:TextField ReadOnly="true"  ID="reportToName" runat="server" FieldLabel="<%$ Resources:FieldReportsTo%>" Name="reportToName" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                  <ext:TextField ReadOnly="true" Disabled="true" ID="eosBalance" runat="server" FieldLabel="<%$ Resources:eosBalanceTitle%>" Name="eosBalance" AllowBlank="true">
+                                  <ext:TextField ReadOnly="true"  ID="eosBalance" runat="server" FieldLabel="<%$ Resources:eosBalanceTitle%>" Name="eosBalance" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                  <ext:DateField  ReadOnly="true" Disabled="true"  ID="lastLeaveStartDate" runat="server" FieldLabel="<%$ Resources:lastLeaveStartDateTitle%>" Name="lastLeaveStartDateTitle" AllowBlank="true">
+                                  <ext:DateField  ReadOnly="true"   ID="lastLeaveStartDate" runat="server" FieldLabel="<%$ Resources:lastLeaveStartDateTitle%>" Name="lastLeaveStartDateTitle" AllowBlank="true">
                                     
                                 </ext:DateField>
-                                <ext:DateField  ReadOnly="true" Disabled="true"  ID="lastLeaveEndDate" runat="server" FieldLabel="<%$ Resources:lastLeaveEndDateTitle%>" Name="lastLeaveEndDate" AllowBlank="true">
+                                <ext:DateField  ReadOnly="true"  ID="lastLeaveEndDate" runat="server" FieldLabel="<%$ Resources:lastLeaveEndDateTitle%>" Name="lastLeaveEndDate" AllowBlank="true">
                                     
                                 </ext:DateField>
-                                 <ext:TextField ReadOnly="true" Disabled="true" ID="paidLeavesYTD" runat="server" FieldLabel="<%$ Resources:paidLeavesYTDTitle%>" Name="paidLeavesYTD" AllowBlank="true">
+                                 <ext:TextField ReadOnly="true"  ID="paidLeavesYTD" runat="server" FieldLabel="<%$ Resources:paidLeavesYTDTitle%>" Name="paidLeavesYTD" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                  <ext:TextField ReadOnly="true" Disabled="true" ID="leavesBalance" runat="server" FieldLabel="<%$ Resources:leavesBalanceTitle%>" Name="leavesBalance" AllowBlank="true">
+                                  <ext:TextField ReadOnly="true"  ID="leavesBalance" runat="server" FieldLabel="<%$ Resources:leavesBalanceTitle%>" Name="leavesBalance" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                  <ext:TextField ReadOnly="true" Disabled="true" ID="allowedLeaveYtd" runat="server" FieldLabel="<%$ Resources:allowedLeaveYtdTitle%>" Name="allowedLeaveYtd" AllowBlank="true">
+                                  <ext:TextField ReadOnly="true"  ID="allowedLeaveYtd" runat="server" FieldLabel="<%$ Resources:allowedLeaveYtdTitle%>" Name="allowedLeaveYtd" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                <ext:TextField  ReadOnly="true" Disabled="true" ID="serviceDuration" runat="server" FieldLabel="<%$ Resources:serviceDuration%>" Name="serviceDuration" AllowBlank="true">
+                                <ext:TextField  ReadOnly="true"  ID="serviceDuration" runat="server" FieldLabel="<%$ Resources:serviceDuration%>" Name="serviceDuration" AllowBlank="true">
                                     
                                 </ext:TextField>
                                 </Items>
