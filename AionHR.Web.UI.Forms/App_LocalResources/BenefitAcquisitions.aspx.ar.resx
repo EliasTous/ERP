@@ -394,10 +394,10 @@
     <value>اكتساب الفائده</value>
   </data>
   <data name="Progressive" xml:space="preserve">
-    <value>Progressive</value>
+    <value>تدريجي</value>
   </data>
   <data name="Unbound" xml:space="preserve">
-    <value>Unbound</value>
+    <value>غير محدد </value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit benefit acquisition</value>

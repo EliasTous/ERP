@@ -414,4 +414,7 @@
   <data name="benefitSchedule" xml:space="preserve">
     <value>جدول المستحقات</value>
   </data>
+  <data name="basicSalaryPayCode" xml:space="preserve">
+    <value>الرمز المالي للراتب الاساسي</value>
+  </data>
 </root>

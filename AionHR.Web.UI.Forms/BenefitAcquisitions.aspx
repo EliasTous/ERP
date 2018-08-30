@@ -468,11 +468,14 @@
                                             </ExtraParams>
                                     </Select>
                                 </DirectEvents>
-                              
+                              <Listeners>
+                                  <Select Handler="if(this.value!=null){ #{dateFrom}.setDisabled(false); }"></Select>
+                              </Listeners>
                                                                      
                                 </ext:ComboBox>
+                                            
                                              <ext:DateField    ID="aqDate" runat="server" FieldLabel="<%$ Resources:aqDate%>" Name="aqDate" AllowBlank="false" />
-                                             <ext:DateField    ID="dateFrom" runat="server" FieldLabel="<%$ Resources:dateFrom%>" Name="dateFrom" AllowBlank="false" >
+                                             <ext:DateField    ID="dateFrom" runat="server" FieldLabel="<%$ Resources:dateFrom%>" Name="dateFrom" AllowBlank="false" Disabled="true" >
                                                  <Validator Handler="if(App.dateTo.value ==null) return true;   if(this.value> App.dateTo.value) return false; else return true;" />
                                                  <Listeners>
                                                      <Change Handler="calcDays();" />
@@ -500,7 +503,7 @@
                                                     <Change Handler ="if(this.value== #{oldDays}.value) {return false;} #{oldDays}.value = this.value; calcToDate();"></Change>
                                                      </Listeners>
                                                  </ext:NumberField>
-                                           <ext:TextField  ID="aqRatio" runat="server" FieldLabel="<%$ Resources:aqRatio%>" Name="aqRatio" AllowBlank="true" >
+                                           <ext:TextField  ID="aqRatio" runat="server" FieldLabel="<%$ Resources:aqRatio%>" Name="aqRatio" AllowBlank="true" ReadOnly="true">
                                                <Listeners>
                                                 <Change Handler="  #{aqAmount}.setValue(this.value * App.amount.value / 100); "/>
                                                    </Listeners>
@@ -592,9 +595,9 @@
                                  <ext:TextField ReadOnly="true"  ID="paidLeavesYTD" runat="server" FieldLabel="<%$ Resources:paidLeavesYTDTitle%>" Name="paidLeavesYTD" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                  <ext:TextField ReadOnly="true"  ID="leavesBalance" runat="server" FieldLabel="<%$ Resources:leavesBalanceTitle%>" Name="leavesBalance" AllowBlank="true">
+                                  <ext:NumberField ReadOnly="true"  ID="leavesBalanceNF" runat="server" FieldLabel="<%$ Resources:leavesBalanceTitle%>" Name="leavesBalance" AllowBlank="true"  AllowDecimals="true" DecimalPrecision="2" >
                                     
-                                </ext:TextField>
+                                </ext:NumberField>
                                   <ext:TextField ReadOnly="true"  ID="allowedLeaveYtd" runat="server" FieldLabel="<%$ Resources:allowedLeaveYtdTitle%>" Name="allowedLeaveYtd" AllowBlank="true">
                                     
                                 </ext:TextField>

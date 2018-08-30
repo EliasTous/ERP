@@ -123,6 +123,12 @@
   <data name="EmptyWorkEmail" xml:space="preserve">
     <value>الرجاء ادخال بريد الكتروني من اجل تفعيل الخدمة الذاتية</value>
   </data>
+  <data name="ErrorLogId" xml:space="preserve">
+    <value>رمز الخطأ : </value>
+  </data>
+  <data name="ErrorMsg" xml:space="preserve">
+    <value>رسالة الخطأ : </value>
+  </data>
   <data name="Error_102" xml:space="preserve">
     <value>SQL خطأ في تعبير</value>
   </data>

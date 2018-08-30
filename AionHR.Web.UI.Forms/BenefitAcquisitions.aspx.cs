@@ -115,7 +115,7 @@ namespace AionHR.Web.UI.Forms
                 //}
 
 
-                dateFrom.Format = dateTo.Format = aqDate.Format = ColAqDate.Format = ColdateFrom.Format = ColDateTo.Format = dateFormat.Text = _systemService.SessionHelper.GetDateformat();
+               ColdateFrom.Format= ColDateTo.Format= ColAqDate.Format= lastLeaveStartDate.Format=lastLeaveEndDate.Format = hireDateDf.Format= dateFrom.Format = dateTo.Format = aqDate.Format = ColAqDate.Format = ColdateFrom.Format = ColDateTo.Format = dateFormat.Text = _systemService.SessionHelper.GetDateformat();
                 //bsIdHidden.Text = "";
                 //FillBenefits();
                 EditMode.Text = "false";
@@ -296,9 +296,10 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-
+           
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+            dateFrom.Disabled = true;
             EditMode.Text = "false";
             panelRecordDetails.ActiveIndex = 0;
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
@@ -310,7 +311,8 @@ namespace AionHR.Web.UI.Forms
             //entitlementsGrid.Disabled = true;
             //finalSetlemntRecordId.Text = "";
             //dateId.Value = DateTime.Now;
-      //      this.setFillEmployeeInfoDisable(true);
+            //      this.setFillEmployeeInfoDisable(true);
+            aqDate.SelectedDate = DateTime.Now;
             this.EditRecordWindow.Show();
         }
 
@@ -779,7 +781,8 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", empRes.ErrorCode) != null ? GetGlobalResourceObject("Errors", empRes.ErrorCode).ToString() : empRes.Summary).Show();
                         return;
                     }
-                    if (empRes.result != null)
+                   
+                    if (empRes.result != null&& empRes.result.nationalityId!=null)
                     {
                         RecordRequest naReq = new RecordRequest();
                         naReq.RecordID = empRes.result.nationalityId.ToString();
@@ -857,7 +860,7 @@ namespace AionHR.Web.UI.Forms
             eosBalance.Text = routers.result.indemnity.ToString();
             lastLeaveStartDate.Value = routers.result.lastLeaveStartDate;
             lastLeaveEndDate.Value = routers.result.lastLeaveEndDate;
-            leavesBalance.Text = routers.result.leaveBalance.ToString();
+            leavesBalanceNF.Text = routers.result.leaveBalance.ToString();
             allowedLeaveYtd.Text = routers.result.earnedLeavesLeg.ToString();
             serviceDuration.Text = routers.result.serviceDuration;
             esName.Text = routers.result.esName;
@@ -1766,7 +1769,7 @@ namespace AionHR.Web.UI.Forms
             request.bsId = bsIdHidden.Text;
             //request.asOfDate = dateFrom;
             request.asOfDate = dateFrom;
-            if (string.IsNullOrEmpty(employeeId) || string.IsNullOrEmpty(benefitId) || string.IsNullOrEmpty(bsIdHidden.Text))
+            if (string.IsNullOrEmpty(employeeId) || string.IsNullOrEmpty(benefitId) || string.IsNullOrEmpty(bsIdHidden.Text) || string.IsNullOrEmpty(dateFrom))
                 return; 
             RecordResponse<BenefitAcquisitionAcquisitionRate> response = _helpFunctionService.ChildGetRecord<BenefitAcquisitionAcquisitionRate>(request);
             if (!response.Success)

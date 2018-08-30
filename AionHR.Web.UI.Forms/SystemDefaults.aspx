@@ -1004,6 +1004,22 @@
                                               
                                                   
                                                 </ext:ComboBox>
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="true" runat="server" AllowBlank="true" ValueField="payCode" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="basicSalaryPayCode" Name="basicSalaryPayCode" FieldLabel="<%$ Resources: basicSalaryPayCode%>" LabelWidth="150">
+                                                    <Store>
+                                                        <ext:Store runat="server" ID="basicSalaryPayCodeStore">
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="payCode" />
+                                                                        <ext:ModelField Name="name" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                                    </Store>
+                                              
+                                                  
+                                                </ext:ComboBox>
                                
                             </Items>
                             <Buttons>

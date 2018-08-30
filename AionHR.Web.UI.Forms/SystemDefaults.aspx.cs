@@ -154,6 +154,7 @@ namespace AionHR.Web.UI.Forms
             FillSsid();
             FillIndustry();
             FillBsid();
+            FillbasicSalaryPayCodeStore();
 
 
           absenceStore.DataSource= GetDeductions();
@@ -484,6 +485,13 @@ namespace AionHR.Web.UI.Forms
             }
 
             catch { }
+            try
+            {
+                basicSalaryPayCode.Select(items.Where(s => s.Key == "basicSalaryPayCode").First().Value.ToString());
+            }
+
+            catch { }
+
 
 
 
@@ -817,6 +825,11 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("bsId", values.bsId.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("bsId", ""));
+            if (!string.IsNullOrEmpty(values.basicSalaryPayCode.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("basicSalaryPayCode", values.basicSalaryPayCode.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("basicSalaryPayCode", ""));
+
 
             return submittedValues;
         }
@@ -1467,6 +1480,27 @@ namespace AionHR.Web.UI.Forms
 
 
         }
+        private void FillbasicSalaryPayCodeStore()
+        {
+
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<Model.Payroll.PayCode> routers = _payrollService.ChildGetAll<Model.Payroll.PayCode>(request);
+
+
+
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            this.basicSalaryPayCodeStore.DataSource = routers.Items;
+            this.basicSalaryPayCodeStore.DataBind();
+
+
+        }
+
 
 
 
