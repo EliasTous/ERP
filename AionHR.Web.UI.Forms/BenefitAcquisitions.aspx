@@ -22,24 +22,7 @@
             window.document.forms[0].target = '_blank';
 
         }
-        function calcDays() {
-            
-            if (App.dateFrom.getValue() == '' || App.dateTo.getValue() == '') {
-                return;
-            }
-           
-            App.days.setValue(parseInt(moment(App.dateTo.getValue()).diff(moment(App.dateFrom.getValue()), 'days')) );
-        }
-        function calcToDate() {
-           
-
-            var d;
-            //if (App.probationPeriod.value == 1)
-            //    d = moment(App.hireDate.getValue());
-            //else
-            d = moment(App.dateFrom.getValue()).add(parseInt(App.days.value), 'days');
-            App.dateTo.setValue(new Date(d.toDate()));
-        }
+     
     </script>
 
 
@@ -87,7 +70,7 @@
                         <ext:ModelField Name="employeeName" IsComplex="true" />
                         <ext:ModelField Name="benefitName" />  
                         <ext:ModelField Name="bsName" />  
-                        <ext:ModelField Name="days" />  
+                        <ext:ModelField Name="period" />  
                         <ext:ModelField Name="employeeId" />  
                         <ext:ModelField Name="bsId" />  
                         <ext:ModelField Name="benefitId" />  
@@ -105,6 +88,43 @@
                       
                       
                       
+                        
+                      
+
+                    </Fields>
+                </ext:Model>
+            </Model>
+             <Sorters>
+                <ext:DataSorter Property="recordId" Direction="ASC" />
+            </Sorters>
+
+        </ext:Store>
+
+
+
+          <ext:Store
+            ID="benefitsFilterStore"
+            runat="server"
+            RemoteSort="False"
+            RemoteFilter="true"
+            OnReadData="benefitsFilterStore_RefreshData"
+            PageSize="50" IDMode="Explicit" Namespace="App">
+            <Proxy>
+                <ext:PageProxy>
+                    <Listeners>
+                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                    </Listeners>
+                </ext:PageProxy>
+            </Proxy>
+            <Model>
+                <ext:Model ID="Model2" runat="server" IDProperty="recordId">
+                    <Fields>
+
+                        <ext:ModelField Name="recordId" />   
+                            <ext:ModelField Name="name" />                
+                            
+                                 
+                                          
                         
                       
 
@@ -154,7 +174,7 @@
                                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
                                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeFilter" Name="employeeId"
                                     DisplayField="fullName"
-                                     LabelWidth="70"
+                                     LabelWidth="60"
                                     ValueField="recordId" AllowBlank="true"
                                     TypeAhead="false"
                                     HideTrigger="true" SubmitValue="true"
@@ -181,6 +201,22 @@
                                     <Items>
                                     </Items>
                                    
+                                </ext:ComboBox>
+
+                                    <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                   
+                            <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="benefitFilter" 
+                                    DisplayField="name"
+                                    ValueField="recordId" AllowBlank="true"
+                                    TypeAhead="false"
+                                   SubmitValue="true"
+                                    MinChars="1" FieldLabel="<%$ Resources: benefitId%>"
+                                    ForceSelection="true" StoreID="benefitsFilterStore"  LabelWidth="70">
+                               
+                                <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
+                                                                     
                                 </ext:ComboBox>
                                
                                
@@ -475,40 +511,55 @@
                                 </ext:ComboBox>
                                             
                                              <ext:DateField    ID="aqDate" runat="server" FieldLabel="<%$ Resources:aqDate%>" Name="aqDate" AllowBlank="false" />
-                                             <ext:DateField    ID="dateFrom" runat="server" FieldLabel="<%$ Resources:dateFrom%>" Name="dateFrom" AllowBlank="false" Disabled="true" >
+                                             <ext:DateField    ID="dateFrom" runat="server" FieldLabel="<%$ Resources:dateFrom%>" Name="dateFrom" AllowBlank="false" Disabled="true"  >
                                                  <Validator Handler="if(App.dateTo.value ==null) return true;   if(this.value> App.dateTo.value) return false; else return true;" />
                                                  <Listeners>
-                                                     <Change Handler="calcDays();" />
+                                                     <Change Handler="if(this.value!=null) #{dateTo}.setDisabled(false);" />
                                                  </Listeners>
                                                  <DirectEvents>
-                                                     <Select OnEvent="getAqRatio" >
+                                                     <Select  OnEvent="getAqRatio" >
                                                          <ExtraParams> 
                                                              <ext:Parameter Name="dateFrom" Value="this.value" Mode="Raw" />
                                                                 <ext:Parameter Name="benefitId" Value="#{ComboBenefitId}.getValue()" Mode="Raw" />
                                                               <ext:Parameter Name="employeeId" Value="#{employeeId}.getValue()" Mode="Raw" />
+                                                               <ext:Parameter Name="dateTo" Value="#{dateTo}.value" Mode="Raw" />
                                                          </ExtraParams>
                                                          </Select>
                                                      
                                                  </DirectEvents>
                                                  </ext:DateField>
-                                             <ext:DateField    ID="dateTo" runat="server" FieldLabel="<%$ Resources:dateTo%>" Name="dateTo" AllowBlank="false" >
+                                             <ext:DateField    ID="dateTo" runat="server" FieldLabel="<%$ Resources:dateTo%>" Name="dateTo" AllowBlank="false"  Disabled="true">
                                                    <Validator Handler="if(App.dateFrom.value ==null) return true; if(this.value< App.dateFrom.value) return false; else return true;" />
-                                                                                      
-                                                 <Listeners>
+                                                          <DirectEvents>
+                                                              <Change OnEvent="returnPeriodDate" >
+                                                                  <ExtraParams> 
+                                                                       <ext:Parameter Name="dateTo" Value="this.value" Mode="Raw" />
+                                                                         <ext:Parameter Name="dateFrom" Value="#{dateFrom}.value" Mode="Raw" />
+                                                                  </ExtraParams>
+                                                                  </Change>
+                                                              
+                                                          </DirectEvents>                            
+                                              <%--   <Listeners>
                                                       <Change Handler="calcDays();" />
-                                                     </Listeners>
+                                                     </Listeners>--%>
                                                  </ext:DateField>
-                                             <ext:NumberField  ID="days" runat="server" FieldLabel="<%$ Resources:days%>" Name="days" AllowBlank="true" >
-                                                 <Listeners>
-                                                    <Change Handler ="if(this.value== #{oldDays}.value) {return false;} #{oldDays}.value = this.value; calcToDate();"></Change>
-                                                     </Listeners>
-                                                 </ext:NumberField>
+                                             <ext:TextField  ID="period" runat="server" FieldLabel="<%$ Resources:period%>" Name="days" AllowBlank="true" ReadOnly="true" />
+                                              
+                                              
                                            <ext:TextField  ID="aqRatio" runat="server" FieldLabel="<%$ Resources:aqRatio%>" Name="aqRatio" AllowBlank="true" ReadOnly="true">
                                                <Listeners>
                                                 <Change Handler="  #{aqAmount}.setValue(this.value * App.amount.value / 100); "/>
                                                    </Listeners>
                                           
                                                </ext:TextField>
+                                           
+                                              <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="deliveryType" runat="server" FieldLabel="<%$ Resources: deliveryType%>" Name="deliveryType" IDMode="Static" SubmitValue="true" AllowBlank="false" >
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: service%>" Value="1"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: cash%>" Value="2"></ext:ListItem>
+                                       
+                                    </Items>
+                                </ext:ComboBox>
 
                                              <ext:NumberField  ID="amount" runat="server" FieldLabel="<%$ Resources:amount%>" Name="amount" AllowBlank="false" MinValue="0" AllowDecimals="false"  >
                                                  <Listeners >

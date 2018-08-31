@@ -174,8 +174,8 @@
   <data name="Day" xml:space="preserve">
     <value>Day</value>
   </data>
-  <data name="days" xml:space="preserve">
-    <value>days</value>
+  <data name="period" xml:space="preserve">
+    <value>Period</value>
   </data>
   <data name="DeductionEditWindow" xml:space="preserve">
     <value>Edit Deduction</value>
@@ -446,5 +446,14 @@
   </data>
   <data name="isChecked" xml:space="preserve">
     <value>isChecked</value>
+  </data>
+  <data name="cash" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="deliveryType" xml:space="preserve">
+    <value>deliveryType</value>
+  </data>
+  <data name="service" xml:space="preserve">
+    <value>Service</value>
   </data>
 </root>

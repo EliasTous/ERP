@@ -33,7 +33,7 @@ namespace AionHR.Infrastructure.WebService
         {
             get
             {
-                return string.Format("Error:{0}, reference:{1}, Description:{2}, LogId:{3}", error, reference, description, logId);
+                return string.Format("{0}<br> Reference: {1}</br>", error, logId);
             }
         }
 

@@ -116,9 +116,10 @@ namespace AionHR.Web.UI.Forms
 
 
                ColdateFrom.Format= ColDateTo.Format= ColAqDate.Format= lastLeaveStartDate.Format=lastLeaveEndDate.Format = hireDateDf.Format= dateFrom.Format = dateTo.Format = aqDate.Format = ColAqDate.Format = ColdateFrom.Format = ColDateTo.Format = dateFormat.Text = _systemService.SessionHelper.GetDateformat();
-                //bsIdHidden.Text = "";
+                //bsIdHidden.Text = "0";
                 //FillBenefits();
                 EditMode.Text = "false";
+                benefitsFilterStore.Reload();
             }
 
 
@@ -188,7 +189,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
                     return;
                 }
                 else
@@ -299,7 +300,9 @@ namespace AionHR.Web.UI.Forms
            
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+           
             dateFrom.Disabled = true;
+            dateTo.Disabled = true;
             EditMode.Text = "false";
             panelRecordDetails.ActiveIndex = 0;
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
@@ -354,7 +357,7 @@ namespace AionHR.Web.UI.Forms
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
             return response.Items;
         }
 
@@ -366,21 +369,29 @@ namespace AionHR.Web.UI.Forms
             string filter = string.Empty;
 
 
-
+            
 
             //Fetching the corresponding list
 
             //in this test will take a list of News
             BenefitAcquisitionsListRequest req = new BenefitAcquisitionsListRequest();
+            req.StartAt = "0";
+            req.Size = "50";
+            
             if (string.IsNullOrEmpty(employeeFilter.SelectedItem.Value))
                 req.employeeId = 0;
             else
                 req.employeeId = Convert.ToInt32(employeeFilter.SelectedItem.Value);
 
+            if (string.IsNullOrEmpty(benefitFilter.SelectedItem.Value))
+                req.benefitId = 0;
+            else
+                req.benefitId = Convert.ToInt32(benefitFilter.SelectedItem.Value);
+
             ListResponse<BenefitAcquisition> routers = _benefitsService.ChildGetAll<BenefitAcquisition>(req);
             if (!routers.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
                 return;
             }
             this.Store1.DataSource = routers.Items;
@@ -393,9 +404,7 @@ namespace AionHR.Web.UI.Forms
 
         private void FillBenefits()
         {
-
-
-
+                    
 
 
             ScheduleBenefitsListRequest request = new ScheduleBenefitsListRequest();
@@ -407,15 +416,15 @@ namespace AionHR.Web.UI.Forms
 
             if (!response.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
                 return;
             }
-            response.Items.RemoveAll(x => x.isChecked == false); 
-        
-            Store3.DataSource = response.Items;
-            Store3.DataBind();
-
-
+            response.Items.RemoveAll(x => x.isChecked == false);
+                      
+                Store3.DataSource = response.Items;
+                Store3.DataBind();
+            
+         
         }
 
 
@@ -459,7 +468,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
                         return;
                     }
                     else
@@ -514,7 +523,7 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
                         return;
                     }
                     else
@@ -563,6 +572,9 @@ namespace AionHR.Web.UI.Forms
         {
             panelRecordDetails.ActiveIndex = 0;
             EditMode.Text = "true";
+            dateFrom.Disabled = false;
+            dateTo.Disabled = false;
+
             //deductionGrid.Disabled = false;
             //entitlementsGrid.Disabled = false;
        //     this.setFillEmployeeInfoDisable(true);
@@ -586,12 +598,14 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
                         return;
                     }
                     else
                     {
+
                         //Step 2 : call setvalues with the retrieved object
+                        r.result.period = returnPeriodDateFriendly(r.result.period);
                         employeeId.GetStore().Add(new object[]
                          {
                                 new
@@ -607,6 +621,7 @@ namespace AionHR.Web.UI.Forms
                         bsIdHidden.Text = r.result.bsId.ToString();
                         FillBenefits();
                         ComboBenefitId.SetValue(r.result.benefitId);
+                        deliveryType.SetValue(r.result.deliveryType.ToString()); 
                         this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                         this.EditRecordWindow.Show();
                         break;
@@ -705,7 +720,7 @@ namespace AionHR.Web.UI.Forms
         //    if (!resp.Success)
         //    {
         //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.LogId : resp.Summary).Show();
         //        return null;
         //    }
         //    OvertimeSettingsReport p = new OvertimeSettingsReport();
@@ -737,7 +752,7 @@ namespace AionHR.Web.UI.Forms
             if (!routers.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
                 return;
             }
             //RecordRequest req = new RecordRequest();
@@ -745,7 +760,7 @@ namespace AionHR.Web.UI.Forms
             //RecordResponse<Employee> routers = _employeeService.Get<Employee>(req);
             //if (!routers.Success)
             //{
-            //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+            //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId: routers.Summary).Show();
             //    return;
             //}
        //     this.setFillEmployeeInfoDisable(false);
@@ -1082,7 +1097,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.LogId : r.Summary).Show();
                     return;
                 }
                 else
@@ -1128,7 +1143,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.LogId : r.Summary).Show();
                     return;
                 }
                 else
@@ -1199,7 +1214,7 @@ namespace AionHR.Web.UI.Forms
         //            if (!r.Success)
         //            {
         //                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.LogId : r.Summary).Show();
         //                return;
 
         //            }
@@ -1246,7 +1261,7 @@ namespace AionHR.Web.UI.Forms
         //            if (!r.Success)
         //            {
         //                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.LogId : r.Summary).Show();
         //                return;
 
         //            }
@@ -1297,7 +1312,7 @@ namespace AionHR.Web.UI.Forms
         //            if (!r.Success)
         //            {
         //                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.LogId : r.Summary).Show();
         //                return;
 
         //            }
@@ -1344,7 +1359,7 @@ namespace AionHR.Web.UI.Forms
         //            if (!r.Success)
         //            {
         //                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.LogId : r.Summary).Show();
         //                return;
 
         //            }
@@ -1415,7 +1430,7 @@ namespace AionHR.Web.UI.Forms
         //    else
         //    {
         //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.LogId : response.Summary).Show();
         //        return;
         //    }
 
@@ -1441,7 +1456,7 @@ namespace AionHR.Web.UI.Forms
         //    else
         //    {
         //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.LogId : response.Summary).Show();
         //        return;
         //    }
 
@@ -1464,7 +1479,7 @@ namespace AionHR.Web.UI.Forms
         //    ListResponse<FinalEntitlementsDeductions> routers = _payrollService.ChildGetAll<FinalEntitlementsDeductions>(req);
         //    if (!routers.Success)
         //    {
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId: routers.Summary).Show();
         //        return;
         //    }
 
@@ -1498,7 +1513,7 @@ namespace AionHR.Web.UI.Forms
         //    ListResponse<FinalEntitlementsDeductions> routers = _payrollService.ChildGetAll<FinalEntitlementsDeductions>(req);
         //    if (!routers.Success)
         //    {
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId: routers.Summary).Show();
         //        return;
         //    }
         //    if (routers.Items.Count != 0)
@@ -1640,7 +1655,7 @@ namespace AionHR.Web.UI.Forms
             if (!FinalSettlementResponse.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", FinalSettlementResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", FinalSettlementResponse.ErrorCode).ToString() + "<br>Technical Error: " + FinalSettlementResponse.ErrorCode + "<br> Summary: " + FinalSettlementResponse.Summary : FinalSettlementResponse.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", FinalSettlementResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", FinalSettlementResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId").ToString() + FinalSettlementResponse.LogId : FinalSettlementResponse.Summary).Show();
                 return null;
             }
             FinalSettlementResponse.result.dateStringFormat = FinalSettlementResponse.result.date.ToString(_systemService.SessionHelper.GetDateformat());
@@ -1689,7 +1704,7 @@ namespace AionHR.Web.UI.Forms
             if (!routers.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>Technical Error: " + routers.ErrorCode + "<br> Summary: " + routers.Summary : routers.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString()+ "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
                 return null;
             }
             p.Parameters["leaveBalance"].Value = routers.result.leaveBalance;
@@ -1742,7 +1757,7 @@ namespace AionHR.Web.UI.Forms
             if (!response.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.LogId : response.Summary).Show();
                 return;
             }
             aqType.Select(response.result.aqType.ToString());
@@ -1754,10 +1769,10 @@ namespace AionHR.Web.UI.Forms
         {
             string dateFrom = e.ExtraParams["dateFrom"];
 
-            //new 
-            DateTime DF = new DateTime();
-            DF = DateTime.Parse(dateFrom);
-            dateFrom = DF.ToString("yyyyMMdd");
+            //new
+            //DateTime DF = new DateTime();
+            //DF = DateTime.Parse(dateFrom);
+            //dateFrom = DF.ToString("yyyyMMdd");
 
 
 
@@ -1771,11 +1786,11 @@ namespace AionHR.Web.UI.Forms
             request.asOfDate = dateFrom;
             if (string.IsNullOrEmpty(employeeId) || string.IsNullOrEmpty(benefitId) || string.IsNullOrEmpty(bsIdHidden.Text) || string.IsNullOrEmpty(dateFrom))
                 return; 
-            RecordResponse<BenefitAcquisitionAcquisitionRate> response = _helpFunctionService.ChildGetRecord<BenefitAcquisitionAcquisitionRate>(request);
+            RecordResponse< BenefitAcquisitionAcquisitionRate>  response = _helpFunctionService.ChildGetRecord<BenefitAcquisitionAcquisitionRate>(request);
             if (!response.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.LogId : response.Summary).Show();
                 return;
             }
             if (response.result != null)
@@ -1784,6 +1799,77 @@ namespace AionHR.Web.UI.Forms
                 aqRatio.Text = "";
 
 
+            returnPeriodDate(sender, e);
+
+        }
+
+        protected void returnPeriodDate(object sender, DirectEventArgs e)
+        {
+            string dateFrom = e.ExtraParams["dateFrom"];
+            string dateTo = e.ExtraParams["dateTo"];
+            if (string.IsNullOrEmpty(dateFrom) || string.IsNullOrEmpty(dateTo))
+                return; 
+            
+
+            
+          
+
+
+
+         
+            PeriodOfTheDateRangeRequest request = new PeriodOfTheDateRangeRequest();
+            request.startDate = dateFrom;
+            request.endDate = dateTo;
+                      
+            RecordResponse<PeriodOfTheDate> response = _helpFunctionService.ChildGetRecord<PeriodOfTheDate>(request);
+            if (!response.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors","ErrorLogId")  + response.LogId : response.Summary).Show();
+                return;
+            }
+            if (response.result != null)
+            {
+            
+                period.Text = returnPeriodDateFriendly( response.result.periodText.ToString());
+            }
+
+
+        }
+
+        private string returnPeriodDateFriendly(string days)
+        {
+            
+         
+             days = days.Replace("y", GetGlobalResourceObject("Common","year").ToString());
+            days = days.Replace("m", GetGlobalResourceObject("Common", "Month").ToString());
+            days = days.Replace("d", GetGlobalResourceObject("Common", "day").ToString());
+            return days;
+
+        }
+
+        protected void benefitsFilterStore_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<Benefit> routers = _benefitsService.ChildGetAll<Benefit>(request);
+            if (!routers.Success)
+                return;
+            this.benefitsFilterStore.DataSource = routers.Items;
+            e.Total = routers.Items.Count; 
+
+            this.benefitsFilterStore.DataBind();
         }
     }
 }

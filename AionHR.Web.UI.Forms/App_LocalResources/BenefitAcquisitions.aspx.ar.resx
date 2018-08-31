@@ -168,8 +168,8 @@
   <data name="Day" xml:space="preserve">
     <value>اليوم</value>
   </data>
-  <data name="days" xml:space="preserve">
-    <value>الأيام</value>
+  <data name="period" xml:space="preserve">
+    <value>الفترة</value>
   </data>
   <data name="DeductionEditWindow" xml:space="preserve">
     <value>تعديل الخصومات </value>
@@ -404,5 +404,14 @@
   </data>
   <data name="isChecked" xml:space="preserve">
     <value>تفعيل </value>
+  </data>
+  <data name="cash" xml:space="preserve">
+    <value>نقدي </value>
+  </data>
+  <data name="deliveryType" xml:space="preserve">
+    <value>طريقة التسليم</value>
+  </data>
+  <data name="service" xml:space="preserve">
+    <value>خدمة </value>
   </data>
 </root>

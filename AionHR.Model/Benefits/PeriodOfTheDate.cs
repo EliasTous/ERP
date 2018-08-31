@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.HelpFunction
+namespace AionHR.Model.Benefits
 {
-   public class BenefitAcquisitionAcquisitionRate
+  public  class PeriodOfTheDate 
     {
-        public double aqRatio { get; set; }   
+        public string periodText { get; set; }
     }
 }

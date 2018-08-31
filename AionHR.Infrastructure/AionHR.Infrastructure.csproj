@@ -90,6 +90,7 @@
     <Compile Include="WebService\ListWebServiceResponse.cs" />
     <Compile Include="WebService\PostWebRequestResponse.cs" />
     <Compile Include="WebService\RecordWebServiceResponse.cs" />
+    <Compile Include="WebService\ValueWebServiceResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

@@ -9,6 +9,7 @@ namespace AionHR.Services.Messaging.Benefits
    public class BenefitAcquisitionsListRequest :ListRequest
     {
         public int employeeId { get; set; }
+        public int benefitId { get; set; }
 
 
 
@@ -19,6 +20,7 @@ namespace AionHR.Services.Messaging.Benefits
             {
                 parameters = base.Parameters;
                 parameters.Add("_employeeId", employeeId.ToString());
+                parameters.Add("_benefitId", benefitId.ToString());
 
 
                 return parameters;

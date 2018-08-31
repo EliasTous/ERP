@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure.Configuration;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model.Benefits;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.Dashboard;
 using AionHR.Model.HelpFunction;
@@ -28,13 +29,14 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(FlatScheduleEmployeeCell), "TA05");
             ChildGetAllLookup.Add(typeof(FlatScheduleWorkingHours), "TA06");
             ChildGetAllLookup.Add(typeof(BenefitAcquisitionAcquisitionRate), "BE01");
-            
 
+            
 
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");
             ChildGetLookup.Add(typeof(BranchSchedule), "CS01");
             ChildGetLookup.Add(typeof(BenefitAcquisitionAcquisitionRate), "BE01");
+            ChildGetLookup.Add(typeof(PeriodOfTheDate), "SY01");
 
 
 
@@ -43,8 +45,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(FlatBulkSchedule), "TA04");
             ChildAddOrUpdateLookup.Add(typeof(SynchronizeAttendanceDay), "TA07");
             ChildAddOrUpdateLookup.Add(typeof(GenerateAttendanceShift), "TA08");
-           
 
+          
 
 
 
@@ -53,6 +55,6 @@ namespace AionHR.Repository.WebService.Repositories
 
 
             ChildDeleteLookup.Add(typeof(MyInfo), "delEM");
-        }
+        }       
     }
 }

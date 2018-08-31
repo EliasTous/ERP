@@ -13,7 +13,7 @@ namespace AionHR.Model.Benefits
 
         public string benefitName { get; set; }
         public string bsName { get; set; }
-        public int? days { get; set; }
+        public string period { get; set; }
 
         public int employeeId { get; set; }
 
@@ -33,8 +33,8 @@ namespace AionHR.Model.Benefits
 
         public int? amountDue { get; set; }
 
-        public string notes { get; set; } 
-
-
+        public string notes { get; set; }
+        public short deliveryType { get; set; }
+      
     }
 }
