@@ -1194,4 +1194,7 @@
   <data name="Approvals" xml:space="preserve">
     <value>التعميد</value>
   </data>
+  <data name="importPayCodes" xml:space="preserve">
+    <value>استيراد الرموز المالية </value>
+  </data>
 </root>

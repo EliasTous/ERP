@@ -168,7 +168,7 @@ namespace AionHR.Web.UI.Forms
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.LogId : response.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
@@ -425,7 +425,7 @@ namespace AionHR.Web.UI.Forms
             List<Employee> emps = new List<Employee>();
             RecordResponse<Employee> emp = _employeeService.Get<Employee>(req);
             if (!emp.Success)
-                X.Msg.Alert(Resources.Common.Error,GetGlobalResourceObject("Errors", emp.ErrorCode) != null ? GetGlobalResourceObject("Errors", emp.ErrorCode).ToString() : emp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error,GetGlobalResourceObject("Errors", emp.ErrorCode) != null ? GetGlobalResourceObject("Errors", emp.ErrorCode).ToString()+ "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +emp.LogId : emp.Summary).Show();
             emps.Add(emp.result);
             return emps;
         }
@@ -446,7 +446,7 @@ namespace AionHR.Web.UI.Forms
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.LogId : response.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
             return response.Items;
         }
 
@@ -559,7 +559,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<UserInfo> branches = _systemService.ChildGetAll<UserInfo>(req);
             if (!branches.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() : branches.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +branches.LogId: branches.Summary).Show();
                 return;
             }
             branches.Items.ForEach(x =>
@@ -638,7 +638,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.LogId : response.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
                         return;
                     }
                     else
@@ -762,7 +762,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<SecurityGroup> groups = _accessControlService.ChildGetAll<SecurityGroup>(groupsReq);
             if (!groups.Success)
             {
-                X.Msg.Alert(Resources.Common.Error,GetGlobalResourceObject("Errors", groups.ErrorCode) != null ? GetGlobalResourceObject("Errors", groups.ErrorCode).ToString() : groups.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error,GetGlobalResourceObject("Errors", groups.ErrorCode) != null ? GetGlobalResourceObject("Errors", groups.ErrorCode).ToString()+ "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +groups.LogId : groups.Summary).Show();
                 return;
             }
 
@@ -800,7 +800,7 @@ namespace AionHR.Web.UI.Forms
             PostResponse<SecurityGroupUser> resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(user);
             if(!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.LogId : resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                 return;
             }
 
@@ -863,7 +863,7 @@ namespace AionHR.Web.UI.Forms
             resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.LogId : resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                 return;
             }
             foreach (var item in selectedUsers)
@@ -873,7 +873,7 @@ namespace AionHR.Web.UI.Forms
                 resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(req);
                 if (!resp.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.LogId : resp.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                     return;
                 }
 
@@ -898,7 +898,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<SecurityGroup> userGroups = _accessControlService.ChildGetAll<SecurityGroup>(request);
             if (!userGroups.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", userGroups.ErrorCode) != null ? GetGlobalResourceObject("Errors", userGroups.ErrorCode).ToString() : userGroups.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", userGroups.ErrorCode) != null ? GetGlobalResourceObject("Errors", userGroups.ErrorCode).ToString()+ "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +userGroups.LogId : userGroups.Summary).Show();
                 return;
             }
             List<SecurityGroupUser> list = new List<SecurityGroupUser>();

@@ -805,16 +805,16 @@
     <value>Go</value>
   </data>
   <data name="Day" xml:space="preserve">
-    <value>Day</value>
+    <value> Day</value>
   </data>
   <data name="Month" xml:space="preserve">
-    <value>Month</value>
+    <value> Month</value>
   </data>
   <data name="Week" xml:space="preserve">
     <value>Week</value>
   </data>
   <data name="Year" xml:space="preserve">
-    <value>Year</value>
+    <value> Year</value>
   </data>
   <data name="Gregorian" xml:space="preserve">
     <value>Gregorian</value>
@@ -1190,5 +1190,8 @@
   </data>
   <data name="Approvals" xml:space="preserve">
     <value>Approvals</value>
+  </data>
+  <data name="importPayCodes" xml:space="preserve">
+    <value>Import Pay Codes</value>
   </data>
 </root>

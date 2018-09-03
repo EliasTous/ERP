@@ -141,6 +141,7 @@
     <Compile Include="Payroll\FiscalYear.cs" />
     <Compile Include="Payroll\GeneratePayroll.cs" />
     <Compile Include="Payroll\GenerationHeader.cs" />
+    <Compile Include="Payroll\ImportPayCode.cs" />
     <Compile Include="Payroll\IPayrollRepository.cs" />
     <Compile Include="Payroll\LeavePayment.cs" />
     <Compile Include="Payroll\PayCode.cs" />

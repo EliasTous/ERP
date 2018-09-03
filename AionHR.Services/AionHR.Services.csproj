@@ -82,6 +82,8 @@
     <Compile Include="Implementations\NationalQuotaService.cs" />
     <Compile Include="Implementations\OvertimeBatchRunner.cs" />
     <Compile Include="Implementations\OvertimeImportingService.cs" />
+    <Compile Include="Implementations\PayCodeBatchRunner.cs" />
+    <Compile Include="Implementations\PayCodeImportingService.cs" />
     <Compile Include="Implementations\PayrollService.cs" />
     <Compile Include="Implementations\PunchesBatchRunner.cs" />
     <Compile Include="Implementations\PunchesImportingService.cs" />
@@ -190,8 +192,6 @@
     <Compile Include="Messaging\TaskManagement\TaskManagmentRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\DashboardTimeListRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeAttendanceRequests.cs" />
-    <Compile Include="Messaging\ValueRequest.cs" />
-    <Compile Include="Messaging\ValueResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

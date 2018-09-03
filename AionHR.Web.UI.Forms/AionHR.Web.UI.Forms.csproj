@@ -280,6 +280,7 @@
     <Content Include="ImportLeaves.aspx" />
     <Content Include="ImportLoans.aspx" />
     <Content Include="ImportOvertimeSettings.aspx" />
+    <Content Include="ImportPayCodes.aspx" />
     <Content Include="ImportPunches.aspx" />
     <Content Include="ImportRTW.aspx" />
     <Content Include="ImportSalaries.aspx" />
@@ -532,6 +533,11 @@
     <Content Include="SystemAttachmentsUploader.ashx" />
     <Content Include="EmployeePhotoUploaderHandler.ashx" />
     <Content Include="app.config" />
+    <EmbeddedResource Include="App_GlobalResources\ComboBoxValues.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ComboBoxValues.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <Content Include="Scripts\jquery-min-1.4.2.js" />
     <None Include="Web.Debug.config">
@@ -582,6 +588,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AccessControl.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\ComboBoxValues.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComboBoxValues.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Errors.ar.designer.cs">
       <AutoGen>True</AutoGen>
@@ -730,6 +741,13 @@
     </Compile>
     <Compile Include="ImportOvertimeSettings.aspx.designer.cs">
       <DependentUpon>ImportOvertimeSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportPayCodes.aspx.cs">
+      <DependentUpon>ImportPayCodes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportPayCodes.aspx.designer.cs">
+      <DependentUpon>ImportPayCodes.aspx</DependentUpon>
     </Compile>
     <Compile Include="ImportPunches.aspx.cs">
       <DependentUpon>ImportPunches.aspx</DependentUpon>
@@ -2362,6 +2380,8 @@
     <Content Include="Reports\App_LocalResources\RT502.aspx.ar.resx" />
     <Content Include="App_LocalResources\Approvals.aspx.resx" />
     <Content Include="App_LocalResources\Approvals.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportPayCodes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportPayCodes.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

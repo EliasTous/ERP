@@ -79,6 +79,8 @@
     <ext:Hidden runat="server" ID="gfTitle" Text="<%$Resources:Common , Geofences %>" />
     <ext:Hidden runat="server" ID="vsTitle" Text="<%$Resources:Common , VacationSchedules %>" />
     <ext:Hidden runat="server" ID="pyye" Text="<%$Resources:Common , FiscalYears %>" />
+    <ext:Hidden runat="server" ID="pypc" Text="<%$Resources:Common , importPayCodes %>" />
+       
     <ext:Hidden runat="server" ID="pyfs" Text="<%$Resources:Common , FinalSettlements %>" />
     <ext:Hidden runat="server" ID="ltTitle" Text="<%$Resources:Common , LeaveTypes %>" />
     <ext:Hidden runat="server" ID="loTitle" Text="<%$Resources:Common , LoanOverrides %>" />
@@ -593,6 +595,15 @@
                                                                 <Click Handler="openNewTab('fiscalYears', 'FiscalYears.aspx', #{pyye}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
+
+                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common , importPayCodes%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('ImportPayCodes', 'ImportPayCodes.aspx', #{pypc}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+
+
+                                                        
                                                        
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanSync%>">
                                                             <DirectEvents>

@@ -583,7 +583,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day.
+        ///   Looks up a localized string similar to  Day.
         /// </summary>
         internal static string Day {
             get {
@@ -1447,6 +1447,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Pay Codes.
+        /// </summary>
+        internal static string importPayCodes {
+            get {
+                return ResourceManager.GetString("importPayCodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Punches.
         /// </summary>
         internal static string ImportPunches {
@@ -2005,7 +2014,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Month.
+        ///   Looks up a localized string similar to  Month.
         /// </summary>
         internal static string Month {
             get {
@@ -3247,7 +3256,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Year.
+        ///   Looks up a localized string similar to  Year.
         /// </summary>
         internal static string Year {
             get {

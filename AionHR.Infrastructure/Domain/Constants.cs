@@ -179,6 +179,10 @@ namespace AionHR.Infrastructure.Domain
         public const int PYHE = 51020; // payroll header
         public const int PYEM = 51021; // payroll employee
         public const int PYED = 51022; // payroll employee entitlements and deductions
+        public const int PYPC = 51016; // PayCode
+
+
+        
 
         // reports ***************************************************************************
 
