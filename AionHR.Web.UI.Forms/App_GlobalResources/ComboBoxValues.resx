@@ -117,76 +117,241 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="aqTypeProgressive" xml:space="preserve">
+  <data name="BEBAAqtypeProgressive" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="aqTypeUnbound" xml:space="preserve">
+  <data name="BEBAAqtypeUnbound" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="deliveryTypeCash" xml:space="preserve">
+  <data name="BEBADeliveryTypeCash" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="deliveryTypeService" xml:space="preserve">
+  <data name="BEBADeliveryTypeService" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="rehireNo" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="rehireNotYetKnown" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="rehireYes" xml:space="preserve">
+  <data name="BEBSAqtypeProgressive" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="religionBudha" xml:space="preserve">
+  <data name="BEBSAqtypeUnbound" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="CMCAStatusClosed" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="religionChristian" xml:space="preserve">
+  <data name="CMCAStatusOpen" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CMCAStatusPending" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="CMCAStatusPrefAll" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="religionHindu" xml:space="preserve">
+  <data name="CMCAStatusPrefClosed" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="CMCAStatusPrefOpen" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="CMCAStatusPrefPending" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CSDETypeAdministration" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CSDETypeSection" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="ECCOStatusClosed" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="ECCOStatusPefPending" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ECCOStatusPending" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ECCOStatusPrefAll" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ECCOStatusPrefClosed" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="EPDEDependencyTypeChild" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="EPDEDependencyTypeDomesticPartner" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="EPDEDependencyTypeFosterChild" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="religionJew" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="religionMuslim" xml:space="preserve">
+  <data name="EPDEDependencyTypeSpouse" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="religionOther" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="religionSeikh" xml:space="preserve">
+  <data name="EPDEDependencyTypeStepChild" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="statusClosed" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="statusOpen" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="statusPending" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="statusPrefAll" xml:space="preserve">
+  <data name="EPEMRehireNo" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="statusPrefClosed" xml:space="preserve">
+  <data name="EPEMRehireNotYetKnown" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="EPEMRehireYes" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="EPEMReligionBudha" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="statusPrefOpen" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="statusPrefPending" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ttIdCompany" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ttIdOther" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ttIdWorker" xml:space="preserve">
+  <data name="EPEMReligionChristian" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="EPEMReligionHindu" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="EPEMReligionJew" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="EPEMReligionMuslim" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="EPEMReligionOther" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="EPEMReligionSeikh" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="EPEMttIdCompany" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="EPEMttIdOther" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="EPEMttIdWorker" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LMLRStatusApproved" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="LMLRStatusPending" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="LMLRStatusRefused" xml:space="preserve">
+    <value>-1</value>
+  </data>
+  <data name="LMLRStatusUsed" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="PYEMPaymentFrequencyBiWeekly" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="PYEMPaymentFrequencyDaily" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="PYEMPaymentFrequencyFourWeekly" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="PYEMPaymentFrequencyMonthly" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="PYEMPaymentFrequencyWeekly" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="PYEMPaymentMethodBank" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="PYEMPaymentMethodCash" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="PYEMpctOf1" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="PYEMpctOf2" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="PYEMsalaryTypeBiWeekly" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="PYEMsalaryTypeDaily" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="PYEMsalaryTypeFourWeekly" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="PYEMsalaryTypeMonthly" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="PYEMsalaryTypeWeekly" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="RT110DimensionBranch" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="RT110DimensionDepartment" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="RT110DimensionDivision" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="RT110DimensionEHStatus" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="RT110DimensionPosition" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="SSCOStatusClosed" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="SSCOStatusPending" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SSEMReligionBudha" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="SSEMReligionChristian" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="SSEMReligionHindu" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="SSEMReligionJew" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="SSEMReligionMuslim" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SSEMReligionOther" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="SSEMReligionSeikh" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="SYLMLRStatusApproved" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="SYLMLRStatusNew" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SYLMLRStatusRefused" xml:space="preserve">
+    <value>-1</value>
+  </data>
+  <data name="SYLTLRApprovalLoanStatusApproved" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="SYLTLRApprovalLoanStatusInProcess" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="SYLTLRApprovalLoanStatusNew" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SYLTLRApprovalLoanStatusRejected" xml:space="preserve">
+    <value>-1</value>
+  </data>
+  <data name="SYTATATimeStatusApproved" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="SYTATATimeStatusRefused" xml:space="preserve">
+    <value>-1</value>
   </data>
 </root>

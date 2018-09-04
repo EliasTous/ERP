@@ -334,9 +334,9 @@
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="true">
                                     <Items>
                                         
-                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="<%$ Resources:ComboBoxValues, SSCOStatusPending %>" />
                                       
-                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="<%$ Resources:ComboBoxValues, SSCOStatusClosed %>" />
                                     </Items>
                                     
                                 </ext:ComboBox>

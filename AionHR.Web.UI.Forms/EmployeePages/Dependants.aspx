@@ -247,11 +247,11 @@
                                             FieldLabel="<%$ Resources: FieldDependency %>">
                                             <Items>
 
-                                                <ext:ListItem Text="<%$ Resources: Spouse %>" Value="1" />
-                                                <ext:ListItem Text="<%$ Resources: Child %>" Value="2" />
-                                                <ext:ListItem Text="<%$ Resources: DomesticPartner %>" Value="3" />
-                                                <ext:ListItem Text="<%$ Resources: StepChild %>" Value="4" />
-                                                <ext:ListItem Text="<%$ Resources: FosterChild %>" Value="5" />
+                                                <ext:ListItem Text="<%$ Resources: Spouse %>" Value="<%$ Resources:ComboBoxValues, EPDEDependencyTypeSpouse %>" />
+                                                <ext:ListItem Text="<%$ Resources: Child %>" Value="<%$ Resources:ComboBoxValues, EPDEDependencyTypeChild %>" />
+                                                <ext:ListItem Text="<%$ Resources: DomesticPartner %>" Value="<%$ Resources:ComboBoxValues, EPDEDependencyTypeDomesticPartner %>" />
+                                                <ext:ListItem Text="<%$ Resources: StepChild %>" Value="<%$ Resources:ComboBoxValues, EPDEDependencyTypeStepChild %>" />
+                                                <ext:ListItem Text="<%$ Resources: FosterChild %>" Value="<%$ Resources:ComboBoxValues, EPDEDependencyTypeFosterChild %>" />
                                             </Items>
 
                                         </ext:ComboBox>

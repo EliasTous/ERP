@@ -555,8 +555,8 @@
                                            
                                               <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="deliveryType" runat="server" FieldLabel="<%$ Resources: deliveryType%>" Name="deliveryType" IDMode="Static" SubmitValue="true" AllowBlank="false" >
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: service%>" Value="1"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: cash%>" Value="2"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: service%>" Value="<%$ Resources:ComboBoxValues, BEBADeliveryTypeService %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: cash%>" Value="<%$ Resources:ComboBoxValues, BEBADeliveryTypeCash %>"></ext:ListItem>
                                        
                                     </Items>
                                 </ext:ComboBox>
@@ -574,8 +574,8 @@
        
                                               <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="aqType" runat="server" FieldLabel="<%$ Resources: aqType%>" Name="aqType" IDMode="Static" SubmitValue="true" ReadOnly="true">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: Progressive%>" Value="1"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: Unbound%>" Value="2"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: Progressive%>" Value="<%$ Resources:ComboBoxValues, BEBAAqtypeProgressive %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: Unbound%>" Value="<%$ Resources:ComboBoxValues, BEBAAqtypeUnbound %>"></ext:ListItem>
                                        
                                     </Items>
                                 </ext:ComboBox>

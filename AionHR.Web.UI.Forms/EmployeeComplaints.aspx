@@ -128,10 +128,10 @@
                                 
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="statusPref" Editable="false" EmptyText="<%$ Resources: FilterStatus %>"  >
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: All %>" Value="0"  />
-                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: All %>" Value="<%$ Resources:ComboBoxValues,  ECCOStatusPrefAll %>"  />
+                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="<%$ Resources:ComboBoxValues,  ECCOStatusPrefPending %>" />
                                        
-                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="<%$ Resources:ComboBoxValues,  ECCOStatusPrefClosed %>" />
                                     </Items>
                           
                                 </ext:ComboBox>
@@ -337,9 +337,9 @@
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false">
                                     <Items>
                                         
-                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="<%$ Resources:ComboBoxValues,  ECCOStatusPending %>" />
                           
-                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="<%$ Resources:ComboBoxValues,  ECCOStatusClosed %>" />
                                     </Items>
                                     
                                 </ext:ComboBox>

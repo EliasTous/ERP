@@ -554,27 +554,27 @@
 
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false" ID="salaryType" LabelWidth="130" Width="275" runat="server" FieldLabel="<%$ Resources:FieldSalaryType%>" Name="salaryType" IDMode="Static" SubmitValue="true">
                                             <Items>
-                                               <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="1"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryBiWeekly%>" Value="3"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryFourWeekly%>" Value="4"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="5"></ext:ListItem>
+                                               <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeDaily %>"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeWeekly %>"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryBiWeekly%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeBiWeekly %>"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryFourWeekly%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeFourWeekly %>"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeMonthly %>"></ext:ListItem>
                                             </Items>
                                         </ext:ComboBox>
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false" ID="paymentFrequency" LabelWidth="130" Width="275" runat="server" FieldLabel="<%$ Resources:FieldPaymentFrequency%>" Name="paymentFrequency" IDMode="Static" SubmitValue="true">
                                             <Items>
-                                                   <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="1"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryBiWeekly%>" Value="3"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryFourWeekly%>" Value="4"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="5"></ext:ListItem>
+                                                   <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="<%$ Resources:ComboBoxValues , PYEMPaymentFrequencyDaily %>"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="<%$ Resources:ComboBoxValues , PYEMPaymentFrequencyWeekly %>"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryBiWeekly%>" Value="<%$ Resources:ComboBoxValues , PYEMPaymentFrequencyBiWeekly %>"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryFourWeekly%>" Value="<%$ Resources:ComboBoxValues , PYEMPaymentFrequencyFourWeekly %>"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="<%$ Resources:ComboBoxValues , PYEMPaymentFrequencyMonthly %>"></ext:ListItem>
                                             </Items>
                                         </ext:ComboBox>
 
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  LabelWidth="130" Width="275" AllowBlank="false" ID="paymentMethod" runat="server" FieldLabel="<%$ Resources:FieldPaymentMethod%>" Name="paymentMethod" IDMode="Static" SubmitValue="true">
                                             <Items>
-                                                <ext:ListItem Text="<%$ Resources: SalaryCash%>" Value="1"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryBank%>" Value="2"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryCash%>" Value="<%$ Resources:ComboBoxValues , PYEMPaymentMethodCash %>"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryBank%>" Value="<%$ Resources:ComboBoxValues , PYEMPaymentMethodBank %>"></ext:ListItem>
                                             </Items>
                                             <Listeners>
                                                 <Select Handler="TogglePaymentMethod(this.value)" />
@@ -1330,8 +1330,8 @@
                                     <Items>
 
                                         
-                                        <ext:ListItem Text="<%$ Resources: pctof1 %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: pctof2 %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: pctof1 %>" Value="<%$ Resources:ComboBoxValues, PYEMpctOf1 %>" />
+                                        <ext:ListItem Text="<%$ Resources: pctof2 %>" Value="<%$ Resources:ComboBoxValues, PYEMpctOf2 %>" />
                                     </Items>
                                       <Listeners>
                                         <Select Handler=" if(this.prev().value==true) this.next().next().setValue(CalculateFixed(this.next().value,this.value));" />

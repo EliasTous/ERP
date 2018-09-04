@@ -340,7 +340,8 @@
                            
                               <%--  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="timeZoneCombo"  AllowBlank="false" SimpleSubmit="true" IDMode="Static" Name="timeZone" FieldLabel="<%$ Resources:FieldTimeZone%>" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Items>
-                                        <ext:ListItem Text="-12 UTC" Value="-12" />
+                                      
+                                  Text="-12 UTC" Value="-12" />
                                         <ext:ListItem Text="-11 UTC" Value="-11" />
                                         <ext:ListItem Text="-10 UTC" Value="-10" />
                                         <ext:ListItem Text="-9 UTC" Value="-9" />

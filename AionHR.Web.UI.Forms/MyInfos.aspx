@@ -109,13 +109,13 @@
                                 </ext:TextField>
                                 <ext:ComboBox LabelWidth="120"   AnyMatch="true" CaseSensitive="false"  ID="religionCombo" runat="server" FieldLabel="<%$ Resources:FieldReligion%>" Name="religion" IDMode="Static" SubmitValue="true">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion0%>" Value="0"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion1%>" Value="1"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion2%>" Value="2"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion3%>" Value="3"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion4%>" Value="4"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion5%>" Value="5"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion6%>" Value="6"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion0%>" Value="<%$ Resources:ComboBoxValues, SSEMReligionChristian%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion1%>" Value="<%$ Resources:ComboBoxValues, SSEMReligionMuslim%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion2%>" Value="<%$ Resources:ComboBoxValues, SSEMReligionJew%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion3%>" Value="<%$ Resources:ComboBoxValues, SSEMReligionBudha%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion4%>" Value="<%$ Resources:ComboBoxValues, SSEMReligionSeikh%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion5%>" Value="<%$ Resources:ComboBoxValues, SSEMReligionHindu%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion6%>" Value="<%$ Resources:ComboBoxValues, SSEMReligionOther%>"></ext:ListItem>
                                     </Items>
                                 </ext:ComboBox>
                                 <ext:DateField LabelWidth="120"

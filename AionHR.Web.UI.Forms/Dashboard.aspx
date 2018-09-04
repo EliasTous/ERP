@@ -1753,11 +1753,11 @@
                                                                         <ext:ToolbarFill runat="server" />
                                                                         <ext:ComboBox Name="dimension" runat="server" FieldLabel="<%$Resources: Group %>" ID="dimension" Width="150" LabelWidth="40">
                                                                             <Items>
-                                                                                <ext:ListItem Text="<%$Resources: FieldDepartment %>" Value="1" />
-                                                                                <ext:ListItem Text="<%$Resources: FieldBranch %>" Value="2" />
-                                                                                <ext:ListItem Text="<%$Resources: FieldDivision  %>" Value="3" />
-                                                                                <ext:ListItem Text="<%$Resources: FieldPosition %>" Value="4" />
-                                                                                <ext:ListItem Text="<%$Resources: FieldEHStatus %>" Value="5" />
+                                                                                <ext:ListItem Text="<%$Resources: FieldDepartment %>" Value="<%$Resources:ComboBoxValues,  RT110DimensionDepartment %>"  />
+                                                                                <ext:ListItem Text="<%$Resources: FieldBranch %>" Value="<%$Resources:ComboBoxValues,  RT110DimensionBranch %>" />
+                                                                                <ext:ListItem Text="<%$Resources: FieldDivision  %>" Value="<%$Resources:ComboBoxValues,  RT110DimensionDivision %>" />
+                                                                                <ext:ListItem Text="<%$Resources: FieldPosition %>" Value="<%$Resources:ComboBoxValues,  RT110DimensionPosition %>" />
+                                                                                <ext:ListItem Text="<%$Resources: FieldEHStatus %>" Value="<%$Resources:ComboBoxValues,  RT110DimensionEHStatus %>" />
                                                                             </Items>
                                                                             <Listeners>
                                                                                 <Select Handler="App.DimensionalHeadCountStore.reload();" />
@@ -4125,9 +4125,9 @@
                                     FieldLabel="<%$ Resources: FieldStatus %>">
                                     <Items>
 
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="-1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusNew %>"  />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusApproved %>" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusRefused %>" />
                                     </Items>
 
                                 </ext:ComboBox>
@@ -4377,8 +4377,8 @@
                                     <Items>
 
                                        <%-- <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />--%>
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="-1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues,  SYTATATimeStatusApproved %>" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="<%$ Resources:ComboBoxValues,  SYTATATimeStatusRefused %>" />
                                     </Items>
 
                                 </ext:ComboBox>
@@ -4481,10 +4481,10 @@
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ApprovalLoanStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false" SubmitValue="true">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldInProcess %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="3" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="<%$ Resources:ComboBoxValues,  SYLTLRApprovalLoanStatusNew %>" />
+                                        <ext:ListItem Text="<%$ Resources: FieldInProcess %>" Value="<%$ Resources:ComboBoxValues,  SYLTLRApprovalLoanStatusInProcess %>" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues,  SYLTLRApprovalLoanStatusApproved %>" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="<%$ Resources:ComboBoxValues,  SYLTLRApprovalLoanStatusRejected %>" />
                                     </Items>
                                     <Listeners>
                                         <%--<Change Handler="if(this.value==3) {this.next().setDisabled(false); this.next().setValue(new Date());} else {this.next().setDisabled(true); this.next().clear();}">

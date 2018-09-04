@@ -531,7 +531,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", res.ErrorCode) != null ? GetGlobalResourceObject("Errors", res.ErrorCode).ToString() : res.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", res.ErrorCode) != null ? GetGlobalResourceObject("Errors", res.ErrorCode).ToString()+"<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + res.LogId : res.Summary).Show();
                     return;
                 }
                 else

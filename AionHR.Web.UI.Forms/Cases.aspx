@@ -250,10 +250,15 @@
                                 </ext:Container>
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="statusPref" Editable="false" EmptyText="<%$ Resources: FilterStatus %>"  >
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: All %>" Value="0"  />
-                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="3" />
+                                        <ext:ListItem Text="<%$ Resources: All %>" Value="<%$ Resources:ComboBoxValues, CMCAStatusPrefAll %>"  />
+                                      
+                                          
+                                        
+                                        
+                                        
+                                     <ext:ListItem   Text="<%$ Resources: FieldPending %>" Value="<%$ Resources:ComboBoxValues, CMCAStatusPrefPending %>" />
+                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="<%$ Resources:ComboBoxValues, CMCAStatusPrefOpen %>" />
+                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="<%$ Resources:ComboBoxValues, CMCAStatusPrefClosed %>" />
                                     </Items>
                               
                                 </ext:ComboBox>
@@ -458,9 +463,9 @@
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="status"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="3" />
+                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="<%$ Resources:ComboBoxValues,  CMCAStatusOpen %>" />
+                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="<%$ Resources:ComboBoxValues,  CMCAStatusPending %>" />
+                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="<%$ Resources:ComboBoxValues,  CMCAStatusClosed %>" />
                                     </Items>
                                     <Listeners>
                                         <Change Handler="if(this.value==2) this.next().setDisabled(false); else this.next().setDisabled(true);">

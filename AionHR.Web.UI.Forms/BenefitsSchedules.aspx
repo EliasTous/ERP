@@ -634,8 +634,8 @@
                                
                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   QueryMode="Local"  ID="aqType" runat="server" FieldLabel="<%$ Resources: aqType%>" Name="aqType" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: Progressive%>" Value="1"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: Unbound%>" Value="2"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: Progressive%>" Value="<%$ Resources:ComboBoxValues , BEBSAqtypeProgressive  %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: Unbound%>" Value="<%$ Resources:ComboBoxValues , BEBSAqtypeUnbound  %>"></ext:ListItem>
                                        
                                     </Items>
                                 </ext:ComboBox>

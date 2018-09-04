@@ -345,10 +345,10 @@
                             FieldLabel="<%$ Resources: FieldStatus %>">
                             <Items>
 
-                                <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1"  />
-                                <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2"  />
-                                <ext:ListItem Text="<%$ Resources: FieldUsed %>" Value="3"/>
-                                <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="-1" />
+                                <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="<%$ Resources:ComboBoxValues, LMLRStatusPending %>"  />
+                                <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues, LMLRStatusApproved %>"   />
+                                <ext:ListItem Text="<%$ Resources: FieldUsed %>" Value="<%$ Resources:ComboBoxValues, LMLRStatusUsed %>" />
+                                <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="<%$ Resources:ComboBoxValues, LMLRStatusRefused %>"  />
                             </Items>
                             <Listeners>
                                 <Change Handler="SetReturnDateState();" />

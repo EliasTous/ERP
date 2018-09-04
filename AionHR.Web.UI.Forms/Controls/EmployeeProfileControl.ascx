@@ -895,13 +895,13 @@
                            </ext:TextField>
                                    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="religionCombo" runat="server" FieldLabel="<%$ Resources:FieldReligion%>" Name="religion" IDMode="Static" SubmitValue="true">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion0%>" Value="<%$ Resources:ComboBoxValues, religionChristian%>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion1%>" Value="<%$ Resources:ComboBoxValues, religionMuslim%>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion2%>" Value="<%$ Resources:ComboBoxValues, religionJew%>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion3%>" Value="<%$ Resources:ComboBoxValues, religionBudha%>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion4%>" Value="<%$ Resources:ComboBoxValues, religionSeikh%>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion5%>" Value="<%$ Resources:ComboBoxValues, religionHindu%>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Religion6%>" Value="<%$ Resources:ComboBoxValues, religionOther%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion0%>" Value="<%$ Resources:ComboBoxValues, EPEMReligionChristian%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion1%>" Value="<%$ Resources:ComboBoxValues, EPEMReligionMuslim%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion2%>" Value="<%$ Resources:ComboBoxValues, EPEMReligionJew%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion3%>" Value="<%$ Resources:ComboBoxValues, EPEMReligionBudha%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion4%>" Value="<%$ Resources:ComboBoxValues, EPEMReligionSeikh%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion5%>" Value="<%$ Resources:ComboBoxValues, EPEMReligionHindu%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Religion6%>" Value="<%$ Resources:ComboBoxValues, EPEMReligionOther%>"></ext:ListItem>
                                     </Items>
                                 </ext:ComboBox>
                                                       
@@ -1320,9 +1320,9 @@
                         <ext:DateField runat="server" ID="date" Name="date" AllowBlank="false" FieldLabel="<%$ Resources: FieldTerminationDate %>" Format="MM/dd/yyyy" />
                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="ttId" runat="server" FieldLabel="<%$ Resources:FieldTerminationType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="ttId" AllowBlank="false">
                             <Items>
-                                <ext:ListItem Text="<%$ Resources:Worker%>" Value="<%$ Resources:ComboBoxValues, ttIdWorker%>"></ext:ListItem>
-                                <ext:ListItem Text="<%$ Resources:Company%>" Value="<%$ Resources:ComboBoxValues, ttIdCompany%>"></ext:ListItem>
-                                <ext:ListItem Text="<%$ Resources:Other%>" Value="<%$ Resources:ComboBoxValues, ttIdOther%>"></ext:ListItem>
+                                <ext:ListItem Text="<%$ Resources:Worker%>" Value="<%$ Resources:ComboBoxValues, EPEMttIdWorker%>"></ext:ListItem>
+                                <ext:ListItem Text="<%$ Resources:Company%>" Value="<%$ Resources:ComboBoxValues, EPEMttIdCompany%>"></ext:ListItem>
+                                <ext:ListItem Text="<%$ Resources:Other%>" Value="<%$ Resources:ComboBoxValues, EPEMttIdOther%>"></ext:ListItem>
                             </Items>
                         </ext:ComboBox>
 
@@ -1368,9 +1368,9 @@
                         </ext:ComboBox>
                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="rehire" runat="server" FieldLabel="<%$ Resources:RehireEligibilty%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="rehire" AllowBlank="false">
                             <Items>
-                                <ext:ListItem Text="<%$ Resources:No%>" Value="<%$ Resources:ComboBoxValues, rehireNo%>"></ext:ListItem>
-                                <ext:ListItem Text="<%$ Resources:Yes%>" Value="<%$ Resources:ComboBoxValues, rehireYes%>"></ext:ListItem>
-                                <ext:ListItem Text="<%$ Resources:NotYetKnown%>" Value="<%$ Resources:ComboBoxValues, rehireNotYetKnown%>"></ext:ListItem>
+                                <ext:ListItem Text="<%$ Resources:No%>" Value="<%$ Resources:ComboBoxValues, EPEMRehireNo%>"></ext:ListItem>
+                                <ext:ListItem Text="<%$ Resources:Yes%>" Value="<%$ Resources:ComboBoxValues, EPEMRehireYes%>"></ext:ListItem>
+                                <ext:ListItem Text="<%$ Resources:NotYetKnown%>" Value="<%$ Resources:ComboBoxValues, EPEMRehireNotYetKnown%>"></ext:ListItem>
                             </Items>
                         </ext:ComboBox>
                     </Items>

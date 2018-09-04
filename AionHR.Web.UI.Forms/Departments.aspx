@@ -418,8 +418,8 @@
                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="type"  Name="type" runat="server" FieldLabel="<%$ Resources:type%>"  ForceSelection="true" >
                                     <Items>
 
-                                        <ext:ListItem Text="<%$ Resources: administrationType%>" Value="1"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: sectionType%>" Value="2"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: administrationType%>" Value="<%$ Resources:ComboBoxValues,  CSDETypeAdministration%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: sectionType%>" Value="<%$ Resources:ComboBoxValues,  CSDETypeSection%>"></ext:ListItem>
                                      
                                     </Items>
                                    
