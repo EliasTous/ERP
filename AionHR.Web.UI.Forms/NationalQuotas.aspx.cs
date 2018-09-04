@@ -1467,8 +1467,8 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Error exception displaying a messsage box
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-                }
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
             PointAcquisitionStore.Reload();
 
             

@@ -1174,7 +1174,7 @@
     <value>استيراد البصمات</value>
   </data>
   <data name="GenerateAttendanceShift" xml:space="preserve">
-    <value>انشاء الدوام </value>
+    <value>انشاء البصمات</value>
   </data>
   <data name="GenerateAttendanceShiftSucc" xml:space="preserve">
     <value>تم انشاء الدوام بنجاح </value>

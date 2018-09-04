@@ -908,6 +908,7 @@ namespace AionHR.Web.UI.Forms
         }
         private void BindAttendancePeriod(bool normalSized=true)
         {
+            try { 
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             TimeBoundedActiveAttendanceRequest req = GetTimeBoundedActiveAttendanceRequest();
 
@@ -940,7 +941,11 @@ namespace AionHR.Web.UI.Forms
                 GetLocalResourceObject("MissingPunchesGridTitle").ToString(), GetLocalResourceObject("Attendance").ToString()
                 , JSON.JavaScriptSerialize(listIn1), JSON.JavaScriptSerialize(listIn2), JSON.JavaScriptSerialize(listIn3), JSON.JavaScriptSerialize(listIn4)
                 , rtl ? true : false, normalSized ? true:false);
-
+            }
+            catch(Exception Exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, Exp.Message).Show();
+            }
         }
 
         private TimeBoundedActiveAttendanceRequest GetTimeBoundedActiveAttendanceRequest()

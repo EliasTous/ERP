@@ -1057,16 +1057,16 @@ namespace AionHR.Web.UI.Forms
 
             try
             {
-              
-                
+
+
 
                 JsonSerializerSettings s = new JsonSerializerSettings();
-               
+
                 s.NullValueHandling = NullValueHandling.Ignore;
-             
-                List <PayrollEntitlementDeduction> entitlments = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(ents,s);
-                List<PayrollEntitlementDeduction> deductions = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(deds,s);
-              
+
+                List<PayrollEntitlementDeduction> entitlments = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(ents, s);
+                List<PayrollEntitlementDeduction> deductions = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(deds, s);
+
                 PostRequest<PayrollEntitlementDeduction> delReq = new PostRequest<PayrollEntitlementDeduction>();
                 delReq.entity = new PayrollEntitlementDeduction();
                 delReq.entity.edId = "0";
@@ -1078,7 +1078,7 @@ namespace AionHR.Web.UI.Forms
                 if (!delResp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", delResp.ErrorCode) != null ? GetGlobalResourceObject("Errors", delResp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + delResp.LogId : delResp.Summary).Show();
                     return;
 
                 }
@@ -1090,7 +1090,7 @@ namespace AionHR.Web.UI.Forms
                 if (!resp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                     return;
 
                 }
@@ -1101,7 +1101,7 @@ namespace AionHR.Web.UI.Forms
                     Html = Resources.Common.RecordUpdatedSucc
                 });
                 Store1.Reload();
-                
+
                 EDWindow.Close();
             }
             catch (Exception ex)
@@ -1109,10 +1109,10 @@ namespace AionHR.Web.UI.Forms
                 //Error exception displaying a messsage box
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+
+
+
             }
-
-
-
         }
 
         private List<PayrollEntitlementDeduction> GetPayrollEntitlements()
