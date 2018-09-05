@@ -286,6 +286,15 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string EPEMInactivePrefAll {
+            get {
+                return ResourceManager.GetString("EPEMInactivePrefAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 0.
         /// </summary>
         internal static string EPEMRehireNo {

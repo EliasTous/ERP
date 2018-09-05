@@ -886,15 +886,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column Column9;
         
         /// <summary>
-        /// SaveEDButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button SaveEDButton;
-        
-        /// <summary>
         /// Button7 control.
         /// </summary>
         /// <remarks>
@@ -1003,13 +994,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.NumberField amount;
         
         /// <summary>
-        /// Button4 control.
+        /// saveEDBT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button Button4;
+        protected global::Ext.Net.Button saveEDBT;
         
         /// <summary>
         /// Button5 control.

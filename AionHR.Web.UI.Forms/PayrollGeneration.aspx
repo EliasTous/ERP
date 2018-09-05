@@ -486,7 +486,7 @@
                                         </ext:Column>
                                     
                                     <ext:Column runat="server" DataIndex="dAmount" Text="<%$ Resources: Deductions%>" >
-                                        <Renderer Handler="if(record.data['dAmount']==0) return '-'; return '-'+record.data['currencyRef']+'&nbsp; '+ record.data['dAmount'] ;" />
+                                        <Renderer Handler="if(record.data['dAmount']==0) return '-'; return '- '+record.data['currencyRef']+'&nbsp; '+ record.data['dAmount'] ;" />
                                      </ext:Column>
                                     <ext:Column runat="server" DataIndex="netSalary" Text="<%$ Resources: FieldNetSalary%>" >
                                         <Renderer Handler="if(record.data['netSalary']==0) return '-'; return record.data['currencyRef'] +'&nbsp; '+ record.data['netSalary'] ;" />
@@ -967,7 +967,7 @@
 
                     </Items>
                     <Buttons>
-                        <ext:Button ID="SaveEDButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                  <%--      <ext:Button ID="SaveEDButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                             <Listeners>
                                 <Click Handler="CheckSession(); " />
@@ -981,15 +981,18 @@
                                     </ExtraParams>
                                 </Click>
                             </DirectEvents>
-                        </ext:Button>
+                        </ext:Button>--%>
                         <ext:Button ID="Button7" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
-                        <Click Handler="this.up('window').hide();" />
+                        <Click Handler="this.up('window').hide(); #{Store1}.reload();" />
                     </Listeners>
                 </ext:Button>
                     </Buttons>
                 </ext:TabPanel>
             </Items>
+            <Listeners>
+                <Close Handler="#{Store1}.reload();" />
+            </Listeners>
         </ext:Window>
 
         <ext:Window
@@ -1007,7 +1010,7 @@
 
             <Items>
                 <ext:FormPanel
-                    ID="EditEDForm" DefaultButton="Button4"
+                    ID="EditEDForm" DefaultButton="saveEDBT"
                     runat="server"
                     Header="false"
                     DefaultAnchor="100%"
@@ -1018,7 +1021,10 @@
                      
                            <ext:TextField runat="server" Name="seqNo" ID="EDseqNoTF" Hidden="true" Disabled="true"  />
                            <ext:TextField runat="server" Name="edSeqNo" ID="edSeqNo" Hidden="true" Disabled="true" />
+                        
                         <ext:TextField runat="server" Name="masterId" ID="masterId" Hidden="true" Disabled="true" />
+                     
+                    
                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="edId" Name="edId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true">
                             <Store>
                                 <ext:Store runat="server" ID="edStore">
@@ -1053,7 +1059,7 @@
                 </ext:FormPanel>
             </Items>
             <Buttons>
-                <ext:Button ID="Button4" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                <ext:Button ID="saveEDBT" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
                         <Click Handler="CheckSession(); if (!#{EditEDForm}.getForm().isValid()) {return false;} " />
@@ -1068,6 +1074,7 @@
                                  <ext:Parameter Name="seqNo" Value="#{EDseqNoTF}.getValue()" Mode="Raw" />
                                  <ext:Parameter Name="edSeqNo" Value="#{edSeqNo}.getValue()" Mode="Raw" />
                                  <ext:Parameter Name="masterId" Value="#{masterId}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="edId" Value="#{edId}.getValue()" Mode="Raw" />
 
                                 <ext:Parameter Name="values" Value="#{EditEDForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
