@@ -77,6 +77,7 @@
         <ext:Hidden ID="payRefHidden" runat="server" />
          <ext:Hidden ID="salaryTypeHidden" runat="server" />
         <ext:Hidden ID="fiscalYearHidden" runat="server" />
+         <ext:Hidden ID="CurrentPayRef" runat="server" />
 
       
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
@@ -419,6 +420,12 @@
                                     </Menu>
                                 </ext:Button>
                                 <ext:ToolbarSeparator runat="server" />
+                                  <ext:Button runat="server" Text="<%$ Resources: Common,Export%>" MarginSpec="0 0 0 0" >
+                                  <DirectEvents>
+                                      <Click OnEvent="ExportToExcel" />
+                                  </DirectEvents>
+                                </ext:Button>
+
                                
                             </Items>
                         </ext:Toolbar>

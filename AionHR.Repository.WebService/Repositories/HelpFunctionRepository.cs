@@ -29,8 +29,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(FlatScheduleEmployeeCell), "TA05");
             ChildGetAllLookup.Add(typeof(FlatScheduleWorkingHours), "TA06");
             ChildGetAllLookup.Add(typeof(BenefitAcquisitionAcquisitionRate), "BE01");
+            ChildGetAllLookup.Add(typeof(PayrollExport), "PY01");
 
-            
+
 
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");

@@ -37,6 +37,7 @@ namespace AionHR.Web.UI.Forms
             //User came to english login so set the language to english           
             _systemService.SessionHelper.SetLanguage("en");
             LocalisationManager.Instance.SetEnglishLocalisation();
+            
 
         }
 
@@ -102,7 +103,8 @@ namespace AionHR.Web.UI.Forms
             Response<Account> getACResponse = _masterService.GetAccount(GetACrequest);
             if (!getACResponse.Success)
             {
-                lblError.Text = GetGlobalResourceObject("Errors", getACResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", getACResponse.ErrorCode).ToString() : getACResponse.Summary;
+                //  lblError.Text = GetGlobalResourceObject("Errors", getACResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", getACResponse.ErrorCode).ToString() : getACResponse.Summary;
+                lblError.Text = "الرجاء التأكد من الحساب";
                 return "error";//Error in authentication
             }
 

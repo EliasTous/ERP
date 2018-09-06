@@ -34,6 +34,8 @@ using DevExpress;
 using DevExpress.XtraPrinting;
 using AionHR.Model.Attributes;
 using AionHR.Model.Access_Control;
+using AionHR.Services.Messaging.HelpFunction;
+using AionHR.Model.HelpFunction;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -47,6 +49,7 @@ namespace AionHR.Web.UI.Forms
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+        IHelpFunctionService _helpFunctionService= ServiceLocator.Current.GetInstance<IHelpFunctionService>();
         protected override void InitializeCulture()
         {
 
@@ -1291,6 +1294,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void ExportXLSBtn_Click(object sender, EventArgs e)
         {
+
             MonthlyPayroll p = GetReport(payRefHidden.Text);
             string format = "xls";
             string fileName = String.Format("Report.{0}", format);
@@ -1510,5 +1514,47 @@ namespace AionHR.Web.UI.Forms
           
         }
 
+        protected void ExportToExcel(object sender, DirectEventArgs e)
+        {
+            try
+            {
+
+                PayrollExportListRequest PX = new PayrollExportListRequest();
+                PX.payRef = payRefHidden.Text;
+
+                ListResponse<PayrollExport> resp = _helpFunctionService.ChildGetAll<PayrollExport>(PX);
+                //  resp.Items.ForEach(x => x.PayCodeRef = "");
+
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+
+
+                PayrollsExport p = new PayrollsExport();
+                p.DataSource = resp.Items;
+                string format = "xls";
+                string fileName = String.Format("Payroll.{0}", format);
+
+                MemoryStream ms = new MemoryStream();
+                p.ExportToXls(ms);
+
+                Response.Clear();
+
+                Response.ContentType = "application/vnd.ms-excel";
+                Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+                Response.BinaryWrite(ms.ToArray());
+                Response.Flush();
+                Response.Close();
+
+                }
+
+            
+            catch ( Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+        }
     }
 }

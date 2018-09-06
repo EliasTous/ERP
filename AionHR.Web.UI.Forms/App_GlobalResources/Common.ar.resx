@@ -1197,4 +1197,7 @@
   <data name="importPayCodes" xml:space="preserve">
     <value>استيراد الرموز المالية </value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>تصدير </value>
+  </data>
 </root>

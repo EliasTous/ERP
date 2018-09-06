@@ -234,6 +234,12 @@
     <Compile Include="PayrollPeriodTimeCodes.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PayrollsExport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PayrollsExport.Designer.cs">
+      <DependentUpon>PayrollsExport.cs</DependentUpon>
+    </Compile>
     <Compile Include="PayrollTimeSchedulesReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -544,6 +550,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PayrollPeriodTimeCodes.resx">
       <DependentUpon>PayrollPeriodTimeCodes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayrollsExport.resx">
+      <DependentUpon>PayrollsExport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PayrollTimeSchedulesReport.ar.resx">
       <DependentUpon>PayrollTimeSchedulesReport.cs</DependentUpon>

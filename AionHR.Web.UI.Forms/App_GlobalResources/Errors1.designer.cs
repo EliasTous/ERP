@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Account.
+        /// </summary>
+        internal static string ErrorInvalidAccount {
+            get {
+                return ResourceManager.GetString("ErrorInvalidAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error referance : .
         /// </summary>
         internal static string ErrorLogId {

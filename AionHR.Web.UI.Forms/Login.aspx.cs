@@ -285,7 +285,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 
-                lblError.Text =  response.Summary;
+                lblError.Text =  response.Message;
             }
             
             

@@ -125,10 +125,10 @@
 
         };
         var clickActiveHightChartPieSeries = function (val) {
-
+          
             switch (val) {
                 case 0: App.activeWindow.show(); App.activeStore.reload(); break;
-                case 1: App.lateWindow.show(); App.latenessStore.reload(); break;
+                case 1: App.onLeavewindow.show(); App.leavesStore.reload(); break;
                 case 2: App.onLeavewindow.show(); App.UnpaidLeavesStore.reload(); break;
                 case 3: App.absentWindow.show(); App.absenseStore.reload(); break;
             }

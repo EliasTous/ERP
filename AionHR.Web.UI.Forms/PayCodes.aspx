@@ -282,7 +282,7 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                  <ext:TextField ID="paycode" runat="server" FieldLabel="<%$ Resources:Paycode%>" Name="payCode"   AllowBlank="false" MaxLength="4"/> 
+                                  <ext:TextField ID="paycode" runat="server" FieldLabel="<%$ Resources:Paycode%>" Name="payCode"   AllowBlank="false" MaxLength="10"/> 
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
                               
                                 <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>

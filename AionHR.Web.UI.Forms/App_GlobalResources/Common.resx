@@ -1194,4 +1194,7 @@
   <data name="importPayCodes" xml:space="preserve">
     <value>Import Pay Codes</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
 </root>
