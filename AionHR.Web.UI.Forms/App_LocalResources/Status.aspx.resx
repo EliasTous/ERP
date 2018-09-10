@@ -141,4 +141,7 @@
   <data name="FieldRef" xml:space="preserve">
     <value>Ref</value>
   </data>
+  <data name="excludeTimeAttendance" xml:space="preserve">
+    <value>Exclude Time Attendance</value>
+  </data>
 </root>

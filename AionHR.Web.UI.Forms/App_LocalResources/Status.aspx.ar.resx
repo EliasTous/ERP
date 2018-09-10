@@ -141,4 +141,7 @@
   <data name="FieldRef" xml:space="preserve">
     <value>الرمز</value>
   </data>
+  <data name="excludeTimeAttendance" xml:space="preserve">
+    <value>استثناء بصمة</value>
+  </data>
 </root>

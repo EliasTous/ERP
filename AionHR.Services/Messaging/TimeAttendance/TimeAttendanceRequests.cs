@@ -353,6 +353,13 @@ public class ActiveAttendanceRequest : ListRequest
     public int BranchId { get; set; }
 
     public int PositionId { get; set; }
+    public int StatusId { get; set; }
+    public int DivisionId { get; set; }
+
+    public int? DayStatus { get; set; }
+
+    public string fromDayId { get; set; }
+    public string toDayId { get; set; }
 
     public override Dictionary<string, string> Parameters
     {
@@ -364,16 +371,16 @@ public class ActiveAttendanceRequest : ListRequest
             parameters.Add("_positionId", PositionId.ToString());
             parameters.Add("_divisionId", DivisionId.ToString());
             parameters.Add("_esId", StatusId.ToString());
+
+            parameters.Add("_toDayId", toDayId.ToString());
+            parameters.Add("_fromDayId", fromDayId.ToString());
             if (DayStatus.HasValue)
                 parameters.Add("_dayStatus", DayStatus.Value.ToString());
             return parameters;
         }
     }
 
-    public int StatusId { get; set; }
-    public int DivisionId { get; set; }
-
-    public int? DayStatus { get; set; }
+   
 }
 public class TimeBoundedActiveAttendanceRequest : ActiveAttendanceRequest
 {

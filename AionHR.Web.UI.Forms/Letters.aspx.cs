@@ -340,7 +340,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<Letter> nationalities = _systemService.ChildGetAll<Letter>(request);
             if (!nationalities.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, nationalities.Summary).Show(); ;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", nationalities.ErrorCode) != null ? GetGlobalResourceObject("Errors", nationalities.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + nationalities.LogId : nationalities.Summary).Show();
                 return;
             }
             this.Store1.DataSource = nationalities.Items;

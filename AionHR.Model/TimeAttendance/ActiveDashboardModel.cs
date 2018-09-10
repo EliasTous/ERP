@@ -48,6 +48,12 @@ namespace AionHR.Model.Attendance
         public string departmentName { get; set; }
         public string branchName { get; set; }
 
+        public string ltName { get; set; }
+
+        public int dayStatus { get; set; }
+
+        public string dayStatusString { get; set; }
+
     }
 
     public  class ActiveLeave : ModelBase

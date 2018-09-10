@@ -805,39 +805,47 @@ namespace AionHR.Web.UI.Forms
 
         protected void FillTimeApproval(int dayId, int employeeId)
         {
-            DashboardTimeListRequest r = new DashboardTimeListRequest();
-            r.dayId = dayId.ToString();
-            r.employeeId = employeeId;
-            r.approverId = 0;
-          
-                
-            ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
-            if (!Times.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, Times.Summary).Show();
-                return;
-            }
-            Times.Items.ForEach(x =>
-            {
-                x.timeCodeString = GetLocalResourceObject(x.timeCode + "text").ToString();
-                switch (x.status)
+                DashboardTimeListRequest r = new DashboardTimeListRequest();
+                r.dayId = dayId.ToString();
+                r.employeeId = employeeId;
+                r.approverId = 0;
+
+
+                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
+                if (!Times.Success)
                 {
-                    case 1:
-                        x.statusString = pendingHF.Text;
-                        break;
-                    case 2:
-                        x.statusString = approvedHF.Text;
-                        break;
-
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", Times.ErrorCode) != null ? GetGlobalResourceObject("Errors", Times.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + Times.LogId : Times.Summary).Show();
+                    return;
                 }
-            });
+                Times.Items.ForEach(x =>
+                {
+                    x.timeCodeString = GetLocalResourceObject(x.timeCode + "text").ToString();
+                    switch (x.status)
+                    {
+                        case 1:
+                            x.statusString = pendingHF.Text;
+                            break;
+                        case 2:
+                            x.statusString = approvedHF.Text;
+                            break;
 
-            TimeStore.DataSource = Times.Items;
-            ////List<ActiveLeave> leaves = new List<ActiveLeave>();
-            //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+                    }
+                });
+
+                TimeStore.DataSource = Times.Items;
+                ////List<ActiveLeave> leaves = new List<ActiveLeave>();
+                //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
 
-            TimeStore.DataBind();
+                TimeStore.DataBind();
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+
         }
     }
 }

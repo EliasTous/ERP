@@ -48,6 +48,9 @@
                         <ext:ModelField Name="name" />
                           <ext:ModelField Name="excludeSS" />
                           <ext:ModelField Name="esRef" />
+                          <ext:ModelField Name="excludeTA" />
+
+                      
                    
                         <%--<ext:ModelField Name="intName" />--%>
                     </Fields>
@@ -154,6 +157,9 @@
                                 </ext:Column>
                            
                              <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: excludeSocialSecurity %>"  DataIndex="excludeSS" ></ext:CheckColumn>
+                                <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: excludeTimeAttendance %>"  DataIndex="excludeTA" ></ext:CheckColumn>
+
+                            
                         
                            
 
@@ -291,7 +297,9 @@
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="esRef" runat="server" FieldLabel="<%$ Resources:FieldRef%>" Name="esRef"   AllowBlank="true" LabelWidth="150"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false" LabelWidth="150"/>
-                                 <ext:Checkbox ID="excludeSS" runat="server" FieldLabel="<%$ Resources:excludeSocialSecurity%>" Name="excludeSS" InputValue="true" DataIndex="excludeSS" LabelWidth="150" />
+                                 <ext:Checkbox ID="excludeSS" runat="server" FieldLabel="<%$ Resources:excludeSocialSecurity%>" Name="excludeSS" InputValue="true" DataIndex="excludeSS" LabelWidth="160" />
+                                <ext:Checkbox ID="excludeTA" runat="server" FieldLabel="<%$ Resources:excludeTimeAttendance%>" Name="excludeTA" InputValue="true" DataIndex="excludeTA" LabelWidth="160" />
+                                 
                                  
                                 <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
                             </Items>

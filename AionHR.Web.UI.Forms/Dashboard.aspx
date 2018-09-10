@@ -129,7 +129,7 @@
             switch (val) {
                 case 0: App.activeWindow.show(); App.activeStore.reload(); break;
                 case 1: App.onLeavewindow.show(); App.leavesStore.reload(); break;
-                case 2: App.onLeavewindow.show(); App.UnpaidLeavesStore.reload(); break;
+                case 2: App.unpaidLeavesWindow.show(); App.UnpaidLeavesStore.reload(); break;
                 case 3: App.absentWindow.show(); App.absenseStore.reload(); break;
             }
 
@@ -3466,7 +3466,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-        <ext:Window runat="server" Modal="true" Title="<%$ Resources: LatenessGridTitle %>" Layout="FitLayout"
+        <ext:Window runat="server" Modal="true" Title="<%$ Resources: UnLatenessGridTitle %>" Layout="FitLayout"
             Hidden="true" AutoShow="false" ID="UnlateWindow" Width="650" Height="300">
             <Items>
                 <ext:GridPanel ExpandToolText="expand"
@@ -3474,7 +3474,7 @@
                     runat="server"
                     PaddingSpec="0 0 0 0"
                     Header="false" CollapseMode="Header" Collapsible="true" CollapseDirection="Right"
-                    Title="<%$ Resources: LatenessGridTitle %>"
+                    Title="<%$ Resources: UnLatenessGridTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
                     Border="false"

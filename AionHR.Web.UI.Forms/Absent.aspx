@@ -93,7 +93,7 @@
 
                         <ext:ModelField Name="dayId" />
                        
-                        <ext:ModelField Name="name" IsComplex="true" />
+                        <ext:ModelField Name="employeeName" IsComplex="true" />
                         <ext:ModelField Name="branchName" />
                         <ext:ModelField Name="departmentName" />
                         <ext:ModelField Name="dayStatusString" />
@@ -172,7 +172,7 @@
                                 <Renderer Handler="var d = moment(record.data['dayId']);  return d.format(App.format.value);" />
                             </ext:Column>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">
-                                <Renderer Handler="return record.data['name'].fullName;" />
+                                <Renderer Handler="return record.data['employeeName'].fullName;" />
                         
                             </ext:Column>
                             <ext:Column ID="ColBranchName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="2" Hideable="true">

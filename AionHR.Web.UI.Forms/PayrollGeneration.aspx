@@ -420,11 +420,31 @@
                                     </Menu>
                                 </ext:Button>
                                 <ext:ToolbarSeparator runat="server" />
-                                  <ext:Button runat="server" Text="<%$ Resources: Common,Export%>" MarginSpec="0 0 0 0" >
+                           <%--       <ext:Button runat="server"  AutoPostBack="true" Text="<%$ Resources: Common,Export%>" MarginSpec="0 0 0 0" >
+                                       <Listeners>
+                                                        <Click Handler="openInNewTab();" />
+                                                    </Listeners>
                                   <DirectEvents>
-                                      <Click OnEvent="ExportToExcel" />
+                                      <Click OnEvent="ExportExcel_Click" />
                                   </DirectEvents>
+                                </ext:Button>--%>
+
+                                   <ext:Button runat="server" Icon="TableGo">
+                                    <Menu>
+                                        <ext:Menu runat="server">
+                                            <Items>
+                                                <ext:MenuItem runat="server"  Text="<%$Resources:Common,Export%>" AutoPostBack="true" OnClick="ExportExcel_Click" OnClientClick="openInNewTab();"  >
+                                            
+                                                    <Listeners>
+                                                        <Click Handler="openInNewTab();" />
+                                                    </Listeners>
+                                                </ext:MenuItem>
+                                           
+                                            </Items>
+                                        </ext:Menu>
+                                    </Menu>
                                 </ext:Button>
+
 
                                
                             </Items>

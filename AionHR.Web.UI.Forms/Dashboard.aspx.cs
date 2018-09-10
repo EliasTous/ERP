@@ -423,7 +423,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<ActiveLate> ALs = _timeAttendanceService.ChildGetAll<ActiveLate>(r);
             if (!ALs.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, ALs.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ALs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ALs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ALs.LogId : ALs.Summary).Show();
                 return;
             }
             latenessStore.DataSource = ALs.Items;
@@ -438,7 +438,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<ActiveLeave> Leaves = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
             if (!Leaves.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, Leaves.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", Leaves.ErrorCode) != null ? GetGlobalResourceObject("Errors", Leaves.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + Leaves.LogId : Leaves.Summary).Show();
                 return;
             }
             leavesStore.DataSource = Leaves.Items;
@@ -456,7 +456,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<MissedPunch> ACs = _timeAttendanceService.ChildGetAll<MissedPunch>(r);
             if (!ACs.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, ACs.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ACs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ACs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ACs.LogId : ACs.Summary).Show();
                 return;
             }
 
@@ -474,7 +474,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<CheckMonitor> CMs = _timeAttendanceService.ChildGetAll<CheckMonitor>(r);
             if (!CMs.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, CMs.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", CMs.ErrorCode) != null ? GetGlobalResourceObject("Errors", CMs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + CMs.LogId : CMs.Summary).Show();
                 return;
             }
             foreach (var item in CMs.Items)
@@ -495,7 +495,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<ActiveOut> AOs = _timeAttendanceService.ChildGetAll<ActiveOut>(r);
             if (!AOs.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, AOs.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", AOs.ErrorCode) != null ? GetGlobalResourceObject("Errors", AOs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + AOs.LogId : AOs.Summary).Show();
                 return;
             }
             OutStore.DataSource = AOs.Items;
@@ -510,6 +510,11 @@ namespace AionHR.Web.UI.Forms
             ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
             ListResponse<ActiveAbsence> ABs = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
+            if (!ABs.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ABs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ABs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ABs.LogId : ABs.Summary).Show();
+                return;
+            }
             absenseStore.DataSource = ABs.Items;
             absenseStore.DataBind();
         }
@@ -521,6 +526,8 @@ namespace AionHR.Web.UI.Forms
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
             req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
             req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
+            req.fromDayId = DateTime.Now.ToString("yyyyMMdd");
+            req.toDayId = DateTime.Now.ToString("yyyyMMdd");
             int intResult;
 
             //if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0" && int.TryParse(branchId.Value.ToString(), out intResult))
@@ -626,8 +633,8 @@ namespace AionHR.Web.UI.Forms
             ListResponse<Model.TaskManagement.Task> resp = _taskManagementService.GetAll<Model.TaskManagement.Task>(req);
             if (!resp.Success)
             {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                 return;
-
             }
             List<Model.TaskManagement.Task> today = resp.Items.Where(x => x.dueDate == DateTime.Today && !x.completed).ToList();
             List<Model.TaskManagement.Task> late = resp.Items.Where(x => x.dueDate < DateTime.Today && !x.completed).ToList();
@@ -777,11 +784,18 @@ namespace AionHR.Web.UI.Forms
         {
             LoanManagementListRequest req = GetLoanManagementRequest();
             req.Status = 1;
-            ListResponse<Loan> loans = _loanService.GetAll<Loan>(req);
+            ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
             //List<Loan> OpenLoans = loans.Items.Where(t => t.status == 1).ToList();
-            LoansStore.DataSource = loans.Items;
+
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                return;
+            }
+
+            LoansStore.DataSource = resp.Items;
             LoansStore.DataBind();
-            int x = loans.count;
+            int x = resp.count;
             X.Call("loansChart", x, x + (10 - (x % 10)));
         }
 
@@ -789,11 +803,19 @@ namespace AionHR.Web.UI.Forms
         {
 
             LeaveRequestListRequest req = GetLeaveManagementRequest();
+            
             if (req != null)
             {
-                ListResponse<LeaveRequest> loans = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
+                ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
 
-                LeaveRequestsStore.DataSource = loans.Items;
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+
+
+                LeaveRequestsStore.DataSource = resp.Items;
                 LeaveRequestsStore.DataBind();
             }
         }
@@ -1010,13 +1032,13 @@ namespace AionHR.Web.UI.Forms
         {
             ActiveAttendanceRequest r = GetActiveAttendanceRequest();
             r.DayStatus = 4;
-            ListResponse<ActiveLeave> Leaves = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
-            if (!Leaves.Success)
+            ListResponse<ActiveLeave> resp = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
+            if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, Leaves.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                 return;
             }
-            UnpaidLeavesStore.DataSource = Leaves.Items;
+            UnpaidLeavesStore.DataSource = resp.Items;
             //List<ActiveLeave> leaves = new List<ActiveLeave>();
             //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
@@ -1110,7 +1132,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
             if (!Times.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, Times.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", Times.ErrorCode) != null ? GetGlobalResourceObject("Errors", Times.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + Times.LogId : Times.Summary).Show();
                 return;
             }
             Times.Items.ForEach(x =>

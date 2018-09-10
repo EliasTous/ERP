@@ -1295,7 +1295,29 @@ namespace AionHR.Web.UI.Forms
         protected void ExportXLSBtn_Click(object sender, EventArgs e)
         {
 
-            MonthlyPayroll p = GetReport(payRefHidden.Text);
+            //MonthlyPayroll p = GetReport(payRefHidden.Text);
+            //string format = "xls";
+            //string fileName = String.Format("Report.{0}", format);
+
+            //MemoryStream ms = new MemoryStream();
+            //p.ExportToXls(ms);
+
+            //Response.Clear();
+
+            //Response.ContentType = "application/vnd.ms-excel";
+            //Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+            //Response.BinaryWrite(ms.ToArray());
+            //Response.Flush();
+            //Response.Close();
+
+
+            PayrollExportListRequest PX = new PayrollExportListRequest();
+            PX.payRef = payRefHidden.Text;
+
+            ListResponse<PayrollExport> resp = _helpFunctionService.ChildGetAll<PayrollExport>(PX);
+            PayrollsExport p = new PayrollsExport();
+            p.DataSource = resp.Items;
+
             string format = "xls";
             string fileName = String.Format("Report.{0}", format);
 
@@ -1309,7 +1331,7 @@ namespace AionHR.Web.UI.Forms
             Response.BinaryWrite(ms.ToArray());
             Response.Flush();
             Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
+
         }
         private MonthlyPayroll GetReport(string payRef)
         {
@@ -1514,47 +1536,46 @@ namespace AionHR.Web.UI.Forms
           
         }
 
-        protected void ExportToExcel(object sender, DirectEventArgs e)
+        protected void ExportExcel_Click(object sender, EventArgs e)
         {
-            try
-            {
 
-                PayrollExportListRequest PX = new PayrollExportListRequest();
-                PX.payRef = payRefHidden.Text;
+            //MonthlyPayroll p = GetReport(payRefHidden.Text);
+            //string format = "xls";
+            //string fileName = String.Format("Report.{0}", format);
 
-                ListResponse<PayrollExport> resp = _helpFunctionService.ChildGetAll<PayrollExport>(PX);
-                //  resp.Items.ForEach(x => x.PayCodeRef = "");
+            //MemoryStream ms = new MemoryStream();
+            //p.ExportToXls(ms);
 
-                if (!resp.Success)
-                {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                    return;
-                }
+            //Response.Clear();
+
+            //Response.ContentType = "application/vnd.ms-excel";
+            //Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+            //Response.BinaryWrite(ms.ToArray());
+            //Response.Flush();
+            //Response.Close();
 
 
-                PayrollsExport p = new PayrollsExport();
-                p.DataSource = resp.Items;
-                string format = "xls";
-                string fileName = String.Format("Payroll.{0}", format);
+            PayrollExportListRequest PX = new PayrollExportListRequest();
+            PX.payRef = payRefHidden.Text;
 
-                MemoryStream ms = new MemoryStream();
-                p.ExportToXls(ms);
+            ListResponse<PayrollExport> resp = _helpFunctionService.ChildGetAll<PayrollExport>(PX);
+            PayrollsExport p = new PayrollsExport();
+            p.DataSource = resp.Items;
 
-                Response.Clear();
+            string format = "xls";
+            string fileName = String.Format("Report.{0}", format);
 
-                Response.ContentType = "application/vnd.ms-excel";
-                Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
-                Response.BinaryWrite(ms.ToArray());
-                Response.Flush();
-                Response.Close();
+            MemoryStream ms = new MemoryStream();
+            p.ExportToXls(ms);
 
-                }
+            Response.Clear();
 
-            
-            catch ( Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+
         }
     }
 }
