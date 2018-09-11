@@ -2644,7 +2644,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Absent.
+        ///   Looks up a localized string similar to Leave Without Excuse.
         /// </summary>
         internal static string RT305 {
             get {

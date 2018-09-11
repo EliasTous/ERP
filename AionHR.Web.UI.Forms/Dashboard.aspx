@@ -930,7 +930,7 @@
         function startRefresh() {
 
             RefreshAllGrids();
-            setInterval(RefreshAllGrids, 60000);
+            setInterval(RefreshAllGrids, 15 * 60 * 1000);
         }
         function RefreshAllGrids() {
             CheckSession();

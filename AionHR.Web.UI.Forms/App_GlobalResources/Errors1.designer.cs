@@ -88,7 +88,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error referance : .
+        ///   Looks up a localized string similar to Error Reference : .
         /// </summary>
         internal static string ErrorLogId {
             get {

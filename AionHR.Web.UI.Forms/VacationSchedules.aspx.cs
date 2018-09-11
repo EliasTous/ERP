@@ -190,6 +190,12 @@ namespace AionHR.Web.UI.Forms
                     VacationPeriodsListRequest req = new VacationPeriodsListRequest();
                     req.VacationScheduleId = r.RecordID;
                     ListResponse<VacationSchedulePeriod> periods = _branchService.ChildGetAll<VacationSchedulePeriod>(req);
+                    if (!periods.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", periods.ErrorCode) != null ? GetGlobalResourceObject("Errors", periods.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + periods.LogId : periods.Summary).Show();
+                        return;
+                    }
                     periodsGrid.Store[0].DataSource = periods.Items;
                     periodsGrid.Store[0].DataBind();
                     periodsGrid.DataBind();

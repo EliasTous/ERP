@@ -36,7 +36,7 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
-        ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        IReportsService _timeAttendanceService = ServiceLocator.Current.GetInstance<IReportsService>();
         protected override void InitializeCulture()
         {
 
@@ -217,13 +217,13 @@ namespace AionHR.Web.UI.Forms
 
             //GEtting the filter from the page
 
-            //ReportCompositeRequest req = GetAbsentRequest();
-            //req.StartAt = e.Start.ToString();
-            //ListResponse<RT305> daysResponse = _timeAttendanceService.ChildGetAll<RT305>(req);
+            ReportCompositeRequest req = GetAbsentRequest();
+            req.StartAt = e.Start.ToString();
+            ListResponse<RT305> daysResponse = _timeAttendanceService.ChildGetAll<RT305>(req);
 
-            ActiveAttendanceRequest r = GetActiveAttendanceRequest();
+            //ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
-            ListResponse<ActiveAbsence> daysResponse = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
+            //ListResponse<ActiveAbsence> daysResponse = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
             if (!daysResponse.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", daysResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", daysResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + daysResponse.LogId : daysResponse.Summary).Show();
@@ -299,83 +299,83 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
             return response.Items;
         }
-        private ActiveAttendanceRequest GetActiveAttendanceRequest()
-        {
-            ActiveAttendanceRequest req = new ActiveAttendanceRequest();
-            var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
-            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
-            req.fromDayId = dateRange1.GetRange().DateFrom.ToString("yyyyMMdd");
-            req.toDayId = dateRange1.GetRange().DateTo.ToString("yyyyMMdd");
-            int intResult;
+        //private ActiveAttendanceRequest GetActiveAttendanceRequest()
+        //{
+        //    ActiveAttendanceRequest req = new ActiveAttendanceRequest();
+        //    var d = jobInfo1.GetJobInfo();
+        //    req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+        //    req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+        //    req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
+        //    req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
+        //    req.fromDayId = dateRange1.GetRange().DateFrom.ToString("yyyyMMdd");
+        //    req.toDayId = dateRange1.GetRange().DateTo.ToString("yyyyMMdd");
+        //    int intResult;
 
-            //if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0" && int.TryParse(branchId.Value.ToString(), out intResult))
-            //{
-            //    req.BranchId = intResult;
-
-
-
-            //}
-            //else
-            //{
-            //    req.BranchId = 0;
-
-            //}
-
-            //if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0" && int.TryParse(departmentId.Value.ToString(), out intResult))
-            //{
-            //    req.DepartmentId = intResult;
-
-
-            //}
-            //else
-            //{
-            //    req.DepartmentId = 0;
-
-            //}
-            //if (!string.IsNullOrEmpty(ComboBox1.Text) && ComboBox1.Value.ToString() != "0" && int.TryParse(ComboBox1.Value.ToString(), out intResult))
-            //{
-            //    req.PositionId = intResult;
-
-
-            //}
-            //else
-            //{
-            //    req.PositionId = 0;
-
-            //}
-
-            //if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0" && int.TryParse(divisionId.Value.ToString(), out intResult))
-            //{
-            //    req.DivisionId = intResult;
-
-
-            //}
-            //else
-            //{
-            //    req.DivisionId = 0;
-
-            //}
-
-            //if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
-            //{
-            //    req.StatusId = intResult;
-
-
-            //}
-            //else
-            //{
-            //    req.StatusId = 0;
-
-            //}
+        //    //if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0" && int.TryParse(branchId.Value.ToString(), out intResult))
+        //    //{
+        //    //    req.BranchId = intResult;
 
 
 
+        //    //}
+        //    //else
+        //    //{
+        //    //    req.BranchId = 0;
 
-            return req;
-        }
+        //    //}
+
+        //    //if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0" && int.TryParse(departmentId.Value.ToString(), out intResult))
+        //    //{
+        //    //    req.DepartmentId = intResult;
+
+
+        //    //}
+        //    //else
+        //    //{
+        //    //    req.DepartmentId = 0;
+
+        //    //}
+        //    //if (!string.IsNullOrEmpty(ComboBox1.Text) && ComboBox1.Value.ToString() != "0" && int.TryParse(ComboBox1.Value.ToString(), out intResult))
+        //    //{
+        //    //    req.PositionId = intResult;
+
+
+        //    //}
+        //    //else
+        //    //{
+        //    //    req.PositionId = 0;
+
+        //    //}
+
+        //    //if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0" && int.TryParse(divisionId.Value.ToString(), out intResult))
+        //    //{
+        //    //    req.DivisionId = intResult;
+
+
+        //    //}
+        //    //else
+        //    //{
+        //    //    req.DivisionId = 0;
+
+        //    //}
+
+        //    //if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
+        //    //{
+        //    //    req.StatusId = intResult;
+
+
+        //    //}
+        //    //else
+        //    //{
+        //    //    req.StatusId = 0;
+
+        //    //}
+
+
+
+
+        //    return req;
+        //}
 
 
 

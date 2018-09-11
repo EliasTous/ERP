@@ -127,7 +127,7 @@
     <value>Invalid Account</value>
   </data>
   <data name="ErrorLogId" xml:space="preserve">
-    <value>Error referance : </value>
+    <value>Error Reference : </value>
   </data>
   <data name="ErrorMsg" xml:space="preserve">
     <value>Error Message : </value>

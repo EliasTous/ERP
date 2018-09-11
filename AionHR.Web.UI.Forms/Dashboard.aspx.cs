@@ -401,122 +401,170 @@ namespace AionHR.Web.UI.Forms
 
         protected void absenseStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            ActiveAttendanceRequest r = GetActiveAttendanceRequest();
-
-            ListResponse<ActiveAbsence> ABs = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
-            //List<ActiveAbsence> a = new List<ActiveAbsence>();
-            //a.Add(new ActiveAbsence() { branchName = "here", positionName = "someone", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "rabie" } });
-            if (!ABs.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, ABs.Summary).Show();
-                return;
+                ActiveAttendanceRequest r = GetActiveAttendanceRequest();
+
+                ListResponse<ActiveAbsence> ABs = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
+                //List<ActiveAbsence> a = new List<ActiveAbsence>();
+                //a.Add(new ActiveAbsence() { branchName = "here", positionName = "someone", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "rabie" } });
+                if (!ABs.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ABs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ABs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ABs.LogId : ABs.Summary).Show();
+                    return;
+                }
+                absenseStore.DataSource = ABs.Items;
+                absenseStore.DataBind();
+                abbsenseCount.Text = "10";
             }
-            absenseStore.DataSource = ABs.Items;
-            absenseStore.DataBind();
-            abbsenseCount.Text = "10";
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
+            }
         }
 
         protected void latenessStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            ActiveAttendanceRequest r = GetActiveAttendanceRequest();
-
-            ListResponse<ActiveLate> ALs = _timeAttendanceService.ChildGetAll<ActiveLate>(r);
-            if (!ALs.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ALs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ALs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ALs.LogId : ALs.Summary).Show();
-                return;
+                ActiveAttendanceRequest r = GetActiveAttendanceRequest();
+
+                ListResponse<ActiveLate> ALs = _timeAttendanceService.ChildGetAll<ActiveLate>(r);
+                if (!ALs.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ALs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ALs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ALs.LogId : ALs.Summary).Show();
+                    return;
+                }
+                latenessStore.DataSource = ALs.Items;
+                latenessStore.DataBind();
+                latensessCount.Text = "7";
             }
-            latenessStore.DataSource = ALs.Items;
-            latenessStore.DataBind();
-            latensessCount.Text = "7";
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
 
         protected void leavesStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            ActiveAttendanceRequest r = GetActiveAttendanceRequest();
-            r.DayStatus = 2;
-            ListResponse<ActiveLeave> Leaves = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
-            if (!Leaves.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", Leaves.ErrorCode) != null ? GetGlobalResourceObject("Errors", Leaves.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + Leaves.LogId : Leaves.Summary).Show();
-                return;
+                ActiveAttendanceRequest r = GetActiveAttendanceRequest();
+                r.DayStatus = 2;
+                ListResponse<ActiveLeave> Leaves = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
+                if (!Leaves.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", Leaves.ErrorCode) != null ? GetGlobalResourceObject("Errors", Leaves.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + Leaves.LogId : Leaves.Summary).Show();
+                    return;
+                }
+                leavesStore.DataSource = Leaves.Items;
+                //List<ActiveLeave> leaves = new List<ActiveLeave>();
+                //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+
+
+                leavesStore.DataBind();
             }
-            leavesStore.DataSource = Leaves.Items;
-            //List<ActiveLeave> leaves = new List<ActiveLeave>();
-            //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
-
-
-            leavesStore.DataBind();
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
 
         protected void missingPunchesStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            ActiveAttendanceRequest r = GetActiveAttendanceRequest();
-
-            ListResponse<MissedPunch> ACs = _timeAttendanceService.ChildGetAll<MissedPunch>(r);
-            if (!ACs.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ACs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ACs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ACs.LogId : ACs.Summary).Show();
-                return;
-            }
+                ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
-            //List<MissedPunch> s = new List<MissedPunch>();
-            //s.Add(new MissedPunch() { date = DateTime.Now, employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "issa" }, missedIn = true, missedOut = false, recordId = "1", time = "08:30" });
-            missingPunchesStore.DataSource = ACs.Items;
-            missingPunchesStore.DataBind();
-            mpCount.Text = "6";
+                ListResponse<MissedPunch> ACs = _timeAttendanceService.ChildGetAll<MissedPunch>(r);
+                if (!ACs.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ACs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ACs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ACs.LogId : ACs.Summary).Show();
+                    return;
+                }
+
+                //List<MissedPunch> s = new List<MissedPunch>();
+                //s.Add(new MissedPunch() { date = DateTime.Now, employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "issa" }, missedIn = true, missedOut = false, recordId = "1", time = "08:30" });
+                missingPunchesStore.DataSource = ACs.Items;
+                missingPunchesStore.DataBind();
+                mpCount.Text = "6";
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
 
-        protected void checkMontierStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            ActiveAttendanceRequest r = GetActiveAttendanceRequest();
+        //protected void checkMontierStore_ReadData(object sender, StoreReadDataEventArgs e)
+        //{
+        //    try
+        //    {
+        //        ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
-            ListResponse<CheckMonitor> CMs = _timeAttendanceService.ChildGetAll<CheckMonitor>(r);
-            if (!CMs.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", CMs.ErrorCode) != null ? GetGlobalResourceObject("Errors", CMs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + CMs.LogId : CMs.Summary).Show();
-                return;
-            }
-            foreach (var item in CMs.Items)
-            {
-                item.figureTitle = GetLocalResourceObject(item.figureId.ToString()).ToString();
-                item.rate = item.rate / 100;
-            }
+        //        ListResponse<CheckMonitor> CMs = _timeAttendanceService.ChildGetAll<CheckMonitor>(r);
+        //        if (!CMs.Success)
+        //        {
+        //            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", CMs.ErrorCode) != null ? GetGlobalResourceObject("Errors", CMs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + CMs.LogId : CMs.Summary).Show();
+        //            return;
+        //        }
+        //        foreach (var item in CMs.Items)
+        //        {
+        //            item.figureTitle = GetLocalResourceObject(item.figureId.ToString()).ToString();
+        //            item.rate = item.rate / 100;
+        //        }
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+        //    }
+        //    //checkMontierStore.DataSource = CMs.Items;
+        //    //checkMontierStore.DataBind();
 
-            //checkMontierStore.DataSource = CMs.Items;
-            //checkMontierStore.DataBind();
-
-        }
+        //}
 
         protected void OutStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            ActiveAttendanceRequest r = GetActiveAttendanceRequest();
-
-            ListResponse<ActiveOut> AOs = _timeAttendanceService.ChildGetAll<ActiveOut>(r);
-            if (!AOs.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", AOs.ErrorCode) != null ? GetGlobalResourceObject("Errors", AOs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + AOs.LogId : AOs.Summary).Show();
-                return;
-            }
-            OutStore.DataSource = AOs.Items;
+                ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
-            
-            OutStore.DataBind();
+                ListResponse<ActiveOut> AOs = _timeAttendanceService.ChildGetAll<ActiveOut>(r);
+                if (!AOs.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", AOs.ErrorCode) != null ? GetGlobalResourceObject("Errors", AOs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + AOs.LogId : AOs.Summary).Show();
+                    return;
+                }
+                OutStore.DataSource = AOs.Items;
+
+
+                OutStore.DataBind();
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
 
         }
         [DirectMethod]
         public void RefreshAll()
         {
-            ActiveAttendanceRequest r = GetActiveAttendanceRequest();
-
-            ListResponse<ActiveAbsence> ABs = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
-            if (!ABs.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ABs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ABs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ABs.LogId : ABs.Summary).Show();
-                return;
+                ActiveAttendanceRequest r = GetActiveAttendanceRequest();
+
+                ListResponse<ActiveAbsence> ABs = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
+                if (!ABs.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ABs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ABs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ABs.LogId : ABs.Summary).Show();
+                    return;
+                }
+                absenseStore.DataSource = ABs.Items;
+                absenseStore.DataBind();
             }
-            absenseStore.DataSource = ABs.Items;
-            absenseStore.DataBind();
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
         private ActiveAttendanceRequest GetActiveAttendanceRequest()
         {
@@ -526,58 +574,10 @@ namespace AionHR.Web.UI.Forms
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
             req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
             req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
-            req.fromDayId = DateTime.Now.ToString("yyyyMMdd");
-            req.toDayId = DateTime.Now.ToString("yyyyMMdd");
+          
             int intResult;
 
-            //if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0" && int.TryParse(branchId.Value.ToString(), out intResult))
-            //{
-            //    req.BranchId = intResult;
-
-
-
-            //}
-            //else
-            //{
-            //    req.BranchId = 0;
-
-            //}
-
-            //if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0" && int.TryParse(departmentId.Value.ToString(), out intResult))
-            //{
-            //    req.DepartmentId = intResult;
-
-
-            //}
-            //else
-            //{
-            //    req.DepartmentId = 0;
-
-            //}
-            //if (!string.IsNullOrEmpty(ComboBox1.Text) && ComboBox1.Value.ToString() != "0" && int.TryParse(ComboBox1.Value.ToString(), out intResult))
-            //{
-            //    req.PositionId = intResult;
-
-
-            //}
-            //else
-            //{
-            //    req.PositionId = 0;
-
-            //}
-
-            //if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0" && int.TryParse(divisionId.Value.ToString(), out intResult))
-            //{
-            //    req.DivisionId = intResult;
-
-
-            //}
-            //else
-            //{
-            //    req.DivisionId = 0;
-
-            //}
-
+            
             if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
             {
                 req.StatusId = intResult;
@@ -629,25 +629,32 @@ namespace AionHR.Web.UI.Forms
 
         protected void OverDueStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            TaskManagementListRequest req = GetTaskManagementRequest();
-            ListResponse<Model.TaskManagement.Task> resp = _taskManagementService.GetAll<Model.TaskManagement.Task>(req);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
-            }
-            List<Model.TaskManagement.Task> today = resp.Items.Where(x => x.dueDate == DateTime.Today && !x.completed).ToList();
-            List<Model.TaskManagement.Task> late = resp.Items.Where(x => x.dueDate < DateTime.Today && !x.completed).ToList();
-            int count = resp.Items.Count(x => !x.completed);
+                TaskManagementListRequest req = GetTaskManagementRequest();
+                ListResponse<Model.TaskManagement.Task> resp = _taskManagementService.GetAll<Model.TaskManagement.Task>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                List<Model.TaskManagement.Task> today = resp.Items.Where(x => x.dueDate == DateTime.Today && !x.completed).ToList();
+                List<Model.TaskManagement.Task> late = resp.Items.Where(x => x.dueDate < DateTime.Today && !x.completed).ToList();
+                int count = resp.Items.Count(x => !x.completed);
 
-            OverDueStore.DataSource = late;
-            OverDueStore.DataBind();
-            DueTodayStore.DataSource = today;
-            DueTodayStore.DataBind();
-            int overDue = late.Count;
-            int todays = today.Count;
-            X.Call("chart3", todays, count);
-            X.Call("chart2", overDue, count);
+                OverDueStore.DataSource = late;
+                OverDueStore.DataBind();
+                DueTodayStore.DataSource = today;
+                DueTodayStore.DataBind();
+                int overDue = late.Count;
+                int todays = today.Count;
+                X.Call("chart3", todays, count);
+                X.Call("chart2", overDue, count);
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
 
         }
 
@@ -782,31 +789,12 @@ namespace AionHR.Web.UI.Forms
 
         protected void LoansStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            LoanManagementListRequest req = GetLoanManagementRequest();
-            req.Status = 1;
-            ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
-            //List<Loan> OpenLoans = loans.Items.Where(t => t.status == 1).ToList();
-
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
-            }
-
-            LoansStore.DataSource = resp.Items;
-            LoansStore.DataBind();
-            int x = resp.count;
-            X.Call("loansChart", x, x + (10 - (x % 10)));
-        }
-
-        protected void LeaveRequestsStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-
-            LeaveRequestListRequest req = GetLeaveManagementRequest();
-            
-            if (req != null)
-            {
-                ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
+                LoanManagementListRequest req = GetLoanManagementRequest();
+                req.Status = 1;
+                ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
+                //List<Loan> OpenLoans = loans.Items.Where(t => t.status == 1).ToList();
 
                 if (!resp.Success)
                 {
@@ -814,90 +802,164 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
 
+                LoansStore.DataSource = resp.Items;
+                LoansStore.DataBind();
+                int x = resp.count;
+                X.Call("loansChart", x, x + (10 - (x % 10)));
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+        }
 
-                LeaveRequestsStore.DataSource = resp.Items;
-                LeaveRequestsStore.DataBind();
+        protected void LeaveRequestsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            try
+            {
+
+                LeaveRequestListRequest req = GetLeaveManagementRequest();
+
+                if (req != null)
+                {
+                    ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
+
+                    if (!resp.Success)
+                    {
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                        return;
+                    }
+
+
+                    LeaveRequestsStore.DataSource = resp.Items;
+                    LeaveRequestsStore.DataBind();
+                }
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
 
         protected void BirthdaysStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardRequest req = GetDashboardRequest();
-            ListResponse<EmployeeBirthday> resp = _systemService.ChildGetAll<EmployeeBirthday>(req);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
+                DashboardRequest req = GetDashboardRequest();
+                ListResponse<EmployeeBirthday> resp = _systemService.ChildGetAll<EmployeeBirthday>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                BirthdaysStore.DataSource = resp.Items;
+                BirthdaysStore.DataBind();
             }
-            BirthdaysStore.DataSource = resp.Items;
-            BirthdaysStore.DataBind();
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
 
         protected void AnniversaryStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-
-            DashboardRequest req = GetDashboardRequest();
-            ListResponse<WorkAnniversary> resp = _systemService.ChildGetAll<WorkAnniversary>(req);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
+                DashboardRequest req = GetDashboardRequest();
+                ListResponse<WorkAnniversary> resp = _systemService.ChildGetAll<WorkAnniversary>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                AnniversaryStore.DataSource = resp.Items;
+                AnniversaryStore.DataBind();
             }
-            AnniversaryStore.DataSource = resp.Items;
-            AnniversaryStore.DataBind();
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
 
         protected void CompanyRightToWorkStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardRequest req = GetDashboardRequest();
-            ListResponse<CompanyRTW> resp = _systemService.ChildGetAll<CompanyRTW>(req);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
+                DashboardRequest req = GetDashboardRequest();
+                ListResponse<CompanyRTW> resp = _systemService.ChildGetAll<CompanyRTW>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                CompanyRightToWorkStore.DataSource = resp.Items;
+                CompanyRightToWorkStore.DataBind();
             }
-            CompanyRightToWorkStore.DataSource = resp.Items;
-            CompanyRightToWorkStore.DataBind();
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+
         }
 
         protected void EmployeeRightToWorkStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardRequest req = GetDashboardRequest();
-            ListResponse<EmpRTW> resp = _systemService.ChildGetAll<EmpRTW>(req);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
+                DashboardRequest req = GetDashboardRequest();
+                ListResponse<EmpRTW> resp = _systemService.ChildGetAll<EmpRTW>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                EmployeeRightToWorkStore.DataSource = resp.Items;
+                EmployeeRightToWorkStore.DataBind();
             }
-            EmployeeRightToWorkStore.DataSource = resp.Items;
-            EmployeeRightToWorkStore.DataBind();
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
 
         protected void SCRStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardRequest req = GetDashboardRequest();
-            ListResponse<SalaryChange> resp = _systemService.ChildGetAll<SalaryChange>(req);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
+                DashboardRequest req = GetDashboardRequest();
+                ListResponse<SalaryChange> resp = _systemService.ChildGetAll<SalaryChange>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                SCRStore.DataSource = resp.Items;
+                SCRStore.DataBind();
             }
-            SCRStore.DataSource = resp.Items;
-            SCRStore.DataBind();
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
 
         protected void ProbationStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardRequest req = GetDashboardRequest();
-            ListResponse<ProbationEnd> resp = _systemService.ChildGetAll<ProbationEnd>(req);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
+                DashboardRequest req = GetDashboardRequest();
+                ListResponse<ProbationEnd> resp = _systemService.ChildGetAll<ProbationEnd>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                ProbationStore.DataSource = resp.Items;
+                ProbationStore.DataBind();
             }
-            ProbationStore.DataSource = resp.Items;
-            ProbationStore.DataBind();
-
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
 
         }
 
@@ -909,23 +971,30 @@ namespace AionHR.Web.UI.Forms
 
         private void BindDepartmentsCount(bool normalSized=true)
         {
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            ListRequest req = new ListRequest();
-            ListResponse<DepartmentActivity> resp = _systemService.ChildGetAll<DepartmentActivity>(req);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
+                bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+                ListRequest req = new ListRequest();
+                ListResponse<DepartmentActivity> resp = _systemService.ChildGetAll<DepartmentActivity>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+
+                List<string> listCategories = resp.Items.Select(a => a.departmentName).ToList();
+                List<int> listIn = resp.Items.Select(a => a.checkedIn).ToList();
+                List<int> listOut = resp.Items.Select(a => a.checkedOut).ToList();
+
+
+                // Store1.DataSource = resp.Items;
+                // Store1.DataBind();
+                X.Call("drawDepartmentsCountHightChartColumn", GetLocalResourceObject("In").ToString(), GetLocalResourceObject("Out").ToString(), JSON.JavaScriptSerialize(listIn), JSON.JavaScriptSerialize(listOut), JSON.JavaScriptSerialize(listCategories), rtl ? true : false, normalSized);
             }
-
-            List<string> listCategories = resp.Items.Select(a => a.departmentName).ToList();
-            List<int> listIn = resp.Items.Select(a => a.checkedIn).ToList();
-            List<int> listOut = resp.Items.Select(a => a.checkedOut).ToList();
-
-
-            // Store1.DataSource = resp.Items;
-            // Store1.DataBind();
-            X.Call("drawDepartmentsCountHightChartColumn", GetLocalResourceObject("In").ToString(), GetLocalResourceObject("Out").ToString(), JSON.JavaScriptSerialize(listIn), JSON.JavaScriptSerialize(listOut), JSON.JavaScriptSerialize(listCategories), rtl ? true : false,normalSized);
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
 
         }
         private void BindAttendancePeriod(bool normalSized=true)
@@ -995,32 +1064,46 @@ namespace AionHR.Web.UI.Forms
 
         protected void CompletedLoansStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            LoanManagementListRequest req = new LoanManagementListRequest();
-            req = GetLoanManagementRequest();
-         
-            ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
+                LoanManagementListRequest req = new LoanManagementListRequest();
+                req = GetLoanManagementRequest();
+
+                ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                CompletedLoansStore.DataSource = resp.Items;
+                CompletedLoansStore.DataBind();
             }
-            CompletedLoansStore.DataSource = resp.Items;
-            CompletedLoansStore.DataBind();
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
 
         protected void totalLoansStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            LoanManagementListRequest req = new LoanManagementListRequest();
-            req = GetLoanManagementRequest();
-            req.Status = 2;
-            ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
+                LoanManagementListRequest req = new LoanManagementListRequest();
+                req = GetLoanManagementRequest();
+                req.Status = 2;
+                ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                totalLoansStore.DataSource = resp.Items;
+                totalLoansStore.DataBind();
             }
-            totalLoansStore.DataSource = resp.Items;
-            totalLoansStore.DataBind();
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
 
         protected void OnLeaveStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -1030,165 +1113,192 @@ namespace AionHR.Web.UI.Forms
 
         protected void UnpaidLeavesStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            ActiveAttendanceRequest r = GetActiveAttendanceRequest();
-            r.DayStatus = 4;
-            ListResponse<ActiveLeave> resp = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
+                ActiveAttendanceRequest r = GetActiveAttendanceRequest();
+                r.DayStatus = 4;
+                ListResponse<ActiveLeave> resp = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                UnpaidLeavesStore.DataSource = resp.Items;
+                //List<ActiveLeave> leaves = new List<ActiveLeave>();
+                //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+
+
+                UnpaidLeavesStore.DataBind();
             }
-            UnpaidLeavesStore.DataSource = resp.Items;
-            //List<ActiveLeave> leaves = new List<ActiveLeave>();
-            //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
-
-
-            UnpaidLeavesStore.DataBind();
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
        
       
         
         protected void ApprovaLoan_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            string filter = string.Empty;
-            int totalCount = 1;
-
-
-
-            //Fetching the corresponding list
-
-            //in this test will take a list of News
-            //ListRequest request = new ListRequest();
-            LoanManagementListRequest request = new LoanManagementListRequest();
-            if(string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+            try
             {
-                ApprovalLoanStore.DataSource = new List<Loan>();
-                ApprovalLoanStore.DataBind();
-                return;
-            }
-            request.approverId =Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId());
-            request.BranchId = 0;
-            request.DepartmentId = 0;
-            request.DivisionId = 0;
-            request.EmployeeId = 0;
-            request.Status = 1;
-            request.Filter = "";
-
-            request.SortBy = "recordId";
+                string filter = string.Empty;
+                int totalCount = 1;
 
 
 
+                //Fetching the corresponding list
 
-
-            request.Size = "1000";
-            request.StartAt = "0";
-            ListResponse<Loan> routers = _loanService.GetAll<Loan>(request);
-            if (!routers.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId: routers.Summary).Show();
-                return;
-            }
-            routers.Items.ForEach(x =>
-            {
-
-                switch (x.status)
+                //in this test will take a list of News
+                //ListRequest request = new ListRequest();
+                LoanManagementListRequest request = new LoanManagementListRequest();
+                if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
                 {
-                    case 1:
-                        x.statusString = StatusNew.Text;
-                        break;
-                    case 2:
-                        x.statusString = StatusInProcess.Text;
-                        ;
-                        break;
-                    case 3:
-                        x.statusString = StatusApproved.Text;
-                        ;
-                        break;
-                    case -1:
-                        x.statusString = StatusRejected.Text;
-
-                        break;
+                    ApprovalLoanStore.DataSource = new List<Loan>();
+                    ApprovalLoanStore.DataBind();
+                    return;
                 }
-            }
-        );
-            this.ApprovalLoanStore.DataSource = routers.Items;
-            e.Total = routers.count;
+                request.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+                request.BranchId = 0;
+                request.DepartmentId = 0;
+                request.DivisionId = 0;
+                request.EmployeeId = 0;
+                request.Status = 1;
+                request.Filter = "";
 
-            this.ApprovalLoanStore.DataBind();
+                request.SortBy = "recordId";
+
+
+
+
+
+                request.Size = "1000";
+                request.StartAt = "0";
+                ListResponse<Loan> routers = _loanService.GetAll<Loan>(request);
+                if (!routers.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
+                    return;
+                }
+                routers.Items.ForEach(x =>
+                {
+
+                    switch (x.status)
+                    {
+                        case 1:
+                            x.statusString = StatusNew.Text;
+                            break;
+                        case 2:
+                            x.statusString = StatusInProcess.Text;
+                            ;
+                            break;
+                        case 3:
+                            x.statusString = StatusApproved.Text;
+                            ;
+                            break;
+                        case -1:
+                            x.statusString = StatusRejected.Text;
+
+                            break;
+                    }
+                }
+            );
+                this.ApprovalLoanStore.DataSource = routers.Items;
+                e.Total = routers.count;
+
+                this.ApprovalLoanStore.DataBind();
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
         protected void TimeStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardTimeListRequest r = new DashboardTimeListRequest();
-            r.dayId = "";
-            r.employeeId = 0;
-            if (!string.IsNullOrEmpty( _systemService.SessionHelper.GetEmployeeId()))
-            r.approverId =Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId()); 
-            else
+            try
             {
-                TimeStore.DataSource = new List<Time>();
+                DashboardTimeListRequest r = new DashboardTimeListRequest();
+                r.dayId = "";
+                r.employeeId = 0;
+                if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                    r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+                else
+                {
+                    TimeStore.DataSource = new List<Time>();
+                    TimeStore.DataBind();
+                    return;
+                }
+                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
+                if (!Times.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", Times.ErrorCode) != null ? GetGlobalResourceObject("Errors", Times.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + Times.LogId : Times.Summary).Show();
+                    return;
+                }
+                Times.Items.ForEach(x =>
+                {
+                    x.timeCodeString = GetLocalResourceObject(x.timeCode + "text").ToString();
+                });
+
+                TimeStore.DataSource = Times.Items;
+                ////List<ActiveLeave> leaves = new List<ActiveLeave>();
+                //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+
+
                 TimeStore.DataBind();
-                return; 
             }
-            ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
-            if (!Times.Success)
+            catch (Exception exp)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", Times.ErrorCode) != null ? GetGlobalResourceObject("Errors", Times.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + Times.LogId : Times.Summary).Show();
-                return;
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
-            Times.Items.ForEach(x =>
-            {
-                x.timeCodeString = GetLocalResourceObject(x.timeCode + "text").ToString(); 
-            });
-
-            TimeStore.DataSource = Times.Items;
-            ////List<ActiveLeave> leaves = new List<ActiveLeave>();
-            //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
-
-
-            TimeStore.DataBind();
         }
 
 
         protected void LocalRateStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            ActiveAttendanceRequest req = GetActiveAttendanceRequest();
-            ListResponse<LocalsRate> resp = _helpFunctionService.ChildGetAll<LocalsRate>(req);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
+                bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+                ActiveAttendanceRequest req = GetActiveAttendanceRequest();
+                ListResponse<LocalsRate> resp = _helpFunctionService.ChildGetAll<LocalsRate>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                inName.Text = resp.Items[0].inName;
+                bsName.Text = resp.Items[0].bsName;
+                leName.Text = resp.Items[0].leName;
+                List<object> RateObjs = new List<object>();
+                RateObjs.Add(new { category = GetLocalResourceObject("netRate").ToString(), number = resp.Items[0].netRate });
+                RateObjs.Add(new { category = GetLocalResourceObject("rate").ToString(), number = resp.Items[0].rate });
+                RateObjs.Add(new { category = GetLocalResourceObject("minLERate").ToString(), number = resp.Items[0].minLERate });
+                RateObjs.Add(new { category = GetLocalResourceObject("minNextLERate").ToString(), number = resp.Items[0].minNextLERate });
+
+
+                List<string> listCategories = new List<string>() { GetLocalResourceObject("rate").ToString(), GetLocalResourceObject("minLERate").ToString(), GetLocalResourceObject("netRate").ToString(), GetLocalResourceObject("minNextLERate").ToString() };
+                List<double> listValues = new List<double>() { resp.Items[0].rate, resp.Items[0].minLERate, resp.Items[0].netRate, resp.Items[0].minNextLERate };
+
+                X.Call("drawMinLocalRateCountHightChartColumn", JSON.JavaScriptSerialize(listValues), JSON.JavaScriptSerialize(listCategories), rtl ? true : false);
+
+
+
+
+                List<object> CountObjs = new List<object>();
+                CountObjs.Add(new { category = GetLocalResourceObject("employeeCount").ToString(), number = resp.Items[0].employeeCount });//here 
+                CountObjs.Add(new { category = GetLocalResourceObject("nationalCount").ToString(), number = resp.Items[0].nationalCount });//here
+                CountObjs.Add(new { category = GetLocalResourceObject("netNationalCount").ToString(), number = resp.Items[0].netNationalCount });
+
+
+                List<string> listCount = new List<string>() { GetLocalResourceObject("employeeCount").ToString(), GetLocalResourceObject("nationalCount").ToString(), GetLocalResourceObject("netNationalCount").ToString() };
+                List<double> listempValues = new List<double>() { resp.Items[0].employeeCount, resp.Items[0].nationalCount, resp.Items[0].netNationalCount };
+
+                X.Call("drawLocalCountHightChartColumn", JSON.JavaScriptSerialize(listempValues), JSON.JavaScriptSerialize(listCount), rtl ? true : false);
+
             }
-            inName.Text = resp.Items[0].inName;
-            bsName.Text = resp.Items[0].bsName;
-            leName.Text = resp.Items[0].leName;
-            List<object> RateObjs = new List<object>();
-            RateObjs.Add(new { category = GetLocalResourceObject("netRate").ToString(), number = resp.Items[0].netRate });
-            RateObjs.Add(new { category = GetLocalResourceObject("rate").ToString(), number = resp.Items[0].rate });
-            RateObjs.Add(new { category = GetLocalResourceObject("minLERate").ToString(), number = resp.Items[0].minLERate });
-            RateObjs.Add(new { category = GetLocalResourceObject("minNextLERate").ToString(), number = resp.Items[0].minNextLERate });
-
-
-            List<string> listCategories = new List<string>() {  GetLocalResourceObject("rate").ToString(), GetLocalResourceObject("minLERate").ToString(), GetLocalResourceObject("netRate").ToString(), GetLocalResourceObject("minNextLERate").ToString() };
-            List<double> listValues = new List<double>() {  resp.Items[0].rate, resp.Items[0].minLERate, resp.Items[0].netRate,resp.Items[0].minNextLERate };
-
-            X.Call("drawMinLocalRateCountHightChartColumn", JSON.JavaScriptSerialize(listValues), JSON.JavaScriptSerialize(listCategories), rtl ? true : false);
-
-
-           
-
-            List<object> CountObjs = new List<object>();
-            CountObjs.Add(new { category = GetLocalResourceObject("employeeCount").ToString(), number = resp.Items[0].employeeCount});//here 
-            CountObjs.Add(new { category = GetLocalResourceObject("nationalCount").ToString(), number = resp.Items[0].nationalCount });//here
-            CountObjs.Add(new { category = GetLocalResourceObject("netNationalCount").ToString(), number = resp.Items[0].netNationalCount });
-           
-
-            List<string> listCount = new List<string>() { GetLocalResourceObject("employeeCount").ToString(), GetLocalResourceObject("nationalCount").ToString(), GetLocalResourceObject("netNationalCount").ToString() };
-            List<double> listempValues = new List<double>() { resp.Items[0].employeeCount, resp.Items[0].nationalCount, resp.Items[0].netNationalCount };
-
-            X.Call("drawLocalCountHightChartColumn", JSON.JavaScriptSerialize(listempValues), JSON.JavaScriptSerialize(listCount), rtl ? true : false);
-
-
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
 
         }
         
@@ -1222,57 +1332,63 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         protected void ApprovalLoanPoPUP(object sender, DirectEventArgs e)
         {
-            string id = e.ExtraParams["id"];
-         
-            //SetTabPanelEnable(true);
-         
-          
-          
+            try {
+                string id = e.ExtraParams["id"];
 
-          
-                    //Step 1 : get the object from the Web Service 
-                    RecordRequest r = new RecordRequest();
-                    r.RecordID = id;
-
-                    RecordResponse<Loan> response = _loanService.Get<Loan>(r);
-                    if (!response.Success)
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
-                        return;
-                    }
+                //SetTabPanelEnable(true);
 
 
 
 
 
+                //Step 1 : get the object from the Web Service 
+                RecordRequest r = new RecordRequest();
+                r.RecordID = id;
 
-          
-                    //    effectiveDate.Disabled = response.result.status != 3;
-                    //FillFilesStore(Convert.ToInt32(id));
+                RecordResponse<Loan> response = _loanService.Get<Loan>(r);
+                if (!response.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                    return;
+                }
 
-            //Step 2 : call setvalues with the retrieved object
-            this.ApprovalLoanForm.SetValues(response.result);
 
-            ApprovalLoanEmployeeName.Text = response.result.employeeName.fullName.ToString();
 
-            status.Select(response.result.status.ToString());
-                  
-                    //if (!string.IsNullOrEmpty(response.result.branchId))
-                    //    branchId.Select(response.result.branchId);
-                 
-                    //if (!response.result.effectiveDate.HasValue)
-                    //    effectiveDate.SelectedDate = DateTime.Now;
-                  
-                    this.approvalLoanWindow.Title = Resources.Common.EditWindowsTitle;
-                    this.approvalLoanWindow.Show();
-                  
 
-            
 
-               
-        
 
+
+                //    effectiveDate.Disabled = response.result.status != 3;
+                //FillFilesStore(Convert.ToInt32(id));
+
+                //Step 2 : call setvalues with the retrieved object
+                this.ApprovalLoanForm.SetValues(response.result);
+
+                ApprovalLoanEmployeeName.Text = response.result.employeeName.fullName.ToString();
+
+                status.Select(response.result.status.ToString());
+
+                //if (!string.IsNullOrEmpty(response.result.branchId))
+                //    branchId.Select(response.result.branchId);
+
+                //if (!response.result.effectiveDate.HasValue)
+                //    effectiveDate.SelectedDate = DateTime.Now;
+
+                this.approvalLoanWindow.Title = Resources.Common.EditWindowsTitle;
+                this.approvalLoanWindow.Show();
+
+
+
+
+
+
+
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
         [DirectMethod]
         protected void leavePoPUP(object sender, DirectEventArgs e)
