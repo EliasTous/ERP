@@ -182,7 +182,7 @@
                             
                             </ext:Column>
 
-                           <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: Status%>" DataIndex="dayStatusString" Width="150" Hideable="false">
+                           <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: Status%>" DataIndex="dayStatusString" Width="150" Hideable="false">
                             
                             </ext:Column>
                             <ext:Column Visible="false" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: LeaveType%>" DataIndex="ltName" Flex="2" Hideable="false">

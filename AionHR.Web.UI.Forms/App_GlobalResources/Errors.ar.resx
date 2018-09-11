@@ -193,13 +193,13 @@
     <value>API key authentication error</value>
   </data>
   <data name="Error_19001" xml:space="preserve">
-    <value>وضع_الصيانة</value>
+    <value>وضع الصيانة </value>
   </data>
   <data name="Error_19002" xml:space="preserve">
     <value>SQL object not set</value>
   </data>
   <data name="Error_19003" xml:space="preserve">
-    <value>Authentication compute hash error</value>
+    <value>خطأ في البريد الالكتروني او كلمة السر </value>
   </data>
   <data name="Error_19004" xml:space="preserve">
     <value>غير مستعمل</value>

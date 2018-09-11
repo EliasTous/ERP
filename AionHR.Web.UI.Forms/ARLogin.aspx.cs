@@ -35,8 +35,8 @@ namespace AionHR.Web.UI.Forms
 
             base.InitializeCulture();
             //User came to english login so set the language to english           
-            _systemService.SessionHelper.SetLanguage("en");
-            LocalisationManager.Instance.SetEnglishLocalisation();
+            _systemService.SessionHelper.SetLanguage("ar");
+            LocalisationManager.Instance.SetArabicLocalisation();
             
 
         }
@@ -104,7 +104,7 @@ namespace AionHR.Web.UI.Forms
             if (!getACResponse.Success)
             {
                 //  lblError.Text = GetGlobalResourceObject("Errors", getACResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", getACResponse.ErrorCode).ToString() : getACResponse.Summary;
-                lblError.Text = "الرجاء التأكد من الحساب";
+                lblError.Text = GetGlobalResourceObject("Errors", getACResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", getACResponse.ErrorCode).ToString() : getACResponse.Summary;
                 return "error";//Error in authentication
             }
 
@@ -146,7 +146,7 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                lblError.Text = GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary;
+                lblError.Text = GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString()  : response.Message;
                 return "error";//Error in authentication
 
             }

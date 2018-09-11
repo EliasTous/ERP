@@ -45,7 +45,7 @@ namespace AionHR.Web.UI.Forms
             //ResourceManager1.RegisterIcon(Icon.Error);
             if (Request.QueryString["timeout"] != null && Request.QueryString["timeout"].ToString() == "yes")
             {
-                //lblError.Text = Resources.Common.SessionDisconnected;
+              //  lblError.Text = Resources.Common.SessionDisconnected;
             }
             if (!IsPostBack && Request.QueryString["account"] != null)
             {
@@ -86,7 +86,8 @@ namespace AionHR.Web.UI.Forms
             Response<Account> getACResponse = _masterService.GetAccount(GetACrequest);
             if(!getACResponse.Success)
             {
-                //lblError.Text = GetGlobalResourceObject("Errors", getACResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", getACResponse.ErrorCode).ToString() : getACResponse.Summary;
+               
+                lblError.Text = GetGlobalResourceObject("Errors", getACResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", getACResponse.ErrorCode).ToString() : getACResponse.Message;
                 return "error";//Error in authentication
             }
 
@@ -285,7 +286,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 
-                lblError.Text =  response.Message;
+                lblError.Text =  response.Error;
             }
             
             
