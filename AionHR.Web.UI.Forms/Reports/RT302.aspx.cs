@@ -206,63 +206,68 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
-        private void FillReport(bool isInitial = false, bool throwException = true)
+        private void FillReport( )
         {
-
-            ReportCompositeRequest req = GetRequest();
-
-            ListResponse<AionHR.Model.Reports.RT302> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT302>(req);
-            if (!resp.Success)
+            try
             {
-                if (throwException)
-                    throw new Exception(resp.Summary);
-                else
+                ReportCompositeRequest req = GetRequest();
+
+                ListResponse<AionHR.Model.Reports.RT302> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT302>(req);
+                if (!resp.Success)
                 {
+
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                     return;
+
                 }
+
+
+
+                PeriodSummary h = new PeriodSummary();
+                h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+                h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+                h.DataSource = resp.Items;
+
+                string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                string user = _systemService.SessionHelper.GetCurrentUser();
+
+                h.Parameters["DateFrom"].Value = from;
+                h.Parameters["DateTo"].Value = to;
+                h.Parameters["User"].Value = user;
+
+
+
+
+                if (resp.Items.Count > 0)
+                {
+                    if (req.Parameters["_departmentId"] != "0")
+                        h.Parameters["Department"].Value = resp.Items[0].departmentName;
+                    else
+                        h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
+                    if (req.Parameters["_branchId"] != "0")
+                        h.Parameters["Branch"].Value = resp.Items[0].branchName;
+                    else
+                        h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
+                    if (req.Parameters["_employeeId"] != "0")
+                        h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
+                    else
+                        h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
+                }
+
+                h.CreateDocument();
+
+
+                ASPxWebDocumentViewer1.DataBind();
+                ASPxWebDocumentViewer1.OpenReport(h);
             }
-
-
-
-            PeriodSummary h = new PeriodSummary();
-            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.DataSource = resp.Items;
-
-            string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            string user = _systemService.SessionHelper.GetCurrentUser();
-
-            h.Parameters["DateFrom"].Value = from;
-            h.Parameters["DateTo"].Value = to;
-            h.Parameters["User"].Value = user;
-
-
-
-
-            if (resp.Items.Count > 0)
+            catch(Exception exp)
             {
-                if (req.Parameters["_departmentId"] != "0")
-                    h.Parameters["Department"].Value = resp.Items[0].departmentName;
-                else
-                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["Branch"].Value = resp.Items[0].branchName;
-                else
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-                if (req.Parameters["_employeeId"] != "0")
-                    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
-                else
-                    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                
             }
-
-            h.CreateDocument();
-
-
-            ASPxWebDocumentViewer1.DataBind();
-            ASPxWebDocumentViewer1.OpenReport(h);
         }
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)

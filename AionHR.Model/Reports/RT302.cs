@@ -21,9 +21,9 @@ namespace AionHR.Model.Reports
         public int OL_B { get; set; }
         public int OL_D { get; set; }
 
-        public int overtime { get; set; }
-        public int netLateness { get; set; }
-        public int grossLateness { get; set; }
+        public short overtime { get; set; }
+        public double netLateness { get; set; }
+        public double grossLateness { get; set; }
 
         public int lrPaid { get; set; }
         public int lrPaidCount { get; set; }

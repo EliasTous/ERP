@@ -106,6 +106,78 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to API_KEY_AUTHENTICATION_ERROR.
+        /// </summary>
+        internal static string Error_10001 {
+            get {
+                return ResourceManager.GetString("Error_10001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AUTHENTICATION_COMPUTE_HASH_ERROR.
+        /// </summary>
+        internal static string Error_10002 {
+            get {
+                return ResourceManager.GetString("Error_10002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INVALID USER ID.
+        /// </summary>
+        internal static string Error_10101 {
+            get {
+                return ResourceManager.GetString("Error_10101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INVALID EMPLOYEE ID.
+        /// </summary>
+        internal static string Error_10102 {
+            get {
+                return ResourceManager.GetString("Error_10102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INVALID LETTER TEMPLATE ID.
+        /// </summary>
+        internal static string Error_10103 {
+            get {
+                return ResourceManager.GetString("Error_10103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INVALID INDEMNITY SCHEDULE ID.
+        /// </summary>
+        internal static string Error_10104 {
+            get {
+                return ResourceManager.GetString("Error_10104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INVALID BENEFIT SCHEDULE ID.
+        /// </summary>
+        internal static string Error_10105 {
+            get {
+                return ResourceManager.GetString("Error_10105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INVALID VACATION SCHEDULE SEQNO.
+        /// </summary>
+        internal static string Error_10106 {
+            get {
+                return ResourceManager.GetString("Error_10106", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sql Expression Syntax error.
         /// </summary>
         internal static string Error_102 {
@@ -120,6 +192,60 @@ namespace Resources {
         internal static string Error_1033 {
             get {
                 return ResourceManager.GetString("Error_1033", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ABSTRACT METHOD NOT SUBCLASSED.
+        /// </summary>
+        internal static string Error_11001 {
+            get {
+                return ResourceManager.GetString("Error_11001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SQL OBJECT NOT SET.
+        /// </summary>
+        internal static string Error_11002 {
+            get {
+                return ResourceManager.GetString("Error_11002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SQL OBJECT MISSING COLUMN.
+        /// </summary>
+        internal static string Error_11003 {
+            get {
+                return ResourceManager.GetString("Error_11003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UNHANDLED EXCEPTION.
+        /// </summary>
+        internal static string Error_11004 {
+            get {
+                return ResourceManager.GetString("Error_11004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LOAD TEMPLATE ERROR.
+        /// </summary>
+        internal static string Error_11005 {
+            get {
+                return ResourceManager.GetString("Error_11005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PUNCH_AUTHENTICATE MODE VALUE OUT OF RANGE ERROR.
+        /// </summary>
+        internal static string Error_11006 {
+            get {
+                return ResourceManager.GetString("Error_11006", resourceCulture);
             }
         }
         
@@ -165,6 +291,33 @@ namespace Resources {
         internal static string Error_11104 {
             get {
                 return ResourceManager.GetString("Error_11104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CACHE FILE LOAD ERROR.
+        /// </summary>
+        internal static string Error_11106 {
+            get {
+                return ResourceManager.GetString("Error_11106", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CACHE FILE FORMAT ERROR.
+        /// </summary>
+        internal static string Error_11107 {
+            get {
+                return ResourceManager.GetString("Error_11107", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CACHE FILE UNKNOWN ERROR ID.
+        /// </summary>
+        internal static string Error_11108 {
+            get {
+                return ResourceManager.GetString("Error_11108", resourceCulture);
             }
         }
         
@@ -232,11 +385,119 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Field format error.
+        ///   Looks up a localized string similar to ERROR CONVERTING DAY ID TO INTEGER.
         /// </summary>
         internal static string Error_12101 {
             get {
                 return ResourceManager.GetString("Error_12101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ERROR CONVERTING DAY ID TO DATE.
+        /// </summary>
+        internal static string Error_12102 {
+            get {
+                return ResourceManager.GetString("Error_12102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ERROR CONVERTING CHECKIN TO TIME.
+        /// </summary>
+        internal static string Error_12103 {
+            get {
+                return ResourceManager.GetString("Error_12103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ERROR CONVERTING CHECKOUT TO TIME.
+        /// </summary>
+        internal static string Error_12104 {
+            get {
+                return ResourceManager.GetString("Error_12104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ERROR CASTING IDNAME OBJECT.
+        /// </summary>
+        internal static string Error_12105 {
+            get {
+                return ResourceManager.GetString("Error_12105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TYPE MISMATCH ERROR.
+        /// </summary>
+        internal static string Error_12106 {
+            get {
+                return ResourceManager.GetString("Error_12106", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FIELD FORMAT ERROR.
+        /// </summary>
+        internal static string Error_12107 {
+            get {
+                return ResourceManager.GetString("Error_12107", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FIELD MANDATORY EMPTY.
+        /// </summary>
+        internal static string Error_12108 {
+            get {
+                return ResourceManager.GetString("Error_12108", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to READING NULL DATA ERROR.
+        /// </summary>
+        internal static string Error_12109 {
+            get {
+                return ResourceManager.GetString("Error_12109", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OUT OF RANGE ERROR DOW.
+        /// </summary>
+        internal static string Error_12110 {
+            get {
+                return ResourceManager.GetString("Error_12110", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OUT OF RANGE ERROR SHORT.
+        /// </summary>
+        internal static string Error_12111 {
+            get {
+                return ResourceManager.GetString("Error_12111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OUT OF RANGE ERROR INT.
+        /// </summary>
+        internal static string Error_12112 {
+            get {
+                return ResourceManager.GetString("Error_12112", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PARAMETER NULL DATA ERROR.
+        /// </summary>
+        internal static string Error_12113 {
+            get {
+                return ResourceManager.GetString("Error_12113", resourceCulture);
             }
         }
         
@@ -246,6 +507,51 @@ namespace Resources {
         internal static string Error_12200 {
             get {
                 return ResourceManager.GetString("Error_12200", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON SERIALIZATION EXCEPTION.
+        /// </summary>
+        internal static string Error_12201 {
+            get {
+                return ResourceManager.GetString("Error_12201", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON INVALID OPERATION EXCEPTION.
+        /// </summary>
+        internal static string Error_12202 {
+            get {
+                return ResourceManager.GetString("Error_12202", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON FORMAT EXCEPTION.
+        /// </summary>
+        internal static string Error_12203 {
+            get {
+                return ResourceManager.GetString("Error_12203", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON ARGUMENT EXCEPTION.
+        /// </summary>
+        internal static string Error_12204 {
+            get {
+                return ResourceManager.GetString("Error_12204", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON READER EXCEPTION.
+        /// </summary>
+        internal static string Error_12205 {
+            get {
+                return ResourceManager.GetString("Error_12205", resourceCulture);
             }
         }
         
@@ -331,7 +637,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INPUT_FORM_MISSING_TAG.
+        ///   Looks up a localized string similar to INPUT FORM MISSING TAG.
         /// </summary>
         internal static string Error_12405 {
             get {
@@ -340,7 +646,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INPUT_FORM_EMPTY_MANDATORY_TAG.
+        ///   Looks up a localized string similar to INPUT FORM EMPTY MANDATORY TAG.
         /// </summary>
         internal static string Error_12406 {
             get {
@@ -349,7 +655,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INPUT_FORM_TYPE_MISMATCH_TAG.
+        ///   Looks up a localized string similar to INPUT FORM TYPE MISMATCH TAG.
         /// </summary>
         internal static string Error_12407 {
             get {
@@ -358,7 +664,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SQL ERROR READING SYSTEM DEFAULT VALUE FOR KEY.
+        ///   Looks up a localized string similar to SQL ERROR READING SYSTEM DEFAULT.
         /// </summary>
         internal static string Error_12408 {
             get {
@@ -367,7 +673,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INPUT_FORM_FAILED_RULE_CHECK.
+        ///   Looks up a localized string similar to INPUT FORM FAILED RULE CHECK.
         /// </summary>
         internal static string Error_12409 {
             get {
@@ -390,6 +696,33 @@ namespace Resources {
         internal static string Error_12502 {
             get {
                 return ResourceManager.GetString("Error_12502", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SQL CONNECTION FAILED.
+        /// </summary>
+        internal static string Error_13001 {
+            get {
+                return ResourceManager.GetString("Error_13001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DATABASE CONNECTION FAILED.
+        /// </summary>
+        internal static string Error_13002 {
+            get {
+                return ResourceManager.GetString("Error_13002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SQL BATCH RUN ERROR.
+        /// </summary>
+        internal static string Error_13003 {
+            get {
+                return ResourceManager.GetString("Error_13003", resourceCulture);
             }
         }
         
@@ -430,7 +763,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SQL object not set.
+        ///   Looks up a localized string similar to INVALID ADMIN EMAIL.
         /// </summary>
         internal static string Error_19002 {
             get {
@@ -439,7 +772,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Authentication compute hash error.
+        ///   Looks up a localized string similar to AUTHENTICATION ERROR.
         /// </summary>
         internal static string Error_19003 {
             get {
@@ -448,7 +781,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid administrator email.
+        ///   Looks up a localized string similar to PASSIVE USER.
         /// </summary>
         internal static string Error_19004 {
             get {
@@ -457,7 +790,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Authentication Error.
+        ///   Looks up a localized string similar to INVALID VACATION SCHEDULE DAY RANGE.
         /// </summary>
         internal static string Error_19005 {
             get {
@@ -466,7 +799,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User is not allowed to sign in without having an employee id.
+        ///   Looks up a localized string similar to INPUT FORM FAILED RULE CHECK.
         /// </summary>
         internal static string Error_19006 {
             get {
@@ -475,7 +808,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown user.
+        ///   Looks up a localized string similar to MISSING DATA EMPLOYEE SALARY.
         /// </summary>
         internal static string Error_19007 {
             get {
@@ -502,7 +835,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User does not have access to read this form.
+        ///   Looks up a localized string similar to SECURITY ERROR.
+        /// </summary>
+        internal static string Error_19100 {
+            get {
+                return ResourceManager.GetString("Error_19100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SECURITY ERROR SUPERVISOR UPDATE ATTEMPT.
         /// </summary>
         internal static string Error_19101 {
             get {
@@ -511,7 +853,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User does not have access to add/edit this form.
+        ///   Looks up a localized string similar to SECURITY ERROR USER BRANCH.
         /// </summary>
         internal static string Error_19102 {
             get {
@@ -520,11 +862,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User does not have access to delete from this form.
+        ///   Looks up a localized string similar to SECURITY ERROR USER DEPARTMENT.
         /// </summary>
         internal static string Error_19103 {
             get {
                 return ResourceManager.GetString("Error_19103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SECURITY ERROR USER DIVISION.
+        /// </summary>
+        internal static string Error_19104 {
+            get {
+                return ResourceManager.GetString("Error_19104", resourceCulture);
             }
         }
         
@@ -552,6 +903,15 @@ namespace Resources {
         internal static string Error_19113 {
             get {
                 return ResourceManager.GetString("Error_19113", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMTP SEND ERROR.
+        /// </summary>
+        internal static string Error_19201 {
+            get {
+                return ResourceManager.GetString("Error_19201", resourceCulture);
             }
         }
         
@@ -1186,7 +1546,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot Insert Null Value to this field.
+        ///   Looks up a localized string similar to Cannot insert the value NULL into SQL table column.
         /// </summary>
         internal static string Error_515 {
             get {

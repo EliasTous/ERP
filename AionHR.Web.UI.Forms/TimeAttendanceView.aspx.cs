@@ -541,69 +541,78 @@ namespace AionHR.Web.UI.Forms
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
-
-            //GEtting the filter from the page
-
-            AttendnanceDayListRequest req = GetAttendanceDayRequest();
-            req.StartAt = e.Start.ToString();
-            ListResponse<AttendanceDay> daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
-            if(!daysResponse.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, daysResponse.Summary).Show();
-                return;
-            }
+                //GEtting the filter from the page
 
-            daysResponse.Items.ForEach(x =>
-        
-                        { switch (x.apStatus)
+                AttendnanceDayListRequest req = GetAttendanceDayRequest();
+                req.StartAt = e.Start.ToString();
+                ListResponse<AttendanceDay> daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
+                if (!daysResponse.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", daysResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", daysResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + daysResponse.LogId : daysResponse.Summary).Show();
+                    return;
+                }
+
+                daysResponse.Items.ForEach(x =>
+
                             {
-                                case 1: x.apStatusString = pendingHF.Text; 
-                                    break;
-                                case 2:
-                                    x.apStatusString = approvedHF.Text;
-                                    break;
+                                switch (x.apStatus)
+                                {
+                                    case 1:
+                                        x.apStatusString = pendingHF.Text;
+                                        break;
+                                    case 2:
+                                        x.apStatusString = approvedHF.Text;
+                                        break;
 
-                            }
-                        }); 
+                                }
+                            });
 
 
 
 
-            int total = daysResponse.Items.Sum(x => x.netOL);
-            string totalWorked, totalBreaks;
-            int hoursWorked=0, minsWorked = 0,hoursBreak,minsBrea=0;
-            daysResponse.Items.ForEach(x => {
-                hoursWorked += Convert.ToInt32(x.workingTime.Substring(0, 2));
-                minsWorked += Convert.ToInt32(x.workingTime.Substring(3, 2));
-                if(x.breaks[0]=='-')
+                int total = daysResponse.Items.Sum(x => x.netOL);
+                string totalWorked, totalBreaks;
+                int hoursWorked = 0, minsWorked = 0, hoursBreak, minsBrea = 0;
+                daysResponse.Items.ForEach(x =>
                 {
-                    minsBrea -= Convert.ToInt32(x.breaks.Substring(1, 2))*60;
-                    minsBrea -= Convert.ToInt32(x.breaks.Substring(4, 2));
-                }
-                else
+                    hoursWorked += Convert.ToInt32(x.workingTime.Substring(0, 2));
+                    minsWorked += Convert.ToInt32(x.workingTime.Substring(3, 2));
+                    if (x.breaks[0] == '-')
+                    {
+                        minsBrea -= Convert.ToInt32(x.breaks.Substring(1, 2)) * 60;
+                        minsBrea -= Convert.ToInt32(x.breaks.Substring(4, 2));
+                    }
+                    else
 
-                {
-                    minsBrea += Convert.ToInt32(x.breaks.Substring(0, 2)) * 60;
-                    minsBrea += Convert.ToInt32(x.breaks.Substring(3, 2));
+                    {
+                        minsBrea += Convert.ToInt32(x.breaks.Substring(0, 2)) * 60;
+                        minsBrea += Convert.ToInt32(x.breaks.Substring(3, 2));
 
-                }
+                    }
                 });
-            hoursWorked += minsWorked / 60;
-            minsWorked = minsWorked % 60;
+                hoursWorked += minsWorked / 60;
+                minsWorked = minsWorked % 60;
 
-            hoursBreak = minsBrea / 60;
-            minsBrea = minsBrea % 60;
-            totalWorked = hoursWorked.ToString() + ":" + minsWorked.ToString();
-            totalBreaks = hoursBreak.ToString() + ":" + minsBrea.ToString();
-            X.Call("setTotal", totalWorked,totalBreaks);
-            this.total.Text= total.ToString();
-            var data = daysResponse.Items;
-            if (daysResponse.Items != null)
-            {
-                this.Store1.DataSource = daysResponse.Items;
-                this.Store1.DataBind();
+                hoursBreak = minsBrea / 60;
+                minsBrea = minsBrea % 60;
+                totalWorked = hoursWorked.ToString() + ":" + minsWorked.ToString();
+                totalBreaks = hoursBreak.ToString() + ":" + minsBrea.ToString();
+                X.Call("setTotal", totalWorked, totalBreaks);
+                this.total.Text = total.ToString();
+                var data = daysResponse.Items;
+                if (daysResponse.Items != null)
+                {
+                    this.Store1.DataSource = daysResponse.Items;
+                    this.Store1.DataBind();
+                }
+                e.Total = daysResponse.count;
             }
-            e.Total = daysResponse.count;
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
+            }
         }
 
 

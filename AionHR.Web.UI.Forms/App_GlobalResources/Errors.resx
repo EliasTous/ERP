@@ -132,11 +132,53 @@
   <data name="ErrorMsg" xml:space="preserve">
     <value>Error Message : </value>
   </data>
+  <data name="Error_10001" xml:space="preserve">
+    <value>API_KEY_AUTHENTICATION_ERROR</value>
+  </data>
+  <data name="Error_10002" xml:space="preserve">
+    <value>AUTHENTICATION_COMPUTE_HASH_ERROR</value>
+  </data>
+  <data name="Error_10101" xml:space="preserve">
+    <value>INVALID USER ID</value>
+  </data>
+  <data name="Error_10102" xml:space="preserve">
+    <value>INVALID EMPLOYEE ID</value>
+  </data>
+  <data name="Error_10103" xml:space="preserve">
+    <value>INVALID LETTER TEMPLATE ID</value>
+  </data>
+  <data name="Error_10104" xml:space="preserve">
+    <value>INVALID INDEMNITY SCHEDULE ID</value>
+  </data>
+  <data name="Error_10105" xml:space="preserve">
+    <value>INVALID BENEFIT SCHEDULE ID</value>
+  </data>
+  <data name="Error_10106" xml:space="preserve">
+    <value>INVALID VACATION SCHEDULE SEQNO</value>
+  </data>
   <data name="Error_102" xml:space="preserve">
     <value>Sql Expression Syntax error</value>
   </data>
   <data name="Error_1033" xml:space="preserve">
     <value>invalid ORDER BY clause in SQL statement</value>
+  </data>
+  <data name="Error_11001" xml:space="preserve">
+    <value>ABSTRACT METHOD NOT SUBCLASSED</value>
+  </data>
+  <data name="Error_11002" xml:space="preserve">
+    <value>SQL OBJECT NOT SET</value>
+  </data>
+  <data name="Error_11003" xml:space="preserve">
+    <value>SQL OBJECT MISSING COLUMN</value>
+  </data>
+  <data name="Error_11004" xml:space="preserve">
+    <value>UNHANDLED EXCEPTION</value>
+  </data>
+  <data name="Error_11005" xml:space="preserve">
+    <value>LOAD TEMPLATE ERROR</value>
+  </data>
+  <data name="Error_11006" xml:space="preserve">
+    <value>PUNCH_AUTHENTICATE MODE VALUE OUT OF RANGE ERROR</value>
   </data>
   <data name="Error_11100" xml:space="preserve">
     <value>Abstract method not subclassed</value>
@@ -152,6 +194,15 @@
   </data>
   <data name="Error_11104" xml:space="preserve">
     <value>Error converting check out time  to time</value>
+  </data>
+  <data name="Error_11106" xml:space="preserve">
+    <value>CACHE FILE LOAD ERROR</value>
+  </data>
+  <data name="Error_11107" xml:space="preserve">
+    <value>CACHE FILE FORMAT ERROR</value>
+  </data>
+  <data name="Error_11108" xml:space="preserve">
+    <value>CACHE FILE UNKNOWN ERROR ID</value>
   </data>
   <data name="Error_11201" xml:space="preserve">
     <value>ERROR_CASTING_IDNAME_OBJECT</value>
@@ -175,10 +226,61 @@
     <value>Type Mismatch</value>
   </data>
   <data name="Error_12101" xml:space="preserve">
-    <value>Field format error</value>
+    <value>ERROR CONVERTING DAY ID TO INTEGER</value>
+  </data>
+  <data name="Error_12102" xml:space="preserve">
+    <value>ERROR CONVERTING DAY ID TO DATE</value>
+  </data>
+  <data name="Error_12103" xml:space="preserve">
+    <value>ERROR CONVERTING CHECKIN TO TIME</value>
+  </data>
+  <data name="Error_12104" xml:space="preserve">
+    <value>ERROR CONVERTING CHECKOUT TO TIME</value>
+  </data>
+  <data name="Error_12105" xml:space="preserve">
+    <value>ERROR CASTING IDNAME OBJECT</value>
+  </data>
+  <data name="Error_12106" xml:space="preserve">
+    <value>TYPE MISMATCH ERROR</value>
+  </data>
+  <data name="Error_12107" xml:space="preserve">
+    <value>FIELD FORMAT ERROR</value>
+  </data>
+  <data name="Error_12108" xml:space="preserve">
+    <value>FIELD MANDATORY EMPTY</value>
+  </data>
+  <data name="Error_12109" xml:space="preserve">
+    <value>READING NULL DATA ERROR</value>
+  </data>
+  <data name="Error_12110" xml:space="preserve">
+    <value>OUT OF RANGE ERROR DOW</value>
+  </data>
+  <data name="Error_12111" xml:space="preserve">
+    <value>OUT OF RANGE ERROR SHORT</value>
+  </data>
+  <data name="Error_12112" xml:space="preserve">
+    <value>OUT OF RANGE ERROR INT</value>
+  </data>
+  <data name="Error_12113" xml:space="preserve">
+    <value>PARAMETER NULL DATA ERROR</value>
   </data>
   <data name="Error_12200" xml:space="preserve">
     <value>Reading field  null data error</value>
+  </data>
+  <data name="Error_12201" xml:space="preserve">
+    <value>JSON SERIALIZATION EXCEPTION</value>
+  </data>
+  <data name="Error_12202" xml:space="preserve">
+    <value>JSON INVALID OPERATION EXCEPTION</value>
+  </data>
+  <data name="Error_12203" xml:space="preserve">
+    <value>JSON FORMAT EXCEPTION</value>
+  </data>
+  <data name="Error_12204" xml:space="preserve">
+    <value>JSON ARGUMENT EXCEPTION</value>
+  </data>
+  <data name="Error_12205" xml:space="preserve">
+    <value>JSON READER EXCEPTION</value>
   </data>
   <data name="Error_12300" xml:space="preserve">
     <value>PUNCH AUTHENTICATION MODE VALUE IS OUT OF RANGE</value>
@@ -208,25 +310,34 @@
     <value>Sql batch run error</value>
   </data>
   <data name="Error_12405" xml:space="preserve">
-    <value>INPUT_FORM_MISSING_TAG</value>
+    <value>INPUT FORM MISSING TAG</value>
   </data>
   <data name="Error_12406" xml:space="preserve">
-    <value>INPUT_FORM_EMPTY_MANDATORY_TAG</value>
+    <value>INPUT FORM EMPTY MANDATORY TAG</value>
   </data>
   <data name="Error_12407" xml:space="preserve">
-    <value>INPUT_FORM_TYPE_MISMATCH_TAG</value>
+    <value>INPUT FORM TYPE MISMATCH TAG</value>
   </data>
   <data name="Error_12408" xml:space="preserve">
-    <value>SQL ERROR READING SYSTEM DEFAULT VALUE FOR KEY</value>
+    <value>SQL ERROR READING SYSTEM DEFAULT</value>
   </data>
   <data name="Error_12409" xml:space="preserve">
-    <value>INPUT_FORM_FAILED_RULE_CHECK</value>
+    <value>INPUT FORM FAILED RULE CHECK</value>
   </data>
   <data name="Error_12501" xml:space="preserve">
     <value>File Creation Error</value>
   </data>
   <data name="Error_12502" xml:space="preserve">
     <value>File Open Error</value>
+  </data>
+  <data name="Error_13001" xml:space="preserve">
+    <value>SQL CONNECTION FAILED</value>
+  </data>
+  <data name="Error_13002" xml:space="preserve">
+    <value>DATABASE CONNECTION FAILED</value>
+  </data>
+  <data name="Error_13003" xml:space="preserve">
+    <value>SQL BATCH RUN ERROR</value>
   </data>
   <data name="Error_14201" xml:space="preserve">
     <value>Leave type requires approval, nothing selected</value>
@@ -241,22 +352,22 @@
     <value>Unnhandled exception</value>
   </data>
   <data name="Error_19002" xml:space="preserve">
-    <value>SQL object not set</value>
+    <value>INVALID ADMIN EMAIL</value>
   </data>
   <data name="Error_19003" xml:space="preserve">
-    <value>Authentication compute hash error</value>
+    <value>AUTHENTICATION ERROR</value>
   </data>
   <data name="Error_19004" xml:space="preserve">
-    <value>Invalid administrator email</value>
+    <value>PASSIVE USER</value>
   </data>
   <data name="Error_19005" xml:space="preserve">
-    <value>Authentication Error</value>
+    <value>INVALID VACATION SCHEDULE DAY RANGE</value>
   </data>
   <data name="Error_19006" xml:space="preserve">
-    <value>User is not allowed to sign in without having an employee id</value>
+    <value>INPUT FORM FAILED RULE CHECK</value>
   </data>
   <data name="Error_19007" xml:space="preserve">
-    <value>Unknown user</value>
+    <value>MISSING DATA EMPLOYEE SALARY</value>
   </data>
   <data name="Error_19008" xml:space="preserve">
     <value>Unknown employee id</value>
@@ -264,14 +375,20 @@
   <data name="Error_19009" xml:space="preserve">
     <value>Unknown letter template id</value>
   </data>
+  <data name="Error_19100" xml:space="preserve">
+    <value>SECURITY ERROR</value>
+  </data>
   <data name="Error_19101" xml:space="preserve">
-    <value>User does not have access to read this form</value>
+    <value>SECURITY ERROR SUPERVISOR UPDATE ATTEMPT</value>
   </data>
   <data name="Error_19102" xml:space="preserve">
-    <value>User does not have access to add/edit this form</value>
+    <value>SECURITY ERROR USER BRANCH</value>
   </data>
   <data name="Error_19103" xml:space="preserve">
-    <value>User does not have access to delete from this form</value>
+    <value>SECURITY ERROR USER DEPARTMENT</value>
+  </data>
+  <data name="Error_19104" xml:space="preserve">
+    <value>SECURITY ERROR USER DIVISION</value>
   </data>
   <data name="Error_19111" xml:space="preserve">
     <value>User does not have access to employees in this branch</value>
@@ -281,6 +398,9 @@
   </data>
   <data name="Error_19113" xml:space="preserve">
     <value>User does not have access to employees in this division</value>
+  </data>
+  <data name="Error_19201" xml:space="preserve">
+    <value>SMTP SEND ERROR</value>
   </data>
   <data name="Error_201" xml:space="preserve">
     <value>Procedure or function expects a parameter which was not supplied.</value>
@@ -493,7 +613,7 @@
     <value>Previous Punch is newer than the current punch</value>
   </data>
   <data name="Error_515" xml:space="preserve">
-    <value>Cannot Insert Null Value to this field</value>
+    <value>Cannot insert the value NULL into SQL table column</value>
   </data>
   <data name="Error_53" xml:space="preserve">
     <value>Database connection error</value>

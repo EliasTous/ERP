@@ -103,8 +103,10 @@ namespace AionHR.Web.UI.Forms
             Response<Account> getACResponse = _masterService.GetAccount(GetACrequest);
             if (!getACResponse.Success)
             {
-                //  lblError.Text = GetGlobalResourceObject("Errors", getACResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", getACResponse.ErrorCode).ToString() : getACResponse.Summary;
-                lblError.Text = GetGlobalResourceObject("Errors", getACResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", getACResponse.ErrorCode).ToString() : getACResponse.Summary;
+                if (getACResponse.ErrorCode == "Error_")
+                    lblError.Text = GetGlobalResourceObject("Errors", "ErrorInvalidAccount").ToString(); 
+                else
+                    lblError.Text = GetGlobalResourceObject("Errors", getACResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", getACResponse.ErrorCode).ToString() : getACResponse.Summary;
                 return "error";//Error in authentication
             }
 
