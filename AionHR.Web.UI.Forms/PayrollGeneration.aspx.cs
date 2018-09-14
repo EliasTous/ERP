@@ -1602,5 +1602,57 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+
+        protected void deleteAllEmployeePayrolls(object sender, DirectEventArgs e)
+        {
+            try
+            {
+
+
+                EmployeePayrollListRequest req = GetEmployeePayrollRequest();
+                ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
+                if (!resp.Success)
+                {
+
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                resp.Items.ForEach(x =>
+                {
+
+
+                    PostRequest<EmployeePayroll> delReq = new PostRequest<EmployeePayroll>();
+                    delReq.entity = x;
+                    PostResponse<EmployeePayroll> res = _payrollService.ChildDelete<EmployeePayroll>(delReq);
+                    if (!res.Success)
+                    {
+                       
+                        throw new Exception(res.Message,new Exception(res.ErrorCode, new Exception (res.LogId)));
+                    }
+
+
+                });
+
+
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+
+                Store1.Reload();
+            }
+            catch(Exception exp)
+            {
+                if (exp.InnerException!=null)
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", exp.InnerException.Message) != null ? GetGlobalResourceObject("Errors", exp.InnerException.Message).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + exp.InnerException.InnerException.Message: exp.Message).Show();
+                else
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+
+            }
+            
     }
 }

@@ -312,4 +312,7 @@
   <data name="netSalaryString" xml:space="preserve">
     <value>Net Salary</value>
   </data>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>DeleteAll </value>
+  </data>
 </root>

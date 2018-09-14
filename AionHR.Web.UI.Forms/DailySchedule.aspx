@@ -301,7 +301,7 @@
                                     ID="timeTo" Text="From"
                                     runat="server"
                                     Width="100"
-                                    Increment="30"
+                                    Increment="15"
                                    SelectedTime="13:00"
                                     Format="hh:mm tt" />
                                    

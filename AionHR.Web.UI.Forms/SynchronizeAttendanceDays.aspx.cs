@@ -100,32 +100,79 @@ namespace AionHR.Web.UI.Forms
             }
         }
         [DirectMethod]
+      
         protected void SynchronizeAttendance(object sender, DirectEventArgs e)
         {
-            SynchronizeAttendanceDay GD = new SynchronizeAttendanceDay();
-            PostRequest<SynchronizeAttendanceDay> request = new PostRequest<SynchronizeAttendanceDay>();
-            GD.employeeId = Convert.ToInt32(employeeFilter.Value);
-            GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
-            GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
-            request.entity = GD;
 
 
-            PostResponse<SynchronizeAttendanceDay> resp = _helpFunctionService.ChildAddOrUpdate<SynchronizeAttendanceDay>(request);
-            if (!resp.Success)
-            { //Show an error saving...
 
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")+ resp.LogId : resp.Summary).Show();
-                return;
-
-            }
-            else
+            try
             {
+                ListResponse<Employee> emps ;
+
+                if (Convert.ToInt32(employeeFilter.Value) == 0)
+                { 
+                EmployeeListRequest empRequest = new EmployeeListRequest();
+                empRequest.BranchId = "0";
+                empRequest.DepartmentId = "0";
+                empRequest.DivisionId = "0";
+                empRequest.Filter = "";
+                empRequest.filterField = "0";
+                empRequest.IncludeIsInactive = 0;
+                empRequest.PositionId = "0";
+                empRequest.SortBy = "reference";
+                empRequest.StartAt = "0";
+                empRequest.Size = "2000";
+               emps = _employeeService.GetAll<Employee>(empRequest);
+                if (!emps.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", emps.ErrorCode) != null ? GetGlobalResourceObject("Errors", emps.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + emps.LogId : emps.Summary).Show();
+                    return;
+                  }
+                }
+
+           
+                else
+                {
+                    emps = new ListResponse<Employee>();
+                    emps.Items.Add(new Employee { recordId = employeeFilter.Value.ToString() });
+                }
+
+
+                SynchronizeAttendanceDay GD = new SynchronizeAttendanceDay();
+                PostRequest<SynchronizeAttendanceDay> request = new PostRequest<SynchronizeAttendanceDay>();
+
+                emps.Items.ForEach(x =>
+                {
+                    GD.employeeId = Convert.ToInt32(x.recordId);
+                    GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
+                    GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
+                    request.entity = GD;
+                    PostResponse<SynchronizeAttendanceDay> resp = _helpFunctionService.ChildAddOrUpdate<SynchronizeAttendanceDay>(request);
+
+                    if (!resp.Success)
+                    { //Show an error saving...
+
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                        throw new Exception();
+
+                    }
+                  
+                }
+
+                );
                 X.Msg.Alert("", GetGlobalResourceObject("Common", "SynchronizeDaySucc").ToString()).Show();
+              
+
             }
-
-
+            catch (Exception exp)
+            {
+                if (exp != null)
+                    X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
+
 
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)

@@ -49,7 +49,32 @@
                                                 </Store>
                                                
                                               
-                                            </ext:ComboBox>    
+                                            </ext:ComboBox> 
+                                   <ext:ComboBox   FieldLabel="<%$ Resources: FilterEmployee%>"  MaxWidth="300" AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeFilter" 
+                                      DisplayField="fullName"
+                                      ValueField="recordId" AllowBlank="false"
+                                      TypeAhead="false"
+                                        HideTrigger="true" SubmitValue="true"
+                                      MinChars="3" 
+                                  TriggerAction="Query" ForceSelection="true" >
+                                        <Store>
+                                            <ext:Store runat="server" ID="Store2" AutoLoad="false">
+                                                <Model>
+                                                    <ext:Model runat="server">
+                                                        <Fields>
+                                                            <ext:ModelField Name="recordId" />
+                                                            <ext:ModelField Name="fullName" />
+                                                        </Fields>
+                                                    </ext:Model>
+                                                </Model>
+                                                <Proxy>
+                                                    <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
+                                                </Proxy>
+                                            </ext:Store>
+                                        </Store>
+         
+
+        </ext:ComboBox>       
                                 <ext:DateField AllowBlank="false" runat="server" ID="startingDate" MaxWidth="300" FieldLabel="<%$ Resources: date %>" Format="dd/MM/yyyy" >
                                      <Listeners> 
                                          <Change Handler="App.endingDate.setMinValue(this.value);"></Change>

@@ -306,4 +306,7 @@
   <data name="netSalaryString" xml:space="preserve">
     <value>المبلغ الصافي </value>
   </data>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>حذف الكل </value>
+  </data>
 </root>

@@ -104,28 +104,73 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         protected void GenerateAttendance(object sender, DirectEventArgs e)
         {
-            GenerateAttendanceShift GD = new GenerateAttendanceShift();
-            PostRequest<GenerateAttendanceShift> request = new PostRequest<GenerateAttendanceShift>();
-            GD.branchId = Convert.ToInt32(branchId.SelectedItem.Value);
-            GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
-            GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
-            request.entity = GD;
-
-
-            PostResponse<GenerateAttendanceShift> resp = _helpFunctionService.ChildAddOrUpdate<GenerateAttendanceShift>(request);
-            if (!resp.Success)
-            { //Show an error saving...
-
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
-
-            }
-            else
+            try
             {
-                X.Msg.Alert("", GetGlobalResourceObject("Common", "GenerateAttendanceShiftSucc").ToString()).Show();
-            }
+                ListResponse<Employee> emps;
 
+                if (Convert.ToInt32(employeeFilter.Value) == 0)
+                {
+                    EmployeeListRequest empRequest = new EmployeeListRequest();
+                    empRequest.BranchId = "0";
+                    empRequest.DepartmentId = "0";
+                    empRequest.DivisionId = "0";
+                    empRequest.Filter = "";
+                    empRequest.filterField = "0";
+                    empRequest.IncludeIsInactive = 0;
+                    empRequest.PositionId = "0";
+                    empRequest.SortBy = "reference";
+                    empRequest.StartAt = "0";
+                    empRequest.Size = "2000";
+                    emps = _employeeService.GetAll<Employee>(empRequest);
+                    if (!emps.Success)
+                    {
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", emps.ErrorCode) != null ? GetGlobalResourceObject("Errors", emps.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + emps.LogId : emps.Summary).Show();
+                        return;
+                    }
+                }
+
+
+                else
+                {
+                    emps = new ListResponse<Employee>();
+                    emps.Items.Add(new Employee { recordId = employeeFilter.Value.ToString() });
+                }
+
+
+                GenerateAttendanceShift GD = new GenerateAttendanceShift();
+                PostRequest<GenerateAttendanceShift> request = new PostRequest<GenerateAttendanceShift>();
+
+                emps.Items.ForEach(x =>
+                {
+                    GD.employeeId = Convert.ToInt32(x.recordId);
+                    GD.branchId = Convert.ToInt32(branchId.SelectedItem.Value);
+                    GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
+                    GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
+                    request.entity = GD;
+
+
+                    PostResponse<GenerateAttendanceShift> resp = _helpFunctionService.ChildAddOrUpdate<GenerateAttendanceShift>(request);
+                    if (!resp.Success)
+                    { //Show an error saving...
+
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                        throw new Exception();
+
+                    }
+                });
+
+
+
+
+                X.Msg.Alert("", GetGlobalResourceObject("Common", "GenerateAttendanceShiftSucc").ToString()).Show();
+
+            }
+            catch (Exception exp)
+            {
+                if (exp != null)
+                    X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
 
         }
 
@@ -139,6 +184,45 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString()+ "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
             BranchStore.DataSource = resp.Items;
             BranchStore.DataBind();
+        }
+
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        {
+
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            if (prms.Query == "All" || prms.Query == "الكل")
+            {
+                List<Employee> data1 = new List<Employee>();
+                data1.Add(new Employee() { fullName = prms.Query, recordId = "0" });
+                return data1;
+            }
+            else
+            {
+                List<Employee> data = GetEmployeesFiltered(prms.Query);
+                data.ForEach(s => { s.fullName = s.name.fullName; });
+
+                return data;
+            }
+        }
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 2;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
+        private string GetNameFormat()
+        {
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
     }
 }

@@ -444,6 +444,12 @@
                                         </ext:Menu>
                                     </Menu>
                                 </ext:Button>
+                                  <ext:Button runat="server" Text="<%$ Resources: DeleteAll%>" MarginSpec="0 0 0 0" Width="100" Icon="DatabaseDelete">
+                                    <DirectEvents> 
+                                        <Click OnEvent="deleteAllEmployeePayrolls" />
+                                    </DirectEvents>
+                                </ext:Button>
+
 
 
                                
