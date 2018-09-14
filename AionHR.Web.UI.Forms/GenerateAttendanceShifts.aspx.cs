@@ -186,6 +186,7 @@ namespace AionHR.Web.UI.Forms
             BranchStore.DataBind();
         }
 
+        [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
 
