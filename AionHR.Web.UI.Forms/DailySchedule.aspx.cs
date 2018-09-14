@@ -600,7 +600,7 @@ namespace AionHR.Web.UI.Forms
                         do
                         {
                             listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                            fsfromDate = fsfromDate.AddMinutes(30);
+                            fsfromDate = fsfromDate.AddMinutes(15);
                         } while (fsToDate >= fsfromDate);
 
                     }
@@ -727,7 +727,7 @@ namespace AionHR.Web.UI.Forms
                 ts.ID = dtStart.ToString("HH:mm");
                 ts.Time = dtStart.ToString("HH:mm");
                 timesList.Add(ts);
-                dtStart = dtStart.AddMinutes(30);
+                dtStart = dtStart.AddMinutes(15);
             } while (dtStart <= dtEnd);
 
             //filling the Day slots
@@ -753,11 +753,11 @@ namespace AionHR.Web.UI.Forms
                     if (fsfromDate.ToString("HH:mm")=="00:00")
                         {
                         listIds.Add(fsfromDate.AddDays(-1).ToString("yyyyMMdd") + "_00:00" );
-                        fsfromDate = fsfromDate.AddMinutes(30);
+                        fsfromDate = fsfromDate.AddMinutes(15);
                         continue;
                         }
                     listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                    fsfromDate = fsfromDate.AddMinutes(30);
+                    fsfromDate = fsfromDate.AddMinutes(15);
                                   } while (fsToDate >= fsfromDate);
                 
                           }
@@ -768,7 +768,7 @@ namespace AionHR.Web.UI.Forms
             d.ToList().ForEach(x =>
             {
                 totaldayId.Add(x.ToList()[0].dayId + "_Total");
-                totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration)/60).ToString());
+                totaldaySum.Add(x.ToList().Sum(y => Math.Round(Convert.ToDouble(y.duration) / 60, 2)) .ToString());
             });
 
 
@@ -830,7 +830,7 @@ namespace AionHR.Web.UI.Forms
                 ts.ID = dtStart.ToString("HH:mm");
                 ts.Time = dtStart.ToString("HH:mm");
                 timesList.Add(ts);
-                dtStart = dtStart.AddMinutes(30);
+                dtStart = dtStart.AddMinutes(15);
             } while (dtStart <= dtEnd);
 
             //filling the Day slots

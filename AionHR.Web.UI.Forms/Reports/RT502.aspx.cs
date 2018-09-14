@@ -322,7 +322,7 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 req.Year = fiscalYear.Value.ToString();
                 req.PeriodType = (SalaryType)Convert.ToInt32( salaryType.Value);
-                req.Status = "1";
+                req.Status = "3";
 
                 ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
                 if (!resp.Success)

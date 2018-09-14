@@ -290,7 +290,7 @@ namespace AionHR.Web.UI.Forms
             d.ToList().ForEach(x =>
             {
                 totaldayId.Add(x.ToList()[0].employeeId + "_Total");
-                totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration) / 60).ToString());
+                totaldaySum.Add(x.ToList().Sum(y => Math.Round( Convert.ToDouble(y.duration) / 60)).ToString());
             });
             //List<string> employeeList = new List<string>();
             //items.ForEach(x => employeeList.Add(x.employeeId.ToString()));

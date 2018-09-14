@@ -30,7 +30,7 @@ using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class Absent : System.Web.UI.Page
+    public partial class Absent : System.Web.UI.Page 
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
@@ -284,7 +284,7 @@ namespace AionHR.Web.UI.Forms
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
             req.BranchId = "0";
-            req.IncludeIsInactive = 2;
+            req.IncludeIsInactive = 0;
             req.SortBy = "firstName";
 
             req.StartAt = "1";

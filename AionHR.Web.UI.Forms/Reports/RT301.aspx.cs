@@ -214,14 +214,11 @@ namespace AionHR.Web.UI.Forms.Reports
             ListResponse<AionHR.Model.Reports.RT301> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT301>(req);
             if (!resp.Success)
             {
-                if (throwException)
-                    throw new Exception(resp.Summary);
-                else
-                {
+                
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
                     return;
-                }
+                
             }
 
             var monthlyGrouped = resp.Items.GroupBy(x => x.month);

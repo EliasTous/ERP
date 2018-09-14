@@ -133,6 +133,7 @@ namespace AionHR.Web.UI.Forms
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         CountDateTo.SelectedDate = DateTime.Now;
                         dimension.Select(0);
+                       
                     }
                     catch { }
                 }

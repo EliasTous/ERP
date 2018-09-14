@@ -309,4 +309,7 @@
   <data name="taxableeAmount" xml:space="preserve">
     <value>Total Taxables</value>
   </data>
+  <data name="netSalaryString" xml:space="preserve">
+    <value>Net Salary</value>
+  </data>
 </root>

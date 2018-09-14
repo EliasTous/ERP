@@ -2317,15 +2317,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.GridPanel GridPanel15;
         
         /// <summary>
-        /// Column22 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column22;
-        
-        /// <summary>
         /// GridView20 control.
         /// </summary>
         /// <remarks>

@@ -125,45 +125,52 @@ namespace AionHR.Model.Reports
         }
         public PayrollLine(HashSet<EntitlementDeduction> en, HashSet<EntitlementDeduction> de, List<RT501> details, string taxable, string eString, string dString, string netString, string ess, string css,string format,string netSalaryString)
         {
-            entitlements = new List<EntitlementDeduction>();
-            deductions = new List<EntitlementDeduction>();
-            en.ToList().ForEach(x => entitlements.Add(new EntitlementDeduction() { name = x.name }));
-            de.ToList().ForEach(x => deductions.Add(new EntitlementDeduction() { name = x.name }));
-
-            if (details.Count > 0)
+            try
             {
-                basicAmount = details[0].basicAmount;
-                name = details[0].employeeName.fullName;
-                days = details[0].days;
-                currencyRef = details[0].currencyRef;
-                calendarDays = details[0].calendarDays;
-              
-              
-               
-                name = details[0].employeeName.fullName;
-                currencyRef = details[0].currencyRef;
-                essAmount = details[0].essAmount;
-                cssAmount = details[0].cssAmount;
-                netSalary = details[0].netSalary;
+                entitlements = new List<EntitlementDeduction>();
+                deductions = new List<EntitlementDeduction>();
+                en.ToList().ForEach(x => entitlements.Add(new EntitlementDeduction() { name = x.name }));
+                de.ToList().ForEach(x => deductions.Add(new EntitlementDeduction() { name = x.name }));
+
+                if (details.Count > 0)
+                {
+                    basicAmount = details[0].basicAmount;
+                    name = details[0].employeeName.fullName;
+                    days = details[0].days;
+                    currencyRef = details[0].currencyRef;
+                    calendarDays = details[0].calendarDays;
 
 
+
+                    name = details[0].employeeName.fullName;
+                    currencyRef = details[0].currencyRef;
+                    essAmount = details[0].essAmount;
+                    cssAmount = details[0].cssAmount;
+                    netSalary = details[0].netSalary;
+
+
+                }
+                foreach (var item in details)
+                {
+                    if (item.edType == 1)
+                        AddEn(new EntitlementDeduction() { amount = item.edAmount, name = item.edName, isTaxable = item.isTaxable });
+                    else
+                        AddDe(new EntitlementDeduction() { amount = item.edAmount, name = item.edName, isTaxable = item.isTaxable });
+
+
+                }
+                eAmountString = eString;
+                dAmountString = dString;
+                net = netString;
+                taxableTotalString = taxable;
+                cssString = css;
+                essString = ess;
+                this.netSalaryString = netSalaryString;
             }
-            foreach (var item in details)
+            catch(Exception exp)
             {
-                if (item.edType == 1)
-                    AddEn(new EntitlementDeduction() { amount = item.edAmount, name = item.edName, isTaxable = item.isTaxable });
-                else
-                    AddDe(new EntitlementDeduction() { amount = item.edAmount, name = item.edName, isTaxable = item.isTaxable });
-
-
+                
             }
-            eAmountString = eString;
-            dAmountString = dString;
-             net = netString;
-            taxableTotalString = taxable;
-            cssString = css;
-            essString = ess;
-           this. netSalaryString = netSalaryString;
         }
 
     }

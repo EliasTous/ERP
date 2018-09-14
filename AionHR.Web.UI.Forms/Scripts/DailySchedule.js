@@ -62,6 +62,7 @@ var ColorifySchedule = function (listIds) {
 
     for (var i in listIds) {
         try {
+           
             document.getElementById(listIds[i]).style.background = "green";
         }
         catch (e) { }

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css?id=3" />
     <link rel="stylesheet" href="CSS/DailySchedule.css?id=100" />
   <%--  <link rel="stylesheet" href="CSS/defaultTheme.css?id=11" />--%>
-    <script type="text/javascript" src="Scripts/DailySchedule.js?id=100"></script>
+    <script type="text/javascript" src="Scripts/DailySchedule.js?id=250"></script>
     <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
  
     <script type="text/javascript" src="Scripts/jquery-new.js?id=30"></script>
@@ -288,14 +288,16 @@
                             <Items>
                                 <ext:Label runat="server" Text="<%$ Resources: From %>" />
                                 <ext:TimeField
+                                    ForceSelection="true"
                                     ID="timeFrom" Text="From"
                                     runat="server"
                                     Width="100"
-                                    Increment="30"
+                                    Increment="15"
                                     SelectedTime="00:00"
                                     Format="hh:mm tt" />
                                 <ext:Label runat="server" Text="<%$ Resources: To %>" />
                                 <ext:TimeField
+                                    ForceSelection="true"
                                     ID="timeTo" Text="From"
                                     runat="server"
                                     Width="100"

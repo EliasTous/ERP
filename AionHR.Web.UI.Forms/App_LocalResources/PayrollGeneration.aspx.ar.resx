@@ -303,4 +303,7 @@
   <data name="taxableeAmount" xml:space="preserve">
     <value>إجمالي الخاضع</value>
   </data>
+  <data name="netSalaryString" xml:space="preserve">
+    <value>المبلغ الصافي </value>
+  </data>
 </root>

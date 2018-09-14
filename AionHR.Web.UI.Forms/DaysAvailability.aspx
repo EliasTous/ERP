@@ -174,6 +174,7 @@
                             <Items>
                                 <ext:Label runat="server" Text="<%$ Resources: From %>" />
                                 <ext:TimeField
+                                    ForceSelection="true"
                                     ID="timeFrom" Text="From"
                                     runat="server"
                                     Width="100"
@@ -182,6 +183,7 @@
                                     Format="HH:mm tt" />
                                 <ext:Label runat="server" Text="<%$ Resources: To %>" />
                                 <ext:TimeField
+                                    ForceSelection="true"
                                     ID="timeTo" Text="From"
                                     runat="server"
                                     Width="100"

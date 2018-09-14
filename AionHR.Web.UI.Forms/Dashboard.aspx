@@ -1220,7 +1220,7 @@
             RemoteFilter="false">
 
             <Model>
-                <ext:Model ID="Model20" runat="server" IDProperty="recordId">
+                <ext:Model ID="Model20" runat="server" >
                     <Fields>
 
                         <ext:ModelField Name="employeeId" />
@@ -2860,7 +2860,7 @@
                                 </Renderer>
                             </ext:Column>
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
-                                <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+                                <Renderer Handler="return record.data['days'] + ' ' + #{daysLeft}.value;" />
 
 
                             </ext:Column>
@@ -2935,7 +2935,7 @@
                                 </Renderer>
                             </ext:Column>
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
-                                <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+                                <Renderer Handler="return record.data['days'] + ' ' + #{daysLeft}.value;" />
 
 
                             </ext:Column>
@@ -3012,7 +3012,7 @@
                             </ext:Column>
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
 
-                                <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+                                <Renderer Handler="return record.data['days'] + ' ' + #{daysLeft}.value;" />
 
                             </ext:Column>
 
@@ -3240,7 +3240,7 @@
                                 </Renderer>
                             </ext:Column>
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
-                                <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+                                <Renderer Handler="return record.data['days'] + ' ' + #{daysLeft}.value;" />
 
 
                             </ext:Column>
@@ -3318,7 +3318,7 @@
                             </ext:Column>
 
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
-                                <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+                                <Renderer Handler="return record.data['days'] + ' ' + #{daysLeft}.value;" />
 
                             </ext:Column>
 
@@ -3967,7 +3967,7 @@
                     <ColumnModel ID="ColumnModel20" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
-                            <ext:Column Visible="false" ID="Column22" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+                         <%--   <ext:Column Visible="false" ID="Column22" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />--%>
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Width="55" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
@@ -4220,7 +4220,7 @@
                                 </Renderer>
                             </ext:Column>
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
-                                <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+                                <Renderer Handler="return record.data['days'] + ' ' + #{daysLeft}.value;" />
 
 
                             </ext:Column>
@@ -4296,7 +4296,7 @@
                                 </Renderer>
                             </ext:Column>
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
-                                <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+                                <Renderer Handler="return record.data['days'] + ' ' + #{daysLeft}.value;" />
 
 
                             </ext:Column>
