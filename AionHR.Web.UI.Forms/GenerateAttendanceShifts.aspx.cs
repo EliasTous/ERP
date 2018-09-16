@@ -52,8 +52,9 @@ namespace AionHR.Web.UI.Forms
                
                 startingDate.Value = DateTime.Now;
 
-              //  startingDate.MinDate = DateTime.Now.AddDays(-60);
-
+                //  startingDate.MinDate = DateTime.Now.AddDays(-60);
+                employeeFilter.AddItem("All", 0);
+                employeeFilter.Select(0);
                 endingDate.MinDate = startingDate.SelectedDate;
                 endingDate.Value = DateTime.Now;
 
@@ -185,7 +186,7 @@ namespace AionHR.Web.UI.Forms
             BranchStore.DataSource = resp.Items;
             BranchStore.DataBind();
         }
-
+        [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
 

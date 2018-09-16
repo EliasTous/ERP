@@ -130,7 +130,7 @@
     <value>حفظ</value>
   </data>
   <data name="Days" xml:space="preserve">
-    <value>Earned(Days)</value>
+    <value>مكتسبات (ايام)</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل جدول الإجازات</value>
@@ -147,6 +147,9 @@
   <data name="FieldTo" xml:space="preserve">
     <value>إلى عدد الأشهر</value>
   </data>
+  <data name="FromDays" xml:space="preserve">
+    <value>من (أيام)</value>
+  </data>
   <data name="MonthsFieldError" xml:space="preserve">
     <value>عدد الأشهر حقل الزامي، ويجب أن يكون بين ال0 وال 1000</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="PeriodsTab" xml:space="preserve">
     <value>فترات جدول الإجازات</value>
+  </data>
+  <data name="ToDays" xml:space="preserve">
+    <value>الى (أيام)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>جداول الإجازات</value>

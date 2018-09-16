@@ -493,7 +493,7 @@
     <value>الاسم الأخير، الاسم الأول</value>
   </data>
   <data name="LeaveRequests" xml:space="preserve">
-    <value>طلبات الإجازات</value>
+    <value>طلبات الخروج</value>
   </data>
   <data name="LeaveTypes" xml:space="preserve">
     <value>أنواع الإجازات</value>

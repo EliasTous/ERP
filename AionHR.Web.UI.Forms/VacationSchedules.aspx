@@ -327,7 +327,7 @@
                                             <ext:RowNumbererColumn runat="server" Width="25" />
                                             <ext:NumberColumn
                                                 runat="server"
-                                                Text="<%$ Resources:Common , FromMonths %>" 
+                                                Text="<%$ Resources: FromDays %>" 
                                                 DataIndex="from"
                                                  Flex="1"
                                                 Align="Center">
@@ -348,7 +348,7 @@
                                             </ext:NumberColumn>
                                             <ext:NumberColumn
                                                 runat="server"
-                                                Text="<%$ Resources:Common , ToMonths %>" 
+                                                Text="<%$ Resources: ToDays %>" 
                                                 DataIndex="to"
                                                  Flex="1"
                                                 Align="Center">
