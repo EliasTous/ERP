@@ -443,27 +443,33 @@ namespace AionHR.Web.UI.Forms
         }
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
+            try {
+                //GEtting the filter from the page
 
-            //GEtting the filter from the page
-
-            EmployeeListRequest empRequest = GetListRequest(e);
-
-        
+                EmployeeListRequest empRequest = GetListRequest(e);
 
 
-            ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
-            if (!emps.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", emps.ErrorCode) != null ? GetGlobalResourceObject("Errors", emps.ErrorCode).ToString()+"<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +emps.LogId : emps.Summary).Show();
-                return;
+
+
+                ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
+                if (!emps.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", emps.ErrorCode) != null ? GetGlobalResourceObject("Errors", emps.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + emps.LogId : emps.Summary).Show();
+                    return;
+                }
+                e.Total = emps.count;
+                if (emps.Items != null)
+                {
+                    this.Store1.DataSource = emps.Items;
+                    this.Store1.DataBind();
+                }
+
             }
-            e.Total = emps.count;
-            if (emps.Items != null)
+            catch( Exception exp)
             {
-                this.Store1.DataSource = emps.Items;
-                this.Store1.DataBind();
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
-        }
+            }
 
 
 

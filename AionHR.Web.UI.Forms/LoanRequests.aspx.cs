@@ -895,6 +895,8 @@ namespace AionHR.Web.UI.Forms
             FillLoanType();
             FillBranchField();
             FillCurrency();
+
+            currencyId.Select(defaults.Items.Where(s => s.Key == "currencyId").First().Value.ToString());
           //  effectiveDate.Disabled = true;
             this.EditRecordWindow.Show();
         }

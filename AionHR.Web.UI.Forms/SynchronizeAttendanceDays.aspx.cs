@@ -50,9 +50,9 @@ namespace AionHR.Web.UI.Forms
                 employeeFilter.Select(0);
                 startingDate.Value = DateTime.Now;
 
-            //    startingDate.MinDate = DateTime.Now.AddDays(-180);
+                //    startingDate.MinDate = DateTime.Now.AddDays(-180);
 
-             //   endingDate.MinDate = startingDate.SelectedDate;
+                //   endingDate.MinDate = startingDate.SelectedDate;
                 endingDate.Value = DateTime.Now;
 
 
@@ -100,7 +100,7 @@ namespace AionHR.Web.UI.Forms
             }
         }
         [DirectMethod]
-      
+
         protected void SynchronizeAttendance(object sender, DirectEventArgs e)
         {
 
@@ -108,30 +108,30 @@ namespace AionHR.Web.UI.Forms
 
             try
             {
-                ListResponse<Employee> emps ;
+                ListResponse<Employee> emps;
 
                 if (Convert.ToInt32(employeeFilter.Value) == 0)
-                { 
-                EmployeeListRequest empRequest = new EmployeeListRequest();
-                empRequest.BranchId = "0";
-                empRequest.DepartmentId = "0";
-                empRequest.DivisionId = "0";
-                empRequest.Filter = "";
-                empRequest.filterField = "0";
-                empRequest.IncludeIsInactive = 0;
-                empRequest.PositionId = "0";
-                empRequest.SortBy = "reference";
-                empRequest.StartAt = "0";
-                empRequest.Size = "2000";
-               emps = _employeeService.GetAll<Employee>(empRequest);
-                if (!emps.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", emps.ErrorCode) != null ? GetGlobalResourceObject("Errors", emps.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + emps.LogId : emps.Summary).Show();
-                    return;
-                  }
+                    EmployeeListRequest empRequest = new EmployeeListRequest();
+                    empRequest.BranchId = "0";
+                    empRequest.DepartmentId = "0";
+                    empRequest.DivisionId = "0";
+                    empRequest.Filter = "";
+                    empRequest.filterField = "0";
+                    empRequest.IncludeIsInactive = 0;
+                    empRequest.PositionId = "0";
+                    empRequest.SortBy = "reference";
+                    empRequest.StartAt = "0";
+                    empRequest.Size = "2000";
+                    emps = _employeeService.GetAll<Employee>(empRequest);
+                    if (!emps.Success)
+                    {
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", emps.ErrorCode) != null ? GetGlobalResourceObject("Errors", emps.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + emps.LogId : emps.Summary).Show();
+                        return;
+                    }
                 }
 
-           
+
                 else
                 {
                     emps = new ListResponse<Employee>();
@@ -158,12 +158,12 @@ namespace AionHR.Web.UI.Forms
                         throw new Exception();
 
                     }
-                  
+
                 }
 
                 );
                 X.Msg.Alert("", GetGlobalResourceObject("Common", "SynchronizeDaySucc").ToString()).Show();
-              
+
 
             }
             catch (Exception exp)

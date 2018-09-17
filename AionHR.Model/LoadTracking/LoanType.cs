@@ -15,7 +15,7 @@ namespace AionHR.Model.LoadTracking
         public string name { get; set; }
         [PropertyID("45000_02")]
         [ApplySecurity]
-        public int ldMethod { get; set; }
+        public int? ldMethod { get; set; }
         [PropertyID("45000_03")]
         [ApplySecurity]
         public int? ldValue { get; set; }

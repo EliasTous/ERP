@@ -34,6 +34,7 @@
         <ext:Hidden ID="ldMethod3" runat="server" Text="<%$ Resources:PFromLoan    %>" />
         <ext:Hidden ID="ldMethod4" runat="server" Text="<%$ Resources:FixedAmount   %>" />
         <ext:Hidden ID="ldMethod5" runat="server" Text="<%$ Resources:PFormFullSalaryDeduction   %>" />
+          <ext:Hidden ID="ldMethod0" runat="server" Text="" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -163,7 +164,7 @@
                                  <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" Flex="2" />                  
                            
                              <ext:Column ID="Column1" DataIndex="ldMethod" Text="<%$ Resources: LoanCoverageType %>" runat="server" Flex="2" >                 
-                                 <Renderer Handler="return document.getElementById('ldMethod'+record.data['ldMethod']).value;" />
+                                 <Renderer Handler="if (record.data['ldMethod']==null) return document.getElementById('ldMethod0').value;else{ return document.getElementById('ldMethod'+record.data['ldMethod']).value;}" />
                                  </ext:Column>
                              <ext:CheckColumn ID="Column2" DataIndex="disableEditing" Text="<%$ Resources: disableEditing %>" runat="server" width="100" />                  
     
@@ -299,7 +300,7 @@
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ldMethod" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    FieldLabel="<%$ Resources: LoanCoverageType %>" AllowBlank="false" SubmitValue="true">
+                                    FieldLabel="<%$ Resources: LoanCoverageType %>" AllowBlank="true" SubmitValue="true">
                                     <Items>
                                        
                                               
@@ -333,7 +334,7 @@
                                             </ext:ComboBox>
                                         <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="true" >
                                         
-                                         <validator Handler=" if(#{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else{  return false; } } else {if (this.value<=0  ){return false;} else return true;}">
+                                         <validator Handler="if (#{ldMethod}.getValue()==null) return true; if(#{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else{  return false; } } else {if (this.value<=0  ){return false;} else return true;}">
                                              
                                          </validator>
                                            

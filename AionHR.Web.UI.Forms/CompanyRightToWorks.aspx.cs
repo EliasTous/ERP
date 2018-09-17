@@ -65,7 +65,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                issueDate.Format = expiryDate.Format = _systemService.SessionHelper.GetDateformat();
+                rwIssueDate.Format = rwExpiryDate.Format = _systemService.SessionHelper.GetDateformat();
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(CompanyRightToWork), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
@@ -77,23 +77,30 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-                issueDateMulti.InputType = issueDate.InputType;
-                issueDateMulti.Disabled = issueDate.Disabled;
-                issueDateMulti.ReadOnly = issueDate.ReadOnly;
-                issueDateDisabled.Text = issueDate.ReadOnly.ToString();
+                //issueDateMulti.InputType = issueDate.InputType;
+                //issueDateMulti.Disabled = issueDate.Disabled;
+                //issueDateMulti.ReadOnly = issueDate.ReadOnly;
+                //issueDateDisabled.Text = issueDate.ReadOnly.ToString();
 
 
-                expiryDateMulti.InputType = expiryDate.InputType;
-                expiryDateMulti.Disabled = expiryDate.Disabled;
-                expiryDateMulti.ReadOnly = expiryDate.ReadOnly;
-                expiryDateDisabled.Text = expiryDate.ReadOnly.ToString();
+                //expiryDateMulti.InputType = expiryDate.InputType;
+                //expiryDateMulti.Disabled = expiryDate.Disabled;
+                //expiryDateMulti.ReadOnly = expiryDate.ReadOnly;
+                //expiryDateDisabled.Text = expiryDate.ReadOnly.ToString();
 
-                hijriCal.LazyItems.ForEach(x => (x as Field).ReadOnly = expiryDate.ReadOnly || issueDate.ReadOnly);
+                //hijriCal.LazyItems.ForEach(x => (x as Field).ReadOnly = expiryDate.ReadOnly || issueDate.ReadOnly);
                 if (rwFile.InputType == InputType.Password)
                 {
                     var s = GridPanel1.ColumnModel.Columns[GridPanel1.ColumnModel.Columns.Count - 1];
                     s.Renderer.Handler = s.Renderer.Handler.Replace("attachRender()", " ' '");
                 }
+
+                if (!_systemService.SessionHelper.GetHijriSupport())
+                {
+                    SetHijriInputState(false);
+                    hijriCal.Visible = false;
+                }
+                    
             }
         }
 
@@ -325,21 +332,24 @@ namespace AionHR.Web.UI.Forms
                     FillBranch();
                     if (response.result.branchId.HasValue)
                         branchId.Select(response.result.branchId.Value.ToString());
+                    SetHijriInputState(response.result.hijriCal);
                     if (_systemService.SessionHelper.GetHijriSupport())
                     {
-                        SetHijriInputState(true);
+                        SetHijriInputState(response.result.hijriCal);
                         if (response.result.hijriCal)
                         {
                             hijCal.Checked = true;
-                            issueDateMulti.Text = response.result.issueDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
-                            expiryDateMulti.Text = response.result.expiryDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
+
+                            rwIssueDateMulti.Text = response.result.issueDate!=null  ? response.result.issueDate.ToString("yyyy/MM/dd", new CultureInfo("ar")) : "";
+                            rwExpiryDateMulti.Text = response.result.expiryDate != null ?response.result.expiryDate.ToString("yyyy/MM/dd", new CultureInfo("ar")) : "";
                             hijriSelected.Text = "true";
                         }
                         else
                         {
                             gregCal.Checked = true;
-                            issueDateMulti.Text = response.result.issueDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
-                            expiryDateMulti.Text = response.result.expiryDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
+                          
+                            rwIssueDateMulti.Text = "";
+                            rwExpiryDateMulti.Text = "";
                             hijriSelected.Text = "false";
                         }
                         X.Call("handleInputRender");
@@ -512,13 +522,11 @@ namespace AionHR.Web.UI.Forms
             FillDocumentType();
             if (_systemService.SessionHelper.GetHijriSupport())
             {
-                SetHijriInputState(true);
-
-                X.Call("handleInputRender");
-            }
-            else
-            {
+                rwIssueDate.Text = DateTime.Today.ToShortDateString(); ;
+                rwExpiryDate.Text = DateTime.Today.ToShortDateString();
+                hijriSelected.Text = "false";
                 SetHijriInputState(false);
+                X.Call("handleInputRender");
             }
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
@@ -562,6 +570,22 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
+
+            string ExpiryDateString = e.ExtraParams["rwExpiryDate"];
+            string IssueDateDateString = e.ExtraParams["rwIssueDate"];
+
+            DateTime ExpiryDate = new DateTime();
+            DateTime IssueDate = new DateTime();
+
+            if (!string.IsNullOrEmpty(ExpiryDateString))
+            {
+                ExpiryDate = DateTime.Parse(e.ExtraParams["rwExpiryDate"]);
+            }
+            if (!string.IsNullOrEmpty(IssueDateDateString))
+            {
+                IssueDate = DateTime.Parse(e.ExtraParams["rwIssueDate"]);
+            }
+
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string obj = e.ExtraParams["values"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
@@ -571,44 +595,68 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
             string url = e.ExtraParams["url"];
             // Define the object to add or edit as null
-            bool hijriSupported = _systemService.SessionHelper.GetHijriSupport();
+        
             if (dtId.SelectedItem != null)
                 b.dtName = dtId.SelectedItem.Text;
 
             if (branchId.SelectedItem != null)
                 b.branchName = branchId.SelectedItem.Text;
+            bool hijriSupported = _systemService.SessionHelper.GetHijriSupport();
             try
             {
                 CultureInfo c = new CultureInfo("en");
                 string format = "";
                 if (hijriSupported)
                 {
-                    if (b.hijriCal)
+                    if (hijriSelected.Text == "true")
                     {
+                        b.hijriCal = true;
                         c = new CultureInfo("ar");
                         format = "yyyy/MM/dd";
+                        b.issueDate = DateTime.ParseExact(rwIssueDateMulti.Text, format, c);
+                        b.expiryDate = DateTime.ParseExact(rwExpiryDateMulti.Text, format, c);
                     }
+                    //else
+                    //{
+                    //    c = new CultureInfo("en");
+                    //    if (_systemService.SessionHelper.CheckIfArabicSession())
+                    //    {
+
+                    //        format = "dd/MM/yyyy";
+                    //    }
+                    //    else
+                    //    {
+                    //        format = "MM/dd/yyyy";
+                    //    }
+                    //}
                     else
                     {
-                        c = new CultureInfo("en");
-                        format = "MM/dd/yyyy";
+
+                        b.issueDate = IssueDate;
+
+
+                        b.expiryDate = ExpiryDate;
                     }
 
-                    b.issueDate = DateTime.ParseExact(issueDateMulti.Text, format, c);
-                    b.expiryDate = DateTime.ParseExact(expiryDateMulti.Text, format, c);
                 }
 
             }
             catch (Exception exp)
             {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("DateFormatError")).Show();
+
                 return;
             }
-            if(b.issueDate>b.expiryDate)
+            //b.remarks = 
+            if (b.issueDate != null && (b.issueDate > b.expiryDate))
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("DateRangeError")).Show();
+
                 return;
             }
+
             if (string.IsNullOrEmpty(id))
             {
 
