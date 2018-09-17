@@ -1197,4 +1197,7 @@
   <data name="Export" xml:space="preserve">
     <value>Export</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
 </root>

@@ -207,6 +207,9 @@
   <data name="xrLabel36.Text" xml:space="preserve">
     <value>المدير</value>
   </data>
+  <data name="xrLabel37.Text" xml:space="preserve">
+    <value>المجموع الكلي </value>
+  </data>
   <data name="xrLabel38.Text" xml:space="preserve">
     <value>الاستحقاقات</value>
   </data>
@@ -221,6 +224,13 @@
   </data>
   <data name="xrLabel41.Text" xml:space="preserve">
     <value>xrLabel6</value>
+  </data>
+  <data name="xrLabel43.Text" xml:space="preserve">
+    <value>المجموع الكلي</value>
+    <comment>Total Amount</comment>
+  </data>
+  <data name="xrLabel45.Text" xml:space="preserve">
+    <value>المجموع الكلي</value>
   </data>
   <data name="xrLabel5.Text" xml:space="preserve">
     <value>الجنسية :</value>

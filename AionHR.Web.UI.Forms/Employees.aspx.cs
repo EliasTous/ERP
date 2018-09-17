@@ -109,39 +109,34 @@ namespace AionHR.Web.UI.Forms
 
         private void BuildQuickViewTemplate()                         
              
-               
-              
-             
-              
+                         
+                           
 
 
         {
-            string html = "<table width='50%' style='font-weight:bold;'><tr><td> ";
+            try
+            {
+                string html = "<table width='50%' style='font-weight:bold;'><tr><td> ";
 
 
-            html += GetLocalResourceObject("usedLeaves").ToString() + " {usedLeaves} </td><td>";
-            html += GetLocalResourceObject("serviceDuration").ToString() + " {serviceDuration}</td><td>";
-            html += GetLocalResourceObject("earnedLeavesLeg").ToString() + " {earnedLeavesLeg}   </td></tr><tr><td>";
+                html += GetLocalResourceObject("usedLeaves").ToString() + " {usedLeaves} </td><td>";
+                html += GetLocalResourceObject("serviceDuration").ToString() + " {serviceDuration}</td><td>";
+                html += GetLocalResourceObject("earnedLeavesLeg").ToString() + " {earnedLeavesLeg}  </td><td>";
+                html += GetLocalResourceObject("LoansBalance").ToString() + " {loansBalance}   </td></tr><tr><td>";
 
-            html += GetLocalResourceObject("paidLeaves").ToString() + " {paidLeaves}  </td><td>";
-            html += GetLocalResourceObject("EmployeeStatus").ToString() + " {status}  </td><td>";
-            html += GetLocalResourceObject("usedLeavesLeg").ToString() + " {usedLeavesLeg}</td> </tr> <tr><td>";
-
-
-            html += GetLocalResourceObject("earnedLeaves").ToString() + " {earnedLeaves}</td><td>";
-            html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance} </td><td>";
-            //     html += GetLocalResourceObject("salary").ToString() + " {salary}  </td><td>";
+                html += GetLocalResourceObject("paidLeaves").ToString() + " {paidLeaves}  </td><td>";
+                html += GetLocalResourceObject("EmployeeStatus").ToString() + " {status}  </td><td>";
+                html += GetLocalResourceObject("usedLeavesLeg").ToString() + " {usedLeavesLeg}</td> </tr> <tr><td>";
 
 
-            html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + " {lastLeave}  </td> </tr></table>";
+                html += GetLocalResourceObject("earnedLeaves").ToString() + " {earnedLeaves}</td><td>";
+                html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance} </td><td>";
+                //     html += GetLocalResourceObject("salary").ToString() + " {salary}  </td><td>";
 
 
-          
+                html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + "{lastLeave} </td></tr></table>";
 
-
-
-
-
+           
 
 
 
@@ -149,20 +144,31 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            //html += GetLocalResourceObject("eosBalanceTitle").ToString() + " {eosBalance}</td><td>";
-
-            //html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + " {lastLeave}</td><td>";
-            //html += GetLocalResourceObject("paidLeavesYTDTitle").ToString() + " {paidLeavesYTD}</td></tr><tr><td>";
-
-            //html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance}</td><td>";
 
 
-            //html += GetLocalResourceObject("earnedLeaves").ToString() + " {earnedLeaves}</td><td>";
-            //html += GetLocalResourceObject("usedLeaves").ToString() + " {usedLeaves}</td></tr><tr><td>";
-            //html += GetLocalResourceObject("paidLeaves").ToString() + " {paidLeaves}</td><td>";
 
-            //html += GetLocalResourceObject("allowedLeaveYtdTitle").ToString() + " {allowedLeaveYtd}</td></tr></table>";
-            RowExpander1.Template.Html = html;
+
+
+
+                //html += GetLocalResourceObject("eosBalanceTitle").ToString() + " {eosBalance}</td><td>";
+
+                //html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + " {lastLeave}</td><td>";
+                //html += GetLocalResourceObject("paidLeavesYTDTitle").ToString() + " {paidLeavesYTD}</td></tr><tr><td>";
+
+                //html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance}</td><td>";
+
+
+                //html += GetLocalResourceObject("earnedLeaves").ToString() + " {earnedLeaves}</td><td>";
+                //html += GetLocalResourceObject("usedLeaves").ToString() + " {usedLeaves}</td></tr><tr><td>";
+                //html += GetLocalResourceObject("paidLeaves").ToString() + " {paidLeaves}</td><td>";
+
+                //html += GetLocalResourceObject("allowedLeaveYtdTitle").ToString() + " {allowedLeaveYtd}</td></tr></table>";
+                RowExpander1.Template.Html = html;
+            }
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message);
+            }
         }
         private List<Department> GetDepartments()
         {
@@ -540,7 +546,8 @@ namespace AionHR.Web.UI.Forms
                     usedLeavesLeg = qv.result.usedLeavesLeg,
 
                     lastLeave = qv.result.LastLeave(_systemService.SessionHelper.GetDateformat()),
-                    status = qv.result.statusString
+                    status = qv.result.statusString,
+                    loansBalance = qv.result.loanBalance
 
 
 

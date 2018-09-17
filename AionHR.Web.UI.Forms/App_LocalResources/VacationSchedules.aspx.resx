@@ -147,6 +147,9 @@
   <data name="FieldTo" xml:space="preserve">
     <value>To Months</value>
   </data>
+  <data name="FromDays" xml:space="preserve">
+    <value>From (Days)</value>
+  </data>
   <data name="MonthsFieldError" xml:space="preserve">
     <value>The months is a required field and should be from 0 to 1000</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="PeriodsTab" xml:space="preserve">
     <value>Periods </value>
+  </data>
+  <data name="ToDays" xml:space="preserve">
+    <value>To (Days)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Vacation Schedules</value>

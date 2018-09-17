@@ -468,6 +468,9 @@
                                 </Change>
                                 
                             </DirectEvents>
+                               <Validator Handler=" if (#{endDate}.getValue() !=null && this.value>#{endDate}.getValue()) return false; else return true;" />
+                                   
+                              
                          <Listeners>
                                         <%--<Change Handler="if(moment(this.value).isSame(moment( #{oldStart}.value) )) {return false;} #{oldStart}.value = this.value; calcDays();" />--%>
 
@@ -490,6 +493,7 @@
                                    <%-- <Listeners>
                                         <Change Handler="App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum(); " />
                                     </Listeners>--%>
+                                       <Validator Handler=" if (#{startDate}.getValue()!=null && this.value<#{startDate}.getValue()) return false; else return true;" />
                                     <Listeners>
                                         <%--<Change Handler="if(moment(this.value).isSame(moment( #{oldEnd}.value) )) {return false;} #{oldEnd}.value = this.value; calcDays();calcEndDate();" />--%>
 
