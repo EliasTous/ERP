@@ -10,7 +10,15 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     
-    <script type="text/javascript" src="Scripts/common.js"></script>
+    <script type="text/javascript" src="Scripts/common.js">
+
+        function updateEventMask(f) {
+        alert(f);
+            App.GridPanel1.getView().loadMask.msg = "New Loading Message";
+
+        }
+       
+    </script>
   
 
 </head>
@@ -18,8 +26,26 @@
     <form id="Form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
          
-
+          <ext:Hidden ID="currentRow" runat="server"  />
+          <ext:Hidden ID="totalRow" runat="server"  />
         
+          <ext:TaskManager ID="TaskManager1" runat="server">
+            <Tasks>
+                <ext:Task 
+                    TaskID="longactionprogress"
+                    Interval="10000" 
+                    AutoRun="false"
+                    OnStart="alert('start');"
+                       
+                    OnStop="
+                       alert('stop');">
+                    <DirectEvents>
+                        <Update OnEvent="RefreshProgress" />
+                    </DirectEvents>                    
+                </ext:Task>
+            </Tasks>
+        </ext:TaskManager>
+
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
             <Items>
@@ -74,11 +100,16 @@
                                         <Click Handler="CheckSession(); if(!#{SynchronizeAttendanceForm}.getForm().isValid()){return false;} " />
                                     </Listeners>
                                     <DirectEvents>
-                                        <Click OnEvent="SynchronizeAttendance" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                        <Click OnEvent="StartLongAction" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                             <EventMask ShowMask="true"  />
                                          </Click>
                                     </DirectEvents>
                                 </ext:Button>
+
+
+                                 <ext:ProgressBar ID="Progress1" runat="server" Width="300" />
+        
+      
                            
                                         
                                  

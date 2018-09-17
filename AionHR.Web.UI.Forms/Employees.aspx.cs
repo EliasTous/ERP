@@ -486,43 +486,72 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public object GetQuickView(Dictionary<string, string> parameters)
         {
-            EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
-            req.RecordID = parameters["id"];
-            req.asOfDate = DateTime.Now;
-            RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
-            if (!qv.Success)
+            try
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, qv.Summary).Show();
-                return null;
+                RecordRequest caRequest = new RecordRequest();
+                caRequest.RecordID = parameters["id"];
+                RecordResponse<EmployeeTermination> response = _employeeService.ChildGetRecord<EmployeeTermination>(caRequest);
+
+                if (!response.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                    throw new Exception();
+                }
+
+
+
+
+                EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
+                req.RecordID = parameters["id"];
+                if (response.result!=null)
+                {
+                        req.asOfDate = response.result.date ?? DateTime.Now;
+                
+                }
+                else
+                req.asOfDate = DateTime.Now;
+                RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+                if (!qv.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", qv.ErrorCode) != null ? GetGlobalResourceObject("Errors", qv.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + qv.LogId : qv.Summary).Show();
+                    return null;
+                }
+                qv.result.statusString = GetLocalResourceObject("EmployeeStatus" + qv.result.status).ToString();
+
+
+
+
+                return new
+                {
+
+
+
+                    reportsTo = qv.result.reportToName.fullName,
+                    indemnity = qv.result.indemnity,
+                    salary = qv.result.salary,
+                    leavesBalance = qv.result.leaveBalance,
+                    serviceDuration = qv.result.serviceDuration,
+                    earnedLeaves = qv.result.earnedLeaves,
+                    usedLeaves = qv.result.usedLeaves,
+                    paidLeaves = qv.result.paidLeaves,
+                    earnedLeavesLeg = qv.result.earnedLeavesLeg,
+                    usedLeavesLeg = qv.result.usedLeavesLeg,
+
+                    lastLeave = qv.result.LastLeave(_systemService.SessionHelper.GetDateformat()),
+                    status = qv.result.statusString
+
+
+
+                };
             }
-            qv.result.statusString = GetLocalResourceObject("EmployeeStatus" + qv.result.status).ToString();
-
-
-
-
-            return new
+            catch (Exception exp)
             {
-
-
-
-                reportsTo = qv.result.reportToName.fullName,
-                indemnity = qv.result.indemnity,
-                salary = qv.result.salary,
-                leavesBalance = qv.result.leaveBalance,
-                serviceDuration = qv.result.serviceDuration,
-                earnedLeaves = qv.result.earnedLeaves,
-                usedLeaves = qv.result.usedLeaves,
-                paidLeaves = qv.result.paidLeaves,
-                earnedLeavesLeg = qv.result.earnedLeavesLeg,
-                usedLeavesLeg = qv.result.usedLeavesLeg,
-
-                lastLeave = qv.result.LastLeave(_systemService.SessionHelper.GetDateformat()),
-                 status = qv.result.statusString
-
-
-
-           };
+                if (exp!=null)
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                return null; 
+            }
          
 
 

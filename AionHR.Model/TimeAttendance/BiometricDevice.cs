@@ -25,5 +25,11 @@ namespace AionHR.Model.TimeAttendance
         [PropertyID("41000_03")]
         [ApplySecurity]
         public string divisionId { get; set; }
+
+        public string branchId { get; set; }
+
+
+
+        
     }
 }

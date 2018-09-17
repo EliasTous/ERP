@@ -2382,6 +2382,7 @@
     <Content Include="App_LocalResources\Approvals.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportPayCodes.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportPayCodes.aspx.resx" />
+    <Content Include="App_LocalResources\BiometricDevices.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

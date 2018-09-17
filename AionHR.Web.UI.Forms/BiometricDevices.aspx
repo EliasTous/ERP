@@ -316,6 +316,38 @@
                                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                     </Listeners>
                                                 </ext:ComboBox>
+
+                                         <ext:ComboBox      AnyMatch="true" CaseSensitive="false"  runat="server" EnableRegEx="true"  AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldJIBranch%>" >
+                                                <Store>
+                                                    <ext:Store runat="server" ID="BranchStore">
+                                                        <Model>
+                                                            <ext:Model runat="server">
+                                                                <Fields>
+                                                                    <ext:ModelField Name="recordId" />
+                                                                    <ext:ModelField Name="name" />
+                                                                </Fields>
+                                                            </ext:Model>
+                                                        </Model>
+                                                    </ext:Store>
+                                                </Store>
+                                                    <RightButtons>
+                                                        <ext:Button ID="Button1" runat="server" Icon="Add" Hidden="true">
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();  " />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                <Click OnEvent="addBranch">
+                                                                    
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                <Listeners>
+                                                    <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                    <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                </Listeners>
+                                            </ext:ComboBox>
                                
 
                             </Items>

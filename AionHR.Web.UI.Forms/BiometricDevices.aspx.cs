@@ -120,57 +120,68 @@ namespace AionHR.Web.UI.Forms
 
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-
-
-            int id = Convert.ToInt32(e.ExtraParams["id"]);
-            string type = e.ExtraParams["type"];
-            switch (type)
+            try
             {
-                case "imgEdit":
-                    //Step 1 : get the object from the Web Service 
-                    RecordRequest r = new RecordRequest();
-                    r.RecordID = id.ToString();
-                    RecordResponse<BiometricDevice> response = _timeAttendanceService.ChildGetRecord<BiometricDevice>(r);
-                    if (!response.Success)
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
-                        return;
-                    }
-                    //Step 2 : call setvalues with the retrieved object
-                    this.BasicInfoTab.SetValues(response.result);
-                    FillBranch();
-                    if (response.result.divisionId != null)
-                        divisionId.Select(response.result.divisionId);
-                    this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-                    this.EditRecordWindow.Show();
-                    break;
 
-                case "imgDelete":
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                    {
-                        Yes = new MessageBoxButtonConfig
+                int id = Convert.ToInt32(e.ExtraParams["id"]);
+                string type = e.ExtraParams["type"];
+                switch (type)
+                {
+                    case "imgEdit":
+                        //Step 1 : get the object from the Web Service 
+                        RecordRequest r = new RecordRequest();
+                        r.RecordID = id.ToString();
+                        RecordResponse<BiometricDevice> response = _timeAttendanceService.ChildGetRecord<BiometricDevice>(r);
+                        if (!response.Success)
                         {
-                            //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
-                            Text = Resources.Common.Yes
-                        },
-                        No = new MessageBoxButtonConfig
-                        {
-                            Text = Resources.Common.No
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                            return;
                         }
+                        //Step 2 : call setvalues with the retrieved object
+                        this.BasicInfoTab.SetValues(response.result);
+                        FillDivision();
+                        FillBranch();
+                        if (response.result != null)
+                        {
+                            if (response.result.divisionId != null)
+                                divisionId.Select(response.result.divisionId);
+                            if (response.result.branchId != null)
+                                branchId.Select(response.result.branchId);
+                        }
+                        this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
+                        this.EditRecordWindow.Show();
+                        break;
 
-                    }).Show();
-                    break;
+                    case "imgDelete":
+                        X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                        {
+                            Yes = new MessageBoxButtonConfig
+                            {
+                                //We are call a direct request metho for deleting a record
+                                Handler = String.Format("App.direct.DeleteRecord({0})", id),
+                                Text = Resources.Common.Yes
+                            },
+                            No = new MessageBoxButtonConfig
+                            {
+                                Text = Resources.Common.No
+                            }
 
-                case "colAttach":
+                        }).Show();
+                        break;
 
-                    //Here will show up a winow relatice to attachement depending on the case we are working on
-                    break;
-                default:
-                    break;
+                    case "colAttach":
+
+                        //Here will show up a winow relatice to attachement depending on the case we are working on
+                        break;
+                    default:
+                        break;
+                }
             }
-
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
 
         }
 
@@ -310,7 +321,8 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
-            FillBranch();
+            FillDivision();
+            FillBranch(); 
             this.EditRecordWindow.Show();
         }
 
@@ -473,7 +485,7 @@ namespace AionHR.Web.UI.Forms
 
       
 
-        private void FillBranch()
+        private void FillDivision()
         {
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
@@ -494,7 +506,7 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                FillBranch();
+                FillDivision();
                 divisionId.Select(dept.recordId);
             }
             else
@@ -587,6 +599,40 @@ namespace AionHR.Web.UI.Forms
 
 
 
+        }
+
+        protected void addBranch(object sender, DirectEventArgs e)
+        {
+            Branch dept = new Branch();
+            dept.name = branchId.Text;
+            dept.isInactive = false;
+            dept.timeZone = _systemService.SessionHelper.GetDefaultTimeZone();
+            PostRequest<Branch> depReq = new PostRequest<Branch>();
+            depReq.entity = dept;
+            PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillBranch();
+                branchId.Select(dept.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                return;
+            }
+
+        }
+
+        private void FillBranch()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+            BranchStore.DataSource = resp.Items;
+            BranchStore.DataBind();
         }
     }
 }

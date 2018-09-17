@@ -226,13 +226,13 @@
     <value>4</value>
   </data>
   <data name="EPEMttIdCompany" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="EPEMttIdOther" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="EPEMttIdOther" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="EPEMttIdWorker" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="LMLRStatusApproved" xml:space="preserve">
     <value>2</value>

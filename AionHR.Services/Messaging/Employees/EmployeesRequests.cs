@@ -600,6 +600,7 @@ public class EmployeeQuickViewRecordRequest : RecordRequest
         get
         {
             parameters = base.Parameters;
+            
             parameters.Add("_asOfDate", asOfDate.ToString("MM/dd/yyyy", new CultureInfo("en-US")));
             
             return parameters;

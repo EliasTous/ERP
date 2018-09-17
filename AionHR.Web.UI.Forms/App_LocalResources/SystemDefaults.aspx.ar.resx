@@ -417,4 +417,7 @@
   <data name="basicSalaryPayCode" xml:space="preserve">
     <value>الرمز المالي للراتب الاساسي</value>
   </data>
+  <data name="minPunchInterval" xml:space="preserve">
+    <value>الحد الفاصل للتعرف على البصمات</value>
+  </data>
 </root>

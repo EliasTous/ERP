@@ -546,17 +546,24 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         protected void fillBodyText(object sender, DirectEventArgs e)
         {
-            ApplyLetterRecordRequest req = new ApplyLetterRecordRequest();
-            req.ltId = Convert.ToInt32(ltId.SelectedItem.Value);
-            req.employeeId = Convert.ToInt32(employeeId.SelectedItem.Value);
-            RecordResponse<ApplyLetter> res = _systemService.ChildGetRecord<ApplyLetter>(req);
-            if (!res.Success)//it maybe another check
+            try
             {
+                ApplyLetterRecordRequest req = new ApplyLetterRecordRequest();
+                req.ltId = Convert.ToInt32(ltId.SelectedItem.Value);
+                req.employeeId = Convert.ToInt32(employeeId.SelectedItem.Value);
+                RecordResponse<ApplyLetter> res = _systemService.ChildGetRecord<ApplyLetter>(req);
+                if (!res.Success)//it maybe another check
+                {
 
-                return;
+                    return;
+                }
+                else
+                    bodyTextTF.Text = res.result.bodyText;
             }
-            else
-                bodyTextTF.Text = res.result.bodyText;
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
     }
 }

@@ -132,6 +132,9 @@
   <data name="FieldIsSegmentedHead" xml:space="preserve">
     <value>Is Segmented Head</value>
   </data>
+  <data name="FieldJIBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>
   </data>
