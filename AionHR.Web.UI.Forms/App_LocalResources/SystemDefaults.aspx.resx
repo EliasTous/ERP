@@ -420,4 +420,7 @@
   <data name="basicSalaryPayCode" xml:space="preserve">
     <value>Basic Salary Pay Code</value>
   </data>
+  <data name="FSWDEDId" xml:space="preserve">
+    <value>Final Settlement Working Days</value>
+  </data>
 </root>

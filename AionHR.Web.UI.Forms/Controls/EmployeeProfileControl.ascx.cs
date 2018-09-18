@@ -1035,69 +1035,76 @@ namespace AionHR.Web.UI.Forms
         }
         private void FillProfileInfo(string employeeId)
         {
-            RecordRequest r = new RecordRequest();
-            r.RecordID = employeeId.ToString();
-            RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
-            BasicInfoTab.Reset();
-            //picturePath.Clear();
-            if (!response.Success)
+            try
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
-                return;
-            }
-            //Step 2 : call setvalues with the retrieved object
-            this.BasicInfoTab.SetValues(response.result);
-
-
-
-            if (_systemService.SessionHelper.GetHijriSupport())
-            {
-                
-                if (response.result.bdHijriCal)
+                RecordRequest r = new RecordRequest();
+                r.RecordID = employeeId.ToString();
+                RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
+                BasicInfoTab.Reset();
+                //picturePath.Clear();
+                if (!response.Success)
                 {
-                    SetHijriInputState(true);
-                    //hijCal.Checked = true;
-                    bdHijriCal.Text = "true";
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                    return;
+                }
+                //Step 2 : call setvalues with the retrieved object
+                this.BasicInfoTab.SetValues(response.result);
 
-                    hijCalBirthDate.Text = response.result.birthDate.HasValue ? response.result.birthDate.Value.ToString("yyyy/MM/dd", new CultureInfo("ar")) : "";
-                    X.Call("handleInputRender");
+
+
+                if (_systemService.SessionHelper.GetHijriSupport())
+                {
+
+                    if (response.result.bdHijriCal)
+                    {
+                        SetHijriInputState(true);
+                        //hijCal.Checked = true;
+                        bdHijriCal.Text = "true";
+
+                        hijCalBirthDate.Text = response.result.birthDate.HasValue ? response.result.birthDate.Value.ToString("yyyy/MM/dd", new CultureInfo("ar")) : "";
+                        X.Call("handleInputRender");
+
+                    }
+
 
                 }
-            
-               
+                if (!response.result.bdHijriCal)
+                {
+                    SetHijriInputState(false);
+                    //gregCal.Checked = true;
+                    bdHijriCal.Text = "false";
+                    gregCalBirthDate.Value = response.result.birthDate.HasValue ? response.result.birthDate : new DateTime();
+                }
+
+
+
+                //if (response.result.bdHijriCal)
+                // {
+                //     hijCal.Checked = true;
+                //     hijCalBirthDate.Text = response.result.birthDate;
+                // }
+                //else
+                // {
+                //     gregCal.Checked = true;
+                //     if (!string.IsNullOrEmpty(response.result.birthDate)) ;
+                //     //gregCalBirthDate.Value = DateTime.ParseExact(response.result.birthDate, "yyyyMMdd", new CultureInfo("en"));
+                // }
+
+                FillNameFields(response.result.name);
+
+                InitCombos(false);
+                SelectCombos(response.result);
+                SetActivated(!response.result.isInactive);
+                setTerminationWindow(response.result.isInactive);
+
+
+                FixLoaderUrls(r.RecordID, response.result.hireDate.HasValue ? response.result.hireDate.Value.ToString("yyyy/MM/dd") : "", response.result.isInactive);
             }
-            if (!response.result.bdHijriCal)
+            catch(Exception exp)
             {
-                SetHijriInputState(false);
-                //gregCal.Checked = true;
-                bdHijriCal.Text = "false";
-                gregCalBirthDate.Value = response.result.birthDate.HasValue ? response.result.birthDate : new DateTime();
+                X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
             }
-
-
-
-            //if (response.result.bdHijriCal)
-            // {
-            //     hijCal.Checked = true;
-            //     hijCalBirthDate.Text = response.result.birthDate;
-            // }
-            //else
-            // {
-            //     gregCal.Checked = true;
-            //     if (!string.IsNullOrEmpty(response.result.birthDate)) ;
-            //     //gregCalBirthDate.Value = DateTime.ParseExact(response.result.birthDate, "yyyyMMdd", new CultureInfo("en"));
-            // }
-
-            FillNameFields(response.result.name);
-
-            InitCombos(false);
-            SelectCombos(response.result);
-            SetActivated(!response.result.isInactive);
-            setTerminationWindow(response.result.isInactive);
-           
-
-            FixLoaderUrls(r.RecordID, response.result.hireDate.HasValue? response.result.hireDate.Value.ToString("yyyy/MM/dd"):"", response.result.isInactive);
 
         }
         private void setTerminationWindow (bool isInactive)

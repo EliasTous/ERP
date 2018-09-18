@@ -132,7 +132,7 @@
     <value>100</value>
   </data>
   <data name="TopMargin.HeightF" type="System.Single, mscorlib">
-    <value>182.5</value>
+    <value>0</value>
   </data>
   <data name="TopMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>TopLeft</value>
@@ -1013,7 +1013,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
-    <value>7, 14, 182, 100</value>
+    <value>7, 14, 0, 100</value>
   </data>
   <data name="$this.PageHeight" type="System.Int32, mscorlib">
     <value>1169</value>

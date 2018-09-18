@@ -420,4 +420,7 @@
   <data name="minPunchInterval" xml:space="preserve">
     <value>الحد الفاصل للتعرف على البصمات</value>
   </data>
+  <data name="FSWDEDId" xml:space="preserve">
+    <value>نهاية خدمة ايام عمل</value>
+  </data>
 </root>

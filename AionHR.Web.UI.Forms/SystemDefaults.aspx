@@ -1020,6 +1020,22 @@
                                               
                                                   
                                                 </ext:ComboBox>
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="true" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="FSWDEDId" Name="FSWDEDId" FieldLabel="<%$ Resources: FSWDEDId%>" LabelWidth="150">
+                                                    <Store>
+                                                        <ext:Store runat="server" ID="FSWDEDIdStore">
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="recordId" />
+                                                                        <ext:ModelField Name="name" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                                    </Store>
+                                              
+                                                  
+                                                </ext:ComboBox>
                                
                             </Items>
                             <Buttons>

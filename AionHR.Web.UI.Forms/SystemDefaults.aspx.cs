@@ -155,6 +155,7 @@ namespace AionHR.Web.UI.Forms
             FillIndustry();
             FillBsid();
             FillbasicSalaryPayCodeStore();
+            fillFSWDEDId();
 
 
           absenceStore.DataSource= GetDeductions();
@@ -490,6 +491,11 @@ namespace AionHR.Web.UI.Forms
                 basicSalaryPayCode.Select(items.Where(s => s.Key == "basicSalaryPayCode").First().Value.ToString());
             }
 
+            catch { }
+            try
+            {
+                FSWDEDId.Select(items.Where(s => s.Key == "FSWDEDId").First().Value);
+            }
             catch { }
 
 
@@ -829,6 +835,11 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("basicSalaryPayCode", values.basicSalaryPayCode.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("basicSalaryPayCode", ""));
+
+            if (!string.IsNullOrEmpty(values.FSWDEDId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("FSWDEDId", values.FSWDEDId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("FSWDEDId", ""));
 
 
             return submittedValues;
@@ -1497,6 +1508,28 @@ namespace AionHR.Web.UI.Forms
             }
             this.basicSalaryPayCodeStore.DataSource = routers.Items;
             this.basicSalaryPayCodeStore.DataBind();
+
+
+        }
+
+        private void fillFSWDEDId()
+        {
+            try
+            {
+                ListRequest req = new ListRequest();
+                ListResponse<EntitlementDeduction> routers = _employeeService.ChildGetAll<EntitlementDeduction>(req);
+                if (!routers.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
+                    return;
+                }
+                this.FSWDEDIdStore.DataSource = routers.Items;
+                this.FSWDEDIdStore.DataBind();
+            }
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
+            }
 
 
         }

@@ -45,8 +45,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                employeeFilter.AddItem("All", 0);
-                employeeFilter.Select(0);
+               
                 startingDate.Value = DateTime.Now;
               
                 //startingDate.MinDate = DateTime.Now.AddDays(-180);
