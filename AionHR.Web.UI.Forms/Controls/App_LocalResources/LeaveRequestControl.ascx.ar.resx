@@ -214,7 +214,7 @@
     <value>اختر وضع الإجازة</value>
   </data>
   <data name="LeaveDaysWindowTitle" xml:space="preserve">
-    <value>أيام الإجازة</value>
+    <value>أيام الإجازة / الخروج</value>
   </data>
   <data name="LeaveEndWindowTitle" xml:space="preserve">
     <value>العودة من الإجازة</value>

@@ -463,40 +463,40 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Radio hijCal;
         
         /// <summary>
-        /// issueDateMulti control.
+        /// rwIssueDateMulti control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField issueDateMulti;
+        protected global::Ext.Net.TextField rwIssueDateMulti;
         
         /// <summary>
-        /// expiryDateMulti control.
+        /// rwExpiryDateMulti control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField expiryDateMulti;
+        protected global::Ext.Net.TextField rwExpiryDateMulti;
         
         /// <summary>
-        /// issueDate control.
+        /// rwIssueDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateField issueDate;
+        protected global::Ext.Net.DateField rwIssueDate;
         
         /// <summary>
-        /// expiryDate control.
+        /// rwExpiryDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateField expiryDate;
+        protected global::Ext.Net.DateField rwExpiryDate;
         
         /// <summary>
         /// rwFile control.

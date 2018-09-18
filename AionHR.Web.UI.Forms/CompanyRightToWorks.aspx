@@ -30,59 +30,37 @@
     <script type="text/javascript">
         var cropper = null;
 
-
+        var hijriSelected = false;
         var handleInputRender = function () {
-
-            if (App.hijCal.value == true) {
-
-                jQuery(function () {
-
-                    var calendar = jQuery.calendars.instance('Islamic', "ar");
-
-                    jQuery('.showCal').calendarsPicker('destroy');
-                    jQuery('.showCal2').calendarsPicker('destroy');
-                    if (App.issueDateDisabled.value != "True")
-                        jQuery('.showCal').calendarsPicker({ calendar: calendar });
-                    if (App.expiryDateDisabled.value != "True")
-                        jQuery('.showCal2').calendarsPicker({ calendar: calendar });
-                });
-            }
-            else {
-
-                jQuery(function () {
-
-                    var calendar = jQuery.calendars.instance('Gregorian', document.getElementById("CurrentLanguage").value);
-
-                    jQuery('.showCal').calendarsPicker('destroy');
-                    jQuery('.showCal2').calendarsPicker('destroy');
-
-                    if (App.issueDateDisabled.value != "True")
-                        jQuery('.showCal').calendarsPicker({ calendar: calendar });
-                    if (App.expiryDateDisabled.value != "True")
-                        jQuery('.showCal2').calendarsPicker({ calendar: calendar });
-                });
-            }
-
+            jQuery(function () {
+                var calendar = jQuery.calendars.instance('Islamic', 'ar');
+                jQuery('.showCal').calendarsPicker({ calendar: calendar });
+            });
         }
 
         function setInputState(hijri) {
 
-            App.hijriCal.setHidden(!hijri);
-
-            App.issueDateMulti.setHidden(!hijri);
-            App.issueDateMulti.allowBlank = !hijri;
-            App.expiryDateMulti.setHidden(!hijri);
-            App.expiryDateMulti.allowBlank = !hijri;
-
-
-            App.expiryDate.setHidden(hijri);
-            App.expiryDate.allowBlank = hijri;
-
-            App.issueDate.setHidden(hijri);
-            App.issueDate.allowBlank = hijri;
+           
+            App.rwIssueDateMulti.setHidden(!hijri);
+            App.rwExpiryDateMulti.setHidden(!hijri);
+            App.rwExpiryDateMulti.allowBlank = !hijri;
+            App.rwIssueDateMulti.allowBlank = !hijri;
 
 
+            App.rwExpiryDate.setHidden(hijri);
+            App.rwIssueDate.setHidden(hijri);
+            App.rwExpiryDate.allowBlank = hijri
+            App.rwIssueDate.allowBlank = hijri
+           
+
+            
+
+            //  App.rwIssueDate.allowBlank = hijri;
+            App.hijriSelected.Text = hijri;
         }
+      
+
+
     </script>
     <style type="text/css">
         .tlb-BackGround {
@@ -432,39 +410,50 @@
 
                                 <ext:TextField ID="documentRef" runat="server" FieldLabel="<%$ Resources:FieldDocumentRef%>" Name="documentRef" AllowBlank="false" />
                                 <ext:TextField ID="remarks" runat="server" FieldLabel="<%$ Resources:FieldRemarks%>" Name="remarks" AllowBlank="true" />
-                                <ext:RadioGroup runat="server" ID="hijriCal" GroupName="hijriCal" FieldLabel="<%$ Resources:ChooseCalendarType %>">
+                                  <ext:RadioGroup runat="server" ID="hijriCal"   FieldLabel="<%$ Resources:ChooseCalendarType %>"    >
                                     <Items>
-                                        <ext:Radio ID="gregCal" runat="server" Name="hijriCal" InputValue="false" InputType="Checkbox" BoxLabel="<%$ Resources:Common, Gregorian %>" Checked="true">
-                                            <%--     <Listeners>
-                                                <Change Handler="if(this.checked){InitGregorian();handleInputRender();}"  />
-                                            </Listeners>--%>
+                                        <ext:Radio ID="gregCal" runat="server" Name="hijriCal" InputValue="false"  InputType="Radio" BoxLabel="<%$ Resources:Common, Gregorian %>" Checked="true" >
+                                    <Listeners>
+                                        <Change Handler="#{hijriSelected}.setValue('true');">
+
+                                        </Change>
+                                    </Listeners>
                                         </ext:Radio>
-                                        <ext:Radio ID="hijCal" runat="server" Name="hijriCal" InputValue="true" InputType="Checkbox" BoxLabel="<%$ Resources:Common, Hijri %>">
-                                            <%--   <Listeners>
-                                                <Change Handler="if(this.checked){InitHijri();handleInputRender();}" />
-                                            </Listeners>--%>
+                                        <ext:Radio ID="hijCal" runat="server" Name="hijriCal" InputValue="true"   InputType="Radio" BoxLabel="<%$ Resources:Common, Hijri %>" >
+                                         <Listeners>
+                                        <Change Handler="#{hijriSelected}.setValue('false');">
+
+                                        </Change>
+                                    </Listeners>
                                         </ext:Radio>
                                     </Items>
-                                    <Listeners>
-                                        <Change Handler="handleInputRender();"></Change>
-                                    </Listeners>
+                                     <Listeners>
+                                         <Change Handler="setInputState(!App.hijriCal.getChecked()[0].getValue());" />
+                                     </Listeners>
                                 </ext:RadioGroup>
-                                <ext:TextField ID="issueDateMulti" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldIssueDate%>" FieldCls="showCal">
+                                <ext:TextField ID="rwIssueDateMulti" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldIssueDate%>" FieldCls="showCal">
+                                 <Listeners>
+                                                                              <Render Fn="handleInputRender" />
+                                                                                                                        </Listeners>
+                                   
                                 </ext:TextField>
-                                <ext:TextField ID="expiryDateMulti" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldExpiryDate%>" FieldCls="showCal2">
+                                <ext:TextField ID="rwExpiryDateMulti" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldExpiryDate%>" FieldCls="showCal">
+                               
+                                    <Listeners>
+                                                                              <Render Fn="handleInputRender" />
+                                                                                                                        </Listeners>
+                                   
                                 </ext:TextField>
-
-                                <ext:DateField ID="issueDate" runat="server" Vtype="daterange" FieldLabel="<%$ Resources:FieldIssueDate%>" Name="issueDate" >
-                                     <CustomConfig>
-                        <ext:ConfigItem Name="endDateField" Value="expiryDate" Mode="Value" />
+                                <ext:DateField ID="rwIssueDate" Vtype="daterange" runat="server" Name="issueDate" FieldLabel="<%$ Resources:FieldIssueDate%>" AllowBlank="true" >
+                                                                           <CustomConfig>
+                        <ext:ConfigItem Name="endDateField" Value="rwExpiryDate" Mode="Value" />
                     </CustomConfig>
                                     </ext:DateField>
-                                <ext:DateField ID="expiryDate" runat="server" Vtype="daterange" FieldLabel="<%$ Resources:FieldExpiryDate%>" Name="expiryDate" >
-                                    <CustomConfig>
-                        <ext:ConfigItem Name="startDateField" Value="issueDate" Mode="Value" />
+                               <ext:DateField ID="rwExpiryDate" Vtype="daterange" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldExpiryDate%>" AllowBlank="true" >
+                                                 <CustomConfig>
+                        <ext:ConfigItem Name="startDateField" Value="rwIssueDate" Mode="Value" />
                     </CustomConfig>
-                                    </ext:DateField>
-
+                                   </ext:DateField>
 
 
                                 <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true" Name="fileUrl" />
@@ -481,7 +470,7 @@
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler=" CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;} if(#{issueDateMulti}.value =='' && #{issueDate}.value=='') return false;  " />
+                        <Click Handler=" CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}   " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', #{titleSavingErrorMessage}.value);">
@@ -489,6 +478,9 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="url" Value="#{url}.getValue()" Mode="Raw" />
+
+                                <ext:Parameter Name="rwIssueDate" Value="#{rwIssueDate}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="rwExpiryDate" Value="#{rwExpiryDate}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
