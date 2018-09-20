@@ -30,36 +30,7 @@
         var cropper = null;
 
         var hijriSelected = false;
-        //var handleInputRender = function () {
-            
-        //    if (App.hijCal.value==true) {
-
-        //        jQuery(function () {
-
-        //            var calendar = jQuery.calendars.instance('Islamic', "ar");
-        //            jQuery('.showCal').calendarsPicker('destroy');
-                 
-
-                   
-        //                jQuery('.showCal').calendarsPicker({ calendar: calendar });
-                 
-        //        });
-        //    }
-        //    else {
-
-        //        jQuery(function () {
-
-        //            var calendar = jQuery.calendars.instance('Gregorian', document.getElementById("CurrentLang").value);
-        //            jQuery('.showCal').calendarsPicker('destroy');
-                   
-
-                   
-        //                jQuery('.showCal').calendarsPicker({ calendar: calendar });
-                 
-        //        });
-        //    }
-            
-        //}
+      
         function setInputState(hijri) {
 
             
@@ -288,11 +259,11 @@
         }
         return out;
     }
-    function FillLeftPanel(departmentName, branchName, positionName, reportToName, balance, lastLeave, paid, leaveBalance, allowedLeaves, esName, usedLeaves, paidLeaves, salary, serviceDuration) {
+    function FillLeftPanel(departmentName, branchName, positionName, reportToName, balance, lastLeave, paid, leaveBalance, allowedLeaves, esName, usedLeaves, paidLeaves, salary, serviceDuration, TerminationDate, unpaidLeaves) {
 
 
 
-
+      
         App.employeeControl1_reportsToLbl.setText(reportToName);
         App.employeeControl1_eosBalanceTitle.setText(balance);
         //App.employeeControl1_lastLeaveStartDateTitle.setText(lastLeave);
@@ -302,10 +273,13 @@
 
         App.employeeControl1_usedLeavesTitle.setText(usedLeaves);
         App.employeeControl1_paidLeavesTitle.setText(paidLeaves);
+        App.employeeControl1_unpaidLeavesTitle.setText(unpaidLeaves);
+
         App.employeeControl1_salaryTitle.setText(salary);
 
         App.employeeControl1_esName = esName;
         App.employeeControl1_serviceDuration = serviceDuration;
+        App.employeeControl1_TerminationDateLbl = TerminationDate;
        
         FillLeftPanel(dep, branchName, positionName);
 
@@ -530,6 +504,10 @@
         App.employeeControl1_paidLeavesLbl.el.setStyle('float', alignment);
         App.employeeControl1_salaryTitle.el.setStyle('float', alignment);
         App.employeeControl1_salaryLbl.el.setStyle('float', alignment);
+        App.employeeControl1_TerminatedLbl.el.setStyle('float', alignment);
+        App.employeeControl1_TerminationDateLbl.el.setStyle('float', alignment);
+        App.employeeControl1_unpaidLeavesTitle.el.setStyle('float', alignment);
+        App.employeeControl1_unpaidLeavesLbl.el.setStyle('float', alignment);
       
         
     }
@@ -684,6 +662,16 @@
                                 </ext:Panel>
                                 <ext:Panel runat="server">
                                     <Items>
+                                        <ext:Label ID="TerminatedLbl" Text="<%$ Resources:Terminated %>" runat="server" Hidden="true" />
+                                    </Items>
+                                </ext:Panel>
+                                 <ext:Panel runat="server">
+                                    <Items>
+                                        <ext:Label ID="TerminationDateLbl" runat="server" Hidden="true" />
+                                    </Items>
+                                </ext:Panel>
+                                <ext:Panel runat="server">
+                                    <Items>
                                         <ext:Label ID="departmentLbl" runat="server" />
                                     </Items>
                                 </ext:Panel>
@@ -731,14 +719,14 @@
                                         <ext:Label ID="leavesBalance" runat="server" />
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel runat="server">
+                                <ext:Panel runat="server" Hidden="true">
                                     <Items>
                                         <ext:Label ID="paidLeavesYTDTitle" Text="<%$ Resources:usedLeavesLeg %>" runat="server" />
                                         <ext:Label ID="paidLeavesYTDLbl" runat="server" />
                                     </Items>
                                 </ext:Panel>
                                
-                                <ext:Panel runat="server">
+                                <ext:Panel runat="server" Hidden="true">
                                     <Items>
                                         <ext:Label ID="allowedLeaveYtdTitle" Text="<%$ Resources:earnedLeavesLeg %>" runat="server" />
                                         <ext:Label ID="allowedLeaveYtd" runat="server" />
@@ -754,6 +742,12 @@
                                     <Items>
                                         <ext:Label ID="paidLeavesTitle" Text="<%$ Resources:paidLeaves %>" runat="server" />
                                         <ext:Label ID="paidLeavesLbl" runat="server" />
+                                    </Items>
+                                </ext:Panel>
+                                  <ext:Panel runat="server">
+                                    <Items>
+                                        <ext:Label ID="unpaidLeavesTitle" Text="<%$ Resources:unPaidLeaves %>" runat="server" />
+                                        <ext:Label ID="unpaidLeavesLbl" runat="server" />
                                     </Items>
                                 </ext:Panel>
                                 <ext:Panel runat="server">
@@ -1320,9 +1314,10 @@
                         <ext:DateField runat="server" ID="date" Name="date" AllowBlank="false" FieldLabel="<%$ Resources: FieldTerminationDate %>" Format="MM/dd/yyyy" />
                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="ttId" runat="server" FieldLabel="<%$ Resources:FieldTerminationType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="ttId" AllowBlank="false">
                             <Items>
-                                <ext:ListItem Text="<%$ Resources:Worker%>" Value="<%$ Resources:ComboBoxValues, EPEMttIdWorker%>"></ext:ListItem>
-                                <ext:ListItem Text="<%$ Resources:Company%>" Value="<%$ Resources:ComboBoxValues, EPEMttIdCompany%>"></ext:ListItem>
-                                <ext:ListItem Text="<%$ Resources:Other%>" Value="<%$ Resources:ComboBoxValues, EPEMttIdOther%>"></ext:ListItem>
+                                 <ext:ListItem Text="<%$ Resources:RESIGNATION %>" Value="1"></ext:ListItem>
+                                <ext:ListItem Text="<%$ Resources:END_OF_AGREEMENT%>" Value="2"></ext:ListItem>
+                                <ext:ListItem Text="<%$ Resources:Company%>" Value="3"></ext:ListItem>
+                                <ext:ListItem Text="<%$ Resources:Other%>" Value="4"></ext:ListItem>
                             </Items>
                         </ext:ComboBox>
 

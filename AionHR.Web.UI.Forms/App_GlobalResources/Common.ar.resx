@@ -1203,4 +1203,10 @@
   <data name="Total" xml:space="preserve">
     <value>المجموع</value>
   </data>
+  <data name="Step" xml:space="preserve">
+    <value>خطوة {0} من {1}</value>
+  </data>
+  <data name="DeleteAllBranchAttendance" xml:space="preserve">
+    <value>حذف دوام فرع</value>
+  </data>
 </root>

@@ -60,6 +60,9 @@ namespace AionHR.Model.Employees.Profile
         public short status { get; set; }
         public string statusString { get ; set; }
         public int loanBalance { get; set; }
+        public DateTime? terminationDate { get; set; }
+        public double unpaidLeaves { get; set; }
+
 
     }
 }

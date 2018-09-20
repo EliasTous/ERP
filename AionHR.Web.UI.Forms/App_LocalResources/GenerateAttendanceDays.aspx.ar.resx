@@ -132,4 +132,7 @@
   <data name="GenerateAttendanceDays" xml:space="preserve">
     <value>إنشاء الحضور </value>
   </data>
+  <data name="processingGen" xml:space="preserve">
+    <value>يوجد  انشاء حضور اخر قيد المعالجة يرجى الانتظار</value>
+  </data>
 </root>

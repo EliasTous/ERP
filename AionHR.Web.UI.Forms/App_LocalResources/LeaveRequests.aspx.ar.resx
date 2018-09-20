@@ -240,4 +240,10 @@
   <data name="FieldLeaveRef" xml:space="preserve">
     <value>الرقم</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>جديدة</value>
+  </data>
+  <data name="FieldNew" xml:space="preserve">
+    <value>جديد</value>
+  </data>
 </root>

@@ -137,6 +137,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -210,6 +211,7 @@
     <Content Include="DaysAvailability.aspx" />
     <Content Include="DayTypes.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="DeleteBranchAttendance.aspx" />
     <Content Include="Departments.aspx" />
     <Content Include="Divisions.aspx" />
     <Content Include="DocumentTypes.aspx" />
@@ -650,6 +652,13 @@
     </Compile>
     <Compile Include="DaysAvailability.aspx.designer.cs">
       <DependentUpon>DaysAvailability.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteBranchAttendance.aspx.cs">
+      <DependentUpon>DeleteBranchAttendance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DeleteBranchAttendance.aspx.designer.cs">
+      <DependentUpon>DeleteBranchAttendance.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeeCals.aspx.cs">
       <DependentUpon>EmployeeCals.aspx</DependentUpon>
@@ -2383,6 +2392,8 @@
     <Content Include="App_LocalResources\ImportPayCodes.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportPayCodes.aspx.resx" />
     <Content Include="App_LocalResources\BiometricDevices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\DeleteBranchAttendance.aspx.ar.resx" />
+    <Content Include="App_LocalResources\DeleteBranchAttendance.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1200,4 +1200,10 @@
   <data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="Step" xml:space="preserve">
+    <value>Step {0} of {1}...</value>
+  </data>
+  <data name="DeleteAllBranchAttendance" xml:space="preserve">
+    <value>Delete Branch Attendances</value>
+  </data>
 </root>

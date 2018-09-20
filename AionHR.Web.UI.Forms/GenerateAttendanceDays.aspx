@@ -19,7 +19,7 @@
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
          
 
-        
+         <ext:Hidden ID="processing" runat="server"/>
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
             <Items>
@@ -74,14 +74,14 @@
                                         <Click Handler="CheckSession(); if(!#{GenerateAttendanceForm}.getForm().isValid()){return false;} " />
                                     </Listeners>
                                     <DirectEvents>
-                                        <Click OnEvent="GenerateAttendance" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                                            <EventMask ShowMask="true"  />
+                                        <Click OnEvent="StartLongAction" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                      
                                          </Click>
                                     </DirectEvents>
                                 </ext:Button>
                            
                                         
-                                 
+                                    <ext:ProgressBar ID="Progress1" runat="server" MaxWidth="300" />
                                 
                             </Items>
                             
@@ -101,6 +101,21 @@
         </ext:Viewport>
 
 
+          <ext:TaskManager ID="TaskManager1" runat="server">
+            <Tasks>
+                <ext:Task 
+                    TaskID="longactionprogress"
+                    Interval="100" 
+                    AutoRun="false" 
+                    OnStart="#{GenerateAttendanceBtn}.setDisabled(true);"
+                       OnStop="#{GenerateAttendanceBtn}.setDisabled(false);" >
+                 
+                    <DirectEvents>
+                        <Update OnEvent="RefreshProgress" />
+                    </DirectEvents>                    
+                </ext:Task>
+            </Tasks>
+        </ext:TaskManager>
 
 
 

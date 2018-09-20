@@ -736,6 +736,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete Branch Attendances.
+        /// </summary>
+        internal static string DeleteAllBranchAttendance {
+            get {
+                return ResourceManager.GetString("DeleteAllBranchAttendance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the selected records ?.
         /// </summary>
         internal static string DeleteManyRecord {
@@ -2919,6 +2928,15 @@ namespace Resources {
         internal static string status {
             get {
                 return ResourceManager.GetString("status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step {0} of {1}....
+        /// </summary>
+        internal static string Step {
+            get {
+                return ResourceManager.GetString("Step", resourceCulture);
             }
         }
         

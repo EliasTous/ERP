@@ -283,6 +283,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Label fullNameLbl;
         
         /// <summary>
+        /// TerminatedLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label TerminatedLbl;
+        
+        /// <summary>
+        /// TerminationDateLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label TerminationDateLbl;
+        
+        /// <summary>
         /// departmentLbl control.
         /// </summary>
         /// <remarks>
@@ -443,6 +461,24 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Label paidLeavesLbl;
+        
+        /// <summary>
+        /// unpaidLeavesTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label unpaidLeavesTitle;
+        
+        /// <summary>
+        /// unpaidLeavesLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label unpaidLeavesLbl;
         
         /// <summary>
         /// salaryTitle control.

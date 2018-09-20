@@ -404,6 +404,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
             string obj = e.ExtraParams["values"];
             string status = e.ExtraParams["status"];
+
             JsonSerializerSettings settings = new JsonSerializerSettings();
             CustomResolver res = new CustomResolver();
             //  res.AddRule("leaveRequest1_employeeId", "employeeId");
@@ -506,7 +507,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 {
                     if (approved.Text == "True")
                     {
-
+                        DateTime endDate=b.endDate; 
 
                         RecordRequest rec = new RecordRequest();
                         rec.RecordID = id;
@@ -522,6 +523,7 @@ namespace AionHR.Web.UI.Forms.Controls
                         //recordResponse.result.leavePeriod = leavePeriod.Text;
                         b = recordResponse.result;
                         b.status = 3;
+                        b.endDate = endDate;
 
                         //postReq.entity = recordResponse.result;
                         //postReq.entity.returnDate = b.returnDate;
@@ -1210,13 +1212,13 @@ namespace AionHR.Web.UI.Forms.Controls
                 switch (x.status)
                 {
                     case 1:
-                        x.stringStatus = "New";
+                        x.stringStatus = GetLocalResourceObject("New").ToString();
                         break;
                     case 2:
-                        x.stringStatus = "Approved";
+                        x.stringStatus = GetLocalResourceObject("FieldApproved").ToString();
                         break;
                     case -1:
-                        x.stringStatus = "Rejected";
+                        x.stringStatus = GetLocalResourceObject("FieldRefused").ToString();
                         break;
                     default:
                         x.stringStatus = "";

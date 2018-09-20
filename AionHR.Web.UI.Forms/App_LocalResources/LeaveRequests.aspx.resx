@@ -240,4 +240,10 @@
   <data name="FieldLeaveRef" xml:space="preserve">
     <value>Ref</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="FieldNew" xml:space="preserve">
+    <value>New</value>
+  </data>
 </root>

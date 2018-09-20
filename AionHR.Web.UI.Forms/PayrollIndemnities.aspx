@@ -9,7 +9,12 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-   
+  <script type="text/javascript">
+       numberRenderer : function(format){
+           return function(v){
+               return Ext.util.Format.number(v, format);
+           };
+   </script>
     <script type="text/javascript" src="Scripts/common.js"></script>
    
     <script type="text/javascript" src="Scripts/Payrollindemnities.js?id=95"></script>
@@ -388,21 +393,22 @@
                                             </ext:NumberColumn>
                                             
                                             
-                                            <ext:NumberColumn
+                                            <ext:Column
                                                 runat="server"
                                                 Text="<%$Resources:percentage %>" 
                                                 DataIndex="pct"
                                                  Flex="1"
                                                 Align="Center" >
                                                 <Editor>
-                                                    <ext:TextField
+                                                    <ext:NumberField
                                                         runat="server"
-                                                        AllowBlank="false" 
+                                                        AllowBlank="false"  AllowDecimals="true" DecimalPrecision="5"
                                                          >
                                                          <Validator Handler="if((!isNaN(this.value))&this.value<=100&this.value>=0) return true; return false;"/>
-                                                        </ext:TextField>
+                                                        </ext:NumberField>
                                                 </Editor>
-                                            </ext:NumberColumn>
+                                                  
+                                            </ext:Column>
                                             
                                         </Columns>
                                     </ColumnModel>
@@ -521,21 +527,22 @@
                                             </ext:NumberColumn>
                                             
                                             
-                                            <ext:NumberColumn
+                                            <ext:Column
                                                 runat="server"
                                                 Text="<%$Resources:IndemnityPercentage %>" 
                                                 DataIndex="pct"
                                                  Flex="1"
-                                                Align="Center" >
+                                                Align="Center"  >
                                                 <Editor>
-                                                    <ext:TextField
+                                                    <ext:NumberField AllowDecimals="true" DecimalPrecision="5"
                                                         runat="server"
                                                         AllowBlank="false" 
                                                          >
                                                          <Validator Handler="if((!isNaN(this.value))&this.value<=100&this.value>=0) return true; return false;"/>
-                                                        </ext:TextField>
+                                                        </ext:NumberField>
                                                 </Editor>
-                                            </ext:NumberColumn>
+                                             
+                                            </ext:Column>
                                             
                                         </Columns>
                                     </ColumnModel>

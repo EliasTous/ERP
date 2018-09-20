@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SynchronizeAttendanceDays.aspx.cs" Inherits="AionHR.Web.UI.Forms.SynchronizeAttendanceDays" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DeleteBranchAttendance.aspx.cs" Inherits="AionHR.Web.UI.Forms.DeleteBranchAttendance" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -19,24 +19,42 @@
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
          
 
-          <ext:Hidden ID="processing" runat="server"/>
+        
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
             <Items>
                 <ext:TabPanel runat="server">
                     <Items>
                        
-                        <ext:FormPanel DefaultButton="SynchronizeAttendancebtn"
-                            ID="SynchronizeAttendanceForm"
+                        <ext:FormPanel DefaultButton="DeleteAttendancebtn"
+                            ID="DeleteBranchAttendanceForm"
                             runat="server"
-                            Title="<%$ Resources: SynchronizeAttendanceDays%>"
+                            Title="<%$ Resources: DeleteBranchAttendanceDays%>"
                             Icon="ApplicationSideList" AutoScroll="true"
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                <ext:ComboBox   FieldLabel="<%$ Resources: FilterEmployee%>"  MaxWidth="300" AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeFilter" 
+                                  <ext:ComboBox      AnyMatch="true" CaseSensitive="false" MaxWidth="300"  runat="server" EnableRegEx="true"  AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SubmitValue="true">
+                                                <Store>
+                                                    <ext:Store runat="server" ID="BranchStore">
+                                                        <Model>
+                                                            <ext:Model runat="server">
+                                                                <Fields>
+                                                                    <ext:ModelField Name="recordId" />
+                                                                    <ext:ModelField Name="name" />
+                                                                </Fields>
+                                                            </ext:Model>
+                                                        </Model>
+                                                    </ext:Store>
+                                                </Store>
+                                               
+                                              
+                                            </ext:ComboBox> 
+
+
+                                     <ext:ComboBox   FieldLabel="<%$ Resources: FilterEmployee%>"  MaxWidth="300" AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeFilter" 
                                       DisplayField="fullName"
-                                      ValueField="recordId" AllowBlank="false"
+                                      ValueField="recordId" AllowBlank="true"
                                       TypeAhead="false"
                                         HideTrigger="true" SubmitValue="true"
                                       MinChars="3" 
@@ -52,13 +70,16 @@
                                                     </ext:Model>
                                                 </Model>
                                                 <Proxy>
-                                                    <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
+                                                    <ext:PageProxy DirectFn="App.direct.FillEmployee">
+                                                   
+                                                    </ext:PageProxy>
                                                 </Proxy>
                                             </ext:Store>
                                         </Store>
          
 
-        </ext:ComboBox>    
+        </ext:ComboBox>       
+                                  
                                 <ext:DateField AllowBlank="false" runat="server" ID="startingDate" MaxWidth="300" FieldLabel="<%$ Resources: date %>" Format="dd/MM/yyyy" >
                                      <Listeners> 
                                          <Change Handler="App.endingDate.setMinValue(this.value);"></Change>
@@ -68,20 +89,20 @@
                                          
                                     </ext:DateField>
                                     
-                                <ext:Button Hidden="false" ID="SynchronizeAttendanceBtn" runat="server" Text="<%$ Resources: Synchronize %>" Icon="ApplicationGo" MaxWidth="300">
+                                <ext:Button Hidden="false" ID="DeleteAttendancebtn" runat="server" Text="<%$ Resources: Delete %>" Icon="ApplicationGo" MaxWidth="300">
 
                                     <Listeners>
-                                        <Click Handler="CheckSession(); if(!#{SynchronizeAttendanceForm}.getForm().isValid()){return false;} " />
+                                        <Click Handler="CheckSession(); if(!#{DeleteBranchAttendanceForm}.getForm().isValid()){return false;} " />
                                     </Listeners>
                                     <DirectEvents>
-                                        <Click OnEvent="StartLongAction" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                                      <%--      <EventMask ShowMask="true"  />--%>
+                                        <Click OnEvent="deleteBranchAttendances" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                            <EventMask ShowMask="true"  />
                                          </Click>
                                     </DirectEvents>
                                 </ext:Button>
                            
                                         
-                                  <ext:ProgressBar ID="Progress1" runat="server" MaxWidth="300" />
+                                 
                                 
                             </Items>
                             
@@ -90,35 +111,18 @@
                </ext:FormPanel>
 
                     </Items>
-                     
                       
                        </ext:TabPanel>
                 
 
 
             </Items>
-          
-          
+
+
         </ext:Viewport>
 
 
-        
-        
-        <ext:TaskManager ID="TaskManager1" runat="server">
-            <Tasks>
-                <ext:Task 
-                    TaskID="longactionprogress"
-                    Interval="100" 
-                    AutoRun="false" 
-                    OnStart="#{SynchronizeAttendanceBtn}.setDisabled(true);"
-                       OnStop="#{SynchronizeAttendanceBtn}.setDisabled(false);" >
-                 
-                    <DirectEvents>
-                        <Update OnEvent="RefreshProgress" />
-                    </DirectEvents>                    
-                </ext:Task>
-            </Tasks>
-        </ext:TaskManager>
+
 
 
 

@@ -498,7 +498,13 @@ namespace AionHR.Web.UI.Forms
             }
             catch { }
 
+            try
+            {
+                MaxLoanDeduction.Text = (items.Where(s => s.Key == "MaxLoanDeduction").First().Value);
 
+            }
+
+            catch { }
 
 
         }
@@ -840,6 +846,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("FSWDEDId", values.FSWDEDId.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("FSWDEDId", ""));
+            if (!string.IsNullOrEmpty(values.MaxLoanDeduction.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", values.MaxLoanDeduction.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", string.Empty));
 
 
             return submittedValues;

@@ -192,11 +192,10 @@
                                     EmptyText="<%$ Resources: FilterStatus %>">
                                     <Items>
 
-                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
                                         <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
                                         <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="-1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldUsed %>" Value="3" />
-                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
+                                      
                                     </Items>
                                  
                                 </ext:ComboBox>

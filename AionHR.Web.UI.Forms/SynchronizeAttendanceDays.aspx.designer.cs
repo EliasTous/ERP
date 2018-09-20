@@ -31,6 +31,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ResourceManager ResourceManager1;
         
         /// <summary>
+        /// processing control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden processing;
+        
+        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -92,5 +101,23 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button SynchronizeAttendanceBtn;
+        
+        /// <summary>
+        /// Progress1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ProgressBar Progress1;
+        
+        /// <summary>
+        /// TaskManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TaskManager TaskManager1;
     }
 }

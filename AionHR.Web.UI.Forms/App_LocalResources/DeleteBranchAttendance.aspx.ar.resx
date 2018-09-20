@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Date" xml:space="preserve">
-    <value>Start Date</value>
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف الحضور</value>
+  </data>
+  <data name="DeleteBranchAttendanceDays" xml:space="preserve">
+    <value>حذف الحضور من فرع </value>
   </data>
   <data name="endDate" xml:space="preserve">
-    <value>End Date</value>
+    <value>تاريخ النهاية</value>
+  </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>الفرع</value>
   </data>
   <data name="FilterEmployee" xml:space="preserve">
-    <value>Employee</value>
-  </data>
-  <data name="Generate" xml:space="preserve">
-    <value>Generate</value>
-  </data>
-  <data name="GenerateAttendanceDays" xml:space="preserve">
-    <value>Generate Attendance Schedule</value>
-  </data>
-  <data name="processingGen" xml:space="preserve">
-    <value>Another Generation  is in progress. Please wait</value>
+    <value>الموظف</value>
   </data>
 </root>

@@ -141,8 +141,13 @@
     <Compile Include="DayTypesReport.Designer.cs">
       <DependentUpon>DayTypesReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="DepartmentPayroll.cs">
+    <Compile Include="DepartmentPayroll1.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DepartmentPayrollDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DepartmentPayrollDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DepartmentsReport.cs">
       <SubType>Component</SubType>
@@ -261,6 +266,12 @@
     </Compile>
     <Compile Include="RelationshipTypesReport.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DepartmentPayroll.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DepartmentPayroll.Designer.cs">
+      <DependentUpon>DepartmentPayroll.cs</DependentUpon>
     </Compile>
     <Compile Include="SalaryChangeReasonsReport.cs">
       <SubType>Component</SubType>
@@ -395,11 +406,11 @@
     <EmbeddedResource Include="DayTypesReport.resx">
       <DependentUpon>DayTypesReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DepartmentPayroll.ar.resx">
-      <DependentUpon>DepartmentPayroll.cs</DependentUpon>
+    <EmbeddedResource Include="DepartmentPayroll1.ar.resx">
+      <DependentUpon>DepartmentPayroll1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DepartmentPayroll.resx">
-      <DependentUpon>DepartmentPayroll.cs</DependentUpon>
+    <EmbeddedResource Include="DepartmentPayroll1.resx">
+      <DependentUpon>DepartmentPayroll1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DepartmentsReport.ar.resx">
       <DependentUpon>DepartmentsReport.cs</DependentUpon>
@@ -588,6 +599,9 @@
     <EmbeddedResource Include="RightToWork.resx">
       <DependentUpon>RightToWork.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentPayroll.resx">
+      <DependentUpon>DepartmentPayroll.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SalaryChangeReasonsReport.ar.resx">
       <DependentUpon>SalaryChangeReasonsReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -675,6 +689,19 @@
     <EmbeddedResource Include="YearsInService.resx">
       <DependentUpon>YearsInService.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DepartmentPayrollDataSet.xsc">
+      <DependentUpon>DepartmentPayrollDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DepartmentPayrollDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DepartmentPayrollDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DepartmentPayrollDataSet.xss">
+      <DependentUpon>DepartmentPayrollDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

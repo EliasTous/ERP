@@ -423,4 +423,7 @@
   <data name="FSWDEDId" xml:space="preserve">
     <value>Final Settlement Working Days</value>
   </data>
+  <data name="MaxLoanDeduction" xml:space="preserve">
+    <value>Max Loan Deduction</value>
+  </data>
 </root>

@@ -399,4 +399,16 @@
   <data name="undoTermination" xml:space="preserve">
     <value>Undo Termination</value>
   </data>
+  <data name="END_OF_AGREEMENT" xml:space="preserve">
+    <value>End of Agreement</value>
+  </data>
+  <data name="RESIGNATION" xml:space="preserve">
+    <value>Resignation</value>
+  </data>
+  <data name="Terminated" xml:space="preserve">
+    <value>Terminated</value>
+  </data>
+  <data name="unPaidLeaves" xml:space="preserve">
+    <value>Unpaid Leaves :</value>
+  </data>
 </root>

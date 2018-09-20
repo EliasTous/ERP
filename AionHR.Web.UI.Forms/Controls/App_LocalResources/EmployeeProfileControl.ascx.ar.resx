@@ -390,4 +390,16 @@
   <data name="undoTermination" xml:space="preserve">
     <value>اعاده توظيف</value>
   </data>
+  <data name="END_OF_AGREEMENT" xml:space="preserve">
+    <value>نهاية العقد</value>
+  </data>
+  <data name="RESIGNATION" xml:space="preserve">
+    <value>استقالة </value>
+  </data>
+  <data name="Terminated" xml:space="preserve">
+    <value>تم انهاء الخدمة</value>
+  </data>
+  <data name="unPaidLeaves" xml:space="preserve">
+    <value>اجازات غير مدفوعة :</value>
+  </data>
 </root>

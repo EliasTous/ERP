@@ -905,73 +905,7 @@
                                          <ext:NumberField Width="400" runat="server" LabelWidth="160" ID="yearDays" Name="yearDays" FieldLabel="<%$ Resources: yearDays %>" MinValue="0" MaxValue="365" />
                                         </Items>
                                         </ext:FieldSet>
-                                <%--<ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources: TerminationReason %>">
-                                 <Items>
-
-                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: exemptMarriageTRId %>" Name="exemptMarriageTRId" DisplayField="name" ValueField="recordId" runat="server" ID="exemptMarriageTRId">
-                                    <Store>
-                                        <ext:Store runat="server" ID="exemptMarriageTR_Store">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                  <%--  <RightButtons>
-                                        <ext:Button ID="Button8" runat="server" Icon="Add" Hidden="true">
-                                            <Listeners>
-                                                <Click Handler="CheckSession();  " />
-                                            </Listeners>
-                                            <DirectEvents>
-
-                                                <Click OnEvent="addId">
-                                                </Click>
-                                            </DirectEvents>
-                                        </ext:Button>
-                                    </RightButtons>
-                                    <Listeners>
-                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
-                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                    </Listeners>
-                                </ext:ComboBox>
-                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: exemptDeliveryTRId %>" Name="exemptDeliveryTRId" DisplayField="name" ValueField="recordId" runat="server" ID="exemptDeliveryTRId">
-                                    <Store>
-                                        <ext:Store runat="server" ID="exemptDeliveryTR_Store">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                 <%--   <RightButtons>
-                                        <ext:Button ID="Button9" runat="server" Icon="Add" Hidden="true">
-                                            <Listeners>
-                                                <Click Handler="CheckSession();  " />
-                                            </Listeners>
-                                            <DirectEvents>
-
-                                                <Click OnEvent="addId">
-                                                </Click>
-                                            </DirectEvents>
-                                        </ext:Button>
-                                    </RightButtons>
-                                    <Listeners>
-                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
-                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                    </Listeners>
-                                </ext:ComboBox>
-                                     
-                                     </Items>
-                                  </ext:FieldSet>--%>
-
+                         
                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldTSId %>" Name="tsId" DisplayField="name" ValueField="recordId" runat="server" ID="tsId">
                                     <Store>
                                         <ext:Store runat="server" ID="tsStore">
@@ -1036,6 +970,7 @@
                                               
                                                   
                                                 </ext:ComboBox>
+                                    <ext:NumberField Width="400" runat="server" LabelWidth="150" ID="MaxLoanDeduction" Name="MaxLoanDeduction" FieldLabel="<%$ Resources: MaxLoanDeduction  %>" MinValue="0" MaxValue="100" AllowDecimals="true" DecimalPrecision="2" AllowBlank="true"/>
                                
                             </Items>
                             <Buttons>

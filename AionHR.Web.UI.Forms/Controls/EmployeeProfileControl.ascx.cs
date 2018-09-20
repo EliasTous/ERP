@@ -1143,12 +1143,19 @@ namespace AionHR.Web.UI.Forms
             FileName.Text = qv.result.pictureFileName;
             if (string.IsNullOrEmpty(forSummary.pictureUrl))
                 forSummary.pictureUrl = "Images/empPhoto.jpg";
+
+            if (forSummary.terminationDate!=null)
+            {
+                TerminatedLbl.Hidden = false;
+                TerminationDateLbl.Hidden = false;
+            }
+
             X.Call("FillLeftPanel",
 
                 forSummary.departmentName + "<br />",
               forSummary.branchName + "<br />",
                forSummary.positionName + "<br />",
-               (forSummary.reportToName == null && !string.IsNullOrEmpty(forSummary.reportToName.fullName.Trim())) ? "": GetLocalResourceObject("FieldReportsTo").ToString() + " :<br/>" + forSummary.reportToName.fullName + "<br />",
+               (forSummary.reportToName == null && !string.IsNullOrEmpty(forSummary.reportToName.fullName.Trim())) ? "" : GetLocalResourceObject("FieldReportsTo").ToString() + " :<br/>" + forSummary.reportToName.fullName + "<br />",
 
                forSummary.indemnity + "<br />",
                forSummary.usedLeavesLeg + "<br/>",
@@ -1160,9 +1167,11 @@ namespace AionHR.Web.UI.Forms
                 forSummary.usedLeaves,
                  forSummary.paidLeaves,
                   forSummary.salary,
-                 
 
-               forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())
+
+               forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString()),
+               forSummary.terminationDate != null ? forSummary.terminationDate.Value.ToString(_systemService.SessionHelper.GetDateformat()) :"",
+               forSummary.unpaidLeaves
             );
             //            fullNameLbl.Html = forSummary.name.fullName + "<br />";
 
@@ -1188,11 +1197,13 @@ namespace AionHR.Web.UI.Forms
 
             usedLeavesLbl.Html = forSummary.usedLeaves + "<br />";
             paidLeavesLbl.Html = forSummary.paidLeaves + "<br />";
+            unpaidLeavesLbl.Html = forSummary.unpaidLeaves + "<br />";
             salaryLbl.Html = forSummary.salary.ToString("N2") +" "+forSummary.currencyName+ "<br />";
+            TerminationDateLbl.Html = forSummary.terminationDate != null ? forSummary.terminationDate.Value.ToString(_systemService.SessionHelper.GetDateformat()) : "";
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
 
             imgControl.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks;
-            employeePhoto.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks; ;
+            employeePhoto.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks; 
 
             //here
             X.Call("InitCropper", forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks);

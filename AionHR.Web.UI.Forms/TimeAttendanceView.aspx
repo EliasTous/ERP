@@ -230,16 +230,16 @@
 
                                  
 
-                                <ext:Button  ID="btnDeleteSelected" runat="server" Text="<%$ Resources: DeleteAll %>" Icon="Delete">
-                                   <%-- <Listeners>
+                              <%--  <ext:Button   ID="btnDeleteSelected" runat="server" Text="<%$ Resources: DeleteAll %>" Icon="Delete">
+                                    <Listeners>
                                         <Click Handler="CheckSession();"></Click>
-                                    </Listeners>--%>
+                                    </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="btnDeleteAll">
                                             <EventMask ShowMask="true" />
                                         </Click>
                                     </DirectEvents>
-                                </ext:Button>
+                                </ext:Button>--%>
                                 <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
 
 

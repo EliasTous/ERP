@@ -120,19 +120,19 @@
   <data name="Date" xml:space="preserve">
     <value>Start Date</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteBranchAttendanceDays" xml:space="preserve">
+    <value>Delete Branch Attendance Days</value>
+  </data>
   <data name="endDate" xml:space="preserve">
     <value>End Date</value>
   </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
   <data name="FilterEmployee" xml:space="preserve">
     <value>Employee</value>
-  </data>
-  <data name="Generate" xml:space="preserve">
-    <value>Generate</value>
-  </data>
-  <data name="GenerateAttendanceDays" xml:space="preserve">
-    <value>Generate Attendance Schedule</value>
-  </data>
-  <data name="processingGen" xml:space="preserve">
-    <value>Another Generation  is in progress. Please wait</value>
   </data>
 </root>

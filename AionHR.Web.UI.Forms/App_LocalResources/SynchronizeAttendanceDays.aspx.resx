@@ -132,4 +132,7 @@
   <data name="SynchronizeAttendanceDays" xml:space="preserve">
     <value>Synchronize Attendance Schedule</value>
   </data>
+  <data name="processingSyn" xml:space="preserve">
+    <value>Another synchronization is in progress. Please wait</value>
+  </data>
 </root>

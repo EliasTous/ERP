@@ -10,7 +10,7 @@
 namespace AionHR.Web.UI.Forms {
     
     
-    public partial class GenerateAttendanceDays {
+    public partial class DeleteBranchAttendance {
         
         /// <summary>
         /// Form1 control.
@@ -31,15 +31,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ResourceManager ResourceManager1;
         
         /// <summary>
-        /// processing control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden processing;
-        
-        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -49,13 +40,31 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Viewport Viewport1;
         
         /// <summary>
-        /// GenerateAttendanceForm control.
+        /// DeleteBranchAttendanceForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel GenerateAttendanceForm;
+        protected global::Ext.Net.FormPanel DeleteBranchAttendanceForm;
+        
+        /// <summary>
+        /// branchId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox branchId;
+        
+        /// <summary>
+        /// BranchStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store BranchStore;
         
         /// <summary>
         /// employeeFilter control.
@@ -94,30 +103,12 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.DateField endingDate;
         
         /// <summary>
-        /// GenerateAttendanceBtn control.
+        /// DeleteAttendancebtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button GenerateAttendanceBtn;
-        
-        /// <summary>
-        /// Progress1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ProgressBar Progress1;
-        
-        /// <summary>
-        /// TaskManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TaskManager TaskManager1;
+        protected global::Ext.Net.Button DeleteAttendancebtn;
     }
 }

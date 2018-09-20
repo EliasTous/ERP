@@ -423,4 +423,7 @@
   <data name="FSWDEDId" xml:space="preserve">
     <value>نهاية خدمة ايام عمل</value>
   </data>
+  <data name="MaxLoanDeduction" xml:space="preserve">
+    <value>الحد الاعظمي لاقتطاع السلفة</value>
+  </data>
 </root>

@@ -132,4 +132,7 @@
   <data name="SynchronizeAttendanceDays" xml:space="preserve">
     <value>تزامن الحضور </value>
   </data>
+  <data name="processingSyn" xml:space="preserve">
+    <value>يوجد تزامن اخر قيد المعالجة يرجى الانتظار</value>
+  </data>
 </root>

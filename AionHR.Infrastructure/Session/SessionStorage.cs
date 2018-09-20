@@ -38,6 +38,7 @@ namespace AionHR.Infrastructure.Session
         public void Clear()
         {
             HttpContext.Current.Session.Clear();
+         
         }
     }
 }
