@@ -594,4 +594,40 @@
   <data name="UnLatenessGridTitle" xml:space="preserve">
     <value>الملتزمين</value>
   </data>
+  <data name="EmploymentReviewDate" xml:space="preserve">
+    <value>تاريخ مراجعة التوظيف</value>
+  </data>
+  <data name="CHECKED" xml:space="preserve">
+    <value>الحضور</value>
+  </data>
+  <data name="DAY_OFF" xml:space="preserve">
+    <value>الموظفون في عطلة</value>
+  </data>
+  <data name="DURING_SHIFT_LEAVE" xml:space="preserve">
+    <value>مغادرة خلال ساعات العمل </value>
+  </data>
+  <data name="EARLY_CHECKIN" xml:space="preserve">
+    <value>حضور مبكر</value>
+  </data>
+  <data name="EARLY_LEAVE" xml:space="preserve">
+    <value>خروج مبكر</value>
+  </data>
+  <data name="LATE_CHECKIN" xml:space="preserve">
+    <value>حضور متأخر</value>
+  </data>
+  <data name="LEAVE" xml:space="preserve">
+    <value>الاجازات </value>
+  </data>
+  <data name="LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
+    <value>غياب بدون عذر</value>
+  </data>
+  <data name="NO_SHOW_UP" xml:space="preserve">
+    <value>المتأخرين عن الدوام </value>
+  </data>
+  <data name="OVERTIME" xml:space="preserve">
+    <value>عمل إضافي</value>
+  </data>
+  <data name="PENDING" xml:space="preserve">
+    <value>الموظفون الذين لم يبدأ دوامهم </value>
+  </data>
 </root>

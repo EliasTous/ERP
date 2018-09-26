@@ -1206,4 +1206,7 @@
   <data name="DeleteAllBranchAttendance" xml:space="preserve">
     <value>Delete Branch Attendances</value>
   </data>
+  <data name="PenaltyType" xml:space="preserve">
+    <value>Penalty Type</value>
+  </data>
 </root>

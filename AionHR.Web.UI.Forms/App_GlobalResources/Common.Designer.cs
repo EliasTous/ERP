@@ -2230,6 +2230,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Penalty Type.
+        /// </summary>
+        internal static string PenaltyType {
+            get {
+                return ResourceManager.GetString("PenaltyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My Info .
         /// </summary>
         internal static string PersonalInfo {

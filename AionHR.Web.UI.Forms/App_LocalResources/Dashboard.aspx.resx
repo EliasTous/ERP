@@ -597,4 +597,40 @@
   <data name="UnLatenessGridTitle" xml:space="preserve">
     <value>Other</value>
   </data>
+  <data name="CHECKED" xml:space="preserve">
+    <value>Checked</value>
+  </data>
+  <data name="DAY_OFF" xml:space="preserve">
+    <value>Day Off</value>
+  </data>
+  <data name="DURING_SHIFT_LEAVE" xml:space="preserve">
+    <value>during Shift Leave</value>
+  </data>
+  <data name="EARLY_CHECKIN" xml:space="preserve">
+    <value>Early Check In</value>
+  </data>
+  <data name="EARLY_LEAVE" xml:space="preserve">
+    <value>Early Leave</value>
+  </data>
+  <data name="EmploymentReviewDate" xml:space="preserve">
+    <value>Employment Review Date</value>
+  </data>
+  <data name="LATE_CHECKIN" xml:space="preserve">
+    <value>Late Check In</value>
+  </data>
+  <data name="LEAVE" xml:space="preserve">
+    <value>Leave</value>
+  </data>
+  <data name="LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
+    <value>Leave Without Excuse</value>
+  </data>
+  <data name="NO_SHOW_UP" xml:space="preserve">
+    <value>No Show Up</value>
+  </data>
+  <data name="OVERTIME" xml:space="preserve">
+    <value>Over Time</value>
+  </data>
+  <data name="PENDING" xml:space="preserve">
+    <value>Pending</value>
+  </data>
 </root>

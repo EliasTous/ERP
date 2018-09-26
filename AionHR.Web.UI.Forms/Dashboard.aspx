@@ -134,7 +134,7 @@
             }
 
         }
-
+     
 
         var drawLateHightChartPie = function (dataObject, rtl, normal) {
             // Build the chart
@@ -178,8 +178,11 @@
                         showInLegend: true,
                         point: {
                             events: {
+
                                 legendItemClick: function (e) {
-                                    clickLateHightChartPieSeries(e.target.options.index);
+
+                                    if (e.target.options.y > 0)
+                                        clickLateHightChartPieSeries(e.target.options.index);
                                     return false;
                                 }
                             }
@@ -190,8 +193,7 @@
                             enabled: true,
                             formatter: function () {
                                 return this.point.y;
-                            },
-                            distance: -30,
+                            }
 
                         }
                     }
@@ -199,7 +201,8 @@
                 series: [{
                     data: dataObject
                 }]
-            })
+            });
+
         };
         var clickLateHightChartPieSeries = function (val) {
 
@@ -939,7 +942,7 @@
                 parent.App.tabPanel.getActiveTab().id == "dashboard" || (window.parent.App.tabPanel.getActiveTab().id == "tabHome" && (window.parent.App.activeModule.value == 4 || window.parent.App.activeModule.value == 5 || window.parent.App.activeModule.value == 1 || window.parent.App.activeModule.value == 7))) {
                 ////Not Chained
 
-                App.activeStore.reload();
+                //App.activeStore.reload();
                 App.LocalRateStore.reload();
                 //// App.Store1.reload();
 
@@ -1169,13 +1172,13 @@
             runat="server" OnReadData="OverDueStore_ReadData"
             RemoteSort="false"
             RemoteFilter="false">
-            <Proxy>
+          <%--  <Proxy>
                 <ext:PageProxy>
                     <Listeners>
                         <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
                     </Listeners>
                 </ext:PageProxy>
-            </Proxy>
+            </Proxy>--%>
             <Model>
                 <ext:Model ID="Model8" runat="server" IDProperty="recordId">
                     <Fields>
@@ -1928,13 +1931,13 @@
                                                                     runat="server" OnReadData="LeaveRequestsStore_ReadData"
                                                                     RemoteSort="false"
                                                                     RemoteFilter="false">
-                                                                    <Proxy>
+                                                                   <%-- <Proxy>
                                                                         <ext:PageProxy>
                                                                             <Listeners>
                                                                                 <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
                                                                             </Listeners>
                                                                         </ext:PageProxy>
-                                                                    </Proxy>
+                                                                    </Proxy>--%>
                                                                     <Model>
                                                                         <ext:Model ID="Model10" runat="server" IDProperty="recordId">
                                                                             <Fields>
@@ -2193,13 +2196,13 @@
                                                                     runat="server" OnReadData="TimeStore_ReadData"
                                                                     RemoteSort="false"
                                                                     RemoteFilter="false">
-                                                                    <Proxy>
+                                                                    <%--<Proxy>
                                                                         <ext:PageProxy>
                                                                             <Listeners>
                                                                                 <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
                                                                             </Listeners>
                                                                         </ext:PageProxy>
-                                                                    </Proxy>
+                                                                    </Proxy>--%>
                                                                     <Model>
                                                                         <ext:Model ID="Model24" runat="server" >
                                                                             <Fields>
@@ -2319,13 +2322,13 @@
                                                                     runat="server" OnReadData="ApprovaLoan_ReadData"
                                                                     RemoteSort="false"
                                                                     RemoteFilter="false">
-                                                                    <Proxy>
+                                                                  <%--  <Proxy>
                                                                         <ext:PageProxy>
                                                                             <Listeners>
                                                                                 <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
                                                                             </Listeners>
                                                                         </ext:PageProxy>
-                                                                    </Proxy>
+                                                                    </Proxy>--%>
                                                                     <Model>
                                                                         <ext:Model ID="Model25" runat="server" >
                                                                             <Fields>
@@ -2649,8 +2652,8 @@
                                                                                 <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
                                                                             </LayoutConfig>
                                                                             <Items>
-                                                                                <ext:Label runat="server" ID="deductedLoansLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:CompletedLoans %>" StyleSpec="font-size:12pt;" StyleHtmlCls="flashing" Cls="lblStyle">
+                                                                                <ext:Label runat="server" ID="EmploymentReviewDateLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:EmploymentReviewDate %>" StyleSpec="font-size:12pt;" StyleHtmlCls="flashing" Cls="lblStyle">
                                                                                     <Listeners>
                                                                                         <Click Handler="App.completedLoansWindow.show();" />
                                                                                     </Listeners>
@@ -3412,13 +3415,13 @@
                             runat="server" OnReadData="latenessStore_ReadData"
                             RemoteSort="false"
                             RemoteFilter="false">
-                            <Proxy>
-                                <ext:PageProxy>
+                           <%-- <Proxy>
+                               <ext:PageProxy>
                                     <Listeners>
                                         <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
                                     </Listeners>
                                 </ext:PageProxy>
-                            </Proxy>
+                            </Proxy>--%>
 
                             <Model>
                                 <ext:Model ID="Model3" runat="server" IDProperty="recordId">
@@ -3485,13 +3488,13 @@
                             runat="server" OnReadData="UnlateStore_ReadData"
                             RemoteSort="false"
                             RemoteFilter="false">
-                            <Proxy>
+                          <%--  <Proxy>
                                 <ext:PageProxy>
                                     <Listeners>
                                         <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
                                     </Listeners>
                                 </ext:PageProxy>
-                            </Proxy>
+                            </Proxy>--%>
 
                             <Model>
                                 <ext:Model ID="Model19" runat="server" IDProperty="recordId">

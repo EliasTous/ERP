@@ -133,7 +133,8 @@ namespace AionHR.Web.UI.Forms
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         CountDateTo.SelectedDate = DateTime.Now;
                         dimension.Select(0);
-                       
+                        BindAlerts();
+
                     }
                     catch { }
                 }
@@ -290,78 +291,87 @@ namespace AionHR.Web.UI.Forms
             BindAlerts();
             //BindDepartmentsCount();
         }
-
-        private void BindAlerts(bool normalSized=true)
+        private ListResponse<DashboardItem> FillDashBoardItems()
         {
-
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            ListRequest req = new ListRequest();
-            DashboardRequest req2 = GetDashboardRequest();
-            ListResponse<DashboardItem> dashoard = _systemService.ChildGetAll<DashboardItem>(req2);
-            if (!dashoard.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, dashoard.Summary).Show();
-                return;
+                bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+                ListRequest req = new ListRequest();
+                DashboardRequest req2 = GetDashboardRequest();
+                ListResponse<DashboardItem> dashoard = _systemService.ChildGetAll<DashboardItem>(req2);
+                if (!dashoard.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, dashoard.Summary).Show();
+                    return new ListResponse<DashboardItem>();
+                }
+
+                int birth = dashoard.Items.Where(x => x.itemId == 905).ToList().Count!=0? dashoard.Items.Where(x => x.itemId == 905).First().count :0;
+                int annev = dashoard.Items.Where(x => x.itemId == 907).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 907).First().count : 0;
+                int comp = dashoard.Items.Where(x => x.itemId == 908).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 908).First().count : 0;
+                int empRW = dashoard.Items.Where(x => x.itemId == 909).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 909).First().count : 0;
+                int scr = dashoard.Items.Where(x => x.itemId == 901).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 901).First().count : 0;
+                int prob = dashoard.Items.Where(x => x.itemId == 902).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 902).First().count : 0;
+                int retirementAge = dashoard.Items.Where(x => x.itemId == 906).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 906).First().count : 0;
+                int TermEndDate = dashoard.Items.Where(x => x.itemId == 904).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 904).First().count : 0;
+                int EmploymentReviewDate = dashoard.Items.Where(x => x.itemId == 903).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 903).First().count : 0;
+                int totalLoans = dashoard.Items.Where(x => x.itemId == 910).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 903).First().count : 0;
+               
+              
+
+                annversaries.Text = annev.ToString();
+                birthdays.Text = birth.ToString();
+                companyRW.Text = comp.ToString();
+                salaryChange.Text = scr.ToString();
+                probation.Text = prob.ToString();
+                employeeRW.Text = empRW.ToString();
+                totalLoansLbl.Text = totalLoans.ToString();
+                EmploymentReviewDateLbl.Text = EmploymentReviewDate.ToString();
+                termEndDateLBL.Text = TermEndDate.ToString();
+                retirementAgeLBL.Text = retirementAge.ToString();
+
+                return dashoard;
+            }
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
+                return new ListResponse<DashboardItem>();
             }
 
-            int birth = dashoard.Items.Where(x => x.itemId == 43).ToList()[0].count;
-            int annev = dashoard.Items.Where(x => x.itemId == 53).ToList()[0].count;
-            int comp = dashoard.Items.Where(x => x.itemId == 61).ToList()[0].count;
-            int empRW = dashoard.Items.Where(x => x.itemId == 62).ToList()[0].count;
-            int scr = dashoard.Items.Where(x => x.itemId == 31).ToList()[0].count;
-            int prob = dashoard.Items.Where(x => x.itemId == 32).ToList()[0].count;
-            int retirementAge = dashoard.Items.Where(x => x.itemId == 44).ToList()[0].count;
-            int TermEndDate = dashoard.Items.Where(x => x.itemId == 35).ToList()[0].count;
-
-            var l1 = dashoard.Items.Where(x => x.itemId == 71).ToList();
-            int total = 0, paid = 0;
-            if (l1.Count > 0)
-                total = l1[0].count;
-            var l2 = dashoard.Items.Where(x => x.itemId == 72).ToList();
-            if (l2.Count > 0)
-                paid = l2[0].count;
-            annversaries.Text = annev.ToString();
-            birthdays.Text = birth.ToString();
-            companyRW.Text = comp.ToString();
-            salaryChange.Text = scr.ToString();
-            probation.Text = prob.ToString();
-            employeeRW.Text = empRW.ToString();
-            totalLoansLbl.Text = total.ToString("N0");
-            deductedLoansLbl.Text = paid.ToString("N0");
-            termEndDateLBL.Text = TermEndDate.ToString();
-            retirementAgeLBL.Text = retirementAge.ToString();
-            //X.Call("alerts", annev, annevTotal, birthdays, birthdaysTotal, empRW, empRWTotal, compRW, compRWTotal, scr, scrTotal, prob, probTotal);
-            List<object> objs = new List<object>();
-            objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 110).ToList()[0].count, emps = GetLocalResourceObject("Paid").ToString() });
-            objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 111).ToList()[0].count, emps = GetLocalResourceObject("Unpaid").ToString() });
-            objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 112).ToList()[0].count, emps = GetLocalResourceObject("Absent").ToString() });
-
-
-
+        }
+        private void BindAlerts(bool normalSized=true)
+        {
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+            ListResponse<DashboardItem> dashoard=  FillDashBoardItems();
+          
 
 
 
             List<ChartData> activeChartData = new List<ChartData>();
-            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("Attendance").ToString(), y = dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count, index = 0 });// 10 - Attended
-            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("Vacation").ToString(), y = dashoard.Items.Where(x => x.itemId == 110).ToList()[0].count, index = 1 });// 110 - Vacations
-            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("UnpaidLeaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 111).ToList()[0].count, index = 2 });// 111 - Unpaid leave
-            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LeaveNoExcuse").ToString(), y = dashoard.Items.Where(x => x.itemId == 112).ToList()[0].count, index = 3 });// 112 - Leave without excuse
-            //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("BusinessLeave").ToString(), y = dashoard.Items.Where(x => x.itemId == 113).ToList()[0].count, index =4 });// 113 - business leave
+            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("PENDING").ToString(), y = dashoard.Items.Where(x => x.itemId == 102).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 102).First().count : 0 , index = 0 });// 10 - Attended
+            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("NO_SHOW_UP").ToString(), y = dashoard.Items.Where(x => x.itemId == 103).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 103).First().count : 0, index = 1 });// 110 - Vacations
+            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("CHECKED").ToString(), y = dashoard.Items.Where(x => x.itemId == 101).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 101).ToList()[0].count :0, index = 2 });// 111 - Unpaid leave
+            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE_WITHOUT_EXCUSE").ToString(), y = dashoard.Items.Where(x => x.itemId == 104).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 104).ToList()[0].count : 0, index = 3 });// 112 - Leave without excuse
+                                                                                                                                                                                                   //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("BusinessLeave").ToString(), y = dashoard.Items.Where(x => x.itemId == 113).ToList()[0].count, index =4 });// 113 - business leave
+            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 105).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 105).ToList()[0].count : 0, index = 4 });
+            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("DAY_OFF").ToString(), y = dashoard.Items.Where(x => x.itemId == 106).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 106).ToList()[0].count : 0, index = 5 });
 
 
             X.Call("drawActiveHightChartPie", JSON.JavaScriptSerialize(activeChartData), rtl ? true : false,normalSized);
 
 
             List<ChartData> lateChartData = new List<ChartData>();
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("Late").ToString(), y = dashoard.Items.Where(x => x.itemId == 12).ToList()[0].count, index = 0 });//  ALs.Items.Count
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("NLate").ToString(), y = dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 12).ToList()[0].count, index = 1 });//ACs.Items.Count - ALs.Items.Count                                                                                                                                                                 
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == 221).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 221).ToList()[0].count : 0, index = 0 });//  ALs.Items.Count
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("LATE_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == 211).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 211).ToList()[0].count : 0, index = 1 });
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("DURING_SHIFT_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 212).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 212).ToList()[0].count : 0, index = 2 });
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 213).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 213).ToList()[0].count : 0, index = 3 });
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("OVERTIME").ToString(), y = dashoard.Items.Where(x => x.itemId == 222).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 222).ToList()[0].count : 0, index = 4 });
             X.Call("drawLateHightChartPie", JSON.JavaScriptSerialize(lateChartData), rtl ? true : false,normalSized);
 
 
 
             List<ChartData> breaksChartData = new List<ChartData>();
-            breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Breaks").ToString(), y = dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count, index = 0 });// count.result.count - ACs.Items.Count
-            breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Attendance").ToString(), y = dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count, index = 1 });//
+            breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Breaks").ToString(), y =0 /*dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count*/, index = 0 });// count.result.count - ACs.Items.Count
+            breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Attendance").ToString(), y =0 /*dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count*/, index = 1 });//
 
             X.Call("drawBreakHightChartPie", JSON.JavaScriptSerialize(breaksChartData), rtl ? true : false,normalSized);
 

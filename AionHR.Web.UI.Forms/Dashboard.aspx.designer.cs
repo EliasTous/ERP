@@ -1273,13 +1273,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Label totalLoansLbl;
         
         /// <summary>
-        /// deductedLoansLbl control.
+        /// EmploymentReviewDateLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label deductedLoansLbl;
+        protected global::Ext.Net.Label EmploymentReviewDateLbl;
         
         /// <summary>
         /// annversaries control.

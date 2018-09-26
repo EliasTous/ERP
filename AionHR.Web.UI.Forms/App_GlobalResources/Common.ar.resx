@@ -1209,4 +1209,7 @@
   <data name="DeleteAllBranchAttendance" xml:space="preserve">
     <value>حذف دوام فرع</value>
   </data>
+  <data name="PenaltyType" xml:space="preserve">
+    <value>Penalty Type</value>
+  </data>
 </root>

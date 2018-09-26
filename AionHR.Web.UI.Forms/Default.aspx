@@ -79,6 +79,8 @@
     <ext:Hidden runat="server" ID="gfTitle" Text="<%$Resources:Common , Geofences %>" />
     <ext:Hidden runat="server" ID="vsTitle" Text="<%$Resources:Common , VacationSchedules %>" />
     <ext:Hidden runat="server" ID="pyye" Text="<%$Resources:Common , FiscalYears %>" />
+     <ext:Hidden runat="server" ID="Hidden1" Text="<%$Resources:Common , PenaltyType %>" />
+    
     <ext:Hidden runat="server" ID="pypc" Text="<%$Resources:Common , importPayCodes %>" />
        
     <ext:Hidden runat="server" ID="pyfs" Text="<%$Resources:Common , FinalSettlements %>" />
@@ -601,6 +603,11 @@
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , FiscalYears%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('fiscalYears', 'FiscalYears.aspx', #{pyye}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , PenaltyType%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('PenaltyTypes', 'PenaltyTypes.aspx', #{pypt}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
 
