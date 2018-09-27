@@ -314,6 +314,7 @@
     <Content Include="PayrollGeneration.aspx" />
     <Content Include="PayrollIndemnities.aspx" />
     <Content Include="PayrollTimeSchedule.aspx" />
+    <Content Include="PenaltyTypes.aspx" />
     <Content Include="RelationshipTypes.aspx" />
     <Content Include="Reports\App_LocalResources\Hirings.cs.resx" />
     <Content Include="Reports\App_LocalResources\Hirings.resx" />
@@ -869,6 +870,13 @@
     </Compile>
     <Compile Include="PayrollTimeSchedule.aspx.designer.cs">
       <DependentUpon>PayrollTimeSchedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PenaltyTypes.aspx.cs">
+      <DependentUpon>PenaltyTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PenaltyTypes.aspx.designer.cs">
+      <DependentUpon>PenaltyTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\SalaryTypeFilter.ascx.cs">
       <DependentUpon>SalaryTypeFilter.ascx</DependentUpon>
@@ -2394,6 +2402,8 @@
     <Content Include="App_LocalResources\BiometricDevices.aspx.ar.resx" />
     <Content Include="App_LocalResources\DeleteBranchAttendance.aspx.ar.resx" />
     <Content Include="App_LocalResources\DeleteBranchAttendance.aspx.resx" />
+    <Content Include="App_LocalResources\PenaltyTypes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\PenaltyTypes.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

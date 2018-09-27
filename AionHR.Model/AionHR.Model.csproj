@@ -64,10 +64,18 @@
     <Compile Include="Company\Structure\LegalReference.cs" />
     <Compile Include="Dashboard\CompanyRTW.cs" />
     <Compile Include="Dashboard\Dashboard.cs" />
+    <Compile Include="Dashboard\DashBoardCH.cs" />
+    <Compile Include="Dashboard\DashBoardDO.cs" />
+    <Compile Include="Dashboard\DashBoardLE.cs" />
     <Compile Include="Dashboard\DashboardLeave.cs" />
+    <Compile Include="Dashboard\DashboardLW.cs" />
+    <Compile Include="Dashboard\DashboardNS.cs" />
+    <Compile Include="Dashboard\DashBoardPE.cs" />
+    <Compile Include="Dashboard\DashBoardTimeVariation .cs" />
     <Compile Include="Dashboard\DepartmentActivity.cs" />
     <Compile Include="Dashboard\EmployeeBirthday.cs" />
     <Compile Include="Dashboard\EmpRTW.cs" />
+    <Compile Include="Dashboard\IDashBoardRepository.cs" />
     <Compile Include="Dashboard\LocalsRate.cs" />
     <Compile Include="Dashboard\ProbationEnd.cs" />
     <Compile Include="Dashboard\RetirementAge.cs" />
@@ -150,6 +158,8 @@
     <Compile Include="Payroll\PayrollIndemnity.cs" />
     <Compile Include="Payroll\PayrollIndemnityRecognition.cs" />
     <Compile Include="Payroll\PayrollSocialSecurity.cs" />
+    <Compile Include="Payroll\PenaltyDetail.cs" />
+    <Compile Include="Payroll\PenaltyType.cs" />
     <Compile Include="Payroll\SocialSecuritySchedule.cs" />
     <Compile Include="Payroll\SocialSecurityScheduleSetup.cs" />
     <Compile Include="Payroll\SyncED.cs" />
