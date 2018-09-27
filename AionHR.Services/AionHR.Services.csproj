@@ -50,6 +50,7 @@
     <Compile Include="Implementations\AttendanceImportingService.cs" />
     <Compile Include="Implementations\BaseService.cs" />
     <Compile Include="Implementations\BenefitsService.cs" />
+    <Compile Include="Implementations\DashBoardService.cs" />
     <Compile Include="Implementations\DepartmentBatchRunner.cs" />
     <Compile Include="Implementations\DepartmentImportingService.cs" />
     <Compile Include="Implementations\EmployeeBatchRunner.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Interfaces\IBaseService.cs" />
     <Compile Include="Interfaces\ICaseService.cs" />
     <Compile Include="Interfaces\ICompanyStructureService.cs" />
+    <Compile Include="Interfaces\IDashBoardService.cs" />
     <Compile Include="Interfaces\IEmployeeService.cs" />
     <Compile Include="Interfaces\IHelpFunctionService.cs" />
     <Compile Include="Interfaces\IImportaingService.cs" />

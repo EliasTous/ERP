@@ -630,4 +630,22 @@
   <data name="PENDING" xml:space="preserve">
     <value>الموظفون الذين لم يبدأ دوامهم </value>
   </data>
+  <data name="CheckedWindow" xml:space="preserve">
+    <value>الحضور</value>
+  </data>
+  <data name="DayOff" xml:space="preserve">
+    <value>الموظفون في عطلة </value>
+  </data>
+  <data name="FieldDayEnd" xml:space="preserve">
+    <value>نهاية اليوم</value>
+  </data>
+  <data name="FieldDayStart" xml:space="preserve">
+    <value>بداية اليوم </value>
+  </data>
+  <data name="LeaveWithoutExcuse" xml:space="preserve">
+    <value>غياب بدون اذن</value>
+  </data>
+  <data name="PendingWindow" xml:space="preserve">
+    <value>الموظفون الذين لم يبدأ دوامهم</value>
+  </data>
 </root>

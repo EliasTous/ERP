@@ -579,17 +579,20 @@ namespace AionHR.Web.UI.Forms
                 {
                     hoursWorked += Convert.ToInt32(x.workingTime.Substring(0, 2));
                     minsWorked += Convert.ToInt32(x.workingTime.Substring(3, 2));
-                    if (x.breaks[0] == '-')
+                    if (!string.IsNullOrEmpty(x.breaks))
                     {
-                        minsBrea -= Convert.ToInt32(x.breaks.Substring(1, 2)) * 60;
-                        minsBrea -= Convert.ToInt32(x.breaks.Substring(4, 2));
-                    }
-                    else
+                        if (x.breaks[0] == '-')
+                        {
+                            minsBrea -= Convert.ToInt32(x.breaks.Substring(1, 2)) * 60;
+                            minsBrea -= Convert.ToInt32(x.breaks.Substring(4, 2));
+                        }
+                        else
 
-                    {
-                        minsBrea += Convert.ToInt32(x.breaks.Substring(0, 2)) * 60;
-                        minsBrea += Convert.ToInt32(x.breaks.Substring(3, 2));
+                        {
+                            minsBrea += Convert.ToInt32(x.breaks.Substring(0, 2)) * 60;
+                            minsBrea += Convert.ToInt32(x.breaks.Substring(3, 2));
 
+                        }
                     }
                 });
                 hoursWorked += minsWorked / 60;

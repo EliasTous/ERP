@@ -255,4 +255,7 @@
   <data name="branchClosed" xml:space="preserve">
     <value>فرع مغلق في هذا اليوم </value>
   </data>
+  <data name="FieldFirstPunch" xml:space="preserve">
+    <value>تسجيل اول دخول</value>
+  </data>
 </root>

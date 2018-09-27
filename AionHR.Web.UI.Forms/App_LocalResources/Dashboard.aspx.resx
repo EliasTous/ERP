@@ -633,4 +633,25 @@
   <data name="PENDING" xml:space="preserve">
     <value>Pending</value>
   </data>
+  <data name="CheckedWindow" xml:space="preserve">
+    <value>Checked</value>
+  </data>
+  <data name="DayOff" xml:space="preserve">
+    <value>Day Off</value>
+  </data>
+  <data name="FieldDayEnd" xml:space="preserve">
+    <value>Day End</value>
+  </data>
+  <data name="FieldDayStart" xml:space="preserve">
+    <value>Day Start</value>
+  </data>
+  <data name="LeaveWithoutExcuse" xml:space="preserve">
+    <value>Leave Without Excuse</value>
+  </data>
+  <data name="PendingWindow" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="FieldFirstPunch" xml:space="preserve">
+    <value>First Punch</value>
+  </data>
 </root>

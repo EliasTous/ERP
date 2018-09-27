@@ -47,8 +47,9 @@ namespace AionHR.Web.UI.Forms
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
-         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
+        IDashBoardService _dashBoardService = ServiceLocator.Current.GetInstance<IDashBoardService>();
         protected override void InitializeCulture()
         {
 
@@ -92,7 +93,7 @@ namespace AionHR.Web.UI.Forms
                         //    throw new DashBoardAccessDenied();
                         //}
                         //else
-                            AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Dashboard.Dashboard), null, null, null, null);
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Dashboard.Dashboard), null, null, null, null);
                     }
                     catch (AccessDeniedException exp)
                     {
@@ -128,7 +129,7 @@ namespace AionHR.Web.UI.Forms
                         //missingPunchesStore.Reload();
                         //checkMontierStore.Reload();
                         format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                       DateColumn5.Format= DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
+                        DateColumn5.Format = DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
                         periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         CountDateTo.SelectedDate = DateTime.Now;
@@ -305,7 +306,7 @@ namespace AionHR.Web.UI.Forms
                     return new ListResponse<DashboardItem>();
                 }
 
-                int birth = dashoard.Items.Where(x => x.itemId == 905).ToList().Count!=0? dashoard.Items.Where(x => x.itemId == 905).First().count :0;
+                int birth = dashoard.Items.Where(x => x.itemId == 905).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 905).First().count : 0;
                 int annev = dashoard.Items.Where(x => x.itemId == 907).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 907).First().count : 0;
                 int comp = dashoard.Items.Where(x => x.itemId == 908).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 908).First().count : 0;
                 int empRW = dashoard.Items.Where(x => x.itemId == 909).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 909).First().count : 0;
@@ -315,8 +316,8 @@ namespace AionHR.Web.UI.Forms
                 int TermEndDate = dashoard.Items.Where(x => x.itemId == 904).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 904).First().count : 0;
                 int EmploymentReviewDate = dashoard.Items.Where(x => x.itemId == 903).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 903).First().count : 0;
                 int totalLoans = dashoard.Items.Where(x => x.itemId == 910).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 903).First().count : 0;
-               
-              
+
+
 
                 annversaries.Text = annev.ToString();
                 birthdays.Text = birth.ToString();
@@ -331,32 +332,32 @@ namespace AionHR.Web.UI.Forms
 
                 return dashoard;
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
-                X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
                 return new ListResponse<DashboardItem>();
             }
 
         }
-        private void BindAlerts(bool normalSized=true)
+        private void BindAlerts(bool normalSized = true)
         {
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            ListResponse<DashboardItem> dashoard=  FillDashBoardItems();
-          
+            ListResponse<DashboardItem> dashoard = FillDashBoardItems();
+
 
 
 
             List<ChartData> activeChartData = new List<ChartData>();
-            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("PENDING").ToString(), y = dashoard.Items.Where(x => x.itemId == 102).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 102).First().count : 0 , index = 0 });// 10 - Attended
+            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("PENDING").ToString(), y = dashoard.Items.Where(x => x.itemId == 102).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 102).First().count : 0, index = 0 });// 10 - Attended
             activeChartData.Add(new ChartData() { name = GetLocalResourceObject("NO_SHOW_UP").ToString(), y = dashoard.Items.Where(x => x.itemId == 103).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 103).First().count : 0, index = 1 });// 110 - Vacations
-            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("CHECKED").ToString(), y = dashoard.Items.Where(x => x.itemId == 101).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 101).ToList()[0].count :0, index = 2 });// 111 - Unpaid leave
+            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("CHECKED").ToString(), y = dashoard.Items.Where(x => x.itemId == 101).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 101).ToList()[0].count : 0, index = 2 });// 111 - Unpaid leave
             activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE_WITHOUT_EXCUSE").ToString(), y = dashoard.Items.Where(x => x.itemId == 104).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 104).ToList()[0].count : 0, index = 3 });// 112 - Leave without excuse
-                                                                                                                                                                                                   //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("BusinessLeave").ToString(), y = dashoard.Items.Where(x => x.itemId == 113).ToList()[0].count, index =4 });// 113 - business leave
+                                                                                                                                                                                                                                                                        //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("BusinessLeave").ToString(), y = dashoard.Items.Where(x => x.itemId == 113).ToList()[0].count, index =4 });// 113 - business leave
             activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 105).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 105).ToList()[0].count : 0, index = 4 });
             activeChartData.Add(new ChartData() { name = GetLocalResourceObject("DAY_OFF").ToString(), y = dashoard.Items.Where(x => x.itemId == 106).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 106).ToList()[0].count : 0, index = 5 });
 
 
-            X.Call("drawActiveHightChartPie", JSON.JavaScriptSerialize(activeChartData), rtl ? true : false,normalSized);
+            X.Call("drawActiveHightChartPie", JSON.JavaScriptSerialize(activeChartData), rtl ? true : false, normalSized);
 
 
             List<ChartData> lateChartData = new List<ChartData>();
@@ -365,15 +366,15 @@ namespace AionHR.Web.UI.Forms
             lateChartData.Add(new ChartData() { name = GetLocalResourceObject("DURING_SHIFT_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 212).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 212).ToList()[0].count : 0, index = 2 });
             lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 213).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 213).ToList()[0].count : 0, index = 3 });
             lateChartData.Add(new ChartData() { name = GetLocalResourceObject("OVERTIME").ToString(), y = dashoard.Items.Where(x => x.itemId == 222).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 222).ToList()[0].count : 0, index = 4 });
-            X.Call("drawLateHightChartPie", JSON.JavaScriptSerialize(lateChartData), rtl ? true : false,normalSized);
+            X.Call("drawLateHightChartPie", JSON.JavaScriptSerialize(lateChartData), rtl ? true : false, normalSized);
 
 
 
             List<ChartData> breaksChartData = new List<ChartData>();
-            breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Breaks").ToString(), y =0 /*dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count*/, index = 0 });// count.result.count - ACs.Items.Count
-            breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Attendance").ToString(), y =0 /*dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count*/, index = 1 });//
+            breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Breaks").ToString(), y = 0 /*dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count*/, index = 0 });// count.result.count - ACs.Items.Count
+            breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Attendance").ToString(), y = 0 /*dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count*/, index = 1 });//
 
-            X.Call("drawBreakHightChartPie", JSON.JavaScriptSerialize(breaksChartData), rtl ? true : false,normalSized);
+            X.Call("drawBreakHightChartPie", JSON.JavaScriptSerialize(breaksChartData), rtl ? true : false, normalSized);
 
 
             //List<ChartData> leaveChartData = new List<ChartData>();
@@ -430,7 +431,7 @@ namespace AionHR.Web.UI.Forms
             }
             catch (Exception exp)
             {
-                X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
 
@@ -585,10 +586,10 @@ namespace AionHR.Web.UI.Forms
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
             req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
             req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
-          
+
             int intResult;
 
-            
+
             if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
             {
                 req.StatusId = intResult;
@@ -731,8 +732,8 @@ namespace AionHR.Web.UI.Forms
             RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
             if (response.result == null)
                 return null;
-            
-            req.raEmployeeId =Convert.ToInt32( response.result.employeeId);
+
+            req.raEmployeeId = Convert.ToInt32(response.result.employeeId);
             if (string.IsNullOrEmpty(response.result.employeeId))
                 return null;
             userSessionEmployeeId.Text = response.result.employeeId;
@@ -773,7 +774,7 @@ namespace AionHR.Web.UI.Forms
             }
 
 
-           
+
 
 
             return req;
@@ -980,7 +981,7 @@ namespace AionHR.Web.UI.Forms
             BindDepartmentsCount();
         }
 
-        private void BindDepartmentsCount(bool normalSized=true)
+        private void BindDepartmentsCount(bool normalSized = true)
         {
             try
             {
@@ -1008,43 +1009,44 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-        private void BindAttendancePeriod(bool normalSized=true)
+        private void BindAttendancePeriod(bool normalSized = true)
         {
-            try { 
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            TimeBoundedActiveAttendanceRequest req = GetTimeBoundedActiveAttendanceRequest();
-
-            ListResponse<AttendancePeriod> resp = _systemService.ChildGetAll<AttendancePeriod>(req);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
+                bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+                TimeBoundedActiveAttendanceRequest req = GetTimeBoundedActiveAttendanceRequest();
+
+                ListResponse<AttendancePeriod> resp = _systemService.ChildGetAll<AttendancePeriod>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+
+
+                List<int> listIn1 = resp.Items.Select(a => a.d_cnt).ToList();
+                List<int> listIn2 = resp.Items.Select(a => a.l_cnt).ToList();
+                List<int> listIn3 = resp.Items.Select(a => a.m_cnt).ToList();
+                List<int> listIn4 = resp.Items.Select(a => a.p_cnt).ToList();
+                List<string> cats = new List<string>();
+                foreach (string s in resp.Items.Select(a => a.dayId))
+                {
+                    DateTime d = DateTime.ParseExact(s, "yyyyMMdd", new CultureInfo("en"));
+                    cats.Add(GetGlobalResourceObject("Common", Enum.GetName(typeof(DayOfWeek), d.DayOfWeek) + "Text").ToString() + " - " + d.ToString("MM-dd") + "  ");
+
+                }
+
+
+                // Store1.DataSource = resp.Items;
+                // Store1.DataBind();
+                X.Call("drawAttendancePeriodChart", JSON.JavaScriptSerialize(cats), GetLocalResourceObject("Absent").ToString(), GetLocalResourceObject("Late").ToString(),
+
+
+                    GetLocalResourceObject("MissingPunchesGridTitle").ToString(), GetLocalResourceObject("Attendance").ToString()
+                    , JSON.JavaScriptSerialize(listIn1), JSON.JavaScriptSerialize(listIn2), JSON.JavaScriptSerialize(listIn3), JSON.JavaScriptSerialize(listIn4)
+                    , rtl ? true : false, normalSized ? true : false);
             }
-
-
-            List<int> listIn1 = resp.Items.Select(a => a.d_cnt).ToList();
-            List<int> listIn2 = resp.Items.Select(a => a.l_cnt).ToList();
-            List<int> listIn3 = resp.Items.Select(a => a.m_cnt).ToList();
-            List<int> listIn4 = resp.Items.Select(a => a.p_cnt).ToList();
-            List<string> cats = new List<string>();
-            foreach (string s in resp.Items.Select(a => a.dayId))
-            {
-                DateTime d = DateTime.ParseExact(s, "yyyyMMdd", new CultureInfo("en"));
-                cats.Add(GetGlobalResourceObject("Common", Enum.GetName(typeof(DayOfWeek), d.DayOfWeek) + "Text").ToString() + " - " + d.ToString("MM-dd")+"  ");
-
-            }
-
-
-            // Store1.DataSource = resp.Items;
-            // Store1.DataBind();
-            X.Call("drawAttendancePeriodChart", JSON.JavaScriptSerialize(cats), GetLocalResourceObject("Absent").ToString(), GetLocalResourceObject("Late").ToString(),
-
-
-                GetLocalResourceObject("MissingPunchesGridTitle").ToString(), GetLocalResourceObject("Attendance").ToString()
-                , JSON.JavaScriptSerialize(listIn1), JSON.JavaScriptSerialize(listIn2), JSON.JavaScriptSerialize(listIn3), JSON.JavaScriptSerialize(listIn4)
-                , rtl ? true : false, normalSized ? true:false);
-            }
-            catch(Exception Exp)
+            catch (Exception Exp)
             {
                 X.Msg.Alert(Resources.Common.Error, Exp.Message).Show();
             }
@@ -1146,9 +1148,9 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
-       
-      
-        
+
+
+
         protected void ApprovaLoan_ReadData(object sender, StoreReadDataEventArgs e)
         {
             try
@@ -1312,7 +1314,7 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-        
+
         [DirectMethod]
         protected void TimePoPUP(object sender, DirectEventArgs e)
         {
@@ -1323,8 +1325,8 @@ namespace AionHR.Web.UI.Forms
             string timeCode = e.ExtraParams["timeCode"];
             string timeCodeString = e.ExtraParams["timeCodeString"];
             string status = e.ExtraParams["status"];
-         
-                      
+
+
             string notes = e.ExtraParams["notes"];
             TimeEmployeeName.Text = employeeName;
             TimedayIdDate.Text = dayIdDate;
@@ -1337,13 +1339,14 @@ namespace AionHR.Web.UI.Forms
 
             this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
             this.TimeWindow.Show();
-          
+
         }
 
         [DirectMethod]
         protected void ApprovalLoanPoPUP(object sender, DirectEventArgs e)
         {
-            try {
+            try
+            {
                 string id = e.ExtraParams["id"];
 
                 //SetTabPanelEnable(true);
@@ -1414,16 +1417,16 @@ namespace AionHR.Web.UI.Forms
 
                 case "imgAttach":
                     //Step 1 : get the object from the Web Service 
-                  
+
                     RecordRequest r = new RecordRequest();
-                   r.RecordID = id;
+                    r.RecordID = id;
 
 
                     RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
@@ -1440,14 +1443,14 @@ namespace AionHR.Web.UI.Forms
                     break;
             }
         }
-       
+
         [DirectMethod]
         protected void ApprovalLoanTab_load(object sender, EventArgs e)
         {
 
         }
         [DirectMethod]
-        protected void TimeTab_Load       (object sender, EventArgs e)
+        protected void TimeTab_Load(object sender, EventArgs e)
         {
 
         }
@@ -1456,9 +1459,9 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-        
-           protected void SaveApprovalLoanRecord(object sender, DirectEventArgs e)
-            {
+
+        protected void SaveApprovalLoanRecord(object sender, DirectEventArgs e)
+        {
             string obj = e.ExtraParams["values"];
             string id = e.ExtraParams["id"];
             string status = e.ExtraParams["status"];
@@ -1482,7 +1485,7 @@ namespace AionHR.Web.UI.Forms
                 //New Mode
                 //Step 1 : Fill The object and insert in the store 
                 LoanApproval LA = new LoanApproval();
-               
+
                 LA.status = Convert.ToInt16(status);
                 LA.notes = notes;
                 LA.loanId = Convert.ToInt32(id);
@@ -1490,9 +1493,9 @@ namespace AionHR.Web.UI.Forms
 
                 PostRequest<LoanApproval> request = new PostRequest<LoanApproval>();
                 request.entity = LA;
-              
 
-                PostResponse<LoanApproval> r = _loanService.ChildAddOrUpdate<LoanApproval> (request);
+
+                PostResponse<LoanApproval> r = _loanService.ChildAddOrUpdate<LoanApproval>(request);
 
 
                 //check if the insert failed
@@ -1500,7 +1503,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
                     return;
                 }
                 else
@@ -1555,7 +1558,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
                     return;
                 }
                 else
@@ -1596,10 +1599,10 @@ namespace AionHR.Web.UI.Forms
                 request.entity.employeeId = TI.employeeId;
                 request.entity.dayId = TI.dayId;
                 request.entity.timeCode = TI.timeCode;
-                request.entity.approverId =Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId()); 
+                request.entity.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
                 request.entity.status = TI.status;
                 request.entity.notes = TI.notes;
-                              
+
                 PostResponse<Time> r = _timeAttendanceService.ChildAddOrUpdate<Time>(request);
 
 
@@ -1608,7 +1611,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
                     return;
                 }
                 else
@@ -1647,7 +1650,7 @@ namespace AionHR.Web.UI.Forms
             BindCompanyHeadCount();
         }
 
-        private void BindCompanyHeadCount(bool normalSized=true)
+        private void BindCompanyHeadCount(bool normalSized = true)
         {
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             ReportCompositeRequest req = new ReportCompositeRequest();
@@ -1672,17 +1675,17 @@ namespace AionHR.Web.UI.Forms
             List<String> cats = new List<string>();
             foreach (DateTime d in resp.Items.Select(a => a.date))
             {
-                
+
                 cats.Add(GetGlobalResourceObject("Common", Enum.GetName(typeof(DayOfWeek), d.DayOfWeek) + "Text").ToString() + " - " + d.ToString("MM-dd") + "  ");
 
             }
             List<int> listIn = resp.Items.Select(a => a.headCount).ToList();
-           
+
 
 
             // Store1.DataSource = resp.Items;
             // Store1.DataBind();
-            X.Call("drawCompanyHeadCountChart",  JSON.JavaScriptSerialize(listIn), JSON.JavaScriptSerialize(cats), rtl ? true : false,normalSized);
+            X.Call("drawCompanyHeadCountChart", JSON.JavaScriptSerialize(listIn), JSON.JavaScriptSerialize(cats), rtl ? true : false, normalSized);
 
         }
 
@@ -1691,7 +1694,7 @@ namespace AionHR.Web.UI.Forms
             BindDimensionalHeadCount(true);
         }
 
-        protected void BindDimensionalHeadCount(bool normalSized=true)
+        protected void BindDimensionalHeadCount(bool normalSized = true)
         {
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             ReportCompositeRequest req = new ReportCompositeRequest();
@@ -1707,7 +1710,7 @@ namespace AionHR.Web.UI.Forms
             }
             req.Add(s);
             ListResponse<RT110> resp = _reportsService.ChildGetAll<RT110>(req);
-            if(!resp.Success)
+            if (!resp.Success)
             {
                 return;
             }
@@ -1715,28 +1718,28 @@ namespace AionHR.Web.UI.Forms
             int dim = 1;
             try
             {
-                 dim = Convert.ToInt32(dimension.SelectedItem.Value);
+                dim = Convert.ToInt32(dimension.SelectedItem.Value);
             }
             catch (Exception)
             {
 
-                
+
             }
-            List<string> listCategories = resp.Items.Where(a=>a.dimension ==dim).Select(a => a.name).ToList();
+            List<string> listCategories = resp.Items.Where(a => a.dimension == dim).Select(a => a.name).ToList();
             List<int> listIn = resp.Items.Where(a => a.dimension == dim).Select(a => a.headCount).ToList();
 
 
 
             // Store1.DataSource = resp.Items;
             // Store1.DataBind();
-            X.Call("drawDimensionalHeadCountChart", JSON.JavaScriptSerialize(listIn), JSON.JavaScriptSerialize(listCategories), rtl ? true : false,normalSized);
+            X.Call("drawDimensionalHeadCountChart", JSON.JavaScriptSerialize(listIn), JSON.JavaScriptSerialize(listCategories), rtl ? true : false, normalSized);
 
         }
 
         protected void zoomAttendancePeriod(object sender, DirectEventArgs e)
         {
             BindAttendancePeriod(false);
-           
+
         }
         protected void zoomAlert(object sender, DirectEventArgs e)
         {
@@ -1782,7 +1785,7 @@ namespace AionHR.Web.UI.Forms
             {
                 if (!ALs.Items.Exists(x => x.employeeId == item.employeeId))
                     nonLate.Add(item);
-                    
+
             }
             UnlateStore.DataSource = nonLate;
             UnlateStore.DataBind();
@@ -1843,15 +1846,89 @@ namespace AionHR.Web.UI.Forms
             retirementAgeStore.DataBind();
         }
 
-    }
-   
+        protected void Checked_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<DashBoardCH> resp = _dashBoardService.ChildGetAll<DashBoardCH>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                return;
+            }
+            CheckedStore.DataSource = resp.Items;
+            CheckedStore.DataBind();
+        }
 
-    #region Classes to be moved to a client folder model 
-    public class ChartData
-    {
-        public string name { get; set; }
-        public double y { get; set; }
-        public int index { get; set; }
+        protected void Pending_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<DashBoardPE> resp = _dashBoardService.ChildGetAll<DashBoardPE>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                return;
+            }
+            PendingStore.DataSource = resp.Items;
+            PendingStore.DataBind();
+        }
+        protected void NoShowUp_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<DashboardNS> resp = _dashBoardService.ChildGetAll<DashboardNS>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                return;
+            }
+            NoShowUpStore.DataSource = resp.Items;
+            NoShowUpStore.DataBind();
+        }
+        protected void LeaveWithoutExcuse_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<DashboardLW> resp = _dashBoardService.ChildGetAll<DashboardLW>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                return;
+            }
+            LeaveWithoutExcuseStore.DataSource = resp.Items;
+            LeaveWithoutExcuseStore.DataBind();
+        }
+        protected void DayOff_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<DashBoardDO> resp = _dashBoardService.ChildGetAll<DashBoardDO>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                return;
+            }
+            DayOffStore.DataSource = resp.Items;
+            DayOffStore.DataBind();
+        }
+
+        protected void Leave_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<DashBoardLE> resp = _dashBoardService.ChildGetAll<DashBoardLE>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                return;
+            }
+            LeaveStore.DataSource = resp.Items;
+            LeaveStore.DataBind();
+        }
+
+
+        #region Classes to be moved to a client folder model 
+        public class ChartData
+        {
+            public string name { get; set; }
+            public double y { get; set; }
+            public int index { get; set; }
+        }
+        #endregion
     }
-    #endregion
 }
