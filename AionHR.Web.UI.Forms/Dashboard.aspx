@@ -4559,7 +4559,7 @@
         </ext:Window>
 
 
-        <ext:Window runat="server" Modal="true" Title="<%$ Resources: CheckedWindow %>"
+        <ext:Window runat="server" Modal="true" 
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="CheckedWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -4627,7 +4627,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-          <ext:Window runat="server" Modal="true" Title="<%$ Resources: PendingWindow %>"
+          <ext:Window runat="server" Modal="true" 
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="PendingWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -4769,7 +4769,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-            <ext:Window runat="server" Modal="true" Title="<%$ Resources: LeaveWithoutExcuse %>"
+            <ext:Window runat="server" Modal="true" 
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="LeaveWithoutExcuseWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -4840,7 +4840,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-        <ext:Window runat="server" Modal="true" Title="<%$ Resources: Leave %>"
+        <ext:Window runat="server" Modal="true" 
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="LeaveWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -4911,7 +4911,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-          <ext:Window runat="server" Modal="true" Title="<%$ Resources: DayOff %>"
+          <ext:Window runat="server" Modal="true" 
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="DayOffWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"

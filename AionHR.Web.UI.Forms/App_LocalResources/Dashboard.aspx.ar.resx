@@ -648,4 +648,7 @@
   <data name="PendingWindow" xml:space="preserve">
     <value>الموظفون الذين لم يبدأ دوامهم</value>
   </data>
+  <data name="FieldFirstPunch" xml:space="preserve">
+    <value>تسجيل الدخول الاول</value>
+  </data>
 </root>
