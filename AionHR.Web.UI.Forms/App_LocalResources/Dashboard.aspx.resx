@@ -654,4 +654,10 @@
   <data name="FieldFirstPunch" xml:space="preserve">
     <value>First Punch</value>
   </data>
+  <data name="FieldDuration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="FieldClockDuration" xml:space="preserve">
+    <value>Clock Duration</value>
+  </data>
 </root>

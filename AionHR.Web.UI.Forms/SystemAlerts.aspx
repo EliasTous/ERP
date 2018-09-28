@@ -31,20 +31,19 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        <ext:Hidden ID="alert101Title" runat="server" Text="<%$ Resources: Alert101Title %>" />
-        <ext:Hidden ID="alert301Title" runat="server" Text="<%$ Resources: Alert301Title %>" />
-        <ext:Hidden ID="alert302Title" runat="server" Text="<%$ Resources: Alert302Title %>" />
-        <ext:Hidden ID="alert303Title" runat="server" Text="<%$ Resources: Alert303Title %>" />
-        <ext:Hidden ID="alert304Title" runat="server" Text="<%$ Resources: Alert304Title %>" />
-        <ext:Hidden ID="alert305Title" runat="server" Text="<%$ Resources: Alert305Title %>" />
-        <ext:Hidden ID="alert306Title" runat="server" Text="<%$ Resources: Alert306Title %>" />
-        <ext:Hidden ID="alert307Title" runat="server" Text="<%$ Resources: Alert307Title %>" />
-        <ext:Hidden ID="alert308Title" runat="server" Text="<%$ Resources: Alert308Title %>" />
-        <ext:Hidden ID="alert309Title" runat="server" Text="<%$ Resources: Alert309Title %>" />
-          <ext:Hidden ID="alert310Title" runat="server" Text="<%$ Resources: Alert310Title %>" />
-          <ext:Hidden ID="alert311Title" runat="server" Text="<%$ Resources: Alert311Title %>" />
+        <ext:Hidden ID="alert901Title" runat="server" Text="<%$ Resources: Alert901Title %>" />
+        <ext:Hidden ID="alert902Title" runat="server" Text="<%$ Resources: Alert902Title %>" />
+        <ext:Hidden ID="alert903Title" runat="server" Text="<%$ Resources: Alert903Title %>" />
+        <ext:Hidden ID="alert904Title" runat="server" Text="<%$ Resources: Alert904Title %>" />
+        <ext:Hidden ID="alert905Title" runat="server" Text="<%$ Resources: Alert905Title %>" />
+        <ext:Hidden ID="alert906Title" runat="server" Text="<%$ Resources: Alert906Title %>" />
+        <ext:Hidden ID="alert907Title" runat="server" Text="<%$ Resources: Alert907Title %>" />
+        <ext:Hidden ID="alert908Title" runat="server" Text="<%$ Resources: Alert908Title %>" />
+        <ext:Hidden ID="alert909Title" runat="server" Text="<%$ Resources: Alert909Title %>" />
+        <ext:Hidden ID="alert910Title" runat="server" Text="<%$ Resources: Alert910Title %>" />
+         
 
-        <ext:Hidden ID="alert101Description" runat="server" Text="<%$ Resources: Alert101Description %>" />
+      <%--  <ext:Hidden ID="alert101Description" runat="server" Text="<%$ Resources: Alert101Description %>" />
         <ext:Hidden ID="alert301Description" runat="server" Text="<%$ Resources: Alert301Description %>" />
         <ext:Hidden ID="alert302Description" runat="server" Text="<%$ Resources: Alert302Description %>" />
         <ext:Hidden ID="alert303Description" runat="server" Text="<%$ Resources: Alert303Description %>" />
@@ -56,7 +55,7 @@
 
         <ext:Hidden ID="alert309Description" runat="server" Text="<%$ Resources: Alert309Description %>" />
          <ext:Hidden ID="alert310Description" runat="server" Text="<%$ Resources: Alert310Description %>" />
-         <ext:Hidden ID="alert311Description" runat="server" Text="<%$ Resources: Alert311Description %>" />
+         <ext:Hidden ID="alert311Description" runat="server" Text="<%$ Resources: Alert311Description %>" />--%>
 
         <ext:Store
             ID="Store1"
@@ -119,10 +118,10 @@
                     
                             <ext:WidgetColumn ID="Column1" MenuDisabled="true"  runat="server" Text="<%$ Resources: FieldActive %>" DataIndex="isActive" Hideable="false" Width="75" Align="Center">
                                 <Widget>
-                                    <ext:Checkbox runat="server" Name="isActive" ID="chk">
+                                    <ext:Checkbox runat="server" Name="isActive"  ID="chk">
                                         <Listeners>
                                             
-                                            <Change Handler="var rec = this.getWidgetRecord(); rec.set('isActive',this.value); "  >
+                                         <Change Handler="var rec = this.getWidgetRecord(); rec.set('isActive',this.value);" >
                                                 
                                             </Change>
                                         </Listeners>
@@ -163,9 +162,9 @@
 
                             </ext:WidgetColumn>
                         
-                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDescription %>" DataIndex="alertId" Hideable="false" Flex="1">
+<%--                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDescription %>" DataIndex="alertId" Hideable="false" Flex="1">
                                 <Renderer Handler="return GetAlertDescription(record.data['alertId']); " />
-                            </ext:Column>
+                            </ext:Column>--%>
 
 
 

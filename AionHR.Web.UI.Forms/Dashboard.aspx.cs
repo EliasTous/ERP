@@ -34,6 +34,7 @@ using AionHR.Services.Messaging.Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Access_Control;
 using AionHR.Services.Messaging.TimeAttendance;
+using AionHR.Services.Messaging.DashBoard;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -361,11 +362,11 @@ namespace AionHR.Web.UI.Forms
 
 
             List<ChartData> lateChartData = new List<ChartData>();
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == 221).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 221).ToList()[0].count : 0, index = 0 });//  ALs.Items.Count
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("LATE_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == 211).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 211).ToList()[0].count : 0, index = 1 });
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("DURING_SHIFT_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 212).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 212).ToList()[0].count : 0, index = 2 });
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 213).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 213).ToList()[0].count : 0, index = 3 });
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("OVERTIME").ToString(), y = dashoard.Items.Where(x => x.itemId == 222).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 222).ToList()[0].count : 0, index = 4 });
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == 221).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 221).ToList()[0].count : 0, index = 41 });//  ALs.Items.Count
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("LATE_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == 211).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 211).ToList()[0].count : 0, index = 31 });
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("DURING_SHIFT_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 212).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 212).ToList()[0].count : 0, index = 32 });
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 213).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 213).ToList()[0].count : 0, index = 33 });
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("OVERTIME").ToString(), y = dashoard.Items.Where(x => x.itemId == 222).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 222).ToList()[0].count : 0, index = 42 });
             X.Call("drawLateHightChartPie", JSON.JavaScriptSerialize(lateChartData), rtl ? true : false, normalSized);
 
 
@@ -752,6 +753,7 @@ namespace AionHR.Web.UI.Forms
 
         private DashboardRequest GetDashboardRequest()
         {
+
             DashboardRequest req = new DashboardRequest();
 
             int intResult;
@@ -1930,5 +1932,51 @@ namespace AionHR.Web.UI.Forms
             public int index { get; set; }
         }
         #endregion
+
+        protected void TimeVariationStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            try
+            {
+                DashboardRequest req = GetDashboardRequest();
+                DashBoardTimeVariationListRequest TVReq = new DashBoardTimeVariationListRequest();
+                TVReq.BranchId = req.BranchId;
+                TVReq.DepartmentId = req.DepartmentId;
+                TVReq.DivisionId = req.DivisionId;
+                TVReq.EsId = req.EsId;
+                TVReq.timeVariationType = CurrentTimeVariationType.Text;
+
+
+
+                ListResponse<DashBoardTimeVariation> resp = _dashBoardService.ChildGetAll<DashBoardTimeVariation>(TVReq);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                resp.Items.ForEach(x =>
+                {
+                    switch (x.apStatus)
+                    {
+                        case 1: x.apStatusString = GetLocalResourceObject("FieldNew").ToString();
+                            break;
+                        case 2: x.apStatusString = approved.Text;
+                            break;
+                        case -1: x.apStatusString = rejected.Text;
+                            break;
+                        default: x.apStatusString = string.Empty;
+                            break; 
+
+
+                    }
+                });
+                TimeVariationStore.DataSource = resp.Items;
+                TimeVariationStore.DataBind();
+            }
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
+            }
+
+        }
     }
 }

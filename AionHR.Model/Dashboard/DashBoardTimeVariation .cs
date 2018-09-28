@@ -15,7 +15,8 @@ namespace AionHR.Model.Dashboard
         public short shiftId { get; set; }
         public short timeCode { get; set; }
         public short clockDuration { get; set; }
-        public short apStatus { get; set; }
+        public short? apStatus { get; set; }
+        public string apStatusString { get; set; }
         public short duration { get; set; }
 
         public EmployeeName employeeName { get; set; }

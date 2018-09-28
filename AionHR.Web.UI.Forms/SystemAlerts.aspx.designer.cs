@@ -67,220 +67,94 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
-        /// alert101Title control.
+        /// alert901Title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden alert101Title;
+        protected global::Ext.Net.Hidden alert901Title;
         
         /// <summary>
-        /// alert301Title control.
+        /// alert902Title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden alert301Title;
+        protected global::Ext.Net.Hidden alert902Title;
         
         /// <summary>
-        /// alert302Title control.
+        /// alert903Title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden alert302Title;
+        protected global::Ext.Net.Hidden alert903Title;
         
         /// <summary>
-        /// alert303Title control.
+        /// alert904Title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden alert303Title;
+        protected global::Ext.Net.Hidden alert904Title;
         
         /// <summary>
-        /// alert304Title control.
+        /// alert905Title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden alert304Title;
+        protected global::Ext.Net.Hidden alert905Title;
         
         /// <summary>
-        /// alert305Title control.
+        /// alert906Title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden alert305Title;
+        protected global::Ext.Net.Hidden alert906Title;
         
         /// <summary>
-        /// alert306Title control.
+        /// alert907Title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden alert306Title;
+        protected global::Ext.Net.Hidden alert907Title;
         
         /// <summary>
-        /// alert307Title control.
+        /// alert908Title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden alert307Title;
+        protected global::Ext.Net.Hidden alert908Title;
         
         /// <summary>
-        /// alert308Title control.
+        /// alert909Title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden alert308Title;
+        protected global::Ext.Net.Hidden alert909Title;
         
         /// <summary>
-        /// alert309Title control.
+        /// alert910Title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden alert309Title;
-        
-        /// <summary>
-        /// alert310Title control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert310Title;
-        
-        /// <summary>
-        /// alert311Title control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert311Title;
-        
-        /// <summary>
-        /// alert101Description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert101Description;
-        
-        /// <summary>
-        /// alert301Description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert301Description;
-        
-        /// <summary>
-        /// alert302Description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert302Description;
-        
-        /// <summary>
-        /// alert303Description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert303Description;
-        
-        /// <summary>
-        /// alert304Description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert304Description;
-        
-        /// <summary>
-        /// alert305Description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert305Description;
-        
-        /// <summary>
-        /// alert306Description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert306Description;
-        
-        /// <summary>
-        /// alert307Description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert307Description;
-        
-        /// <summary>
-        /// alert308Description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert308Description;
-        
-        /// <summary>
-        /// alert309Description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert309Description;
-        
-        /// <summary>
-        /// alert310Description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert310Description;
-        
-        /// <summary>
-        /// alert311Description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden alert311Description;
+        protected global::Ext.Net.Hidden alert910Title;
         
         /// <summary>
         /// Store1 control.

@@ -651,4 +651,10 @@
   <data name="FieldFirstPunch" xml:space="preserve">
     <value>تسجيل الدخول الاول</value>
   </data>
+  <data name="FieldDuration" xml:space="preserve">
+    <value>المدة</value>
+  </data>
+  <data name="FieldClockDuration" xml:space="preserve">
+    <value>فرق التوقيت عن جهاز البصمة</value>
+  </data>
 </root>

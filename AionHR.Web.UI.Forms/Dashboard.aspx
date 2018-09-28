@@ -209,16 +209,10 @@
 
         };
         var clickLateHightChartPieSeries = function (val) {
-
-            if (val == 0) {
-                App.latenessStore.reload();
-                App.lateWindow.show();
-            }
-            else {
-                App.UnlateStore.reload();
-                App.UnlateWindow.show();
-
-            }
+        
+            App.CurrentTimeVariationType.setValue(val);
+            App.TimeVariationStore.reload();
+            App.TimeVariationWindow.show();
         }
 
         var drawBreakHightChartPie = function (dataObject, rtl, normal) {
@@ -1170,6 +1164,7 @@
         <ext:Hidden ID="StatusInProcess" runat="server" Text="<%$ Resources: FieldInProcess %>" />
         <ext:Hidden ID="StatusApproved" runat="server" Text="<%$ Resources: FieldApproved %>" />
         <ext:Hidden ID="StatusRejected" runat="server" Text="<%$ Resources: FieldRejected %>" />
+            <ext:Hidden ID="CurrentTimeVariationType" runat="server"  />
 
         <ext:Store PageSize="30"
             ID="OverDueStore"
@@ -4983,7 +4978,7 @@
             </Items>
         </ext:Window>
         <ext:Window runat="server" Modal="true" 
-            Hidden="true" Layout="FitLayout" AutoShow="false" ID="TimeVariation" Width="600" Height="300">
+            Hidden="true" Layout="FitLayout" AutoShow="false" ID="TimeVariationWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
                     ID="TimeVariationGrid" Layout="FitLayout"
@@ -5000,7 +4995,7 @@
                     <ext:Store
                             ID="TimeVariationStore"
                             runat="server" 
-                            PageSize="30">
+                            PageSize="30" OnReadData="TimeVariationStore_ReadData">
 
                             <Model>
                                 <ext:Model ID="Model32" runat="server">
@@ -5008,11 +5003,18 @@
 
 
                                         <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
-                                        <ext:ModelField Name="dayStart" />
+                                      
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="branchName" />
-                                        <ext:ModelField Name="dayEnd" />
+                                        <ext:ModelField Name="dayId" />
+                                          <ext:ModelField Name="shiftId" />
+                                           <ext:ModelField Name="timeCode" />
+                                            <ext:ModelField Name="clockDuration" />   
+                                            <ext:ModelField Name="apStatus" />
+                                            <ext:ModelField Name="duration" />
+                                           <ext:ModelField Name="apStatusString" />
+
 
                                     </Fields>
                                 </ext:Model>
@@ -5029,14 +5031,12 @@
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
-                                          <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dayStart" Flex="3" Hideable="false" />
-                                          <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayEnd%>" DataIndex="dayEnd" Flex="3" Hideable="false" />
-                        <%--    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />--%>
+                                         
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayActive(record.data);  ">
-                                </Renderer>
-                            </ext:Column>--%>
+                              <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldClockDuration%>" DataIndex="clockDuration" Flex="3" Hideable="false" />
+                              <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldStatus%>" DataIndex="apStatusString" Flex="3" Hideable="false" />
+                                 <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDuration%>" DataIndex="duration" Flex="3" Hideable="false" />     
+                          
                         </Columns>
                     </ColumnModel>
 

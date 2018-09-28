@@ -301,6 +301,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden StatusRejected;
         
         /// <summary>
+        /// CurrentTimeVariationType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentTimeVariationType;
+        
+        /// <summary>
         /// OverDueStore control.
         /// </summary>
         /// <remarks>
@@ -3217,13 +3226,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.RowSelectionModel rowSelectionModel30;
         
         /// <summary>
-        /// TimeVariation control.
+        /// TimeVariationWindow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window TimeVariation;
+        protected global::Ext.Net.Window TimeVariationWindow;
         
         /// <summary>
         /// TimeVariationGrid control.
