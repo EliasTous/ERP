@@ -306,3 +306,22 @@ public override Dictionary<string, string> Parameters
 }
 
 }
+public class PenaltyDetailListRequest :ListRequest
+{
+    public string ptId { set; get; }
+    public string damage { get; set; }
+
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_ptId", ptId.ToString());
+            parameters.Add("_damage", damage.ToString());
+
+
+            return parameters;
+        }
+    }
+}

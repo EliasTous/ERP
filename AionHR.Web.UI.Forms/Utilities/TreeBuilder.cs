@@ -241,7 +241,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node DS = BuildLeafNode("rootParent_TA_DS", Resources.Common.DailySchedule, "DateMagnify", true, timeAt);
             Ext.Net.Node DA = BuildLeafNode("rootParent_TA_DA", Resources.Common.DayAvailability, "DateEdit", true, timeAt);
            // Ext.Net.Node GS = BuildLeafNode("rootParent_TA_GS", Resources.Common.GenerateAttendanceShift, "DateEdit", true, timeAt);
-            Ext.Net.Node SA = BuildLeafNode("rootParent_TA_SA", Resources.Common.SynchronizeAttendanceDays, "UserGo", true, timeAt);
+           // Ext.Net.Node SA = BuildLeafNode("rootParent_TA_SA", Resources.Common.SynchronizeAttendanceDays, "UserGo", true, timeAt);
           
             //Ext.Net.Node EC = BuildLeafNode("rootParent_TA_EC", Resources.Common.EmployeeCalender, "UserGo", true, timeAt);
 
@@ -255,7 +255,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(DA, "DA", "DaysAvailability.aspx", Resources.Common.DayAvailability, "icon-Employees", "1");
             //FillConfigItem(EC, "EC", "EmployeeCals.aspx", Resources.Common.EmployeeCalender, "icon-Employees", "1");
          //   FillConfigItem(GS, "GS", "GenerateAttendanceShifts.aspx", Resources.Common.GenerateAttendanceShift, "icon-Employees", "1");
-            FillConfigItem(SA, "SA", "SynchronizeAttendanceDays.aspx", Resources.Common.SynchronizeAttendanceDays, "icon-Employees", "1");
+           // FillConfigItem(SA, "SA", "SynchronizeAttendanceDays.aspx", Resources.Common.SynchronizeAttendanceDays, "icon-Employees", "1");
 
           
             nodes.Add(rootParent);

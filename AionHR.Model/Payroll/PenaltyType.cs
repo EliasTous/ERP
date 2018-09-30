@@ -8,15 +8,20 @@ namespace AionHR.Model.Payroll
 {
    public class PenaltyType :ModelBase
     {
-        public string edName { get; set; }
+        
         public short reason { get; set; }
         public string reasonString { get; set; }
-        public string edId { get; set; }
+      
         public short timeBase { get; set; }
         public string timeBaseString { get; set; }
-        public int duration { get; set; }
-        public int timeVariationType { get; set; }
-        public string timeVariationTypeString { get; set; }
+
+        public int from { get; set; }
+        public int to { get; set; }
+
+
+
+        public int timeCode { get; set; }
+        public string timeCodeString { get; set; }
         public string name { get; set; }
     }
 }

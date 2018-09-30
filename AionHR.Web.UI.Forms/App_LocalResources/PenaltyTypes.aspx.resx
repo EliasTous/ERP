@@ -213,4 +213,37 @@
   <data name="TimeBaseMINUTES" xml:space="preserve">
     <value>MINUTES</value>
   </data>
+  <data name="FieldFrom" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="FieldReason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="FieldTimeBase" xml:space="preserve">
+    <value>Time Base</value>
+  </data>
+  <data name="FieldTimeVariationType" xml:space="preserve">
+    <value>Time Variation Type</value>
+  </data>
+  <data name="FieldTo" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="FieldAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="FieldIncludeTV" xml:space="preserve">
+    <value>Include leave salary</value>
+  </data>
+  <data name="FieldPct" xml:space="preserve">
+    <value>Deduction percent</value>
+  </data>
+  <data name="FieldSeq" xml:space="preserve">
+    <value>Sequence</value>
+  </data>
+  <data name="penaltyDetailTitle" xml:space="preserve">
+    <value>Penalty Detail</value>
+  </data>
+  <data name="FieldDamage" xml:space="preserve">
+    <value>Damage</value>
+  </data>
 </root>

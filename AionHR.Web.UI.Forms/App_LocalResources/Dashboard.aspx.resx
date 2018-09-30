@@ -604,7 +604,7 @@
     <value>Day Off</value>
   </data>
   <data name="DURING_SHIFT_LEAVE" xml:space="preserve">
-    <value>during Shift Leave</value>
+    <value>During Shift Leave</value>
   </data>
   <data name="EARLY_CHECKIN" xml:space="preserve">
     <value>Early Check In</value>

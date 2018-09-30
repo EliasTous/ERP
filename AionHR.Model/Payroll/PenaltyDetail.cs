@@ -12,7 +12,11 @@ namespace AionHR.Model.Payroll
         public short damage  { get; set; }
         public int sequence { get; set; }
         public short action { get; set; }
-        public double pct { get; set; }
+        public int pct { get; set; }
+        public bool includeTV { get; set; }
+
+        
+
 
 
 

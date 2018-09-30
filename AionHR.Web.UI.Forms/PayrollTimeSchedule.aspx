@@ -334,7 +334,7 @@
                             </Items>
 
                         </ext:FormPanel>
-                        <ext:GridPanel
+                        <ext:GridPanel Visible="false"
                             ID="TimeCodeGrid"
                             runat="server"
                             PaddingSpec="0 0 1 0"
@@ -524,7 +524,7 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
-                                  <ext:Parameter Name="codes" Value="Ext.encode(#{TimeCodeGrid}.getRowsValues({dirtyRowsOnly : true}))" Mode="Raw"  />
+                               
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

@@ -210,4 +210,37 @@
   <data name="TimeBaseMINUTES" xml:space="preserve">
     <value>MINUTES</value>
   </data>
+  <data name="FieldFrom" xml:space="preserve">
+    <value>من </value>
+  </data>
+  <data name="FieldReason" xml:space="preserve">
+    <value>السبب</value>
+  </data>
+  <data name="FieldTimeBase" xml:space="preserve">
+    <value>طريقة الاحتساب</value>
+  </data>
+  <data name="FieldTimeVariationType" xml:space="preserve">
+    <value>نوع التأخير</value>
+  </data>
+  <data name="FieldTo" xml:space="preserve">
+    <value>الى </value>
+  </data>
+  <data name="FieldAction" xml:space="preserve">
+    <value>الاجراء</value>
+  </data>
+  <data name="FieldIncludeTV" xml:space="preserve">
+    <value>إضافة أجر مدة الغياب</value>
+  </data>
+  <data name="FieldPct" xml:space="preserve">
+    <value>نسبة من الراتب اليومي</value>
+  </data>
+  <data name="FieldSeq" xml:space="preserve">
+    <value>تكرار</value>
+  </data>
+  <data name="penaltyDetailTitle" xml:space="preserve">
+    <value>تفاصيل الجزاء</value>
+  </data>
+  <data name="FieldDamage" xml:space="preserve">
+    <value>مستوى الضرر</value>
+  </data>
 </root>

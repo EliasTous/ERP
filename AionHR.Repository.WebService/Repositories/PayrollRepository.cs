@@ -80,6 +80,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(Bank), "delBA");
             ChildDeleteLookup.Add(typeof(EmployeePayroll), "delEM");
             ChildDeleteLookup.Add(typeof(PenaltyType), "delPT");
+            ChildDeleteLookup.Add(typeof(PenaltyDetail), "delPD");
 
 
             ChildGetLookup.Add(typeof(GenerationHeader), "getHE");

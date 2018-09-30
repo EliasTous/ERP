@@ -79,7 +79,7 @@
     <ext:Hidden runat="server" ID="gfTitle" Text="<%$Resources:Common , Geofences %>" />
     <ext:Hidden runat="server" ID="vsTitle" Text="<%$Resources:Common , VacationSchedules %>" />
     <ext:Hidden runat="server" ID="pyye" Text="<%$Resources:Common , FiscalYears %>" />
-     <ext:Hidden runat="server" ID="Hidden1" Text="<%$Resources:Common , PenaltyType %>" />
+     <ext:Hidden runat="server" ID="pypt" Text="<%$Resources:Common , PenaltyType %>" />
     
     <ext:Hidden runat="server" ID="pypc" Text="<%$Resources:Common , importPayCodes %>" />
        
@@ -111,6 +111,9 @@
     <ext:Hidden runat="server" ID="importOTTitle" Text="<%$Resources:Common , ImportOvertimeSettings %>" />
        <ext:Hidden runat="server" ID="importPUTitle" Text="<%$Resources:Common , ImportPunches %>" />
      <ext:Hidden runat="server" ID="GADTitle" Text="<%$Resources:Common ,GenerateAttendanceDays  %>" />
+     <ext:Hidden runat="server" ID="SADTitle" Text="<%$Resources:Common ,SynchronizeAttendanceDays  %>" />
+
+    
   
       <ext:Hidden runat="server" ID="DBATitle" Text="<%$Resources:Common ,DeleteAllBranchAttendance  %>" />
 
@@ -524,6 +527,13 @@
                                                                                 <Click Handler="openNewTab('otSettings', 'GenerateAttendanceDays.aspx',#{GADTitle}.value , 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
+
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , SynchronizeAttendanceDays%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('otSettings', 'SynchronizeAttendanceDays.aspx',#{SADTitle}.value , 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+
                                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common , GenerateAttendanceShift%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('otSettings', 'GenerateAttendanceShifts.aspx',#{GASTitle}.value , 'icon-Employees')" />

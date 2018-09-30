@@ -1210,6 +1210,36 @@
     <value>حذف دوام فرع</value>
   </data>
   <data name="PenaltyType" xml:space="preserve">
-    <value>Penalty Type</value>
+    <value>جدول المخالفات والجزاءات</value>
+  </data>
+  <data name="COUNT" xml:space="preserve">
+    <value>العدد</value>
+  </data>
+  <data name="DURING_SHIFT_LEAVE" xml:space="preserve">
+    <value>مغادرة خلال ساعات العمل </value>
+  </data>
+  <data name="EARLY_CHECKIN" xml:space="preserve">
+    <value>حضور مبكر</value>
+  </data>
+  <data name="EARLY_LEAVE" xml:space="preserve">
+    <value>خروج مبكر</value>
+  </data>
+  <data name="LATE_CHECKIN" xml:space="preserve">
+    <value>حضور متأخر</value>
+  </data>
+  <data name="LeaveWithoutExcuse" xml:space="preserve">
+    <value>غياب بدون اذن</value>
+  </data>
+  <data name="MISSED_PUNCH" xml:space="preserve">
+    <value>لم يتم البصم </value>
+  </data>
+  <data name="OVERTIME" xml:space="preserve">
+    <value>عمل إضافي</value>
+  </data>
+  <data name="PaidLeaves" xml:space="preserve">
+    <value>إجازات مدفوعة</value>
+  </data>
+  <data name="UnpaidLeaves" xml:space="preserve">
+    <value>إجازات غير مدفوعة</value>
   </data>
 </root>

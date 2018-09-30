@@ -319,13 +319,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden pyye;
         
         /// <summary>
-        /// Hidden1 control.
+        /// pypt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden Hidden1;
+        protected global::Ext.Net.Hidden pypt;
         
         /// <summary>
         /// pypc control.
@@ -587,6 +587,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden GADTitle;
+        
+        /// <summary>
+        /// SADTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden SADTitle;
         
         /// <summary>
         /// DBATitle control.

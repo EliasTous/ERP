@@ -12,9 +12,7 @@
     <script type="text/javascript" src="Scripts/DocumentTypes.js?id=1"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript">
-        function display(code) {
-            return document.getElementById(code + "text").value;
-        }
+     
         function dump(obj) {
             var out = '';
             for (var i in obj) {
@@ -29,13 +27,26 @@
 
         }
 
-           function apIdRenderer(value) {
-            if (App.apIdStore.getById(value) != null) {
-                return App.apIdStore.getById(value).data.name;
+        function actionRenderer(value) {
+            if (App.actionStore.getById(value) != null) {
+                return App.actionStore.getById(value).data.name;
             } else {
                 return value;
             }
         }
+
+       function fromToCheck(reason, value)
+        {
+          
+
+               switch (reason)
+               {
+                   case '1': if (value == '0' || value == '15' || value == '30' || value == '60') return true; else return false;
+                       break;
+                   case '2': if (value >= '0' && value <= '30')  return true; else return false; 
+                       break;
+               }
+           }
      
     </script>
 
@@ -52,6 +63,8 @@
         <ext:Hidden ID="timeBaseStringHF" runat="server"  />
         <ext:Hidden ID="timeVariationTypeString" runat="server"  />
          <ext:Hidden ID="currentPenaltyType" runat="server"  />
+         <ext:Hidden ID="penaltyDetailStoreCount" runat="server"  />
+
       
        
 
@@ -74,12 +87,18 @@
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
-                        <ext:ModelField Name="edName" />
+                        
                          <ext:ModelField Name="reason" />
-                         <ext:ModelField Name="edId" />
+                         <ext:ModelField Name="reasonString" />
+                        
+                      <%--   <ext:ModelField Name="edId" />--%>
                          <ext:ModelField Name="timeBase" />
-                         <ext:ModelField Name="duration" />
-                         <ext:ModelField Name="timeVariationType" />
+                         <ext:ModelField Name="timeBaseString" />
+                        
+                         <ext:ModelField Name="from" />
+                         <ext:ModelField Name="to" />
+                         <ext:ModelField Name="timeCode" />
+                         <ext:ModelField Name="timeCodeString" />
                          <ext:ModelField Name="name" />
                         <%--<ext:ModelField Name="intName" />--%>
                     </Fields>
@@ -89,23 +108,16 @@
                 <ext:DataSorter Property="recordId" Direction="ASC" />
             </Sorters>
         </ext:Store>
-          <ext:Store
-            ID="apIdStore"
-            runat="server"
-         
-            OnReadData="ApprovalStory_RefreshData"
-          >
+               <ext:Store
+            ID="actionStore"
+            runat="server">
            
             <Model>
                 <ext:Model ID="Model3" runat="server" IDProperty="recordId">
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
-                        <ext:ModelField Name="ptId" />
-                         <ext:ModelField Name="damage" />
-                         <ext:ModelField Name="sequence" />
-                         <ext:ModelField Name="action" />
-                         <ext:ModelField Name="pct" />
+                        <ext:ModelField Name="name" />
                         <%--<ext:ModelField Name="intName" />--%>
                     </Fields>
                 </ext:Model>
@@ -114,8 +126,6 @@
                 <ext:DataSorter Property="recordId" Direction="ASC" />
             </Sorters>
         </ext:Store>
-
-
         
                                                    
 
@@ -179,14 +189,15 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                                <ext:Column ID="ColEdId" Visible="false" DataIndex="edId" runat="server" />
+                            <%--    <ext:Column ID="ColEdId" Visible="false" DataIndex="edId" runat="server" />--%>
                             <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false"/>
-                             <ext:Column CellCls="cellLink" ID="ColEdName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEdName%>" DataIndex="edName" Flex="2" Hideable="false"/>
+                        <%--     <ext:Column CellCls="cellLink" ID="ColEdName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEdName%>" DataIndex="edName" Flex="2" Hideable="false"/>--%>
                              <ext:Column CellCls="cellLink" ID="ColReason" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReason%>" DataIndex="reasonString" Flex="2" Hideable="false">
                                  </ext:Column>
                              <ext:Column CellCls="cellLink" ID="ColTimeBase" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeBase%>" DataIndex="timeBaseString" Flex="2" Hideable="false"/>
-                             <ext:Column CellCls="cellLink" ID="ColDuration" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDuration%>" DataIndex="duration" Flex="2" Hideable="false"/>
-                             <ext:Column CellCls="cellLink" ID="ColTimeVariationType" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeVariationType%>" DataIndex="timeVariationTypeString" Flex="2" Hideable="false"/>
+                             <ext:Column CellCls="cellLink" ID="ColDuration" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFrom%>" DataIndex="from"  Hideable="false"/>
+                             <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTo%>" DataIndex="to"  Hideable="false"/>
+                             <ext:Column CellCls="cellLink" ID="ColTimeVariationType" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeVariationType%>" DataIndex="timeCodeString" Flex="2" Hideable="false"/>
                      
 
 
@@ -322,25 +333,70 @@
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
-                            BodyPadding="5">
+                            BodyPadding="5" >
                             <Items>
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" />
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="reason" runat="server" FieldLabel="<%$ Resources:FieldReason%>" Name="reason" IDMode="Static" SubmitValue="true">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: ReasonATTENDANCE%>" Value="1"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: ResonLAW_VIOLATION%>" Value="2"></ext:ListItem>
+                                      
+                                    </Items>
+                                </ext:ComboBox>
+
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeBase" runat="server" FieldLabel="<%$ Resources:FieldTimeBase%>" Name="timeBase" IDMode="Static" SubmitValue="true">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: TimeBaseMINUTES%>" Value="1"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: TimeBaseDAYS%>" Value="2"></ext:ListItem>
+                                      
+                                    </Items>
+                                </ext:ComboBox>
+
+
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeCode" runat="server" FieldLabel="<%$ Resources:FieldTimeVariationType%>" Name="timeCode" IDMode="Static" SubmitValue="true">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  UnpaidLeaves %>" Value="11"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  PaidLeaves %>" Value="12"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  LeaveWithoutExcuse %>" Value="21"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  LATE_CHECKIN %>" Value="31"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  DURING_SHIFT_LEAVE %>" Value="32"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_LEAVE   %>" Value="33"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_CHECKIN %>" Value="41"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  OVERTIME %>" Value="42"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  MISSED_PUNCH %>" Value="51"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: Common , COUNT %>" Value="9"></ext:ListItem>
+                                      
+                                    </Items>
+                                </ext:ComboBox>
+                                   <ext:NumberField ID="from" runat="server" FieldLabel="<%$ Resources: FieldFrom%>" Name="from" MinValue="0" >
+                                    <%--  <Validator Handler=" if ( this.value<#{to}.getValue() ) {return fromToCheck(#{timeBase}.getValue(),this.value);} else return false; " />--%>
+                                    <Validator Handler="if ( #{to}.getValue()==null) return true; if (this.value<#{to}.getValue()  ) return true; else return false; " />
+                                       <Listeners>
+                                         <Change Handler="#{to}.validate();"></Change>
+                                           </Listeners>
+                                       </ext:NumberField>
+                                <ext:NumberField ID="to" runat="server" FieldLabel="<%$ Resources: FieldTo%>" Name="to"  MinValue="0">
+                                    <Validator Handler=" if ( #{from}.getValue()==null) return true; if (this.value>#{from}.getValue() ) return true; else return false;" />
+                                    <Listeners>
+                                        <Change Handler="#{from}.validate();"></Change>
+                                    </Listeners>
+                                    </ext:NumberField>
                                 <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
                             </Items>
 
                         </ext:FormPanel>
                         <ext:GridPanel
-                            ID="TimeCodeGrid"
+                            ID="penaltyDetailGrid"
                             runat="server"
                             PaddingSpec="0 0 1 0"
                             Header="false"
-                            Title="<%$ Resources: TimeCodeTitle %>"
+                            Title="<%$ Resources: penaltyDetailTitle %>"
                             Layout="FitLayout"
                             Scroll="Vertical"
                             Border="false"
                             Icon="User"
-                            ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True" >
                             <Plugins>
 	<ext:CellEditing ClicksToEdit="1" >
 		
@@ -348,114 +404,82 @@
 </Plugins> 
                             <Store>
                                 <ext:Store
-                                    ID="TimeCodeGridStore"
+                                    ID="penaltyDetailStore"
                                     runat="server"
                                     RemoteSort="False"
                                     RemoteFilter="false"
-                                    OnReadData="TimeCodeGridStore_ReadData"
+                                    OnReadData="penaltyDetailStore_ReadData"
                                     PageSize="50" IDMode="Explicit" Namespace="App">
 
                                     <Model>
-                                        <ext:Model ID="Model2" runat="server">
+                                        <ext:Model ID="Model2" runat="server" IDProperty="recordId">
                                             <Fields>
 
-                                                <ext:ModelField Name="tsId" />
-                                                <ext:ModelField Name="timeCode" />
-                                                <ext:ModelField Name="isEnabled" />
-                                                <ext:ModelField Name="deductPeriod" />
-                                                <ext:ModelField Name="fullPeriod" />
-                                                <ext:ModelField Name="multiplier" />
-                                                <ext:ModelField Name="apId" />
-                                                <ext:ModelField Name="apName" />
-                                                <ext:ModelField Name="maxAllowed" />
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="ptId" />
+                                                <ext:ModelField Name="damage" />
+                                                <ext:ModelField Name="sequence" />
+                                                <ext:ModelField Name="action" />
+                                                <ext:ModelField Name="pct" />
+                                                <ext:ModelField Name="includeTV" />
+                                              
 
                                             </Fields>
                                         </ext:Model>
                                     </Model>
                                     <Sorters>
-                                        <ext:DataSorter Property="tsId" Direction="ASC" />
+                                        <ext:DataSorter Property="recordId" Direction="ASC" />
                                     </Sorters>
                                 </ext:Store>
 
                             </Store>
+                               <TopBar>
+                        <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                            
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="damage" runat="server" FieldLabel="<%$ Resources:FieldDamage%>" Name="damage" IDMode="Static" SubmitValue="true" ForceSelection="true">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: DamageWITH_DAMAGE%>" Value="2"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: DamageWITHOUT_DAMAGE%>" Value="1"></ext:ListItem>
+                                      
+                                    </Items>
+                                     <Listeners>
+                                         <Select Handler="#{penaltyDetailStore}.reload();"> </Select>
+                                     </Listeners>
+                                </ext:ComboBox>
+                             
+                               
+                            </Items>
+                        </ext:Toolbar>
 
+                    </TopBar>
                      
 
                             <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                 <Columns>
-                                    <ext:Column ID="Column1" Visible="false" DataIndex="tsId" runat="server" />
-                                    <ext:Column ID="Column6" Visible="true" DataIndex="timeCode" runat="server" Width="150" Text="<%$ Resources:timeCodeColumn  %>">
-                                        <Renderer Handler="return display(record.data['timeCode']);">
-                                        </Renderer>
+                                    <ext:Column ID="Column1" Visible="false" DataIndex="recordId" runat="server" />
+                                     <ext:Column ID="Column4" Visible="false" DataIndex="ptId" runat="server" />
+                                    <ext:Column ID="Column6" Visible="true" DataIndex="sequence" runat="server" Width="150" Text="<%$ Resources:FieldSeq  %>">
+                                        
                                     </ext:Column>
-                                    <ext:WidgetColumn ID="Column2" Visible="true" DataIndex="isEnabled" runat="server" Text="<%$ Resources: isEnable  %>">
-                                        <Widget>
-                                            <ext:Checkbox runat="server" Name="isEnabled">
-                                                <Listeners>
-
-                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('isEnabled',this.value); ">
-                                                    </Change>
-                                                </Listeners>
-                                            </ext:Checkbox>
-                                        </Widget>
-                                    </ext:WidgetColumn>
-                                    <ext:WidgetColumn ID="Column7" Visible="true" DataIndex="deductPeriod" runat="server" Text="<%$ Resources:deductPeriod  %>">
-                                        <Widget>
-                                            <ext:TextField runat="server" Name="deductPeriod" >
-                                                <Listeners>
-
-                                                    <Change Handler="var rec = this.getWidgetRecord();rec.set('deductPeriod',this.value); ">
-                                                    </Change>
-                                                </Listeners>
-                                                <Validator Handler="return !isNaN(this.value)">
-
-                                                </Validator>
-                                                </ext:TextField>
-                                        </Widget>
-                                    </ext:WidgetColumn>
-                                    <ext:WidgetColumn ID="Column8" Visible="true" DataIndex="fullPeriod" runat="server" Text="<%$ Resources: fullPeriod %>">
-                                        <Widget>
-                                            <ext:TextField runat="server" Name="fullPeriod" >
-                                                 <Listeners>
-
-                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('fullPeriod',this.value); ">
-                                                    </Change>
-                                                </Listeners>
-                                                <Validator Handler="return !isNaN(this.value)">
-
-                                                </Validator>
-                                                </ext:TextField>
-                                        </Widget>
-                                    </ext:WidgetColumn>
-                                    <ext:WidgetColumn ID="Column9" Visible="true" DataIndex="multiplier" runat="server" Text="<%$ Resources: multiplier  %>">
-                                        <Widget>
-                                            <ext:TextField runat="server" Name="multiplier" >
-                                                 <Listeners>
-
-                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('multiplier',this.value); ">
-                                                    </Change>
-                                                </Listeners>
-                                                <Validator Handler="return !isNaN(this.value)">
-
-                                                </Validator>
-                                                </ext:TextField>
-                                        </Widget>
-                                    </ext:WidgetColumn>
+                                   
+                                    
 
 
-                                       <ext:Column ID="COapId" Visible="true" DataIndex="apId" runat="server" Text="<%$ Resources: FieldApproval  %>" Flex="2">
-                                           <Renderer Handler="apIdRenderer" />
-                                           <Editor>
+                                       <ext:Column ID="COaction" Visible="true" DataIndex="action" runat="server" Text="<%$ Resources: FieldAction  %>" Flex="2" >
+                                           <Renderer Handler="actionRenderer" />
+                               <Editor>
                                            <ext:ComboBox 
                                                             runat="server" 
                                                             Shadow="false" 
                                                             Mode="Local" 
                                                             TriggerAction="All" 
                                                             ForceSelection="true"
-                                                            StoreID="apIdStore" 
+                                                            StoreID="actionStore" 
                                                             DisplayField="name" 
                                                             ValueField="recordId"
-                                                            Name="apId"
+                                                            Name="action"
+                                                            AllowBlank="false"
                                                             >
                                                 <Listeners>
 
@@ -469,20 +493,30 @@
                                            </ext:Column>
 
 
-                                        <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="maxAllowed" runat="server" Text="<%$ Resources: maxAllowed  %>">
+                                        <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="pct" runat="server" Text="<%$ Resources: FieldPct  %>">
                                         <Widget>
-                                            <ext:TextField runat="server" Name="maxAllowed" >
+                                            <ext:NumberField AllowBlank="true" runat="server" Name="pct" MinValue="0" MaxValue="100" >
                                                  <Listeners>
 
-                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('maxAllowed',this.value); ">
+                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('pct',this.value); ">
                                                     </Change>
                                                 </Listeners>
-                                                <Validator Handler="return !isNaN(this.value)">
-
-                                                </Validator>
-                                                </ext:TextField>
+                                             
+                                                </ext:NumberField>
                                         </Widget>
                                     </ext:WidgetColumn>
+                                     <ext:WidgetColumn ID="Column2" Visible="true" DataIndex="includeTV" runat="server" Text="<%$ Resources: FieldIncludeTV  %>">
+                                        <Widget>
+                                            <ext:Checkbox runat="server" Name="includeTV">
+                                                <Listeners>
+
+                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('includeTV',this.value); ">
+                                                    </Change>
+                                                </Listeners>
+                                            </ext:Checkbox>
+                                        </Widget>
+                                    </ext:WidgetColumn>
+                                   
 
 
                              
@@ -503,6 +537,9 @@
                                 <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                             </SelectionModel>
+                            <Listeners> 
+                                <Activate Handler="#{damage}.setValue(1); #{penaltyDetailStore}.reload();  #{penaltyDetailStoreCount}.setValue(1);"></Activate>
+                            </Listeners>
                         </ext:GridPanel>
 
                     </Items>
@@ -520,7 +557,10 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
-                                  <ext:Parameter Name="codes" Value="Ext.encode(#{TimeCodeGrid}.getRowsValues({dirtyRowsOnly : true}))" Mode="Raw"  />
+                                  <ext:Parameter Name="codes" Value="Ext.encode(#{penaltyDetailGrid}.getRowsValues( ))" Mode="Raw"   />
+                               
+                              
+
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

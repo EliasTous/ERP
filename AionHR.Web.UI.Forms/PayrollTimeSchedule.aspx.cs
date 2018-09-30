@@ -373,7 +373,7 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             TimeSchedule b = JsonConvert.DeserializeObject<TimeSchedule>(obj);
-            List<TimeCode> codes = JsonConvert.DeserializeObject<List<TimeCode>>(e.ExtraParams["codes"]);
+          //  List<TimeCode> codes = JsonConvert.DeserializeObject<List<TimeCode>>(e.ExtraParams["codes"]);
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
 
@@ -399,20 +399,20 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
-                        codes.ForEach(x => x.tsId = Convert.ToInt32(r.recordId));
-                        PostRequest<TimeCode[]> codesReq = new PostRequest<TimeCode[]>();
-                        codesReq.entity = codes.ToArray();
+                        //codes.ForEach(x => x.tsId = Convert.ToInt32(r.recordId));
+                        //PostRequest<TimeCode[]> codesReq = new PostRequest<TimeCode[]>();
+                        //codesReq.entity = codes.ToArray();
                         
-                        PostResponse<TimeCode[]> codesResp = _PayrollService.ChildAddOrUpdate<TimeCode[]>(codesReq);
-                        if (!codesResp.Success)//it maybe be another condition
-                        {
-                            //Show an error saving...
-                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", codesResp.ErrorCode) != null ? GetGlobalResourceObject("Errors", codesResp.ErrorCode).ToString() : codesResp.Summary).Show();
-                            return;
-                        }
-                        else
-                        {
+                        //PostResponse<TimeCode[]> codesResp = _PayrollService.ChildAddOrUpdate<TimeCode[]>(codesReq);
+                        //if (!codesResp.Success)//it maybe be another condition
+                        //{
+                        //    //Show an error saving...
+                        //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", codesResp.ErrorCode) != null ? GetGlobalResourceObject("Errors", codesResp.ErrorCode).ToString() : codesResp.Summary).Show();
+                        //    return;
+                        //}
+                        //else
+                        //{
                             b.recordId = r.recordId;
                             //Add this record to the store 
                             this.Store1.Insert(0, b);
@@ -432,7 +432,7 @@ namespace AionHR.Web.UI.Forms
 
                         }
 
-                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -466,19 +466,19 @@ namespace AionHR.Web.UI.Forms
                     else
                     {
 
-                        PostRequest<TimeCode[]> codesReq = new PostRequest<TimeCode[]>();
-                        codes.ForEach(x => x.tsId = Convert.ToInt32(id));
-                        codesReq.entity = codes.ToArray();
-                        PostResponse<TimeCode[]> codesResp = _PayrollService.ChildAddOrUpdate<TimeCode[]>(codesReq);
-                        if (!codesResp.Success)//it maybe be another condition
-                        {
-                            //Show an error saving...
-                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", codesResp.ErrorCode) != null ? GetGlobalResourceObject("Errors", codesResp.ErrorCode).ToString() : codesResp.Summary).Show();
-                            return;
-                        }
-                        else
-                        {
+                        //PostRequest<TimeCode[]> codesReq = new PostRequest<TimeCode[]>();
+                        //codes.ForEach(x => x.tsId = Convert.ToInt32(id));
+                        //codesReq.entity = codes.ToArray();
+                        //PostResponse<TimeCode[]> codesResp = _PayrollService.ChildAddOrUpdate<TimeCode[]>(codesReq);
+                        //if (!codesResp.Success)//it maybe be another condition
+                        //{
+                        //    //Show an error saving...
+                        //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", codesResp.ErrorCode) != null ? GetGlobalResourceObject("Errors", codesResp.ErrorCode).ToString() : codesResp.Summary).Show();
+                        //    return;
+                        //}
+                        //else
+                        //{
                             ModelProxy record = this.Store1.GetById(id);
                             BasicInfoTab.UpdateRecord(record);
                             record.Commit();
@@ -491,7 +491,7 @@ namespace AionHR.Web.UI.Forms
                             this.EditRecordWindow.Close();
 
 
-                        }
+                        
                     }
                 }
                 catch (Exception ex)

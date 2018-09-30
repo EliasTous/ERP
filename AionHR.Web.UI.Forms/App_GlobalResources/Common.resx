@@ -1209,4 +1209,34 @@
   <data name="PenaltyType" xml:space="preserve">
     <value>Penalty Type</value>
   </data>
+  <data name="COUNT" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="DURING_SHIFT_LEAVE" xml:space="preserve">
+    <value>During Shift Leave</value>
+  </data>
+  <data name="EARLY_CHECKIN" xml:space="preserve">
+    <value>Early Check In</value>
+  </data>
+  <data name="EARLY_LEAVE" xml:space="preserve">
+    <value>Early Leave</value>
+  </data>
+  <data name="LATE_CHECKIN" xml:space="preserve">
+    <value>Late Check In</value>
+  </data>
+  <data name="LeaveWithoutExcuse" xml:space="preserve">
+    <value>Leave Without Excuse</value>
+  </data>
+  <data name="MISSED_PUNCH" xml:space="preserve">
+    <value>Missed Punch</value>
+  </data>
+  <data name="OVERTIME" xml:space="preserve">
+    <value>Over Time</value>
+  </data>
+  <data name="PaidLeaves" xml:space="preserve">
+    <value>Paid Leaves</value>
+  </data>
+  <data name="UnpaidLeaves" xml:space="preserve">
+    <value>Unpaid Leaves</value>
+  </data>
 </root>

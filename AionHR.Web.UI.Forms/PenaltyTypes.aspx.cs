@@ -77,13 +77,13 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(TimeCode), null, TimeCodeGrid, null, null);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(TimeCode), null, penaltyDetailGrid, null, null);
                 }
                 catch (AccessDeniedException exp)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    TimeCodeGrid.Disabled = true;
+                    penaltyDetailGrid.Disabled = true;
                     return;
                 }
 
@@ -134,11 +134,14 @@ namespace AionHR.Web.UI.Forms
 
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-
-
+            penaltyDetailStoreCount.Text = "0";
+            panelRecordDetails.ActiveIndex = 0;
+            penaltyDetailGrid.Disabled = false;
             string id = e.ExtraParams["id"];
-          
+            currentPenaltyType.Text = id;
             string type = e.ExtraParams["type"];
+
+
               switch (type)
             {
                 case "imgEdit":
@@ -155,7 +158,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-                    currentPenaltyType.Text = id;
+                 
                     recordId.Text = id;
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -201,14 +204,14 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                TimeSchedule s = new TimeSchedule();
+                PenaltyType s = new PenaltyType();
                 s.recordId = index;
                 s.name = "";
                 //s.intName = "";
 
-                PostRequest<TimeSchedule> req = new PostRequest<TimeSchedule>();
+                PostRequest<PenaltyType> req = new PostRequest<PenaltyType>();
                 req.entity = s;
-                PostResponse<TimeSchedule> r = _PayrollService.ChildDelete<TimeSchedule>(req);
+                PostResponse<PenaltyType> r = _PayrollService.ChildDelete<PenaltyType>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -323,8 +326,11 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-          
-           
+            currentPenaltyType.Text = "";
+            panelRecordDetails.ActiveIndex = 0;
+            penaltyDetailGrid.Disabled = true;
+            damage.Select("0");
+            penaltyDetailStoreCount.Text = "0";
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -356,7 +362,7 @@ namespace AionHR.Web.UI.Forms
            {
                x.reasonString = FillReasonString(x.reason);
                x.timeBaseString = FillTimeBaseString(x.timeBase);
-               x.timeVariationTypeString = FillTimeVariationType(x.timeVariationType);
+               x.timeCodeString = FillTimeCode(x.timeCode);
 
            });
             this.Store1.DataSource = response.Items;
@@ -375,13 +381,19 @@ namespace AionHR.Web.UI.Forms
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
 
-
+            
             string obj = e.ExtraParams["values"];
-            TimeSchedule b = JsonConvert.DeserializeObject<TimeSchedule>(obj);
-            List<TimeCode> codes = JsonConvert.DeserializeObject<List<TimeCode>>(e.ExtraParams["codes"]);
+            PenaltyType b = JsonConvert.DeserializeObject<PenaltyType>(obj);
+            List<PenaltyDetail> PD = JsonConvert.DeserializeObject<List<PenaltyDetail>>(e.ExtraParams["codes"]);
+
+          
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
-
+            if (!string.IsNullOrEmpty(currentPenaltyType.Text))
+            {
+                id = currentPenaltyType.Text;
+                b.recordId= currentPenaltyType.Text;
+            }
             if (string.IsNullOrEmpty(id))
             {
 
@@ -389,11 +401,11 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<TimeSchedule> request = new PostRequest<TimeSchedule>();
+                    PostRequest<PenaltyType> request = new PostRequest<PenaltyType>();
 
                     request.entity = b;
-                    PostResponse<TimeSchedule> r = _PayrollService.ChildAddOrUpdate<TimeSchedule>(request);
-
+                    PostResponse<PenaltyType> r = _PayrollService.ChildAddOrUpdate<PenaltyType>(request);
+                   
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
                     {
@@ -404,23 +416,31 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
-                        codes.ForEach(x => x.tsId = Convert.ToInt32(r.recordId));
-                        PostRequest<TimeCode[]> codesReq = new PostRequest<TimeCode[]>();
-                        codesReq.entity = codes.ToArray();
+                        currentPenaltyType.Text = r.recordId;
 
-                        PostResponse<TimeCode[]> codesResp = _PayrollService.ChildAddOrUpdate<TimeCode[]>(codesReq);
-                        if (!codesResp.Success)//it maybe be another condition
-                        {
-                            //Show an error saving...
-                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", codesResp.ErrorCode) != null ? GetGlobalResourceObject("Errors", codesResp.ErrorCode).ToString() : codesResp.Summary).Show();
-                            return;
-                        }
-                        else
-                        {
-                            b.recordId = r.recordId;
-                            //Add this record to the store 
-                            this.Store1.Insert(0, b);
+                 
+
+                            //PostRequest<PenaltyDetail> codesReq = new PostRequest<PenaltyDetail>();
+
+                            //PD.ForEach(x =>
+
+                            //{
+                            //    DeletePenaltyDetailsRecord(x);
+                            //    codesReq.entity = x;
+                            //    codesReq.entity.recordId = null;
+                            //    PostResponse<PenaltyDetail> codesResp = _PayrollService.ChildAddOrUpdate<PenaltyDetail>(codesReq);
+                            //    if (!codesResp.Success)//it maybe be another condition
+                            //{
+                            //    //Show an error saving...
+                            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", codesResp.ErrorCode) != null ? GetGlobalResourceObject("Errors", codesResp.ErrorCode).ToString() : codesResp.Summary).Show();
+                            //        throw new Exception();
+                            //    }
+                            //});
+
+                        
+                        Store1.Reload();
+                        penaltyDetailGrid.Disabled = false;
 
                             //Display successful notification
                             Notification.Show(new NotificationConfig
@@ -430,34 +450,38 @@ namespace AionHR.Web.UI.Forms
                                 Html = Resources.Common.RecordSavingSucc
                             });
 
-                            this.EditRecordWindow.Close();
-                            RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                            sm.DeselectAll();
-                            sm.Select(b.recordId.ToString());
+                          
+                            //RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                            //sm.DeselectAll();
+                            //sm.Select(b.recordId.ToString());
 
                         }
 
-                    }
+                    
                 }
                 catch (Exception ex)
                 {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    if (ex.Message != null)
+                    {
+                        //Error exception displaying a messsage box
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, ex.Message).Show();
+                    }
                 }
 
 
             }
             else
             {
+                penaltyDetailGrid.Disabled = false;
                 //Update Mode
 
                 try
                 {
                     //getting the id of the record
-                    PostRequest<TimeSchedule> request = new PostRequest<TimeSchedule>();
+                    PostRequest<PenaltyType> request = new PostRequest<PenaltyType>();
                     request.entity = b;
-                    PostResponse<TimeSchedule> r = _PayrollService.ChildAddOrUpdate<TimeSchedule>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<PenaltyType> r = _PayrollService.ChildAddOrUpdate<PenaltyType>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -470,23 +494,26 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
+                        DeleteAllPenaltyDetailsRecords(damage.Value.ToString());
+                        PostRequest<PenaltyDetail> codesReq = new PostRequest<PenaltyDetail>();
+                        PD.ForEach(x =>
+                        {
+                           
+                            codesReq.entity = x;
+                            codesReq.entity.recordId = null;
+                          
+                        PostResponse<PenaltyDetail> codesResp = _PayrollService.ChildAddOrUpdate<PenaltyDetail>(codesReq);
 
-                        PostRequest<TimeCode[]> codesReq = new PostRequest<TimeCode[]>();
-                        codes.ForEach(x => x.tsId = Convert.ToInt32(id));
-                        codesReq.entity = codes.ToArray();
-                        PostResponse<TimeCode[]> codesResp = _PayrollService.ChildAddOrUpdate<TimeCode[]>(codesReq);
                         if (!codesResp.Success)//it maybe be another condition
                         {
                             //Show an error saving...
                             X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                             X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", codesResp.ErrorCode) != null ? GetGlobalResourceObject("Errors", codesResp.ErrorCode).ToString() : codesResp.Summary).Show();
-                            return;
-                        }
-                        else
-                        {
-                            ModelProxy record = this.Store1.GetById(id);
-                            BasicInfoTab.UpdateRecord(record);
-                            record.Commit();
+                                throw new Exception();
+                            }
+                    });
+
+                        Store1.Reload();
                             Notification.Show(new NotificationConfig
                             {
                                 Title = Resources.Common.Notification,
@@ -496,7 +523,7 @@ namespace AionHR.Web.UI.Forms
                             this.EditRecordWindow.Close();
 
 
-                        }
+                       
                     }
                 }
                 catch (Exception ex)
@@ -526,26 +553,20 @@ namespace AionHR.Web.UI.Forms
 
 
 
-        protected void TimeCodeGridStore_ReadData(object sender, StoreReadDataEventArgs e)
+        protected void penaltyDetailStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            List<TimeCode> TSL = new List<TimeCode>();
-            // TSL.Add(new TimeCode { timeCode = "A" });
-            TSL.Add(new TimeCode { timeCode = "D" });
-            TSL.Add(new TimeCode { timeCode = "L" });
-            TSL.Add(new TimeCode { timeCode = "O" });
-            TSL.Add(new TimeCode { timeCode = "M" });
-            PayrollTimeCodeRequest request = new PayrollTimeCodeRequest();
-            if (!string.IsNullOrEmpty(currentPenaltyType.Text))
+            try
             {
-                request.ScheduleId = Convert.ToInt32(currentPenaltyType.Text);
-
-
-                request.Filter = "";
-                ListResponse<TimeCode> r = _PayrollService.ChildGetAll<TimeCode>(request);
-                if (!r.Success)
+                PenaltyDetailListRequest request = new PenaltyDetailListRequest();
+                request.ptId = currentPenaltyType.Text;
+                request.damage = damage.Value.ToString();
+                if (string.IsNullOrEmpty(request.damage))
+                    return;
+                ListResponse<PenaltyDetail> response = _PayrollService.ChildGetAll<PenaltyDetail>(request);
+                if (!response.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
                     return;
                 }
 
@@ -568,139 +589,63 @@ namespace AionHR.Web.UI.Forms
                 //    }
 
                 //}
-                TimeCode A;
-                TSL.ForEach(x =>
+
+                List<PenaltyDetail> emptyPenaltyDetail = new List<PenaltyDetail>();
+                if (response.Items.Count == 0)
                 {
-                    if (r.Items.Where(y => y.timeCode == x.timeCode).ToList().Count() != 0)
+                    for (int i = 1; i <= 4; i++)
                     {
-                        A = r.Items.Where(y => y.timeCode == x.timeCode).ToList().First();
-                        x.apId = A.apId;
-                        x.apName = A.apName;
-                        x.deductPeriod = A.deductPeriod;
-                        x.fullPeriod = A.fullPeriod;
-                        x.isEnabled = A.isEnabled;
-                        x.maxAllowed = A.maxAllowed;
-                        x.multiplier = A.multiplier;
-                        x.timeCode = A.timeCode;
-                        x.tsId = A.tsId;
+                        PostRequest<PenaltyDetail> PD = new PostRequest<PenaltyDetail>();
+
+                        PD.entity = new PenaltyDetail { sequence = i, ptId = currentPenaltyType.Text,damage=Convert.ToInt16( damage.Value.ToString()), action = 2 };
+                        PostResponse<PenaltyDetail> codesResp = _PayrollService.ChildAddOrUpdate<PenaltyDetail>(PD);
+                        if (!codesResp.Success)
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                            break;
+                        }
+
+                        emptyPenaltyDetail.Add(PD.entity);
                     }
-                });
+                    this.penaltyDetailStore.DataSource = emptyPenaltyDetail;
+                    e.Total = emptyPenaltyDetail.Count;
+                }
+                else
+                {
+
+                    this.penaltyDetailStore.DataSource = response.Items;
+                    e.Total = response.Items.Count;
+                }
+               
+
+                this.penaltyDetailStore.DataBind();
+
+
+                List<object> action = new List<object>();
+                action.Add(new { name = GetLocalResourceObject("ActionWARNING").ToString(), recordId=1 });
+                action.Add(new { name = GetLocalResourceObject("ActionSALARY_DEDUCTION").ToString(), recordId = 2 });
+
+                action.Add(new { name = GetLocalResourceObject("ActionTERMINATION_WITH_INDEMNITY").ToString(), recordId = 3 });
+
+                action.Add(new { name = GetLocalResourceObject("ActionTERMINATION_WITHOUT_INDEMNITY").ToString(), recordId = 4 });
+
+                actionStore.DataSource = action;
+                actionStore.DataBind();
 
 
             }
-
-            this.TimeCodeGridStore.DataSource = TSL;
-            e.Total = TSL.Count;
-
-            this.TimeCodeGridStore.DataBind();
-
-        }
-        protected void printBtn_Click(object sender, EventArgs e)
-        {
-            PayrollTimeSchedulesReport p = GetReport();
-            string format = "Pdf";
-            string fileName = String.Format("Report.{0}", format);
-
-            MemoryStream ms = new MemoryStream();
-            p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
-            Response.Clear();
-            Response.Write("<script>");
-            Response.Write("window.document.forms[0].target = '_blank';");
-            Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
-            Response.Write("</script>");
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
-        protected void ExportPdfBtn_Click(object sender, EventArgs e)
-        {
-            PayrollTimeSchedulesReport p = GetReport();
-            string format = "Pdf";
-            string fileName = String.Format("Report.{0}", format);
-
-            MemoryStream ms = new MemoryStream();
-            p.ExportToPdf(ms);
-            Response.Clear();
-
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
-
-        protected void ExportXLSBtn_Click(object sender, EventArgs e)
-        {
-            PayrollTimeSchedulesReport p = GetReport();
-            string format = "xls";
-            string fileName = String.Format("Report.{0}", format);
-
-            MemoryStream ms = new MemoryStream();
-            p.ExportToXls(ms);
-
-            Response.Clear();
-
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
-        private PayrollTimeSchedulesReport GetReport()
-        {
-
-            ListRequest request = new ListRequest();
-
-            request.Filter = "";
-            ListResponse<TimeSchedule> routers = _PayrollService.ChildGetAll<TimeSchedule>(request);
-            if (!routers.Success)
+            catch (Exception exp)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
-                return null;
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
-            PayrollTimeSchedulesReport p = new PayrollTimeSchedulesReport();
-            p.DataSource = routers.Items;
-            p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
-            p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-
-            return p;
-
-
 
         }
+        
+       
 
-
-        protected void ApprovalStory_RefreshData(object sender, StoreReadDataEventArgs e)
-        {
-
-            //GEtting the filter from the page
-            string filter = string.Empty;
-            int totalCount = 1;
-
-
-
-            //Fetching the corresponding list
-
-            //in this test will take a list of News
-            ListRequest request = new ListRequest();
-
-            request.Filter = "";
-            ListResponse<Approval> routers = _companyStructureService.ChildGetAll<Approval>(request);
-
-            if (!routers.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
-            this.apIdStore.DataSource = routers.Items;
-            e.Total = routers.Items.Count; ;
-
-            this.apIdStore.DataBind();
-        }
+      
         private string FillReasonString(short Reason)
         {
             string R="";
@@ -742,32 +687,92 @@ namespace AionHR.Web.UI.Forms
             }
             catch { return string.Empty; }
         }
-        private string FillTimeVariationType(int timeVariationType)
+        private string FillTimeCode(int timeCode)
         {
             string R = "";
 
             try
             {
 
-                switch (timeVariationType)
+                switch (timeCode)
                 {
-                    case 1:
-                        R = GetLocalResourceObject("ActionWARNING").ToString();
+                    case 11:
+                        R = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
                         break;
-                    case 2:
-                        R = GetLocalResourceObject("ActionSALARY_DEDUCTION").ToString();
+                    case 12:
+                        R = GetGlobalResourceObject("Common", "PaidLeaves").ToString();
                         break;
-                    case 3:
-                        R = GetLocalResourceObject("ActionTERMINATION_WITH_INDEMNITY").ToString();
+                    case 21:
+                        R = GetGlobalResourceObject("Common", "LeaveWithoutExcuse").ToString();
                         break;
-                    case 4:
-                        R = GetLocalResourceObject("ActionTERMINATION_WITHOUT_INDEMNITY").ToString();
+                    case 31:
+                        R = GetGlobalResourceObject("Common", "LATE_CHECKIN").ToString();
                         break;
+                    case 32:
+                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
+                        break;
+                    case 33:
+                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
+                        break;
+                    case 41:
+                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
+                        break;
+                    case 42:
+                        R = GetGlobalResourceObject("Common", "OVERTIME").ToString();
+                        break;
+                    case 51:
+                        R = GetGlobalResourceObject("Common", "MISSED_PUNCH").ToString();
+                        break;
+                    case 9:
+                        R = GetGlobalResourceObject("Common", "COUNT ").ToString();
+                        break;
+
                 }
 
                 return R;
             }
             catch { return string.Empty; }
+        }
+        private void DeleteAllPenaltyDetailsRecords(string damage)
+        {
+
+            if (string.IsNullOrEmpty(damage))
+                return; 
+
+            PenaltyDetailListRequest request = new PenaltyDetailListRequest();
+            request.ptId = currentPenaltyType.Text;
+            request.damage = damage;
+        
+            ListResponse<PenaltyDetail> response = _PayrollService.ChildGetAll<PenaltyDetail>(request);
+            if (!response.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                return;
+            }
+
+
+
+
+            PostRequest<PenaltyDetail> deleteRequest = new PostRequest<PenaltyDetail>();
+
+            response.Items.ForEach(x =>
+            {
+                deleteRequest.entity = x;
+                PostResponse<PenaltyDetail> r = _PayrollService.ChildDelete<PenaltyDetail>(deleteRequest);
+                if (!r.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                    return;
+                }
+
+            });
+               
+             
+
+         
+
         }
     }
 }

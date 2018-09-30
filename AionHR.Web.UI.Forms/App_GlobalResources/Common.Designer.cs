@@ -556,6 +556,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Count.
+        /// </summary>
+        internal static string COUNT {
+            get {
+                return ResourceManager.GetString("COUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currencies.
         /// </summary>
         internal static string Currencies {
@@ -795,6 +804,33 @@ namespace Resources {
         internal static string DocumentTypes {
             get {
                 return ResourceManager.GetString("DocumentTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During Shift Leave.
+        /// </summary>
+        internal static string DURING_SHIFT_LEAVE {
+            get {
+                return ResourceManager.GetString("DURING_SHIFT_LEAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Early Check In.
+        /// </summary>
+        internal static string EARLY_CHECKIN {
+            get {
+                return ResourceManager.GetString("EARLY_CHECKIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Early Leave.
+        /// </summary>
+        internal static string EARLY_LEAVE {
+            get {
+                return ResourceManager.GetString("EARLY_LEAVE", resourceCulture);
             }
         }
         
@@ -1564,6 +1600,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Late Check In.
+        /// </summary>
+        internal static string LATE_CHECKIN {
+            get {
+                return ResourceManager.GetString("LATE_CHECKIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leave.
         /// </summary>
         internal static string Leave {
@@ -1632,6 +1677,15 @@ namespace Resources {
         internal static string LeaveTypes {
             get {
                 return ResourceManager.GetString("LeaveTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave Without Excuse.
+        /// </summary>
+        internal static string LeaveWithoutExcuse {
+            get {
+                return ResourceManager.GetString("LeaveWithoutExcuse", resourceCulture);
             }
         }
         
@@ -1839,6 +1893,15 @@ namespace Resources {
         internal static string Mediocre {
             get {
                 return ResourceManager.GetString("Mediocre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missed Punch.
+        /// </summary>
+        internal static string MISSED_PUNCH {
+            get {
+                return ResourceManager.GetString("MISSED_PUNCH", resourceCulture);
             }
         }
         
@@ -2158,6 +2221,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Over Time.
+        /// </summary>
+        internal static string OVERTIME {
+            get {
+                return ResourceManager.GetString("OVERTIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Overtime Exceptions.
         /// </summary>
         internal static string OvertimeSettings {
@@ -2172,6 +2244,15 @@ namespace Resources {
         internal static string Overtime_Lateness {
             get {
                 return ResourceManager.GetString("Overtime_Lateness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paid Leaves.
+        /// </summary>
+        internal static string PaidLeaves {
+            get {
+                return ResourceManager.GetString("PaidLeaves", resourceCulture);
             }
         }
         
@@ -3225,6 +3306,15 @@ namespace Resources {
         internal static string TuesdayText {
             get {
                 return ResourceManager.GetString("TuesdayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unpaid Leaves.
+        /// </summary>
+        internal static string UnpaidLeaves {
+            get {
+                return ResourceManager.GetString("UnpaidLeaves", resourceCulture);
             }
         }
         
