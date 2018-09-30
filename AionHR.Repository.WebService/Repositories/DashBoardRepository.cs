@@ -5,6 +5,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.Dashboard;
 using AionHR.Model.HelpFunction;
 using AionHR.Model.SelfService;
+using AionHR.Model.System;
 using AionHR.Model.TimeAttendance;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(DashBoardLE), "qryLE");
             ChildGetAllLookup.Add(typeof(DashBoardCH), "qryCH");
             ChildGetAllLookup.Add(typeof(DashBoardTimeVariation), "qryTV");
+            ChildGetAllLookup.Add(typeof(DashboardItem), "dashBoard");
 
 
 

@@ -300,7 +300,7 @@ namespace AionHR.Web.UI.Forms
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
                 ListRequest req = new ListRequest();
                 DashboardRequest req2 = GetDashboardRequest();
-                ListResponse<DashboardItem> dashoard = _systemService.ChildGetAll<DashboardItem>(req2);
+                ListResponse<DashboardItem> dashoard = _dashBoardService.ChildGetAll<DashboardItem>(req2);
                 if (!dashoard.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, dashoard.Summary).Show();

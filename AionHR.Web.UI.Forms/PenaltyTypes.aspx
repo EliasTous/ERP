@@ -369,15 +369,15 @@
                                       
                                     </Items>
                                 </ext:ComboBox>
-                                   <ext:NumberField ID="from" runat="server" FieldLabel="<%$ Resources: FieldFrom%>" Name="from" MinValue="0" >
+                                   <ext:NumberField ID="from" runat="server" FieldLabel="<%$ Resources: FieldFrom%>" Name="from" MinValue="0" AllowBlank="false" >
                                     <%--  <Validator Handler=" if ( this.value<#{to}.getValue() ) {return fromToCheck(#{timeBase}.getValue(),this.value);} else return false; " />--%>
-                                    <Validator Handler="if ( #{to}.getValue()==null) return true; if (this.value<#{to}.getValue()  ) return true; else return false; " />
+                                    <Validator Handler="if (this.value<#{to}.getValue()  ) return true; else return false; " />
                                        <Listeners>
                                          <Change Handler="#{to}.validate();"></Change>
                                            </Listeners>
                                        </ext:NumberField>
-                                <ext:NumberField ID="to" runat="server" FieldLabel="<%$ Resources: FieldTo%>" Name="to"  MinValue="0">
-                                    <Validator Handler=" if ( #{from}.getValue()==null) return true; if (this.value>#{from}.getValue() ) return true; else return false;" />
+                                <ext:NumberField ID="to" runat="server" FieldLabel="<%$ Resources: FieldTo%>" Name="to"  MinValue="0" AllowBlank="false">
+                                    <Validator Handler=" if (this.value>#{from}.getValue() ) return true; else return false;" />
                                     <Listeners>
                                         <Change Handler="#{from}.validate();"></Change>
                                     </Listeners>
@@ -459,7 +459,7 @@
                                 <Columns>
                                     <ext:Column ID="Column1" Visible="false" DataIndex="recordId" runat="server" />
                                      <ext:Column ID="Column4" Visible="false" DataIndex="ptId" runat="server" />
-                                    <ext:Column ID="Column6" Visible="true" DataIndex="sequence" runat="server" Width="150" Text="<%$ Resources:FieldSeq  %>">
+                                    <ext:Column ID="Column6" Visible="true" DataIndex="sequence" runat="server" Width="150" Text="<%$ Resources:FieldSeq  %>" Flex="1">
                                         
                                     </ext:Column>
                                    
@@ -483,7 +483,7 @@
                                                             >
                                                 <Listeners>
 
-                                                    <Select Handler="var rec = this.getWidgetRecord(); rec.set('apId',this.value); ">
+                                                    <Select Handler="var rec = this.getWidgetRecord(); rec.set('action',this.value); ">
                                                     </Select>
                                                 </Listeners>
                                                </ext:ComboBox>
@@ -493,7 +493,7 @@
                                            </ext:Column>
 
 
-                                        <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="pct" runat="server" Text="<%$ Resources: FieldPct  %>">
+                                        <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="pct" runat="server" Text="<%$ Resources: FieldPct  %>" Flex="1">
                                         <Widget>
                                             <ext:NumberField AllowBlank="true" runat="server" Name="pct" MinValue="0" MaxValue="100" >
                                                  <Listeners>
@@ -505,7 +505,7 @@
                                                 </ext:NumberField>
                                         </Widget>
                                     </ext:WidgetColumn>
-                                     <ext:WidgetColumn ID="Column2" Visible="true" DataIndex="includeTV" runat="server" Text="<%$ Resources: FieldIncludeTV  %>">
+                                     <ext:WidgetColumn ID="Column2" Visible="true" DataIndex="includeTV" runat="server" Text="<%$ Resources: FieldIncludeTV  %>" Flex="1">
                                         <Widget>
                                             <ext:Checkbox runat="server" Name="includeTV">
                                                 <Listeners>
