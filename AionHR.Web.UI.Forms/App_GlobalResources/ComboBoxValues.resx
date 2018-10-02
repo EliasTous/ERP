@@ -391,13 +391,13 @@
     <value>1</value>
   </data>
   <data name="TimeVariationType_COUNT" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="TimeVariationType_DURING_SHIFT_LEAVE" xml:space="preserve">
     <value>32</value>
   </data>
   <data name="TimeVariationType_EARLY_CHECKIN" xml:space="preserve">
-    <value>41</value>
+    <value>51</value>
   </data>
   <data name="TimeVariationType_EARLY_LEAVE" xml:space="preserve">
     <value>33</value>
@@ -409,7 +409,7 @@
     <value>21</value>
   </data>
   <data name="TimeVariationType_MISSED_PUNCH" xml:space="preserve">
-    <value>51</value>
+    <value>41</value>
   </data>
   <data name="TimeVariationType_PAID_LEAVE" xml:space="preserve">
     <value>12</value>
@@ -417,7 +417,13 @@
   <data name="TimeVariationType_UNPAID_LEAVE" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="TimeVariationType_UNPAID_OVERTIME" xml:space="preserve">
-    <value>42</value>
+  <data name="TimeVariationType_OVERTIME" xml:space="preserve">
+    <value>52</value>
+  </data>
+  <data name="TimeVariationType_DAY_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="TimeVariationType_SHIFT_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
+    <value>21</value>
   </data>
 </root>

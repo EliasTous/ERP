@@ -648,6 +648,7 @@
     <Compile Include="BenefitsSchedules.aspx.designer.cs">
       <DependentUpon>BenefitsSchedules.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ConstClasses\ConstTimeVariationType.cs" />
     <Compile Include="DaysAvailability.aspx.cs">
       <DependentUpon>DaysAvailability.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -34,7 +34,7 @@ using AionHR.Services.Messaging.Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Access_Control;
 using AionHR.Services.Messaging.TimeAttendance;
-
+using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -362,11 +362,11 @@ namespace AionHR.Web.UI.Forms
 
 
             List<ChartData> lateChartData = new List<ChartData>();
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == 221).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 221).ToList()[0].count : 0, index = 51 });//  ALs.Items.Count
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("LATE_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == 211).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 211).ToList()[0].count : 0, index = 31 });
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("DURING_SHIFT_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 212).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 212).ToList()[0].count : 0, index = 32 });
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 213).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 213).ToList()[0].count : 0, index = 33 });
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("OVERTIME").ToString(), y = dashoard.Items.Where(x => x.itemId == 222).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 222).ToList()[0].count : 0, index = 52 });
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == 221).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 221).ToList()[0].count : 0, index = ConstTimeVariationType.EARLY_CHECKIN });//  ALs.Items.Count
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("LATE_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == 211).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 211).ToList()[0].count : 0, index = ConstTimeVariationType.LATE_CHECKIN });
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("DURING_SHIFT_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 212).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 212).ToList()[0].count : 0, index = ConstTimeVariationType.DURING_SHIFT_LEAVE });
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 213).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 213).ToList()[0].count : 0, index = ConstTimeVariationType.EARLY_LEAVE });
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("OVERTIME").ToString(), y = dashoard.Items.Where(x => x.itemId == 222).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 222).ToList()[0].count : 0, index = ConstTimeVariationType.OVERTIME });
             X.Call("drawLateHightChartPie", JSON.JavaScriptSerialize(lateChartData), rtl ? true : false, normalSized);
 
 

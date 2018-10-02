@@ -880,11 +880,20 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 9.
+        ///   Looks up a localized string similar to 10.
         /// </summary>
         internal static string TimeVariationType_COUNT {
             get {
                 return ResourceManager.GetString("TimeVariationType_COUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 22.
+        /// </summary>
+        internal static string TimeVariationType_DAY_LEAVE_WITHOUT_EXCUSE {
+            get {
+                return ResourceManager.GetString("TimeVariationType_DAY_LEAVE_WITHOUT_EXCUSE", resourceCulture);
             }
         }
         
@@ -898,7 +907,7 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 41.
+        ///   Looks up a localized string similar to 51.
         /// </summary>
         internal static string TimeVariationType_EARLY_CHECKIN {
             get {
@@ -934,11 +943,20 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 51.
+        ///   Looks up a localized string similar to 41.
         /// </summary>
         internal static string TimeVariationType_MISSED_PUNCH {
             get {
                 return ResourceManager.GetString("TimeVariationType_MISSED_PUNCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 52.
+        /// </summary>
+        internal static string TimeVariationType_OVERTIME {
+            get {
+                return ResourceManager.GetString("TimeVariationType_OVERTIME", resourceCulture);
             }
         }
         
@@ -952,20 +970,20 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 21.
+        /// </summary>
+        internal static string TimeVariationType_SHIFT_LEAVE_WITHOUT_EXCUSE {
+            get {
+                return ResourceManager.GetString("TimeVariationType_SHIFT_LEAVE_WITHOUT_EXCUSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 11.
         /// </summary>
         internal static string TimeVariationType_UNPAID_LEAVE {
             get {
                 return ResourceManager.GetString("TimeVariationType_UNPAID_LEAVE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 42.
-        /// </summary>
-        internal static string TimeVariationType_UNPAID_OVERTIME {
-            get {
-                return ResourceManager.GetString("TimeVariationType_UNPAID_OVERTIME", resourceCulture);
             }
         }
     }

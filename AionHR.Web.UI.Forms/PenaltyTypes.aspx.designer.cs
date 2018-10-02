@@ -112,13 +112,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden penaltyDetailStoreCount;
         
         /// <summary>
-        ///  Reason_ATTENDANCE_Value control.
+        /// Reason_ATTENDANCE_Value control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden  Reason_ATTENDANCE_Value;
+        protected global::Ext.Net.Hidden Reason_ATTENDANCE_Value;
         
         /// <summary>
         /// TimeBasee_DAYS_Value control.

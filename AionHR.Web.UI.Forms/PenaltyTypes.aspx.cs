@@ -26,6 +26,7 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
 using System.Reflection;
+using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -694,46 +695,58 @@ namespace AionHR.Web.UI.Forms
         private string FillTimeCode(int timeCode)
         {
             string R = "";
-            
+
 
             // Retrieve the value of the string resource named "welcome".
             // The resource manager will retrieve the value of the  
             // localized resource using the caller's current culture setting.
-           
+            
 
             try
             {
 
                 switch (timeCode)
                 {
-                    case 11 :  R = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
+                    case ConstTimeVariationType.UNPAID_LEAVE:  R = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
                         break;
-                    case 12:
+                    case ConstTimeVariationType.PAID_LEAVE:
                         R = GetGlobalResourceObject("Common", "PaidLeaves").ToString();
                         break;
-                    case 21:
-                        R = GetGlobalResourceObject("Common", "LeaveWithoutExcuse").ToString();
+
+
+                    case ConstTimeVariationType.SHIFT_LEAVE_WITHOUT_EXCUSE:
+                        R = GetGlobalResourceObject("Common", "SHIFT_LEAVE_WITHOUT_EXCUSE").ToString();
                         break;
-                    case 31:
+                    case ConstTimeVariationType.DAY_LEAVE_WITHOUT_EXCUSE:
+                        R = GetGlobalResourceObject("Common", "DAY_LEAVE_WITHOUT_EXCUSE").ToString();
+                        break;
+
+
+                    case ConstTimeVariationType.LATE_CHECKIN:
                         R = GetGlobalResourceObject("Common", "LATE_CHECKIN").ToString();
                         break;
-                    case 32:
+                    case ConstTimeVariationType.DURING_SHIFT_LEAVE:
                         R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
                         break;
-                    case 33:
-                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
+                    case ConstTimeVariationType.EARLY_LEAVE:
+                        R = GetGlobalResourceObject("Common", "EARLY_LEAVE").ToString();
                         break;
-                    case 41:
-                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
-                        break;
-                    case 42:
-                        R = GetGlobalResourceObject("Common", "OVERTIME").ToString();
-                        break;
-                    case 51:
+                    
+                       
+                    
+                    case ConstTimeVariationType.MISSED_PUNCH:
                         R = GetGlobalResourceObject("Common", "MISSED_PUNCH").ToString();
                         break;
-                    case 9:
-                        R = GetGlobalResourceObject("Common", "COUNT ").ToString();
+
+                    case ConstTimeVariationType.EARLY_CHECKIN:
+                        R = GetGlobalResourceObject("Common", "EARLY_CHECKIN").ToString();
+                        break;
+                    case ConstTimeVariationType.OVERTIME:
+                        R = GetGlobalResourceObject("Common", "OVERTIME").ToString();
+                        break;
+
+                    case ConstTimeVariationType.COUNT:
+                        R = GetGlobalResourceObject("Common", "COUNT").ToString();
                         break;
 
                 }
