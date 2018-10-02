@@ -346,6 +346,7 @@
     <Content Include="Reports\Controls\PaymentMethodFilter.ascx" />
     <Content Include="Reports\Controls\PayRefFilter.ascx" />
     <Content Include="Reports\Controls\SalaryChangeReasonFilter.ascx" />
+    <Content Include="Reports\Controls\TimeVariationTypeFilter.ascx" />
     <Content Include="Reports\Controls\SalaryTypeFilter.ascx" />
     <Content Include="Reports\Controls\TransactionTypeFilter.ascx" />
     <Content Include="Reports\Controls\UserComboFilter.ascx" />
@@ -879,6 +880,13 @@
     </Compile>
     <Compile Include="PenaltyTypes.aspx.designer.cs">
       <DependentUpon>PenaltyTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\TimeVariationTypeFilter.ascx.cs">
+      <DependentUpon>TimeVariationTypeFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\TimeVariationTypeFilter.ascx.designer.cs">
+      <DependentUpon>TimeVariationTypeFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\SalaryTypeFilter.ascx.cs">
       <DependentUpon>SalaryTypeFilter.ascx</DependentUpon>

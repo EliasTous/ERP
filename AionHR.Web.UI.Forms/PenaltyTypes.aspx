@@ -60,9 +60,7 @@
          
            if (Reason == Attendance)
            {
-               alert(Reason);
-               alert(Attendance);
-               alert(TimeBase);
+            
                App.from.setDisabled(false);
                App.to.setDisabled(false);
                App.timeCode.setDisabled(false);
@@ -70,9 +68,7 @@
            }
            else
            {
-               alert(Reason);
-               alert(Attendance);
-               alert(TimeBase);
+             
                App.from.setDisabled(true);
                App.to.setDisabled(true);
                App.timeCode.setDisabled(true);
@@ -622,7 +618,6 @@
             </Buttons>
         </ext:Window>
        
-
 
 
 

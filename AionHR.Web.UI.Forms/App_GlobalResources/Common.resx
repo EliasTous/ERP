@@ -1248,4 +1248,7 @@
   <data name="SHIFT_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
     <value>Shift Leave Without Excuse</value>
   </data>
+  <data name="TimeVariationType" xml:space="preserve">
+    <value>TimeVariationType</value>
+  </data>
 </root>

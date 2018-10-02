@@ -1251,4 +1251,7 @@
   <data name="SHIFT_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
     <value>مغادرة خلال ساعات العمل بدون عذر</value>
   </data>
+  <data name="TimeVariationType" xml:space="preserve">
+    <value>انواع التأخير</value>
+  </data>
 </root>

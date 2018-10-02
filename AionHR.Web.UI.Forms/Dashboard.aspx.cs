@@ -298,7 +298,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-                ListRequest req = new ListRequest();
+             
                 DashboardRequest req2 = GetDashboardRequest();
                 ListResponse<DashboardItem> dashoard = _dashBoardService.ChildGetAll<DashboardItem>(req2);
                 if (!dashoard.Success)
@@ -755,8 +755,9 @@ namespace AionHR.Web.UI.Forms
         {
 
             DashboardRequest req = new DashboardRequest();
-
+         
             int intResult;
+            
             var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;

@@ -3202,6 +3202,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TimeVariationType.
+        /// </summary>
+        internal static string TimeVariationType {
+            get {
+                return ResourceManager.GetString("TimeVariationType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error Saving Record.
         /// </summary>
         internal static string TitleSavingError {
