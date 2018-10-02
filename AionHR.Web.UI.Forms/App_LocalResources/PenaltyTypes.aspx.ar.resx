@@ -121,7 +121,7 @@
     <value>غياب بإذن</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات الجدول الزمني </value>
+    <value>معلومات نوع الغياب</value>
   </data>
   <data name="deductPeriod" xml:space="preserve">
     <value>فترة مخصومة</value>

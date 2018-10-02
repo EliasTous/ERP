@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات الحالة </value>
+    <value>معلومات نوع الغياب</value>
   </data>
   <data name="Deduction" xml:space="preserve">
     <value>خصم</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>تعديل الحالة </value>
+    <value>تعديل نوع الغياب</value>
   </data>
   <data name="Entitlement" xml:space="preserve">
     <value>استحقاق</value>
