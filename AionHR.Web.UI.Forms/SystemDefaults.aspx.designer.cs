@@ -607,6 +607,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button Button15;
         
         /// <summary>
+        /// pyalDays control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField pyalDays;
+        
+        /// <summary>
+        /// pyaaDays control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField pyaaDays;
+        
+        /// <summary>
+        /// pylvDays control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField pylvDays;
+        
+        /// <summary>
         /// ssId control.
         /// </summary>
         /// <remarks>

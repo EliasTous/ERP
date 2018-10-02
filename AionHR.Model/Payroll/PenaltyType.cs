@@ -12,11 +12,11 @@ namespace AionHR.Model.Payroll
         public short reason { get; set; }
         public string reasonString { get; set; }
       
-        public short timeBase { get; set; }
+        public short? timeBase { get; set; }
         public string timeBaseString { get; set; }
 
-        public int from { get; set; }
-        public int to { get; set; }
+        public int? from { get; set; }
+        public int? to { get; set; }
 
 
 

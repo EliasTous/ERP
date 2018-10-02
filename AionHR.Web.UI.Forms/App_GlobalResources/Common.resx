@@ -1239,4 +1239,13 @@
   <data name="UnpaidLeaves" xml:space="preserve">
     <value>Unpaid Leaves</value>
   </data>
+  <data name="timeVariations" xml:space="preserve">
+    <value>Time Variations</value>
+  </data>
+  <data name="DAY_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
+    <value>Day Leave Without Excuse</value>
+  </data>
+  <data name="SHIFT_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
+    <value>Shift Leave Without Excuse</value>
+  </data>
 </root>

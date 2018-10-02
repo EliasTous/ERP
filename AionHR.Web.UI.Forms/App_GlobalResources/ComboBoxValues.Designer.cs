@@ -61,6 +61,51 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        internal static string Action_RAISE_SUSPENSION {
+            get {
+                return ResourceManager.GetString("Action_RAISE_SUSPENSION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        internal static string Action_SALARY_DEDUCTION {
+            get {
+                return ResourceManager.GetString("Action_SALARY_DEDUCTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4.
+        /// </summary>
+        internal static string Action_TERMINATION_WITH_INDEMNITY {
+            get {
+                return ResourceManager.GetString("Action_TERMINATION_WITH_INDEMNITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5.
+        /// </summary>
+        internal static string Action_TERMINATION_WITHOUT_INDEMNITY {
+            get {
+                return ResourceManager.GetString("Action_TERMINATION_WITHOUT_INDEMNITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        internal static string Action_WARNING {
+            get {
+                return ResourceManager.GetString("Action_WARNING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1.
         /// </summary>
         internal static string BEBAAqtypeProgressive {
@@ -192,6 +237,24 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         internal static string CSDETypeSection {
             get {
                 return ResourceManager.GetString("CSDETypeSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        internal static string Damage_WITH_DAMAGE {
+            get {
+                return ResourceManager.GetString("Damage_WITH_DAMAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        internal static string Damage_WITHOUT_DAMAGE {
+            get {
+                return ResourceManager.GetString("Damage_WITHOUT_DAMAGE", resourceCulture);
             }
         }
         
@@ -574,6 +637,24 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        internal static string Reason_ATTENDANCE {
+            get {
+                return ResourceManager.GetString("Reason_ATTENDANCE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        internal static string Reason_LAW_VIOLATION {
+            get {
+                return ResourceManager.GetString("Reason_LAW_VIOLATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 2.
         /// </summary>
         internal static string RT110DimensionBranch {
@@ -777,6 +858,114 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         internal static string SYTATATimeStatusRefused {
             get {
                 return ResourceManager.GetString("SYTATATimeStatusRefused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        internal static string TimeBase_MINUTES {
+            get {
+                return ResourceManager.GetString("TimeBase_MINUTES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        internal static string TimeBasee_DAYS {
+            get {
+                return ResourceManager.GetString("TimeBasee_DAYS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 9.
+        /// </summary>
+        internal static string TimeVariationType_COUNT {
+            get {
+                return ResourceManager.GetString("TimeVariationType_COUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 32.
+        /// </summary>
+        internal static string TimeVariationType_DURING_SHIFT_LEAVE {
+            get {
+                return ResourceManager.GetString("TimeVariationType_DURING_SHIFT_LEAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 41.
+        /// </summary>
+        internal static string TimeVariationType_EARLY_CHECKIN {
+            get {
+                return ResourceManager.GetString("TimeVariationType_EARLY_CHECKIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 33.
+        /// </summary>
+        internal static string TimeVariationType_EARLY_LEAVE {
+            get {
+                return ResourceManager.GetString("TimeVariationType_EARLY_LEAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 31.
+        /// </summary>
+        internal static string TimeVariationType_LATE_CHECKIN {
+            get {
+                return ResourceManager.GetString("TimeVariationType_LATE_CHECKIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 21.
+        /// </summary>
+        internal static string TimeVariationType_LEAVE_WITHOUT_EXCUSE {
+            get {
+                return ResourceManager.GetString("TimeVariationType_LEAVE_WITHOUT_EXCUSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 51.
+        /// </summary>
+        internal static string TimeVariationType_MISSED_PUNCH {
+            get {
+                return ResourceManager.GetString("TimeVariationType_MISSED_PUNCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12.
+        /// </summary>
+        internal static string TimeVariationType_PAID_LEAVE {
+            get {
+                return ResourceManager.GetString("TimeVariationType_PAID_LEAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 11.
+        /// </summary>
+        internal static string TimeVariationType_UNPAID_LEAVE {
+            get {
+                return ResourceManager.GetString("TimeVariationType_UNPAID_LEAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 42.
+        /// </summary>
+        internal static string TimeVariationType_UNPAID_OVERTIME {
+            get {
+                return ResourceManager.GetString("TimeVariationType_UNPAID_OVERTIME", resourceCulture);
             }
         }
     }

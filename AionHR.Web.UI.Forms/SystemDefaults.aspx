@@ -481,7 +481,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:Common,TimeCode%>">
+                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:Common,TimeCode%>" Visible="false">
                                  <Items>
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: absence %>" Name="py_aEDId" runat="server" DisplayField="name" ValueField="recordId" ID="py_aEDId">
                                     <Store>
@@ -635,6 +635,14 @@
                                 </ext:ComboBox>
                                      </Items>
                                      </ext:FieldSet>
+                                <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:Common,TimeCode%>">
+                                    <Items>
+                                      <ext:NumberField Width="400" runat="server" LabelWidth="160" ID="pyalDays" Name="pyalDays" FieldLabel="<%$ Resources: pyalDays %>" MinValue="30"  MaxValue="360"/>
+                                      <ext:NumberField Width="400" runat="server" LabelWidth="160" ID="pyaaDays" Name="pyaaDays" FieldLabel="<%$ Resources: pyaaDays %>" MinValue="30" MaxValue="360"/>
+                                      <ext:NumberField Width="400" runat="server" LabelWidth="160" ID="pylvDays" Name="pylvDays" FieldLabel="<%$ Resources: pylvDays %>" MinValue="30" MaxValue="360" />
+                     
+                                        </Items>
+                                    </ext:FieldSet>
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="true" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="ssId" Name="ssId" FieldLabel="<%$ Resources: SocialSecuritySchedule%>" LabelWidth="150" SimpleSubmit="true">
                                                     <Store>
                                                         <ext:Store runat="server" ID="ssIdstore">

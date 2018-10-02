@@ -1242,4 +1242,13 @@
   <data name="UnpaidLeaves" xml:space="preserve">
     <value>إجازات غير مدفوعة</value>
   </data>
+  <data name="timeVariations" xml:space="preserve">
+    <value>انواع الغياب</value>
+  </data>
+  <data name="DAY_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
+    <value>مغادرة خلال يوم العمل بدون عذر</value>
+  </data>
+  <data name="SHIFT_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
+    <value>مغادرة خلال ساعات العمل بدون عذر</value>
+  </data>
 </root>

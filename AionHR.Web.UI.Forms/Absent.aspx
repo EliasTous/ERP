@@ -14,40 +14,43 @@
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
   
+        var LinkRender = function (val, metaData, record, rowIndex, colIndex, store, apstatusString) {
 
-        function startRefresh() {
-
-
-            setInterval(RefreshAllGrids, 60000);
-
-        }
-        function RefreshAllGrids() {
+            return '<a href="#" class="LinkRender"  style="cursor:pointer;"  >' + apstatusString + '</a>';
+        };
+        //function startRefresh() {
 
 
+        //    setInterval(RefreshAllGrids, 60000);
 
-            if (window.
-                parent.App.tabPanel.getActiveTab().id == "ab") {
+        //}
+        //function RefreshAllGrids() {
 
 
 
-                /* Not Chained
-                App.activeStore.reload();
-                App.absenseStore.reload();
-                App.latenessStore.reload();
-                App.missingPunchesStore.reload();
-                App.checkMontierStore.reload();
-                App.outStore.reload();*/
+        //    if (window.
+        //        parent.App.tabPanel.getActiveTab().id == "ab") {
 
 
-                /*Chained*/
 
-                App.Store1.reload();
-            }
-            else {
-                // alert('No Refresh');
-            }
+        //        /* Not Chained
+        //        App.activeStore.reload();
+        //        App.absenseStore.reload();
+        //        App.latenessStore.reload();
+        //        App.missingPunchesStore.reload();
+        //        App.checkMontierStore.reload();
+        //        App.outStore.reload();*/
 
-        }
+
+        //        /*Chained*/
+
+        //        App.Store1.reload();
+        //    }
+        //    else {
+        //        // alert('No Refresh');
+        //    }
+
+        //}
         function dump(obj) {
             var out = '';
             for (var i in obj) {
@@ -57,11 +60,28 @@
             }
             return out;
         }
+        function DurationRenderer(value) {
+          
+            if (value == null) {
+                return "";
+            } else {
+                return value;
+            }
+        }
+        function damageRenderer(value) {
+            alert(App.damageStore.getById(value).data.name);
+            if (App.damageStore.getById(value) != null) {
+                return App.damageStore.getById(value).data.name;
+            } else {
+                return value;
+            }
+        }
+
     </script>
 
 
 </head>
-<body style="background: url(Images/bg.png) repeat;" onload="startRefresh();">
+<body style="background: url(Images/bg.png) repeat;" >
     <form id="Form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
 
@@ -73,6 +93,9 @@
         <ext:Hidden ID="CurrentEmployee" runat="server"  />
         <ext:Hidden ID="format" runat="server"  />
         <ext:Hidden ID="CurrentDay" runat="server"  />
+        
+            
+        
         <ext:Store
             ID="Store1"
             runat="server"
@@ -88,27 +111,43 @@
                 </ext:PageProxy>
             </Proxy>
             <Model>
-                <ext:Model ID="Model1" runat="server">
+                <ext:Model ID="Model1" runat="server" IDProperty="recordId">
                     <Fields>
 
-                        <ext:ModelField Name="dayId" />
+                        <ext:ModelField Name="recordId" />
                        
-                        <ext:ModelField Name="name" IsComplex="true" />
+                        <ext:ModelField Name="employeeName" IsComplex="true" />
                         <ext:ModelField Name="branchName" />
-                        <ext:ModelField Name="departmentName" />
+                           <ext:ModelField Name="positionName" />
                         <ext:ModelField Name="dayStatusString" />
-                        <ext:ModelField Name="ltName" />
-
-
-
-
+                           <ext:ModelField Name="timeCodeString" />
+                           <ext:ModelField Name="employeeId" />
+                           <ext:ModelField Name="shiftId" />
+                           <ext:ModelField Name="timeCode" />
+                           <ext:ModelField Name="clockDuration" />
+                           <ext:ModelField Name="clockDurationString" />
+                           <ext:ModelField Name="duration" />
+                            <ext:ModelField Name="durationString" />
+                           <ext:ModelField Name="apStatusString" />
+                           <ext:ModelField Name="damageLevel" />
+                         <ext:ModelField Name="recordId" />
+                           <ext:ModelField Name="damageLevelString" />
+                      
+                                         
+                        
+                        
+                        
+                        
+                        
+                        
+                        
 
 
                     </Fields>
                 </ext:Model>
             </Model>
             <Sorters>
-                <ext:DataSorter Property="dayId" Direction="ASC" />
+                <ext:DataSorter Property="recordId" Direction="ASC" />
             </Sorters>
         </ext:Store>
 
@@ -128,7 +167,8 @@
                     Border="false"
                     Icon="User"
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
-
+                  
+                    
                     <TopBar>
              
 
@@ -143,7 +183,7 @@
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                         <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                        <uc:employeeCombo runat="server" ID="employeeCombo1" />
+                                        <uc:employeeCombo runat="server" ID="employeeCombo1"  />
                                     </Content>
                                 </ext:Container>
                                   <ext:Container runat="server" Layout="FitLayout">
@@ -153,7 +193,39 @@
                                     </Content>
 
                                 </ext:Container>
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeVariationType" runat="server" EmptyText="<%$ Resources:FieldTimeVariationType%>" Name="timeVariationType" IDMode="Static" SubmitValue="true" MaxWidth="100">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  UnpaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_UNPAID_LEAVE %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  PaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_PAID_LEAVE %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  LeaveWithoutExcuse %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_LEAVE_WITHOUT_EXCUSE %>" ></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  LATE_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_LATE_CHECKIN %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  DURING_SHIFT_LEAVE %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_DURING_SHIFT_LEAVE %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_LEAVE   %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_LEAVE   %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_CHECKIN %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  OVERTIME %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_UNPAID_OVERTIME %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  MISSED_PUNCH %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_MISSED_PUNCH %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: Common , COUNT %>" Value="<%$ Resources: ComboBoxValues , TimeVariationType_COUNT %>"></ext:ListItem>
+                                      
+                                    </Items>
+                                </ext:ComboBox>
+                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources: Common ,FieldEHStatus%>" MaxWidth="75">
+                                    <Store>
+                                        <ext:Store runat="server" ID="statusStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
 
+                                    <Items>
+                                        <ext:ListItem Text="<%$Resources:Common ,All %>" Value="0" />
+                                    </Items>
+                                </ext:ComboBox>
 
                                 <ext:ToolbarSeparator runat="server" />
                                 <ext:Button runat="server" Text="<%$Resources:Go %>">
@@ -167,26 +239,40 @@
 
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="true">
                         <Columns>
-
+                              <ext:Column ID="ColRecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Visible="false" />
                             <ext:Column ID="ColDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayId" Flex="2" Hideable="false">
-                                <Renderer Handler="var d = moment(record.data['dayId']);  return d.format(App.format.value);" />
+                                <Renderer Handler=" var d = moment(record.data['dayId']);  return d.format(App.format.value);" />
                             </ext:Column>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">
-                                <Renderer Handler="return record.data['name'].fullName;" />
+                                <Renderer Handler="return record.data['employeeName'].fullName;" />
                         
                             </ext:Column>
                             <ext:Column ID="ColBranchName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="2" Hideable="true">
                                 
                             </ext:Column>
-                            <ext:Column ID="ColDepartmentName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="2" Hideable="false">
+                            <ext:Column ID="ColPositionName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="2" Hideable="false">
+                            
+                            </ext:Column>
+                              <ext:Column ID="ColtimeCodeString" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldltimeCode%>" DataIndex="timeCodeString" Flex="2" Hideable="false">
+                            
+                            </ext:Column>
+                              <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldClockDuration%>" DataIndex="clockDurationString" Flex="2" Hideable="false" />
+                            
+                         <ext:Column ID="CoDuration" Visible="true" DataIndex="durationString" runat="server" Text="<%$ Resources: FieldDuration %>" Flex="1" >
+                                  
+                                    
+                             </ext:Column>
+                                <ext:Column ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldApprovalStatus%>" DataIndex="apStatusString" Flex="2" Hideable="false">
+                               <Renderer Handler="return LinkRender(value, metadata, record, rowIndex,  colIndex, store,record.data['apStatusString']);" />
+                            </ext:Column>
+                               <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDamageLevel%>" DataIndex="damageLevelString" Flex="2" Hideable="false">
+                                   
+                             
                             
                             </ext:Column>
 
-                           <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: Status%>" DataIndex="dayStatusString" Width="150" Hideable="false">
-                            
-                            </ext:Column>
-                            <ext:Column Visible="false" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: LeaveType%>" DataIndex="ltName" Flex="2" Hideable="false">
-                         </ext:Column>
+
+                          
 
 
 
@@ -230,8 +316,20 @@
                                 <Renderer Fn="attachRender" />
                                 <SummaryRenderer Handler="return '&nbsp;';" />
                             </ext:Column>
+                              <ext:Column runat="server"
+                                ID="Column2"  Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
 
+                                <Renderer handler="return editRender();" />
 
+                                  </ext:Column>
 
 
                         </Columns>
@@ -273,6 +371,21 @@
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
+                      <DirectEvents>
+                        <CellClick OnEvent="PoPuP">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+
+                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                  <ext:Parameter Name="duration" Value="record.data['duration']" Mode="Raw" />
+                                  <ext:Parameter Name="damage" Value="record.data['damageLevel']" Mode="Raw" />
+                                   <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
+                                   <ext:Parameter Name="EmployeeId" Value="record.data['employeeId']" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>
                
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel" runat="server" Mode="Single" StopIDModeInheritance="true" />
@@ -284,10 +397,188 @@
           
             </Items>
         </ext:Viewport>
+           <ext:Window 
+            ID="EditRecordWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:EditWindowsTitle %>"
+            Width="450"
+            Height="330"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+            
+            <Items>
+                <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                    <Items>
+                        <ext:FormPanel
+                            ID="BasicInfoTab" DefaultButton="SaveButton"
+                            runat="server"
+                            Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" 
+                            BodyPadding="5">
+                            <Items>
+                              <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
+                              <ext:NumberField ID="duration" runat="server" FieldLabel="<%$ Resources:FieldDuration%>" Name="duration"   AllowBlank="true"/>
+                                   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="damage" runat="server" FieldLabel="<%$ Resources: FieldDamageLevel%>" Name="damage" IDMode="Static" SubmitValue="true" ForceSelection="true">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: DamageWITH_DAMAGE%>" Value="<%$ Resources:ComboBoxValues, Damage_WITH_DAMAGE%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: DamageWITHOUT_DAMAGE%>" Value="<%$ Resources:ComboBoxValues, Damage_WITHOUT_DAMAGE%>" ></ext:ListItem>
+                                      
+                                    </Items>
+                                    
+                                </ext:ComboBox>
+                             
+                                 
+                                <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
+                            </Items>
 
+                        </ext:FormPanel>
+                        
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
  
 
+        <ext:Window
+            ID="TimeApprovalWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources: EditWindowsTimeApproval %>"
+            Width="600"
+            Height="200"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Draggable="True"
+            Maximizable="false"
+            Resizable="false" Header="true"
+            Layout="Fit">
 
+            <Items>
+              
+                   
+                   
+    <ext:GridPanel MarginSpec="0 0 0 0"
+                                                            ID="TimeGridPanel"
+                                                            runat="server"
+                                                            PaddingSpec="0 0 1 0"
+                                                            Header="false"
+                                                            Title="<%$ Resources:EditWindowsTimeApproval %>"
+                                                            Layout="FitLayout"
+                                                            Scroll="Vertical"
+                                                           
+                                                            Border="false"
+                                                              ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                                                          <Store>
+                                                                <ext:Store PageSize="30"
+                                                                    ID="TimeStore"
+                                                                    runat="server" 
+                                                                    RemoteSort="false"
+                                                                    RemoteFilter="false">
+                                                                  
+                                                                    <Model>
+                                                                        <ext:Model ID="Model24" runat="server" >
+                                                                            <Fields>
+                                                                                                                                                            
+                                                                                <ext:ModelField Name="employeeId" />
+                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="dayId" />
+                                                                                <ext:ModelField Name="dayIdDate"  />
+                                                                               <ext:ModelField Name="approverName" IsComplex="true" />
+                                                                                <ext:ModelField Name="timeCode" />
+                                                                                <ext:ModelField Name="timeCodeString" />
+                                                                                <ext:ModelField Name="approverId" />
+                                                                                <ext:ModelField Name="status" />
+                                                                                <ext:ModelField Name="notes" />
+                                                                                  <ext:ModelField Name="statusString" />
+                                                                            
+
+                                                                            </Fields>
+                                                                        </ext:Model>
+                                                                    </Model>
+
+                                                                </ext:Store>
+                                                         
+
+                                                              </Store>
+                                                            <ColumnModel ID="ColumnModel24" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                                                <Columns>
+                                                                   <ext:Column ID="ColTimedayId" DataIndex="dayId"  runat="server" Visible="false" />
+                                                                   <ext:Column ID="ColTimeEmployeeId" DataIndex="employeeId"  runat="server" Visible="false" />
+                                                                   <ext:Column ID="ColtimeCode" DataIndex="timeCode"  runat="server" Visible="false" />
+
+                                                                     <ext:Column ID="Column5" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
+                                                                    <Renderer Handler=" return record.data['approverName'].fullName;" />
+                                                                    </ext:Column>
+                                                                
+                                                                    <ext:Column Visible="false" ID="Column27" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
+                                                                    <Renderer Handler=" return record.data['employeeName'].fullName;" />
+                                                                    </ext:Column>
+                                                                
+                                                                    <ext:DateColumn Visible="false" ID="DateColumn5" MenuDisabled="true" runat="server" Text="<%$ Resources: Date %>" DataIndex="dayIdDate" Hideable="false" Width="100" />
+                          
+
+                                                                     <ext:Column ID="Column26"  DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="1" />
+                                                                     <ext:Column ID="Column30" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
+                                                                      
+                                                                    </ext:Column>
+                                                                     <ext:Column ID="Column28" DataIndex="notes" Text="<%$ Resources: FieldNotes %>" runat="server" Flex="2" />
+
+                                                                
+                                                                  
+
+
+
+                                                                </Columns>
+                                                            </ColumnModel>
+                                                           
+
+                                                            <View>
+                                                                <ext:GridView ID="GridView24" runat="server" />
+                                                            </View>
+
+
+                                                            <SelectionModel>
+                                                                <ext:RowSelectionModel ID="rowSelectionModel23" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                                               
+                                                            </SelectionModel>
+                                                        </ext:GridPanel>
+                </Items>
+       <Buttons>
+                
+                <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+     </ext:Window>
 
     </form>
 </body>

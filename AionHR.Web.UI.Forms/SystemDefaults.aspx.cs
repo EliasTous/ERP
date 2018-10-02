@@ -507,6 +507,28 @@ namespace AionHR.Web.UI.Forms
             catch { }
 
 
+
+            try
+            {
+                pyalDays.Text = (items.Where(s => s.Key == "pyalDays").First().Value);
+            }
+
+            catch { }
+            try
+            {
+                pyaaDays.Text = (items.Where(s => s.Key == "pyaaDays").First().Value);
+            }
+
+            catch { }
+            try
+            {
+                pylvDays.Text = (items.Where(s => s.Key == "pylvDays").First().Value);
+            }
+
+            catch { }
+
+
+
         }
 
 
@@ -850,6 +872,21 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", values.MaxLoanDeduction.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", string.Empty));
+
+
+
+            if (values.pyalDays != null && !string.IsNullOrEmpty(values.pyalDays.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pyalDays", values.pyalDays.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("pyalDays", "30"));
+            if (values.pyaaDays != null && !string.IsNullOrEmpty(values.pyaaDays.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pyaaDays", values.pyaaDays.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("pyaaDays", "30"));
+            if (values.pylvDays != null && !string.IsNullOrEmpty(values.pylvDays.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pylvDays", values.pylvDays.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("pylvDays", "30"));
 
 
             return submittedValues;

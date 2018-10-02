@@ -5,16 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging.DashBoard
+namespace AionHR.Services.Messaging
 {
-   public class DashBoardTimeVariationListRequest : DashboardRequest
+   public class TimeVariationListRequest : DashboardRequest
     {
 
 
         public string timeVariationType { get; set; }
         
+        public DateTime fromDayId { get; set; }
 
-
+        public DateTime toDayId { get; set; }
 
 
         public override Dictionary<string, string> Parameters
@@ -24,7 +25,9 @@ namespace AionHR.Services.Messaging.DashBoard
                 parameters = base.Parameters;
 
                 parameters.Add("_timeVariationType", timeVariationType);
-             
+                parameters.Add("_fromDayId",fromDayId.ToString("yyyyMMdd"));
+                parameters.Add("_toDayId", toDayId.ToString("yyyyMMdd"));
+
 
 
                 return parameters;

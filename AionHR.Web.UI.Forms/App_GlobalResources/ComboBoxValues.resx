@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action_RAISE_SUSPENSION" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="Action_SALARY_DEDUCTION" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="Action_TERMINATION_WITHOUT_INDEMNITY" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="Action_TERMINATION_WITH_INDEMNITY" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="Action_WARNING" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="BEBAAqtypeProgressive" xml:space="preserve">
     <value>1</value>
   </data>
@@ -160,6 +175,12 @@
     <value>1</value>
   </data>
   <data name="CSDETypeSection" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="Damage_WITHOUT_DAMAGE" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Damage_WITH_DAMAGE" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="ECCOStatusClosed" xml:space="preserve">
@@ -288,6 +309,12 @@
   <data name="PYEMsalaryTypeWeekly" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="Reason_ATTENDANCE" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Reason_LAW_VIOLATION" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="RT110DimensionBranch" xml:space="preserve">
     <value>2</value>
   </data>
@@ -356,5 +383,41 @@
   </data>
   <data name="SYTATATimeStatusRefused" xml:space="preserve">
     <value>-1</value>
+  </data>
+  <data name="TimeBasee_DAYS" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="TimeBase_MINUTES" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="TimeVariationType_COUNT" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="TimeVariationType_DURING_SHIFT_LEAVE" xml:space="preserve">
+    <value>32</value>
+  </data>
+  <data name="TimeVariationType_EARLY_CHECKIN" xml:space="preserve">
+    <value>41</value>
+  </data>
+  <data name="TimeVariationType_EARLY_LEAVE" xml:space="preserve">
+    <value>33</value>
+  </data>
+  <data name="TimeVariationType_LATE_CHECKIN" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="TimeVariationType_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="TimeVariationType_MISSED_PUNCH" xml:space="preserve">
+    <value>51</value>
+  </data>
+  <data name="TimeVariationType_PAID_LEAVE" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="TimeVariationType_UNPAID_LEAVE" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="TimeVariationType_UNPAID_OVERTIME" xml:space="preserve">
+    <value>42</value>
   </data>
 </root>

@@ -127,7 +127,8 @@
     <Compile Include="Messaging\CompanyStructure\ApprovelDepartmentListRequest.cs" />
     <Compile Include="Messaging\CompanyStructure\CompanyStructureRequests.cs" />
     <Compile Include="Messaging\CompanyStructure\PositionListRequest.cs" />
-    <Compile Include="Messaging\DashBoard\DashBoardTimeVariationListRequest.cs" />
+    <Compile Include="Messaging\Reports\TimeCodeRecordRequest.cs" />
+    <Compile Include="Messaging\TimeAttendance\TimeVariationListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeesRequests.cs" />
     <Compile Include="Messaging\HelpFunction\AcquisitionRateListRequest.cs" />
     <Compile Include="Messaging\HelpFunction\PayrollExportListRequest.cs" />
@@ -207,6 +208,9 @@
       <Project>{ECB87836-818F-45F5-AB7F-F46CDE3C447F}</Project>
       <Name>AionHR.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Messaging\DashBoard\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

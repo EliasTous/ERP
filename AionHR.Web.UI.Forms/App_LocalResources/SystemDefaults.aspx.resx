@@ -426,4 +426,13 @@
   <data name="MaxLoanDeduction" xml:space="preserve">
     <value>Max Loan Deduction</value>
   </data>
+  <data name="pyaaDays" xml:space="preserve">
+    <value>Penalty Accumulated absence without excuse in days</value>
+  </data>
+  <data name="pyalDays" xml:space="preserve">
+    <value>Penalty Accumulated lateness in days</value>
+  </data>
+  <data name="pylvDays" xml:space="preserve">
+    <value>Penalty Accumulated law violation in days</value>
+  </data>
 </root>

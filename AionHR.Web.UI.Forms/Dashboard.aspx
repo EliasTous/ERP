@@ -939,7 +939,7 @@
             if (window.
                 parent.App.tabPanel.getActiveTab().id == "dashboard" || (window.parent.App.tabPanel.getActiveTab().id == "tabHome" && (window.parent.App.activeModule.value == 4 || window.parent.App.activeModule.value == 5 || window.parent.App.activeModule.value == 1 || window.parent.App.activeModule.value == 7))) {
                 ////Not Chained
-
+               
                 //App.activeStore.reload();
                 App.LocalRateStore.reload();
                 //// App.Store1.reload();
@@ -1010,6 +1010,7 @@
                 //       });
 
                 $('.flashing').fadeTo(1000, 0.1, function () { $(this).fadeTo(2000, 1.0); });
+
             }
             else {
                 // alert('No Refresh');
@@ -1372,6 +1373,9 @@
                                 <ext:ToolbarSeparator runat="server" />
 
                                 <ext:Button runat="server" Text="<%$Resources:Go %>">
+                                     <DirectEvents>
+                                     <Click OnEvent="RefreshAllGrid" ></Click>
+                                   </DirectEvents>
                                     <Listeners>
                                         <Click Handler="RefreshAllGrids();" />
                                     </Listeners>

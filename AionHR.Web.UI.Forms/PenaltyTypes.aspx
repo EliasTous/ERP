@@ -46,7 +46,41 @@
                    case '2': if (value >= '0' && value <= '30')  return true; else return false; 
                        break;
                }
+       }
+       function DisabledFileds(disabled)
+       {
+          
+           App.from.setDisabled(disabled);
+           App.to.setDisabled(disabled);
+           App.timeCode.setDisabled(disabled);
+        
+       }
+       function ChangeReason(Reason,Attendance, TimeBase)
+       {
+         
+           if (Reason == Attendance)
+           {
+               alert(Reason);
+               alert(Attendance);
+               alert(TimeBase);
+               App.from.setDisabled(false);
+               App.to.setDisabled(false);
+               App.timeCode.setDisabled(false);
+               App.timeBase.setReadOnly(false);
            }
+           else
+           {
+               alert(Reason);
+               alert(Attendance);
+               alert(TimeBase);
+               App.from.setDisabled(true);
+               App.to.setDisabled(true);
+               App.timeCode.setDisabled(true);
+               App.timeBase.setValue(TimeBase);
+               App.timeBase.setReadOnly(true); 
+           }
+
+       }
      
     </script>
 
@@ -64,6 +98,10 @@
         <ext:Hidden ID="timeVariationTypeString" runat="server"  />
          <ext:Hidden ID="currentPenaltyType" runat="server"  />
          <ext:Hidden ID="penaltyDetailStoreCount" runat="server"  />
+
+
+         <ext:Hidden ID="Reason_ATTENDANCE_Value" Text="<%$ Resources:ComboBoxValues, Reason_ATTENDANCE%>" runat="server"  />
+         <ext:Hidden ID="TimeBasee_DAYS_Value" Text="<%$ Resources:ComboBoxValues, TimeBasee_DAYS%>" runat="server"  />
 
       
        
@@ -337,47 +375,51 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" />
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="reason" runat="server" FieldLabel="<%$ Resources:FieldReason%>" Name="reason" IDMode="Static" SubmitValue="true">
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="reason" runat="server" FieldLabel="<%$ Resources:FieldReason%>" Name="reason" IDMode="Static" SubmitValue="true" AllowBlank="false">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: ReasonATTENDANCE%>" Value="1"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: ResonLAW_VIOLATION%>" Value="2"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: ReasonATTENDANCE%>" Value="<%$ Resources:ComboBoxValues, Reason_ATTENDANCE%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: ResonLAW_VIOLATION%>" Value="<%$ Resources:ComboBoxValues, Reason_LAW_VIOLATION%>"></ext:ListItem>
+                                        
+                                      
+                                    </Items>
+                                     <Listeners>
+                                     <Select Handler="ChangeReason(this.value,#{Reason_ATTENDANCE_Value}.getValue() , #{TimeBasee_DAYS_Value}.getValue());"></Select>
+                                     </Listeners>
+                                </ext:ComboBox>
+
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeBase" runat="server" FieldLabel="<%$ Resources:FieldTimeBase%>" Name="timeBase" IDMode="Static" SubmitValue="true" AllowBlank="false">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: TimeBaseMINUTES%>" Value="<%$ Resources:ComboBoxValues, TimeBase_MINUTES%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: TimeBaseDAYS%>" Value="<%$ Resources:ComboBoxValues, TimeBasee_DAYS%>"></ext:ListItem>
                                       
                                     </Items>
                                 </ext:ComboBox>
 
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeBase" runat="server" FieldLabel="<%$ Resources:FieldTimeBase%>" Name="timeBase" IDMode="Static" SubmitValue="true">
+
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeCode" runat="server" FieldLabel="<%$ Resources:FieldTimeVariationType%>" Name="timeCode" IDMode="Static" SubmitValue="true" AllowBlank="false">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: TimeBaseMINUTES%>" Value="1"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: TimeBaseDAYS%>" Value="2"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  UnpaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_UNPAID_LEAVE %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  PaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_PAID_LEAVE %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  LeaveWithoutExcuse %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_LEAVE_WITHOUT_EXCUSE %>" ></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  LATE_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_LATE_CHECKIN %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  DURING_SHIFT_LEAVE %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_DURING_SHIFT_LEAVE %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_LEAVE   %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_LEAVE   %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_CHECKIN %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  OVERTIME %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_UNPAID_OVERTIME %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  MISSED_PUNCH %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_MISSED_PUNCH %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: Common , COUNT %>" Value="<%$ Resources: ComboBoxValues , TimeVariationType_COUNT %>"></ext:ListItem>
                                       
                                     </Items>
                                 </ext:ComboBox>
-
-
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeCode" runat="server" FieldLabel="<%$ Resources:FieldTimeVariationType%>" Name="timeCode" IDMode="Static" SubmitValue="true">
-                                    <Items>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  UnpaidLeaves %>" Value="11"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  PaidLeaves %>" Value="12"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  LeaveWithoutExcuse %>" Value="21"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  LATE_CHECKIN %>" Value="31"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  DURING_SHIFT_LEAVE %>" Value="32"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_LEAVE   %>" Value="33"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_CHECKIN %>" Value="41"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  OVERTIME %>" Value="42"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  MISSED_PUNCH %>" Value="51"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: Common , COUNT %>" Value="9"></ext:ListItem>
-                                      
-                                    </Items>
-                                </ext:ComboBox>
-                                   <ext:NumberField ID="from" runat="server" FieldLabel="<%$ Resources: FieldFrom%>" Name="from" MinValue="0" AllowBlank="false" >
+                                   <ext:NumberField ID="from" runat="server" FieldLabel="<%$ Resources: FieldFrom%>" Name="from" MinValue="0" AllowBlank="false"  >
                                     <%--  <Validator Handler=" if ( this.value<#{to}.getValue() ) {return fromToCheck(#{timeBase}.getValue(),this.value);} else return false; " />--%>
-                                    <Validator Handler="if (this.value<#{to}.getValue()  ) return true; else return false; " />
+                                    <Validator Handler=" if (this.value>#{to}.getValue() &&  #{from}.getValue()!=null  && this.value!=null ) return false;else return true; " />
                                        <Listeners>
                                          <Change Handler="#{to}.validate();"></Change>
                                            </Listeners>
                                        </ext:NumberField>
-                                <ext:NumberField ID="to" runat="server" FieldLabel="<%$ Resources: FieldTo%>" Name="to"  MinValue="0" AllowBlank="false">
-                                    <Validator Handler=" if (this.value>#{from}.getValue() ) return true; else return false;" />
+                                <ext:NumberField ID="to" runat="server" FieldLabel="<%$ Resources: FieldTo%>" Name="to"  MinValue="0" AllowBlank="false" >
+                                    <Validator Handler="if (this.value<#{from}.getValue() && #{to}.getValue()!=null && this.value!=null  ){ return false;} else return true; " />
                                     <Listeners>
                                         <Change Handler="#{from}.validate();"></Change>
                                     </Listeners>
@@ -439,8 +481,8 @@
                             
                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="damage" runat="server" FieldLabel="<%$ Resources:FieldDamage%>" Name="damage" IDMode="Static" SubmitValue="true" ForceSelection="true">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: DamageWITH_DAMAGE%>" Value="2"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: DamageWITHOUT_DAMAGE%>" Value="1"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: DamageWITH_DAMAGE%>" Value="<%$ Resources:ComboBoxValues, Damage_WITH_DAMAGE%>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: DamageWITHOUT_DAMAGE%>" Value="<%$ Resources:ComboBoxValues, Damage_WITHOUT_DAMAGE%>" ></ext:ListItem>
                                       
                                     </Items>
                                      <Listeners>
@@ -491,23 +533,25 @@
                 </Editor>
                                              
                                            </ext:Column>
+                                     
 
-
-                                        <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="pct" runat="server" Text="<%$ Resources: FieldPct  %>" Flex="1">
+                                        <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="pct" runat="server" Text="<%$ Resources: FieldPct  %>" Flex ="1" >
                                         <Widget>
                                             <ext:NumberField AllowBlank="true" runat="server" Name="pct" MinValue="0" MaxValue="100" >
                                                  <Listeners>
 
                                                     <Change Handler="var rec = this.getWidgetRecord(); rec.set('pct',this.value); ">
                                                     </Change>
+                                                     
                                                 </Listeners>
                                              
                                                 </ext:NumberField>
                                         </Widget>
                                     </ext:WidgetColumn>
-                                     <ext:WidgetColumn ID="Column2" Visible="true" DataIndex="includeTV" runat="server" Text="<%$ Resources: FieldIncludeTV  %>" Flex="1">
+
+                                     <ext:WidgetColumn ID="Column2" MenuDisabled="true"    DataIndex="includeTV" runat="server" Text="<%$ Resources: FieldIncludeTV  %>"  Width="150"   >
                                         <Widget>
-                                            <ext:Checkbox runat="server" Name="includeTV">
+                                            <ext:Checkbox runat="server" Name="includeTV"  ID="includeTV"  >
                                                 <Listeners>
 
                                                     <Change Handler="var rec = this.getWidgetRecord(); rec.set('includeTV',this.value); ">
@@ -516,11 +560,14 @@
                                             </ext:Checkbox>
                                         </Widget>
                                     </ext:WidgetColumn>
+                                      
+                                  
                                    
 
+                                   
 
-                             
-
+                                    
+                                    
 
 
 

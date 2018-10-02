@@ -34,7 +34,7 @@ using AionHR.Services.Messaging.Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Access_Control;
 using AionHR.Services.Messaging.TimeAttendance;
-using AionHR.Services.Messaging.DashBoard;
+
 
 namespace AionHR.Web.UI.Forms
 {
@@ -343,7 +343,7 @@ namespace AionHR.Web.UI.Forms
         private void BindAlerts(bool normalSized = true)
         {
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            ListResponse<DashboardItem> dashoard = FillDashBoardItems();
+          ListResponse<DashboardItem> dashoard = FillDashBoardItems();
 
 
 
@@ -362,11 +362,11 @@ namespace AionHR.Web.UI.Forms
 
 
             List<ChartData> lateChartData = new List<ChartData>();
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == 221).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 221).ToList()[0].count : 0, index = 41 });//  ALs.Items.Count
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == 221).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 221).ToList()[0].count : 0, index = 51 });//  ALs.Items.Count
             lateChartData.Add(new ChartData() { name = GetLocalResourceObject("LATE_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == 211).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 211).ToList()[0].count : 0, index = 31 });
             lateChartData.Add(new ChartData() { name = GetLocalResourceObject("DURING_SHIFT_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 212).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 212).ToList()[0].count : 0, index = 32 });
             lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == 213).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 213).ToList()[0].count : 0, index = 33 });
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("OVERTIME").ToString(), y = dashoard.Items.Where(x => x.itemId == 222).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 222).ToList()[0].count : 0, index = 42 });
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("OVERTIME").ToString(), y = dashoard.Items.Where(x => x.itemId == 222).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == 222).ToList()[0].count : 0, index = 52 });
             X.Call("drawLateHightChartPie", JSON.JavaScriptSerialize(lateChartData), rtl ? true : false, normalSized);
 
 
@@ -782,9 +782,9 @@ namespace AionHR.Web.UI.Forms
             return req;
         }
 
-        protected void Unnamed_DataBinding(object sender, EventArgs e)
+        protected void RefreshAllGrid(object sender, EventArgs e)
         {
-
+            BindAlerts();
         }
 
         protected void attendanceChartStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -1938,12 +1938,15 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 DashboardRequest req = GetDashboardRequest();
-                DashBoardTimeVariationListRequest TVReq = new DashBoardTimeVariationListRequest();
+                TimeVariationListRequest TVReq = new TimeVariationListRequest();
                 TVReq.BranchId = req.BranchId;
                 TVReq.DepartmentId = req.DepartmentId;
                 TVReq.DivisionId = req.DivisionId;
                 TVReq.EsId = req.EsId;
                 TVReq.timeVariationType = CurrentTimeVariationType.Text;
+                TVReq.fromDayId = DateTime.Now;
+                TVReq.toDayId = DateTime.Now;
+                TVReq.PositionId = req.PositionId;
 
 
 

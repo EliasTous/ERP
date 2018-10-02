@@ -44,8 +44,9 @@ namespace AionHR.Repository.WebService.Repositories
 
 
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");
-           
+            ChildAddOrUpdateLookup.Add(typeof(DashBoardTimeVariation), "setTV");
 
+            
 
 
 

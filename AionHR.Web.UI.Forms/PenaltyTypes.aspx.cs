@@ -25,6 +25,7 @@ using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
+using System.Reflection;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -158,7 +159,9 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-                 
+                    X.Call("ChangeReason", response.result.reason, GetGlobalResourceObject("ComboBoxValues", "Reason_ATTENDANCE").ToString(), GetGlobalResourceObject("ComboBoxValues", "TimeBasee_DAYS").ToString());
+
+
                     recordId.Text = id;
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -623,12 +626,13 @@ namespace AionHR.Web.UI.Forms
 
 
                 List<object> action = new List<object>();
-                action.Add(new { name = GetLocalResourceObject("ActionWARNING").ToString(), recordId=1 });
-                action.Add(new { name = GetLocalResourceObject("ActionSALARY_DEDUCTION").ToString(), recordId = 2 });
+                action.Add(new { name = GetLocalResourceObject("ActionWARNING").ToString(), recordId = GetGlobalResourceObject("ComboBoxValues", "Action_WARNING").ToString() });
+                action.Add(new { name = GetLocalResourceObject("ActionSALARY_DEDUCTION").ToString(), recordId = GetGlobalResourceObject("ComboBoxValues", "Action_SALARY_DEDUCTION").ToString() });
+                action.Add(new { name = GetLocalResourceObject("ActionRAISE_SUSPENSION").ToString(), recordId = GetGlobalResourceObject("ComboBoxValues", "Action_RAISE_SUSPENSION").ToString() });
 
-                action.Add(new { name = GetLocalResourceObject("ActionTERMINATION_WITH_INDEMNITY").ToString(), recordId = 3 });
+                action.Add(new { name = GetLocalResourceObject("ActionTERMINATION_WITH_INDEMNITY").ToString(), recordId = GetGlobalResourceObject("ComboBoxValues", "Action_TERMINATION_WITH_INDEMNITY").ToString() });
 
-                action.Add(new { name = GetLocalResourceObject("ActionTERMINATION_WITHOUT_INDEMNITY").ToString(), recordId = 4 });
+                action.Add(new { name = GetLocalResourceObject("ActionTERMINATION_WITHOUT_INDEMNITY").ToString(), recordId = GetGlobalResourceObject("ComboBoxValues", "Action_TERMINATION_WITHOUT_INDEMNITY").ToString() });
 
                 actionStore.DataSource = action;
                 actionStore.DataBind();
@@ -666,7 +670,7 @@ namespace AionHR.Web.UI.Forms
             }
             catch { return string.Empty; }
         }
-        private string FillTimeBaseString(short timeBaseString)
+        private string FillTimeBaseString(short? timeBaseString)
         {
             string R = "";
 
@@ -690,14 +694,19 @@ namespace AionHR.Web.UI.Forms
         private string FillTimeCode(int timeCode)
         {
             string R = "";
+            
+
+            // Retrieve the value of the string resource named "welcome".
+            // The resource manager will retrieve the value of the  
+            // localized resource using the caller's current culture setting.
+           
 
             try
             {
 
                 switch (timeCode)
                 {
-                    case 11:
-                        R = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
+                    case 11 :  R = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
                         break;
                     case 12:
                         R = GetGlobalResourceObject("Common", "PaidLeaves").ToString();

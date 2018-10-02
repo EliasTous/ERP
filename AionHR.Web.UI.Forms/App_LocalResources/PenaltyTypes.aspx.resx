@@ -246,4 +246,7 @@
   <data name="FieldDamage" xml:space="preserve">
     <value>Damage</value>
   </data>
+  <data name="ActionRAISE_SUSPENSION" xml:space="preserve">
+    <value>Raise Suspension</value>
+  </data>
 </root>

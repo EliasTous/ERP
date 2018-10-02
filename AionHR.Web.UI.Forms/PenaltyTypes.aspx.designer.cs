@@ -112,6 +112,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden penaltyDetailStoreCount;
         
         /// <summary>
+        ///  Reason_ATTENDANCE_Value control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden  Reason_ATTENDANCE_Value;
+        
+        /// <summary>
+        /// TimeBasee_DAYS_Value control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden TimeBasee_DAYS_Value;
+        
+        /// <summary>
         /// Store1 control.
         /// </summary>
         /// <remarks>
@@ -533,6 +551,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.WidgetColumn Column2;
+        
+        /// <summary>
+        /// includeTV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox includeTV;
         
         /// <summary>
         /// GridView2 control.

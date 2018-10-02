@@ -117,8 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FieldApprovalStatus" xml:space="preserve">
+    <value>التعميد</value>
+  </data>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>مقبولة</value>
+  </data>
   <data name="FieldBranch" xml:space="preserve">
     <value>الفرع</value>
+  </data>
+  <data name="FieldClockDuration" xml:space="preserve">
+    <value>فرق التوقيت عن جهاز البصمة</value>
+  </data>
+  <data name="FieldDamageLevel" xml:space="preserve">
+    <value>الضرر</value>
   </data>
   <data name="FieldDay" xml:space="preserve">
     <value>اليوم</value>
@@ -126,8 +138,23 @@
   <data name="FieldDepartment" xml:space="preserve">
     <value>القسم</value>
   </data>
+  <data name="FieldDuration" xml:space="preserve">
+    <value>المدة</value>
+  </data>
   <data name="FieldFullName" xml:space="preserve">
     <value>الموظف</value>
+  </data>
+  <data name="FieldltimeCode" xml:space="preserve">
+    <value>نوع الغياب</value>
+  </data>
+  <data name="FieldNew" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="FieldRejected" xml:space="preserve">
+    <value>مرفوض </value>
+  </data>
+  <data name="FiledPosition" xml:space="preserve">
+    <value>الوظيفة</value>
   </data>
   <data name="Go" xml:space="preserve">
     <value>بحث</value>
@@ -155,5 +182,215 @@
   </data>
   <data name="status5" xml:space="preserve">
     <value>غياب</value>
+  </data>
+  <data name="DamageWITHOUT_DAMAGE" xml:space="preserve">
+    <value>بدون ضرر</value>
+  </data>
+  <data name="DamageWITH_DAMAGE" xml:space="preserve">
+    <value>تسبب ضرر</value>
+  </data>
+  <data name="FieldPosition" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
+  <data name="FieldTimeVariationType" xml:space="preserve">
+    <value>نوع التأخير</value>
+  </data>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>نوع الغياب</value>
+  </data>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>تعديل نوع الغياب </value>
+  </data>
+  <data name="atext" xml:space="preserve">
+    <value>غياب بإذن</value>
+  </data>
+  <data name="BasicInfoTabEditWindowTitle1" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="ButtonRefresh" xml:space="preserve">
+    <value>تحديث</value>
+  </data>
+  <data name="CA" xml:space="preserve">
+    <value>التقويم</value>
+  </data>
+  <data name="ContractEndingDate" xml:space="preserve">
+    <value>تاريخ نهاية العقد</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="DayShifts" xml:space="preserve">
+    <value>تفاصيل الدوام</value>
+  </data>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>حذف دوام الفرع </value>
+  </data>
+  <data name="DeleteBranchAttendances" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد حذف دوام الفرع المحدد ضمن التاريخ المحدد؟</value>
+  </data>
+  <data name="dtext" xml:space="preserve">
+    <value>غياب بدون إذن </value>
+  </data>
+  <data name="EditWindowsTimeApproval" xml:space="preserve">
+    <value>تعميد الدوام</value>
+  </data>
+  <data name="EditWindowsTitle1" xml:space="preserve">
+    <value>تعديل الفرع</value>
+  </data>
+  <data name="FieldAll" xml:space="preserve">
+    <value>الكل </value>
+  </data>
+  <data name="FieldApproverName" xml:space="preserve">
+    <value>المعمد </value>
+  </data>
+  <data name="FieldApptoved" xml:space="preserve">
+    <value>موافق عليه</value>
+  </data>
+  <data name="FieldBirthPlace" xml:space="preserve">
+    <value>مكان الولادة</value>
+  </data>
+  <data name="FieldBranch1" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="FieldBreaks" xml:space="preserve">
+    <value>الاستراحات</value>
+  </data>
+  <data name="FieldCheckIn" xml:space="preserve">
+    <value>الدخول</value>
+  </data>
+  <data name="FieldCheckOut" xml:space="preserve">
+    <value>الخروج</value>
+  </data>
+  <data name="FieldDate" xml:space="preserve">
+    <value>اختر تاريخ</value>
+  </data>
+  <data name="FieldDateOfBirth" xml:space="preserve">
+    <value>تاريخ الميلاد</value>
+  </data>
+  <data name="FieldDay1" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="FieldDepartment1" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="FieldDivision" xml:space="preserve">
+    <value>الإدارة العليا</value>
+  </data>
+  <data name="FieldEmployee" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="FieldEmployeeName" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="FieldEndDate" xml:space="preserve">
+    <value>تاريخ النهاية</value>
+  </data>
+  <data name="FieldFamilyName" xml:space="preserve">
+    <value>اسم العائلة</value>
+  </data>
+  <data name="FieldFirstName" xml:space="preserve">
+    <value>الاسم الأول</value>
+  </data>
+  <data name="FieldFullName1" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="FieldGender" xml:space="preserve">
+    <value>الجنس</value>
+  </data>
+  <data name="FieldHireDate" xml:space="preserve">
+    <value>تاريخ التوظيف</value>
+  </data>
+  <data name="FieldHomeEmail" xml:space="preserve">
+    <value>البريد الالكتروني الشخصي</value>
+  </data>
+  <data name="FieldHoursWorked" xml:space="preserve">
+    <value>عدد ساعات العمل</value>
+  </data>
+  <data name="FieldIsInactive" xml:space="preserve">
+    <value>غير نشط؟</value>
+  </data>
+  <data name="FieldLastName" xml:space="preserve">
+    <value>الاسم الأخير</value>
+  </data>
+  <data name="FieldLastTACheck" xml:space="preserve">
+    <value>آخر ظهور</value>
+  </data>
+  <data name="FieldLastTACheckStatus" xml:space="preserve">
+    <value>حالة آخر ظهور</value>
+  </data>
+  <data name="FieldMiddleName" xml:space="preserve">
+    <value>الاسم الأوسط</value>
+  </data>
+  <data name="FieldMobile" xml:space="preserve">
+    <value>الجوّال</value>
+  </data>
+  <data name="FieldNationality" xml:space="preserve">
+    <value>الجنسية</value>
+  </data>
+  <data name="FieldNotes" xml:space="preserve">
+    <value>ملاحظات </value>
+  </data>
+  <data name="FieldPending" xml:space="preserve">
+    <value>قيد معالجة </value>
+  </data>
+  <data name="FieldPending1" xml:space="preserve">
+    <value>قيد المعالجة </value>
+  </data>
+  <data name="FieldPicturePath" xml:space="preserve">
+    <value>مسار الصورة</value>
+  </data>
+  <data name="FieldPosition1" xml:space="preserve">
+    <value>المنصب</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>الرقم</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
+  <data name="FieldReligion" xml:space="preserve">
+    <value>الدين</value>
+  </data>
+  <data name="FieldSponsor" xml:space="preserve">
+    <value>الكفلاء</value>
+  </data>
+  <data name="FieldStartDate" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>الحالة </value>
+  </data>
+  <data name="FieldTimeCode" xml:space="preserve">
+    <value>نوع الغياب</value>
+  </data>
+  <data name="FieldVacationSchedule" xml:space="preserve">
+    <value>جدول الإجازات</value>
+  </data>
+  <data name="FieldWorkEmail" xml:space="preserve">
+    <value>البريد الالكتروني الرسمي</value>
+  </data>
+  <data name="FieldWorkingCalendar" xml:space="preserve">
+    <value>التقويم</value>
+  </data>
+  <data name="ltext" xml:space="preserve">
+    <value>التأخير</value>
+  </data>
+  <data name="otext" xml:space="preserve">
+    <value>عمل إضافي</value>
+  </data>
+  <data name="SC" xml:space="preserve">
+    <value>جدول العمل</value>
+  </data>
+  <data name="TotalBreaks" xml:space="preserve">
+    <value>إجمالي الاستراحات</value>
+  </data>
+  <data name="TotalText" xml:space="preserve">
+    <value>المجموع</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>الموظفين</value>
   </data>
 </root>

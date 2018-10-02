@@ -80,6 +80,7 @@
     <ext:Hidden runat="server" ID="vsTitle" Text="<%$Resources:Common , VacationSchedules %>" />
     <ext:Hidden runat="server" ID="pyye" Text="<%$Resources:Common , FiscalYears %>" />
      <ext:Hidden runat="server" ID="pypt" Text="<%$Resources:Common , PenaltyType %>" />
+     <ext:Hidden runat="server" ID="pyTC" Text="<%$Resources:Common , TimeCode %>" />
     
     <ext:Hidden runat="server" ID="pypc" Text="<%$Resources:Common , importPayCodes %>" />
        
@@ -618,6 +619,12 @@
                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common , PenaltyType%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('PenaltyTypes', 'PenaltyTypes.aspx', #{pypt}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+
+                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , TimeCode%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('TimeCodes', 'TimeCodes.aspx', #{pyTC}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
 

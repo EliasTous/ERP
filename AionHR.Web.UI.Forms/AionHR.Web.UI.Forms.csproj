@@ -528,6 +528,7 @@
     <Content Include="TerminationReasons.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="TimeAttendanceView.aspx" />
+    <Content Include="TimeCodes.aspx" />
     <Content Include="TrainingTypes.aspx" />
     <Content Include="Utilities\alerts.txt" />
     <Content Include="Utilities\modules.txt" />
@@ -1017,6 +1018,13 @@
     </Compile>
     <Compile Include="TerminationReasons.aspx.designer.cs">
       <DependentUpon>TerminationReasons.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TimeCodes.aspx.cs">
+      <DependentUpon>TimeCodes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeCodes.aspx.designer.cs">
+      <DependentUpon>TimeCodes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AccessControlApplier.cs" />
     <Compile Include="AllowanceTypes.aspx.cs">
@@ -2030,7 +2038,9 @@
     <Content Include="App_LocalResources\LeaveTypes.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\SystemDefaults.aspx.resx" />
+    <Content Include="App_LocalResources\SystemDefaults.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\Divisions.aspx.resx" />
@@ -2179,7 +2189,9 @@
     <Content Include="App_LocalResources\Tasks.aspx.resx" />
     <Content Include="App_LocalResources\TaskTypes.aspx.resx" />
     <Content Include="App_LocalResources\CompanyRightToWorks.aspx.ar.resx" />
-    <Content Include="App_LocalResources\SystemDefaults.aspx.ar.resx" />
+    <Content Include="App_LocalResources\SystemDefaults.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_LocalResources\PayrollDefaults.aspx.resx" />
     <Content Include="App_LocalResources\PayrollDefaults.aspx.ar.resx" />
     <Content Include="App_LocalResources\FiscalYears.aspx.resx" />
@@ -2222,7 +2234,9 @@
       <LastGenOutput>AccessControl.ar.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_LocalResources\Dashboard.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Dashboard.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_LocalResources\ImportDepartments.aspx.resx" />
     <Content Include="App_LocalResources\ImportDepartments.aspx.ar.resx" />
     <Content Include="App_LocalResources\LoanRequests.aspx.ar.resx" />
@@ -2404,6 +2418,8 @@
     <Content Include="App_LocalResources\DeleteBranchAttendance.aspx.resx" />
     <Content Include="App_LocalResources\PenaltyTypes.aspx.ar.resx" />
     <Content Include="App_LocalResources\PenaltyTypes.aspx.resx" />
+    <Content Include="App_LocalResources\TimeCodes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TimeCodes.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

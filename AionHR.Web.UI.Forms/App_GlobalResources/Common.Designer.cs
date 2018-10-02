@@ -709,6 +709,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Day Leave Without Excuse.
+        /// </summary>
+        internal static string DAY_LEAVE_WITHOUT_EXCUSE {
+            get {
+                return ResourceManager.GetString("DAY_LEAVE_WITHOUT_EXCUSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to December.
         /// </summary>
         internal static string December {
@@ -2950,6 +2959,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shift Leave Without Excuse.
+        /// </summary>
+        internal static string SHIFT_LEAVE_WITHOUT_EXCUSE {
+            get {
+                return ResourceManager.GetString("SHIFT_LEAVE_WITHOUT_EXCUSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Social Security Schedule.
         /// </summary>
         internal static string SocialSecuritySchedules {
@@ -3171,6 +3189,15 @@ namespace Resources {
         internal static string TimeSchedule {
             get {
                 return ResourceManager.GetString("TimeSchedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Variations.
+        /// </summary>
+        internal static string timeVariations {
+            get {
+                return ResourceManager.GetString("timeVariations", resourceCulture);
             }
         }
         

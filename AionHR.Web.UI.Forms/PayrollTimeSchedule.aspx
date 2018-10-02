@@ -334,7 +334,7 @@
                             </Items>
 
                         </ext:FormPanel>
-                        <ext:GridPanel Visible="false"
+                     <%--   <ext:GridPanel Visible="false"
                             ID="TimeCodeGrid"
                             runat="server"
                             PaddingSpec="0 0 1 0"
@@ -507,7 +507,7 @@
                                 <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                             </SelectionModel>
-                        </ext:GridPanel>
+                        </ext:GridPanel>--%>
 
                     </Items>
                 </ext:TabPanel>

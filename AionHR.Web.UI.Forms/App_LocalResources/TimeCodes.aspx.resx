@@ -117,133 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="atext" xml:space="preserve">
-    <value>غياب بإذن</value>
-  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات الجدول الزمني </value>
+    <value>Status Info</value>
   </data>
-  <data name="deductPeriod" xml:space="preserve">
-    <value>فترة مخصومة</value>
-  </data>
-  <data name="dtext" xml:space="preserve">
-    <value>غياب بدون إذن </value>
-  </data>
-  <data name="EditTimeCodeWindowsTitle" xml:space="preserve">
-    <value>تعديل تعميد نوع الغياب</value>
+  <data name="Deduction" xml:space="preserve">
+    <value>Deduction</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>تعديل الجدول الزمني</value>
+    <value>Edit Status</value>
+  </data>
+  <data name="Entitlement" xml:space="preserve">
+    <value>Entitlement</value>
+  </data>
+  <data name="excludeSocialSecurity" xml:space="preserve">
+    <value>Exclude Social Security</value>
+  </data>
+  <data name="excludeTimeAttendance" xml:space="preserve">
+    <value>Exclude Time Attendance</value>
   </data>
   <data name="FieldApproval" xml:space="preserve">
-    <value>التعميد</value>
+    <value>Approval</value>
+  </data>
+  <data name="FieldEdId" xml:space="preserve">
+    <value>Entitlment / Deduction</value>
+  </data>
+  <data name="FieldGracePeriod" xml:space="preserve">
+    <value>Grace Period</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>الاسم</value>
+    <value>Name</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
   </data>
-  <data name="fullPeriod" xml:space="preserve">
-    <value>فترة الكلية</value>
+  <data name="FieldRef" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="FieldTimeCode" xml:space="preserve">
+    <value>Time Code</value>
+  </data>
+  <data name="FieldTimeVariationType" xml:space="preserve">
+    <value>Time Variation Type</value>
+  </data>
+  <data name="FieldType" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="intName" xml:space="preserve">
     <value>Int Name</value>
   </data>
-  <data name="isEnable" xml:space="preserve">
-    <value>مفعل</value>
-  </data>
-  <data name="ltext" xml:space="preserve">
-    <value>التأخير</value>
-  </data>
-  <data name="maxAllowed" xml:space="preserve">
-    <value>الحد الاعظمي المسموح</value>
-  </data>
-  <data name="mtext" xml:space="preserve">
-    <value>يوم غير مغلق</value>
-  </data>
-  <data name="multiplier" xml:space="preserve">
-    <value>مضاعف</value>
-  </data>
-  <data name="otext" xml:space="preserve">
-    <value>عمل إضافي</value>
-  </data>
-  <data name="timeCodeColumn" xml:space="preserve">
-    <value>نوع الغياب </value>
-  </data>
-  <data name="TimeCodeTabEditWindowTitle" xml:space="preserve">
-    <value>تعميد نوع الغياب</value>
-  </data>
-  <data name="TimeCodeTitle" xml:space="preserve">
-    <value>نوع الغياب</value>
-  </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>الجدول الزمني</value>
-  </data>
-  <data name="ActionSALARY_DEDUCTION" xml:space="preserve">
-    <value>خصم راتب</value>
-  </data>
-  <data name="ActionTERMINATION_WITHOUT_INDEMNITY" xml:space="preserve">
-    <value>فصل من الخدمة بدون مكافأة</value>
-  </data>
-  <data name="ActionTERMINATION_WITH_INDEMNITY" xml:space="preserve">
-    <value>فصل من الخدمة مع مكافأة </value>
-  </data>
-  <data name="ActionWARNING" xml:space="preserve">
-    <value>انذار </value>
-  </data>
-  <data name="DamageWITHOUT_DAMAGE" xml:space="preserve">
-    <value>بدون ضرر</value>
-  </data>
-  <data name="DamageWITH_DAMAGE" xml:space="preserve">
-    <value>تسبب ضرر</value>
-  </data>
-  <data name="ReasonATTENDANCE" xml:space="preserve">
-    <value>مخالفة الدوام</value>
-  </data>
-  <data name="ResonLAW_VIOLATION" xml:space="preserve">
-    <value>مخالفة تنظيم العمل</value>
-  </data>
-  <data name="TimeBaseDAYS" xml:space="preserve">
-    <value>ايام</value>
-  </data>
-  <data name="TimeBaseMINUTES" xml:space="preserve">
-    <value>دقائق</value>
-  </data>
-  <data name="FieldFrom" xml:space="preserve">
-    <value>من </value>
-  </data>
-  <data name="FieldReason" xml:space="preserve">
-    <value>السبب</value>
-  </data>
-  <data name="FieldTimeBase" xml:space="preserve">
-    <value>طريقة الاحتساب</value>
-  </data>
-  <data name="FieldTimeVariationType" xml:space="preserve">
-    <value>نوع التأخير</value>
-  </data>
-  <data name="FieldTo" xml:space="preserve">
-    <value>الى </value>
-  </data>
-  <data name="FieldAction" xml:space="preserve">
-    <value>الاجراء</value>
-  </data>
-  <data name="FieldIncludeTV" xml:space="preserve">
-    <value>إضافة أجر مدة الغياب</value>
-  </data>
-  <data name="FieldPct" xml:space="preserve">
-    <value>نسبة من الراتب اليومي</value>
-  </data>
-  <data name="FieldSeq" xml:space="preserve">
-    <value>تكرار</value>
-  </data>
-  <data name="penaltyDetailTitle" xml:space="preserve">
-    <value>تفاصيل الجزاء</value>
-  </data>
-  <data name="FieldDamage" xml:space="preserve">
-    <value>مستوى الضرر</value>
-  </data>
-  <data name="ActionRAISE_SUSPENSION" xml:space="preserve">
-    <value>توقيف الترفع</value>
+    <value>Status</value>
   </data>
 </root>

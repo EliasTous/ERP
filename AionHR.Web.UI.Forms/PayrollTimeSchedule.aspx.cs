@@ -75,18 +75,7 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
 
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(TimeCode), null, TimeCodeGrid, null, null);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    TimeCodeGrid.Disabled = true;
-                    return;
-                }
-
+            
 
             }
 
@@ -139,7 +128,7 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
             ScheduleID.Text = id;
             string type = e.ExtraParams["type"];
-            TimeCodeGridStore.Reload();
+            //TimeCodeGridStore.Reload();
             apIdStore.Reload();
             switch (type)
             {
@@ -326,7 +315,7 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             ScheduleID.Text = "";
-            TimeCodeGridStore.Reload();
+            //TimeCodeGridStore.Reload();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -521,75 +510,75 @@ namespace AionHR.Web.UI.Forms
 
      
 
-        protected void TimeCodeGridStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            List<TimeCode> TSL = new List<TimeCode>();
-           // TSL.Add(new TimeCode { timeCode = "A" });
-            TSL.Add(new TimeCode { timeCode = "D" });
-            TSL.Add(new TimeCode { timeCode = "L" });
-            TSL.Add(new TimeCode { timeCode = "O" });
-            TSL.Add(new TimeCode { timeCode = "M" });
-            PayrollTimeCodeRequest request = new PayrollTimeCodeRequest();
-            if (!string.IsNullOrEmpty(ScheduleID.Text))
-            {
-                request.ScheduleId = Convert.ToInt32(ScheduleID.Text);
+        //protected void TimeCodeGridStore_ReadData(object sender, StoreReadDataEventArgs e)
+        //{
+        //    List<TimeCode> TSL = new List<TimeCode>();
+        //   // TSL.Add(new TimeCode { timeCode = "A" });
+        //    TSL.Add(new TimeCode { timeCode = "D" });
+        //    TSL.Add(new TimeCode { timeCode = "L" });
+        //    TSL.Add(new TimeCode { timeCode = "O" });
+        //    TSL.Add(new TimeCode { timeCode = "M" });
+        //    PayrollTimeCodeRequest request = new PayrollTimeCodeRequest();
+        //    if (!string.IsNullOrEmpty(ScheduleID.Text))
+        //    {
+        //        request.ScheduleId = Convert.ToInt32(ScheduleID.Text);
 
 
-                request.Filter = "";
-                ListResponse<TimeCode> r = _PayrollService.ChildGetAll<TimeCode>(request);
-                if (!r.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
-                    return;
-                }
+        //        request.Filter = "";
+        //        ListResponse<TimeCode> r = _PayrollService.ChildGetAll<TimeCode>(request);
+        //        if (!r.Success)
+        //        {
+        //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+        //            return;
+        //        }
 
-                //foreach (var local in TSL)
-                //{
-                //    foreach (var remote in r.Items)
-                //    {
-                //        if (remote.timeCode == local.timeCode)
-                //        {
-                //            local.tsId = remote.tsId;
-                //            local.multiplier = remote.multiplier;
-                //            local.isEnabled = remote.isEnabled;
-                //            local.fullPeriod = remote.fullPeriod;
-                //            local.deductPeriod = remote.deductPeriod;
-                //            local.apId = remote.apId;
-                //            local.apName = remote.apName;
-                //            local.maxAllowed = remote.maxAllowed;
-                //        }
+        //        //foreach (var local in TSL)
+        //        //{
+        //        //    foreach (var remote in r.Items)
+        //        //    {
+        //        //        if (remote.timeCode == local.timeCode)
+        //        //        {
+        //        //            local.tsId = remote.tsId;
+        //        //            local.multiplier = remote.multiplier;
+        //        //            local.isEnabled = remote.isEnabled;
+        //        //            local.fullPeriod = remote.fullPeriod;
+        //        //            local.deductPeriod = remote.deductPeriod;
+        //        //            local.apId = remote.apId;
+        //        //            local.apName = remote.apName;
+        //        //            local.maxAllowed = remote.maxAllowed;
+        //        //        }
 
-                //    }
+        //        //    }
 
-                //}
-                TimeCode A;
-                TSL.ForEach(x =>
-                {
-                    if (r.Items.Where(y => y.timeCode == x.timeCode).ToList().Count() != 0)
-                    {
-                        A = r.Items.Where(y => y.timeCode == x.timeCode).ToList().First();
-                        x.apId = A.apId;
-                        x.apName = A.apName;
-                        x.deductPeriod = A.deductPeriod;
-                        x.fullPeriod = A.fullPeriod;
-                        x.isEnabled = A.isEnabled;
-                        x.maxAllowed = A.maxAllowed;
-                        x.multiplier = A.multiplier;
-                        x.timeCode = A.timeCode;
-                        x.tsId = A.tsId;
-                    }
-                });
+        //        //}
+        //        TimeCode A;
+        //        TSL.ForEach(x =>
+        //        {
+        //            if (r.Items.Where(y => y.timeCode == x.timeCode).ToList().Count() != 0)
+        //            {
+        //                A = r.Items.Where(y => y.timeCode == x.timeCode).ToList().First();
+        //                x.apId = A.apId;
+        //                x.apName = A.apName;
+        //                x.deductPeriod = A.deductPeriod;
+        //                x.fullPeriod = A.fullPeriod;
+        //                x.isEnabled = A.isEnabled;
+        //                x.maxAllowed = A.maxAllowed;
+        //                x.multiplier = A.multiplier;
+        //                x.timeCode = A.timeCode;
+        //                x.tsId = A.tsId;
+        //            }
+        //        });
 
 
-            }
+        //    }
 
-            this.TimeCodeGridStore.DataSource = TSL;
-            e.Total = TSL.Count;
+        //    this.TimeCodeGridStore.DataSource = TSL;
+        //    e.Total = TSL.Count;
 
-            this.TimeCodeGridStore.DataBind();
+        //    this.TimeCodeGridStore.DataBind();
 
-        }
+        //}
         protected void printBtn_Click(object sender, EventArgs e)
         {
             PayrollTimeSchedulesReport p = GetReport();

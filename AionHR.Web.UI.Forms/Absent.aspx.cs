@@ -27,6 +27,8 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
 using AionHR.Services.Messaging.Reports;
+using AionHR.Model.Dashboard;
+using AionHR.Services.Messaging.TimeAttendance;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -36,7 +38,8 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
-        IReportsService _timeAttendanceService = ServiceLocator.Current.GetInstance<IReportsService>();
+        ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        IDashBoardService _dashBoardService = ServiceLocator.Current.GetInstance<IDashBoardService>();
         protected override void InitializeCulture()
         {
 
@@ -79,7 +82,13 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
                 dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
-           
+                FillStatus();
+                timeVariationType.Select(0);
+
+
+               
+
+
             }
 
 
@@ -203,13 +212,22 @@ namespace AionHR.Web.UI.Forms
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        private ReportCompositeRequest GetAbsentRequest()
+        private TimeVariationListRequest GetAbsentRequest()
         {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-            req.Add(jobInfo1.GetJobInfo());
-            req.Add(employeeCombo1.GetEmployee());
-            req.Add(dateRange1.GetRange());
-            return req;
+          
+            TimeVariationListRequest reqTV = new TimeVariationListRequest();
+            reqTV.BranchId = jobInfo1.GetJobInfo().BranchId==null ? reqTV.BranchId=0 : jobInfo1.GetJobInfo().BranchId; 
+            reqTV.DepartmentId= jobInfo1.GetJobInfo().DepartmentId==null ? reqTV.DepartmentId=0: jobInfo1.GetJobInfo().DepartmentId;
+            reqTV.DivisionId= jobInfo1.GetJobInfo().DivisionId==null?reqTV.DivisionId=0 :jobInfo1.GetJobInfo().DivisionId;
+           reqTV.PositionId = jobInfo1.GetJobInfo().PositionId == null ? reqTV.PositionId = 0 : jobInfo1.GetJobInfo().PositionId;
+            reqTV.EsId =string.IsNullOrEmpty(esId.Value.ToString()) ? reqTV.EsId=0 :Convert.ToInt32( esId.Value);
+            reqTV.fromDayId = dateRange1.GetRange().DateFrom;
+            reqTV.toDayId = dateRange1.GetRange().DateTo;
+            reqTV.timeVariationType = timeVariationType.Value.ToString();
+
+          
+         
+            return reqTV;
         }
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
@@ -217,9 +235,9 @@ namespace AionHR.Web.UI.Forms
 
             //GEtting the filter from the page
 
-            ReportCompositeRequest req = GetAbsentRequest();
-            req.StartAt = e.Start.ToString();
-            ListResponse<RT305> daysResponse = _timeAttendanceService.ChildGetAll<RT305>(req);
+            TimeVariationListRequest req = GetAbsentRequest();
+        
+            ListResponse<DashBoardTimeVariation> daysResponse = _dashBoardService.ChildGetAll<DashBoardTimeVariation>(req);
 
             //ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
@@ -232,7 +250,11 @@ namespace AionHR.Web.UI.Forms
             daysResponse.Items.ForEach(
                 x =>
                 {
-                    x.dayStatusString = GetLocalResourceObject("status" + x.dayStatus.ToString()).ToString();
+                    x.clockDurationString = time(x.clockDuration, true);
+                    x.durationString = time(x.duration, true);
+                    x.timeCodeString = FillTimeCode(x.timeCode);
+                    x.apStatusString = FillApprovalStatus(x.apStatus);
+                    x.damageLevelString = FillDamageLevelString(x.damageLevel);
 
                 }
                 );
@@ -377,7 +399,318 @@ namespace AionHR.Web.UI.Forms
         //    return req;
         //}
 
+        private void FillStatus()
+        {
+            ListRequest statusReq = new ListRequest();
+            ListResponse<EmploymentStatus> resp = _employeeService.ChildGetAll<EmploymentStatus>(statusReq);
+            statusStore.DataSource = resp.Items;
+            statusStore.DataBind();
+        }
+        private string FillTimeCode(int timeCode)
+        {
+            string R = "";
 
+
+            // Retrieve the value of the string resource named "welcome".
+            // The resource manager will retrieve the value of the  
+            // localized resource using the caller's current culture setting.
+
+
+            try
+            {
+
+                switch (timeCode)
+                {
+                    case 11:
+                        R = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
+                        break;
+                    case 12:
+                        R = GetGlobalResourceObject("Common", "PaidLeaves").ToString();
+                        break;
+                    case 21:
+                        R = GetGlobalResourceObject("Common", "LeaveWithoutExcuse").ToString();
+                        break;
+                    case 31:
+                        R = GetGlobalResourceObject("Common", "LATE_CHECKIN").ToString();
+                        break;
+                    case 32:
+                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
+                        break;
+                    case 33:
+                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
+                        break;
+                    case 41:
+                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
+                        break;
+                    case 42:
+                        R = GetGlobalResourceObject("Common", "OVERTIME").ToString();
+                        break;
+                    case 51:
+                        R = GetGlobalResourceObject("Common", "MISSED_PUNCH").ToString();
+                        break;
+                    case 9:
+                        R = GetGlobalResourceObject("Common", "COUNT ").ToString();
+                        break;
+
+                }
+
+                return R;
+            }
+            catch { return string.Empty; }
+        }
+
+        private string FillApprovalStatus(short? apStatus)
+        {
+            string R; 
+            switch (apStatus)
+            {
+                case 1:
+                    R = GetLocalResourceObject("FieldNew").ToString();
+                    break;
+                case 2:
+                    R = GetLocalResourceObject("FieldApproved").ToString();
+                    break;
+                case -1:
+                    R = GetLocalResourceObject("FieldRejected").ToString();
+                    break;
+                default:
+                   R= string.Empty;
+                    break;
+
+
+            }
+            return R;
+        }
+        [DirectMethod]
+        protected void updateDuration(object sender, DirectEventArgs e)
+        {
+
+
+        }
+        public static string time(int _minutes, bool _signed)
+        {
+            if (_minutes == 0)
+                return "00:00";
+
+            bool isNegative = _minutes < 0 ? true : false;
+
+            _minutes = Math.Abs(_minutes);
+
+            string hours = (_minutes / 60).ToString(), minutes = (_minutes % 60).ToString(), formattedTime;
+
+            if (hours.Length == 1)
+                hours = "0" + hours;
+
+            if (minutes.Length == 1)
+                minutes = "0" + minutes;
+
+            formattedTime = hours + ':' + minutes;
+
+            if (isNegative && _signed)
+                formattedTime = "-" + formattedTime;
+
+            return formattedTime;
+        }
+        protected void PoPuP(object sender, DirectEventArgs e)
+        {
+
+            try {
+
+                string id = e.ExtraParams["id"];
+                int dayId = Convert.ToInt32(e.ExtraParams["dayId"]);
+                int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
+                string damageLavel = e.ExtraParams["damage"];
+                string durationValue = e.ExtraParams["duration"];
+
+                string type = e.ExtraParams["type"];
+
+
+                switch (type)
+                {
+                    case "imgEdit":
+                        //Step 1 : get the object from the Web Service 
+
+                        //Step 2 : call setvalues with the retrieved object
+
+                        damage.Select(damageLavel);
+                        duration.Text = durationValue;
+                        recordId.Text = id;
+
+                        this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
+                        this.EditRecordWindow.Show();
+                        break;
+
+                    case "imgDelete":
+                        X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                        {
+                            Yes = new MessageBoxButtonConfig
+                            {
+                                //We are call a direct request metho for deleting a record
+                                Handler = String.Format("App.direct.DeleteRecord({0})", id),
+                                Text = Resources.Common.Yes
+                            },
+                            No = new MessageBoxButtonConfig
+                            {
+                                Text = Resources.Common.No
+                            }
+
+                        }).Show();
+                        break;
+
+                    case "imgAttach":
+
+                        //Here will show up a winow relatice to attachement depending on the case we are working on
+                        break;
+
+                    case "LinkRender":
+                        FillTimeApproval(dayId, employeeId);
+                        TimeApprovalWindow.Show();
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+
+        }
+        protected void SaveNewRecord(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+
+
+            string obj = e.ExtraParams["values"];
+            DashBoardTimeVariation b = JsonConvert.DeserializeObject<DashBoardTimeVariation>(obj);
+        
+
+
+            string id = e.ExtraParams["id"];
+            // Define the object to add or edit as null
+
+
+
+
+            try
+            {
+                //getting the id of the record
+                TimeVariationListRequest req = GetAbsentRequest();
+
+                ListResponse<DashBoardTimeVariation> r = _dashBoardService.ChildGetAll<DashBoardTimeVariation>(req);                    //Step 1 Selecting the object or building up the object for update purpose
+
+                //Step 2 : saving to store
+
+                //Step 3 :  Check if request fails
+                if (!r.Success)//it maybe another check
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                    return;
+                }
+                else
+                {
+
+                    if (r.Items.Where(x => x.recordId == id).Count() == 0)
+                        return;
+                    else
+                    {
+                        PostRequest<DashBoardTimeVariation> request = new PostRequest<DashBoardTimeVariation>();
+                        request.entity = r.Items.Where(x => x.recordId == id).First();
+                        request.entity.damageLevel = Convert.ToInt16(damage.Value);
+                        request.entity.duration = Convert.ToInt16(duration.Text);
+                        PostResponse<DashBoardTimeVariation> response = _timeAttendanceService.ChildAddOrUpdate<DashBoardTimeVariation>(request);
+                        if (!response.Success)//it maybe another check
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                            return;
+                        }
+                    }
+                }
+
+
+                Store1.Reload();
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+                this.EditRecordWindow.Close();
+
+            }
+
+                 
+                catch (Exception ex)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                }
+            }
+        private string FillDamageLevelString (short? DamageLevel)
+        {
+            string R; 
+            switch (DamageLevel)
+            {
+                case 2: R= GetLocalResourceObject("DamageWITH_DAMAGE").ToString(); 
+                    break;
+                case 1:
+                    R = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
+                    break;
+                default: R = string.Empty;
+                    break;
+
+            }
+            return R; 
+        }
+        protected void FillTimeApproval(int dayId, int employeeId)
+        {
+            try
+            {
+                DashboardTimeListRequest r = new DashboardTimeListRequest();
+                r.dayId = dayId.ToString();
+                r.employeeId = employeeId;
+                r.approverId = 0;
+
+
+                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
+                if (!Times.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", Times.ErrorCode) != null ? GetGlobalResourceObject("Errors", Times.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + Times.LogId : Times.Summary).Show();
+                    return;
+                }
+                Times.Items.ForEach(x =>
+                {
+                    x.timeCodeString = GetLocalResourceObject(x.timeCode + "text").ToString();
+                    switch (x.status)
+                    {
+                        case 1:
+                            x.statusString = GetLocalResourceObject("FieldApproved").ToString();
+                            break;
+                        case 2:
+                            x.statusString = GetLocalResourceObject("FieldPending").ToString(); 
+                            break;
+
+                    }
+                });
+
+                TimeStore.DataSource = Times.Items;
+                ////List<ActiveLeave> leaves = new List<ActiveLeave>();
+                //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+
+
+                TimeStore.DataBind();
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+
+        }
+    }
 
     }
-}
