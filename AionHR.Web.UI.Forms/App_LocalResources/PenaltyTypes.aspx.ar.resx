@@ -121,7 +121,7 @@
     <value>غياب بإذن</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات الجدول الزمني </value>
+    <value>معلومات المخالفات والجزاءات </value>
   </data>
   <data name="deductPeriod" xml:space="preserve">
     <value>فترة مخصومة</value>
@@ -238,7 +238,7 @@
     <value>تكرار</value>
   </data>
   <data name="penaltyDetailTitle" xml:space="preserve">
-    <value>تفاصيل الجزاء</value>
+    <value>جزاءات</value>
   </data>
   <data name="FieldDamage" xml:space="preserve">
     <value>مستوى الضرر</value>
