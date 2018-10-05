@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Status Info</value>
+    <value>Time Code Info</value>
   </data>
   <data name="Deduction" xml:space="preserve">
     <value>Deduction</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Status</value>
+    <value>Edit Time Code</value>
   </data>
   <data name="Entitlement" xml:space="preserve">
     <value>Entitlement</value>
@@ -166,6 +166,6 @@
     <value>Int Name</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Status</value>
+    <value>Time Code</value>
   </data>
 </root>

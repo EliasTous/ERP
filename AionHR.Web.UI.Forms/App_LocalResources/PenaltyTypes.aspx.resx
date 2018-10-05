@@ -121,7 +121,7 @@
     <value>Absence</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Payroll Time Schedule Info</value>
+    <value>Penalty Type Info</value>
   </data>
   <data name="deductPeriod" xml:space="preserve">
     <value>Deduct Period</value>
@@ -181,7 +181,7 @@
     <value>Time Code</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Payroll Time Schedule</value>
+    <value>Penalty Type</value>
   </data>
   <data name="ActionSALARY_DEDUCTION" xml:space="preserve">
     <value>Salary Deduction</value>

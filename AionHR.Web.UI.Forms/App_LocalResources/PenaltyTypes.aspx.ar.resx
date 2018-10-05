@@ -121,7 +121,7 @@
     <value>غياب بإذن</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات المخالفات والجزاءات</value>
+    <value>معلومات المخالفات والجزاءات </value>
   </data>
   <data name="deductPeriod" xml:space="preserve">
     <value>فترة مخصومة</value>
@@ -133,7 +133,7 @@
     <value>تعديل تعميد نوع الغياب</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>تعديل الجدول الزمني</value>
+    <value>تعديل معلومات المخالفات والجزاءات</value>
   </data>
   <data name="FieldApproval" xml:space="preserve">
     <value>التعميد</value>
@@ -178,7 +178,7 @@
     <value>نوع الغياب</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>الجدول الزمني</value>
+    <value>معلومات المخالفات والجزاءات</value>
   </data>
   <data name="ActionSALARY_DEDUCTION" xml:space="preserve">
     <value>خصم راتب</value>
