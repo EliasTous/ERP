@@ -276,4 +276,7 @@
   <data name="workingHours" xml:space="preserve">
     <value>ساعات العمل </value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>جديد</value>
+  </data>
 </root>

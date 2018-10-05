@@ -12,7 +12,7 @@ namespace AionHR.Model.LeaveManagement
         public EmployeeName employeeName { get; set; }
         public string departmentName { get; set; }
         public int leaveId { get; set; }
-        public int employeeId { get; set; }
+        public int approverId { get; set; }
         public int status { get; set; }
         public string notes { get; set; }
         public string stringStatus { set; get; }

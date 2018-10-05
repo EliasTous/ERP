@@ -475,6 +475,33 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 0.
+        /// </summary>
+        internal static string InactivePref_ActiveOnly {
+            get {
+                return ResourceManager.GetString("InactivePref_ActiveOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        internal static string InactivePref_All {
+            get {
+                return ResourceManager.GetString("InactivePref_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        internal static string InactivePref_InactiveOnly {
+            get {
+                return ResourceManager.GetString("InactivePref_InactiveOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 2.
         /// </summary>
         internal static string LMLRStatusApproved {

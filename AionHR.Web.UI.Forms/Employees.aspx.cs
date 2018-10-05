@@ -530,7 +530,10 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", qv.ErrorCode) != null ? GetGlobalResourceObject("Errors", qv.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + qv.LogId : qv.Summary).Show();
                     return null;
                 }
-                qv.result.statusString = GetLocalResourceObject("EmployeeStatus" + qv.result.status).ToString();
+               if (qv.result.terminationDate!=null)
+                qv.result.statusString = GetLocalResourceObject("EmployeeStatus3").ToString();
+               else
+                    qv.result.statusString = GetLocalResourceObject("EmployeeStatus1").ToString();
 
 
 

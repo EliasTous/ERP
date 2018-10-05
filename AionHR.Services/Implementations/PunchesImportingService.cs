@@ -33,6 +33,7 @@ namespace AionHR.Services.Implementations
                   em.clockStamp = DateTime.Parse(row[1].ToString());
                  //em.clockStamp = DateTime.ParseExact(row[1].ToString(), "yyyy-MM-dd HH:mm:ss", new CultureInfo("en"));
                  em.udId = row[2].ToString();
+                em.serialNo = row[3].ToString();
 
 
 
@@ -42,9 +43,9 @@ namespace AionHR.Services.Implementations
             catch (Exception exp)
             {
 
-              
-           
-                exp.Source = row[0].ToString() + ";" + row[1].ToString() + ";" + row[3].ToString(); 
+
+
+                exp.Source = row[0].ToString() + ";" + row[1].ToString() + ";" + row[3].ToString() + ";" + row[3].ToString() + exp.Message;
                 throw exp;
             }
        

@@ -669,140 +669,145 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         protected void SaveJI(object sender, DirectEventArgs e)
         {
-
-
-            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string id = e.ExtraParams["id"];
-
-            string obj = e.ExtraParams["values"];
-            JobInfo b = JsonConvert.DeserializeObject<JobInfo>(obj);
-            b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
-            b.recordId = id;
-            b.date = new DateTime(b.date.Year, b.date.Month, b.date.Day, 14, 0, 0);
-
-
-
-            if (branchId.SelectedItem != null)
-                b.branchName = branchId.SelectedItem.Text;
-            if (departmentId.SelectedItem != null)
-                b.departmentName = departmentId.SelectedItem.Text;
-            if (positionId.SelectedItem != null)
-                b.positionName = positionId.SelectedItem.Text;
-            if (divisionId.SelectedItem != null)
-                b.divisionName = divisionId.SelectedItem.Text;
-
-            b.reportToName = new EmployeeName();
-            if (reportToId.SelectedItem != null)
-                b.reportToName.fullName = reportToId.SelectedItem.Text;
-            // Define the object to add or edit as null
-            if (b.reportToId == 0)
-                b.reportToId = null;
-            if (string.IsNullOrEmpty(id))
+            try
             {
 
-                try
+
+                //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+                string id = e.ExtraParams["id"];
+
+                string obj = e.ExtraParams["values"];
+                JobInfo b = JsonConvert.DeserializeObject<JobInfo>(obj);
+                b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+                b.recordId = id;
+                b.date = new DateTime(b.date.Year, b.date.Month, b.date.Day, 14, 0, 0);
+
+
+
+                if (branchId.SelectedItem != null)
+                    b.branchName = branchId.SelectedItem.Text;
+                if (departmentId.SelectedItem != null)
+                    b.departmentName = departmentId.SelectedItem.Text;
+                if (positionId.SelectedItem != null)
+                    b.positionName = positionId.SelectedItem.Text;
+                if (divisionId.SelectedItem != null)
+                    b.divisionName = divisionId.SelectedItem.Text;
+
+                b.reportToName = new EmployeeName();
+                if (reportToId.SelectedItem != null)
+                    b.reportToName.fullName = reportToId.SelectedItem.Text;
+                // Define the object to add or edit as null
+                if (b.reportToId == 0)
+                    b.reportToId = null;
+                if (string.IsNullOrEmpty(id))
                 {
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<JobInfo> request = new PostRequest<JobInfo>();
-                    request.entity = b;
-                    PostResponse<JobInfo> r = _employeeService.ChildAddOrUpdate<JobInfo>(request);
-                    b.recordId = r.recordId;
 
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
+                    try
                     {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
-                        return;
-                    }
-                    else
-                    {
+                        //New Mode
+                        //Step 1 : Fill The object and insert in the store 
+                        PostRequest<JobInfo> request = new PostRequest<JobInfo>();
+                        request.entity = b;
+                        PostResponse<JobInfo> r = _employeeService.ChildAddOrUpdate<JobInfo>(request);
+                        b.recordId = r.recordId;
 
-                        //Add this record to the store 
-                        this.JIStore.Insert(0, b);
-
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
+                        //check if the insert failed
+                        if (!r.Success)//it maybe be another condition
                         {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
+                            //Show an error saving...
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                            return;
+                        }
+                        else
+                        {
 
-                        this.EditJobInfoWindow.Close();
-                        RowSelectionModel sm = this.JobInfoGrid.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
+                            //Add this record to the store 
+                            this.JIStore.Insert(0, b);
 
-                      
+                            //Display successful notification
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordSavingSucc
+                            });
+
+                            this.EditJobInfoWindow.Close();
+                            RowSelectionModel sm = this.JobInfoGrid.GetSelectionModel() as RowSelectionModel;
+                            sm.DeselectAll();
+                            sm.Select(b.recordId.ToString());
+
+
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //Error exception displaying a messsage box
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    }
+
+
+                }
+                else
+                {
+                    //Update Mode
+
+                    try
+                    {
+                        int index = Convert.ToInt32(id);//getting the id of the record
+                        PostRequest<JobInfo> request = new PostRequest<JobInfo>();
+                        request.entity = b;
+                        PostResponse<JobInfo> r = _employeeService.ChildAddOrUpdate<JobInfo>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+
+                        //Step 2 : saving to store
+
+                        //Step 3 :  Check if request fails
+                        if (!r.Success)//it maybe another check
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                            return;
+                        }
+                        else
+                        {
+
+
+                            ModelProxy record = this.JIStore.GetById(index);
+                            EditJobInfoTab.UpdateRecord(record);
+                            record.Set("departmentName", b.departmentName);
+                            record.Set("branchName", b.branchName);
+                            record.Set("positionName", b.positionName);
+                            record.Set("divisionName", b.divisionName);
+                            record.Set("reportToName", b.reportToName);
+                            record.Commit();
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordUpdatedSucc
+                            });
+                            this.EditJobInfoWindow.Close();
+
+
+                        }
 
                     }
-                }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    catch (Exception ex)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                    }
                 }
 
+                X.Call("parent.refreshQV");
 
-            }
-            else
+            }catch(Exception exp)
             {
-                //Update Mode
-
-                try
-                {
-                    int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<JobInfo> request = new PostRequest<JobInfo>();
-                    request.entity = b;
-                    PostResponse<JobInfo> r = _employeeService.ChildAddOrUpdate<JobInfo>(request);                      //Step 1 Selecting the object or building up the object for update purpose
-
-                    //Step 2 : saving to store
-
-                    //Step 3 :  Check if request fails
-                    if (!r.Success)//it maybe another check
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
-                        return;
-                    }
-                    else
-                    {
-
-
-                        ModelProxy record = this.JIStore.GetById(index);
-                        EditJobInfoTab.UpdateRecord(record);
-                        record.Set("departmentName", b.departmentName);
-                        record.Set("branchName", b.branchName);
-                        record.Set("positionName", b.positionName);
-                        record.Set("divisionName", b.divisionName);
-                        record.Set("reportToName", b.reportToName);
-                        record.Commit();
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                        });
-                        this.EditJobInfoWindow.Close();
-
-
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                }
+                X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
             }
-
-            X.Call("parent.refreshQV");
-           
-
 
         }
 

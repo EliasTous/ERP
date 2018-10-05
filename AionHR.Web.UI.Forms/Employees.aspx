@@ -198,9 +198,9 @@
                                 </ext:Button>
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="inactivePref" Editable="false" FieldLabel="<%$ Resources: Filter %>">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: All %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: ActiveOnly %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: InactiveOnly %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: All %>" Value="<%$ Resources:ComboBoxValues, InactivePref_All %>"/>
+                                        <ext:ListItem Text="<%$ Resources: ActiveOnly %>" Value="<%$ Resources:ComboBoxValues, InactivePref_ActiveOnly %>" />
+                                        <ext:ListItem Text="<%$ Resources: InactiveOnly %>" Value="<%$ Resources:ComboBoxValues, InactivePref_InactiveOnly %>" />
                                     </Items>
                                  
                                 </ext:ComboBox>

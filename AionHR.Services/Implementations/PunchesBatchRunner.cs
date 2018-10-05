@@ -19,12 +19,16 @@ namespace AionHR.Services.Implementations
    public class PunchesBatchRunner: ImportBatchRunner<Check>
     {
         ITimeAttendanceService timeAttendance;
+        IEmployeeService employee; 
         Dictionary<string, int> udId;
+        //Dictionary<string, int> employeeId;
         Dictionary<string, string> arabicErrors;
+      
 
         public PunchesBatchRunner(ISessionStorage store, IEmployeeService employee, ISystemService system, ITimeAttendanceService timeAttendance,Dictionary<string,string> arabicErrors) :base(system, employee)
         {
             this.timeAttendance = timeAttendance;
+            this.employee = employee;
             this.SessionStore = store;
             SessionHelper h = new SessionHelper(store, new APIKeyBasedTokenGenerator());
 
@@ -33,6 +37,8 @@ namespace AionHR.Services.Implementations
             errors = new List<Check>();
             udId = new Dictionary<string, int>();
             this.arabicErrors = arabicErrors;
+            //this.InactivePref = InactivePref;
+            //this.NameFormat = NameFormat;
             FillUdId();
 
             //FillCaId();
@@ -61,13 +67,12 @@ namespace AionHR.Services.Implementations
         {
             //if (udId.ContainsKey(item.udIdRef))
             //    item.udId = udId[item.udIdRef].ToString();
-            item.udIdRef = null;
-            item.authMode = 3;
-            item.lon = 0;
-            item.lat = 0;
-            item.hasImage = 0;
-            item.ip = "0.0.0.0";
+            //else
+            //    item.udId = item.udIdRef; 
 
+            //item.udIdRef = null;
+            
+        
          
           
         }
@@ -99,6 +104,49 @@ namespace AionHR.Services.Implementations
             ListResponse<BiometricDevice> BdResponse = timeAttendance.ChildGetAll<BiometricDevice>(request);
             BdResponse.Items.ForEach(x => this.udId.Add(x.reference, Convert.ToInt32(x.recordId)));
         }
+        //private void FillEmployeeId()
+        //{
+        //    EmployeeListRequest empRequest = GetEmployeeRequest();
+
+
+
+
+        //    ListResponse<Employee> emps = employee.GetAll<Employee>(empRequest);
+        //    emps.Items.ForEach(x => this.employeeId.Add(x.reference, Convert.ToInt32(x.recordId)));
+        //}
+        //private EmployeeListRequest GetEmployeeRequest()
+        //{
+          
+        //    EmployeeListRequest empRequest = new EmployeeListRequest();
+
+        //    empRequest.IncludeIsInactive =Convert.ToInt32( InactivePref);
+            
+
+          
+        //    empRequest.BranchId =  "0";
+        //    empRequest.DepartmentId = "0";
+        //    empRequest.filterField = "0";
+        //    //empRequest.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
+        //    //empRequest.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value.ToString() : "0";
+
+
+
+        //    empRequest.SortBy = NameFormat;
+        
+        //        empRequest.SortBy = "reference";
+          
+            
+        //        empRequest.Size = "100000";
+        //        empRequest.StartAt = "0";
+
+
+
+
+        //    empRequest.Filter = "";
+
+        //    return empRequest;
+        //}
+       
 
 
     }

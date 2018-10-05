@@ -29,6 +29,7 @@ using AionHR.Model.TimeAttendance;
 using AionHR.Services.Messaging.Reports;
 using AionHR.Model.Dashboard;
 using AionHR.Services.Messaging.TimeAttendance;
+using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -219,10 +220,16 @@ namespace AionHR.Web.UI.Forms
             reqTV.BranchId = jobInfo1.GetJobInfo().BranchId==null ? reqTV.BranchId=0 : jobInfo1.GetJobInfo().BranchId; 
             reqTV.DepartmentId= jobInfo1.GetJobInfo().DepartmentId==null ? reqTV.DepartmentId=0: jobInfo1.GetJobInfo().DepartmentId;
             reqTV.DivisionId= jobInfo1.GetJobInfo().DivisionId==null?reqTV.DivisionId=0 :jobInfo1.GetJobInfo().DivisionId;
-           reqTV.PositionId = jobInfo1.GetJobInfo().PositionId == null ? reqTV.PositionId = 0 : jobInfo1.GetJobInfo().PositionId;
+             reqTV.PositionId = jobInfo1.GetJobInfo().PositionId == null ? reqTV.PositionId = 0 : jobInfo1.GetJobInfo().PositionId;
             reqTV.EsId =string.IsNullOrEmpty(esId.Value.ToString()) ? reqTV.EsId=0 :Convert.ToInt32( esId.Value);
             reqTV.fromDayId = dateRange1.GetRange().DateFrom;
             reqTV.toDayId = dateRange1.GetRange().DateTo;
+            if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
+                {
+                timeVariationType.Select(ConstTimeVariationType.LATE_CHECKIN.ToString());
+                reqTV.timeVariationType = ConstTimeVariationType.LATE_CHECKIN.ToString();
+            }
+            else
             reqTV.timeVariationType = timeVariationType.Value.ToString();
 
           

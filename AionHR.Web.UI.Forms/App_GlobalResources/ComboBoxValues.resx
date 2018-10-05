@@ -426,4 +426,13 @@
   <data name="TimeVariationType_SHIFT_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
     <value>21</value>
   </data>
+  <data name="InactivePref_ActiveOnly" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="InactivePref_All" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="InactivePref_InactiveOnly" xml:space="preserve">
+    <value>1</value>
+  </data>
 </root>
