@@ -132,6 +132,8 @@
                            <ext:ModelField Name="damageLevel" />
                          <ext:ModelField Name="recordId" />
                            <ext:ModelField Name="damageLevelString" />
+                        <ext:ModelField Name="dayIdDate" />
+                            <ext:ModelField Name="dayId" />
                       
                                          
                         
@@ -193,8 +195,9 @@
                                     </Content>
 
                                 </ext:Container>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeVariationType" runat="server" EmptyText="<%$ Resources:FieldTimeVariationType%>" Name="timeVariationType" IDMode="Static" SubmitValue="true" MaxWidth="100">
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeVariationType" runat="server" EmptyText="<%$ Resources:FieldTimeVariationType%>" Name="timeVariationType" IDMode="Static" SubmitValue="true" MaxWidth="120">
                                     <Items>
+                                       <ext:ListItem Text="<%$ Resources:Common ,  All %>" Value="0"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  UnpaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_UNPAID_LEAVE %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  PaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_PAID_LEAVE %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  SHIFT_LEAVE_WITHOUT_EXCUSE %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_SHIFT_LEAVE_WITHOUT_EXCUSE %>" ></ext:ListItem>
@@ -205,7 +208,7 @@
                                         <ext:ListItem Text="<%$ Resources:Common ,  EARLY_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_CHECKIN %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  OVERTIME %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_OVERTIME %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  MISSED_PUNCH %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_MISSED_PUNCH %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: Common , COUNT %>" Value="<%$ Resources: ComboBoxValues , TimeVariationType_COUNT %>"></ext:ListItem>
+                                      
                                       
                                     </Items>
                                   
@@ -243,9 +246,12 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="true">
                         <Columns>
                               <ext:Column ID="ColRecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Visible="false" />
-                            <ext:Column ID="ColDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayId" Flex="2" Hideable="false">
-                                <Renderer Handler=" var d = moment(record.data['dayId']);  return d.format(App.format.value);" />
-                            </ext:Column>
+                          <%--  <ext:Column ID="ColDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayId" Flex="2" Hideable="false">
+                                <Renderer Handler=" var d = moment(record.data['dayId']);   return d.format(App.format.value);" />
+                            </ext:Column>--%>
+                               <ext:DateColumn ID="ColDayId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayIdDate" Flex="2" Hideable="false">
+                              
+                            </ext:DateColumn>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">
                                 <Renderer Handler="return record.data['employeeName'].fullName;" />
                         
@@ -383,7 +389,10 @@
                                   <ext:Parameter Name="duration" Value="record.data['duration']" Mode="Raw" />
                                   <ext:Parameter Name="damage" Value="record.data['damageLevel']" Mode="Raw" />
                                    <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
-                                   <ext:Parameter Name="EmployeeId" Value="record.data['employeeId']" Mode="Raw" />
+                                   <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
+                                  <ext:Parameter Name="timeCode" Value="record.data['timeCode']" Mode="Raw" />
+
+                                  <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 

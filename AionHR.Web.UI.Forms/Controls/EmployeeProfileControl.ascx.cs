@@ -724,7 +724,7 @@ namespace AionHR.Web.UI.Forms
                         request.entity = b;
 
 
-
+                        request.entity.reference = request.entity.reference.Trim();
                         PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
                         CurrentEmployeeFullName.Text = b.name.fullName;
                         b.recordId = r.recordId;
@@ -812,8 +812,8 @@ namespace AionHR.Web.UI.Forms
                         request.entity = b;
 
 
-
-                        PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
+                    request.entity.reference = request.entity.reference.Trim();
+                    PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
 
                         //Step 2 : saving to store
 

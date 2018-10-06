@@ -1545,7 +1545,7 @@ namespace AionHR.Web.UI.Forms
                 PostRequest<DashboardLeave> request = new PostRequest<DashboardLeave>();
                 request.entity = new DashboardLeave();
                 request.entity.leaveId = Convert.ToInt32(LV.recordId);
-                request.entity.employeeId = Convert.ToInt32(userSessionEmployeeId.Text);
+                request.entity.approverId = Convert.ToInt32(userSessionEmployeeId.Text);
                 request.entity.status = LV.status;
                 if (!string.IsNullOrEmpty(LV.returnNotes))
                     request.entity.notes = LV.returnNotes;
@@ -1944,7 +1944,7 @@ namespace AionHR.Web.UI.Forms
                 TVReq.DepartmentId = req.DepartmentId;
                 TVReq.DivisionId = req.DivisionId;
                 TVReq.EsId = req.EsId;
-                TVReq.timeVariationType = CurrentTimeVariationType.Text;
+                TVReq.timeCode = CurrentTimeVariationType.Text;
                 TVReq.fromDayId = DateTime.Now;
                 TVReq.toDayId = DateTime.Now;
                 TVReq.PositionId = req.PositionId;

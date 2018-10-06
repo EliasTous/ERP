@@ -2011,7 +2011,9 @@
                                                                 <ext:GridView ID="GridView11" runat="server" />
                                                             </View>
 
-
+                                                            <Listeners>
+                                                                <Activate Handler="#{LeaveRequestsStore}.reload();" />
+                                                            </Listeners>
                                                             <SelectionModel>
                                                                 <ext:RowSelectionModel ID="rowSelectionModel10" runat="server" Mode="Single" StopIDModeInheritance="true" />
                                                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>

@@ -1277,7 +1277,7 @@ namespace AionHR.Web.UI.Forms.Controls
             if (_systemService.SessionHelper.GetEmployeeId() != null /*&& response.result.requireApproval == false*/)
             {
                 PostRequest<DashboardLeave> DBRequset = new PostRequest<DashboardLeave>();
-                DBRequset.entity = new DashboardLeave() { leaveId = Convert.ToInt32(b.recordId), employeeId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId()), status = b.status, notes = " " };
+                DBRequset.entity = new DashboardLeave() { leaveId = Convert.ToInt32(b.recordId), approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId()), status = b.status, notes = " " };
                 PostResponse<DashboardLeave> DBResponse = _leaveManagementService.ChildAddOrUpdate<DashboardLeave>(DBRequset);
                 if (!DBResponse.Success)
                 {

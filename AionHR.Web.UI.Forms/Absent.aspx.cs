@@ -85,9 +85,11 @@ namespace AionHR.Web.UI.Forms
                 dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                 FillStatus();
                 timeVariationType.Select(0);
+                ColDayId.Format = _systemService.SessionHelper.GetDateformat(); 
 
 
-               
+
+
 
 
             }
@@ -227,10 +229,10 @@ namespace AionHR.Web.UI.Forms
             if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
                 {
                 timeVariationType.Select(ConstTimeVariationType.LATE_CHECKIN.ToString());
-                reqTV.timeVariationType = ConstTimeVariationType.LATE_CHECKIN.ToString();
+                reqTV.timeCode = ConstTimeVariationType.LATE_CHECKIN.ToString();
             }
             else
-            reqTV.timeVariationType = timeVariationType.Value.ToString();
+            reqTV.timeCode = timeVariationType.Value.ToString();
 
           
          
@@ -262,7 +264,7 @@ namespace AionHR.Web.UI.Forms
                     x.timeCodeString = FillTimeCode(x.timeCode);
                     x.apStatusString = FillApprovalStatus(x.apStatus);
                     x.damageLevelString = FillDamageLevelString(x.damageLevel);
-
+                    x.dayIdDate = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"));
                 }
                 );
             Store1.DataSource = daysResponse.Items;
@@ -524,10 +526,12 @@ namespace AionHR.Web.UI.Forms
             try {
 
                 string id = e.ExtraParams["id"];
-                int dayId = Convert.ToInt32(e.ExtraParams["dayId"]);
+                int dayId =Convert.ToInt32( e.ExtraParams["dayId"]);
                 int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
                 string damageLavel = e.ExtraParams["damage"];
                 string durationValue = e.ExtraParams["duration"];
+                string timeCode = e.ExtraParams["timeCode"];
+                string shiftId = e.ExtraParams["shiftId"];
 
                 string type = e.ExtraParams["type"];
 
@@ -570,7 +574,7 @@ namespace AionHR.Web.UI.Forms
                         break;
 
                     case "LinkRender":
-                        FillTimeApproval(dayId, employeeId);
+                        FillTimeApproval(dayId, employeeId,timeCode,shiftId);
                         TimeApprovalWindow.Show();
 
                         break;
@@ -674,7 +678,7 @@ namespace AionHR.Web.UI.Forms
             }
             return R; 
         }
-        protected void FillTimeApproval(int dayId, int employeeId)
+        protected void FillTimeApproval(int dayId, int employeeId,string timeCode, string shiftId)
         {
             try
             {
@@ -682,6 +686,9 @@ namespace AionHR.Web.UI.Forms
                 r.dayId = dayId.ToString();
                 r.employeeId = employeeId;
                 r.approverId = 0;
+                r.timeCode = timeCode;
+                r.shiftId = shiftId;
+
 
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
@@ -692,7 +699,8 @@ namespace AionHR.Web.UI.Forms
                 }
                 Times.Items.ForEach(x =>
                 {
-                    x.timeCodeString = GetLocalResourceObject(x.timeCode + "text").ToString();
+                    x.timeCodeString = FillTimeCode(Convert.ToInt32( x.timeCode));
+                  
                     switch (x.status)
                     {
                         case 1:

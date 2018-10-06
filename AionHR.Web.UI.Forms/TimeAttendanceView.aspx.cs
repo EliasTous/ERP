@@ -530,11 +530,9 @@ namespace AionHR.Web.UI.Forms
             req.StartAt = "1";
             req.Filter = "";
             req.SortBy = "dayId,checkIn";
-            if (string.IsNullOrEmpty(apStatus.Value.ToString()))
-                  req.apStatus = 0;
-            else
-                req.apStatus = Convert.ToInt32(apStatus.Value);  
-
+          
+           req.apStatus = 0;
+         
 
             return req;
         }
@@ -577,8 +575,11 @@ namespace AionHR.Web.UI.Forms
                 int hoursWorked = 0, minsWorked = 0, hoursBreak, minsBrea = 0;
                 daysResponse.Items.ForEach(x =>
                 {
-                    hoursWorked += Convert.ToInt32(x.workingTime.Substring(0, 2));
-                    minsWorked += Convert.ToInt32(x.workingTime.Substring(3, 2));
+                    if (!string.IsNullOrEmpty(x.workingTime))
+                    {
+                        hoursWorked += Convert.ToInt32(x.workingTime.Substring(0, 2));
+                        minsWorked += Convert.ToInt32(x.workingTime.Substring(3, 2));
+                    }
                     if (!string.IsNullOrEmpty(x.breaks))
                     {
                         if (x.breaks[0] == '-')

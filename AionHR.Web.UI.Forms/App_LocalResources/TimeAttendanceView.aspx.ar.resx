@@ -306,4 +306,13 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>الموظفين</value>
   </data>
+  <data name="FieldDuration" xml:space="preserve">
+    <value>المدة</value>
+  </data>
+  <data name="FieldNetOL" xml:space="preserve">
+    <value>صافي العمل الإضافي والتأخير</value>
+  </data>
+  <data name="FieldWorkingTime" xml:space="preserve">
+    <value>وقت العمل</value>
+  </data>
 </root>

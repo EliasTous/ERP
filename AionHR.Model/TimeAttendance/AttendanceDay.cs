@@ -50,7 +50,7 @@ namespace AionHR.Model.Attendance
         public string scName { get; set; }
         public short apStatus { get; set; }
         public string apStatusString { get; set; }
-
+        public short duration { get; set; }
 
         public int netOL { get; set; }
         public string OL_A { get; set; }

@@ -127,6 +127,8 @@
                         <ext:ModelField Name="apStatus" />
                            <ext:ModelField Name="apStatusString" />
 
+                          <ext:ModelField Name="duration" />
+
                         <ext:ModelField Name="netOL" />
 
 
@@ -210,7 +212,7 @@
                                         <FocusLeave Handler="#{Store1}.reload()" />
                                     </Listeners>
                                 </ext:DateField>
-                                 <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
+                              <%--   <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
                                     EmptyText="<%$ Resources: FieldStatus %>">
                                     <Items>
 
@@ -219,7 +221,7 @@
                                         <ext:ListItem Text="<%$ Resources: FieldApptoved %>" Value="2" />
                                     </Items>
 
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
 
                                 <ext:Button runat="server" Text="<%$ Resources: Common,Go%>" Width="100">
                                     <Listeners>
@@ -267,31 +269,34 @@
                             </ext:Column>
 
                             <ext:Column ID="ColCheckIn" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCheckIn%>" DataIndex="checkIn" Flex="2" Hideable="false">
-                                <Renderer Handler=" var olA = ''; if(record.data['OL_A']=='00:00') olA=''; else olA= record.data['OL_A']; var cssClass='';if(record.data['OL_A'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkIn'] + '<br/>' + olA + '</div>'; return result;" />
+                                <Renderer Handler=" var olA = ''; if(record.data['OL_A']==null) return record.data['checkIn'];if(record.data['OL_A']=='00:00') olA=''; else olA= record.data['OL_A']; var cssClass='';if(record.data['OL_A'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkIn'] + '<br/>' + olA + '</div>'; return result;" />
                                 <SummaryRenderer Handler="return '<hr/>';" />
                             </ext:Column>
 
                             <ext:Column ID="ColCheckOut" Sortable="true" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCheckOut%>" DataIndex="checkOut" Flex="2" Hideable="false">
-                                <Renderer Handler="var olD = ''; if(record.data['OL_D']=='00:00') olD=''; else olD= record.data['OL_D']; var cssClass='';if(record.data['OL_D'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkOut'] + '<br/>' + olD + '</div>'; return result;" />
+                                <Renderer Handler="var olD = '';if(record.data['OL_D']==null) return record.data['checkOut'] ; if(record.data['OL_D']=='00:00') olD=''; else olD= record.data['OL_D']; var cssClass='';if(record.data['OL_D'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkOut'] + '<br/>' + olD + '</div>'; return result;" />
                                 <SummaryRenderer Handler="return '<hr/>';" />
                             </ext:Column>
+                             <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDuration%>" DataIndex="duration" Flex="1" Hideable="false" />
+                           
 
-
-                            <ext:Column SummaryType="None" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHoursWorked%>" DataIndex="hoursWorked" Flex="2" Hideable="false">
-                                <Renderer Handler="var olN = ''; if(record.data['OL_N']=='00:00') olN=''; else olN= record.data['OL_N']; var cssClass='';if(record.data['OL_N'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['workingTime'] + '<br/>' + olN + '</div>'; return result;" />
+                           <ext:Column SummaryType="None" ID="ColworkingTime" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHoursWorked%>" DataIndex="workingTime" Flex="2" Hideable="false">
+                                <Renderer Handler="var olN = '';if(record.data['OL_N']==null) return record.data['workingTime'];  if(record.data['OL_N']=='00:00') olN=''; else olN= record.data['OL_N']; var cssClass='';if(record.data['OL_N'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['workingTime'] + '<br/>' + olN + '</div>'; return result;" />
                                 <SummaryRenderer Handler="return document.getElementById('total').innerHTML+ ' ' + #{HoursWorked}.value;" />
                             </ext:Column>
 
 
-                            <ext:Column ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBreaks%>" DataIndex="breaks" Flex="2" Hideable="false">
+                           <%-- <ext:Column ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBreaks%>" DataIndex="breaks" Flex="2" Hideable="false">
                                 <Renderer Handler="var olB = ''; if(record.data['OL_B']=='00:00') olB=''; else olB= record.data['OL_B'];var cssClass='';if(record.data['OL_B'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['breaks'] + '<br/>' + olB + '</div>'; return result;" />
                                 <SummaryRenderer Handler="return document.getElementById('totalBreaks').innerHTML+ ' ' + #{TotalBreaksText}.value;" />
-                            </ext:Column>
+                            </ext:Column>--%>
 
-                              <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldStatus%>" DataIndex="apStatusString" Flex="1" Hideable="false">
+                             <%-- <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldStatus%>" DataIndex="apStatusString" Flex="1" Hideable="false">
                                
                             <Renderer Handler="return LinkRender(value, metadata, record, rowIndex,  colIndex, store,record.data['apStatusString']);" />
-                            </ext:Column>
+                            </ext:Column>--%>
+                               <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNetOL%>" DataIndex="netOL" Flex="1" Hideable="false" />
+
 
                             <ext:Column runat="server"
                                 ID="colEdit" Visible="true"

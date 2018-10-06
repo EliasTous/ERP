@@ -10,7 +10,7 @@ namespace AionHR.Model.TimeAttendance
 
     {
         public int employeeId { get; set; }
-        public string startingDate { get; set; }
-        public string endingDate { get; set; }
+        public string fromDayId { get; set; }
+        public string toDayId { get; set; }
     }
 }

@@ -1048,7 +1048,7 @@
     <value>Attendance Schedule Generated Successfully</value>
   </data>
   <data name="GenerateAttendanceDays" xml:space="preserve">
-    <value>Generate Attendance Schedule</value>
+    <value>Generate Flat Schedule</value>
   </data>
   <data name="GovernmentOrganisations" xml:space="preserve">
     <value>Government Organisations</value>

@@ -309,4 +309,13 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>
   </data>
+  <data name="FieldDuration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="FieldNetOL" xml:space="preserve">
+    <value>Day Net </value>
+  </data>
+  <data name="FieldWorkingTime" xml:space="preserve">
+    <value>Working Time</value>
+  </data>
 </root>

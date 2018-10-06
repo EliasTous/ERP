@@ -1048,7 +1048,7 @@
     <value>تم انشاء الحضور بنجاح </value>
   </data>
   <data name="GenerateAttendanceDays" xml:space="preserve">
-    <value> انشاء الحضور </value>
+    <value>إنشاء جداول الدوام</value>
   </data>
   <data name="GovernmentOrganisations" xml:space="preserve">
     <value>هيئات حكومية</value>
@@ -1246,10 +1246,10 @@
     <value>انواع الغياب</value>
   </data>
   <data name="DAY_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
-    <value>مغادرة خلال يوم العمل بدون عذر</value>
+    <value>مغادرة خلال يوم العمل </value>
   </data>
   <data name="SHIFT_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
-    <value>مغادرة خلال ساعات العمل بدون عذر</value>
+    <value>مغادرة خلال ساعات العمل </value>
   </data>
   <data name="TimeVariationType" xml:space="preserve">
     <value>انواع التأخير</value>

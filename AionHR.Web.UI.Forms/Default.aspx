@@ -529,22 +529,22 @@
                                                                             </Listeners>
                                                                         </ext:MenuItem>
 
-                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , SynchronizeAttendanceDays%>">
+                                                                      <%--  <ext:MenuItem runat="server" Text="<%$Resources: Common , SynchronizeAttendanceDays%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('otSettings', 'SynchronizeAttendanceDays.aspx',#{SADTitle}.value , 'icon-Employees')" />
                                                                             </Listeners>
-                                                                        </ext:MenuItem>
+                                                                        </ext:MenuItem>--%>
 
-                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , GenerateAttendanceShift%>">
+                                                                       <%--  <ext:MenuItem runat="server" Text="<%$Resources: Common , GenerateAttendanceShift%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('otSettings', 'GenerateAttendanceShifts.aspx',#{GASTitle}.value , 'icon-Employees')" />
                                                                             </Listeners>
-                                                                        </ext:MenuItem>
-                                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common , DeleteAllBranchAttendance%>">
+                                                                        </ext:MenuItem>--%>
+                                                                        <%--  <ext:MenuItem runat="server" Text="<%$Resources: Common , DeleteAllBranchAttendance%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('otSettings', 'DeleteBranchAttendance.aspx',#{DBATitle}.value , 'icon-Employees')" />
                                                                             </Listeners>
-                                                                        </ext:MenuItem>
+                                                                        </ext:MenuItem>--%>
                                                                     </Items>
                                                                 </ext:Menu>
                                                             </Menu>

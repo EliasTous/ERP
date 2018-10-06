@@ -10,7 +10,7 @@ namespace AionHR.Model.Dashboard
     {
        
         public int leaveId { get; set; }
-        public int employeeId { get; set; }
+        public int approverId { get; set; }
         public short status { get; set; }
         public string notes { get; set; }
 

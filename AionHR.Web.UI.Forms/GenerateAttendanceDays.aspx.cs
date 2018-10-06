@@ -114,8 +114,8 @@ namespace AionHR.Web.UI.Forms
             GenerateAttendanceDay GD = new GenerateAttendanceDay(); 
             PostRequest<GenerateAttendanceDay> request = new PostRequest<GenerateAttendanceDay>();
             GD.employeeId = Convert.ToInt32(employeeFilter.Value); 
-            GD.startingDate = startingDate.SelectedDate.ToString("yyyyMMdd");
-            GD.endingDate = endingDate.SelectedDate.ToString("yyyyMMdd");
+            GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
+            GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
             request.entity = GD;
 
 
@@ -262,17 +262,17 @@ namespace AionHR.Web.UI.Forms
                 //if (HttpRuntime.Cache["TotalRecords"] != null)
                 //    HttpRuntime.Cache.Remove("TotalRecords");
                 //HttpRuntime.Cache["TotalRecords"] = emps.count;
-                HttpRuntime.Cache.Insert("TotalRecordsGenAD", emps.count -1 );
+                HttpRuntime.Cache.Insert("TotalRecordsGenAD", emps.Items.Count  );
 
 
                 GenerateAttendanceDay GD = new GenerateAttendanceDay();
                 PostRequest<GenerateAttendanceDay> request = new PostRequest<GenerateAttendanceDay>();
-                int i = 0;
+                int i = 1;
                 emps.Items.ForEach(x =>
                 {
                     GD.employeeId = Convert.ToInt32(x.recordId);
-                    GD.startingDate = startingDate.SelectedDate.ToString("yyyyMMdd");
-                    GD.endingDate = endingDate.SelectedDate.ToString("yyyyMMdd");
+                    GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
+                    GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
                     request.entity = GD;
                     PostResponse<GenerateAttendanceDay> resp = _time.ChildAddOrUpdate<GenerateAttendanceDay>(request);
 
@@ -281,7 +281,7 @@ namespace AionHR.Web.UI.Forms
 
                         //X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         //X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                        //throw new Exception();
+                        throw new Exception(GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary,new Exception (resp.LogId));
 
                     }
                     //if (HttpRuntime.Cache["LongActionProgress"] != null)
@@ -300,7 +300,7 @@ namespace AionHR.Web.UI.Forms
             catch (Exception exp)
             {
                 HttpRuntime.Cache.Insert("ErrorMsgGenAD", exp.Message);
-                HttpRuntime.Cache.Insert("ErrorLogIdGenAD", exp.Message);
+                HttpRuntime.Cache.Insert("ErrorLogIdGenAD", exp.InnerException.Message);
 
             }
 
@@ -320,8 +320,8 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            if (HttpRuntime.Cache["LongActionProgressGenAD"] != null && HttpRuntime.Cache["TotalRecordsGenAD"] != null)
-            {
+         
+        
                
              
 
@@ -341,21 +341,26 @@ namespace AionHR.Web.UI.Forms
                     processing.Text = "0";
                     return;
                 }
+               
+            if (HttpRuntime.Cache["LongActionProgressGenAD"] != null && HttpRuntime.Cache["TotalRecordsGenAD"] != null)
+            {
                 progress = float.Parse((HttpRuntime.Cache["TotalRecordsGenAD"].ToString())) / 100;
                 if (HttpRuntime.Cache["LongActionProgressGenAD"].ToString() != HttpRuntime.Cache["TotalRecordsGenAD"].ToString())
                 {
                     this.Progress1.UpdateProgress(100, string.Format(GetGlobalResourceObject("Common", "Step").ToString(), HttpRuntime.Cache["LongActionProgressGenAD"].ToString(), HttpRuntime.Cache["TotalRecordsGenAD"]));
                 }
+            }
                 if (HttpRuntime.Cache["finishedGenAD"] != null)
                 {
                     if (HttpRuntime.Cache.Get("finishedGenAD").ToString() == "1")
                     {
 
 
+                   
+                    this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", TaskManager1.ClientID);
+                    this.Progress1.UpdateProgress(100, string.Format(GetGlobalResourceObject("Common", "Step").ToString(), HttpRuntime.Cache["LongActionProgressGenAD"].ToString(), HttpRuntime.Cache["TotalRecordsGenAD"]));
 
-                        this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", TaskManager1.ClientID);
-
-                        X.Msg.Alert("", GetGlobalResourceObject("Common", "GenerateAttendanceDaySucc").ToString()).Show();
+                    X.Msg.Alert("", GetGlobalResourceObject("Common", "GenerateAttendanceDaySucc").ToString()).Show();
                         HttpRuntime.Cache.Remove("LongActionProgressGenAD");
                         HttpRuntime.Cache.Remove("TotalRecordsGenAD");
                         HttpRuntime.Cache.Remove("ErrorMsgGenAD");
@@ -365,7 +370,7 @@ namespace AionHR.Web.UI.Forms
                         return;
 
                     }
-                }
+                
             }
         }
     }

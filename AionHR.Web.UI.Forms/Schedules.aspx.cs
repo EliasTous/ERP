@@ -882,6 +882,8 @@ namespace AionHR.Web.UI.Forms
                 //getting the id of the record
                 PostRequest<AttendanceScheduleDay> modifyHeaderRequest = new PostRequest<AttendanceScheduleDay>();
                 modifyHeaderRequest.entity = day;
+                if (string.IsNullOrEmpty(modifyHeaderRequest.entity.duration))
+                    modifyHeaderRequest.entity.duration = "0";
                 PostResponse<AttendanceScheduleDay> r = _branchService.ChildAddOrUpdate<AttendanceScheduleDay>(modifyHeaderRequest);                   //Step 1 Selecting the object or building up the object for update purpose
                 if (!r.Success)//it maybe another check
                 {

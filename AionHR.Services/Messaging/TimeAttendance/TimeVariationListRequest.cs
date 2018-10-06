@@ -11,7 +11,7 @@ namespace AionHR.Services.Messaging
     {
 
 
-        public string timeVariationType { get; set; }
+        public string timeCode { get; set; }
         
         public DateTime fromDayId { get; set; }
 
@@ -24,7 +24,7 @@ namespace AionHR.Services.Messaging
             {
                 parameters = base.Parameters;
 
-                parameters.Add("_timeVariationType", timeVariationType);
+                parameters.Add("_timeCode", timeCode);
                 parameters.Add("_fromDayId",fromDayId.ToString("yyyyMMdd"));
                 parameters.Add("_toDayId", toDayId.ToString("yyyyMMdd"));
 
