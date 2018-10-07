@@ -138,6 +138,9 @@
   <data name="ErrorMsg" xml:space="preserve">
     <value>Error Message : </value>
   </data>
+  <data name="Error_1" xml:space="preserve">
+    <value>Error in the returned  structure from web service</value>
+  </data>
   <data name="Error_10001" xml:space="preserve">
     <value>API_KEY_AUTHENTICATION_ERROR</value>
   </data>

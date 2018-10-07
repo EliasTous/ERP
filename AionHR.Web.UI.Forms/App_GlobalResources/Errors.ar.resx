@@ -138,6 +138,9 @@
   <data name="ErrorMsg" xml:space="preserve">
     <value>رسالة الخطأ : </value>
   </data>
+  <data name="Error_1" xml:space="preserve">
+    <value>خطأ في هيكلية القادمة من الخدمة المطلوبة </value>
+  </data>
   <data name="Error_10001" xml:space="preserve">
     <value />
   </data>

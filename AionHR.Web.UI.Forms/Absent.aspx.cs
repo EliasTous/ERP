@@ -700,17 +700,8 @@ namespace AionHR.Web.UI.Forms
                 Times.Items.ForEach(x =>
                 {
                     x.timeCodeString = FillTimeCode(Convert.ToInt32( x.timeCode));
-                  
-                    switch (x.status)
-                    {
-                        case 1:
-                            x.statusString = GetLocalResourceObject("FieldApproved").ToString();
-                            break;
-                        case 2:
-                            x.statusString = GetLocalResourceObject("FieldPending").ToString(); 
-                            break;
 
-                    }
+                    x.statusString = FillApprovalStatus(x.status);
                 });
 
                 TimeStore.DataSource = Times.Items;

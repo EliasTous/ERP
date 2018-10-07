@@ -60,6 +60,9 @@
                           <ext:ModelField Name="timeCodeString" />
                           <ext:ModelField Name="edId" />
                           <ext:ModelField Name="apId" />
+                           <ext:ModelField Name="edName" />
+                           <ext:ModelField Name="apName" />
+                           <ext:ModelField Name="edTypeString" />
                           <ext:ModelField Name="gracePeriod" />
 
 
@@ -168,7 +171,17 @@
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeCode%>" DataIndex="timeCodeString" Flex="2" Hideable="false">
                     
                                 </ext:Column>
-                                <ext:Column    CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldGracePeriod%>" DataIndex="gracePeriod" Flex="2" Hideable="false">
+                               
+                               <ext:Column    CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEdId%>" DataIndex="edName" Flex="1" Hideable="false">
+                    
+                                </ext:Column>
+                               <ext:Column    CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldType%>" DataIndex="edTypeString" Flex="1" Hideable="false">
+                    
+                                </ext:Column>
+                               <ext:Column    CellCls="cellLink" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldApproval%>" DataIndex="apName" Flex="1" Hideable="false">
+                    
+                                </ext:Column>
+                             <ext:Column    CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldGracePeriod%>" DataIndex="gracePeriod" Flex="2" Hideable="false">
                     
                                 </ext:Column>
                            

@@ -15,7 +15,9 @@ namespace AionHR.Model.Payroll
         public short? timeCode { get; set; }
         public string timeCodeString { get; set; }
         public string edId { get; set; }
+        public string edName { get; set; }
         public string apId { get; set; }
+        public string apName { get; set; }
         public int gracePeriod { get; set; }
 
 

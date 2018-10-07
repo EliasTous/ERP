@@ -124,6 +124,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error in the returned  structure from web service.
+        /// </summary>
+        internal static string Error_1 {
+            get {
+                return ResourceManager.GetString("Error_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to API_KEY_AUTHENTICATION_ERROR.
         /// </summary>
         internal static string Error_10001 {

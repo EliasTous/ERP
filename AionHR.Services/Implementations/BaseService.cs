@@ -32,6 +32,11 @@ namespace AionHR.Services.Implementations
             {
                 response.Success = false;
                 response.Message = "Unknown Error!";
+                response.ErrorCode = "Error_1";
+              
+                response.LogId = "0";
+
+
             }
             else
             {
@@ -42,6 +47,12 @@ namespace AionHR.Services.Implementations
 
                 response.Summary = webResponse.Details;
                 response.ErrorCode = "Error_"+webResponse.statusId.Substring(1);
+               if(webResponse.statusId.Substring(1) == null)
+                {
+                    response.ErrorCode = "Error_1";
+                    response.Summary = "Unknown Error!";
+                    response.LogId = "0";
+                }
             }
 
             return response;

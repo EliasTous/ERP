@@ -387,7 +387,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 n.branchId = 0;
                 n.departmentId = 0;
                 n.divisionId = 0;
-                n.employeeId = 0;
+                n.employeeId =Convert.ToInt32( CurrentEmployee.Text);
                 n.date = DateTime.Now;
                 n.notes = " ";
 
