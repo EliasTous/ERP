@@ -77,12 +77,12 @@ namespace AionHR.Web.UI.Forms
 
 
                 groupsStore.Reload();
-                userSelector.ButtonsText = new ItemSelectorButtonsText();
-                userSelector.ButtonsText.Add = GetLocalResourceObject("Add").ToString();
-                userSelector.ButtonsText.Remove = GetLocalResourceObject("Remove").ToString();
-                userSelector.Buttons = new ItemSelectorButton[2];
-                userSelector.Buttons[0] = ItemSelectorButton.Add;
-                userSelector.Buttons[1] = ItemSelectorButton.Remove;
+                //userSelector.ButtonsText = new ItemSelectorButtonsText();
+                //userSelector.ButtonsText.Add = GetLocalResourceObject("Add").ToString();
+                //userSelector.ButtonsText.Remove = GetLocalResourceObject("Remove").ToString();
+                //userSelector.Buttons = new ItemSelectorButton[2];
+                //userSelector.Buttons[0] = ItemSelectorButton.Add;
+                //userSelector.Buttons[1] = ItemSelectorButton.Remove;
 
                 if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
                     return;

@@ -835,7 +835,7 @@ namespace AionHR.Web.UI.Forms
 
                 LeaveRequestListRequest req = GetLeaveManagementRequest();
 
-                if (req != null)
+                 if (req != null)
                 {
                     ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
 

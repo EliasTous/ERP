@@ -120,6 +120,12 @@
   <data name="AssignToEmployee" xml:space="preserve">
     <value>user did not assign to employee</value>
   </data>
+  <data name="EmptyBranch" xml:space="preserve">
+    <value>Please adjust the  branch for employee   and retry generate again</value>
+  </data>
+  <data name="EmptyHireDate" xml:space="preserve">
+    <value>Please adjust the Hire date for employee and retry generate again</value>
+  </data>
   <data name="EmptyWorkEmail" xml:space="preserve">
     <value>please set valid work mail for this user for activate self service</value>
   </data>

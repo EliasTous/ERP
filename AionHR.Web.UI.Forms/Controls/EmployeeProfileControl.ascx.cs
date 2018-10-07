@@ -624,7 +624,7 @@ namespace AionHR.Web.UI.Forms
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
             Employee b = JsonConvert.DeserializeObject<Employee>(obj, settings);
-            b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text, reference = reference.Text };
+            b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text, reference = reference.Text.ToString().Replace(" ","") };
 
             b.recordId = id;
             // Define the object to add or edit as null
@@ -724,7 +724,7 @@ namespace AionHR.Web.UI.Forms
                         request.entity = b;
 
 
-                        request.entity.reference = request.entity.reference.Trim();
+                    request.entity.reference = request.entity.reference.Replace(" ", "");
                         PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
                         CurrentEmployeeFullName.Text = b.name.fullName;
                         b.recordId = r.recordId;
@@ -812,7 +812,7 @@ namespace AionHR.Web.UI.Forms
                         request.entity = b;
 
 
-                    request.entity.reference = request.entity.reference.Trim();
+                    request.entity.name.reference = request.entity.reference.Replace(" ", "");
                     PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
 
                         //Step 2 : saving to store

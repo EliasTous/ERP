@@ -70,6 +70,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please adjust the  branch for employee   and retry generate again.
+        /// </summary>
+        internal static string EmptyBranch {
+            get {
+                return ResourceManager.GetString("EmptyBranch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please adjust the Hire date for employee and retry generate again.
+        /// </summary>
+        internal static string EmptyHireDate {
+            get {
+                return ResourceManager.GetString("EmptyHireDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to please set valid work mail for this user for activate self service.
         /// </summary>
         internal static string EmptyWorkEmail {

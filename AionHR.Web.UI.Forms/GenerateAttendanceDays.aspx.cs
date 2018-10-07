@@ -11,6 +11,7 @@ using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -184,12 +185,13 @@ namespace AionHR.Web.UI.Forms
             storage.Save("UserId", _systemService.SessionHelper.Get("UserId"));
             storage.Save("key", _systemService.SessionHelper.Get("Key"));
             h = new SessionHelper(storage, new APIKeyBasedTokenGenerator());
+
             //HttpRuntime.Cache.Insert("TotalRecords", 0);
             //HttpRuntime.Cache.Insert("LongActionProgress", 0);
             //HttpRuntime.Cache.Insert("finished", "0");
             if (HttpRuntime.Cache["finishedGenAD"] == null)
             {
-                ThreadPool.QueueUserWorkItem(LongAction, new object[] { h });
+                ThreadPool.QueueUserWorkItem(LongAction, new object[] { h,_systemService.SessionHelper.CheckIfArabicSession() });
                 HttpRuntime.Cache.Insert("finishedGenAD", "0");
              
             }
@@ -207,6 +209,7 @@ namespace AionHR.Web.UI.Forms
         {
             object[] array = state as object[];
             SessionHelper h = (SessionHelper)array[0];
+            bool isArabic= (bool)array[1];
 
 
 
@@ -221,8 +224,16 @@ namespace AionHR.Web.UI.Forms
             _system = new SystemService(new SystemRepository(), h);
             _time = new TimeAttendanceService(h,new TimeAttendanceRepository());
 
-
-
+            if (isArabic)
+            {
+                base.InitializeCulture();
+                LocalisationManager.Instance.SetArabicLocalisation();
+            }
+            else
+            {
+                base.InitializeCulture();
+                LocalisationManager.Instance.SetEnglishLocalisation();
+            }
             try
             {
 
@@ -270,6 +281,31 @@ namespace AionHR.Web.UI.Forms
                 int i = 1;
                 emps.Items.ForEach(x =>
                 {
+                    if(HttpRuntime.Cache.Get("TotalRecordsGenAD").ToString()=="1")
+                    {
+
+                        RecordRequest r = new RecordRequest();
+                        r.RecordID = x.recordId; 
+                        RecordResponse<Employee> response = _emp.Get<Employee>(r);
+
+                        if (!response.Success )
+                        {    throw new Exception(GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary, new Exception(response.LogId));
+
+
+                        }
+                        if (response.result.hireDate ==null )
+                        {
+                            throw new Exception(GetGlobalResourceObject("Errors", "EmptyHireDate").ToString(), new Exception("0"));
+
+                        }
+
+                        if (response.result.branchId == null)
+                        {
+                            throw new Exception(GetGlobalResourceObject("Errors", "EmptyBranch").ToString() , new Exception("0"));
+
+                        }
+                    }
+
                     GD.employeeId = Convert.ToInt32(x.recordId);
                     GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
                     GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");

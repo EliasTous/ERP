@@ -120,6 +120,12 @@
   <data name="AssignToEmployee" xml:space="preserve">
     <value>المستخدم غير مربوط مع موظف</value>
   </data>
+  <data name="EmptyBranch" xml:space="preserve">
+    <value>الرجاء تعيين الفرع الذي يعمل به الموظف</value>
+  </data>
+  <data name="EmptyHireDate" xml:space="preserve">
+    <value>يرجى تعيين تاريخ التوظيف للموظف المطلوب انشاء دوامه </value>
+  </data>
   <data name="EmptyWorkEmail" xml:space="preserve">
     <value>الرجاء ادخال بريد الكتروني من اجل تفعيل الخدمة الذاتية</value>
   </data>
