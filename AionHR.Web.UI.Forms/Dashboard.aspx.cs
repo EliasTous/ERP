@@ -1256,7 +1256,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 Times.Items.ForEach(x =>
                 {
-                    x.timeCodeString = GetLocalResourceObject(x.timeCode + "text").ToString();
+                    x.timeCodeString = FillTimeCode(Convert.ToInt16(x.timeCode));
                 });
 
                 TimeStore.DataSource = Times.Items;
@@ -1986,5 +1986,62 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+
+
+       
+
+        private string FillTimeCode(int timeCode)
+        {
+            string R = "";
+
+
+            // Retrieve the value of the string resource named "welcome".
+            // The resource manager will retrieve the value of the  
+            // localized resource using the caller's current culture setting.
+
+
+            try
+            {
+
+                switch (timeCode)
+                {
+                    case 11:
+                        R = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
+                        break;
+                    case 12:
+                        R = GetGlobalResourceObject("Common", "PaidLeaves").ToString();
+                        break;
+                    case 21:
+                        R = GetGlobalResourceObject("Common", "LeaveWithoutExcuse").ToString();
+                        break;
+                    case 31:
+                        R = GetGlobalResourceObject("Common", "LATE_CHECKIN").ToString();
+                        break;
+                    case 32:
+                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
+                        break;
+                    case 33:
+                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
+                        break;
+                    case 41:
+                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
+                        break;
+                    case 42:
+                        R = GetGlobalResourceObject("Common", "OVERTIME").ToString();
+                        break;
+                    case 51:
+                        R = GetGlobalResourceObject("Common", "MISSED_PUNCH").ToString();
+                        break;
+                    case 9:
+                        R = GetGlobalResourceObject("Common", "COUNT ").ToString();
+                        break;
+
+                }
+
+                return R;
+            }
+            catch { return string.Empty; }
+        }
+
     }
 }

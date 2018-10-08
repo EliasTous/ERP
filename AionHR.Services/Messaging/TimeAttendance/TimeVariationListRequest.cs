@@ -16,6 +16,7 @@ namespace AionHR.Services.Messaging
         public DateTime fromDayId { get; set; }
 
         public DateTime toDayId { get; set; }
+        public string employeeId { get; set; }
 
 
         public override Dictionary<string, string> Parameters
@@ -27,6 +28,8 @@ namespace AionHR.Services.Messaging
                 parameters.Add("_timeCode", timeCode);
                 parameters.Add("_fromDayId",fromDayId.ToString("yyyyMMdd"));
                 parameters.Add("_toDayId", toDayId.ToString("yyyyMMdd"));
+                parameters.Add("_employeeId", employeeId);
+
 
 
 

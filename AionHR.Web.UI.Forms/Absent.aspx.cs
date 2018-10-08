@@ -226,6 +226,7 @@ namespace AionHR.Web.UI.Forms
             reqTV.EsId =string.IsNullOrEmpty(esId.Value.ToString()) ? reqTV.EsId=0 :Convert.ToInt32( esId.Value);
             reqTV.fromDayId = dateRange1.GetRange().DateFrom;
             reqTV.toDayId = dateRange1.GetRange().DateTo;
+            reqTV.employeeId = employeeCombo1.GetEmployee().employeeId.ToString();
             if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
                 {
                 timeVariationType.Select(ConstTimeVariationType.LATE_CHECKIN.ToString());
@@ -241,37 +242,44 @@ namespace AionHR.Web.UI.Forms
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
-
-            //GEtting the filter from the page
-
-            TimeVariationListRequest req = GetAbsentRequest();
-        
-            ListResponse<DashBoardTimeVariation> daysResponse = _dashBoardService.ChildGetAll<DashBoardTimeVariation>(req);
-
-            //ActiveAttendanceRequest r = GetActiveAttendanceRequest();
-
-            //ListResponse<ActiveAbsence> daysResponse = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
-            if (!daysResponse.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", daysResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", daysResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + daysResponse.LogId : daysResponse.Summary).Show();
-                return;
-            }
-            daysResponse.Items.ForEach(
-                x =>
+                //GEtting the filter from the page
+
+                TimeVariationListRequest req = GetAbsentRequest();
+
+                ListResponse<DashBoardTimeVariation> daysResponse = _dashBoardService.ChildGetAll<DashBoardTimeVariation>(req);
+
+                //ActiveAttendanceRequest r = GetActiveAttendanceRequest();
+
+                //ListResponse<ActiveAbsence> daysResponse = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
+                if (!daysResponse.Success)
                 {
-                    x.clockDurationString = time(x.clockDuration, true);
-                    x.durationString = time(x.duration, true);
-                    x.timeCodeString = FillTimeCode(x.timeCode);
-                    x.apStatusString = FillApprovalStatus(x.apStatus);
-                    x.damageLevelString = FillDamageLevelString(x.damageLevel);
-                    x.dayIdDate = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"));
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", daysResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", daysResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + daysResponse.LogId : daysResponse.Summary).Show();
+                    return;
                 }
-                );
-            Store1.DataSource = daysResponse.Items;
-            Store1.DataBind();
-            e.Total = daysResponse.count;
-            format.Text = _systemService.SessionHelper.GetDateformat().ToUpper(); ;
+                daysResponse.Items.ForEach(
+                    x =>
+                    {
+                        x.clockDurationString = time(x.clockDuration, true);
+                        x.durationString = time(x.duration, true);
+                        x.timeCodeString = FillTimeCode(x.timeCode);
+                        x.apStatusString = FillApprovalStatus(x.apStatus);
+                        x.damageLevelString = FillDamageLevelString(x.damageLevel);
+                        x.dayIdDate = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"));
+                    }
+                    );
+                Store1.DataSource = daysResponse.Items;
+                Store1.DataBind();
+                e.Total = daysResponse.count;
+                format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
+            }
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
+
 
 
         
