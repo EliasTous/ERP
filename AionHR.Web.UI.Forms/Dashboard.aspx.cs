@@ -1952,6 +1952,7 @@ namespace AionHR.Web.UI.Forms
                 TVReq.fromDayId = DateTime.Now;
                 TVReq.toDayId = DateTime.Now;
                 TVReq.PositionId = req.PositionId;
+                TVReq.employeeId = "0";
 
 
 
