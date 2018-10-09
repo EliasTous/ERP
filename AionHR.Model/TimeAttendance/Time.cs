@@ -26,8 +26,8 @@ namespace AionHR.Model.TimeAttendance
         public int employeeId { get; set; }
         public string timeCode { set; get; }
         public string timeCodeString { set; get; }
-
-
+        public string shiftId { set; get; }
+        
         public int  approverId { get; set; }
 
         public short status { get; set; }

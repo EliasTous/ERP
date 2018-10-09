@@ -1259,7 +1259,7 @@ namespace AionHR.Web.UI.Forms
                     x.timeCodeString = FillTimeCode(Convert.ToInt16(x.timeCode));
                 });
 
-                TimeStore.DataSource = Times.Items;
+                TimeStore.DataSource = Times.Items.Where(x=>x.status!=2).ToList<Time>();
                 ////List<ActiveLeave> leaves = new List<ActiveLeave>();
                 //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
@@ -1332,6 +1332,7 @@ namespace AionHR.Web.UI.Forms
             string timeCode = e.ExtraParams["timeCode"];
             string timeCodeString = e.ExtraParams["timeCodeString"];
             string status = e.ExtraParams["status"];
+            string shiftId = e.ExtraParams["shiftId"];
 
 
             string notes = e.ExtraParams["notes"];
@@ -1339,10 +1340,13 @@ namespace AionHR.Web.UI.Forms
             TimedayIdDate.Text = dayIdDate;
             TimeTimeCodeString.Text = timeCodeString;
             TimeStatus.Select(status);
-
+            shiftIdTF.Text = shiftId;
             TimeemployeeIdTF.Text = employeeId;
             TimedayIdTF.Text = dayId;
             TimeTimeCodeTF.Text = timeCode;
+
+
+
 
             this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
             this.TimeWindow.Show();
@@ -1609,6 +1613,7 @@ namespace AionHR.Web.UI.Forms
                 request.entity.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
                 request.entity.status = TI.status;
                 request.entity.notes = TI.notes;
+                request.entity.shiftId = TI.shiftId;
 
                 PostResponse<Time> r = _timeAttendanceService.ChildAddOrUpdate<Time>(request);
 

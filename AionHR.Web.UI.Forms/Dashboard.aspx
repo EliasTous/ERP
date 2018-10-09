@@ -2218,6 +2218,7 @@
                                                                                 <ext:ModelField Name="dayIdDate"  />
                                                                            
                                                                                 <ext:ModelField Name="timeCode" />
+                                                                                  <ext:ModelField Name="shiftId" />
                                                                                 <ext:ModelField Name="timeCodeString" />
                                                                                 <ext:ModelField Name="approverId" />
                                                                                 <ext:ModelField Name="status" />
@@ -2235,6 +2236,7 @@
                                                             <ColumnModel ID="ColumnModel24" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                                                 <Columns>
                                                                    <ext:Column ID="ColTimedayId" DataIndex="dayId"  runat="server" Visible="false" />
+                                                                   <ext:Column ID="ColshiftId" DataIndex="shiftId"  runat="server" Visible="false" />
                                                                    <ext:Column ID="ColTimeEmployeeId" DataIndex="employeeId"  runat="server" Visible="false" />
                                                                    <ext:Column ID="ColtimeCode" DataIndex="timeCode"  runat="server" Visible="false" />
 
@@ -2289,6 +2291,7 @@
                                                                           <ext:Parameter Name="timeCodeString" Value="record.data['timeCodeString']" Mode="Raw" />
                                                                          <ext:Parameter Name="notes" Value="record.data['notes']" Mode="Raw" />
                                                                            <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
+                                                                             <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
                                                                     
                                                                       
                                                                         
@@ -4364,6 +4367,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="TimeemployeeIdTF" runat="server" Name="employeeId"  ReadOnly="true"  Hidden="true"/>
+                                  <ext:TextField ID="shiftIdTF" runat="server" Name="shiftId" FieldLabel="<%$ Resources: FieldShift%>"   ReadOnly="true" />
                                  <ext:TextField ID="TimedayIdTF" runat="server" Name="dayId"  ReadOnly="true" Hidden="true" />
                                   <ext:TextField ID="TimeTimeCodeTF" runat="server" Name="timeCode"  ReadOnly="true" Hidden="true" />
                                <ext:TextField ID="TimeEmployeeName" runat="server" FieldLabel="<%$ Resources:FieldName%>" ReadOnly="true" />

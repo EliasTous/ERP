@@ -657,4 +657,7 @@
   <data name="FieldClockDuration" xml:space="preserve">
     <value>فرق التوقيت عن جهاز البصمة</value>
   </data>
+  <data name="FieldShift" xml:space="preserve">
+    <value>الدوام</value>
+  </data>
 </root>

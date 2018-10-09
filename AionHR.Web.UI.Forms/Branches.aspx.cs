@@ -163,6 +163,7 @@ namespace AionHR.Web.UI.Forms
 
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
+
             string type = e.ExtraParams["type"];
             switch (type)
             {
@@ -987,7 +988,7 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+          StoreRequestParameters prms = new StoreRequestParameters(extraParams);
             List<Employee> data = GetEmployeesFiltered(prms.Query);
             data.ForEach(s => { s.fullName = s.name.fullName; });
             //  return new
@@ -1000,7 +1001,7 @@ namespace AionHR.Web.UI.Forms
 
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
-            req.BranchId = "0";
+            req.BranchId = branchId.Text;
             req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 

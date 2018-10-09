@@ -660,4 +660,7 @@
   <data name="FieldClockDuration" xml:space="preserve">
     <value>Clock Duration</value>
   </data>
+  <data name="FieldShift" xml:space="preserve">
+    <value>Shift</value>
+  </data>
 </root>
