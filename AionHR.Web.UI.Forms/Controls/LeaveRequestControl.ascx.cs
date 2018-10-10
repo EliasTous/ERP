@@ -473,7 +473,7 @@ namespace AionHR.Web.UI.Forms.Controls
                                 d.leaveId = Convert.ToInt32(b.recordId);
                                 d.employeeId = Convert.ToInt32(b.employeeId);
                             });
-                            AddDays(days);
+                            //AddDays(days);
                             if (Store1 != null)
                                 this.Store1.Reload();
                             else
@@ -595,7 +595,7 @@ namespace AionHR.Web.UI.Forms.Controls
                                 d.employeeId = Convert.ToInt32(b.employeeId);
                             });
 
-                            AddDays(days);
+                            //AddDays(days);
                             if (Store1 != null)
                             {
                                 ModelProxy record = this.Store1.GetById(id);

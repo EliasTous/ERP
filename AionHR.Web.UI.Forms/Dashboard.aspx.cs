@@ -298,12 +298,12 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-             
+
                 DashboardRequest req2 = GetDashboardRequest();
                 ListResponse<DashboardItem> dashoard = _dashBoardService.ChildGetAll<DashboardItem>(req2);
                 if (!dashoard.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, dashoard.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", dashoard.ErrorCode) != null ? GetGlobalResourceObject("Errors", dashoard.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + dashoard.LogId : dashoard.Summary).Show();
                     return new ListResponse<DashboardItem>();
                 }
 
@@ -333,71 +333,86 @@ namespace AionHR.Web.UI.Forms
 
                 return dashoard;
             }
-            catch (Exception exp)
+            catch(Exception exp)
             {
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
                 return new ListResponse<DashboardItem>();
             }
+       
 
         }
         private void BindAlerts(bool normalSized = true)
         {
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-          ListResponse<DashboardItem> dashoard = FillDashBoardItems();
+            try
+            {
+                bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+                ListResponse<DashboardItem> dashoard = FillDashBoardItems();
+
+
+                if (dashoard.count==0)
+                {
+                    return; 
+                }
+
+                List<ChartData> activeChartData = new List<ChartData>();
+                activeChartData.Add(new ChartData() { name = GetLocalResourceObject("PENDING").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_PENDING).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_PENDING).First().count : 0, index = 0 });// 10 - Attended
+                activeChartData.Add(new ChartData() { name = GetLocalResourceObject("NO_SHOW_UP").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_NO_SHOW_UP).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_NO_SHOW_UP).First().count : 0, index = 1 });// 110 - Vacations
+                activeChartData.Add(new ChartData() { name = GetLocalResourceObject("CHECKED").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_CHECKED).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_CHECKED).ToList()[0].count : 0, index = 2 });// 111 - Unpaid leave
+                activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE_WITHOUT_EXCUSE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE_WITHOUT_EXCUSE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE_WITHOUT_EXCUSE).ToList()[0].count : 0, index = 3 });// 112 - Leave without excuse
+                                                                                                                                                                                                                                                                                                                                                          //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("BusinessLeave").ToString(), y = dashoard.Items.Where(x => x.itemId == 113).ToList()[0].count, index =4 });// 113 - business leave
+                activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE).ToList()[0].count : 0, index = 4 });
+                activeChartData.Add(new ChartData() { name = GetLocalResourceObject("DAY_OFF").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_DAY_OFF).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_DAY_OFF).ToList()[0].count : 0, index = 5 });
+
+
+                X.Call("drawActiveHightChartPie", JSON.JavaScriptSerialize(activeChartData), rtl ? true : false, normalSized);
+
+
+                List<ChartData> lateChartData = new List<ChartData>();
+                lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_CHECKIN).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_CHECKIN).ToList()[0].count : 0, index = ConstTimeVariationType.EARLY_CHECKIN });//  ALs.Items.Count
+                lateChartData.Add(new ChartData() { name = GetLocalResourceObject("LATE_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LATE_CHECKIN).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LATE_CHECKIN).ToList()[0].count : 0, index = ConstTimeVariationType.LATE_CHECKIN });
+                lateChartData.Add(new ChartData() { name = GetLocalResourceObject("DURING_SHIFT_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.DURING_SHIFT_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.DURING_SHIFT_LEAVE).ToList()[0].count : 0, index = ConstTimeVariationType.DURING_SHIFT_LEAVE });
+                lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_LEAVE).ToList()[0].count : 0, index = ConstTimeVariationType.EARLY_LEAVE });
+                lateChartData.Add(new ChartData() { name = GetLocalResourceObject("OVERTIME").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_OVERTIME).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_OVERTIME).ToList()[0].count : 0, index = ConstTimeVariationType.OVERTIME });
+                X.Call("drawLateHightChartPie", JSON.JavaScriptSerialize(lateChartData), rtl ? true : false, normalSized);
+
+
+
+                List<ChartData> breaksChartData = new List<ChartData>();
+                breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Breaks").ToString(), y = 0 /*dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count*/, index = 0 });// count.result.count - ACs.Items.Count
+                breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Attendance").ToString(), y = 0 /*dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count*/, index = 1 });//
+
+                X.Call("drawBreakHightChartPie", JSON.JavaScriptSerialize(breaksChartData), rtl ? true : false, normalSized);
+
+
+                //List<ChartData> leaveChartData = new List<ChartData>();
+                //leaveChartData.Add(new ChartData() { name = GetLocalResourceObject("Leaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count, index = 0 });// count.result.count - ACs.Items.Count
+                //leaveChartData.Add(new ChartData() { name = GetLocalResourceObject("NLeaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count, index = 1 });//
+
+                //X.Call("drawLeaveHightChartPie", JSON.JavaScriptSerialize(leaveChartData), rtl ? true : false);
+
+
+                //List<ChartData> paidUnPaidChartData = new List<ChartData>();
+                //paidUnPaidChartData.Add(new ChartData() { name = GetLocalResourceObject("PaidLeaves").ToString(), y = 15, index = 0 });// count.result.count - ACs.Items.Count
+                //paidUnPaidChartData.Add(new ChartData() { name = GetLocalResourceObject("NPaidLeaves").ToString(), y = 5, index = 1 });//
+                //X.Call("drawPaidUnPaidHightChartPie", JSON.JavaScriptSerialize(paidUnPaidChartData), rtl ? true : false);
 
 
 
 
-            List<ChartData> activeChartData = new List<ChartData>();
-            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("PENDING").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_PENDING).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_PENDING).First().count : 0, index = 0 });// 10 - Attended
-            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("NO_SHOW_UP").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_NO_SHOW_UP).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_NO_SHOW_UP).First().count : 0, index = 1 });// 110 - Vacations
-            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("CHECKED").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_CHECKED).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_CHECKED).ToList()[0].count : 0, index = 2 });// 111 - Unpaid leave
-            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE_WITHOUT_EXCUSE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE_WITHOUT_EXCUSE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE_WITHOUT_EXCUSE).ToList()[0].count : 0, index = 3 });// 112 - Leave without excuse
-                                                                                                                                                                                                                                                                        //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("BusinessLeave").ToString(), y = dashoard.Items.Where(x => x.itemId == 113).ToList()[0].count, index =4 });// 113 - business leave
-            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE).ToList()[0].count : 0, index = 4 });
-            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("DAY_OFF").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_DAY_OFF).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_DAY_OFF).ToList()[0].count : 0, index = 5 });
-
-
-            X.Call("drawActiveHightChartPie", JSON.JavaScriptSerialize(activeChartData), rtl ? true : false, normalSized);
-
-
-            List<ChartData> lateChartData = new List<ChartData>();
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_CHECKIN).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_CHECKIN).ToList()[0].count : 0, index = ConstTimeVariationType.EARLY_CHECKIN });//  ALs.Items.Count
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("LATE_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LATE_CHECKIN).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LATE_CHECKIN).ToList()[0].count : 0, index = ConstTimeVariationType.LATE_CHECKIN });
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("DURING_SHIFT_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.DURING_SHIFT_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.DURING_SHIFT_LEAVE).ToList()[0].count : 0, index = ConstTimeVariationType.DURING_SHIFT_LEAVE });
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_LEAVE).ToList()[0].count : 0, index = ConstTimeVariationType.EARLY_LEAVE });
-            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("OVERTIME").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_OVERTIME).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_OVERTIME).ToList()[0].count : 0, index = ConstTimeVariationType.OVERTIME });
-            X.Call("drawLateHightChartPie", JSON.JavaScriptSerialize(lateChartData), rtl ? true : false, normalSized);
 
 
 
-            List<ChartData> breaksChartData = new List<ChartData>();
-            breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Breaks").ToString(), y = 0 /*dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count*/, index = 0 });// count.result.count - ACs.Items.Count
-            breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Attendance").ToString(), y = 0 /*dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count*/, index = 1 });//
+                //  AbsentLeaveStore.DataSource = objs;
+                //  AbsentLeaveStore.DataBind();
+            }catch(Exception exp)
+            {
+              
+                    X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                
+                   
+              
 
-            X.Call("drawBreakHightChartPie", JSON.JavaScriptSerialize(breaksChartData), rtl ? true : false, normalSized);
-
-
-            //List<ChartData> leaveChartData = new List<ChartData>();
-            //leaveChartData.Add(new ChartData() { name = GetLocalResourceObject("Leaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count, index = 0 });// count.result.count - ACs.Items.Count
-            //leaveChartData.Add(new ChartData() { name = GetLocalResourceObject("NLeaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count, index = 1 });//
-
-            //X.Call("drawLeaveHightChartPie", JSON.JavaScriptSerialize(leaveChartData), rtl ? true : false);
-
-
-            //List<ChartData> paidUnPaidChartData = new List<ChartData>();
-            //paidUnPaidChartData.Add(new ChartData() { name = GetLocalResourceObject("PaidLeaves").ToString(), y = 15, index = 0 });// count.result.count - ACs.Items.Count
-            //paidUnPaidChartData.Add(new ChartData() { name = GetLocalResourceObject("NPaidLeaves").ToString(), y = 5, index = 1 });//
-            //X.Call("drawPaidUnPaidHightChartPie", JSON.JavaScriptSerialize(paidUnPaidChartData), rtl ? true : false);
-
-
-
-
-
-
-
-            //  AbsentLeaveStore.DataSource = objs;
-            //  AbsentLeaveStore.DataBind();
+            }
         }
 
         [DirectMethod]
@@ -835,7 +850,8 @@ namespace AionHR.Web.UI.Forms
 
                 LeaveRequestListRequest req = GetLeaveManagementRequest();
 
-                 if (req != null)
+                
+                   if (req != null)
                 {
                     ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
 
@@ -861,7 +877,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 DashboardRequest req = GetDashboardRequest();
-                ListResponse<EmployeeBirthday> resp = _systemService.ChildGetAll<EmployeeBirthday>(req);
+                ListResponse<EmployeeBirthday> resp = _dashBoardService.ChildGetAll<EmployeeBirthday>(req);
                 if (!resp.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
@@ -881,7 +897,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 DashboardRequest req = GetDashboardRequest();
-                ListResponse<WorkAnniversary> resp = _systemService.ChildGetAll<WorkAnniversary>(req);
+                ListResponse<WorkAnniversary> resp = _dashBoardService.ChildGetAll<WorkAnniversary>(req);
                 if (!resp.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
@@ -901,7 +917,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 DashboardRequest req = GetDashboardRequest();
-                ListResponse<CompanyRTW> resp = _systemService.ChildGetAll<CompanyRTW>(req);
+                ListResponse<CompanyRTW> resp = _dashBoardService.ChildGetAll<CompanyRTW>(req);
                 if (!resp.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
@@ -922,7 +938,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 DashboardRequest req = GetDashboardRequest();
-                ListResponse<EmpRTW> resp = _systemService.ChildGetAll<EmpRTW>(req);
+                ListResponse<EmpRTW> resp = _dashBoardService.ChildGetAll<EmpRTW>(req);
                 if (!resp.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
@@ -942,7 +958,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 DashboardRequest req = GetDashboardRequest();
-                ListResponse<SalaryChange> resp = _systemService.ChildGetAll<SalaryChange>(req);
+                ListResponse<SalaryChange> resp = _dashBoardService.ChildGetAll<SalaryChange>(req);
                 if (!resp.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
@@ -962,7 +978,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 DashboardRequest req = GetDashboardRequest();
-                ListResponse<ProbationEnd> resp = _systemService.ChildGetAll<ProbationEnd>(req);
+                ListResponse<ProbationEnd> resp = _dashBoardService.ChildGetAll<ProbationEnd>(req);
                 if (!resp.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
@@ -1259,7 +1275,7 @@ namespace AionHR.Web.UI.Forms
                     x.timeCodeString = FillTimeCode(Convert.ToInt16(x.timeCode));
                 });
 
-                TimeStore.DataSource = Times.Items.Where(x=>x.status!=2).ToList<Time>();
+                TimeStore.DataSource = Times.Items.Where(x=>x.status==1).ToList<Time>();
                 ////List<ActiveLeave> leaves = new List<ActiveLeave>();
                 //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
@@ -1835,7 +1851,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             DashboardRequest req = GetDashboardRequest();
-            ListResponse<RetirementAge> resp = _systemService.ChildGetAll<RetirementAge>(req);
+            ListResponse<RetirementAge> resp = _dashBoardService.ChildGetAll<RetirementAge>(req);
             if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
@@ -1848,7 +1864,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             DashboardRequest req = GetDashboardRequest();
-            ListResponse<TermEndDate> resp = _systemService.ChildGetAll<TermEndDate>(req);
+            ListResponse<TermEndDate> resp = _dashBoardService.ChildGetAll<TermEndDate>(req);
             if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();

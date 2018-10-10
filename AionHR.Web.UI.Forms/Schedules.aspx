@@ -160,13 +160,13 @@
                             <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                             </ext:Column>
 
-                            <ext:Column ID="Colfci_min_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldfci_min_ot%>" DataIndex="fci_min_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
-                            <ext:Column ID="Colfci_max_lt" CellWrap="true" ShrinkWrap="Height" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldfci_max_lt%>" DataIndex="fci_max_lt" Hideable="false" Width="75" Align="Center" Flex="1" />
-                            <ext:Column ID="Collco_max_el" CellWrap="true" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldlco_max_el%>" DataIndex="lco_max_el" Hideable="false" Width="75" Align="Center" Flex="1" />
-                            <ext:Column ID="Collco_min_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldlco_min_ot%>" DataIndex="lco_min_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
-                            <ext:Column ID="Collco_max_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldlco_max_ot%>" DataIndex="lco_max_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
-                            <ext:Column ID="Colb_min_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEd_min_ot%>" DataIndex="b_min_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
-                            <ext:Column ID="Colb_max_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEd_max_ot%>" DataIndex="b_max_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
+                            <ext:Column ID="Colfci_min_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldfci_min_ot%>" DataIndex="fci_min_ot" Hideable="false" Width="75" Align="Center" Flex="1" Visible="false" />
+                            <ext:Column ID="Colfci_max_lt" CellWrap="true" ShrinkWrap="Height" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldfci_max_lt%>" DataIndex="fci_max_lt" Hideable="false" Width="75" Align="Center" Flex="1" Visible="false" />
+                            <ext:Column ID="Collco_max_el" CellWrap="true" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldlco_max_el%>" DataIndex="lco_max_el" Hideable="false" Width="75" Align="Center" Flex="1" Visible="false" />
+                            <ext:Column ID="Collco_min_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldlco_min_ot%>" DataIndex="lco_min_ot" Hideable="false" Width="75" Align="Center" Flex="1" Visible="false" />
+                            <ext:Column ID="Collco_max_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldlco_max_ot%>" DataIndex="lco_max_ot" Hideable="false" Width="75" Align="Center" Flex="1" Visible="false" />
+                            <ext:Column ID="Colb_min_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEd_min_ot%>" DataIndex="b_min_ot" Hideable="false" Width="75" Align="Center" Flex="1" Visible="false" />
+                            <ext:Column ID="Colb_max_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEd_max_ot%>" DataIndex="b_max_ot" Hideable="false" Width="75" Align="Center" Flex="1" Visible="false" />
 
 
                             <ext:Column runat="server"
@@ -387,7 +387,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="540"
+            Height="200"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -411,7 +411,7 @@
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" Disabled="true" DataIndex="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
 
-                                <ext:FieldSet runat="server" Title="<%$Resources:Lateness %>" Collapsible="true">
+                                <ext:FieldSet runat="server" Title="<%$Resources:Lateness %>" Collapsible="true" Visible="false">
                                     <Items>
 
                                         <ext:TextField LabelWidth="300" Width="360" ID="fci_max_lt" runat="server" FieldLabel="<%$ Resources:Fieldfci_max_lt%>" DataIndex="fci_max_lt" Name="fci_max_lt" EmptyText="0">
@@ -422,7 +422,7 @@
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>
-                                <ext:FieldSet runat="server" Title="<%$Resources:ArrivalOvertime %>" Collapsible="true">
+                                <ext:FieldSet runat="server" Title="<%$Resources:ArrivalOvertime %>" Collapsible="true" Visible="false">
                                     <Items>
                                         <ext:Checkbox LabelWidth="300" runat="server" ID="enableAOT" Name="enableAOT" InputValue="true" FieldLabel="<%$ Resources:EnableAOT %>">
                                             <Listeners>
@@ -435,7 +435,7 @@
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>
-                                <ext:FieldSet runat="server" Title="<%$Resources:EntryDayOverTime %>" Collapsible="true">
+                                <ext:FieldSet runat="server" Title="<%$Resources:EntryDayOverTime %>" Collapsible="true" Visible="false">
                                     <Items>
                                         <ext:Checkbox LabelWidth="300" runat="server" ID="enableEntryDayCheckbox" Name="enableBOT" InputValue="true" FieldLabel="<%$ Resources:EnableEntryDayOverTime %>">
                                             <Listeners>
@@ -453,7 +453,7 @@
                                 </ext:FieldSet>
 
 
-                                <ext:FieldSet runat="server" Title="<%$Resources:DepartureOvertime %>" Collapsible="true">
+                                <ext:FieldSet runat="server" Title="<%$Resources:DepartureOvertime %>" Collapsible="true" Visible="false">
                                     <Items>
                                         <ext:Checkbox LabelWidth="300" runat="server" ID="enableDOT" Name="enableDOT" InputValue="true" FieldLabel="<%$ Resources:EnableDOT %>">
                                             <Listeners>

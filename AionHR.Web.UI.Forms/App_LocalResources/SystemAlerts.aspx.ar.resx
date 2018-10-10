@@ -123,6 +123,15 @@
   <data name="Alert101Description" xml:space="preserve">
     <value />
   </data>
+  <data name="Alert10Title" xml:space="preserve">
+    <value>سلف</value>
+  </data>
+  <data name="Alert1Title" xml:space="preserve">
+    <value>ملفات اجازات عمل الشركة</value>
+  </data>
+  <data name="Alert2Title" xml:space="preserve">
+    <value>ملفات اجازات عمل الموظفين</value>
+  </data>
   <data name="Alert301Description" xml:space="preserve">
     <value />
   </data>
@@ -153,38 +162,29 @@
   <data name="Alert307Title" xml:space="preserve">
     <value>المهام المستحقة</value>
   </data>
-  <data name="Alert901Title" xml:space="preserve">
+  <data name="Alert3Title" xml:space="preserve">
+    <value>فترة تجربة الموظف</value>
+  </data>
+  <data name="Alert4Title" xml:space="preserve">
     <value>تغيير راتب الموظف</value>
   </data>
-  <data name="Alert902Title" xml:space="preserve">
-    <value>فترة تجربة الموظف</value>
+  <data name="Alert5Title" xml:space="preserve">
+    <value>التقييم التالي</value>
+  </data>
+  <data name="Alert6Title" xml:space="preserve">
+    <value>سن التقاعد</value>
+  </data>
+  <data name="Alert7Title" xml:space="preserve">
+    <value>تاريخ انتهاء المدة</value>
+  </data>
+  <data name="Alert8Title" xml:space="preserve">
+    <value>ذكرى بداية العمل</value>
   </data>
   <data name="Alert903Description" xml:space="preserve">
     <value />
   </data>
-  <data name="Alert903Title" xml:space="preserve">
-    <value>التقييم التالي</value>
-  </data>
-  <data name="Alert904Title" xml:space="preserve">
-    <value>تاريخ انتهاء المدة</value>
-  </data>
-  <data name="Alert905Title" xml:space="preserve">
+  <data name="Alert9Title" xml:space="preserve">
     <value>تاريخ ميلاد الموظف</value>
-  </data>
-  <data name="Alert906Title" xml:space="preserve">
-    <value>سن التقاعد</value>
-  </data>
-  <data name="Alert907Title" xml:space="preserve">
-    <value>ذكرى بداية العمل</value>
-  </data>
-  <data name="Alert908Title" xml:space="preserve">
-    <value>ملفات اجازات عمل الشركة</value>
-  </data>
-  <data name="Alert909Title" xml:space="preserve">
-    <value>ملفات اجازات عمل الموظفين</value>
-  </data>
-  <data name="Alert910Title" xml:space="preserve">
-    <value>سلف</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>الكل</value>

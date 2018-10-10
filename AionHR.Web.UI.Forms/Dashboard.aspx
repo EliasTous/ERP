@@ -1423,13 +1423,13 @@
                                                                 <ext:Panel
                                                                     runat="server"
                                                                     Header="false" ID="pnlActiveHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1" Html="<div id='activeHighChart' style='width:100%;height:100%' />">
+                                                                    Layout="FitLayout" Flex="2" Html="<div id='activeHighChart' style='width:100%;height:100%' />">
                                                                 </ext:Panel>
 
                                                                 <ext:Panel
                                                                     runat="server"
                                                                     Header="false" ID="pnlLateHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1" Html="<div id='lateHighChart' style='width:100%;height:100%' />" >
+                                                                    Layout="FitLayout" Flex="2" Html="<div id='lateHighChart' style='width:100%;height:100%' />" >
                                                                 </ext:Panel>
 
                                                                 <ext:Panel
@@ -2662,9 +2662,10 @@
                                                                             <Items>
                                                                                 <ext:Label runat="server" ID="EmploymentReviewDateLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
                                                                                 <ext:HyperlinkButton runat="server" Text="<%$Resources:EmploymentReviewDate %>" StyleSpec="font-size:12pt;" StyleHtmlCls="flashing" Cls="lblStyle">
-                                                                                    <Listeners>
+                                                                                 <%--   <Listeners>
+
                                                                                         <Click Handler="App.completedLoansWindow.show();" />
-                                                                                    </Listeners>
+                                                                                    </Listeners>--%>
                                                                                 </ext:HyperlinkButton>
                                                                             </Items>
                                                                         </ext:Container>

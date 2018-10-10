@@ -31,16 +31,16 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        <ext:Hidden ID="alert901Title" runat="server" Text="<%$ Resources: Alert901Title %>" />
-        <ext:Hidden ID="alert902Title" runat="server" Text="<%$ Resources: Alert902Title %>" />
-        <ext:Hidden ID="alert903Title" runat="server" Text="<%$ Resources: Alert903Title %>" />
-        <ext:Hidden ID="alert904Title" runat="server" Text="<%$ Resources: Alert904Title %>" />
-        <ext:Hidden ID="alert905Title" runat="server" Text="<%$ Resources: Alert905Title %>" />
-        <ext:Hidden ID="alert906Title" runat="server" Text="<%$ Resources: Alert906Title %>" />
-        <ext:Hidden ID="alert907Title" runat="server" Text="<%$ Resources: Alert907Title %>" />
-        <ext:Hidden ID="alert908Title" runat="server" Text="<%$ Resources: Alert908Title %>" />
-        <ext:Hidden ID="alert909Title" runat="server" Text="<%$ Resources: Alert909Title %>" />
-        <ext:Hidden ID="alert910Title" runat="server" Text="<%$ Resources: Alert910Title %>" />
+        <ext:Hidden ID="alert1Title" runat="server" Text="<%$ Resources: Alert1Title %>" />
+        <ext:Hidden ID="alert2Title" runat="server" Text="<%$ Resources: Alert2Title %>" />
+        <ext:Hidden ID="alert3Title" runat="server" Text="<%$ Resources: Alert3Title %>" />
+        <ext:Hidden ID="alert4Title" runat="server" Text="<%$ Resources: Alert4Title %>" />
+        <ext:Hidden ID="alert5Title" runat="server" Text="<%$ Resources: Alert5Title %>" />
+        <ext:Hidden ID="alert6Title" runat="server" Text="<%$ Resources: Alert6Title %>" />
+        <ext:Hidden ID="alert7Title" runat="server" Text="<%$ Resources: Alert7Title %>" />
+        <ext:Hidden ID="alert8Title" runat="server" Text="<%$ Resources: Alert8Title %>" />
+        <ext:Hidden ID="alert9Title" runat="server" Text="<%$ Resources: Alert9Title %>" />
+        <ext:Hidden ID="alert10Title" runat="server" Text="<%$ Resources: Alert10Title %>" />
          
 
       <%--  <ext:Hidden ID="alert101Description" runat="server" Text="<%$ Resources: Alert101Description %>" />

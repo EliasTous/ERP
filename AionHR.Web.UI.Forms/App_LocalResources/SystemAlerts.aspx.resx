@@ -123,6 +123,15 @@
   <data name="Alert101Description" xml:space="preserve">
     <value />
   </data>
+  <data name="Alert10Title" xml:space="preserve">
+    <value>Loans</value>
+  </data>
+  <data name="Alert1Title" xml:space="preserve">
+    <value>Company Right To Work Documents</value>
+  </data>
+  <data name="Alert2Title" xml:space="preserve">
+    <value>Employee Right to Work documents</value>
+  </data>
   <data name="Alert301Description" xml:space="preserve">
     <value />
   </data>
@@ -165,35 +174,26 @@
   <data name="Alert311Description" xml:space="preserve">
     <value />
   </data>
-  <data name="Alert901Title" xml:space="preserve">
-    <value>Employee Salary change</value>
-  </data>
-  <data name="Alert902Title" xml:space="preserve">
+  <data name="Alert3Title" xml:space="preserve">
     <value>Employee Probation</value>
   </data>
-  <data name="Alert903Title" xml:space="preserve">
+  <data name="Alert4Title" xml:space="preserve">
+    <value>Employee Salary change</value>
+  </data>
+  <data name="Alert5Title" xml:space="preserve">
     <value>Next Review Date</value>
   </data>
-  <data name="Alert904Title" xml:space="preserve">
-    <value>Term End Date</value>
-  </data>
-  <data name="Alert905Title" xml:space="preserve">
-    <value>Employee birthday</value>
-  </data>
-  <data name="Alert906Title" xml:space="preserve">
+  <data name="Alert6Title" xml:space="preserve">
     <value>Retirement Age</value>
   </data>
-  <data name="Alert907Title" xml:space="preserve">
+  <data name="Alert7Title" xml:space="preserve">
+    <value>Term End Date</value>
+  </data>
+  <data name="Alert8Title" xml:space="preserve">
     <value>Work Anniversaries</value>
   </data>
-  <data name="Alert908Title" xml:space="preserve">
-    <value>Company Right To Work Documents</value>
-  </data>
-  <data name="Alert909Title" xml:space="preserve">
-    <value>Employee Right to Work documents</value>
-  </data>
-  <data name="Alert910Title" xml:space="preserve">
-    <value>Loans</value>
+  <data name="Alert9Title" xml:space="preserve">
+    <value>Employee birthday</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>All</value>
