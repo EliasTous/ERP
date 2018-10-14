@@ -1251,4 +1251,10 @@
   <data name="TimeVariationType" xml:space="preserve">
     <value>TimeVariationType</value>
   </data>
+  <data name="Day_Bonus" xml:space="preserve">
+    <value>Day Bonus</value>
+  </data>
+  <data name="working" xml:space="preserve">
+    <value>Working</value>
+  </data>
 </root>

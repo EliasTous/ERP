@@ -435,4 +435,7 @@
   <data name="InactivePref_InactiveOnly" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="TimeVariationType_Day_Bonus" xml:space="preserve">
+    <value>53</value>
+  </data>
 </root>

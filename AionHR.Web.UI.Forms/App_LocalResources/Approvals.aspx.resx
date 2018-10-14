@@ -124,13 +124,13 @@
     <value>Approvals</value>
   </data>
   <data name="branchHead" xml:space="preserve">
-    <value>Branch Head</value>
+    <value>Branch Manager</value>
   </data>
   <data name="Business" xml:space="preserve">
     <value>Business / Sick</value>
   </data>
   <data name="departmentHead" xml:space="preserve">
-    <value>Department Head</value>
+    <value>Department Manager</value>
   </data>
   <data name="departmentList" xml:space="preserve">
     <value>Department List</value>
@@ -169,7 +169,7 @@
     <value>Branch Manager</value>
   </data>
   <data name="raDepHead" xml:space="preserve">
-    <value>Department Head</value>
+    <value>Department Manager</value>
   </data>
   <data name="raDepHierarchy" xml:space="preserve">
     <value>Department Hierarchy</value>

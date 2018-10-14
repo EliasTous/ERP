@@ -748,6 +748,10 @@ namespace AionHR.Web.UI.Forms
                     case ConstTimeVariationType.COUNT:
                         R = GetGlobalResourceObject("Common", "COUNT").ToString();
                         break;
+                    case ConstTimeVariationType.Day_Bonus:
+                        R = GetGlobalResourceObject("Common", "Day_Bonus").ToString();
+                        break;
+
 
                 }
 

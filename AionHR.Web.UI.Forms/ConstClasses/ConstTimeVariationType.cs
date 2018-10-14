@@ -26,8 +26,10 @@ namespace AionHR.Web.UI.Forms.ConstClasses
         // overtime 5x
         public const short EARLY_CHECKIN = 51;
         public const short OVERTIME = 52;
+        public const short Day_Bonus = 53;
 
         public const short COUNT = 10;
+       
     }
 
 }

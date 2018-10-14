@@ -709,6 +709,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Day Bonus.
+        /// </summary>
+        internal static string Day_Bonus {
+            get {
+                return ResourceManager.GetString("Day_Bonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Day Leave Without Excuse.
         /// </summary>
         internal static string DAY_LEAVE_WITHOUT_EXCUSE {
@@ -3414,6 +3423,15 @@ namespace Resources {
         internal static string Week {
             get {
                 return ResourceManager.GetString("Week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Working.
+        /// </summary>
+        internal static string working {
+            get {
+                return ResourceManager.GetString("working", resourceCulture);
             }
         }
         

@@ -916,6 +916,15 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 53.
+        /// </summary>
+        internal static string TimeVariationType_Day_Bonus {
+            get {
+                return ResourceManager.GetString("TimeVariationType_Day_Bonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 22.
         /// </summary>
         internal static string TimeVariationType_DAY_LEAVE_WITHOUT_EXCUSE {

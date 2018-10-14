@@ -1254,4 +1254,10 @@
   <data name="TimeVariationType" xml:space="preserve">
     <value>انواع التأخير</value>
   </data>
+  <data name="Day_Bonus" xml:space="preserve">
+    <value>مكافأة اليوم</value>
+  </data>
+  <data name="working" xml:space="preserve">
+    <value>قيد الانجاز</value>
+  </data>
 </root>

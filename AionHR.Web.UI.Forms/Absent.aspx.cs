@@ -267,6 +267,9 @@ namespace AionHR.Web.UI.Forms
                         x.apStatusString = FillApprovalStatus(x.apStatus);
                         x.damageLevelString = FillDamageLevelString(x.damageLevel);
                         x.dayIdDate = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"));
+                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd", new System.Globalization.CultureInfo("ar-AE"));
+
+
                     }
                     );
                 Store1.DataSource = daysResponse.Items;
@@ -479,6 +482,9 @@ namespace AionHR.Web.UI.Forms
 
                     case ConstTimeVariationType.COUNT:
                         R = GetGlobalResourceObject("Common", "COUNT").ToString();
+                        break;
+                    case ConstTimeVariationType.Day_Bonus:
+                        R = GetGlobalResourceObject("Common", "Day_Bonus").ToString();
                         break;
 
                 }

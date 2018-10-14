@@ -2431,6 +2431,7 @@
     <Content Include="App_LocalResources\PenaltyTypes.aspx.resx" />
     <Content Include="App_LocalResources\TimeCodes.aspx.ar.resx" />
     <Content Include="App_LocalResources\TimeCodes.aspx.resx" />
+    <Content Include="App_LocalResources\Departments.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

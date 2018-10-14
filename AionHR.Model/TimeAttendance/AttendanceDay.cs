@@ -41,6 +41,8 @@ namespace AionHR.Model.Attendance
         [PropertyID("41062_08")]
         [ApplySecurity]
         public string dayId { get; set; }
+
+        public DateTime dayIdDate { get; set; }
         [PropertyID("41062_01")]
         [ApplySecurity]
         public int employeeId { get; set; }

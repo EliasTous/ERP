@@ -208,6 +208,7 @@
                                         <ext:ListItem Text="<%$ Resources:Common ,  EARLY_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_CHECKIN %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  OVERTIME %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_OVERTIME %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  MISSED_PUNCH %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_MISSED_PUNCH %>"></ext:ListItem>
+                                         <ext:ListItem Text="<%$ Resources:Common ,  Day_Bonus %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_Day_Bonus %>"></ext:ListItem>
                                       
                                       
                                     </Items>
@@ -250,6 +251,9 @@
                                 <Renderer Handler=" var d = moment(record.data['dayId']);   return d.format(App.format.value);" />
                             </ext:Column>--%>
                                <ext:DateColumn ID="ColDayId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayIdDate" Flex="2" Hideable="false">
+                              
+                            </ext:DateColumn>
+                             <ext:DateColumn ID="coldayidstring" MenuDisabled="true" runat="server" Text="dayIdString" DataIndex="dayIdstring" Flex="2" Hideable="false">
                               
                             </ext:DateColumn>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">

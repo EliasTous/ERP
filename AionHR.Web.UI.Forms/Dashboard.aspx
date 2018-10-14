@@ -5019,9 +5019,9 @@
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="branchName" />
                                         <ext:ModelField Name="dayId" />
-                                          <ext:ModelField Name="shiftId" />
-                                           <ext:ModelField Name="timeCode" />
-                                            <ext:ModelField Name="clockDuration" />   
+                                         <ext:ModelField Name="shiftId" />
+                                         <ext:ModelField Name="timeCode" />
+                                          <ext:ModelField Name="clockDuration" />   
                                             <ext:ModelField Name="apStatus" />
                                             <ext:ModelField Name="duration" />
                                            <ext:ModelField Name="apStatusString" />
