@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.TimeAttendance
 {
-   public class GenerateAttendanceDay
+   public class GenerateAttendanceDay:ModelBase
 
     {
         public int employeeId { get; set; }

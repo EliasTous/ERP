@@ -129,6 +129,9 @@
   <data name="EmptyWorkEmail" xml:space="preserve">
     <value>please set valid work mail for this user for activate self service</value>
   </data>
+  <data name="ErrorEmployeeTimeOutside" xml:space="preserve">
+    <value>there is an Employee in this branch who has  attendance schedule is out of branch schedule - Employee Reference :</value>
+  </data>
   <data name="ErrorInvalidAccount" xml:space="preserve">
     <value>Invalid Account</value>
   </data>
@@ -601,7 +604,7 @@
     <value>An employee job info record exist for the same date</value>
   </data>
   <data name="Error_50057" xml:space="preserve">
-    <value>Employee is already assigned to user</value>
+    <value>There is another user with this employee name </value>
   </data>
   <data name="Error_50058" xml:space="preserve">
     <value>employee hire date is greater than the selected date</value>

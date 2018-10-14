@@ -211,6 +211,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColReference;
         
         /// <summary>
+        /// ColManger control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColManger;
+        
+        /// <summary>
         /// ColName control.
         /// </summary>
         /// <remarks>

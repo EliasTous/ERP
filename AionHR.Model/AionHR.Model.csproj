@@ -214,6 +214,7 @@
     <Compile Include="SelfService\loanSelfService.cs" />
     <Compile Include="SelfService\MyInfo.cs" />
     <Compile Include="System\ApplyLetter.cs" />
+    <Compile Include="System\BackgroundJob.cs" />
     <Compile Include="System\BatchOperationStatus.cs" />
     <Compile Include="System\CompanyDocumentType.cs" />
     <Compile Include="System\CompanyOrgChart.cs" />

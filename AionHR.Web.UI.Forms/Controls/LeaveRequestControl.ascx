@@ -5,6 +5,7 @@
 <script type="text/javascript" src="Scripts/common.js?id=110"></script>
 <script type="text/javascript" src="Scripts/moment.js?id=2"></script>
 <script type="text/javascript" src="Scripts/LeaveRequests2.js?id=1"></script>
+<script type="text/javascript" src="Scripts/Branches.js?id=13"></script>
 <style type="text/css">
     .print-button{
         padding:3px;
@@ -19,6 +20,72 @@
 }
 </style>
 <script type="text/javascript">
+
+
+    var editRender = function () {
+        return '<img class="imgEdit" style="cursor:pointer;" src="Images/Tools/edit.png" />';
+    };
+
+    var deleteRender = function () {
+        return '<img class="imgDelete"  style="cursor:pointer;" src="Images/Tools/delete.png" />';
+    };
+    var attachRender = function () {
+        return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
+    };
+
+
+
+
+
+    var commandName;
+    var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
+
+        CheckSession();
+
+
+        var t = e.getTarget(),
+                columnId = this.columns[columnIndex].id; // Get column id
+
+        if (t.className == "imgEdit") {
+            //the ajax call is allowed
+            commandName = t.className;
+            return true;
+        }
+
+        if (t.className == "imgDelete") {
+            //the ajax call is allowed
+            commandName = t.className;
+            return true;
+        }
+        if (t.className == "imgAttach") {
+            //the ajax call is allowed
+            commandName = t.className;
+            return true;
+        }
+        if (columnId == "ColName")
+            return true;
+
+
+        //forbidden
+        return false;
+    };
+
+
+    var getCellType = function (grid, rowIndex, cellIndex) {
+
+        //var columnId = grid.columns[cellIndex].id; // Get column id
+        //return columnId;
+
+        if (cellIndex == 0)
+            return "";
+        if (commandName != "")
+            return commandName;
+        var columnId = grid.columns[cellIndex].id; // Get column id
+
+        return columnId;
+    };
+
+
     function dump(obj) {
         var out = '';
         for (var i in obj) {
@@ -232,6 +299,35 @@
                             </DirectEvents>
 
                         </ext:ComboBox>
+
+                          <ext:ComboBox    AnyMatch="true" CaseSensitive="false"  runat="server" ID="replacementIdCB" AllowBlank="true"
+                            DisplayField="fullName" Name="replacementId"
+                            ValueField="recordId"
+                            TypeAhead="false"
+                            FieldLabel="<%$ Resources: FieldReplacementEmployeeName%>"
+                            HideTrigger="true" SubmitValue="true"
+                            MinChars="3"
+                            TriggerAction="Query" ForceSelection="true">
+                            <Store>
+                                <ext:Store runat="server" ID="replacementStore">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="fullName" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                    <Proxy>
+                                        <ext:PageProxy DirectFn="App.direct.FillReplacementEmployee"></ext:PageProxy>
+                                    </Proxy>
+
+                                </ext:Store>
+
+                            </Store>
+                          
+
+                        </ext:ComboBox>
                          <ext:Panel runat="server" Layout="HBoxLayout">
                             <Items>
                            <ext:DateField ID="startDate"    runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
@@ -403,12 +499,15 @@
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
+                                                  <ext:ModelField Name="replacementName" ServerMapping="replacementName.fullName" />
                                                 <ext:ModelField Name="recordId" />
                                                 <ext:ModelField Name="leaveId" />
                                                 <ext:ModelField Name="dayId" />
                                                 <ext:ModelField Name="dow" />
                                                 <ext:ModelField Name="workingHours" />
                                                 <ext:ModelField Name="leaveHours" />
+                                                 <ext:ModelField Name="replacementId" />
+                                               
                                             </Fields>
                                         </ext:Model>
                                     </Model>
@@ -469,19 +568,53 @@
 
                                         </Listeners>
                                     </ext:ComponentColumn>
+                                      <ext:Column ID="Column1" DataIndex="replacementName" Text="<%$ Resources: FieldReplacementEmployeeName%>" runat="server" Flex="2">
+                                                
+                                    </ext:Column>
+                                  
+                                    <ext:Column runat="server"
+                                ID="colEdit" Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer Handler="return editRender(); " />
+
+                            </ext:Column>
 
 
 
 
                                 </Columns>
                             </ColumnModel>
-                            <%--  alert(last.dayId);
-                                                        if(App.leaveRequest1_shouldDisableLastDay.value=='1')
-                                                             if(last.dayId==rec.data['dayId'])  
-                                                                        this.setDisabled(false);
-                                                            else this.setDisabled(true); 
-                                                        else
-                                                            this.setDisabled(true); --%>
+                         <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
+                    <DirectEvents>
+                        <CellClick OnEvent="PoPuPLD">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                                            
+                                                 
+                                             
+                                <ext:Parameter Name="id" Value="record.data['recordId']" Mode="Raw" />
+                                 <ext:Parameter Name="leaveId" Value="record.data['leaveId']" Mode="Raw" />
+                                 <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
+                                 <ext:Parameter Name="dow" Value="record.data['dow']" Mode="Raw" />
+                                 <ext:Parameter Name="workingHours" Value="record.data['workingHours']" Mode="Raw" />
+                                 <ext:Parameter Name="leaveHours" Value="record.data['leaveHours']" Mode="Raw" />
+                                 <ext:Parameter Name="replacementId" Value="record.data['replacementId']" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>
+                   
                             <DockedItems>
 
                                 <ext:Toolbar ID="Toolbar4" runat="server" Dock="Bottom">
@@ -772,7 +905,101 @@
         </ext:FormPanel>
     </Items>
 </ext:Window>
- <ext:Container runat="server" Width="60" Height="25">
+ 
+<ext:Window
+    ID="replacementWindow"
+    runat="server"
+    Icon="PageEdit"
+    Title="<%$ Resources:LeaveDaysWindowTitle%>"
+    Width="400"
+    Height="300"
+    AutoShow="false"
+    Modal="true"
+    Hidden="true"
+    Maximizable="false"
+    Resizable="false"
+    Draggable="false"
+    Layout="Fit">
+
+    <Items>
+        <ext:FormPanel runat="server" 
+            ID="replacementForm" DefaultButton="SaveReplacementButton"
+                 
+                    Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
+                    Icon="ApplicationSideList"
+                    AutoScroll="true"
+                    DefaultAnchor="100%" OnLoad="replacementForm_Load"
+                    BodyPadding="5">
+
+            <Items>
+              
+                                             
+
+                                
+                  <ext:TextField  runat="server" Hidden="true" ID="recordIdTF"  Name="recordId" />
+                  <ext:TextField runat="server" Hidden="true" ID="leaveIdTF"  Name="leaveId" />
+                  <ext:TextField  runat="server" Hidden="true" ID="dayIdTF"  Name="dayId" />
+                  <ext:TextField  runat="server" Hidden="true" ID="dowTF"   Name="dow"/>
+                  <ext:TextField  runat="server" Hidden="true" ID="workingHoursTF"  Name="workingHours" />
+                  <ext:TextField runat="server" Hidden="true" ID="leaveHoursTF"   Name="leaveHours"/>
+                           <ext:ComboBox    AnyMatch="true" CaseSensitive="false"  runat="server" ID="replacementId" AllowBlank="true"
+                            DisplayField="fullName" Name="replacementId"
+                            ValueField="recordId"
+                            TypeAhead="false"
+                            FieldLabel="<%$ Resources: FieldEmployeeName%>"
+                            HideTrigger="true" SubmitValue="true"
+                            MinChars="3"
+                            TriggerAction="Query" ForceSelection="true" StoreID="replacementStore">
+                            
+                          
+
+                        </ext:ComboBox>
+                     
+              
+                     
+                    
+
+               
+
+            </Items>
+            <Buttons>
+                <ext:Button ID="SaveReplacementButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession();  if (!#{replacementForm}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveReplacement" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{replacementForm}.body}" />
+                            <ExtraParams>
+                                 <ext:Parameter Name="id" Value="#{recordIdTF}.getValue()" Mode="Raw" />
+                                                
+                                             
+
+                                 <ext:Parameter Name="leaveId" Value="#{leaveIdTF}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="dayId" Value="#{dayIdTF}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="dow" Value="#{dowTF}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="workingHours" Value="#{workingHoursTF}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="leaveHours" Value="#{leaveHoursTF}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="replacementId" Value="#{replacementId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value="#{FormPanel1}.getForm().getValues()" Mode="Raw" Encode="true" />
+
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button5" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+                
+            </Buttons>
+        </ext:FormPanel>
+    </Items>
+</ext:Window>
+
+<ext:Container runat="server" Width="60" Height="25">
                     <Content>
                        <%--<asp:ImageButton runat="server"  ID="imgButton"  CausesValidation="false"  ImageUrl="~/Images/Tools/expand-all.gif" OnClientClick="openInNewTab();"   />--%>
                  <div id="myGrid">

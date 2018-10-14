@@ -129,6 +129,9 @@
   <data name="EmptyWorkEmail" xml:space="preserve">
     <value>الرجاء ادخال بريد الكتروني من اجل تفعيل الخدمة الذاتية</value>
   </data>
+  <data name="ErrorEmployeeTimeOutside" xml:space="preserve">
+    <value>يوجد موظف داخل هذا الفرع دوامه يخالف دوام الفرع - رمز الموظف : </value>
+  </data>
   <data name="ErrorInvalidAccount" xml:space="preserve">
     <value>الرجاء التأكد من الحساب </value>
   </data>

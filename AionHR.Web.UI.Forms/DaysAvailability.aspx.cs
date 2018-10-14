@@ -151,7 +151,22 @@ namespace AionHR.Web.UI.Forms
             TimeSpan tsClose = TimeSpan.Parse(closeAt);
             //timeTo.MaxTime = tsClose;
 
+            TimeSpan EmployeeTsStart, EmployeeTsEnd;
 
+
+            items.ForEach(x =>
+            {
+                EmployeeTsStart = TimeSpan.Parse(x.from);
+                EmployeeTsEnd = TimeSpan.Parse(x.to);
+                if (EmployeeTsStart < tsStart || EmployeeTsEnd > tsClose)
+                {
+                    html += @"</table></div>";
+                    this.pnlSchedule.Html = html;
+                    X.Call("DisableTools");
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName.reference).Show();
+                    return;
+                }
+            });
 
             //Filling The Times Slot
             List<TimeSlot> timesList = new List<TimeSlot>();

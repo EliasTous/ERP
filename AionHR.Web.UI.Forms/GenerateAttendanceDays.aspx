@@ -105,7 +105,7 @@
             <Tasks>
                 <ext:Task 
                     TaskID="longactionprogress"
-                    Interval="100" 
+                    Interval="2000" 
                     AutoRun="false" 
                     OnStart="#{GenerateAttendanceBtn}.setDisabled(true);"
                        OnStop="#{GenerateAttendanceBtn}.setDisabled(false);" >

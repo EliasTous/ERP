@@ -332,7 +332,7 @@
                                     </DirectEvents>
                                 </ext:Button>
                                 <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
-                                <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
+                          <%--      <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
                                     <Triggers>
                                         <ext:FieldTrigger Icon="Search" />
                                     </Triggers>
@@ -340,7 +340,7 @@
                                         <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
                                         <TriggerClick Handler="#{Store1}.reload();" />
                                     </Listeners>
-                                </ext:TextField>
+                                </ext:TextField>--%>
 
                             </Items>
                         </ext:Toolbar>

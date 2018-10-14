@@ -688,99 +688,119 @@ namespace AionHR.Web.UI.Forms
 
         private void BuildSchedule(List<FlatSchedule> items)
         {
-        
-            string html = @"<div style = 'margin: 0px auto; max-width: 99%;width:auto; height: 98%; overflow:auto;' > 
+            try
+            {
+                string html = @"<div style = 'margin: 0px auto; max-width: 99%;width:auto; height: 98%; overflow:auto;' > 
                              <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' style='width:auto;' >";
 
-            //CAlling the branch cvailability before proceeding
+                //CAlling the branch cvailability before proceeding
 
-            string startAt, closeAt = string.Empty;
-            GetBranchSchedule(out startAt, out closeAt);
-            if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
-            {
-                html += @"</table></div>";
-                this.pnlSchedule.Html = html;
-                X.Call("DisableTools");
-                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorBranchWorkingHours")).Show();
-                return;
-            }
-
-            TimeSpan tsStart = TimeSpan.Parse(startAt);
-            timeFrom.Value = tsStart;
-           // timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
-            TimeSpan tsClose = TimeSpan.Parse(closeAt);
-            timeTo.Value = tsClose;
-
-
-
-            //Filling The Times Slot
-            List<TimeSlot> timesList = new List<TimeSlot>();
-            DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
-            DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
-            if (dtStart >= dtEnd)
-            {
-                dtEnd = dtEnd.AddDays(1);
-            }
-            do
-            {
-                TimeSlot ts = new TimeSlot();
-                ts.ID = dtStart.ToString("HH:mm");
-                ts.Time = dtStart.ToString("HH:mm");
-                timesList.Add(ts);
-                dtStart = dtStart.AddMinutes(15);
-            } while (dtStart <= dtEnd);
-
-            //filling the Day slots
-            int totalDays = Convert.ToInt32(Math.Ceiling((dateTo.SelectedDate - dateFrom.SelectedDate).TotalDays));
-
-            html = FillFirstRow(html, timesList);
-
-            html = FillOtherRow(html, timesList, totalDays);
-
-            //Preparing the ids to get colorified
-            List<string> listIds = new List<string>();
-            foreach (FlatSchedule fs in items)
-            {
-                DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
-                DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
-                DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
-                if (fsfromDate >= fsToDate)
+                string startAt, closeAt = string.Empty;
+                GetBranchSchedule(out startAt, out closeAt);
+                if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
                 {
-                    fsToDate = fsToDate.AddDays(1);
+                    html += @"</table></div>";
+                    this.pnlSchedule.Html = html;
+                    X.Call("DisableTools");
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorBranchWorkingHours")).Show();
+                    return;
+                }
+
+                TimeSpan tsStart = TimeSpan.Parse(startAt);
+                timeFrom.Value = tsStart;
+                // timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
+                TimeSpan tsClose = TimeSpan.Parse(closeAt);
+                timeTo.Value = tsClose;
+
+
+                TimeSpan EmployeeTsStart, EmployeeTsEnd;
+
+
+                items.ForEach(x =>
+                 {
+                     EmployeeTsStart = TimeSpan.Parse(x.from);
+                     EmployeeTsEnd = TimeSpan.Parse(x.to);
+                     if (EmployeeTsStart < tsStart || EmployeeTsEnd > tsClose)
+                     {
+                         html += @"</table></div>";
+                         this.pnlSchedule.Html = html;
+                         X.Call("DisableTools");
+                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName.reference).Show();
+                         return; 
+                     }
+                 });
+
+
+                //Filling The Times Slot
+                List<TimeSlot> timesList = new List<TimeSlot>();
+                DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
+                DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
+                if (dtStart >= dtEnd)
+                {
+                    dtEnd = dtEnd.AddDays(1);
                 }
                 do
                 {
-                    if (fsfromDate.ToString("HH:mm")=="00:00")
+                    TimeSlot ts = new TimeSlot();
+                    ts.ID = dtStart.ToString("HH:mm");
+                    ts.Time = dtStart.ToString("HH:mm");
+                    timesList.Add(ts);
+                    dtStart = dtStart.AddMinutes(15);
+                } while (dtStart <= dtEnd);
+
+                //filling the Day slots
+                int totalDays = Convert.ToInt32(Math.Ceiling((dateTo.SelectedDate - dateFrom.SelectedDate).TotalDays));
+
+                html = FillFirstRow(html, timesList);
+
+                html = FillOtherRow(html, timesList, totalDays);
+
+                //Preparing the ids to get colorified
+                List<string> listIds = new List<string>();
+                foreach (FlatSchedule fs in items)
+                {
+                    DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
+                    DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
+                    DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
+                    if (fsfromDate >= fsToDate)
+                    {
+                        fsToDate = fsToDate.AddDays(1);
+                    }
+                    do
+                    {
+                        if (fsfromDate.ToString("HH:mm") == "00:00")
                         {
-                        listIds.Add(fsfromDate.AddDays(-1).ToString("yyyyMMdd") + "_00:00" );
-                        fsfromDate = fsfromDate.AddMinutes(15);
-                        continue;
+                            listIds.Add(fsfromDate.AddDays(-1).ToString("yyyyMMdd") + "_00:00");
+                            fsfromDate = fsfromDate.AddMinutes(15);
+                            continue;
                         }
-                    listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                    fsfromDate = fsfromDate.AddMinutes(15);
-                                  } while (fsToDate >= fsfromDate);
-                
-                          }
+                        listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                        fsfromDate = fsfromDate.AddMinutes(15);
+                    } while (fsToDate >= fsfromDate);
 
-            var d = items.GroupBy(x => x.dayId);
-            List<string> totaldayId = new List<string>();
-            List<string> totaldaySum= new List<string>();
-            d.ToList().ForEach(x =>
-            {
-                totaldayId.Add(x.ToList()[0].dayId + "_Total");
-                totaldaySum.Add(x.ToList().Sum(y => Math.Round(Convert.ToDouble(y.duration) / 60, 2)) .ToString());
-            });
+                }
+
+                var d = items.GroupBy(x => x.dayId);
+                List<string> totaldayId = new List<string>();
+                List<string> totaldaySum = new List<string>();
+                d.ToList().ForEach(x =>
+                {
+                    totaldayId.Add(x.ToList()[0].dayId + "_Total");
+                    totaldaySum.Add(x.ToList().Sum(y => Math.Round(Convert.ToDouble(y.duration) / 60, 2)).ToString());
+                });
 
 
-   
 
-            html += @"</table></div>";
-            this.pnlSchedule.Html =  html;
-            X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
-            X.Call("filldaytotal", totaldayId, totaldaySum);
-           X.Call("Init");
-            X.Call("DisableTools");
-            X.Call("FixHeader");
+
+                html += @"</table></div>";
+                this.pnlSchedule.Html = html;
+                X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
+                X.Call("filldaytotal", totaldayId, totaldaySum);
+                X.Call("Init");
+                X.Call("DisableTools");
+                X.Call("FixHeader");
+            }catch
+            { }
         }
 
 

@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to there is an Employee in this branch who has  attendance schedule is out of branch schedule - Employee Reference :.
+        /// </summary>
+        internal static string ErrorEmployeeTimeOutside {
+            get {
+                return ResourceManager.GetString("ErrorEmployeeTimeOutside", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Account.
         /// </summary>
         internal static string ErrorInvalidAccount {
@@ -1510,7 +1519,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employee is already assigned to user.
+        ///   Looks up a localized string similar to There is another user with this employee name .
         /// </summary>
         internal static string Error_50057 {
             get {

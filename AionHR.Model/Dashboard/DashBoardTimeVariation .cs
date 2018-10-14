@@ -13,6 +13,7 @@ namespace AionHR.Model.Dashboard
         public int employeeId { get; set; }
         public string dayId { get; set; }
         public DateTime dayIdDate { get; set; }
+        public string dayIdString { get; set; }
         public short shiftId { get; set; }
         public short timeCode { get; set; }
         public string timeCodeString { get; set; }

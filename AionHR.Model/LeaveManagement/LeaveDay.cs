@@ -1,4 +1,5 @@
 ﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,10 @@ namespace AionHR.Model.LeaveManagement
 
         public short dow { get; set; }
         public int employeeId { set; get; }
+
+        public string replacementId { set; get; }
+        public EmployeeName replacementName { set; get; }
+        public string fullName { set; get; }
     }
 
 }

@@ -478,7 +478,7 @@
                             <ext:Column runat="server" DataIndex="checkOut" Text="<%$ Resources: FieldCheckOut %>" Flex="1" />
                             <ext:Column runat="server" DataIndex="duration" Text="<%$ Resources: FieldHoursWorked %>" Flex="1" />
                             <ext:Column runat="server"
-                                ID="Column3" Visible="true"
+                                ID="Column3" Visible="false"
                                 Text="<%$ Resources:Common, Edit %>"
                                 Width="100"
                                 Hideable="false"
@@ -493,10 +493,10 @@
                         </Columns>
 
                     </ColumnModel>
-                    <Listeners>
+                   <%-- <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
-                    </Listeners>
-                    <DirectEvents>
+                    </Listeners>--%>
+                    <%--<DirectEvents>
                         <CellClick OnEvent="PoPuPShift">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
@@ -510,7 +510,7 @@
                             </ExtraParams>
 
                         </CellClick>
-                    </DirectEvents>
+                    </DirectEvents>--%>
                 </ext:GridPanel>
 
             </Items>

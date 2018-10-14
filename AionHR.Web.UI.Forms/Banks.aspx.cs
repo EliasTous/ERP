@@ -383,7 +383,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", respons.ErrorCode) != null ? GetGlobalResourceObject("Errors", respons.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors","ErrorLogId")+ respons.Summary : respons.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", respons.ErrorCode) != null ? GetGlobalResourceObject("Errors", respons.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors","ErrorLogId")+ respons.LogId : respons.Summary).Show();
                         return;
                     }
                     else

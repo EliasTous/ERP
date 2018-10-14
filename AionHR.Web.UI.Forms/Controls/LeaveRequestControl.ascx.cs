@@ -636,6 +636,73 @@ namespace AionHR.Web.UI.Forms.Controls
             }
         }
 
+        protected void SaveReplacement(object sender, DirectEventArgs e)
+        {
+            try
+            {
+                string id = e.ExtraParams["id"];
+                string leaveId = CurrentLeave.Text;
+                string dayId = e.ExtraParams["dayId"];
+                string dow = e.ExtraParams["dow"];
+                string workingHours = e.ExtraParams["workingHours"];
+                string leaveHours = e.ExtraParams["leaveHours"];
+                string replacementIdCB = e.ExtraParams["replacementId"];
+                LeaveDay lD = new LeaveDay();
+                lD.recordId = id;
+                lD.leaveId = Convert.ToInt32(leaveId);
+                lD.dayId = dayId;
+                lD.dow = Convert.ToInt16(dow);
+                lD.workingHours = Convert.ToDouble(workingHours);
+                lD.leaveHours = Convert.ToDouble(leaveHours);
+                lD.replacementId = replacementIdCB;
+
+
+                PostRequest<LeaveDay> request = new PostRequest<LeaveDay>();
+                request.entity = lD;
+                PostResponse<LeaveDay> r = _leaveManagementService.ChildAddOrUpdate<LeaveDay>(request);
+                if (!r.Success)//it maybe another check
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                    return;
+                }
+
+                else
+                {
+
+
+
+                    FillLeaveDay(CurrentLeave.Text);
+
+
+
+                    //Display successful notification
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordSavingSucc
+                    });
+
+
+                    //RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                    //sm.DeselectAll();
+                    //sm.Select(b.recordId.ToString());
+                   
+                    replacementWindow.Close();
+                }
+
+            }
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+             
+
+
+          
+        }
+
         private List<LeaveDay> GetStoredLeaveDays()
         {
             LeaveDayListRequest req = new LeaveDayListRequest();
@@ -693,6 +760,10 @@ namespace AionHR.Web.UI.Forms.Controls
         }
 
         protected void BasicInfoTab_Load(object sender, EventArgs e)
+        {
+
+        }
+        protected void replacementForm_Load(object sender, EventArgs e)
         {
 
         }
@@ -1288,5 +1359,48 @@ namespace AionHR.Web.UI.Forms.Controls
             }
 
         }
+        protected void PoPuPLD(object sender, DirectEventArgs e)
+        {
+
+
+           
+
+            string id = e.ExtraParams["id"];
+            string leaveId = CurrentLeave.Text; 
+            string dayId = e.ExtraParams["dayId"];
+            string dow = e.ExtraParams["dow"];
+            string workingHours = e.ExtraParams["workingHours"];
+            string leaveHours = e.ExtraParams["leaveHours"];
+            string replacementIdCB = e.ExtraParams["replacementId"];
+
+            recordIdTF.Text = id;
+            leaveIdTF.Text = leaveId;
+            dayIdTF.Text = dayId;
+            dowTF.Text = dow;
+            workingHoursTF.Text = workingHours;
+            leaveHoursTF.Text = leaveHours;
+            replacementId.Select(replacementIdCB);
+            replacementWindow.Show(); 
+
+
+
+        }
+        private void FillLeaveDay(string leaveId)
+        {
+            LeaveDayListRequest req = new LeaveDayListRequest();
+            req.LeaveId = CurrentLeave.Text;
+            ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                return; 
+            }
+            resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
+            leaveDaysStore.DataSource = resp.Items;
+            leaveDaysStore.DataBind(); 
+
+          
+        }
+
     }
 }

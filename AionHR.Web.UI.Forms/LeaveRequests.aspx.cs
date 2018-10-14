@@ -34,6 +34,17 @@ namespace AionHR.Web.UI.Forms
     public partial class LeaveRequests : System.Web.UI.Page
     {
         [DirectMethod]
+        public object FillReplacementEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
+      
+        [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);

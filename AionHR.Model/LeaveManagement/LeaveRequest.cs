@@ -74,8 +74,10 @@ namespace AionHR.Model.LeaveManagement
         public double? leaveDays { get; set; }
         public int? workingHours { get; set; }
         public int? leaveHours { get; set; }
+        public string replacementId { get; set; }
 
-      
+        public EmployeeName replacementName { get; set; }
+
 
     }   
 }

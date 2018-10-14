@@ -276,4 +276,10 @@
   <data name="New" xml:space="preserve">
     <value>New</value>
   </data>
+  <data name="FieldReplacementEmployeeName" xml:space="preserve">
+    <value>Replacement Employee </value>
+  </data>
+  <data name="EditReplacement" xml:space="preserve">
+    <value>Replacement Employee</value>
+  </data>
 </root>

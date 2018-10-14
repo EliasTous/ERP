@@ -36,6 +36,11 @@ using AionHR.Model.Attributes;
 using AionHR.Model.Access_Control;
 using AionHR.Services.Messaging.HelpFunction;
 using AionHR.Model.HelpFunction;
+using AionHR.Infrastructure.Session;
+using System.Threading;
+using AionHR.Infrastructure.Tokens;
+using AionHR.Services.Implementations;
+using AionHR.Repository.WebService.Repositories;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -50,6 +55,7 @@ namespace AionHR.Web.UI.Forms
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         IHelpFunctionService _helpFunctionService= ServiceLocator.Current.GetInstance<IHelpFunctionService>();
+        SessionHelper h;
         protected override void InitializeCulture()
         {
 
@@ -1478,54 +1484,7 @@ namespace AionHR.Web.UI.Forms
             return req;
         }
 
-        protected void GeneratePayroll1(object sender, DirectEventArgs e)
-        {
-            try
-            {
-
-                string id = CurrentPayId1.Text;
-                string departmentId = e.ExtraParams["departmentId"];
-                string branchId = e.ExtraParams["branchId"];
-                string employeeId = e.ExtraParams["employeeId"];
-                GeneratePayroll h = new GeneratePayroll();
-                if (departmentId == "" || departmentId == "null" || string.IsNullOrEmpty(departmentId))
-                    h.departmentId = 0;
-                else
-                    h.departmentId = Convert.ToInt32(departmentId);
-                if (branchId == "" || branchId == "null" || string.IsNullOrEmpty(branchId))
-                    h.branchId = 0;
-                else
-                    h.branchId = Convert.ToInt32(branchId);
-                if (employeeId == "" || employeeId == "null" || string.IsNullOrEmpty(employeeId))
-                    h.employeeId = 0;
-                else
-                    h.employeeId = Convert.ToInt32(employeeId);
-                if (id != "" || id != "null" || !string.IsNullOrEmpty(id))
-                    h.payId = Convert.ToInt32(id);
-
-
-                PostRequest<GeneratePayroll> req = new PostRequest<GeneratePayroll>();
-                req.entity = h;
-
-                PostResponse<GeneratePayroll> resp = _payrollService.ChildAddOrUpdate<GeneratePayroll>(req);
-                if (!resp.Success)
-                {
-
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                    return;
-                }
-
-                EditGenerateWindow.Close();
-                Store1.Reload();
-                Viewport1.ActiveIndex = 2;
-            }
-            catch (Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-                Viewport1.ActiveIndex = 1; 
-            }
-        }
+      
         private void FillDepartment()
         {
             
@@ -1653,6 +1612,160 @@ namespace AionHR.Web.UI.Forms
             }
 
             }
-            
+
+        protected void StartLongAction(object sender, DirectEventArgs e)
+        {
+            string id = CurrentPayId1.Text;
+            string departmentId = e.ExtraParams["departmentId"];
+            string branchId = e.ExtraParams["branchId"];
+            string employeeId = e.ExtraParams["employeeId"];
+            GeneratePayroll G = new GeneratePayroll();
+            if (departmentId == "" || departmentId == "null" || string.IsNullOrEmpty(departmentId))
+                G.departmentId = 0;
+            else
+                G.departmentId = Convert.ToInt32(departmentId);
+            if (branchId == "" || branchId == "null" || string.IsNullOrEmpty(branchId))
+                G.branchId = 0;
+            else
+                G.branchId = Convert.ToInt32(branchId);
+            if (employeeId == "" || employeeId == "null" || string.IsNullOrEmpty(employeeId))
+                G.employeeId = 0;
+            else
+                G.employeeId = Convert.ToInt32(employeeId);
+            if (id != "" || id != "null" || !string.IsNullOrEmpty(id))
+                G.payId = Convert.ToInt32(id);
+            //this.Session["LongActionProgressGenAD"] = 0;
+            DictionarySessionStorage storage = new DictionarySessionStorage();
+            storage.Save("AccountId", _systemService.SessionHelper.Get("AccountId"));
+            storage.Save("UserId", _systemService.SessionHelper.Get("UserId"));
+            storage.Save("key", _systemService.SessionHelper.Get("Key"));
+            h = new SessionHelper(storage, new APIKeyBasedTokenGenerator());
+
+            //HttpRuntime.Cache.Insert("TotalRecords", 0);
+            //HttpRuntime.Cache.Insert("LongActionProgress", 0);
+            //HttpRuntime.Cache.Insert("finished", "0");
+
+            ThreadPool.QueueUserWorkItem(GeneratePayroll1, new object[] { h,G });
+
+
+
+            this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", TaskManager1.ClientID);
+
+
+
+        }
+
+        protected void RefreshProgress(object sender, DirectEventArgs e)
+        {
+
+            try
+            {
+
+
+                double progress = 0;
+
+
+                RecordRequest req = new RecordRequest();
+                if (HttpRuntime.Cache["genEM_RecordId"] != null)
+                    req.RecordID = HttpRuntime.Cache["genEM_RecordId"].ToString();
+                else
+                    return;
+                RecordResponse<BackgroundJob> resp = _systemService.ChildGetRecord<BackgroundJob>(req);
+                if (resp.result == null || resp.result.errorId != null)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId) != null ? GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.result.argStr + "  " + resp.result.argInt : resp.result.argStr + " <br> " + resp.result.argInt).Show();
+                    HttpRuntime.Cache.Remove("genEM_RecordId");
+                    this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                    EditGenerateWindow.Close();
+                    Viewport1.ActiveIndex = 0;
+                }
+                else
+                {
+
+
+                    if (resp.result.taskSize == 0)
+                    {
+                        progress = 0;
+                        this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                        EditGenerateWindow.Close();
+                        Store1.Reload();
+                        Viewport1.ActiveIndex = 2;
+                        X.Msg.Alert("", GetGlobalResourceObject("Common", "GenerateAttendanceDaySucc").ToString()).Show();
+                    }
+                    else
+                    {
+                        progress = (double)resp.result.completed / resp.result.taskSize;
+                        string prog = (float.Parse(progress.ToString()) * 100).ToString();
+                        string message = GetGlobalResourceObject("Common", "working").ToString();
+                        this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+                    }
+
+
+                    if (resp.result.taskSize == resp.result.completed)
+                    {
+                        this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                        HttpRuntime.Cache.Remove("genEM_RecordId");
+                        EditGenerateWindow.Close();
+                        Store1.Reload();
+                        Viewport1.ActiveIndex = 2;
+                        X.Msg.Alert("", GetGlobalResourceObject("Common", "GenerateAttendanceDaySucc").ToString()).Show();
+
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+
+            }
+
+
+
+
+
+
+
+
+
+        }
+
+        protected void GeneratePayroll1(object state)
+        {
+            try
+            {
+                object[] array = state as object[];
+                SessionHelper h = (SessionHelper)array[0];
+
+                PayrollService   payrollService = new PayrollService(new PayrollRepository(),h);
+                GeneratePayroll G = (GeneratePayroll)array[1];
+
+                PostRequest<GeneratePayroll> req = new PostRequest<GeneratePayroll>();
+                req.entity = G;
+
+                PostResponse<GeneratePayroll> resp = payrollService.ChildAddOrUpdate<GeneratePayroll>(req);
+               
+
+                if (!resp.Success)
+                { //Show an error saving...
+
+                    HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Message);
+                    HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
+                    HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
+
+                }
+                else
+                {
+                    HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
+                }
+
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+              
+            }
+        }
+
     }
 }

@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/LeaveRequests.js?id=9"></script>
-    <script type="text/javascript" src="Secripts/common.js?id=2"></script>
-    <script type="text/javascript" src="Scripts/moment.js"></script>
+    <script type="text/javascript" src="Secripts/common.js?id=120"></script>
+    <script type="text/javascript" src="Scripts/moment.js?id=20"></script>
     <script type="text/javascript">
         //function CalcSum() {
 
@@ -42,7 +42,8 @@
         //        App.returnDate.setDisabled(true);
         //}
      
-        
+      
+
         
     </script>
 </head>

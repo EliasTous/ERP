@@ -61,7 +61,10 @@ namespace AionHR.Repository.WebService.Repositories
         
             ChildGetLookup.Add(typeof(UserInfoByEmployeeId), "getUS3");
             ChildGetLookup.Add(typeof(CurrencyByRef), "getCU2");
+            ChildGetLookup.Add(typeof(BackgroundJob), "getBJ");
 
+
+            
 
 
 

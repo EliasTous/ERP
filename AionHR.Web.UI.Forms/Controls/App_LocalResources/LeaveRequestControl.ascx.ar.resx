@@ -279,4 +279,10 @@
   <data name="New" xml:space="preserve">
     <value>جديد</value>
   </data>
+  <data name="FieldReplacementEmployeeName" xml:space="preserve">
+    <value>استبدال الموظف</value>
+  </data>
+  <data name="EditReplacement" xml:space="preserve">
+    <value>تعديل استبدال الموظف</value>
+  </data>
 </root>

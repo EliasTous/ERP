@@ -1271,6 +1271,9 @@
             </Store>
 
                       </ext:ComboBox>
+
+                              
+                                    <ext:ProgressBar ID="Progress1" runat="server"  />
                        
                     </Items>
 
@@ -1283,7 +1286,7 @@
                         <Click Handler="CheckSession(); if (!#{EditGenerateForm}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
-                        <Click OnEvent="GeneratePayroll1" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                        <Click OnEvent="StartLongAction" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditGenerateForm}.body}" />
                             <ExtraParams>
                                  <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
@@ -1307,6 +1310,23 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+
+          <ext:TaskManager ID="TaskManager1" runat="server">
+            <Tasks>
+                <ext:Task 
+                    TaskID="longactionprogress"
+                    Interval="2000" 
+                    AutoRun="false" 
+                    OnStart="#{GenerateButton}.setDisabled(true);"
+                       OnStop="#{GenerateButton}.setDisabled(false);" >
+                 
+                    <DirectEvents>
+                        <Update OnEvent="RefreshProgress" />
+                    </DirectEvents>                    
+                </ext:Task>
+            </Tasks>
+        </ext:TaskManager>
+
     </form>
 </body>
 </html>
