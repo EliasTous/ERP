@@ -55,8 +55,8 @@
                     Layout="FitLayout" AutoScroll="true"
                     Margins="0 0 0 0"
                     Region="Center">
-                    <TopBar>
-                        <ext:Toolbar runat="server" Height="60">
+                  <DockedItems>
+                        <ext:Toolbar runat="server" Height="50" Dock="Top">
 
                             <Items>
                              
@@ -96,8 +96,61 @@
 
                             </Items>
                         </ext:Toolbar>
+                            <ext:Toolbar runat="server" Dock="Top">
+                            <Items> 
+                                   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeVariationType" runat="server" EmptyText="<%$ Resources:FieldTimeVariationType%>" Name="timeVariationType" IDMode="Static" SubmitValue="true" MaxWidth="120">
+                                    <Items>
+                                       <ext:ListItem Text="<%$ Resources:Common ,  All %>" Value="0"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  UnpaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_UNPAID_LEAVE %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  PaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_PAID_LEAVE %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  SHIFT_LEAVE_WITHOUT_EXCUSE %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_SHIFT_LEAVE_WITHOUT_EXCUSE %>" ></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  DAY_LEAVE_WITHOUT_EXCUSE  %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_DAY_LEAVE_WITHOUT_EXCUSE %>" ></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  LATE_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_LATE_CHECKIN %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  DURING_SHIFT_LEAVE %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_DURING_SHIFT_LEAVE %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_LEAVE   %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_LEAVE   %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_CHECKIN %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  OVERTIME %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_OVERTIME %>"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common ,  MISSED_PUNCH %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_MISSED_PUNCH %>"></ext:ListItem>
+                                         <ext:ListItem Text="<%$ Resources:Common ,  Day_Bonus %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_Day_Bonus %>"></ext:ListItem>
+                                      
+                                      
+                                    </Items>
+                                  
+                                    
+                                </ext:ComboBox>
+                                   <ext:ToolbarSeparator runat="server" />
+                                
+                                   <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
+                                    EmptyText="<%$ Resources: FieldApprovalStatus %>">
+                                    <Items>
 
-                    </TopBar>
+                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="-1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="2" />
+                                    </Items>
+
+                                </ext:ComboBox>
+                                  <ext:NumberField ID="fromDuration" runat="server" FieldLabel="<%$ Resources:fromDuration%>" Name="fromDuration" MinValue="0"   >
+                                      <Listeners>
+                                          <FocusLeave Handler="this.value<0 ? this.setValue(0) : this.value"></FocusLeave>
+                                      </Listeners>
+                                      </ext:NumberField>
+                                   <ext:ToolbarSeparator runat="server" />
+                                  
+                                  <ext:NumberField ID="toDuration" runat="server" FieldLabel="<%$ Resources:toDuration%>" Name="toDuration"  MinValue="0" >
+                                      <Listeners>
+                                          <FocusLeave Handler="this.value<0 ? this.setValue(0) : this.value"></FocusLeave>
+                                      </Listeners>
+                                      </ext:NumberField>
+                                      
+                                <ext:ToolbarSeparator runat="server" />
+
+
+                            </Items>
+                        </ext:Toolbar>
+
+                  </DockedItems>
                     <Content>
 
                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server"  ClientSideEvents-CallbackError="alertNow" ClientInstanceName="callbackPanel"

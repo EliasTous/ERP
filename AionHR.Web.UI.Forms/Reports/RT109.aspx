@@ -101,7 +101,7 @@
                                  <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                                 <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false" EnableBranch="true" EnableDepartment="true" EnablePosition="true"  />
+                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="true" EnableBranch="true" EnableDepartment="true" EnablePosition="true"  />
                                             </Content>
                                         </ext:Container>
                                 

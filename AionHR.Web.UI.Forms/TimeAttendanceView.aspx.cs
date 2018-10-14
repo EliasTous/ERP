@@ -551,10 +551,15 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", daysResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", daysResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + daysResponse.LogId : daysResponse.Summary).Show();
                     return;
                 }
+                bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
 
                 daysResponse.Items.ForEach(x =>
 
                             {
+                                if (rtl)
+                                    x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                                else
+                                    x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
                                 switch (x.apStatus)
                                 {
                                     case 1:

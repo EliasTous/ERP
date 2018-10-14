@@ -393,4 +393,10 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>الموظفين</value>
   </data>
+  <data name="fromDuration" xml:space="preserve">
+    <value>من ( الفترة) </value>
+  </data>
+  <data name="toDuration" xml:space="preserve">
+    <value>الى (الفترة)</value>
+  </data>
 </root>

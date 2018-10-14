@@ -184,6 +184,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store statusStore;
         
         /// <summary>
+        /// apStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox apStatus;
+        
+        /// <summary>
+        /// fromDuration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField fromDuration;
+        
+        /// <summary>
+        /// toDuration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField toDuration;
+        
+        /// <summary>
         /// ColRecordId control.
         /// </summary>
         /// <remarks>
@@ -193,22 +220,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColRecordId;
         
         /// <summary>
-        /// ColDayId control.
+        /// ColStringDayId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateColumn ColDayId;
-        
-        /// <summary>
-        /// coldayidstring control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.DateColumn coldayidstring;
+        protected global::Ext.Net.Column ColStringDayId;
         
         /// <summary>
         /// ColName control.

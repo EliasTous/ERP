@@ -396,4 +396,10 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>
   </data>
+  <data name="fromDuration" xml:space="preserve">
+    <value>From Duration</value>
+  </data>
+  <data name="toDuration" xml:space="preserve">
+    <value>To Duration</value>
+  </data>
 </root>

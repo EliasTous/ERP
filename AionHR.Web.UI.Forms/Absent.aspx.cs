@@ -85,8 +85,7 @@ namespace AionHR.Web.UI.Forms
                 dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                 FillStatus();
                 timeVariationType.Select(0);
-                ColDayId.Format = _systemService.SessionHelper.GetDateformat(); 
-
+             
 
 
 
@@ -227,8 +226,30 @@ namespace AionHR.Web.UI.Forms
             reqTV.fromDayId = dateRange1.GetRange().DateFrom;
             reqTV.toDayId = dateRange1.GetRange().DateTo;
             reqTV.employeeId = employeeCombo1.GetEmployee().employeeId.ToString();
+            if (string.IsNullOrEmpty(apStatus.Value.ToString()))
+            {
+
+                reqTV.apStatus = "0";
+            }
+            else
+                reqTV.apStatus = apStatus.Value.ToString();
+            if (string.IsNullOrEmpty(fromDuration.Text))
+            {
+
+                reqTV.fromDuration = "0";
+            }
+            else
+                reqTV.fromDuration = fromDuration.Text;
+            if (string.IsNullOrEmpty(toDuration.Text))
+            {
+
+                reqTV.toDuration = "0";
+            }
+            else
+                reqTV.toDuration = toDuration.Text; 
+
             if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
-                {
+            {
                 timeVariationType.Select(ConstTimeVariationType.LATE_CHECKIN.ToString());
                 reqTV.timeCode = ConstTimeVariationType.LATE_CHECKIN.ToString();
             }
@@ -258,6 +279,7 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", daysResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", daysResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + daysResponse.LogId : daysResponse.Summary).Show();
                     return;
                 }
+                bool rtl = _systemService.SessionHelper.CheckIfArabicSession(); 
                 daysResponse.Items.ForEach(
                     x =>
                     {
@@ -266,8 +288,10 @@ namespace AionHR.Web.UI.Forms
                         x.timeCodeString = FillTimeCode(x.timeCode);
                         x.apStatusString = FillApprovalStatus(x.apStatus);
                         x.damageLevelString = FillDamageLevelString(x.damageLevel);
-                        x.dayIdDate = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"));
-                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd", new System.Globalization.CultureInfo("ar-AE"));
+                       if (rtl)
+                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                       else
+                          x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
 
 
                     }

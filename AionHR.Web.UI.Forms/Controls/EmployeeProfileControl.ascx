@@ -18,14 +18,14 @@
 
     <script src="Scripts/HijriCalender/jquery.plugin.js?id=280" type="text/javascript"></script>
 
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.js?id=101"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars-ar.js?id=105"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker.js?id=205"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.plus.js?id=107"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic.js?id=109"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic-ar.js?id=111"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.lang.js?id=115"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker-ar.js?id=120"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.js?id=202"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars-ar.js?id=203"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker.js?id=204"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.plus.js?id=205"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic.js?id=206"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic-ar.js?id=207"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.lang.js?id=208"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker-ar.js?id=209"></script>
     <script type="text/javascript">
         var cropper = null;
 
@@ -809,13 +809,13 @@
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Name="recordId" />
                                 <ext:TextField ID="reference" ValidateBlank="false" MsgTarget="None" ValidateOnChange="false" ValidateOnBlur="true" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" BlankText="<%$ Resources:Common, MandatoryField%>" >
-                                    <Listeners>
+                                   <%-- <Listeners>
                                        <FocusLeave Handler="if(#{CurrentEmployee}.value!='') return; App.direct.employeeControl1.CheckReference(this.value,{
                 success: function (result) {
                     if(result=='1'){App.employeeControl1_reference.markInvalid('');} }});" />
                                        
                                     </Listeners>
-                                  
+                                  --%>
                                    
                                     </ext:TextField>
                                 <ext:TextField ID="firstName" runat="server" FieldLabel="<%$ Resources:FieldFirstName%>" Name="firstName" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>">
@@ -879,7 +879,7 @@
                                                                               <Render Fn="handleInputRender" />
                                                                                                                         </Listeners>
                                  <LeftButtons>
-                                                <ext:Button ID="Button8" runat="server" Icon="CalculatorEdit"  >
+                                                <ext:Button ID="BTHijriCal" runat="server" Icon="CalculatorEdit"  >
                                                     <Listeners>
                                                 <Click Handler="setInputState(false);#{bdHijriCal}.setValue('false');" />
                                             </Listeners>
@@ -1285,7 +1285,7 @@
         </ext:TabPanel>
 
     </Items>
-
+    
 </ext:Window>
 <ext:Window
     ID="terminationWindow"

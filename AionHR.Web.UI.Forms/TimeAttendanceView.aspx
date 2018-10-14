@@ -110,6 +110,7 @@
                     <Fields>
 
                         <ext:ModelField Name="dayId" />
+                        <ext:ModelField Name="dayIdString" />
                         <ext:ModelField Name="employeeId" />
                         <ext:ModelField Name="employeeName" IsComplex="true" />
                         <ext:ModelField Name="branchName" />
@@ -253,8 +254,8 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="true">
                         <Columns>
 
-                            <ext:Column ID="ColDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayId" Flex="2" Hideable="false">
-                                <Renderer Handler="var d = moment(record.data['dayId'],'YYYYMMDD'); return d.format(App.format.value);" />
+                            <ext:Column ID="ColDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayIdString" Flex="2" Hideable="false">
+                                
                                 <SummaryRenderer Handler="return #{TotalText}.value;" />
                             </ext:Column>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">

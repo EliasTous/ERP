@@ -1974,6 +1974,9 @@ namespace AionHR.Web.UI.Forms
                 TVReq.toDayId = DateTime.Now;
                 TVReq.PositionId = req.PositionId;
                 TVReq.employeeId = "0";
+                TVReq.apStatus = "0";
+                TVReq.fromDuration = "0";
+                TVReq.toDuration = "0"; 
 
 
 

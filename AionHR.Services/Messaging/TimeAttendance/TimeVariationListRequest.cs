@@ -17,7 +17,12 @@ namespace AionHR.Services.Messaging
 
         public DateTime toDayId { get; set; }
         public string employeeId { get; set; }
+        public string apStatus { get; set; }
+        public string fromDuration { get; set; }
+        public string toDuration { get; set; }
 
+
+       
 
         public override Dictionary<string, string> Parameters
         {
@@ -29,6 +34,9 @@ namespace AionHR.Services.Messaging
                 parameters.Add("_fromDayId",fromDayId.ToString("yyyyMMdd"));
                 parameters.Add("_toDayId", toDayId.ToString("yyyyMMdd"));
                 parameters.Add("_employeeId", employeeId);
+                parameters.Add("_apStatus", apStatus);
+                parameters.Add("_fromDuration", fromDuration);
+                parameters.Add("_toDuration", toDuration);
 
 
 

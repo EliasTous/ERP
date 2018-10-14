@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT503.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT503" %>
+﻿
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT503.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT503" %>
 
 
 <%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
@@ -26,7 +27,6 @@
     <script type="text/javascript" src="../Scripts/RT200.js?id=18"></script>
     <script type="text/javascript">
         function alertNow(s, e) {
-
             Ext.MessageBox.alert('Error', e.message);
             e.handled = true;
         }

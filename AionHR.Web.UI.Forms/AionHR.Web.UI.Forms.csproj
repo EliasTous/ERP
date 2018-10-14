@@ -399,7 +399,6 @@
     <Content Include="Scripts\FinalSettlements.js" />
     <Content Include="Scripts\HighCharts.js" />
     <Content Include="Scripts\jquery-ui-min.js" />
-    <Content Include="Scripts\MyInfos.js" />
     <Content Include="Scripts\NationalQuotas.js" />
     <Content Include="Scripts\OvertimeSettings.js" />
     <Content Include="Scripts\PayCodes.js" />
@@ -2251,7 +2250,9 @@
     <Content Include="App_LocalResources\ImportDepartments.aspx.resx" />
     <Content Include="App_LocalResources\ImportDepartments.aspx.ar.resx" />
     <Content Include="App_LocalResources\LoanRequests.aspx.ar.resx" />
-    <Content Include="App_LocalResources\Cases.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Cases.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_LocalResources\LeaveRequests.aspx.ar.resx" />
     <Content Include="App_LocalResources\WorkingCalendars.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportEmployees.aspx.resx" />
