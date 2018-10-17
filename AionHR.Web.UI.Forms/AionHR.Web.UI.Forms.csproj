@@ -229,6 +229,7 @@
     <Content Include="EmployeePages\Payroll.aspx" />
     <Content Include="EmployeePages\Skills.aspx" />
     <Content Include="Controls\EmployeeProfileControl.ascx" />
+    <Content Include="EmployeePenalties.aspx" />
     <Content Include="EmployeeRoot.aspx" />
     <Content Include="Employees.aspx" />
     <Content Include="EmployeesOrgChart.aspx" />
@@ -685,6 +686,13 @@
     </Compile>
     <Compile Include="EmployeePages\EmployeeCalendars.aspx.designer.cs">
       <DependentUpon>EmployeeCalendars.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePenalties.aspx.cs">
+      <DependentUpon>EmployeePenalties.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePenalties.aspx.designer.cs">
+      <DependentUpon>EmployeePenalties.aspx</DependentUpon>
     </Compile>
     <Compile Include="FinalSettlements.aspx.cs">
       <DependentUpon>FinalSettlements.aspx</DependentUpon>
@@ -2148,7 +2156,9 @@
     <Content Include="EmployeePages\App_LocalResources\Contacts.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\EmployeeComplaints.aspx.resx" />
+    <Content Include="App_LocalResources\EmployeeComplaints.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\resetPw.aspx.resx" />
@@ -2180,7 +2190,9 @@
     <Content Include="App_LocalResources\RelationshipTypes.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\LoanRequests.aspx.resx" />
+    <Content Include="App_LocalResources\LoanRequests.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\SystemAlerts.aspx.resx" />
@@ -2249,7 +2261,9 @@
     </Content>
     <Content Include="App_LocalResources\ImportDepartments.aspx.resx" />
     <Content Include="App_LocalResources\ImportDepartments.aspx.ar.resx" />
-    <Content Include="App_LocalResources\LoanRequests.aspx.ar.resx" />
+    <Content Include="App_LocalResources\LoanRequests.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_LocalResources\Cases.aspx.ar.resx">
       <SubType>Designer</SubType>
     </Content>
@@ -2321,8 +2335,12 @@
     <Content Include="App_LocalResources\Letters.aspx.ar.resx" />
     <Content Include="App_LocalResources\Letters.aspx.resx" />
     <Content Include="EmployeePages\App_LocalResources\Contacts.aspx.ar.resx" />
-    <Content Include="App_LocalResources\LeavePayments.aspx.ar.resx" />
-    <Content Include="App_LocalResources\LeavePayments.aspx.resx" />
+    <Content Include="App_LocalResources\LeavePayments.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\LeavePayments.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_LocalResources\OrganizationChart.aspx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT402.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT402.aspx.ar.resx" />
@@ -2374,8 +2392,12 @@
     <Content Include="App_LocalResources\Myinfos.aspx.ar.resx" />
     <Content Include="App_LocalResources\leaveRequestsSelfServices.aspx.resx" />
     <Content Include="App_LocalResources\leaveRequestsSelfServices.aspx.ar.resx" />
-    <Content Include="App_LocalResources\LoanSelfServices.aspx.resx" />
-    <Content Include="App_LocalResources\LoanSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\LoanSelfServices.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\LoanSelfServices.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_LocalResources\LettersSelfServices.aspx.ar.resx" />
     <Content Include="App_LocalResources\LettersSelfServices.aspx.resx" />
     <Content Include="App_LocalResources\Banks.aspx.resx" />
@@ -2389,8 +2411,12 @@
     <Content Include="App_LocalResources\NationalQuotas.aspx.ar.resx" />
     <Content Include="App_LocalResources\AssetAllowanceSelfServices.aspx.resx" />
     <Content Include="App_LocalResources\AssetAllowanceSelfServices.aspx.ar.resx" />
-    <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.resx" />
-    <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_LocalResources\DailySchedule.aspx.ar.resx" />
     <Content Include="App_LocalResources\DailySchedule.aspx.resx" />
     <Content Include="App_LocalResources\SynchronizeAttendanceDays.aspx.resx" />
@@ -2433,6 +2459,8 @@
     <Content Include="App_LocalResources\TimeCodes.aspx.ar.resx" />
     <Content Include="App_LocalResources\TimeCodes.aspx.resx" />
     <Content Include="App_LocalResources\Departments.aspx.ar.resx" />
+    <Content Include="App_LocalResources\EmployeePenalties.aspx.resx" />
+    <Content Include="App_LocalResources\EmployeePenalties.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

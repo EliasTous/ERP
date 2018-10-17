@@ -92,7 +92,8 @@ namespace AionHR.Web.UI.Forms
         {
 
             DepartmentListRequest req = new DepartmentListRequest();
-            req.type =Convert.ToInt32( type.SelectedItem.Value); 
+            req.type =Convert.ToInt32( type.SelectedItem.Value);
+            req.isInactive = 0;
             ListResponse<Department> response = _companyStructureService.ChildGetAll<Department>(req);
             if (!response.Success)
             {

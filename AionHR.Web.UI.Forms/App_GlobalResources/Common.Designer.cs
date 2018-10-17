@@ -943,6 +943,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee Penalty.
+        /// </summary>
+        internal static string EmployeePenalty {
+            get {
+                return ResourceManager.GetString("EmployeePenalty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee Chart.
         /// </summary>
         internal static string EmpOrganizationChart {

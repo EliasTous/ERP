@@ -1260,4 +1260,7 @@
   <data name="working" xml:space="preserve">
     <value>قيد الانجاز</value>
   </data>
+  <data name="EmployeePenalty" xml:space="preserve">
+    <value>جزاء الموظف</value>
+  </data>
 </root>

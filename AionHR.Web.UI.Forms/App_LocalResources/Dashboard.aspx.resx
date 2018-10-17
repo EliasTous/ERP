@@ -663,4 +663,19 @@
   <data name="FieldShift" xml:space="preserve">
     <value>Shift</value>
   </data>
+  <data name="DamageWITHOUT_DAMAGE" xml:space="preserve">
+    <value>Without Damage</value>
+  </data>
+  <data name="DamageWITH_DAMAGE" xml:space="preserve">
+    <value>With Damage</value>
+  </data>
+  <data name="FielddamageLevel" xml:space="preserve">
+    <value>damage Level</value>
+  </data>
+  <data name="FieldshiftEnd" xml:space="preserve">
+    <value>Shift End</value>
+  </data>
+  <data name="FieldshiftStart" xml:space="preserve">
+    <value>Shift Start</value>
+  </data>
 </root>

@@ -1035,7 +1035,7 @@ namespace AionHR.Web.UI.Forms
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
                 TimeBoundedActiveAttendanceRequest req = GetTimeBoundedActiveAttendanceRequest();
 
-                ListResponse<AttendancePeriod> resp = _systemService.ChildGetAll<AttendancePeriod>(req);
+                ListResponse<AttendancePeriod> resp = _dashBoardService.ChildGetAll<AttendancePeriod>(req);
                 if (!resp.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
@@ -1361,9 +1361,27 @@ namespace AionHR.Web.UI.Forms
             TimedayIdTF.Text = dayId;
             TimeTimeCodeTF.Text = timeCode;
 
+            TimeApprovalRecordRequest r = new TimeApprovalRecordRequest();
+            r.approverId = _systemService.SessionHelper.GetEmployeeId().ToString();
+            r.employeeId = employeeId;
+            r.dayId = dayId;
+            r.timeCode = timeCode;
+            r.shiftId = shiftId; 
+           
 
+            RecordResponse<Time> response = _timeAttendanceService.ChildGetRecord<Time>(r);
+            if (!response.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                return;
+            }
+            if (response.result.damageLevel == "1")
+                response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
+            else
+                response.result.damageLevel= GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
 
-
+            TimeFormPanel.SetValues(response.result); 
             this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
             this.TimeWindow.Show();
 

@@ -147,15 +147,20 @@ public class DepartmentListRequest : ListRequest
 {
 
    public int type { get; set; }
-   
-    
+    public int? isInactive { get; set; }
+
+
     public override Dictionary<string, string> Parameters
     {
         get
         {
             parameters = base.Parameters;
             parameters.Add("_type", type.ToString());
-           
+            if (isInactive == null)
+                isInactive = 2; 
+            parameters.Add("_isInactive", isInactive.ToString()  );
+
+
             return parameters;
         }
     }

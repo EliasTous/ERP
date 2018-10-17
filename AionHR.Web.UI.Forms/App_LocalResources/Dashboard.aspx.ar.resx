@@ -660,4 +660,19 @@
   <data name="FieldShift" xml:space="preserve">
     <value>الدوام</value>
   </data>
+  <data name="DamageWITHOUT_DAMAGE" xml:space="preserve">
+    <value>بدون ضرر</value>
+  </data>
+  <data name="DamageWITH_DAMAGE" xml:space="preserve">
+    <value>تسبب ضرر</value>
+  </data>
+  <data name="FielddamageLevel" xml:space="preserve">
+    <value>مستوى الضرر</value>
+  </data>
+  <data name="FieldshiftEnd" xml:space="preserve">
+    <value>نهاية الدوام</value>
+  </data>
+  <data name="FieldshiftStart" xml:space="preserve">
+    <value>بداية الدوام </value>
+  </data>
 </root>

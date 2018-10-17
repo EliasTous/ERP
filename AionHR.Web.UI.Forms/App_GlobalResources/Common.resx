@@ -1257,4 +1257,7 @@
   <data name="working" xml:space="preserve">
     <value>Working</value>
   </data>
+  <data name="EmployeePenalty" xml:space="preserve">
+    <value>Employee Penalty</value>
+  </data>
 </root>

@@ -466,7 +466,7 @@ namespace AionHR.Web.UI.Forms.Controls
                         {
                             b.recordId = r.recordId;
 
-                            LeaveRequestNotification(b);
+                       //     LeaveRequestNotification(b);
                             //Add this record to the store 
                             days.ForEach(d =>
                             {
@@ -580,7 +580,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
                         else
                         {
-                            LeaveRequestNotification(b);
+                            //LeaveRequestNotification(b);
 
                             var deleteDesponse = _leaveManagementService.DeleteLeaveDays(Convert.ToInt32(b.recordId));
                             if (!deleteDesponse.Success)//it maybe another check
@@ -1338,27 +1338,27 @@ namespace AionHR.Web.UI.Forms.Controls
                 //    status.Disabled = true;
             }
         }
-        private void LeaveRequestNotification(LeaveRequest b)
-        {
-            RecordRequest r = new RecordRequest();
-            r.RecordID = b.ltId.ToString();
-            RecordResponse<LeaveType> response = _leaveManagementService.ChildGetRecord<LeaveType>(r);
+        //private void LeaveRequestNotification(LeaveRequest b)
+        //{
+        //    RecordRequest r = new RecordRequest();
+        //    r.RecordID = b.ltId.ToString();
+        //    RecordResponse<LeaveType> response = _leaveManagementService.ChildGetRecord<LeaveType>(r);
 
 
-            if (_systemService.SessionHelper.GetEmployeeId() != null /*&& response.result.requireApproval == false*/)
-            {
-                PostRequest<DashboardLeave> DBRequset = new PostRequest<DashboardLeave>();
-                DBRequset.entity = new DashboardLeave() { leaveId = Convert.ToInt32(b.recordId), approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId()), status = b.status, notes = " " };
-                PostResponse<DashboardLeave> DBResponse = _leaveManagementService.ChildAddOrUpdate<DashboardLeave>(DBRequset);
-                if (!DBResponse.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", DBResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", DBResponse.ErrorCode).ToString() +"<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId").ToString() + DBResponse.LogId : DBResponse.Summary).Show();
-                    return;
-                }
-            }
+        //    if (_systemService.SessionHelper.GetEmployeeId() != null /*&& response.result.requireApproval == false*/)
+        //    {
+        //        PostRequest<DashboardLeave> DBRequset = new PostRequest<DashboardLeave>();
+        //        DBRequset.entity = new DashboardLeave() { leaveId = Convert.ToInt32(b.recordId), approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId()), status = b.status, notes = " " };
+        //        PostResponse<DashboardLeave> DBResponse = _leaveManagementService.ChildAddOrUpdate<DashboardLeave>(DBRequset);
+        //        if (!DBResponse.Success)
+        //        {
+        //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", DBResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", DBResponse.ErrorCode).ToString() +"<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId").ToString() + DBResponse.LogId : DBResponse.Summary).Show();
+        //            return;
+        //        }
+        //    }
 
-        }
+        //}
         protected void PoPuPLD(object sender, DirectEventArgs e)
         {
 

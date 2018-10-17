@@ -71,11 +71,14 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node employeesLeaf = BuildLeafNode("rootParent_Employee_Leaf", Resources.Common.EmployeeLeaf, "Vcard", true, employees);
          //   Ext.Net.Node casesList = BuildLeafNode("rootParent_Cases_List", Resources.Common.CaseManagement, "Group", true, employees);
             Ext.Net.Node loansList = BuildLeafNode("rootParent_Loans_List", Resources.Common.Loans, "MoneyDelete", true, employees);
+            Ext.Net.Node EmployeePenalty = BuildLeafNode("rootParent_Employee_Penalty", Resources.Common.EmployeePenalty, "UserRed", true, employees);
+
             Ext.Net.Node assetAllowance = BuildLeafNode("rootParent_Employee_AssetAllowance", Resources.Common.AssetAllowances, "UserStar", true, employees);
             //Ext.Net.Node employeeComplaint = BuildLeafNode("rootParent_Employee_EmployeeComplaint", Resources.Common.EmployeeComplaints, "UserComment", true, employees);
            // Ext.Net.Node tasksList = BuildLeafNode("rootParent_Tasks_List", Resources.Common.Tasks, "Group", true, employees);
            // FillConfigItem(casesList, "Cases", "Cases.aspx", Resources.Common.Cases, "icon-Employees", "1");
             FillConfigItem(loansList, "Loans", "LoanRequests.aspx", Resources.Common.Loans, "icon-Employees", "1");
+            FillConfigItem(EmployeePenalty, "EmployeePenalty", "EmployeePenalties.aspx", Resources.Common.EmployeePenalty, "icon-Employees", "1");
             FillConfigItem(assetAllowance, "assetAllowances", "AssetAllowances.aspx", Resources.Common.AssetAllowances, "icon-Employees", "1");
             FillConfigItem(employeesLeaf, "manageemployees", "Employees.aspx", Resources.Common.EmployeeLeaf, "icon-Employees", "1");
           //  FillConfigItem(employeeComplaint, "employeeComplaints", "EmployeeComplaints.aspx", Resources.Common.EmployeeComplaints, "icon-Employees", "1");

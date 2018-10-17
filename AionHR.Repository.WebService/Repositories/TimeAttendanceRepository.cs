@@ -28,8 +28,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(BiometricDevice), "getBM");
             ChildGetLookup.Add(typeof(Router), "getRO");
             ChildGetLookup.Add(typeof(Geofence), "getGF");
+            ChildGetLookup.Add(typeof(Time), "getTA");
 
-           
+
 
             ChildGetAllLookup.Add(typeof(DayType), "qryDT");
             ChildGetAllLookup.Add(typeof(AttendanceSchedule), "qrySC");
