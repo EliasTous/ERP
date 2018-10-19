@@ -285,8 +285,15 @@ namespace AionHR.Web.UI.Forms
 
 
                 double progress = 0;
-
-
+                if (
+                HttpRuntime.Cache.Get("ErrorMsgGenAD")!=null|| 
+                HttpRuntime.Cache.Get("ErrorLogIdGenAD" ) != null ||
+                HttpRuntime.Cache.Get("ErrorErrorCodeGenAD") != null )
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "Error_" + HttpRuntime.Cache.Get("ErrorErrorCodeGenAD").ToString()) != null ? GetGlobalResourceObject("Errors", "Error_" + HttpRuntime.Cache.Get("ErrorErrorCodeGenAD").ToString()).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + HttpRuntime.Cache.Get("ErrorLogIdGenAD").ToString() : HttpRuntime.Cache.Get("ErrorErrorCodeGenAD")).Show();
+                    HttpRuntime.Cache.Remove("genFS_RecordId");
+                    this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                }
                 RecordRequest req = new RecordRequest();
                 if (HttpRuntime.Cache["genFS_RecordId"] != null)
                     req.RecordID = HttpRuntime.Cache["genFS_RecordId"].ToString();

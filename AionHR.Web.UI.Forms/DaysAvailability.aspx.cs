@@ -24,6 +24,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -119,7 +120,14 @@ namespace AionHR.Web.UI.Forms
 
         private void BuildSchedule(List<FlatSchedule> items)
         {
-          
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "dailySchedule";
+            RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!SystemDefaultResponse.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + SystemDefaultResponse.LogId : SystemDefaultResponse.Summary).Show();
+                return;
+            }
 
             string html = @"<div style = 'margin: 5px auto; width: 99%; height: 98%; overflow:auto;' > 
                              <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0'  style='width:auto;'>";
@@ -186,7 +194,7 @@ namespace AionHR.Web.UI.Forms
                 ts.ID = dtStart.ToString("HH:mm");
                 ts.Time = dtStart.ToString("HH:mm");
                 timesList.Add(ts);
-                dtStart = dtStart.AddMinutes(30);
+                dtStart = dtStart.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
             } while (dtStart <= dtEnd);
 
             //filling the Day slots
@@ -226,7 +234,7 @@ namespace AionHR.Web.UI.Forms
                             listIds.Add(fs.employeeId + "_" + fsfromDate.AddDays(-1).ToString("HH:mm"));
                             listDn.Add(fs.employeeId + "_" + fs.departmentId + "_" + fsfromDate.AddDays(-1).ToString("HH:mm"));
                             listDS.Add(fs.departmentId.ToString());
-                            fsfromDate = fsfromDate.AddMinutes(30);
+                            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
                             continue;
 
                         }
@@ -238,7 +246,7 @@ namespace AionHR.Web.UI.Forms
                         //    dic.Add(fs.departmentId + "-" + fsfromDate.ToString("HH:mm"), 1);
                         //else
                         //    dic[fs.departmentId + "-" + fsfromDate.ToString("HH:mm")]++;
-                        fsfromDate = fsfromDate.AddMinutes(30);
+                        fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
                     } while (fsToDate >= fsfromDate);
                 }
                 listDn = listDn.Distinct().ToList();
@@ -255,7 +263,7 @@ namespace AionHR.Web.UI.Forms
                 do
                 {
                     listDS.ForEach(departmentID => dic.Add(departmentID + "-" + fsfromDate.ToString("HH:mm"), listDn.Where(stringToCheck => stringToCheck.Contains(departmentID + "_" + fsfromDate.ToString("HH:mm"))).Count()));
-                    fsfromDate = fsfromDate.AddMinutes(30);
+                    fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
                 } while (fsToDate >= fsfromDate);
 
 
@@ -510,6 +518,14 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public void OpenCell(string EmployeeId)
         {
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "dailySchedule";
+            RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!SystemDefaultResponse.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + SystemDefaultResponse.LogId : SystemDefaultResponse.Summary).Show();
+                return;
+            }
             pnlTools.Hidden = false;
             currentEmployee.Text = EmployeeId;
             string startAt=string.Empty, closeAt=string.Empty;
@@ -537,7 +553,7 @@ namespace AionHR.Web.UI.Forms
 
             TimeSpan tsStart = TimeSpan.Parse(startAt);
             timeFrom.MinTime = tsStart;
-            timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
+            timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value)));
             timeFrom.SelectedTime = tsStart;
             TimeSpan tsClose = TimeSpan.Parse(closeAt);
             timeTo.MaxTime = tsClose;
@@ -563,7 +579,7 @@ namespace AionHR.Web.UI.Forms
                 ts.Time = dtStart.ToString("HH:mm");
                 timesList.Add(ts);
                
-                dtStart = dtStart.AddMinutes(30);
+                dtStart = dtStart.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
             } while (dtStart <= dtEnd);
             
             html = FillFirstRow(html, timesList);
@@ -583,7 +599,7 @@ namespace AionHR.Web.UI.Forms
                 do
                 {
                     listIds.Add(EmployeeId + "_" + fsfromDate.ToString("HH:mm"));
-                    fsfromDate = fsfromDate.AddMinutes(30);
+                    fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
                 } while (fsToDate >= fsfromDate);
             }
             var d = response.Items.GroupBy(x => x.employeeId);

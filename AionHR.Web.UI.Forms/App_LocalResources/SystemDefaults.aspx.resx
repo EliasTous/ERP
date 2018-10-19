@@ -435,4 +435,16 @@
   <data name="pylvDays" xml:space="preserve">
     <value>Penalty Accumulated law violation in days</value>
   </data>
+  <data name="dailySchedule_15" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="dailySchedule_30" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="dailySchedule_60" xml:space="preserve">
+    <value>60</value>
+  </data>
+  <data name="FieldDailySchedule" xml:space="preserve">
+    <value>Daily Schedule</value>
+  </data>
 </root>

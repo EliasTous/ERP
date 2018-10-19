@@ -13,9 +13,9 @@ namespace AionHR.Model.Reports
     {
         public EmployeeName employeeName { get; set; }
 
-        public int beginningBalance { get; set; }
+        public double beginningBalance { get; set; }
 
-        public int accrued { get; set; }
+        public double accrued { get; set; }
 
         public int used { get; set; }
 
@@ -23,6 +23,6 @@ namespace AionHR.Model.Reports
 
         public int scheduled { get; set; }
 
-        public int endingBalance { get; set; }
+        public double endingBalance { get; set; }
     }
 }

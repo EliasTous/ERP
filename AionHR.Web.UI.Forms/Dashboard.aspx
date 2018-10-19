@@ -4391,11 +4391,11 @@
 
 
 
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="TimeStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status"
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="TimeStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="status" 
                                     FieldLabel="<%$ Resources: FieldStatus %>">
                                     <Items>
-
-                                       <%-- <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />--%>
+                                        
+                                     
                                         <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues,  SYTATATimeStatusApproved %>" />
                                         <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="<%$ Resources:ComboBoxValues,  SYTATATimeStatusRefused %>" />
                                     </Items>

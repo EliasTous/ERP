@@ -55,6 +55,7 @@ namespace AionHR.Model.Attendance
         public short duration { get; set; }
 
         public int netOL { get; set; }
+        public string netOLString { get; set; }
         public string OL_A { get; set; }
         public string OL_B { get; set; }
         public string OL_D { get; set; }

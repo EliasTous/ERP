@@ -157,7 +157,7 @@ public class DepartmentListRequest : ListRequest
             parameters = base.Parameters;
             parameters.Add("_type", type.ToString());
             if (isInactive == null)
-                isInactive = 2; 
+                isInactive = 0; 
             parameters.Add("_isInactive", isInactive.ToString()  );
 
 

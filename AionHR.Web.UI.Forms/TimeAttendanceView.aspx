@@ -131,6 +131,8 @@
                           <ext:ModelField Name="duration" />
 
                         <ext:ModelField Name="netOL" />
+                        <ext:ModelField Name="netOLString" />
+                      
 
 
 
@@ -278,7 +280,7 @@
                                 <Renderer Handler="var olD = '';if(record.data['OL_D']==null) return record.data['checkOut'] ; if(record.data['OL_D']=='00:00') olD=''; else olD= record.data['OL_D']; var cssClass='';if(record.data['OL_D'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkOut'] + '<br/>' + olD + '</div>'; return result;" />
                                 <SummaryRenderer Handler="return '<hr/>';" />
                             </ext:Column>
-                             <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDuration%>" DataIndex="duration" Flex="1" Hideable="false" />
+                           <%--  <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDuration%>" DataIndex="duration" Flex="1" Hideable="false" />--%>
                            
 
                            <ext:Column SummaryType="None" ID="ColworkingTime" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHoursWorked%>" DataIndex="workingTime" Flex="2" Hideable="false">
@@ -296,7 +298,7 @@
                                
                             <Renderer Handler="return LinkRender(value, metadata, record, rowIndex,  colIndex, store,record.data['apStatusString']);" />
                             </ext:Column>--%>
-                               <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNetOL%>" DataIndex="netOL" Flex="1" Hideable="false" />
+                               <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNetOL%>" DataIndex="netOLString" Flex="1" Hideable="false" />
 
 
                             <ext:Column runat="server"

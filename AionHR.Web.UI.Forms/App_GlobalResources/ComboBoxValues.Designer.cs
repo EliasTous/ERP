@@ -19,7 +19,7 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ComboBoxValues {
@@ -237,6 +237,33 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         internal static string CSDETypeSection {
             get {
                 return ResourceManager.GetString("CSDETypeSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 15.
+        /// </summary>
+        internal static string dailySchedule_15 {
+            get {
+                return ResourceManager.GetString("dailySchedule_15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30.
+        /// </summary>
+        internal static string dailySchedule_30 {
+            get {
+                return ResourceManager.GetString("dailySchedule_30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 60.
+        /// </summary>
+        internal static string dailySchedule_60 {
+            get {
+                return ResourceManager.GetString("dailySchedule_60", resourceCulture);
             }
         }
         

@@ -435,4 +435,7 @@
   <data name="pylvDays" xml:space="preserve">
     <value>عقوبة انتهاك القانون المتراكمة في أيام</value>
   </data>
+  <data name="FieldDailySchedule" xml:space="preserve">
+    <value>جدول الدوام اليومي </value>
+  </data>
 </root>

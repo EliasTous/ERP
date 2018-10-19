@@ -527,6 +527,10 @@ namespace AionHR.Web.UI.Forms
 
             catch { }
 
+            try { dailySchedule.Select(items.Where(s => s.Key == "dailySchedule").First().Value); }
+
+            catch { }
+
 
 
         }
@@ -733,6 +737,12 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("minPunchInterval", values.minPunchInterval.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("minPunchInterval", ""));
+
+            if (!string.IsNullOrEmpty(values.dailySchedule.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("dailySchedule", values.dailySchedule.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("dailySchedule", GetGlobalResourceObject("ComboBoxValues", "dailySchedule_15").ToString()));
+
             submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
 
             return submittedValues;

@@ -454,7 +454,7 @@ namespace AionHR.Web.UI.Forms
             DepartmentListRequest request = new DepartmentListRequest();
             request.Filter = searchTrigger.Text;
             request.type = 0;
-            request.isInactive = 0; 
+            request.isInactive = 2; 
             ListResponse<Department> branches = _branchService.ChildGetAll<Department>(request);
             if (!branches.Success)
             {

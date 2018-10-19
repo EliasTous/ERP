@@ -1380,7 +1380,7 @@ namespace AionHR.Web.UI.Forms
                 response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
             else
                 response.result.damageLevel= GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
-
+            TimeStatus.Select(response.result.status.ToString());
             TimeFormPanel.SetValues(response.result); 
             this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
             this.TimeWindow.Show();

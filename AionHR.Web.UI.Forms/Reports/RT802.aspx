@@ -90,8 +90,8 @@
                                         <uc:transactionCombo runat="server" ID="transactionCombo1" EnableViewState="true" />
                                     </Content>
                                 </ext:Container>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="masterId" Width="120" LabelAlign="Top"        DisplayField="fullName"
-                                            ValueField="recordId" AllowBlank="true"
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="masterRef" Width="120" LabelAlign="Top"        DisplayField="fullName"
+                                            ValueField="reference" AllowBlank="true"
                                             TypeAhead="false"
                                             HideTrigger="true" SubmitValue="true"
                                             MinChars="3" EmptyText="<%$ Resources:Common, FilterEmployee%>"
@@ -101,7 +101,7 @@
                                                     <Model>
                                                         <ext:Model runat="server">
                                                             <Fields>
-                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="reference" />
                                                                 <ext:ModelField Name="fullName" />
                                                             </Fields>
                                                         </ext:Model>

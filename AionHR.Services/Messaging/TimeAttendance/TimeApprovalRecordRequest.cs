@@ -13,14 +13,19 @@ namespace AionHR.Services.Messaging.TimeAttendance
         public string dayId { get; set; }
         public string timeCode { get; set; }
         public string shiftId { get; set; }
-        
-      
+
+        public Dictionary<string, string> parameters;
 
         public override Dictionary<string, string> Parameters
         {
             get
             {
+                
                 parameters = base.parameters;
+                if (parameters == null)
+                {
+                    parameters = new Dictionary<string, string>();
+                }
                 parameters.Add("_approverId", approverId);
                 parameters.Add("_employeeId", employeeId);
                 parameters.Add("_dayId", dayId);

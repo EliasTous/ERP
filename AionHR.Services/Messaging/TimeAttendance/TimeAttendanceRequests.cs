@@ -319,7 +319,7 @@ public class AttendnanceDayListRequest : ListRequest
     public string BranchId { get; set; }
     public string DepartmentId { get; set; }
     public string DivisionId { get; set; }
-    public int apStatus { get; set; }
+ //   public int apStatus { get; set; }
     public string SortBy { get; set; }
 
     public override Dictionary<string, string> Parameters
@@ -337,7 +337,7 @@ public class AttendnanceDayListRequest : ListRequest
             parameters.Add("_departmentId", DepartmentId);
             parameters.Add("_divisionId", DivisionId);
             parameters.Add("_sortBy", SortBy);
-            parameters.Add("_apStatus", apStatus.ToString());
+        //    parameters.Add("_apStatus", apStatus.ToString());
 
 
 

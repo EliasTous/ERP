@@ -24,6 +24,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -555,6 +556,14 @@ namespace AionHR.Web.UI.Forms
 
             if (dayId.Value != null && dayId.Value.ToString() != string.Empty)
             {
+                SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+                req.Key = "dailySchedule";
+                RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+                if (!SystemDefaultResponse.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + SystemDefaultResponse.LogId : SystemDefaultResponse.Summary).Show();
+                    return;
+                }
                 FlatSchedule fs = new FlatSchedule();
                 fs.from = fsfromTime.ToString("HH:mm");
                 fs.to = fsToTime.ToString("HH:mm");
@@ -600,7 +609,7 @@ namespace AionHR.Web.UI.Forms
                         do
                         {
                             listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                            fsfromDate = fsfromDate.AddMinutes(15);
+                            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
                         } while (fsToDate >= fsfromDate);
 
                     }
@@ -690,6 +699,16 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
+                SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+                req.Key = "dailySchedule";
+                RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+                if (!SystemDefaultResponse.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + SystemDefaultResponse.LogId : SystemDefaultResponse.Summary).Show();
+                    return; 
+                }
+               
+                   
                 string html = @"<div style = 'margin: 0px auto; max-width: 99%;width:auto; height: 98%; overflow:auto;' > 
                              <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' style='width:auto;' >";
 
@@ -745,7 +764,7 @@ namespace AionHR.Web.UI.Forms
                     ts.ID = dtStart.ToString("HH:mm");
                     ts.Time = dtStart.ToString("HH:mm");
                     timesList.Add(ts);
-                    dtStart = dtStart.AddMinutes(15);
+                    dtStart = dtStart.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
                 } while (dtStart <= dtEnd);
 
                 //filling the Day slots
@@ -771,11 +790,11 @@ namespace AionHR.Web.UI.Forms
                         if (fsfromDate.ToString("HH:mm") == "00:00")
                         {
                             listIds.Add(fsfromDate.AddDays(-1).ToString("yyyyMMdd") + "_00:00");
-                            fsfromDate = fsfromDate.AddMinutes(15);
+                            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
                             continue;
                         }
                         listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                        fsfromDate = fsfromDate.AddMinutes(15);
+                        fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
                     } while (fsToDate >= fsfromDate);
 
                 }
@@ -806,6 +825,14 @@ namespace AionHR.Web.UI.Forms
 
         private void BuildAvailability(List<FlatScheduleBranchAvailability> items)
         {
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "dailySchedule";
+            RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!SystemDefaultResponse.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + SystemDefaultResponse.LogId : SystemDefaultResponse.Summary).Show();
+                return;
+            }
             string html = @"<div style = 'margin: 5px auto; width: 99%; height: 98%; overflow:auto;' > 
                              <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' >";
 
@@ -850,7 +877,7 @@ namespace AionHR.Web.UI.Forms
                 ts.ID = dtStart.ToString("HH:mm");
                 ts.Time = dtStart.ToString("HH:mm");
                 timesList.Add(ts);
-                dtStart = dtStart.AddMinutes(15);
+                dtStart = dtStart.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
             } while (dtStart <= dtEnd);
 
             //filling the Day slots

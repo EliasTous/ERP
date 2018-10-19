@@ -8,7 +8,7 @@ namespace AionHR.Services.Messaging.Reports
 {
   public  class MasterIdParameterSet : ReportParameterSet
     {
-        public int masterId { get; set; }
+        public int masterRef { get; set; }
 
         protected Dictionary<string, string> parameters;
 
@@ -17,7 +17,7 @@ namespace AionHR.Services.Messaging.Reports
             get
             {
                 parameters = new Dictionary<string, string>();
-                parameters.Add("_masterId", masterId.ToString());
+                parameters.Add("_masterRef", masterRef.ToString());
                 return parameters;
             }
         }

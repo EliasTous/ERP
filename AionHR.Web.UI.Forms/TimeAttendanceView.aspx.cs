@@ -531,7 +531,7 @@ namespace AionHR.Web.UI.Forms
             req.Filter = "";
             req.SortBy = "dayId,checkIn";
           
-           req.apStatus = 0;
+         //  req.apStatus = 0;
          
 
             return req;
@@ -556,6 +556,7 @@ namespace AionHR.Web.UI.Forms
                 daysResponse.Items.ForEach(x =>
 
                             {
+                                x.netOLString = time(x.netOL, true);
                                 if (rtl)
                                     x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
                                 else
@@ -625,7 +626,30 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        public static string time(int _minutes, bool _signed)
+        {
+            if (_minutes == 0)
+                return "00:00";
 
+            bool isNegative = _minutes < 0 ? true : false;
+
+            _minutes = Math.Abs(_minutes);
+
+            string hours = (_minutes / 60).ToString(), minutes = (_minutes % 60).ToString(), formattedTime;
+
+            if (hours.Length == 1)
+                hours = "0" + hours;
+
+            if (minutes.Length == 1)
+                minutes = "0" + minutes;
+
+            formattedTime = hours + ':' + minutes;
+
+            if (isNegative && _signed)
+                formattedTime = "-" + formattedTime;
+
+            return formattedTime;
+        }
 
 
         [DirectMethod]

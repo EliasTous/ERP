@@ -177,7 +177,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Add(userCombo1.GetUser());
             req.Add(transactionCombo1.GetTransactionType());
             req.Add(moduleCombo1.GetModule());
-            req.Add(getMasterId());
+            req.Add(getMasterRef());
 
             //req.Add();
             return req;
@@ -275,7 +275,7 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
             List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
+            data.ForEach(s => { s.fullName = s.name.fullName; s.reference = s.name.reference; });
             //  return new
             // {
             return data;
@@ -303,15 +303,15 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
-        private MasterIdParameterSet getMasterId()
+        private MasterIdParameterSet getMasterRef()
         {
             MasterIdParameterSet s = new MasterIdParameterSet();
             int bulk;
-            if (masterId.Value == null || !int.TryParse(masterId.Value.ToString(), out bulk))
+            if (masterRef.Value == null || !int.TryParse(masterRef.Value.ToString(), out bulk))
 
-                s.masterId = 0;
+                s.masterRef = 0;
             else
-                s.masterId = bulk;
+                s.masterRef = bulk;
 
             return s;
 

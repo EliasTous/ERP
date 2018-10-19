@@ -1663,6 +1663,19 @@ namespace AionHR.Web.UI.Forms
 
 
                 double progress = 0;
+                if (
+                HttpRuntime.Cache.Get("ErrorMsgGenEM")!=null ||
+                HttpRuntime.Cache.Get("ErrorLogIdGenEM") != null ||
+                HttpRuntime.Cache.Get("ErrorErrorCodeGenEM") != null )
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "Error_" + HttpRuntime.Cache.Get("ErrorErrorCodeGenEM")) != null ? GetGlobalResourceObject("Errors", "Error_" + HttpRuntime.Cache.Get("ErrorErrorCodeGenEM").ToString()).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + HttpRuntime.Cache.Get("ErrorLogIdGenEM").ToString() : HttpRuntime.Cache.Get("ErrorMsgGenEM").ToString()).Show();
+                    HttpRuntime.Cache.Remove("genEM_RecordId");
+                    this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                    EditGenerateWindow.Close();
+                    Viewport1.ActiveIndex = 0;
+
+                }
+            
 
 
                 RecordRequest req = new RecordRequest();
@@ -1749,7 +1762,7 @@ namespace AionHR.Web.UI.Forms
                 if (!resp.Success)
                 { //Show an error saving...
 
-                    HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Message);
+                    HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
                     HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
                     HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
 
