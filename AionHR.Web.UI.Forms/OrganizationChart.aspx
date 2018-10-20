@@ -11,13 +11,14 @@
     <link rel="stylesheet" type="text/css" href="CSS/OrganizationChart.css?id=4" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
 
-    <script src="https://superal.github.io/canvas2image/canvas2image.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" type="text/javascript"></script>
+
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
-    <script type="text/javascript" src="Scripts/OrganizationChart.js?id=110" ></script>
+    <script type="text/javascript" src="Scripts/OrganizationChart.js?id=220" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
+    
+<script type="text/javascript" src="Scripts/html2canvas.js?id=520" > </script>
    
 
  
@@ -57,7 +58,7 @@
                                 </ext:Button>
             </Items>
         </ext:Toolbar><div id="chart_div" ></div>
-        <div id="elias" ></div>
+     
 
       
 

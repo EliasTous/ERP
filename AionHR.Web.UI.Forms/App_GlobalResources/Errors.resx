@@ -168,6 +168,33 @@
   <data name="Error_10106" xml:space="preserve">
     <value>INVALID VACATION SCHEDULE SEQNO</value>
   </data>
+  <data name="Error_10107" xml:space="preserve">
+    <value>INVALID_FISCAL_YEAR_PERIOD_SALARY_TYPE</value>
+  </data>
+  <data name="Error_10108" xml:space="preserve">
+    <value>INVALID_EMPLOYEE_REFERENCE</value>
+  </data>
+  <data name="Error_10109" xml:space="preserve">
+    <value>INVALID_BIOMETRIC_DEVICE_REFERENCE</value>
+  </data>
+  <data name="Error_10110" xml:space="preserve">
+    <value>INVALID_PAYROLL_ID</value>
+  </data>
+  <data name="Error_10111" xml:space="preserve">
+    <value>EMPLOYEE_STATUS_NOT_TERMINATED</value>
+  </data>
+  <data name="Error_10112" xml:space="preserve">
+    <value>INACTIVE_ALERT_ID</value>
+  </data>
+  <data name="Error_10113" xml:space="preserve">
+    <value>RENEWAL_DATE_ERROR</value>
+  </data>
+  <data name="Error_10114" xml:space="preserve">
+    <value>INVALID_TIME_VARIATION_RECORD</value>
+  </data>
+  <data name="Error_10115" xml:space="preserve">
+    <value>INVALID_DAY_ID</value>
+  </data>
   <data name="Error_102" xml:space="preserve">
     <value>Sql Expression Syntax error</value>
   </data>
@@ -192,50 +219,17 @@
   <data name="Error_11006" xml:space="preserve">
     <value>PUNCH_AUTHENTICATE MODE VALUE OUT OF RANGE ERROR</value>
   </data>
-  <data name="Error_11100" xml:space="preserve">
-    <value>Abstract method not subclassed</value>
+  <data name="Error_11007" xml:space="preserve">
+    <value>SQL_ERROR_CANNOT_CLOSE_CONNECTION</value>
   </data>
   <data name="Error_11101" xml:space="preserve">
-    <value>Error converting day Id  to integer</value>
+    <value>CACHE_FILE_LOAD_ERROR</value>
   </data>
   <data name="Error_11102" xml:space="preserve">
-    <value>Error converting day Id  to date</value>
+    <value>CACHE_FILE_FORMAT_ERROR</value>
   </data>
   <data name="Error_11103" xml:space="preserve">
-    <value>Error converting check in time  to time</value>
-  </data>
-  <data name="Error_11104" xml:space="preserve">
-    <value>Error converting check out time  to time</value>
-  </data>
-  <data name="Error_11106" xml:space="preserve">
-    <value>CACHE FILE LOAD ERROR</value>
-  </data>
-  <data name="Error_11107" xml:space="preserve">
-    <value>CACHE FILE FORMAT ERROR</value>
-  </data>
-  <data name="Error_11108" xml:space="preserve">
-    <value>CACHE FILE UNKNOWN ERROR ID</value>
-  </data>
-  <data name="Error_11201" xml:space="preserve">
-    <value>ERROR_CASTING_IDNAME_OBJECT</value>
-  </data>
-  <data name="Error_12001" xml:space="preserve">
-    <value>JSON_SERIALIZATION_EXCEPTION</value>
-  </data>
-  <data name="Error_12002" xml:space="preserve">
-    <value>JSON_INVALID_OPERATION_EXCEPTION</value>
-  </data>
-  <data name="Error_12003" xml:space="preserve">
-    <value>JSON_FORMAT_EXCEPTION</value>
-  </data>
-  <data name="Error_12004" xml:space="preserve">
-    <value>JSON_ARGUMENT_EXCEPTION</value>
-  </data>
-  <data name="Error_12005" xml:space="preserve">
-    <value>JSON_READER_EXCEPTION</value>
-  </data>
-  <data name="Error_12100" xml:space="preserve">
-    <value>Type Mismatch</value>
+    <value>CACHE_FILE_UNKNOWN_ERROR_ID</value>
   </data>
   <data name="Error_12101" xml:space="preserve">
     <value>ERROR CONVERTING DAY ID TO INTEGER</value>
@@ -276,9 +270,6 @@
   <data name="Error_12113" xml:space="preserve">
     <value>PARAMETER NULL DATA ERROR</value>
   </data>
-  <data name="Error_12200" xml:space="preserve">
-    <value>Reading field  null data error</value>
-  </data>
   <data name="Error_12201" xml:space="preserve">
     <value>JSON SERIALIZATION EXCEPTION</value>
   </data>
@@ -294,47 +285,17 @@
   <data name="Error_12205" xml:space="preserve">
     <value>JSON READER EXCEPTION</value>
   </data>
-  <data name="Error_12300" xml:space="preserve">
-    <value>PUNCH AUTHENTICATION MODE VALUE IS OUT OF RANGE</value>
-  </data>
-  <data name="Error_12301" xml:space="preserve">
-    <value>Day of the week is out of range</value>
-  </data>
-  <data name="Error_12302" xml:space="preserve">
-    <value>Short Integer  is out of range</value>
-  </data>
-  <data name="Error_12303" xml:space="preserve">
-    <value>Integer  is out of range</value>
-  </data>
-  <data name="Error_12400" xml:space="preserve">
-    <value>Sql Connection Error</value>
-  </data>
   <data name="Error_12401" xml:space="preserve">
-    <value>SQL object missing column</value>
-  </data>
-  <data name="Error_12402" xml:space="preserve">
-    <value>Parameter is not allowed to be null</value>
-  </data>
-  <data name="Error_12403" xml:space="preserve">
-    <value>DB Connection Error</value>
-  </data>
-  <data name="Error_12404" xml:space="preserve">
-    <value>Sql batch run error</value>
-  </data>
-  <data name="Error_12405" xml:space="preserve">
     <value>INPUT FORM MISSING TAG</value>
   </data>
-  <data name="Error_12406" xml:space="preserve">
+  <data name="Error_12402" xml:space="preserve">
     <value>INPUT FORM EMPTY MANDATORY TAG</value>
   </data>
-  <data name="Error_12407" xml:space="preserve">
+  <data name="Error_12403" xml:space="preserve">
     <value>INPUT FORM TYPE MISMATCH TAG</value>
   </data>
-  <data name="Error_12408" xml:space="preserve">
+  <data name="Error_12404" xml:space="preserve">
     <value>SQL ERROR READING SYSTEM DEFAULT</value>
-  </data>
-  <data name="Error_12409" xml:space="preserve">
-    <value>INPUT FORM FAILED RULE CHECK</value>
   </data>
   <data name="Error_12501" xml:space="preserve">
     <value>File Creation Error</value>
@@ -351,17 +312,8 @@
   <data name="Error_13003" xml:space="preserve">
     <value>SQL BATCH RUN ERROR</value>
   </data>
-  <data name="Error_14201" xml:space="preserve">
-    <value>Leave type requires approval, nothing selected</value>
-  </data>
-  <data name="Error_19000" xml:space="preserve">
-    <value>API key authentication error</value>
-  </data>
   <data name="Error_19001" xml:space="preserve">
     <value>Maintainance Mode</value>
-  </data>
-  <data name="Error_190010" xml:space="preserve">
-    <value>Unnhandled exception</value>
   </data>
   <data name="Error_19002" xml:space="preserve">
     <value>INVALID ADMIN EMAIL</value>
@@ -382,13 +334,52 @@
     <value>MISSING DATA EMPLOYEE SALARY</value>
   </data>
   <data name="Error_19008" xml:space="preserve">
-    <value>Unknown employee id</value>
+    <value>FIELD_MANDATORY_EMPTY_TIME_ZONE</value>
   </data>
   <data name="Error_19009" xml:space="preserve">
-    <value>Unknown letter template id</value>
+    <value>FIELD_MANDATORY_EMPTY_TIME_CODE_SETUP</value>
+  </data>
+  <data name="Error_19010" xml:space="preserve">
+    <value>TIME_PENALTY_CANNOT_EXCEED_THE_CLOCK_DURATION</value>
+  </data>
+  <data name="Error_19011" xml:space="preserve">
+    <value>INVALID_DATE_RANGE</value>
+  </data>
+  <data name="Error_19012" xml:space="preserve">
+    <value>MISSING_DATA_EMPLOYEE_HIRE_DATE</value>
+  </data>
+  <data name="Error_19013" xml:space="preserve">
+    <value>ACTIVITY_BEFORE_EMPLOYEE_HIRE_DATE</value>
+  </data>
+  <data name="Error_19014" xml:space="preserve">
+    <value>EMPLOYEE_STATUS_NOT_ACTIVE</value>
+  </data>
+  <data name="Error_19015" xml:space="preserve">
+    <value>INVALID_EMPLOYEE_CALENDAR</value>
+  </data>
+  <data name="Error_19016" xml:space="preserve">
+    <value>INVALID_EMPLOYEE_SCHEDULE</value>
+  </data>
+  <data name="Error_19017" xml:space="preserve">
+    <value>INVALID_CALENDAR_DAY</value>
+  </data>
+  <data name="Error_19018" xml:space="preserve">
+    <value>INVALID_ATTENDANCE_DAY</value>
+  </data>
+  <data name="Error_19019" xml:space="preserve">
+    <value>LEAVE_DATE_CONFLICT</value>
+  </data>
+  <data name="Error_19020" xml:space="preserve">
+    <value>INVALID_TIME_RANGE</value>
+  </data>
+  <data name="Error_19021" xml:space="preserve">
+    <value>INVALID_EMPLOYEE_BRANCH</value>
+  </data>
+  <data name="Error_19022" xml:space="preserve">
+    <value>department %s has %d active children</value>
   </data>
   <data name="Error_19100" xml:space="preserve">
-    <value>SECURITY ERROR</value>
+    <value>SECURITY_ERROR</value>
   </data>
   <data name="Error_19101" xml:space="preserve">
     <value>SECURITY ERROR SUPERVISOR UPDATE ATTEMPT</value>
@@ -401,15 +392,6 @@
   </data>
   <data name="Error_19104" xml:space="preserve">
     <value>SECURITY ERROR USER DIVISION</value>
-  </data>
-  <data name="Error_19111" xml:space="preserve">
-    <value>User does not have access to employees in this branch</value>
-  </data>
-  <data name="Error_19112" xml:space="preserve">
-    <value>User does not have access to employees in this department</value>
-  </data>
-  <data name="Error_19113" xml:space="preserve">
-    <value>User does not have access to employees in this division</value>
   </data>
   <data name="Error_19201" xml:space="preserve">
     <value>SMTP SEND ERROR</value>
@@ -435,18 +417,6 @@
   <data name="Error_4060" xml:space="preserve">
     <value>Database connection error</value>
   </data>
-  <data name="Error_50001" xml:space="preserve">
-    <value>Employee attempting to sign in from an invalid geo zone or wrong router</value>
-  </data>
-  <data name="Error_50002" xml:space="preserve">
-    <value>Account does not exist</value>
-  </data>
-  <data name="Error_50003" xml:space="preserve">
-    <value>Employee is already checked In</value>
-  </data>
-  <data name="Error_50004" xml:space="preserve">
-    <value>Invalid Attendance Check zone</value>
-  </data>
   <data name="Error_50005" xml:space="preserve">
     <value>Reference already exist</value>
   </data>
@@ -456,68 +426,8 @@
   <data name="Error_50007" xml:space="preserve">
     <value>Attempting to update an unknown record</value>
   </data>
-  <data name="Error_50008" xml:space="preserve">
-    <value>Inactive employee</value>
-  </data>
-  <data name="Error_50009" xml:space="preserve">
-    <value>Email already exists</value>
-  </data>
-  <data name="Error_50010" xml:space="preserve">
-    <value>Registration already exists</value>
-  </data>
-  <data name="Error_50011" xml:space="preserve">
-    <value>Record already exists</value>
-  </data>
-  <data name="Error_50012" xml:space="preserve">
-    <value>view count SQL object not set</value>
-  </data>
-  <data name="Error_50013" xml:space="preserve">
-    <value>registration alrady activated</value>
-  </data>
-  <data name="Error_50014" xml:space="preserve">
-    <value>Date range error</value>
-  </data>
   <data name="Error_50015" xml:space="preserve">
     <value>Router Mac address format error</value>
-  </data>
-  <data name="Error_50016" xml:space="preserve">
-    <value>Database error has occured while adding a new account</value>
-  </data>
-  <data name="Error_50017" xml:space="preserve">
-    <value>Could not create a new database</value>
-  </data>
-  <data name="Error_50018" xml:space="preserve">
-    <value>Account-id/trial status mismatc</value>
-  </data>
-  <data name="Error_50019" xml:space="preserve">
-    <value>No record found to delete</value>
-  </data>
-  <data name="Error_50020" xml:space="preserve">
-    <value>Database already created</value>
-  </data>
-  <data name="Error_50021" xml:space="preserve">
-    <value>Error deleting record</value>
-  </data>
-  <data name="Error_50022" xml:space="preserve">
-    <value>could not find an account with record status = new, database creation aborted</value>
-  </data>
-  <data name="Error_50023" xml:space="preserve">
-    <value>super user cannot be deleted</value>
-  </data>
-  <data name="Error_50024" xml:space="preserve">
-    <value>Could not find a time zone, check aborted</value>
-  </data>
-  <data name="Error_50025" xml:space="preserve">
-    <value>Invalid Biometric Device</value>
-  </data>
-  <data name="Error_50026" xml:space="preserve">
-    <value>Conflict while generating new employee reference, reference already exist</value>
-  </data>
-  <data name="Error_50027" xml:space="preserve">
-    <value>attendance shift data consistency error</value>
-  </data>
-  <data name="Error_50028" xml:space="preserve">
-    <value>an attendance check-in already exist at the selected check-in time</value>
   </data>
   <data name="Error_50029" xml:space="preserve">
     <value>Invalid Email</value>
@@ -531,47 +441,17 @@
   <data name="Error_50032" xml:space="preserve">
     <value>Data overlapping error</value>
   </data>
-  <data name="Error_50033" xml:space="preserve">
-    <value>Employee is already checked out</value>
-  </data>
-  <data name="Error_50034" xml:space="preserve">
-    <value>Duplicate punch, employee  already just checked in or checked out</value>
-  </data>
   <data name="Error_50035" xml:space="preserve">
     <value>Error generating day-type from the selected schedule. please refer to the schedule setup</value>
   </data>
-  <data name="Error_50036" xml:space="preserve">
-    <value>Cannot generate Schedule days before creating a working day type</value>
-  </data>
-  <data name="Error_50037" xml:space="preserve">
-    <value>payroll already generated</value>
-  </data>
-  <data name="Error_50038" xml:space="preserve">
-    <value>payroll E/D already generated</value>
-  </data>
   <data name="Error_50039" xml:space="preserve">
     <value>payroll period setup record not found</value>
-  </data>
-  <data name="Error_50040" xml:space="preserve">
-    <value>work mail duplication error</value>
-  </data>
-  <data name="Error_50041" xml:space="preserve">
-    <value>personal mail duplication error</value>
-  </data>
-  <data name="Error_50042" xml:space="preserve">
-    <value>employee activity date is before his hire date</value>
-  </data>
-  <data name="Error_50043" xml:space="preserve">
-    <value>Employee Id Ref already in use</value>
   </data>
   <data name="Error_50044" xml:space="preserve">
     <value>payroll already posted, it cannot be deleted</value>
   </data>
   <data name="Error_50045" xml:space="preserve">
     <value>unposted payroll already exist for the same period type</value>
-  </data>
-  <data name="Error_50046" xml:space="preserve">
-    <value>payroll gap, please choose a previous period</value>
   </data>
   <data name="Error_50047" xml:space="preserve">
     <value>could not find an unposted record to post</value>
@@ -585,20 +465,8 @@
   <data name="Error_50050" xml:space="preserve">
     <value>an error has occured while restoring the sample database</value>
   </data>
-  <data name="Error_50051" xml:space="preserve">
-    <value>a leave request already exist for this employee with the same starting date</value>
-  </data>
-  <data name="Error_50052" xml:space="preserve">
-    <value>attendance shift ending time is before start time</value>
-  </data>
-  <data name="Error_50053" xml:space="preserve">
-    <value>Entitlement/deduction already exist</value>
-  </data>
   <data name="Error_50054" xml:space="preserve">
     <value>Parent/child cyclic relation</value>
-  </data>
-  <data name="Error_50055" xml:space="preserve">
-    <value>Employee has attendance records, cannot be deleted</value>
   </data>
   <data name="Error_50056" xml:space="preserve">
     <value>An employee job info record exist for the same date</value>
@@ -609,20 +477,11 @@
   <data name="Error_50058" xml:space="preserve">
     <value>employee hire date is greater than the selected date</value>
   </data>
-  <data name="Error_50059" xml:space="preserve">
-    <value>Invalid employee Id</value>
-  </data>
-  <data name="Error_50060" xml:space="preserve">
-    <value>Cannot enter an activity for a closed payroll period</value>
-  </data>
   <data name="Error_50061" xml:space="preserve">
     <value>Error in loan : Amount to deduct is bigger than the loan balance</value>
   </data>
-  <data name="Error_50062" xml:space="preserve">
-    <value>Unknown Employee Reference</value>
-  </data>
-  <data name="Error_50063" xml:space="preserve">
-    <value>Previous Punch is newer than the current punch</value>
+  <data name="Error_50066" xml:space="preserve">
+    <value>Final Settelment already generated</value>
   </data>
   <data name="Error_515" xml:space="preserve">
     <value>Cannot insert the value NULL into SQL table column</value>
