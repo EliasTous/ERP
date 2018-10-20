@@ -31,14 +31,14 @@
         function SwapRTL() {
             if (document.getElementById("isRTL").value == '1') {
 
-                $(".x-form-itemselector-add").css('background-image', 'url(/ux/resources/images/itemselector/left-gif/ext.axd)');
-                $(".x-form-itemselector-remove").css('background-image', 'url(/ux/resources/images/itemselector/right-gif/ext.axd)');
+                $(".x-form-itemselector-add").css('background-image', 'url(/Site/ux/resources/images/itemselector/left-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(/Site/ux/resources/images/itemselector/right-gif/ext.axd)');
 
             }
             else {
 
-                $(".x-form-itemselector-add").css('background-image', 'url(/ux/resources/images/itemselector/right-gif/ext.axd)');
-                $(".x-form-itemselector-remove").css('background-image', 'url(/ux/resources/images/itemselector/left-gif/ext.axd)');
+                $(".x-form-itemselector-add").css('background-image', 'url(/Site//ux/resources/images/itemselector/right-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(/Site//ux/resources/images/itemselector/left-gif/ext.axd)');
 
             }
         }

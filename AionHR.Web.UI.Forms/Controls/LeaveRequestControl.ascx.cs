@@ -158,7 +158,11 @@ namespace AionHR.Web.UI.Forms.Controls
         #region public interface
         public void Update(string id)
         {
+        
             try {
+                leaveDaysField.SetHidden(true);
+                leaveHours.SetHidden(true);
+                workingHours.SetHidden(true);
                 RecordRequest r = new RecordRequest();
                 r.RecordID = id;
                 CurrentLeave.Text = r.RecordID;
@@ -240,10 +244,13 @@ namespace AionHR.Web.UI.Forms.Controls
 
         public void Add()
         {
-           
+
             //employeeId.SuspendEvents();
             //startDate.SuspendEvents();
             //endDate.SuspendEvents();
+            leaveDaysField.SetHidden(false);
+            leaveHours.SetHidden(false);
+            workingHours.SetHidden(false);
             panelRecordDetails.SuspendEvents();
             BasicInfoTab.Reset();
             CurrentLeave.Text = "";
@@ -310,8 +317,9 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             GridDisabled.Text = disabled.ToString();
             startDate.Disabled = disabled;
-          /*  endDate.Disabled =*/ employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled = */ltId.Disabled = TotalText.Disabled = disabled;
+           endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled = */ltId.Disabled = TotalText.Disabled = disabled;
             returnDate.Disabled = !disabled;
+            replacementIdCB.Disabled = disabled;
             approved.Text = disabled.ToString();
             //leavePeriod.Disabled = disabled;
             calDays.Disabled = disabled;
@@ -332,6 +340,7 @@ namespace AionHR.Web.UI.Forms.Controls
             startDate.Disabled = false;
             endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled =/* isPaid.Disabled = */ltId.Disabled = TotalText.Disabled = false;
             returnDate.Disabled = true;
+            replacementIdCB.Disabled = false;
             //leavePeriod.Disabled = false;
             approved.Text = "False";
             SaveButton.Disabled = false;
@@ -465,7 +474,7 @@ namespace AionHR.Web.UI.Forms.Controls
                         else
                         {
                             b.recordId = r.recordId;
-
+                            CurrentLeave.Text = b.recordId; 
                        //     LeaveRequestNotification(b);
                             //Add this record to the store 
                             days.ForEach(d =>
@@ -581,7 +590,7 @@ namespace AionHR.Web.UI.Forms.Controls
                         else
                         {
                             //LeaveRequestNotification(b);
-
+                            CurrentLeave.Text = b.recordId;
                             var deleteDesponse = _leaveManagementService.DeleteLeaveDays(Convert.ToInt32(b.recordId));
                             if (!deleteDesponse.Success)//it maybe another check
                             {
@@ -1400,6 +1409,10 @@ namespace AionHR.Web.UI.Forms.Controls
             leaveDaysStore.DataBind(); 
 
           
+        }
+        protected void ApprovalsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            FillApprovals(CurrentLeave.Text);
         }
 
     }

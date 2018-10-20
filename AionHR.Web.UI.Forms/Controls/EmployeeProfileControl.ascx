@@ -563,6 +563,8 @@
     Scrollable="Vertical">
     <Listeners>
         <BeforeClose Handler="#{imgControl}.src ='Images/empPhoto.png';" />
+    
+        
     </Listeners>
     <HeaderConfig runat="server">
         <Items>

@@ -252,3 +252,5 @@ ModelManifest.xml
 /AionHR.Web.UI.Forms/Imports/1000/endاستيراد السلف.csv
 *.csv
 *.dll
+/AionHR.Web.UI.Forms/App_GlobalResources/ASP_Errors.resx
+/AionHR.Web.UI.Forms/App_GlobalResources/ASP_Errors.designer.cs

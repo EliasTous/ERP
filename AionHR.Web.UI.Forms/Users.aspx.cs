@@ -554,6 +554,7 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             var s = jobInfo1.GetJobInfo();
             UsersListRequest req = new UsersListRequest();
+            req.Filter = searchTrigger.Text;
             req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.Value.ToString() : "0";
             req.PositionId = s.PositionId.HasValue ? s.PositionId.Value.ToString() : "0";
             ListResponse<UserInfo> branches = _systemService.ChildGetAll<UserInfo>(req);
@@ -700,11 +701,7 @@ namespace AionHR.Web.UI.Forms
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(index);
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Set("fullName", b.fullName);
-
-                        record.Commit();
+                        Store1.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,

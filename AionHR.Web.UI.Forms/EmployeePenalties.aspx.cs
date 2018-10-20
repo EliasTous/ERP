@@ -78,6 +78,7 @@ namespace AionHR.Web.UI.Forms
                 //    return;
                 //}
                 ColDate.Format=date.Format = _systemService.SessionHelper.GetDateformat();
+                FillPenalty();
 
             }
 
@@ -335,8 +336,12 @@ namespace AionHR.Web.UI.Forms
                 request.SortBy = "date";
                 request.Size = e.Limit.ToString();
                 request.StartAt = e.Start.ToString();
-                request.employeeId = "0";
-                request.penaltyId = "0";
+
+                request.employeeId = employeeFilter.GetEmployee().employeeId.ToString();
+                if (string.IsNullOrEmpty(PenaltyFilter.Value.ToString()))
+                    request.penaltyId = "0";
+                else
+                    request.penaltyId = PenaltyFilter.SelectedItem.Value.ToString(); 
 
                 ListResponse<EmployeePenalty> resp = _employeeService.ChildGetAll<EmployeePenalty>(request);
                 if (!resp.Success)

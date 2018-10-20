@@ -127,7 +127,7 @@
     <value>الموظف</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
-    <value>القسم</value>
+    <value>نوع الغياب</value>
   </data>
   <data name="xrLabel18.Text" xml:space="preserve">
     <value>الفرع</value>
@@ -139,16 +139,25 @@
     <value>الفرع</value>
   </data>
   <data name="xrLabel20.Text" xml:space="preserve">
-    <value>نوع الإجازة</value>
+    <value>فرق التوقيت عن جهاز البصمة</value>
   </data>
   <data name="xrLabel21.Text" xml:space="preserve">
     <value>من قبل</value>
   </data>
   <data name="xrLabel24.Text" xml:space="preserve">
-    <value>نوع اليوم</value>
+    <value>المدة</value>
+  </data>
+  <data name="xrLabel25.Text" xml:space="preserve">
+    <value>التعميد</value>
+  </data>
+  <data name="xrLabel26.Text" xml:space="preserve">
+    <value>الضرر</value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>القسم</value>
+  </data>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>الى </value>
   </data>
   <data name="xrLabel5.Text" xml:space="preserve">
     <value>الوظيفة</value>

@@ -717,9 +717,9 @@ namespace AionHR.Web.UI.Forms
             string R; 
             switch (DamageLevel)
             {
-                case 2: R= GetLocalResourceObject("DamageWITH_DAMAGE").ToString(); 
+                case 1: R= GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString(); 
                     break;
-                case 1:
+                case 2:
                     R = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
                     break;
                 default: R = string.Empty;

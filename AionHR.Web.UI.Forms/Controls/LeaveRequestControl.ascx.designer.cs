@@ -274,6 +274,15 @@ namespace AionHR.Web.UI.Forms.Controls {
         protected global::Ext.Net.Hidden startDateHidden;
         
         /// <summary>
+        /// ApprovalsStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store ApprovalsStore;
+        
+        /// <summary>
         /// EditRecordWindow control.
         /// </summary>
         /// <remarks>
@@ -695,15 +704,6 @@ namespace AionHR.Web.UI.Forms.Controls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.GridPanel ApprovalsGridPanel;
-        
-        /// <summary>
-        /// ApprovalsStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store ApprovalsStore;
         
         /// <summary>
         /// leaveIdCO control.

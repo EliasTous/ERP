@@ -240,23 +240,31 @@ namespace AionHR.Web.UI.Forms.Reports
                 
             }
 
-            resp.Items.ForEach(x =>
-            {
-                DateTime date = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"));
-                // = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-               // x.dayStatusString = GetLocalResourceObject("status" + x.dayStatus.ToString()).ToString();
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+            resp.Items.ForEach(
+                x =>
+                {
+                    x.clockDurationString = ConstTimeVariationType.time(x.clockDuration, true);
+                    x.durationString = ConstTimeVariationType.time(x.duration, true);
+                    x.timeCodeString = FillTimeCode(x.timeCode);
+                    x.apStatusString = FillApprovalStatus(x.apStatus);
+                    x.damageLevelString = FillDamageLevelString(x.damageLevel);
+                    if (rtl)
+                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                    else
+                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
 
-            }
-            );
 
+                }
+                );
 
             Absense h = new Absense();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = resp.Items;
 
-            string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            string from = req.fromDayId.ToString(_systemService.SessionHelper.GetDateformat());
+            string to = req.toDayId.ToString(_systemService.SessionHelper.GetDateformat());
             string user = _systemService.SessionHelper.GetCurrentUser();
 
             h.Parameters["From"].Value = from;
@@ -376,6 +384,116 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
             return reqTV;
+        }
+
+        private string FillTimeCode(int timeCode)
+        {
+            string R = "";
+
+
+            // Retrieve the value of the string resource named "welcome".
+            // The resource manager will retrieve the value of the  
+            // localized resource using the caller's current culture setting.
+
+
+            try
+            {
+
+                switch (timeCode)
+                {
+                    case ConstTimeVariationType.UNPAID_LEAVE:
+                        R = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
+                        break;
+                    case ConstTimeVariationType.PAID_LEAVE:
+                        R = GetGlobalResourceObject("Common", "PaidLeaves").ToString();
+                        break;
+
+
+                    case ConstTimeVariationType.SHIFT_LEAVE_WITHOUT_EXCUSE:
+                        R = GetGlobalResourceObject("Common", "SHIFT_LEAVE_WITHOUT_EXCUSE").ToString();
+                        break;
+                    case ConstTimeVariationType.DAY_LEAVE_WITHOUT_EXCUSE:
+                        R = GetGlobalResourceObject("Common", "DAY_LEAVE_WITHOUT_EXCUSE").ToString();
+                        break;
+
+
+                    case ConstTimeVariationType.LATE_CHECKIN:
+                        R = GetGlobalResourceObject("Common", "LATE_CHECKIN").ToString();
+                        break;
+                    case ConstTimeVariationType.DURING_SHIFT_LEAVE:
+                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
+                        break;
+                    case ConstTimeVariationType.EARLY_LEAVE:
+                        R = GetGlobalResourceObject("Common", "EARLY_LEAVE").ToString();
+                        break;
+
+
+
+                    case ConstTimeVariationType.MISSED_PUNCH:
+                        R = GetGlobalResourceObject("Common", "MISSED_PUNCH").ToString();
+                        break;
+
+                    case ConstTimeVariationType.EARLY_CHECKIN:
+                        R = GetGlobalResourceObject("Common", "EARLY_CHECKIN").ToString();
+                        break;
+                    case ConstTimeVariationType.OVERTIME:
+                        R = GetGlobalResourceObject("Common", "OVERTIME").ToString();
+                        break;
+
+                    case ConstTimeVariationType.COUNT:
+                        R = GetGlobalResourceObject("Common", "COUNT").ToString();
+                        break;
+                    case ConstTimeVariationType.Day_Bonus:
+                        R = GetGlobalResourceObject("Common", "Day_Bonus").ToString();
+                        break;
+
+                }
+
+                return R;
+            }
+            catch { return string.Empty; }
+        }
+
+        private string FillApprovalStatus(short? apStatus)
+        {
+            string R;
+            switch (apStatus)
+            {
+                case 1:
+                    R = GetLocalResourceObject("FieldNew").ToString();
+                    break;
+                case 2:
+                    R = GetLocalResourceObject("FieldApproved").ToString();
+                    break;
+                case -1:
+                    R = GetLocalResourceObject("FieldRejected").ToString();
+                    break;
+                default:
+                    R = string.Empty;
+                    break;
+
+
+            }
+            return R;
+        }
+
+        private string FillDamageLevelString(short? DamageLevel)
+        {
+            string R;
+            switch (DamageLevel)
+            {
+                case 1:
+                    R = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
+                    break;
+                case 2:
+                    R = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
+                    break;
+                default:
+                    R = string.Empty;
+                    break;
+
+            }
+            return R;
         }
     }
 }

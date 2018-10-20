@@ -540,6 +540,10 @@
     <Content Include="SystemAttachmentsUploader.ashx" />
     <Content Include="EmployeePhotoUploaderHandler.ashx" />
     <Content Include="app.config" />
+    <Content Include="App_GlobalResources\ASP_Errors.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ASP_Errors.designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="App_GlobalResources\ComboBoxValues.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ComboBoxValues.Designer.cs</LastGenOutput>
@@ -595,6 +599,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AccessControl.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\ASP_Errors.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ASP_Errors.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\ComboBoxValues.Designer.cs">
       <AutoGen>True</AutoGen>

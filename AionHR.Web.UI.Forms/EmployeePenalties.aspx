@@ -32,7 +32,17 @@
      
                            
                              
-    
+     <ext:Store runat="server" ID="PenaltyStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                          
+                                        </ext:Store>
                         
         <ext:Store
             ID="Store1"
@@ -108,7 +118,17 @@
                                     </DirectEvents>
                                 </ext:Button>
                                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                                <ext:Button ID="btnReload" runat="server"  Icon="Reload">       
+                                  <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                        <uc:employeeCombo runat="server" ID="employeeFilter" />
+                                    </Content>
+                                      </ext:Container>
+                                    <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                     <ext:ComboBox StoreID="PenaltyStore" AnyMatch="true" CaseSensitive="false" Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="PenaltyFilter" Name="PenaltyFilter" FieldLabel="<%$ Resources:FieldPenaltyName%>" LabelWidth="75" SubmitValue="true"  />
+
+                                    <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                <ext:Button ID="BTGo" runat="server" Text="<%$Resources:Common ,Go %>">       
                                      <Listeners>
                                         <Click Handler="CheckSession();#{Store1}.reload();" />
                                     </Listeners>                           
@@ -294,20 +314,8 @@
                              
 
 
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="penaltyId" Name="penaltyId" FieldLabel="<%$ Resources:FieldPenaltyName%>" SimpleSubmit="true">
-                                    <Store>
-                                        <ext:Store runat="server" ID="PenaltyStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                          
-                                        </ext:Store>
-                                    </Store>
+                                <ext:ComboBox StoreID="PenaltyStore" AnyMatch="true" CaseSensitive="false" Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="penaltyId" Name="penaltyId" FieldLabel="<%$ Resources:FieldPenaltyName%>" SimpleSubmit="true">
+                                   
                                    
                                 </ext:ComboBox>
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Name="employeeId"

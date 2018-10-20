@@ -60,6 +60,7 @@
                         <ext:ModelField Name="parentId" />
                          <ext:ModelField Name="scName" />
                          <ext:ModelField Name="caName" />
+                         <ext:ModelField Name="isInactive" />
                      
 
                         
@@ -167,7 +168,7 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column ID="ColReference" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="departmentRef" width="150" Hideable="false" Visible="false"/>
+                            <ext:Column ID="ColReference" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="departmentRef" width="150" Hideable="false" Visible="true"/>
                            
                             <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                                 <Renderer Handler="return  record.data['name']"/>
@@ -181,6 +182,7 @@
                                 </ext:Column>
                              <ext:Column ID="scName" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldAttendanceSchedule%>" DataIndex="scName" width="150" Hideable="false" />
                              <ext:Column ID="colCaName" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldWorkingCalendar%>" DataIndex="caName" width="150" Hideable="false" Visible="false"/>
+                              <ext:CheckColumn ID="ColIsInactive" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldIsInactive%>" DataIndex="isInactive" width="150" Hideable="false" Visible="true"/>
                       
                       
 
