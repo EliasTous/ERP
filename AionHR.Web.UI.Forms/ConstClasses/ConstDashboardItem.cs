@@ -32,6 +32,11 @@ namespace AionHR.Web.UI.Forms.ConstClasses
         public const short TA_EARLY_CHECKIN = 221;
         public const short TA_OVERTIME = 222;
 
+        public const short TA_PAID_LEAVE = 311;
+
+        public const short TA_UNPAID_LEAVE = 312;
+
+
         // summary figures
         public const short SALARY_CHANGE_DUE = 901;
         public const short END_OF_PROBATION = 902;

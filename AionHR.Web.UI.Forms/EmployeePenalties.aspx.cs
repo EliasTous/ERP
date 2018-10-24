@@ -25,6 +25,7 @@ using AionHR.Model.Payroll;
 using AionHR.Services.Messaging.CompanyStructure;
 using AionHR.Model.Employees;
 using AionHR.Services.Messaging.LoanManagment;
+using AionHR.Services.Messaging.Employees;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -131,6 +132,7 @@ namespace AionHR.Web.UI.Forms
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
+            CurrentpenaltyId.Text = id.ToString();
             FillPenalty();
             switch (type)
             {
@@ -312,6 +314,7 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             FillPenalty();
+            CurrentpenaltyId.Text = "";
             date.SelectedDate = DateTime.Now; 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
@@ -341,7 +344,11 @@ namespace AionHR.Web.UI.Forms
                 if (string.IsNullOrEmpty(PenaltyFilter.Value.ToString()))
                     request.penaltyId = "0";
                 else
-                    request.penaltyId = PenaltyFilter.SelectedItem.Value.ToString(); 
+                    request.penaltyId = PenaltyFilter.SelectedItem.Value.ToString();
+                if (string.IsNullOrEmpty(apStatus.Value.ToString()))
+                    request.apStatus = "0";
+                else
+                    request.apStatus = apStatus.Value.ToString();
 
                 ListResponse<EmployeePenalty> resp = _employeeService.ChildGetAll<EmployeePenalty>(request);
                 if (!resp.Success)
@@ -379,10 +386,10 @@ namespace AionHR.Web.UI.Forms
             //    b.referToPositionName = referToPositionId.SelectedItem.Text;
             //if (tsId.SelectedItem != null)
             //    b.tsName = tsId.SelectedItem.Text;
-            b.recordId = id;
+            b.recordId = CurrentpenaltyId.Text;
             // Define the object to add or edit as null
 
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(CurrentpenaltyId.Text))
             {
 
                 try
@@ -392,7 +399,7 @@ namespace AionHR.Web.UI.Forms
                     PostRequest<EmployeePenalty> request = new PostRequest<EmployeePenalty>();
                     request.entity = b;
                     PostResponse<EmployeePenalty> r = _employeeService.ChildAddOrUpdate<EmployeePenalty>(request);
-                    b.recordId = r.recordId;
+                   
 
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
@@ -404,9 +411,10 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
-
+                        b.recordId = r.recordId;
                         //Add this record to the store 
                         Store1.Reload();
+                        CurrentpenaltyId.Text = b.recordId; 
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -416,7 +424,7 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditRecordWindow.Close();
+                       
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
@@ -440,9 +448,10 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
-                    int index = Convert.ToInt32(id);//getting the id of the record
+                  //getting the id of the record
                     PostRequest<EmployeePenalty> request = new PostRequest<EmployeePenalty>();
                     request.entity = b;
+                    b.recordId = CurrentpenaltyId.Text;
                     PostResponse<EmployeePenalty> r = _employeeService.ChildAddOrUpdate<EmployeePenalty>(request);                   //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
@@ -531,45 +540,50 @@ namespace AionHR.Web.UI.Forms
 
         protected void ApprovalsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            LoanApprovalListRequest req = new LoanApprovalListRequest();
-           // req.LoanId = currentLoanId.Text;
-            //if (string.IsNullOrEmpty(req.LoanId))
-            //{
-            //    ApprovalStore.DataSource = new List<LoanApproval>();
-            //    ApprovalStore.DataBind();
-            //}
-          //  ListResponse<LoanApproval> response = _loanService.ChildGetAll<LoanApproval>(req);
+            EmployeePenaltyApprovalListRequest req = new EmployeePenaltyApprovalListRequest();
 
-          //  if (!response.Success)
-          //  {
-          //      X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
-          //      return;
-          //  }
-          //  response.Items.ForEach(x =>
-          //  {
+            req.apStatus = "0";
+            req.penaltyId = CurrentpenaltyId.Text;
+            req.approverId = "0";
+          
+            if (string.IsNullOrEmpty(req.penaltyId))
+            {
+                ApprovalStore.DataSource = new List<EmployeePenaltyApproval>();
+                ApprovalStore.DataBind();
+                return;
+            }
+            ListResponse<EmployeePenaltyApproval> response = _employeeService.ChildGetAll<EmployeePenaltyApproval>(req);
 
-          //      switch (x.status)
-          //      {
-          //          case 1:
-          //              x.statusString = StatusNew.Text;
-          //              break;
-          //          case 2:
-          //              x.statusString = StatusInProcess.Text;
-          //              ;
-          //              break;
-          //          case 3:
-          //              x.statusString = StatusApproved.Text;
-          //              ;
-          //              break;
-          //          case -1:
-          //              x.statusString = StatusRejected.Text;
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                return;
+            }
+            response.Items.ForEach(x =>
+            {
 
-          //              break;
-          //      }
-          //  }
-          //);
-            //ApprovalStore.DataSource = new 
-            //ApprovalStore.DataBind();
+                switch (x.status)
+                {
+                    case 1:
+                        x.statusString = StatusNew.Text;
+                        break;
+                    case 2:
+                        x.statusString = StatusInProcess.Text;
+                        ;
+                        break;
+                    case 3:
+                        x.statusString = StatusApproved.Text;
+                        ;
+                        break;
+                    case -1:
+                        x.statusString = StatusRejected.Text;
+
+                        break;
+                }
+            }
+          );
+            ApprovalStore.DataSource = response.Items; 
+            ApprovalStore.DataBind();
         }
 
         private void FillPenalty()

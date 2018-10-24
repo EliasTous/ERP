@@ -563,7 +563,7 @@
     Scrollable="Vertical">
     <Listeners>
         <BeforeClose Handler="#{imgControl}.src ='Images/empPhoto.png';" />
-    
+    <Close Handler="  jQuery('.showCal').calendarsPicker('hide');" />
         
     </Listeners>
     <HeaderConfig runat="server">

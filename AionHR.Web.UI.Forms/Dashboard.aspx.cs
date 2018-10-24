@@ -35,6 +35,8 @@ using AionHR.Model.Reports;
 using AionHR.Model.Access_Control;
 using AionHR.Services.Messaging.TimeAttendance;
 using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Services.Messaging.Employees;
+using AionHR.Model.Employees;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -136,6 +138,7 @@ namespace AionHR.Web.UI.Forms
                         CountDateTo.SelectedDate = DateTime.Now;
                         dimension.Select(0);
                         BindAlerts();
+                        LWFromField.Format = LWToField.Format = _systemService.SessionHelper.GetDateformat();
 
                     }
                     catch { }
@@ -378,8 +381,8 @@ namespace AionHR.Web.UI.Forms
 
 
                 List<ChartData> breaksChartData = new List<ChartData>();
-                breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Breaks").ToString(), y = 0 /*dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count*/, index = 0 });// count.result.count - ACs.Items.Count
-                breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Attendance").ToString(), y = 0 /*dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count*/, index = 1 });//
+                breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("PAID_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_PAID_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_PAID_LEAVE).ToList()[0].count : 0, index = ConstDashboardItem.TA_PAID_LEAVE });
+                breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("UNPAID_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_UNPAID_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_UNPAID_LEAVE).ToList()[0].count : 0, index = ConstDashboardItem.TA_UNPAID_LEAVE});
 
                 X.Call("drawBreakHightChartPie", JSON.JavaScriptSerialize(breaksChartData), rtl ? true : false, normalSized);
 
@@ -2002,7 +2005,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-                ListResponse<DashBoardTimeVariation> resp = _dashBoardService.ChildGetAll<DashBoardTimeVariation>(TVReq);
+                ListResponse<DashBoardTimeVariation> resp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(TVReq);
                 if (!resp.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
@@ -2096,6 +2099,91 @@ namespace AionHR.Web.UI.Forms
                 return R;
             }
             catch { return string.Empty; }
+        }
+        [DirectMethod]
+
+        public void PaidAndUnpaidLeaveWindow(string index)
+        {
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<DashBoardPL> respPE;
+            ListResponse<DashBoardUL> respUL;
+            if (index == ConstDashboardItem.TA_PAID_LEAVE.ToString())
+            {
+              
+                respPE = _dashBoardService.ChildGetAll<DashBoardPL>(req);
+                if (!respPE.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", respPE.ErrorCode) != null ? GetGlobalResourceObject("Errors", respPE.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + respPE.LogId : respPE.Summary).Show();
+                    return;
+                }
+                LeaveStore.DataSource = respPE.Items;
+                LeaveStore.DataBind();
+             //   LeaveWindow.Title = GetGlobalResourceObject("Common", "PaidLeaves").ToString(); 
+                LeaveWindow.Show();
+            }
+            else
+            {
+                respUL = _dashBoardService.ChildGetAll<DashBoardUL>(req);
+
+                if (!respUL.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", respUL.ErrorCode) != null ? GetGlobalResourceObject("Errors", respUL.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + respUL.LogId : respUL.Summary).Show();
+                    return;
+                }
+                LeaveStore.DataSource = respUL.Items;
+                LeaveStore.DataBind();
+            //    LeaveWindow.Title = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
+                LeaveWindow.Show();
+
+            }
+
+        }
+        protected void EmployeePenaltyApprovalStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            EmployeePenaltyApprovalListRequest req = new EmployeePenaltyApprovalListRequest();
+
+            req.apStatus = "0";
+            req.penaltyId = "0";
+            req.approverId = _systemService.SessionHelper.GetEmployeeId().ToString(); 
+
+            if (string.IsNullOrEmpty(req.penaltyId))
+            {
+                EmployeePenaltyApprovalStore.DataSource = new List<EmployeePenaltyApproval>();
+                EmployeePenaltyApprovalStore.DataBind();
+                return;
+            }
+            ListResponse<EmployeePenaltyApproval> response = _employeeService.ChildGetAll<EmployeePenaltyApproval>(req);
+
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                return;
+            }
+            response.Items.ForEach(x =>
+            {
+
+                switch (x.status)
+                {
+                    case 1:
+                        x.statusString = StatusNew.Text;
+                        break;
+                    case 2:
+                        x.statusString = StatusInProcess.Text;
+                        ;
+                        break;
+                    case 3:
+                        x.statusString = StatusApproved.Text;
+                        ;
+                        break;
+                    case -1:
+                        x.statusString = StatusRejected.Text;
+
+                        break;
+                }
+            }
+          );
+            EmployeePenaltyApprovalStore.DataSource = response.Items;
+            EmployeePenaltyApprovalStore.DataBind();
         }
 
     }

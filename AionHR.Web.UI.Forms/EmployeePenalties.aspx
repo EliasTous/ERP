@@ -27,6 +27,11 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
+         <ext:Hidden ID="CurrentpenaltyId" runat="server"  />
+         <ext:Hidden ID="StatusNew" runat="server" Text="<%$ Resources:FieldNew %>" />
+        <ext:Hidden ID="StatusInProcess" runat="server" Text="<%$ Resources: FieldInProcess %>" />
+        <ext:Hidden ID="StatusApproved" runat="server" Text="<%$ Resources: FieldApproved %>" />
+        <ext:Hidden ID="StatusRejected" runat="server" Text="<%$ Resources: FieldRejected %>" />
 
 
      
@@ -125,9 +130,21 @@
                                     </Content>
                                       </ext:Container>
                                     <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                                     <ext:ComboBox StoreID="PenaltyStore" AnyMatch="true" CaseSensitive="false" Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="PenaltyFilter" Name="PenaltyFilter" FieldLabel="<%$ Resources:FieldPenaltyName%>" LabelWidth="75" SubmitValue="true"  />
+                                     <ext:ComboBox StoreID="PenaltyStore" AnyMatch="true" CaseSensitive="false" Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="PenaltyFilter" Name="PenaltyFilter" EmptyText="<%$ Resources:FieldPenaltyName%>" LabelWidth="75" SubmitValue="true"  />
 
                                     <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                  <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
+                                    EmptyText="<%$ Resources: FieldApprovalStatus %>">
+                                    <Items>
+
+                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="-1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="2" />
+                                    </Items>
+
+                                </ext:ComboBox>
+                                <ext:ToolbarSeparator></ext:ToolbarSeparator>
                                 <ext:Button ID="BTGo" runat="server" Text="<%$Resources:Common ,Go %>">       
                                      <Listeners>
                                         <Click Handler="CheckSession();#{Store1}.reload();" />
@@ -371,7 +388,7 @@
                                             <Fields>
                                                 <ext:ModelField Name="approverName" IsComplex="true" />
                                                 <ext:ModelField Name="departmentName" />
-                                                 <ext:ModelField Name="loanId" />
+                                                 <ext:ModelField Name="penaltyId" />
                                                 <ext:ModelField Name="approverId" />
                                                 <ext:ModelField Name="status" />
                                                  <ext:ModelField Name="statusString" />
@@ -388,8 +405,7 @@
 
                             <ColumnModel ID="ColumnModel4" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                 <Columns>
-                                    <ext:Column ID="loanId" Visible="false" DataIndex="loanId" runat="server" />
-                                    <ext:Column ID="approverId" Visible="false" DataIndex="approverId" runat="server" />
+                                          <ext:Column ID="approverId" Visible="false" DataIndex="approverId" runat="server" />
                                  
                                         <ext:Column ID="Column8" DataIndex="approverName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
                                            <Renderer Handler=" return record.data['approverName'].fullName; ">

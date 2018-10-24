@@ -961,7 +961,7 @@
     <value>إعدادات الوقت الإضافي</value>
   </data>
   <data name="RT305" xml:space="preserve">
-    <value>انواع الغياب</value>
+    <value>تعميد الدوام</value>
   </data>
   <data name="ImportOvertimeSettings" xml:space="preserve">
     <value>استيراد معلومات العمل الإضافي</value>
@@ -1243,7 +1243,7 @@
     <value>إجازات غير مدفوعة</value>
   </data>
   <data name="timeVariations" xml:space="preserve">
-    <value>انواع الغياب</value>
+    <value>تعميد الدوام</value>
   </data>
   <data name="DAY_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
     <value>مغادرة خلال يوم العمل </value>
@@ -1262,5 +1262,23 @@
   </data>
   <data name="EmployeePenalty" xml:space="preserve">
     <value>جزاء الموظف</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>مقبولة</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>مرفوض </value>
+  </data>
+  <data name="FieldPenaltyName" xml:space="preserve">
+    <value>الجزاء</value>
+  </data>
+  <data name="RT307" xml:space="preserve">
+    <value>معمدو الدوام</value>
+  </data>
+  <data name="data" xml:space="preserve">
+    <value>معلومات</value>
   </data>
 </root>

@@ -375,6 +375,7 @@
     <Content Include="Reports\RT304.aspx" />
     <Content Include="Reports\RT305.aspx" />
     <Content Include="Reports\RT306.aspx" />
+    <Content Include="Reports\RT307.aspx" />
     <Content Include="Reports\RT401.aspx" />
     <Content Include="Reports\RT402.aspx" />
     <Content Include="Reports\RT501.aspx" />
@@ -540,10 +541,6 @@
     <Content Include="SystemAttachmentsUploader.ashx" />
     <Content Include="EmployeePhotoUploaderHandler.ashx" />
     <Content Include="app.config" />
-    <Content Include="App_GlobalResources\ASP_Errors.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>ASP_Errors.designer.cs</LastGenOutput>
-    </Content>
     <EmbeddedResource Include="App_GlobalResources\ComboBoxValues.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ComboBoxValues.Designer.cs</LastGenOutput>
@@ -599,11 +596,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AccessControl.ar.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\ASP_Errors.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ASP_Errors.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\ComboBoxValues.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -990,6 +982,13 @@
     </Compile>
     <Compile Include="Reports\RT306.aspx.designer.cs">
       <DependentUpon>RT306.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT307.aspx.cs">
+      <DependentUpon>RT307.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT307.aspx.designer.cs">
+      <DependentUpon>RT307.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT402.aspx.cs">
       <DependentUpon>RT402.aspx</DependentUpon>
@@ -2471,6 +2470,8 @@
     <Content Include="App_LocalResources\Departments.aspx.ar.resx" />
     <Content Include="App_LocalResources\EmployeePenalties.aspx.resx" />
     <Content Include="App_LocalResources\EmployeePenalties.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT307.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT307.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

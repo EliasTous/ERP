@@ -675,4 +675,13 @@
   <data name="FieldshiftStart" xml:space="preserve">
     <value>بداية الدوام </value>
   </data>
+  <data name="EmployeePenaltyApproval" xml:space="preserve">
+    <value>جزاء الموظف</value>
+  </data>
+  <data name="PAID_LEAVE" xml:space="preserve">
+    <value>اجازات مدفوعة</value>
+  </data>
+  <data name="UNPAID_LEAVE" xml:space="preserve">
+    <value>اجازات غير مدفوعة</value>
+  </data>
 </root>

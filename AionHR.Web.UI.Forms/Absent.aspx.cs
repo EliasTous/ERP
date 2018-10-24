@@ -269,7 +269,7 @@ namespace AionHR.Web.UI.Forms
 
                 TimeVariationListRequest req = GetAbsentRequest();
 
-                ListResponse<DashBoardTimeVariation> daysResponse = _dashBoardService.ChildGetAll<DashBoardTimeVariation>(req);
+                ListResponse<DashBoardTimeVariation> daysResponse = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);
 
                 //ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
@@ -661,7 +661,7 @@ namespace AionHR.Web.UI.Forms
                 //getting the id of the record
                 TimeVariationListRequest req = GetAbsentRequest();
 
-                ListResponse<DashBoardTimeVariation> r = _dashBoardService.ChildGetAll<DashBoardTimeVariation>(req);                    //Step 1 Selecting the object or building up the object for update purpose
+                ListResponse<DashBoardTimeVariation> r = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);                    //Step 1 Selecting the object or building up the object for update purpose
 
                 //Step 2 : saving to store
 

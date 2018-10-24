@@ -229,8 +229,8 @@ namespace AionHR.Web.UI.Forms.Reports
         {
 
             TimeVariationListRequest req = GetAbsentRequest();
-
-            ListResponse<DashBoardTimeVariation> resp = _dashBoardService.ChildGetAll<DashBoardTimeVariation>(req);
+           
+            ListResponse<DashBoardTimeVariation> resp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);
             if (!resp.Success)
             {
                 
@@ -335,7 +335,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
-            //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport(true);
         }
 
@@ -375,8 +375,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
             {
-                timeVariationType.Select(ConstTimeVariationType.LATE_CHECKIN.ToString());
-                reqTV.timeCode = ConstTimeVariationType.LATE_CHECKIN.ToString();
+
+                reqTV.timeCode = "0";
             }
             else
                 reqTV.timeCode = timeVariationType.Value.ToString();

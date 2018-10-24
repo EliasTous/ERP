@@ -169,6 +169,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approved.
+        /// </summary>
+        internal static string Approved {
+            get {
+                return ResourceManager.GetString("Approved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to April.
         /// </summary>
         internal static string April {
@@ -588,6 +597,15 @@ namespace Resources {
         internal static string Dashboard {
             get {
                 return ResourceManager.GetString("Dashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data.
+        /// </summary>
+        internal static string data {
+            get {
+                return ResourceManager.GetString("data", resourceCulture);
             }
         }
         
@@ -1182,6 +1200,15 @@ namespace Resources {
         internal static string FieldEHStatus {
             get {
                 return ResourceManager.GetString("FieldEHStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Penalty.
+        /// </summary>
+        internal static string FieldPenaltyName {
+            get {
+                return ResourceManager.GetString("FieldPenaltyName", resourceCulture);
             }
         }
         
@@ -2176,6 +2203,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        internal static string New {
+            get {
+                return ResourceManager.GetString("New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         internal static string NextText {
@@ -2442,6 +2478,15 @@ namespace Resources {
         internal static string RegularExpression {
             get {
                 return ResourceManager.GetString("RegularExpression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejected.
+        /// </summary>
+        internal static string Rejected {
+            get {
+                return ResourceManager.GetString("Rejected", resourceCulture);
             }
         }
         
@@ -2784,6 +2829,15 @@ namespace Resources {
         internal static string RT306 {
             get {
                 return ResourceManager.GetString("RT306", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Approval.
+        /// </summary>
+        internal static string RT307 {
+            get {
+                return ResourceManager.GetString("RT307", resourceCulture);
             }
         }
         

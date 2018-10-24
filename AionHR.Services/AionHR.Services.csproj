@@ -127,6 +127,7 @@
     <Compile Include="Messaging\CompanyStructure\ApprovelDepartmentListRequest.cs" />
     <Compile Include="Messaging\CompanyStructure\CompanyStructureRequests.cs" />
     <Compile Include="Messaging\CompanyStructure\PositionListRequest.cs" />
+    <Compile Include="Messaging\Employees\EmployeePenaltyApprovalListRequest.cs" />
     <Compile Include="Messaging\Reports\TimeCodeRecordRequest.cs" />
     <Compile Include="Messaging\System\BackgroundJobRecordRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeApprovalRecordRequest.cs" />
