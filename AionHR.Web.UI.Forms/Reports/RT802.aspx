@@ -113,7 +113,7 @@
                                             </Store>
          
                                   </ext:ComboBox>
-                                   <ext:TextField ID="data" runat="server" EmptyText="<%$ Resources:Common,data%>" Name="data "  ></ext:TextField>
+                                   <ext:TextField ID="data" runat="server" EmptyText="<%$ Resources:Common,data%>" Name="data"  ></ext:TextField>
                                 
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
