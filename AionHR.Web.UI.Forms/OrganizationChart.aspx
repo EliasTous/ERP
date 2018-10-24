@@ -11,8 +11,9 @@
     <link rel="stylesheet" type="text/css" href="CSS/OrganizationChart.css?id=4" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
 
+    <script src="https://superal.github.io/canvas2image/canvas2image.js" type="text/javascript"></script>
 
-
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
     <script type="text/javascript" src="Scripts/OrganizationChart.js?id=220" ></script>
