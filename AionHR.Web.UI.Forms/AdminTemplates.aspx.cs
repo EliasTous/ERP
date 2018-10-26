@@ -690,7 +690,7 @@ namespace AionHR.Web.UI.Forms
             for(int i=0;i<c.Count;i++)       
             {
 
-                tags.Add(new TemplateTag() { teId = templateId, tag = c[i].Value });
+                tags.Add(new TemplateTag() { teId = templateId, tag = c[i].Value.Substring(2,c[i].Value.Length-2) });
             }
 
             PostRequest<TemplateTag[]> req = new PostRequest<TemplateTag[]>();

@@ -177,7 +177,7 @@
 
 
             </ext:Panel>
-            <ext:Panel ID="leftPanel" runat="server" Region="West" Layout="FitLayout" AutoUpdateLayout="true" Width="260" PaddingSpec="0 0 0 0" Padding="0"
+            <ext:Panel ID="leftPanel" runat="server" Region="West" Layout="FitLayout" AutoUpdateLayout="true" Width="280" PaddingSpec="0 0 0 0" Padding="0"
                 Header="true" Collapsible="true" Split="true" CollapseMode="Mini" StyleSpec="border-bottom:2px solid #2A92D4;"
                 Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" Icon="ApplicationTileVertical" BodyBorder="0">
                 <HeaderConfig Height="40">
@@ -738,8 +738,8 @@
                                 </Listeners>
                             </ext:Button>
                             <ext:ToolbarFill runat="server" />
-                            <ext:ToolbarSeparator ID="ToolbarSeparator1" runat="server"></ext:ToolbarSeparator>
-                            <ext:Button ID="Button1" runat="server" Icon="MoneyDollar" ToolTip="<%$ Resources:Common , AdminTemplates %>">
+                            
+                            <ext:Button ID="Button1" runat="server" Icon="EmailAttach" ToolTip="<%$ Resources:Common , AdministrationAffairs %>">
                                 <Listeners>
                                     <Click Handler="openModule(9);" />
                                 </Listeners>
