@@ -222,7 +222,21 @@
  <ext:Hidden ID="oldEnd" runat="server"  />
  <ext:Hidden ID="endDateHidden" runat="server" text="" />
 <ext:Hidden ID="startDateHidden" runat="server" text=""  />
-
+  <ext:Store runat="server" ID="ApprovalsStore" OnReadData="ApprovalsStore_ReadData">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                <ext:ModelField Name="departmentName" />
+                                                <ext:ModelField Name="stringStatus" />
+                                                <ext:ModelField Name="notes" />
+                                                 <ext:ModelField Name="leaveId" />
+                                                
+                                                
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
 <ext:Window
     ID="EditRecordWindow"
     runat="server"
@@ -655,6 +669,9 @@
                 </ext:FormPanel>
                 
                 <ext:FormPanel ID="ApprovalsForm" runat="server" OnLoad="LeaveDays_Load" Title="<%$ Resources: Approvals %>">
+                    <Listeners>
+                        <Activate Handler="#{ApprovalsStore}.reload();" />
+                    </Listeners>
                     <Items>
                         <ext:GridPanel
                             ID="ApprovalsGridPanel"
@@ -666,24 +683,10 @@
                             Scroll="Vertical"
                             Border="false"
                             Icon="User"
-                            ColumnLines="True" IDMode="Explicit" RenderXType="True" RenderTo="playcontainer">
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True" RenderTo="playcontainer" StoreID="ApprovalsStore">
                             
                             <Store>
-                                <ext:Store runat="server" ID="ApprovalsStore">
-                                    <Model>
-                                        <ext:Model runat="server">
-                                            <Fields>
-                                                <ext:ModelField Name="employeeName" IsComplex="true" />
-                                                <ext:ModelField Name="departmentName" />
-                                                <ext:ModelField Name="stringStatus" />
-                                                <ext:ModelField Name="notes" />
-                                                 <ext:ModelField Name="leaveId" />
-                                                
-                                                
-                                            </Fields>
-                                        </ext:Model>
-                                    </Model>
-                                </ext:Store>
+                              
                             </Store>
 
 

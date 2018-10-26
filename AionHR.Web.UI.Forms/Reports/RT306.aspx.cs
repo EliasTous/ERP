@@ -215,7 +215,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ReportCompositeRequest req = GetRequest();
           
-            ListResponse<AionHR.Model.Reports.RT306> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT306>(req);
+           ListResponse<AionHR.Model.Reports.RT306> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT306>(req);
             if (!resp.Success)
             {
                 if (throwException)

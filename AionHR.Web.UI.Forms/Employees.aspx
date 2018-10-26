@@ -594,10 +594,13 @@
                 </ext:Button>
                 <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
-                        <Click Handler="this.up('window').hide();" />
+                            
+                        <Click Handler="this.up('window').hide(); App.Store1.reload();" />
                     </Listeners>
+                    
                 </ext:Button>
             </Buttons>
+          
         </ext:Window>
 
 

@@ -178,6 +178,8 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Add(transactionCombo1.GetTransactionType());
             req.Add(moduleCombo1.GetModule());
             req.Add(getMasterRef());
+            req.Add(getData());
+
 
             //req.Add();
             return req;
@@ -306,14 +308,29 @@ namespace AionHR.Web.UI.Forms.Reports
         private MasterIdParameterSet getMasterRef()
         {
             MasterIdParameterSet s = new MasterIdParameterSet();
-            int bulk;
-            if (masterRef.Value == null || !int.TryParse(masterRef.Value.ToString(), out bulk))
+         
+            if (string.IsNullOrEmpty(masterRef.Value.ToString() ))
 
-                s.masterRef = 0;
+                s.masterRef = "";
             else
-                s.masterRef = bulk;
-
+                s.masterRef = masterRef.Value.ToString();
             return s;
+
+
+
+        }
+        private DataParameterSet getData()
+        {
+            DataParameterSet s = new DataParameterSet();
+
+            if (string.IsNullOrEmpty(data.Text))
+
+                s.data = "";
+            else
+                s.data = data.Text;
+            return s;
+
+
 
         }
 

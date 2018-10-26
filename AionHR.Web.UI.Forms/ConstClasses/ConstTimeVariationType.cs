@@ -29,7 +29,32 @@ namespace AionHR.Web.UI.Forms.ConstClasses
         public const short Day_Bonus = 53;
 
         public const short COUNT = 10;
-       
+        public static string time(int _minutes, bool _signed)
+        {
+            if (_minutes == 0)
+                return "00:00";
+
+            bool isNegative = _minutes < 0 ? true : false;
+
+            _minutes = Math.Abs(_minutes);
+
+            string hours = (_minutes / 60).ToString(), minutes = (_minutes % 60).ToString(), formattedTime;
+
+            if (hours.Length == 1)
+                hours = "0" + hours;
+
+            if (minutes.Length == 1)
+                minutes = "0" + minutes;
+
+            formattedTime = hours + ':' + minutes;
+
+            if (isNegative && _signed)
+                formattedTime = "-" + formattedTime;
+
+            return formattedTime;
+        }
+
+
     }
 
 }

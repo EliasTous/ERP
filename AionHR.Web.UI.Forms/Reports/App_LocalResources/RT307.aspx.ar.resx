@@ -117,58 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>من</value>
+  <data name="DamageWITHOUT_DAMAGE" xml:space="preserve">
+    <value>بدون ضرر</value>
   </data>
-  <data name="xrLabel11.Text" xml:space="preserve">
-    <value>غياب بدون عذر </value>
+  <data name="DamageWITH_DAMAGE" xml:space="preserve">
+    <value>تسبب ضرر</value>
   </data>
-  <data name="xrLabel16.Text" xml:space="preserve">
-    <value>الموظف</value>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>مقبولة</value>
   </data>
-  <data name="xrLabel17.Text" xml:space="preserve">
-    <value>نوع الغياب</value>
+  <data name="FieldApproverName" xml:space="preserve">
+    <value>المعمد</value>
   </data>
-  <data name="xrLabel18.Text" xml:space="preserve">
-    <value>الفرع</value>
+  <data name="FieldNew" xml:space="preserve">
+    <value>جديد</value>
   </data>
-  <data name="xrLabel19.Text" xml:space="preserve">
-    <value>اليوم</value>
+  <data name="FieldRejected" xml:space="preserve">
+    <value>مرفوض </value>
   </data>
-  <data name="xrLabel2.Text" xml:space="preserve">
-    <value>الفرع</value>
-  </data>
-  <data name="xrLabel20.Text" xml:space="preserve">
-    <value>فرق التوقيت عن جهاز البصمة</value>
-  </data>
-  <data name="xrLabel21.Text" xml:space="preserve">
-    <value>من قبل</value>
-  </data>
-  <data name="xrLabel24.Text" xml:space="preserve">
-    <value>المدة</value>
-  </data>
-  <data name="xrLabel25.Text" xml:space="preserve">
-    <value>التعميد</value>
-  </data>
-  <data name="xrLabel26.Text" xml:space="preserve">
-    <value>الضرر</value>
-  </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>القسم</value>
-  </data>
-  <data name="xrLabel4.Text" xml:space="preserve">
-    <value>الى </value>
-  </data>
-  <data name="xrLabel5.Text" xml:space="preserve">
-    <value>الوظيفة</value>
-  </data>
-  <data name="xrLabel6.Text" xml:space="preserve">
-    <value>الإدارة</value>
-  </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>الموظف</value>
-  </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>صفحة {0} من {1}</value>
+  <data name="FieldTimeCode" xml:space="preserve">
+    <value>نوع الدوام</value>
   </data>
 </root>

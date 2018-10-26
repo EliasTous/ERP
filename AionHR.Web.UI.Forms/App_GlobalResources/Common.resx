@@ -1260,10 +1260,22 @@
   <data name="EmployeePenalty" xml:space="preserve">
     <value>Employee Penalty</value>
   </data>
-  <data name="AdminTemplates" xml:space="preserve">
-    <value>Letter Templates</value>
+  <data name="Approved" xml:space="preserve">
+    <value>Approved</value>
   </data>
-  <data name="AdministrationAffairs" xml:space="preserve">
-    <value>Administration Affairs</value>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="FieldPenaltyName" xml:space="preserve">
+    <value>Penalty</value>
+  </data>
+  <data name="RT307" xml:space="preserve">
+    <value>Time Approval</value>
+  </data>
+  <data name="data" xml:space="preserve">
+    <value>Data</value>
   </data>
 </root>

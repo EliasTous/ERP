@@ -27,6 +27,7 @@
         #DayPilotScheduler1 {
             width: 100% !important;
             height: 100% !important;
+            color:white;
         }
 
 
@@ -227,10 +228,11 @@
                                                     EventClickHandling="JavaScript" Scale="Day"
                                                     EventClickJavaScript="App.direct.HandleClick({0});"
                                                     EventFontSize="11px"   CellWidth="20"
-                                                    CellDuration="1440" 
+                                                    CellDuration="1440"
+                                       
                                                     OnEventClick="DayPilotScheduler1_EventClick"
                                                     OnBeforeEventRender="DayPilotScheduler1_BeforeEventRender"
-                                                    EventHeight="25">
+                                                    EventHeight="25" >
                                                 </DayPilot:DayPilotScheduler>
                                             </Content>
                                             <Listeners>

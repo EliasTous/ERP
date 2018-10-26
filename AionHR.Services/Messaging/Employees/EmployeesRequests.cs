@@ -642,6 +642,8 @@ public class EmployeePenaltyListRequest : ListRequest
     public string employeeId { get; set; }
 
     public string penaltyId { get; set; }
+
+    public string apStatus { get; set; }
     public string SortBy { get; set; }
 
 
@@ -654,6 +656,7 @@ public class EmployeePenaltyListRequest : ListRequest
             parameters = base.Parameters;
             parameters.Add("_employeeId", employeeId);
             parameters.Add("_penaltyId", penaltyId);
+            parameters.Add("_apStatus", apStatus);
             parameters.Add("_sortBy", SortBy);
             return parameters;
         }

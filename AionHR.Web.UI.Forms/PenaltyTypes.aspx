@@ -536,7 +536,7 @@
 
                                         <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="pct" runat="server" Text="<%$ Resources: FieldPct  %>" Flex ="1" >
                                         <Widget>
-                                            <ext:NumberField AllowBlank="true" runat="server" Name="pct" MinValue="0" MaxValue="100" >
+                                            <ext:NumberField AllowBlank="true" runat="server" Name="pct" MinValue="0" >
                                                  <Listeners>
 
                                                     <Change Handler="var rec = this.getWidgetRecord(); rec.set('pct',this.value); ">

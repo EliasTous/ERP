@@ -46,67 +46,74 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DayPilot">
-      <HintPath>D:\Softmachine\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\bin\DayPilot.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Charts.v16.2.Core">
-      <HintPath>D:\Softmachine\DevExpress.Charts.v16.2.Core.dll</HintPath>
+    <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.Charts.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.CodeParser.v16.2">
-      <HintPath>D:\Softmachine\DevExpress.CodeParser.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.CodeParser.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.v16.2">
-      <HintPath>D:\Softmachine\DevExpress.Data.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.Data.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.DataAccess.v16.2">
-      <HintPath>D:\Softmachine\DevExpress.DataAccess.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.DataAccess.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Office.v16.2.Core">
-      <HintPath>D:\Softmachine\DevExpress.Office.v16.2.Core.dll</HintPath>
+    <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.Office.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Pdf.v16.2.Core">
-      <HintPath>D:\Softmachine\DevExpress.Pdf.v16.2.Core.dll</HintPath>
+    <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.Pdf.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.PivotGrid.v16.2.Core">
-      <HintPath>D:\Softmachine\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
+    <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Printing.v16.2.Core">
-      <HintPath>D:\Softmachine\DevExpress.Printing.v16.2.Core.dll</HintPath>
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.Printing.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v16.2.Core">
-      <HintPath>D:\Softmachine\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
+    <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Sparkline.v16.2.Core">
-      <HintPath>D:\Softmachine\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
+    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxThemes.v16.2">
-      <HintPath>D:\Softmachine\DevExpress.Web.ASPxThemes.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.Web.Resources.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.Web.Resources.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.Resources.v16.2">
-      <HintPath>D:\Softmachine\DevExpress.Web.Resources.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.Web.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.v16.2">
-      <HintPath>D:\Softmachine\DevExpress.Web.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.Xpo.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v16.2">
-      <HintPath>D:\Softmachine\DevExpress.Xpo.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.Xpo.v16.2.resources">
+      <HintPath>..\..\..\..\Desktop\dlls\es\DevExpress.Xpo.v16.2.resources.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v16.2">
-      <HintPath>D:\Softmachine\DevExpress.XtraCharts.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.XtraCharts.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.XtraCharts.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraGauges.v16.2.Core">
-      <HintPath>D:\Softmachine\DevExpress.XtraGauges.v16.2.Core.dll</HintPath>
+    <Reference Include="DevExpress.XtraCharts.v16.2.resources">
+      <HintPath>..\..\..\..\Desktop\dlls\es\DevExpress.XtraCharts.v16.2.resources.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v16.2">
-      <HintPath>D:\Softmachine\DevExpress.XtraReports.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.XtraGauges.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.XtraGauges.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v16.2.Web">
-      <HintPath>D:\Softmachine\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
+    <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.XtraReports.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v16.2.resources">
+      <HintPath>..\..\..\..\Desktop\dlls\es\DevExpress.XtraReports.v16.2.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\dlls\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
     </Reference>
     <Reference Include="Ext.Net">
-      <HintPath>D:\Softmachine\Ext.Net.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\Ext.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Ext.Net.Utilities">
-      <HintPath>D:\Softmachine\Ext.Net.Utilities.dll</HintPath>
+    <Reference Include="Ext.Net.Utilities, Version=2.5.0.0, Culture=neutral, PublicKeyToken=2c34ac34702a3c23, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Desktop\Ext.Net.Utilities.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -121,12 +128,9 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Softmachine\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Reports">
-      <HintPath>D:\Softmachine\Reports.dll</HintPath>
+      <HintPath>E:\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StructureMap.4.4.2\lib\net45\StructureMap.dll</HintPath>
@@ -149,12 +153,11 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Transformer.NET">
-      <HintPath>D:\Softmachine\Transformer.NET.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\bin\Transformer.NET.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Absent.aspx" />
-    <Content Include="AdminTemplates.aspx" />
     <Content Include="AllowanceTypes.aspx" />
     <Content Include="Approvals.aspx" />
     <Content Include="App_LocalResources\ARForgotPassword.aspx.resx" />
@@ -372,6 +375,7 @@
     <Content Include="Reports\RT304.aspx" />
     <Content Include="Reports\RT305.aspx" />
     <Content Include="Reports\RT306.aspx" />
+    <Content Include="Reports\RT307.aspx" />
     <Content Include="Reports\RT401.aspx" />
     <Content Include="Reports\RT402.aspx" />
     <Content Include="Reports\RT501.aspx" />
@@ -385,7 +389,6 @@
     <Content Include="ReportTest.aspx" />
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
-    <Content Include="Scripts\AdminTemplates.js" />
     <Content Include="Scripts\AssetAllowances.js" />
     <Content Include="Scripts\cal.js" />
     <Content Include="Scripts\DailySchedule.js" />
@@ -581,13 +584,6 @@
     </Compile>
     <Compile Include="Absent.aspx.designer.cs">
       <DependentUpon>Absent.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminTemplates.aspx.cs">
-      <DependentUpon>AdminTemplates.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminTemplates.aspx.designer.cs">
-      <DependentUpon>AdminTemplates.aspx</DependentUpon>
     </Compile>
     <Compile Include="Approvals.aspx.cs">
       <DependentUpon>Approvals.aspx</DependentUpon>
@@ -986,6 +982,13 @@
     </Compile>
     <Compile Include="Reports\RT306.aspx.designer.cs">
       <DependentUpon>RT306.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT307.aspx.cs">
+      <DependentUpon>RT307.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT307.aspx.designer.cs">
+      <DependentUpon>RT307.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT402.aspx.cs">
       <DependentUpon>RT402.aspx</DependentUpon>
@@ -1967,6 +1970,10 @@
       <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
       <Name>AionHR.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reports\Reports.csproj">
+      <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
+      <Name>Reports</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\ARLogin.aspx.resx" />
@@ -2463,8 +2470,8 @@
     <Content Include="App_LocalResources\Departments.aspx.ar.resx" />
     <Content Include="App_LocalResources\EmployeePenalties.aspx.resx" />
     <Content Include="App_LocalResources\EmployeePenalties.aspx.ar.resx" />
-    <Content Include="App_LocalResources\AdminTemplates.aspx.resx" />
-    <Content Include="App_LocalResources\AdminTemplates.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT307.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT307.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

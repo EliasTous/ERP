@@ -291,7 +291,9 @@
                                                         </Model>
                                                     </ext:Store>
                                                 </Store>
-                                                
+                                                <Listeners>
+                                                    <IconClick Handler="App.ApprovalStore.reload();" />
+                                                </Listeners>
                                             </ext:ComboBox>
                            
                                  <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" LabelWidth="200" FieldLabel="<%$ Resources:isPaid%>" Checked="true" />

@@ -312,4 +312,10 @@
   <data name="FieldPenaltyName" xml:space="preserve">
     <value>الجزاء</value>
   </data>
+  <data name="FieldApprovalStatus" xml:space="preserve">
+    <value>التعميد</value>
+  </data>
+  <data name="FieldAll" xml:space="preserve">
+    <value>الكل </value>
+  </data>
 </root>

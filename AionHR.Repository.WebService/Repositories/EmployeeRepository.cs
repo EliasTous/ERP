@@ -63,7 +63,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(EmployeeCalendar), "qryCA");
             ChildGetAllLookup.Add(typeof(EmployeeCal), "qryCA");
             ChildGetAllLookup.Add(typeof(EmployeePenalty), "qryPE");
-
+            ChildGetAllLookup.Add(typeof(EmployeePenaltyApproval), "qryPA");
+            
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
             ChildGetLookup.Add(typeof(AllowanceType), "getAT");
@@ -142,6 +143,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(EmployeeCalendar), "setCA");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeCal), "setCA");
             ChildAddOrUpdateLookup.Add(typeof(EmployeePenalty), "setPE");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeePenaltyApproval), "setPA");
 
 
 

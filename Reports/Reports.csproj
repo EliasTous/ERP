@@ -87,6 +87,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TimeApproval.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Absense.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -325,6 +328,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="TimeApproval.ar.resx">
+      <DependentUpon>TimeApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeApproval.resx">
+      <DependentUpon>TimeApproval.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Absense.ar.resx">
       <DependentUpon>Absense.cs</DependentUpon>
     </EmbeddedResource>

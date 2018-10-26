@@ -55,7 +55,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(OvertimeSetting), "qryOT");
             ChildGetAllLookup.Add(typeof(FlatSchedule), "qryFS");
             ChildGetAllLookup.Add(typeof(Time), "qryTA");
-
+            ChildGetAllLookup.Add(typeof(DashBoardTimeVariation), "qryTV");
 
             ChildAddOrUpdateLookup.Add(typeof(DayType), "setDT");
             ChildAddOrUpdateLookup.Add(typeof(AttendanceSchedule), "setSC");

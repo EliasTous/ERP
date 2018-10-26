@@ -75,7 +75,9 @@
     <Compile Include="Dashboard\DashboardLW.cs" />
     <Compile Include="Dashboard\DashboardNS.cs" />
     <Compile Include="Dashboard\DashBoardPE.cs" />
+    <Compile Include="Dashboard\DashBoardPL.cs" />
     <Compile Include="Dashboard\DashBoardTimeVariation .cs" />
+    <Compile Include="Dashboard\DashBoardUL.cs" />
     <Compile Include="Dashboard\DepartmentActivity.cs" />
     <Compile Include="Dashboard\EmployeeBirthday.cs" />
     <Compile Include="Dashboard\EmpRTW.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="EmployeeComplaints\IComplaintsRepository.cs" />
     <Compile Include="Employees\EmployeeCal.cs" />
     <Compile Include="Employees\EmployeePenalty.cs" />
+    <Compile Include="Employees\EmployeePenaltyApproval.cs" />
     <Compile Include="Employees\EmploymentStatusByReferance.cs" />
     <Compile Include="Employees\Profile\AssetAllowance.cs" />
     <Compile Include="Employees\Profile\AssetCategory.cs" />

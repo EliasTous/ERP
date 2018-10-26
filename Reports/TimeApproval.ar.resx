@@ -117,56 +117,80 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>من</value>
+  <data name="UserParameter.Description" xml:space="preserve">
+    <value>Parameter1</value>
   </data>
   <data name="xrLabel11.Text" xml:space="preserve">
-    <value>غياب بدون عذر </value>
+    <value>معمدو الدوام</value>
   </data>
   <data name="xrLabel16.Text" xml:space="preserve">
-    <value>الموظف</value>
+    <value>xrLabel16</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
-    <value>نوع الغياب</value>
+    <value>نوع الدوام</value>
   </data>
   <data name="xrLabel18.Text" xml:space="preserve">
-    <value>الفرع</value>
+    <value>xrLabel18</value>
   </data>
   <data name="xrLabel19.Text" xml:space="preserve">
     <value>اليوم</value>
   </data>
-  <data name="xrLabel2.Text" xml:space="preserve">
-    <value>الفرع</value>
-  </data>
   <data name="xrLabel20.Text" xml:space="preserve">
-    <value>فرق التوقيت عن جهاز البصمة</value>
+    <value>الموظف</value>
   </data>
   <data name="xrLabel21.Text" xml:space="preserve">
     <value>من قبل</value>
   </data>
+  <data name="xrLabel22.Text" xml:space="preserve">
+    <value>xrLabel22</value>
+  </data>
+  <data name="xrLabel23.Text" xml:space="preserve">
+    <value>لم يتم العثور على نتائج</value>
+  </data>
   <data name="xrLabel24.Text" xml:space="preserve">
-    <value>المدة</value>
+    <value>الدوام </value>
   </data>
   <data name="xrLabel25.Text" xml:space="preserve">
-    <value>التعميد</value>
+    <value>فرق التوقيت</value>
   </data>
   <data name="xrLabel26.Text" xml:space="preserve">
+    <value>المدة</value>
+  </data>
+  <data name="xrLabel27.Text" xml:space="preserve">
+    <value>xrLabel27</value>
+  </data>
+  <data name="xrLabel28.Text" xml:space="preserve">
+    <value>المعمد</value>
+  </data>
+  <data name="xrLabel29.Text" xml:space="preserve">
+    <value>xrLabel29</value>
+  </data>
+  <data name="xrLabel30.Text" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="xrLabel31.Text" xml:space="preserve">
+    <value>ملاحظات</value>
+  </data>
+  <data name="xrLabel32.Text" xml:space="preserve">
+    <value>xrLabel32</value>
+  </data>
+  <data name="xrLabel33.Text" xml:space="preserve">
+    <value>xrLabel33</value>
+  </data>
+  <data name="xrLabel34.Text" xml:space="preserve">
+    <value>xrLabel34</value>
+  </data>
+  <data name="xrLabel35.Text" xml:space="preserve">
+    <value>xrLabel35</value>
+  </data>
+  <data name="xrLabel36.Text" xml:space="preserve">
+    <value>xrLabel36</value>
+  </data>
+  <data name="xrLabel37.Text" xml:space="preserve">
+    <value>xrLabel37</value>
+  </data>
+  <data name="xrLabel38.Text" xml:space="preserve">
     <value>الضرر</value>
-  </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>القسم</value>
-  </data>
-  <data name="xrLabel4.Text" xml:space="preserve">
-    <value>الى </value>
-  </data>
-  <data name="xrLabel5.Text" xml:space="preserve">
-    <value>الوظيفة</value>
-  </data>
-  <data name="xrLabel6.Text" xml:space="preserve">
-    <value>الإدارة</value>
-  </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>الموظف</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>

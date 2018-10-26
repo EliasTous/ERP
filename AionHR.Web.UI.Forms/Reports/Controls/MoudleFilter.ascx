@@ -3,7 +3,7 @@
 <ext:Panel runat="server" Layout="HBoxLayout" Width="120"  ><Items>
 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="moduleId" Editable="false" Width="120" FieldLabel="">
     <Items>
-        
+        <ext:ListItem Text="<%$ Resources: Common,All  %>" Value="0" />
         <ext:ListItem Text="<%$ Resources: Common,Mod20  %>" Value="20" />
         <ext:ListItem Text="<%$ Resources:  Common,Mod21  %>" Value="21" />
          <ext:ListItem Text="<%$ Resources:  Common,Mod22  %>" Value="22" />

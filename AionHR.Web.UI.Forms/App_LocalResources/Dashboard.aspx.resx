@@ -678,4 +678,13 @@
   <data name="FieldshiftStart" xml:space="preserve">
     <value>Shift Start</value>
   </data>
+  <data name="EmployeePenaltyApproval" xml:space="preserve">
+    <value>Employee Penalty </value>
+  </data>
+  <data name="PAID_LEAVE" xml:space="preserve">
+    <value>Paid Leave</value>
+  </data>
+  <data name="UNPAID_LEAVE" xml:space="preserve">
+    <value>Unpiad Leave</value>
+  </data>
 </root>
