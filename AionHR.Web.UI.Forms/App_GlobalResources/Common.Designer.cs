@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Letter Templates.
+        ///   Looks up a localized string similar to Letters Templates.
         /// </summary>
         internal static string AdminTemplates {
             get {

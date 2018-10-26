@@ -1281,4 +1281,10 @@
   <data name="data" xml:space="preserve">
     <value>معلومات</value>
   </data>
+  <data name="AdministrationAffairs" xml:space="preserve">
+    <value>الشؤون الإدارية</value>
+  </data>
+  <data name="AdminTemplates" xml:space="preserve">
+    <value>صيغ الرسائل</value>
+  </data>
 </root>

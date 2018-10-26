@@ -1278,4 +1278,10 @@
   <data name="data" xml:space="preserve">
     <value>Data</value>
   </data>
+  <data name="AdministrationAffairs" xml:space="preserve">
+    <value>Administration Affairs</value>
+  </data>
+  <data name="AdminTemplates" xml:space="preserve">
+    <value>Letters Templates</value>
+  </data>
 </root>
