@@ -46,6 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Access Control\IAccessControlRepository.cs" />
+    <Compile Include="AdminTemplates\AdTemplate.cs" />
+    <Compile Include="AdminTemplates\IAdministrationRepository.cs" />
+    <Compile Include="AdminTemplates\TemplateBody.cs" />
+    <Compile Include="AdminTemplates\TemplateTag.cs" />
     <Compile Include="Attributes\PropertyID.cs" />
     <Compile Include="Benefits\Benefit.cs" />
     <Compile Include="Benefits\BenefitAcquisition.cs" />

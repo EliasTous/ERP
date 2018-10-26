@@ -115,6 +115,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Administration Affairs.
+        /// </summary>
+        internal static string AdministrationAffairs {
+            get {
+                return ResourceManager.GetString("AdministrationAffairs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Letter Templates.
+        /// </summary>
+        internal static string AdminTemplates {
+            get {
+                return ResourceManager.GetString("AdminTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to of {0}.
         /// </summary>
         internal static string AfterPageText {

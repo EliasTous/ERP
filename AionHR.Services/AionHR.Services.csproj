@@ -46,6 +46,7 @@
     <Compile Include="Enumerations\MasterModulesErrors.cs" />
     <Compile Include="Enumerations\SystemErrors.cs" />
     <Compile Include="Implementations\AccessControlService.cs" />
+    <Compile Include="Implementations\AdministrationService.cs" />
     <Compile Include="Implementations\AttendanceBatchRunner.cs" />
     <Compile Include="Implementations\AttendanceImportingService.cs" />
     <Compile Include="Implementations\BaseService.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Implementations\TaskManagementService.cs" />
     <Compile Include="Implementations\TimeAttendanceService.cs" />
     <Compile Include="Interfaces\IAccessControlService.cs" />
+    <Compile Include="Interfaces\IAdministrationService.cs" />
     <Compile Include="Interfaces\IBenefitsService.cs" />
     <Compile Include="Interfaces\ICompanyNewsService.cs" />
     <Compile Include="Interfaces\IComplaintsService.cs" />
@@ -119,6 +121,7 @@
     <Compile Include="Interfaces\ITaskManagementService.cs" />
     <Compile Include="Interfaces\ITimeAttendanceService.cs" />
     <Compile Include="Messaging\AccessControl\AccessControlRequests.cs" />
+    <Compile Include="Messaging\AdministrativeAffairs\AdministrativeAffairsRequests.cs" />
     <Compile Include="Messaging\Benefits\BenefitAcquisitionsListRequest.cs" />
     <Compile Include="Messaging\Benefits\PeriodOfTheDateRangeRequest .cs" />
     <Compile Include="Messaging\Benefits\ScheduleBenefitsListRequest.cs" />

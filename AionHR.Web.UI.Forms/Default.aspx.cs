@@ -256,8 +256,13 @@ namespace AionHR.Web.UI.Forms
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 case 8:
-                    nodes = TreeBuilder.Instance.BuildHelp(commonTree.Root);
+                    nodes = TreeBuilder.Instance.BuildAdminTemplates(commonTree.Root);
                     tabHome.Loader.Url = "Letters.aspx";
+                    tabHome.Loader.LoadContent();
+                    return nodes.ToJson();
+                case 9:
+                    nodes = TreeBuilder.Instance.BuildAdminTemplates(commonTree.Root);
+                    tabHome.Loader.Url = "AdminTemplates.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 default:

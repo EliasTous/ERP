@@ -738,7 +738,13 @@
                                 </Listeners>
                             </ext:Button>
                             <ext:ToolbarFill runat="server" />
-
+                            <ext:ToolbarSeparator ID="ToolbarSeparator1" runat="server"></ext:ToolbarSeparator>
+                            <ext:Button ID="Button1" runat="server" Icon="MoneyDollar" ToolTip="<%$ Resources:Common , AdminTemplates %>">
+                                <Listeners>
+                                    <Click Handler="openModule(9);" />
+                                </Listeners>
+                            </ext:Button>
+                            <ext:ToolbarFill runat="server" />
 
 
                         </Items>

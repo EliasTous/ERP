@@ -1263,4 +1263,10 @@
   <data name="EmployeePenalty" xml:space="preserve">
     <value>جزاء الموظف</value>
   </data>
+  <data name="AdminTemplates" xml:space="preserve">
+    <value>صيغ الرسائل</value>
+  </data>
+  <data name="AdministrationAffairs" xml:space="preserve">
+    <value>الشؤون الإدارية</value>
+  </data>
 </root>

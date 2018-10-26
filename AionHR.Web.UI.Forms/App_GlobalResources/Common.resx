@@ -1260,4 +1260,10 @@
   <data name="EmployeePenalty" xml:space="preserve">
     <value>Employee Penalty</value>
   </data>
+  <data name="AdminTemplates" xml:space="preserve">
+    <value>Letter Templates</value>
+  </data>
+  <data name="AdministrationAffairs" xml:space="preserve">
+    <value>Administration Affairs</value>
+  </data>
 </root>

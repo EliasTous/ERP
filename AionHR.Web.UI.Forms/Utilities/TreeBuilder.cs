@@ -479,5 +479,29 @@ namespace AionHR.Web.UI.Forms.Utilities
             nodes.Add(rootParent);
             return nodes;
         }
+
+        internal NodeCollection BuildAdminTemplates(NodeCollection nodes)
+        {
+            if (nodes == null)
+                nodes = new Ext.Net.NodeCollection();
+
+
+            Ext.Net.Node rootParent = BuildRootParentNode("rootParent", Resources.Common.AdministrationAffairs, true);
+            Ext.Net.Node adminTemplates = BuildParentNode("rootParent_CS", Resources.Common.AdministrationAffairs, true, rootParent);
+            
+            
+
+
+            Ext.Net.Node templatesLeave = BuildLeafNode("admintemplates_root", Resources.Common.AdminTemplates, "Photos", true, adminTemplates);
+            FillConfigItem(templatesLeave, "1", "AdminTemplates.aspx", Resources.Common.AdminTemplates, "icon-Employees", "1");
+
+
+
+
+            nodes.Add(rootParent);
+
+
+            return nodes;
+        }
     }
 }
