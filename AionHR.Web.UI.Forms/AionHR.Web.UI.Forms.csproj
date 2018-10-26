@@ -202,6 +202,7 @@
     <Content Include="CSS\RT101.css" />
     <Content Include="CSS\Tools.css" />
     <Content Include="Currencies.aspx" />
+    <Content Include="DailyScheduleSelfServices.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="DayPilotTest.aspx" />
     <Content Include="DaysAvailability.aspx" />
@@ -657,6 +658,13 @@
     </Compile>
     <Compile Include="ConstClasses\ConstDashboardItem.cs" />
     <Compile Include="ConstClasses\ConstTimeVariationType.cs" />
+    <Compile Include="DailyScheduleSelfServices.aspx.cs">
+      <DependentUpon>DailyScheduleSelfServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DailyScheduleSelfServices.aspx.designer.cs">
+      <DependentUpon>DailyScheduleSelfServices.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DaysAvailability.aspx.cs">
       <DependentUpon>DaysAvailability.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2473,6 +2481,8 @@
     <Content Include="Reports\App_LocalResources\RT307.aspx.resx" />
     <Content Include="App_LocalResources\AdminTemplates.aspx.ar.resx" />
     <Content Include="App_LocalResources\AdminTemplates.aspx.resx" />
+    <Content Include="App_LocalResources\DailyScheduleSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\DailyScheduleSelfServices.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

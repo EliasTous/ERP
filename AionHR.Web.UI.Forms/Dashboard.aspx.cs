@@ -1276,6 +1276,8 @@ namespace AionHR.Web.UI.Forms
                 Times.Items.ForEach(x =>
                 {
                     x.timeCodeString = FillTimeCode(Convert.ToInt16(x.timeCode));
+                    if (string.IsNullOrEmpty(x.notes))
+                         x.notes = " ";
                 });
 
                 TimeStore.DataSource = Times.Items.Where(x=>x.status==1).ToList<Time>();

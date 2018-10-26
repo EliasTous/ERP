@@ -446,6 +446,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node lt = BuildLeafNode("lt", Resources.Common.Letters, "EmailLink", true, ss);
             Ext.Net.Node AA = BuildLeafNode("AA", Resources.Common.AssetAllowancesSelfService, "UserStar", true, ss);
             Ext.Net.Node CO = BuildLeafNode("CO", Resources.Common.EmployeeComplaintsSelfServices, "UserComment", true, ss);
+            Ext.Net.Node DS = BuildLeafNode("DS", Resources.Common.DailySchedule, "UserComment", true, ss);
 
 
             FillConfigItem(lt, "LettersSelfServices", "LettersSelfServices.aspx", Resources.Common.Letters, "icon-Employees", "1");
@@ -454,6 +455,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(ln, "LoanSelfService", "LoanSelfServices.aspx", Resources.Common.Loan, "icon-Employees", "1");
             FillConfigItem(AA, "AssetAllowanceSelfService", "AssetAllowanceSelfServices.aspx", Resources.Common.AssetAllowancesSelfService, "icon-Employees", "1");
             FillConfigItem(CO, "EmployeeComplaintsSelfService", "EmployeeComplaintSelfServices.aspx", Resources.Common.EmployeeComplaintsSelfServices, "icon-Employees", "1");
+            FillConfigItem(DS, "DailyScheduleSelfServices", "DailyScheduleSelfServices.aspx", Resources.Common.DailySchedule, "icon-Employees", "1");
 
             nodes.Add(rootParent);
             return nodes;
