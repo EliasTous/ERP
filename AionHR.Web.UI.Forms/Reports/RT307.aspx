@@ -63,7 +63,7 @@
                                        <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                                
-                                               <uc:date runat="server" ID="date1" />
+                                               <uc:dateRange runat="server" ID="date2" />
                                             </Content>
                                         </ext:Container>
                                 <ext:Container runat="server"  Layout="FitLayout">

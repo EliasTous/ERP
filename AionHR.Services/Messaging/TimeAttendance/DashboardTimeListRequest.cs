@@ -13,8 +13,10 @@ namespace AionHR.Services.Messaging.TimeAttendance
         public string dayId { get; set; }
         public string timeCode { get; set; }
         public string shiftId { get; set; }
+        public string fromDayId { get; set; }
+        public string toDayId { get; set; }
 
-     
+
         public override Dictionary<string, string> Parameters
         {
             get
@@ -25,6 +27,8 @@ namespace AionHR.Services.Messaging.TimeAttendance
                 parameters.Add("_dayId", dayId);
                 parameters.Add("_timeCode", timeCode);
                 parameters.Add("_shiftId", shiftId);
+                parameters.Add("_fromDayId", fromDayId);
+                parameters.Add("_toDayId", toDayId);
 
 
 

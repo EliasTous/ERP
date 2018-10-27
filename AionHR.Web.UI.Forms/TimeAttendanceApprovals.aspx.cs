@@ -224,8 +224,9 @@ namespace AionHR.Web.UI.Forms
                 {
                     DashboardTimeListRequest r = new DashboardTimeListRequest();
 
-                    r.dayId = date1.GetDate().Date.ToString("yyyyMMdd");
-                    r.employeeId = employeeCombo1.GetEmployee().employeeId;
+                    r.fromDayId = date2.GetRange().DateFrom.ToString("yyyyMMdd");
+                r.toDayId= date2.GetRange().DateTo.ToString("yyyyMMdd");
+                r.employeeId = employeeCombo1.GetEmployee().employeeId;
 
                     r.timeCode = timeVariationType.GetTimeCode();
                     if (string.IsNullOrEmpty(approverId.Value.ToString()))
