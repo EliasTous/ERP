@@ -961,7 +961,7 @@
     <value>إعدادات الوقت الإضافي</value>
   </data>
   <data name="RT305" xml:space="preserve">
-    <value>تعميد الدوام</value>
+    <value>فروقات الدوام</value>
   </data>
   <data name="ImportOvertimeSettings" xml:space="preserve">
     <value>استيراد معلومات العمل الإضافي</value>
@@ -1243,7 +1243,7 @@
     <value>إجازات غير مدفوعة</value>
   </data>
   <data name="timeVariations" xml:space="preserve">
-    <value>تعميد الدوام</value>
+    <value>فروقات الدوام</value>
   </data>
   <data name="DAY_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
     <value>مغادرة خلال يوم العمل </value>
@@ -1286,5 +1286,11 @@
   </data>
   <data name="AdminTemplates" xml:space="preserve">
     <value>صيغ الرسائل</value>
+  </data>
+  <data name="FieldTimeVariationType" xml:space="preserve">
+    <value>نوع التأخير</value>
+  </data>
+  <data name="TimeApprovals" xml:space="preserve">
+    <value>معمدو الدوام</value>
   </data>
 </root>

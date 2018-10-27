@@ -1,4 +1,5 @@
-﻿using AionHR.Services.Messaging.Reports;
+﻿
+using AionHR.Services.Messaging.Reports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,17 +14,21 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-                timeCode.Select(0);
+                timeVariationType.Select(0);
         }
 
         public string GetTimeCode()
         {
-            return timeCode.Value.ToString();
+            if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
+                return "0";
+            return timeVariationType.Value.ToString();
         }
         public string GetTimeCodeString()
 
         {
-            return timeCode.SelectedItem.Text;
+            if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
+                return " ";
+            return timeVariationType.SelectedItem.Text;
         }
     }
 }

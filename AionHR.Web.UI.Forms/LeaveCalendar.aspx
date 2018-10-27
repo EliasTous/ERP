@@ -37,6 +37,7 @@
             #DayPilotScheduler1 > table {
                 width: 100% !important;
                 height: 100% !important;
+                color:black;
             }
 
 

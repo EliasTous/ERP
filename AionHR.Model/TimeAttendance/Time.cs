@@ -13,6 +13,7 @@ namespace AionHR.Model.TimeAttendance
         public EmployeeName employeeName { set; get; }
         public EmployeeName approverName { set; get; }
         public string dayId { set; get;  }
+        public string dayIdString { set; get; }
         public DateTime? dayIdDate
         {
             get

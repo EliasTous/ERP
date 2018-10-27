@@ -1284,4 +1284,10 @@
   <data name="AdminTemplates" xml:space="preserve">
     <value>Letters Templates</value>
   </data>
+  <data name="FieldTimeVariationType" xml:space="preserve">
+    <value>Time Variation Type</value>
+  </data>
+  <data name="TimeApprovals" xml:space="preserve">
+    <value>Time Approvals</value>
+  </data>
 </root>

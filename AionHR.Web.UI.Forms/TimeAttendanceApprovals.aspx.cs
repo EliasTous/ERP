@@ -33,7 +33,7 @@ using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class Absent : System.Web.UI.Page 
+    public partial class TimeAttendanceApprovals : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
@@ -70,7 +70,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
- 
+
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(RT305), null, GridPanel1, null, null);
@@ -82,10 +82,10 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-                dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
-                FillStatus();
-               
-             
+            
+              
+
+
 
 
 
@@ -107,7 +107,7 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-       
+
         private void HideShowButtons()
         {
 
@@ -119,7 +119,7 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         private void HideShowColumns()
         {
-            this.colAttach.Visible = false;
+           
         }
 
 
@@ -214,103 +214,72 @@ namespace AionHR.Web.UI.Forms
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        private TimeVariationListRequest GetAbsentRequest()
-        {
-          
-            TimeVariationListRequest reqTV = new TimeVariationListRequest();
-            reqTV.BranchId = jobInfo1.GetJobInfo().BranchId==null ? reqTV.BranchId=0 : jobInfo1.GetJobInfo().BranchId; 
-            reqTV.DepartmentId= jobInfo1.GetJobInfo().DepartmentId==null ? reqTV.DepartmentId=0: jobInfo1.GetJobInfo().DepartmentId;
-            reqTV.DivisionId= jobInfo1.GetJobInfo().DivisionId==null?reqTV.DivisionId=0 :jobInfo1.GetJobInfo().DivisionId;
-             reqTV.PositionId = jobInfo1.GetJobInfo().PositionId == null ? reqTV.PositionId = 0 : jobInfo1.GetJobInfo().PositionId;
-            reqTV.EsId =string.IsNullOrEmpty(esId.Value.ToString()) ? reqTV.EsId=0 :Convert.ToInt32( esId.Value);
-            reqTV.fromDayId = dateRange1.GetRange().DateFrom;
-            reqTV.toDayId = dateRange1.GetRange().DateTo;
-            reqTV.employeeId = employeeCombo1.GetEmployee().employeeId.ToString();
-            if (string.IsNullOrEmpty(apStatus.Value.ToString()))
-            {
 
-                reqTV.apStatus = "0";
-            }
-            else
-                reqTV.apStatus = apStatus.Value.ToString();
-            if (string.IsNullOrEmpty(fromDuration.Text))
-            {
-
-                reqTV.fromDuration = "0";
-            }
-            else
-                reqTV.fromDuration = fromDuration.Text;
-            if (string.IsNullOrEmpty(toDuration.Text))
-            {
-
-                reqTV.toDuration = "0";
-            }
-            else
-                reqTV.toDuration = toDuration.Text;
-            reqTV.timeCode = timeVariationType.GetTimeCode();
-
-            //if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
-            //{
-            //    timeVariationType.Select(ConstTimeVariationType.LATE_CHECKIN.ToString());
-            //    reqTV.timeCode = ConstTimeVariationType.LATE_CHECKIN.ToString();
-            //}
-            //else
-            //reqTV.timeCode = timeVariationType.Value.ToString();
-
-          
-         
-            return reqTV;
-        }
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
-            try
-            {
-                //GEtting the filter from the page
+           
 
-                TimeVariationListRequest req = GetAbsentRequest();
-
-                ListResponse<DashBoardTimeVariation> daysResponse = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);
-
-                //ActiveAttendanceRequest r = GetActiveAttendanceRequest();
-
-                //ListResponse<ActiveAbsence> daysResponse = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
-                if (!daysResponse.Success)
+                try
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", daysResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", daysResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + daysResponse.LogId : daysResponse.Summary).Show();
-                    return;
-                }
-                bool rtl = _systemService.SessionHelper.CheckIfArabicSession(); 
-                daysResponse.Items.ForEach(
-                    x =>
+                    DashboardTimeListRequest r = new DashboardTimeListRequest();
+
+                    r.dayId = date1.GetDate().Date.ToString("yyyyMMdd");
+                    r.employeeId = employeeCombo1.GetEmployee().employeeId;
+
+                    r.timeCode = timeVariationType.GetTimeCode();
+                    if (string.IsNullOrEmpty(approverId.Value.ToString()))
+                        r.approverId = 0;
+                    else
+                        r.approverId = Convert.ToInt32(approverId.Value.ToString());
+                    r.shiftId = "0";
+                    r.Parameters.Add("_sortBy", "dayId");
+
+                    ListResponse<Time> resp = _timeAttendanceService.ChildGetAll<Time>(r);
+                    if (!resp.Success)
                     {
-                        x.clockDurationString = time(x.clockDuration, true);
-                        x.durationString = time(x.duration, true);
-                        x.timeCodeString = FillTimeCode(x.timeCode);
-                        x.apStatusString = FillApprovalStatus(x.apStatus);
-                        x.damageLevelString = FillDamageLevelString(x.damageLevel);
-                       if (rtl)
-                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
-                       else
-                          x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
-
-
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                        return;
                     }
-                    );
-                Store1.DataSource = daysResponse.Items;
+                    bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+                    resp.Items.ForEach(
+                         x =>
+                         {
+                             if (!string.IsNullOrEmpty(x.clockDuration))
+                                 x.clockDuration = time(Convert.ToInt32(x.clockDuration), true);
+                             if (!string.IsNullOrEmpty(x.duration))
+                                 x.duration = time(Convert.ToInt32(x.duration), true);
+                             if (!string.IsNullOrEmpty(x.timeCode))
+                                 x.timeCodeString = FillTimeCode(Convert.ToInt32(x.timeCode));
+                             x.statusString = FillApprovalStatus(x.status);
+                             if (!string.IsNullOrEmpty(x.damageLevel))
+                                 x.damageLevel = FillDamageLevelString(Convert.ToInt16(x.damageLevel));
+                             if (rtl)
+                                 x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                             else
+                                 x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
+
+
+                         }
+                         );
+
+                Store1.DataSource = resp.Items;
                 Store1.DataBind();
-                e.Total = daysResponse.count;
-                format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
+
+
+
+
+                }
+                catch (Exception exp)
+                {
+                    X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                }
             }
-            catch(Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
-        }
+            
 
 
 
-        
+
 
 
 
@@ -444,13 +413,7 @@ namespace AionHR.Web.UI.Forms
         //    return req;
         //}
 
-        private void FillStatus()
-        {
-            ListRequest statusReq = new ListRequest();
-            ListResponse<EmploymentStatus> resp = _employeeService.ChildGetAll<EmploymentStatus>(statusReq);
-            statusStore.DataSource = resp.Items;
-            statusStore.DataBind();
-        }
+       
         private string FillTimeCode(int timeCode)
         {
             string R = "";
@@ -521,7 +484,7 @@ namespace AionHR.Web.UI.Forms
 
         private string FillApprovalStatus(short? apStatus)
         {
-            string R; 
+            string R;
             switch (apStatus)
             {
                 case 1:
@@ -534,7 +497,7 @@ namespace AionHR.Web.UI.Forms
                     R = GetLocalResourceObject("FieldRejected").ToString();
                     break;
                 default:
-                   R= string.Empty;
+                    R = string.Empty;
                     break;
 
 
@@ -574,10 +537,11 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
-            try {
+            try
+            {
 
                 string id = e.ExtraParams["id"];
-                int dayId =Convert.ToInt32( e.ExtraParams["dayId"]);
+                int dayId = Convert.ToInt32(e.ExtraParams["dayId"]);
                 int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
                 string damageLavel = e.ExtraParams["damage"];
                 string durationValue = e.ExtraParams["duration"];
@@ -625,7 +589,7 @@ namespace AionHR.Web.UI.Forms
                         break;
 
                     case "LinkRender":
-                        FillTimeApproval(dayId, employeeId,timeCode,shiftId);
+                        FillTimeApproval(dayId, employeeId, timeCode, shiftId);
                         TimeApprovalWindow.Show();
 
                         break;
@@ -633,7 +597,7 @@ namespace AionHR.Web.UI.Forms
                         break;
                 }
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
@@ -648,7 +612,7 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             DashBoardTimeVariation b = JsonConvert.DeserializeObject<DashBoardTimeVariation>(obj);
-        
+
 
 
             string id = e.ExtraParams["id"];
@@ -660,7 +624,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //getting the id of the record
-                TimeVariationListRequest req = GetAbsentRequest();
+                TimeVariationListRequest req = new TimeVariationListRequest();
 
                 ListResponse<DashBoardTimeVariation> r = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);                    //Step 1 Selecting the object or building up the object for update purpose
 
@@ -706,30 +670,32 @@ namespace AionHR.Web.UI.Forms
 
             }
 
-                 
-                catch (Exception ex)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                }
+
+            catch (Exception ex)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
             }
-        private string FillDamageLevelString (short? DamageLevel)
+        }
+        private string FillDamageLevelString(short? DamageLevel)
         {
-            string R; 
+            string R;
             switch (DamageLevel)
             {
-                case 1: R= GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString(); 
+                case 1:
+                    R = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
                     break;
                 case 2:
                     R = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
                     break;
-                default: R = string.Empty;
+                default:
+                    R = string.Empty;
                     break;
 
             }
-            return R; 
+            return R;
         }
-        protected void FillTimeApproval(int dayId, int employeeId,string timeCode, string shiftId)
+        protected void FillTimeApproval(int dayId, int employeeId, string timeCode, string shiftId)
         {
             try
             {
@@ -768,6 +734,16 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+        [DirectMethod]
+        public object FillApprover(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
     }
 
-    }
+}

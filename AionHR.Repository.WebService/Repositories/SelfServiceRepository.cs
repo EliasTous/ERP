@@ -1,5 +1,7 @@
 ﻿using AionHR.Infrastructure.Configuration;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model.Attendance;
+using AionHR.Model.Dashboard;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.LeaveManagement;
 using AionHR.Model.SelfService;
@@ -28,9 +30,11 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(LeaveDaySelfservice), "qryLD");
             ChildGetAllLookup.Add(typeof(leaveRequetsSelfservice), "qryLR");
             ChildGetAllLookup.Add(typeof(FlatSchedule), "qryFS");
+            ChildGetAllLookup.Add(typeof(AttendanceDay), "qryAD");
+            ChildGetAllLookup.Add(typeof(DashBoardTimeVariation), "qryTV");
 
 
-            
+
 
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");

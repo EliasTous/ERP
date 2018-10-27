@@ -10,7 +10,7 @@
 namespace AionHR.Web.UI.Forms {
     
     
-    public partial class Absent {
+    public partial class TimeVariationSelfServices {
         
         /// <summary>
         /// Form1 control.
@@ -163,7 +163,16 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.TimeVariationTypeFilter timeVariationType;
+        protected global::Ext.Net.ComboBox timeVariationType;
+        
+        /// <summary>
+        /// apStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox apStatus;
         
         /// <summary>
         /// esId control.
@@ -182,15 +191,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store statusStore;
-        
-        /// <summary>
-        /// apStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox apStatus;
         
         /// <summary>
         /// fromDuration control.

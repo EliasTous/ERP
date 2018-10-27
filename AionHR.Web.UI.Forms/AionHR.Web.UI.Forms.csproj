@@ -152,6 +152,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TimeAttendanceApprovals.aspx" />
+    <Content Include="TimeAttendanceViewSelfServices.aspx" />
+    <Content Include="TimeVariationSelfServices.aspx" />
     <Content Include="Absent.aspx" />
     <Content Include="AdminTemplates.aspx" />
     <Content Include="AllowanceTypes.aspx" />
@@ -575,6 +578,27 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TimeAttendanceApprovals.aspx.cs">
+      <DependentUpon>TimeAttendanceApprovals.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeAttendanceApprovals.aspx.designer.cs">
+      <DependentUpon>TimeAttendanceApprovals.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TimeAttendanceViewSelfServices.aspx.cs">
+      <DependentUpon>TimeAttendanceViewSelfServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeAttendanceViewSelfServices.aspx.designer.cs">
+      <DependentUpon>TimeAttendanceViewSelfServices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TimeVariationSelfServices.aspx.cs">
+      <DependentUpon>TimeVariationSelfServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeVariationSelfServices.aspx.designer.cs">
+      <DependentUpon>TimeVariationSelfServices.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Absent.aspx.cs">
       <DependentUpon>Absent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2483,6 +2507,12 @@
     <Content Include="App_LocalResources\AdminTemplates.aspx.resx" />
     <Content Include="App_LocalResources\DailyScheduleSelfServices.aspx.ar.resx" />
     <Content Include="App_LocalResources\DailyScheduleSelfServices.aspx.resx" />
+    <Content Include="App_LocalResources\TimeVariationSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TimeVariationSelfServices.aspx.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceViewSelfServices.aspx.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceViewSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceApprovals.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceApprovals.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
