@@ -33,7 +33,7 @@ using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class Absent : System.Web.UI.Page 
+    public partial class TimeVariationSelfServices : System.Web.UI.Page 
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
@@ -41,6 +41,7 @@ namespace AionHR.Web.UI.Forms
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IDashBoardService _dashBoardService = ServiceLocator.Current.GetInstance<IDashBoardService>();
+        ISelfServiceService _selfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
         protected override void InitializeCulture()
         {
 
@@ -84,7 +85,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                 FillStatus();
-               
+                timeVariationType.Select(0);
              
 
 
@@ -218,14 +219,14 @@ namespace AionHR.Web.UI.Forms
         {
           
             TimeVariationListRequest reqTV = new TimeVariationListRequest();
-            reqTV.BranchId = jobInfo1.GetJobInfo().BranchId==null ? reqTV.BranchId=0 : jobInfo1.GetJobInfo().BranchId; 
-            reqTV.DepartmentId= jobInfo1.GetJobInfo().DepartmentId==null ? reqTV.DepartmentId=0: jobInfo1.GetJobInfo().DepartmentId;
-            reqTV.DivisionId= jobInfo1.GetJobInfo().DivisionId==null?reqTV.DivisionId=0 :jobInfo1.GetJobInfo().DivisionId;
-             reqTV.PositionId = jobInfo1.GetJobInfo().PositionId == null ? reqTV.PositionId = 0 : jobInfo1.GetJobInfo().PositionId;
-            reqTV.EsId =string.IsNullOrEmpty(esId.Value.ToString()) ? reqTV.EsId=0 :Convert.ToInt32( esId.Value);
+            reqTV.BranchId = 0;
+            reqTV.DepartmentId = 0;
+            reqTV.DivisionId = 0;
+            reqTV.PositionId = 0;
+            reqTV.EsId = 0;
             reqTV.fromDayId = dateRange1.GetRange().DateFrom;
             reqTV.toDayId = dateRange1.GetRange().DateTo;
-            reqTV.employeeId = employeeCombo1.GetEmployee().employeeId.ToString();
+            reqTV.employeeId = _systemService.SessionHelper.GetEmployeeId();
             if (string.IsNullOrEmpty(apStatus.Value.ToString()))
             {
 
@@ -246,16 +247,15 @@ namespace AionHR.Web.UI.Forms
                 reqTV.toDuration = "0";
             }
             else
-                reqTV.toDuration = toDuration.Text;
-            reqTV.timeCode = timeVariationType.GetTimeCode();
+                reqTV.toDuration = toDuration.Text; 
 
-            //if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
-            //{
-            //    timeVariationType.Select(ConstTimeVariationType.LATE_CHECKIN.ToString());
-            //    reqTV.timeCode = ConstTimeVariationType.LATE_CHECKIN.ToString();
-            //}
-            //else
-            //reqTV.timeCode = timeVariationType.Value.ToString();
+            if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
+            {
+
+                reqTV.timeCode = "0";
+            }
+            else
+            reqTV.timeCode = timeVariationType.Value.ToString();
 
           
          
@@ -270,7 +270,7 @@ namespace AionHR.Web.UI.Forms
 
                 TimeVariationListRequest req = GetAbsentRequest();
 
-                ListResponse<DashBoardTimeVariation> daysResponse = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);
+                ListResponse<DashBoardTimeVariation> daysResponse = _selfServiceService.ChildGetAll<DashBoardTimeVariation>(req);
 
                 //ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Absent.aspx.cs" Inherits="AionHR.Web.UI.Forms.Absent" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TimeVariationSelfServices.aspx.cs" Inherits="AionHR.Web.UI.Forms.TimeVariationSelfServices" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -183,13 +183,13 @@
                                         <uc:dateRange runat="server" ID="dateRange1" />
                                     </Content>
                                 </ext:Container>
-                                <ext:Container runat="server" Layout="FitLayout">
+                                <ext:Container Visible="false" runat="server" Layout="FitLayout">
                                     <Content>
                                         <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
                                         <uc:employeeCombo runat="server" ID="employeeCombo1"  />
                                     </Content>
                                 </ext:Container>
-                                  <ext:Container runat="server" Layout="FitLayout">
+                                  <ext:Container Visible="false" runat="server" Layout="FitLayout">
                                     <Content>
                                         <uc:jobInfo runat="server" ID="jobInfo1" />
 
@@ -198,16 +198,7 @@
                                 </ext:Container>
                               
                                 <ext:ToolbarSeparator runat="server" />
-                                <ext:Button runat="server" Text="<%$Resources:Go %>">
-                                    <Listeners>
-                                        <Click Handler="CheckSession(); App.Store1.reload();" />
-                                    </Listeners>
-                                </ext:Button>
-                            </Items>
-                        </ext:Toolbar>
-                        <ext:Toolbar runat="server">
-                            <Items> 
-                                <%--   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeVariationType" runat="server" EmptyText="<%$ Resources:FieldTimeVariationType%>" Name="timeVariationType" IDMode="Static" SubmitValue="true" MaxWidth="120">
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeVariationType" runat="server" EmptyText="<%$ Resources:FieldTimeVariationType%>" Name="timeVariationType" IDMode="Static" SubmitValue="true" MaxWidth="120">
                                     <Items>
                                        <ext:ListItem Text="<%$ Resources:Common ,  All %>" Value="0"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  UnpaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_UNPAID_LEAVE %>"></ext:ListItem>
@@ -226,15 +217,33 @@
                                     </Items>
                                   
                                     
-                                </ext:ComboBox>--%>
-                                 <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                <uc:TimeVariationTypeControl runat="server" ID="timeVariationType"  />
-                                    </Content>
+                                </ext:ComboBox>
+                                     <ext:ToolbarSeparator runat="server" />
+                               
+                                   <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
+                                    EmptyText="<%$ Resources: FieldApprovalStatus %>">
+                                    <Items>
 
-                                </ext:Container>
+                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="-1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="2" />
+                                    </Items>
+
+                                </ext:ComboBox>
                                    <ext:ToolbarSeparator runat="server" />
-                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources: Common ,FieldEHStatus%>" MaxWidth="150">
+                                <ext:Button runat="server" Text="<%$Resources:Go %>">
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); App.Store1.reload();" />
+                                    </Listeners>
+                                </ext:Button>
+                            </Items>
+                        </ext:Toolbar>
+                        <ext:Toolbar Visible="false" runat="server">
+                            <Items> 
+                                  
+                              
+                                   <ext:ComboBox Visible="false" AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources: Common ,FieldEHStatus%>" MaxWidth="150">
                                     <Store>
                                         <ext:Store runat="server" ID="statusStore">
                                             <Model>
@@ -252,19 +261,8 @@
                                         <ext:ListItem Text="<%$Resources:Common ,All %>" Value="0" />
                                     </Items>
                                 </ext:ComboBox>
-                                   <ext:ToolbarSeparator runat="server" />
-                                   <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
-                                    EmptyText="<%$ Resources: FieldApprovalStatus %>">
-                                    <Items>
-
-                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="-1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="2" />
-                                    </Items>
-
-                                </ext:ComboBox>
-                                  <ext:NumberField ID="fromDuration" runat="server" FieldLabel="<%$ Resources:fromDuration%>" Name="fromDuration" MinValue="0"   >
+                                 
+                                  <ext:NumberField  ID="fromDuration" runat="server" FieldLabel="<%$ Resources:fromDuration%>" Name="fromDuration" MinValue="0"   >
                                       <Listeners>
                                           <FocusLeave Handler="this.value<0 ? this.setValue(0) : this.value"></FocusLeave>
                                       </Listeners>
@@ -372,7 +370,7 @@
                                 <SummaryRenderer Handler="return '&nbsp;';" />
                             </ext:Column>
                               <ext:Column runat="server"
-                                ID="Column2"  Visible="true"
+                                ID="Column2"  Visible="false"
                                 Text=""
                                 Width="100"
                                 Hideable="false"

@@ -117,172 +117,118 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>طلب خروج /إجازة</value>
+  <data name="Branch" xml:space="preserve">
+    <value>Branch...</value>
   </data>
-  <data name="ButtonClear" xml:space="preserve">
-    <value>جديد</value>
+  <data name="BranchAvailability" xml:space="preserve">
+    <value>Branch Availability</value>
   </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>طلب خروج /إجازة</value>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
   </data>
-  <data name="ErrorNoCalendar" xml:space="preserve">
-    <value>لايمكن إنشاء إجازة قبل إضافة تقويم واحد على الأقل</value>
+  <data name="ConfirmDeleteAllDays" xml:space="preserve">
+    <value>Are you sure you want to delete the selected schedule Range ?</value>
   </data>
-  <data name="ErrorSelectDate" xml:space="preserve">
-    <value>الرجاء اختيار وقت الإجازة بشكل صحيح</value>
+  <data name="ConfirmDeleteDay" xml:space="preserve">
+    <value>Are you sure you want to delete the selected schedule day ?</value>
   </data>
-  <data name="ErrorSelectEmployee" xml:space="preserve">
-    <value>الرجاء اختيار موظف</value>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
-  <data name="FieldAll" xml:space="preserve">
-    <value>الكل</value>
+  <data name="DeleteDay" xml:space="preserve">
+    <value>Delete Day</value>
   </data>
-  <data name="FieldApproved" xml:space="preserve">
-    <value>مقبولة</value>
+  <data name="ErrorGettingSchedule" xml:space="preserve">
+    <value>Error Getting Schedule</value>
   </data>
-  <data name="FieldBranch" xml:space="preserve">
-    <value>القسم</value>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
   </data>
-  <data name="FieldDestination" xml:space="preserve">
-    <value>الوجهة</value>
+  <data name="Load" xml:space="preserve">
+    <value>Load</value>
   </data>
-  <data name="FieldDOW" xml:space="preserve">
-    <value>اليوم</value>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
-  <data name="FieldEmployeeName" xml:space="preserve">
-    <value>اسم الموظف</value>
+  <data name="SelectDay" xml:space="preserve">
+    <value>Please select a day</value>
   </data>
-  <data name="FieldEndDate" xml:space="preserve">
-    <value>تاريخ النهاية</value>
+  <data name="SelectEmp" xml:space="preserve">
+    <value>Select Employe...</value>
   </data>
-  <data name="FieldIsPaid" xml:space="preserve">
-    <value>مدفوعة؟</value>
+  <data name="SelectEmployee" xml:space="preserve">
+    <value>Please Select an Employee</value>
   </data>
-  <data name="FieldJustification" xml:space="preserve">
-    <value>السبب</value>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
   </data>
-  <data name="FieldLeaveHours" xml:space="preserve">
-    <value>ساعات الإجازة</value>
+  <data name="ToDateHigherFromDate" xml:space="preserve">
+    <value>To date should be higher than from date.</value>
   </data>
-  <data name="FieldLtName" xml:space="preserve">
-    <value>نوع الإجازة</value>
+  <data name="ValideFromToTime" xml:space="preserve">
+    <value>Please Select a valid from and To times</value>
   </data>
-  <data name="FieldPending" xml:space="preserve">
-    <value>قيد المعالجة</value>
+  <data name="ValidFromToDate" xml:space="preserve">
+    <value>Please Select a valid from and To date</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>الرقم</value>
+  <data name="ErrorBranchWorkingHours" xml:space="preserve">
+    <value>Unable to get branch working hours.</value>
   </data>
-  <data name="FieldRefused" xml:space="preserve">
-    <value>مرفوضة</value>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
   </data>
-  <data name="FieldReturnDate" xml:space="preserve">
-    <value>تاريخ انتهاء الإجازة</value>
+  <data name="ImportFrom" xml:space="preserve">
+    <value>Import From</value>
   </data>
-  <data name="FieldReturnInfo" xml:space="preserve">
-    <value>معلومات العودة من الإجازة</value>
+  <data name="SelectBranch" xml:space="preserve">
+    <value>Select Branch</value>
   </data>
-  <data name="FieldStartDate" xml:space="preserve">
-    <value>تاريخ البداية</value>
+  <data name="SelectImport" xml:space="preserve">
+    <value>Select Employee to import from</value>
   </data>
-  <data name="FieldStatus" xml:space="preserve">
-    <value>الحالة</value>
+  <data name="ImportSuccess" xml:space="preserve">
+    <value>Schedule Imported Successfully</value>
   </data>
-  <data name="FieldUsed" xml:space="preserve">
-    <value>مستخدمة</value>
+  <data name="SelectdayOrFromToDate" xml:space="preserve">
+    <value>Select a Day or a From - To Date range</value>
   </data>
-  <data name="FieldWorkingHours" xml:space="preserve">
-    <value>ساعات العمل</value>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Department</value>
   </data>
-  <data name="FilterBranch" xml:space="preserve">
-    <value>اختر فرع</value>
+  <data name="Employees" xml:space="preserve">
+    <value>Employees</value>
   </data>
-  <data name="FilterDepartment" xml:space="preserve">
-    <value>اختر قسم</value>
+  <data name="ErrorGettingEmployees" xml:space="preserve">
+    <value>Error Getting Employees</value>
   </data>
-  <data name="FilterDivision" xml:space="preserve">
-    <value>اختر ادارة عليا</value>
-  </data>
-  <data name="FilterEmployee" xml:space="preserve">
-    <value>اختر موظف</value>
-  </data>
-  <data name="FilterOpen" xml:space="preserve">
-    <value>Show Open Requests</value>
-  </data>
-  <data name="FilterStatus" xml:space="preserve">
-    <value>اختر وضع الإجازة</value>
-  </data>
-  <data name="LeaveDaysWindowTitle" xml:space="preserve">
-    <value>أيام الإجازة / الخروج</value>
-  </data>
-  <data name="LeaveEndWindowTitle" xml:space="preserve">
-    <value>العودة من الإجازة</value>
-  </data>
-  <data name="LeaveInfo" xml:space="preserve">
-    <value>معلومات الإجازة</value>
-  </data>
-  <data name="ReturnInfo" xml:space="preserve">
-    <value>معلومات نهاية الإجازة</value>
-  </data>
-  <data name="TotalText" xml:space="preserve">
-    <value>مجموع الساعات</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>طلبات الإجازة</value>
-  </data>
-  <data name="FieldDayId" xml:space="preserve">
-    <value>التاريخ</value>
-  </data>
-  <data name="CalDays" xml:space="preserve">
-    <value>الأيام</value>
-  </data>
-  <data name="LeaveBalance" xml:space="preserve">
-    <value>رصيد الإجازات</value>
-  </data>
-  <data name="YearsInService" xml:space="preserve">
-    <value>فترة الخدمة</value>
-  </data>
-  <data name="RecentLeaves" xml:space="preserve">
-    <value>الإجازات السابقة</value>
-  </data>
-  <data name="ReturnNotes" xml:space="preserve">
-    <value>ملاحظات</value>
-  </data>
-  <data name="SpecifyStartDateFirst" xml:space="preserve">
-    <value>يرجى اختيار تاريخ بداية الإجازة أولاً</value>
-  </data>
-  <data name="FieldLeaveRef" xml:space="preserve">
-    <value>الرقم</value>
-  </data>
-  <data name="Print" xml:space="preserve">
-    <value>طباعة</value>
-  </data>
-  <data name="Approvals" xml:space="preserve">
-    <value>تعميد</value>
-  </data>
-  <data name="Department" xml:space="preserve">
-    <value>القسم </value>
-  </data>
-  <data name="TotalWorkingHoursText" xml:space="preserve">
-    <value>مجموع ساعات العمل </value>
-  </data>
-  <data name="leaveDays" xml:space="preserve">
-    <value>أيام الإجازة</value>
-  </data>
-  <data name="leaveHours" xml:space="preserve">
-    <value>ساعات الاجازة</value>
+  <data name="FullName" xml:space="preserve">
+    <value>Full Name</value>
   </data>
   <data name="workingHours" xml:space="preserve">
-    <value>ساعات العمل </value>
+    <value>Working Hours</value>
   </data>
-  <data name="New" xml:space="preserve">
-    <value>جديد</value>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
   </data>
-  <data name="FieldReplacementEmployeeName" xml:space="preserve">
-    <value>الموظف البديل</value>
+  <data name="multiImport" xml:space="preserve">
+    <value>multiImport</value>
   </data>
-  <data name="EditReplacement" xml:space="preserve">
-    <value>تعديل استبدال الموظف</value>
+  <data name="Selected" xml:space="preserve">
+    <value>Selected</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="ExportSuccess" xml:space="preserve">
+    <value>Schedule Exported Successfully</value>
+  </data>
+  <data name="ExportSchedule" xml:space="preserve">
+    <value>Export Schedule</value>
+  </data>
+  <data name="SelectExport" xml:space="preserve">
+    <value>Select Employees to Export To</value>
+  </data>
+  <data name="total" xml:space="preserve">
+    <value>Total</value>
   </data>
 </root>

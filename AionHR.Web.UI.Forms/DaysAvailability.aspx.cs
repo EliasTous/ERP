@@ -65,8 +65,9 @@ namespace AionHR.Web.UI.Forms
 
                 SetExtLanguage();
                 FillBranches();
-              
-             
+                dateFrom.SelectedDate = DateTime.Now;  
+
+
             }
 
 
@@ -116,8 +117,31 @@ namespace AionHR.Web.UI.Forms
         
 
         }
-      
 
+        public static string timeConverter(int _minutes, bool _signed)
+        {
+            if (_minutes == 0)
+                return "00:00";
+
+            bool isNegative = _minutes < 0 ? true : false;
+
+            _minutes = Math.Abs(_minutes);
+
+            string hours = (_minutes / 60).ToString(), minutes = (_minutes % 60).ToString(), formattedTime;
+
+            if (hours.Length == 1)
+                hours = "0" + hours;
+
+            if (minutes.Length == 1)
+                minutes = "0" + minutes;
+
+            formattedTime = hours + ':' + minutes;
+
+            if (isNegative && _signed)
+                formattedTime = "-" + formattedTime;
+
+            return formattedTime;
+        }
         private void BuildSchedule(List<FlatSchedule> items)
         {
             SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
@@ -313,7 +337,7 @@ namespace AionHR.Web.UI.Forms
             d.ToList().ForEach(x =>
             {
                 totaldayId.Add(x.ToList()[0].employeeId + "_Total");
-                totaldaySum.Add(x.ToList().Sum(y => Math.Round( Convert.ToDouble(y.duration) / 60)).ToString());
+                totaldaySum.Add(timeConverter( x.ToList().Sum(y =>  Convert.ToInt32(y.duration)),true));
             });
             //List<string> employeeList = new List<string>();
             //items.ForEach(x => employeeList.Add(x.employeeId.ToString()));
@@ -608,7 +632,7 @@ namespace AionHR.Web.UI.Forms
             d.ToList().ForEach(x =>
             {
                 totaldayId.Add(x.ToList()[0].employeeId + "_Total");
-                totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration) / 60).ToString());
+                totaldaySum.Add(timeConverter( x.ToList().Sum(y => Convert.ToInt32(y.duration)),true));
             });
 
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Absent.aspx.cs" Inherits="AionHR.Web.UI.Forms.Absent" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TimeAttendanceApprovals.aspx.cs" Inherits="AionHR.Web.UI.Forms.TimeAttendanceApprovals" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -96,7 +96,7 @@
         
             
         
-        <ext:Store
+     <%--   <ext:Store
             ID="Store1"
             runat="server"
            RemoteSort="false"
@@ -152,244 +152,227 @@
             <Sorters>
                 <ext:DataSorter Property="recordId" Direction="ASC" />
             </Sorters>
-        </ext:Store>
+        </ext:Store>--%>
 
+          <ext:Store runat="server" ID="ApproverStore" AutoLoad="false">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="fullName" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillApprover"></ext:PageProxy>
+                                            </Proxy>
+
+                                        </ext:Store>
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
             <Items>
-                <ext:GridPanel
-                    ID="GridPanel1"
-                    runat="server"
-                    StoreID="Store1"
-                    PaddingSpec="0 0 1 0"
-                    Header="false"
-                   
-                    Layout="FitLayout"
-                    Scroll="Vertical"
-                    Border="false"
-                    Icon="User"
-                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+              
+                                                        <ext:GridPanel MarginSpec="0 0 0 0"
+                                                            ID="GridPanel1"
+                                                            runat="server"
+                                                            PaddingSpec="0 0 1 0"
+                                                            Header="false"
+                                                         
+                                                            Layout="FitLayout"
+                                                            Scroll="Vertical"
+                                                            Border="false"
+                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True">
                   
                     
                   
             
-                        <DockedItems>
-                        <ext:Toolbar runat="server" Dock="Top">
+                     
+                                     <TopBar>
+                        <ext:Toolbar runat="server" >
+
                             <Items>
-                                   <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                        <uc:dateRange runat="server" ID="dateRange1" />
-                                    </Content>
-                                </ext:Container>
-                                <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                        <uc:employeeCombo runat="server" ID="employeeCombo1"  />
-                                    </Content>
-                                </ext:Container>
-                                  <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" />
+                             
+                                       <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                               
+                                               <uc:dateRange runat="server" ID="date2" />
+                                            </Content>
+                                        </ext:Container>
+                                <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                <uc:employeeCombo runat="server" ID="employeeCombo1"  />
+                                            </Content>
+                                        </ext:Container>
 
-                                    </Content>
-
-                                </ext:Container>
-                              
-                                <ext:ToolbarSeparator runat="server" />
-                                <ext:Button runat="server" Text="<%$Resources:Go %>">
-                                    <Listeners>
-                                        <Click Handler="CheckSession(); App.Store1.reload();" />
-                                    </Listeners>
-                                </ext:Button>
-                            </Items>
-                        </ext:Toolbar>
-                        <ext:Toolbar runat="server">
-                            <Items> 
-                                <%--   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeVariationType" runat="server" EmptyText="<%$ Resources:FieldTimeVariationType%>" Name="timeVariationType" IDMode="Static" SubmitValue="true" MaxWidth="120">
-                                    <Items>
-                                       <ext:ListItem Text="<%$ Resources:Common ,  All %>" Value="0"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  UnpaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_UNPAID_LEAVE %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  PaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_PAID_LEAVE %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  SHIFT_LEAVE_WITHOUT_EXCUSE %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_SHIFT_LEAVE_WITHOUT_EXCUSE %>" ></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  DAY_LEAVE_WITHOUT_EXCUSE  %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_DAY_LEAVE_WITHOUT_EXCUSE %>" ></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  LATE_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_LATE_CHECKIN %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  DURING_SHIFT_LEAVE %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_DURING_SHIFT_LEAVE %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_LEAVE   %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_LEAVE   %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_CHECKIN %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  OVERTIME %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_OVERTIME %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  MISSED_PUNCH %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_MISSED_PUNCH %>"></ext:ListItem>
-                                         <ext:ListItem Text="<%$ Resources:Common ,  Day_Bonus %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_Day_Bonus %>"></ext:ListItem>
-                                      
-                                      
-                                    </Items>
+                                      <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="approverId" Name="approverId"
+                                    DisplayField="fullName"
+                                    ValueField="recordId"
+                                    TypeAhead="false"
+                                    EmptyText="<%$ Resources: FieldApproverName%>"
+                                    HideTrigger="true" SubmitValue="true"
+                                    MinChars="3" 
+                                          StoreID="ApproverStore"
+                                    TriggerAction="Query" ForceSelection="true">
+                                   
+                                </ext:ComboBox>
                                   
-                                    
-                                </ext:ComboBox>--%>
-                                 <ext:Container runat="server" Layout="FitLayout">
+                                  <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                 <uc:TimeVariationTypeControl runat="server" ID="timeVariationType"  />
                                     </Content>
 
                                 </ext:Container>
-                                   <ext:ToolbarSeparator runat="server" />
-                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources: Common ,FieldEHStatus%>" MaxWidth="150">
-                                    <Store>
-                                        <ext:Store runat="server" ID="statusStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-
-                                    <Items>
-                                        <ext:ListItem Text="<%$Resources:Common ,All %>" Value="0" />
-                                    </Items>
-                                </ext:ComboBox>
-                                   <ext:ToolbarSeparator runat="server" />
-                                   <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
-                                    EmptyText="<%$ Resources: FieldApprovalStatus %>">
-                                    <Items>
-
-                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="-1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="2" />
-                                    </Items>
-
-                                </ext:ComboBox>
-                                  <ext:NumberField ID="fromDuration" runat="server" FieldLabel="<%$ Resources:fromDuration%>" Name="fromDuration" MinValue="0"   >
-                                      <Listeners>
-                                          <FocusLeave Handler="this.value<0 ? this.setValue(0) : this.value"></FocusLeave>
-                                      </Listeners>
-                                      </ext:NumberField>
-                                   <ext:ToolbarSeparator runat="server" />
-                                  
-                                  <ext:NumberField ID="toDuration" runat="server" FieldLabel="<%$ Resources:toDuration%>" Name="toDuration"  MinValue="0" >
-                                      <Listeners>
-                                          <FocusLeave Handler="this.value<0 ? this.setValue(0) : this.value"></FocusLeave>
-                                      </Listeners>
-                                      </ext:NumberField>
-                                      
-                                <ext:ToolbarSeparator runat="server" />
-
+                              
+                                
+                               <ext:ToolbarSeparator runat="server" />
+                                <ext:Button runat="server" Text="<%$Resources:Go %>">
+                                    <Listeners>
+                                        <Click Handler="App.Store1.reload();" />
+                                    </Listeners>
+                                </ext:Button>
 
                             </Items>
                         </ext:Toolbar>
-                            </DockedItems>
+
+                    </TopBar>
                 
 
 
-                    <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="true">
-                        <Columns>
-                              <ext:Column ID="ColRecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Visible="false" />
-                          <%--  <ext:Column ID="ColDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayId" Flex="2" Hideable="false">
-                                <Renderer Handler=" var d = moment(record.data['dayId']);   return d.format(App.format.value);" />
-                            </ext:Column>--%>
-                              <%-- <ext:DateColumn ID="ColDayId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayIdDate" Flex="2" Hideable="false">--%>
-                              
-                          <%--  </ext:DateColumn>--%>
-                             <ext:Column ID="ColStringDayId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayIdString" Flex="2" Hideable="false">
-                              
-                            </ext:Column>
-                            <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">
-                              <%--  <Renderer Handler="return record.data['employeeName'].fullName;" />--%>
-                        
-                            </ext:Column>
-                            <ext:Column ID="ColBranchName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="2" Hideable="true">
-                                
-                            </ext:Column>
-                            <ext:Column ID="ColPositionName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="2" Hideable="false">
-                            
-                            </ext:Column>
-                              <ext:Column ID="ColtimeCodeString" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldltimeCode%>" DataIndex="timeCodeString" Flex="2" Hideable="false">
-                            
-                            </ext:Column>
-                              <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldClockDuration%>" DataIndex="clockDurationString" Flex="2" Hideable="false" />
-                            
-                         <ext:Column ID="CoDuration" Visible="true" DataIndex="durationString" runat="server" Text="<%$ Resources: FieldDuration %>" Flex="1" >
-                                  
-                                    
-                             </ext:Column>
-                                <ext:Column ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldApprovalStatus%>" DataIndex="apStatusString" Flex="2" Hideable="false">
-                               <Renderer Handler="return LinkRender(value, metadata, record, rowIndex,  colIndex, store,record.data['apStatusString']);" />
-                            </ext:Column>
-                               <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDamageLevel%>" DataIndex="damageLevelString" Flex="2" Hideable="false">
-                                   
-                             
-                            
-                            </ext:Column>
+                     <Store>
+                                                                <ext:Store PageSize="30"
+                                                                    ID="Store1"
+                                                                    runat="server" OnReadData="Store1_RefreshData"
+                                                                    RemoteSort="false"
+                                                                    RemoteFilter="false">
+                                                                    <%--<Proxy>
+                                                                        <ext:PageProxy>
+                                                                            <Listeners>
+                                                                                <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                                                                            </Listeners>
+                                                                        </ext:PageProxy>
+                                                                    </Proxy>--%>
+                                                                    <Model>
+                                                                        <ext:Model ID="Model2" runat="server" >
+                                                                            <Fields>
+                                                                                                                                                            
+                                                                                <ext:ModelField Name="employeeId" />
+                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="dayId" />
+                                                                                <ext:ModelField Name="dayIdDate"  />
+                                                                                  <ext:ModelField Name="dayIdString"  />
+                                                                           
+                                                                                  <ext:ModelField Name="approverName" IsComplex="true" />
+                                                                           
+                                                                                <ext:ModelField Name="timeCode" />
+                                                                                  <ext:ModelField Name="shiftId" />
+                                                                                <ext:ModelField Name="timeCodeString" />
+                                                                                <ext:ModelField Name="approverId" />
+                                                                                <ext:ModelField Name="status" />
+                                                                                 <ext:ModelField Name="statusString" />
+                                                                                <ext:ModelField Name="notes" />
+                                                                                 <ext:ModelField Name="damageLevel" />
+                                                                                 <ext:ModelField Name="duration" />
+                                                                                <ext:ModelField Name="clockDuration" />
+                                                                            
+                                                                                
+                                                                                
+
+                                                                            </Fields>
+                                                                        </ext:Model>
+                                                                    </Model>
+
+                                                                </ext:Store>
+                                                            </Store>
 
 
+                                                            <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                                                <Columns>
+                                                                   <ext:Column ID="Column1" DataIndex="dayId"  runat="server" Visible="false" />
+                                                                   <ext:Column ID="ColshiftId" DataIndex="shiftId"  runat="server" Visible="false" />
+                                                                   <ext:Column ID="Column2" DataIndex="employeeId"  runat="server" Visible="false" />
+                                                                   <ext:Column ID="Column3" DataIndex="timeCode"  runat="server" Visible="false" />
+
+                                                                      <ext:Column ID="Column9" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
+                                                                    <Renderer Handler=" return record.data['approverName'].fullName;" />
+                                                                    </ext:Column>
+
+                                                                    <ext:Column ID="Column4" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
+                                                                    <Renderer Handler=" return record.data['employeeName'].fullName;" />
+                                                                    </ext:Column>
+                                                                
+                                                                    <ext:Column ID="DateColumn2" MenuDisabled="true" runat="server" Text="<%$ Resources: Date %>" DataIndex="dayIdString" Hideable="false" Flex="2" />
                           
 
+                                                                     <ext:Column ID="Column6" DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="1" />
+                                                                    
+
+                                                                    
+                                                                     <ext:Column ID="Column11" DataIndex="duration" Text="<%$ Resources: FieldDuration %>" Flex="1" runat="server"  />
+                                                                          <ext:Column ID="Column12" DataIndex="clockDuration" Text="<%$ Resources: FieldClockDuration %>" Flex="2" runat="server"  />
+
+                                                                          <ext:Column ID="Column10" DataIndex="damageLevel" Text="<%$ Resources: FieldDamageLevel %>"  runat="server" Flex="1" />
+                                                                  
+                                                                     <ext:Column ID="Column7" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" />
 
 
-                            <ext:Column runat="server"
-                                ID="colEdit" Visible="false"
-                                Text="<%$ Resources:Common, FieldDetails %>"
-                                Width="80"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
+                                                                     <ext:Column ID="Column8" DataIndex="notes" Text="<%$ Resources: FieldNotes %>" runat="server" Flex="2" />
 
-                                <Renderer Fn="editRender" />
-                                <SummaryRenderer Handler="return '&nbsp;';" />
-                            </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="false"
-                                Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                Hideable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="deleteRender" />
-                                <SummaryRenderer Handler="return '&nbsp;';" />
-                            </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colAttach"
-                                Text="<%$ Resources:Common, Attach %>"
-                                Hideable="false"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="attachRender" />
-                                <SummaryRenderer Handler="return '&nbsp;';" />
-                            </ext:Column>
-                              <ext:Column runat="server"
-                                ID="Column2"  Visible="true"
-                                Text=""
-                                Width="100"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
+                                                                
+                                                                    <ext:Column runat="server"
+                                                                        ID="Column29" Visible="false"
+                                                                        Text=""
+                                                                        Width="100"
+                                                                        Hideable="false"
+                                                                        Align="Center"
+                                                                        Fixed="true"
+                                                                        Filterable="false"
+                                                                        MenuDisabled="true"
+                                                                        Resizable="false">
 
-                                <Renderer handler="return editRender();" />
-
-                                  </ext:Column>
+                                                                        <Renderer Handler="return  appendRender(); " />
+                                                                    </ext:Column>
 
 
-                        </Columns>
 
-                    </ColumnModel>
+                                                                </Columns>
+                                                            </ColumnModel>
+                                                         <%--   <Listeners>
+                                                                <Render Handler="this.on('cellclick', cellClick);" />
+                                                                <Activate Handler="#{TimeStore}.reload();" />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                
+                                                                <CellClick OnEvent="TimePoPUP">
+                                                                    <EventMask ShowMask="true" />
+                                                                      <ExtraParams>
+                                                                         <ext:Parameter Name="employeeName" Value="record.data['employeeName'].fullName" Mode="Raw" />
+                                                                         <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
+                                                                         <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
+                                                                           <ext:Parameter Name="dayIdDate" Value="record.data['dayIdDate']" Mode="Raw" />
+                                                                            <ext:Parameter Name="timeCode" Value="record.data['timeCode']" Mode="Raw" />
+                                                                          <ext:Parameter Name="timeCodeString" Value="record.data['timeCodeString']" Mode="Raw" />
+                                                                         <ext:Parameter Name="notes" Value="record.data['notes']" Mode="Raw" />
+                                                                           <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
+                                                                             <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
+                                                                    
+                                                                      
+                                                                        
+                                                                         
+                                                                    </ExtraParams>
+
+                                                             
+
+                                                                </CellClick>
+                                                            </DirectEvents>--%>
+
+
+                                                        
+
+
+                                                        
 
                     <BottomBar>
 
@@ -423,28 +406,7 @@
 
                     </View>
                    
-                    <Listeners>
-                        <Render Handler="this.on('cellclick', cellClick);" />
-                    </Listeners>
-                      <DirectEvents>
-                        <CellClick OnEvent="PoPuP">
-                            <EventMask ShowMask="true" />
-                            <ExtraParams>
-
-                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                  <ext:Parameter Name="duration" Value="record.data['duration']" Mode="Raw" />
-                                  <ext:Parameter Name="damage" Value="record.data['damageLevel']" Mode="Raw" />
-                                   <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
-                                   <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
-                                  <ext:Parameter Name="timeCode" Value="record.data['timeCode']" Mode="Raw" />
-
-                                  <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
-                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
-                            </ExtraParams>
-
-                        </CellClick>
-                    </DirectEvents>
-               
+                
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel" runat="server" Mode="Single" StopIDModeInheritance="true" />
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>

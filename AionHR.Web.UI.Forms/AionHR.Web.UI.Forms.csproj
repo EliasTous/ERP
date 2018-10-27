@@ -152,6 +152,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TimeAttendanceApprovals.aspx" />
+    <Content Include="TimeAttendanceViewSelfServices.aspx" />
+    <Content Include="TimeVariationSelfServices.aspx" />
     <Content Include="Absent.aspx" />
     <Content Include="AdminTemplates.aspx" />
     <Content Include="AllowanceTypes.aspx" />
@@ -202,6 +205,7 @@
     <Content Include="CSS\RT101.css" />
     <Content Include="CSS\Tools.css" />
     <Content Include="Currencies.aspx" />
+    <Content Include="DailyScheduleSelfServices.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="DayPilotTest.aspx" />
     <Content Include="DaysAvailability.aspx" />
@@ -575,6 +579,27 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TimeAttendanceApprovals.aspx.cs">
+      <DependentUpon>TimeAttendanceApprovals.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeAttendanceApprovals.aspx.designer.cs">
+      <DependentUpon>TimeAttendanceApprovals.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TimeAttendanceViewSelfServices.aspx.cs">
+      <DependentUpon>TimeAttendanceViewSelfServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeAttendanceViewSelfServices.aspx.designer.cs">
+      <DependentUpon>TimeAttendanceViewSelfServices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TimeVariationSelfServices.aspx.cs">
+      <DependentUpon>TimeVariationSelfServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeVariationSelfServices.aspx.designer.cs">
+      <DependentUpon>TimeVariationSelfServices.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Absent.aspx.cs">
       <DependentUpon>Absent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -658,6 +683,13 @@
     </Compile>
     <Compile Include="ConstClasses\ConstDashboardItem.cs" />
     <Compile Include="ConstClasses\ConstTimeVariationType.cs" />
+    <Compile Include="DailyScheduleSelfServices.aspx.cs">
+      <DependentUpon>DailyScheduleSelfServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DailyScheduleSelfServices.aspx.designer.cs">
+      <DependentUpon>DailyScheduleSelfServices.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DaysAvailability.aspx.cs">
       <DependentUpon>DaysAvailability.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2475,6 +2507,14 @@
     <Content Include="Reports\App_LocalResources\RT307.aspx.resx" />
     <Content Include="App_LocalResources\AdminTemplates.aspx.ar.resx" />
     <Content Include="App_LocalResources\AdminTemplates.aspx.resx" />
+    <Content Include="App_LocalResources\DailyScheduleSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\DailyScheduleSelfServices.aspx.resx" />
+    <Content Include="App_LocalResources\TimeVariationSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TimeVariationSelfServices.aspx.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceViewSelfServices.aspx.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceViewSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceApprovals.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceApprovals.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

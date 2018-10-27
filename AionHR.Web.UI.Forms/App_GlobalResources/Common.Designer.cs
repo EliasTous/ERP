@@ -1231,6 +1231,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Time Variation Type.
+        /// </summary>
+        internal static string FieldTimeVariationType {
+            get {
+                return ResourceManager.GetString("FieldTimeVariationType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User.
         /// </summary>
         internal static string FieldUsername {
@@ -3243,6 +3252,15 @@ namespace Resources {
         internal static string ThursdayText {
             get {
                 return ResourceManager.GetString("ThursdayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Approvals.
+        /// </summary>
+        internal static string TimeApprovals {
+            get {
+                return ResourceManager.GetString("TimeApprovals", resourceCulture);
             }
         }
         

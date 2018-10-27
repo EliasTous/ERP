@@ -313,7 +313,9 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 DashboardTimeListRequest r = new DashboardTimeListRequest();
                
-                r.dayId = date1.GetDate().Date.ToString("yyyyMMdd");
+               
+                r.fromDayId=date2.GetRange().DateFrom.ToString("yyyyMMdd");
+                r.toDayId= date2.GetRange().DateTo.ToString("yyyyMMdd");
                 r.employeeId = employeeCombo1.GetEmployee().employeeId;
 
                 if (string.IsNullOrEmpty(timeCode.Value.ToString()))

@@ -2099,120 +2099,7 @@
                                                             </SelectionModel>
                                                         </ext:GridPanel>
 
-                                                           <ext:GridPanel
-                            ID="EmployeePenaltyApprovalGrid"
-                            runat="server"
-                            PaddingSpec="0 0 1 0"
-                            Header="false"
-                            MaxHeight="350"
-                            Layout="FitLayout"
-                            Scroll="Vertical"
-                            Border="false"
-                            Title="<%$ Resources: EmployeePenaltyApproval %>"
-                            ColumnLines="True" IDMode="Explicit" RenderXType="True" >
-                            
-                            <Store>
-                                <ext:Store runat="server" ID="EmployeePenaltyApprovalStore" OnReadData="EmployeePenaltyApprovalStore_ReadData">
-                                    <Model>
-                                        <ext:Model runat="server">
-                                            <Fields>
-                                                <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
-                                                <ext:ModelField Name="departmentName" />
-                                                 <ext:ModelField Name="penaltyId" />
-                                                <ext:ModelField Name="penaltyName" />
-                                                <ext:ModelField Name="approverId" />
-                                                <ext:ModelField Name="status" />
-                                                 <ext:ModelField Name="statusString" />
-                                                 <ext:ModelField Name="notes" />
-                                                 <ext:ModelField Name="Date" />
-                                               
-                                                
-                                                
-                                            </Fields>
-                                        </ext:Model>
-                                    </Model>
-                                </ext:Store>
-                            </Store>
-
-
-                            <ColumnModel ID="ColumnModel33" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
-                                <Columns>
-                                    <ext:Column ID="penaltyId" Visible="false" DataIndex="penaltyId" runat="server" />
-                                    <ext:Column ID="approverId" Visible="false" DataIndex="approverId" runat="server" />
-                                 
-                                        <ext:Column ID="Column22" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
-                                        
-                                           
-                                         </ext:Column>
-                                     <ext:Column CellCls="cellLink" ID="ColPenaltyName" MenuDisabled="true" runat="server" Text="<%$ Resources:Common, FieldPenaltyName%>" DataIndex="penaltyName" />
-                                    <ext:DateColumn  ID="ColDate" MenuDisabled="true" runat="server" DataIndex="Date" Text="<%$ Resources: FieldDate%>" Flex="1" Hideable="false" />
-                                    <ext:Column ID="lAstatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
-                                       
-                                    </ext:Column>
-                                      
-                                    <ext:Column ID="LAnotes" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
-                                       
-                                    </ext:Column>
-                                      <ext:Column runat="server"
-                                ID="Column36" Visible="true"
-                                Text="<%$ Resources:Common, Edit %>"
-                                Width="80"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer Handler="return editRender(); " />
-                            </ext:Column>
-                                     </Columns>
-                            </ColumnModel>
-
-                                    <Listeners>
-                                                                <Render Handler="this.on('cellclick', cellClick);" />
-                                                            </Listeners>
-                                                            <DirectEvents>
-                                                               <%-- <CellClick OnEvent="EmployeePenaltyApprovalPoPUP">
-                                                                    <EventMask ShowMask="true" />
-                                                                    <ExtraParams>
-                                                                        <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                                                        <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
-                                                                    </ExtraParams>
-
-                                                                </CellClick>--%>
-                                                            </DirectEvents>
-
-
-
-
-                               
-
-                            <%--  alert(last.dayId);
-                                                        if(App.leaveRequest1_shouldDisableLastDay.value=='1')
-                                                             if(last.dayId==rec.data['dayId'])  
-                                                                        this.setDisabled(false);
-                                                            else this.setDisabled(true); 
-                                                        else
-                                                            this.setDisabled(true); --%>
-                            
-                           <Listeners>
-                               <Activate Handler="#{EmployeePenaltyApprovalStore}.reload();" />
-                           </Listeners>
-
-                            <View>
-                                <ext:GridView ID="GridView33" runat="server" />
-                            </View>
-
-
-                            <SelectionModel>
-                                <ext:RowSelectionModel ID="rowSelectionModel32" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
-                            </SelectionModel>
-                         
-                     </ext:GridPanel>
-
-                                                      
+                                                       
                                                         <ext:Panel runat="server" Hidden="true" Layout="HBoxLayout" Title="<%$Resources:Tasks %>" StyleSpec=" border: 1px solid #add2ed !important;">
                                                             <LayoutConfig>
                                                                 <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
@@ -2595,6 +2482,120 @@
                                                                
                                                             </SelectionModel>
                                                         </ext:GridPanel>
+                                                            <ext:GridPanel
+                            ID="EmployeePenaltyApprovalGrid"
+                            runat="server"
+                            PaddingSpec="0 0 1 0"
+                            Header="false"
+                            MaxHeight="350"
+                            Layout="FitLayout"
+                            Scroll="Vertical"
+                            Border="false"
+                            Title="<%$ Resources: EmployeePenaltyApproval %>"
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True" >
+                            
+                            <Store>
+                                <ext:Store runat="server" ID="EmployeePenaltyApprovalStore" OnReadData="EmployeePenaltyApprovalStore_ReadData">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                                                <ext:ModelField Name="departmentName" />
+                                                 <ext:ModelField Name="penaltyId" />
+                                                <ext:ModelField Name="penaltyName" />
+                                                <ext:ModelField Name="approverId" />
+                                                <ext:ModelField Name="status" />
+                                                 <ext:ModelField Name="statusString" />
+                                                 <ext:ModelField Name="notes" />
+                                                 <ext:ModelField Name="Date" />
+                                               
+                                                
+                                                
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+
+
+                            <ColumnModel ID="ColumnModel33" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                <Columns>
+                                    <ext:Column ID="penaltyId" Visible="false" DataIndex="penaltyId" runat="server" />
+                                    <ext:Column ID="approverId" Visible="false" DataIndex="approverId" runat="server" />
+                                 
+                                        <ext:Column ID="Column22" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
+                                        
+                                           
+                                         </ext:Column>
+                                     <ext:Column CellCls="cellLink" ID="ColPenaltyName" MenuDisabled="true" runat="server" Text="<%$ Resources:Common, FieldPenaltyName%>" DataIndex="penaltyName" />
+                                    <ext:DateColumn  ID="ColDate" MenuDisabled="true" runat="server" DataIndex="Date" Text="<%$ Resources: FieldDate%>" Flex="1" Hideable="false" />
+                                    <ext:Column ID="lAstatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
+                                       
+                                    </ext:Column>
+                                      
+                                    <ext:Column ID="LAnotes" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
+                                       
+                                    </ext:Column>
+                                      <ext:Column runat="server"
+                                ID="Column36" Visible="true"
+                                Text="<%$ Resources:Common, Edit %>"
+                                Width="80"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer Handler="return editRender(); " />
+                            </ext:Column>
+                                     </Columns>
+                            </ColumnModel>
+
+                                    <Listeners>
+                                                                <Render Handler="this.on('cellclick', cellClick);" />
+                                                            </Listeners>
+                                                            <DirectEvents>
+                                                               <%-- <CellClick OnEvent="EmployeePenaltyApprovalPoPUP">
+                                                                    <EventMask ShowMask="true" />
+                                                                    <ExtraParams>
+                                                                        <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                                        <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                                                    </ExtraParams>
+
+                                                                </CellClick>--%>
+                                                            </DirectEvents>
+
+
+
+
+                               
+
+                            <%--  alert(last.dayId);
+                                                        if(App.leaveRequest1_shouldDisableLastDay.value=='1')
+                                                             if(last.dayId==rec.data['dayId'])  
+                                                                        this.setDisabled(false);
+                                                            else this.setDisabled(true); 
+                                                        else
+                                                            this.setDisabled(true); --%>
+                            
+                           <Listeners>
+                               <Activate Handler="#{EmployeePenaltyApprovalStore}.reload();" />
+                           </Listeners>
+
+                            <View>
+                                <ext:GridView ID="GridView33" runat="server" />
+                            </View>
+
+
+                            <SelectionModel>
+                                <ext:RowSelectionModel ID="rowSelectionModel32" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                            </SelectionModel>
+                         
+                     </ext:GridPanel>
+
+                                                      
                                                          
                                                     </Items>
                                                     <Listeners>

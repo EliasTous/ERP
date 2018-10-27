@@ -10,16 +10,15 @@
 namespace AionHR.Web.UI.Forms.Reports.Controls {
     
     
-    public partial class TimeVariationTypeFilter
-    {
+    public partial class TimeVariationTypeFilter {
         
         /// <summary>
-        /// timeCode control.
+        /// timeVariationType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox timeCode;
+        protected global::Ext.Net.ComboBox timeVariationType;
     }
 }

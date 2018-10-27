@@ -407,11 +407,11 @@
                                                                                 <Click Handler="openNewTab('GovernmentOrganisations', 'GovernmentOrganisations.aspx', #{goTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
-                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , LetterTemplates%>">
+                                                                        <%-- <ext:MenuItem runat="server" Text="<%$Resources: Common , LetterTemplates%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('LetterTemplates', 'LetterTemplates.aspx', #{ltemplateTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
-                                                                        </ext:MenuItem>
+                                                                        </ext:MenuItem>--%>
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , NationalQuotas%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('NationalQuotas', 'NationalQuotas.aspx', #{NQTitle}.value, 'icon-Employees')" />
