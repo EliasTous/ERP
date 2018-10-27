@@ -272,7 +272,12 @@
                                                                                 <ext:ModelField Name="status" />
                                                                                  <ext:ModelField Name="statusString" />
                                                                                 <ext:ModelField Name="notes" />
+                                                                                 <ext:ModelField Name="damageLevel" />
+                                                                                 <ext:ModelField Name="duration" />
+                                                                                <ext:ModelField Name="clockDuration" />
                                                                             
+                                                                                
+                                                                                
 
                                                                             </Fields>
                                                                         </ext:Model>
@@ -301,9 +306,17 @@
                           
 
                                                                      <ext:Column ID="Column6" DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="1" />
-                                                                     <ext:Column ID="Column7" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
-                                                                         
-                                                                    </ext:Column>
+                                                                    
+
+                                                                    
+                                                                     <ext:Column ID="Column11" DataIndex="duration" Text="<%$ Resources: FieldDuration %>" Flex="1" runat="server"  />
+                                                                          <ext:Column ID="Column12" DataIndex="clockDuration" Text="<%$ Resources: FieldClockDuration %>" Flex="2" runat="server"  />
+
+                                                                          <ext:Column ID="Column10" DataIndex="damageLevel" Text="<%$ Resources: FieldDamageLevel %>"  runat="server" Flex="1" />
+                                                                  
+                                                                     <ext:Column ID="Column7" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" />
+
+
                                                                      <ext:Column ID="Column8" DataIndex="notes" Text="<%$ Resources: FieldNotes %>" runat="server" Flex="2" />
 
                                                                 
