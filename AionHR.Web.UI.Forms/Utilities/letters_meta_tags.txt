@@ -1,0 +1,21 @@
+﻿[
+  {
+    
+    "type": "employee",
+    "tags": ['emp_fullName',
+'emp_firstName',
+'emp_lastName',
+'emp_birthDate',
+'emp_nationality',
+'emp_idRef',
+'emp_mobile',
+'emp_workMail',
+'emp_hireDate',
+'emp_department',
+'emp_branch',
+'emp_position',
+'emp_employmentStatus',
+'emp_salary',
+'emp_salary_text']
+}
+]

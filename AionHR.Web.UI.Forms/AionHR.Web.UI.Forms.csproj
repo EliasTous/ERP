@@ -531,6 +531,7 @@
     <Content Include="TimeCodes.aspx" />
     <Content Include="TrainingTypes.aspx" />
     <Content Include="Utilities\alerts.txt" />
+    <Content Include="Utilities\letters_meta_tags.txt" />
     <Content Include="Utilities\modules.txt" />
     <Content Include="DailySchedule.aspx" />
     <Content Include="WorkingCalendars.aspx" />
@@ -1932,6 +1933,7 @@
     <Compile Include="Utilities\DashboardAccessDenied.cs" />
     <Compile Include="Utilities\LocalisationManager.cs" />
     <Compile Include="Utilities\ModulesFileWrapper.cs" />
+    <Compile Include="Utilities\TagGroup.cs" />
     <Compile Include="Utilities\TimeSlot.cs" />
     <Compile Include="Utilities\TreeBuilder.cs" />
     <Compile Include="VacationSchedules.aspx.cs">

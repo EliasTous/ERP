@@ -12,7 +12,11 @@
     <script type="text/javascript" src="Scripts/AdminTemplates.js?id=1"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <%--<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>--%>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet" />
@@ -21,8 +25,19 @@
         .note-toolbar-wrapper {
             height: 66px !important;
         }
+        .tags-dropdown{
+            height:220px;
+            overflow:auto;
+            overflow-x: auto;
+            width:250px;
+        }
     </style>
     <script type="text/javascript">
+        var empTags = null;
+        function InitEmpTags(tags) {
+            console.log(tags);
+            empTags = tags;
+        }
         function escapeHtml(unsafe) {
             return unsafe
                 .replace(/&/g, "&amp;")
@@ -30,6 +45,53 @@
                 .replace(/>/g, "&gt;")
                 .replace(/"/g, "&quot;")
                 .replace(/'/g, "&#039;");
+        }
+        var employeeParams = function (context) {
+  var ui = $.summernote.ui;
+
+            // create button
+            var buttongroup = ui.buttonGroup([ui.button({
+                contents: '<i class="material-icons">person</i>',
+               
+                data: {
+                        toggle: 'dropdown'
+                    }
+            }), ui.dropdown({
+                    className: 'tags-dropdown',
+                items: empTags,
+                
+                    click: function (d) {
+                        console.log(d);
+                       
+                    // invoke insertText method with 'hello' on editor module.
+                        context.invoke('editor.insertText',"@@"+ d.target.innerText.split('(')[0].trim());
+                }
+            })]);
+
+  return buttongroup.render();   // return button as jquery object
+        }
+        var companyParams = function (context) {
+  var ui = $.summernote.ui;
+
+            // create button
+            var buttongroup = ui.buttonGroup([ui.button({
+                contents: '<i class="fa fa-child"/> Company Parameters',
+                tooltip: 'hello',
+                data: {
+                        toggle: 'dropdown'
+                    }
+            }), ui.dropdown({
+                items: ['companyname (company  name)', 'lastname (employee last name)', 'email (employee email)'],
+                tooltip: 'hello',
+                    click: function (d) {
+                        console.log(d);
+                       
+                    // invoke insertText method with 'hello' on editor module.
+                        context.invoke('editor.insertText',"@@"+ d.target.innerText.split('(')[0].trim());
+                }
+            })]);
+
+  return buttongroup.render();   // return button as jquery object
         }
     </script>
 </head>
@@ -488,6 +550,7 @@
                                             <Content>
                                                 <div id="summernote">
                                                 </div>
+                                                
                                             </Content>
                                         </ext:Container>
                                     </Items>
@@ -495,8 +558,25 @@
 
                                         <AfterLayout Handler="$('#summernote').summernote('reset'); setWidth(); var s = unescape( #{bodyText}.getValue());  $('#summernote').summernote('code',s);" />
                                         <AfterRender Handler="$('#summernote').summernote({
-                                                height: 270
-                                                });" />
+                                                height: 270,
+                                              toolbar: [['mybutton', ['hello']],
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+         
+    
+  ],
+
+  buttons: {
+    hello: employeeParams,other:companyParams
+                                          
+  }
+                                                }); "/>
                                         <Resize Handler="setWidth();" />
                                     </Listeners>
                                 </ext:Panel>

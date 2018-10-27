@@ -67,7 +67,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(DocumentType), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AdTemplate), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -81,8 +81,26 @@ namespace AionHR.Web.UI.Forms
 
                     return;
                 }
-
-
+                string s = File.ReadAllText(MapPath("~/Utilities/letters_meta_tags.txt"));
+                List<TagGroup> groups = JsonConvert.DeserializeObject<List<TagGroup>>(s);
+                List<string> empTags = null;
+                foreach (var item in groups)
+                {
+                    switch(item.type)
+                    {
+                        case "employee": empTags= item.tags; break;
+                        default:break;
+                    }
+                }
+                for(int i=0;i<empTags.Count;i++)
+                {
+                    try
+                    {
+                        empTags[i] += " (" + GetLocalResourceObject(empTags[i]).ToString() + ")";
+                    }
+                    catch { }
+                }
+                X.Call("InitEmpTags",empTags);
             }
 
         }
