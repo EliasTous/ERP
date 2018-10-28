@@ -122,29 +122,30 @@ function drawChart() {
 }
 
 function PrintElem(elem) {
-    var elem ="<img id='imgout'></img>";
-    html2canvas($("#chart_div"), {
-        onrendered: function (canvas) {
-            var img = canvas.toDataURL("image/png");
+    print(chart);
+    //var elem ="<img id='imgout'></img>";
+    //html2canvas($("#chart_div"), {
+    //    onrendered: function (canvas) {
+    //        var img = canvas.toDataURL("image/png");
            
-            var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+    //        var mywindow = window.open('', 'PRINT', 'height=400,width=600');
             
             
             
-            mywindow.document.write('<html><head><title>' + document.title + '</title>');
+    //        mywindow.document.write('<html><head><title>' + document.title + '</title>');
            
-            mywindow.document.write('</head><body >');
-            mywindow.document.write('<h1>' + document.title + '</h1>');
-            mywindow.document.write('<img src="' + img + '"/>');
-            mywindow.document.write('</body></html>');
+    //        mywindow.document.write('</head><body >');
+    //        mywindow.document.write('<h1>' + document.title + '</h1>');
+    //        mywindow.document.write('<img src="' + img + '"/>');
+    //        mywindow.document.write('</body></html>');
 
-            mywindow.document.close(); // necessary for IE >= 10
-            mywindow.focus(); // necessary for IE >= 10*/
+    //        mywindow.document.close(); // necessary for IE >= 10
+    //        mywindow.focus(); // necessary for IE >= 10*/
 
-            mywindow.print();
-            mywindow.close();
-        }
-    });
+    //        mywindow.print();
+    //        mywindow.close();
+    //    }
+    //});
   
     
     return true;

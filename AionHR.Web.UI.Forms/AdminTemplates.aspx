@@ -29,7 +29,9 @@
             height:220px;
             overflow:auto;
             overflow-x: auto;
-            width:300px;
+            width:auto;
+            direction: ltr!important;
+            
         }
     </style>
     <script type="text/javascript">
@@ -545,7 +547,7 @@
                                 <ext:TextField ID="bodyText" Hidden="true" runat="server" />
                                 <ext:TextField ID="teId" Hidden="true" runat="server" />
                                 <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
-                                <ext:Panel runat="server" Layout="FitLayout" Flex="1" ID="editorHolder">
+                                <ext:Panel runat="server" Layout="FitLayout" Flex="1" ID="editorHolder" RTL="false">
                                     <Items>
                                         <ext:Container runat="server">
                                             <Content>
@@ -557,7 +559,7 @@
                                     </Items>
                                     <Listeners>
 
-                                        <AfterLayout Handler=" $('#summernote').summernote('reset'); setWidth(); var s = unescape( #{bodyText}.getValue());  $('#summernote').summernote('code',s);" />
+                                        <AfterLayout Handler=" $('#summernote').summernote('reset'); setWidth(); var s = unescape( #{bodyText}.getValue()); document.getElementById('summernote').style.direction = 'ltr'; $('#summernote').summernote('code',s);" />
                                         <AfterRender Handler=" App.TemplateBodyWindow.setMaxHeight(0.92*window.innerHeight);$('#summernote').summernote({
                                                 height: 270,
                                               toolbar: [['mybutton', ['hello']],
