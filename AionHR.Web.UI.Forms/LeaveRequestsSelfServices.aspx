@@ -457,7 +457,34 @@
                         
                         <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                         <ext:TextField ID="leaveRef" runat="server" Name="leaveRef"  FieldLabel="<%$ Resources:FieldLeaveRef%>" Hidden="true" />
-                           
+                            <ext:ComboBox    AnyMatch="true" CaseSensitive="false"  runat="server" ID="replacementId" AllowBlank="true"
+                            DisplayField="fullName" Name="replacementId"
+                            ValueField="recordId"
+                            TypeAhead="false"
+                            FieldLabel="<%$ Resources: FieldReplacementEmployeeName%>"
+                            HideTrigger="true" SubmitValue="true"
+                            MinChars="3"
+                            TriggerAction="Query" ForceSelection="true">
+                            <Store>
+                                <ext:Store runat="server" ID="replacementStore">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="fullName" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                    <Proxy>
+                                        <ext:PageProxy DirectFn="App.direct.FillReplacementEmployee"></ext:PageProxy>
+                                    </Proxy>
+
+                                </ext:Store>
+
+                            </Store>
+                          
+
+                        </ext:ComboBox>
                            <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false" ViewStateMode="Enabled">
                             <DirectEvents>
                                 <Change OnEvent="MarkLeaveChanged">
@@ -748,7 +775,7 @@
                         <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                          <ext:Parameter Name="status" Value="#{status}.getValue()" Mode="Raw" />
                         
-                        <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                        <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw"  />
                         <ext:Parameter Name="days" Value="Ext.encode(#{LeaveDaysGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />
                     </ExtraParams>
                 </Click>

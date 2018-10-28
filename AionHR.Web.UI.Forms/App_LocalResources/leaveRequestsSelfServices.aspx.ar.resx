@@ -279,4 +279,7 @@
   <data name="usedLeaves" xml:space="preserve">
     <value>مجموع الاجازات : </value>
   </data>
+  <data name="FieldReplacementEmployeeName" xml:space="preserve">
+    <value>الموظف البديل</value>
+  </data>
 </root>

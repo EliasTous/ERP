@@ -326,7 +326,20 @@ namespace AionHR.Web.UI.Forms
             }
             //Step 2 : call setvalues with the retrieved object
             this.BasicInfoTab.SetValues(response.result);
+            if (response.result.replacementId != "0")
+            {
 
+                replacementId.GetStore().Add(new object[]
+                   {
+                                new
+                                {
+                                    recordId = response.result.replacementId,
+                                    fullName =response.result.replacementName.fullName
+                                }
+                   });
+                replacementId.SetValue(response.result.employeeId);
+
+            }
 
             FillLeaveType();
 
@@ -984,10 +997,7 @@ namespace AionHR.Web.UI.Forms
 
             if (string.IsNullOrEmpty(id))
             {
-                if (days.Count == 0)
-                {
-                    days = GenerateDefaultLeaveDays(b.startDate,b.endDate);
-                }
+               
 
                 try
                 {
@@ -1012,7 +1022,7 @@ namespace AionHR.Web.UI.Forms
                         b.recordId = r.recordId;
                         //Add this record to the store 
                         days.ForEach(d => d.leaveId = Convert.ToInt32(b.recordId));
-                        AddDays(days);
+                       // AddDays(days);
                         if (Store1 != null)
                             this.Store1.Reload();
                         else
@@ -1126,7 +1136,7 @@ namespace AionHR.Web.UI.Forms
                             return;
                         }
                         days.ForEach(x => x.leaveId = Convert.ToInt32(b.recordId));
-                        AddDays(days);
+                      //  AddDays(days);
                         if (Store1 != null)
                         {
                             ModelProxy record = this.Store1.GetById(id);
@@ -1239,6 +1249,39 @@ namespace AionHR.Web.UI.Forms
             leavesBalance.Text = qv.result.leaveBalance.ToString(); 
 
 
+        }
+
+        [DirectMethod]
+        public object FillReplacementEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 0;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
+
+
+        private string GetNameFormat()
+        {
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
     }
 }

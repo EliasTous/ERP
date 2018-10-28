@@ -276,4 +276,7 @@
   <data name="usedLeaves" xml:space="preserve">
     <value>Used Leaves :</value>
   </data>
+  <data name="FieldReplacementEmployeeName" xml:space="preserve">
+    <value>Replacement Employee</value>
+  </data>
 </root>
