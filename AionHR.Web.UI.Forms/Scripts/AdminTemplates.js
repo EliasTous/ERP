@@ -78,6 +78,7 @@ var enterKeyPressSearchHandler = function (el, event) {
 function setWidth() {
     
     document.getElementById("summernote").style.width = App.editorHolder.getWidth() + 4 + 'px';
-    document.getElementById("summernote").style.height = App.editorHolder.getHeight() - 25 + 'px';
+    
+    document.getElementById("summernote").style.height = App.editorHolder.getHeight() - 20 + 'px';
 
 }

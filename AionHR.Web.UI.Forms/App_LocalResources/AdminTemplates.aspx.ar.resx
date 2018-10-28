@@ -168,4 +168,49 @@
   <data name="UsageThirdParty" xml:space="preserve">
     <value>طرف آخر</value>
   </data>
+  <data name="emp_birthDate" xml:space="preserve">
+    <value>تاريخ الميلاد</value>
+  </data>
+  <data name="emp_branch" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="emp_department" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="emp_employmentStatus" xml:space="preserve">
+    <value>نوع الوظيفة</value>
+  </data>
+  <data name="emp_firstName" xml:space="preserve">
+    <value>الاسم الأول</value>
+  </data>
+  <data name="emp_fullName" xml:space="preserve">
+    <value>الاسم الكامل</value>
+  </data>
+  <data name="emp_hireDate" xml:space="preserve">
+    <value>تاريخ التعيين</value>
+  </data>
+  <data name="emp_idRef" xml:space="preserve">
+    <value>رقم ال</value>
+  </data>
+  <data name="emp_lastName" xml:space="preserve">
+    <value>الكنية</value>
+  </data>
+  <data name="emp_mobile" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="emp_nationality" xml:space="preserve">
+    <value>الجنسية</value>
+  </data>
+  <data name="emp_position" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
+  <data name="emp_salary" xml:space="preserve">
+    <value>الراتب</value>
+  </data>
+  <data name="emp_salary_text" xml:space="preserve">
+    <value>الراتب كتابة</value>
+  </data>
+  <data name="emp_workMail" xml:space="preserve">
+    <value>بريد العمل الالكتروني</value>
+  </data>
 </root>

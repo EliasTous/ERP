@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/AdminTemplates.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/AdminTemplates.js?id=4"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
     
@@ -29,7 +29,7 @@
             height:220px;
             overflow:auto;
             overflow-x: auto;
-            width:250px;
+            width:300px;
         }
     </style>
     <script type="text/javascript">
@@ -515,8 +515,9 @@
             Title="<%$ Resources:TemplateBodyWindow %>"
             Width="1000"
             Height="500"
+           
             AutoShow="false"
-            
+           Maximizable="true"
             Hidden="true"
             Layout="Fit">
 
@@ -556,8 +557,8 @@
                                     </Items>
                                     <Listeners>
 
-                                        <AfterLayout Handler="$('#summernote').summernote('reset'); setWidth(); var s = unescape( #{bodyText}.getValue());  $('#summernote').summernote('code',s);" />
-                                        <AfterRender Handler="$('#summernote').summernote({
+                                        <AfterLayout Handler=" $('#summernote').summernote('reset'); setWidth(); var s = unescape( #{bodyText}.getValue());  $('#summernote').summernote('code',s);" />
+                                        <AfterRender Handler=" App.TemplateBodyWindow.setMaxHeight(0.92*window.innerHeight);$('#summernote').summernote({
                                                 height: 270,
                                               toolbar: [['mybutton', ['hello']],
             ['style', ['style']],
