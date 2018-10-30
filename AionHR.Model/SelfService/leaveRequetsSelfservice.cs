@@ -61,5 +61,12 @@ namespace AionHR.Model.SelfService
         public string departmentName { get; set; }
 
         public string branchName { get; set; }
+
+        public double? leaveDays { get; set; }
+        //public int? workingHours { get; set; }
+    //    public int? leaveHours { get; set; }
+
+        public EmployeeName replacementName { get; set; }
+        public string replacementId { get; set; }
     }
 }

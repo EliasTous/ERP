@@ -393,9 +393,9 @@
                             <Items>
                                    <ext:NumberField ReadOnly="true"  runat="server" Width="200" ID="leaveDaysField"  Name="leaveDaysField"  FieldLabel="<%$Resources:leaveDays %>" >
                                        </ext:NumberField>
-                                   <ext:NumberField ReadOnly="true" runat="server" Width="200" ID="leaveHours" Name="leaveHours"  FieldLabel="<%$Resources:leaveHours %>">
+                                   <ext:NumberField ReadOnly="true" Visible="false" runat="server" Width="200" ID="leaveHours" Name="leaveHours"  FieldLabel="<%$Resources:leaveHours %>">
                                        </ext:NumberField>
-                                   <ext:NumberField ReadOnly="true"   runat="server" Width="200" ID="workingHours"  Name="workingHours"  FieldLabel="<%$Resources:workingHours %>" >
+                                   <ext:NumberField ReadOnly="true"  Visible="false"  runat="server" Width="200" ID="workingHours"  Name="workingHours"  FieldLabel="<%$Resources:workingHours %>" >
                                        </ext:NumberField>
                             </Items>
                         </ext:Panel>
@@ -563,7 +563,7 @@
                                         </Listeners>
                                         
                                     </ext:WidgetColumn>--%>
-                                    <ext:ComponentColumn Text="<%$ Resources: FieldLeaveHours %>" runat="server" DataIndex="leaveHours" ItemID="comp">
+                                    <ext:ComponentColumn  Text="<%$ Resources: FieldLeaveHours %>" runat="server" DataIndex="leaveHours" ItemID="comp">
                                         <Component>
                                             <ext:NumberField ID="NumberField1" runat="server" MinValue="0" DataIndex="leaveHours">
                                                 <Listeners>
@@ -985,7 +985,7 @@
                                  <ext:Parameter Name="workingHours" Value="#{workingHoursTF}.getValue()" Mode="Raw" />
                                  <ext:Parameter Name="leaveHours" Value="#{leaveHoursTF}.getValue()" Mode="Raw" />
                                  <ext:Parameter Name="replacementId" Value="#{replacementId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value="#{FormPanel1}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                <ext:Parameter Name="values" Value="#{replacementForm}.getForm().getValues()" Mode="Raw" Encode="true" />
 
                             </ExtraParams>
                         </Click>
