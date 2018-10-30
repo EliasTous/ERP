@@ -703,12 +703,12 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                 return;
             }
-            MatchCollection c = Regex.Matches(plainHtml,@"@@(?<word>\w+)");
+            MatchCollection c = Regex.Matches(plainHtml,@"\#(?<word>\w+)#");
             List<TemplateTag> tags = new List<TemplateTag>();
             for(int i=0;i<c.Count;i++)       
             {
 
-                tags.Add(new TemplateTag() { teId = templateId, tag = c[i].Value.Substring(2,c[i].Value.Length-2) });
+                tags.Add(new TemplateTag() { teId = templateId, tag = c[i].Value.Substring(1,c[i].Value.Length-2) });
             }
 
             PostRequest<TemplateTag[]> req = new PostRequest<TemplateTag[]>();

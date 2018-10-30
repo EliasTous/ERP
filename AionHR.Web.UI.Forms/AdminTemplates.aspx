@@ -66,7 +66,7 @@
                         console.log(d);
                        
                     // invoke insertText method with 'hello' on editor module.
-                        context.invoke('editor.insertText',"@@"+ d.target.innerText.split('(')[0].trim());
+                        context.invoke('editor.insertText',"#"+ d.target.innerText.split('(')[0].trim()+"#");
                 }
             })]);
 
@@ -89,7 +89,7 @@
                         console.log(d);
                        
                     // invoke insertText method with 'hello' on editor module.
-                        context.invoke('editor.insertText',"@@"+ d.target.innerText.split('(')[0].trim());
+                        context.invoke('editor.insertText',"#"+ d.target.innerText.split('(')[0].trim()+"#");
                 }
             })]);
 
