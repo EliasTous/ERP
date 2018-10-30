@@ -580,7 +580,7 @@ namespace AionHR.Web.UI.Forms
                 this.TemplateBodyWindow.Close();
                 if(e.ExtraParams["isPreview"]!="")
                 {
-                    if (e.ExtraParams["templateUsage"] == "1")
+                    if (e.ExtraParams["templateUsage"] == "2")
                     {
                         selectEmpForm.Reset();
                         selectEmpWindow.Show();
