@@ -213,4 +213,19 @@
   <data name="emp_workMail" xml:space="preserve">
     <value>بريد العمل الالكتروني</value>
   </data>
+  <data name="SaveAndPreview" xml:space="preserve">
+    <value>حفظ ومعاينة</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>العودة إلى النموذج</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>معاينة</value>
+  </data>
+  <data name="SelectEmpWindow" xml:space="preserve">
+    <value>اختر موظفاً</value>
+  </data>
 </root>

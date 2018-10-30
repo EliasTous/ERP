@@ -213,4 +213,19 @@
   <data name="emp_workMail" xml:space="preserve">
     <value>Employee Work mail</value>
   </data>
+  <data name="SaveAndPreview" xml:space="preserve">
+    <value>Save and Preview</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Back to Template</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="SelectEmpWindow" xml:space="preserve">
+    <value>Select Employee</value>
+  </data>
 </root>

@@ -23,6 +23,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(AdTemplate), "getTE");
             ChildGetLookup.Add(typeof(TemplateBody), "getTB");
             ChildGetLookup.Add(typeof(TemplateTag), "getTM");
+            ChildGetLookup.Add(typeof(EmployeeTemplatePreview), "sampleTB");
 
             ChildAddOrUpdateLookup.Add(typeof(AdTemplate), "setTE");
             ChildAddOrUpdateLookup.Add(typeof(TemplateBody), "setTB");
