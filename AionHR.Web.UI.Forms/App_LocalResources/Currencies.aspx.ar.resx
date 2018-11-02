@@ -126,6 +126,9 @@
   <data name="FieldName" xml:space="preserve">
     <value>الاسم</value>
   </data>
+  <data name="FieldProfile" xml:space="preserve">
+    <value>الملف الشخصي</value>
+  </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>الرقم</value>
   </data>

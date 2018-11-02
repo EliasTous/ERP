@@ -126,6 +126,9 @@
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="FieldProfile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
   </data>

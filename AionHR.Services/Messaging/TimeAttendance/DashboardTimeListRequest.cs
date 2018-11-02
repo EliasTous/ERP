@@ -15,6 +15,8 @@ namespace AionHR.Services.Messaging.TimeAttendance
         public string shiftId { get; set; }
         public string fromDayId { get; set; }
         public string toDayId { get; set; }
+        public string apStatus { get; set; }
+        
 
 
         public override Dictionary<string, string> Parameters
@@ -29,6 +31,7 @@ namespace AionHR.Services.Messaging.TimeAttendance
                 parameters.Add("_shiftId", shiftId);
                 parameters.Add("_fromDayId", fromDayId);
                 parameters.Add("_toDayId", toDayId);
+                parameters.Add("_status", apStatus);
 
 
 

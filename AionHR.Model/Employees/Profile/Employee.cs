@@ -16,6 +16,7 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31000_01")]
         [ApplySecurity]
         public string reference { get; set; }
+        public short? civilStatus { get; set; }
 
 
         [PropertyID("31000_24")]

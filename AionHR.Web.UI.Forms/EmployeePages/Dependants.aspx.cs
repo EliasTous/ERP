@@ -183,21 +183,21 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Dependant entity = GetDEById(id.ToString());
                     //Step 2 : call setvalues with the retrieved object
                     this.infoForm.SetValues(entity);
-                    street1.Text = entity.addressId.street1;
-                    street2.Text = entity.addressId.street2;
-                    postalCode.Text = entity.addressId.postalCode;
-                    city.Text = entity.addressId.city;
-                    addressId.Text = entity.addressId.recordId;
+                    street1.Text = entity.address.street1;
+                    street2.Text = entity.address.street2;
+                    postalCode.Text = entity.address.postalCode;
+                    city.Text = entity.address.city;
+                    address.Text = entity.address.recordId;
                     FillState();
-                   stateId.Select(entity.addressId.stateId);
-                    phone.Text = entity.addressId.phone;
+                   stateId.Select(entity.address.stateId);
+                    phone.Text = entity.address.phone;
 
                     if (entity.gender == "0")
                         gender0.Checked = true;
                     else
                         gender1.Checked = true;
                     FillNationality();
-                    countryId.Select(entity.addressId.countryId);
+                    countryId.Select(entity.address.countryId);
                     dependencyType.Select(entity.dependencyType);
                     recordId.Text = id.ToString();
                     this.EditContactWindow.Title = Resources.Common.EditWindowsTitle;
@@ -317,11 +317,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             string obj = e.ExtraParams["info"];
             string address = e.ExtraParams["address"];
-            
-          
-            
-            
-            
+            string addressId = e.ExtraParams["addressId"];
+
+
+
+
+
             Dependant b = JsonConvert.DeserializeObject<Dependant>(obj);
             b.employeeId = CurrentEmployee.Text;
             b.seqNo = id;
@@ -333,7 +334,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 b.isStudent = false;
             if (string.IsNullOrEmpty(add.city) && string.IsNullOrEmpty(add.countryId) && string.IsNullOrEmpty(add.street1) && string.IsNullOrEmpty(add.stateId) && string.IsNullOrEmpty(add.phone))
             {
-                b.addressId = null;
+                b.address = null;
             }
             else
             {
@@ -343,8 +344,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorAddressMissing")).Show();
                     return;
                 }
-                b.addressId = JsonConvert.DeserializeObject<AddressBook>(address);
-                b.addressId.recordId = addressId.Text;
+                b.address = JsonConvert.DeserializeObject<AddressBook>(address);
+                b.address.recordId = addressId;
             }
             
           

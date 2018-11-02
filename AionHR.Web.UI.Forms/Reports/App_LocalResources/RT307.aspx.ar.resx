@@ -123,6 +123,12 @@
   <data name="DamageWITH_DAMAGE" xml:space="preserve">
     <value>تسبب ضرر</value>
   </data>
+  <data name="FieldAll" xml:space="preserve">
+    <value>الكل</value>
+  </data>
+  <data name="FieldApprovalStatus" xml:space="preserve">
+    <value>التعميد</value>
+  </data>
   <data name="FieldApproved" xml:space="preserve">
     <value>مقبولة</value>
   </data>

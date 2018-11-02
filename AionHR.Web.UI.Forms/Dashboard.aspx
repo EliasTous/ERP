@@ -4399,8 +4399,12 @@
 
 
                                         <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
-                                        <ext:ModelField Name="hireDate" />
-                                        <ext:ModelField Name="days" />
+                                     
+                                        <ext:ModelField Name="probationEndDate" />
+                                         <ext:ModelField Name="days" />
+                                         <ext:ModelField Name="nextReviewDate" />
+                                         <ext:ModelField Name="termEndDate" />
+                                         <ext:ModelField Name="npName" />
 
                                     </Fields>
                                 </ext:Model>
@@ -4414,15 +4418,18 @@
 
                             <ext:Column Visible="false" ID="Column25" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayAnniversary(record.data);  ">
-                                </Renderer>
+                              <%--  <Renderer Handler=" return displayAnniversary(record.data);  ">
+                                </Renderer>--%>
                             </ext:Column>
-                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
+                           <%-- <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
                                 <Renderer Handler="return record.data['days'] + ' ' + #{daysLeft}.value;" />
 
 
-                            </ext:Column>
-
+                            </ext:Column>--%>
+                             <ext:DateColumn ID="ColProbationEndDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldProbationEndDate %>" DataIndex="probationEndDate" Hideable="false" Visible="false"  />
+                             <ext:DateColumn  ID="ColNextReviewDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNextReviewDate %>" DataIndex="nextReviewDate" Hideable="false"  Visible="false"/>
+                             <ext:DateColumn  ID="ColtermEndDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTermEndDate %>" DataIndex="termEndDate" Hideable="false" />
+                          <%--   <ext:Column  ID="npName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNpName %>" DataIndex="npName" Hideable="false"  />--%>
 
 
 

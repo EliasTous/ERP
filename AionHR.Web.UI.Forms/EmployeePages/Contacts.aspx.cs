@@ -255,14 +255,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     rtId.Select(entity.rtId.ToString());
 
                     FillECNationality();
-                    ecnaId.Select(entity.addressId.countryId);
+                    ecnaId.Select(entity.address.countryId);
                     FillECState();
-                    ecstId.Select(entity.addressId.stateId);
-                    street1.Text = entity.addressId.street1;
-                    street2.Text = entity.addressId.street2;
-                    postalCode.Text = entity.addressId.postalCode;
-                    city.Text = entity.addressId.city;
-                    ecaddressId.Text = entity.addressId.recordId;
+                    ecstId.Select(entity.address.stateId);
+                    street1.Text = entity.address.street1;
+                    street2.Text = entity.address.street2;
+                    postalCode.Text = entity.address.postalCode;
+                    city.Text = entity.address.city;
+                    ecaddressId.Text = entity.address.recordId;
 
 
                     this.EditEmergencyContactWindow.Title = Resources.Common.EditWindowsTitle;
@@ -307,17 +307,17 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     EmployeeContact entity = GetCOById(id.ToString());
                     //Step 2 : call setvalues with the retrieved object
                     this.ContactsForm.SetValues(entity);
-                    costreet1.Text = entity.addressId.street1;
-                    costreet2.Text = entity.addressId.street2;
-                    copostalCode.Text = entity.addressId.postalCode;
-                    cocity.Text = entity.addressId.city;
-                    coaddressId.Text = entity.addressId.recordId;
+                    costreet1.Text = entity.address.street1;
+                    costreet2.Text = entity.address.street2;
+                    copostalCode.Text = entity.address.postalCode;
+                    cocity.Text = entity.address.city;
+                    coaddressId.Text = entity.address.recordId;
                     FillCOState();
-                    costId.Select(entity.addressId.stateId);
+                    costId.Select(entity.address.stateId);
 
 
                     FillCONationality();
-                    conaId.Select(entity.addressId.countryId);
+                    conaId.Select(entity.address.countryId);
 
 
                     this.EditContactWindow.Title = Resources.Common.EditWindowsTitle;
@@ -520,8 +520,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             // Define the object to add or edit as null
             b.rtName = rtId.SelectedItem.Text;
 
-            b.addressId = new AddressBook() { street1 = costreet1.Text, street2 = costreet2.Text, city = cocity.Text, postalCode = copostalCode.Text, countryId = b.naId, stateId = b.stateId, countryName = conaId.SelectedItem.Text, phone= localphone.Text };
-            b.addressId.recordId = coaddressId.Text;
+            b.address = new AddressBook() { street1 = costreet1.Text, street2 = costreet2.Text, city = cocity.Text, postalCode = copostalCode.Text, countryId = b.naId, stateId = b.stateId, countryName = conaId.SelectedItem.Text, phone= localphone.Text };
+            b.address.recordId = coaddressId.Text;
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             if (string.IsNullOrEmpty(id))
             {
@@ -644,9 +644,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.recordId = id;
             // Define the object to add or edit as null
             b.rtName = rtId.SelectedItem.Text;
-            b.addressId = new AddressBook() { street1 = street1.Text, street2 = street2.Text, city = city.Text, postalCode = postalCode.Text, countryId = b.naId, countryName = ecnaId.SelectedItem.Text, stateId = b.stateId };
+            b.address = new AddressBook() { street1 = street1.Text, street2 = street2.Text, city = city.Text, postalCode = postalCode.Text, countryId = b.naId, countryName = ecnaId.SelectedItem.Text, stateId = b.stateId };
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
-            b.addressId.recordId = ecaddressId.Text;
+            b.address.recordId = ecaddressId.Text;
             if (string.IsNullOrEmpty(id))
             {
 

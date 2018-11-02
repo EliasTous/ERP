@@ -42,7 +42,7 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31150_10")]
         [ApplySecurity]
 
-        public AddressBook addressId { get; set; }
+        public AddressBook address { get; set; }
 
         public string naId { get; set; }
 

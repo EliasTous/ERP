@@ -318,17 +318,14 @@ namespace AionHR.Web.UI.Forms.Reports
                 r.toDayId= date2.GetRange().DateTo.ToString("yyyyMMdd");
                 r.employeeId = employeeCombo1.GetEmployee().employeeId;
 
-                if (string.IsNullOrEmpty(timeCode.Value.ToString()))
-                    r.timeCode = "0";
-                else
-                r.timeCode = timeCode.Value.ToString();
+                r.timeCode = timeVariationType.GetTimeCode(); 
                 if (string.IsNullOrEmpty(approverId.Value.ToString()))
                     r.approverId = 0;
                 else
                     r.approverId = Convert.ToInt32(approverId.Value.ToString());
                 r.shiftId = "0";
                 r.Parameters.Add("_sortBy", "dayId");
-
+                r.apStatus = string.IsNullOrEmpty(apStatus.Value.ToString()) ? "0" : apStatus.Value.ToString();
                 ListResponse <Time> resp = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!resp.Success)
                 {

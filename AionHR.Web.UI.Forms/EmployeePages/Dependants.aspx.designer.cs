@@ -364,13 +364,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.FormPanel addressForm;
         
         /// <summary>
-        /// addressId control.
+        /// address control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField addressId;
+        protected global::Ext.Net.TextField address;
         
         /// <summary>
         /// street1 control.

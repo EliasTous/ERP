@@ -123,6 +123,12 @@
   <data name="DamageWITH_DAMAGE" xml:space="preserve">
     <value>With Damage</value>
   </data>
+  <data name="FieldAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="FieldApprovalStatus" xml:space="preserve">
+    <value>Approval</value>
+  </data>
   <data name="FieldApproved" xml:space="preserve">
     <value>Approved</value>
   </data>

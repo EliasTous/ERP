@@ -28,7 +28,7 @@
         function setNullable(d)
         {
             App.city.allowBlank = d;
-            App.costreet1.allowBlank = d;
+            //App.costreet1.allowBlank = d;
             App.stId.allowBlank=d;
             App.naId.allowBlank = d;
             App.phone.allowBlank = d;
@@ -441,8 +441,8 @@
                             DefaultAnchor="100%" 
                             BodyPadding="5"> 
                             <Items>
-                                <ext:TextField runat="server" Name="addressId" ID="addressId" Hidden="true" Disabled="true" />
-                                        <ext:TextField runat="server" Name="street1" AllowBlank="true" ID="costreet1" FieldLabel="<%$ Resources:FieldStreet1%>" >
+                                <ext:TextField runat="server" Name="address" ID="address" Hidden="true" Disabled="true" />
+                                        <ext:TextField runat="server" Name="street1" AllowBlank="false" ID="costreet1" FieldLabel="<%$ Resources:FieldStreet1%>" >
                                             <Listeners>
                                                 <Change Handler="if(this.value=='') setNullable(true); else setNullable(false);" />
                                             </Listeners>

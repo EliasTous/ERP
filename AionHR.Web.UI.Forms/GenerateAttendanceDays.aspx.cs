@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure.Session;
 using AionHR.Infrastructure.Tokens;
+using AionHR.Model.Company.Structure;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.System;
 using AionHR.Model.TimeAttendance;
@@ -27,6 +28,7 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        ICompanyStructureService _branchService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         SessionHelper h;
         
         TimeAttendanceService _time;
@@ -60,7 +62,7 @@ namespace AionHR.Web.UI.Forms
                 startingDate.Value = DateTime.Now;
                 employeeFilter.AddItem(GetGlobalResourceObject("Common", "All").ToString(), 0);
                 employeeFilter.Select(0);
-
+                FillBranch();
                 //startingDate.MinDate = DateTime.Now.AddDays(-180);
 
                 // endingDate.MinDate = startingDate.SelectedDate;
@@ -70,6 +72,16 @@ namespace AionHR.Web.UI.Forms
             }
            
         }
+        private void FillBranch()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Branch> resp = _branchService.ChildGetAll<Branch>(branchesRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+            BranchStore.DataSource = resp.Items;
+            BranchStore.DataBind();
+        }
+
 
         private void HideShowTabs()
         {
@@ -118,6 +130,7 @@ namespace AionHR.Web.UI.Forms
             GD.employeeId = Convert.ToInt32(employeeFilter.Value); 
             GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
             GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
+            GD.branchId= Convert.ToInt32(branchId.Value);
             request.entity = GD;
 
 
@@ -229,6 +242,7 @@ namespace AionHR.Web.UI.Forms
                 GD.employeeId = Convert.ToInt32(employeeFilter.Value);
                 GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
                 GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
+                GD.branchId= Convert.ToInt32(branchId.Value);
                 request.entity = GD;
 
 

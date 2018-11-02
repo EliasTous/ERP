@@ -204,10 +204,10 @@ namespace AionHR.Web.UI.Forms
                         //  timeZoneCombo.Select(response.result.timeZone.ToString());
                         FillNationality();
                     FillState();
-                    naId.Select(response.result.addressId.countryId);
-                    stId.Select(response.result.addressId.stateId);
-                    addressId.Text = response.result.addressId.recordId;
-                    addressForm.SetValues(response.result.addressId);
+                    naId.Select(response.result.address.countryId);
+                    stId.Select(response.result.address.stateId);
+                    address.Text = response.result.address.recordId;
+                    addressForm.SetValues(response.result.address);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -442,7 +442,7 @@ namespace AionHR.Web.UI.Forms
             AddressBook add = JsonConvert.DeserializeObject<AddressBook>(addr, settings);
             if (string.IsNullOrEmpty(add.city) && string.IsNullOrEmpty(add.countryId) && string.IsNullOrEmpty(add.street1) && string.IsNullOrEmpty(add.stateId) && string.IsNullOrEmpty(add.phone))
             {
-                b.addressId = null;
+                b.address = null;
             }
             else
             {
@@ -452,8 +452,8 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorAddressMissing")).Show();
                     return;
                 }
-                b.addressId = JsonConvert.DeserializeObject<AddressBook>(addr, settings);
-                b.addressId.recordId = addressId.Text;
+                b.address = JsonConvert.DeserializeObject<AddressBook>(addr, settings);
+                b.address.recordId = address.Text;
             }
 
             if (string.IsNullOrEmpty(branchId.Text))

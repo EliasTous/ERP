@@ -328,6 +328,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="TimeApproval.ar.resx">
       <DependentUpon>TimeApproval.cs</DependentUpon>
     </EmbeddedResource>
@@ -595,7 +596,6 @@
     <EmbeddedResource Include="PointInTimeSalary.resx">
       <DependentUpon>PointInTimeSalary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="RelationshipTypesReport.ar.resx">
       <DependentUpon>RelationshipTypesReport.cs</DependentUpon>
     </EmbeddedResource>

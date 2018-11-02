@@ -684,4 +684,16 @@
   <data name="UNPAID_LEAVE" xml:space="preserve">
     <value>اجازات غير مدفوعة</value>
   </data>
+  <data name="FieldNextReviewDate" xml:space="preserve">
+    <value>تاريخ التقييم التالي </value>
+  </data>
+  <data name="FieldNpName" xml:space="preserve">
+    <value>فترة تبليغ انتهاء الخدمة </value>
+  </data>
+  <data name="FieldProbationEndDate" xml:space="preserve">
+    <value>تاريخ انتهاء فترة التجربة </value>
+  </data>
+  <data name="FieldTermEndDate" xml:space="preserve">
+    <value>نهاية العقد</value>
+  </data>
 </root>

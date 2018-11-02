@@ -72,7 +72,7 @@
                     <Items>
                         
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Name="recordId" />
-                                <ext:TextField ID="reference" Visible="false" ValidateBlank="false" MsgTarget="None" ValidateOnChange="false" ValidateOnBlur="true" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" BlankText="<%$ Resources:Common, MandatoryField%>" >
+                                <ext:TextField ID="reference" MsgTarget="None"  runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" ReadOnly="true" >
                                    <%-- <Listeners>
                                        <FocusLeave Handler="if(#{CurrentEmployee}.value!='') return; App.direct.employeeControl1.CheckReference(this.value,{
                                         success: function (result) {
@@ -82,11 +82,11 @@
                                   
                                    --%>
                                     </ext:TextField>
-                                <ext:TextField ID="firstName" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldFirstName%>" Name="firstName" AllowBlank="true" BlankText="<%$ Resources:Common, MandatoryField%>">
+                                <ext:TextField ID="firstName"  runat="server" FieldLabel="<%$ Resources:FieldFirstName%>" Name="firstName" AllowBlank="true" BlankText="<%$ Resources:Common, MandatoryField%>" ReadOnly="true">
                                 
                                 </ext:TextField>
                                 <ext:TextField ID="middleName" LabelWidth="120" runat="server" FieldLabel="<%$ Resources:FieldMiddleName%>" Name="middleName" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField ID="lastName" Hidden="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldLastName%>" Name="lastName" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                <ext:TextField ID="lastName"  AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldLastName%>" Name="lastName" BlankText="<%$ Resources:Common, MandatoryField%>" ReadOnly="true" />
                                 <ext:TextField ID="familyName" LabelWidth="120" runat="server" FieldLabel="<%$ Resources:FieldFamilyName%>" Name="familyName" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="idRef" Hidden="true" runat="server" AllowBlank="true" FieldLabel="<%$ Resources:FieldIdRef%>" Name="idRef" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="homeEmail" LabelWidth="120" runat="server" FieldLabel="<%$ Resources:FieldHomeEmail%>" Name="homeMail" Vtype="email" BlankText="<%$ Resources:Common, MandatoryField%>" />
@@ -123,7 +123,7 @@
                                     Name="birthDate"
                                     FieldLabel="<%$ Resources:FieldDateOfBirth%>"
                                     MsgTarget="Side"
-                                    AllowBlank="true" />
+                                    AllowBlank="true"  ReadOnly="true"/>
                                 <ext:ComboBox Hidden="true"   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="true" DisplayField="name" ID="nationalityId" Name="nationalityId" FieldLabel="<%$ Resources:FieldNationality%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="NationalityStore">

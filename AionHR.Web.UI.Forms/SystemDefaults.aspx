@@ -12,6 +12,25 @@
     <script type="text/javascript" src="Scripts/Nationalities.js"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript">
+        var checkExtension = function (file) {
+          
+        try {
+
+            if (file == null || file == '') {
+                return true;
+            }
+            var dot = file.lastIndexOf('.');
+            if (dot >= 0) {
+                var ext = file.substr(dot + 1, file.length).toLowerCase();
+                if (ext in { 'jpg': '', 'png': '', 'jpeg': '' }) { return true; }
+            }
+
+            return false;
+        }
+        catch (e) {
+            return false;
+        }
+    }
         function ValidateIPaddress(ipaddress) {
             if (ipaddress == '')
                 return true;
@@ -184,7 +203,23 @@
                                                 </ext:Store>
                                             </Store>
                                             </ext:ComboBox>
-                                <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableHijri %>" LabelWidth="150" runat="server" InputValue="True" Name="enableHijri" ID="enableHijri" />
+                               
+                                <%--   <ext:FileUploadField ID="FileUploadField1" runat="server" FieldLabel="uploadImage" IconCls="upload-icon" >
+                                      <Validator Handler="return checkExtension(App.FileUploadField1.getValue());" />
+                                      <Listeners>
+                                     
+                              
+                                      </Listeners>
+                                       </ext:FileUploadField>
+                                 <ext:Image runat="server" ID="companyLogoImg" MaxWidth="200" Height="100" Align="Middle"  ImageUrl="~/Images/empPhoto.jpg" Title="dads" />--%>
+                                 <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableHijri %>" LabelWidth="150" runat="server" InputValue="True" Name="enableHijri" ID="enableHijri" />
+                                  
+       
+                                    
+                             
+
+                           
+                        
                             </Items>
                             <Buttons>
                                 <ext:Button Hidden="true" ID="SaveGeneralSettingsBtn" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">

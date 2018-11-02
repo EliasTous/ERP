@@ -85,6 +85,7 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
             panelRecordDetails.ActiveIndex = 0;
             picturePath.Clear();
+        
             imgControl.ImageUrl = "";
             InitCombos(true);
             CurrentEmployeePhotoName.Text = "Images/empPhoto.jpg";
@@ -151,7 +152,7 @@ namespace AionHR.Web.UI.Forms
                 CurrentClassId.Text = ClassId.EPEM.ToString();
 
                 date.Format= gregCalBirthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();
-
+                civilStatus.Select(0);
 
                 pRTL.Text = _systemService.SessionHelper.CheckIfArabicSession().ToString();
                 if (_systemService.SessionHelper.CheckIfIsAdmin())
@@ -293,6 +294,9 @@ namespace AionHR.Web.UI.Forms
             //scId.Select(result.scId.ToString());
             divisionId.Select(result.divisionId);
             nqciId.Select(result.nqciId.ToString());
+            if (string.IsNullOrEmpty(result.civilStatus.ToString()))
+                result.civilStatus = 0;                
+            civilStatus.Select(result.civilStatus.ToString());
             if (result.gender == 1)
                 gender1.Checked = true;
             else
@@ -623,6 +627,8 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["values"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
+            if (civilStatus.Value.ToString() == "0")
+                civilStatus.Value = string.Empty;
             Employee b = JsonConvert.DeserializeObject<Employee>(obj, settings);
             b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text, reference = reference.Text.ToString().Replace(" ","") };
 

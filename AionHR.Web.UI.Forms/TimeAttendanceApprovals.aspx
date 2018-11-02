@@ -227,6 +227,18 @@
                               
                                 
                                <ext:ToolbarSeparator runat="server" />
+                                  <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
+                                    EmptyText="<%$ Resources: FieldApprovalStatus %>">
+                                    <Items>
+
+                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
+                                    </Items>
+
+                                </ext:ComboBox>
+                                    <ext:ToolbarSeparator runat="server" />
                                 <ext:Button runat="server" Text="<%$Resources:Go %>">
                                     <Listeners>
                                         <Click Handler="App.Store1.reload();" />

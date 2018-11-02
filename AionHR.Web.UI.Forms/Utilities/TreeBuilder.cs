@@ -445,20 +445,20 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node lv = BuildLeafNode("lv", Resources.Common.Leaves, "UserGo", true, ss);
             Ext.Net.Node ln = BuildLeafNode("ln", Resources.Common.Loan, "MoneyDelete", true, ss);
             //Ext.Net.Node sl = BuildLeafNode("sl", Resources.Common.Salary, "Group", true, ss);
-            Ext.Net.Node lt = BuildLeafNode("lt", Resources.Common.Letters, "EmailLink", true, ss);
-            Ext.Net.Node AA = BuildLeafNode("AA", Resources.Common.AssetAllowancesSelfService, "UserStar", true, ss);
-            Ext.Net.Node CO = BuildLeafNode("CO", Resources.Common.EmployeeComplaintsSelfServices, "UserComment", true, ss);
+         //   Ext.Net.Node lt = BuildLeafNode("lt", Resources.Common.Letters, "EmailLink", true, ss);
+          //  Ext.Net.Node AA = BuildLeafNode("AA", Resources.Common.AssetAllowancesSelfService, "UserStar", true, ss);
+          //  Ext.Net.Node CO = BuildLeafNode("CO", Resources.Common.EmployeeComplaintsSelfServices, "UserComment", true, ss);
             Ext.Net.Node DS = BuildLeafNode("DS", Resources.Common.DailySchedule, "UserComment", true, ss);
             Ext.Net.Node TVSS = BuildLeafNode("TVSS", Resources.Common.timeVariations, "UserComment", true, ss);
             Ext.Net.Node TASS = BuildLeafNode("TASS", Resources.Common.TimeAttendance, "UserComment", true, ss);
 
 
-            FillConfigItem(lt, "LettersSelfServices", "LettersSelfServices.aspx", Resources.Common.Letters, "icon-Employees", "1");
+          //  FillConfigItem(lt, "LettersSelfServices", "LettersSelfServices.aspx", Resources.Common.Letters, "icon-Employees", "1");
             FillConfigItem(pi, "MyInfos","Myinfos.aspx", Resources.Common.PersonalInfo, "icon-Employees", "1");
             FillConfigItem(lv, "LeaveRequestsSelfService", "LeaveRequestsSelfServices.aspx", Resources.Common.LeaveRequests, "icon-Employees", "1");
             FillConfigItem(ln, "LoanSelfService", "LoanSelfServices.aspx", Resources.Common.Loan, "icon-Employees", "1");
-            FillConfigItem(AA, "AssetAllowanceSelfService", "AssetAllowanceSelfServices.aspx", Resources.Common.AssetAllowancesSelfService, "icon-Employees", "1");
-            FillConfigItem(CO, "EmployeeComplaintsSelfService", "EmployeeComplaintSelfServices.aspx", Resources.Common.EmployeeComplaintsSelfServices, "icon-Employees", "1");
+       //     FillConfigItem(AA, "AssetAllowanceSelfService", "AssetAllowanceSelfServices.aspx", Resources.Common.AssetAllowancesSelfService, "icon-Employees", "1");
+        //    FillConfigItem(CO, "EmployeeComplaintsSelfService", "EmployeeComplaintSelfServices.aspx", Resources.Common.EmployeeComplaintsSelfServices, "icon-Employees", "1");
             FillConfigItem(DS, "DailyScheduleSelfServices", "DailyScheduleSelfServices.aspx", Resources.Common.DailySchedule, "icon-Employees", "1");
             FillConfigItem(TVSS, "TimeVariationSelfServices", "TimeVariationSelfServices.aspx", Resources.Common.timeVariations, "icon-Employees", "1");
             FillConfigItem(TASS, "TimeAttendanceViewSelfServices", "TimeAttendanceViewSelfServices.aspx", Resources.Common.TimeAttendance, "icon-Employees", "1");

@@ -11,11 +11,20 @@ namespace AionHR.Model.Dashboard
     {
         public EmployeeName employeeName { get; set; }
 
-        public DateTime hireDate
+        public DateTime probationEndDate
+        {
+            get; set;
+        }
+        public DateTime nextReviewDate
+        {
+            get; set;
+        }
+        public DateTime termEndDate
         {
             get; set;
         }
 
+        public string npName { get; set; }
         public int days { get; set; }
     }
 }

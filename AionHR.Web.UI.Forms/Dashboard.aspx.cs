@@ -132,7 +132,7 @@ namespace AionHR.Web.UI.Forms
                         //missingPunchesStore.Reload();
                         //checkMontierStore.Reload();
                         format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                        DateColumn5.Format = DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
+                        ColtermEndDate.Format= ColNextReviewDate.Format= ColProbationEndDate.Format= DateColumn5.Format = DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
                         periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         CountDateTo.SelectedDate = DateTime.Now;
@@ -1897,8 +1897,8 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                 return;
             }
-            retirementAgeStore.DataSource = resp.Items;
-            retirementAgeStore.DataBind();
+            TermEndDateStore.DataSource = resp.Items;
+            TermEndDateStore.DataBind();
         }
 
         protected void Checked_ReadData(object sender, StoreReadDataEventArgs e)

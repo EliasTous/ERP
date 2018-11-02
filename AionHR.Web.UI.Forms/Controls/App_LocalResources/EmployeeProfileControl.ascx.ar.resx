@@ -402,4 +402,7 @@
   <data name="unPaidLeaves" xml:space="preserve">
     <value>اجازات غير مدفوعة :</value>
   </data>
+  <data name="FieldCivilStatus" xml:space="preserve">
+    <value>الحالة الاجتماعية</value>
+  </data>
 </root>

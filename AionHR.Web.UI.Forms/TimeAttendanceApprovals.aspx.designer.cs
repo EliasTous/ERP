@@ -157,6 +157,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::AionHR.Web.UI.Forms.Reports.Controls.TimeVariationTypeFilter timeVariationType;
         
         /// <summary>
+        /// apStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox apStatus;
+        
+        /// <summary>
         /// Store1 control.
         /// </summary>
         /// <remarks>

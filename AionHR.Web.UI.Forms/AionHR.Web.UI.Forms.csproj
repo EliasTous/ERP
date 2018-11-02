@@ -2515,6 +2515,7 @@
     <Content Include="App_LocalResources\TimeAttendanceViewSelfServices.aspx.ar.resx" />
     <Content Include="App_LocalResources\TimeAttendanceApprovals.aspx.ar.resx" />
     <Content Include="App_LocalResources\TimeAttendanceApprovals.aspx.resx" />
+    <Content Include="App_LocalResources\Currencies.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

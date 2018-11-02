@@ -810,7 +810,7 @@
                         <ext:Panel runat="server" MarginSpec="0 20 0 0" ID="left">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Name="recordId" />
-                                <ext:TextField ID="reference" ValidateBlank="false" MsgTarget="None" ValidateOnChange="false" ValidateOnBlur="true" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" BlankText="<%$ Resources:Common, MandatoryField%>" >
+                                <ext:TextField ID="reference" ValidateBlank="false" MsgTarget="None" ValidateOnChange="false" ValidateOnBlur="true" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference"  >
                                    <%-- <Listeners>
                                        <FocusLeave Handler="if(#{CurrentEmployee}.value!='') return; App.direct.employeeControl1.CheckReference(this.value,{
                 success: function (result) {
@@ -1135,6 +1135,14 @@
                                     FieldLabel="<%$ Resources:FieldHireDate%>"
                                     MsgTarget="Side"
                                     AllowBlank="false" />
+                                <ext:ComboBox  ForceSelection="true" AnyMatch="true" CaseSensitive="false"  ID="civilStatus" runat="server" FieldLabel="<%$ Resources:FieldCivilStatus%>" Name="civilStatus" IDMode="Static" SubmitValue="true">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources:Common, unspecified%>" Value="0"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, single%>" Value="1"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, married%>" Value="2"></ext:ListItem>
+                                      
+                                    </Items>
+                                </ext:ComboBox>
 
                                  <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
                                     <Items>

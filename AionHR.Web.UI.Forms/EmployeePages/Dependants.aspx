@@ -14,7 +14,7 @@
     <script type="text/javascript">
         function setNullable(d) {
             App.city.allowBlank = d;
-            App.street1.allowBlank = d;
+            //App.street1.allowBlank = d;
             App.stateId.allowBlank = d;
             App.countryId.allowBlank = d;
             App.phone.allowBlank = d;
@@ -80,7 +80,7 @@
                                         <ext:ModelField Name="phoneNumber" />
                                         <ext:ModelField Name="isStudent" />
                                         <ext:ModelField Name="isCitizen" />
-                                        <ext:ModelField Name="addressId" IsComplex="true" />
+                                        <ext:ModelField Name="address" IsComplex="true" />
 
 
 
@@ -279,8 +279,8 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField runat="server" Name="addressId" ID="addressId" Hidden="true" Disabled="true" />
-                                <ext:TextField runat="server" Name="street1" AllowBlank="true" ID="street1" FieldLabel="<%$ Resources:FieldStreet1%>">
+                                <ext:TextField runat="server" Name="address" ID="address" Hidden="true" Disabled="true" />
+                                <ext:TextField runat="server" Name="street1" AllowBlank="false" ID="street1" FieldLabel="<%$ Resources:FieldStreet1%>">
                                     <Listeners>
                                         <Change Handler="if(this.value=='') setNullable(true); else setNullable(false);" />
                                     </Listeners>
@@ -385,7 +385,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditContactWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="addressId" Value="#{addressId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="addressId" Value="#{address}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="info" Value="#{infoForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                                 <ext:Parameter Name="address" Value="#{addressForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>

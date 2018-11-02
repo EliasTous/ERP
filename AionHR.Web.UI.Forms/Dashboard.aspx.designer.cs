@@ -2749,6 +2749,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column Column25;
         
         /// <summary>
+        /// ColProbationEndDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateColumn ColProbationEndDate;
+        
+        /// <summary>
+        /// ColNextReviewDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateColumn ColNextReviewDate;
+        
+        /// <summary>
+        /// ColtermEndDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateColumn ColtermEndDate;
+        
+        /// <summary>
         /// GridView23 control.
         /// </summary>
         /// <remarks>

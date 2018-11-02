@@ -1429,6 +1429,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gold.
+        /// </summary>
+        internal static string Gold {
+            get {
+                return ResourceManager.GetString("Gold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Government Organisations.
         /// </summary>
         internal static string GovernmentOrganisations {
@@ -1771,6 +1780,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lebanon.
+        /// </summary>
+        internal static string Lebanon {
+            get {
+                return ResourceManager.GetString("Lebanon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Legals.
         /// </summary>
         internal static string Legals {
@@ -1920,6 +1938,15 @@ namespace Resources {
         internal static string March {
             get {
                 return ResourceManager.GetString("March", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Married.
+        /// </summary>
+        internal static string married {
+            get {
+                return ResourceManager.GetString("married", resourceCulture);
             }
         }
         
@@ -2995,6 +3022,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SaudiArabia.
+        /// </summary>
+        internal static string SaudiArabia {
+            get {
+                return ResourceManager.GetString("SaudiArabia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Save {
@@ -3063,6 +3099,15 @@ namespace Resources {
         internal static string SHIFT_LEAVE_WITHOUT_EXCUSE {
             get {
                 return ResourceManager.GetString("SHIFT_LEAVE_WITHOUT_EXCUSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single.
+        /// </summary>
+        internal static string single {
+            get {
+                return ResourceManager.GetString("single", resourceCulture);
             }
         }
         
@@ -3180,6 +3225,15 @@ namespace Resources {
         internal static string SynchronizeDaySucc {
             get {
                 return ResourceManager.GetString("SynchronizeDaySucc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Syria.
+        /// </summary>
+        internal static string Syria {
+            get {
+                return ResourceManager.GetString("Syria", resourceCulture);
             }
         }
         
@@ -3454,11 +3508,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tunisia.
+        /// </summary>
+        internal static string Tunisia {
+            get {
+                return ResourceManager.GetString("Tunisia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UAE.
+        /// </summary>
+        internal static string UAE {
+            get {
+                return ResourceManager.GetString("UAE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unpaid Leaves.
         /// </summary>
         internal static string UnpaidLeaves {
             get {
                 return ResourceManager.GetString("UnpaidLeaves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unspecified.
+        /// </summary>
+        internal static string unspecified {
+            get {
+                return ResourceManager.GetString("unspecified", resourceCulture);
             }
         }
         

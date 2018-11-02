@@ -135,4 +135,7 @@
   <data name="processingGen" xml:space="preserve">
     <value>يوجد  انشاء جداول دوام اخر قيد المعالجة يرجى الانتظار</value>
   </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
 </root>

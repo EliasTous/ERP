@@ -66,7 +66,7 @@
                                         <ext:ModelField Name="recordId" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="phone" />
-                                        <ext:ModelField Name="addressId" IsComplex="true" />
+                                        <ext:ModelField Name="address" IsComplex="true" />
 
 
 
@@ -114,12 +114,12 @@
 
                             <ext:Column ID="Column2" Visible="false" DataIndex="recordId" runat="server" />
 
-                            <ext:Column ID="Column4" DataIndex="addressId" Text="<%$ Resources: FieldCStreet1%>" runat="server" Flex="1">
-                                <Renderer Handler="return record.data['addressId'].street1;" />
+                            <ext:Column ID="Column4" DataIndex="address" Text="<%$ Resources: FieldCStreet1%>" runat="server" Flex="1">
+                                <Renderer Handler="return record.data['address'].street1;" />
                             </ext:Column>
 
-                            <ext:Column ID="Column11" DataIndex="addressId" Text="<%$ Resources: FieldCCity%>" runat="server" Flex="1">
-                                <Renderer Handler="return record.data['addressId'].city;" />
+                            <ext:Column ID="Column11" DataIndex="address" Text="<%$ Resources: FieldCCity%>" runat="server" Flex="1">
+                                <Renderer Handler="return record.data['address'].city;" />
                             </ext:Column>
 
 
@@ -251,7 +251,7 @@
                                         <ext:ModelField Name="cellPhone" />
                                         <ext:ModelField Name="email" />
                                         <ext:ModelField Name="name" />
-                                        <ext:ModelField Name="addressId" IsComplex="true" />
+                                        <ext:ModelField Name="address" IsComplex="true" />
 
 
                                     </Fields>

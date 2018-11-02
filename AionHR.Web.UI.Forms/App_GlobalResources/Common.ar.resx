@@ -1293,4 +1293,31 @@
   <data name="TimeApprovals" xml:space="preserve">
     <value>معمدو الدوام</value>
   </data>
+  <data name="Gold" xml:space="preserve">
+    <value>الدهب</value>
+  </data>
+  <data name="Lebanon" xml:space="preserve">
+    <value>لبنان</value>
+  </data>
+  <data name="SaudiArabia" xml:space="preserve">
+    <value>المملكة العربية السعودية</value>
+  </data>
+  <data name="Syria" xml:space="preserve">
+    <value>سوريا</value>
+  </data>
+  <data name="Tunisia" xml:space="preserve">
+    <value>تونس</value>
+  </data>
+  <data name="UAE" xml:space="preserve">
+    <value>الولايات المتحدة الامريكية</value>
+  </data>
+  <data name="married" xml:space="preserve">
+    <value>متزوج</value>
+  </data>
+  <data name="single" xml:space="preserve">
+    <value>أعزب</value>
+  </data>
+  <data name="unspecified" xml:space="preserve">
+    <value>غير محدد</value>
+  </data>
 </root>

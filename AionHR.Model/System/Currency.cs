@@ -17,6 +17,9 @@ namespace AionHR.Model.System
         [PropertyID("20020_02")]
         [ApplySecurity]
         public string reference { get; set; }
+
+        public short? profileId { get; set; }
         
+
     }
 }

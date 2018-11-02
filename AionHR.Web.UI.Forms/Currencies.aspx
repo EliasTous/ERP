@@ -237,8 +237,18 @@
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField  ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" MaxLength="3" />
-                               
-
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="profileId" runat="server" FieldLabel="<%$ Resources:FieldProfile%>" Name="profileId" IDMode="Static" SubmitValue="true" ForceSelection="true">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources:Common, UAE %>" Value="0"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Syria %>" Value="1"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, SaudiArabia %>" Value="2"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Tunisia %>" Value="3"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Gold %>" Value="4"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources:Common, Lebanon %>" Value="5"></ext:ListItem>
+                                      
+                                    </Items>
+                                </ext:ComboBox>
+                              
                             </Items>
 
                         </ext:FormPanel>

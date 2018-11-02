@@ -278,18 +278,18 @@ namespace AionHR.Web.UI.Forms.Reports
                 h.Parameters["Division"].Value = emp.divisionName;
 
             }
-            ListRequest def = new ListRequest();
-            int lateness = 0;
-            ListResponse<KeyValuePair<string, string>> items = _systemService.ChildGetAll<KeyValuePair<string, string>>(def);
-            try
-            {
-                lateness = Convert.ToInt32(items.Items.Where(s => s.Key == "allowedLateness").First().Value);
-            }
-            catch
-            {
+            //ListRequest def = new ListRequest();
+            //int lateness = 0;
+            //ListResponse<KeyValuePair<string, string>> items = _systemService.ChildGetAll<KeyValuePair<string, string>>(def);
+            //try
+            //{
+            //    lateness = Convert.ToInt32(items.Items.Where(s => s.Key == "allowedLateness").First().Value);
+            //}
+            //catch
+            //{
 
-            }
-            h.Parameters["AllowedLateness"].Value = lateness;
+            //}
+            //h.Parameters["AllowedLateness"].Value = lateness;
 
             h.PrintingSystem.Document.ScaleFactor = 4;
             h.CreateDocument();

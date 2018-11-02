@@ -66,13 +66,14 @@
                                                <uc:dateRange runat="server" ID="date2" />
                                             </Content>
                                         </ext:Container>
+                                   <ext:ToolbarSeparator runat="server" />
                                 <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                                 <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
                                                 <uc:employeeCombo runat="server" ID="employeeCombo1"  />
                                             </Content>
                                         </ext:Container>
-
+                                   <ext:ToolbarSeparator runat="server" />
                                       <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="approverId" Name="approverId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
@@ -100,26 +101,28 @@
 
                                     </Store>
                                 </ext:ComboBox>
-                                 <ext:ComboBox ForceSelection="true"   AnyMatch="true" CaseSensitive="false"  ID="timeCode" runat="server" EmptyText="<%$ Resources:FieldTimeCode%>" Name="timeCode" IDMode="Static" SubmitValue="true" >
+                                   <ext:ToolbarSeparator runat="server" />
+                              <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                <uc:TimeVariationTypeControl runat="server" ID="timeVariationType"  />
+                                    </Content>
+
+                                </ext:Container>
+                              
+                                
+                               <ext:ToolbarSeparator runat="server" />
+                                  <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
+                                    EmptyText="<%$ Resources: FieldApprovalStatus %>">
                                     <Items>
-                                       <ext:ListItem Text="<%$ Resources:Common ,  All %>" Value="0"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  UnpaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_UNPAID_LEAVE %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  PaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_PAID_LEAVE %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  SHIFT_LEAVE_WITHOUT_EXCUSE %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_SHIFT_LEAVE_WITHOUT_EXCUSE %>" ></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  DAY_LEAVE_WITHOUT_EXCUSE  %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_DAY_LEAVE_WITHOUT_EXCUSE %>" ></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  LATE_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_LATE_CHECKIN %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  DURING_SHIFT_LEAVE %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_DURING_SHIFT_LEAVE %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_LEAVE   %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_LEAVE   %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_CHECKIN %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  OVERTIME %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_OVERTIME %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  MISSED_PUNCH %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_MISSED_PUNCH %>"></ext:ListItem>
-                                         <ext:ListItem Text="<%$ Resources:Common ,  Day_Bonus %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_Day_Bonus %>"></ext:ListItem>
-                                      
-                                      
+
+                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
                                     </Items>
-                                  
-                                    
+
                                 </ext:ComboBox>
+                                    <ext:ToolbarSeparator runat="server" />
                               
                                 
                                 <ext:Container runat="server" Layout="FitLayout">

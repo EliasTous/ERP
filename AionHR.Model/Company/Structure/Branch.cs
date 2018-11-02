@@ -26,7 +26,7 @@ namespace AionHR.Model.Company.Structure
         public bool? isInactive { get; set; }
         [PropertyID("21020_05")]
         [ApplySecurity]
-        public AddressBook addressId { get; set; }
+        public AddressBook address { get; set; }
         
         public string naId { get; set; }
         
