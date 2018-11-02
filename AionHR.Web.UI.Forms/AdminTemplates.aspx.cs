@@ -36,6 +36,7 @@ namespace AionHR.Web.UI.Forms
 
 
         IAdministrationService _administrationService = ServiceLocator.Current.GetInstance<IAdministrationService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
 
@@ -171,7 +172,7 @@ namespace AionHR.Web.UI.Forms
                     recordId.Text = id;
                     Store2.Reload();
 
-
+                    templateUsage.Text = response.result.usage.ToString();
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -458,6 +459,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         b.recordId = respons.recordId;
                         recordId.Text = respons.recordId;
+                        currentUsage.Text = b.usage.ToString();
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
@@ -559,21 +561,91 @@ namespace AionHR.Web.UI.Forms
             else
             {
 
+
                 
                 Store2.Reload();
 
                 
                 Store2.DataBind();
+
+
                 Notification.Show(new NotificationConfig
                 {
                     Title = Resources.Common.Notification,
                     Icon = Icon.Information,
                     Html = Resources.Common.RecordUpdatedSucc
                 });
-                this.TemplateBodyWindow.Close();
 
+                
+                this.TemplateBodyWindow.Close();
+                if(e.ExtraParams["isPreview"]!="")
+                {
+                    if (e.ExtraParams["templateUsage"] == "2")
+                    {
+                        selectEmpForm.Reset();
+                        selectEmpWindow.Show();
+                    }
+                }
 
             }
+
+        }
+
+        protected void ShowEmployeePreview(object sender, DirectEventArgs e)
+        {
+            string languageId = e.ExtraParams["languageId"];
+            string teId = e.ExtraParams["teId"];
+            string empId = e.ExtraParams["empId"];
+
+            EmployeeTemplatePreviewRecordRequest req = new EmployeeTemplatePreviewRecordRequest();
+            req.EmployeeId = Convert.ToInt32(empId);
+            req.LanguageId = Convert.ToInt32(languageId);
+            req.TemplateId = Convert.ToInt32(teId);
+
+            RecordResponse<EmployeeTemplatePreview> r = _administrationService.ChildGetRecord<EmployeeTemplatePreview>(req);
+
+            if (!r.Success)//it maybe another check
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                return;
+            }
+            selectEmpWindow.Hide();
+            
+            templatePreviewWindow.Show();
+            Panel1.Html = r.result.textBody;
+        }
+
+
+        protected void ClosePreview(object sender, DirectEventArgs e)
+        {
+            string languageId = e.ExtraParams["languageId"];
+            string teId = e.ExtraParams["teId"];
+
+
+            TemplateBody body = new TemplateBody() { languageId = Convert.ToInt32(languageId), teId = Convert.ToInt32(teId) };
+            TemplateBodyRecordRequest req = new TemplateBodyRecordRequest() { LanguageId = Convert.ToInt32(languageId), TemplateId = Convert.ToInt32(teId) };
+            RecordResponse<TemplateBody> r = _administrationService.ChildGetRecord<TemplateBody>(req);                      //Step 1 Selecting the object or building up the object for update purpose
+
+            //Step 2 : saving to store
+
+            //Step 3 :  Check if request fails
+            if (!r.Success || r.result == null)//it maybe another check
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                return;
+            }
+
+            bodyText.Text = r.result.textBody;
+            body.textBody = r.result.textBody;
+            //Step 2 : call setvalues with the retrieved object
+            this.TemplateBodyForm.SetValues(body);
+
+
+
+            this.TemplateBodyWindow.Show();
+            templatePreviewWindow.Hide();
 
         }
         [DirectMethod]
@@ -703,12 +775,12 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                 return;
             }
-            MatchCollection c = Regex.Matches(plainHtml,@"@@(?<word>\w+)");
+            MatchCollection c = Regex.Matches(plainHtml,@"\#(?<word>\w+)#");
             List<TemplateTag> tags = new List<TemplateTag>();
             for(int i=0;i<c.Count;i++)       
             {
 
-                tags.Add(new TemplateTag() { teId = templateId, tag = c[i].Value.Substring(2,c[i].Value.Length-2) });
+                tags.Add(new TemplateTag() { teId = templateId, tag = c[i].Value.Substring(1,c[i].Value.Length-2) });
             }
 
             PostRequest<TemplateTag[]> req = new PostRequest<TemplateTag[]>();
@@ -725,6 +797,37 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
 
+        }
+
+        private string GetNameFormat()
+        {
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
+        }
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 2;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
+        [DirectMethod]
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
         }
     }
 }

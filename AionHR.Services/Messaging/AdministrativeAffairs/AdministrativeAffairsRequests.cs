@@ -39,5 +39,24 @@ public class TemplateBodyListReuqest:ListRequest
             }
         }
     }
+
+    public class EmployeeTemplatePreviewRecordRequest:RecordRequest
+    {
+        public int TemplateId { get; set; }
+        public int LanguageId { get; set; }
+        public int EmployeeId { get; set; }
+        public override Dictionary<string, string> Parameters
+        {
+            get
+            {
+                parameters = base.Parameters;
+                parameters.Add("_teId", TemplateId.ToString());
+                parameters.Add("_languageId", LanguageId.ToString());
+                parameters.Add("_employeeId", EmployeeId.ToString());
+
+                return parameters;
+            }
+        }
+    }
    
 }

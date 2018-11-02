@@ -12,9 +12,9 @@
     <script type="text/javascript" src="Scripts/AdminTemplates.js?id=4"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-    
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <%--<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>--%>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -25,13 +25,13 @@
         .note-toolbar-wrapper {
             height: 66px !important;
         }
-        .tags-dropdown{
-            height:220px;
-            overflow:auto;
+
+        .tags-dropdown {
+            height: 220px;
+            overflow: auto;
             overflow-x: auto;
-            width:auto;
-            direction: ltr!important;
-            
+            width: auto;
+            direction: ltr !important;
         }
     </style>
     <script type="text/javascript">
@@ -49,51 +49,51 @@
                 .replace(/'/g, "&#039;");
         }
         var employeeParams = function (context) {
-  var ui = $.summernote.ui;
+            var ui = $.summernote.ui;
 
             // create button
             var buttongroup = ui.buttonGroup([ui.button({
                 contents: '<i class="material-icons">person</i>',
-               
+
                 data: {
-                        toggle: 'dropdown'
-                    }
+                    toggle: 'dropdown'
+                }
             }), ui.dropdown({
-                    className: 'tags-dropdown',
+                className: 'tags-dropdown',
                 items: empTags,
-                
-                    click: function (d) {
-                        console.log(d);
-                       
+
+                click: function (d) {
+                    console.log(d);
+
                     // invoke insertText method with 'hello' on editor module.
-                        context.invoke('editor.insertText',"@@"+ d.target.innerText.split('(')[0].trim());
+                    context.invoke('editor.insertText', "#" + d.target.innerText.split('(')[0].trim() + "#");
                 }
             })]);
 
-  return buttongroup.render();   // return button as jquery object
+            return buttongroup.render();   // return button as jquery object
         }
         var companyParams = function (context) {
-  var ui = $.summernote.ui;
+            var ui = $.summernote.ui;
 
             // create button
             var buttongroup = ui.buttonGroup([ui.button({
                 contents: '<i class="fa fa-child"/> Company Parameters',
                 tooltip: 'hello',
                 data: {
-                        toggle: 'dropdown'
-                    }
+                    toggle: 'dropdown'
+                }
             }), ui.dropdown({
                 items: ['companyname (company  name)', 'lastname (employee last name)', 'email (employee email)'],
                 tooltip: 'hello',
-                    click: function (d) {
-                        console.log(d);
-                       
+                click: function (d) {
+                    console.log(d);
+
                     // invoke insertText method with 'hello' on editor module.
-                        context.invoke('editor.insertText',"@@"+ d.target.innerText.split('(')[0].trim());
+                    context.invoke('editor.insertText', "#" + d.target.innerText.split('(')[0].trim() + "#");
                 }
             })]);
 
-  return buttongroup.render();   // return button as jquery object
+            return buttongroup.render();   // return button as jquery object
         }
     </script>
 </head>
@@ -111,6 +111,7 @@
         <ext:Hidden ID="Language1" runat="server" Text="<%$ Resources:English %>" />
         <ext:Hidden ID="Language2" runat="server" Text="<%$ Resources:Arabic %>" />
         <ext:Hidden ID="currentTemplate" runat="server" />
+        <ext:Hidden ID="currentUsage" runat="server" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -330,7 +331,6 @@
             Width="450"
             Height="330"
             AutoShow="false"
-            
             Hidden="true"
             Layout="Fit">
 
@@ -517,15 +517,13 @@
             Title="<%$ Resources:TemplateBodyWindow %>"
             Width="1000"
             Height="500"
-           
             AutoShow="false"
-           Maximizable="true"
+            Maximizable="true"
             Hidden="true"
             Layout="Fit">
 
             <Items>
-                <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
-                    <Items>
+                
                         <ext:FormPanel
                             ID="TemplateBodyForm" DefaultButton="SaveBody"
                             runat="server"
@@ -546,6 +544,7 @@
                                 </ext:ComboBox>
                                 <ext:TextField ID="bodyText" Hidden="true" runat="server" />
                                 <ext:TextField ID="teId" Hidden="true" runat="server" />
+                                <ext:TextField ID="templateUsage" Hidden="true" runat="server" />
                                 <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
                                 <ext:Panel runat="server" Layout="FitLayout" Flex="1" ID="editorHolder" RTL="false">
                                     <Items>
@@ -553,7 +552,7 @@
                                             <Content>
                                                 <div id="summernote">
                                                 </div>
-                                                
+
                                             </Content>
                                         </ext:Container>
                                     </Items>
@@ -579,7 +578,7 @@
     hello: employeeParams,other:companyParams
                                           
   }
-                                                }); "/>
+                                                }); " />
                                         <Resize Handler="setWidth();" />
                                     </Listeners>
                                 </ext:Panel>
@@ -587,10 +586,28 @@
 
                         </ext:FormPanel>
 
-                    </Items>
-                </ext:TabPanel>
+                  
             </Items>
             <Buttons>
+                <ext:Button ID="saveAndPreviewBtn" runat="server" Text="<%$ Resources:SaveAndPreview %>" Icon="Find">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{TemplateBodyForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveTemplateBody" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{TemplateBodyWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="teId" Value="#{teId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="templateUsage" Value="#{templateUsage}.getValue()" Mode="Raw" />
+
+                                <ext:Parameter Name="isPreview" Value="true" Mode="Raw" />
+                                <ext:Parameter Name="html_text" Value="escape($('#summernote').summernote('code'))" Mode="Raw" Encode="true" />
+                                <ext:Parameter Name="values" Value="#{TemplateBodyForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
                 <ext:Button ID="SaveBody" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
@@ -614,7 +631,171 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+        <ext:Window
+            ID="selectEmpWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:SelectEmpWindow %>"
+            Width="250"
+            Height="150"
+            AutoShow="false"
+            Resizable="false"
+            Hidden="true"
+            Modal="true"
+            Layout="Fit">
 
+            <Items>
+               
+                        <ext:FormPanel
+                            ID="selectEmpForm" DefaultButton="SaveBody"
+                            runat="server" Header="false"
+                            Title="<%$ Resources: SelectEmpWindow %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" Layout="VBoxLayout"
+                            BodyPadding="5">
+                            <LayoutConfig>
+                                <ext:VBoxLayoutConfig Align="Stretch" />
+                            </LayoutConfig>
+                            <Items>
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeFilter" Width="120" LabelAlign="Top"
+                                    DisplayField="fullName"
+                                    ValueField="recordId" AllowBlank="false"
+                                    TypeAhead="false"
+                                    HideTrigger="true" SubmitValue="true"
+                                    MinChars="3" EmptyText="<%$ Resources: Employee%>"
+                                    TriggerAction="Query" ForceSelection="true">
+                                    <Store>
+                                        <ext:Store runat="server" ID="Store3" AutoLoad="false">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="fullName" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
+                                            </Proxy>
+                                        </ext:Store>
+                                    </Store>
+
+
+                                </ext:ComboBox>
+                            </Items>
+
+                        </ext:FormPanel>
+
+                   
+            </Items>
+            <Buttons>
+                <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common, Ok %>" Icon="Find">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{selectEmpForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="ShowEmployeePreview" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{selectEmpForm}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="teId" Value="#{teId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="templateUsage" Value="#{templateUsage}.getValue()" Mode="Raw" />
+
+                                <ext:Parameter Name="languageId" Value="#{languageId}.getValue()" Mode="Raw" />
+
+                                <ext:Parameter Name="empId" Value="#{employeeFilter}.getValue()" Mode="Raw" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+
+                <ext:Button ID="Button4" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+        <ext:Window
+            ID="templatePreviewWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:Preview %>"
+            Width="1000"
+            Height="500"
+            AutoShow="false"
+            Maximizable="true"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+                
+                        <ext:FormPanel
+                            ID="templatePreviewForm" DefaultButton="closePreviewBtn"
+                            runat="server" Header="false"
+                            Title="<%$ Resources: TemplateBodyWindow %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" Layout="VBoxLayout"
+                            BodyPadding="5">
+                            <LayoutConfig>
+                                <ext:VBoxLayoutConfig Align="Stretch" />
+                            </LayoutConfig>
+                            <Items>
+                                <ext:TextField ID="previewText" Hidden="true" runat="server" />
+                                <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
+                                <ext:Panel runat="server" Layout="FitLayout" Flex="1" ID="Panel1" RTL="false">
+                                   <%-- <Items>
+                                        <ext:Container ID="cont" runat="server">
+                                            <Content>
+                                                <div id="preview">
+                                                </div>
+
+                                            </Content>
+                                        </ext:Container>
+                                    </Items>
+                                    <Listeners>
+
+                                        <AfterLayout Handler=" $('#preview').summernote('reset');  setWidth(); var s = unescape( #{previewText}.getValue()); #{previewText}.setValue(''); document.getElementById('previewText').style.direction = 'ltr'; $('#previewText').summernote('code',s);  $('#previewText').summernote('disable');" />
+                                        <AfterRender Handler=" App.TemplateBodyWindow.setMaxHeight(0.92*window.innerHeight);$('#previewText').summernote({
+                                                height: 270,
+                                            toolbar: ,
+         
+    
+  
+           
+                                                }); " />
+                                        <Resize Handler="setWidth();" />
+                                    </Listeners>--%>
+                                </ext:Panel>
+                            </Items>
+
+                        </ext:FormPanel>
+
+                   
+            </Items>
+            <Buttons>
+                <ext:Button ID="closePreviewBtn" runat="server" Text="<%$ Resources: Close %>" Icon="ArrowLeft">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="ClosePreview" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{templatePreviewWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="teId" Value="#{teId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="languageId" Value="#{languageId}.getValue()" Mode="Raw" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+              <ext:Button ID="Button3" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
 
     </form>
 </body>

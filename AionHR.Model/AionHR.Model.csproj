@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Access Control\IAccessControlRepository.cs" />
     <Compile Include="AdminTemplates\AdTemplate.cs" />
+    <Compile Include="AdminTemplates\EmployeeTemplatePreview.cs" />
     <Compile Include="AdminTemplates\IAdministrationRepository.cs" />
     <Compile Include="AdminTemplates\TemplateBody.cs" />
     <Compile Include="AdminTemplates\TemplateTag.cs" />
