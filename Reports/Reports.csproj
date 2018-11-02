@@ -161,9 +161,6 @@
     <Compile Include="DayStatus.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DetailedAttendance.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="DivisonsReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -309,6 +306,12 @@
     <Compile Include="TurnoverRate.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DetailedAttendance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DetailedAttendance.Designer.cs">
+      <DependentUpon>DetailedAttendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="YearsInService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -328,6 +331,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DetailedAttendance.ar.resx">
+      <DependentUpon>DetailedAttendance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="TimeApproval.ar.resx">
       <DependentUpon>TimeApproval.cs</DependentUpon>
@@ -425,20 +431,11 @@
     <EmbeddedResource Include="DepartmentsReport.ar.resx">
       <DependentUpon>DepartmentsReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DepartmentsReport.resx">
-      <DependentUpon>DepartmentsReport.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DayStatus.ar.resx">
       <DependentUpon>DayStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DayStatus.resx">
       <DependentUpon>DayStatus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DetailedAttendance.ar.resx">
-      <DependentUpon>DetailedAttendance.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DetailedAttendance.resx">
-      <DependentUpon>DetailedAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DivisonsReport.ar.resx">
       <DependentUpon>DivisonsReport.cs</DependentUpon>
@@ -688,6 +685,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TurnoverRate.resx">
       <DependentUpon>TurnoverRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailedAttendance.resx">
+      <DependentUpon>DetailedAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="YearsInService.ar.resx">
       <DependentUpon>YearsInService.cs</DependentUpon>

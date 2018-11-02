@@ -200,6 +200,7 @@
     <Compile Include="Reports\RT301.cs" />
     <Compile Include="Reports\RT302.cs" />
     <Compile Include="Reports\RT303.cs" />
+    <Compile Include="Reports\RT303A.cs" />
     <Compile Include="Reports\RT304.cs" />
     <Compile Include="Reports\RT306.cs" />
     <Compile Include="Reports\RT401.cs" />
@@ -310,7 +311,6 @@
     <Compile Include="TimeAttendance\SchedulePattern.cs" />
     <Compile Include="TimeAttendance\Time.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
       <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>

@@ -123,10 +123,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\Softmachine\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Reports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Softmachine\Reports.dll</HintPath>
-    </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StructureMap.4.4.2\lib\net45\StructureMap.dll</HintPath>
       <Private>True</Private>
@@ -152,6 +148,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Reports\RT303.aspx" />
     <Content Include="TimeAttendanceApprovals.aspx" />
     <Content Include="TimeAttendanceViewSelfServices.aspx" />
     <Content Include="TimeVariationSelfServices.aspx" />
@@ -371,7 +368,7 @@
     <Content Include="Reports\RT301.aspx" />
     <Content Include="Reports\RT301B.aspx" />
     <Content Include="Reports\RT302.aspx" />
-    <Content Include="Reports\RT303.aspx" />
+    <Content Include="Reports\RT303A.aspx" />
     <Content Include="Reports\RT304.aspx" />
     <Content Include="Reports\RT305.aspx" />
     <Content Include="Reports\RT306.aspx" />
@@ -579,6 +576,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Reports\RT303.aspx.cs">
+      <DependentUpon>RT303.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT303.aspx.designer.cs">
+      <DependentUpon>RT303.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TimeAttendanceApprovals.aspx.cs">
       <DependentUpon>TimeAttendanceApprovals.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -991,12 +995,12 @@
     <Compile Include="Reports\RT200.aspx.designer.cs">
       <DependentUpon>RT200.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\RT303.aspx.cs">
-      <DependentUpon>RT303.aspx</DependentUpon>
+    <Compile Include="Reports\RT303A.aspx.cs">
+      <DependentUpon>RT303A.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reports\RT303.aspx.designer.cs">
-      <DependentUpon>RT303.aspx</DependentUpon>
+    <Compile Include="Reports\RT303A.aspx.designer.cs">
+      <DependentUpon>RT303A.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT304.aspx.cs">
       <DependentUpon>RT304.aspx</DependentUpon>
@@ -2006,6 +2010,10 @@
     <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
       <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
       <Name>AionHR.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reports\Reports.csproj">
+      <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
+      <Name>Reports</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

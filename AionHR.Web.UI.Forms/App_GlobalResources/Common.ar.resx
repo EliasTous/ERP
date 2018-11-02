@@ -1320,4 +1320,7 @@
   <data name="unspecified" xml:space="preserve">
     <value>غير محدد</value>
   </data>
+  <data name="USDollar" xml:space="preserve">
+    <value>دولار اميريكي </value>
+  </data>
 </root>

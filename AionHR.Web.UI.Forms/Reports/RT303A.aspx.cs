@@ -31,7 +31,7 @@ using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
-    public partial class RT303 : System.Web.UI.Page
+    public partial class RT303A : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
@@ -213,30 +213,44 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = GetRequest();
             if (req.Parameters["_employeeId"] == "0")
                 return;
-            ListResponse<AionHR.Model.Reports.RT303> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT303>(req);
+            ListResponse<AionHR.Model.Reports.RT303A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT303A>(req);
             if (!resp.Success)
             {
-                string message = GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + " - " + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary;
+                string message=  GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + " - " + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary;
                 if (throwException)
                     throw new Exception(message);
-
+               
             }
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+
             resp.Items.ForEach(x =>
             {
+                DateTime date = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"));
+                x.dateString = date.ToString(_systemService.SessionHelper.GetDateformat());
+                x.dowString = GetGlobalResourceObject("Common", date.DayOfWeek.ToString() + "Text").ToString();
+                x.specialTasks = x.jobTasks = "00:00";
+                x.specialTasks = x.unpaidLeaves;
+                x.jobTasks = x.paidLeaves;
+                x.dayStatusString = GetLocalResourceObject("status" + x.dayStatus.ToString()).ToString();
+                //if (x.workingHours != "00:00")
+                //{
 
+                //    x.unpaidLeaves = "00:00";
+                //    x.jobTasks = x.paidLeaves;
+                //    x.paidLeaves = "00:00";
+                //    x.specialTasks = x.unpaidLeaves;
 
-                if (rtl)
-                    x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
-                else
-                    x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
-
-
+                //}
+                //else
+              
+                
+                    
+              
+               
             }
             );
 
 
-            DetailedAttendance h = new DetailedAttendance(); 
+            DetailedAttendance h = new DetailedAttendance();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = resp.Items;
@@ -254,16 +268,16 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-            //if (req.Parameters["_employeeId"] != "0")
-            //{
-            //    RecordRequest empReq = new RecordRequest();
-            //    empReq.RecordID = req.Parameters["_employeeId"];
-            //    Employee emp = _employeeService.Get<Employee>(empReq).result;
-            //    h.Parameters["Employee"].Value = emp.name.fullName;
-            //    h.Parameters["Branch"].Value = emp.branchName;
-            //    h.Parameters["Division"].Value = emp.divisionName;
+            if (req.Parameters["_employeeId"] != "0")
+            {
+                RecordRequest empReq = new RecordRequest();
+                empReq.RecordID = req.Parameters["_employeeId"];
+                Employee emp = _employeeService.Get<Employee>(empReq).result;
+                h.Parameters["Employee"].Value = emp.name.fullName;
+                h.Parameters["Branch"].Value = emp.branchName;
+                h.Parameters["Division"].Value = emp.divisionName;
 
-            //}
+            }
             //ListRequest def = new ListRequest();
             //int lateness = 0;
             //ListResponse<KeyValuePair<string, string>> items = _systemService.ChildGetAll<KeyValuePair<string, string>>(def);
@@ -277,7 +291,7 @@ namespace AionHR.Web.UI.Forms.Reports
             //}
             //h.Parameters["AllowedLateness"].Value = lateness;
 
-
+            h.PrintingSystem.Document.ScaleFactor = 4;
             h.CreateDocument();
 
 

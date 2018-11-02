@@ -1317,4 +1317,7 @@
   <data name="unspecified" xml:space="preserve">
     <value>Unspecified</value>
   </data>
+  <data name="USDollar" xml:space="preserve">
+    <value>US Dollar</value>
+  </data>
 </root>

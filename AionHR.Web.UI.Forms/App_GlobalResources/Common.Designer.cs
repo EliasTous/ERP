@@ -3544,6 +3544,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to US Dollar.
+        /// </summary>
+        internal static string USDollar {
+            get {
+                return ResourceManager.GetString("USDollar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Users.
         /// </summary>
         internal static string Users {

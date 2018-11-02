@@ -1,5 +1,4 @@
-﻿using AionHR.Model.Employees.Profile;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,77 +6,26 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Reports
 {
-    public class RT303
+  public class RT303
     {
         public string dayId { get; set; }
+        public short dow { get; set; }
 
-        public int dow { get; set; }
-
-        public string dowString { get; set; }
-
-        public string dateString { get; set; }
-
-        public bool isWorkingDay { get; set; }
-
-       
-
-        public string workingHours
-        {
-            get; set;
-        }
-        public int calHours
-        {
-            get; set;
-        }
-        public string paidLeaves { get; set; }
-        public string unpaidLeaves { get; set; }
-
-        public string LeaveType { get; set; }
-        public string jobTasks { get; set; }
-
-        public int dayStatus { get; set; }
-        public string dayStatusString { get; set; }
-        public string specialTasks { get; set; }
-
-        public string checkIn1 { get; set; }
-        public string checkIn2 { get; set; }
-        public string checkIn3 { get; set; }
-        public string checkIn4 { get; set; }
-       
-
-        public string checkOut1 { get; set; }
-
-        public string checkOut2 { get; set; }
-
-        public string checkOut3 { get; set; }
-
-        public string checkOut4 { get; set; }
-
-        public TimeSpan OL_A { get; set; }
-        public TimeSpan OL_D { get; set; }
-
-        public TimeSpan OL_B { get; set; }
-
-        public TimeSpan OL_NET { get; set; }
-
-        public string breaks { get; set; }
-
-        public string overtime
-        {
-            get; set;
-        }
-
-        public string lateness { get; set; }
-        
-        public string lateness_A { get; set; }
-
-        public string lateness_B { get; set; }
-
-        public string lateness_D { get; set; }
-        public string scName { get; set; }
-
-
-     
-
+        public bool onLeave { get; set; }
+        public bool paidLeave { get; set; }
+        public string dayStart { get; set; }
+        public string dayEnd { get; set; }
+        public string firstIn { get; set; }
+        public string lastOut { get; set; }
+        public bool UNPAID_LEAVE { get; set; }
+        public bool PAID_LEAVE { get; set; }
+        public bool DAY_LEAVE_WITHOUT_EXCUSE { get; set; }
+        public bool SHIFT_LEAVE_WITHOUT_EXCUSE { get; set; }
+        public bool MISSED_PUNCH { get; set; }
+        public double LATE_CHECKIN { get; set; }
+        public double DURING_SHIFT_LEAVE { get; set; }
+        public double EARLY_LEAVE { get; set; }
+        public double EARLY_CHECKIN { get; set; }
+        public double OVERTIME { get; set; }
     }
 }

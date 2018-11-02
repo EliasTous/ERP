@@ -109,8 +109,8 @@
             sum += record.data['leaveHours'];
         });
         //App.leaveRequest1_leavePeriod.setValue(sum.toFixed(2));
-        App.leaveRequest1_leaveHours.setValue(sum);
-        App.leaveRequest1_workingHours.setValue(sumTotalWorkingHours);
+      //  App.leaveRequest1_leaveHours.setValue(sum);
+      //  App.leaveRequest1_workingHours.setValue(sumTotalWorkingHours);
         if (sum == 0 || sumTotalWorkingHours == 0)
             App.leaveRequest1_leaveDaysField.setValue(0);
         else
