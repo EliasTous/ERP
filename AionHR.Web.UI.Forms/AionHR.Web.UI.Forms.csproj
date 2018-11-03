@@ -148,6 +148,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminDocuments.aspx" />
+    <Content Include="BusinessPartnerCategories.aspx" />
+    <Content Include="BusinessPartneres.aspx" />
+    <Content Include="DocumentCategories.aspx" />
     <Content Include="Reports\RT303.aspx" />
     <Content Include="TimeAttendanceApprovals.aspx" />
     <Content Include="TimeAttendanceViewSelfServices.aspx" />
@@ -576,6 +580,34 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminDocuments.aspx.cs">
+      <DependentUpon>AdminDocuments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminDocuments.aspx.designer.cs">
+      <DependentUpon>AdminDocuments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessPartnerCategories.aspx.cs">
+      <DependentUpon>BusinessPartnerCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BusinessPartnerCategories.aspx.designer.cs">
+      <DependentUpon>BusinessPartnerCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessPartneres.aspx.cs">
+      <DependentUpon>BusinessPartneres.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BusinessPartneres.aspx.designer.cs">
+      <DependentUpon>BusinessPartneres.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentCategories.aspx.cs">
+      <DependentUpon>DocumentCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DocumentCategories.aspx.designer.cs">
+      <DependentUpon>DocumentCategories.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RT303.aspx.cs">
       <DependentUpon>RT303.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2524,6 +2556,14 @@
     <Content Include="App_LocalResources\TimeAttendanceApprovals.aspx.ar.resx" />
     <Content Include="App_LocalResources\TimeAttendanceApprovals.aspx.resx" />
     <Content Include="App_LocalResources\Currencies.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BusinessPartnerCategories.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BusinessPartnerCategories.aspx.resx" />
+    <Content Include="App_LocalResources\BusinessPartneres.aspx.resx" />
+    <Content Include="App_LocalResources\BusinessPartneres.aspx.ar.resx" />
+    <Content Include="App_LocalResources\DocumentCategories.aspx.resx" />
+    <Content Include="App_LocalResources\DocumentCategories.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AdminDocuments.aspx.resx" />
+    <Content Include="App_LocalResources\AdminDocuments.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

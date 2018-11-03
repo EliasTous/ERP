@@ -1320,4 +1320,19 @@
   <data name="USDollar" xml:space="preserve">
     <value>US Dollar</value>
   </data>
+  <data name="adminBusinessPartner" xml:space="preserve">
+    <value>Business Partner </value>
+  </data>
+  <data name="BusinessPartnerCategory" xml:space="preserve">
+    <value>Business Partner Category</value>
+  </data>
+  <data name="BusinessPartner" xml:space="preserve">
+    <value>Business Partner</value>
+  </data>
+  <data name="DocumentCategory" xml:space="preserve">
+    <value>Document Category</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Documents</value>
+  </data>
 </root>

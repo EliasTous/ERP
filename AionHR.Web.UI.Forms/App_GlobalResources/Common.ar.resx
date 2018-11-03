@@ -1323,4 +1323,19 @@
   <data name="USDollar" xml:space="preserve">
     <value>دولار اميريكي </value>
   </data>
+  <data name="adminBusinessPartner" xml:space="preserve">
+    <value>الشريك التجاري</value>
+  </data>
+  <data name="BusinessPartnerCategory" xml:space="preserve">
+    <value>فئات الشريك التجاري</value>
+  </data>
+  <data name="BusinessPartner" xml:space="preserve">
+    <value>الشريك التجاري</value>
+  </data>
+  <data name="DocumentCategory" xml:space="preserve">
+    <value>فئة الوثائق</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>الوئائق</value>
+  </data>
 </root>

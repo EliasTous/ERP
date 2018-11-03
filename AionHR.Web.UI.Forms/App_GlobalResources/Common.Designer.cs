@@ -115,6 +115,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Business Partner .
+        /// </summary>
+        internal static string adminBusinessPartner {
+            get {
+                return ResourceManager.GetString("adminBusinessPartner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Administration Affairs.
         /// </summary>
         internal static string AdministrationAffairs {
@@ -372,6 +381,24 @@ namespace Resources {
         internal static string Branches {
             get {
                 return ResourceManager.GetString("Branches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Partner.
+        /// </summary>
+        internal static string BusinessPartner {
+            get {
+                return ResourceManager.GetString("BusinessPartner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Partner Category.
+        /// </summary>
+        internal static string BusinessPartnerCategory {
+            get {
+                return ResourceManager.GetString("BusinessPartnerCategory", resourceCulture);
             }
         }
         
@@ -849,6 +876,24 @@ namespace Resources {
         internal static string Divisions {
             get {
                 return ResourceManager.GetString("Divisions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document Category.
+        /// </summary>
+        internal static string DocumentCategory {
+            get {
+                return ResourceManager.GetString("DocumentCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Documents.
+        /// </summary>
+        internal static string Documents {
+            get {
+                return ResourceManager.GetString("Documents", resourceCulture);
             }
         }
         
