@@ -162,4 +162,10 @@
   <data name="Fieldlanguage" xml:space="preserve">
     <value>اللغة</value>
   </data>
+  <data name="DNGridTitle" xml:space="preserve">
+    <value>ملاحظات الوثيقة</value>
+  </data>
+  <data name="FieldDNStatus" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
 </root>

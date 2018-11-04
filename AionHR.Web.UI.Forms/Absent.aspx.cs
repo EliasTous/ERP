@@ -583,7 +583,7 @@ namespace AionHR.Web.UI.Forms
                 string durationValue = e.ExtraParams["duration"];
                 string timeCode = e.ExtraParams["timeCode"];
                 string shiftId = e.ExtraParams["shiftId"];
-
+                string apStatus = e.ExtraParams["apStatus"];
                 string type = e.ExtraParams["type"];
 
 
@@ -625,7 +625,7 @@ namespace AionHR.Web.UI.Forms
                         break;
 
                     case "LinkRender":
-                        FillTimeApproval(dayId, employeeId,timeCode,shiftId);
+                        FillTimeApproval(dayId, employeeId,timeCode,shiftId,apStatus);
                         TimeApprovalWindow.Show();
 
                         break;
@@ -729,17 +729,19 @@ namespace AionHR.Web.UI.Forms
             }
             return R; 
         }
-        protected void FillTimeApproval(int dayId, int employeeId,string timeCode, string shiftId)
+        protected void FillTimeApproval(int dayId, int employeeId,string timeCode, string shiftId , string apstatus)
         {
             try
             {
                 DashboardTimeListRequest r = new DashboardTimeListRequest();
-                r.dayId = dayId.ToString();
+             r.fromDayId= dayId.ToString();
+                r.toDayId= dayId.ToString();
                 r.employeeId = employeeId;
                 r.approverId = 0;
                 r.timeCode = timeCode;
                 r.shiftId = shiftId;
-
+                // r.apStatus = apstatus.ToString();
+                r.apStatus = "0";
 
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);

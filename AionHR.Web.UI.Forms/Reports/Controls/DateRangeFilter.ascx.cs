@@ -19,7 +19,7 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!IsPostBack)
             {
                 if (_DefaultStartDate == DateTime.MinValue)
-                    dateFrom.SelectedDate = _systemService.SessionHelper.GetStartDate();
+                    dateFrom.SelectedDate = DateTime.Now.AddDays(-10);
                 if (_DefaultEndDate == DateTime.MinValue)
                     dateTo.SelectedDate = DateTime.Today;
 
@@ -31,7 +31,7 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!IsPostBack)
             {
                 if (_DefaultStartDate == DateTime.MinValue)
-                    dateFrom.SelectedDate = _systemService.SessionHelper.GetStartDate();
+                    dateFrom.SelectedDate = DateTime.Now.AddDays(-10);
                 if (_DefaultEndDate == DateTime.MinValue)
                     dateTo.SelectedDate = DateTime.Today;
             }

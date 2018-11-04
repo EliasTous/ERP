@@ -11,7 +11,49 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/DocumentTypes.js" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
-   
+   <script type="text/javascript"  >
+ 
+var validateSave = function () {
+    var plugin = this.editingPlugin;
+    
+    if (this.getForm().isValid()) { // local validation
+        App.direct.ValidateSave(plugin.context.record.phantom, Ext.encode(App.DocumentNotesGrid.getRowsValues({ selectedOnly: true })), this.getValues(false, false, false, true), {
+            success: function (result) {
+                if (!result.valid) {
+                    Ext.Msg.alert("Error", result.msg);
+                    return;
+                }
+
+                plugin.completeEdit();
+            }
+        });
+    }
+};
+
+function addNote() {
+    var DocumentNotesGrid = App.DocumentNotesGrid,
+        store = DocumentNotesGrid.getStore();
+    
+    DocumentNotesGrid.editingPlugin.cancelEdit();
+
+    store.getSorters().removeAll();
+    DocumentNotesGrid.getView().headerCt.setSortState(); // To update columns sort UI
+
+    store.insert(0, {
+
+        employeeId:document.getElementById("CurrentEmployee").value,
+        note:'Add Your Note Here',
+        
+
+    });
+
+    DocumentNotesGrid.editingPlugin.startEdit(0, 0);
+}
+function ClearNoteText()
+{
+    App.newNoteText.setValue("");
+}
+   </script>
  
 </head>
 <body style="background: url(Images/bg.png) repeat;" ">
@@ -22,6 +64,7 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
+         <ext:Hidden ID="currentDocumentId" runat="server"  />
         
         <ext:Store
             ID="Store1"
@@ -288,7 +331,7 @@
                 <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
                     <Items>
                         <ext:FormPanel
-                            ID="BasicInfoTab" DefaultButton="SaveButton"
+                            ID="BasicInfoTab1" DefaultButton="SaveButton"
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
@@ -349,7 +392,212 @@
                             </Items>
 
                         </ext:FormPanel>
+                        <ext:FormPanel runat="server" ID="documentNotesPanel" OnLoad="documentNotesPanel_Load">
+                            <Items>
+                                
+                           <ext:Button Region="East" ID="Button1" Disabled="true" Height="30" Width="40" MaxWidth="40"  runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                  <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>                           
+                                    <DirectEvents>
+                                        <Click OnEvent="ADDNewDNRecord">
+                                            <ExtraParams >
+                                                <ext:Parameter Name="noteText" Value="#{newNoteText}.getValue()"   Mode="Raw" />
+                                            </ExtraParams>
+                                            <EventMask ShowMask="true" CustomTarget="{#{DocumentNotesGrid}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                 <Listeners>
+                     <AfterRender Handler="this.setDisabled(true);" />
+                 </Listeners>
+                                </ext:Button>
+            <ext:Panel runat="server"  Layout="FitLayout" DefaultAnchor="100%" >
+                                    <Items>
+                                          <ext:TextArea runat="server" ID="newNoteText" Region="North" Width="400" DefaultAnchor="100%" >
+                                              <Listeners>
+                                                  <Change Handler="App.btnAdd.setDisabled(this.value==''); " />
+                                              </Listeners>
+                                              <LeftButtons>
+
+                                              </LeftButtons>
+                                              </ext:TextArea>
+                                
+                                    </Items>
+                                </ext:Panel>
+           
+                <ext:GridPanel AutoUpdateLayout="true"
+                    ID="DocumentNotesGrid" Collapsible="false"
+                    runat="server"
+                    PaddingSpec="0 0 1 0"
+                    Header="false"
+                    Title="<%$ Resources: DNGridTitle %>"
+                    Layout="FitLayout"
+                    Scroll="Vertical" Flex="1"
+                    Border="false" 
+                    Icon="User" DefaultAnchor="100%"    HideHeaders="true"
+                    ColumnLines="false" IDMode="Explicit" RenderXType="True">
+                    <Store>
+                        <ext:Store
+                            ID="DocumentNotesStore"
+                            runat="server"
+                            RemoteSort="False"
+                            RemoteFilter="true"
+                            OnReadData="DocumentNotesStore_RefreshData"
+                            PageSize="50" IDMode="Explicit" Namespace="App">
+                            <Proxy>
+                                <ext:PageProxy>
+                                    <Listeners>
+                                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                                    </Listeners>
+                                </ext:PageProxy>
+                            </Proxy>
+                            <Model>
+                                <ext:Model ID="Model2" runat="server" IDProperty="rowId">
+                                    <Fields>
+
+                                        <ext:ModelField Name="rowId" />
+                                          <ext:ModelField Name="email" />
+                                          <ext:ModelField Name="fullName" />
+                                           <ext:ModelField Name="doId" />
+                                         <ext:ModelField Name="seqNo" />
+                                          <ext:ModelField Name="userId" />
+                                        <ext:ModelField Name="notes" />
+                                        <ext:ModelField Name="date"  />
+                               
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+                            <Sorters>
+                                <ext:DataSorter Property="rowId" Direction="ASC" />
+                            </Sorters>
+                        </ext:Store>
+                    </Store>
+                    <TopBar>
                         
+                        <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false ">
+                            
+                            <Items>
+                                
+                              
+                              
+                               
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
+
+                    <ColumnModel ID="ColumnModel2" runat="server"  SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+
+                          
+                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDNStatus%>" DataIndex="note" Flex="7" Hideable="false">
+                                <Renderer Handler="var s = moment(record.data['date']);  return '<b>'+ record.data['fullName']+'</b>- '+ s.calendar()+'<br />'+ record.data['notes'];">
+                                </Renderer>
+                                <Editor>
+                                    
+                                    <ext:TextArea runat="server" ID="notesEditor" name="note" >
+                                        
+                                    </ext:TextArea>
+                                </Editor>
+                            </ext:Column>
+                            
+
+
+
+                            <ext:Column runat="server"
+                                ID="Column2" Visible="false"
+                                Text="<%$ Resources:Common, Edit %>"
+                                Width="60"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer Fn="editRender" />
+
+                            </ext:Column>
+                            
+                            <ext:Column runat="server"
+                                ID="Column3"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                ID="ColEHDelete" Flex="1" Visible="true"
+                                Text="<%$ Resources: Common , Delete %>"
+                                Width="70"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Handler="return editRender() + '&nbsp;&nbsp;'+ deleteRender();" >
+                                    </Renderer>
+
+                            </ext:Column>
+
+
+
+                        </Columns>
+                    </ColumnModel>
+                    <Plugins>
+                        <ext:RowEditing runat="server" SaveHandler="validateSave"  SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>" />
+                        
+                    </Plugins>
+                    <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar4" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar2" runat="server" />
+                                <ext:ToolbarFill />
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                
+                    <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                        <RowBodyDblClick Handler="App.DocumentNotesGrid.editingPlugin.cancelEdit();" />
+                        <RowDblClick Handler="App.DocumentNotesGrid.editingPlugin.cancelEdit();" />
+                    </Listeners>
+                    <DirectEvents>
+                        <CellClick OnEvent="PoPuPDN">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                               <ext:Parameter Name="index" Value="rowIndex" Mode="Raw" />
+                                <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>
+                    <View>
+                        <ext:GridView ID="GridView2" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+               
+       
+                            </Items>
+                        </ext:FormPanel>
                     </Items>
                 </ext:TabPanel>
             </Items>
@@ -357,14 +605,14 @@
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                        <Click Handler="CheckSession(); if (!#{BasicInfoTab1}.getForm().isValid()) {return false;}  " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                <ext:Parameter Name="values" Value ="#{BasicInfoTab1}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

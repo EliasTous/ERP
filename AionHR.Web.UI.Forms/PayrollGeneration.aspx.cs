@@ -1686,7 +1686,7 @@ namespace AionHR.Web.UI.Forms
                 RecordResponse<BackgroundJob> resp = _systemService.ChildGetRecord<BackgroundJob>(req);
                 if (resp.result == null || resp.result.errorId != null)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId) != null ? GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId).ToString().Replace("%s", resp.result.argStr).Replace("%d", resp.result.argInt).ToString() + " < br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +resp.LogId : resp.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId) != null ? GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId).ToString().Replace("%s", resp.result.argStr).Replace("%d", resp.result.argInt).ToString()  : GetGlobalResourceObject("Errors", "Error_2").ToString()+resp.ErrorCode).Show();
                     HttpRuntime.Cache.Remove("genEM_RecordId");
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                     EditGenerateWindow.Close();

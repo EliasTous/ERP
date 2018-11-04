@@ -25,6 +25,7 @@ using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.AdminTemplates;
+using AionHR.Services.Messaging.AdministrativeAffairs;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -65,7 +66,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(BusinessPartnerCategories), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(BusinessPartnerCategories), BasicInfoTab1, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -172,6 +173,7 @@ namespace AionHR.Web.UI.Forms
             FilllanguageStore();
             FillBpId();
             FilldcStore();
+            currentDocumentId.Text = id; 
             switch (type)
             {
                 case "imgEdit":
@@ -188,7 +190,7 @@ namespace AionHR.Web.UI.Forms
                     }
                   
                     //Step 2 : call setvalues with the retrieved object
-                    this.BasicInfoTab.SetValues(response.result);
+                    this.BasicInfoTab1.SetValues(response.result);
 
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
@@ -227,6 +229,52 @@ namespace AionHR.Web.UI.Forms
         /// This direct method will be called after confirming the delete
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
+        public void DeleteDN(string seqNo)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                AdminDocumentNote n = new AdminDocumentNote();
+              
+                n.notes = "";
+                n.date = DateTime.Now;
+                n.doId =Convert.ToInt32( currentDocumentId.Text);
+                n.seqNo = Convert.ToInt32(seqNo);
+
+                PostRequest<AdminDocumentNote> req = new PostRequest<AdminDocumentNote>();
+                req.entity = n;
+                PostResponse<AdminDocumentNote> res = _administrationService.ChildDelete<AdminDocumentNote>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    DocumentNotesStore.Reload();
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
         [DirectMethod]
         public void DeleteRecord(string index)
         {
@@ -350,15 +398,41 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        protected void ADDNewDNRecord(object sender, DirectEventArgs e)
+        {
+            string noteText = e.ExtraParams["noteText"];
+            X.Call("ClearNoteText");
+            PostRequest<AdminDocumentNote> req = new PostRequest<AdminDocumentNote>();
+            AdminDocumentNote note = new AdminDocumentNote();
+            //note.recordId = id;
+            note.doId =Convert.ToInt32( currentDocumentId.Text); 
+            note.notes = noteText;
+          
+            note.date = DateTime.Now;
+            req.entity = note;
+
+
+            PostResponse<AdminDocumentNote> resp = _administrationService.ChildAddOrUpdate<AdminDocumentNote>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+
+            }
+            DocumentNotesStore.Reload();
+
+            //Reset all values of the relative object
+
+        }
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
 
             //Reset all values of the relative object
-            BasicInfoTab.Reset();
+            BasicInfoTab1.Reset();
             FillBpId();
             FilllanguageStore();
             FilldcStore();
-
+            documentNotesPanel.Disabled = true;
+            currentDocumentId.Text = "";
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -391,9 +465,73 @@ namespace AionHR.Web.UI.Forms
 
             this.Store1.DataBind();
         }
+        protected void DocumentNotesStore_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            int totalCount = 1;
 
 
 
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            if (string.IsNullOrEmpty(currentDocumentId.Text))
+                return;
+            DocumentNoteListRequest req = new DocumentNoteListRequest();
+            req.documentId = Convert.ToInt32(currentDocumentId.Text); 
+            ListResponse<AdminDocumentNote> notes = _administrationService.ChildGetAll<AdminDocumentNote>(req);
+            if (!notes.Success)
+                X.Msg.Alert(Resources.Common.Error, notes.Summary).Show();
+            this.DocumentNotesStore.DataSource = notes.Items;
+            e.Total = notes.count;
+
+            this.DocumentNotesStore.DataBind();
+        }
+
+        protected void PoPuPDN(object sender, DirectEventArgs e)
+        {
+
+
+             string seqNo= e.ExtraParams["seqNo"];
+            string type = e.ExtraParams["type"];
+            string index = e.ExtraParams["index"];
+
+            documentNotesPanel.Disabled = false;
+            switch (type)
+            {
+
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteDN({0})", seqNo),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+                case "imgEdit":
+                    X.Call("App.DocumentNotesGrid.editingPlugin.startEdit", Convert.ToInt32(index), 0);
+                    break;
+                case "colAttach":
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
 
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
@@ -408,7 +546,7 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
 
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(currentDocumentId.Text))
             {
 
                 try
@@ -432,6 +570,7 @@ namespace AionHR.Web.UI.Forms
                     else
                     {
                         b.recordId = r.recordId;
+                        currentDocumentId.Text = b.recordId; 
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
@@ -443,7 +582,7 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditRecordWindow.Close();
+                        documentNotesPanel.Disabled = false;
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
@@ -484,9 +623,9 @@ namespace AionHR.Web.UI.Forms
                     else
                     {
 
-
+                        currentDocumentId.Text = r.recordId;
                         ModelProxy record = this.Store1.GetById(id);
-                        BasicInfoTab.UpdateRecord(record);
+                        BasicInfoTab1.UpdateRecord(record);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -522,6 +661,11 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
+        protected void documentNotesPanel_Load(object sender, EventArgs e)
+        {
+
+        }
+        
         protected void printBtn_Click(object sender, EventArgs e)
         {
             DocumentTypesReport p = GetReport();
@@ -602,6 +746,33 @@ namespace AionHR.Web.UI.Forms
 
 
         }
+        [DirectMethod]
+        public object ValidateSave(bool isPhantom, string obj, JsonObject values)
+        {
 
+
+            if (!values.ContainsKey("note"))
+            {
+                return new { valid = false, msg = "Salary must be >=1000 for new employee" };
+            }
+
+            PostRequest<AdminDocumentNote> req = new PostRequest<AdminDocumentNote>();
+            AdminDocumentNote note = JsonConvert.DeserializeObject<List<AdminDocumentNote>>(obj)[0];
+            //note.recordId = id;
+            note.doId = Convert.ToInt32(currentDocumentId.Text); 
+            note.notes = values["note"].ToString();
+            int bulk;
+
+            req.entity = note;
+
+            PostResponse<AdminDocumentNote> resp = _administrationService.ChildAddOrUpdate<AdminDocumentNote>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                return new { valid = false };
+            }
+            DocumentNotesStore.Reload();
+            return new { valid = true };
+        }
     }
 }

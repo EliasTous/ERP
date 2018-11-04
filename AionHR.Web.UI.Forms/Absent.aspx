@@ -129,6 +129,7 @@
                            <ext:ModelField Name="duration" />
                             <ext:ModelField Name="durationString" />
                            <ext:ModelField Name="apStatusString" />
+                        <ext:ModelField Name="apStatus" />
                            <ext:ModelField Name="damageLevel" />
                          <ext:ModelField Name="recordId" />
                            <ext:ModelField Name="damageLevelString" />
@@ -138,7 +139,7 @@
                       
                                          
                         
-                        
+                    
                         
                         
                         
@@ -437,6 +438,8 @@
                                    <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
                                    <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
                                   <ext:Parameter Name="timeCode" Value="record.data['timeCode']" Mode="Raw" />
+                                 <ext:Parameter Name="apStatus" Value="record.data['apStatus']" Mode="Raw" />
+                                
 
                                   <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />

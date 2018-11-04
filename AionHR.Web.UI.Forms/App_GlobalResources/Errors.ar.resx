@@ -369,6 +369,9 @@
   <data name="Error_19201" xml:space="preserve">
     <value>خطأ في ارسال بريد الكتروني </value>
   </data>
+  <data name="Error_2" xml:space="preserve">
+    <value>خطأ غير معرف : </value>
+  </data>
   <data name="Error_201" xml:space="preserve">
     <value>عملية أو وظيفة تتوقع معامل غيرمزود</value>
   </data>

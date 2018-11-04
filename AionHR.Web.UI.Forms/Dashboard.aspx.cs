@@ -1266,6 +1266,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 r.timeCode = "0";
                 r.shiftId = "0";
+                r.apStatus = "1";
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)
@@ -1280,7 +1281,7 @@ namespace AionHR.Web.UI.Forms
                          x.notes = " ";
                 });
 
-                TimeStore.DataSource = Times.Items.Where(x=>x.status==1).ToList<Time>();
+               // TimeStore.DataSource = Times.Items.Where(x=>x.status==1).ToList<Time>();
                 ////List<ActiveLeave> leaves = new List<ActiveLeave>();
                 //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
