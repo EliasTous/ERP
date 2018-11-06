@@ -168,4 +168,40 @@
   <data name="FieldDNStatus" xml:space="preserve">
     <value>الحالة</value>
   </data>
+  <data name="FieldCount" xml:space="preserve">
+    <value>العدد</value>
+  </data>
+  <data name="FieldFrequency" xml:space="preserve">
+    <value>التكرار</value>
+  </data>
+  <data name="FieldStartingDate" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="DAILY" xml:space="preserve">
+    <value>يومي </value>
+  </data>
+  <data name="FieldAmount" xml:space="preserve">
+    <value>الكمية</value>
+  </data>
+  <data name="FieldDueDate" xml:space="preserve">
+    <value>تاريخ الانجاز</value>
+  </data>
+  <data name="HALF_YEALRY" xml:space="preserve">
+    <value>نصف سنة</value>
+  </data>
+  <data name="MONTHLY" xml:space="preserve">
+    <value>شهري</value>
+  </data>
+  <data name="QUARTERLY" xml:space="preserve">
+    <value>كل ربع سنة</value>
+  </data>
+  <data name="WEEKLY" xml:space="preserve">
+    <value>اسبوعي</value>
+  </data>
+  <data name="YEARLY" xml:space="preserve">
+    <value>سنوي</value>
+  </data>
+  <data name="FieldAmount1" xml:space="preserve">
+    <value>الكمية</value>
+  </data>
 </root>

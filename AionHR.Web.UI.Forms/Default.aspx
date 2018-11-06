@@ -438,11 +438,11 @@
                                                             <Menu>
                                                                 <ext:Menu runat="server">
                                                                     <Items>
-                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , MediaCategory%>">
+                                                                      <%--  <ext:MenuItem runat="server" Text="<%$Resources: Common , MediaCategory%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('mediaCategory', 'MediaCategories.aspx', #{mcTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
-                                                                        </ext:MenuItem>
+                                                                        </ext:MenuItem>--%>
 
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , Folders%>">
                                                                             <Listeners>

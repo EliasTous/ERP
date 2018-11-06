@@ -175,7 +175,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             //Ext.Net.Node dashboard = BuildLeafNode("dashboard", Resources.Common.Dashboard, "TableLightning", true, companyStructure);
             Ext.Net.Node org = BuildLeafNode("rootParent_CS_ORG", Resources.Common.OrganizationChart, "ChartOrganisation", true, companyStructure);
             Ext.Net.Node emporg = BuildLeafNode("rootParent_CS_EMPORG", Resources.Common.EmpOrganizationChart, "ChartOrganisation", true, companyStructure);
-            Ext.Net.Node mediaItem = BuildLeafNode("rootParent_CS_MediaItem", Resources.Common.MediaItems, "Photos", true, companyStructure);
+         //   Ext.Net.Node mediaItem = BuildLeafNode("rootParent_CS_MediaItem", Resources.Common.MediaItems, "Photos", true, companyStructure);
             //Ext.Net.Node setup = BuildParentNode("rootParent_setup", Resources.Common.Setup, false, rootParent);
             Ext.Net.Node files = BuildLeafNode("rootParent_CS_Files", Resources.Common.Files, "FolderTable", true, companyStructure);
             Ext.Net.Node companyNews = BuildLeafNode("rootParent_CS_CompanyNews", Resources.Common.CompanyNews, "Newspaper", true, companyStructure);
@@ -198,7 +198,7 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             FillConfigItem(emporg, "emporg", "EmployeesOrgChart.aspx", Resources.Common.EmpOrganizationChart, "icon-Employees", "1");
             FillConfigItem(org, "emporg", "OrganizationChart.aspx", Resources.Common.OrganizationChart, "icon-Employees", "1");
-            FillConfigItem(mediaItem, "mediaItem", "MediaItems.aspx", Resources.Common.MediaItems, "icon-Employees", "1");
+          //  FillConfigItem(mediaItem, "mediaItem", "MediaItems.aspx", Resources.Common.MediaItems, "icon-Employees", "1");
             FillConfigItem(files, "csFiles", "CompanyFiles.aspx", Resources.Common.Files, "icon-Employees", "1");
             FillConfigItem(companyNews, "companyNews", "CompanyNews.aspx", Resources.Common.CompanyNews, "icon-Employees", "1");
             //FillConfigItem(dashboard, "dashboard", "MainDashboard.aspx", Resources.Common.Dashboard, "icon-Employees", "1");
@@ -501,19 +501,19 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node adminBusiness = BuildParentNode("rootParent_BP", Resources.Common.adminBusinessPartner, true, rootParent);
             Ext.Net.Node adminDocument = BuildParentNode("rootParent_DC", Resources.Common.Documents, true, rootParent);
 
-
+          
 
             Ext.Net.Node templatesLeave = BuildLeafNode("admintemplates_root", Resources.Common.AdminTemplates, "Photos", true, adminTemplates);
-            Ext.Net.Node businessPartnerCategory = BuildLeafNode("businessPartnerCategory_root", Resources.Common.BusinessPartnerCategory, "Building", true, adminBusiness);
-            Ext.Net.Node businessPartner = BuildLeafNode("businessPartner_root", Resources.Common.BusinessPartner, "Building", true, adminBusiness);
-            Ext.Net.Node DocumentCategory = BuildLeafNode("DocumentCategory_root", Resources.Common.DocumentCategory, "Building", true, adminDocument);
-            Ext.Net.Node Document = BuildLeafNode("Document_root", Resources.Common.Documents, "Building", true, adminDocument);
+            Ext.Net.Node businessPartnerCategory = BuildLeafNode("BusinessPartnerCategories", Resources.Common.BusinessPartnerCategory, "Building", true, adminBusiness);
+            Ext.Net.Node businessPartner = BuildLeafNode("businessPartneres", Resources.Common.BusinessPartner, "Building", true, adminBusiness);
+            Ext.Net.Node DocumentCategory = BuildLeafNode("DocumentCategories", Resources.Common.DocumentCategory, "Building", true, adminDocument);
+            Ext.Net.Node Document = BuildLeafNode("AdminDocuments", Resources.Common.Documents, "Building", true, adminDocument);
 
-            FillConfigItem(templatesLeave, "1", "AdminTemplates.aspx", Resources.Common.AdminTemplates, "icon-Employees", "1");
-            FillConfigItem(businessPartnerCategory, "2", "BusinessPartnerCategories.aspx", Resources.Common.BusinessPartnerCategory, "icon-Employees", "1");
-            FillConfigItem(businessPartner, "3", "BusinessPartneres.aspx", Resources.Common.BusinessPartner, "icon-Employees", "1");
-            FillConfigItem(DocumentCategory, "4", "DocumentCategories.aspx", Resources.Common.DocumentCategory, "icon-Employees", "1");
-            FillConfigItem(Document, "5", "AdminDocuments.aspx", Resources.Common.Documents, "icon-Employees", "1");
+            FillConfigItem(templatesLeave, "admintemplates_root", "AdminTemplates.aspx", Resources.Common.AdminTemplates, "icon-Employees", "1");
+            FillConfigItem(businessPartnerCategory, "BusinessPartnerCategories", "BusinessPartnerCategories.aspx", Resources.Common.BusinessPartnerCategory, "icon-Employees", "1");
+            FillConfigItem(businessPartner, "businessPartneres", "BusinessPartneres.aspx", Resources.Common.BusinessPartner, "icon-Employees", "1");
+            FillConfigItem(DocumentCategory, "DocumentCategories", "DocumentCategories.aspx", Resources.Common.DocumentCategory, "icon-Employees", "1");
+            FillConfigItem(Document, "AdminDocuments", "AdminDocuments.aspx", Resources.Common.Documents, "icon-Employees", "1");
 
 
 

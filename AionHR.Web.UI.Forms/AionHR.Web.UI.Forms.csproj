@@ -2358,6 +2358,7 @@
     <Content Include="App_GlobalResources\Errors.ar.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Errors.ar.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="App_GlobalResources\Reports.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>

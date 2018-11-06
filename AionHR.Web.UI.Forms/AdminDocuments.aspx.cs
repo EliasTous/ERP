@@ -167,7 +167,7 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
-
+            panelRecordDetails.ActiveIndex = 0;
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
             FilllanguageStore();
@@ -229,18 +229,21 @@ namespace AionHR.Web.UI.Forms
         /// This direct method will be called after confirming the delete
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
-        public void DeleteDN(string seqNo)
+        [DirectMethod]
+        public void DeleteDN(string rowId, string seqNo, string date)
         {
+           
             try
             {
                 //Step 1 Code to delete the object from the database 
                 AdminDocumentNote n = new AdminDocumentNote();
               
                 n.notes = "";
-                n.date = DateTime.Now;
+                n.date = DateTime.ParseExact(date,"yyyyMMdd", new CultureInfo("en")); 
                 n.doId =Convert.ToInt32( currentDocumentId.Text);
-                n.seqNo = Convert.ToInt32(seqNo);
-
+                n.seqNo = seqNo;
+                n.rowId = rowId;
+                n.userId = _systemService.SessionHelper.GetCurrentUserId(); 
                 PostRequest<AdminDocumentNote> req = new PostRequest<AdminDocumentNote>();
                 req.entity = n;
                 PostResponse<AdminDocumentNote> res = _administrationService.ChildDelete<AdminDocumentNote>(req);
@@ -400,32 +403,43 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewDNRecord(object sender, DirectEventArgs e)
         {
-            string noteText = e.ExtraParams["noteText"];
-            X.Call("ClearNoteText");
-            PostRequest<AdminDocumentNote> req = new PostRequest<AdminDocumentNote>();
-            AdminDocumentNote note = new AdminDocumentNote();
-            //note.recordId = id;
-            note.doId =Convert.ToInt32( currentDocumentId.Text); 
-            note.notes = noteText;
-          
-            note.date = DateTime.Now;
-            req.entity = note;
-
-
-            PostResponse<AdminDocumentNote> resp = _administrationService.ChildAddOrUpdate<AdminDocumentNote>(req);
-            if (!resp.Success)
+            try
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
 
+                string noteText = e.ExtraParams["noteText"];
+                X.Call("ClearNoteText");
+                PostRequest<AdminDocumentNote> req = new PostRequest<AdminDocumentNote>();
+                AdminDocumentNote note = new AdminDocumentNote();
+                //note.recordId = id;
+                note.doId = Convert.ToInt32(currentDocumentId.Text);
+                note.notes = noteText;
+                note.userId = _systemService.SessionHelper.GetCurrentUserId();
+                note.date = DateTime.Now;
+                note.seqNo = null;
+                note.rowId = null;
+                req.entity = note;
+
+
+
+                PostResponse<AdminDocumentNote> resp = _administrationService.ChildAddOrUpdate<AdminDocumentNote>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+
+                }
+                DocumentNotesStore.Reload();
             }
-            DocumentNotesStore.Reload();
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
 
             //Reset all values of the relative object
 
         }
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-
+            panelRecordDetails.ActiveIndex = 0;
             //Reset all values of the relative object
             BasicInfoTab1.Reset();
             FillBpId();
@@ -469,6 +483,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             //GEtting the filter from the page
+
             string filter = string.Empty;
             int totalCount = 1;
 
@@ -497,8 +512,10 @@ namespace AionHR.Web.UI.Forms
              string seqNo= e.ExtraParams["seqNo"];
             string type = e.ExtraParams["type"];
             string index = e.ExtraParams["index"];
-
+            string date = DateTime.Parse(e.ExtraParams["date"]).ToString("yyyyMMdd");
+            string rowId = e.ExtraParams["rowId"];
             documentNotesPanel.Disabled = false;
+       
             switch (type)
             {
 
@@ -509,7 +526,7 @@ namespace AionHR.Web.UI.Forms
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteDN({0})", seqNo),
+                            Handler = String.Format("App.direct.DeleteDN({0},{1},{2})", rowId, seqNo, date),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -532,8 +549,8 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-
-        protected void SaveNewRecord(object sender, DirectEventArgs e)
+        
+               protected void generateDocument(object sender, DirectEventArgs e)
         {
 
 
@@ -541,22 +558,14 @@ namespace AionHR.Web.UI.Forms
 
 
             string obj = e.ExtraParams["values"];
-            AdminDocument b = JsonConvert.DeserializeObject<AdminDocument>(obj);
+            GenerateAdminDocumentDue b = JsonConvert.DeserializeObject<GenerateAdminDocumentDue>(obj);
 
-            string id = e.ExtraParams["id"];
-            // Define the object to add or edit as null
-
-            if (string.IsNullOrEmpty(currentDocumentId.Text))
-            {
-
-                try
-                {
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<AdminDocument> request = new PostRequest<AdminDocument>();
-
+            try { 
+         
+                    PostRequest<GenerateAdminDocumentDue> request = new PostRequest<GenerateAdminDocumentDue>();
+                    b.doId = currentDocumentId.Text;
                     request.entity = b;
-                    PostResponse<AdminDocument> r = _administrationService.ChildAddOrUpdate<AdminDocument>(request);
+                    PostResponse<GenerateAdminDocumentDue> r = _administrationService.ChildAddOrUpdate<GenerateAdminDocumentDue>(request);
 
 
                     //check if the insert failed
@@ -569,10 +578,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
-                        b.recordId = r.recordId;
-                        currentDocumentId.Text = b.recordId; 
-                        //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                      
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -582,14 +588,22 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        documentNotesPanel.Disabled = false;
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
-
-
-
+                    DocumentNoteListRequest req = new DocumentNoteListRequest();
+                    req.documentId = Convert.ToInt32(currentDocumentId.Text);
+                    ListResponse<AdminDocument> routers = _administrationService.ChildGetAll<AdminDocument>(req);
+                    if (!routers.Success)
+                    {
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
+                        return;
                     }
+                    this.DocumentDueStore.DataSource = routers.Items;
+                   
+
+                    this.DocumentDueStore.DataBind();
+
+
+
+                }
                 }
                 catch (Exception ex)
                 {
@@ -599,51 +613,122 @@ namespace AionHR.Web.UI.Forms
                 }
 
 
-            }
-            else
+         
+        }
+        protected void SaveNewRecord(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            try
             {
-                //Update Mode
 
-                try
+                string obj = e.ExtraParams["values"];
+                AdminDocument b = JsonConvert.DeserializeObject<AdminDocument>(obj);
+
+                string id = e.ExtraParams["id"];
+                // Define the object to add or edit as null
+
+                if (string.IsNullOrEmpty(currentDocumentId.Text))
                 {
-                    //getting the id of the record
-                    PostRequest<AdminDocument> request = new PostRequest<AdminDocument>();
-                    request.entity = b;
-                    PostResponse<AdminDocument> r = _administrationService.ChildAddOrUpdate<AdminDocument>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
-                    //Step 2 : saving to store
+                    try
+                    {
+                        //New Mode
+                        //Step 1 : Fill The object and insert in the store 
+                        PostRequest<AdminDocument> request = new PostRequest<AdminDocument>();
 
-                    //Step 3 :  Check if request fails
-                    if (!r.Success)//it maybe another check
+                        request.entity = b;
+                        PostResponse<AdminDocument> r = _administrationService.ChildAddOrUpdate<AdminDocument>(request);
+
+
+                        //check if the insert failed
+                        if (!r.Success)//it maybe be another condition
+                        {
+                            //Show an error saving...
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                            return;
+                        }
+                        else
+                        {
+                            b.recordId = r.recordId;
+                            currentDocumentId.Text = b.recordId;
+                            //Add this record to the store 
+                            this.Store1.Insert(0, b);
+
+                            //Display successful notification
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordSavingSucc
+                            });
+
+                            documentNotesPanel.Disabled = false;
+                            Store1.Reload();
+
+
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //Error exception displaying a messsage box
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    }
+
+
+                }
+                else
+                {
+                    //Update Mode
+
+                    try
+                    {
+                        //getting the id of the record
+                        PostRequest<AdminDocument> request = new PostRequest<AdminDocument>();
+                        request.entity = b;
+                        PostResponse<AdminDocument> r = _administrationService.ChildAddOrUpdate<AdminDocument>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+
+                        //Step 2 : saving to store
+
+                        //Step 3 :  Check if request fails
+                        if (!r.Success)//it maybe another check
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                            return;
+                        }
+                        else
+                        {
+
+                            currentDocumentId.Text = r.recordId;
+                            Store1.Reload();
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordUpdatedSucc
+                            });
+                            this.EditRecordWindow.Close();
+
+
+                        }
+
+                    }
+                    catch (Exception ex)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
-                        return;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                     }
-                    else
-                    {
-
-                        currentDocumentId.Text = r.recordId;
-                        ModelProxy record = this.Store1.GetById(id);
-                        BasicInfoTab1.UpdateRecord(record);
-                        record.Commit();
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                        });
-                        this.EditRecordWindow.Close();
-
-
-                    }
-
                 }
-                catch (Exception ex)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                }
+            }
+            catch (Exception ex)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
             }
         }
 
@@ -751,17 +836,20 @@ namespace AionHR.Web.UI.Forms
         {
 
 
-            if (!values.ContainsKey("note"))
-            {
-                return new { valid = false, msg = "Salary must be >=1000 for new employee" };
-            }
 
+            if (!values.ContainsKey("notes"))
+            {
+                return new { valid = false, msg = "error in note formating " };
+            }
             PostRequest<AdminDocumentNote> req = new PostRequest<AdminDocumentNote>();
             AdminDocumentNote note = JsonConvert.DeserializeObject<List<AdminDocumentNote>>(obj)[0];
             //note.recordId = id;
-            note.doId = Convert.ToInt32(currentDocumentId.Text); 
-            note.notes = values["note"].ToString();
-            int bulk;
+            note.doId = Convert.ToInt32(currentDocumentId.Text);
+            note.notes = values["notes"].ToString();
+            //note.notes = 
+            //note.userId = _systemService.SessionHelper.GetCurrentUserId();
+            //note.rowId= values["rowId"].ToString();
+            //note.seqNo = values["seqNo"].ToString(); 
 
             req.entity = note;
 

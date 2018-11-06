@@ -1281,11 +1281,11 @@ namespace AionHR.Web.UI.Forms
                          x.notes = " ";
                 });
 
-               // TimeStore.DataSource = Times.Items.Where(x=>x.status==1).ToList<Time>();
+                // TimeStore.DataSource = Times.Items.Where(x=>x.status==1).ToList<Time>();
                 ////List<ActiveLeave> leaves = new List<ActiveLeave>();
                 //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
-
+                TimeStore.DataSource = Times.Items;
                 TimeStore.DataBind();
             }
             catch (Exception exp)

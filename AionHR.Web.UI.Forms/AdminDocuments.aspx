@@ -9,8 +9,11 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/DocumentTypes.js" ></script>
-    <script type="text/javascript" src="Scripts/common.js" ></script>
+    <script type="text/javascript" src="Scripts/DocumentTypes.js?id=20" ></script>
+    <script type="text/javascript" src="Scripts/common.js?id=17" ></script>
+     
+  
+    <script type="text/javascript" src="../Scripts/moment.js?id=19"></script>
    <script type="text/javascript"  >
  
 var validateSave = function () {
@@ -125,7 +128,7 @@ function ClearNoteText()
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
+                                <ext:Button ID="btnAdd1" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
                                      <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>                           
@@ -202,6 +205,7 @@ function ClearNoteText()
                             <ext:Column    CellCls="cellLink" ID="ColbinNo" MenuDisabled="true" runat="server" Text="<%$ Resources: binNo%>" DataIndex="binNo" Flex="2" Hideable="false" />
                               <ext:Column    CellCls="cellLink" ID="Colnotes" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNotes%>" DataIndex="notes" Flex="2" Hideable="false" />
                               <ext:Column    CellCls="cellLink" ID="ColoDocRef" MenuDisabled="true" runat="server" Text="<%$ Resources: oDocRef%>" DataIndex="oDocRef" Flex="2" Hideable="false" />
+
                                 
                         
                            
@@ -321,12 +325,12 @@ function ClearNoteText()
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="330"
+            Height="450"
             AutoShow="false"
             Modal="true"
             Hidden="true"
             Layout="Fit">
-            
+           
             <Items>
                 <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
                     <Items>
@@ -339,9 +343,19 @@ function ClearNoteText()
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
-                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
-                                   <ext:DateField ID="issueDate" runat="server" FieldLabel="<%$ Resources:FieldIssueDate%>" Name="issueDate"   />
-                                   <ext:DateField ID="expiryDate" runat="server" FieldLabel="<%$ Resources:FieldExpiryDate%>" Name="expiryDate"  />
+                            <%--    <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>--%>
+                                   <ext:DateField ID="issueDate" runat="server" FieldLabel="<%$ Resources:FieldIssueDate%>" Name="issueDate"   >
+                                       <Validator Handler="return this.value<#{expiryDate}.getValue();"></Validator>
+                                       <Listeners> 
+                                           <Change Handler="#{expiryDate}.validate();"></Change>
+                                       </Listeners>
+                                       </ext:DateField>
+                                   <ext:DateField ID="expiryDate" runat="server" FieldLabel="<%$ Resources:FieldExpiryDate%>" Name="expiryDate"  >
+                                       <Validator Handler="return this.value>#{issueDate}.getValue();"></Validator>
+                                         <Listeners> 
+                                           <Change Handler="#{issueDate}.validate();"></Change>
+                                       </Listeners>
+                                       </ext:DateField>
                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="bpId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="bpId" FieldLabel="<%$ Resources:FieldBusinessPartner%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="bpIdStore">
@@ -375,27 +389,27 @@ function ClearNoteText()
 
                                 </ext:ComboBox>
                                    <ext:TextField ID="oDocRef" runat="server" FieldLabel="<%$ Resources:oDocRef%>" Name="oDocRef"   />
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="languageId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="languageId" FieldLabel="<%$ Resources:Fieldlanguage%>" SimpleSubmit="true">
-                                    <Store>
-                                        <ext:Store runat="server" ID="languageStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                     </ext:ComboBox>
+                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="languageId" AllowBlank="true"  Name="languageId"
+                                    SubmitValue="true"
+                                    TypeAhead="false"
+                                    FieldLabel="<%$ Resources: FieldLanguage%>">
+                                    <Items>
+                                        <ext:ListItem Text="<%$Resources:Common,EnglishLanguage %>" Value="1" />
+                                        <ext:ListItem Text="<%$Resources:Common,ArabicLanguage %>" Value="2" />
+
+                                    </Items>
+                                </ext:ComboBox>
+                                   <ext:TextArea ID="notes" runat="server" FieldLabel="<%$ Resources:FieldNotes %>" Name="notes" Height="50" />
                             </Items>
 
                         </ext:FormPanel>
-                        <ext:FormPanel runat="server" ID="documentNotesPanel" OnLoad="documentNotesPanel_Load">
+                        <ext:FormPanel runat="server" ID="documentNotesPanel" OnLoad="documentNotesPanel_Load"  Title="<%$ Resources: DNGridTitle %>">
+                            <Listeners>
+                                <Activate Handler="App.DocumentNotesStore.reload();" />
+                            </Listeners>
                             <Items>
                                 
-                           <ext:Button Region="East" ID="Button1" Disabled="true" Height="30" Width="40" MaxWidth="40"  runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                           <ext:Button Region="East" ID="btnAdd" Disabled="true" Height="30" Width="40" MaxWidth="40"  runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                   <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>                           
@@ -428,7 +442,7 @@ function ClearNoteText()
                 <ext:GridPanel AutoUpdateLayout="true"
                     ID="DocumentNotesGrid" Collapsible="false"
                     runat="server"
-                    PaddingSpec="0 0 1 0"
+                  Height="300"
                     Header="false"
                     Title="<%$ Resources: DNGridTitle %>"
                     Layout="FitLayout"
@@ -455,7 +469,7 @@ function ClearNoteText()
                                 <ext:Model ID="Model2" runat="server" IDProperty="rowId">
                                     <Fields>
 
-                                        <ext:ModelField Name="rowId" />
+                                      
                                           <ext:ModelField Name="email" />
                                           <ext:ModelField Name="fullName" />
                                            <ext:ModelField Name="doId" />
@@ -463,6 +477,7 @@ function ClearNoteText()
                                           <ext:ModelField Name="userId" />
                                         <ext:ModelField Name="notes" />
                                         <ext:ModelField Name="date"  />
+                                          <ext:ModelField Name="rowId" />
                                
 
                                     </Fields>
@@ -492,19 +507,18 @@ function ClearNoteText()
                         <Columns>
 
                           
-                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDNStatus%>" DataIndex="note" Flex="7" Hideable="false">
-                                <Renderer Handler="var s = moment(record.data['date']);  return '<b>'+ record.data['fullName']+'</b>- '+ s.calendar()+'<br />'+ record.data['notes'];">
+                             <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="rowId" Hideable="false" Width="75" Align="Center" />
+                             
+                           <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNotes%>" DataIndex="notes" Flex="6" Hideable="false">
+                                 <Renderer Handler="var s = moment(record.data['date']);  return '<b>'+ record.data['fullName']+'</b>- '+ s.calendar()+'<br />'+ record.data['notes'];">
                                 </Renderer>
                                 <Editor>
                                     
-                                    <ext:TextArea runat="server" ID="notesEditor" name="note" >
+                                    <ext:TextArea runat="server" ID="notesEditor" name="notes" >
                                         
                                     </ext:TextArea>
                                 </Editor>
-                            </ext:Column>
-                            
-
-
+                               </ext:Column>
 
                             <ext:Column runat="server"
                                 ID="Column2" Visible="false"
@@ -522,7 +536,7 @@ function ClearNoteText()
                             </ext:Column>
                             
                             <ext:Column runat="server"
-                                ID="Column3"
+                                ID="Column3" Visible="false"
                                 Text="<%$ Resources:Common, Attach %>"
                                 Hideable="false"
                                 Width="60"
@@ -534,7 +548,7 @@ function ClearNoteText()
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="ColEHDelete" Flex="1" Visible="true"
+                                ID="ColEHDelete" Flex="2" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
                                 Width="70"
                                 Align="Center"
@@ -577,7 +591,13 @@ function ClearNoteText()
                         <CellClick OnEvent="PoPuPDN">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
+                                
+                                       
+                                        
                                <ext:Parameter Name="index" Value="rowIndex" Mode="Raw" />
+                                     <ext:Parameter Name="date" Value="record.data['date']" Mode="Raw" />
+                                 <ext:Parameter Name="rowId" Value="record.data['rowId']" Mode="Raw" />
+
                                 <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
@@ -594,10 +614,188 @@ function ClearNoteText()
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                     </SelectionModel>
                 </ext:GridPanel>
-               
-       
+                
+        
                             </Items>
                         </ext:FormPanel>
+                        <ext:GridPanel 
+                    ID="DocumentDuesGrid"
+                    runat="server"
+                   
+                    PaddingSpec="0 0 1 0"
+                    Header="false" 
+                    Title="<%$ Resources: DocumentDuesWindowTitle %>"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"  
+                    Icon="User"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+  <Store>
+                        <ext:Store
+                            ID="DocumentDueStore"
+                            runat="server"
+                            RemoteSort="False"
+                            RemoteFilter="true"
+                           
+                            PageSize="50" IDMode="Explicit" Namespace="App">
+                          <%--  <Proxy>
+                                <ext:PageProxy>
+                                    <Listeners>
+                                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                                    </Listeners>
+                                </ext:PageProxy>
+                            </Proxy>--%>
+                            <Model>
+                                <ext:Model ID="Model3" runat="server" >
+                                    <Fields>
+
+                                      
+                                          <ext:ModelField Name="dueDate" />
+                                          <ext:ModelField Name="amount" />
+                                           <ext:ModelField Name="doId" />
+                                        
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+                           <%-- <Sorters>
+                                <ext:DataSorter Property="rowId" Direction="ASC" />
+                            </Sorters>--%>
+                        </ext:Store>
+                    </Store>
+                    <TopBar>
+                        <ext:Toolbar ID="Toolbar5" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                                <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Generate %>" Icon="Add">       
+                                     <Listeners>
+                                        <Click Handler="CheckSession(); App.GenerateDocumentDuesWindow.show();" />
+
+                                    </Listeners>                           
+                                   
+                                </ext:Button>
+                             
+                               
+                              
+                                <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
+                         
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
+
+                    <ColumnModel ID="ColumnModel3" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
+                        <Columns>
+                         
+                            <ext:DateColumn    CellCls="cellLink" ID="dueDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDueDate%>" DataIndex="dueDate" Flex="2" Hideable="false">
+                    
+                                </ext:DateColumn>
+                              <ext:NumberColumn    CellCls="cellLink" ID="amount" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount%>" DataIndex="amount" Flex="2" Hideable="false" />
+                        
+                           
+
+                         
+                            <ext:Column runat="server"
+                                ID="Column5" Visible="false"
+                                Text="<%$ Resources: Common , Delete %>"
+                                Width="100"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="deleteRender" />
+                              
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                ID="Column6"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
+
+                              <ext:Column runat="server"
+                                ID="Column7"  Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+
+                            </ext:Column>
+
+
+                        </Columns>
+                    </ColumnModel>
+                    <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar6" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar3" runat="server" />
+                                <ext:ToolbarFill />
+                                
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                    <BottomBar>
+
+                        <ext:PagingToolbar ID="PagingToolbar2"
+                            runat="server"
+                            FirstText="<%$ Resources:Common , FirstText %>"
+                            NextText="<%$ Resources:Common , NextText %>"
+                            PrevText="<%$ Resources:Common , PrevText %>"
+                            LastText="<%$ Resources:Common , LastText %>"
+                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
+                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
+                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
+                            DisplayInfo="true"
+                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
+                            Border="true"
+                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
+                            <Items>
+                               
+                            </Items>
+                            <Listeners>
+                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                            </Listeners>
+                        </ext:PagingToolbar>
+
+                    </BottomBar>
+                    <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
+                    <DirectEvents>
+                        <CellClick OnEvent="PoPuP">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>
+                    <View>
+                        <ext:GridView ID="GridView3" runat="server" />
+                    </View>
+
+                  
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel2" runat="server" Mode="Single"  StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
                     </Items>
                 </ext:TabPanel>
             </Items>
@@ -618,6 +816,79 @@ function ClearNoteText()
                     </DirectEvents>
                 </ext:Button>
                 <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+        
+        <ext:Window 
+            ID="GenerateDocumentDuesWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:DocumentDuesWindowTitle %>"
+            Width="450"
+            Height="330"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+            
+            <Items>
+             
+                        <ext:FormPanel
+                            ID="BasicInfoTab" DefaultButton="BTGenerateDocumentDues"
+                            runat="server"
+                      
+                         
+                            DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
+                            BodyPadding="5">
+                            <Items>
+                             
+                                <ext:DateField ID="startingDate" runat="server" FieldLabel="<%$ Resources:FieldStartingDate%>" Name="startingDate"   AllowBlank="false"/>
+                             <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="frequency" AllowBlank="false"  Name="frequency"
+                                    SubmitValue="true"
+                                    TypeAhead="false"
+                                    FieldLabel="<%$ Resources: FieldFrequency%>">
+                                    <Items>
+                                       
+
+
+                                        <ext:ListItem Text="<%$Resources:DAILY %>" Value="1" />
+                                        <ext:ListItem Text="<%$Resources:WEEKLY %>" Value="2" />
+                                          <ext:ListItem Text="<%$Resources:MONTHLY %>" Value="3" />
+                                          <ext:ListItem Text="<%$Resources:QUARTERLY %>" Value="4" />
+                                          <ext:ListItem Text="<%$Resources:HALF_YEALRY %>" Value="5" />
+                                          <ext:ListItem Text="<%$Resources:YEARLY %>" Value="6" />
+
+                                    </Items>
+                                </ext:ComboBox>
+                                   <ext:NumberField ID="count" runat="server" FieldLabel="<%$ Resources:FieldCount%>" Name="count"   AllowBlank="false" MinValue="1" MaxValue="12"/>
+                            </Items>
+
+                        </ext:FormPanel>
+                        
+                    </Items>
+            
+         
+            <Buttons>
+                <ext:Button ID="BTGenerateDocumentDues" runat="server" Text="<%$ Resources:Common, Generate %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="generateDocument" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{GenerateDocumentDuesWindow}.body}" />
+                            <ExtraParams>
+                            
+                                <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button3" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>

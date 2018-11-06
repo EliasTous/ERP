@@ -74,7 +74,7 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
+                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Generate %>" Icon="Add">       
                                      <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>                           

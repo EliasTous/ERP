@@ -168,4 +168,40 @@
   <data name="FieldDNStatus" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="DocumentDuesWindowTitle" xml:space="preserve">
+    <value>Document Dues</value>
+  </data>
+  <data name="FieldCount" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="FieldFrequency" xml:space="preserve">
+    <value>Frequency</value>
+  </data>
+  <data name="FieldStartingDate" xml:space="preserve">
+    <value>Starting Date</value>
+  </data>
+  <data name="DAILY" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="FieldDueDate" xml:space="preserve">
+    <value>Due Date</value>
+  </data>
+  <data name="HALF_YEALRY" xml:space="preserve">
+    <value>Half Yearly</value>
+  </data>
+  <data name="MONTHLY" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+  <data name="QUARTERLY" xml:space="preserve">
+    <value>Quarterly</value>
+  </data>
+  <data name="WEEKLY" xml:space="preserve">
+    <value>Weekly</value>
+  </data>
+  <data name="YEARLY" xml:space="preserve">
+    <value>Yearly</value>
+  </data>
+  <data name="FieldAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
 </root>

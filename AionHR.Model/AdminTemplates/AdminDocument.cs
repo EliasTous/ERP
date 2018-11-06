@@ -19,7 +19,7 @@ namespace AionHR.Model.AdminTemplates
         public int dcId { get; set; }
         public string notes { get; set; }
         public string oDocRef { get; set; }
-        public int languageId { get; set; }
+        public int? languageId { get; set; }
 
 
 

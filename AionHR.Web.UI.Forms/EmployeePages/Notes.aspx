@@ -129,7 +129,7 @@
                                 </Renderer>
                                 <Editor>
                                     
-                                    <ext:TextArea runat="server" ID="notesEditor" name="note" >
+                                    <ext:TextArea runat="server" ID="notesEditor" name="notes" >
                                         
                                     </ext:TextArea>
                                 </Editor>

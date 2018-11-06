@@ -151,22 +151,52 @@
     <value />
   </data>
   <data name="Error_10101" xml:space="preserve">
-    <value>خطأ رقم المستخدم</value>
+    <value>%d خطأ رقم المستخدم</value>
   </data>
   <data name="Error_10102" xml:space="preserve">
-    <value>خطأ رقم الموظف</value>
+    <value>%d خطأ رقم الموظف</value>
   </data>
   <data name="Error_10103" xml:space="preserve">
-    <value>خطأ في معرف نموذج الخطاب</value>
+    <value>%d خطأ في معرف نموذج الخطاب</value>
   </data>
   <data name="Error_10104" xml:space="preserve">
-    <value>خطأ في معرف جدول مكافأة نهاية الخدمة</value>
+    <value>%d خطأ في معرف جدول مكافأة نهاية الخدمة</value>
   </data>
   <data name="Error_10105" xml:space="preserve">
-    <value>خطأ في معرف جدول المستحقات</value>
+    <value>%d خطأ في معرف جدول المستحقات</value>
   </data>
   <data name="Error_10106" xml:space="preserve">
-    <value>خطأ في رقم التسلسلي في جدول الاجازة</value>
+    <value>%d خطأ في رقم التسلسلي في جدول الاجازة</value>
+  </data>
+  <data name="Error_10107" xml:space="preserve">
+    <value>%dلا يوجد نوع راتب للسنة المالية</value>
+  </data>
+  <data name="Error_10108" xml:space="preserve">
+    <value>%s لا يوجد مرجع للموظف </value>
+  </data>
+  <data name="Error_10109" xml:space="preserve">
+    <value>%s لا يوجد مرجع لجهاز البصمة</value>
+  </data>
+  <data name="Error_10110" xml:space="preserve">
+    <value>%s لا يوجد هوية للراتب</value>
+  </data>
+  <data name="Error_10111" xml:space="preserve">
+    <value>%s حالة الموظف لم يتم إنهاؤها </value>
+  </data>
+  <data name="Error_10112" xml:space="preserve">
+    <value>%s تنبيه المعرف غير نشط</value>
+  </data>
+  <data name="Error_10113" xml:space="preserve">
+    <value>%s خطأ في تاريخ التجديد</value>
+  </data>
+  <data name="Error_10114" xml:space="preserve">
+    <value>خطأ في سجل فروقات الدوام</value>
+  </data>
+  <data name="Error_10115" xml:space="preserve">
+    <value>%s خطأ في تعريف اليوم </value>
+  </data>
+  <data name="Error_10116" xml:space="preserve">
+    <value>%d خطأ في نص النموذج</value>
   </data>
   <data name="Error_102" xml:space="preserve">
     <value>SQL خطأ في تعبير</value>
@@ -175,22 +205,22 @@
     <value>invalid ORDER BY clause in SQL statement</value>
   </data>
   <data name="Error_11001" xml:space="preserve">
-    <value>الوظيفة المجردة لم يتم اعادة كتابتها</value>
+    <value>%s الوظيفة المجردة لم يتم اعادة كتابتها</value>
   </data>
   <data name="Error_11002" xml:space="preserve">
-    <value>SQL OBJECT NOT SET</value>
+    <value>SQL OBJECT NOT SET %d</value>
   </data>
   <data name="Error_11003" xml:space="preserve">
-    <value>خطأ في اعمدة جدول قاعدة البيانات</value>
+    <value>%s خطأ في اعمدة جدول قاعدة البيانات</value>
   </data>
   <data name="Error_11004" xml:space="preserve">
     <value>خطأ غير معرف</value>
   </data>
   <data name="Error_11005" xml:space="preserve">
-    <value>خطأ في تحميل النموذج</value>
+    <value>%s خطأ في تحميل النموذج</value>
   </data>
   <data name="Error_11006" xml:space="preserve">
-    <value>وقت البصمة خارج الحدود المسموحة</value>
+    <value>%d وقت البصمة خارج الحدود المسموحة</value>
   </data>
   <data name="Error_11103" xml:space="preserve">
     <value>خطأ في صيغة وقت الدخول </value>
@@ -211,73 +241,73 @@
     <value>عدم تطابق نوع البيانات</value>
   </data>
   <data name="Error_12101" xml:space="preserve">
-    <value>خطأ في تنسيق الحقل</value>
+    <value>%s خطأ في تنسيق الحقل</value>
   </data>
   <data name="Error_12102" xml:space="preserve">
-    <value>خطأ في التحويل الى تاريخ</value>
+    <value>%s خطأ في التحويل الى تاريخ</value>
   </data>
   <data name="Error_12103" xml:space="preserve">
-    <value>خطأ في تنسيق وقت الدخول</value>
+    <value>%s خطأ في تنسيق وقت الدخول</value>
   </data>
   <data name="Error_12104" xml:space="preserve">
-    <value>خطأ في تنسيق وقت الخروج</value>
+    <value>%s خطأ في تنسيق وقت الخروج</value>
   </data>
   <data name="Error_12105" xml:space="preserve">
-    <value>ERROR CASTING IDNAME OBJECT</value>
+    <value>ERROR CASTING IDNAME OBJECT %s</value>
   </data>
   <data name="Error_12106" xml:space="preserve">
-    <value>لم يتم مطابقة بين العناصر </value>
+    <value>%s لم يتم مطابقة بين العناصر </value>
   </data>
   <data name="Error_12107" xml:space="preserve">
-    <value>خطأ في تنسيق الحقل </value>
+    <value>%s خطأ في تنسيق الحقل </value>
   </data>
   <data name="Error_12108" xml:space="preserve">
-    <value>يوحد حقل الزامي فارغ</value>
+    <value>%s يوحد حقل الزامي فارغ</value>
   </data>
   <data name="Error_12109" xml:space="preserve">
-    <value>قراءة بيانات فارغة</value>
+    <value>%s قراءة بيانات فارغة</value>
   </data>
   <data name="Error_12110" xml:space="preserve">
-    <value>OUT_OF_RANGE_ERROR_DOW</value>
+    <value>OUT_OF_RANGE_ERROR_DOW %d</value>
   </data>
   <data name="Error_12111" xml:space="preserve">
-    <value>OUT_OF_RANGE_ERROR_DOW</value>
+    <value>OUT_OF_RANGE_ERROR_DOW %d</value>
   </data>
   <data name="Error_12112" xml:space="preserve">
-    <value>OUT_OF_RANGE_ERROR_INT</value>
+    <value>OUT_OF_RANGE_ERROR_INT %d</value>
   </data>
   <data name="Error_12113" xml:space="preserve">
-    <value>تم ارسال محداد فارغ</value>
+    <value>%s تم ارسال محداد فارغ</value>
   </data>
   <data name="Error_12200" xml:space="preserve">
     <value>قراءة بيانات فارغة</value>
   </data>
   <data name="Error_12201" xml:space="preserve">
-    <value>JSON_SERIALIZATION_EXCEPTION</value>
+    <value>JSON_SERIALIZATION_EXCEPTION %s</value>
   </data>
   <data name="Error_12202" xml:space="preserve">
-    <value>JSON_INVALID_OPERATION_EXCEPTION</value>
+    <value>JSON_INVALID_OPERATION_EXCEPTION %s </value>
   </data>
   <data name="Error_12203" xml:space="preserve">
-    <value>JSON_FORMAT_EXCEPTION</value>
+    <value>JSON_FORMAT_EXCEPTION %s</value>
   </data>
   <data name="Error_12204" xml:space="preserve">
-    <value>JSON_ARGUMENT_EXCEPTION</value>
+    <value>json argument exception %s</value>
   </data>
   <data name="Error_12205" xml:space="preserve">
-    <value>JSON_READER_EXCEPTION</value>
+    <value>JSON_READER_EXCEPTION %s</value>
   </data>
   <data name="Error_12300" xml:space="preserve">
-    <value>قيمة المعامل خارج النطاق</value>
+    <value>%d قيمة المعامل خارج النطاق</value>
   </data>
   <data name="Error_12301" xml:space="preserve">
-    <value>يوم الاسبوع خارج النطاق</value>
+    <value>%d يوم الاسبوع خارج النطاق</value>
   </data>
   <data name="Error_12400" xml:space="preserve">
-    <value>SQLخطأ في اتصال</value>
+    <value> SQLخطأ في اتصال</value>
   </data>
   <data name="Error_12401" xml:space="preserve">
-    <value>SQL عمود ناقص في جدول</value>
+    <value> SQL عمود ناقص في جدول</value>
   </data>
   <data name="Error_12402" xml:space="preserve">
     <value>خطأ معامل بيانات فارغة</value>
@@ -289,22 +319,22 @@
     <value>Sql batch run error</value>
   </data>
   <data name="Error_12405" xml:space="preserve">
-    <value>INPUT_FORM_MISSING_TAG</value>
+    <value>INPUT_FORM_MISSING_TAG %s</value>
   </data>
   <data name="Error_12406" xml:space="preserve">
-    <value>مدخل، من حقل الزامي فارغ</value>
+    <value>%s مدخل، من حقل الزامي فارغ</value>
   </data>
   <data name="Error_12407" xml:space="preserve">
-    <value>INPUT_FORM_TYPE_MISMATCH_TAG</value>
+    <value>INPUT_FORM_TYPE_MISMATCH_TAG %s</value>
   </data>
   <data name="Error_12408" xml:space="preserve">
-    <value>خطأ في قراءة القيمة الافتراضية </value>
+    <value>%s خطأ في قراءة القيمة الافتراضية </value>
   </data>
   <data name="Error_12501" xml:space="preserve">
-    <value>خطأ انشاء ملف</value>
+    <value>%s خطأ انشاء ملف</value>
   </data>
   <data name="Error_12502" xml:space="preserve">
-    <value>خطأ فتح ملف</value>
+    <value>%s خطأ فتح ملف</value>
   </data>
   <data name="Error_13001" xml:space="preserve">
     <value>خطأ في الاتصال </value>
@@ -340,7 +370,40 @@
     <value>لايمكن للمستخدم تسجيل الدخول دون أن يكون مديراً أو ان يكون موظفاً</value>
   </data>
   <data name="Error_19007" xml:space="preserve">
-    <value>لا يوجد راتب للموظف </value>
+    <value>%s لا يوجد راتب للموظف </value>
+  </data>
+  <data name="Error_19014" xml:space="preserve">
+    <value>حالة الموظفين غير ناشطة</value>
+  </data>
+  <data name="Error_19015" xml:space="preserve">
+    <value>%s تقويم موظف غير صحيح</value>
+  </data>
+  <data name="Error_19016" xml:space="preserve">
+    <value>%s جدول غير صالح للموظف</value>
+  </data>
+  <data name="Error_19017" xml:space="preserve">
+    <value>%s %d يوم التقويم غير صالح</value>
+  </data>
+  <data name="Error_19018" xml:space="preserve">
+    <value>%s %dيوم الحضور غير صالح</value>
+  </data>
+  <data name="Error_19019" xml:space="preserve">
+    <value>%s ترك العمل يدخل مع الاجازة</value>
+  </data>
+  <data name="Error_19020" xml:space="preserve">
+    <value>%s نطاق زمني غير صالح</value>
+  </data>
+  <data name="Error_19021" xml:space="preserve">
+    <value>%s موظف ليس لديه فرع نشط</value>
+  </data>
+  <data name="Error_19022" xml:space="preserve">
+    <value>القسم الرءيسي  لديه اقسام فرعية ناشطة</value>
+  </data>
+  <data name="Error_19023" xml:space="preserve">
+    <value>مراجع الموظف في غير مجموعة</value>
+  </data>
+  <data name="Error_19024" xml:space="preserve">
+    <value>يوجد دوام للموظف %s قيد معالجة </value>
   </data>
   <data name="Error_19100" xml:space="preserve">
     <value>خطأ امني </value>
@@ -457,7 +520,7 @@
     <value>could not find an account with record status = new, database creation aborted</value>
   </data>
   <data name="Error_50023" xml:space="preserve">
-    <value>super user cannot be deleted</value>
+    <value>لا يمكن حذف موظف ذو صلاحيات مطلقة</value>
   </data>
   <data name="Error_50024" xml:space="preserve">
     <value>لم يتم تحديد منطقة زمنية، اخفاق في الدخول</value>
