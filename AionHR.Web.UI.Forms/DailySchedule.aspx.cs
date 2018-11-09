@@ -745,7 +745,7 @@ namespace AionHR.Web.UI.Forms
                          this.pnlSchedule.Html = html;
                          X.Call("DisableTools");
                          X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName.reference).Show();
-                         return; 
+                         throw new Exception();
                      }
                  });
 
@@ -818,8 +818,10 @@ namespace AionHR.Web.UI.Forms
                 X.Call("Init");
                 X.Call("DisableTools");
                 X.Call("FixHeader");
-            }catch
-            { }
+            }catch(Exception exp)
+            {
+
+            }
         }
 
 

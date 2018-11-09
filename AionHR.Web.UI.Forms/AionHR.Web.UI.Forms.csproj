@@ -153,6 +153,7 @@
     <Content Include="BusinessPartneres.aspx" />
     <Content Include="DocumentCategories.aspx" />
     <Content Include="Reports\RT303.aspx" />
+    <Content Include="Scripts\SystemDefaults.js" />
     <Content Include="TimeAttendanceApprovals.aspx" />
     <Content Include="TimeAttendanceViewSelfServices.aspx" />
     <Content Include="TimeVariationSelfServices.aspx" />

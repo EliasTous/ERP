@@ -1,7 +1,9 @@
-﻿using AionHR.Model.MasterModule;
+﻿using AionHR.Infrastructure.WebService;
+using AionHR.Model.MasterModule;
 using AionHR.Model.System;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.System;
+using System.Collections.Generic;
 
 namespace AionHR.Services.Interfaces
 {
@@ -24,7 +26,8 @@ namespace AionHR.Services.Interfaces
         PasswordRecoveryResponse ResetPassword(ResetPasswordRequest request);
 
         PostResponse<Attachement> UploadMultipleAttachments(SystemAttachmentsPostRequest req);
-
+        PostResponse<Attachement> UploadCompanyLogo(CompanyUploadLogoRequest req);
+      
         PostResponse<BatchSql> RunSqlBatch(BatchSql r);
     }
 }

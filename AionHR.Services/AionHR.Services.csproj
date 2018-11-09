@@ -134,7 +134,9 @@
     <Compile Include="Messaging\CompanyStructure\PositionListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeePenaltyApprovalListRequest.cs" />
     <Compile Include="Messaging\Reports\TimeCodeRecordRequest.cs" />
+    <Compile Include="Messaging\System\AttachementRecordRequest.cs" />
     <Compile Include="Messaging\System\BackgroundJobRecordRequest.cs" />
+    <Compile Include="Messaging\System\CompanyUploadLogoRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeApprovalRecordRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeVariationListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeesRequests.cs" />

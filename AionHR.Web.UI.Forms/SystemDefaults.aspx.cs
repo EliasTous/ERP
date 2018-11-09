@@ -27,6 +27,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
 using AionHR.Model.NationalQuota;
 using AionHR.Model.Benefits;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -240,7 +241,42 @@ namespace AionHR.Web.UI.Forms
             passportStore.DataSource = GetRTW();
             passportStore.DataBind();
         }
+        [DirectMethod]
+        public void FillCompanyLogo()
+        {
+            try
+            {
+                AttachementRecordRequest req = new AttachementRecordRequest();
+                req.RecordID = "1";
+                req.seqNo = "1";
+                req.classId = "20030";
 
+                RecordResponse<Attachement> resp = _systemService.ChildGetRecord<Attachement>(req);
+
+                if (!resp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                imgControl.ImageUrl = resp.result.url;
+                CurrentEmployeePhotoName.Text = resp.result.url;
+              if (string.IsNullOrEmpty(imgControl.ImageUrl))
+                {
+                    imgControl.ImageUrl = "Images/empPhoto.jpg";
+                    CurrentEmployeePhotoName.Text = "Images/empPhoto.jpg";
+                  
+                }
+            }
+
+            catch (Exception exp )
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                
+            }
+
+        }
         private void FillDefaults(List<KeyValuePair<string, string>> items)
         {
             try
@@ -531,6 +567,7 @@ namespace AionHR.Web.UI.Forms
 
             catch { }
 
+            FillCompanyLogo(); 
 
 
         }
@@ -1589,6 +1626,15 @@ namespace AionHR.Web.UI.Forms
             }
 
 
+        }
+        protected void DisplayImage(object sender, DirectEventArgs e)
+        {
+
+          
+                employeePhoto.ImageUrl = "Images/empPhoto.jpg";
+                return;
+          
+         
         }
 
 

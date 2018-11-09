@@ -1522,15 +1522,20 @@
                         <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text="<%$ Resources:UploadPicture %>">
                             <Listeners>
 
-                                <Click Handler="CheckSession();   if (!#{imageUploadForm}.getForm().isValid() ) {  return false;} if(#{CurrentEmployee}.value==''){#{imageSelectionWindow}.hide(); $('#' + $('#imgControl')[0].firstChild.id).attr('src', getRoundedCanvas($('#image').cropper('getCroppedCanvas')).toDataURL());   return false;  }  GetCroppedImage(); return; #{imageData}.value = theBlob; alert(theBlob); GetCroppedImage();  var fd = new FormData();
+                                <Click Handler="CheckSession();  if (!#{imageUploadForm}.getForm().isValid() ) {  return false;} if(#{CurrentEmployee}.value==''){#{imageSelectionWindow}.hide(); $('#' + $('#imgControl')[0].firstChild.id).attr('src', getRoundedCanvas($('#image').cropper('getCroppedCanvas')).toDataURL());   return false;  }  GetCroppedImage(); return; #{imageData}.value = theBlob; alert(theBlob); GetCroppedImage();  var fd = new FormData();
         fd.append('fname', #{FileUploadField1}.value);
                                    fd.append('id',null);          
                                             alert(#{imageData}.value);
                                             Ext.net.Mask.show({msg:App.employeeControl1_lblLoading.getValue(),el:#{imageSelectionWindow}.id});  
                                             if(#{FileUploadField1}.value!='')
+                                    {
         fd.append('data', #{imageData}.value,#{FileUploadField1}.value);
+                                    }
                                             else
+                                    {
                                             fd.append('oldUrl',#{CurrentEmployeePhotoName}.value );
+                                  
+                                    }
                                              $.ajax({
             type: 'POST',
             url: 'EmployeePhotoUploaderHandler.ashx?classId=31000&recordId='+#{CurrentEmployee}.value,

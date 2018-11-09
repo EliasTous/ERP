@@ -86,7 +86,7 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.ActiveIndex = 0;
             picturePath.Clear();
         
-            imgControl.ImageUrl = "";
+            imgControl.ImageUrl = "Images/empPhoto.jpg";
             InitCombos(true);
             CurrentEmployeePhotoName.Text = "Images/empPhoto.jpg";
             CurrentEmployee.Text = "";

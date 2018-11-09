@@ -18,5 +18,6 @@ namespace AionHR.Model.System
         RecordWebServiceResponse<UserInfo> RequestPasswordRecovery(Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
 
         PostWebServiceResponse UploadMultipleAttachments(Attachement at, List<string> fileNames, List<byte[]> filesData, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
+        PostWebServiceResponse UploadCompanyLogo(Attachement at, string fileName, byte[] fileData, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
     }
 }

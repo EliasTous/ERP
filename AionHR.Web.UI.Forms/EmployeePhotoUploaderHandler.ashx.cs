@@ -50,29 +50,89 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                EmployeeUploadPhotoRequest upreq = new EmployeeUploadPhotoRequest();
-                upreq.entity.fileName = context.Request.Files[0].FileName;
-                byte[] fileData = null;
-                for (int i = 0; i < context.Request.Files.Count; ++i)
+                if (context.Request.QueryString["classId"].ToString() != "20030")
                 {
-                    HttpPostedFile f = context.Request.Files.Get(i);
-                    fileData = new byte[Convert.ToInt32(f.InputStream.Length)];
-                    f.InputStream.Seek(0, SeekOrigin.Begin);
-                    f.InputStream.Read(fileData, 0, Convert.ToInt32(f.InputStream.Length));
-                    f.InputStream.Close();
+                    EmployeeUploadPhotoRequest upreq = new EmployeeUploadPhotoRequest();
+                    upreq.entity.fileName = context.Request.Files[0].FileName;
+                    byte[] fileData = null;
+                    for (int i = 0; i < context.Request.Files.Count; ++i)
+                    {
+                        HttpPostedFile f = context.Request.Files.Get(i);
+                        fileData = new byte[Convert.ToInt32(f.InputStream.Length)];
+                        f.InputStream.Seek(0, SeekOrigin.Begin);
+                        f.InputStream.Read(fileData, 0, Convert.ToInt32(f.InputStream.Length));
+                        f.InputStream.Close();
 
-                    upreq.photoName = context.Request.Files[0].FileName;
-                    upreq.photoData = fileData;
-                    upreq.entity.recordId = Convert.ToInt32(context.Request.QueryString["recordId"]);
+                        upreq.photoName = context.Request.Files[0].FileName;
+                        upreq.photoData = fileData;
+                        upreq.entity.recordId = Convert.ToInt32(context.Request.QueryString["recordId"]);
 
 
+                    }
+
+                    PostResponse<Attachement> resp = _employeeService.UploadEmployeePhoto(upreq);
+                    if (!resp.Success)
+                    {
+                        context.Response.Write("{'Error':'Error'}");
+                        return;
+                    }
                 }
-
-                PostResponse<Attachement> resp = _employeeService.UploadEmployeePhoto(upreq);
-                if (!resp.Success)
+                else
                 {
-                    context.Response.Write("{'Error':'Error'}");
-                    return;
+                    {
+                        PostRequest<Attachement> request = new PostRequest<Attachement>();
+                        request.entity = new Attachement();
+                        request.entity.classId = ClassId.SYDE;
+                        request.entity.fileName = context.Request.Files[0].FileName;
+                        request.entity.date = DateTime.Now;
+                        request.entity.recordId = 1;
+                        request.entity.seqNo = 1;
+
+
+                        byte[] fileData = null;
+                        HttpPostedFile f = context.Request.Files.Get(0);
+                        if (f.InputStream.Length > 0)
+                        {
+
+                            fileData = new byte[Convert.ToInt32(f.InputStream.Length)];
+                            f.InputStream.Seek(0, SeekOrigin.Begin);
+                            f.InputStream.Read(fileData, 0, Convert.ToInt32(f.InputStream.Length));
+                            f.InputStream.Close();
+
+
+
+                        }
+                        else
+                        {
+                            fileData = null;
+                        }
+                        PostResponse<Attachement> r = _systemService.ChildAddOrUpdate<Attachement>(request);
+
+
+                        //check if the insert failed
+                        if (r.Success)//it maybe be another condition
+                        {
+                            if (fileData != null)
+                            {
+                                SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
+                                req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.SYDE, recordId = 1, fileName = context.Request.Files[0].FileName, seqNo = 1 };
+                                req.FileNames.Add(context.Request.Files[0].FileName);
+                                req.FilesData.Add(fileData);
+                                PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
+                                if (!resp.Success)
+                                {
+                                    context.Response.Write("{'Error':'Error'}");
+                                    return;
+                                }
+
+                            }
+                           
+                        }
+                        else
+                            context.Response.Write("{'Error':'Error'}");
+                      
+
+                    }
                 }
 
             }

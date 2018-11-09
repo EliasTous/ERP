@@ -7,10 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
-    <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
+
+    <link rel="stylesheet" type="../text/css" href="CSS/Common.css?id=11" />
+<script src="Scripts.js" type="../text/javascript"></script>
+
+
+
+
+
+
+   
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
+      <link rel="stylesheet" type="text/css" href="../CSS/cropper.css" />
     <script type="text/javascript" src="Scripts/Nationalities.js"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery-new.js"></script>
+  
+    <script type="text/javascript" src="../Scripts/cropper.js"></script>
+      <script type="text/javascript" src="Scripts/SystemDefaults.js?id=73"></script>
     <script type="text/javascript">
         var checkExtension = function (file) {
           
@@ -64,8 +78,9 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
          <ext:Hidden ID="paymentValue" runat="server" Text="<%$ Resources:PaymentValue %>" />
         <ext:Hidden ID="paymentValueP" runat="server" Text="<%$ Resources:PaymentValueP %>" />
-
-
+        <ext:Hidden ID="CurrentEmployeePhotoName" runat="server" EnableViewState="true"  />
+        <ext:Hidden runat="server" ID="imageData" />
+        <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
@@ -203,15 +218,24 @@
                                                 </ext:Store>
                                             </Store>
                                             </ext:ComboBox>
-                               
-                                <%--   <ext:FileUploadField ID="FileUploadField1" runat="server" FieldLabel="uploadImage" IconCls="upload-icon" >
-                                      <Validator Handler="return checkExtension(App.FileUploadField1.getValue());" />
-                                      <Listeners>
-                                     
-                              
-                                      </Listeners>
-                                       </ext:FileUploadField>
-                                 <ext:Image runat="server" ID="companyLogoImg" MaxWidth="200" Height="100" Align="Middle"  ImageUrl="~/Images/empPhoto.jpg" Title="dads" />--%>
+                                 <ext:Image runat="server" ID="noImage" Hidden="true"  Width="100" Height="100" />
+                        <ext:Image runat="server" ID="imgControl" MaxWidth="150" MaxHeight="150">
+                            <Listeners>
+                                <%--<Click Handler="triggierImageClick(App.employeeControl1_picturePath.fileInputEl.id); " />--%>
+                                <Click Handler="InitCropper(App.CurrentEmployeePhotoName.value); App.imageSelectionWindow.show();" />
+                            </Listeners>
+
+                        </ext:Image>
+
+
+                        <ext:FileUploadField ID="picturePath" runat="server" ButtonOnly="true" Hidden="true">
+
+                            <Listeners>
+                                <Change Handler="showImagePreview(App.picturePath.fileInputEl.id);" />
+                            </Listeners>
+                            <DirectEvents>
+                            </DirectEvents>
+                        </ext:FileUploadField>
                                  <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableHijri %>" LabelWidth="150" runat="server" InputValue="True" Name="enableHijri" ID="enableHijri" />
                                   
        
@@ -1107,7 +1131,113 @@
 
 
 
+        <ext:Window
+    ID="imageSelectionWindow"
+    runat="server"
+    Icon="PageEdit"
+ 
+    Width="400"
+    Height="400"
+    AutoShow="false"
+    Modal="true"
+    Hidden="true"
+    Resizable="false"
+    Maximizable="false"
+    Layout="Fit">
 
+    <Items>
+
+        <ext:FormPanel
+            ID="imageUploadForm"
+            runat="server" DefaultButton="SaveButton"
+     
+            Icon="ApplicationSideList"
+            Header="false"
+            DefaultAnchor="100%"
+            BodyPadding="5">
+            <Content>
+                <%--    <div class="imageBox" style="width: 290px; height: 270px;display:none;">
+                            <div class="spinner" style="display: none"></div>
+                            <div class="thumbBox" style="width: 290px; height: 270px; border: 3px solid black;display:none;" onclick="App.employeeControl1_uploadPhotoButton.setDisabled(false);"></div>
+                            <input type="button" id="btnZoomIn" value="+" style="float: right;display:none;">
+                            <input type="button" id="btnZoomOut" value="-" style="float: right;display:none;">
+                        </div>--%>
+                <div>
+                    <img width="200" height="300" src="" id="image"  crossorigin="Anonymous" />
+                    <input type="button" id="button" value="press me" style="display: none;" />
+
+                </div>
+            </Content>
+            <Items>
+                <ext:Image runat="server" Width="150" Height="300" ID="employeePhoto" Hidden="true" Visible="false">
+                </ext:Image>
+                <%--<ext:Hidden runat="server" ID="imageData" Name="imageData" Visible="false" />--%>
+            </Items>
+            <BottomBar>
+                <ext:Toolbar runat="server">
+                    <Items>
+
+                        <ext:ToolbarFill runat="server" />
+
+                        <ext:Button runat="server" Icon="PictureAdd" Text="BrowsePicture">
+                            <Listeners>
+                                <Click Handler="triggierImageClick(App.FileUploadField1.fileInputEl.id); "></Click>
+                            </Listeners>
+                        </ext:Button>
+                        <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text=" UploadPicture">
+                            <Listeners>
+
+                                <Click Handler="CheckSession();   if (!#{imageUploadForm}.getForm().isValid() ) {  return false;}  GetCroppedImage(); "  ></Click>                        
+   
+
+                            </Listeners>
+                            <%--      <DirectEvents>
+                                        <Click OnEvent="UploadImage" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                            
+                                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{imageSelectionWindow}.body}" />
+                                            <ExtraParams>
+                                                <ext:Parameter Name="values" Value="#{imageUploadForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                                                
+                                            </ExtraParams>
+                                        </Click>
+                                    </DirectEvents>--%>
+                        </ext:Button>
+                        <ext:Button runat="server" Icon="Cancel" Text="RemovePicture ">
+                            <Listeners>
+                                <Click Handler="ClearImage2(); InitCropper('Images/empPhoto.jpg'); App.uploadPhotoButton.setDisabled(false); " />
+                            </Listeners>
+                        </ext:Button>
+                        <ext:FileUploadField ID="FileUploadField1" runat="server" ButtonOnly="true" Hidden="true">
+                            <Listeners>
+                                <Change Handler="showImagePreview(App.FileUploadField1.fileInputEl.id); showImagePreview2(App.FileUploadField1.fileInputEl.id); " />
+                            </Listeners>
+
+                        </ext:FileUploadField>
+                        <ext:ToolbarFill runat="server" />
+                    </Items>
+
+                </ext:Toolbar>
+
+            </BottomBar>
+
+
+
+            <Listeners>
+
+                <AfterLayout Handler="CheckSession();" />
+                   
+                           
+            </Listeners>
+            <DirectEvents>
+                <AfterLayout OnEvent="DisplayImage">
+                </AfterLayout>
+            </DirectEvents>
+        </ext:FormPanel>
+
+
+    </Items>
+
+</ext:Window>
 
 
     </form>

@@ -117,7 +117,18 @@ namespace AionHR.Services.Implementations
                 response.recordId = webResponse.recordId;
             return response;
         }
+        public PostResponse<Attachement> UploadCompanyLogo(CompanyUploadLogoRequest request)
+        {
+            PostResponse<Attachement> response;
+            var headers = SessionHelper.GetAuthorizationHeadersForUser();
+            PostWebServiceResponse webResponse = childRepo.UploadCompanyLogo(request.entity, request.photoName, request.photoData, headers);
+            response = CreateServiceResponse<PostResponse<Attachement>>(webResponse);
+            if (webResponse != null)
+                response.recordId = webResponse.recordId;
+            return response;
+        }
 
+     
         public PostResponse<BatchSql> RunSqlBatch(BatchSql r)
         {
             PostResponse<BatchSql> response = new PostResponse<BatchSql>();
