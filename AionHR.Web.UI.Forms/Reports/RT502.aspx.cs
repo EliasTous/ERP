@@ -274,14 +274,14 @@ namespace AionHR.Web.UI.Forms.Reports
 
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
-            //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport(true);
         }
 
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+           StoreRequestParameters prms = new StoreRequestParameters(extraParams);
             List<Employee> data = GetEmployeesFiltered(prms.Query);
             data.ForEach(s => { s.fullName = s.name.fullName; });
             //  return new
@@ -301,6 +301,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.StartAt = "1";
             req.Size = "20";
             req.Filter = query;
+            req.filterField = "0";
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             return response.Items;
@@ -319,6 +320,12 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 req.Year = fiscalYear.Value.ToString();
                 req.PeriodType = (SalaryType)Convert.ToInt32( salaryType.Value);
+                if (string.IsNullOrEmpty(req.Year))
+                {
+                //    X.Call("FiscalYearError", Resources.Errors.);
+                    return;
+
+                }
                 req.Status = "3";
 
                 ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);

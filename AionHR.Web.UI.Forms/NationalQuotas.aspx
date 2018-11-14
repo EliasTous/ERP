@@ -1114,7 +1114,7 @@
                         <ext:Toolbar ID="Toolbar8" runat="server" ClassicButtonStyle="false">
                             <Items>
                              
-                                    <ext:ComboBox AllowBlank="false"  AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="bsId" Name="bsId"  EmptyText="<%$ Resources:FieldBusinessSize%>">
+                                    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="bsId" Name="bsId"  EmptyText="<%$ Resources:FieldBusinessSize%>">
                                             <Store>
                                                 <ext:Store runat="server" ID="bsIdStore">
                                                     <Model>
@@ -1128,7 +1128,7 @@
                                                 </ext:Store>
                                             </Store>
                                             </ext:ComboBox>
-                                      <ext:ComboBox AllowBlank="false"   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="inId" Name="inId"  EmptyText="<%$ Resources:FieldIndustry%>">
+                                      <ext:ComboBox    AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="inId" Name="inId"  EmptyText="<%$ Resources:FieldIndustry%>">
                                             <Store>
                                                 <ext:Store runat="server" ID="inIdStore">
                                                     <Model>

@@ -19,7 +19,7 @@ namespace Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option or rebuild the Visual Studio project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Classes {
@@ -61,6 +61,51 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Industry.
+        /// </summary>
+        internal static string Class10101 {
+            get {
+                return ResourceManager.GetString("Class10101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Size.
+        /// </summary>
+        internal static string Class10102 {
+            get {
+                return ResourceManager.GetString("Class10102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Levels.
+        /// </summary>
+        internal static string Class10103 {
+            get {
+                return ResourceManager.GetString("Class10103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Citizenship.
+        /// </summary>
+        internal static string Class10104 {
+            get {
+                return ResourceManager.GetString("Class10104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Point Aquisition.
+        /// </summary>
+        internal static string Class10105 {
+            get {
+                return ResourceManager.GetString("Class10105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folders.
         /// </summary>
         internal static string Class20000 {
@@ -70,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dashboard.
+        ///   Looks up a localized string similar to Background Job.
         /// </summary>
         internal static string Class20001 {
             get {
@@ -201,6 +246,15 @@ namespace Resources {
         internal static string Class20090 {
             get {
                 return ResourceManager.GetString("Class20090", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Import.
+        /// </summary>
+        internal static string Class20100 {
+            get {
+                return ResourceManager.GetString("Class20100", resourceCulture);
             }
         }
         
@@ -1290,6 +1344,15 @@ namespace Resources {
         internal static string Class80802 {
             get {
                 return ResourceManager.GetString("Class80802", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        internal static string Class81000 {
+            get {
+                return ResourceManager.GetString("Class81000", resourceCulture);
             }
         }
         

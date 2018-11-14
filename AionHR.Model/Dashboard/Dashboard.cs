@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Dashboard
 {
-    [ClassIdentifier("20001","20")]
+    [ClassIdentifier("81000", "81")]
     public class Dashboard
     {
     }

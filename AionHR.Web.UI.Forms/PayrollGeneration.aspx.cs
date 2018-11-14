@@ -832,6 +832,13 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 req.Year = fiscalYear.Value.ToString();
+                if (string.IsNullOrEmpty(req.Year))
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Errors.FillFiscalYear).Show();
+                    Viewport1.ActiveIndex = 0;
+                    return;
+                }
                 req.PeriodType = (SalaryType)Convert.ToInt32(salaryType.Value.ToString());
                 req.Status = "1";
 

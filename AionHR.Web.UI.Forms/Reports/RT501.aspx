@@ -73,11 +73,7 @@
                                                 <uc:paymentMethodCombo runat="server" ID="paymentMethodCombo" />
                                             </Content>
                                         </ext:Container>
-                                <ext:Container runat="server"  Layout="FitLayout">
-                                    <Content>
-                                        <uc:
-                                        </Content>
-                                    </ext:Container>
+                              
 
                                   <%--  <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>

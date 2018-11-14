@@ -1395,4 +1395,37 @@
   <data name="Property4200007" xml:space="preserve">
     <value>Branch Manager</value>
   </data>
+  <data name="Property1010101" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property1010201" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property1010202" xml:space="preserve">
+    <value>Min Employees</value>
+  </data>
+  <data name="Property1010203" xml:space="preserve">
+    <value>Max Employees</value>
+  </data>
+  <data name="Property1010301" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property1010401" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property1010402" xml:space="preserve">
+    <value>Ceiling</value>
+  </data>
+  <data name="Property1010403" xml:space="preserve">
+    <value>Points</value>
+  </data>
+  <data name="Property1010501" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="Property1010502" xml:space="preserve">
+    <value>Hired Percentage</value>
+  </data>
+  <data name="Property1010503" xml:space="preserve">
+    <value>Terminated Percentage</value>
+  </data>
 </root>

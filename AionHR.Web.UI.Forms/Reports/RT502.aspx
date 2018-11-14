@@ -25,9 +25,18 @@
     <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
     <script type="text/javascript">
         function alertNow(s, e) {
+            
 
             Ext.MessageBox.alert('Error', e.message);
             e.handled = true;
+        }
+
+          function FiscalYearError(e) {
+           
+
+              Ext.MessageBox.alert('Error', e);
+               e.handled = true;
+           
         }
     </script>
 </head>
@@ -42,6 +51,8 @@
 
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
+         <ext:Hidden ID="periodError" runat="server" Text="<%$ Resources:Errors , periodError %>" />
+        
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
@@ -139,6 +150,9 @@
                                             </ExtraParams>
                                         </Select>
                                     </DirectEvents>--%>
+                                    <Listeners>
+                                        <FocusEnter Handler="if (#{salaryType}.getValue()==null || #{fiscalYear}.getValue() ==null){Ext.Msg.alert('Error',#{periodError}.getValue()); callbackPanel.PerformCallback('1');}" />
+                                    </Listeners>
                                 </ext:ComboBox>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>

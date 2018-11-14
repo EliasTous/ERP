@@ -259,8 +259,11 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                     return;
                 }
-                imgControl.ImageUrl = resp.result.url;
-                CurrentEmployeePhotoName.Text = resp.result.url;
+                if (resp.result != null)
+                {
+                    imgControl.ImageUrl = resp.result.url;
+                    CurrentEmployeePhotoName.Text = resp.result.url;
+                }
               if (string.IsNullOrEmpty(imgControl.ImageUrl))
                 {
                     imgControl.ImageUrl = "Images/empPhoto.jpg";

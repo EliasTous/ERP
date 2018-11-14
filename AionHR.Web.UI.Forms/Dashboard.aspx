@@ -9,9 +9,9 @@
     <title></title>
 
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=31" />
+    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=980" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Dashboard.js?id=741"></script>
+  
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js?id=10"></script>
@@ -1116,6 +1116,73 @@
             };
         };
     </script>
+    <script type="text/javascript">
+        
+var editRender = function () {
+    
+    return '<img class="imgEdit" style="cursor:pointer;" src="Images/Tools/edit.png" />';
+};
+
+var deleteRender = function () {
+    return '<img class="imgDelete"  style="cursor:pointer;" src="Images/Tools/delete.png" />';
+};
+var attachRender = function () {
+   
+    return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/collapse1.png" />';
+};
+var appendRender = function () {
+   
+    return '<img class="imgAppend"  style="cursor:pointer;" src="Images/Tools/expand-all.png" />';
+};
+
+
+
+
+
+var commandName;
+var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
+
+    CheckSession();
+
+
+    var t = e.getTarget(),
+            columnId = this.columns[columnIndex].id; // Get column id
+
+    if (t.className == "imgEdit") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+
+    if (t.className == "imgDelete") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+    if (t.className == "imgAttach") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+    if (t.className == "imgAppend") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+
+    //forbidden
+    return false;
+};
+
+
+
+var getCellType = function (grid, rowIndex, cellIndex) {
+   
+    var columnId = grid.columns[cellIndex].id; // Get column id
+    return commandName;
+};
+
+    </script>
 </head>
 <body style="background-color: #fff">
     <form id="Form1" runat="server">
@@ -1980,7 +2047,7 @@
                                                                         MenuDisabled="true"
                                                                         Resizable="false">
 
-                                                                        <Renderer Handler="return editRender()+'&nbsp;&nbsp;' + appendRender(); " />
+                                                                        <Renderer Handler="return editRender()+'&nbsp;&nbsp;' + attachRender(); " />
                                                                     </ext:Column>
 
 
@@ -2262,7 +2329,7 @@
                                                                         MenuDisabled="true"
                                                                         Resizable="false">
 
-                                                                        <Renderer Handler="return  appendRender(); " />
+                                                                        <Renderer Handler="return  attachRender(); " />
                                                                     </ext:Column>
 
 
@@ -2444,7 +2511,7 @@
                                                     Hideable="false"
                                                     MenuDisabled="true"
                                                     Resizable="false">
-                                                    <Renderer Handler="return appendRender() ;" />
+                                                    <Renderer Handler="return attachRender() ;" />
 
                                                   </ext:Column>
 

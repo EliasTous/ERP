@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Class10101" xml:space="preserve">
+    <value>Industry</value>
+  </data>
+  <data name="Class10102" xml:space="preserve">
+    <value>Business Size</value>
+  </data>
+  <data name="Class10103" xml:space="preserve">
+    <value>Levels</value>
+  </data>
+  <data name="Class10104" xml:space="preserve">
+    <value>Citizenship</value>
+  </data>
+  <data name="Class10105" xml:space="preserve">
+    <value>Point Aquisition</value>
+  </data>
   <data name="Class20000" xml:space="preserve">
     <value>Folders</value>
   </data>
   <data name="Class20001" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>Background Job</value>
   </data>
   <data name="Class20002" xml:space="preserve">
     <value>Employee Org Chart</value>
@@ -164,6 +179,9 @@
   </data>
   <data name="Class20090" xml:space="preserve">
     <value>Auto Alert</value>
+  </data>
+  <data name="Class20100" xml:space="preserve">
+    <value>Data Import</value>
   </data>
   <data name="Class21010" xml:space="preserve">
     <value>Divisions</value>
@@ -527,6 +545,9 @@
   </data>
   <data name="Class80802" xml:space="preserve">
     <value>Audit Trail</value>
+  </data>
+  <data name="Class81000" xml:space="preserve">
+    <value>Dashboard</value>
   </data>
   <data name="Class81100" xml:space="preserve">
     <value>Dashboard</value>

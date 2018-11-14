@@ -78,6 +78,7 @@
     <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\Desktop\dlls\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.Resources.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\Desktop\dlls\DevExpress.Web.Resources.v16.2.dll</HintPath>
     </Reference>
@@ -2566,6 +2567,7 @@
     <Content Include="App_LocalResources\DocumentCategories.aspx.ar.resx" />
     <Content Include="App_LocalResources\AdminDocuments.aspx.resx" />
     <Content Include="App_LocalResources\AdminDocuments.aspx.ar.resx" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

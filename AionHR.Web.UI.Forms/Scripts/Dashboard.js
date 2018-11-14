@@ -9,11 +9,11 @@ var deleteRender = function () {
 };
 var attachRender = function () {
    
-    return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
+    return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/collapse1.png" />';
 };
 var appendRender = function () {
    
-    return '<img class="imgAppend"  style="cursor:pointer;" src="Images/Tools/collapse.png" />';
+    return '<img class="imgAppend"  style="cursor:pointer;" src="Images/Tools/expand-all.png" />';
 };
 
 

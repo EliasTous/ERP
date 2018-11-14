@@ -1389,4 +1389,37 @@
   <data name="Property4200007" xml:space="preserve">
     <value>مدير الفرع</value>
   </data>
+  <data name="Property1010101" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Property1010201" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Property1010202" xml:space="preserve">
+    <value>من</value>
+  </data>
+  <data name="Property1010203" xml:space="preserve">
+    <value>الى </value>
+  </data>
+  <data name="Property1010301" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Property1010401" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Property1010402" xml:space="preserve">
+    <value>الحد الأقصى</value>
+  </data>
+  <data name="Property1010403" xml:space="preserve">
+    <value>النقاط</value>
+  </data>
+  <data name="Property1010501" xml:space="preserve">
+    <value>عدد الايام</value>
+  </data>
+  <data name="Property1010502" xml:space="preserve">
+    <value>توظيف</value>
+  </data>
+  <data name="Property1010503" xml:space="preserve">
+    <value>انهاء الخدمة </value>
+  </data>
 </root>

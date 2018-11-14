@@ -47,7 +47,7 @@ namespace AionHR.Services.Implementations
 
                 response.Summary = webResponse.Details;
                 response.ErrorCode = "Error_"+webResponse.statusId.Substring(1);
-               if(webResponse.statusId.Substring(1) == null)
+               if(webResponse.statusId.Substring(1) == null || webResponse.statusId=="0")
                 {
                     response.ErrorCode = "Error_1";
                     response.Summary = "Unknown Error!";

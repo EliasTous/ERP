@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../Scripts/jquery-new.js"></script>
   
     <script type="text/javascript" src="../Scripts/cropper.js"></script>
-      <script type="text/javascript" src="Scripts/SystemDefaults.js?id=73"></script>
+      <script type="text/javascript" src="Scripts/SystemDefaults.js?id=83"></script>
     <script type="text/javascript">
         var checkExtension = function (file) {
           
@@ -306,7 +306,7 @@
                                 </ext:ComboBox>
                                
 
-                                <ext:ComboBox AllowBlank="false" AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldNameFormat %>" Name="nameFormat" runat="server" ID="nameFormatCombo">
+                                <ext:ComboBox AllowBlank="true" AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldNameFormat %>" Name="nameFormat" runat="server" ID="nameFormatCombo">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:FirstNameLastName %>" Value="{firstName} {lastName}" />
                                           <ext:ListItem Text="<%$ Resources:FirstNameMiddleNameFamilyNameLastName %>" Value="{firstName} {middleName} {familyName} {lastName}" />

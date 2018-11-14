@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.NationalQuota
 {
-   public class Industry:ModelBase
+    [ClassIdentifier("10101", "10")]
+    public class Industry:ModelBase
     {
+        [PropertyID("10101_01")]
+        [ApplySecurity]
         public string name { get; set; }
     }
 }

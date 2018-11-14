@@ -142,7 +142,7 @@ namespace AionHR.Web.UI.Forms
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
                         return;
                     }
                     //FillParent();
@@ -618,14 +618,33 @@ namespace AionHR.Web.UI.Forms
         }
         private string GetNameFormat()
         {
+            string format="";
             SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
             req.Key = "nameFormat";
-            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
-            if (!response.Success)
+            RecordResponse<KeyValuePair<string, string>> r = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!r.Success)
             {
-
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", "ErrorMsg") + GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId + "</br>" : r.Summary).Show();
+                return null;
             }
-            string paranthized = response.result.Value;
+            format = r.result.Value;
+            if (string.IsNullOrEmpty( r.result.Value))
+            {
+              
+                PostRequest<KeyValuePair<string, string>> request = new PostRequest<KeyValuePair<string, string>>();
+                request.entity = new KeyValuePair<string, string>("nameFormat", "{firstName} {lastName}");
+                PostResponse <KeyValuePair<string, string>> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>>(request);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", "ErrorMsg") + GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>" : resp.Summary).Show();
+                    return null; 
+                }
+                format = "{firstName} {lastName}";
+              
+            }
+           
+
+            string paranthized = format; 
             paranthized = paranthized.Replace('{', ' ');
             paranthized = paranthized.Replace('}', ',');
             paranthized = paranthized.Substring(0, paranthized.Length - 1);

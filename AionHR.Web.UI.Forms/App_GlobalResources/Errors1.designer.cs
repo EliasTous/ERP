@@ -1276,11 +1276,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please add Fiscal Years to system before generate payroll .
+        /// </summary>
+        internal static string FillFiscalYear {
+            get {
+                return ResourceManager.GetString("FillFiscalYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee has loans .
         /// </summary>
         internal static string FinalSettlementForEmployeeHaveLoans {
             get {
                 return ResourceManager.GetString("FinalSettlementForEmployeeHaveLoans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select fiscal year and salary Type .
+        /// </summary>
+        internal static string periodError {
+            get {
+                return ResourceManager.GetString("periodError", resourceCulture);
             }
         }
     }

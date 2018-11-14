@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.System
 {
-  public  class BackgroundJob :ModelBase
+    [ClassIdentifier("20001", "20")]
+    public  class BackgroundJob :ModelBase
     {
-       
+
         public string userId { get; set; }
         public string classId { get; set; }
         public string MyProperty { get; set; }

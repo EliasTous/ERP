@@ -316,7 +316,7 @@ var theBlob;
             }
             $.ajax({
             type: 'POST',
-                url: 'EmployeePhotoUploaderHandler.ashx?classId=20030&recordId=' + 1,
+                url: 'EmployeePhotoUploaderHandler.ashx?classId=20030',
         data: fd,
         processData: false,
         contentType: false,
