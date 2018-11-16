@@ -76,7 +76,7 @@
                         <ext:ModelField Name="recordId" />
                         <ext:ModelField Name="name" />
                         <ext:ModelField Name="bcId" />
-                        <ext:ModelField Name="inactive" />
+                        <ext:ModelField Name="isInactive" />
                         <ext:ModelField Name="email" />
                          <ext:ModelField Name="bcName" />
                       
@@ -162,7 +162,7 @@
                             
                             <ext:Column   CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false" />
                             <ext:Column   CellCls="cellLink" ID="ColBcName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBusinessPartnerCategory%>" DataIndex="bcName" Flex="2" Hideable="false" />
-                                <ext:CheckColumn   CellCls="cellLink" ID="ColInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldInactive%>" DataIndex="inactive" Flex="2" Hideable="false" />
+                                <ext:CheckColumn   CellCls="cellLink" ID="ColIsInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldInactive%>" DataIndex="isInactive" Flex="2" Hideable="false" />
                             <ext:Column   CellCls="cellLink" ID="ColEmail" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmail%>" DataIndex="email" Flex="2" Hideable="false" />
                            
                                
@@ -322,7 +322,7 @@
                                 </ext:ComboBox>
                             
                                 
-                                <ext:Checkbox ID="inactive" runat="server" FieldLabel="<%$ Resources: FieldInactive%>" Name="inactive" InputValue="true" />
+                                <ext:Checkbox ID="isInactive" runat="server" FieldLabel="<%$ Resources: FieldInactive%>" Name="isInactive" InputValue="true" />
                               <ext:TextField ID="email" runat="server" FieldLabel="<%$ Resources:FieldEmail%>" Name="email" Vtype="email"  />
 
                             </Items>

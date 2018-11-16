@@ -184,13 +184,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColBcName;
         
         /// <summary>
-        /// ColInactive control.
+        /// ColIsInactive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.CheckColumn ColInactive;
+        protected global::Ext.Net.CheckColumn ColIsInactive;
         
         /// <summary>
         /// ColEmail control.
@@ -337,13 +337,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store bcIdStore;
         
         /// <summary>
-        /// inactive control.
+        /// isInactive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox inactive;
+        protected global::Ext.Net.Checkbox isInactive;
         
         /// <summary>
         /// email control.

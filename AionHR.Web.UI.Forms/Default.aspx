@@ -249,11 +249,11 @@
                                                             </Listeners>
                                                         </ext:MenuItem>
 
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , TaskTypes%>">
+                                                    <%--    <ext:MenuItem runat="server" Text="<%$Resources: Common , TaskTypes%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('taskTypes', 'TaskTypes.aspx', #{ttTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
-                                                        </ext:MenuItem>
+                                                        </ext:MenuItem>--%>
                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , TerminationReasons%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('TerminationReasons', 'TerminationReasons.aspx', #{tRTitle}.value, 'icon-Employees')" />

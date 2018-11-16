@@ -178,12 +178,10 @@
     <Content Include="BiometricDevices.aspx" />
     <Content Include="BonusTypes.aspx" />
     <Content Include="Branches.aspx" />
-    <Content Include="Cases.aspx" />
     <Content Include="CertificateLevels.aspx" />
     <Content Include="CheckTypes.aspx" />
     <Content Include="CompanyDocumentTypes.aspx" />
     <Content Include="CompanyFiles.aspx" />
-    <Content Include="CompanyNews.aspx" />
     <Content Include="CompanyRightToWorks.aspx" />
     <Content Include="Controls\LeaveRequestControl.ascx" />
     <Content Include="CSS\cal.css" />
@@ -219,8 +217,6 @@
     <Content Include="Divisions.aspx" />
     <Content Include="DocumentTypes.aspx" />
     <Content Include="EmployeeCals.aspx" />
-    <Content Include="EmployeeComplaints.aspx" />
-    <Content Include="EmployeeComplaintSelfServices.aspx" />
     <Content Include="EmployeePages\Contacts.aspx" />
     <Content Include="EmployeePages\Dependants.aspx" />
     <Content Include="EmployeePages\Documents.aspx" />
@@ -304,8 +300,6 @@
     <Content Include="LoanTypes.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MainDashboard.aspx" />
-    <Content Include="MediaCategories.aspx" />
-    <Content Include="MediaItems.aspx" />
     <Content Include="MyInfos.aspx" />
     <Content Include="Nationalities.aspx" />
     <Content Include="NationalQuotas.aspx" />
@@ -530,7 +524,6 @@
     <Content Include="SynchronizeAttendanceDays.aspx" />
     <Content Include="SystemAlerts.aspx" />
     <Content Include="SystemDefaults.aspx" />
-    <Content Include="Tasks.aspx" />
     <Content Include="TaskTypes.aspx" />
     <Content Include="TerminationReasons.aspx" />
     <Content Include="Test.aspx" />
@@ -748,13 +741,6 @@
     </Compile>
     <Compile Include="EmployeeCals.aspx.designer.cs">
       <DependentUpon>EmployeeCals.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeeComplaintSelfServices.aspx.cs">
-      <DependentUpon>EmployeeComplaintSelfServices.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EmployeeComplaintSelfServices.aspx.designer.cs">
-      <DependentUpon>EmployeeComplaintSelfServices.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeePages\EmployeeCalendars.aspx.cs">
       <DependentUpon>EmployeeCalendars.aspx</DependentUpon>
@@ -1234,13 +1220,6 @@
     <Compile Include="CompanyFiles.aspx.designer.cs">
       <DependentUpon>CompanyFiles.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CompanyNews.aspx.cs">
-      <DependentUpon>CompanyNews.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CompanyNews.aspx.designer.cs">
-      <DependentUpon>CompanyNews.aspx</DependentUpon>
-    </Compile>
     <Compile Include="CompanyRightToWorks.aspx.cs">
       <DependentUpon>CompanyRightToWorks.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1355,13 +1334,6 @@
     </Compile>
     <Compile Include="MainDashboard.aspx.designer.cs">
       <DependentUpon>MainDashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MediaItems.aspx.cs">
-      <DependentUpon>MediaItems.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MediaItems.aspx.designer.cs">
-      <DependentUpon>MediaItems.aspx</DependentUpon>
     </Compile>
     <Compile Include="PayrollDefaults.aspx.cs">
       <DependentUpon>PayrollDefaults.aspx</DependentUpon>
@@ -1651,13 +1623,6 @@
     <Compile Include="SystemAttachmentsUploader.ashx.cs">
       <DependentUpon>SystemAttachmentsUploader.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Cases.aspx.cs">
-      <DependentUpon>Cases.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Cases.aspx.designer.cs">
-      <DependentUpon>Cases.aspx</DependentUpon>
-    </Compile>
     <Compile Include="CertificateLevels.aspx.cs">
       <DependentUpon>CertificateLevels.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1727,13 +1692,6 @@
     </Compile>
     <Compile Include="DocumentTypes.aspx.designer.cs">
       <DependentUpon>DocumentTypes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeeComplaints.aspx.cs">
-      <DependentUpon>EmployeeComplaints.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EmployeeComplaints.aspx.designer.cs">
-      <DependentUpon>EmployeeComplaints.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeePages\Contacts.aspx.cs">
       <DependentUpon>Contacts.aspx</DependentUpon>
@@ -1878,13 +1836,6 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MediaCategories.aspx.cs">
-      <DependentUpon>MediaCategories.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MediaCategories.aspx.designer.cs">
-      <DependentUpon>MediaCategories.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Nationalities.aspx.cs">
       <DependentUpon>Nationalities.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1956,13 +1907,6 @@
     </Compile>
     <Compile Include="SystemDefaults.aspx.designer.cs">
       <DependentUpon>SystemDefaults.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Tasks.aspx.cs">
-      <DependentUpon>Tasks.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Tasks.aspx.designer.cs">
-      <DependentUpon>Tasks.aspx</DependentUpon>
     </Compile>
     <Compile Include="TaskTypes.aspx.cs">
       <DependentUpon>TaskTypes.aspx</DependentUpon>

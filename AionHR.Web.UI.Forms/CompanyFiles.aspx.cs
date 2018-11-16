@@ -39,7 +39,7 @@ namespace AionHR.Web.UI.Forms
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
-        ICaseService _caseService = ServiceLocator.Current.GetInstance<ICaseService>();
+       
 
 
 
