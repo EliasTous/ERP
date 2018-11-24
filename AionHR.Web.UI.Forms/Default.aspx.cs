@@ -232,7 +232,7 @@ namespace AionHR.Web.UI.Forms
 
                 case 3:
                     nodes = TreeBuilder.Instance.BuildCompanyStructureTree(commonTree.Root);
-                    tabHome.Loader.Url = "OrganizationChart.aspx";
+                    tabHome.Loader.Url = "Dashboard.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 case 4:

@@ -735,19 +735,19 @@ namespace AionHR.Web.UI.Forms
                 TimeSpan EmployeeTsStart, EmployeeTsEnd;
 
 
-                items.ForEach(x =>
-                 {
-                     EmployeeTsStart = TimeSpan.Parse(x.from);
-                     EmployeeTsEnd = TimeSpan.Parse(x.to);
-                     if (EmployeeTsStart < tsStart || EmployeeTsEnd > tsClose)
-                     {
-                         html += @"</table></div>";
-                         this.pnlSchedule.Html = html;
-                         X.Call("DisableTools");
-                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName.reference).Show();
-                         throw new Exception();
-                     }
-                 });
+                //items.ForEach(x =>
+                // {
+                //     EmployeeTsStart = TimeSpan.Parse(x.from);
+                //     EmployeeTsEnd = TimeSpan.Parse(x.to);
+                //     //if (EmployeeTsStart < tsStart || EmployeeTsEnd > tsClose)
+                //     //{
+                //     //    html += @"</table></div>";
+                //     //    this.pnlSchedule.Html = html;
+                //     //    X.Call("DisableTools");
+                //     //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName.reference).Show();
+                //     //    throw new Exception();
+                //     //}
+                // });
 
 
                 //Filling The Times Slot
@@ -769,6 +769,7 @@ namespace AionHR.Web.UI.Forms
 
                 //filling the Day slots
                 int totalDays = Convert.ToInt32(Math.Ceiling((dateTo.SelectedDate - dateFrom.SelectedDate).TotalDays));
+                timesList = timesList.Distinct(new TimeSlotComparer()).ToList<TimeSlot>();
 
                 html = FillFirstRow(html, timesList);
 
@@ -971,6 +972,7 @@ namespace AionHR.Web.UI.Forms
 
         private string FillFirstRow(string html, List<TimeSlot> timesList)
         {
+          
 
             html += "<thead><tr ><th style='width:120px;'></th><th>"+GetLocalResourceObject("total")+"</th>";
             for (int index = 0; index < timesList.Count; index++)

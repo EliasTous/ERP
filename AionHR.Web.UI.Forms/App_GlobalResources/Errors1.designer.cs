@@ -547,6 +547,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to sql connection failed.
+        /// </summary>
+        internal static string Error_12400 {
+            get {
+                return ResourceManager.GetString("Error_12400", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to INPUT FORM MISSING TAG.
         /// </summary>
         internal static string Error_12401 {
@@ -876,6 +885,33 @@ namespace Resources {
         internal static string Error_19024 {
             get {
                 return ResourceManager.GetString("Error_19024", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to invalid job information for employee %s0 on %s1.
+        /// </summary>
+        internal static string Error_19025 {
+            get {
+                return ResourceManager.GetString("Error_19025", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to team leader %s cannot be deleted.
+        /// </summary>
+        internal static string Error_19026 {
+            get {
+                return ResourceManager.GetString("Error_19026", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to time approver %s cannot be deleted.
+        /// </summary>
+        internal static string Error_19027 {
+            get {
+                return ResourceManager.GetString("Error_19027", resourceCulture);
             }
         }
         
@@ -1276,7 +1312,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please add Fiscal Years to system before generate payroll .
+        ///   Looks up a localized string similar to Fill Fiscal Year.
         /// </summary>
         internal static string FillFiscalYear {
             get {
@@ -1290,15 +1326,6 @@ namespace Resources {
         internal static string FinalSettlementForEmployeeHaveLoans {
             get {
                 return ResourceManager.GetString("FinalSettlementForEmployeeHaveLoans", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please select fiscal year and salary Type .
-        /// </summary>
-        internal static string periodError {
-            get {
-                return ResourceManager.GetString("periodError", resourceCulture);
             }
         }
     }

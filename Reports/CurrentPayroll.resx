@@ -835,42 +835,6 @@
   <data name="DetailReport4.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrCrossBandBox4.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrCrossBandBox4.EndPointFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>21.1249981, 77.0833359</value>
-  </data>
-  <data name="xrCrossBandBox4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>21.1249981, 0</value>
-  </data>
-  <data name="xrCrossBandBox4.StartPointFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>21.1249981, 0</value>
-  </data>
-  <data name="xrCrossBandLine14.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrCrossBandLine14.EndPointFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>23.2083321, 39.5</value>
-  </data>
-  <data name="xrCrossBandLine14.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>23.2083321, 37.5</value>
-  </data>
-  <data name="xrCrossBandLine14.StartPointFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>23.2083321, 37.5</value>
-  </data>
-  <data name="xrCrossBandLine15.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrCrossBandLine15.EndPointFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>469.041656, 76.0416641</value>
-  </data>
-  <data name="xrCrossBandLine15.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>469.041656, 2.08333325</value>
-  </data>
-  <data name="xrCrossBandLine15.StartPointFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>469.041656, 2.08333325</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

@@ -653,13 +653,7 @@
   <data name="Error_Empty_IndemnityDetails_IndemnityResignation" xml:space="preserve">
     <value>يجب ادخال قاعده في الجدول وقاعدة في جزاء الاستقالة </value>
   </data>
-  <data name="FillFiscalYear" xml:space="preserve">
-    <value>الرجاء اضافة سنوات مالية الى النظام قبل انشاء الرواتب </value>
-  </data>
   <data name="FinalSettlementForEmployeeHaveLoans" xml:space="preserve">
     <value>يوجد على الموظف سلف </value>
-  </data>
-  <data name="periodError" xml:space="preserve">
-    <value>الرجاء اختيار نوع الراتب والسنوات المالية </value>
   </data>
 </root>

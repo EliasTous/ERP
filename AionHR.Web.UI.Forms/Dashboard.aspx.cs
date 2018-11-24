@@ -1347,6 +1347,7 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         protected void TimePoPUP(object sender, DirectEventArgs e)
         {
+            TabPanel1.ActiveIndex = 0;
             string employeeId = e.ExtraParams["employeeId"];
             string employeeName = e.ExtraParams["employeeName"];
             string dayId = e.ExtraParams["dayId"];
@@ -1389,8 +1390,8 @@ namespace AionHR.Web.UI.Forms
             TimedayIdTF.Text = dayId;
             TimeTimeCodeTF.Text = timeCode;
 
-          
-           
+
+            FillTimeApproval(Convert.ToInt32(dayId), Convert.ToInt32(employeeId), timeCode, shiftId, status);
 
             this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
             this.TimeWindow.Show();
@@ -2188,6 +2189,68 @@ namespace AionHR.Web.UI.Forms
             EmployeePenaltyApprovalStore.DataSource = response.Items;
             EmployeePenaltyApprovalStore.DataBind();
         }
+        private void FillTimeApproval(int dayId, int employeeId, string timeCode, string shiftId, string apstatus)
+        {
+            try
+            {
+                DashboardTimeListRequest r = new DashboardTimeListRequest();
+                r.fromDayId = dayId.ToString();
+                r.toDayId = dayId.ToString();
+                r.employeeId = employeeId;
+                r.approverId = 0;
+                r.timeCode = timeCode;
+                r.shiftId = shiftId;
+                // r.apStatus = apstatus.ToString();
+                r.apStatus = "0";
 
+
+                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
+                if (!Times.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", Times.ErrorCode) != null ? GetGlobalResourceObject("Errors", Times.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + Times.LogId : Times.Summary).Show();
+                    return;
+                }
+                Times.Items.ForEach(x =>
+                {
+                    x.timeCodeString = FillTimeCode(Convert.ToInt32(x.timeCode));
+
+                    x.statusString = FillApprovalStatus(x.status);
+                });
+
+                timeApprovalStore.DataSource = Times.Items.Where(x => x.approverId != Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId())).ToList();
+                ////List<ActiveLeave> leaves = new List<ActiveLeave>();
+                //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+
+
+                timeApprovalStore.DataBind();
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+
+        }
+        private string FillApprovalStatus(short? apStatus)
+        {
+            string R;
+            switch (apStatus)
+            {
+                case 1:
+                    R = GetLocalResourceObject("FieldNew").ToString();
+                    break;
+                case 2:
+                    R = GetLocalResourceObject("FieldApproved").ToString();
+                    break;
+                case -1:
+                    R = GetLocalResourceObject("FieldRejected").ToString();
+                    break;
+                default:
+                    R = string.Empty;
+                    break;
+
+
+            }
+            return R;
+        }
     }
 }

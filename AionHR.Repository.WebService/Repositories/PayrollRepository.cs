@@ -62,6 +62,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(PenaltyType), "setPT");
             ChildAddOrUpdateLookup.Add(typeof(PenaltyDetail), "setPD");
             ChildAddOrUpdateLookup.Add(typeof(TimeCode), "setTC");
+            ChildAddOrUpdateLookup.Add(typeof(FiscalPeriod), "setPE");
 
             ChildAddOrUpdateLookup.Add(typeof(GeneratePayroll), "genEM");
 
@@ -100,7 +101,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(TimeCode), "getTC");
             ChildGetLookup.Add(typeof(PenaltyType), "getPT");
             ChildGetLookup.Add(typeof(PenaltyDetail), "getPD");
-         
+            ChildGetLookup.Add(typeof(FiscalPeriod), "getPE");
+
         }
     }
 }

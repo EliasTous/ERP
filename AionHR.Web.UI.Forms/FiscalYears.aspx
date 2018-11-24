@@ -257,9 +257,6 @@
 
                 <ext:GridPanel runat="server"  Header="false" ID="YearPeriods" SortableColumns="false"  EnableColumnResize="false" EnableColumnHide="false">
                    
-                      <Listeners>
-                        <Render Handler="this.on('cellclick', cellClick);" />
-                    </Listeners>
                     <Store>
                         <ext:Store ID="fiscalPeriodsStore" runat="server" OnReadData="fiscalPeriodsStore_ReadData">
                             <Model>
@@ -314,15 +311,44 @@
                     <ColumnModel>
                         <Columns>
                          <ext:Column runat="server" DataIndex="periodId" Width="100" />
-                                 <ext:DateColumn runat="server" ID="periodFrom" Text="<%$ Resources: FieldFrom%>" DataIndex="startDate" Width="150"  />
+                         <ext:DateColumn runat="server" ID="periodFrom" Text="<%$ Resources: FieldFrom%>" DataIndex="startDate" Width="150"  />
 
                             <ext:DateColumn runat="server" ID="periodTo" Text="<%$ Resources: FieldTo%>" DataIndex="endDate" Width="150" />
 
                          <ext:Column runat="server" DataIndex="status" Text="<%$ Resources: FieldStatus%>" Flex="1" >
                              <Renderer Handler="return getStatusText(record.data['status']);" />
                              </ext:Column>
+
+                              <ext:Column runat="server" 
+                                ID="Column1"
+                                
+                                Hideable="false"
+                                Width="120"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer handler=" if (record.data['status']!=2) return editRender();" />
+                            </ext:Column>
+
                         </Columns>
                     </ColumnModel>
+
+                        <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
+                    <DirectEvents>
+                        <CellClick OnEvent="PoPuPPE">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                <ext:Parameter Name="salaryType" Value="record.data['salaryType']" Mode="Raw" />
+                                  <ext:Parameter Name="periodId" Value="record.data['periodId']" Mode="Raw" />
+                               
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>
                 </ext:GridPanel>
             </Items>
         </ext:Viewport>
@@ -391,6 +417,84 @@
                     </DirectEvents>
                 </ext:Button>
                 <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+         <ext:Window
+            ID="fiscalPeriodWindow"
+            runat="server"
+            Icon="PageEdit"
+          
+            Width="400"
+            Height="300"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+                <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                   
+                    <Items>
+                        <ext:FormPanel DefaultButton="saveFiscalPeriodButton"
+                            ID="fiscalPeriodForm"
+                            runat="server"
+                           
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" 
+                            BodyPadding="5"
+                             Title="<%$ Resources: fiscalPeriodWindowTitle %>">
+                            <Items>
+                    
+                           
+                                <ext:TextField runat="server"  ID="PE_salaryType" DataIndex="salaryType" Name="salaryType" Hidden="true" />
+                                 <ext:TextField runat="server"  ID="PE_periodId"  DataIndex="periodId" Name="periodId" Hidden="true" />
+                                 <ext:TextField runat="server"  ID="PE_status"  DataIndex="status" Name="status" Hidden="true" />
+                                <ext:DateField runat="server" FieldLabel="<%$ Resources: FieldFrom%>"   DataIndex="startDate" ID="PE_startDate" Name="startDate" ReadOnly="false" >
+                                    <Validator Handler="return this.value<#{PE_endDate}.getValue();" />
+                                    <Listeners>
+                                        <Change Handler="#{PE_endDate}.validate();" />
+                                    </Listeners>
+                                    </ext:DateField>
+                                <ext:DateField runat="server" FieldLabel="<%$ Resources: FieldTo%>"    DataIndex="endDate" ID="PE_endDate" Name="endDate" ReadOnly="false" >
+                                    <Validator Handler="return this.value>#{PE_startDate}.getValue();" />
+                                    <Listeners>
+                                        <Change Handler="#{PE_startDate}.validate();" />
+                                    </Listeners>
+                                    </ext:DateField>
+
+                            </Items>
+
+                        </ext:FormPanel>
+
+
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="saveFiscalPeriodButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{fiscalPeriodForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="saveNewFiscalPeriod" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{fiscalPeriodWindow}.body}" />
+                            <ExtraParams>
+                               <ext:Parameter Name="salaryType" Value="#{PE_salaryType}.getValue()" Mode="Raw" />
+                                  <ext:Parameter Name="periodId" Value="#{PE_periodId}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="status" Value="#{PE_status}.getValue()" Mode="Raw" />
+                            
+                                <ext:Parameter Name="schedule" Value="#{fiscalPeriodForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button3" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>

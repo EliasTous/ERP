@@ -279,6 +279,9 @@
   <data name="Error_12205" xml:space="preserve">
     <value>JSON READER EXCEPTION</value>
   </data>
+  <data name="Error_12400" xml:space="preserve">
+    <value>sql connection failed</value>
+  </data>
   <data name="Error_12401" xml:space="preserve">
     <value>INPUT FORM MISSING TAG</value>
   </data>
@@ -389,6 +392,15 @@
   </data>
   <data name="Error_19024" xml:space="preserve">
     <value>pending employee %s time variations</value>
+  </data>
+  <data name="Error_19025" xml:space="preserve">
+    <value>invalid job information for employee %s0 on %s1</value>
+  </data>
+  <data name="Error_19026" xml:space="preserve">
+    <value>team leader %s cannot be deleted</value>
+  </data>
+  <data name="Error_19027" xml:space="preserve">
+    <value>time approver %s cannot be deleted</value>
   </data>
   <data name="Error_19100" xml:space="preserve">
     <value>SECURITY_ERROR</value>
@@ -523,12 +535,9 @@
     <value>you must enter at lest  one Indemnity Details role  and one Indemnity Resignation rule </value>
   </data>
   <data name="FillFiscalYear" xml:space="preserve">
-    <value>Please add Fiscal Years to system before generate payroll </value>
+    <value>Fill Fiscal Year</value>
   </data>
   <data name="FinalSettlementForEmployeeHaveLoans" xml:space="preserve">
     <value>Employee has loans </value>
-  </data>
-  <data name="periodError" xml:space="preserve">
-    <value>Please select fiscal year and salary Type </value>
   </data>
 </root>

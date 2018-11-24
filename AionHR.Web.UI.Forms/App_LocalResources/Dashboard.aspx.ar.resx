@@ -696,4 +696,10 @@
   <data name="FieldTermEndDate" xml:space="preserve">
     <value>نهاية العقد</value>
   </data>
+  <data name="EditWindowsTimeApproval" xml:space="preserve">
+    <value>التعميد</value>
+  </data>
+  <data name="FieldApproverName" xml:space="preserve">
+    <value>المعمد</value>
+  </data>
 </root>

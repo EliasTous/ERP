@@ -699,4 +699,10 @@
   <data name="FieldTermEndDate" xml:space="preserve">
     <value>Term End Date</value>
   </data>
+  <data name="EditWindowsTimeApproval" xml:space="preserve">
+    <value>Approvals</value>
+  </data>
+  <data name="FieldApproverName" xml:space="preserve">
+    <value>Approver</value>
+  </data>
 </root>

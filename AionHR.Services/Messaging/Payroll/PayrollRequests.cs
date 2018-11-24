@@ -304,3 +304,33 @@ public class PenaltyDetailListRequest :ListRequest
         }
     }
 }
+
+public class FiscalPeriodRecordRequest : RecordRequest
+{
+
+
+
+    public string year { get; set; }
+    public string salaryType { get; set; }
+    public string periodId { get; set; }
+    
+
+
+    private Dictionary<string, string> parameters;
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_year", year);
+            parameters.Add("_salaryType", salaryType);
+            parameters.Add("_periodId", periodId);
+
+
+
+
+            return parameters;
+        }
+    }
+
+}

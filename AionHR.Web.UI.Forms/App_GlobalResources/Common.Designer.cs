@@ -1411,7 +1411,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generate Flat Schedule.
+        ///   Looks up a localized string similar to Generate Default Schedule.
         /// </summary>
         internal static string GenerateAttendanceDays {
             get {

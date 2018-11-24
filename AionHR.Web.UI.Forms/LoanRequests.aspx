@@ -368,7 +368,7 @@
             Modal="true"
             Hidden="true"
             Maximizable="false"
-            Resizable="false"
+            Resizable="true"
             Draggable="True"
             Layout="Fit">
 

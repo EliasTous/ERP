@@ -198,7 +198,7 @@ function validateTo(curr,prev)
     //if (currHours < prevHours)
     //    return false;
     //if (currHours == prevHours && currMins <= prevMins)
-    if (currHours == prevHours)
-        return false;
+    //if (currHours == prevHours)
+    //    return false;
     return true;
 }

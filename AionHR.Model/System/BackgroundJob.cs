@@ -24,6 +24,8 @@ namespace AionHR.Model.System
 
         public string argStr { get; set; }
         public string argInt { get; set; }
-       
+        public string infoList { get; set; }
+
+
     }
 }

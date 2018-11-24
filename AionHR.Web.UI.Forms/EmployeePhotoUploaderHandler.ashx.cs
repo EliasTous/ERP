@@ -79,15 +79,8 @@ namespace AionHR.Web.UI.Forms
                 }
                 else
                 {
-                    {
-                        PostRequest<Attachement> request = new PostRequest<Attachement>();
-                        request.entity = new Attachement();
-                        request.entity.classId = ClassId.SYDE;
-                        request.entity.fileName = context.Request.Files[0].FileName;
-                        request.entity.date = DateTime.Now;
-                        request.entity.recordId = 1;
-                        request.entity.seqNo = 1;
-
+                    
+                    
 
                         byte[] fileData = null;
                         HttpPostedFile f = context.Request.Files.Get(0);
@@ -106,12 +99,11 @@ namespace AionHR.Web.UI.Forms
                         {
                             fileData = null;
                         }
-                        PostResponse<Attachement> r = _systemService.ChildAddOrUpdate<Attachement>(request);
+                       
 
 
                         //check if the insert failed
-                        if (r.Success)//it maybe be another condition
-                        {
+                      
                             if (fileData != null)
                             {
                                 SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
@@ -127,13 +119,11 @@ namespace AionHR.Web.UI.Forms
 
                             }
                            
-                        }
-                        else
-                            context.Response.Write("{'Error':'Error'}");
+                     
                       
 
                     }
-                }
+                
 
             }
             context.Response.Write("{}");
