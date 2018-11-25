@@ -13,12 +13,12 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
   
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
-    <script type="text/javascript" src="Scripts/common.js"></script>
-    <script type="text/javascript" src="Scripts/moment.js?id=10"></script>
-    <script type="text/javascript" src="Scripts/CircileProgress.js?id=91"></script>
-    <script type="text/javascript" src="Scripts/jquery-new.js?id=101"></script>
-    <script type="text/javascript" src="Scripts/plugins/highcharts.js?id=100"></script>
-       <script type="text/javascript" src="Scripts/Dashboard.js?id=101"></script>
+    <script type="text/javascript" src="Scripts/common.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/moment.js?id=2"></script>
+    <script type="text/javascript" src="Scripts/CircileProgress.js?id=3"></script>
+    <script type="text/javascript" src="Scripts/jquery-new.js?id=4"></script>
+    <script type="text/javascript" src="Scripts/plugins/highcharts.js?id=5"></script>
+       <script type="text/javascript" src="Scripts/Dashboard.js?id=6"></script>
 
 
 
@@ -2195,32 +2195,26 @@
                                                             Border="false"
                                                             ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
                                                             <Store>
-                                                                <ext:Store PageSize="30"
+                                                                <ext:Store 
                                                                     ID="TimeStore"
-                                                                    runat="server" OnReadData="TimeStore_ReadData"
-                                                                    RemoteSort="false"
-                                                                    RemoteFilter="false">
-                                                                    <%--<Proxy>
-                                                                        <ext:PageProxy>
-                                                                            <Listeners>
-                                                                                <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                                                                            </Listeners>
-                                                                        </ext:PageProxy>
-                                                                    </Proxy>--%>
+                                                                    runat="server" OnReadData="TimeStore_ReadData">
+                                                                  
                                                                     <Model>
                                                                         <ext:Model ID="Model24" runat="server" >
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
                                                                                 <ext:ModelField Name="dayId" />
                                                                                 <ext:ModelField Name="dayIdDate"  />
+                                                                                  <ext:ModelField Name="fullName"  />
                                                                            
                                                                                 <ext:ModelField Name="timeCode" />
                                                                                   <ext:ModelField Name="shiftId" />
                                                                                 <ext:ModelField Name="timeCodeString" />
                                                                                 <ext:ModelField Name="approverId" />
                                                                                 <ext:ModelField Name="status" />
+                                                                                  <ext:ModelField Name="statusString" />
                                                                                 <ext:ModelField Name="notes" />
                                                                             
 
@@ -2234,22 +2228,19 @@
 
                                                             <ColumnModel ID="ColumnModel24" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                                                 <Columns>
-                                                                   <ext:Column ID="ColTimedayId" DataIndex="dayId"  runat="server" Visible="false" />
-                                                                   <ext:Column ID="ColshiftId" DataIndex="shiftId"  runat="server" Visible="false" />
-                                                                   <ext:Column ID="ColTimeEmployeeId" DataIndex="employeeId"  runat="server" Visible="false" />
-                                                                   <ext:Column ID="ColtimeCode" DataIndex="timeCode"  runat="server" Visible="false" />
+                                                                  
 
 
                                                                     <ext:Column ID="Column27" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
-                                                                    <Renderer Handler=" return record.data['employeeName'].fullName;" />
+                                                                   
                                                                     </ext:Column>
                                                                 
                                                                     <ext:DateColumn ID="DateColumn5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="dayIdDate" Hideable="false" Width="100" />
                           
 
                                                                      <ext:Column ID="Column26" DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="1" />
-                                                                     <ext:Column ID="Column30" DataIndex="status" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
-                                                                         <Renderer Handler=" return getTimeStatus(record.data['status']); " />
+                                                                     <ext:Column ID="Column30" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
+                                                                        
                                                                     </ext:Column>
                                                                      <ext:Column ID="Column28" DataIndex="notes" Text="<%$ Resources: FieldNotes %>" runat="server" Flex="2" />
 
@@ -2282,13 +2273,13 @@
                                                                 <CellClick OnEvent="TimePoPUP">
                                                                     <EventMask ShowMask="true" />
                                                                       <ExtraParams>
-                                                                         <ext:Parameter Name="employeeName" Value="record.data['employeeName'].fullName" Mode="Raw" />
+                                                                         <ext:Parameter Name="employeeName" Value="record.data['fullName']" Mode="Raw" />
                                                                          <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
                                                                          <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
                                                                            <ext:Parameter Name="dayIdDate" Value="record.data['dayIdDate']" Mode="Raw" />
                                                                             <ext:Parameter Name="timeCode" Value="record.data['timeCode']" Mode="Raw" />
-                                                                          <ext:Parameter Name="timeCodeString" Value="record.data['timeCodeString']" Mode="Raw" />
-                                                                         <ext:Parameter Name="notes" Value="record.data['notes']" Mode="Raw" />
+                                                                           <ext:Parameter Name="timeCodeString" Value="record.data['timeCodeString']" Mode="Raw" />
+                                                                           <ext:Parameter Name="Notes" Value="record.data['notes']" Mode="Raw" />
                                                                            <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
                                                                              <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
                                                                     

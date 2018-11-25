@@ -316,7 +316,27 @@ namespace AionHR.Web.UI.Forms
                 RecordResponse<BackgroundJob> resp = _systemService.ChildGetRecord<BackgroundJob>(req);
                 if (resp.result == null || resp.result.errorId != null)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId) != null ? GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId).ToString().Replace("%s", resp.result.argStr).Replace("%d", resp.result.argInt).ToString() + " < br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    string[] values;
+                    var infolist = resp.result.infoList.Split(',');
+                    string ErrorMessage;
+                    if (GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId) != null)
+                    {
+                        values = GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId).ToString().Split(new string[] { "%s" }, StringSplitOptions.None);
+                        for (int i = 0; i < infolist.Length; i++)
+                        {
+
+                            values[0] += infolist[i] + "  ";
+                        }
+                        if (values.Length == 2)
+                            ErrorMessage = values[0] + " " + values[1];
+                        else
+                            ErrorMessage = values[0];
+                    }
+                    else
+                        ErrorMessage = GetGlobalResourceObject("Errors", "Error_2").ToString() + resp.ErrorCode;
+
+
+                    X.Msg.Alert(Resources.Common.Error, ErrorMessage).Show();
                     HttpRuntime.Cache.Remove("genFS_RecordId");
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                 }

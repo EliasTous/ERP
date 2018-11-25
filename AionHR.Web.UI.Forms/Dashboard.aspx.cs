@@ -1276,6 +1276,8 @@ namespace AionHR.Web.UI.Forms
                 }
                 Times.Items.ForEach(x =>
                 {
+                    x.fullName = x.employeeName.fullName; 
+                    x.statusString = FillApprovalStatus(x.status);
                     x.timeCodeString = FillTimeCode(Convert.ToInt16(x.timeCode));
                     if (string.IsNullOrEmpty(x.notes))
                          x.notes = " ";
@@ -1377,14 +1379,14 @@ namespace AionHR.Web.UI.Forms
                 response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
             else
                 response.result.damageLevel = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
-            TimeStatus.Select(response.result.status.ToString());
+          
             TimeFormPanel.SetValues(response.result);
 
 
             TimeEmployeeName.Text = employeeName;
             TimedayIdDate.Text = dayIdDate;
             TimeTimeCodeString.Text = timeCodeString;
-            TimeStatus.Select(status);
+          
             shiftIdTF.Text = shiftId;
             TimeemployeeIdTF.Text = employeeId;
             TimedayIdTF.Text = dayId;
@@ -2144,50 +2146,56 @@ namespace AionHR.Web.UI.Forms
         }
         protected void EmployeePenaltyApprovalStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            EmployeePenaltyApprovalListRequest req = new EmployeePenaltyApprovalListRequest();
-
-            req.apStatus = "0";
-            req.penaltyId = "0";
-            req.approverId = _systemService.SessionHelper.GetEmployeeId().ToString(); 
-
-            if (string.IsNullOrEmpty(req.penaltyId))
+            try
             {
-                EmployeePenaltyApprovalStore.DataSource = new List<EmployeePenaltyApproval>();
-                EmployeePenaltyApprovalStore.DataBind();
-                return;
-            }
-            ListResponse<EmployeePenaltyApproval> response = _employeeService.ChildGetAll<EmployeePenaltyApproval>(req);
+                EmployeePenaltyApprovalListRequest req = new EmployeePenaltyApprovalListRequest();
 
-            if (!response.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
-                return;
-            }
-            response.Items.ForEach(x =>
-            {
+                req.apStatus = "0";
+                req.penaltyId = "0";
+                req.approverId = _systemService.SessionHelper.GetEmployeeId() != null ? _systemService.SessionHelper.GetEmployeeId().ToString() : null;
 
-                switch (x.status)
+                if (string.IsNullOrEmpty(req.penaltyId) || string.IsNullOrEmpty(req.approverId))
                 {
-                    case 1:
-                        x.statusString = StatusNew.Text;
-                        break;
-                    case 2:
-                        x.statusString = StatusInProcess.Text;
-                        ;
-                        break;
-                    case 3:
-                        x.statusString = StatusApproved.Text;
-                        ;
-                        break;
-                    case -1:
-                        x.statusString = StatusRejected.Text;
-
-                        break;
+                    EmployeePenaltyApprovalStore.DataSource = new List<EmployeePenaltyApproval>();
+                    EmployeePenaltyApprovalStore.DataBind();
+                    return;
                 }
+                ListResponse<EmployeePenaltyApproval> response = _employeeService.ChildGetAll<EmployeePenaltyApproval>(req);
+
+                if (!response.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                    return;
+                }
+                response.Items.ForEach(x =>
+                {
+
+                    switch (x.status)
+                    {
+                        case 1:
+                            x.statusString = StatusNew.Text;
+                            break;
+                        case 2:
+                            x.statusString = StatusInProcess.Text;
+                            ;
+                            break;
+                        case 3:
+                            x.statusString = StatusApproved.Text;
+                            ;
+                            break;
+                        case -1:
+                            x.statusString = StatusRejected.Text;
+
+                            break;
+                    }
+                }
+              );
+                EmployeePenaltyApprovalStore.DataSource = response.Items;
+                EmployeePenaltyApprovalStore.DataBind();
+            }catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
             }
-          );
-            EmployeePenaltyApprovalStore.DataSource = response.Items;
-            EmployeePenaltyApprovalStore.DataBind();
         }
         private void FillTimeApproval(int dayId, int employeeId, string timeCode, string shiftId, string apstatus)
         {
@@ -2252,5 +2260,6 @@ namespace AionHR.Web.UI.Forms
             }
             return R;
         }
+      
     }
 }

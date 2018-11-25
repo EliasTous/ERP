@@ -178,7 +178,7 @@ namespace AionHR.Web.UI.Forms
                 reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                 reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                 reqFS.BranchId = 0;
-                ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
                 if (!response.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -290,7 +290,7 @@ namespace AionHR.Web.UI.Forms
                 reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                 reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                 reqFS.BranchId = 0;
-                ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
                 if (!response.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -478,7 +478,7 @@ namespace AionHR.Web.UI.Forms
             reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
             reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
             reqFS.BranchId = 0;
-            ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+            ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
             if (!response.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -525,10 +525,10 @@ namespace AionHR.Web.UI.Forms
             DateTime activeTime = DateTime.ParseExact(dayId.Value.ToString() == string.Empty ? dateFrom.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"));
             DateTime fsfromTime = new DateTime(activeTime.Year, activeTime.Month, activeTime.Day, timeFrom.SelectedTime.Hours, timeFrom.SelectedTime.Minutes, 0);
             DateTime fsToTime = new DateTime(activeTime.Year, activeTime.Month, activeTime.Day, timeTo.SelectedTime.Hours, timeTo.SelectedTime.Minutes, 0);
-            if (timeTo.SelectedTime.ToString() == "00:00:00")
-            {
-                fsToTime = fsToTime.AddDays(1);
-            }
+            //if (timeTo.SelectedTime.ToString() == "00:00:00")
+            //{
+            //    fsToTime = fsToTime.AddDays(1);
+            //}
 
             if ((fsfromTime.ToString("tt") == "AM" && "AM" == fsToTime.ToString("tt")) || ((fsfromTime.ToString("tt") == "PM" && "PM" == fsToTime.ToString("tt"))))
             {
@@ -539,10 +539,10 @@ namespace AionHR.Web.UI.Forms
                 }
             }
 
-            if ((fsfromTime > fsToTime) && (fsfromTime.ToString("tt") == "PM" && "AM" == fsToTime.ToString("tt")))
-            {
-                fsToTime = fsToTime.AddDays(1);
-            }
+            //if ((fsfromTime > fsToTime) && (fsfromTime.ToString("tt") == "PM" && "AM" == fsToTime.ToString("tt")))
+            //{
+            //    fsToTime = fsToTime.AddDays(1);
+            //}
 
 
             //if (TimeSpan.Compare(timeFrom.SelectedTime, timeTo.SelectedTime) >= 0 && timeTo.SelectedTime.ToString() != "00:00:00")
@@ -591,7 +591,7 @@ namespace AionHR.Web.UI.Forms
                     reqFS.FromDayId = dayId.Value.ToString();
                     reqFS.ToDayId = dayId.Value.ToString();
                     reqFS.BranchId = 0;
-                    ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                    ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
                     if (!response.Success)
                     {
                         X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -605,12 +605,25 @@ namespace AionHR.Web.UI.Forms
                         DateTime activeDate = DateTime.ParseExact(fss.dayId, "yyyyMMdd", new CultureInfo("en"));
                         DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.from.Split(':')[0]), Convert.ToInt32(fss.from.Split(':')[1]), 0);
                         DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.to.Split(':')[0]), Convert.ToInt32(fss.to.Split(':')[1]), 0);
-
-                        do
+                        if (fsToDate.Minute == 0 && fsToDate.Hour == 00)
                         {
-                            listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
-                        } while (fsToDate >= fsfromDate);
+                            fsToDate = fsToDate.AddDays(1);
+                            do
+                            {
+
+
+                                fsToDate = fsToDate.AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
+                                listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
+                            } while (fsToDate != fsfromDate);
+                        }
+                        else
+                        {
+                            do
+                            {
+                                listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                                fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                            } while (fsToDate >= fsfromDate);
+                        }
 
                     }
                     var d = response.Items.GroupBy(x => x.dayId);
@@ -667,7 +680,7 @@ namespace AionHR.Web.UI.Forms
                     reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                     reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                     reqFS.BranchId = 0;
-                    ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                    ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
                     if (!response.Success)
                     {
                         X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -730,7 +743,7 @@ namespace AionHR.Web.UI.Forms
                 // timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
                 TimeSpan tsClose = TimeSpan.Parse(closeAt);
                 timeTo.Value = tsClose;
-
+               
 
                 TimeSpan EmployeeTsStart, EmployeeTsEnd;
 
@@ -754,9 +767,9 @@ namespace AionHR.Web.UI.Forms
                 List<TimeSlot> timesList = new List<TimeSlot>();
                 DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
                 DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
-                if (dtStart >= dtEnd)
+              if (dtEnd==dtStart)
                 {
-                    dtEnd = dtEnd.AddDays(1);
+                    dtEnd= dtEnd.AddDays(1).AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
                 }
                 do
                 {
@@ -765,7 +778,7 @@ namespace AionHR.Web.UI.Forms
                     ts.Time = dtStart.ToString("HH:mm");
                     timesList.Add(ts);
                     dtStart = dtStart.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
-                } while (dtStart <= dtEnd);
+                } while (dtStart <= dtEnd&& !string.IsNullOrEmpty(SystemDefaultResponse.result.Value));
 
                 //filling the Day slots
                 int totalDays = Convert.ToInt32(Math.Ceiling((dateTo.SelectedDate - dateFrom.SelectedDate).TotalDays));
@@ -782,22 +795,27 @@ namespace AionHR.Web.UI.Forms
                     DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
                     DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
                     DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
-                    if (fsfromDate >= fsToDate)
+                    if (fsToDate.Minute == 0 && fsToDate.Hour == 00)
                     {
-                        fsToDate = fsToDate.AddDays(1);
-                    }
-                    do
-                    {
-                        if (fsfromDate.ToString("HH:mm") == "00:00")
+                        fsToDate= fsToDate.AddDays(1);
+                        do
                         {
-                            listIds.Add(fsfromDate.AddDays(-1).ToString("yyyyMMdd") + "_00:00");
-                            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
-                            continue;
-                        }
-                        listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                        fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
-                    } while (fsToDate >= fsfromDate);
 
+                           
+                            fsToDate = fsToDate.AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
+                            listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
+                        } while (fsToDate != fsfromDate);
+                    }
+                    else
+                    {
+                        do
+                        {
+
+                            listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                        } while (fsToDate >= fsfromDate);
+                    }
+                    
                 }
 
                 var d = items.GroupBy(x => x.dayId);
@@ -870,9 +888,9 @@ namespace AionHR.Web.UI.Forms
             List<TimeSlot> timesList = new List<TimeSlot>();
             DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
             DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
-            if (dtStart >= dtEnd)
+            if (dtEnd == dtStart)
             {
-                dtEnd = dtEnd.AddDays(1);
+                dtEnd = dtEnd.AddDays(1).AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
             }
             do
             {
@@ -885,6 +903,7 @@ namespace AionHR.Web.UI.Forms
 
             //filling the Day slots
             int totalDays = Convert.ToInt32(Math.Ceiling((dateTo.SelectedDate - dateFrom.SelectedDate).TotalDays));
+            timesList = timesList.Distinct(new TimeSlotComparer()).ToList<TimeSlot>();
 
             html = FillFirstRow(html, timesList);
 
@@ -1103,7 +1122,7 @@ namespace AionHR.Web.UI.Forms
             reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
             reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
             reqFS.BranchId = 0;
-            ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+            ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
             if (!response.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -1299,7 +1318,7 @@ namespace AionHR.Web.UI.Forms
                 reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                 reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                 reqFS.BranchId = 0;
-                ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
                 if (!response.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();

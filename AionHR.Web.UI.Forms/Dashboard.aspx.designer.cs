@@ -1003,42 +1003,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Model Model24;
         
         /// <summary>
-        /// ColTimedayId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column ColTimedayId;
-        
-        /// <summary>
-        /// ColshiftId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column ColshiftId;
-        
-        /// <summary>
-        /// ColTimeEmployeeId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column ColTimeEmployeeId;
-        
-        /// <summary>
-        /// ColtimeCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column ColtimeCode;
-        
-        /// <summary>
         /// Column27 control.
         /// </summary>
         /// <remarks>

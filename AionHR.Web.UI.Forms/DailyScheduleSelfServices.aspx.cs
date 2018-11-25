@@ -733,56 +733,56 @@ namespace AionHR.Web.UI.Forms
 
                 }
                 //   GetBranchSchedule(out startAt, out closeAt);
-                TimeSpan tsStart = new TimeSpan(); ;
-                TimeSpan tsClose = new TimeSpan();
+                //TimeSpan tsStart = new TimeSpan(); ;
+                //TimeSpan tsClose = new TimeSpan();
 
-                for (int i =0; i<items.Count; i++)
-                {
-                    if (i==0)
-                    {
-                        tsStart= TimeSpan.Parse(items[i].from);
-                        tsClose= TimeSpan.Parse(items[i].to);
-                        continue; 
-                    }
+                //for (int i =0; i<items.Count; i++)
+                //{
+                //    if (i==0)
+                //    {
+                //        tsStart= TimeSpan.Parse(items[i].from);
+                //        tsClose= TimeSpan.Parse(items[i].to);
+                //        continue; 
+                //    }
 
-                    if (TimeSpan.Parse(items[i].from) < tsStart)
-                        tsStart = TimeSpan.Parse(items[i].from);
-                    if (TimeSpan.Parse(items[i].to) > tsClose)
-                        tsClose = TimeSpan.Parse(items[i].to);
+                //    if (TimeSpan.Parse(items[i].from) < tsStart)
+                //        tsStart = TimeSpan.Parse(items[i].from);
+                //    if (TimeSpan.Parse(items[i].to) > tsClose)
+                //        tsClose = TimeSpan.Parse(items[i].to);
 
-                }
+                //}
               
-                timeFrom.Value = tsStart;
+                //timeFrom.Value = tsStart;
                 // timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
               
-                timeTo.Value = tsClose;
+                //timeTo.Value = tsClose;
 
                
-                TimeSpan EmployeeTsStart, EmployeeTsEnd;
+                //TimeSpan EmployeeTsStart, EmployeeTsEnd;
 
 
-                items.ForEach(x =>
-                 {
-                     EmployeeTsStart = TimeSpan.Parse(x.from);
-                     EmployeeTsEnd = TimeSpan.Parse(x.to);
-                     if (EmployeeTsStart < tsStart || EmployeeTsEnd > tsClose)
-                     {
-                         html += @"</table></div>";
-                         this.pnlSchedule.Html = html;
-                         X.Call("DisableTools");
-                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName.reference).Show();
-                         return; 
-                     }
-                 });
+                //items.ForEach(x =>
+                // {
+                //     EmployeeTsStart = TimeSpan.Parse(x.from);
+                //     EmployeeTsEnd = TimeSpan.Parse(x.to);
+                //     if (EmployeeTsStart < tsStart || EmployeeTsEnd > tsClose)
+                //     {
+                //         html += @"</table></div>";
+                //         this.pnlSchedule.Html = html;
+                //         X.Call("DisableTools");
+                //         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName.reference).Show();
+                //         return; 
+                //     }
+                // });
 
 
                 //Filling The Times Slot
                 List<TimeSlot> timesList = new List<TimeSlot>();
-                DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
-                DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
-                if (dtStart >= dtEnd)
+                DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                if (dtEnd == dtStart)
                 {
-                    dtEnd = dtEnd.AddDays(1);
+                    dtEnd = dtEnd.AddDays(1).AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
                 }
                 do
                 {
@@ -790,7 +790,7 @@ namespace AionHR.Web.UI.Forms
                     ts.ID = dtStart.ToString("HH:mm");
                     ts.Time = dtStart.ToString("HH:mm");
                     timesList.Add(ts);
-                    dtStart = dtStart.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
+                    dtStart = dtStart.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
                 } while (dtStart <= dtEnd);
 
                 //filling the Day slots
@@ -807,21 +807,26 @@ namespace AionHR.Web.UI.Forms
                     DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
                     DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
                     DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
-                    if (fsfromDate >= fsToDate)
+                    if (fsToDate.Minute == 0 && fsToDate.Hour == 00)
                     {
                         fsToDate = fsToDate.AddDays(1);
-                    }
-                    do
-                    {
-                        if (fsfromDate.ToString("HH:mm") == "00:00")
+                        do
                         {
-                            listIds.Add(fsfromDate.AddDays(-1).ToString("yyyyMMdd") + "_00:00");
-                            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
-                            continue;
-                        }
-                        listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                        fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
-                    } while (fsToDate >= fsfromDate);
+
+
+                            fsToDate = fsToDate.AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
+                            listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
+                        } while (fsToDate != fsfromDate);
+                    }
+                    else
+                    {
+                        do
+                        {
+
+                            listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                        } while (fsToDate >= fsfromDate);
+                    }
 
                 }
 
