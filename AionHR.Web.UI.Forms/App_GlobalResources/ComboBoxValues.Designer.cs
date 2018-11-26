@@ -907,6 +907,15 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        internal static string SYTATATimeStatusNew {
+            get {
+                return ResourceManager.GetString("SYTATATimeStatusNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to -1.
         /// </summary>
         internal static string SYTATATimeStatusRefused {

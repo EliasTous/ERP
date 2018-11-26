@@ -1375,6 +1375,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
                 return;
             }
+            TimeStatus.Select(response.result.status.ToString());
             if (response.result.damageLevel == "1")
                 response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
             else
@@ -2225,7 +2226,7 @@ namespace AionHR.Web.UI.Forms
                     x.statusString = FillApprovalStatus(x.status);
                 });
 
-                timeApprovalStore.DataSource = Times.Items.Where(x => x.approverId != Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId())).ToList();
+                timeApprovalStore.DataSource = Times.Items; 
                 ////List<ActiveLeave> leaves = new List<ActiveLeave>();
                 //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 

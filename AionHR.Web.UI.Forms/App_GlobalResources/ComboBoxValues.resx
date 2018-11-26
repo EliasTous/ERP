@@ -447,4 +447,7 @@
   <data name="dailySchedule_60" xml:space="preserve">
     <value>60</value>
   </data>
+  <data name="SYTATATimeStatusNew" xml:space="preserve">
+    <value>1</value>
+  </data>
 </root>
