@@ -15,9 +15,9 @@ namespace AionHR.Model.Reports
 
         public string currencyRef { get; set; }
 
-        public DateTime date { get; set; }
+        public DateTime? date { get; set; }
         public double deductedAmount { get; set; }
-        public DateTime effectiveDate { get; set; }
+        public DateTime? effectiveDate { get; set; }
         public string ltName { get; set; }
         public string workingBranchName { get; set; }
         public string branchName { get; set; }

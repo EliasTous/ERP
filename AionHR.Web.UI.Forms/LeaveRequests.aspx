@@ -192,7 +192,7 @@
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="includeOpen" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     EmptyText="<%$ Resources: FilterStatus %>">
                                     <Items>
-
+                                           <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
                                         <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
                                         <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
                                         <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="-1" />

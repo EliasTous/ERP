@@ -219,8 +219,8 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
                 return;
             }
-            PE_startDate.MinDate = PE_endDate.MinDate = response.result.startDate;
-            PE_startDate.MaxDate = PE_endDate.MaxDate = response.result.endDate;
+            //PE_startDate.MinDate = PE_endDate.MinDate = response.result.startDate;
+            //PE_startDate.MaxDate = PE_endDate.MaxDate = response.result.endDate;
 
             //Step 2 : call setvalues with the retrieved object
             

@@ -1335,4 +1335,7 @@
   <data name="Documents" xml:space="preserve">
     <value>Documents</value>
   </data>
+  <data name="periodError" xml:space="preserve">
+    <value>Please choose salary type and fiscal year </value>
+  </data>
 </root>

@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
 
-    <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=980" />
-    <link rel="stylesheet" href="CSS/LiveSearch.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=10" />
+    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=20" />
+    <link rel="stylesheet" href="CSS/LiveSearch.css?id=30" />
   
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>

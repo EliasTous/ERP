@@ -35,6 +35,7 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
+          <ext:Hidden ID="MaximumValue" runat="server" Text="100" />
 
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
@@ -123,8 +124,8 @@
                                             Fields="headCount"
                                             Position="Left"
                                             Grid="true"
-                                            Minimum="0"
-                                            Maximum="100">
+                                            Minimum="0">
+                                  
                                             <Renderer Handler="return layoutContext.renderer(label) ;" />
                                         </ext:NumericAxis>
 

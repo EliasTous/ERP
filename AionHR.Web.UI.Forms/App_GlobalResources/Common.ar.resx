@@ -1338,4 +1338,7 @@
   <data name="Documents" xml:space="preserve">
     <value>الوئائق</value>
   </data>
+  <data name="periodError" xml:space="preserve">
+    <value>يرجى اختيار نوع الراتب والسنة المالية</value>
+  </data>
 </root>

@@ -116,7 +116,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
         
-                includeOpen.Select("0");
+                includeOpen.Select("1");
                
                 DateColumn3.Format= Column2.Format = Column1.Format = _systemService.SessionHelper.GetDateformat();
                 try
@@ -366,7 +366,7 @@ namespace AionHR.Web.UI.Forms
             request.Size = "50";
             request.StartAt = e.Start.ToString();
             request.SortBy = "firstName";
-
+            
             request.Filter = "";
             ListResponse<LeaveRequest> routers = _leaveManagementService.ChildGetAll<LeaveRequest>(request);
 

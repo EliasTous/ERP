@@ -2482,6 +2482,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please choose salary type and fiscal year .
+        /// </summary>
+        internal static string periodError {
+            get {
+                return ResourceManager.GetString("periodError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My Info .
         /// </summary>
         internal static string PersonalInfo {

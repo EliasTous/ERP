@@ -42,7 +42,7 @@
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
-        <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
+        <ext:ResourceManager ID="ResourceManager1" runat="server" DisableViewState="false" Theme="Neptune" AjaxTimeout="1200000" />
 
         <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
@@ -51,7 +51,8 @@
 
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
-         <ext:Hidden ID="periodError" runat="server" Text="<%$ Resources:Errors , periodError %>" />
+         <ext:Hidden ID="periodError" runat="server" Text="<%$ Resources: periodError %>" />
+         <ext:Hidden ID="fillPeriod" runat="server" Text="<%$ Resources : fillPeriod %>" />
         
 
 
@@ -59,7 +60,7 @@
 
             <Items>
 
-                <ext:Panel
+                <ext:Panel 
                     ID="Center"
                     runat="server"
                     Border="false"
@@ -151,14 +152,14 @@
                                         </Select>
                                     </DirectEvents>--%>
                                     <Listeners>
-                                        <FocusEnter Handler="if (#{salaryType}.getValue()==null || #{fiscalYear}.getValue() ==null){Ext.Msg.alert('Error',#{periodError}.getValue()); callbackPanel.PerformCallback('1');}" />
+                                        <Focus Handler="if (#{salaryType}.getValue()==null || #{fiscalYear}.getValue() ==null){Ext.Msg.alert('Error',#{periodError}.getValue()); #{salaryType}.focus();}" />
                                     </Listeners>
                                 </ext:ComboBox>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
-                                                <Click Handler="callbackPanel.PerformCallback('1');" />
+                                                <Click Handler="if (#{periodId}.getValue() ==null){Ext.Msg.alert('Error',#{fillPeriod}.getValue());return;} callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
                                     </Content>
