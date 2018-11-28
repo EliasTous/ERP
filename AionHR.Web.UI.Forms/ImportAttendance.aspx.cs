@@ -197,6 +197,10 @@ namespace AionHR.Web.UI.Forms
                 List<AttendanceShift> shifts = service.ImportUnvalidated(CurrentPath.Text);
 
                 File.Delete(CurrentPath.Text);
+                if (shifts.Count==0)
+                {
+                    throw new Exception();
+                }
 
 
 
@@ -221,6 +225,7 @@ namespace AionHR.Web.UI.Forms
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                Viewport1.ActiveIndex = 0;
 
             }
         }

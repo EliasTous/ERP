@@ -87,6 +87,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApproverPerformance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ApproverPerformance.Designer.cs">
+      <DependentUpon>ApproverPerformance.cs</DependentUpon>
+    </Compile>
     <Compile Include="TimeApproval.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -331,6 +337,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ApproverPerformance.ar.resx">
+      <DependentUpon>ApproverPerformance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApproverPerformance.resx">
+      <DependentUpon>ApproverPerformance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DetailedAttendance.ar.resx">
       <DependentUpon>DetailedAttendance.cs</DependentUpon>
     </EmbeddedResource>

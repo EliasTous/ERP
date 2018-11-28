@@ -1107,9 +1107,6 @@
   <data name="EmployeeCalender" xml:space="preserve">
     <value>تقاويم العمل </value>
   </data>
-  <data name="RT306" xml:space="preserve">
-    <value>نوع الدوام </value>
-  </data>
   <data name="RT111" xml:space="preserve">
     <value>حسابات مصرفية </value>
   </data>
@@ -1275,7 +1272,7 @@
   <data name="FieldPenaltyName" xml:space="preserve">
     <value>الجزاء</value>
   </data>
-  <data name="RT307" xml:space="preserve">
+  <data name="RT306" xml:space="preserve">
     <value>معمدو الدوام</value>
   </data>
   <data name="data" xml:space="preserve">
@@ -1340,5 +1337,8 @@
   </data>
   <data name="periodError" xml:space="preserve">
     <value>يرجى اختيار نوع الراتب والسنة المالية</value>
+  </data>
+  <data name="RT307" xml:space="preserve">
+    <value>نشاط المعمدون</value>
   </data>
 </root>

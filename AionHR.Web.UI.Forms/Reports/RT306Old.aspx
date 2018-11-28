@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT306.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT306" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT306Old.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT306Old" %>
 
 <%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
@@ -63,66 +63,49 @@
                                        <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                                
-                                               <uc:dateRange runat="server" ID="date2" />
+                                                <uc:dateRange runat="server" ID="dateRange1" IsDayIdFormat="true"  />
                                             </Content>
                                         </ext:Container>
-                                   <ext:ToolbarSeparator runat="server" />
                                 <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                                 <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:employeeCombo runat="server" ID="employeeCombo1"  />
+                                                <uc:employeeCombo runat="server" ID="employeeCombo1" />
                                             </Content>
                                         </ext:Container>
-                                   <ext:ToolbarSeparator runat="server" />
-                                      <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="approverId" Name="approverId"
-                                    DisplayField="fullName"
-                                    ValueField="recordId"
-                                    TypeAhead="false"
-                                    EmptyText="<%$ Resources: FieldApproverName%>"
-                                    HideTrigger="true" SubmitValue="true"
-                                    MinChars="3" 
-                                    TriggerAction="Query" ForceSelection="true">
-                                    <Store>
-
-                                        <ext:Store runat="server" ID="ApproverStore" AutoLoad="false">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="fullName" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                            <Proxy>
-                                                <ext:PageProxy DirectFn="App.direct.FillApprover"></ext:PageProxy>
-                                            </Proxy>
-
-                                        </ext:Store>
-
-                                    </Store>
-                                </ext:ComboBox>
-                                   <ext:ToolbarSeparator runat="server" />
-                              <ext:Container runat="server" Layout="FitLayout">
+                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                <uc:TimeVariationTypeControl runat="server" ID="timeVariationType"  />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" EnableBranch="false" />
+
                                     </Content>
 
                                 </ext:Container>
-                              
-                                
-                               <ext:ToolbarSeparator runat="server" />
-                                  <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
-                                    EmptyText="<%$ Resources: FieldApprovalStatus %>">
-                                    <Items>
 
-                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
-                                    </Items>
+                                  <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  runat="server" ID="dayStatus"  Editable="false" EmptyText="<%$ Resources: FieldDayStatus %>" ForceSelection="true" Width="150">
+                                            <Items>
+                                                 <ext:ListItem Text="<%$ Resources: All %>" Value="0" />
+                                                <ext:ListItem Text="<%$ Resources:  status1 %>" Value="1" />
+                                                <ext:ListItem Text="<%$ Resources:  status2 %>" Value="2" />
+                                                  <ext:ListItem Text="<%$ Resources:  status3 %>" Value="3" />
+                                                  <ext:ListItem Text="<%$ Resources:  status4 %>" Value="4" />
+                                                  <ext:ListItem Text="<%$ Resources:  status5 %>" Value="5" />
+                                                                                      
+                                      
 
-                                </ext:ComboBox>
-                                    <ext:ToolbarSeparator runat="server" />
+
+                                         
+                                           
+                                            </Items>
+
+                                        </ext:ComboBox>
+                                  <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  runat="server" ID="punchStatus"  Editable="false" EmptyText="<%$ Resources: FieldPunchStatus %>" ForceSelection="true" Width="120">
+                                            <Items>
+                                                 <ext:ListItem Text="<%$ Resources: All %>" Value="0" />
+                                                <ext:ListItem Text="<%$ Resources: lateness %>" Value="1" />
+                                                <ext:ListItem Text="<%$ Resources: overtime %>" Value="2" />
+                                     
+                                            </Items>
+
+                                        </ext:ComboBox>
                               
                                 
                                 <ext:Container runat="server" Layout="FitLayout">

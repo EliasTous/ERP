@@ -230,7 +230,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             TimeVariationListRequest req = GetAbsentRequest();
            
-            ListResponse<DashBoardTimeVariation> resp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);
+            ListResponse<Model.Reports.RT305> resp = _reportsService.ChildGetAll<Model.Reports.RT305>(req);
             if (!resp.Success)
             {
                 
@@ -240,10 +240,28 @@ namespace AionHR.Web.UI.Forms.Reports
                 
             }
 
+
+           // var edAmountList = resp.Items.GroupBy(x => new { x.employeeId, x.timeCode });
+           //// List<Model.Reports.RT305> RT305 = new List<Model.Reports.RT305>();
+           // foreach (var item in edAmountList)
+           // {
+
+
+           //     var sums = item.ToList().GroupBy(x => new {x.employeeId , x.timeCode })
+           //                      .Select(group => group.Sum(x => x.edAmount)).First();
+              
+           //         resp.Items.Where(x => x.employeeId == item.ToList().First().employeeId && x.timeCode == item.ToList().First().timeCode).ToList().ForEach(y => y.edAmount = Math.Round(sums, 3));
+           //     //item.ToList().First().edAmount = Convert.ToDouble(sums);
+           //     //RT305.Add(item.First());
+
+
+           // }
+
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             resp.Items.ForEach(
                 x =>
                 {
+                    x.edAmount = Math.Round(x.edAmount, 2);
                     x.clockDurationString = ConstTimeVariationType.time(x.clockDuration, true);
                     x.durationString = ConstTimeVariationType.time(x.duration, true);
                     x.timeCodeString = FillTimeCode(x.timeCode);
@@ -261,7 +279,7 @@ namespace AionHR.Web.UI.Forms.Reports
             Absense h = new Absense();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.DataSource = resp.Items;
+            h.DataSource = resp.Items; 
 
             string from = req.fromDayId.ToString(_systemService.SessionHelper.GetDateformat());
             string to = req.toDayId.ToString(_systemService.SessionHelper.GetDateformat());

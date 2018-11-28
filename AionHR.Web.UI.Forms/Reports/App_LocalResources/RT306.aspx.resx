@@ -117,58 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Paid" xml:space="preserve">
-    <value>Approved</value>
+  <data name="DamageWITHOUT_DAMAGE" xml:space="preserve">
+    <value>Without Damage</value>
   </data>
-  <data name="status0" xml:space="preserve">
-    <value>Non-working Day</value>
+  <data name="DamageWITH_DAMAGE" xml:space="preserve">
+    <value>With Damage</value>
   </data>
-  <data name="status1" xml:space="preserve">
-    <value>Working Day</value>
-  </data>
-  <data name="status2" xml:space="preserve">
-    <value>Paid Leave</value>
-  </data>
-  <data name="status3" xml:space="preserve">
-    <value>OpenDay</value>
-  </data>
-  <data name="status4" xml:space="preserve">
-    <value>Unpaid Leave</value>
-  </data>
-  <data name="status5" xml:space="preserve">
-    <value>LeaveWithoutExcuse</value>
-  </data>
-  <data name="Unpaid" xml:space="preserve">
-    <value>Unapproved</value>
-  </data>
-  <data name="All" xml:space="preserve">
+  <data name="FieldAll" xml:space="preserve">
     <value>All</value>
   </data>
-  <data name="lateness" xml:space="preserve">
-    <value>Lateness</value>
+  <data name="FieldApprovalStatus" xml:space="preserve">
+    <value>Approval</value>
   </data>
-  <data name="LeaveWithoutExcuse" xml:space="preserve">
-    <value>Leave Without Excuse</value>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>Approved</value>
   </data>
-  <data name="OpenDay" xml:space="preserve">
-    <value>Open Day</value>
+  <data name="FieldApproverName" xml:space="preserve">
+    <value>Approver</value>
   </data>
-  <data name="overtime" xml:space="preserve">
-    <value>Overtime</value>
+  <data name="FieldNew" xml:space="preserve">
+    <value>New</value>
   </data>
-  <data name="Paidleave" xml:space="preserve">
-    <value>Paid Leave</value>
+  <data name="FieldRejected" xml:space="preserve">
+    <value>Rejected</value>
   </data>
-  <data name="UnPaidleave" xml:space="preserve">
-    <value>UnPaid leave</value>
-  </data>
-  <data name="workingDay" xml:space="preserve">
-    <value>Working Day</value>
-  </data>
-  <data name="FieldDayStatus" xml:space="preserve">
-    <value>Day Status</value>
-  </data>
-  <data name="FieldPunchStatus" xml:space="preserve">
-    <value>Punch Status</value>
+  <data name="FieldTimeCode" xml:space="preserve">
+    <value>Time Code</value>
   </data>
 </root>

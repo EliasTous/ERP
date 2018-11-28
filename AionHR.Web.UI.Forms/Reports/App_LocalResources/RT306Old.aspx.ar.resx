@@ -117,31 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DamageWITHOUT_DAMAGE" xml:space="preserve">
-    <value>بدون ضرر</value>
+  <data name="Paid" xml:space="preserve">
+    <value>غياب بإذن</value>
   </data>
-  <data name="DamageWITH_DAMAGE" xml:space="preserve">
-    <value>تسبب ضرر</value>
+  <data name="status0" xml:space="preserve">
+    <value>يوم عطلة</value>
   </data>
-  <data name="FieldAll" xml:space="preserve">
+  <data name="status1" xml:space="preserve">
+    <value>يوم عمل</value>
+  </data>
+  <data name="status2" xml:space="preserve">
+    <value>إجازة مدفوعة</value>
+  </data>
+  <data name="status3" xml:space="preserve">
+    <value>غير مكتمل</value>
+  </data>
+  <data name="status4" xml:space="preserve">
+    <value>إجازة غير مدفوعة</value>
+  </data>
+  <data name="status5" xml:space="preserve">
+    <value>غياب بدون مبرر </value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>غياب دون إذن</value>
+  </data>
+  <data name="lateness" xml:space="preserve">
+    <value>تاخير </value>
+  </data>
+  <data name="overtime" xml:space="preserve">
+    <value>عمل اضافي</value>
+  </data>
+  <data name="All" xml:space="preserve">
     <value>الكل</value>
   </data>
-  <data name="FieldApprovalStatus" xml:space="preserve">
-    <value>التعميد</value>
+  <data name="FieldDayStatus" xml:space="preserve">
+    <value>نوع الدوام </value>
   </data>
-  <data name="FieldApproved" xml:space="preserve">
-    <value>مقبولة</value>
-  </data>
-  <data name="FieldApproverName" xml:space="preserve">
-    <value>المعمد</value>
-  </data>
-  <data name="FieldNew" xml:space="preserve">
-    <value>جديد</value>
-  </data>
-  <data name="FieldRejected" xml:space="preserve">
-    <value>مرفوض </value>
-  </data>
-  <data name="FieldTimeCode" xml:space="preserve">
-    <value>نوع الدوام</value>
+  <data name="FieldPunchStatus" xml:space="preserve">
+    <value>الحالة</value>
   </data>
 </root>

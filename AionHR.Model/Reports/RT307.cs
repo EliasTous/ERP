@@ -1,0 +1,18 @@
+﻿using AionHR.Model.Employees.Profile;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AionHR.Model.Reports
+{
+   public class RT307
+    {
+        public EmployeeName approverName { get; set; }
+        public int status_new { get; set; }
+        public int status_approved { get; set; }
+        public int status_rejected { get; set; }
+
+    }
+}

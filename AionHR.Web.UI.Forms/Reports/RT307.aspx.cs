@@ -33,7 +33,7 @@ using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
-    public partial class RT307 : System.Web.UI.Page
+    public partial class RT307: System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
@@ -87,7 +87,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                   
+
                 }
                 catch { }
             }
@@ -311,98 +311,95 @@ namespace AionHR.Web.UI.Forms.Reports
 
             try
             {
-                DashboardTimeListRequest r = new DashboardTimeListRequest();
-               
-               
-                r.fromDayId=date2.GetRange().DateFrom.ToString("yyyyMMdd");
-                r.toDayId= date2.GetRange().DateTo.ToString("yyyyMMdd");
-                r.employeeId = employeeCombo1.GetEmployee().employeeId;
+                DashboardTimeListRequest req = new DashboardTimeListRequest();
 
-                r.timeCode = timeVariationType.GetTimeCode(); 
+
+                req.fromDayId = date2.GetRange().DateFrom.ToString("yyyyMMdd");
+                req.toDayId = date2.GetRange().DateTo.ToString("yyyyMMdd");
+             
                 if (string.IsNullOrEmpty(approverId.Value.ToString()))
-                    r.approverId = 0;
+                    req.approverId = 0;
                 else
-                    r.approverId = Convert.ToInt32(approverId.Value.ToString());
-                r.shiftId = "0";
-                r.Parameters.Add("_sortBy", "dayId");
-                r.apStatus = string.IsNullOrEmpty(apStatus.Value.ToString()) ? "0" : apStatus.Value.ToString();
-                ListResponse <Time> resp = _timeAttendanceService.ChildGetAll<Time>(r);
+                    req.approverId = Convert.ToInt32(approverId.Value.ToString());
+
+
+                ListResponse<AionHR.Model.Reports.RT307> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT307>(req);
                 if (!resp.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                     return;
                 }
-                bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-                resp.Items.ForEach(
-                     x =>
-                     {
-                         if (!string.IsNullOrEmpty(x.clockDuration))
-                         x.clockDuration = time(Convert.ToInt32( x.clockDuration), true);
-                         if (!string.IsNullOrEmpty(x.duration))
-                             x.duration = time(Convert.ToInt32(x.duration), true);
-                         if (!string.IsNullOrEmpty(x.timeCode))
-                             x.timeCodeString = FillTimeCode(Convert.ToInt32(x.timeCode));
-                         x.statusString = FillApprovalStatus(x.status);
-                         if (!string.IsNullOrEmpty(x.damageLevel))
-                             x.damageLevel = FillDamageLevelString(Convert.ToInt16(x.damageLevel));
-                         if (rtl)
-                             x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
-                         else
-                             x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
+                //bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+                //resp.Items.ForEach(
+                //     x =>
+                //     {
+                //         if (!string.IsNullOrEmpty(x.clockDuration))
+                //             x.clockDuration = time(Convert.ToInt32(x.clockDuration), true);
+                //         if (!string.IsNullOrEmpty(x.duration))
+                //             x.duration = time(Convert.ToInt32(x.duration), true);
+                //         if (!string.IsNullOrEmpty(x.timeCode))
+                //             x.timeCodeString = FillTimeCode(Convert.ToInt32(x.timeCode));
+                //         x.statusString = FillApprovalStatus(x.status);
+                //         if (!string.IsNullOrEmpty(x.damageLevel))
+                //             x.damageLevel = FillDamageLevelString(Convert.ToInt16(x.damageLevel));
+                //         if (rtl)
+                //             x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                //         else
+                //             x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
 
 
-                     }
-                     );
-
-
-
-
-                TimeApproval h = new TimeApproval();
-            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.DataSource = resp.Items;
-
-            //string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            //string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            string user = _systemService.SessionHelper.GetCurrentUser();
-
-            //h.Parameters["FromParameter"].Value = from;
-            //h.Parameters["ToParameter"].Value = to;
-            h.Parameters["UserParameter"].Value = user;
-            //if (req.Parameters["_dayStatus"] != "0")
-            //    h.Parameters["dayStatusParameter"].Value = dayStatus.SelectedItem.Text;
-            //else
-            //    h.Parameters["dayStatusParameter"].Value = GetGlobalResourceObject("Common", "All");
-            //if (req.Parameters["_punchStatus"] != "0")
-            //    h.Parameters["punchStatus"].Value = punchStatus.SelectedItem.Text;
-            //else
-            //    h.Parameters["punchStatus"].Value = GetGlobalResourceObject("Common", "All");
-            //if (req.Parameters["_departmentId"] != "0")
-            //    h.Parameters["DepartmentName"].Value = jobInfo1.GetDepartment();
-            //else
-            //    h.Parameters["DepartmentName"].Value = GetGlobalResourceObject("Common", "All");
+                //     }
+                //     );
 
 
 
 
-            //ListRequest def = new ListRequest();
-            //int lateness = 0;
-            //ListResponse<KeyValuePair<string, string>> items = _systemService.ChildGetAll<KeyValuePair<string, string>>(def);
-            //try
-            //{
-            //    lateness = Convert.ToInt32(items.Items.Where(s => s.Key == "allowedLateness").First().Value);
-            //}
-            //catch
-            //{
+                ApproverPerformance h = new ApproverPerformance();
+                h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+                h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+                h.DataSource = resp.Items;
 
-            //}
-            //h.Parameters["AllowedLatenessParameter"].Value = lateness;
+                //string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                //string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                string user = _systemService.SessionHelper.GetCurrentUser();
 
-           
-            h.CreateDocument();
+                //h.Parameters["FromParameter"].Value = from;
+                //h.Parameters["ToParameter"].Value = to;
+                h.Parameters["User"].Value = user;
+                //if (req.Parameters["_dayStatus"] != "0")
+                //    h.Parameters["dayStatusParameter"].Value = dayStatus.SelectedItem.Text;
+                //else
+                //    h.Parameters["dayStatusParameter"].Value = GetGlobalResourceObject("Common", "All");
+                //if (req.Parameters["_punchStatus"] != "0")
+                //    h.Parameters["punchStatus"].Value = punchStatus.SelectedItem.Text;
+                //else
+                //    h.Parameters["punchStatus"].Value = GetGlobalResourceObject("Common", "All");
+                //if (req.Parameters["_departmentId"] != "0")
+                //    h.Parameters["DepartmentName"].Value = jobInfo1.GetDepartment();
+                //else
+                //    h.Parameters["DepartmentName"].Value = GetGlobalResourceObject("Common", "All");
 
 
-            ASPxWebDocumentViewer1.OpenReport(h);
+
+
+                //ListRequest def = new ListRequest();
+                //int lateness = 0;
+                //ListResponse<KeyValuePair<string, string>> items = _systemService.ChildGetAll<KeyValuePair<string, string>>(def);
+                //try
+                //{
+                //    lateness = Convert.ToInt32(items.Items.Where(s => s.Key == "allowedLateness").First().Value);
+                //}
+                //catch
+                //{
+
+                //}
+                //h.Parameters["AllowedLatenessParameter"].Value = lateness;
+
+
+                h.CreateDocument();
+
+
+                ASPxWebDocumentViewer1.OpenReport(h);
 
             }
             catch (Exception exp)
@@ -429,7 +426,7 @@ namespace AionHR.Web.UI.Forms.Reports
             }
             return R;
         }
-      
+
         private string FillApprovalStatus(short? apStatus)
         {
             string R;
@@ -595,6 +592,6 @@ namespace AionHR.Web.UI.Forms.Reports
             return data;
         }
 
-       
+
     }
 }

@@ -1104,9 +1104,6 @@
   <data name="EmployeeCalender" xml:space="preserve">
     <value>Employee Calender </value>
   </data>
-  <data name="RT306" xml:space="preserve">
-    <value>Day Status</value>
-  </data>
   <data name="RT111" xml:space="preserve">
     <value>Bank Accounts</value>
   </data>
@@ -1272,7 +1269,7 @@
   <data name="FieldPenaltyName" xml:space="preserve">
     <value>Penalty</value>
   </data>
-  <data name="RT307" xml:space="preserve">
+  <data name="RT306" xml:space="preserve">
     <value>Time Approval</value>
   </data>
   <data name="data" xml:space="preserve">
@@ -1337,5 +1334,8 @@
   </data>
   <data name="periodError" xml:space="preserve">
     <value>Please choose salary type and fiscal year </value>
+  </data>
+  <data name="RT307" xml:space="preserve">
+    <value>Approver Performance</value>
   </data>
 </root>

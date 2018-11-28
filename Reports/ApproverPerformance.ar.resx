@@ -117,31 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DamageWITHOUT_DAMAGE" xml:space="preserve">
-    <value>بدون ضرر</value>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>نشاط المعمدون</value>
   </data>
-  <data name="DamageWITH_DAMAGE" xml:space="preserve">
-    <value>تسبب ضرر</value>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>xrLabel2</value>
   </data>
-  <data name="FieldAll" xml:space="preserve">
-    <value>الكل</value>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>لم يتم العثور على نتائج</value>
   </data>
-  <data name="FieldApprovalStatus" xml:space="preserve">
-    <value>التعميد</value>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>من قبل :</value>
   </data>
-  <data name="FieldApproved" xml:space="preserve">
-    <value>مقبولة</value>
+  <data name="xrPageInfo2.Format" xml:space="preserve">
+    <value>صفحة {0} من {1}</value>
   </data>
-  <data name="FieldApproverName" xml:space="preserve">
-    <value>المعمد</value>
+  <data name="xrTableCell1.Text" xml:space="preserve">
+    <value>xrTableCell1</value>
   </data>
-  <data name="FieldNew" xml:space="preserve">
+  <data name="xrTableCell10.Text" xml:space="preserve">
+    <value>xrTableCell10</value>
+  </data>
+  <data name="xrTableCell11.Text" xml:space="preserve">
     <value>جديد</value>
   </data>
-  <data name="FieldRejected" xml:space="preserve">
-    <value>مرفوض </value>
+  <data name="xrTableCell12.Text" xml:space="preserve">
+    <value>xrTableCell12</value>
   </data>
-  <data name="FieldTimeCode" xml:space="preserve">
-    <value>نوع الدوام</value>
+  <data name="xrTableCell13.Text" xml:space="preserve">
+    <value>مرفوضة</value>
+  </data>
+  <data name="xrTableCell14.Text" xml:space="preserve">
+    <value>xrTableCell14</value>
+  </data>
+  <data name="xrTableCell2.Text" xml:space="preserve">
+    <value>xrTableCell2</value>
+  </data>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>xrTableCell3</value>
+  </data>
+  <data name="xrTableCell4.Text" xml:space="preserve">
+    <value>xrTableCell4</value>
+  </data>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>xrTableCell5</value>
+  </data>
+  <data name="xrTableCell6.Text" xml:space="preserve">
+    <value>xrTableCell6</value>
+  </data>
+  <data name="xrTableCell7.Text" xml:space="preserve">
+    <value>المعمد</value>
+  </data>
+  <data name="xrTableCell8.Text" xml:space="preserve">
+    <value>xrTableCell8</value>
+  </data>
+  <data name="xrTableCell9.Text" xml:space="preserve">
+    <value>موافق عليها </value>
   </data>
 </root>

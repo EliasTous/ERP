@@ -209,7 +209,9 @@
     <Compile Include="Reports\RT303.cs" />
     <Compile Include="Reports\RT303A.cs" />
     <Compile Include="Reports\RT304.cs" />
+    <Compile Include="Reports\RT305.cs" />
     <Compile Include="Reports\RT306.cs" />
+    <Compile Include="Reports\RT307.cs" />
     <Compile Include="Reports\RT401.cs" />
     <Compile Include="Reports\RT402.cs" />
     <Compile Include="Reports\RT501.cs" />

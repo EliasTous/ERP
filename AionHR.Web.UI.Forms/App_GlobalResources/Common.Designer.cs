@@ -2932,7 +2932,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day Status.
+        ///   Looks up a localized string similar to Time Approval.
         /// </summary>
         internal static string RT306 {
             get {
@@ -2941,7 +2941,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time Approval.
+        ///   Looks up a localized string similar to Approver Performance.
         /// </summary>
         internal static string RT307 {
             get {

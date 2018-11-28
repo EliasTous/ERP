@@ -221,6 +221,11 @@ namespace AionHR.Infrastructure.Session
             headers.Add("Authorization", "Basic " + Get("key"));
             headers.Add("AccountId", "" + Get("AccountId"));
             headers.Add("UserId", Get("UserId").ToString());
+         
+            if (Get("Language").ToString()=="en")
+            headers.Add("languagId", "1");
+            else
+                headers.Add("languagId", "2");
             return headers;
         }
 
