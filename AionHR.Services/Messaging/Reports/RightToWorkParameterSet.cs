@@ -10,6 +10,7 @@ namespace AionHR.Services.Messaging.Reports
     {
         public string status { get; set; }
         public string dtId { get; set; }
+        public string esId { get; set; }
 
         protected Dictionary<string, string> parameters;
 
@@ -20,6 +21,7 @@ namespace AionHR.Services.Messaging.Reports
                 parameters = new Dictionary<string, string>();
                 parameters.Add("_status", status.ToString());
                 parameters.Add("_dtId", dtId.ToString());
+                parameters.Add("_esId", esId.ToString());
                 return parameters;
             }
         }

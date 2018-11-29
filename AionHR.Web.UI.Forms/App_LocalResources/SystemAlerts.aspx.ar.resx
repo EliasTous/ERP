@@ -126,6 +126,9 @@
   <data name="Alert10Title" xml:space="preserve">
     <value>سلف</value>
   </data>
+  <data name="alert11Title" xml:space="preserve">
+    <value>العطلات</value>
+  </data>
   <data name="Alert1Title" xml:space="preserve">
     <value>ملفات اجازات عمل الشركة</value>
   </data>

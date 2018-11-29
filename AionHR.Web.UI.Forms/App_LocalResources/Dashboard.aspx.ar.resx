@@ -702,4 +702,16 @@
   <data name="FieldApproverName" xml:space="preserve">
     <value>المعمد</value>
   </data>
+  <data name="vacations" xml:space="preserve">
+    <value>العطلات</value>
+  </data>
+  <data name="FieldReplacement" xml:space="preserve">
+    <value>الموظف البديل</value>
+  </data>
+  <data name="leaveDays" xml:space="preserve">
+    <value>عدد ايام الاجازة </value>
+  </data>
+  <data name="ltName" xml:space="preserve">
+    <value>نوع الاجازة</value>
+  </data>
 </root>

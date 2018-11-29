@@ -87,6 +87,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     FillRWDocumentType();
+                    FillStatus();
                     //FillReport(false, false);
                 }
                 catch { }
@@ -174,6 +175,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             // req.Add(dateRange1.GetRange());
             //  req.Add(employeeCombo1.GetEmployee());
+            
             req.Add(jobInfo1.GetJobInfo());
             req.Add(getStatus());
            
@@ -333,6 +335,11 @@ namespace AionHR.Web.UI.Forms.Reports
                 r.dtId = "0";
             else
                 r.dtId = dtId.SelectedItem.Value;
+            if (esId.SelectedItem.Value == null)
+                r.esId = "0";
+            else
+                r.esId = esId.SelectedItem.Value;
+
 
             return r;
         }
@@ -346,6 +353,15 @@ namespace AionHR.Web.UI.Forms.Reports
             RWDocumentTypeStore.DataBind();
 
         }
-      
+        private void FillStatus()
+        {
+            ListRequest statusReq = new ListRequest();
+            ListResponse<EmploymentStatus> resp = _employeeService.ChildGetAll<EmploymentStatus>(statusReq);
+            statusStore.DataSource = resp.Items;
+            statusStore.DataBind();
+        }
+
+       
+
     }
 }

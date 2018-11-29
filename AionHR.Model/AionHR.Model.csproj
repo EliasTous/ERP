@@ -90,6 +90,7 @@
     <Compile Include="Dashboard\EmployeeBirthday.cs" />
     <Compile Include="Dashboard\EmpRTW.cs" />
     <Compile Include="Dashboard\IDashBoardRepository.cs" />
+    <Compile Include="Dashboard\LeavingSoon.cs" />
     <Compile Include="Dashboard\LocalsRate.cs" />
     <Compile Include="Dashboard\ProbationEnd.cs" />
     <Compile Include="Dashboard\RetirementAge.cs" />

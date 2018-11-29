@@ -705,4 +705,16 @@
   <data name="FieldApproverName" xml:space="preserve">
     <value>Approver</value>
   </data>
+  <data name="FieldReplacement" xml:space="preserve">
+    <value>Replacement Employee</value>
+  </data>
+  <data name="leaveDays" xml:space="preserve">
+    <value>Leave Days</value>
+  </data>
+  <data name="ltName" xml:space="preserve">
+    <value>Leave Type</value>
+  </data>
+  <data name="vacations" xml:space="preserve">
+    <value>vacations</value>
+  </data>
 </root>

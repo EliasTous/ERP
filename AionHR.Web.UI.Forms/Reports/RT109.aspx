@@ -91,6 +91,26 @@
                                   
                                    
                                 </ext:ComboBox>
+
+                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
+                                    <Store>
+                                        <ext:Store runat="server" ID="statusStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+
+                                    <Items>
+                                        <ext:ListItem Text="<%$Resources:Common,All %>" Value="0" />
+                                    </Items>
+                                </ext:ComboBox>
+
                                                                     
                                <%-- <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>

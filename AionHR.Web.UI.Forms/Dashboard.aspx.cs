@@ -320,7 +320,7 @@ namespace AionHR.Web.UI.Forms
                 int TermEndDate = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TERM_END_DATE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TERM_END_DATE).First().count : 0;
                 int EmploymentReviewDate = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.EMPLOYMENT_REVIEW_DATE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.EMPLOYMENT_REVIEW_DATE).First().count : 0;
                 int totalLoans = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.LOANS).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.LOANS).First().count : 0;
-
+                int vacations = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.VACATIONS).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.VACATIONS).First().count : 0;
 
 
                 annversaries.Text = annev.ToString();
@@ -333,6 +333,7 @@ namespace AionHR.Web.UI.Forms
                 EmploymentReviewDateLbl.Text = EmploymentReviewDate.ToString();
                 termEndDateLBL.Text = TermEndDate.ToString();
                 retirementAgeLBL.Text = retirementAge.ToString();
+                vacationsLBL.Text = vacations.ToString();
 
                 return dashoard;
             }
@@ -2261,6 +2262,26 @@ namespace AionHR.Web.UI.Forms
             }
             return R;
         }
-      
+
+        protected void LeaveingSoonStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            try
+            {
+                DashboardRequest req = GetDashboardRequest();
+                ListResponse<LeavingSoon> resp = _dashBoardService.ChildGetAll<LeavingSoon>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+                LeaveingSoonStore.DataSource = resp.Items;
+                LeaveingSoonStore.DataBind();
+
+            }
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+        }
     }
 }

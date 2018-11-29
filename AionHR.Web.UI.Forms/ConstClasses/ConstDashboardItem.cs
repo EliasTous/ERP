@@ -48,6 +48,7 @@ namespace AionHR.Web.UI.Forms.ConstClasses
         public const short COMPANY_RIGHT_TO_WORK = 908;
         public const short EMPLOYEE_RIGHT_TO_WORK = 909;
         public const short LOANS = 910;
+        public const short VACATIONS= 911;
 
     }
 }

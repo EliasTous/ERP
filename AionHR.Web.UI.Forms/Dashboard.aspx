@@ -2883,12 +2883,60 @@
                                                                         </ext:Container>
                                                                     </Items>
                                                                 </ext:Panel>
+                                                                
 
                                                             </Items>
                                                         </ext:Panel>
+                                                         <ext:Panel runat="server" Layout="HBoxLayout" Flex="1">
+                                                            <LayoutConfig>
+                                                                <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
+                                                            </LayoutConfig>
+                                                             <Items>
+                                                          <ext:Panel runat="server" Layout="VBoxLayout" Flex="1" PaddingSpec="2 2 2 2">
+                                                                    <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                    <Items>
+                                                                        <ext:Container runat="server" Cls="styleContainer">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
 
+                                                                                <ext:Label runat="server" ID="vacationsLBL" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:vacations %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                                   <Listeners>
+                                                                                        <Click Handler="App.LeaveingSoonWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Container>
+                                                                    </Items>
+                                                                </ext:Panel>
+                                                                  <ext:Panel runat="server" Layout="VBoxLayout" Flex="1" PaddingSpec="2 2 2 2">
+                                                                    <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                    <Items>
+                                                                        <ext:Container runat="server" Cls="styleContainer">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Left" Pack="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
 
+                                                                                <ext:Label Visible="false" runat="server" ID="Label1" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                                <ext:HyperlinkButton Visible="false" runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:vacations %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                                   <Listeners>
+                                                                                        <Click Handler="App.TermEndDateWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Container>
+                                                                    </Items>
+                                                                </ext:Panel>
                                                     </Items>
+                                                </ext:Panel>
+                                                        </Items>
                                                 </ext:Panel>
                                             </Items>
                                         </ext:TabPanel>
@@ -5263,6 +5311,104 @@
             </Items>
         </ext:Window>
 
+
+
+         <ext:Window runat="server" Modal="true" Layout="FitLayout"
+            Hidden="true" AutoShow="false" ID="LeaveingSoonWindow" Width="1000" Height="250" Title="<%$ Resources: vacations %>">
+            <Listeners>
+                <AfterLayout Handler="App.LeaveingSoonStore.reload()" />
+            </Listeners>
+            <Items>
+                <ext:GridPanel MarginSpec="0 0 0 0"
+                    ID="LeaveingSoonGrid"
+                    runat="server" 
+                    PaddingSpec="0 0 0 0"
+                    Header="false"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+
+                    <Store>
+                        <ext:Store
+                            ID="LeaveingSoonStore"
+                            runat="server" OnReadData="LeaveingSoonStore_ReadData"
+                            PageSize="30">
+
+                            <Model>
+                                <ext:Model ID="Model34" runat="server">
+                                    <Fields>
+
+
+                                        <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="replacementName" ServerMapping="replacementName.fullName" />
+                                     
+                                        <ext:ModelField Name="ltName" />
+                                         <ext:ModelField Name="departmentName" />
+                                         <ext:ModelField Name="branchName" />
+                                         <ext:ModelField Name="leaveRef" />
+                                         <ext:ModelField Name="startDate" />
+                                         <ext:ModelField Name="endDate" />
+                                         <ext:ModelField Name="returnDate" />
+                                         <ext:ModelField Name="status" />
+                                         <ext:ModelField Name="leaveDays" />
+                                         <ext:ModelField Name="destination" />
+                                         <ext:ModelField Name="justification" />
+                                          <ext:ModelField Name="returnNotes" />
+
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+
+                        </ext:Store>
+                    </Store>
+
+                    <ColumnModel ID="ColumnModel35" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+
+                            <ext:Column Visible="false" ID="Column30" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false"  />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
+                                 <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReplacement %>" DataIndex="replacementName" Hideable="false"  />
+                               <ext:Column Flex="1"  MenuDisabled="true" runat="server" Text="<%$ Resources: ltName %>" DataIndex="ltName" Hideable="false"  />
+                               <ext:Column Flex="2"  MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment %>" DataIndex="departmentName" Hideable="false"  />
+                               <ext:Column Flex="2"  MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch %>" DataIndex="branchName" Hideable="false"  />
+                               <ext:Column Flex="1"   MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLeaveRef %>" DataIndex="leaveRef" Hideable="false"  />
+                             
+                         
+                          
+                             <ext:DateColumn Flex="2" ID="DateColumn6" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldStartDate %>" DataIndex="startDate" Hideable="false"   />
+                             <ext:DateColumn Flex="2"   ID="DateColumn7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEndDate %>" DataIndex="endDate" Hideable="false" />
+                             <ext:DateColumn  Flex="1"  ID="DateColumn8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReturnDate %>" DataIndex="returnDate" Hideable="false" />
+                          <%--   <ext:Column  ID="npName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNpName %>" DataIndex="npName" Hideable="false"  />--%>
+
+
+                               <ext:Column Flex="1"   MenuDisabled="true" runat="server" Text="<%$ Resources: leaveDays %>" DataIndex="leaveDays" Hideable="false"  />
+                               <ext:Column  Flex="1"  MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDestination %>" DataIndex="destination" Hideable="false"  />
+                               <ext:Column Flex="1"  MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJustification %>" DataIndex="justification" Hideable="false"  />
+                             <ext:Column Flex="1"  MenuDisabled="true" runat="server" Text="<%$ Resources: ReturnNotes %>" DataIndex="returnNotes" Hideable="false"  />
+
+
+
+
+
+
+                        </Columns>
+                    </ColumnModel>
+
+
+                    <View>
+                        <ext:GridView ID="GridView35" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel34" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+            </Items>
+        </ext:Window>
 
       
 

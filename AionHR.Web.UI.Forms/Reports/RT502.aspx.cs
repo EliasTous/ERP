@@ -198,6 +198,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ListResponse<AionHR.Model.Reports.RT502> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT502>(req);
             if (!resp.Success)
             {
+                throw new Exception(resp.Error+ GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId);
                
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
@@ -212,12 +213,12 @@ namespace AionHR.Web.UI.Forms.Reports
 
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            //string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            //string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-
+            string d = periodId.SelectedItem.Text.ToString().Split('(')[1].Split(')')[0];
+            
+            
             string user = _systemService.SessionHelper.GetCurrentUser();
-            //h.Parameters["From"].Value = from;
-            //h.Parameters["To"].Value = to;
+            h.Parameters["From"].Value = d.Split('-')[0].ToString().Trim();
+            h.Parameters["To"].Value = d.Split('-')[1].Trim();
             h.Parameters["User"].Value = user;
             if (resp.Items.Count > 0)
             {

@@ -41,6 +41,7 @@
         <ext:Hidden ID="alert8Title" runat="server" Text="<%$ Resources: Alert8Title %>" />
         <ext:Hidden ID="alert9Title" runat="server" Text="<%$ Resources: Alert9Title %>" />
         <ext:Hidden ID="alert10Title" runat="server" Text="<%$ Resources: Alert10Title %>" />
+         <ext:Hidden ID="alert11Title" runat="server" Text="<%$ Resources: Alert11Title %>" />
          
 
       <%--  <ext:Hidden ID="alert101Description" runat="server" Text="<%$ Resources: Alert101Description %>" />
