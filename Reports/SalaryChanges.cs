@@ -35,7 +35,6 @@ namespace Reports
         private XRTableCell xrTableCell1;
         private XRTableCell xrTableCell2;
         private XRTableCell xrTableCell5;
-        private XRRichText xrRichText2;
         private XRLabel xrLabel13;
         private XRRichText xrRichText1;
         private GroupHeaderBand GroupHeader1;
@@ -61,6 +60,7 @@ namespace Reports
         private DevExpress.XtraReports.Parameters.Parameter Department;
         private XRLabel xrLabel6;
         private XRLine xrLine2;
+        private XRLabel xrLabel20;
 
         /// <summary>
         /// Required designer variable.
@@ -99,7 +99,7 @@ namespace Reports
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalaryChanges));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
+            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
@@ -129,7 +129,6 @@ namespace Reports
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.GroupHeader2 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
@@ -147,7 +146,7 @@ namespace Reports
             this.Branch = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.Status = new DevExpress.XtraReports.Parameters.Parameter();
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -156,7 +155,7 @@ namespace Reports
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrRichText2,
+            this.xrLabel20,
             this.xrLabel13,
             this.xrRichText1,
             this.xrTable1});
@@ -166,11 +165,12 @@ namespace Reports
             this.Detail.StyleName = "DataField";
             this.Detail.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.GroupHeader1_BeforePrint);
             // 
-            // xrRichText2
+            // xrLabel20
             // 
-            resources.ApplyResources(this.xrRichText2, "xrRichText2");
-            this.xrRichText2.Name = "xrRichText2";
-            this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
+            resources.ApplyResources(this.xrLabel20, "xrLabel20");
+            this.xrLabel20.Name = "xrLabel20";
+            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel20.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel20_BeforePrint);
             // 
             // xrLabel13
             // 
@@ -412,11 +412,6 @@ namespace Reports
             this.xrLabel2.StylePriority.UseFont = false;
             this.xrLabel2.StylePriority.UseTextAlignment = false;
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT202);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // GroupHeader2
             // 
             this.GroupHeader2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -539,6 +534,11 @@ namespace Reports
             this.Status.Name = "Status";
             this.Status.Visible = false;
             // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT202);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
             // SalaryChanges
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -567,7 +567,6 @@ namespace Reports
             this.PageInfo,
             this.DataField});
             this.Version = "16.2";
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
@@ -592,6 +591,17 @@ namespace Reports
         private void PageHeader_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             e.Cancel = RowCount == 0;
+        }
+
+        private void xrRichText2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+           
+        }
+
+        private void xrLabel20_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            if ((sender as XRLabel).Text == "  / ")
+                e.Cancel = true;
         }
     }
 }

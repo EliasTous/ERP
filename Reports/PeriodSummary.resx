@@ -467,7 +467,7 @@
     <value>109.234985, 51.27659</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
-    <value>During Shif Leave</value>
+    <value>During Shift Leave</value>
   </data>
   <data name="xrLabel15.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>

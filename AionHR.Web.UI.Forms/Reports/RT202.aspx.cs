@@ -196,11 +196,16 @@ namespace AionHR.Web.UI.Forms.Reports
 
         }
 
-        
-        public void FillReport(bool throwException =true)
+
+        public void FillReport(bool throwException = true)
         {
             ReportCompositeRequest req = GetRequest();
             ListResponse<AionHR.Model.Reports.RT202> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT202>(req);
+            resp.Items.ForEach(x =>
+                        { 
+                            if (x.prevBasicAmount==0)
+                            { x.prevBasicAmount = null; x.prevCurrencyRef = ""; x.PrevSalaryTypeString = ""; }
+            });
             if (!resp.Success)
             {
                 if (throwException)

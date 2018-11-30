@@ -635,9 +635,6 @@
     <EmbeddedResource Include="SalaryChanges.ar.resx">
       <DependentUpon>SalaryChanges.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SalaryChanges.en.resx">
-      <DependentUpon>SalaryChanges.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SalaryChanges.resx">
       <DependentUpon>SalaryChanges.cs</DependentUpon>
     </EmbeddedResource>

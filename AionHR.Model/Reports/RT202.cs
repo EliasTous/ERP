@@ -61,7 +61,7 @@ namespace AionHR.Model.Reports
 
         public string prevCurrencyRef { get; set; }
 
-        public double prevBasicAmount { get; set; }
+        public double? prevBasicAmount { get; set; }
 
         public int? prevSalaryType { get; set; }
 

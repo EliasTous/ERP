@@ -735,14 +735,26 @@
   <data name="GroupFooter1.HeightF" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrLabel31.Dpi" type="System.Single, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="xrLabel31.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
+    <value>911.885559, 0</value>
+  </data>
+  <data name="xrLabel31.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>80.11444, 23</value>
+  </data>
+  <data name="xrLabel31.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel30.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="xrLabel30.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>911.885559, 0</value>
+    <value>812.0468, 0</value>
   </data>
   <data name="xrLabel30.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>80.11444, 23</value>
+    <value>99.8386841, 23</value>
   </data>
   <data name="xrLabel30.Text" xml:space="preserve">
     <value>Total</value>
