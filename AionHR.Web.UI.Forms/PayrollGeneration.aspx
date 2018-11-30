@@ -472,7 +472,14 @@
                    
                                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
                             <Store>
-                                <ext:Store ID="Store1" runat="server" OnReadData="Store1_ReadData">
+                            
+         
+         
+         
+         
+         
+                                <ext:Store ID="Store1" runat="server"    RemoteSort="False"     RemoteFilter="true"     PageSize="50" IDMode="Explicit" Namespace="App" OnReadData="Store1_ReadData">
+                                       
                                     <Model>
                                         <ext:Model runat="server" IDProperty="seqNo">
                                             <Fields>
@@ -587,6 +594,41 @@
 
                                 </CellClick>
                             </DirectEvents>
+                              <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar2" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar1" runat="server" />
+                                <ext:ToolbarFill />
+                                
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                    <BottomBar>
+
+                        <ext:PagingToolbar ID="PagingToolbar1"
+                            runat="server"
+                            FirstText="<%$ Resources:Common , FirstText %>"
+                            NextText="<%$ Resources:Common , NextText %>"
+                            PrevText="<%$ Resources:Common , PrevText %>"
+                            LastText="<%$ Resources:Common , LastText %>"
+                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
+                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
+                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
+                            DisplayInfo="true"
+                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
+                            Border="true"
+                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
+                            <Items>
+                               
+                            </Items>
+                            <Listeners>
+                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                            </Listeners>
+                        </ext:PagingToolbar>
+
+                    </BottomBar>
                             <View>
                                 <ext:GridView ID="GridView2" runat="server" />
                             </View>

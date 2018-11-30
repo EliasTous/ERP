@@ -37,6 +37,7 @@ using AionHR.Services.Messaging.TimeAttendance;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Services.Messaging.Employees;
 using AionHR.Model.Employees;
+using AionHR.Services.Messaging.DashBoard;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -323,6 +324,11 @@ namespace AionHR.Web.UI.Forms
                 int vacations = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.VACATIONS).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.VACATIONS).First().count : 0;
 
 
+                int APPROVAL_TIME = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_TIME).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_TIME).First().count : 0;
+                int APPROVAL_LEAVE = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LEAVE).First().count : 0;
+                int APPROVAL_LOAN = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LOAN).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LOAN).First().count : 0;
+                int APPROVAL_PENALTY = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PENALTY).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PENALTY).First().count : 0;
+
                 annversaries.Text = annev.ToString();
                 birthdays.Text = birth.ToString();
                 companyRW.Text = comp.ToString();
@@ -334,7 +340,11 @@ namespace AionHR.Web.UI.Forms
                 termEndDateLBL.Text = TermEndDate.ToString();
                 retirementAgeLBL.Text = retirementAge.ToString();
                 vacationsLBL.Text = vacations.ToString();
-
+                
+                LeavesGrid.Title = leaveGrid.Title.ToString() +" "+ (APPROVAL_LEAVE != 0 ? APPROVAL_LEAVE.ToString() : "");
+                ApprovalLoanGrid.Title = ApprovalLoanGrid.Title.ToString() + " " + (APPROVAL_LOAN != 0 ? APPROVAL_LOAN.ToString() : "");
+                TimeGridPanel.Title= TimeGridPanel.Title.ToString() + " " + (APPROVAL_TIME != 0 ? APPROVAL_TIME.ToString() : "");
+                EmployeePenaltyApprovalGrid.Title= EmployeePenaltyApprovalGrid.Title.ToString() + " " + (APPROVAL_PENALTY != 0 ? APPROVAL_PENALTY.ToString() : "");
                 return dashoard;
             }
             catch(Exception exp)
@@ -758,8 +768,10 @@ namespace AionHR.Web.UI.Forms
                 return null;
             userSessionEmployeeId.Text = response.result.employeeId;
             req.status = 1;
-
-
+            if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                req.ApproverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+           
+                
 
             req.Size = "30";
             req.StartAt = "1";
@@ -852,12 +864,19 @@ namespace AionHR.Web.UI.Forms
             try
             {
 
-                LeaveRequestListRequest req = GetLeaveManagementRequest();
+                LeaveApprovalListRequest req = new LeaveApprovalListRequest();
+                req.status = 1;
+                if (!String.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                    req.approverId = _systemService.SessionHelper.GetEmployeeId();
+                else
+                    return;
+                req.leaveId = "0";
 
-                
+
+
                    if (req != null)
                 {
-                    ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
+                    ListResponse<AionHR.Model.LeaveManagement.Approvals> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
 
                     if (!resp.Success)
                     {
@@ -2152,7 +2171,7 @@ namespace AionHR.Web.UI.Forms
             {
                 EmployeePenaltyApprovalListRequest req = new EmployeePenaltyApprovalListRequest();
 
-                req.apStatus = "0";
+                req.apStatus = "1";
                 req.penaltyId = "0";
                 req.approverId = _systemService.SessionHelper.GetEmployeeId() != null ? _systemService.SessionHelper.GetEmployeeId().ToString() : null;
 

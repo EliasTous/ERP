@@ -205,8 +205,8 @@ namespace AionHR.Web.UI.Forms
 
 
             req.PayId = CurrentPayId.Text;
-            req.Size = "30";
-            req.StartAt = "1";
+            req.Size = "50";
+           
             req.Filter = "";
             
 
@@ -873,6 +873,7 @@ namespace AionHR.Web.UI.Forms
         protected void Store1_ReadData(object sender, StoreReadDataEventArgs e)
         {
             EmployeePayrollListRequest req = GetEmployeePayrollRequest();
+            req.StartAt = e.Start.ToString();
             ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
             if (!resp.Success)
             {

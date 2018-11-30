@@ -128,6 +128,9 @@
   <data name="xrTableCell8.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrTableCell8.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="xrTableCell8.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
   </data>
@@ -136,6 +139,9 @@
   </data>
   <data name="xrTableCell10.Dpi" type="System.Single, mscorlib">
     <value>100</value>
+  </data>
+  <data name="xrTableCell10.Text" xml:space="preserve">
+    <value>Address</value>
   </data>
   <data name="xrTableCell10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
@@ -146,6 +152,9 @@
   <data name="xrTableCell12.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrTableCell12.Text" xml:space="preserve">
+    <value>City</value>
+  </data>
   <data name="xrTableCell12.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
   </data>
@@ -154,6 +163,9 @@
   </data>
   <data name="xrTableCell14.Dpi" type="System.Single, mscorlib">
     <value>100</value>
+  </data>
+  <data name="xrTableCell14.Text" xml:space="preserve">
+    <value>Phone</value>
   </data>
   <data name="xrTableCell14.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
@@ -164,6 +176,9 @@
   <data name="xrTableCell16.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrTableCell16.Text" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
   <data name="xrTableCell16.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
   </data>
@@ -173,6 +188,9 @@
   <data name="xrTableCell18.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrTableCell18.Text" xml:space="preserve">
+    <value>Fax</value>
+  </data>
   <data name="xrTableCell18.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
   </data>
@@ -181,6 +199,9 @@
   </data>
   <data name="xrTableCell20.Dpi" type="System.Single, mscorlib">
     <value>100</value>
+  </data>
+  <data name="xrTableCell20.Text" xml:space="preserve">
+    <value>Email</value>
   </data>
   <data name="xrTableCell20.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
@@ -225,9 +246,9 @@
   <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>TopLeft</value>
   </data>
-  <data name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </data>
+  </metadata>
   <data name="xrTable1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -236,6 +257,9 @@
   </data>
   <data name="xrTableCell19.Dpi" type="System.Single, mscorlib">
     <value>100</value>
+  </data>
+  <data name="xrTableCell19.Text" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="xrTableCell19.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
@@ -246,6 +270,9 @@
   <data name="xrTableCell7.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrTableCell7.Text" xml:space="preserve">
+    <value>Address</value>
+  </data>
   <data name="xrTableCell7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
   </data>
@@ -254,6 +281,9 @@
   </data>
   <data name="xrTableCell9.Dpi" type="System.Single, mscorlib">
     <value>100</value>
+  </data>
+  <data name="xrTableCell9.Text" xml:space="preserve">
+    <value>City</value>
   </data>
   <data name="xrTableCell9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
@@ -264,6 +294,9 @@
   <data name="xrTableCell11.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrTableCell11.Text" xml:space="preserve">
+    <value>Phone</value>
+  </data>
   <data name="xrTableCell11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
   </data>
@@ -272,6 +305,9 @@
   </data>
   <data name="xrTableCell13.Dpi" type="System.Single, mscorlib">
     <value>100</value>
+  </data>
+  <data name="xrTableCell13.Text" xml:space="preserve">
+    <value>Mobile</value>
   </data>
   <data name="xrTableCell13.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
@@ -282,6 +318,9 @@
   <data name="xrTableCell15.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrTableCell15.Text" xml:space="preserve">
+    <value>Fax</value>
+  </data>
   <data name="xrTableCell15.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
   </data>
@@ -290,6 +329,9 @@
   </data>
   <data name="xrTableCell17.Dpi" type="System.Single, mscorlib">
     <value>100</value>
+  </data>
+  <data name="xrTableCell17.Text" xml:space="preserve">
+    <value>Email</value>
   </data>
   <data name="xrTableCell17.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
@@ -315,17 +357,26 @@
   <data name="xrTableCell1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrTableCell1.Text" xml:space="preserve">
+    <value>xrTableCell1</value>
+  </data>
   <data name="xrTableCell1.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <data name="xrTableCell2.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrTableCell2.Text" xml:space="preserve">
+    <value>xrTableCell2</value>
+  </data>
   <data name="xrTableCell2.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <data name="xrTableCell3.Dpi" type="System.Single, mscorlib">
     <value>100</value>
+  </data>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>xrTableCell3</value>
   </data>
   <data name="xrTableCell3.Weight" type="System.Double, mscorlib">
     <value>1</value>
@@ -339,17 +390,26 @@
   <data name="xrTableCell4.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrTableCell4.Text" xml:space="preserve">
+    <value>xrTableCell4</value>
+  </data>
   <data name="xrTableCell4.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <data name="xrTableCell5.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>xrTableCell5</value>
+  </data>
   <data name="xrTableCell5.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <data name="xrTableCell6.Dpi" type="System.Single, mscorlib">
     <value>100</value>
+  </data>
+  <data name="xrTableCell6.Text" xml:space="preserve">
+    <value>xrTableCell6</value>
   </data>
   <data name="xrTableCell6.Weight" type="System.Double, mscorlib">
     <value>1</value>
@@ -364,10 +424,13 @@
     <value>100</value>
   </data>
   <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>234.0735, 5.99999475</value>
+    <value>322.911957, 6.00001</value>
   </data>
   <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>282.84314, 23</value>
+  </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>xrLabel3</value>
   </data>
   <data name="xrLabel3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleLeft</value>
@@ -376,10 +439,13 @@
     <value>100</value>
   </data>
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>148.166656, 5.99999475</value>
+    <value>257.83844, 6.00001</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>85.9068451, 23</value>
+    <value>65.07353, 22.9999981</value>
+  </data>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>By :</value>
   </data>
   <data name="xrLabel2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleLeft</value>
@@ -387,17 +453,23 @@
   <data name="xrPageInfo1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrPageInfo1.Format" xml:space="preserve">
+    <value>{0:dddd, d MMMM, yyyy H:mm}</value>
+  </data>
   <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
     <value>6.00001, 6.00001</value>
   </data>
   <data name="xrPageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>142.166641, 23</value>
+    <value>189.666641, 23</value>
   </data>
   <data name="xrPageInfo1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleLeft</value>
   </data>
   <data name="xrPageInfo2.Dpi" type="System.Single, mscorlib">
     <value>100</value>
+  </data>
+  <data name="xrPageInfo2.Format" xml:space="preserve">
+    <value>Page {0} of {1}</value>
   </data>
   <data name="xrPageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
     <value>605.755066, 5.99999475</value>
@@ -423,6 +495,9 @@
   <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>120.230423, 34.9999962</value>
   </data>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>Sponsors</value>
+  </data>
   <data name="xrLabel1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>TopCenter</value>
   </data>
@@ -441,6 +516,9 @@
   <data name="xrLabel4.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>193.1218, 16.2598076</value>
   </data>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>No Data Found</value>
+  </data>
   <data name="xrLabel4.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>TopCenter</value>
   </data>
@@ -450,9 +528,9 @@
   <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
     <value>68.96814</value>
   </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
     <value>83, 34, 100, 100</value>
   </data>
@@ -464,80 +542,5 @@
   </data>
   <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
     <value>A4</value>
-  </data>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>Sponsors</value>
-  </data>
-  <data name="xrLabel2.Text" xml:space="preserve">
-    <value>By :</value>
-  </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>xrLabel3</value>
-  </data>
-  <data name="xrLabel4.Text" xml:space="preserve">
-    <value>No Data Found</value>
-  </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>Page {0} of {1}</value>
-  </data>
-  <data name="xrTableCell1.Text" xml:space="preserve">
-    <value>xrTableCell1</value>
-  </data>
-  <data name="xrTableCell10.Text" xml:space="preserve">
-    <value>Address</value>
-  </data>
-  <data name="xrTableCell11.Text" xml:space="preserve">
-    <value>Phone</value>
-  </data>
-  <data name="xrTableCell12.Text" xml:space="preserve">
-    <value>City</value>
-  </data>
-  <data name="xrTableCell13.Text" xml:space="preserve">
-    <value>Mobile</value>
-  </data>
-  <data name="xrTableCell14.Text" xml:space="preserve">
-    <value>Phone</value>
-  </data>
-  <data name="xrTableCell15.Text" xml:space="preserve">
-    <value>Fax</value>
-  </data>
-  <data name="xrTableCell16.Text" xml:space="preserve">
-    <value>Mobile</value>
-  </data>
-  <data name="xrTableCell17.Text" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="xrTableCell18.Text" xml:space="preserve">
-    <value>Fax</value>
-  </data>
-  <data name="xrTableCell19.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="xrTableCell2.Text" xml:space="preserve">
-    <value>xrTableCell2</value>
-  </data>
-  <data name="xrTableCell20.Text" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="xrTableCell3.Text" xml:space="preserve">
-    <value>xrTableCell3</value>
-  </data>
-  <data name="xrTableCell4.Text" xml:space="preserve">
-    <value>xrTableCell4</value>
-  </data>
-  <data name="xrTableCell5.Text" xml:space="preserve">
-    <value>xrTableCell5</value>
-  </data>
-  <data name="xrTableCell6.Text" xml:space="preserve">
-    <value>xrTableCell6</value>
-  </data>
-  <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>Address</value>
-  </data>
-  <data name="xrTableCell8.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>City</value>
   </data>
 </root>

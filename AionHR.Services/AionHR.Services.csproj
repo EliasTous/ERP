@@ -132,6 +132,7 @@
     <Compile Include="Messaging\CompanyStructure\ApprovelDepartmentListRequest.cs" />
     <Compile Include="Messaging\CompanyStructure\CompanyStructureRequests.cs" />
     <Compile Include="Messaging\CompanyStructure\PositionListRequest.cs" />
+    <Compile Include="Messaging\DashBoard\LeaveApprovalListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeePenaltyApprovalListRequest.cs" />
     <Compile Include="Messaging\Reports\TimeCodeRecordRequest.cs" />
     <Compile Include="Messaging\System\AttachementRecordRequest.cs" />
@@ -219,9 +220,7 @@
       <Name>AionHR.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Messaging\DashBoard\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

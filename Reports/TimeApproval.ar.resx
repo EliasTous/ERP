@@ -120,6 +120,9 @@
   <data name="UserParameter.Description" xml:space="preserve">
     <value>Parameter1</value>
   </data>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
   <data name="xrLabel11.Text" xml:space="preserve">
     <value>معمدو الدوام</value>
   </data>

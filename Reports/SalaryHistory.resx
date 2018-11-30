@@ -123,11 +123,11 @@
   </data>
   <assembly alias="DevExpress.Data.v16.2" name="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="xrLabel29.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>659.8668, 2.00002027</value>
+    <value>640.7001, 2.00002027</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrLabel29.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>63.2998657, 20.999958</value>
+    <value>82.46661, 20.999958</value>
   </data>
   <data name="xrLabel29.Text" xml:space="preserve">
     <value>Entitlement</value>
@@ -139,7 +139,7 @@
     <value>553.199951, 0</value>
   </data>
   <data name="xrLabel28.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>106.666809, 22.999979</value>
+    <value>87.50012, 22.999979</value>
   </data>
   <data name="xrLabel28.Text" xml:space="preserve">
     <value>Entitlement</value>
@@ -253,7 +253,7 @@
     <value>86.6333, 34.99999</value>
   </data>
   <data name="xrLabel24.Text" xml:space="preserve">
-    <value>Final Amount</value>
+    <value>Net Salary</value>
   </data>
   <data name="xrLabel23.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -265,7 +265,7 @@
     <value>86.6333, 34.99999</value>
   </data>
   <data name="xrLabel23.Text" xml:space="preserve">
-    <value>Deduction</value>
+    <value>Deductions</value>
   </data>
   <data name="xrLabel22.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -277,7 +277,7 @@
     <value>87.5, 34.99999</value>
   </data>
   <data name="xrLabel22.Text" xml:space="preserve">
-    <value>Entitlement</value>
+    <value>Entitlements</value>
   </data>
   <data name="xrLabel1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -334,7 +334,7 @@
     <value>169.966675, 34.99999</value>
   </data>
   <data name="xrLabel5.Text" xml:space="preserve">
-    <value>Amout/Currency</value>
+    <value>Basic Amount / Currency </value>
   </data>
   <data name="groupHeaderBand1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -373,7 +373,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel21.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>176.411179, 58.0833435</value>
+    <value>230.57785, 58.0833435</value>
   </data>
   <data name="xrLabel21.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>291.287842, 23</value>
@@ -385,7 +385,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel20.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>147.433914, 58.0833435</value>
+    <value>201.6006, 58.0833435</value>
   </data>
   <data name="xrLabel20.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>28.9772415, 23</value>
@@ -397,13 +397,13 @@
     <value>100</value>
   </data>
   <data name="xrPageInfo1.Format" xml:space="preserve">
-    <value>{0:MM/dd/yyyy - h:mm tt}</value>
+    <value>{0:dddd, d MMMM, yyyy H:mm}</value>
   </data>
   <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>5.99999428, 58.0833435</value>
+    <value>5.99999762, 58.0833435</value>
   </data>
   <data name="xrPageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>141.433914, 23</value>
+    <value>195.6006, 23</value>
   </data>
   <data name="xrPageInfo2.Dpi" type="System.Single, mscorlib">
     <value>100</value>

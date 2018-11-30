@@ -760,13 +760,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TabPanel belowt;
         
         /// <summary>
-        /// GridPanel4 control.
+        /// LeavesGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridPanel GridPanel4;
+        protected global::Ext.Net.GridPanel LeavesGrid;
         
         /// <summary>
         /// LeaveRequestsStore control.
@@ -859,13 +859,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.RowSelectionModel rowSelectionModel10;
         
         /// <summary>
-        /// GridPanel5 control.
+        /// LoansGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridPanel GridPanel5;
+        protected global::Ext.Net.GridPanel LoansGrid;
         
         /// <summary>
         /// LoansStore control.

@@ -50,7 +50,7 @@
                                         </ext:PageProxy>
                                     </Proxy>
                                     <Model>
-                                        <ext:Model ID="Model3" runat="server" IDProperty="departmentName">
+                                        <ext:Model ID="Model3" runat="server" >
                                             <Fields>
 
                                                 <ext:ModelField Name="departmentName" />
@@ -228,7 +228,7 @@
                             <ColumnModel ID="ColumnModel3" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                 <Columns>
                                     <ext:Column Visible="false" ID="Column2" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" />
-                                    <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment %>" DataIndex="departmentName" Hideable="false" />
+                                    <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment %>" DataIndex="departmentName" Hideable="false"  />
                                     <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: age00_18%>" DataIndex="age00_18" Width="70" Hideable="false" />
 
                                  <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: age18_25%>" DataIndex="age18_25" Width="70" Hideable="false" />

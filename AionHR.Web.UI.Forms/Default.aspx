@@ -508,11 +508,11 @@
                                                                                 <Click Handler="openNewTab('Import', 'ImportAttendance.aspx',#{importAt}.value , 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
-                                                                           <ext:MenuItem runat="server" Text="<%$Resources: Common , OvertimeSettings%>">
+                                                                          <%-- <ext:MenuItem runat="server" Text="<%$Resources: Common , OvertimeSettings%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('otSettings', 'OvertimeSettings.aspx',#{otTitle}.value , 'icon-Employees')" />
                                                                             </Listeners>
-                                                                        </ext:MenuItem>
+                                                                        </ext:MenuItem>--%>
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportOvertimeSettings%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('otSettings', 'ImportOvertimeSettings.aspx',#{importOTTitle}.value , 'icon-Employees')" />

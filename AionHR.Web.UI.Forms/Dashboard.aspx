@@ -1917,7 +1917,7 @@
 
 
                                                         <ext:GridPanel MarginSpec="0 0 0 0"
-                                                            ID="GridPanel4"
+                                                            ID="LeavesGrid"
                                                             runat="server"
                                                             PaddingSpec="0 0 1 0"
                                                             Header="false"
@@ -2018,7 +2018,7 @@
                                                             </SelectionModel>
                                                         </ext:GridPanel>
                                                         <ext:GridPanel MarginSpec="0 0 0 0"
-                                                            ID="GridPanel5"
+                                                            ID="LoansGrid"
                                                             runat="server"
                                                             PaddingSpec="0 0 0 0"
                                                             Header="false"

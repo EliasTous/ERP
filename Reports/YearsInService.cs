@@ -29,7 +29,6 @@ namespace Reports
         private XRControlStyle DataField;
         private XRLabel xrLabel1;
         private XRLine xrLine1;
-        private XRRichText xrRichText1;
         private GroupHeaderBand GroupHeader1;
         private XRLabel xrLabel2;
         private GroupHeaderBand GroupHeader2;
@@ -52,6 +51,7 @@ namespace Reports
         private XRLabel xrLabel15;
         private DevExpress.XtraReports.Parameters.Parameter User;
         private XRLabel xrLabel11;
+        private XRLabel xrLabel16;
 
         /// <summary>
         /// Required designer variable.
@@ -92,8 +92,8 @@ namespace Reports
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(YearsInService));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.groupHeaderBand1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
@@ -130,15 +130,14 @@ namespace Reports
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel4,
-            this.xrRichText1});
+            this.xrLabel16,
+            this.xrLabel4});
             resources.ApplyResources(this.Detail, "Detail");
             this.Detail.MultiColumn.ColumnCount = 3;
             this.Detail.MultiColumn.ColumnWidth = 0.5F;
@@ -151,19 +150,19 @@ namespace Reports
             this.Detail.StyleName = "DataField";
             this.Detail.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.groupHeaderBand1_BeforePrint);
             // 
+            // xrLabel16
+            // 
+            resources.ApplyResources(this.xrLabel16, "xrLabel16");
+            this.xrLabel16.Multiline = true;
+            this.xrLabel16.Name = "xrLabel16";
+            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
             // xrLabel4
             // 
             resources.ApplyResources(this.xrLabel4, "xrLabel4");
             this.xrLabel4.Multiline = true;
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrRichText1
-            // 
-            resources.ApplyResources(this.xrRichText1, "xrRichText1");
-            this.xrRichText1.Name = "xrRichText1";
-            this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
-            this.xrRichText1.StylePriority.UseFont = false;
             // 
             // TopMargin
             // 
@@ -475,7 +474,6 @@ namespace Reports
             this.DataField});
             this.Version = "16.2";
             this.DataSourceRowChanged += new DevExpress.XtraReports.UI.DataSourceRowEventHandler(this.YearsInService_DataSourceRowChanged);
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
