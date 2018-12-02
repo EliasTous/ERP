@@ -1621,7 +1621,10 @@ namespace AionHR.Web.UI.Forms
                 PostRequest<DashboardLeave> request = new PostRequest<DashboardLeave>();
                 request.entity = new DashboardLeave();
                 request.entity.leaveId = Convert.ToInt32(LV.recordId);
-                request.entity.approverId = Convert.ToInt32(userSessionEmployeeId.Text);
+                if (_systemService.SessionHelper.GetEmployeeId() != null)
+                    request.entity.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+                else
+                    return;
                 request.entity.status = LV.status;
                 if (!string.IsNullOrEmpty(LV.returnNotes))
                     request.entity.notes = LV.returnNotes;

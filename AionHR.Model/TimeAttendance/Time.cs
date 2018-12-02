@@ -41,7 +41,9 @@ namespace AionHR.Model.TimeAttendance
 
 
         public string clockDuration { get; set; }
+        public string clockDurationString { get; set; }
         public string duration { get; set; }
+        public string durationString { get; set; }
         public string damageLevel { get; set; }
         public string shiftStart { get; set; }
         public string shiftEnd { get; set; }

@@ -24,6 +24,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Services.Messaging.System;
 using Reports;
 using AionHR.Model.Attendance;
+using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -226,12 +227,16 @@ namespace AionHR.Web.UI.Forms
                 PostRequest<Department> req = new PostRequest<Department>();
                 req.entity = n;
                 PostResponse<Department> res = _branchService.ChildDelete<Department>(req);
+                res.Error = null;
                 if (!res.Success)
                 {
+                  
+
+
                     //Show an error saving...
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", res.ErrorCode) != null ? GetGlobalResourceObject("Errors", res.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +res.LogId : res.Summary).Show();
+                 
+
+                     Common.errorMessage(res.ErrorCode, res.Message, res.LogId, res.Summary);
                     return;
                 }
                 else
@@ -268,7 +273,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<Department> response = _branchService.ChildGetAll<Department>(req);
             if (!response.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+            Common.errorMessage(response.ErrorCode, response.Message, response.LogId, response.Summary);
                 departmentStore.DataSource = new List<Department>();
             }
             departmentStore.DataSource = response.Items;
@@ -288,7 +293,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<Department> response = _branchService.ChildGetAll<Department>(req);
             if (!response.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+            Common.errorMessage(response.ErrorCode, response.Message, response.LogId, response.Summary);
                 return new List<Department>();
             }
             data = response.Items;
@@ -673,7 +678,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+             Common.errorMessage(response.ErrorCode, response.Message, response.LogId, response.Summary);
                 return;
             }
 
@@ -771,7 +776,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<AttendanceSchedule> response = _timeAttendanceService.ChildGetAll<AttendanceSchedule>(req);
             if (!response.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+            Common.errorMessage(response.ErrorCode, response.Message, response.LogId, response.Summary);
                 departmentStore.DataSource = new List<Department>();
             }
             Store2.DataSource = response.Items;
@@ -785,7 +790,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<WorkingCalendar> response = _timeAttendanceService.ChildGetAll<WorkingCalendar>(req);
             if (!response.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                Common.errorMessage(response.ErrorCode, response.Message, response.LogId, response.Summary);
                 departmentStore.DataSource = new List<Department>();
             }
             Store4.DataSource = response.Items;

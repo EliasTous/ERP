@@ -597,6 +597,7 @@
     <Compile Include="BusinessPartneres.aspx.designer.cs">
       <DependentUpon>BusinessPartneres.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ConstClasses\Common.cs" />
     <Compile Include="DocumentCategories.aspx.cs">
       <DependentUpon>DocumentCategories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

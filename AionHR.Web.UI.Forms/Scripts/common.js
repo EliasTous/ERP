@@ -33,6 +33,11 @@ function closeCurrentTab()
 {
     parent.App.tabPanel.closeTab(parent.App.tabPanel.getActiveTab());
 }
+function errorMessage(error,message,log,logId) {
+
+    Ext.MessageBox.alert(error, message + "<br>" + log +  logId);
+    e.handled = true;
+}
 
 
 

@@ -33,6 +33,7 @@ using AionHR.Model.Attributes;
 using Reports;
 using AionHR.Services.Messaging.Reports;
 using AionHR.Model.Dashboard;
+using AionHR.Services.Messaging.DashBoard;
 
 namespace AionHR.Web.UI.Forms.Controls
 {
@@ -1292,8 +1293,10 @@ namespace AionHR.Web.UI.Forms.Controls
         }
         public void FillApprovals(string Id)
         {
-            LeaveDayListRequest req = new LeaveDayListRequest();
-            req.LeaveId = Id;
+            LeaveApprovalListRequest req = new LeaveApprovalListRequest();
+            req.leaveId = Id;
+            req.approverId = "0";
+            req.status = 0;
             ListResponse<AionHR.Model.LeaveManagement.Approvals> response = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
             if (!response.Success)
             {

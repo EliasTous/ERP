@@ -123,6 +123,9 @@
   <data name="xrLabel1.Text" xml:space="preserve">
     <value>الفرع</value>
   </data>
+  <data name="xrLabel10.Text" xml:space="preserve">
+    <value>المجموع</value>
+  </data>
   <data name="xrLabel11.Text" xml:space="preserve">
     <value>معمدو الدوام</value>
   </data>

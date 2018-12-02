@@ -337,9 +337,9 @@ namespace AionHR.Web.UI.Forms.Reports
                      x =>
                      {
                          if (!string.IsNullOrEmpty(x.clockDuration))
-                         x.clockDuration = time(Convert.ToInt32( x.clockDuration), true);
+                         x.clockDurationString = time(Convert.ToInt32( x.clockDuration), true);
                          if (!string.IsNullOrEmpty(x.duration))
-                             x.duration = time(Convert.ToInt32(x.duration), true);
+                             x.durationString = time(Convert.ToInt32(x.duration), true);
                          if (!string.IsNullOrEmpty(x.timeCode))
                              x.timeCodeString = FillTimeCode(Convert.ToInt32(x.timeCode));
                          x.statusString = FillApprovalStatus(x.status);
@@ -365,10 +365,11 @@ namespace AionHR.Web.UI.Forms.Reports
             //string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
             //string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
             string user = _systemService.SessionHelper.GetCurrentUser();
-
-            //h.Parameters["FromParameter"].Value = from;
-            //h.Parameters["ToParameter"].Value = to;
-            h.Parameters["UserParameter"].Value = user;
+                h.Parameters["TotalClockDuration"].Value = time(resp.Items.Sum(x => Convert.ToInt32(x.clockDuration)), true);
+                h.Parameters["TotalDuration"].Value = time(resp.Items.Sum(x => Convert.ToInt32(x.duration)), true);
+                //h.Parameters["FromParameter"].Value = from;
+                //h.Parameters["ToParameter"].Value = to;
+                h.Parameters["UserParameter"].Value = user;
             //if (req.Parameters["_dayStatus"] != "0")
             //    h.Parameters["dayStatusParameter"].Value = dayStatus.SelectedItem.Text;
             //else

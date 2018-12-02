@@ -815,7 +815,12 @@
 
             var str = "<div style= " + getStyle() + ">" + d.name;
             str += "<br/>";
-            str += d.branchName + ", " + d.departmentName;
+            if (d.branchName != null )
+                str += d.branchName
+            if (d.branchName != null && d.departmentName != null)
+                 str +=" , " 
+            if (d.departmentName != null)
+             str += d.departmentName;
             str += "</div>";
             return str;
         }
@@ -1952,6 +1957,7 @@
                                                                                 <ext:ModelField Name="endDate" />
                                                                                 <ext:ModelField Name="branchName" />
                                                                                 <ext:ModelField Name="departmentName" />
+                                                                                <ext:ModelField Name="leaveId" />
                                                                             
 
                                                                             </Fields>
@@ -1997,7 +2003,7 @@
                                                                 <CellClick OnEvent="leavePoPUP">
                                                                     <EventMask ShowMask="true" />
                                                                     <ExtraParams>
-                                                                        <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                                        <ext:Parameter Name="id" Value="record.data['leaveId']" Mode="Raw" />
                                                                         <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                                                     </ExtraParams>
 

@@ -16,6 +16,11 @@ namespace AionHR.Model.LeaveManagement
         public int status { get; set; }
         public string notes { get; set; }
         public string stringStatus { set; get; }
+        public DateTime startDate { set; get; }
+        public DateTime endDate { set; get; }
+        public string ltName { set; get; }
+
+        public string branchName { get; set; }
 
     }
 }
