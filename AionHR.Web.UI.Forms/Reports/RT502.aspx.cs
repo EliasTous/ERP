@@ -201,7 +201,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 throw new Exception(resp.Error+ GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId);
                
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+                   Common.errorMessage(resp);
                     return;
                 
             }
@@ -333,7 +333,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 if (!resp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+                   Common.errorMessage(resp);
                     return;
                 }
                 List<object> obs = new List<Object>();
@@ -352,7 +352,7 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return new List<FiscalYear>();
             }
             return resp.Items;

@@ -92,7 +92,7 @@ namespace AionHR.Web.UI.Forms
                 RecordResponse<MyInfo> resp = _iselfServiceService.ChildGetRecord<MyInfo>(req);
                 if (!resp.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+                   Common.errorMessage(resp);
                     return;
                 }
                 if (resp.result != null)
@@ -197,7 +197,7 @@ namespace AionHR.Web.UI.Forms
             PostResponse<MyInfo> resp = _iselfServiceService.ChildAddOrUpdate<MyInfo>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
 

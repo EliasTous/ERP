@@ -225,7 +225,7 @@ namespace AionHR.Web.UI.Forms.Reports
         //        else
         //        {
         //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+        //            Common.errorMessage(resp);
         //            return;
         //        }
         //    }
@@ -326,7 +326,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 ListResponse<AionHR.Model.Reports.RT307> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT307>(req);
                 if (!resp.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(resp);
                     return;
                 }
                 //bool rtl = _systemService.SessionHelper.CheckIfArabicSession();

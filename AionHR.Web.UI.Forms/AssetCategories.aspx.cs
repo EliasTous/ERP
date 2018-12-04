@@ -24,6 +24,8 @@ using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
+using AionHR.Web.UI.Forms.ConstClasses;
+
 namespace AionHR.Web.UI.Forms
 {
     public partial class AssetCategories : System.Web.UI.Page
@@ -134,9 +136,9 @@ namespace AionHR.Web.UI.Forms
                     RecordResponse<AssetCategory> response = _employeeService.ChildGetRecord<AssetCategory>(r);
                     if (!response.Success)
                     {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        string message = GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary;
-                        X.Msg.Alert(Resources.Common.Error, message).Show();
+                      //  X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                      //  string message = GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary;
+                         Common.errorMessage(response);
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
@@ -196,7 +198,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     string message = GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary;
-                    X.Msg.Alert(Resources.Common.Error, message).Show();
+                     Common.errorMessage(r);
                     return;
                 }
                 else
@@ -334,7 +336,7 @@ namespace AionHR.Web.UI.Forms
             if (!routers.Success)
             {
                
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
+                 Common.errorMessage(routers);
                 return;
             }
             this.Store1.DataSource = routers.Items;
@@ -378,7 +380,7 @@ namespace AionHR.Web.UI.Forms
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         string message = GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary;
-                        X.Msg.Alert(Resources.Common.Error, message).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -431,7 +433,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         string message = GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary;
-                        X.Msg.Alert(Resources.Common.Error, message).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -541,7 +543,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return null;
             }
             AssetCategoriesReport p = new AssetCategoriesReport();
