@@ -198,13 +198,21 @@ namespace AionHR.Web.UI.Forms.Reports
             ListResponse<AionHR.Model.Reports.RT502> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT502>(req);
             if (!resp.Success)
             {
-                throw new Exception(resp.Error+ GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId);
-               
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-                    return;
-                
+                throw new Exception(resp.Error + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId);
+
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                return;
+
             }
+            resp.Items.ForEach(x =>
+            {
+                x.cvOvertime = Math.Round(x.cvOvertime, 2);
+                x.cvLateness = Math.Round(x.cvLateness, 2);
+                x.cvAbsence = Math.Round(x.cvAbsence, 2);
+                x.cvDisappearance = Math.Round(x.cvDisappearance, 2);
+                x.cvMissedPunches = Math.Round(x.cvMissedPunches, 2);
+            });
 
           
 

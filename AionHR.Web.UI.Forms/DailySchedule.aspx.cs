@@ -797,13 +797,14 @@ namespace AionHR.Web.UI.Forms
                     DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
                     if (fsToDate.Minute == 0 && fsToDate.Hour == 00)
                     {
-                        fsToDate= fsToDate.AddDays(1);
+                        listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
+                        fsToDate = fsToDate.AddDays(1);
                         do
                         {
-
-                           
                             fsToDate = fsToDate.AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
                             listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
+                           
+                        
                         } while (fsToDate != fsfromDate);
                     }
                     else

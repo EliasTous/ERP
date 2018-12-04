@@ -631,6 +631,9 @@
   <data name="GroupFooter1.HeightF" type="System.Single, mscorlib">
     <value>24.166666</value>
   </data>
+  <data name="GroupFooter1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
