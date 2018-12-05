@@ -282,4 +282,7 @@
   <data name="EditReplacement" xml:space="preserve">
     <value>Replacement Employee</value>
   </data>
+  <data name="FieldApproverName" xml:space="preserve">
+    <value>Approver</value>
+  </data>
 </root>

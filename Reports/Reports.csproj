@@ -93,6 +93,12 @@
     <Compile Include="ApproverPerformance.Designer.cs">
       <DependentUpon>ApproverPerformance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Receipts.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Receipts.Designer.cs">
+      <DependentUpon>Receipts.cs</DependentUpon>
+    </Compile>
     <Compile Include="TimeApproval.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -347,6 +353,9 @@
       <DependentUpon>DetailedAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Receipts.resx">
+      <DependentUpon>Receipts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TimeApproval.ar.resx">
       <DependentUpon>TimeApproval.cs</DependentUpon>
     </EmbeddedResource>

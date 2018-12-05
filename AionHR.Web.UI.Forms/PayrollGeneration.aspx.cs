@@ -1714,7 +1714,7 @@ namespace AionHR.Web.UI.Forms
                     //    ErrorMessage = GetGlobalResourceObject("Errors", "Error_2").ToString() + resp.ErrorCode;
                    
 
-                    X.Msg.Alert(Resources.Common.Error,resp.errorName +"  "+ GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId).Show();
+                    X.Msg.Alert(Resources.Common.Error,resp.Error +"  "+ GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId).Show();
                     HttpRuntime.Cache.Remove("genEM_RecordId");
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                     EditGenerateWindow.Close();

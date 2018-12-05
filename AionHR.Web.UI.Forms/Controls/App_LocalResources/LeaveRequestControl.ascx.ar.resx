@@ -285,4 +285,7 @@
   <data name="EditReplacement" xml:space="preserve">
     <value>تعديل استبدال الموظف</value>
   </data>
+  <data name="FieldApproverName" xml:space="preserve">
+    <value>المعمد</value>
+  </data>
 </root>

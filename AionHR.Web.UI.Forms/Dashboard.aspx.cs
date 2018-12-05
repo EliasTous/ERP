@@ -133,7 +133,7 @@ namespace AionHR.Web.UI.Forms
                         //missingPunchesStore.Reload();
                         //checkMontierStore.Reload();
                         format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                        ColtermEndDate.Format= ColNextReviewDate.Format= ColProbationEndDate.Format= DateColumn5.Format = DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
+                        ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
                         periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         CountDateTo.SelectedDate = DateTime.Now;
@@ -340,19 +340,19 @@ namespace AionHR.Web.UI.Forms
                 termEndDateLBL.Text = TermEndDate.ToString();
                 retirementAgeLBL.Text = retirementAge.ToString();
                 vacationsLBL.Text = vacations.ToString();
-                
-                LeavesGrid.Title = leaveGrid.Title.ToString() +" "+ (APPROVAL_LEAVE != 0 ? APPROVAL_LEAVE.ToString() : "");
+
+                LeavesGrid.Title = leaveGrid.Title.ToString() + " " + (APPROVAL_LEAVE != 0 ? APPROVAL_LEAVE.ToString() : "");
                 ApprovalLoanGrid.Title = ApprovalLoanGrid.Title.ToString() + " " + (APPROVAL_LOAN != 0 ? APPROVAL_LOAN.ToString() : "");
-                TimeGridPanel.Title= TimeGridPanel.Title.ToString() + " " + (APPROVAL_TIME != 0 ? APPROVAL_TIME.ToString() : "");
-                EmployeePenaltyApprovalGrid.Title= EmployeePenaltyApprovalGrid.Title.ToString() + " " + (APPROVAL_PENALTY != 0 ? APPROVAL_PENALTY.ToString() : "");
+                TimeGridPanel.Title = TimeGridPanel.Title.ToString() + " " + (APPROVAL_TIME != 0 ? APPROVAL_TIME.ToString() : "");
+                EmployeePenaltyApprovalGrid.Title = EmployeePenaltyApprovalGrid.Title.ToString() + " " + (APPROVAL_PENALTY != 0 ? APPROVAL_PENALTY.ToString() : "");
                 return dashoard;
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
                 return new ListResponse<DashboardItem>();
             }
-       
+
 
         }
         private void BindAlerts(bool normalSized = true)
@@ -363,9 +363,9 @@ namespace AionHR.Web.UI.Forms
                 ListResponse<DashboardItem> dashoard = FillDashBoardItems();
 
 
-                if (dashoard.count==0)
+                if (dashoard.count == 0)
                 {
-                    return; 
+                    return;
                 }
 
                 List<ChartData> activeChartData = new List<ChartData>();
@@ -393,7 +393,7 @@ namespace AionHR.Web.UI.Forms
 
                 List<ChartData> breaksChartData = new List<ChartData>();
                 breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("PAID_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_PAID_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_PAID_LEAVE).ToList()[0].count : 0, index = ConstDashboardItem.TA_PAID_LEAVE });
-                breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("UNPAID_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_UNPAID_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_UNPAID_LEAVE).ToList()[0].count : 0, index = ConstDashboardItem.TA_UNPAID_LEAVE});
+                breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("UNPAID_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_UNPAID_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_UNPAID_LEAVE).ToList()[0].count : 0, index = ConstDashboardItem.TA_UNPAID_LEAVE });
 
                 X.Call("drawBreakHightChartPie", JSON.JavaScriptSerialize(breaksChartData), rtl ? true : false, normalSized);
 
@@ -418,13 +418,13 @@ namespace AionHR.Web.UI.Forms
 
                 //  AbsentLeaveStore.DataSource = objs;
                 //  AbsentLeaveStore.DataBind();
-            }catch(Exception exp)
+            } catch (Exception exp)
             {
-              
-                    X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-                
-                   
-              
+
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+
+
+
 
             }
         }
@@ -770,8 +770,8 @@ namespace AionHR.Web.UI.Forms
             req.status = 1;
             if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
                 req.ApproverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
-           
-                
+
+
 
             req.Size = "30";
             req.StartAt = "1";
@@ -786,9 +786,9 @@ namespace AionHR.Web.UI.Forms
         {
 
             DashboardRequest req = new DashboardRequest();
-         
+
             int intResult;
-            
+
             var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
@@ -874,7 +874,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-                   if (req != null)
+                if (req != null)
                 {
                     ListResponse<AionHR.Model.LeaveManagement.Approvals> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
 
@@ -1220,7 +1220,7 @@ namespace AionHR.Web.UI.Forms
                 request.EmployeeId = 0;
                 request.Status = 1;
                 request.Filter = "";
-
+                request.LoanId = "0";
                 request.SortBy = "recordId";
 
 
@@ -1229,7 +1229,7 @@ namespace AionHR.Web.UI.Forms
 
                 request.Size = "1000";
                 request.StartAt = "0";
-                ListResponse<Loan> routers = _loanService.GetAll<Loan>(request);
+                ListResponse<LoanApproval> routers = _loanService.ChildGetAll<LoanApproval>(request);
                 if (!routers.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
@@ -1238,24 +1238,7 @@ namespace AionHR.Web.UI.Forms
                 routers.Items.ForEach(x =>
                 {
 
-                    switch (x.status)
-                    {
-                        case 1:
-                            x.statusString = StatusNew.Text;
-                            break;
-                        case 2:
-                            x.statusString = StatusInProcess.Text;
-                            ;
-                            break;
-                        case 3:
-                            x.statusString = StatusApproved.Text;
-                            ;
-                            break;
-                        case -1:
-                            x.statusString = StatusRejected.Text;
-
-                            break;
-                    }
+                    x.statusString = FillApprovalStatus(x.status);
                 }
             );
                 this.ApprovalLoanStore.DataSource = routers.Items;
@@ -1277,7 +1260,7 @@ namespace AionHR.Web.UI.Forms
                 r.employeeId = 0;
                 if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
                     r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
-               
+
                 else
                 {
                     TimeStore.DataSource = new List<Time>();
@@ -1296,11 +1279,11 @@ namespace AionHR.Web.UI.Forms
                 }
                 Times.Items.ForEach(x =>
                 {
-                    x.fullName = x.employeeName.fullName; 
+                    x.fullName = x.employeeName.fullName;
                     x.statusString = FillApprovalStatus(x.status);
                     x.timeCodeString = FillTimeCode(Convert.ToInt16(x.timeCode));
                     if (string.IsNullOrEmpty(x.notes))
-                         x.notes = " ";
+                        x.notes = " ";
                 });
 
                 // TimeStore.DataSource = Times.Items.Where(x=>x.status==1).ToList<Time>();
@@ -1400,14 +1383,14 @@ namespace AionHR.Web.UI.Forms
                 response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
             else
                 response.result.damageLevel = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
-          
+
             TimeFormPanel.SetValues(response.result);
 
 
             TimeEmployeeName.Text = employeeName;
             TimedayIdDate.Text = dayIdDate;
             TimeTimeCodeString.Text = timeCodeString;
-          
+
             shiftIdTF.Text = shiftId;
             TimeemployeeIdTF.Text = employeeId;
             TimedayIdTF.Text = dayId;
@@ -1427,6 +1410,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 string id = e.ExtraParams["id"];
+                string employeeId = e.ExtraParams["employeeId"];
 
                 //SetTabPanelEnable(true);
 
@@ -1457,17 +1441,20 @@ namespace AionHR.Web.UI.Forms
 
                 //Step 2 : call setvalues with the retrieved object
                 this.ApprovalLoanForm.SetValues(response.result);
+                ApprovalLoanStatus.Select("1");
+
 
                 ApprovalLoanEmployeeName.Text = response.result.employeeName.fullName.ToString();
 
-                status.Select(response.result.status.ToString());
+
 
                 //if (!string.IsNullOrEmpty(response.result.branchId))
                 //    branchId.Select(response.result.branchId);
 
                 //if (!response.result.effectiveDate.HasValue)
                 //    effectiveDate.SelectedDate = DateTime.Now;
-
+                if (!string.IsNullOrEmpty(employeeId))
+                FillApprovalLoan(Convert.ToInt32(employeeId),id);
                 this.approvalLoanWindow.Title = Resources.Common.EditWindowsTitle;
                 this.approvalLoanWindow.Show();
 
@@ -1567,7 +1554,7 @@ namespace AionHR.Web.UI.Forms
 
                 LA.status = Convert.ToInt16(status);
                 LA.notes = notes;
-                LA.loanId = Convert.ToInt32(id);
+                LA.loanId = id;
                 LA.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
 
                 PostRequest<LoanApproval> request = new PostRequest<LoanApproval>();
@@ -1595,7 +1582,7 @@ namespace AionHR.Web.UI.Forms
                         Icon = Icon.Information,
                         Html = Resources.Common.RecordSavingSucc
                     });
-
+                    BindAlerts(); 
                     this.approvalLoanWindow.Close();
                 }
 
@@ -1653,7 +1640,7 @@ namespace AionHR.Web.UI.Forms
                         Icon = Icon.Information,
                         Html = Resources.Common.RecordSavingSucc
                     });
-
+                    BindAlerts();
                     this.LeaveRecordWindow.Close();
                 }
 
@@ -1707,7 +1694,7 @@ namespace AionHR.Web.UI.Forms
                         Icon = Icon.Information,
                         Html = Resources.Common.RecordSavingSucc
                     });
-
+                    BindAlerts();
                     this.TimeWindow.Close();
                 }
 
@@ -2031,7 +2018,7 @@ namespace AionHR.Web.UI.Forms
                 TVReq.employeeId = "0";
                 TVReq.apStatus = "0";
                 TVReq.fromDuration = "0";
-                TVReq.toDuration = "0"; 
+                TVReq.toDuration = "0";
 
 
 
@@ -2052,7 +2039,7 @@ namespace AionHR.Web.UI.Forms
                         case -1: x.apStatusString = rejected.Text;
                             break;
                         default: x.apStatusString = string.Empty;
-                            break; 
+                            break;
 
 
                     }
@@ -2060,15 +2047,15 @@ namespace AionHR.Web.UI.Forms
                 TimeVariationStore.DataSource = resp.Items;
                 TimeVariationStore.DataBind();
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
-                X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
 
         }
 
 
-       
+
 
         private string FillTimeCode(int timeCode)
         {
@@ -2116,7 +2103,7 @@ namespace AionHR.Web.UI.Forms
                     case ConstTimeVariationType.OVERTIME:
                         R = GetGlobalResourceObject("Common", "OVERTIME").ToString();
                         break;
-                
+
                     case ConstTimeVariationType.COUNT:
                         R = GetGlobalResourceObject("Common", "COUNT").ToString();
                         break;
@@ -2139,7 +2126,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<DashBoardUL> respUL;
             if (index == ConstDashboardItem.TA_PAID_LEAVE.ToString())
             {
-              
+
                 respPE = _dashBoardService.ChildGetAll<DashBoardPL>(req);
                 if (!respPE.Success)
                 {
@@ -2148,7 +2135,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 LeaveStore.DataSource = respPE.Items;
                 LeaveStore.DataBind();
-             //   LeaveWindow.Title = GetGlobalResourceObject("Common", "PaidLeaves").ToString(); 
+                //   LeaveWindow.Title = GetGlobalResourceObject("Common", "PaidLeaves").ToString(); 
                 LeaveWindow.Show();
             }
             else
@@ -2162,7 +2149,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 LeaveStore.DataSource = respUL.Items;
                 LeaveStore.DataBind();
-            //    LeaveWindow.Title = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
+                //    LeaveWindow.Title = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
                 LeaveWindow.Show();
 
             }
@@ -2216,9 +2203,9 @@ namespace AionHR.Web.UI.Forms
               );
                 EmployeePenaltyApprovalStore.DataSource = response.Items;
                 EmployeePenaltyApprovalStore.DataBind();
-            }catch(Exception exp)
+            } catch (Exception exp)
             {
-                X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
         private void FillTimeApproval(int dayId, int employeeId, string timeCode, string shiftId, string apstatus)
@@ -2249,7 +2236,7 @@ namespace AionHR.Web.UI.Forms
                     x.statusString = FillApprovalStatus(x.status);
                 });
 
-                timeApprovalStore.DataSource = Times.Items; 
+                timeApprovalStore.DataSource = Times.Items;
                 ////List<ActiveLeave> leaves = new List<ActiveLeave>();
                 //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
@@ -2300,10 +2287,65 @@ namespace AionHR.Web.UI.Forms
                 LeaveingSoonStore.DataBind();
 
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
+
+        protected void FillApprovalLoan(int EmployeeId,string loanId)
+        {
+            try
+            {
+                LoanManagementListRequest request = new LoanManagementListRequest();
+                //if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                //{
+                //    storeApprovalLoan.DataSource = new List<Loan>();
+                //    storeApprovalLoan.DataBind();
+                //    return;
+                //}
+                request.approverId = 0;
+                request.BranchId = 0;
+                request.DepartmentId = 0;
+                request.DivisionId = 0;
+                request.EmployeeId = EmployeeId;
+                request.Status = 0;
+                request.Filter = "";
+                request.LoanId = loanId; 
+                request.SortBy = "recordId";
+
+
+
+
+
+                request.Size = "1000";
+                request.StartAt = "0";
+                ListResponse<LoanApproval> routers = _loanService.ChildGetAll<LoanApproval>(request);
+                if (!routers.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
+                    return;
+                }
+                routers.Items.ForEach(x =>
+                {
+
+                    x.statusString = FillApprovalStatus(x.status);
+                });
+                this.storeApprovalLoan.DataSource = routers.Items;
+
+
+                this.storeApprovalLoan.DataBind();
+            }
+
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+
+
+            }
+        }
+
+
+
     }
 }
