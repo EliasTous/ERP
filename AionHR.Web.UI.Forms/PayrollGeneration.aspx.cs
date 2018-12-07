@@ -167,7 +167,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")  + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return new List<FiscalYear>();
             }
             return resp.Items;
@@ -457,7 +457,10 @@ namespace AionHR.Web.UI.Forms
                     break;
                 case "imgGenerate":
                     GenerateCurrentPayroll.Text = "true";
-                    
+                    double progress = 0;
+                    string prog = (float.Parse(progress.ToString()) * 100).ToString();
+                    string message = GetGlobalResourceObject("Common", "working").ToString();
+                    this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
 
                     CurrentPayId.Text = id;
                     //Step 1 : get the object from the Web Service 
@@ -467,6 +470,7 @@ namespace AionHR.Web.UI.Forms
                     generatePayRef.Text = payRef;
                     GenerateButton.Text = Resources.Common.Generate;
                     GenerateButton.ID = "ApplicationGo";
+                    this.Progress1.Reset();
                     EditGenerateWindow.Show();
 
                     // Store1.Reload();
@@ -1577,11 +1581,16 @@ namespace AionHR.Web.UI.Forms
 
         protected void deleteAllEmployeePayrolls(object sender, DirectEventArgs e)
         {
-            
-                GenerateCurrentPayroll.Text="false";
+            double  progress = 0;
+            string prog = (float.Parse(progress.ToString()) * 100).ToString();
+            string message = GetGlobalResourceObject("Common", "working").ToString();
+            this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+
+
+            GenerateCurrentPayroll.Text="false";
                 generatePayRef.Text = payRefHidden.Text; 
                 GenerateButton.Text = Resources.Common.DeleteAll;
-         
+            this.Progress1.Reset();
             EditGenerateWindow.Show();
                 //    EmployeePayrollListRequest req = GetEmployeePayrollRequest();
                 //    ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
@@ -1761,7 +1770,7 @@ namespace AionHR.Web.UI.Forms
                     //    ErrorMessage = GetGlobalResourceObject("Errors", "Error_2").ToString() + resp.ErrorCode;
                    
 
-                    X.Msg.Alert(Resources.Common.Error,resp.Error +"  "+ GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId).Show();
+                    X.Msg.Alert(Resources.Common.Error,resp.errorName +"  "+ GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId).Show();
                     HttpRuntime.Cache.Remove("genEM_RecordId");
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                     EditGenerateWindow.Close();
@@ -1786,6 +1795,7 @@ namespace AionHR.Web.UI.Forms
                         string prog = (float.Parse(progress.ToString()) * 100).ToString();
                         string message = GetGlobalResourceObject("Common", "working").ToString();
                         this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+                        
                     }
 
 
