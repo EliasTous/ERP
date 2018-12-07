@@ -57,7 +57,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(GovernmentOrganisation), "getGO");
             ChildGetLookup.Add(typeof(LetterTemplate), "getLT");
             ChildGetLookup.Add(typeof(Letter), "getLE");
+
             ChildGetLookup.Add(typeof(Attachement), "getAT");
+            ChildGetLookup.Add(typeof(KeyId), "getAK");
             ChildGetLookup.Add(typeof(ApplyLetter), "applyLE");
         
             ChildGetLookup.Add(typeof(UserInfoByEmployeeId), "getUS3");

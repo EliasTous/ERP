@@ -26,6 +26,7 @@ using AionHR.Model.System;
 using AionHR.Services.Messaging.System;
 using AionHR.Infrastructure.Domain;
 using AionHR.Model.Access_Control;
+using AionHR.Infrastructure;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -609,7 +610,7 @@ namespace AionHR.Web.UI.Forms
                 b.employeeId = employeeId.SelectedItem.Value;
                 b.fullName = employeeId.SelectedItem.Text;
             }
-
+            b.password = EncryptionHelper.encrypt(b.password);
             if (string.IsNullOrEmpty(id))
             {
 
@@ -618,7 +619,7 @@ namespace AionHR.Web.UI.Forms
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
                     PostRequest<UserInfo> request = new PostRequest<UserInfo>();
-
+                    
                     request.entity = b;
                     PostResponse<UserInfo> r = _systemService.ChildAddOrUpdate<UserInfo>(request);
                    

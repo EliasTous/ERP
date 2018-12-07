@@ -174,7 +174,8 @@
                         <ext:Button ID="btnLogin" runat="server" Text="<%$ Resources:  Login %>">
                             <Listeners>
                                 <Click Handler="
-                                        if (!#{panelLogin}.validate()|| #{tbAccountName}.value=='') {                                
+                                        if (!#{panelLogin}.validate()|| #{tbAccountName}.value=='') {        
+                                            alert('no');
                                             return false;
                                         }
                                     
