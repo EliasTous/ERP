@@ -2534,6 +2534,7 @@
     <Content Include="App_LocalResources\DocumentCategories.aspx.ar.resx" />
     <Content Include="App_LocalResources\AdminDocuments.aspx.resx" />
     <Content Include="App_LocalResources\AdminDocuments.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Sponsors.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT307.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT307.aspx.ar.resx" />

@@ -315,4 +315,7 @@
   <data name="DeleteAll" xml:space="preserve">
     <value>DeleteAll </value>
   </data>
+  <data name="payList" xml:space="preserve">
+    <value>Pay List</value>
+  </data>
 </root>

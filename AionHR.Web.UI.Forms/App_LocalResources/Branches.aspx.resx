@@ -195,4 +195,7 @@
   <data name="manager" xml:space="preserve">
     <value>Manager</value>
   </data>
+  <data name="expiryDate" xml:space="preserve">
+    <value>Expiry Date</value>
+  </data>
 </root>

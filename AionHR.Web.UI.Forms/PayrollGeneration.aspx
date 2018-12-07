@@ -449,6 +449,11 @@
                                         <Click OnEvent="deleteAllEmployeePayrolls" />
                                     </DirectEvents>
                                 </ext:Button>
+                                   <ext:Button runat="server" Text="<%$ Resources: payList%>" MarginSpec="0 0 0 0" Width="100" Icon="DatabaseDelete">
+                                    <DirectEvents> 
+                                        <Click OnEvent="payList" />
+                                    </DirectEvents>
+                                </ext:Button>
 
 
 
@@ -508,6 +513,9 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
+                                      <ext:Column runat="server" DataIndex="name" Text="<%$ Resources: FieldRef %>" width="75">
+                                        <Renderer Handler="return record.data['name'].reference;" />
+                                    </ext:Column>
                                     <ext:Column runat="server" DataIndex="name" Text="<%$ Resources: FieldEmployee%>" Flex="2">
                                         <Renderer Handler="return record.data['name'].fullName;" />
                                     </ext:Column>

@@ -102,6 +102,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(PenaltyType), "getPT");
             ChildGetLookup.Add(typeof(PenaltyDetail), "getPD");
             ChildGetLookup.Add(typeof(FiscalPeriod), "getPE");
+            ChildGetLookup.Add(typeof(MailEmployee), "mailEM");
 
         }
     }

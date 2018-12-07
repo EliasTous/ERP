@@ -1620,6 +1620,43 @@ namespace AionHR.Web.UI.Forms
             }
 
             }
+        protected void payList(object sender, DirectEventArgs e)
+        {
+            try
+            {
+
+
+                RecordRequest req =new  RecordRequest();
+                req.RecordID = CurrentPayId.Text;
+                RecordResponse<EmployeePayroll> resp = _payrollService.ChildGetRecord<EmployeePayroll>(req);
+                if (!resp.Success)
+                {
+
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    return;
+                }
+           
+
+
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+
+              
+            }
+            catch (Exception exp)
+            {
+                if (exp.InnerException != null)
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", exp.InnerException.Message) != null ? GetGlobalResourceObject("Errors", exp.InnerException.Message).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + exp.InnerException.InnerException.Message : exp.Message).Show();
+                else
+                    X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+
+        }
 
         protected void StartLongAction(object sender, DirectEventArgs e)
         {

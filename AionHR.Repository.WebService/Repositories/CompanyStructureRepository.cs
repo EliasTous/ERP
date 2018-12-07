@@ -49,6 +49,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(Division), "delDI");
             ChildDeleteLookup.Add(typeof(Approval), "delAP");
             ChildDeleteLookup.Add(typeof(ApprovelDepartment), "delAD");
+            ChildDeleteLookup.Add(typeof(LegalReference), "delBL");
+
+            
 
             base.GetAllMethodName = "";
             base.GetRecordMethodName = "";
