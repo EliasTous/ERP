@@ -23,6 +23,18 @@
     <script type="text/javascript">
      
     </script>
+      <style type="text/css">
+      
+
+          
+
+        .dateBorder 
+          {
+         border: none !important;
+          }
+
+        
+    </style>
 </head>
 <body style="background: url(Images/bg.png) repeat;" >
     <form id="Form1" runat="server">
@@ -241,6 +253,7 @@
 
                                 </Columns>
                             </ColumnModel>
+                            
 
                             <View>
                                 <ext:GridView ID="GridView3" runat="server" />
@@ -252,6 +265,11 @@
                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                             </SelectionModel>
                         </ext:GridPanel>
+                                <ext:FormPanel runat="server"  Layout="CenterLayout"> 
+                                    <Items>
+                                       <ext:Label runat="server" ID="pageDate1" ></ext:Label>
+                                    </Items>
+                                </ext:FormPanel>
                               </Items>
 
                         </ext:Panel>

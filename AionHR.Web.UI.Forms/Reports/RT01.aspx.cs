@@ -82,6 +82,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     Viewport1.Hidden = true;
                     return;
                 }
+                pageDate1.Text = DateTime.Now.ToString(_systemService.SessionHelper.GetDateformat());
             }
 
         }
