@@ -49,67 +49,72 @@
       <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.Charts.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Charts.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.CodeParser.v16.2">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.CodeParser.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.CodeParser.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.CodeParser.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.Data.v16.2.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Data.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.DataAccess.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.DataAccess.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.Office.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Office.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.Pdf.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Pdf.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.Printing.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Printing.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Web.ASPxThemes.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.Web.ASPxThemes.v16.2.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Web.Resources.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.Web.Resources.v16.2.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Web.Resources.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.Web.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Web.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.Xpo.v16.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Xpo.v16.2.resources">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.Xpo.v16.2.resources.dll</HintPath>
+    <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Xpo.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraCharts.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.XtraCharts.v16.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraCharts.v16.2.resources">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.XtraCharts.v16.2.resources.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.XtraCharts.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraGauges.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.XtraGauges.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.XtraGauges.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.XtraReports.v16.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraReports.v16.2.resources">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.XtraReports.v16.2.resources.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.XtraReports.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
     </Reference>
     <Reference Include="Ext.Net">
       <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\Ext.Net.dll</HintPath>
@@ -136,7 +141,11 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>D:\Softmachine\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Reports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\Reports.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\StructureMap.dll</HintPath>
@@ -160,6 +169,9 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Transformer.NET">
       <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\Transformer.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>D:\Softmachine\New folder\WebActivatorEx.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -1970,6 +1982,7 @@
     <Compile Include="Utilities\DashboardAccessDenied.cs" />
     <Compile Include="Utilities\LocalisationManager.cs" />
     <Compile Include="Utilities\ModulesFileWrapper.cs" />
+    <Compile Include="Utilities\PageLookup.cs" />
     <Compile Include="Utilities\TagGroup.cs" />
     <Compile Include="Utilities\TimeSlot.cs" />
     <Compile Include="Utilities\TreeBuilder.cs" />
@@ -2011,10 +2024,6 @@
     <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
       <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
       <Name>AionHR.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Reports\Reports.csproj">
-      <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
-      <Name>Reports</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -2534,8 +2543,6 @@
     <Content Include="App_LocalResources\DocumentCategories.aspx.ar.resx" />
     <Content Include="App_LocalResources\AdminDocuments.aspx.resx" />
     <Content Include="App_LocalResources\AdminDocuments.aspx.ar.resx" />
-    <Content Include="App_LocalResources\Sponsors.aspx.ar.resx" />
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT307.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT307.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">

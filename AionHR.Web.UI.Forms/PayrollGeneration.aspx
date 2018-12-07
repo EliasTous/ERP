@@ -78,6 +78,7 @@
          <ext:Hidden ID="salaryTypeHidden" runat="server" />
         <ext:Hidden ID="fiscalYearHidden" runat="server" />
          <ext:Hidden ID="CurrentPayRef" runat="server" />
+       <ext:Hidden ID="GenerateCurrentPayroll" runat="server" Text="true" />
 
       
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
@@ -165,7 +166,7 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column Visible="false" runat="server" ID="recordHeaderID" text="" DataIndex="recordId" Width="200" />
+                                    <ext:Column Visible="true" runat="server" ID="recordHeaderID" text="" DataIndex="recordId" Width="200" />
                                     <ext:Column runat="server" ID="c1" Text="<%$ Resources: FieldRef%>" DataIndex="payRef" Width="200"  />
                                     <ext:DateColumn runat="server" ID="periodFrom" Text="<%$ Resources: FieldFrom%>" DataIndex="startDate" Width="150" />
 
@@ -199,8 +200,8 @@
                             <Listeners>
                                 <Render Handler="this.on('cellclick', cellClick);" />
                         <%--        <AfterRender Handler="App.year.setValue(new Date().getFullYear()); App.salaryTypeFilter.setValue(5); App.status.setValue(2); App.payrollsStore.reload();" />--%>
-                               <AfterRender Handler="App.year.setValue(new Date().getFullYear()); App.payrollsStore.reload();" />
-                                <AfterLayout Handler="App.payrollsStore.reload();" />
+                               <AfterRender Handler="App.year.setValue(new Date().getFullYear());" />
+                              <%--  <AfterLayout Handler="alert('fterlayout');App.payrollsStore.reload();" />--%>
                                 
                             </Listeners>
                             <DirectEvents> 
@@ -449,7 +450,7 @@
                                         <Click OnEvent="deleteAllEmployeePayrolls" />
                                     </DirectEvents>
                                 </ext:Button>
-                                   <ext:Button runat="server" Text="<%$ Resources: payList%>" MarginSpec="0 0 0 0" Width="100" Icon="DatabaseDelete">
+                                   <ext:Button runat="server" Text="<%$ Resources: payList%>" MarginSpec="0 0 0 0" Width="100" Icon="Mail">
                                     <DirectEvents> 
                                         <Click OnEvent="payList" />
                                     </DirectEvents>

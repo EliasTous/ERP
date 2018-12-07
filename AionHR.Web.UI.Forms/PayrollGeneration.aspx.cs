@@ -93,6 +93,7 @@ namespace AionHR.Web.UI.Forms
                 yearStore.DataBind();
                 salaryTypeFilter.Select("5");
                 status.Select("0");
+                payrollsStore.Reload();
 
                 if (_systemService.SessionHelper.CheckIfIsAdmin())
                     return;
@@ -455,13 +456,17 @@ namespace AionHR.Web.UI.Forms
 
                     break;
                 case "imgGenerate":
-                    CurrentPayId1.Text = id;
+                    GenerateCurrentPayroll.Text = "true";
+                    
+
+                    CurrentPayId.Text = id;
                     //Step 1 : get the object from the Web Service 
                     EditGenerateForm.Reset();
                     FillDepartment();
                     FillBranch();
                     generatePayRef.Text = payRef;
-
+                    GenerateButton.Text = Resources.Common.Generate;
+                    GenerateButton.ID = "ApplicationGo";
                     EditGenerateWindow.Show();
 
                     // Store1.Reload();
@@ -1572,52 +1577,54 @@ namespace AionHR.Web.UI.Forms
 
         protected void deleteAllEmployeePayrolls(object sender, DirectEventArgs e)
         {
-            try
-            {
+            
+                GenerateCurrentPayroll.Text="false";
+                generatePayRef.Text = payRefHidden.Text; 
+                GenerateButton.Text = Resources.Common.DeleteAll;
+         
+            EditGenerateWindow.Show();
+                //    EmployeePayrollListRequest req = GetEmployeePayrollRequest();
+                //    ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
+                //    if (!resp.Success)
+                //    {
+
+                //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                //        return;
+                //    }
+                //    resp.Items.ForEach(x =>
+                //    {
 
 
-                EmployeePayrollListRequest req = GetEmployeePayrollRequest();
-                ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
-                if (!resp.Success)
-                {
+                //        PostRequest<EmployeePayroll> delReq = new PostRequest<EmployeePayroll>();
+                //        delReq.entity = x;
+                //        PostResponse<EmployeePayroll> res = _payrollService.ChildDelete<EmployeePayroll>(delReq);
+                //        if (!res.Success)
+                //        {
 
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                    return;
-                }
-                resp.Items.ForEach(x =>
-                {
+                //            throw new Exception(res.Message,new Exception(res.ErrorCode, new Exception (res.LogId)));
+                //        }
 
 
-                    PostRequest<EmployeePayroll> delReq = new PostRequest<EmployeePayroll>();
-                    delReq.entity = x;
-                    PostResponse<EmployeePayroll> res = _payrollService.ChildDelete<EmployeePayroll>(delReq);
-                    if (!res.Success)
-                    {
-                       
-                        throw new Exception(res.Message,new Exception(res.ErrorCode, new Exception (res.LogId)));
-                    }
+                //    });
 
 
-                });
+                //    Notification.Show(new NotificationConfig
+                //    {
+                //        Title = Resources.Common.Notification,
+                //        Icon = Icon.Information,
+                //        Html = Resources.Common.RecordUpdatedSucc
+                //    });
 
-
-                Notification.Show(new NotificationConfig
-                {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.RecordUpdatedSucc
-                });
-
-                Store1.Reload();
-            }
-            catch(Exception exp)
-            {
-                if (exp.InnerException!=null)
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", exp.InnerException.Message) != null ? GetGlobalResourceObject("Errors", exp.InnerException.Message).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + exp.InnerException.InnerException.Message: exp.Message).Show();
-                else
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
+                //    Store1.Reload();
+                //}
+                //catch(Exception exp)
+                //{
+                //    if (exp.InnerException!=null)
+                //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", exp.InnerException.Message) != null ? GetGlobalResourceObject("Errors", exp.InnerException.Message).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + exp.InnerException.InnerException.Message: exp.Message).Show();
+                //    else
+                //    X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                //}
 
             }
         protected void payList(object sender, DirectEventArgs e)
@@ -1628,7 +1635,7 @@ namespace AionHR.Web.UI.Forms
 
                 RecordRequest req =new  RecordRequest();
                 req.RecordID = CurrentPayId.Text;
-                RecordResponse<EmployeePayroll> resp = _payrollService.ChildGetRecord<EmployeePayroll>(req);
+                RecordResponse<MailEmployee> resp = _payrollService.ChildGetRecord<MailEmployee>(req);
                 if (!resp.Success)
                 {
 
@@ -1660,7 +1667,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void StartLongAction(object sender, DirectEventArgs e)
         {
-            string id = CurrentPayId1.Text;
+            string id = CurrentPayId.Text;
             string departmentId = e.ExtraParams["departmentId"];
             string branchId = e.ExtraParams["branchId"];
             string employeeId = e.ExtraParams["employeeId"];
@@ -1727,7 +1734,10 @@ namespace AionHR.Web.UI.Forms
                 if (HttpRuntime.Cache["genEM_RecordId"] != null)
                     req.RecordID = HttpRuntime.Cache["genEM_RecordId"].ToString();
                 else
+                {
+                   // this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                     return;
+                }
                 RecordResponse<BackgroundJob> resp = _systemService.ChildGetRecord<BackgroundJob>(req);
                 if (resp.result == null || resp.result.errorId != null)
                 {
@@ -1817,12 +1827,16 @@ namespace AionHR.Web.UI.Forms
 
                 PayrollService   payrollService = new PayrollService(new PayrollRepository(),h);
                 GeneratePayroll G = (GeneratePayroll)array[1];
-
-                PostRequest<GeneratePayroll> req = new PostRequest<GeneratePayroll>();
-                req.entity = G;
-
-                PostResponse<GeneratePayroll> resp = payrollService.ChildAddOrUpdate<GeneratePayroll>(req);
                
+                    PostRequest<GeneratePayroll> req = new PostRequest<GeneratePayroll>();
+                    req.entity = G;
+                PostResponse<GeneratePayroll> resp; 
+                if (GenerateCurrentPayroll.Text == "true")
+                {
+                    resp = payrollService.ChildAddOrUpdate<GeneratePayroll>(req);
+                }
+                else
+                    resp = payrollService.ChildDelete<GeneratePayroll>(req);
 
                 if (!resp.Success)
                 { //Show an error saving...

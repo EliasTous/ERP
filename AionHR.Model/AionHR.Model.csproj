@@ -244,6 +244,7 @@
     <Compile Include="System\Dashboard.cs" />
     <Compile Include="System\EmployeeSelfService.cs" />
     <Compile Include="System\GovernmentOrganisation.cs" />
+    <Compile Include="System\KeyId.cs" />
     <Compile Include="System\Letter.cs" />
     <Compile Include="System\LetterTemplate.cs" />
     <Compile Include="System\OrgCharts.cs" />

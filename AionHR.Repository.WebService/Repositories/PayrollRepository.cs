@@ -84,6 +84,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(PenaltyType), "delPT");
             ChildDeleteLookup.Add(typeof(PenaltyDetail), "delPD");
             ChildDeleteLookup.Add(typeof(TimeCode), "delTC");
+            ChildDeleteLookup.Add(typeof(GeneratePayroll), "delEM");
 
 
             ChildGetLookup.Add(typeof(GenerationHeader), "getHE");

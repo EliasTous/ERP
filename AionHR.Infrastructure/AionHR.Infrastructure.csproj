@@ -36,7 +36,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>G:\AionASP\AionHR.Infrastructure\bin\Debug\Newtonsoft.Json.dll</HintPath>
+      <HintPath>D:\Softmachine\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -74,6 +74,7 @@
     <Compile Include="Session\SessionHelper.cs" />
     <Compile Include="Session\SessionStorage.cs" />
     <Compile Include="Tokens\APIKeyBasedTokenGenerator.cs" />
+    <Compile Include="Tokens\EncryptionHelper.cs" />
     <Compile Include="Tokens\ITokenGenerator.cs" />
     <Compile Include="WebService\BaseWebServiceResponse.cs" />
     <Compile Include="WebService\BlankWebServiceResponse.cs" />
