@@ -58,16 +58,7 @@ namespace AionHR.Web.UI.Forms
             if (string.IsNullOrEmpty(parsed["_a"]) || string.IsNullOrEmpty(parsed["_u"]) || string.IsNullOrEmpty(parsed["_p"]) || string.IsNullOrEmpty(parsed["_c"]))
                 return false;
           
-            GetAccountRequest GetACrequest = new GetAccountRequest();
-            GetACrequest.Account = parsed["_a"];
-
-            Response<Account> getACResponse = _masterService.GetAccount(GetACrequest);
-            if (!getACResponse.Success)
-            {
-                
-                lblError.Text = GetGlobalResourceObject("Errors", getACResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", getACResponse.ErrorCode).ToString() : getACResponse.Message;
-                return false;//Error in authentication
-            }
+            
             UrlKeyRequest reqkey = new UrlKeyRequest();
             reqkey.keyId = Request.QueryString["param"];
             RecordResponse<KeyId> keyresp = _systemService.ChildGetRecord<KeyId>(reqkey);

@@ -63,6 +63,8 @@ namespace AionHR.Infrastructure
 
         public static string decrypt(string encryptedText, string Key)
         {
+            if (Key == null)
+                Key = basicAPIKey;
             byte[] initVectorBytes = Encoding.ASCII.GetBytes(initVector);
             byte[] DeEncryptedText = Convert.FromBase64String(encryptedText);
             PasswordDeriveBytes password = new PasswordDeriveBytes(Key, null);
