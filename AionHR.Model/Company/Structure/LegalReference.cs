@@ -26,6 +26,7 @@ namespace AionHR.Model.Company.Structure
         [PropertyID("21021_05")]
         [ApplySecurity]
         public DateTime? releaseDate { set; get; }
+        public DateTime? expiryDate { set; get; }
 
     }
 }

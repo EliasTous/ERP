@@ -195,4 +195,7 @@
   <data name="manager" xml:space="preserve">
     <value>مدير الفرع </value>
   </data>
+  <data name="expiryDate" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Infrastructure;
+using AionHR.Model.Employees.Profile;
 using AionHR.Model.MasterModule;
 using AionHR.Services.Implementations;
 using AionHR.Services.Interfaces;
@@ -95,7 +96,7 @@ namespace AionHR.Web.UI.Forms
             AuthenticateRequest request = new AuthenticateRequest();
 
             request.UserName = tbUsername.Text;
-            request.Password = tbPassword.Text;
+            request.Password = EncryptionHelper.encrypt(tbPassword.Text);
             AuthenticateResponse response = _systemService.Authenticate(request);
             if (response.Success)
             {

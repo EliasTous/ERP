@@ -170,6 +170,7 @@
     <Compile Include="Payroll\ImportPayCode.cs" />
     <Compile Include="Payroll\IPayrollRepository.cs" />
     <Compile Include="Payroll\LeavePayment.cs" />
+    <Compile Include="Payroll\MailEmployee.cs" />
     <Compile Include="Payroll\PayCode.cs" />
     <Compile Include="Payroll\PayrollEntitlementDeduction.cs" />
     <Compile Include="Payroll\PayrollIndemnity.cs" />
@@ -243,6 +244,7 @@
     <Compile Include="System\Dashboard.cs" />
     <Compile Include="System\EmployeeSelfService.cs" />
     <Compile Include="System\GovernmentOrganisation.cs" />
+    <Compile Include="System\KeyId.cs" />
     <Compile Include="System\Letter.cs" />
     <Compile Include="System\LetterTemplate.cs" />
     <Compile Include="System\OrgCharts.cs" />

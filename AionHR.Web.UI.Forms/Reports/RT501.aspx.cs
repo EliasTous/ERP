@@ -257,7 +257,9 @@ namespace AionHR.Web.UI.Forms.Reports
 
             MonthlyPayroll h = new MonthlyPayroll();
             h.DataSource = s;
-            
+            //h.objectDataSource2.DataSource = resp.Items.Where(x => x.edType == 2).ToList();
+
+
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             string user = _systemService.SessionHelper.GetCurrentUser();

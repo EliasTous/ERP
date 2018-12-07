@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Access_Control;
+﻿using AionHR.Infrastructure;
+using AionHR.Model.Access_Control;
 using AionHR.Model.MasterModule;
 using AionHR.Model.Payroll;
 using AionHR.Model.System;
@@ -50,8 +51,44 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+        private bool HandleExternalUrl()
+        {
+            string decrypted = EncryptionHelper.decrypt(Request.QueryString["param"], null);
+            var parsed = HttpUtility.ParseQueryString(decrypted);
+            if (string.IsNullOrEmpty(parsed["_a"]) || string.IsNullOrEmpty(parsed["_u"]) || string.IsNullOrEmpty(parsed["_p"]) || string.IsNullOrEmpty(parsed["_c"]))
+                return false;
+          
+            
+            UrlKeyRequest reqkey = new UrlKeyRequest();
+            reqkey.keyId = Request.QueryString["param"];
+            RecordResponse<KeyId> keyresp = _systemService.ChildGetRecord<KeyId>(reqkey);
+            if(!keyresp.Success)
+            {
+                return false;
+            }
+            
+            AuthenticateRequest req = new AuthenticateRequest();
+            req.UserName = parsed["_u"];
+            req.Password = parsed["_p"];
+            _systemService.SessionHelper.Set("AccountId", parsed["_a"]);
+            AuthenticateResponse resp = _systemService.Authenticate(req);
+            if (!resp.Success)
+            {
+                return false;
+            }
+            X.Call("openNewTab","", PageLookup.GetPageUrlByClassId(Convert.ToInt32(parsed["_c"])),"" , "");
+            return true;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!string.IsNullOrEmpty( Request.QueryString["param"]))
+            {
+                bool success = HandleExternalUrl();
+                if(!success)
+                    Response.Redirect("Login.aspx?timeout=yes", true);
+                
+
+            }
             try
             {
                 if (CheckSession() == "0")

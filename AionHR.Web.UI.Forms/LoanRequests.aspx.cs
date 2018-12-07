@@ -1407,13 +1407,29 @@ namespace AionHR.Web.UI.Forms
 
         protected void ApprovalsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            LoanApprovalListRequest req = new LoanApprovalListRequest();
+            LoanManagementListRequest req = new LoanManagementListRequest();
             req.LoanId = currentLoanId.Text;
             if(string.IsNullOrEmpty(req.LoanId))
             {
                 ApprovalStore.DataSource = new List<LoanApproval>();
                 ApprovalStore.DataBind();
             }
+            req.approverId = 0;
+            req.BranchId = 0;
+            req.DepartmentId = 0;
+            req.DivisionId = 0;
+            req.EmployeeId = 0;
+            req.Status = 1;
+            req.Filter = "";
+            
+            req.SortBy = "recordId";
+
+
+
+
+
+            req.Size = "1000";
+            req.StartAt = "0";
             ListResponse<LoanApproval> response = _loanService.ChildGetAll<LoanApproval>(req);
           
             if (!response.Success)

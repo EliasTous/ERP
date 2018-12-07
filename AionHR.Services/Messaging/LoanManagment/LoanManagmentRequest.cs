@@ -34,7 +34,8 @@ namespace AionHR.Services.Messaging.LoanManagment
         public int Status { get; set; }
         public int DivisionId { get; set; }
         public int approverId { get; set; }
-       
+        public string LoanId { get; set; }
+
 
         public override Dictionary<string, string> Parameters
         {
@@ -48,6 +49,8 @@ namespace AionHR.Services.Messaging.LoanManagment
                 parameters.Add("_status", Status.ToString());
                 parameters.Add("_sortBy", SortBy.ToString());
                 parameters.Add("_approverId", approverId.ToString());
+                parameters.Add("_loanId", LoanId);
+
 
                 return parameters;
             }

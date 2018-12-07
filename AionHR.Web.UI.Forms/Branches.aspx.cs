@@ -68,8 +68,10 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
                 FillSchedules();
-                FillWorkingCalendar(); 
-             
+                FillWorkingCalendar();
+                releaseDate.Format = expiryDate.Format = _systemService.SessionHelper.GetDateformat();
+
+
 
                 if (_systemService.SessionHelper.CheckIfIsAdmin())
                     return;
@@ -271,6 +273,52 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Step 2 :  remove the object from the store
                     Store1.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+        [DirectMethod]
+        public void DeleteLegalReferenceRecord(string index,string branchId)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                if (string.IsNullOrEmpty(index) || string.IsNullOrEmpty(branchId))
+                    return;
+                LegalReference n = new LegalReference();
+                n.branchId = Convert.ToInt32(branchId);
+                n.goId = Convert.ToInt32(index);
+
+                PostRequest<LegalReference> req = new PostRequest<LegalReference>();
+                req.entity = n;
+                PostResponse<LegalReference> res = _branchService.ChildDelete<LegalReference>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    legalReferenceStore.Reload();
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
@@ -803,29 +851,29 @@ namespace AionHR.Web.UI.Forms
                     this.EditlegalReferenceWindow.Show();
                     break;
 
-                //case "imgDelete":
-                //    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                //    {
-                //        Yes = new MessageBoxButtonConfig
-                //        {
-                //            //We are call a direct request metho for deleting a record
-                //            Handler = String.Format("App.direct.DeleteRecord({0})", id),
-                //            Text = Resources.Common.Yes
-                //        },
-                //        No = new MessageBoxButtonConfig
-                //        {
-                //            Text = Resources.Common.No
-                //        }
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteLegalReferenceRecord({0},{1})", id, branchId.Text),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
 
-                //    }).Show();
-                //    break;
+                    }).Show();
+                    break;
 
-                //case "imgAttach":
+                    //case "imgAttach":
 
-                //    //Here will show up a winow relatice to attachement depending on the case we are working on
-                //    break;
-                //default:
-                //    break;
+                    //    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    //    break;
+                    //default:
+                    //    break;
             }
 
 

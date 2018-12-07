@@ -156,4 +156,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Sponsors</value>
   </data>
+  <data name="FieldIsSupplier" xml:space="preserve">
+    <value>Is Supplier</value>
+  </data>
 </root>

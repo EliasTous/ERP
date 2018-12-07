@@ -714,4 +714,10 @@
   <data name="ltName" xml:space="preserve">
     <value>نوع الاجازة</value>
   </data>
+  <data name="FieldEffectiveDate" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="PaymentValue" xml:space="preserve">
+    <value>قيمة الدفعة</value>
+  </data>
 </root>
