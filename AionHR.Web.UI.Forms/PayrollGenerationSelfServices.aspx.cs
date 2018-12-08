@@ -44,7 +44,7 @@ using AionHR.Repository.WebService.Repositories;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class PayrollGeneration : System.Web.UI.Page
+    public partial class PayrollGenerationSelfServices : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
@@ -55,6 +55,7 @@ namespace AionHR.Web.UI.Forms
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         IHelpFunctionService _helpFunctionService= ServiceLocator.Current.GetInstance<IHelpFunctionService>();
+        ISelfServiceService _selfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
         SessionHelper h;
         protected override void InitializeCulture()
         {
@@ -196,17 +197,12 @@ namespace AionHR.Web.UI.Forms
         private EmployeePayrollListRequest GetEmployeePayrollRequest()
         {
             EmployeePayrollListRequest req = new EmployeePayrollListRequest();
-            var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
-            var d2 = employeeCombo1.GetEmployee();
-            req.EmployeeId = d2.employeeId.ToString();
+         
+            req.BranchId = "0";
+            req.DepartmentId = "0";
 
-
-
-
-            req.PayId = CurrentPayId.Text;
-            req.Size = "50";
+        
+            req.Size = "200";
            
             req.Filter = "";
             
@@ -881,9 +877,12 @@ namespace AionHR.Web.UI.Forms
 
         protected void Store1_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            EmployeePayrollListRequest req = GetEmployeePayrollRequest();
-            req.StartAt = e.Start.ToString();
-            ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
+            EmployeePayrollListRequest req = new EmployeePayrollListRequest();
+            req.EmployeeId = _systemService.SessionHelper.GetEmployeeId();
+                                 
+            req.PayId = CurrentPayId.Text;
+        
+            ListResponse<EmployeePayroll> resp = _selfServiceService.ChildGetAll<EmployeePayroll>(req);
             if (!resp.Success)
             {
 
@@ -1748,20 +1747,29 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
                 RecordResponse<BackgroundJob> resp = _systemService.ChildGetRecord<BackgroundJob>(req);
-                if (!resp.Success)
+                if (resp.result == null || resp.result.errorId != null)
                 {
-                    Common.errorMessage(resp);
-                    HttpRuntime.Cache.Remove("genEM_RecordId");
-                    this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
-                    EditGenerateWindow.Close();
-                    Viewport1.ActiveIndex = 0;
-                    return; 
-                }
-                if ( resp.result.errorId != null)
-                {
-                
+                    //string[] values; 
+                    //var infolist = resp.result.infoList.Split(',');
+                    //string ErrorMessage;
+                    //if (GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId) != null)
+                    //{
+                    //    values = GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId).ToString().Split(new string[] { "%s" }, StringSplitOptions.None);
+                    //    for (int i = 0; i < infolist.Length; i++)
+                    //    {
 
-                    X.Msg.Alert(Resources.Common.Error,resp.result.errorName ).Show();
+                    //        values[0] +=   infolist[i]+ "  "; 
+                    //    }
+                    //    if (values.Length == 2)
+                    //        ErrorMessage = values[0] + " " + values[1];
+                    //    else
+                    //        ErrorMessage = values[0];
+                    //}
+                    //else
+                    //    ErrorMessage = GetGlobalResourceObject("Errors", "Error_2").ToString() + resp.ErrorCode;
+                   
+
+                    X.Msg.Alert(Resources.Common.Error,resp.errorName +"  "+ GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId).Show();
                     HttpRuntime.Cache.Remove("genEM_RecordId");
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                     EditGenerateWindow.Close();
@@ -1778,7 +1786,7 @@ namespace AionHR.Web.UI.Forms
                         EditGenerateWindow.Close();
                         Store1.Reload();
                         Viewport1.ActiveIndex = 2;
-                        X.Msg.Alert("",GenerateCurrentPayroll.Text=="true"?Resources.Common.GenerateAttendanceDaySucc : Resources.Common.deleteAttendanceDaySucc).Show();
+                        X.Msg.Alert("", GetGlobalResourceObject("Common", "GenerateAttendanceDaySucc").ToString()).Show();
                     }
                     else
                     {
@@ -1797,7 +1805,7 @@ namespace AionHR.Web.UI.Forms
                         EditGenerateWindow.Close();
                         Store1.Reload();
                         Viewport1.ActiveIndex = 2;
-                        X.Msg.Alert("", GenerateCurrentPayroll.Text == "true" ? Resources.Common.GenerateAttendanceDaySucc : Resources.Common.deleteAttendanceDaySucc).Show();
+                        X.Msg.Alert("", GetGlobalResourceObject("Common", "GenerateAttendanceDaySucc").ToString()).Show();
 
                     }
                 }
@@ -1828,50 +1836,29 @@ namespace AionHR.Web.UI.Forms
 
                 PayrollService   payrollService = new PayrollService(new PayrollRepository(),h);
                 GeneratePayroll G = (GeneratePayroll)array[1];
-                if (GenerateCurrentPayroll.Text == "true")
-                {
+               
                     PostRequest<GeneratePayroll> req = new PostRequest<GeneratePayroll>();
                     req.entity = G;
+                PostResponse<GeneratePayroll> resp; 
+                if (GenerateCurrentPayroll.Text == "true")
+                {
+                    resp = payrollService.ChildAddOrUpdate<GeneratePayroll>(req);
+                }
+                else
+                    resp = payrollService.ChildDelete<GeneratePayroll>(req);
 
+                if (!resp.Success)
+                { //Show an error saving...
 
-                    PostResponse<GeneratePayroll> resp = payrollService.ChildAddOrUpdate<GeneratePayroll>(req);
-                    if (!resp.Success)
-                    { //Show an error saving...
+                    HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
+                    HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
+                    HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
 
-                        HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
-                        HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
-                        HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
-
-                    }
-                    else
-                    {
-                        if (!string.IsNullOrEmpty(resp.recordId))
-                            HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
-                    }
                 }
                 else
                 {
-                    PostRequest<DeletePayroll> req = new PostRequest<DeletePayroll>();
-                    req.entity = new DeletePayroll { branchId = G.branchId, departmentId = G.departmentId, employeeId = G.employeeId, payId = G.payId };
-
-
-                    PostResponse<DeletePayroll> resp = payrollService.ChildAddOrUpdate<DeletePayroll>(req);
-                      if (!resp.Success)
-                    { //Show an error saving...
-
-                        HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
-                        HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
-                        HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
-
-                    }
-                    else
-                    {
-                        if (!string.IsNullOrEmpty(resp.recordId))
-                            HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
-                    }
+                    HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
                 }
-
-              
 
             }
             catch (Exception exp)

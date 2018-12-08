@@ -117,49 +117,205 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>لم يتم العثور على نتائج</value>
+  <data name="amount" xml:space="preserve">
+    <value>Amount</value>
   </data>
-  <data name="xrLabel12.Text" xml:space="preserve">
-    <value>التاريخ</value>
+  <data name="Deductions" xml:space="preserve">
+    <value>Deductions</value>
   </data>
-  <data name="xrLabel13.Text" xml:space="preserve">
-    <value>رواتب في يوم محدد</value>
+  <data name="Entitlements" xml:space="preserve">
+    <value>Entitlements</value>
   </data>
-  <data name="xrLabel19.Text" xml:space="preserve">
-    <value>الاستحقاقات</value>
+  <data name="FieldAmount" xml:space="preserve">
+    <value>Amount</value>
   </data>
-  <data name="xrLabel2.Text" xml:space="preserve">
-    <value>المنصب</value>
+  <data name="FieldBasicAmount" xml:space="preserve">
+    <value>Basic Amount</value>
   </data>
-  <data name="xrLabel20.Text" xml:space="preserve">
-    <value>المبلغ النهائي</value>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branch</value>
   </data>
-  <data name="xrLabel21.Text" xml:space="preserve">
-    <value>الخصومات</value>
+  <data name="FieldCalDays" xml:space="preserve">
+    <value>Cal Days</value>
   </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>الاسم</value>
+  <data name="FieldCalMinutes" xml:space="preserve">
+    <value>Cal Minutes</value>
   </data>
-  <data name="xrLabel4.Text" xml:space="preserve">
-    <value>القسم</value>
+  <data name="FieldDays" xml:space="preserve">
+    <value>Days</value>
   </data>
-  <data name="xrLabel5.Text" xml:space="preserve">
-    <value>القسم</value>
+  <data name="FieldDeduction" xml:space="preserve">
+    <value>Deduction</value>
   </data>
-  <data name="xrLabel6.Text" xml:space="preserve">
-    <value>الراتب</value>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Department</value>
   </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>الفرع</value>
+  <data name="FieldEDAmount" xml:space="preserve">
+    <value>ED</value>
   </data>
-  <data name="xrLabel8.Text" xml:space="preserve">
-    <value>الوظيفة</value>
+  <data name="FieldEmployee" xml:space="preserve">
+    <value>Employee</value>
   </data>
-  <data name="xrLabel9.Text" xml:space="preserve">
-    <value>الإدارة</value>
+  <data name="FieldEntitlement" xml:space="preserve">
+    <value>Entitlement</value>
   </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>صفحة {0} من {1}</value>
+  <data name="FieldFrom" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="FieldMinutes" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="FieldNetSalary" xml:space="preserve">
+    <value>Net</value>
+  </data>
+  <data name="FieldNotes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="FieldPayDate" xml:space="preserve">
+    <value>PayDate</value>
+  </data>
+  <data name="FieldPayRef" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="FieldPeriod" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="FieldPeriodType" xml:space="preserve">
+    <value>Period Type</value>
+  </data>
+  <data name="FieldRef" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="FieldTaxAmount" xml:space="preserve">
+    <value>Tax Amount</value>
+  </data>
+  <data name="FieldTo" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="FieldYear" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="PayCode" xml:space="preserve">
+    <value>Pay Code</value>
+  </data>
+  <data name="pcName" xml:space="preserve">
+    <value>Pay Code</value>
+  </data>
+  <data name="pct" xml:space="preserve">
+    <value>percentage</value>
+  </data>
+  <data name="SalaryBiWeekly" xml:space="preserve">
+    <value>Bi-weekly</value>
+  </data>
+  <data name="SalaryDaily" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="SalaryFourWeekly" xml:space="preserve">
+    <value>Four Weekly</value>
+  </data>
+  <data name="SalaryMonthly" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+  <data name="SalaryWeekly" xml:space="preserve">
+    <value>Weekly</value>
+  </data>
+  <data name="SelectFilters" xml:space="preserve">
+    <value>Please Select a year and a period type first</value>
+  </data>
+  <data name="Status0" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Status1" xml:space="preserve">
+    <value>In Process</value>
+  </data>
+  <data name="Status2" xml:space="preserve">
+    <value>Posted</value>
+  </data>
+  <data name="StatusInProcess" xml:space="preserve">
+    <value>In Process</value>
+  </data>
+  <data name="StatusPosted" xml:space="preserve">
+    <value>Posted</value>
+  </data>
+  <data name="TotalText" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>Week</value>
+  </data>
+  <data name="Weeks" xml:space="preserve">
+    <value>Weeks</value>
+  </data>
+  <data name="PayCodeName" xml:space="preserve">
+    <value>Pay Code Name</value>
+  </data>
+  <data name="socialSecurity" xml:space="preserve">
+    <value>Social Security</value>
+  </data>
+  <data name="FieldSocialSecurity" xml:space="preserve">
+    <value>Social Security</value>
+  </data>
+  <data name="FieldCompanySocialSecurity" xml:space="preserve">
+    <value>Company Social Security</value>
+  </data>
+  <data name="FieldEmployeeSocialSecurity" xml:space="preserve">
+    <value>Employee Social Security</value>
+  </data>
+  <data name="Absence" xml:space="preserve">
+    <value>Absence</value>
+  </data>
+  <data name="cssString" xml:space="preserve">
+    <value>Company Social Security</value>
+  </data>
+  <data name="dAmount" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="Disappear" xml:space="preserve">
+    <value>Disappear</value>
+  </data>
+  <data name="eAmount" xml:space="preserve">
+    <value>Entitlements</value>
+  </data>
+  <data name="essString" xml:space="preserve">
+    <value>Employee Social Security</value>
+  </data>
+  <data name="Lateness" xml:space="preserve">
+    <value>Lateness</value>
+  </data>
+  <data name="Missed Punch" xml:space="preserve">
+    <value>Missed Punch </value>
+  </data>
+  <data name="netSalary" xml:space="preserve">
+    <value>Net </value>
+  </data>
+  <data name="Overtime" xml:space="preserve">
+    <value>Overtime</value>
+  </data>
+  <data name="PaidAt" xml:space="preserve">
+    <value>Paid at</value>
+  </data>
+  <data name="PayRef" xml:space="preserve">
+    <value>PayRef</value>
+  </data>
+  <data name="Taxable" xml:space="preserve">
+    <value>Taxable Entitlements</value>
+  </data>
+  <data name="taxableeAmount" xml:space="preserve">
+    <value>Total Taxables</value>
+  </data>
+  <data name="netSalaryString" xml:space="preserve">
+    <value>Net Salary</value>
+  </data>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>DeleteAll </value>
+  </data>
+  <data name="payList" xml:space="preserve">
+    <value>Pay List</value>
   </data>
 </root>

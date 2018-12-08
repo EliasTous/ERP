@@ -61,6 +61,12 @@ namespace Reports
         private XRLabel xrLabel7;
         private XRLabel xrLabel5;
         private XRLine xrLine3;
+        private XRLabel xrLabel22;
+        private XRTableCell xrTableCell3;
+        private XRTableCell xrTableCell5;
+        private XRLabel xrLabel20;
+        private XRLabel xrLabel21;
+        private XRLabel xrLabel19;
 
         /// <summary>
         /// Required designer variable.
@@ -127,7 +133,6 @@ namespace Reports
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DataField = new DevExpress.XtraReports.UI.XRControlStyle();
             this.Odd = new DevExpress.XtraReports.UI.XRControlStyle();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.Department = new DevExpress.XtraReports.Parameters.Parameter();
@@ -147,6 +152,13 @@ namespace Reports
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine3 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -155,6 +167,7 @@ namespace Reports
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel22,
             this.xrRichText1,
             this.xrTable1});
             resources.ApplyResources(this.Detail, "Detail");
@@ -183,7 +196,9 @@ namespace Reports
             this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell1,
             this.xrTableCell2,
-            this.xrTableCell4});
+            this.xrTableCell4,
+            this.xrTableCell3,
+            this.xrTableCell5});
             resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             this.xrTableRow1.Name = "xrTableRow1";
             // 
@@ -223,6 +238,9 @@ namespace Reports
             // groupHeaderBand1
             // 
             this.groupHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel20,
+            this.xrLabel21,
+            this.xrLabel19,
             this.xrLabel6,
             this.xrLabel2,
             this.xrLabel4,
@@ -391,11 +409,6 @@ namespace Reports
             this.Odd.BorderColor = System.Drawing.Color.Silver;
             this.Odd.Name = "Odd";
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT203);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // GroupHeader1
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -533,6 +546,61 @@ namespace Reports
             // 
             resources.ApplyResources(this.xrLine3, "xrLine3");
             this.xrLine3.Name = "xrLine3";
+            // 
+            // xrLabel19
+            // 
+            resources.ApplyResources(this.xrLabel19, "xrLabel19");
+            this.xrLabel19.Name = "xrLabel19";
+            this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel19.StyleName = "FieldCaption";
+            this.xrLabel19.StylePriority.UseBackColor = false;
+            this.xrLabel19.StylePriority.UseFont = false;
+            // 
+            // xrLabel20
+            // 
+            resources.ApplyResources(this.xrLabel20, "xrLabel20");
+            this.xrLabel20.Name = "xrLabel20";
+            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel20.StyleName = "FieldCaption";
+            this.xrLabel20.StylePriority.UseBackColor = false;
+            this.xrLabel20.StylePriority.UseFont = false;
+            // 
+            // xrLabel21
+            // 
+            resources.ApplyResources(this.xrLabel21, "xrLabel21");
+            this.xrLabel21.Name = "xrLabel21";
+            this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel21.StyleName = "FieldCaption";
+            this.xrLabel21.StylePriority.UseBackColor = false;
+            this.xrLabel21.StylePriority.UseFont = false;
+            // 
+            // xrTableCell3
+            // 
+            this.xrTableCell3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "eAmount")});
+            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
+            this.xrTableCell3.Name = "xrTableCell3";
+            // 
+            // xrTableCell5
+            // 
+            this.xrTableCell5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "dAmount")});
+            resources.ApplyResources(this.xrTableCell5, "xrTableCell5");
+            this.xrTableCell5.Name = "xrTableCell5";
+            // 
+            // xrLabel22
+            // 
+            this.xrLabel22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "finalAmount")});
+            resources.ApplyResources(this.xrLabel22, "xrLabel22");
+            this.xrLabel22.EvenStyleName = "Odd";
+            this.xrLabel22.Name = "xrLabel22";
+            this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT203);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // PointInTimeSalary
             // 

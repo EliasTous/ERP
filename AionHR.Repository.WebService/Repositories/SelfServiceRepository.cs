@@ -4,6 +4,7 @@ using AionHR.Model.Attendance;
 using AionHR.Model.Dashboard;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.LeaveManagement;
+using AionHR.Model.Payroll;
 using AionHR.Model.SelfService;
 using AionHR.Model.TimeAttendance;
 using System;
@@ -32,7 +33,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(FlatSchedule), "qryFS");
             ChildGetAllLookup.Add(typeof(AttendanceDay), "qryAD");
             ChildGetAllLookup.Add(typeof(DashBoardTimeVariation), "qryTV");
-
+            ChildGetAllLookup.Add(typeof(EmployeePayroll), "qryPE");
 
 
 

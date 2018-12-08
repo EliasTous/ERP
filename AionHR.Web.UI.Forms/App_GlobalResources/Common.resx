@@ -1338,4 +1338,7 @@
   <data name="RT307" xml:space="preserve">
     <value>Approver Performance</value>
   </data>
+  <data name="deleteAttendanceDaySucc" xml:space="preserve">
+    <value>Attendance Schedule Deleted Successfully</value>
+  </data>
 </root>
