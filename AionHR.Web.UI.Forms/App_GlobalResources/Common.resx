@@ -1341,4 +1341,7 @@
   <data name="deleteAttendanceDaySucc" xml:space="preserve">
     <value>Attendance Schedule Deleted Successfully</value>
   </data>
+  <data name="RT113" xml:space="preserve">
+    <value>Branch Workforce</value>
+  </data>
 </root>

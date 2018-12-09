@@ -1,6 +1,4 @@
-﻿
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT503.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT503" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT113.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT113" %>
 
 <%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
@@ -15,7 +13,7 @@
     <title></title>
 
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css" />
-    <link rel="stylesheet" type="text/css" href="../CSS/RT200.css?id=2" />
+    <link rel="stylesheet" type="text/css" href="../CSS/RT101.css?id=2" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
     <script type="text/javascript" src="../Scripts/Dashboard.js"></script>
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
@@ -24,9 +22,10 @@
     <script src="https://superal.github.io/canvas2image/canvas2image.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../Scripts/moment.js"></script>
-    <script type="text/javascript" src="../Scripts/RT200.js?id=18"></script>
+    <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
     <script type="text/javascript">
         function alertNow(s, e) {
+
             Ext.MessageBox.alert('Error', e.message);
             e.handled = true;
         }
@@ -40,8 +39,9 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-         <ext:Hidden ID="hint" runat="server" Text="<%$ Resources:Common , hint %>" />
-          <ext:Hidden ID="EmptyPayRef" runat="server" Text="<%$ Resources:Common , EmptyPayRef %>" />
+         <ext:Hidden ID="dtIdValue" runat="server" Text="" />
+
+        
 
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
@@ -62,25 +62,34 @@
                         <ext:Toolbar runat="server" Height="60">
 
                             <Items>
-                           <%--  <ext:Container runat="server"  Layout="FitLayout">
+                                  
+                              
+                              
+                                                                     
+                                                                     
+                                      
+                               <%-- <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
-                                               
-                                               
-                                                 
-                                                <uc:payRefCombo runat="server" ID="payRefFilter" />
+                                            
+                                                <uc:employeeCombo runat="server" ID="employeeCombo1" />
                                             </Content>
                                         </ext:Container>--%>
-                                     <ext:TextField Visible="false" Width="120" runat="server" ID="payRef" EmptyText="<%$Resources:Common , PayRef %>" />
-                              
-                                     <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  EmptyText="<%$Resources:Common , PayRef %>"  Name="payId" runat="server" DisplayField="payRef" ValueField="recordId" ID="payId">
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                <uc:date runat="server" ID="date1"   />
+                                            </Content>
+                                        </ext:Container>
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  EmptyText="<%$Resources:Common , GovernmentOrganisations %>"  Name="goId" runat="server" DisplayField="name" ValueField="recordId" ID="goId">
                                     <Store>
-                                        <ext:Store runat="server" ID="payIdStore">
+                                        <ext:Store runat="server" ID="governmentStore">
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
 
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="payRef" />
+                                                       
+                                                 <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="name" />
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
@@ -89,26 +98,12 @@
                                    
                                  
                                 </ext:ComboBox>
-                                        <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                               
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="true" EnableDivision="false" EnableDepartment="true" />
-                                            </Content>
-                                        </ext:Container>
-                                   <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:paymentMethodCombo runat="server" ID="paymentMethodCombo" />
-                                            </Content>
-                                        </ext:Container>
-
-                                   
+                                
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
-                                                  <Click Handler="if(App.payId.getValue()==null)  {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}  callbackPanel.PerformCallback('1');" />
+                                                <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
                                     </Content>
@@ -122,9 +117,7 @@
                     </TopBar>
                     <Content>
 
-                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"  ClientSideEvents-CallbackError="alertNow"
-
-
+                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server"  ClientSideEvents-CallbackError="alertNow" ClientInstanceName="callbackPanel"
                             Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" >
                             <PanelCollection>
                                 <dx:PanelContent runat="server">

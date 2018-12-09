@@ -25,4 +25,23 @@ namespace AionHR.Services.Messaging.Reports
             }
         }
     }
+    public class PayIdParameterSet : ReportParameterSet
+    {
+        public string payId { get; set; }
+
+
+        protected Dictionary<string, string> parameters;
+
+        public override Dictionary<string, string> Parameters
+        {
+            get
+            {
+                parameters = new Dictionary<string, string>();
+                parameters.Add("_payId", payId);
+
+
+                return parameters;
+            }
+        }
+    }
 }
