@@ -76,7 +76,8 @@ namespace AionHR.Web.UI.Forms
             {
                 return false;
             }
-            X.Call("openNewTab","", PageLookup.GetPageUrlByClassId(Convert.ToInt32(parsed["_c"])),"" , "");
+            
+            X.Call("openNewTab?record="+parsed["_k"],GetGlobalResourceObject("Classes","Class"+parsed["_c"]).ToString(), PageLookup.GetPageUrlByClassId(Convert.ToInt32(parsed["_c"])),"" , "");
             return true;
         }
         protected void Page_Load(object sender, EventArgs e)

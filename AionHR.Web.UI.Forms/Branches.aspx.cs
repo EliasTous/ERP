@@ -70,7 +70,15 @@ namespace AionHR.Web.UI.Forms
                 FillSchedules();
                 FillWorkingCalendar();
                 releaseDate.Format = expiryDate.Format = _systemService.SessionHelper.GetDateformat();
-
+                if(!string.IsNullOrEmpty(Request.QueryString["record"]))
+                {
+                    var p1 = new Ext.Net.Parameter("id", Request.QueryString["record"]);
+                    var p2 = new Ext.Net.Parameter("type", "imgEdit");
+                    var col = new Ext.Net.ParameterCollection();
+                    col.Add(p1);
+                    col.Add(p2);
+                    PoPuP(null, new DirectEventArgs(col));
+                }
 
 
                 if (_systemService.SessionHelper.CheckIfIsAdmin())
