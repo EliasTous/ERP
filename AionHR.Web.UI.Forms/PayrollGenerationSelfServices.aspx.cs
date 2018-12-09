@@ -86,7 +86,15 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-
+                if(!string.IsNullOrEmpty(Request.QueryString["record"]))
+                {
+                    var p1 = new Ext.Net.Parameter("id", Request.QueryString["record"]);
+                    var p2 = new Ext.Net.Parameter("type", "imgAttach");
+                    var col = new Ext.Net.ParameterCollection();
+                    col.Add(p1);
+                    col.Add(p2);
+                    PoPuPHeader(null, new DirectEventArgs(col));
+                }
 
                 DateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                 Viewport1.ActiveIndex = 0;
