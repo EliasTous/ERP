@@ -17,5 +17,19 @@
 'emp_employmentStatus',
 'emp_salary',
 'emp_salary_text']
+},{
+    
+    "type": "admin_affair",
+    "tags": [
+"pay_fromDate",
+"pay_toDate",
+"pay_basicSalary",
+"pay_entitlements",
+"pay_deductions",
+"pay_netSalary",
+"pay_companySS",
+"pay_employeeSS",
+"pay_url",
+]
 }
 ]

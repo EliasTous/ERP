@@ -55,7 +55,7 @@ namespace AionHR.Web.UI.Forms
         {
             string decrypted = EncryptionHelper.decrypt(Request.QueryString["param"], null);
             var parsed = HttpUtility.ParseQueryString(decrypted);
-            if (string.IsNullOrEmpty(parsed["_a"]) || string.IsNullOrEmpty(parsed["_u"]) || string.IsNullOrEmpty(parsed["_p"]) || string.IsNullOrEmpty(parsed["_c"]))
+            if (string.IsNullOrEmpty(parsed["_a"]) || string.IsNullOrEmpty(parsed["_e"]) || string.IsNullOrEmpty(parsed["_p"]) || string.IsNullOrEmpty(parsed["_c"]))
                 return false;
           
             
@@ -68,7 +68,7 @@ namespace AionHR.Web.UI.Forms
             }
             
             AuthenticateRequest req = new AuthenticateRequest();
-            req.UserName = parsed["_u"];
+            req.UserName = parsed["_e"];
             req.Password = parsed["_p"];
             _systemService.SessionHelper.Set("AccountId", parsed["_a"]);
             AuthenticateResponse resp = _systemService.Authenticate(req);

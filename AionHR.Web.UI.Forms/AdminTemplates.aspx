@@ -36,9 +36,11 @@
     </style>
     <script type="text/javascript">
         var empTags = null;
-        function InitEmpTags(tags) {
-            console.log(tags);
-            empTags = tags;
+        var adminAffairsTags = null;
+        function InitTags(emp,admin) {
+            
+            empTags = emp;
+            adminAffairsTags = admin;
         }
         function escapeHtml(unsafe) {
             return unsafe
@@ -72,19 +74,20 @@
 
             return buttongroup.render();   // return button as jquery object
         }
-        var companyParams = function (context) {
+        var adminAffairParams = function (context) {
             var ui = $.summernote.ui;
 
             // create button
             var buttongroup = ui.buttonGroup([ui.button({
-                contents: '<i class="fa fa-child"/> Company Parameters',
-                tooltip: 'hello',
+                contents: '<i class="material-icons">business</i>',
+
                 data: {
                     toggle: 'dropdown'
                 }
             }), ui.dropdown({
-                items: ['companyname (company  name)', 'lastname (employee last name)', 'email (employee email)'],
-                tooltip: 'hello',
+                className: 'tags-dropdown',
+                items: adminAffairsTags,
+
                 click: function (d) {
                     console.log(d);
 
@@ -561,7 +564,7 @@
                                         <AfterLayout Handler=" $('#summernote').summernote('reset'); setWidth(); var s = unescape( #{bodyText}.getValue()); document.getElementById('summernote').style.direction = 'ltr'; $('#summernote').summernote('code',s);" />
                                         <AfterRender Handler=" App.TemplateBodyWindow.setMaxHeight(0.92*window.innerHeight);$('#summernote').summernote({
                                                 height: 270,
-                                              toolbar: [['mybutton', ['hello']],
+                                              toolbar: [['mybutton', ['hello','admin']],
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],
             ['fontname', ['fontname']],
@@ -575,7 +578,7 @@
   ],
 
   buttons: {
-    hello: employeeParams,other:companyParams
+    hello: employeeParams,admin:adminAffairParams
                                           
   }
                                                 }); " />

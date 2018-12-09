@@ -228,4 +228,31 @@
   <data name="SelectEmpWindow" xml:space="preserve">
     <value>Select Employee</value>
   </data>
+  <data name="pay_basicSalary" xml:space="preserve">
+    <value>Basic Salary</value>
+  </data>
+  <data name="pay_companySS" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="pay_deductions" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="pay_employeeSS" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="pay_entitlements" xml:space="preserve">
+    <value>Entitlements</value>
+  </data>
+  <data name="pay_fromDate" xml:space="preserve">
+    <value>Pay From</value>
+  </data>
+  <data name="pay_netSalary" xml:space="preserve">
+    <value>Net Salary</value>
+  </data>
+  <data name="pay_toDate" xml:space="preserve">
+    <value>Pay To</value>
+  </data>
+  <data name="pay_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
 </root>

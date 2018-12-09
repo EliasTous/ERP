@@ -85,11 +85,13 @@ namespace AionHR.Web.UI.Forms
                 string s = File.ReadAllText(MapPath("~/Utilities/letters_meta_tags.txt"));
                 List<TagGroup> groups = JsonConvert.DeserializeObject<List<TagGroup>>(s);
                 List<string> empTags = null;
+                List<string> adminAffairsTags = null;
                 foreach (var item in groups)
                 {
                     switch(item.type)
                     {
                         case "employee": empTags= item.tags; break;
+                        case "admin_affair": adminAffairsTags= item.tags; break;
                         default:break;
                     }
                 }
@@ -101,7 +103,15 @@ namespace AionHR.Web.UI.Forms
                     }
                     catch { }
                 }
-                X.Call("InitEmpTags",empTags);
+                for (int i = 0; i < adminAffairsTags.Count; i++)
+                {
+                    try
+                    {
+                        adminAffairsTags[i] += " (" + GetLocalResourceObject(adminAffairsTags[i]).ToString() + ")";
+                    }
+                    catch { }
+                }
+                X.Call("InitTags",empTags,adminAffairsTags);
             }
 
         }
