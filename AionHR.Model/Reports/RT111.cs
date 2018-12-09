@@ -21,5 +21,6 @@ namespace AionHR.Model.Reports
         public string swiftCode { get; set; }
         public double netSalary { get; set; }
 
+
     }
 }

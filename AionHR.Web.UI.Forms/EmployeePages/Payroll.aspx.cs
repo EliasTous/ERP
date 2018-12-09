@@ -26,6 +26,7 @@ using AionHR.Infrastructure.JSON;
 using AionHR.Model.Attributes;
 using AionHR.Model.Access_Control;
 using AionHR.Model.Payroll;
+using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -247,7 +248,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     FillBank();
                     dedsStore.Reload();
                     entsStore.Reload();
-
+                    basicAmount.Text=response3.result.basicAmount.ToString("N");
+                    finalAmount.Text = response3.result.finalAmount.ToString("N");
+                    eAmount.Text= response3.result.eAmount.ToString("N2");
+                    dAmount.Text = response3.result.dAmount.ToString("N2");
                     CurrentSalary.Text = r3.RecordID;
                     CurrentSalaryCurrency.Text = response3.result.currencyRef;
                     currencyId.Select(response3.result.currencyId.ToString());
@@ -257,8 +261,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         scrId.Select(response3.result.scrId.Value.ToString());
 
                     X.Call("TogglePaymentMethod", response3.result.paymentMethod);
-                    eAmount.Text = response3.result.eAmount.ToString();
-                    dAmount.Text = response3.result.dAmount.ToString();
+                   
                     FillEntitlements();
                     FillDeductions();
                     this.EditSAWindow.Title = Resources.Common.EditWindowsTitle;
@@ -388,6 +391,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         enFixedAmount.Disabled = false;
 
                     }
+                    enFixedAmount.Text = detail.fixedAmount.ToString("N2");
                     EditENWindow.Show();
                     break;
                 case "imgDelete":
@@ -467,6 +471,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         pctOf.Disabled = true;
                         deIsPCT.Checked = false;
                     }
+                    deFixedAmount.Text = dedDetail.fixedAmount.ToString("N2");
                     EditDEWindow.Show();
                     break;
                 case "imgDelete":
@@ -814,6 +819,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string id = e.ExtraParams["id"];
+            string basicAmount = e.ExtraParams["basicAmount"].Replace(",", string.Empty).ToString();
+            string finalAmount = e.ExtraParams["finalAmount"].Replace(",", string.Empty).ToString();
+            //string eAmount = e.ExtraParams["eAmount"].Replace(",", string.Empty).ToString();
+            //string dAmount = e.ExtraParams["dAmount"].Replace(",", string.Empty).ToString();
 
             string obj = e.ExtraParams["values"];
             string ents = e.ExtraParams["entitlements"];
@@ -821,6 +830,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             List<SalaryDetail> entitlements = null;
             List<SalaryDetail> deductions = null;
             EmployeeSalary b = JsonConvert.DeserializeObject<EmployeeSalary>(obj);
+            b.basicAmount = Convert.ToDouble(basicAmount);
+            b.finalAmount = Convert.ToDouble(finalAmount);
+            
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
            
             b.recordId = id;
@@ -868,7 +880,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     if(!string.IsNullOrEmpty(CurrentSalary.Text))
@@ -884,10 +896,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     b.recordId = r.recordId;
                     CurrentSalary.Text = b.recordId;
                     entitlements = JsonConvert.DeserializeObject<List<SalaryDetail>>(ents);
-                    //JsonSerializerSettings settings = new JsonSerializerSettings();
-                    //CustomResolver resolver = new CustomResolver();
-                    //resolver.AddRule("deductionId", "edId");
-                    //settings.ContractResolver = resolver;
+                
                     deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds);
 
                     PostResponse<SalaryDetail[]> result = AddSalaryEntitlementsDeductions(b.recordId, entitlements, deductions);
@@ -943,7 +952,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }//Step 1 Selecting the object or building up the object for update purpose
                     var deleteDesponse = _employeeService.DeleteSalaryDetails(Convert.ToInt32(b.recordId));
@@ -1002,11 +1011,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         protected void SaveEN(object sender, DirectEventArgs e)
         {
             string id = e.ExtraParams["id"];
-
+            string FixedAmount = e.ExtraParams["FixedAmount"].Replace(",", string.Empty).ToString();
             string obj = e.ExtraParams["values"];
             string oldAmount = e.ExtraParams["oldAmount"];
             double amount = 0;
             SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj);
+            b.fixedAmount = Convert.ToDouble(FixedAmount);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.seqNo = Convert.ToInt16(ENSeq.Text);
             if (!b.includeInTotal.HasValue)
@@ -1168,8 +1178,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         protected void SaveDE(object sender, DirectEventArgs e)
         {
+            
             string id = e.ExtraParams["id"];
-
+            string FixedAmount = e.ExtraParams["FixedAmount"].Replace(",", string.Empty).ToString();
             string obj = e.ExtraParams["values"];
             string oldAmount = e.ExtraParams["oldAmount"];
 
@@ -1178,6 +1189,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             res.AddRule("DEedId", "edId");
             settings.ContractResolver = res;
             SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj, settings);
+            b.fixedAmount = Convert.ToDouble(FixedAmount);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             double amount = 0;
             b.seqNo = Convert.ToInt16(DESeq.Text);
@@ -1320,7 +1332,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -1372,7 +1384,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -1422,7 +1434,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Currency> resp = _systemService.ChildGetAll<Currency>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             currencyStore.DataSource = resp.Items;
             currencyStore.DataBind();
         }
@@ -1431,7 +1443,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest bank = new ListRequest();
             ListResponse<Bank> resp = _payrollService.ChildGetAll<Bank>(bank);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             bankStore.DataSource = resp.Items;
             bankStore.DataBind();
         }
@@ -1441,7 +1453,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Currency> resp = _systemService.ChildGetAll<Currency>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             BOCurrencyStore.DataSource = resp.Items;
             BOCurrencyStore.DataBind();
         }
@@ -1450,7 +1462,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest branchesRequest = new ListRequest();
             ListResponse<SalaryChangeReason> resp = _employeeService.ChildGetAll<SalaryChangeReason>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             scrStore.DataSource = resp.Items;
             scrStore.DataBind();
         }
@@ -1460,7 +1472,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest branchesRequest = new ListRequest();
             ListResponse<BonusType> resp = _employeeService.ChildGetAll<BonusType>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             BTStore.DataSource = resp.Items;
             BTStore.DataBind();
         }
@@ -1521,7 +1533,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1544,7 +1556,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1568,7 +1580,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1592,7 +1604,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1721,7 +1733,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1747,7 +1759,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 

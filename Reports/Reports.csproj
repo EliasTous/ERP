@@ -608,9 +608,6 @@
     <EmbeddedResource Include="PointInTimeSalary.ar.resx">
       <DependentUpon>PointInTimeSalary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PointInTimeSalary.en.resx">
-      <DependentUpon>PointInTimeSalary.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PointInTimeSalary.resx">
       <DependentUpon>PointInTimeSalary.cs</DependentUpon>
     </EmbeddedResource>

@@ -22,5 +22,23 @@ namespace Reports
         {
             e.Cancel = RowCount == 0;
         }
+
+        private void xrTableCell18_PrintOnPage(object sender, PrintOnPageEventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty((sender as XRTableCell).Text))
+                {
+                 
+                    (sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N0");
+                   
+                   
+                }
+            }
+            catch
+            {
+             
+            }
+        }
     }
 }

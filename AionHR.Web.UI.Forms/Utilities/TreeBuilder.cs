@@ -453,9 +453,11 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node DS = BuildLeafNode("DS", Resources.Common.DailySchedule, "UserComment", true, ss);
             Ext.Net.Node TVSS = BuildLeafNode("TVSS", Resources.Common.timeVariations, "UserComment", true, ss);
             Ext.Net.Node TASS = BuildLeafNode("TASS", Resources.Common.TimeAttendance, "UserComment", true, ss);
+            Ext.Net.Node PY = BuildLeafNode("TASS", Resources.Common.Payroll, "UserComment", true, ss);
 
 
-          //  FillConfigItem(lt, "LettersSelfServices", "LettersSelfServices.aspx", Resources.Common.Letters, "icon-Employees", "1");
+
+            //  FillConfigItem(lt, "LettersSelfServices", "LettersSelfServices.aspx", Resources.Common.Letters, "icon-Employees", "1");
             FillConfigItem(pi, "MyInfos","Myinfos.aspx", Resources.Common.PersonalInfo, "icon-Employees", "1");
             FillConfigItem(lv, "LeaveRequestsSelfService", "LeaveRequestsSelfServices.aspx", Resources.Common.LeaveRequests, "icon-Employees", "1");
             FillConfigItem(ln, "LoanSelfService", "LoanSelfServices.aspx", Resources.Common.Loan, "icon-Employees", "1");
@@ -464,6 +466,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(DS, "DailyScheduleSelfServices", "DailyScheduleSelfServices.aspx", Resources.Common.DailySchedule, "icon-Employees", "1");
             FillConfigItem(TVSS, "TimeVariationSelfServices", "TimeVariationSelfServices.aspx", Resources.Common.timeVariations, "icon-Employees", "1");
             FillConfigItem(TASS, "TimeAttendanceViewSelfServices", "TimeAttendanceViewSelfServices.aspx", Resources.Common.TimeAttendance, "icon-Employees", "1");
+            FillConfigItem(PY, "PayrollsSelfServices", "PayrollGenerationSelfServices.aspx", Resources.Common.Payroll, "icon-Employees", "1");
 
             nodes.Add(rootParent);
             return nodes;

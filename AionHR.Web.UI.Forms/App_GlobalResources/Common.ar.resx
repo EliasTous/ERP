@@ -1341,4 +1341,7 @@
   <data name="RT307" xml:space="preserve">
     <value>نشاط المعمدون</value>
   </data>
+  <data name="deleteAttendanceDaySucc" xml:space="preserve">
+    <value>تم حذف الحضور بنجاح </value>
+  </data>
 </root>

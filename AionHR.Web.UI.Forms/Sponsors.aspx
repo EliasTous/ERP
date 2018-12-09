@@ -317,6 +317,7 @@
                                     </ext:TextField>
                                 <ext:TextField Vtype="email" ID="email" runat="server" FieldLabel="<%$ Resources:FieldEmail%>" Name="email" />
                                 <ext:TextField ID="fax" runat="server" FieldLabel="<%$ Resources:FieldFax%>" Name="fax" />
+                                     <ext:Checkbox ID="isSupplier" runat="server" FieldLabel="<%$ Resources:FieldIsSupplier %>" Name="isSupplier" SubmitValue="true" InputValue="true" />
                                
 
                             </Items>

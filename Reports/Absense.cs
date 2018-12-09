@@ -304,6 +304,7 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrTableCell5, "xrTableCell5");
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.StylePriority.UseTextAlignment = false;
+            this.xrTableCell5.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell5_PrintOnPage);
             // 
             // TopMargin
             // 
@@ -774,6 +775,7 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             xrSummary2.IgnoreNullValues = true;
             xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.xrLabel29.Summary = xrSummary2;
+            this.xrLabel29.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell5_PrintOnPage);
             // 
             // objectDataSource1
             // 
@@ -879,5 +881,24 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             (sender as XRLabel).Text = time(0, true);
         else
         (sender as XRLabel).Text = time(Convert.ToInt32((sender as XRLabel).Text), true);
+    }
+
+    private void xrTableCell5_PrintOnPage(object sender, PrintOnPageEventArgs e)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty((sender as XRTableCell).Text))
+            {
+
+                (sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N0");
+
+
+            }
+        }
+        catch
+        {
+
+        }
+
     }
 }

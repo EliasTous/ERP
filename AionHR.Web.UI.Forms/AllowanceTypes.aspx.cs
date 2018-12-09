@@ -24,6 +24,7 @@ using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
+using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -126,7 +127,7 @@ namespace AionHR.Web.UI.Forms
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                        Common.errorMessage(response);
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
@@ -187,7 +188,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     string message = GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary;
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error,message).Show();
+                    Common.errorMessage(r);
                     return;
                 }
                 else
@@ -324,8 +325,8 @@ namespace AionHR.Web.UI.Forms
             ListResponse<AllowanceType> routers = _employeeService.ChildGetAll<AllowanceType>(request);
             if (!routers.Success)
             {
-                string message = GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary;
-                X.Msg.Alert(Resources.Common.Error, message).Show();
+              
+                 Common.errorMessage(routers);
                 return;
             }
             
@@ -370,7 +371,7 @@ namespace AionHR.Web.UI.Forms
                         //Show an error saving...
                         string message = GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary;
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, message).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -423,7 +424,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         string message = GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary;
-                        X.Msg.Alert(Resources.Common.Error, message).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else

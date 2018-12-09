@@ -28,15 +28,15 @@ namespace AionHR.Model.Reports
         public string purpose { get; set; }
         public string deductedAmountString
         {
-            get { return deductedAmount.ToString() + " " + currencyRef; }
+            get { return deductedAmount.ToString("N2") + " " + currencyRef; }
         }
         public string amountString
         {
-            get { return amount.ToString() + " " + currencyRef; }
+            get { return amount.ToString("N2") + " " + currencyRef; }
         }
         public string NetString
         {
-            get { return (amount- deductedAmount).ToString() + " " + currencyRef; }
+            get { return (amount- deductedAmount).ToString("N2") + " " + currencyRef; }
         }
 
         

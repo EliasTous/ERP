@@ -21,6 +21,7 @@ namespace AionHR.Model.System
         public int status { get; set; }
 
         public string errorId { get; set; }
+        public string errorName { get; set; }
 
         public string argStr { get; set; }
         public string argInt { get; set; }

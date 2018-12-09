@@ -124,6 +124,15 @@ namespace Resources.Sponsors {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is Supplier.
+        /// </summary>
+        internal static string FieldIsSupplier {
+            get {
+                return ResourceManager.GetString("FieldIsSupplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mobile.
         /// </summary>
         internal static string FieldMobile {

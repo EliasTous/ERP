@@ -160,6 +160,7 @@
     <Compile Include="NationalQuota\LevelAcquisition.cs" />
     <Compile Include="NationalQuota\PointAcquisition.cs" />
     <Compile Include="Payroll\Bank.cs" />
+    <Compile Include="Payroll\DeletePayroll.cs" />
     <Compile Include="Payroll\EmployeePayroll.cs" />
     <Compile Include="Payroll\FinalEntitlementsDeductions.cs" />
     <Compile Include="Payroll\FinalSettlement.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Payroll\ImportPayCode.cs" />
     <Compile Include="Payroll\IPayrollRepository.cs" />
     <Compile Include="Payroll\LeavePayment.cs" />
+    <Compile Include="Payroll\MailEmployee.cs" />
     <Compile Include="Payroll\PayCode.cs" />
     <Compile Include="Payroll\PayrollEntitlementDeduction.cs" />
     <Compile Include="Payroll\PayrollIndemnity.cs" />

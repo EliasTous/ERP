@@ -44,7 +44,7 @@ namespace AionHR.Services.Implementations
                 response.Error = webResponse.error;
                 response.LogId = webResponse.logId;
                 response.errorName = webResponse.errorName;
-
+                
                 response.Summary = webResponse.Details;
                 response.ErrorCode = "Error_"+webResponse.statusId.Substring(1);
                if(webResponse.statusId.Substring(1) == null || webResponse.statusId=="0")

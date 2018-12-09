@@ -31,6 +31,37 @@
     <script src="Scripts/moment-timezone.js" type="text/javascript">  </script>
 
     <script type="text/javascript" src="Scripts/locales/ar.js?id=7"></script>
+    <script type="text/javascript">
+           String.prototype.replaceAll = function(search, replacement) {
+            var target = this;
+            return target.replace(new RegExp(search, 'g'), replacement);
+        };
+      
+        function thousandSeparator(num) {
+
+           var nf = new Intl.NumberFormat();
+
+            if (num != null)
+                num = num.toString().replaceAll(",", "");
+            else
+                return num;
+          
+          
+          
+            return  nf.format(num);
+        } 
+       function removethousandSeparator() {
+         
+          //    App.ldValue.setValue(App.ldValue.getValue().replace(/\D/g, ''))
+              App.amount.setValue(App.amount.getValue().replace(/\D/g,''))
+          
+         
+          
+          
+          
+           
+        } 
+    </script>
 
 
 </head>
@@ -225,10 +256,10 @@
                             <ext:DateColumn ID="c" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
 
                             <ext:Column ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Width="140">
-                                <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['amount']; "></Renderer>
+                                <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['amount'].toLocaleString() ; "></Renderer>
                             </ext:Column>
                             <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDeductedAmount %>" DataIndex="deductedAmount" Hideable="false" Width="140">
-                                <Renderer Handler="return  record.data['currencyRef']+ '&nbsp;'+record.data['deductedAmount'] ;"></Renderer>
+                                <Renderer Handler="return  record.data['currencyRef']+ '&nbsp;'+record.data['deductedAmount'].toLocaleString()  ;"></Renderer>
                             </ext:Column>
 
                            <%-- <ext:Column ID="Column12" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="2" />--%>
@@ -244,7 +275,9 @@
                                  <Renderer Handler="return GetldMethodName(record.data['ldMethod']);" />
                                  </ext:Column>--%>
 
-                             <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" Flex="2" />
+                             <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" Flex="2" >
+                                    <Renderer Handler="return record.data['ldValue'].toLocaleString();"></Renderer>
+                                 </ext:Column>
                              
                            
 
@@ -531,15 +564,16 @@
                                 </ext:ComboBox>
 
                                 <ext:TextField  ID="amount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount">
-                                    <%-- <Listeners>
-                                                <Change Handler="document.getElementById('amount').value=this.getValue(); this.next().setValue(this.value);" />
-                                            </Listeners>--%>
-                                    <Validator Handler="  return !isNaN(this.value) && this.value>0;" />
+
+                                 
+                                    <Validator Handler="return   this.value.replace(/\D/g,'')>0;" />
                                    <%-- <Listeners> 
                                         <Change Handler="if (#{ldMethod}.getValue()==4) #{ldValue}.setValue('0');"></Change>
                                     </Listeners>--%>
                                     <Listeners> 
-                                        <Change Handler="#{ldValue}.validate();"></Change>
+                                         <Change Handler="this.setRawValue(thousandSeparator(this.value));#{ldValue}.validate();" />
+                                           
+                                       
                                     </Listeners>
                                 </ext:TextField>
 
@@ -584,8 +618,8 @@
                                            </Listeners>
                                         </ext:ComboBox>
                                         <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
-                                        
-                                         <validator Handler="if(#{ldMethod}.getValue()!=4 ){ if (this.value>0&& this.value<100) return true ; else return false; } else {if (this.value<=0  ) return false;    if (#{amount}.getValue()<this.value) return false; else return true;} ">
+                                      
+                                         <validator Handler="if(#{ldMethod}.getValue()!=4 ){ if (this.value>0&& this.value<100) return true ; else return false; } else {if (this.value<=0  ) return false;    if (#{amount}.getValue().replace(/\D/g,'')<this.value) return false; else return true;} ">
                                              
                                          </validator>
                                            
@@ -597,7 +631,7 @@
                                 <ext:Button ID="SaveButton"  runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                                     <Listeners>
-                                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                                        <Click Handler="CheckSession();removethousandSeparator(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">

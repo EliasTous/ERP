@@ -559,6 +559,7 @@
                                                 <ext:ModelField Name="goName" />
                                                 <ext:ModelField Name="reference" />
                                                 <ext:ModelField Name="releaseDate" />
+                                                  <ext:ModelField Name="expiryDate" />
 
 
 
@@ -605,6 +606,7 @@
                                     <ext:Column ID="goName" MenuDisabled="true" runat="server" Text="<%$ Resources:goName%>" DataIndex="goName" Hideable="false" Flex="1" Align="Center" />
                                     <ext:Column ID="referenceCol" MenuDisabled="true" runat="server" Text="<%$ Resources:FieldReference%> " DataIndex="reference" Hideable="false" Flex="1" Align="Center" />
                                     <ext:DateColumn ID="releaseDate" MenuDisabled="true" runat="server" Text=" <%$ Resources:releaseDate%> " DataIndex="releaseDate" Hideable="false" Flex="1" Align="Center" />
+                                       <ext:DateColumn ID="expiryDate" MenuDisabled="true" runat="server" Text=" <%$ Resources:expiryDate %> " DataIndex="expiryDate" Hideable="false" Flex="1" Align="Center" />
 
 
 
@@ -646,7 +648,7 @@
                                         MenuDisabled="true"
                                         Resizable="false">
 
-                                        <Renderer Handler="return editRender(); " />
+                                        <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                                     </ext:Column>
 

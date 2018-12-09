@@ -835,6 +835,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attendance Schedule Deleted Successfully.
+        /// </summary>
+        internal static string deleteAttendanceDaySucc {
+            get {
+                return ResourceManager.GetString("deleteAttendanceDaySucc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the selected records ?.
         /// </summary>
         internal static string DeleteManyRecord {

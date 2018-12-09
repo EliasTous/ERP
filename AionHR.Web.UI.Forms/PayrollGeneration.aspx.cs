@@ -93,6 +93,7 @@ namespace AionHR.Web.UI.Forms
                 yearStore.DataBind();
                 salaryTypeFilter.Select("5");
                 status.Select("0");
+                payrollsStore.Reload();
 
                 if (_systemService.SessionHelper.CheckIfIsAdmin())
                     return;
@@ -166,7 +167,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")  + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return new List<FiscalYear>();
             }
             return resp.Items;
@@ -257,7 +258,7 @@ namespace AionHR.Web.UI.Forms
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
             return response.Items;
         }
 
@@ -348,7 +349,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
 
                 return;
             }
@@ -426,7 +427,7 @@ namespace AionHR.Web.UI.Forms
                     if (!resp.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                        Common.errorMessage(resp);
                         return;
                     }
                     statusCombo.Select(resp.result.status);
@@ -455,13 +456,21 @@ namespace AionHR.Web.UI.Forms
 
                     break;
                 case "imgGenerate":
-                    CurrentPayId1.Text = id;
+                    GenerateCurrentPayroll.Text = "true";
+                    double progress = 0;
+                    string prog = (float.Parse(progress.ToString()) * 100).ToString();
+                    string message = GetGlobalResourceObject("Common", "working").ToString();
+                    this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+
+                    CurrentPayId.Text = id;
                     //Step 1 : get the object from the Web Service 
                     EditGenerateForm.Reset();
                     FillDepartment();
                     FillBranch();
                     generatePayRef.Text = payRef;
-
+                    GenerateButton.Text = Resources.Common.Generate;
+                    GenerateButton.ID = "ApplicationGo";
+                    this.Progress1.Reset();
                     EditGenerateWindow.Show();
 
                     // Store1.Reload();
@@ -713,7 +722,7 @@ namespace AionHR.Web.UI.Forms
                 if (!resp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(resp);
                     return;
                 }
                 Notification.Show(new NotificationConfig
@@ -798,7 +807,7 @@ namespace AionHR.Web.UI.Forms
         //            if (!resp.Success)
         //            {
         //                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+        //                Common.errorMessage(resp);
         //                return;
         //            }
         //            Notification.Show(new NotificationConfig
@@ -846,7 +855,7 @@ namespace AionHR.Web.UI.Forms
                 if (!resp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(resp);
                     return;
                 }
                 List<object> obs = new List<Object>();
@@ -1062,7 +1071,7 @@ namespace AionHR.Web.UI.Forms
                     if (!resp.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                        Common.errorMessage(resp);
                         return;
 
                     }
@@ -1114,7 +1123,7 @@ namespace AionHR.Web.UI.Forms
                     if (!resp.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                        Common.errorMessage(resp);
                         return;
 
                     }
@@ -1200,7 +1209,7 @@ namespace AionHR.Web.UI.Forms
                 if (!resp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(resp);
                     return;
 
                 }
@@ -1240,7 +1249,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return new List<PayrollEntitlementDeduction>();
             }
             return resp.Items;
@@ -1262,7 +1271,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return new List<PayrollSocialSecurity>();
             }
             return resp.Items;
@@ -1362,7 +1371,7 @@ namespace AionHR.Web.UI.Forms
                 {
 
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(resp);
                     return new MonthlyPayroll();
 
                 }
@@ -1502,7 +1511,7 @@ namespace AionHR.Web.UI.Forms
             
             ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(req);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
             departmentStore.DataSource = resp.Items;
             departmentStore.DataBind();
          
@@ -1513,7 +1522,7 @@ namespace AionHR.Web.UI.Forms
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
             if (_systemService.SessionHelper.CheckIfIsAdmin())
@@ -1572,34 +1581,78 @@ namespace AionHR.Web.UI.Forms
 
         protected void deleteAllEmployeePayrolls(object sender, DirectEventArgs e)
         {
+            double  progress = 0;
+            string prog = (float.Parse(progress.ToString()) * 100).ToString();
+            string message = GetGlobalResourceObject("Common", "working").ToString();
+            this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+
+
+            GenerateCurrentPayroll.Text="false";
+                generatePayRef.Text = payRefHidden.Text; 
+                GenerateButton.Text = Resources.Common.DeleteAll;
+            this.Progress1.Reset();
+            EditGenerateWindow.Show();
+                //    EmployeePayrollListRequest req = GetEmployeePayrollRequest();
+                //    ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
+                //    if (!resp.Success)
+                //    {
+
+                //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                //        return;
+                //    }
+                //    resp.Items.ForEach(x =>
+                //    {
+
+
+                //        PostRequest<EmployeePayroll> delReq = new PostRequest<EmployeePayroll>();
+                //        delReq.entity = x;
+                //        PostResponse<EmployeePayroll> res = _payrollService.ChildDelete<EmployeePayroll>(delReq);
+                //        if (!res.Success)
+                //        {
+
+                //            throw new Exception(res.Message,new Exception(res.ErrorCode, new Exception (res.LogId)));
+                //        }
+
+
+                //    });
+
+
+                //    Notification.Show(new NotificationConfig
+                //    {
+                //        Title = Resources.Common.Notification,
+                //        Icon = Icon.Information,
+                //        Html = Resources.Common.RecordUpdatedSucc
+                //    });
+
+                //    Store1.Reload();
+                //}
+                //catch(Exception exp)
+                //{
+                //    if (exp.InnerException!=null)
+                //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", exp.InnerException.Message) != null ? GetGlobalResourceObject("Errors", exp.InnerException.Message).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + exp.InnerException.InnerException.Message: exp.Message).Show();
+                //    else
+                //    X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                //}
+
+            }
+        protected void payList(object sender, DirectEventArgs e)
+        {
             try
             {
 
 
-                EmployeePayrollListRequest req = GetEmployeePayrollRequest();
-                ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
+                PostRequest<MailEmployee> req =new PostRequest<MailEmployee>();
+                req.entity = new MailEmployee { recordId = CurrentPayId.Text };
+                PostResponse<MailEmployee> resp = _payrollService.ChildAddOrUpdate<MailEmployee>(req);
                 if (!resp.Success)
                 {
 
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(resp);
                     return;
                 }
-                resp.Items.ForEach(x =>
-                {
-
-
-                    PostRequest<EmployeePayroll> delReq = new PostRequest<EmployeePayroll>();
-                    delReq.entity = x;
-                    PostResponse<EmployeePayroll> res = _payrollService.ChildDelete<EmployeePayroll>(delReq);
-                    if (!res.Success)
-                    {
-                       
-                        throw new Exception(res.Message,new Exception(res.ErrorCode, new Exception (res.LogId)));
-                    }
-
-
-                });
+           
 
 
                 Notification.Show(new NotificationConfig
@@ -1609,21 +1662,21 @@ namespace AionHR.Web.UI.Forms
                     Html = Resources.Common.RecordUpdatedSucc
                 });
 
-                Store1.Reload();
+              
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
-                if (exp.InnerException!=null)
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", exp.InnerException.Message) != null ? GetGlobalResourceObject("Errors", exp.InnerException.Message).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + exp.InnerException.InnerException.Message: exp.Message).Show();
+                if (exp.InnerException != null)
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", exp.InnerException.Message) != null ? GetGlobalResourceObject("Errors", exp.InnerException.Message).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + exp.InnerException.InnerException.Message : exp.Message).Show();
                 else
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                    X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
 
-            }
+        }
 
         protected void StartLongAction(object sender, DirectEventArgs e)
         {
-            string id = CurrentPayId1.Text;
+            string id = CurrentPayId.Text;
             string departmentId = e.ExtraParams["departmentId"];
             string branchId = e.ExtraParams["branchId"];
             string employeeId = e.ExtraParams["employeeId"];
@@ -1690,31 +1743,25 @@ namespace AionHR.Web.UI.Forms
                 if (HttpRuntime.Cache["genEM_RecordId"] != null)
                     req.RecordID = HttpRuntime.Cache["genEM_RecordId"].ToString();
                 else
-                    return;
-                RecordResponse<BackgroundJob> resp = _systemService.ChildGetRecord<BackgroundJob>(req);
-                if (resp.result == null || resp.result.errorId != null)
                 {
-                    //string[] values; 
-                    //var infolist = resp.result.infoList.Split(',');
-                    //string ErrorMessage;
-                    //if (GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId) != null)
-                    //{
-                    //    values = GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId).ToString().Split(new string[] { "%s" }, StringSplitOptions.None);
-                    //    for (int i = 0; i < infolist.Length; i++)
-                    //    {
+                   // this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                    return;
+                }
+                RecordResponse<BackgroundJob> resp = _systemService.ChildGetRecord<BackgroundJob>(req);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    HttpRuntime.Cache.Remove("genEM_RecordId");
+                    this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                    EditGenerateWindow.Close();
+                    Viewport1.ActiveIndex = 0;
+                    return; 
+                }
+                if ( resp.result.errorId != null)
+                {
+                
 
-                    //        values[0] +=   infolist[i]+ "  "; 
-                    //    }
-                    //    if (values.Length == 2)
-                    //        ErrorMessage = values[0] + " " + values[1];
-                    //    else
-                    //        ErrorMessage = values[0];
-                    //}
-                    //else
-                    //    ErrorMessage = GetGlobalResourceObject("Errors", "Error_2").ToString() + resp.ErrorCode;
-                   
-
-                    X.Msg.Alert(Resources.Common.Error,resp.Error +"  "+ GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId).Show();
+                    X.Msg.Alert(Resources.Common.Error,resp.result.errorName ).Show();
                     HttpRuntime.Cache.Remove("genEM_RecordId");
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                     EditGenerateWindow.Close();
@@ -1731,7 +1778,7 @@ namespace AionHR.Web.UI.Forms
                         EditGenerateWindow.Close();
                         Store1.Reload();
                         Viewport1.ActiveIndex = 2;
-                        X.Msg.Alert("", GetGlobalResourceObject("Common", "GenerateAttendanceDaySucc").ToString()).Show();
+                        X.Msg.Alert("",GenerateCurrentPayroll.Text=="true"?Resources.Common.GenerateAttendanceDaySucc : Resources.Common.deleteAttendanceDaySucc).Show();
                     }
                     else
                     {
@@ -1739,6 +1786,7 @@ namespace AionHR.Web.UI.Forms
                         string prog = (float.Parse(progress.ToString()) * 100).ToString();
                         string message = GetGlobalResourceObject("Common", "working").ToString();
                         this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+                        
                     }
 
 
@@ -1749,7 +1797,7 @@ namespace AionHR.Web.UI.Forms
                         EditGenerateWindow.Close();
                         Store1.Reload();
                         Viewport1.ActiveIndex = 2;
-                        X.Msg.Alert("", GetGlobalResourceObject("Common", "GenerateAttendanceDaySucc").ToString()).Show();
+                        X.Msg.Alert("", GenerateCurrentPayroll.Text == "true" ? Resources.Common.GenerateAttendanceDaySucc : Resources.Common.deleteAttendanceDaySucc).Show();
 
                     }
                 }
@@ -1780,25 +1828,50 @@ namespace AionHR.Web.UI.Forms
 
                 PayrollService   payrollService = new PayrollService(new PayrollRepository(),h);
                 GeneratePayroll G = (GeneratePayroll)array[1];
+                if (GenerateCurrentPayroll.Text == "true")
+                {
+                    PostRequest<GeneratePayroll> req = new PostRequest<GeneratePayroll>();
+                    req.entity = G;
 
-                PostRequest<GeneratePayroll> req = new PostRequest<GeneratePayroll>();
-                req.entity = G;
 
-                PostResponse<GeneratePayroll> resp = payrollService.ChildAddOrUpdate<GeneratePayroll>(req);
-               
+                    PostResponse<GeneratePayroll> resp = payrollService.ChildAddOrUpdate<GeneratePayroll>(req);
+                    if (!resp.Success)
+                    { //Show an error saving...
 
-                if (!resp.Success)
-                { //Show an error saving...
+                        HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
+                        HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
+                        HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
 
-                    HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
-                    HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
-                    HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
-
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(resp.recordId))
+                            HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
+                    }
                 }
                 else
                 {
-                    HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
+                    PostRequest<DeletePayroll> req = new PostRequest<DeletePayroll>();
+                    req.entity = new DeletePayroll { branchId = G.branchId, departmentId = G.departmentId, employeeId = G.employeeId, payId = G.payId };
+
+
+                    PostResponse<DeletePayroll> resp = payrollService.ChildAddOrUpdate<DeletePayroll>(req);
+                      if (!resp.Success)
+                    { //Show an error saving...
+
+                        HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
+                        HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
+                        HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
+
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(resp.recordId))
+                            HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
+                    }
                 }
+
+              
 
             }
             catch (Exception exp)

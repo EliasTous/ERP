@@ -126,8 +126,17 @@
   <data name="xrLabel13.Text" xml:space="preserve">
     <value>رواتب في يوم محدد</value>
   </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>الاستحقاقات</value>
+  </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>المنصب</value>
+  </data>
+  <data name="xrLabel20.Text" xml:space="preserve">
+    <value>المبلغ النهائي</value>
+  </data>
+  <data name="xrLabel21.Text" xml:space="preserve">
+    <value>الخصومات</value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>الاسم</value>

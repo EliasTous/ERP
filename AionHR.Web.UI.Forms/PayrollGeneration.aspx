@@ -78,6 +78,7 @@
          <ext:Hidden ID="salaryTypeHidden" runat="server" />
         <ext:Hidden ID="fiscalYearHidden" runat="server" />
          <ext:Hidden ID="CurrentPayRef" runat="server" />
+       <ext:Hidden ID="GenerateCurrentPayroll" runat="server" Text="true" />
 
       
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
@@ -199,8 +200,8 @@
                             <Listeners>
                                 <Render Handler="this.on('cellclick', cellClick);" />
                         <%--        <AfterRender Handler="App.year.setValue(new Date().getFullYear()); App.salaryTypeFilter.setValue(5); App.status.setValue(2); App.payrollsStore.reload();" />--%>
-                               <AfterRender Handler="App.year.setValue(new Date().getFullYear()); App.payrollsStore.reload();" />
-                                <AfterLayout Handler="App.payrollsStore.reload();" />
+                               <AfterRender Handler="App.year.setValue(new Date().getFullYear());" />
+                              <%--  <AfterLayout Handler="alert('fterlayout');App.payrollsStore.reload();" />--%>
                                 
                             </Listeners>
                             <DirectEvents> 
@@ -449,6 +450,11 @@
                                         <Click OnEvent="deleteAllEmployeePayrolls" />
                                     </DirectEvents>
                                 </ext:Button>
+                                   <ext:Button runat="server" Text="<%$ Resources: payList%>" MarginSpec="0 0 0 0" Width="100" Icon="Mail">
+                                    <DirectEvents> 
+                                        <Click OnEvent="payList" />
+                                    </DirectEvents>
+                                </ext:Button>
 
 
 
@@ -508,6 +514,9 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
+                                      <ext:Column runat="server" DataIndex="name" Text="<%$ Resources: FieldRef %>" width="75">
+                                        <Renderer Handler="return record.data['name'].reference;" />
+                                    </ext:Column>
                                     <ext:Column runat="server" DataIndex="name" Text="<%$ Resources: FieldEmployee%>" Flex="2">
                                         <Renderer Handler="return record.data['name'].fullName;" />
                                     </ext:Column>
@@ -518,18 +527,18 @@
                                     
                                     <ext:Column runat="server" DataIndex="workingDays" Text="<%$ Resources: FieldDays%>" Width="100" />
                                     <ext:Column runat="server" DataIndex="basicAmount" Text="<%$ Resources: FieldBasicAmount%>" >
-                                        <Renderer Handler="return record.data['currencyRef']+'&nbsp; '+ record.data['basicAmount'] ;" />
+                                        <Renderer Handler="return record.data['currencyRef']+'&nbsp; '+ record.data['basicAmount'].toLocaleString()  ;" />
                                         </ext:Column>
                                     
                                     <ext:Column runat="server" DataIndex="eAmount" Text="<%$ Resources: Entitlements%>" >
-                                        <Renderer Handler="if(record.data['eAmount']==0) return '-';return  record.data['currencyRef'] +' &nbsp;'+ record.data['eAmount'];" />
+                                        <Renderer Handler="if(record.data['eAmount']==0) return '-';return  record.data['currencyRef'] +' &nbsp;'+ record.data['eAmount'].toLocaleString() ;" />
                                         </ext:Column>
                                     
                                     <ext:Column runat="server" DataIndex="dAmount" Text="<%$ Resources: Deductions%>" >
-                                        <Renderer Handler="if(record.data['dAmount']==0) return '-'; return '- '+record.data['currencyRef']+'&nbsp; '+ record.data['dAmount'] ;" />
+                                        <Renderer Handler="if(record.data['dAmount']==0) return '-'; return '- '+record.data['currencyRef']+'&nbsp; '+ record.data['dAmount'].toLocaleString()  ;" />
                                      </ext:Column>
                                     <ext:Column runat="server" DataIndex="netSalary" Text="<%$ Resources: FieldNetSalary%>" >
-                                        <Renderer Handler="if(record.data['netSalary']==0) return '-'; return record.data['currencyRef'] +'&nbsp; '+ record.data['netSalary'] ;" />
+                                        <Renderer Handler="if(record.data['netSalary']==0) return '-'; return record.data['currencyRef'] +'&nbsp; '+ record.data['netSalary'].toLocaleString()  ;" />
                                         </ext:Column>
                                     <ext:Column runat="server" DataIndex="cssAmount" Text="<%$ Resources: FieldCompanySocialSecurity%>" >
                                       <Renderer Handler="if(record.data['cssAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['cssAmount']; " />

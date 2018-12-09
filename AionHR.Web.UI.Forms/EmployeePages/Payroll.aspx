@@ -9,8 +9,35 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Payroll.js?id=87"></script>
+    <script type="text/javascript" src="../Scripts/Payroll.js?id=24"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=97"></script>
+    <script type="text/javascript">
+        
+        String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+        };
+      
+       function thousandSeparator(num) {
+           var nf = new Intl.NumberFormat();
+         
+          
+          num= num.toString().replaceAll(",", "");
+         
+          
+          
+          
+            return  nf.format(num);
+        } 
+       
+          
+
+             
+        
+
+
+
+    </script>
 
 
 </head>
@@ -181,12 +208,12 @@
                             </ext:Column>
                     
                             <ext:Column  ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBasicAmount %>" DataIndex="basicAmount" Hideable="false" Flex="1" Width="75" Align="Center" >
-                                <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['basicAmount']  ;">
+                                <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['basicAmount'].toLocaleString()  ;">
 
                                 </Renderer>
                                 </ext:Column>
                             <ext:Column  ID="Column21" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFinalAmount %>" DataIndex="finalAmount" Hideable="false" Flex="1" Width="75" Align="Center" >
-                                   <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['finalAmount']  ;">
+                                   <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['finalAmount'].toLocaleString()  ;">
 
                                 </Renderer>
                                 </ext:Column>
@@ -611,14 +638,28 @@
                                         <%-- <ext:TextField LabelWidth="130" Width="350" Disabled="true"  ID="swiftCode" runat="server" FieldLabel="<%$ Resources:FieldswiftCode%>" Name="swiftCode" AllowBlank="false" />--%>
                                         <ext:TextField LabelWidth="130" Width="350" Disabled="true"  ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" AllowBlank="false" />
                                         <ext:TextField LabelWidth="130" Width="350" ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
-                                        <ext:TextField LabelWidth="130" Width="350" ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount">
+                                        <ext:TextField LabelWidth="130" Width="350" ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount" EnableKeyEvents="true">
                                             <Listeners>
-                                                <Change Handler="document.getElementById('BasicSalary').value=this.getValue(); this.next().setValue(this.value); ChangeEntitlementsAmount(0); ChangeDeductionsAmount();" />
+                                                 <Change Handler="this.setRawValue(thousandSeparator(this.value));document.getElementById('BasicSalary').value=this.getValue(); this.next().setValue(this.value); ChangeEntitlementsAmount(0); ChangeDeductionsAmount();" />
+                                           
+                                               
                                             </Listeners>
                                         </ext:TextField>
-                                        <ext:TextField LabelWidth="130" Width="350" ID="finalAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
-                                        <ext:TextField LabelWidth="130" Width="350" ID="eAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:TotalEntitlements%>" Name="eAmount" />
-                                        <ext:TextField LabelWidth="130" Width="350" ID="dAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:TotalDeductions%>" Name="dAmount" />
+                                        <ext:TextField LabelWidth="130" Width="350" ID="finalAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" >
+                                            <Listeners>
+                                                <Change Handler=" this.setRawValue(thousandSeparator(this.value));" />
+                                            </Listeners>
+                                            </ext:TextField>
+                                        <ext:TextField LabelWidth="130" Width="350" ID="eAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:TotalEntitlements%>" Name="eAmount" >
+                                             <Listeners>
+                                                <Change Handler=" this.setRawValue(thousandSeparator(this.value));" />
+                                            </Listeners>
+                                            </ext:TextField>
+                                        <ext:TextField LabelWidth="130" Width="350" ID="dAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:TotalDeductions%>" Name="dAmount" >
+                                             <Listeners>
+                                                <Change Handler=" this.setRawValue(thousandSeparator(this.value));" />
+                                            </Listeners>
+                                            </ext:TextField>
                                         
                                     </Items>
                                 </ext:Panel>
@@ -766,7 +807,7 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
-                                                <Renderer Handler=" return App.currencyId.getRawValue()+ '&nbsp;' +record.data['fixedAmount']  ;"/>
+                                                <Renderer Handler=" return App.currencyId.getRawValue()+ '&nbsp;' +record.data['fixedAmount'].toLocaleString()  ;"/>
                                             </ext:NumberColumn>
                                             <ext:Column
                                                 runat="server" 
@@ -956,7 +997,7 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
-                                                <Renderer Handler="return App.currencyId.getRawValue()+ '&nbsp;'+record.data['fixedAmount']  ;">
+                                                <Renderer Handler="return App.currencyId.getRawValue()+ '&nbsp;'+record.data['fixedAmount'].toLocaleString();">
 
                                 </Renderer>
                                
@@ -1023,6 +1064,8 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditSAWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{SAId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="basicAmount" Value="#{basicAmount}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="finalAmount" Value="#{finalAmount}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{EditSAForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                                 <ext:Parameter Name="entitlements" Value="Ext.encode(#{entitlementsGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />
                                 <ext:Parameter Name="deductions" Value="Ext.encode(#{deductionGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />
@@ -1236,10 +1279,12 @@
                                     MinValue="0"
                                     ID="enFixedAmount"
                                     FieldLabel="<%$ Resources:FieldFixedAmount%>">
-                                    <%--<Listeners>
-                                        <Change Handler="if(this.prev().prev().value==false) this.prev().setValue(CalculatePct(this.value));" />
-                                    </Listeners>--%>
-                                    <Validator Handler="return !isNaN(this.value) && this.value>0 ;" />
+                                   <Listeners>
+                                                 <Change Handler="this.setRawValue(thousandSeparator(this.value));" />
+                                           
+                                               
+                                            </Listeners>
+                                    <Validator Handler="return this.value.replace(/\D/g,'')>0 ;" />
                                 </ext:TextField>
                                 <ext:TextArea runat="server" ID="enComment" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:TextField runat="server" InputType="Password" Visible="false" ID="enCommentField" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
@@ -1262,6 +1307,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditENWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{ENId}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="FixedAmount" Value="#{enFixedAmount}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="oldAmount" Value="#{oldEntValue}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="oldInclude" Value="#{oldENIncludeInFinal}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{ENForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
@@ -1356,9 +1402,9 @@
                                     ID="deFixedAmount"
                                     FieldLabel="<%$ Resources:FieldFixedAmount%>">
                                     <Listeners>
-                                        <%--<Change Handler="if(this.prev().prev().value==false) this.prev().setValue(CalculatePct(this.value));" />--%>
+                                     <Change Handler="this.setRawValue(thousandSeparator(this.value));" />
                                     </Listeners>
-                                    <Validator Handler="return !isNaN(this.value) && this.value>0;" />
+                                  <Validator Handler="return this.value.replace(/\D/g,'')>0;" />
                                 </ext:TextField>
                                 <ext:TextArea runat="server" Name="comment" DataIndex="comment" ID="deComment" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:TextField InputType="Password" Visible="false" runat="server" Name="comment" DataIndex="comment" ID="deCommentField" FieldLabel="<%$ Resources:FieldComment%>" />
@@ -1381,6 +1427,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditDEWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{DEId}.getValue()" Mode="Raw" />
+                                   <ext:Parameter Name="FixedAmount" Value="#{deFixedAmount}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="oldAmount" Value="#{DEoldValue}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="oldInclude" Value="#{oldDEIncludeInFinal}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{DEForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
