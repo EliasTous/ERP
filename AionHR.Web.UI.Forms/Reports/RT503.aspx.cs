@@ -27,7 +27,7 @@ using System.Threading;
 using Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
-
+using AionHR.Model.Payroll;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -39,6 +39,7 @@ namespace AionHR.Web.UI.Forms.Reports
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         protected override void InitializeCulture()
         {
 
@@ -82,6 +83,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         Viewport1.Hidden = true;
                         return;
                     }
+                    fillPayId();
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
 
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
@@ -170,7 +172,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             req.Add(paymentMethodCombo.GetPaymentMethod());
             req.Add(jobInfo1.GetJobInfo());
-            req.Add(GetPayRef());
+            req.Add(GetPayId());
 
 
 
@@ -347,26 +349,48 @@ namespace AionHR.Web.UI.Forms.Reports
             //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport(true);
         }
-        private PayRefParameterSet GetPayRef()
+        private PayIdParameterSet GetPayId()
         {
-            PayRefParameterSet p = new PayRefParameterSet();
+            PayIdParameterSet p = new PayIdParameterSet();
 
 
-            if (!string.IsNullOrEmpty(payRef.Text) && payRef.Value.ToString() != "0")
+            if (!string.IsNullOrEmpty(payId.Value.ToString()) )
             {
-                p.payRef = payRef.Value.ToString(); ;
+                p.payId = payId.Value.ToString(); ;
 
 
 
             }
             else
             {
-                p.payRef = "0";
+                p.payId = "0";
 
             }
             return p;
         }
+        private void fillPayId()
+        {
+            PayrollListRequest req = new PayrollListRequest();
+            req.Year = "0";
+            req.PeriodType = "5";
+            req.Status = "0";
+            req.Size = "30";
+            req.StartAt = "1";
+            req.Filter = "";
+
+            ListResponse<GenerationHeader> headers = _payrollService.ChildGetAll<GenerationHeader>(req);
+            if (!headers.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, headers.Summary).Show();
+                return;
+            }
+            payIdStore.DataSource = headers.Items;
+            payIdStore.DataBind();
 
 
+        }
+
+     
     }
 }

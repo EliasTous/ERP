@@ -2833,6 +2833,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Branch Workforce.
+        /// </summary>
+        internal static string RT113 {
+            get {
+                return ResourceManager.GetString("RT113", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Payroll.
         /// </summary>
         internal static string RT200 {

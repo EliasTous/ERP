@@ -93,6 +93,12 @@
     <Compile Include="ApproverPerformance.Designer.cs">
       <DependentUpon>ApproverPerformance.cs</DependentUpon>
     </Compile>
+    <Compile Include="BranchWorkforce.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BranchWorkforce.Designer.cs">
+      <DependentUpon>BranchWorkforce.cs</DependentUpon>
+    </Compile>
     <Compile Include="Receipts.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -348,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ApproverPerformance.resx">
       <DependentUpon>ApproverPerformance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BranchWorkforce.resx">
+      <DependentUpon>BranchWorkforce.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DetailedAttendance.ar.resx">
       <DependentUpon>DetailedAttendance.cs</DependentUpon>
