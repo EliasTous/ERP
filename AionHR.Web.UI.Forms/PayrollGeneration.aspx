@@ -527,18 +527,18 @@
                                     
                                     <ext:Column runat="server" DataIndex="workingDays" Text="<%$ Resources: FieldDays%>" Width="100" />
                                     <ext:Column runat="server" DataIndex="basicAmount" Text="<%$ Resources: FieldBasicAmount%>" >
-                                        <Renderer Handler="return record.data['currencyRef']+'&nbsp; '+ record.data['basicAmount'] ;" />
+                                        <Renderer Handler="return record.data['currencyRef']+'&nbsp; '+ record.data['basicAmount'].toLocaleString()  ;" />
                                         </ext:Column>
                                     
                                     <ext:Column runat="server" DataIndex="eAmount" Text="<%$ Resources: Entitlements%>" >
-                                        <Renderer Handler="if(record.data['eAmount']==0) return '-';return  record.data['currencyRef'] +' &nbsp;'+ record.data['eAmount'];" />
+                                        <Renderer Handler="if(record.data['eAmount']==0) return '-';return  record.data['currencyRef'] +' &nbsp;'+ record.data['eAmount'].toLocaleString() ;" />
                                         </ext:Column>
                                     
                                     <ext:Column runat="server" DataIndex="dAmount" Text="<%$ Resources: Deductions%>" >
-                                        <Renderer Handler="if(record.data['dAmount']==0) return '-'; return '- '+record.data['currencyRef']+'&nbsp; '+ record.data['dAmount'] ;" />
+                                        <Renderer Handler="if(record.data['dAmount']==0) return '-'; return '- '+record.data['currencyRef']+'&nbsp; '+ record.data['dAmount'].toLocaleString()  ;" />
                                      </ext:Column>
                                     <ext:Column runat="server" DataIndex="netSalary" Text="<%$ Resources: FieldNetSalary%>" >
-                                        <Renderer Handler="if(record.data['netSalary']==0) return '-'; return record.data['currencyRef'] +'&nbsp; '+ record.data['netSalary'] ;" />
+                                        <Renderer Handler="if(record.data['netSalary']==0) return '-'; return record.data['currencyRef'] +'&nbsp; '+ record.data['netSalary'].toLocaleString()  ;" />
                                         </ext:Column>
                                     <ext:Column runat="server" DataIndex="cssAmount" Text="<%$ Resources: FieldCompanySocialSecurity%>" >
                                       <Renderer Handler="if(record.data['cssAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['cssAmount']; " />

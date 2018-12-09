@@ -235,13 +235,17 @@ function ChangeFinalAmount(amountOffset) {
 function ReCalculateFinal()
 
 {
-    var x = parseFloat(App.eAmount.value) - parseFloat(App.dAmount.value) + parseFloat(document.getElementById("BasicSalary").value);
-    App.finalAmount.setValue(x.toFixed(2));
+    var x = parseFloat(App.eAmount.value.toString().replace(/\D/g, '')) - parseFloat(App.dAmount.value.toString().replace(/\D/g, '')) + parseFloat(document.getElementById("BasicSalary").value.toString().replace(/\D/g, ''));
+    
+   
+    App.finalAmount.setValue(thousandSeparator(x.toFixed(2)));
+   
 }
 function ChangeEntitlementsAmount(amountOffset) {
     var sum = 0;
     var x;
     App.entitlementsGrid.getStore().each(function (record) {
+      
         if (record.data['pct'] == '0')
             sum += record.data['fixedAmount'];
         else {
@@ -252,8 +256,8 @@ function ChangeEntitlementsAmount(amountOffset) {
             sum += x;
         }
     });
-
-    App.eAmount.setValue(sum.toFixed(2));
+    
+    App.eAmount.setValue(thousandSeparator(sum));
     ChangeDeductionsAmount(0);
     ReCalculateFinal();
 }
@@ -263,7 +267,9 @@ function ChangeDeductionsAmount(amountOffset) {
     var sum = 0;
     var x;
     App.deductionGrid.getStore().each(function (record) {
+       
         if (record.data['pct'] == '0')
+          
             sum += record.data['fixedAmount'];
         else {
             if (record.data['pctOf'] == '1')
@@ -276,7 +282,7 @@ function ChangeDeductionsAmount(amountOffset) {
 
         }
     });
-
-    App.dAmount.setValue(sum.toFixed(2));
+   
+    App.dAmount.setValue(thousandSeparator(sum));
     ReCalculateFinal();
 }

@@ -248,7 +248,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     FillBank();
                     dedsStore.Reload();
                     entsStore.Reload();
-
+                    basicAmount.Text=response3.result.basicAmount.ToString("N");
+                    finalAmount.Text = response3.result.finalAmount.ToString("N");
+                    eAmount.Text= response3.result.eAmount.ToString("N2");
+                    dAmount.Text = response3.result.dAmount.ToString("N2");
                     CurrentSalary.Text = r3.RecordID;
                     CurrentSalaryCurrency.Text = response3.result.currencyRef;
                     currencyId.Select(response3.result.currencyId.ToString());
@@ -258,8 +261,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         scrId.Select(response3.result.scrId.Value.ToString());
 
                     X.Call("TogglePaymentMethod", response3.result.paymentMethod);
-                    eAmount.Text = response3.result.eAmount.ToString();
-                    dAmount.Text = response3.result.dAmount.ToString();
+                   
                     FillEntitlements();
                     FillDeductions();
                     this.EditSAWindow.Title = Resources.Common.EditWindowsTitle;
@@ -389,6 +391,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         enFixedAmount.Disabled = false;
 
                     }
+                    enFixedAmount.Text = detail.fixedAmount.ToString("N2");
                     EditENWindow.Show();
                     break;
                 case "imgDelete":
@@ -468,6 +471,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         pctOf.Disabled = true;
                         deIsPCT.Checked = false;
                     }
+                    deFixedAmount.Text = dedDetail.fixedAmount.ToString("N2");
                     EditDEWindow.Show();
                     break;
                 case "imgDelete":
@@ -815,6 +819,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string id = e.ExtraParams["id"];
+            string basicAmount = e.ExtraParams["basicAmount"].Replace(",", string.Empty).ToString();
+            string finalAmount = e.ExtraParams["finalAmount"].Replace(",", string.Empty).ToString();
+            //string eAmount = e.ExtraParams["eAmount"].Replace(",", string.Empty).ToString();
+            //string dAmount = e.ExtraParams["dAmount"].Replace(",", string.Empty).ToString();
 
             string obj = e.ExtraParams["values"];
             string ents = e.ExtraParams["entitlements"];
@@ -822,6 +830,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             List<SalaryDetail> entitlements = null;
             List<SalaryDetail> deductions = null;
             EmployeeSalary b = JsonConvert.DeserializeObject<EmployeeSalary>(obj);
+            b.basicAmount = Convert.ToDouble(basicAmount);
+            b.finalAmount = Convert.ToDouble(finalAmount);
+            
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
            
             b.recordId = id;
@@ -885,10 +896,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     b.recordId = r.recordId;
                     CurrentSalary.Text = b.recordId;
                     entitlements = JsonConvert.DeserializeObject<List<SalaryDetail>>(ents);
-                    //JsonSerializerSettings settings = new JsonSerializerSettings();
-                    //CustomResolver resolver = new CustomResolver();
-                    //resolver.AddRule("deductionId", "edId");
-                    //settings.ContractResolver = resolver;
+                
                     deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds);
 
                     PostResponse<SalaryDetail[]> result = AddSalaryEntitlementsDeductions(b.recordId, entitlements, deductions);
@@ -1003,11 +1011,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         protected void SaveEN(object sender, DirectEventArgs e)
         {
             string id = e.ExtraParams["id"];
-
+            string FixedAmount = e.ExtraParams["FixedAmount"].Replace(",", string.Empty).ToString();
             string obj = e.ExtraParams["values"];
             string oldAmount = e.ExtraParams["oldAmount"];
             double amount = 0;
             SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj);
+            b.fixedAmount = Convert.ToDouble(FixedAmount);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.seqNo = Convert.ToInt16(ENSeq.Text);
             if (!b.includeInTotal.HasValue)
@@ -1169,8 +1178,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         protected void SaveDE(object sender, DirectEventArgs e)
         {
+            
             string id = e.ExtraParams["id"];
-
+            string FixedAmount = e.ExtraParams["FixedAmount"].Replace(",", string.Empty).ToString();
             string obj = e.ExtraParams["values"];
             string oldAmount = e.ExtraParams["oldAmount"];
 
@@ -1179,6 +1189,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             res.AddRule("DEedId", "edId");
             settings.ContractResolver = res;
             SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj, settings);
+            b.fixedAmount = Convert.ToDouble(FixedAmount);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             double amount = 0;
             b.seqNo = Convert.ToInt16(DESeq.Text);

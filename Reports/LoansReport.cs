@@ -186,6 +186,7 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel30.Name = "xrLabel30";
             this.xrLabel30.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel30.StylePriority.UseTextAlignment = false;
+            this.xrLabel30.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrLabel26_PrintOnPage);
             // 
             // xrLabel26
             // 
@@ -195,6 +196,7 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel26.Name = "xrLabel26";
             this.xrLabel26.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel26.StylePriority.UseTextAlignment = false;
+            this.xrLabel26.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrLabel26_PrintOnPage);
             // 
             // xrLabel24
             // 
@@ -650,4 +652,12 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
     {
         e.Cancel = RowCount == 0;
     }
+
+    private void xrLabel26_PrintOnPage(object sender, PrintOnPageEventArgs e)
+    {
+        
+        
+       
+    }
+
 }
