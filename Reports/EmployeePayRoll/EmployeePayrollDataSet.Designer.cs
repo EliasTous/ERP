@@ -633,6 +633,10 @@ namespace Reports.EmployeePayRoll {
             
             private global::System.Data.DataColumn columnTafkeet;
             
+            private global::System.Data.DataColumn columnDepartmentName;
+            
+            private global::System.Data.DataColumn columnPositionName;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public EmployeeDataTable() {
@@ -732,6 +736,22 @@ namespace Reports.EmployeePayRoll {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DepartmentNameColumn {
+                get {
+                    return this.columnDepartmentName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PositionNameColumn {
+                get {
+                    return this.columnPositionName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -767,7 +787,7 @@ namespace Reports.EmployeePayRoll {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EmployeeRow AddEmployeeRow(string reference, string FullName, string idRef, decimal NetSalary, int WorkingDays, decimal TotalBenifits, decimal TotalDeductions, string Tafkeet) {
+            public EmployeeRow AddEmployeeRow(string reference, string FullName, string idRef, decimal NetSalary, int WorkingDays, decimal TotalBenifits, decimal TotalDeductions, string Tafkeet, string DepartmentName, string PositionName) {
                 EmployeeRow rowEmployeeRow = ((EmployeeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         reference,
@@ -777,7 +797,9 @@ namespace Reports.EmployeePayRoll {
                         WorkingDays,
                         TotalBenifits,
                         TotalDeductions,
-                        Tafkeet};
+                        Tafkeet,
+                        DepartmentName,
+                        PositionName};
                 rowEmployeeRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEmployeeRow);
                 return rowEmployeeRow;
@@ -808,6 +830,8 @@ namespace Reports.EmployeePayRoll {
                 this.columnTotalBenifits = base.Columns["TotalBenifits"];
                 this.columnTotalDeductions = base.Columns["TotalDeductions"];
                 this.columnTafkeet = base.Columns["Tafkeet"];
+                this.columnDepartmentName = base.Columns["DepartmentName"];
+                this.columnPositionName = base.Columns["PositionName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -829,6 +853,10 @@ namespace Reports.EmployeePayRoll {
                 base.Columns.Add(this.columnTotalDeductions);
                 this.columnTafkeet = new global::System.Data.DataColumn("Tafkeet", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTafkeet);
+                this.columnDepartmentName = new global::System.Data.DataColumn("DepartmentName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDepartmentName);
+                this.columnPositionName = new global::System.Data.DataColumn("PositionName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPositionName);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1462,6 +1490,38 @@ namespace Reports.EmployeePayRoll {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DepartmentName {
+                get {
+                    try {
+                        return ((string)(this[this.tableEmployee.DepartmentNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DepartmentName\' in table \'Employee\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEmployee.DepartmentNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PositionName {
+                get {
+                    try {
+                        return ((string)(this[this.tableEmployee.PositionNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PositionName\' in table \'Employee\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEmployee.PositionNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsreferenceNull() {
                 return this.IsNull(this.tableEmployee.referenceColumn);
             }
@@ -1554,6 +1614,30 @@ namespace Reports.EmployeePayRoll {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTafkeetNull() {
                 this[this.tableEmployee.TafkeetColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDepartmentNameNull() {
+                return this.IsNull(this.tableEmployee.DepartmentNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDepartmentNameNull() {
+                this[this.tableEmployee.DepartmentNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPositionNameNull() {
+                return this.IsNull(this.tableEmployee.PositionNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPositionNameNull() {
+                this[this.tableEmployee.PositionNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

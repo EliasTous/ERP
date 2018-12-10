@@ -30,12 +30,15 @@ namespace Reports.EmployeePayRoll
                 var parentRow = employeePayrollDataSet1.Employee.AddEmployeeRow(
                     employee.Key,
                     employee.FirstOrDefault().employeeName.fullName,
-                    employee.Key,
+                    employee.FirstOrDefault().idRef,
                    Convert.ToDecimal(employee.FirstOrDefault().basicAmount + benifits.Sum(u => u.edAmount) - deductions.Sum(u => u.edAmount)),
                     employee.FirstOrDefault().workingDays,
                    Convert.ToDecimal(benifits.Sum(u => u.edAmount)),
                     Convert.ToDecimal(deductions.Sum(u => u.edAmount)),
-                    NumberToWords.multiLingualNumberInText(Convert.ToDecimal(employee.FirstOrDefault().basicAmount + benifits.Sum(u => u.edAmount) - deductions.Sum(u => u.edAmount)), 2, isArabic));
+                    NumberToWords.multiLingualNumberInText(Convert.ToDecimal(employee.FirstOrDefault().basicAmount + benifits.Sum(u => u.edAmount) - deductions.Sum(u => u.edAmount)), 2, isArabic),
+                    employee.FirstOrDefault().departmentName,
+                    employee.FirstOrDefault().positionName
+                    );
 
                 employeePayrollDataSet1.SalaryDetails.AddSalaryDetailsRow(parentRow, isArabic ? "الراتب الاساسي" : "Basic Salary", 1, Convert.ToDecimal(employee.FirstOrDefault().basicAmount));
 
