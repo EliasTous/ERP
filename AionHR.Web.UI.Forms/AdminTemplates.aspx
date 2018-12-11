@@ -98,6 +98,54 @@
 
             return buttongroup.render();   // return button as jquery object
         }
+        var leaveParams = function (context) {
+            var ui = $.summernote.ui;
+
+            // create button
+            var buttongroup = ui.buttonGroup([ui.button({
+                contents: '<i class="material-icons">flight</i>',
+
+                data: {
+                    toggle: 'dropdown'
+                }
+            }), ui.dropdown({
+                className: 'tags-dropdown',
+                items: leaveTags,
+
+                click: function (d) {
+                    console.log(d);
+
+                    // invoke insertText method with 'hello' on editor module.
+                    context.invoke('editor.insertText', "#" + d.target.innerText.split('(')[0].trim() + "#");
+                }
+            })]);
+
+            return buttongroup.render();   // return button as jquery object
+        }
+        var loanParams = function (context) {
+            var ui = $.summernote.ui;
+
+            // create button
+            var buttongroup = ui.buttonGroup([ui.button({
+                contents: '<i class="material-icons">money</i>',
+
+                data: {
+                    toggle: 'dropdown'
+                }
+            }), ui.dropdown({
+                className: 'tags-dropdown',
+                items: loanTags,
+
+                click: function (d) {
+                    console.log(d);
+
+                    // invoke insertText method with 'hello' on editor module.
+                    context.invoke('editor.insertText', "#" + d.target.innerText.split('(')[0].trim() + "#");
+                }
+            })]);
+
+            return buttongroup.render();   // return button as jquery object
+        }
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -564,7 +612,7 @@
                                         <AfterLayout Handler=" $('#summernote').summernote('reset'); setWidth(); var s = unescape( #{bodyText}.getValue()); document.getElementById('summernote').style.direction = 'ltr'; $('#summernote').summernote('code',s);" />
                                         <AfterRender Handler=" App.TemplateBodyWindow.setMaxHeight(0.92*window.innerHeight);$('#summernote').summernote({
                                                 height: 270,
-                                              toolbar: [['mybutton', ['hello','admin']],
+                                              toolbar: [['mybutton', ['hello','admin','leave','loan']],
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],
             ['fontname', ['fontname']],
@@ -578,7 +626,7 @@
   ],
 
   buttons: {
-    hello: employeeParams,admin:adminAffairParams
+    hello: employeeParams,admin:adminAffairParams,leave:leaveParams,loan:loanParams
                                           
   }
                                                 }); " />

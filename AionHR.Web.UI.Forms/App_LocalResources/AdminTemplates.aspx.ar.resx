@@ -255,4 +255,22 @@
   <data name="pay_url" xml:space="preserve">
     <value>الرابط</value>
   </data>
+  <data name="leave_endDate" xml:space="preserve">
+    <value>تاريخ النهاية</value>
+  </data>
+  <data name="leave_startDate" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="leave_url" xml:space="preserve">
+    <value>الرابط</value>
+  </data>
+  <data name="loan_amount" xml:space="preserve">
+    <value>المبلغ</value>
+  </data>
+  <data name="loan_date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="loan_url" xml:space="preserve">
+    <value>الرابط</value>
+  </data>
 </root>

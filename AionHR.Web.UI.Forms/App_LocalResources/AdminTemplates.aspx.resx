@@ -255,4 +255,22 @@
   <data name="pay_url" xml:space="preserve">
     <value>Url</value>
   </data>
+  <data name="leave_endDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="leave_startDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="leave_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="loan_amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="loan_date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="loan_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
 </root>
