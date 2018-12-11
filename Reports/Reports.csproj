@@ -123,6 +123,17 @@
     <Compile Include="Receipts.Designer.cs">
       <DependentUpon>Receipts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skills\Skills.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Skills\Skills.Designer.cs">
+      <DependentUpon>Skills.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skills\SkillsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SkillsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TimeApproval.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -391,6 +402,12 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Receipts.resx">
       <DependentUpon>Receipts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skills\Skills.ar.resx">
+      <DependentUpon>Skills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skills\Skills.resx">
+      <DependentUpon>Skills.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TimeApproval.ar.resx">
       <DependentUpon>TimeApproval.cs</DependentUpon>
@@ -769,6 +786,17 @@
     </None>
     <None Include="EmployeePayRoll\EmployeePayrollDataSet.xss">
       <DependentUpon>EmployeePayrollDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Skills\SkillsDataSet.xsc">
+      <DependentUpon>SkillsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Skills\SkillsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SkillsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Skills\SkillsDataSet.xss">
+      <DependentUpon>SkillsDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
