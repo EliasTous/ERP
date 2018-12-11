@@ -383,7 +383,6 @@
             // 
             // user
             // 
-            resources.ApplyResources(this.user, "user");
             this.user.Name = "user";
             this.user.Visible = false;
             // 
