@@ -37,10 +37,14 @@
     <script type="text/javascript">
         var empTags = null;
         var adminAffairsTags = null;
-        function InitTags(emp,admin) {
+        var leaveTags = null;
+        var loanTags = null;
+        function InitTags(emp,admin,leave,loan) {
             
             empTags = emp;
             adminAffairsTags = admin;
+            leaveTags = leave;
+            loanTags = loan;
         }
         function escapeHtml(unsafe) {
             return unsafe
