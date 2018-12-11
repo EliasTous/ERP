@@ -51,9 +51,11 @@ namespace AionHR.Model.Reports
 
         public double basicAmount { get; set; }
 
-        public string BasicAmountString { get
+        public string BasicAmountString
+        {
+            get
             {
-                return  String.Format("{0:n0}", basicAmount);
+                return String.Format("{0:n0}", basicAmount);
             }
         }
         public double essAmount { get; set; }
@@ -91,7 +93,7 @@ namespace AionHR.Model.Reports
             }
         }
 
-            private string eAmountString;
+        private string eAmountString;
         private string dAmountString;
         private string net;
         private string taxableTotalString;
@@ -113,17 +115,17 @@ namespace AionHR.Model.Reports
         public void AddEn(EntitlementDeduction en)
         {
             entitlements[entitlements.IndexOf(en)].amount = en.amount;
-      
-           entitlements[entitlements.IndexOf(en)].isTaxable = en.isTaxable;
+
+            entitlements[entitlements.IndexOf(en)].isTaxable = en.isTaxable;
             entitlements[entitlements.IndexOf(en)].AmountString = String.Format("{0:n0}", en.amount);
         }
 
         public void AddDe(EntitlementDeduction de)
         {
             deductions[deductions.IndexOf(de)].amount = de.amount;
-            deductions[deductions.IndexOf(de)].AmountString =  String.Format("{0:n0}", de.amount);
+            deductions[deductions.IndexOf(de)].AmountString = String.Format("{0:n0}", de.amount);
         }
-        public PayrollLine(HashSet<EntitlementDeduction> en, HashSet<EntitlementDeduction> de, List<RT501> details, string taxable, string eString, string dString, string netString, string ess, string css,string format,string netSalaryString)
+        public PayrollLine(HashSet<EntitlementDeduction> en, HashSet<EntitlementDeduction> de, List<RT501> details, string taxable, string eString, string dString, string netString, string ess, string css, string format, string netSalaryString)
         {
             try
             {
@@ -167,9 +169,9 @@ namespace AionHR.Model.Reports
                 essString = ess;
                 this.netSalaryString = netSalaryString;
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
-                
+
             }
         }
 
@@ -218,6 +220,12 @@ namespace AionHR.Model.Reports
     {
         public EmployeeName employeeName { get; set; }
 
+        public string departmentName { get; set; }
+
+        public string positionName { get; set; }
+
+        public string idRef { get; set; }
+
         public int days { get; set; }
 
         public string payRef { get; set; }
@@ -237,7 +245,7 @@ namespace AionHR.Model.Reports
 
         public double eAmount { get; set; }
         public double dAmount { get; set; }
-       
+
         public string edName { get; set; }
 
         public int paymentMethod { get; set; }
@@ -246,10 +254,10 @@ namespace AionHR.Model.Reports
         public string currencyRef { get; set; }
 
         public int edType { get; set; }
-        public double cssAmount { set; get;}
+        public double cssAmount { set; get; }
         public double netSalary { set; get; }
 
-        public double essAmount { set; get;  }
+        public double essAmount { set; get; }
         public bool isTaxable { get; set; }
 
     }
@@ -328,14 +336,14 @@ namespace AionHR.Model.Reports
         private string DeString;
         private string taxableString;
 
-        public MonthlyPayrollSet(string entitlementsString, string taxable,  string deductionsString )
+        public MonthlyPayrollSet(string entitlementsString, string taxable, string deductionsString)
         {
             EnString = entitlementsString;
             DeString = deductionsString;
             taxableString = taxable;
 
         }
-         
+
         public string PayPeriodString { get; set; }
 
         public string PayDate { get; set; }

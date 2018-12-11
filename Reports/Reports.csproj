@@ -99,6 +99,24 @@
     <Compile Include="BranchWorkforce.Designer.cs">
       <DependentUpon>BranchWorkforce.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmployeePayRoll\EmployeePayRoll.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EmployeePayRoll\EmployeePayRoll.Designer.cs">
+      <DependentUpon>EmployeePayRoll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePayRoll\EmployeePayrollDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeePayrollDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePayRoll\EmployeePayrollSub.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EmployeePayRoll\EmployeePayrollSub.Designer.cs">
+      <DependentUpon>EmployeePayrollSub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NumbersToWords.cs" />
     <Compile Include="Receipts.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -360,6 +378,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DetailedAttendance.ar.resx">
       <DependentUpon>DetailedAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeePayRoll\EmployeePayRoll.ar.resx">
+      <DependentUpon>EmployeePayRoll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeePayRoll\EmployeePayRoll.resx">
+      <DependentUpon>EmployeePayRoll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeePayRoll\EmployeePayrollSub.resx">
+      <DependentUpon>EmployeePayrollSub.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Receipts.resx">
@@ -731,6 +758,17 @@
     </None>
     <None Include="DepartmentPayrollDataSet.xss">
       <DependentUpon>DepartmentPayrollDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeePayRoll\EmployeePayrollDataSet.xsc">
+      <DependentUpon>EmployeePayrollDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeePayRoll\EmployeePayrollDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeePayrollDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EmployeePayRoll\EmployeePayrollDataSet.xss">
+      <DependentUpon>EmployeePayrollDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
