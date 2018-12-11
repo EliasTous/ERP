@@ -232,13 +232,13 @@
     <value>الراتب الأساسي</value>
   </data>
   <data name="pay_companySS" xml:space="preserve">
-    <value>الشركة</value>
+    <value>تأمينات اجتماعية للشركة</value>
   </data>
   <data name="pay_deductions" xml:space="preserve">
     <value>الخصومات</value>
   </data>
   <data name="pay_employeeSS" xml:space="preserve">
-    <value>الموظف</value>
+    <value>تأمينات اجتماعية للموظف</value>
   </data>
   <data name="pay_entitlements" xml:space="preserve">
     <value>الاستحقاقات</value>

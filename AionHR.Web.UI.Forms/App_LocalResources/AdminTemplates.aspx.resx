@@ -190,7 +190,7 @@
     <value>Employee Hire Date</value>
   </data>
   <data name="emp_idRef" xml:space="preserve">
-    <value>Employee Id ref</value>
+    <value>Employee Reference</value>
   </data>
   <data name="emp_lastName" xml:space="preserve">
     <value>Employee Last Name</value>
