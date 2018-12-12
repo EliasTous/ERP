@@ -52,4 +52,15 @@
 
 ]
 }
+,
+{
+    
+    "type": "schedule",
+    "tags": [
+"ta_sched_startDate",
+"ta_sched_endDate",
+"ta_sched_url",
+
+]
+}
 ]

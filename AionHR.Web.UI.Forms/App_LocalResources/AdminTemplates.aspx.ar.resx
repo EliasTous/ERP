@@ -273,4 +273,13 @@
   <data name="loan_url" xml:space="preserve">
     <value>الرابط</value>
   </data>
+  <data name="ta_sched_endDate" xml:space="preserve">
+    <value>نهاية الجدول</value>
+  </data>
+  <data name="ta_sched_startDate" xml:space="preserve">
+    <value>بداية جدول</value>
+  </data>
+  <data name="ta_sched_url" xml:space="preserve">
+    <value>الرابط</value>
+  </data>
 </root>

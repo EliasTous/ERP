@@ -39,12 +39,14 @@
         var adminAffairsTags = null;
         var leaveTags = null;
         var loanTags = null;
-        function InitTags(emp,admin,leave,loan) {
+        var scheduleTags = null;
+        function InitTags(emp,admin,leave,loan,schedule) {
             
             empTags = emp;
             adminAffairsTags = admin;
             leaveTags = leave;
             loanTags = loan;
+            scheduleTags = schedule;
         }
         function escapeHtml(unsafe) {
             return unsafe
@@ -139,6 +141,30 @@
             }), ui.dropdown({
                 className: 'tags-dropdown',
                 items: loanTags,
+
+                click: function (d) {
+                    console.log(d);
+
+                    // invoke insertText method with 'hello' on editor module.
+                    context.invoke('editor.insertText', "#" + d.target.innerText.split('(')[0].trim() + "#");
+                }
+            })]);
+
+            return buttongroup.render();   // return button as jquery object
+        }
+        var scheduleParams = function (context) {
+            var ui = $.summernote.ui;
+
+            // create button
+            var buttongroup = ui.buttonGroup([ui.button({
+                contents: '<i class="material-icons">schedule</i>',
+
+                data: {
+                    toggle: 'dropdown'
+                }
+            }), ui.dropdown({
+                className: 'tags-dropdown',
+                items: scheduleTags,
 
                 click: function (d) {
                     console.log(d);
@@ -616,7 +642,7 @@
                                         <AfterLayout Handler=" $('#summernote').summernote('reset'); setWidth(); var s = unescape( #{bodyText}.getValue()); document.getElementById('summernote').style.direction = 'ltr'; $('#summernote').summernote('code',s);" />
                                         <AfterRender Handler=" App.TemplateBodyWindow.setMaxHeight(0.92*window.innerHeight);$('#summernote').summernote({
                                                 height: 270,
-                                              toolbar: [['mybutton', ['hello','admin','leave','loan']],
+                                              toolbar: [['mybutton', ['hello','admin','leave','loan','schedule']],
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],
             ['fontname', ['fontname']],
@@ -630,7 +656,7 @@
   ],
 
   buttons: {
-    hello: employeeParams,admin:adminAffairParams,leave:leaveParams,loan:loanParams
+    hello: employeeParams,admin:adminAffairParams,leave:leaveParams,loan:loanParams,schedule:scheduleParams
                                           
   }
                                                 }); " />
