@@ -10,9 +10,9 @@ using Tools;
 
 namespace Reports.EmployeePayRoll
 {
-    public partial class EmployeePayRoll : DevExpress.XtraReports.UI.XtraReport
+    public partial class EmployeesPaySlip : DevExpress.XtraReports.UI.XtraReport
     {
-        public EmployeePayRoll(List<RT501> details, bool isArabic)
+        public EmployeesPaySlip(List<RT501> details, bool isArabic)
         {
             InitializeComponent();
 

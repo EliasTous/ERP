@@ -613,17 +613,17 @@
 
                                             </Items>
                                            <Listeners>
-                                               <Change Handler=" #{ldValue}.setValue(0); if(#{ldMethod}.value ==5) #{ldValue}.setValue(#{amount}.value);"></Change>
+                                               <Change Handler="  if(#{ldMethod}.value ==5) #{ldValue}.setValue(#{amount}.value);"></Change>
 
                                            </Listeners>
                                         </ext:ComboBox>
-                                        <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
+                                        <ext:TextField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
                                       
-                                         <validator Handler="if(#{ldMethod}.getValue()!=4 ){ if (this.value>0&& this.value<100) return true ; else return false; } else {if (this.value<=0  ) return false;    if (#{amount}.getValue().replace(/\D/g,'')<this.value) return false; else return true;} ">
+                                         <validator Handler="if(#{ldMethod}.getValue()!=4 ){ if (this.value>0&& this.value<100) return true ; else return false; } else {if (this.value<=0  ) return false;    if (parseInt(#{amount}.getValue().replace(/\D/g,''))<parseInt(this.value)){ return  false;} else return true;} ">
                                              
                                          </validator>
                                            
-                                            </ext:NumberField>
+                                            </ext:TextField>
                                 
 
                             </Items>

@@ -316,6 +316,9 @@
     <value>DeleteAll </value>
   </data>
   <data name="payList" xml:space="preserve">
-    <value>Pay List</value>
+    <value>Notify Employees</value>
+  </data>
+  <data name="paySlip" xml:space="preserve">
+    <value>paySlip</value>
   </data>
 </root>

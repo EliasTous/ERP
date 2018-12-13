@@ -99,11 +99,11 @@
     <Compile Include="BranchWorkforce.Designer.cs">
       <DependentUpon>BranchWorkforce.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmployeePayRoll\EmployeePayRoll.cs">
+    <Compile Include="EmployeePayRoll\EmployeesPaySlip.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EmployeePayRoll\EmployeePayRoll.Designer.cs">
-      <DependentUpon>EmployeePayRoll.cs</DependentUpon>
+    <Compile Include="EmployeePayRoll\EmployeesPaySlip.Designer.cs">
+      <DependentUpon>EmployeesPaySlip.cs</DependentUpon>
     </Compile>
     <Compile Include="EmployeePayRoll\EmployeePayrollDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -379,11 +379,11 @@
     <EmbeddedResource Include="DetailedAttendance.ar.resx">
       <DependentUpon>DetailedAttendance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeePayRoll\EmployeePayRoll.ar.resx">
-      <DependentUpon>EmployeePayRoll.cs</DependentUpon>
+    <EmbeddedResource Include="EmployeePayRoll\EmployeesPaySlip.ar.resx">
+      <DependentUpon>EmployeesPaySlip.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeePayRoll\EmployeePayRoll.resx">
-      <DependentUpon>EmployeePayRoll.cs</DependentUpon>
+    <EmbeddedResource Include="EmployeePayRoll\EmployeesPaySlip.resx">
+      <DependentUpon>EmployeesPaySlip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeePayRoll\EmployeePayrollSub.resx">
       <DependentUpon>EmployeePayrollSub.cs</DependentUpon>

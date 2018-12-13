@@ -756,6 +756,7 @@
                                 <ext:TextField  ID="goNameTF" runat="server" ReadOnly="true" FieldLabel="<%$ Resources:goName %>"  Name="goName" />
                                  <ext:TextField   ID="referenceTF"  runat="server" FieldLabel="<%$ Resources:FieldReference %>" Name="reference" />
                                 <ext:DateField   ID="releaseDateDF" AllowBlank="false"   runat="server" FieldLabel="<%$ Resources:releaseDate %>" Name="releaseDate" />
+                                 <ext:DateField   ID="expiryDateDF" AllowBlank="false"   runat="server" FieldLabel="<%$ Resources:expiryDate %>" Name="expiryDate" />
                          
                                  
                                

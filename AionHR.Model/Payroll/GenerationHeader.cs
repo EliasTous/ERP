@@ -38,6 +38,7 @@ namespace AionHR.Model.Payroll
         [PropertyID("51020_09")]
         [ApplySecurity]
         public DateTime endDate { get; set; }
+        public string payRefWithDateRange { get; set;  }
        
     }
 }

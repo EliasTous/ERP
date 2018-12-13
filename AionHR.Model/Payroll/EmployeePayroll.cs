@@ -69,5 +69,6 @@ namespace AionHR.Model.Payroll
        
 
         public string payId { get; set; }
+        public string employeeId { get; set; }
     }
 }

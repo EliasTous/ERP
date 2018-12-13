@@ -42,6 +42,8 @@ using AionHR.Infrastructure.Tokens;
 using AionHR.Services.Implementations;
 using AionHR.Repository.WebService.Repositories;
 
+
+
 namespace AionHR.Web.UI.Forms
 {
     public partial class PayrollGeneration : System.Web.UI.Page
@@ -1359,6 +1361,88 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+
+        public void printPaySlip_Click(object sender, EventArgs e)
+        {
+            try
+            {
+            AionHR.Web.   EmployeesPaySlip p = GetReport(payRefHidden.Text);
+
+                string format = "Pdf";
+                string fileName = String.Format("Report.{0}", format);
+
+                MemoryStream ms = new MemoryStream();
+                p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+                Response.Clear();
+                Response.Write("<script>");
+                Response.Write("window.document.forms[0].target = '_blank';");
+                Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
+                Response.Write("</script>");
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+                Response.BinaryWrite(ms.ToArray());
+                Response.Flush();
+                Response.Close();
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+        }
+        protected void ExportPdfPaySlip_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MonthlyPayroll p = GetReport(payRefHidden.Text);
+                string format = "Pdf";
+                string fileName = String.Format("Report.{0}", format);
+
+                MemoryStream ms = new MemoryStream();
+                p.ExportToPdf(ms);
+                Response.Clear();
+
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+                Response.BinaryWrite(ms.ToArray());
+                Response.Flush();
+                Response.Close();
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+            //Response.Redirect("Reports/RT301.aspx");
+        }
+
+        protected void ExportXLSPaySlip_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MonthlyPayroll p = GetReport(payRefHidden.Text);
+                string format = "xls";
+                string fileName = String.Format("Report.{0}", format);
+
+                MemoryStream ms = new MemoryStream();
+                p.ExportToXls(ms);
+
+                Response.Clear();
+
+                Response.ContentType = "application/vnd.ms-excel";
+                Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+                Response.BinaryWrite(ms.ToArray());
+                Response.Flush();
+                Response.Close();
+
+
+
+
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+
+        }
         private MonthlyPayroll GetReport(string payRef)
         {
             try
@@ -1495,7 +1579,7 @@ namespace AionHR.Web.UI.Forms
             //jp.DepartmentId = 0;
             req.Add(p);
             req.Add(Pm);
-          req.Add(jobInfo1.GetJobInfo());
+             req.Add(jobInfo1.GetJobInfo());
             req.Add(employeeCombo1.GetEmployee());
 
             return req;

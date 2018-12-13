@@ -1,6 +1,6 @@
 ﻿namespace Reports.EmployeePayRoll
 {
-    partial class EmployeePayRoll
+    partial class EmployeesPaySlip
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeePayRoll));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeesPaySlip));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();

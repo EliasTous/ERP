@@ -312,4 +312,7 @@
   <data name="payList" xml:space="preserve">
     <value>اشعار الموظفين</value>
   </data>
+  <data name="paySlip" xml:space="preserve">
+    <value>ايصال راتب الموظف </value>
+  </data>
 </root>

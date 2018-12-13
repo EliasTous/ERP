@@ -69,7 +69,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 FillSchedules();
                 FillWorkingCalendar();
-                releaseDate.Format = expiryDate.Format = _systemService.SessionHelper.GetDateformat();
+                releaseDate.Format = expiryDate.Format=releaseDateDF.Format=expiryDateDF.Format = _systemService.SessionHelper.GetDateformat();
                 if(!string.IsNullOrEmpty(Request.QueryString["record"]))
                 {
                     var p1 = new Ext.Net.Parameter("id", Request.QueryString["record"]);

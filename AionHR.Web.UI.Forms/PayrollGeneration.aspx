@@ -79,6 +79,7 @@
         <ext:Hidden ID="fiscalYearHidden" runat="server" />
          <ext:Hidden ID="CurrentPayRef" runat="server" />
        <ext:Hidden ID="GenerateCurrentPayroll" runat="server" Text="true" />
+          <ext:Hidden ID="selectedEmployeeId" runat="server" />
 
       
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
@@ -430,6 +431,33 @@
                                   </DirectEvents>
                                 </ext:Button>--%>
 
+                                   <ext:ToolbarSeparator runat="server" />
+                                       <ext:Button runat="server" Icon="Printer" Text="<%$Resources:paySlip %>" >
+                                    <Menu>
+                                        <ext:Menu runat="server">
+                                            <Items>
+                                                <ext:MenuItem runat="server"  Text="<%$Resources:Common,Print%>" AutoPostBack="true" OnClick="printPaySlip_Click" OnClientClick="openInNewTab();"  >
+                                            
+                                                    <Listeners>
+                                                        <Click Handler="openInNewTab();" />
+                                                    </Listeners>
+
+                                                </ext:MenuItem>
+
+                                                <ext:MenuItem runat="server"  Text="Pdf" AutoPostBack="true" OnClick="ExportPdfPaySlip_Click"  >
+                                            
+                                                    
+                                                </ext:MenuItem>
+                                                <ext:MenuItem runat="server"  Text="Excel" AutoPostBack="true" OnClick="ExportXLSPaySlip_Click"  >
+                                            
+                                                    
+                                                </ext:MenuItem>
+                                            </Items>
+                                        </ext:Menu>
+                                    </Menu>
+                                </ext:Button>
+                                <ext:ToolbarSeparator runat="server" />
+
                                    <ext:Button runat="server" Icon="TableGo">
                                     <Menu>
                                         <ext:Menu runat="server">
@@ -493,6 +521,7 @@
                                                 <ext:ModelField Name="taxAmount" />
                                                   <ext:ModelField Name="cssAmount" />
                                                  <ext:ModelField Name="essAmount" />
+                                                  <ext:ModelField Name="employeeId" />
 
                                                 <ext:ModelField Name="netSalary" />
                                                 <ext:ModelField Name="name" IsComplex="true" />
@@ -581,6 +610,7 @@
                                  
                                        <BeforeRender  Handler="this.setHeight(App.detailsPanel.getHeight());" />
                                 <Render Handler="this.on('cellclick', cellClick);" />
+                                <CellDblClick Handler=" #{selectedEmployeeId}.setValue(record.data['employeeId']); alert(#{selectedEmployeeId}.getValue());" />
                                 
                          
                             </Listeners>
