@@ -31,5 +31,36 @@
 "pay_employeeSS",
 "pay_url",
 ]
+},
+{
+    
+    "type": "leave",
+    "tags": [
+"leave_startDate",
+"leave_endDate",
+"leave_url",
+
+]
+},
+{
+    
+    "type": "loan",
+    "tags": [
+"loan_date",
+"loan_amount",
+"loan_url",
+
+]
+}
+,
+{
+    
+    "type": "schedule",
+    "tags": [
+"ta_sched_startDate",
+"ta_sched_endDate",
+"ta_sched_url",
+
+]
 }
 ]

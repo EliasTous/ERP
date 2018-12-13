@@ -117,169 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Template Info</value>
+  <assembly alias="DevExpress.Data.v16.1" name="DevExpress.Data.v16.1, Version=16.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="xrTable2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.1">
+    <value>10.0000067, 0</value>
   </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Template</value>
+  <data name="xrTableCell1.Text" xml:space="preserve">
+    <value>رقم الموظف</value>
   </data>
-  <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+  <data name="xrTableCell2.Text" xml:space="preserve">
+    <value>الاسم</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>من تاريخ</value>
   </data>
-  <data name="FieldSwiftCode" xml:space="preserve">
-    <value>Swift Code</value>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>الى تاريخ</value>
   </data>
-  <data name="intName" xml:space="preserve">
-    <value>Int Name</value>
+  <data name="xrTableCell8.Text" xml:space="preserve">
+    <value>الدرجة</value>
   </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>Banks</value>
+  <data name="xrTableCell7.Text" xml:space="preserve">
+    <value>الجامعة</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>Arabic</value>
+  <data name="xrTableCell6.Text" xml:space="preserve">
+    <value>التخصص</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="xrTableCell4.Text" xml:space="preserve">
+    <value>المستوى</value>
   </data>
-  <data name="FieldLanguage" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="FieldUsage" xml:space="preserve">
-    <value>Usage</value>
-  </data>
-  <data name="TemplateBodyWindow" xml:space="preserve">
-    <value>Template Body</value>
-  </data>
-  <data name="UsageCompany" xml:space="preserve">
-    <value>Company</value>
-  </data>
-  <data name="UsageEmployee" xml:space="preserve">
-    <value>Employee</value>
-  </data>
-  <data name="UsageThirdParty" xml:space="preserve">
-    <value>Third Party</value>
-  </data>
-  <data name="SaveTemplateFirst" xml:space="preserve">
-    <value>Please save the template before adding language variants</value>
-  </data>
-  <data name="TemplateBodies" xml:space="preserve">
-    <value>Languages</value>
-  </data>
-  <data name="emp_birthDate" xml:space="preserve">
-    <value>Employee Birth Date</value>
-  </data>
-  <data name="emp_branch" xml:space="preserve">
-    <value>Employee Branch</value>
-  </data>
-  <data name="emp_department" xml:space="preserve">
-    <value>Employee Department</value>
-  </data>
-  <data name="emp_employmentStatus" xml:space="preserve">
-    <value>Employee Employment Status</value>
-  </data>
-  <data name="emp_firstName" xml:space="preserve">
-    <value>Employee First Name</value>
-  </data>
-  <data name="emp_fullName" xml:space="preserve">
-    <value>Employee full name</value>
-  </data>
-  <data name="emp_hireDate" xml:space="preserve">
-    <value>Employee Hire Date</value>
-  </data>
-  <data name="emp_idRef" xml:space="preserve">
-    <value>Employee Reference</value>
-  </data>
-  <data name="emp_lastName" xml:space="preserve">
-    <value>Employee Last Name</value>
-  </data>
-  <data name="emp_mobile" xml:space="preserve">
-    <value>Employee Mobile</value>
-  </data>
-  <data name="emp_nationality" xml:space="preserve">
-    <value>Employee Nationality</value>
-  </data>
-  <data name="emp_position" xml:space="preserve">
-    <value>Employee Position</value>
-  </data>
-  <data name="emp_salary" xml:space="preserve">
-    <value>Employee Salary</value>
-  </data>
-  <data name="emp_salary_text" xml:space="preserve">
-    <value>Employee Salary Text</value>
-  </data>
-  <data name="emp_workMail" xml:space="preserve">
-    <value>Employee Work mail</value>
-  </data>
-  <data name="SaveAndPreview" xml:space="preserve">
-    <value>Save and Preview</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value>Back to Template</value>
-  </data>
-  <data name="Employee" xml:space="preserve">
-    <value>Employee</value>
-  </data>
-  <data name="Preview" xml:space="preserve">
-    <value>Preview</value>
-  </data>
-  <data name="SelectEmpWindow" xml:space="preserve">
-    <value>Select Employee</value>
-  </data>
-  <data name="pay_basicSalary" xml:space="preserve">
-    <value>Basic Salary</value>
-  </data>
-  <data name="pay_companySS" xml:space="preserve">
-    <value>Company</value>
-  </data>
-  <data name="pay_deductions" xml:space="preserve">
-    <value>Deductions</value>
-  </data>
-  <data name="pay_employeeSS" xml:space="preserve">
-    <value>Employee</value>
-  </data>
-  <data name="pay_entitlements" xml:space="preserve">
-    <value>Entitlements</value>
-  </data>
-  <data name="pay_fromDate" xml:space="preserve">
-    <value>Pay From</value>
-  </data>
-  <data name="pay_netSalary" xml:space="preserve">
-    <value>Net Salary</value>
-  </data>
-  <data name="pay_toDate" xml:space="preserve">
-    <value>Pay To</value>
-  </data>
-  <data name="pay_url" xml:space="preserve">
-    <value>Url</value>
-  </data>
-  <data name="leave_endDate" xml:space="preserve">
-    <value>End Date</value>
-  </data>
-  <data name="leave_startDate" xml:space="preserve">
-    <value>Start Date</value>
-  </data>
-  <data name="leave_url" xml:space="preserve">
-    <value>Url</value>
-  </data>
-  <data name="loan_amount" xml:space="preserve">
-    <value>Amount</value>
-  </data>
-  <data name="loan_date" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="loan_url" xml:space="preserve">
-    <value>Url</value>
-  </data>
-  <data name="ta_sched_endDate" xml:space="preserve">
-    <value>End Date</value>
-  </data>
-  <data name="ta_sched_startDate" xml:space="preserve">
-    <value>Start Date</value>
-  </data>
-  <data name="ta_sched_url" xml:space="preserve">
-    <value>Url</value>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>تقرير المهارات</value>
   </data>
 </root>

@@ -87,12 +87,19 @@ namespace AionHR.Web.UI.Forms
                 List<TagGroup> groups = JsonConvert.DeserializeObject<List<TagGroup>>(s);
                 List<string> empTags = null;
                 List<string> adminAffairsTags = null;
+                List<string> leaveTags = null;
+                List<string> loanTags = null;
+                List<string> scheduleTags = null;
+
                 foreach (var item in groups)
                 {
                     switch(item.type)
                     {
                         case "employee": empTags= item.tags; break;
                         case "admin_affair": adminAffairsTags= item.tags; break;
+                        case "leave": leaveTags = item.tags; break;
+                        case "loan": loanTags = item.tags; break;
+                        case "schedule": scheduleTags = item.tags; break;
                         default:break;
                     }
                 }
@@ -112,7 +119,31 @@ namespace AionHR.Web.UI.Forms
                     }
                     catch { }
                 }
-                X.Call("InitTags",empTags,adminAffairsTags);
+                for (int i = 0; i < leaveTags.Count; i++)
+                {
+                    try
+                    {
+                        leaveTags[i] += " (" + GetLocalResourceObject(leaveTags[i]).ToString() + ")";
+                    }
+                    catch { }
+                }
+                for (int i = 0; i < loanTags.Count; i++)
+                {
+                    try
+                    {
+                        loanTags[i] += " (" + GetLocalResourceObject(loanTags[i]).ToString() + ")";
+                    }
+                    catch { }
+                }
+                for (int i = 0; i < scheduleTags.Count; i++)
+                {
+                    try
+                    {
+                        scheduleTags[i] += " (" + GetLocalResourceObject(scheduleTags[i]).ToString() + ")";
+                    }
+                    catch { }
+                }
+                X.Call("InitTags", empTags, adminAffairsTags, leaveTags, loanTags,scheduleTags);
             }
 
         }
