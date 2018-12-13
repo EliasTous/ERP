@@ -344,7 +344,7 @@ namespace AionHR.Web.UI.Forms
 
 
                         //X.Msg.Alert(Resources.Common.Error, ErrorMessage).Show();
-                        X.Msg.Alert(Resources.Common.Error, resp.errorName + "  " + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId).Show();
+                        X.Msg.Alert(Resources.Common.Error, resp.result.errorName + "  " + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId).Show();
                         HttpRuntime.Cache.Remove("genFS_RecordId");
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                 }

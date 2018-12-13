@@ -67,6 +67,8 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 FillBranches();
                 FillDepartment();
+                dateFrom.MinDate = DateTime.Today;
+                dateTo.MinDate = DateTime.Today;
                 this.workingHours.Value = string.Empty;
             }
 
@@ -1010,7 +1012,7 @@ namespace AionHR.Web.UI.Forms
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
             req.BranchId = branchId.Value.ToString();
-            req.IncludeIsInactive = 2;
+            req.IncludeIsInactive = 0;
             req.SortBy = "firstName";
 
             req.StartAt = "1";

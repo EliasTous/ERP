@@ -151,7 +151,7 @@ namespace AionHR.Web.UI.Forms
             FillIDs();
             FillPassports();
             FillSchedules();
-            FillTsId();
+            //FillTsId();
             FillSsid();
             FillIndustry();
             FillBsid();
@@ -193,18 +193,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void FillTsId()
-        {
-            ListRequest vsRequest = new ListRequest();
-            ListResponse<TimeSchedule> resp = _payrollService.ChildGetAll<TimeSchedule>(vsRequest);
-            if (!resp.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")+ resp.LogId : resp.Summary).Show();
-                return;
-            }
-            tsStore.DataSource = resp.Items;
-            tsStore.DataBind();
-        }
+      
    
         private void FillSchedules()
         {
@@ -384,9 +373,9 @@ namespace AionHR.Web.UI.Forms
             try { vsId.Select(items.Where(s => s.Key == "vsId").First().Value); }
 
             catch { }
-            try { tsId.Select(items.Where(s => s.Key == "tsId").First().Value); }
+            //try { tsId.Select(items.Where(s => s.Key == "tsId").First().Value); }
 
-            catch { }
+            //catch { }
             try
 
             {
@@ -568,6 +557,11 @@ namespace AionHR.Web.UI.Forms
 
             try { dailySchedule.Select(items.Where(s => s.Key == "dailySchedule").First().Value); }
 
+            catch { }
+            try
+            {
+                punchSource.Select(items.Where(s => s.Key == "punchSource").First().Value);
+            }
             catch { }
 
             FillCompanyLogo(); 
@@ -785,6 +779,11 @@ namespace AionHR.Web.UI.Forms
 
             submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
 
+            if (!string.IsNullOrEmpty(values.punchSource.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("punchSource", values.punchSource.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("punchSource", values.punchSource.ToString()));
+
             return submittedValues;
         }
 
@@ -901,10 +900,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("yearDays", values.yearDays.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("yearDays", "365"));
-            if (!string.IsNullOrEmpty(values.tsId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("tsId", values.tsId.ToString()));
-            else
-                submittedValues.Add(new KeyValuePair<string, string>("tsId", ""));
+            //if (!string.IsNullOrEmpty(values.tsId.ToString()))
+            //    submittedValues.Add(new KeyValuePair<string, string>("tsId", values.tsId.ToString()));
+            //else
+            //    submittedValues.Add(new KeyValuePair<string, string>("tsId", ""));
             if (!string.IsNullOrEmpty(values.bsId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("bsId", values.bsId.ToString()));
             else

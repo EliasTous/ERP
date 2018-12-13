@@ -66,7 +66,7 @@ namespace AionHR.Web.UI.Forms
                         upreq.photoName = context.Request.Files[0].FileName;
                         upreq.photoData = fileData;
                         upreq.entity.recordId = Convert.ToInt32(context.Request.QueryString["recordId"]);
-
+                        upreq.entity.date = DateTime.Now;
 
                     }
 

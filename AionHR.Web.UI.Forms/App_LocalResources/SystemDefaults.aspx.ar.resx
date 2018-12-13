@@ -438,4 +438,13 @@
   <data name="FieldDailySchedule" xml:space="preserve">
     <value>جدول الدوام اليومي </value>
   </data>
+  <data name="employeeReference" xml:space="preserve">
+    <value>رمز الموظف</value>
+  </data>
+  <data name="punchSource" xml:space="preserve">
+    <value>مصدر البصمات </value>
+  </data>
+  <data name="timeAttendance" xml:space="preserve">
+    <value>رمز الدوام</value>
+  </data>
 </root>

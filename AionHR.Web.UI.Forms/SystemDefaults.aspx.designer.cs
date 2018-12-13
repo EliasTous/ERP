@@ -508,6 +508,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox dailySchedule;
         
         /// <summary>
+        /// punchSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox punchSource;
+        
+        /// <summary>
         /// enableCameraCheck control.
         /// </summary>
         /// <remarks>
@@ -839,24 +848,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.NumberField yearDays;
-        
-        /// <summary>
-        /// tsId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox tsId;
-        
-        /// <summary>
-        /// tsStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store tsStore;
         
         /// <summary>
         /// monthWorkDays control.

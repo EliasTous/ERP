@@ -517,6 +517,14 @@
                                        
                                     </Items>
                                 </ext:ComboBox>
+                                  <ext:ComboBox AnyMatch="true"  CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: punchSource %>" Name="punchSource" runat="server" ID="punchSource">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: employeeReference %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: timeAttendance %>" Value="2" />
+                                     
+                                       
+                                    </Items>
+                                </ext:ComboBox>
                                    <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" LabelWidth="150" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
 
                             </Items>
@@ -980,21 +988,7 @@
                                         </Items>
                                         </ext:FieldSet>
                          
-                                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldTSId %>" Name="tsId" DisplayField="name" ValueField="recordId" runat="server" ID="tsId">
-                                    <Store>
-                                        <ext:Store runat="server" ID="tsStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-
-                                </ext:ComboBox>  
+                              
                                <ext:NumberField Width="400" runat="server" LabelWidth="150" ID="monthWorkDays" Name="monthWorkDays" FieldLabel="<%$ Resources: monthWorkDays  %>" MinValue="20" MaxValue="30" />
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="true" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="bsId" Name="bsId" FieldLabel="<%$ Resources: benefitSchedule%>" LabelWidth="150">
                                                     <Store>

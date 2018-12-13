@@ -259,7 +259,8 @@
     <value>59, 36</value>
   </data>
   <data name="xrLabel20.Text" xml:space="preserve">
-    <value>Final Amount</value>
+    <value>Net Salary
+</value>
   </data>
   <data name="xrLabel21.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Linen</value>

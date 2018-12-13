@@ -1350,4 +1350,7 @@
   <data name="RT114" xml:space="preserve">
     <value>المهارات</value>
   </data>
+  <data name="operationCompleted" xml:space="preserve">
+    <value>تم اكمال العملية بنجاح </value>
+  </data>
 </root>

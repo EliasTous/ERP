@@ -899,7 +899,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
             req.BranchId = "0";
-            req.IncludeIsInactive = 2;
+            req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 
             req.StartAt = "1";

@@ -447,4 +447,13 @@
   <data name="FieldDailySchedule" xml:space="preserve">
     <value>Daily Schedule</value>
   </data>
+  <data name="employeeReference" xml:space="preserve">
+    <value>Employee Reference</value>
+  </data>
+  <data name="punchSource" xml:space="preserve">
+    <value>Punch Source</value>
+  </data>
+  <data name="timeAttendance" xml:space="preserve">
+    <value>Time Attendance Reference</value>
+  </data>
 </root>

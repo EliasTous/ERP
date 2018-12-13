@@ -550,7 +550,7 @@
     <value>سن التقاعد</value>
   </data>
   <data name="TermEndDate" xml:space="preserve">
-    <value>تاريخ انتهاء المدة</value>
+    <value>تاريخ انتهاء العقد</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>الدوام</value>

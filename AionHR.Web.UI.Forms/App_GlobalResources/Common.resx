@@ -1347,4 +1347,7 @@
   <data name="RT114" xml:space="preserve">
     <value>Skills</value>
   </data>
+  <data name="operationCompleted" xml:space="preserve">
+    <value>operation is completed successfully</value>
+  </data>
 </root>

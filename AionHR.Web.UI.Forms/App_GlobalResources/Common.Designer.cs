@@ -2383,6 +2383,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to operation is completed successfully.
+        /// </summary>
+        internal static string operationCompleted {
+            get {
+                return ResourceManager.GetString("operationCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Organization Chart.
         /// </summary>
         internal static string OrganizationChart {

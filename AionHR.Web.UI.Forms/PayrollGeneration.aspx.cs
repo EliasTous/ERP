@@ -1877,7 +1877,7 @@ namespace AionHR.Web.UI.Forms
                         Store1.Reload();
                         Viewport1.ActiveIndex = 2;
                         payListWidow.Close();
-                        X.Msg.Alert("", GenerateCurrentPayroll.Text == "true" ? Resources.Common.GenerateAttendanceDaySucc : Resources.Common.deleteAttendanceDaySucc).Show();
+                        X.Msg.Alert("",Resources.Common.operationCompleted ).Show();
 
                     }
                 }

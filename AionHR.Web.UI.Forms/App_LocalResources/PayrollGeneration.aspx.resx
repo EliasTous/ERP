@@ -235,13 +235,13 @@
     <value>In Process</value>
   </data>
   <data name="Status2" xml:space="preserve">
-    <value>Posted</value>
+    <value>Post</value>
   </data>
   <data name="StatusInProcess" xml:space="preserve">
     <value>In Process</value>
   </data>
   <data name="StatusPosted" xml:space="preserve">
-    <value>Posted</value>
+    <value>Post</value>
   </data>
   <data name="TotalText" xml:space="preserve">
     <value>Total</value>
