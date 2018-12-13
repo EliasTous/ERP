@@ -128,7 +128,7 @@
             this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0);
             this.PageWidth = 405;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
-            this.Version = "16.1";
+            this.Version = "16.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeePayrollDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();

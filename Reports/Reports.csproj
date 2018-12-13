@@ -99,6 +99,20 @@
     <Compile Include="BranchWorkforce.Designer.cs">
       <DependentUpon>BranchWorkforce.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmployeePayRollCross\dsSalaries.cs">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePayRollCross\dsSalaries.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePayRollCross\EmployeePayrollCrossReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EmployeePayRollCross\EmployeePayrollCrossReport.Designer.cs">
+      <DependentUpon>EmployeePayrollCrossReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmployeePayRoll\EmployeesPaySlip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -393,14 +407,25 @@
     <EmbeddedResource Include="DetailedAttendance.ar.resx">
       <DependentUpon>DetailedAttendance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmployeePayRollCross\EmployeePayrollCrossReport.ar.resx">
+      <DependentUpon>EmployeePayrollCrossReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeePayRollCross\EmployeePayrollCrossReport.resx">
+      <DependentUpon>EmployeePayrollCrossReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmployeePayRoll\EmployeesPaySlip.ar.resx">
       <DependentUpon>EmployeesPaySlip.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeePayRoll\EmployeesPaySlip.resx">
       <DependentUpon>EmployeesPaySlip.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeePayRoll\EmployeePaySlipSub.resx">
       <DependentUpon>EmployeePaySlipSub.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Receipts.resx">
@@ -429,6 +454,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AssetCategoriesReport.resx">
       <DependentUpon>AssetCategoriesReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AuditTrail.ar.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
@@ -778,6 +804,17 @@
     </None>
     <None Include="DepartmentPayrollDataSet.xss">
       <DependentUpon>DepartmentPayrollDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeePayRollCross\dsSalaries.xsc">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeePayRollCross\dsSalaries.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSalaries.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EmployeePayRollCross\dsSalaries.xss">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
     </None>
     <None Include="EmployeePayRoll\EmployeePayrollDataSet.xsc">
       <DependentUpon>EmployeePayrollDataSet.xsd</DependentUpon>

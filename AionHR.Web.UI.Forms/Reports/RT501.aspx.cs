@@ -28,6 +28,8 @@ using Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
+using Reports.EmployeePayRoll;
+using Reports.EmployeePayRollCross;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -68,7 +70,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                
+
                 try
                 {
 
@@ -197,19 +199,19 @@ namespace AionHR.Web.UI.Forms.Reports
             return p;
         }
 
-        private void FillReport(bool isInitial = false , bool throwException = true)
+        private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
             ReportCompositeRequest req = GetRequest();
-            
+
             ListResponse<AionHR.Model.Reports.RT501> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT501>(req);
             if (!resp.Success)
             {
-               
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
-                    return;
-                
+
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                Common.errorMessage(resp);
+                return;
+
             }
             //resp.Items is the list of RT501 objects  that you can used it as data source for reprot  
 
@@ -220,9 +222,9 @@ namespace AionHR.Web.UI.Forms.Reports
 
             string user = _systemService.SessionHelper.GetCurrentUser();
             string paymentMethod = paymentMethodCombo.GetPaymentMethodString();
-            string payRef = payId.SelectedItem.Text.ToString();
-            string department = jobInfo1.GetDepartment().ToString();
-            string position = jobInfo1.GetPosition().ToString();
+            string payRef = payId.SelectedItem.Text;
+            string department = jobInfo1.GetDepartment();
+            string position = jobInfo1.GetPosition();
             // this variable for check if the user request arabic report or english   true mean arabic reprot
             bool isArabic = _systemService.SessionHelper.CheckIfArabicSession();
             //those two lines code for fill the viewer with your report 
@@ -231,7 +233,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-           //Old work 
+            //Old work 
             //var d = resp.Items.GroupBy(x => x.employeeName.fullName);
             //PayrollLineCollection lines = new PayrollLineCollection();
             //HashSet<Model.Reports.EntitlementDeduction> ens = new HashSet<Model.Reports.EntitlementDeduction>(new EntitlementDeductionComparer());
@@ -263,13 +265,13 @@ namespace AionHR.Web.UI.Forms.Reports
             //        des.Add(DE);
             //    }
             //});
-           
+
             //foreach (var item in d)
             //{
             //    var list = item.ToList();
             //    list.ForEach(y =>
             //    {
-                   
+
             //        try
             //        {
             //            y.edName = GetLocalResourceObject(y.edName.Trim()).ToString().TrimEnd();
@@ -283,7 +285,7 @@ namespace AionHR.Web.UI.Forms.Reports
             //}
 
             //MonthlyPayrollCollection s = new MonthlyPayrollCollection();
-            
+
 
             //if (lines.Count > 0)
             //{
@@ -297,45 +299,45 @@ namespace AionHR.Web.UI.Forms.Reports
             //    s.Add(p);
             //}
 
-            //MonthlyPayroll h = new MonthlyPayroll();
+            EmployeePayrollCrossReport h = new EmployeePayrollCrossReport(resp.Items, isArabic);
+            h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
             //h.DataSource = s;
-            ////h.objectDataSource2.DataSource = resp.Items.Where(x => x.edType == 2).ToList();
+            //h.objectDataSource2.DataSource = resp.Items.Where(x => x.edType == 2).ToList();
 
 
-            //h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            //h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-           
-            //h.Parameters["User"].Value = user;
-            //if (resp.Items.Count > 0)
-            //{
+            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
-            //    if (req.Parameters["_departmentId"] != "0")
-            //        h.Parameters["Department"].Value = jobInfo1.GetDepartment();
-            //    else
-            //        h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-            //    if (req.Parameters["_branchId"] != "0")
-            //        h.Parameters["Branch"].Value = jobInfo1.GetBranch();
-            //    else
-            //        h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
+            h.Parameters["User"].Value = user;
+            if (resp.Items.Count > 0)
+            {
 
-            //    if (req.Parameters["_paymentMethod"] != "0")
-            //        h.Parameters["Payment"].Value = paymentMethodCombo.GetPaymentMethodString();
-            //    else
-            //        h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
+                if (req.Parameters["_departmentId"] != "0")
+                    h.Parameters["Department"].Value = jobInfo1.GetDepartment();
+                else
+                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
+                if (req.Parameters["_branchId"] != "0")
+                    h.Parameters["Branch"].Value = jobInfo1.GetBranch();
+                else
+                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
-            //    if (req.Parameters["_payRef"] != "0")
-            //        h.Parameters["Ref"].Value = req.Parameters["_payRef"];
-            //    else
-            //        h.Parameters["Ref"].Value = GetGlobalResourceObject("Common", "All");
-
-            //}
+                if (req.Parameters["_paymentMethod"] != "0")
+                    h.Parameters["Payment"].Value = paymentMethodCombo.GetPaymentMethodString();
+                else
+                    h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
 
 
-            //h.CreateDocument();
+                h.Parameters["Ref"].Value = payRef;
+               
+
+            }
 
 
-            //ASPxWebDocumentViewer1.DataBind();
-            //ASPxWebDocumentViewer1.OpenReport(h);
+            h.CreateDocument();
+
+
+            ASPxWebDocumentViewer1.DataBind();
+            ASPxWebDocumentViewer1.OpenReport(h);
         }
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
@@ -346,7 +348,7 @@ namespace AionHR.Web.UI.Forms.Reports
             if (pageIndex == 1)
             {
                 FillReport();
-                
+
             }
 
         }
