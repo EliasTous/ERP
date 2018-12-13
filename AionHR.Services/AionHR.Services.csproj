@@ -134,7 +134,9 @@
     <Compile Include="Messaging\CompanyStructure\PositionListRequest.cs" />
     <Compile Include="Messaging\DashBoard\LeaveApprovalListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeePenaltyApprovalListRequest.cs" />
+    <Compile Include="Messaging\Reports\BalanceStatusParameterSet.cs" />
     <Compile Include="Messaging\Reports\BranchWorkforceParameterSet.cs" />
+    <Compile Include="Messaging\Reports\SkillsParameterSet.cs" />
     <Compile Include="Messaging\Reports\TimeCodeRecordRequest.cs" />
     <Compile Include="Messaging\System\AttachementRecordRequest.cs" />
     <Compile Include="Messaging\System\BackgroundJobRecordRequest.cs" />

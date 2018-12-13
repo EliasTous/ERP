@@ -1,6 +1,6 @@
 ﻿namespace Reports.EmployeePayRoll
 {
-    partial class EmployeePayrollSub
+    partial class EmployeePaySlipSub
     {
         /// <summary>
         /// Required designer variable.

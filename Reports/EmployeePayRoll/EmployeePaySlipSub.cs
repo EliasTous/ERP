@@ -6,9 +6,9 @@ using DevExpress.XtraReports.UI;
 
 namespace Reports.EmployeePayRoll
 {
-    public partial class EmployeePayrollSub : DevExpress.XtraReports.UI.XtraReport
+    public partial class EmployeePaySlipSub : DevExpress.XtraReports.UI.XtraReport
     {
-        public EmployeePayrollSub(EmployeePayrollDataSet.SalaryDetailsDataTable salaryDetails)
+        public EmployeePaySlipSub(EmployeePayrollDataSet.SalaryDetailsDataTable salaryDetails)
         {
             InitializeComponent();
             employeePayrollDataSet1.SalaryDetails.Merge(salaryDetails);

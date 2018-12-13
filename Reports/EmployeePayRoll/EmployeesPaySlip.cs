@@ -60,7 +60,7 @@ namespace Reports.EmployeePayRoll
 
             benifits.ForEach(r => tbl.ImportRow(r));
 
-            xrSubBenifits.ReportSource = new EmployeePayrollSub(tbl);
+            xrSubBenifits.ReportSource = new EmployeePaySlipSub(tbl);
             xrSubBenifits.ReportSource.RightToLeftLayout = this.RightToLeftLayout;
             xrSubBenifits.ReportSource.RightToLeft = this.RightToLeft;
 
@@ -71,7 +71,7 @@ namespace Reports.EmployeePayRoll
 
             deductions.ForEach(r => tbl2.ImportRow(r));
 
-            xrSubDeductions.ReportSource = new EmployeePayrollSub(tbl2);
+            xrSubDeductions.ReportSource = new EmployeePaySlipSub(tbl2);
             xrSubDeductions.ReportSource.RightToLeftLayout = this.RightToLeftLayout;
             xrSubDeductions.ReportSource.RightToLeft = this.RightToLeft;
         }

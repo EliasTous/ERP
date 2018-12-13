@@ -27,10 +27,11 @@ using System.Threading;
 using Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
+using Reports.Skills;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
-    public partial class RT401 : System.Web.UI.Page
+    public partial class RT114 : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
@@ -59,9 +60,10 @@ namespace AionHR.Web.UI.Forms.Reports
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
             if (!X.IsAjaxRequest && !IsPostBack)
             {
+
+
 
                 SetExtLanguage();
                 HideShowButtons();
@@ -72,22 +74,25 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     try
                     {
-                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT401), null, null, null, null);
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT112), null, null, null, null);
                     }
                     catch (AccessDeniedException exp)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
                         Viewport1.Hidden = true;
+
                         return;
                     }
-
+                    //dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+                    fillCertificateLevelsStore();
                     //FillReport(false, false);
                 }
                 catch { }
             }
+
 
         }
 
@@ -168,25 +173,32 @@ namespace AionHR.Web.UI.Forms.Reports
             req.StartAt = "1";
 
 
-            req.Add(dateRange1.GetRange());
-            req.Add(employeeFilter.GetEmployee());
-            req.Add(loanStatusFilter.GetStatus());
+
+            // req.Add(dateRange1.GetRange());
+            //  req.Add(employeeCombo1.GetEmployee());
+            req.Add(activeStatus1.GetActiveStatus());
             req.Add(jobInfo1.GetJobInfo());
-            BalanceStatusParameterSet BS = new BalanceStatusParameterSet();
-            if (string.IsNullOrEmpty(balanceStatus.Value.ToString()))
-                BS.balanceStatus = "0";
-            else
-                BS.balanceStatus = balanceStatus.Value.ToString();
-            req.Add(BS);
+            req.Add(new SkillsParameterSet { clId = string.IsNullOrEmpty(clId.Value.ToString()) ? "0" : clId.Value.ToString() });
+
+
+
+
+
             return req;
         }
 
-        private void FillReport(bool isInitial = false , bool throwException=true)
+
+
+
+        private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
             ReportCompositeRequest req = GetRequest();
 
-            ListResponse<AionHR.Model.Reports.RT401> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT401>(req);
+            ListResponse<AionHR.Model.Reports.RT114> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT114>(req);
+
+
+
             if (!resp.Success)
             {
                 if (throwException)
@@ -194,47 +206,63 @@ namespace AionHR.Web.UI.Forms.Reports
                 else
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
+                    Common.errorMessage(resp);
                     return;
                 }
             }
 
-            resp.Items.ForEach(x => x.StatusString = GetLocalResourceObject("Status" + x.status.ToString()).ToString());
-           
-            LoansReport h = new LoansReport();
+
+            Skills h = new Skills(resp.Items);
+
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.DataSource = resp.Items;
+         
 
-            string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
-            string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            //  string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            //  string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
             string user = _systemService.SessionHelper.GetCurrentUser();
 
-            h.Parameters["From"].Value = from;
-            h.Parameters["To"].Value = to;
-            h.Parameters["User"].Value = user;
 
-            if (resp.Items.Count > 0)
-            {
-                
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["Branch"].Value = resp.Items[0].branchName;
-                else
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_employeeId"] != "0")
-                    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
-                else
-                    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_status"] != "0")
-                    h.Parameters["Status"].Value = resp.Items[0].StatusString;
-                else
-                    h.Parameters["Status"].Value = GetGlobalResourceObject("Common", "All");
-
-            }
+            //h.Parameters["BranchName"].Value = jobInfo1.GetBranch();
+            ////h.Parameters["PositionName"].Value = jobInfo1.GetPosition();
+         
+            //h.Parameters["DepartmentName"].Value = jobInfo1.GetDepartment();
+            //h.Parameters["Status"].Value = statusCombo.SelectedItem.Text;
 
 
+
+
+
+
+            //if (resp.Items.Count > 0)
+            //{
+            //    if (req.Parameters["_departmentId"] != "0")
+            //        h.Parameters["DepartmentName"].Value = resp.Items[0].departmentName;
+            //    else
+            //        h.Parameters["DepartmentName"].Value = GetGlobalResourceObject("Common", "All");
+
+            //    if (req.Parameters["_branchId"] != "0")
+            //        h.Parameters["BranchName"].Value = resp.Items[0].branchName;
+            //    else
+            //        h.Parameters["BranchName"].Value = GetGlobalResourceObject("Common", "All");
+
+            //    //if (req.Parameters["_positionId"] != "0")
+            //    //    h.Parameters["PositionName"].Value = resp.Items[0].positionName;
+            //    //else
+            //    //    h.Parameters["PositionName"].Value = GetGlobalResourceObject("Common", "All");
+
+
+            //    //if (req.Parameters["_status"] != "0")
+            //    //    h.Parameters["Status"].Value = resp.Items[0];
+            //    //else
+            //    //    h.Parameters["Status"].Value = GetGlobalResourceObject("Common", "All");
+
+
+            //    //if (req.Parameters["_employeeId"] != "0")
+            //    //    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
+            //    //else
+            //    //    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
+            //}
 
             h.CreateDocument();
 
@@ -263,11 +291,10 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
-       {
-        //    ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-        //    FillReport(true);
+        {
+            // ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            // FillReport(true);
         }
-
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
@@ -278,7 +305,6 @@ namespace AionHR.Web.UI.Forms.Reports
             // {
             return data;
         }
-
         private List<Employee> GetEmployeesFiltered(string query)
         {
 
@@ -295,11 +321,35 @@ namespace AionHR.Web.UI.Forms.Reports
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             return response.Items;
         }
-
-
         private string GetNameFormat()
         {
             return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
+        private void fillCertificateLevelsStore()
+        {
+
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<CertificateLevel> routers = _employeeService.ChildGetAll<CertificateLevel>(request);
+            if (!routers.Success)
+                return;
+            this.certificateLevelsStore.DataSource = routers.Items;
+         
+
+            this.certificateLevelsStore.DataBind();
+           
+        }
+
+
+
     }
 }

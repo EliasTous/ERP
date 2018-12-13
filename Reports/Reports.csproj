@@ -110,11 +110,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeePayrollDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="EmployeePayRoll\EmployeePayrollSub.cs">
+    <Compile Include="EmployeePayRoll\EmployeePaySlipSub.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EmployeePayRoll\EmployeePayrollSub.Designer.cs">
-      <DependentUpon>EmployeePayrollSub.cs</DependentUpon>
+    <Compile Include="EmployeePayRoll\EmployeePaySlipSub.Designer.cs">
+      <DependentUpon>EmployeePaySlipSub.cs</DependentUpon>
     </Compile>
     <Compile Include="NumbersToWords.cs" />
     <Compile Include="Receipts.cs">
@@ -384,6 +384,9 @@
     <EmbeddedResource Include="ApproverPerformance.resx">
       <DependentUpon>ApproverPerformance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BranchWorkforce.ar.resx">
+      <DependentUpon>BranchWorkforce.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BranchWorkforce.resx">
       <DependentUpon>BranchWorkforce.cs</DependentUpon>
     </EmbeddedResource>
@@ -396,8 +399,8 @@
     <EmbeddedResource Include="EmployeePayRoll\EmployeesPaySlip.resx">
       <DependentUpon>EmployeesPaySlip.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeePayRoll\EmployeePayrollSub.resx">
-      <DependentUpon>EmployeePayrollSub.cs</DependentUpon>
+    <EmbeddedResource Include="EmployeePayRoll\EmployeePaySlipSub.resx">
+      <DependentUpon>EmployeePaySlipSub.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Receipts.resx">

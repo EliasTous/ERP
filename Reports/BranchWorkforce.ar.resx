@@ -117,31 +117,154 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All" xml:space="preserve">
-    <value>All</value>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>عمالة الفرع</value>
   </data>
-  <data name="balanceStatus" xml:space="preserve">
-    <value>Balance Status</value>
+  <data name="xrLabel10.Text" xml:space="preserve">
+    <value>اناث</value>
   </data>
-  <data name="closed" xml:space="preserve">
-    <value>closed</value>
+  <data name="xrLabel11.Text" xml:space="preserve">
+    <value>اناث</value>
   </data>
-  <data name="open" xml:space="preserve">
-    <value>open</value>
+  <data name="xrLabel12.Text" xml:space="preserve">
+    <value>ذكور</value>
   </data>
-  <data name="Status-1" xml:space="preserve">
-    <value>Rejected</value>
+  <data name="xrLabel13.Text" xml:space="preserve">
+    <value>تحت التجربة</value>
   </data>
-  <data name="Status0" xml:space="preserve">
-    <value>All</value>
+  <data name="xrLabel14.Text" xml:space="preserve">
+    <value>سعوديين</value>
   </data>
-  <data name="Status1" xml:space="preserve">
-    <value>New</value>
+  <data name="xrLabel15.Text" xml:space="preserve">
+    <value>ذكور</value>
   </data>
-  <data name="Status2" xml:space="preserve">
-    <value>In Process</value>
+  <data name="xrLabel16.Text" xml:space="preserve">
+    <value>اناث</value>
   </data>
-  <data name="Status3" xml:space="preserve">
-    <value>Approved</value>
+  <data name="xrLabel17.Text" xml:space="preserve">
+    <value>ذكور</value>
+  </data>
+  <data name="xrLabel18.Text" xml:space="preserve">
+    <value>اناث</value>
+  </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>الفروع</value>
+  </data>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>الموظفين الرسميين</value>
+  </data>
+  <data name="xrLabel20.Text" xml:space="preserve">
+    <value>غير سعوديين</value>
+  </data>
+  <data name="xrLabel21.Text" xml:space="preserve">
+    <value>شركات تابعة</value>
+  </data>
+  <data name="xrLabel22.Text" xml:space="preserve">
+    <value>سعوديين</value>
+  </data>
+  <data name="xrLabel23.Text" xml:space="preserve">
+    <value>ذكور</value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>اناث</value>
+  </data>
+  <data name="xrLabel25.Text" xml:space="preserve">
+    <value>ذكور</value>
+  </data>
+  <data name="xrLabel26.Text" xml:space="preserve">
+    <value>اناث</value>
+  </data>
+  <data name="xrLabel27.Text" xml:space="preserve">
+    <value>غير سعوديين</value>
+  </data>
+  <data name="xrLabel28.Text" xml:space="preserve">
+    <value>من قبل :</value>
+  </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>بداية</value>
+  </data>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>انتهاء</value>
+  </data>
+  <data name="xrLabel5.Text" xml:space="preserve">
+    <value>الترخيص</value>
+  </data>
+  <data name="xrLabel6.Text" xml:space="preserve">
+    <value>عدد الموظفين</value>
+  </data>
+  <data name="xrLabel7.Text" xml:space="preserve">
+    <value>سعوديين</value>
+  </data>
+  <data name="xrLabel8.Text" xml:space="preserve">
+    <value>غير سعوديين</value>
+  </data>
+  <data name="xrLabel9.Text" xml:space="preserve">
+    <value>ذكور</value>
+  </data>
+  <data name="xrPageInfo2.Format" xml:space="preserve">
+    <value>صفحة {0} من {1}</value>
+  </data>
+  <data name="xrTableCell1.Text" xml:space="preserve">
+    <value>xrTableCell1</value>
+  </data>
+  <data name="xrTableCell10.Text" xml:space="preserve">
+    <value>xrTableCell10</value>
+  </data>
+  <data name="xrTableCell11.Text" xml:space="preserve">
+    <value>xrTableCell11</value>
+  </data>
+  <data name="xrTableCell12.Text" xml:space="preserve">
+    <value>xrTableCell12</value>
+  </data>
+  <data name="xrTableCell13.Text" xml:space="preserve">
+    <value>xrTableCell13</value>
+  </data>
+  <data name="xrTableCell14.Text" xml:space="preserve">
+    <value>xrTableCell14</value>
+  </data>
+  <data name="xrTableCell15.Text" xml:space="preserve">
+    <value>xrTableCell15</value>
+  </data>
+  <data name="xrTableCell16.Text" xml:space="preserve">
+    <value>xrTableCell16</value>
+  </data>
+  <data name="xrTableCell17.Text" xml:space="preserve">
+    <value>xrTableCell17</value>
+  </data>
+  <data name="xrTableCell18.Text" xml:space="preserve">
+    <value>xrTableCell18</value>
+  </data>
+  <data name="xrTableCell19.Text" xml:space="preserve">
+    <value>xrTableCell19</value>
+  </data>
+  <data name="xrTableCell2.Text" xml:space="preserve">
+    <value>xrTableCell2</value>
+  </data>
+  <data name="xrTableCell20.Text" xml:space="preserve">
+    <value>xrTableCell20</value>
+  </data>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>xrTableCell3</value>
+  </data>
+  <data name="xrTableCell4.Text" xml:space="preserve">
+    <value>xrTableCell4</value>
+  </data>
+  <data name="xrTableCell44.Text" xml:space="preserve">
+    <value>xrTableCell44</value>
+  </data>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>xrTableCell5</value>
+  </data>
+  <data name="xrTableCell6.Text" xml:space="preserve">
+    <value>xrTableCell6</value>
+  </data>
+  <data name="xrTableCell7.Text" xml:space="preserve">
+    <value>xrTableCell7</value>
+  </data>
+  <data name="xrTableCell8.Text" xml:space="preserve">
+    <value>xrTableCell8</value>
+  </data>
+  <data name="xrTableCell9.Text" xml:space="preserve">
+    <value>xrTableCell9</value>
   </data>
 </root>

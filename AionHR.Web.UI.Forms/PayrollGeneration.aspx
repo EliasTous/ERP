@@ -12,6 +12,7 @@
     <script type="text/javascript" src="Scripts/PayrollGeneration.js?id=10"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
+   
     <script type="text/javascript">
    function openInNewTab() {
             window.document.forms[0].target = '_blank';
@@ -49,7 +50,15 @@
 
 
         }
-      
+        function getSelectedEmployee()
+        {
+            var grid = Ext.getCmp('employeePayrolls');
+            var rec = grid.getSelectionModel().getSelected();
+         
+            alert(rec.get('employeeId'));
+           
+        }
+
     </script>
 
 </head>
@@ -80,7 +89,9 @@
          <ext:Hidden ID="CurrentPayRef" runat="server" />
        <ext:Hidden ID="GenerateCurrentPayroll" runat="server" Text="true" />
           <ext:Hidden ID="selectedEmployeeId" runat="server" />
-
+         <ext:Hidden ID="paySlipsStartAt" runat="server" />
+           <ext:Hidden ID="isSelected" runat="server" Text="false"/>
+        
       
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
             
@@ -379,7 +390,7 @@
                                 </ext:Button>
                                   <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="true" EnableDivision="false" />
 
                                     </Content>
 
@@ -399,7 +410,7 @@
                                     </Listeners>
                                 </ext:Button>
                                  <ext:ToolbarSeparator runat="server" />
-                                       <ext:Button runat="server" Icon="Printer">
+                                     <%--  <ext:Button runat="server" Icon="Printer">
                                     <Menu>
                                         <ext:Menu runat="server">
                                             <Items>
@@ -420,7 +431,7 @@
                                             </Items>
                                         </ext:Menu>
                                     </Menu>
-                                </ext:Button>
+                                </ext:Button>--%>
                                 <ext:ToolbarSeparator runat="server" />
                            <%--       <ext:Button runat="server"  AutoPostBack="true" Text="<%$ Resources: Common,Export%>" MarginSpec="0 0 0 0" >
                                        <Listeners>
@@ -436,22 +447,29 @@
                                     <Menu>
                                         <ext:Menu runat="server">
                                             <Items>
-                                                <ext:MenuItem runat="server"  Text="<%$Resources:Common,Print%>" AutoPostBack="true" OnClick="printPaySlip_Click" OnClientClick="openInNewTab();"  >
+                                                <ext:MenuItem runat="server"  Text="<%$Resources:Common,Print%>" AutoPostBack="true"  OnClientClick="openInNewTab();"  OnClick="printPaySlip_Click"  >
                                             
                                                     <Listeners>
-                                                        <Click Handler="openInNewTab();" />
-                                                    </Listeners>
+                                                        <Click Handler=" if (App.employeePayrolls.getSelectionModel().hasSelection()) {
+                                                               var row = App.employeePayrolls.getSelectionModel().getSelection()[0];
+                                                                App.selectedEmployeeId.setValue(row.get('employeeId'));
+                                                            }
+                                                            else
+                                                            App.selectedEmployeeId.setValue('0');
 
+                                                            openInNewTab();" />
+                                                                          </Listeners>
+                                               
                                                 </ext:MenuItem>
 
                                                 <ext:MenuItem runat="server"  Text="Pdf" AutoPostBack="true" OnClick="ExportPdfPaySlip_Click"  >
                                             
                                                     
                                                 </ext:MenuItem>
-                                                <ext:MenuItem runat="server"  Text="Excel" AutoPostBack="true" OnClick="ExportXLSPaySlip_Click"  >
-                                            
+                                              <%--  <ext:MenuItem runat="server"  Text="Excel" AutoPostBack="true" OnClick="ExportXLSPaySlip_Click"  >
+                                            --%>
                                                     
-                                                </ext:MenuItem>
+                                             <%--   </ext:MenuItem>--%>
                                             </Items>
                                         </ext:Menu>
                                     </Menu>
@@ -480,7 +498,7 @@
                                 </ext:Button>
                                    <ext:Button runat="server" Text="<%$ Resources: payList%>" MarginSpec="0 0 0 0" Width="100" Icon="Mail">
                                     <DirectEvents> 
-                                        <Click OnEvent="payList" />
+                                        <Click OnEvent="StartPayList" />
                                     </DirectEvents>
                                 </ext:Button>
 
@@ -504,7 +522,7 @@
                                     Scroll="Vertical"
                                     Border="false"
                    
-                                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                                    ColumnLines="True" IDMode="Explicit" RenderXType="True" >
                             <Store>
                             
          
@@ -543,6 +561,7 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
+                                     <ext:Column runat="server" DataIndex="employeeId"  Visible="false"/>
                                       <ext:Column runat="server" DataIndex="name" Text="<%$ Resources: FieldRef %>" width="75">
                                         <Renderer Handler="return record.data['name'].reference;" />
                                     </ext:Column>
@@ -610,9 +629,9 @@
                                  
                                        <BeforeRender  Handler="this.setHeight(App.detailsPanel.getHeight());" />
                                 <Render Handler="this.on('cellclick', cellClick);" />
-                                <CellDblClick Handler=" #{selectedEmployeeId}.setValue(record.data['employeeId']); alert(#{selectedEmployeeId}.getValue());" />
-                                
-                         
+                             <CellDblClick Handler=" App.employeePayrolls.getSelectionModel().deselectAll();  App.selectedEmployeeId.setValue('0');" />
+                            
+                     
                             </Listeners>
                             <DirectEvents>
                                 <CellClick OnEvent="PoPuPEM">
@@ -664,7 +683,10 @@
                             </Items>
                             <Listeners>
                                 <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                             
+     
                             </Listeners>
+                            
                         </ext:PagingToolbar>
 
                     </BottomBar>
@@ -1391,7 +1413,36 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+         <ext:Window
+            ID="payListWidow"
+            runat="server"
+            Icon="PageEdit"
+            Draggable="false"
+            Maximizable="false" Resizable="false"
+            Width="450"
+            Height="250"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
 
+            <Items>
+                <ext:FormPanel
+                    ID="payListForm" DefaultButton="payListButton"
+                    runat="server"
+                    Header="false"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+                                                    
+                                    <ext:ProgressBar ID="payListProgressBar" runat="server"  />
+                       
+                    </Items>
+
+                </ext:FormPanel>
+            </Items>
+         
+        </ext:Window>
           <ext:TaskManager ID="TaskManager1" runat="server">
             <Tasks>
                 <ext:Task 

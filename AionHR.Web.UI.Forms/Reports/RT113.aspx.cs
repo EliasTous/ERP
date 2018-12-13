@@ -225,7 +225,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             //h.Parameters["BranchName"].Value = jobInfo1.GetBranch();
             ////h.Parameters["PositionName"].Value = jobInfo1.GetPosition();
-            //h.Parameters["User"].Value = user;
+            h.Parameters["User"].Value = user;
             //h.Parameters["DepartmentName"].Value = jobInfo1.GetDepartment();
             //h.Parameters["Status"].Value = statusCombo.SelectedItem.Text;
 

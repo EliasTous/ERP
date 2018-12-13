@@ -2842,6 +2842,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skills.
+        /// </summary>
+        internal static string RT114 {
+            get {
+                return ResourceManager.GetString("RT114", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Payroll.
         /// </summary>
         internal static string RT200 {

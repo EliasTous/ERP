@@ -10,7 +10,7 @@
 namespace AionHR.Web.UI.Forms.Reports {
     
     
-    public partial class RT401 {
+    public partial class RT114 {
         
         /// <summary>
         /// Form1 control.
@@ -67,6 +67,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
+        /// dtIdValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden dtIdValue;
+        
+        /// <summary>
         /// rtl control.
         /// </summary>
         /// <remarks>
@@ -103,15 +112,6 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Panel Center;
         
         /// <summary>
-        /// dateRange1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter dateRange1;
-        
-        /// <summary>
         /// jobInfo1 control.
         /// </summary>
         /// <remarks>
@@ -121,31 +121,31 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
         
         /// <summary>
-        /// employeeFilter control.
+        /// activeStatus1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeFilter;
+        protected global::AionHR.Web.UI.Forms.Reports.ActiveStatusFilter activeStatus1;
         
         /// <summary>
-        /// loanStatusFilter control.
+        /// clId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.LoanStatusFilter loanStatusFilter;
+        protected global::Ext.Net.ComboBox clId;
         
         /// <summary>
-        /// balanceStatus control.
+        /// certificateLevelsStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox balanceStatus;
+        protected global::Ext.Net.Store certificateLevelsStore;
         
         /// <summary>
         /// ASPxCallbackPanel1 control.

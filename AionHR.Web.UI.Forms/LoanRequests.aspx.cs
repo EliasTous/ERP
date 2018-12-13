@@ -1446,13 +1446,11 @@ namespace AionHR.Web.UI.Forms
                         x.statusString = StatusNew.Text;
                         break;
                     case 2:
-                        x.statusString = StatusInProcess.Text;
-                        ;
-                        break;
-                    case 3:
                         x.statusString = StatusApproved.Text;
                         ;
                         break;
+                 
+                       
                     case -1:
                         x.statusString = StatusRejected.Text;
 

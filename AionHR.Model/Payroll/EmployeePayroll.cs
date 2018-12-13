@@ -40,17 +40,17 @@ namespace AionHR.Model.Payroll
         public string workingMinutes { get; set; }
         [PropertyID("51021_09")]
         [ApplySecurity]
-        public double basicAmount { get; set; }
+        public double? basicAmount { get; set; }
         [PropertyID("51021_10")]
         [ApplySecurity]
-        public double taxAmount { get; set; }
+        public double? taxAmount { get; set; }
         [PropertyID("51021_11")]
         [ApplySecurity]
-        public double netSalary { get; set; }
+        public double? netSalary { get; set; }
         [PropertyID("51021_12")]
         [ApplySecurity]
 
-        public double dAmount { get; set; }
+        public double? dAmount { get; set; }
         [PropertyID("51021_13")]
         [ApplySecurity]
         public double eAmount { get; set; }
@@ -60,15 +60,19 @@ namespace AionHR.Model.Payroll
         public string currencyName { get; set; }
         [PropertyID("51021_14")]
         [ApplySecurity]
-        public double cssAmount { get; set; }
+        public double? cssAmount { get; set; }
         [PropertyID("51021_15")]
         [ApplySecurity]
-        public double essAmount { get; set; }
+        public double? essAmount { get; set; }
 
         public string seqNo { get; set; }
        
 
         public string payId { get; set; }
+        public string employeeId { get; set; }
+    }
+    public class PrintEmployeePayrollId
+    {
         public string employeeId { get; set; }
     }
 }
