@@ -167,20 +167,20 @@ namespace AionHR.Model.Reports
 
             if (details.Count > 0)
             {
-                basicAmount = details[0].basicAmount;
-                payDate= details[0].payDate;
-                payDateString = payDate.ToString(format);
-                calendarDays = details[0].calendarDays;
-                endDate = details[0].endDate;
-                endDateString = endDate.ToString(format); 
-                startDate = details[0].startDate;
-                startDateString = startDate.ToString(format); 
-                fiscalYear = details[0].fiscalYear;
-                basicAmount = details[0].basicAmount;
-                departmentName = details[0].departmentName;
-                essAmount = details[0].essAmount;
-                cssAmount = details[0].cssAmount;
-                netSalary = details[0].netSalary;
+                //basicAmount = details[0].basicAmount;
+                //payDate= details[0].payDate;
+                //payDateString = payDate.ToString(format);
+                //calendarDays = details[0].calendarDays;
+                //endDate = details[0].endDate;
+                //endDateString = endDate.ToString(format); 
+                //startDate = details[0].startDate;
+                //startDateString = startDate.ToString(format); 
+                //fiscalYear = details[0].fiscalYear;
+                //basicAmount = details[0].basicAmount;
+                //departmentName = details[0].departmentName;
+                //essAmount = details[0].essAmount;
+                //cssAmount = details[0].cssAmount;
+                //netSalary = details[0].netSalary;
 
                 //branchName = details[0].branchName;
 
@@ -238,34 +238,20 @@ namespace AionHR.Model.Reports
     
     public class RT503
     {
-        //public EmployeeName employeeName { get; set; }
-
-        // public string branchName { get; set; }
+        public int departmentId { get; set; }
+        public int branchId { get; set; }
+        public int positionId { get; set; }
+        public int edId { get; set; }
         public string departmentName { get; set; }
-        public DateTime payDate { get; set; }
-        //public string countryName { get; set; }
-        public int calendarDays { get; set; }
-        //public int seqNo { get; set; }
-        public DateTime endDate { get; set; }
-        public int fiscalYear { get; set; }
-        public DateTime startDate { get; set; }
+        public string branchName { get; set; }
+        public string positionName { get; set; }
         public double basicAmount { get; set; }
-        public double eAmount { get; set; }
-        public double dAmount { get; set; }
-       
+        public int cssAmount { get; set; }
+        public int essAmount { get; set; }
         public string edName { get; set; }
-        public double essAmount { get; set; }
-        public double cssAmount { get; set; }
-        public double netSalary { get; set; }
-
-
-        //   public int paymentMethod { get; set; }
-        public double edAmount { get; set; }
-        public bool isTaxable { get; set; }
-
-       // public string currencyRef { get; set; }
-
         public int edType { get; set; }
+        public bool isTaxable { get; set; }
+        public double edAmount { get; set; }
     }
 
     public class DepartmentPayrollSet
