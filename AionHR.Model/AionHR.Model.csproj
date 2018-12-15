@@ -56,6 +56,9 @@
     <Compile Include="AdminTemplates\EmployeeTemplatePreview.cs" />
     <Compile Include="AdminTemplates\GenerateAdminDocumentDue.cs" />
     <Compile Include="AdminTemplates\IAdministrationRepository.cs" />
+    <Compile Include="AdminTemplates\ModuleId.cs" />
+    <Compile Include="AdminTemplates\ProcessNotification.cs" />
+    <Compile Include="AdminTemplates\ProcessNotificationTypes.cs" />
     <Compile Include="AdminTemplates\TemplateBody.cs" />
     <Compile Include="AdminTemplates\TemplateTag.cs" />
     <Compile Include="Attributes\PropertyID.cs" />

@@ -2545,6 +2545,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Process Notifications.
+        /// </summary>
+        internal static string ProcessNotifications {
+            get {
+                return ResourceManager.GetString("ProcessNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Record Deleted Successfully.
         /// </summary>
         internal static string RecordDeletedSucc {

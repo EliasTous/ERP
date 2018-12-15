@@ -176,6 +176,7 @@
     <Content Include="BusinessPartneres.aspx" />
     <Content Include="DocumentCategories.aspx" />
     <Content Include="PayrollGenerationSelfServices.aspx" />
+    <Content Include="ProcessNotifications.aspx" />
     <Content Include="Reports\RT113.aspx" />
     <Content Include="Reports\RT114.aspx" />
     <Content Include="Reports\RT303.aspx" />
@@ -608,6 +609,11 @@
     <Compile Include="AdminDocuments.aspx.designer.cs">
       <DependentUpon>AdminDocuments.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\ModuleIDs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModuleIDs.resx</DependentUpon>
+    </Compile>
     <Compile Include="BusinessPartnerCategories.aspx.cs">
       <DependentUpon>BusinessPartnerCategories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -636,6 +642,13 @@
     </Compile>
     <Compile Include="PayrollGenerationSelfServices.aspx.designer.cs">
       <DependentUpon>PayrollGenerationSelfServices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessNotifications.aspx.cs">
+      <DependentUpon>ProcessNotifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProcessNotifications.aspx.designer.cs">
+      <DependentUpon>ProcessNotifications.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT113.aspx.cs">
       <DependentUpon>RT113.aspx</DependentUpon>
@@ -2571,6 +2584,12 @@
     <Content Include="Reports\App_LocalResources\RT307.aspx.ar.resx" />
     <Content Include="App_LocalResources\PayrollGenerationSelfServices.aspx.ar.resx" />
     <Content Include="App_LocalResources\PayrollGenerationSelfServices.aspx.resx" />
+    <Content Include="App_GlobalResources\ModuleIDs.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ModuleIDs.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_LocalResources\ProcessNotifications.aspx.resx" />
+    <Content Include="App_LocalResources\ProcessNotifications.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

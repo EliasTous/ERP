@@ -117,31 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All" xml:space="preserve">
-    <value>All</value>
+  <data name="LEAVE_REQUEST_APPROVED" xml:space="preserve">
+    <value>Leave Request Approved</value>
   </data>
-  <data name="balanceStatus" xml:space="preserve">
-    <value>Balance Status</value>
+  <data name="LEAVE_REQUEST_NEW" xml:space="preserve">
+    <value>Leave Request New</value>
   </data>
-  <data name="closed" xml:space="preserve">
-    <value>closed</value>
+  <data name="LEAVE_REQUEST_REJECTED" xml:space="preserve">
+    <value>Leave Request Rejected</value>
   </data>
-  <data name="open" xml:space="preserve">
-    <value>open</value>
+  <data name="LOAN_REQUEST_APPROVED" xml:space="preserve">
+    <value>Loan Request Approved</value>
   </data>
-  <data name="Status-1" xml:space="preserve">
-    <value>Rejected</value>
+  <data name="LOAN_REQUEST_NEW" xml:space="preserve">
+    <value>Loan Request New </value>
   </data>
-  <data name="Status0" xml:space="preserve">
-    <value>All</value>
+  <data name="LOAN_REQUEST_REJECTED" xml:space="preserve">
+    <value>Loan Request Rejected</value>
   </data>
-  <data name="Status1" xml:space="preserve">
-    <value>New</value>
+  <data name="PAYROLL_PAYSLIP" xml:space="preserve">
+    <value>Payroll Payslip</value>
   </data>
-  <data name="Status3" xml:space="preserve">
-    <value>In Process</value>
+  <data name="PENALTY_APPROVED" xml:space="preserve">
+    <value>Penalty Approved</value>
   </data>
-  <data name="Status2" xml:space="preserve">
-    <value>Approved</value>
+  <data name="PENALTY_NEW" xml:space="preserve">
+    <value>Penalty New</value>
+  </data>
+  <data name="PENALTY_REJECTED" xml:space="preserve">
+    <value>Penalty Rejected</value>
+  </data>
+  <data name="prName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ProcessNotificationTitle" xml:space="preserve">
+    <value>Process Notification</value>
+  </data>
+  <data name="templateId" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="TIME_SCHEDULE" xml:space="preserve">
+    <value>Time Schedule</value>
   </data>
 </root>

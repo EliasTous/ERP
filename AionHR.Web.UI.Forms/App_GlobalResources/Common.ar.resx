@@ -1353,4 +1353,7 @@
   <data name="operationCompleted" xml:space="preserve">
     <value>تم اكمال العملية بنجاح </value>
   </data>
+  <data name="ProcessNotifications" xml:space="preserve">
+    <value>الاشعارات </value>
+  </data>
 </root>

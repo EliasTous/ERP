@@ -117,31 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All" xml:space="preserve">
-    <value>All</value>
+  <data name="AA" xml:space="preserve">
+    <value>70</value>
   </data>
-  <data name="balanceStatus" xml:space="preserve">
-    <value>Balance Status</value>
+  <data name="AL" xml:space="preserve">
+    <value>90</value>
   </data>
-  <data name="closed" xml:space="preserve">
-    <value>closed</value>
+  <data name="BE" xml:space="preserve">
+    <value>25</value>
   </data>
-  <data name="open" xml:space="preserve">
-    <value>open</value>
+  <data name="CM" xml:space="preserve">
+    <value>43</value>
   </data>
-  <data name="Status-1" xml:space="preserve">
-    <value>Rejected</value>
+  <data name="CN" xml:space="preserve">
+    <value>24</value>
   </data>
-  <data name="Status0" xml:space="preserve">
-    <value>All</value>
+  <data name="CS" xml:space="preserve">
+    <value>21</value>
   </data>
-  <data name="Status1" xml:space="preserve">
-    <value>New</value>
+  <data name="DM" xml:space="preserve">
+    <value>22</value>
   </data>
-  <data name="Status3" xml:space="preserve">
-    <value>In Process</value>
+  <data name="EC" xml:space="preserve">
+    <value>44</value>
   </data>
-  <data name="Status2" xml:space="preserve">
-    <value>Approved</value>
+  <data name="EP" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="FA" xml:space="preserve">
+    <value>71</value>
+  </data>
+  <data name="LM" xml:space="preserve">
+    <value>42</value>
+  </data>
+  <data name="LT" xml:space="preserve">
+    <value>45</value>
+  </data>
+  <data name="MA" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="MG" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="NQ" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="pu" xml:space="preserve">
+    <value>72</value>
+  </data>
+  <data name="PY" xml:space="preserve">
+    <value>51</value>
+  </data>
+  <data name="RE" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="RT" xml:space="preserve">
+    <value>80</value>
+  </data>
+  <data name="SS" xml:space="preserve">
+    <value>60</value>
+  </data>
+  <data name="SY" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="TA" xml:space="preserve">
+    <value>41</value>
+  </data>
+  <data name="TM" xml:space="preserve">
+    <value>32</value>
   </data>
 </root>

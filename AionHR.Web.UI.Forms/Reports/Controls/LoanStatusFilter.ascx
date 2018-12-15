@@ -5,8 +5,8 @@
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: All %>" Value="0"  />
                                         <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldInProcess %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="3" />
+                                      
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
                                         <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
                                     </Items>
                                   
