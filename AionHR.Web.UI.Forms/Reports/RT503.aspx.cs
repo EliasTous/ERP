@@ -231,15 +231,18 @@ namespace AionHR.Web.UI.Forms.Reports
             string user = _systemService.SessionHelper.GetCurrentUser();
             string paymentMethod = paymentMethodCombo.GetPaymentMethodString();
             string payRef = payId.SelectedItem.Text.ToString();
-            string department = jobInfo1.GetDepartment().ToString();
-            string position = jobInfo1.GetPosition().ToString();
+            string department = jobInfo1.GetDepartment();
+            string position = jobInfo1.GetPosition();
+            string branch = jobInfo1.GetBranch();
             // this variable for check if the user request arabic report or english   true mean arabic reprot
             bool isArabic = _systemService.SessionHelper.CheckIfArabicSession();
             //those two lines code for fill the viewer with your report 
             //ASPxWebDocumentViewer1.DataBind();
             //ASPxWebDocumentViewer1.OpenReport();
 
+            //Note if the user didnot select any department or branch or poistion the value will be null so you should print all in arabic or english due to user session
 
+            
 
        //Old work
             //var d = resp.Items.GroupBy(x => x.departmentName);
