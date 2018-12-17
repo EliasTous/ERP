@@ -1156,6 +1156,11 @@ namespace AionHR.Web.UI.Forms
                 TerminatedLbl.Hidden = false;
                 TerminationDateLbl.Hidden = false;
             }
+            else
+            {
+                TerminatedLbl.Hidden = true;
+                TerminationDateLbl.Hidden = true;
+            }
 
             X.Call("FillLeftPanel",
 

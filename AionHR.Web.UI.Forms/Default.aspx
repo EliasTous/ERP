@@ -113,7 +113,7 @@
        <ext:Hidden runat="server" ID="importPUTitle" Text="<%$Resources:Common , ImportPunches %>" />
      <ext:Hidden runat="server" ID="GADTitle" Text="<%$Resources:Common ,GenerateAttendanceDays  %>" />
      <ext:Hidden runat="server" ID="SADTitle" Text="<%$Resources:Common ,SynchronizeAttendanceDays  %>" />
-
+      <ext:Hidden runat="server" ID="AFPN" Text="<%$Resources:Common ,ProcessNotifications  %>" />
     
   
       <ext:Hidden runat="server" ID="DBATitle" Text="<%$Resources:Common ,DeleteAllBranchAttendance  %>" />
@@ -670,6 +670,25 @@
                                                 </ext:Menu>
                                             </Menu>
                                         </ext:MenuItem>
+                                         <ext:MenuItem runat="server" Text="<%$ Resources:Common , AdministrationAffairs %>">
+                                            <Menu>
+                                                <ext:Menu runat="server">
+                                                    <Items>
+                                                                                                        
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ProcessNotifications%>">
+                                                              <Listeners>
+                                                                <Click Handler="openNewTab('ProcessNotifications', 'ProcessNotifications.aspx', #{AFPN}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+
+                                                          
+                                                    
+
+                                                    </Items>
+                                                </ext:Menu>
+                                            </Menu>
+                                        </ext:MenuItem>
+
 
 
                                     </Items>

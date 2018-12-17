@@ -117,31 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All" xml:space="preserve">
-    <value>All</value>
+  <data name="LEAVE_REQUEST_APPROVED" xml:space="preserve">
+    <value>طلب اجازة موافق عليها </value>
   </data>
-  <data name="balanceStatus" xml:space="preserve">
-    <value>Balance Status</value>
+  <data name="LEAVE_REQUEST_NEW" xml:space="preserve">
+    <value>طلب اجازة جديد</value>
   </data>
-  <data name="closed" xml:space="preserve">
-    <value>closed</value>
+  <data name="LEAVE_REQUEST_REJECTED" xml:space="preserve">
+    <value>طلب اجازة مرفوض</value>
   </data>
-  <data name="open" xml:space="preserve">
-    <value>open</value>
+  <data name="LOAN_REQUEST_APPROVED" xml:space="preserve">
+    <value>طلب سلفة موافق عليه</value>
   </data>
-  <data name="Status-1" xml:space="preserve">
-    <value>Rejected</value>
+  <data name="LOAN_REQUEST_NEW" xml:space="preserve">
+    <value>طلب سلفة جديدة </value>
   </data>
-  <data name="Status0" xml:space="preserve">
-    <value>All</value>
+  <data name="LOAN_REQUEST_REJECTED" xml:space="preserve">
+    <value>طلب سلفة مرفوض </value>
   </data>
-  <data name="Status1" xml:space="preserve">
-    <value>New</value>
+  <data name="PAYROLL_PAYSLIP" xml:space="preserve">
+    <value>كشوف الرواتب </value>
   </data>
-  <data name="Status3" xml:space="preserve">
-    <value>In Process</value>
+  <data name="PENALTY_APPROVED" xml:space="preserve">
+    <value>جزاء موافق عليه </value>
   </data>
-  <data name="Status2" xml:space="preserve">
-    <value>Approved</value>
+  <data name="PENALTY_NEW" xml:space="preserve">
+    <value>جزاء جديد </value>
+  </data>
+  <data name="PENALTY_REJECTED" xml:space="preserve">
+    <value>جزاء مرفوض</value>
+  </data>
+  <data name="prName" xml:space="preserve">
+    <value>الاسم </value>
+  </data>
+  <data name="ProcessNotificationTitle" xml:space="preserve">
+    <value>الاشعارات</value>
+  </data>
+  <data name="templateId" xml:space="preserve">
+    <value>النموذج</value>
+  </data>
+  <data name="TIME_SCHEDULE" xml:space="preserve">
+    <value>الدوام </value>
   </data>
 </root>
