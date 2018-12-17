@@ -282,4 +282,13 @@
   <data name="ta_sched_url" xml:space="preserve">
     <value>الرابط</value>
   </data>
+  <data name="penalty_amount" xml:space="preserve">
+    <value>قيمة العقوبة</value>
+  </data>
+  <data name="penalty_date" xml:space="preserve">
+    <value>تاريخ العقوبة</value>
+  </data>
+  <data name="penalty_url" xml:space="preserve">
+    <value>رابط العقوبة</value>
+  </data>
 </root>

@@ -63,4 +63,15 @@
 
 ]
 }
+,
+{
+    
+    "type": "penalty",
+    "tags": [
+"penalty_date",
+"penalty_amount",
+"penalty_url",
+
+]
+}
 ]
