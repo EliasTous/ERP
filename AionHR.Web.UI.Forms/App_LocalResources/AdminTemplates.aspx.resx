@@ -282,4 +282,13 @@
   <data name="ta_sched_url" xml:space="preserve">
     <value>Url</value>
   </data>
+  <data name="penalty_amount" xml:space="preserve">
+    <value>Penalty Amount</value>
+  </data>
+  <data name="penalty_date" xml:space="preserve">
+    <value>Penalty Date</value>
+  </data>
+  <data name="penalty_url" xml:space="preserve">
+    <value>Penalty Url</value>
+  </data>
 </root>
