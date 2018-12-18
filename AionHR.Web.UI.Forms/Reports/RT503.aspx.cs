@@ -305,9 +305,9 @@ namespace AionHR.Web.UI.Forms.Reports
             //    p.Payrolls = lines;
             //    s.Add(p);
             //}
-
-            GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic);
-
+            int groupById = 1;//Change GroupType According to groupby lookup
+            GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic, (GroupedPayrollCrossReport.GroupType)groupById);
+            h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
             //h.DataSource = s;
             //h.Parameters["columnCount"].Value = ens.Count + des.Count;
             //h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
