@@ -165,4 +165,16 @@
   <data name="netSalaryString" xml:space="preserve">
     <value>Net Salary </value>
   </data>
+  <data name="branch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="FieldGroupBy" xml:space="preserve">
+    <value>Group By</value>
+  </data>
+  <data name="position" xml:space="preserve">
+    <value>Position</value>
+  </data>
 </root>

@@ -1027,7 +1027,7 @@
     <value>Payroll Indemnity</value>
   </data>
   <data name="RT503" xml:space="preserve">
-    <value>Department Payroll</value>
+    <value>Job Info Payroll</value>
   </data>
   <data name="importCalendar" xml:space="preserve">
     <value>Import Calendar</value>

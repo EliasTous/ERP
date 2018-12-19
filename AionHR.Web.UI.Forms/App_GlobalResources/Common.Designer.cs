@@ -3031,7 +3031,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department Payroll.
+        ///   Looks up a localized string similar to Job Info Payroll.
         /// </summary>
         internal static string RT503 {
             get {

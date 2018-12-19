@@ -208,9 +208,8 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!resp.Success)
             {
 
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                Common.errorMessage(resp);
-                return;
+                throw new Exception(resp.Error);
+        
 
             }
             //resp.Items is the list of RT501 objects  that you can used it as data source for reprot  
@@ -225,6 +224,8 @@ namespace AionHR.Web.UI.Forms.Reports
             string payRef = payId.SelectedItem.Text;
             string department = jobInfo1.GetDepartment();
             string position = jobInfo1.GetPosition();
+            string employee = employeeFilter.GetEmployeeName();
+        
             // this variable for check if the user request arabic report or english   true mean arabic reprot
             bool isArabic = _systemService.SessionHelper.CheckIfArabicSession();
             //those two lines code for fill the viewer with your report 

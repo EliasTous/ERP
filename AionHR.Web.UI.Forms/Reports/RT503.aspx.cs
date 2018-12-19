@@ -219,8 +219,7 @@ namespace AionHR.Web.UI.Forms.Reports
             {
 
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
-                return;
+                throw new Exception(resp.Error);
 
             }
             //resp.Items is the list of RT501 objects  that you can used it as data source for reprot  
@@ -234,8 +233,11 @@ namespace AionHR.Web.UI.Forms.Reports
             string payRef = payId.SelectedItem.Text.ToString();
             string department = jobInfo1.GetDepartment();
             string position = jobInfo1.GetPosition();
+            string Branch = jobInfo1.GetBranch();
+            string groupBY = groupBy.Value.ToString();
             // this variable for check if the user request arabic report or english   true mean arabic reprot
             bool isArabic = _systemService.SessionHelper.CheckIfArabicSession();
+         
             //those two lines code for fill the viewer with your report 
             //ASPxWebDocumentViewer1.DataBind();
             //ASPxWebDocumentViewer1.OpenReport();
@@ -306,7 +308,7 @@ namespace AionHR.Web.UI.Forms.Reports
             //    s.Add(p);
             //}
 
-            GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic);
+            GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic,string.IsNullOrEmpty(groupBY)? 0:Convert.ToInt32(groupBY));
 
             //h.DataSource = s;
             //h.Parameters["columnCount"].Value = ens.Count + des.Count;
@@ -328,11 +330,15 @@ namespace AionHR.Web.UI.Forms.Reports
                 else
                     h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
 
-                if (req.Parameters["_payRef"] != "0")
-                    h.Parameters["Ref"].Value = req.Parameters["_payRef"];
+                if (req.Parameters["_payId"] != "0")
+                    h.Parameters["Ref"].Value = req.Parameters["_payId"];
                 else
                     h.Parameters["Ref"].Value = GetGlobalResourceObject("Common", "All");
-                h.Parameters["user"].Value = user;
+                if (!string.IsNullOrEmpty(groupBY))
+                    h.Parameters["groupBY"].Value = groupBY; 
+                else
+                    h.Parameters["Ref"].Value = GetGlobalResourceObject("Common", "All");
+                h.Parameters["User"].Value = user;
             }
 
             h.CreateDocument();

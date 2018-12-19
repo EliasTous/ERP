@@ -246,8 +246,8 @@ namespace AionHR.Model.Reports
         public string branchName { get; set; }
         public string positionName { get; set; }
         public double basicAmount { get; set; }
-        public int cssAmount { get; set; }
-        public int essAmount { get; set; }
+        public double cssAmount { get; set; }
+        public double essAmount { get; set; }
         public string edName { get; set; }
         public int edType { get; set; }
         public bool isTaxable { get; set; }

@@ -859,7 +859,7 @@
     <value>تاريخ السلف</value>
   </data>
   <data name="RT501" xml:space="preserve">
-    <value>تقرير الرواتب</value>
+    <value>الرواتب على مستوى الموظف </value>
   </data>
   <data name="Salary" xml:space="preserve">
     <value>الرواتب</value>
@@ -1027,7 +1027,7 @@
     <value>جدول مكافأة نهاية الخدمة</value>
   </data>
   <data name="RT503" xml:space="preserve">
-    <value>رواتب الأقسام </value>
+    <value>رواتب على مستوى معلومات العمل </value>
   </data>
   <data name="importCalendar" xml:space="preserve">
     <value>نسخ من تقويم لأخر</value>

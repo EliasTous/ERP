@@ -102,7 +102,15 @@
                                                 <uc:paymentMethodCombo runat="server" ID="paymentMethodCombo" />
                                             </Content>
                                         </ext:Container>
-
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   ID="groupBy" LabelWidth="130" Width="150" runat="server" EmptyText="<%$ Resources:FieldGroupBy%>" Name="groupBy" IDMode="Static" SubmitValue="true">
+                                            <Items>
+                                               <ext:ListItem Text="<%$ Resources: department%>" Value="1"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: branch%>" Value="2"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: position%>" Value="3"></ext:ListItem>
+                                              
+                                            </Items>
+                                    
+                                        </ext:ComboBox>
                                    
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>

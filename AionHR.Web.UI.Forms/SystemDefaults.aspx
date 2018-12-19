@@ -21,9 +21,9 @@
       <link rel="stylesheet" type="text/css" href="../CSS/cropper.css" />
     <script type="text/javascript" src="Scripts/Nationalities.js"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
-    <script type="text/javascript" src="../Scripts/jquery-new.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery-new.js?id=10"></script>
   
-    <script type="text/javascript" src="../Scripts/cropper.js"></script>
+    <script type="text/javascript" src="../Scripts/cropper.js?id=20"></script>
       <script type="text/javascript" src="Scripts/SystemDefaults.js?id=83"></script>
     <script type="text/javascript">
         var checkExtension = function (file) {
