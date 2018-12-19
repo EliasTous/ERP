@@ -11,9 +11,14 @@ namespace Reports.GroupedPayRollCross
 {
     public partial class GroupedPayrollCrossReport : DevExpress.XtraReports.UI.XtraReport
     {
-       
+        public enum GroupType
+        {
+            Branch = 2,
+            Department = 1,
+            Position = 3
+        }
 
-        public GroupedPayrollCrossReport(List<RT503> items, bool isArabic)
+        public GroupedPayrollCrossReport(List<RT503> items, bool isArabic, GroupType grpType)
         {
             InitializeComponent();
             if (isArabic)
@@ -21,12 +26,42 @@ namespace Reports.GroupedPayRollCross
                 this.RightToLeft = RightToLeft.Yes;
                 this.RightToLeftLayout = RightToLeftLayout.Yes;
             }
-
+            if (isArabic)
+            {
+                switch (grpType)
+                {
+                    case GroupType.Branch:
+                        fieldEmployeeName.Caption = "الفرع";
+                        break;
+                    case GroupType.Department:
+                        fieldEmployeeName.Caption = "القسم";
+                        break;
+                    case GroupType.Position:
+                        fieldEmployeeName.Caption = "الوظيفة";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                fieldEmployeeName.Caption = grpType.ToString();
+            }
             var groupedItems = items.GroupBy(u => u.branchName);
+
+            if (grpType == GroupType.Department)
+            {
+                groupedItems = items.GroupBy(u => u.departmentName);
+            }
+
+            if (grpType == GroupType.Position)
+            {
+                groupedItems = items.GroupBy(u => u.positionName);
+            }
 
             foreach (var employee in groupedItems)
             {
-                
+
                 int order = 0;
                 foreach (var salary in employee.Where(u => u.isTaxable && u.edType == 1).GroupBy(u => u.edName))
                 {
