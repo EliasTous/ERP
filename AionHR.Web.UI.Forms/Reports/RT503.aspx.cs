@@ -306,6 +306,11 @@ namespace AionHR.Web.UI.Forms.Reports
             //    s.Add(p);
             //}
             int groupById = 1;//Change GroupType According to groupby lookup
+            var grpBy = Convert.ToInt32(groupBy.Value);
+            if (grpBy != null)
+            {
+                groupById = Convert.ToInt32(grpBy);
+            }
             GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic, (GroupedPayrollCrossReport.GroupType)groupById);
             h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
             //h.DataSource = s;
