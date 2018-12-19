@@ -87,7 +87,7 @@ var filldaytotal = function (listIds,list2) {
 var Init = function () {
     // App.pnlTools.show();
     App.btnClear.setDisabled(false);
-    App.btnSave.setDisabled(false);
+    
     $('.day').each(function () {
         $(this).click(function () {
             if( $(this).data("isselected") == true)
@@ -95,22 +95,48 @@ var Init = function () {
                 $(this).css("background-color", "#fff");
                 $(this).removeData("isselected");
                 App.dayId.setValue("");
-                App.btnSave.setDisabled(false);
-                App.btnDeleteDay.setDisabled(true);
+              
+                if (App.dateFrom.getValue() >= new Date() || App.dateTo.getValue() >= new Date()) {
+                  
+                    App.btnSave.setDisabled(false);
+                    App.btnDeleteDay.setDisabled(true);
+                }
+                else
+                {
+                 
+                    App.btnSave.setDisabled(true);
+                    App.btnDeleteDay.setDisabled(true);
+                }
             }
             else
             {
             clearDayClick();
         $(this).css("background-color", "orange");
         $(this).data("isselected",true);
-            App.dayId.setValue($(this)["0"].id);
-            App.btnSave.setDisabled(false);
-            App.btnDeleteDay.setDisabled(false);
+                App.dayId.setValue($(this)["0"].id);
+                if (App.dateFrom.getValue() >= new Date() || App.dateTo.getValue() >= new Date()) {
+                   
+                    App.btnSave.setDisabled(false);
+                    App.btnDeleteDay.setDisabled(true);
+                }
+                else
+                {
+                   
+                    App.btnSave.setDisabled(true);
+                    App.btnDeleteDay.setDisabled(true);
+                }
+
+          
             }
         });
     });
 
    // $('#tbCalendar').fixedHeaderTable();
+}
+
+var DisableEdit = function () {
+    App.btnSave.setDisabled(true);
+    App.btnDeleteDay.setDisabled(true);
 }
 
 var DisableTools = function () {

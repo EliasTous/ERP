@@ -54,7 +54,7 @@
     <ext:Hidden runat="server" ID="edTitle" Text="<%$Resources: Common , EntitlementDeduction%>" />
     <ext:Hidden runat="server" ID="dtTitle" Text="<%$Resources: Common , DocumentTypes%>" />
     <ext:Hidden runat="server" ID="scrTitle" Text="<%$Resources: Common , SalaryChangeReasons%>" />
-    <ext:Hidden runat="server" ID="acTitle" Text="<%$Resources: Common , AssetCategories%>" />
+<%--    <ext:Hidden runat="server" ID="acTitle" Text="<%$Resources: Common , AssetCategories%>" />--%>
     <ext:Hidden runat="server" ID="btTitle" Text="<%$Resources: Common , BonusTypes%>" />
 
     <ext:Hidden runat="server" ID="ctTitle" Text="<%$Resources: Common , CheckTypes%>" />
@@ -221,11 +221,11 @@
                                                                 <Click Handler="openNewTab('salaryChangeReasons', 'SalaryChangeReasons.aspx', #{scrTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , AssetCategories%>">
+                                                       <%-- <ext:MenuItem runat="server" Text="<%$Resources: Common , AssetCategories%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('assetCategories', 'AssetCategories.aspx', #{acTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
-                                                        </ext:MenuItem>
+                                                        </ext:MenuItem>--%>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , BonusTypes%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('bonusTypes', 'BonusTypes.aspx', #{btTitle}.value, 'icon-Employees')" />

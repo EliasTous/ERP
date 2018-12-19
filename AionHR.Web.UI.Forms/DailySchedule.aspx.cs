@@ -67,8 +67,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 FillBranches();
                 FillDepartment();
-                dateFrom.MinDate = DateTime.Today;
-                dateTo.MinDate = DateTime.Today;
+               
                 this.workingHours.Value = string.Empty;
             }
 
@@ -250,6 +249,11 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod(ShowMask = true)]
         public void DayRangeDelete()
         {
+            if (dateFrom.SelectedDate < DateTime.Now || dateTo.SelectedDate == DateTime.Now)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
+                return;
+            }
             if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
@@ -457,6 +461,20 @@ namespace AionHR.Web.UI.Forms
         }
         protected void Load_Click(object sender, DirectEventArgs e)
         {
+            if (dateFrom.SelectedDate <DateTime.Today || dateTo.SelectedDate < DateTime.Today)
+            {
+
+
+                this.btnSave.Disabled = true;
+
+            }
+            else
+            {
+               
+                X.Call("EnableTools");
+                
+
+            }
             if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();

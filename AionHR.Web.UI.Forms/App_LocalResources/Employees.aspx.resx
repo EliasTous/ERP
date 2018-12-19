@@ -417,4 +417,10 @@
   <data name="LoansBalance" xml:space="preserve">
     <value>Loans Balance :</value>
   </data>
+  <data name="FieldAny" xml:space="preserve">
+    <value>Any</value>
+  </data>
+  <data name="FieldTimeAttendance" xml:space="preserve">
+    <value>Time Attendance Referance</value>
+  </data>
 </root>

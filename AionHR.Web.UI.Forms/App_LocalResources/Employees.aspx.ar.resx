@@ -414,4 +414,10 @@
   <data name="LoansBalance" xml:space="preserve">
     <value>مجموع السلف :</value>
   </data>
+  <data name="FieldAny" xml:space="preserve">
+    <value>الكل </value>
+  </data>
+  <data name="FieldTimeAttendance" xml:space="preserve">
+    <value>الدوام </value>
+  </data>
 </root>

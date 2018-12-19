@@ -328,11 +328,11 @@ namespace AionHR.Web.UI.Forms.Reports
                 else
                     h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
 
-                if (req.Parameters["_payRef"] != "0")
-                    h.Parameters["Ref"].Value = req.Parameters["_payRef"];
+                if (req.Parameters["_payId"] != "0")
+                    h.Parameters["Ref"].Value = payRef;
                 else
                     h.Parameters["Ref"].Value = GetGlobalResourceObject("Common", "All");
-                h.Parameters["user"].Value = user;
+                h.Parameters["User"].Value = user;
             }
 
             h.CreateDocument();

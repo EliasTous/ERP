@@ -484,7 +484,10 @@ namespace AionHR.Web.UI.Forms
 
             catch { }
             try
-            {
+            { 
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "minPunchInterval").First().Value.ToString()))
+                minPunchInterval.Text = "60";
+                else
                 minPunchInterval.Text = (items.Where(s => s.Key == "minPunchInterval").First().Value);
               
             }
@@ -528,6 +531,8 @@ namespace AionHR.Web.UI.Forms
 
             try
             {
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "MaxLoanDeduction").First().Value.ToString()))
+                    MaxLoanDeduction.Text = "30";
                 MaxLoanDeduction.Text = (items.Where(s => s.Key == "MaxLoanDeduction").First().Value);
 
             }
@@ -770,7 +775,7 @@ namespace AionHR.Web.UI.Forms
             if (!string.IsNullOrEmpty(values.minPunchInterval.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("minPunchInterval", values.minPunchInterval.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("minPunchInterval", ""));
+                submittedValues.Add(new KeyValuePair<string, string>("minPunchInterval", "60"));
 
             if (!string.IsNullOrEmpty(values.dailySchedule.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("dailySchedule", values.dailySchedule.ToString()));
@@ -920,7 +925,7 @@ namespace AionHR.Web.UI.Forms
             if (!string.IsNullOrEmpty(values.MaxLoanDeduction.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", values.MaxLoanDeduction.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", string.Empty));
+                submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", "30"));
 
 
 
