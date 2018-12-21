@@ -13,5 +13,10 @@ namespace Reports
             InitializeComponent();
         }
 
+        private void xrTableCell18_PrintOnPage(object sender, PrintOnPageEventArgs e)
+        {
+            if ((sender as XRTableCell).Text == "False")
+                (sender as XRTableCell).Text = " ";
+        }
     }
 }

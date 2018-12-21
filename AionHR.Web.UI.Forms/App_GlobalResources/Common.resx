@@ -1353,4 +1353,7 @@
   <data name="ProcessNotifications" xml:space="preserve">
     <value>Process Notifications</value>
   </data>
+  <data name="LeaveSchedules" xml:space="preserve">
+    <value>Leave Schedules</value>
+  </data>
 </root>

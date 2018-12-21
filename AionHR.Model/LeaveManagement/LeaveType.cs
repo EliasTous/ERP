@@ -44,5 +44,6 @@ namespace AionHR.Model.Employees.Leaves
         //public bool raBrHead{ get; set; }
         public int? apId { get; set; }
         public string apName { get; set; }
+        public string lsId { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LeaveTypes.aspx.cs" Inherits="AionHR.Web.UI.Forms.LeaveTypes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LeaveSchedules.aspx.cs" Inherits="AionHR.Web.UI.Forms.LeaveSchedules" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -9,12 +9,12 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LeaveTypes.js?id=110"></script>
+    <script type="text/javascript" src="Scripts/VacationSchedules.js?id=3"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
 
 
 </head>
-<body style="background: url(Images/bg.png) repeat;">
+<body style="background: url(Images/bg.png) repeat;" >
     <form id="Form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
 
@@ -22,16 +22,17 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        <ext:Hidden ID="leaveType1" runat="server" Text="<%$ Resources: Personal %>" />
-        <ext:Hidden ID="leaveType2" runat="server" Text="<%$ Resources: Business %>" />
-        <ext:Hidden ID="leaveType0" runat="server" Text="<%$ Resources: Other %>" />
+        
+        <ext:Hidden runat="server" ID="deleteDisabled" />
+        <ext:Hidden runat="server" ID="editDisabled" />
+
         <ext:Store
             ID="Store1"
             runat="server"
             RemoteSort="False"
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
-            PageSize="50" IDMode="Explicit" Namespace="App">
+            PageSize="30" IDMode="Explicit" Namespace="App">
             <Proxy>
                 <ext:PageProxy>
                     <Listeners>
@@ -44,18 +45,18 @@
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
-                        <ext:ModelField Name="reference" />
                         <ext:ModelField Name="name" />
-                       <%-- <ext:ModelField Name="requireApproval" />--%>
-                        <ext:ModelField Name="leaveType" />
-                          <ext:ModelField Name="apId" />
-                          <ext:ModelField Name="apName" />
+
+
+
 
                     </Fields>
                 </ext:Model>
             </Model>
             <Sorters>
                 <ext:DataSorter Property="recordId" Direction="ASC" />
+                <ext:DataSorter Property="name" Direction="ASC" />
+                <ext:DataSorter Property="reference" Direction="ASC" />
             </Sorters>
         </ext:Store>
 
@@ -116,21 +117,19 @@
 
                     </TopBar>
 
-                    <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                    <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="true">
                         <Columns>
-                            <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                             <ext:Column ID="ColApId" Visible="false" DataIndex="apId" runat="server" />
-                            <ext:Column ID="Column1" DataIndex="reference" Text="<%$ Resources: FieldReference%>" Width="150" runat="server" />
-                            <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                            </ext:Column>
-                            <ext:Column ID="Column2" DataIndex="leaveType" Text="<%$ Resources: LeaveType%>" Width="100" runat="server" >
-                                <Renderer Handler="return getLeaveTypeString(record.data['leaveType']);" />
-                                </ext:Column>
-                           <%-- <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: FieldRequiresApproval %>" DataIndex="requireApproval"></ext:CheckColumn>--%>
-                              <ext:Column CellCls="cellLink" ID="ColApName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldApproval%>" DataIndex="apName" Flex="2" Hideable="false">
+
+                            <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
+
+                            <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="1" Hideable="false">
+                                <Renderer Handler="return record.data['name']">
+                                </Renderer>
                             </ext:Column>
 
 
+
+                           
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -142,6 +141,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
                                 <Renderer Fn="deleteRender" />
+
                             </ext:Column>
                             <ext:Column runat="server"
                                 ID="colAttach"
@@ -155,8 +155,9 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colEdit" Visible="true"
+
+                             <ext:Column runat="server"
+                                ID="colEdit"  Visible="true"
                                 Text=""
                                 Width="100"
                                 Hideable="false"
@@ -166,10 +167,9 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
-
 
 
                         </Columns>
@@ -180,7 +180,7 @@
                             <Items>
                                 <ext:StatusBar ID="StatusBar1" runat="server" />
                                 <ext:ToolbarFill />
-
+                               
                             </Items>
                         </ext:Toolbar>
 
@@ -225,7 +225,7 @@
                         <ext:GridView ID="GridView1" runat="server" />
                     </View>
 
-
+                 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel" runat="server" Mode="Single" StopIDModeInheritance="true" />
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
@@ -242,98 +242,159 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="450"
+            Height="330"
             AutoShow="false"
             Modal="true"
             Hidden="true"
             Layout="Fit">
-           
+
             <Items>
                 <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
                     <Items>
-                        <ext:FormPanel
-                            ID="BasicInfoTab" DefaultButton="SaveButton"
+                        <ext:FormPanel DefaultButton="SaveButton"
+                            ID="BasicInfoTab"
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
-                             
-                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" />
-                                <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" />
-
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" FieldLabel="<%$ Resources:LeaveType%>" Editable="false" ID="leaveType" DataIndex="leaveType" Name="leaveType" AllowBlank="false" ForceSelection="true">
-                                    <Items>
-
-                                        <ext:ListItem Text="<%$ Resources: Personal %>" Value="1"  />
-                                        <ext:ListItem Text="<%$ Resources: Business %>" Value="2"  />
-                                            
-                                            
-                                    </Items>
-                                    <Listeners>
-                                        <Change Handler="if (#{leaveType}.getValue()==2) {#{isPaid}.setDisabled(true); #{isPaid}.setValue(false);} else{ #{isPaid}.setDisabled(false);}"></Change>
-                                    </Listeners>
-
-                                </ext:ComboBox>
-                                  <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="apId" Name="apId" FieldLabel="<%$ Resources:FieldApproval%>" >
-                              
-                                                <Store>
-                                                    <ext:Store runat="server" ID="ApprovalStore" OnReadData="ApprovalStory_RefreshData">
-                                                        <Model>
-                                                            <ext:Model runat="server">
-                                                                <Fields>
-                                                                    <ext:ModelField Name="recordId" />
-                                                                    <ext:ModelField Name="name" />
-                                                                </Fields>
-                                                            </ext:Model>
-                                                        </Model>
-                                                    </ext:Store>
-                                                </Store>
-                                                <Listeners>
-                                                    <IconClick Handler="App.ApprovalStore.reload();" />
-                                                </Listeners>
-                                            </ext:ComboBox>
-                                  <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="lsId" Name="lsId" FieldLabel="<%$ Resources:FieldLeaveSchedule %>" >
-                              
-                                                <Store>
-                                                    <ext:Store runat="server" ID="leaveScheduleStore" OnReadData="leaveSchedule_RefreshData">
-                                                        <Model>
-                                                            <ext:Model runat="server">
-                                                                <Fields>
-                                                                    <ext:ModelField Name="recordId" />
-                                                                    <ext:ModelField Name="name" />
-                                                                </Fields>
-                                                            </ext:Model>
-                                                        </Model>
-                                                    </ext:Store>
-                                                </Store>
-                                              
-                                            </ext:ComboBox>
-                           
-                                 <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" LabelWidth="200" FieldLabel="<%$ Resources:isPaid%>" Checked="true" />
-                                    
-                              <%--  <ext:FieldSet ID="ApprovalLevelFS" runat="server" Disabled="true" Title="<%$ Resources:Approvallevel %>" >
-                                    <Items>
-                                       <ext:Checkbox runat="server" Name="raReportTo" InputValue="true" ID="raReportTo" DataIndex="raReportTo" FieldLabel="<%$ Resources:raReportTo %>" />
-                                       <ext:Checkbox runat="server" Name="raDepHead" InputValue="true" ID="raDepHead" DataIndex="raDepHead" FieldLabel="<%$ Resources:raDepHead %>" />
-                                       <ext:Checkbox runat="server" Name="raDepHierarchy" InputValue="true" ID="raDepHierarchy" DataIndex="raDepHierarchy" FieldLabel="<%$ Resources:raDepHierarchy %>" />
-                                       <ext:Checkbox runat="server" Name="raDepLA" InputValue="true" ID="raDepLA" DataIndex="raDepLA" FieldLabel="<%$ Resources:raDepLA%>" />
-                                        <ext:Checkbox runat="server" Name="raBrHead" InputValue="true" ID="raBrHead" DataIndex="raBrHead" FieldLabel="<%$ Resources:raBrHead%>" />
-                                        </Items>
-                                </ext:FieldSet>--%>
-
-                                   
-
-
-
-
+                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" DataIndex="recordId" />
+                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
 
                             </Items>
 
                         </ext:FormPanel>
+                        <ext:FormPanel
+                            ID="periodsTab"
+                            runat="server"
+                            Title="<%$ Resources: PeriodsTab %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
+                            BodyPadding="5">
+                            <Items>
+                                <ext:GridPanel
+                                    ID="periodsGrid"  
+                                    runat="server"
+                                    Width="600" Header="false"
+                                    Height="210" Layout="FitLayout"
+                                    Frame="true" TitleCollapse="true"  Scroll="Vertical"
+                                    >
+                                    <Store>
+                                        <ext:Store ID="periodsStore" runat="server">
+                                           <Model>
+                                                <ext:Model runat="server" Name="Employee">
+                                                    <Fields>
+                                                        <ext:ModelField Name="from"  />
+                                                        <ext:ModelField Name="to"/>
+                                                        <ext:ModelField Name="pct" />
+                                                       
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Plugins>
+                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>" >
+                                            <Listeners>
+                                                <BeforeEdit Handler="if(App.editDisabled.value=='1') return false;" />
+                                            </Listeners>
+                                            </ext:RowEditing>
+                                    </Plugins>
+                                    <TopBar>
+                                        <ext:Toolbar runat="server">
+                                            <Items>
+                                                <ext:Button runat="server" Text="<%$ Resources: BtnAddPeriod %>" Icon="UserAdd" ID="addPeriod">
+                                                    <Listeners>
+                                                        <Click Fn="addEmployee" />
+                                                    </Listeners>
+                                                </ext:Button>
+                                                <ext:Button
+                                                    ID="btnRemoveEmployee"
+                                                    runat="server"
+                                                    Text="<%$ Resources:Common , Delete %>" 
+                                                    Icon="UserDelete"
+                                                    Disabled="true">
+                                                    <Listeners>
+                                                        <Click Fn="removeEmployee" />
+                                                    </Listeners>
+                                                </ext:Button>
+                                            </Items>
+                                        </ext:Toolbar>
+                                    </TopBar>
+                                    <ColumnModel>
+                                        <Columns>
+                                            <ext:RowNumbererColumn runat="server" Width="25" />
+                                            <ext:NumberColumn
+                                                runat="server"
+                                                Text="<%$ Resources: FromDays %>" 
+                                                DataIndex="from"
+                                                 Flex="1"
+                                                Align="Center">
+                                                <Editor>
+                                                     <%-- Vtype="numberrange"
+                                                        EndNumberField="toField"--%>
+                                                    <ext:TextField
+                                                        runat="server"
+                                                         ID="fromField"
+                                                        AllowBlank="false"
+                                                        InvalidText="<%$Resources:MonthsFieldError %>"
+                                                         >
+                                                        <Validator Handler="if(isNaN(this.value)) return false; return true;">
+                                                            
+                                                        </Validator>
+                                                        </ext:TextField>
+                                                </Editor>
+                                            </ext:NumberColumn>
+                                            <ext:NumberColumn
+                                                runat="server"
+                                                Text="<%$ Resources: ToDays %>" 
+                                                DataIndex="to"
+                                                 Flex="1"
+                                                Align="Center">
+                                                <Editor>
+                                                       <%--   StartNumberField="fromField"
+                                                         Vtype="numberrange"--%>
+                                                    <ext:TextField
+                                                        runat="server"
+                                                        ID="toField"
+                                                        AllowBlank="false"
+                                                        
+                                                         InvalidText="<%$Resources:MonthsFieldError %>"
+                                                        >
+                                                        <Validator Handler="if(isNaN(this.value)) return false; return true;"/>
+                                                        </ext:TextField>
 
+                                                </Editor>
+                                                
+                                            </ext:NumberColumn>
+                                            
+                                            
+                                            <ext:NumberColumn
+                                                runat="server"
+                                                Text="<%$ Resources: pct %>" 
+                                                DataIndex="pct"
+                                                 Flex="1"
+                                                Align="Center">
+                                                <Editor>
+                                                    <ext:TextField
+                                                        runat="server"
+                                                        AllowBlank="false"
+                                                         >
+                                                         <Validator Handler="if(isNaN(this.value)) return false; return true;"/>
+                                                        </ext:TextField>
+                                                </Editor>
+                                            </ext:NumberColumn>
+                                            
+                                        </Columns>
+                                    </ColumnModel>
+                                    <Listeners>
+                                        <SelectionChange Handler="if(App.deleteDisabled.value=='1') return; App.btnRemoveEmployee.setDisabled(!selected.length);" />
+                                    </Listeners>
+                                </ext:GridPanel>
+                            </Items>
+
+                        </ext:FormPanel>
                     </Items>
                 </ext:TabPanel>
             </Items>
@@ -341,14 +402,15 @@
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                <ext:Parameter Name="schedule" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                <ext:Parameter Name="periods" Value="Ext.encode(#{periodsGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw"  />
                             </ExtraParams>
                         </Click>
                     </DirectEvents>
@@ -366,3 +428,5 @@
     </form>
 </body>
 </html>
+
+

@@ -892,6 +892,7 @@ namespace AionHR.Web.UI.Forms
             date.MaxDate = new DateTime();
             DeductionGridPanel.Disabled = true;
             panelRecordDetails.ActiveIndex = 0;
+            effectiveDate.SelectedDate = DateTime.Now;
             //SetTabPanelEnable(false);
             FillLoanType();
             FillBranchField();

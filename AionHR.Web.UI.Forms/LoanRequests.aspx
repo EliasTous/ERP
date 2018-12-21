@@ -276,7 +276,7 @@
                                  </ext:Column>--%>
 
                              <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" Flex="2" >
-                                    <Renderer Handler="return record.data['ldValue'].toLocaleString();"></Renderer>
+                                    <Renderer Handler="if (record.data['ldValue']!=null) return record.data['ldValue'].toLocaleString();"></Renderer>
                                  </ext:Column>
                              
                            
@@ -588,10 +588,10 @@
                                         <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
                                         <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
                                     </Items>
-                                    <Listeners>
-                                        <Change Handler="if(this.value==2) {this.next().setDisabled(false); this.next().setValue(new Date());} else {this.next().setDisabled(true); this.next().clear();}">
+                                   <%-- <Listeners>
+                                        <Change Handler="if(this.value==2) {this.next().setDisabled(false); this.next().setValue(new Date());} else {this.next().setDisabled(true); this.next().clear();if (this.value==1) #{effectiveDate}.allowBlank = true;}">
                                         </Change>
-                                    </Listeners>
+                                    </Listeners>--%>
                                 </ext:ComboBox>
 
                                 <ext:DateField AllowBlank="false"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" Vtype="daterange"  >
@@ -613,7 +613,7 @@
 
                                             </Items>
                                            <Listeners>
-                                               <Change Handler="  if(#{ldMethod}.value ==5) #{ldValue}.setValue(#{amount}.value);"></Change>
+                                               <Change Handler="  if(#{ldMethod}.value ==5) {#{ldValue}.setValue(null); #{ldValue}.setDisabled(true); } else {#{ldValue}.setDisabled(false);#{ldValue}.validate();}"></Change>
 
                                            </Listeners>
                                         </ext:ComboBox>

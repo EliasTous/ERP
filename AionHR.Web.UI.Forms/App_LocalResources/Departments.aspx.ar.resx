@@ -168,4 +168,7 @@
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>تقويم العمل</value>
   </data>
+  <data name="sectionType" xml:space="preserve">
+    <value>دائرة</value>
+  </data>
 </root>

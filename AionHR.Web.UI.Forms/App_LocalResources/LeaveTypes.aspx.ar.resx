@@ -174,4 +174,7 @@
   <data name="FieldApproval" xml:space="preserve">
     <value>التعميد</value>
   </data>
+  <data name="FieldLeaveSchedule" xml:space="preserve">
+    <value>جدول الاجازات</value>
+  </data>
 </root>

@@ -143,6 +143,7 @@
     <Compile Include="LeaveManagement\ImportLeaves.cs" />
     <Compile Include="LeaveManagement\LeaveDay.cs" />
     <Compile Include="LeaveManagement\LeaveRequest.cs" />
+    <Compile Include="LeaveManagement\LeaveSchedule.cs" />
     <Compile Include="LoadTracking\ILoanTrackingRepository.cs" />
     <Compile Include="LoadTracking\ImportLoans.cs" />
     <Compile Include="LoadTracking\Loan.cs" />

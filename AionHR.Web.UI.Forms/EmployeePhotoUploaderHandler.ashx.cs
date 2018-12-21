@@ -59,6 +59,12 @@ namespace AionHR.Web.UI.Forms
                     {
                         HttpPostedFile f = context.Request.Files.Get(i);
                         fileData = new byte[Convert.ToInt32(f.InputStream.Length)];
+                        if (f.InputStream.Length > 1024)
+                        {
+                         
+                            context.Response.Write("{'Error':'Error'}");
+                            return;
+                        }
                         f.InputStream.Seek(0, SeekOrigin.Begin);
                         f.InputStream.Read(fileData, 0, Convert.ToInt32(f.InputStream.Length));
                         f.InputStream.Close();

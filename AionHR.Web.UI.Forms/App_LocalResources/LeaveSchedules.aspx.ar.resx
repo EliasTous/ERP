@@ -118,63 +118,54 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Leave Type Info</value>
+    <value>معلومات جدول الإجازات</value>
   </data>
-  <data name="Business" xml:space="preserve">
-    <value>Business / Sick</value>
+  <data name="BtnAddPeriod" xml:space="preserve">
+    <value>إضافة فترة جدول إجازات</value>
+  </data>
+  <data name="BtnRemovePeriod" xml:space="preserve">
+    <value>حذف فترة جدول إجازات</value>
+  </data>
+  <data name="BtnUpdate" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>مكتسبات (ايام)</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Leave Type</value>
+    <value>تعديل جدول الإجازات</value>
+  </data>
+  <data name="FieldDays" xml:space="preserve">
+    <value>عدد أيام الإجازات</value>
+  </data>
+  <data name="FieldFrom" xml:space="preserve">
+    <value>من عدد الأشهر</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+  <data name="FieldTo" xml:space="preserve">
+    <value>إلى عدد الأشهر</value>
   </data>
-  <data name="FieldReference" xml:space="preserve">
-    <value>Reference</value>
+  <data name="FromDays" xml:space="preserve">
+    <value>من (أيام)</value>
   </data>
-  <data name="FieldRequiresApproval" xml:space="preserve">
-    <value>Requires Approval?</value>
+  <data name="MonthsFieldError" xml:space="preserve">
+    <value>عدد الأشهر حقل الزامي، ويجب أن يكون بين ال0 وال 1000</value>
   </data>
-  <data name="isPaid" xml:space="preserve">
-    <value>Deduct from leave balance </value>
+  <data name="pct" xml:space="preserve">
+    <value>النسبة</value>
   </data>
-  <data name="LeaveType" xml:space="preserve">
-    <value>Leave Type</value>
+  <data name="Periods" xml:space="preserve">
+    <value>فترات جدول الإجازات</value>
   </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Personal</value>
+  <data name="PeriodsTab" xml:space="preserve">
+    <value>فترات جدول الإجازات</value>
   </data>
-  <data name="raDepHead" xml:space="preserve">
-    <value>Department Head</value>
-  </data>
-  <data name="raDepHierarchy" xml:space="preserve">
-    <value>Department Hierarchy</value>
-  </data>
-  <data name="raDepLA" xml:space="preserve">
-    <value>Leave Authenticators</value>
-  </data>
-  <data name="raReportTo" xml:space="preserve">
-    <value>Reports To</value>
+  <data name="ToDays" xml:space="preserve">
+    <value>الى (أيام)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Leave Types</value>
-  </data>
-  <data name="Approvallevel" xml:space="preserve">
-    <value>Approval Level</value>
-  </data>
-  <data name="Other" xml:space="preserve">
-    <value>Other</value>
-  </data>
-  <data name="raBrHead" xml:space="preserve">
-    <value>Branch Manager</value>
-  </data>
-  <data name="FieldApproval" xml:space="preserve">
-    <value>Aprroval </value>
-  </data>
-  <data name="FieldLeaveSchedule" xml:space="preserve">
-    <value>Leave Schedule</value>
+    <value>جداول الإجازات</value>
   </data>
 </root>

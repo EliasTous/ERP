@@ -220,12 +220,13 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell18.CanGrow = false;
             this.xrTableCell18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DURING_SHIFT_LEAVE")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "onLeave")});
             resources.ApplyResources(this.xrTableCell18, "xrTableCell18");
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.StyleName = "DataField";
             this.xrTableCell18.StylePriority.UseBorders = false;
             this.xrTableCell18.StylePriority.UseTextAlignment = false;
+            this.xrTableCell18.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell18_PrintOnPage);
             // 
             // xrTableCell20
             // 
@@ -234,12 +235,13 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell20.CanGrow = false;
             this.xrTableCell20.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "EARLY_CHECKIN")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "paidLeave")});
             resources.ApplyResources(this.xrTableCell20, "xrTableCell20");
             this.xrTableCell20.Name = "xrTableCell20";
             this.xrTableCell20.StyleName = "DataField";
             this.xrTableCell20.StylePriority.UseBorders = false;
             this.xrTableCell20.StylePriority.UseTextAlignment = false;
+            this.xrTableCell20.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell18_PrintOnPage);
             // 
             // xrTableCell22
             // 
@@ -248,12 +250,13 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell22.CanGrow = false;
             this.xrTableCell22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "EARLY_LEAVE")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "UNPAID_LEAVE")});
             resources.ApplyResources(this.xrTableCell22, "xrTableCell22");
             this.xrTableCell22.Name = "xrTableCell22";
             this.xrTableCell22.StyleName = "DataField";
             this.xrTableCell22.StylePriority.UseBorders = false;
             this.xrTableCell22.StylePriority.UseTextAlignment = false;
+            this.xrTableCell22.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell18_PrintOnPage);
             // 
             // xrTableCell24
             // 
@@ -262,12 +265,13 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell24.CanGrow = false;
             this.xrTableCell24.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "firstIn")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PAID_LEAVE")});
             resources.ApplyResources(this.xrTableCell24, "xrTableCell24");
             this.xrTableCell24.Name = "xrTableCell24";
             this.xrTableCell24.StyleName = "DataField";
             this.xrTableCell24.StylePriority.UseBorders = false;
             this.xrTableCell24.StylePriority.UseTextAlignment = false;
+            this.xrTableCell24.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell18_PrintOnPage);
             // 
             // xrTableCell28
             // 
@@ -276,12 +280,13 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell28.CanGrow = false;
             this.xrTableCell28.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "LATE_CHECKIN")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DAY_LEAVE_WITHOUT_EXCUSE")});
             resources.ApplyResources(this.xrTableCell28, "xrTableCell28");
             this.xrTableCell28.Name = "xrTableCell28";
             this.xrTableCell28.StyleName = "DataField";
             this.xrTableCell28.StylePriority.UseBorders = false;
             this.xrTableCell28.StylePriority.UseTextAlignment = false;
+            this.xrTableCell28.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell18_PrintOnPage);
             // 
             // xrTableCell30
             // 
@@ -290,12 +295,13 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell30.CanGrow = false;
             this.xrTableCell30.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "MISSED_PUNCH")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "SHIFT_LEAVE_WITHOUT_EXCUSE")});
             resources.ApplyResources(this.xrTableCell30, "xrTableCell30");
             this.xrTableCell30.Name = "xrTableCell30";
             this.xrTableCell30.StyleName = "DataField";
             this.xrTableCell30.StylePriority.UseBorders = false;
             this.xrTableCell30.StylePriority.UseTextAlignment = false;
+            this.xrTableCell30.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell18_PrintOnPage);
             // 
             // xrTableCell32
             // 
@@ -304,12 +310,13 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell32.CanGrow = false;
             this.xrTableCell32.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "onLeave")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "MISSED_PUNCH")});
             resources.ApplyResources(this.xrTableCell32, "xrTableCell32");
             this.xrTableCell32.Name = "xrTableCell32";
             this.xrTableCell32.StyleName = "DataField";
             this.xrTableCell32.StylePriority.UseBorders = false;
             this.xrTableCell32.StylePriority.UseTextAlignment = false;
+            this.xrTableCell32.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell18_PrintOnPage);
             // 
             // xrTableCell34
             // 
@@ -318,7 +325,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell34.CanGrow = false;
             this.xrTableCell34.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "OVERTIME")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "LATE_CHECKIN")});
             resources.ApplyResources(this.xrTableCell34, "xrTableCell34");
             this.xrTableCell34.Name = "xrTableCell34";
             this.xrTableCell34.StyleName = "DataField";
@@ -332,7 +339,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell36.CanGrow = false;
             this.xrTableCell36.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PAID_LEAVE")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DURING_SHIFT_LEAVE")});
             resources.ApplyResources(this.xrTableCell36, "xrTableCell36");
             this.xrTableCell36.Name = "xrTableCell36";
             this.xrTableCell36.StyleName = "DataField";
@@ -346,7 +353,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell38.CanGrow = false;
             this.xrTableCell38.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "paidLeave")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "EARLY_LEAVE")});
             resources.ApplyResources(this.xrTableCell38, "xrTableCell38");
             this.xrTableCell38.Name = "xrTableCell38";
             this.xrTableCell38.StyleName = "DataField";
@@ -360,7 +367,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell40.CanGrow = false;
             this.xrTableCell40.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "SHIFT_LEAVE_WITHOUT_EXCUSE")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "EARLY_CHECKIN")});
             resources.ApplyResources(this.xrTableCell40, "xrTableCell40");
             this.xrTableCell40.Name = "xrTableCell40";
             this.xrTableCell40.StyleName = "DataField";
@@ -374,7 +381,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell42.CanGrow = false;
             this.xrTableCell42.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "UNPAID_LEAVE")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "OVERTIME")});
             resources.ApplyResources(this.xrTableCell42, "xrTableCell42");
             this.xrTableCell42.Name = "xrTableCell42";
             this.xrTableCell42.StyleName = "DataField";

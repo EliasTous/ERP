@@ -43,6 +43,24 @@ public class VacationPeriodsListRequest : ListRequest
         }
     }
 }
+
+public class LeaveSchedulesListRequest : ListRequest
+{
+    public string LeaveScheduleId { get; set; }
+
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_lsId", LeaveScheduleId);
+
+
+            return parameters;
+        }
+    }
+}
 public class LeaveRequestListRequest : ListRequest
 {
     public int status { get; set; }

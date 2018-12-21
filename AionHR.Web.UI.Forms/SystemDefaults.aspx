@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
 
-    <link rel="stylesheet" type="../text/css" href="CSS/Common.css?id=11" />
-<script src="Scripts.js" type="../text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=11" />
+<script src="Scripts.js" type="text/javascript"></script>
 
 
 
@@ -18,14 +18,42 @@
 
    
     <link rel="stylesheet" href="CSS/LiveSearch.css?id=10" />
-      <link rel="stylesheet" type="text/css" href="../CSS/cropper.css?id=11" />
-    <script type="text/javascript" src="Scripts/Nationalities.js?id=12"></script>
-    <script type="text/javascript" src="Scripts/common.js?id=13"></script>
-    <script type="text/javascript" src="../Scripts/jquery-new.js?id=14"></script>
+    <link rel="stylesheet" type="text/css" href="CSS/cropper.css?id=101" />
+    <script type="text/javascript" src="Scripts/Nationalities.js?id=121"></script>
+    <script type="text/javascript" src="Scripts/common.js?id=122"></script>
+    <script type="text/javascript" src="Scripts/jquery-new.js?id=125"></script>
   
-    <script type="text/javascript" src="../Scripts/cropper.js?id=15"></script>
-      <script type="text/javascript" src="Scripts/SystemDefaults.js?id=16"></script>
+    <script type="text/javascript" src="Scripts/cropper.js?id=126"></script>
+      <script type="text/javascript" src="Scripts/SystemDefaults.js?id=92"></script>
+
+
+
+      <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
+    <link rel="stylesheet" href="CSS/LiveSearch.css" />
+    <script type="text/javascript" src="Scripts/AdminTemplates.js?id=4"></script>
+    <script type="text/javascript" src="Scripts/common.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <%--<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>--%>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+
     <script type="text/javascript">
+           function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                   .replace(/'/g, "&#039;");
+
+               alert(unsafe);
+        }
         var checkExtension = function (file) {
           
         try {
@@ -65,6 +93,13 @@
                 field.setMaxValue(1000000);
             }
         }
+        function setWidth() {
+    
+    document.getElementById("summernote").style.width = App.editorHolder.getWidth() + 4 + 'px';
+    
+    document.getElementById("summernote").style.height = App.editorHolder.getHeight() - 20 + 'px';
+
+}
     </script>
 
 </head>
@@ -96,6 +131,42 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
+                                  <ext:TextField ID="bodyText" Hidden="true" runat="server" />
+                                <ext:TextField ID="teId" Hidden="true" runat="server" />
+                                <ext:TextField ID="templateUsage" Hidden="true" runat="server" />
+                                   <ext:Panel runat="server" Layout="FitLayout" Flex="1" ID="editorHolder" RTL="false">
+                                    <Items>
+                                        <ext:Container runat="server">
+                                            <Content>
+                                                <div id="summernote">
+                                                </div>
+
+                                            </Content>
+                                        </ext:Container>
+                                    </Items>
+                                    <Listeners>
+
+                                        <AfterLayout Handler=" $('#summernote').summernote('reset'); setWidth(); var s = unescape( #{bodyText}.getValue()); document.getElementById('summernote').style.direction = 'ltr'; $('#summernote').summernote('code',s);" />
+                                        <AfterRender Handler=" $('#summernote').summernote({
+                                                height: 150,
+                                              toolbar: [['mybutton', ['hello','admin','leave','loan','schedule','penalty']],
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+         
+    
+  ],
+
+
+                                                }); " />
+                                        <Resize Handler="setWidth();" />
+                                    </Listeners>
+                                </ext:Panel>
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" LabelWidth="150" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldCountry %>" Name="countryId" runat="server" DisplayField="name" ValueField="recordId" ID="countryIdCombo">
                                     <Store>
                                         <ext:Store runat="server" ID="NationalityStore">
@@ -255,7 +326,7 @@
                                         <Click OnEvent="SaveGeneralSettings" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                             <EventMask ShowMask="true"  />
                                             <ExtraParams>
-
+                                            
                                                 <ext:Parameter Name="values" Value="#{GeneralSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
                                             </ExtraParams>
                                         </Click>
@@ -1110,6 +1181,7 @@
                                                 <ext:Parameter Name="ta" Value="#{AttendanceSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
                                                 <ext:Parameter Name="py" Value="#{PayrollSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
                                                 <ext:Parameter Name="sec" Value="#{SecuritySettings}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                                <ext:Parameter Name="backofficeEmail" Value="escapeHtml($('#summernote').summernote('code'))" Mode="Raw" Encode="true" />
                                             </ExtraParams>
                                         </Click>
                                     </DirectEvents>

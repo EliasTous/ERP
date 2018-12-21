@@ -353,7 +353,7 @@
                                         <ext:ListItem Text="<%$ Resources:Common ,  EARLY_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_CHECKIN %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  OVERTIME %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_OVERTIME %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  MISSED_PUNCH %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_MISSED_PUNCH %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: Common , COUNT %>" Value="<%$ Resources: ComboBoxValues , TimeVariationType_COUNT %>"></ext:ListItem>
+                                    
                                       
                                     </Items>
                                 </ext:ComboBox>

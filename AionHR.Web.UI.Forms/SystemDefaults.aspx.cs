@@ -568,6 +568,12 @@ namespace AionHR.Web.UI.Forms
                 punchSource.Select(items.Where(s => s.Key == "punchSource").First().Value);
             }
             catch { }
+            try
+            {
+                bodyText.Text = (items.Where(s => s.Key == "backofficeEmail").First().Value);
+            }
+            catch { }
+         
 
             FillCompanyLogo(); 
 
@@ -708,7 +714,7 @@ namespace AionHR.Web.UI.Forms
             submittedValues.Add(new KeyValuePair<string, string>("enableHijri", values.enableHijri == null ? "false" : "true"));
             return submittedValues;
         }
-        private void SaveGeneralSettings(dynamic values)
+        private void SaveGeneralSettings(dynamic values ,string backofficeEmail)
         {
             List<KeyValuePair<string, string>> submittedValues = GetGeneralSettings(values);
             KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
@@ -1019,7 +1025,8 @@ namespace AionHR.Web.UI.Forms
         {
             
             dynamic values = JsonConvert.DeserializeObject(e.ExtraParams["values"]);
-            SaveGeneralSettings(values);
+            string backofficeEmail = e.ExtraParams["backofficeEmail"];
+            SaveGeneralSettings(values, backofficeEmail);
           
         }
         protected void SaveAttendanceSettings(object sender, DirectEventArgs e)
@@ -1050,7 +1057,15 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveAll(object sender, DirectEventArgs e)
         {
+           
             List<KeyValuePair<string, string>> allValues = new List<KeyValuePair<string, string>>();
+            string backofficeEmail = e.ExtraParams["backofficeEmail"];
+            backofficeEmail= backofficeEmail.Substring(1, backofficeEmail.Length - 2);
+          
+            KeyValuePair<string, string> backofficeEmailKey = new KeyValuePair<string, string>("backofficeEmail", backofficeEmail);
+
+            allValues.Add(backofficeEmailKey);
+
             dynamic empValues = JsonConvert.DeserializeObject(e.ExtraParams["emp"]);
             allValues.AddRange(GetEmployeeSettings(empValues));
 

@@ -26,6 +26,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(VacationSchedulePeriod), "getVP");
             ChildGetLookup.Add(typeof(LeaveType), "getLT");
             ChildGetLookup.Add(typeof(LeaveRequest), "getLR");
+            ChildGetLookup.Add(typeof(LeaveSchedule), "getLS");
+            ChildGetLookup.Add(typeof(LeaveSchedulePeriod), "getLP");
 
             ChildGetAllLookup.Add(typeof(VacationSchedule), "qryVS");
             ChildGetAllLookup.Add(typeof(VacationSchedulePeriod), "qryVP");
@@ -36,6 +38,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(LeaveRequest), "qryLR");
             ChildGetAllLookup.Add(typeof(LeaveDay), "qryLD");
             ChildGetAllLookup.Add(typeof(Approvals), "qryLA");
+            ChildGetAllLookup.Add(typeof(LeaveSchedule), "qryLS");
+            ChildGetAllLookup.Add(typeof(LeaveSchedulePeriod), "qryLP");
 
             ChildAddOrUpdateLookup.Add(typeof(VacationSchedule), "setVS");
             ChildAddOrUpdateLookup.Add(typeof(VacationSchedulePeriod[]), "arrVP");
@@ -46,6 +50,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(AttendanceBreak[]), "arrSB");
             ChildAddOrUpdateLookup.Add(typeof(LeaveDay), "setLD");
             ChildAddOrUpdateLookup.Add(typeof(DashboardLeave), "setLA");
+            ChildAddOrUpdateLookup.Add(typeof(LeaveSchedule), "setLS");
+            ChildAddOrUpdateLookup.Add(typeof(LeaveSchedulePeriod), "setLP");
 
             ChildDeleteLookup.Add(typeof(VacationSchedulePeriod), "delVP");
             ChildDeleteLookup.Add(typeof(LeaveDay), "delLD");
@@ -53,6 +59,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(VacationSchedule), "delVS");
             ChildDeleteLookup.Add(typeof(LeaveRequest), "delLR");
             ChildDeleteLookup.Add(typeof(LeaveType), "delLT");
+            ChildDeleteLookup.Add(typeof(LeaveSchedule), "delLS");
+            ChildDeleteLookup.Add(typeof(LeaveSchedulePeriod), "delLP");
         }
     }
 }

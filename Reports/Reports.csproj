@@ -113,6 +113,9 @@
     <Compile Include="EmployeePayRollCross\EmployeePayrollCrossReport.Designer.cs">
       <DependentUpon>EmployeePayrollCrossReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmployeePayRoll\EmployeePayrollDataSet.cs">
+      <DependentUpon>EmployeePayrollDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EmployeePayRoll\EmployeesPaySlip.cs">
       <SubType>Component</SubType>
     </Compile>

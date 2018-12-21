@@ -281,57 +281,56 @@ function initCropper(path) {
 
 }
 var theBlob;
-    function GetCroppedImage() {
-        var croppedCanvas;
-        var roundedCanvas;
+    
+
+
+function GetCroppedImage() {
+    var croppedCanvas;
+    var roundedCanvas;
 
 
 
-        // Crop
-        croppedCanvas = $('#image').cropper('getCroppedCanvas');
+    // Crop
+    croppedCanvas = $('#image').cropper('getCroppedCanvas');
 
-        // Round
-        roundedCanvas = getRoundedCanvas(croppedCanvas);
+    // Round
+    roundedCanvas = getRoundedCanvas(croppedCanvas);
 
 
-        var dataURL = roundedCanvas.toDataURL("image/png");
-        
-        var b;
-        roundedCanvas.toBlob(function (blob) {
-          
-            App.imageData.value = blob; var fd = new FormData();
+    var dataURL = roundedCanvas.toDataURL("image/png");
+    var b;
+    roundedCanvas.toBlob(function (blob) {
+
+        App.imageData.value = blob; var fd = new FormData();
         fd.append('fname', App.FileUploadField1.value);
         fd.append('id', null);
 
-            Ext.net.Mask.show({msg: App.lblLoading.getValue(), el: App.imageSelectionWindow.id });
+        Ext.net.Mask.show({ msg: App.lblLoading.getValue(), el: App.imageSelectionWindow.id });
         var fileName = App.FileUploadField1.value;
-        if (fileName === '')
-            fileName = App.FileName.value;
+        if (fileName == '')
+            fileName = 'test';
 
         fd.append('data', App.imageData.value, fileName);
-            if (App.FileUploadField1.value === '')
-            {
-               
-                fd.append('oldUrl', App.CurrentEmployeePhotoName.value);
-            }
-            $.ajax({
+        if (App.FileUploadField1.value == '')
+            fd.append('oldUrl', App.CurrentEmployeePhotoName.value);
+        $.ajax({
             type: 'POST',
-                url: 'EmployeePhotoUploaderHandler.ashx?classId=20030',
-        data: fd,
-        processData: false,
-        contentType: false,
-                error: function (s) {Ext.net.Mask.hide(); alert(dump(s)); }
-            }).done(function (data) {
-        
-        Ext.net.Mask.hide();
-        App.imageSelectionWindow.hide();
+            url: 'EmployeePhotoUploaderHandler.ashx?classId=20030' ,
+            data: fd,
+            processData: false,
+            contentType: false,
+            error: function (s) { Ext.net.Mask.hide(); alert(dump(s)); }
+        }).done(function (data) {
+           
+            Ext.net.Mask.hide();
+            App.imageSelectionWindow.hide();
 
-    });
-}
+        });
+    }
 
-);
+    );
 
-return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
    
    

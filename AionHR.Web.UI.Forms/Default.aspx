@@ -78,6 +78,7 @@
     <ext:Hidden runat="server" ID="tadtTitle" Text="<%$Resources:Common , DayTypes %>" />
     <ext:Hidden runat="server" ID="gfTitle" Text="<%$Resources:Common , Geofences %>" />
     <ext:Hidden runat="server" ID="vsTitle" Text="<%$Resources:Common , VacationSchedules %>" />
+     <ext:Hidden runat="server" ID="lsTitle" Text="<%$Resources:Common , LeaveSchedules %>" />
     <ext:Hidden runat="server" ID="pyye" Text="<%$Resources:Common , FiscalYears %>" />
      <ext:Hidden runat="server" ID="pypt" Text="<%$Resources:Common , PenaltyType %>" />
      <ext:Hidden runat="server" ID="pyTC" Text="<%$Resources:Common , TimeCode %>" />
@@ -556,6 +557,11 @@
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , VacationSchedules%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('VacationSchedules', 'VacationSchedules.aspx', #{vsTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , LeaveSchedules%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('LeaveSchedules', 'LeaveSchedules.aspx', #{lsTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , LeaveTypes%>">

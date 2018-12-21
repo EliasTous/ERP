@@ -10,7 +10,7 @@
 namespace AionHR.Web.UI.Forms {
     
     
-    public partial class LeaveTypes {
+    public partial class LeaveSchedules {
         
         /// <summary>
         /// Form1 control.
@@ -67,31 +67,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
-        /// leaveType1 control.
+        /// deleteDisabled control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden leaveType1;
+        protected global::Ext.Net.Hidden deleteDisabled;
         
         /// <summary>
-        /// leaveType2 control.
+        /// editDisabled control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden leaveType2;
-        
-        /// <summary>
-        /// leaveType0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden leaveType0;
+        protected global::Ext.Net.Hidden editDisabled;
         
         /// <summary>
         /// Store1 control.
@@ -175,31 +166,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField searchTrigger;
         
         /// <summary>
-        /// ColRecordId control.
+        /// ColrecordId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column ColRecordId;
-        
-        /// <summary>
-        /// ColApId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column ColApId;
-        
-        /// <summary>
-        /// Column1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column1;
+        protected global::Ext.Net.Column ColrecordId;
         
         /// <summary>
         /// ColName control.
@@ -209,24 +182,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column ColName;
-        
-        /// <summary>
-        /// Column2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column2;
-        
-        /// <summary>
-        /// ColApName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column ColApName;
         
         /// <summary>
         /// colDelete control.
@@ -346,67 +301,67 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField name;
         
         /// <summary>
-        /// reference control.
+        /// periodsTab control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField reference;
+        protected global::Ext.Net.FormPanel periodsTab;
         
         /// <summary>
-        /// leaveType control.
+        /// periodsGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox leaveType;
+        protected global::Ext.Net.GridPanel periodsGrid;
         
         /// <summary>
-        /// apId control.
+        /// periodsStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox apId;
+        protected global::Ext.Net.Store periodsStore;
         
         /// <summary>
-        /// ApprovalStore control.
+        /// addPeriod control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store ApprovalStore;
+        protected global::Ext.Net.Button addPeriod;
         
         /// <summary>
-        /// lsId control.
+        /// btnRemoveEmployee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox lsId;
+        protected global::Ext.Net.Button btnRemoveEmployee;
         
         /// <summary>
-        /// leaveScheduleStore control.
+        /// fromField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store leaveScheduleStore;
+        protected global::Ext.Net.TextField fromField;
         
         /// <summary>
-        /// isPaid control.
+        /// toField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox isPaid;
+        protected global::Ext.Net.TextField toField;
         
         /// <summary>
         /// SaveButton control.

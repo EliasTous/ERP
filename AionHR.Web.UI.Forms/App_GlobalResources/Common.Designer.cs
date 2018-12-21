@@ -1816,6 +1816,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leave Schedules.
+        /// </summary>
+        internal static string LeaveSchedules {
+            get {
+                return ResourceManager.GetString("LeaveSchedules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeaveTypes.
         /// </summary>
         internal static string LeaveTypes {

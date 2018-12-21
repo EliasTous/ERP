@@ -20,18 +20,19 @@ using AionHR.Web.UI.Forms.Utilities;
 using AionHR.Model.Company.News;
 using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
+using AionHR.Model.Employees.Profile;
 using AionHR.Model.Employees.Leaves;
-using AionHR.Services.Messaging.CompanyStructure;
+using AionHR.Model.Attributes;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class LeaveTypes : System.Web.UI.Page
+    public partial class LeaveSchedules : System.Web.UI.Page
     {
+        ILeaveManagementService _branchService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
-        ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
-        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         protected override void InitializeCulture()
         {
 
@@ -55,16 +56,20 @@ namespace AionHR.Web.UI.Forms
         {
 
 
+
+
             if (!X.IsAjaxRequest && !IsPostBack)
             {
 
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-
+                if (_systemService.SessionHelper.CheckIfIsAdmin())
+                    return;
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveType), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(VacationSchedule), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -73,10 +78,50 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(VacationSchedulePeriod), null, periodsGrid, addPeriod, null);
 
-                ApprovalStore.Reload();
+                }
+                catch (AccessDeniedException exp)
+                {
+
+                    periodsGrid.Hidden = true;
+                    
+                }
+                if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
+                    return;
+
+                ApplySecurityOnVacationPeriods();
             }
 
+         
+        }
+
+        private void ApplySecurityOnVacationPeriods()
+        {
+            ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+            classReq.ClassId = (typeof(VacationSchedulePeriod).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+            classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+            switch (modClass.result.accessLevel)
+            {
+                case 1: addPeriod.Disabled = true; editDisabled.Text = "1"; deleteDisabled.Text = "1"; break;
+                case 2: addPeriod.Disabled = true; deleteDisabled.Text = "1"; break;
+                default: break;
+            }
+           
+            var properties = AccessControlApplier.GetPropertiesLevels(typeof(VacationSchedulePeriod));
+            int i = 1;
+            foreach (var item in properties)
+            {
+                if (item.accessLevel < 2 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
+                    periodsGrid.ColumnModel.Columns[i].Editor[0].ReadOnly = true;
+                if (item.accessLevel < 1 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
+                    periodsGrid.ColumnModel.Columns[i].Editor[0].InputType = InputType.Password;
+
+                i++;
+            }
         }
 
 
@@ -116,25 +161,23 @@ namespace AionHR.Web.UI.Forms
 
             }
         }
-
+       
 
 
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
 
-            string id = e.ExtraParams["id"];
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
-            leaveScheduleStore.Reload();
-            
             switch (type)
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
+                    panelRecordDetails.ActiveIndex = 0;
                     RecordRequest r = new RecordRequest();
-                    r.RecordID = id;
-                   
-                    RecordResponse<LeaveType> response = _leaveManagementService.ChildGetRecord<LeaveType>(r);
+                    r.RecordID = id.ToString();
+                    RecordResponse<LeaveSchedule> response = _branchService.ChildGetRecord<LeaveSchedule>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -143,8 +186,20 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-                    apId.Select(response.result.apId.ToString());
-                  
+
+                    LeaveSchedulesListRequest req = new LeaveSchedulesListRequest();
+                    req.LeaveScheduleId = r.RecordID;
+                    ListResponse<LeaveSchedulePeriod> periods = _branchService.ChildGetAll<LeaveSchedulePeriod>(req);
+                    if (!periods.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", periods.ErrorCode) != null ? GetGlobalResourceObject("Errors", periods.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + periods.LogId : periods.Summary).Show();
+                        return;
+                    }
+                    periodsGrid.Store[0].DataSource = periods.Items;
+                    periodsGrid.Store[0].DataBind();
+                    periodsGrid.DataBind();
+                    // InitCombos(response.result);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -177,6 +232,8 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+   
+
         /// <summary>
         /// This direct method will be called after confirming the delete
         /// </summary>
@@ -187,14 +244,13 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                LeaveType s = new LeaveType();
+                LeaveSchedule s = new LeaveSchedule();
                 s.recordId = index;
-                s.reference = "dd";
-              
                 s.name = "";
-                PostRequest<LeaveType> req = new PostRequest<LeaveType>();
+
+                PostRequest<LeaveSchedule> req = new PostRequest<LeaveSchedule>();
                 req.entity = s;
-                PostResponse<LeaveType> r = _leaveManagementService.ChildDelete<LeaveType>(req);
+                PostResponse<LeaveSchedule> r = _branchService.ChildDelete<LeaveSchedule>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -227,7 +283,72 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        [DirectMethod]
+        public object FillParent(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
 
+
+
+            List<VacationSchedule> data;
+            ListRequest req = new ListRequest();
+
+            ListResponse<VacationSchedule> response = _branchService.ChildGetAll<VacationSchedule>(req);
+            data = response.Items;
+            return new
+            {
+                data
+            };
+
+        }
+        [DirectMethod]
+        public object FillSupervisor(string action, Dictionary<string, object> extraParams)
+        {
+
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+
+
+
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+
+            //  return new
+            // {
+            return data;
+            //};
+
+        }
+
+        private List<Employee> GetEmployeeByID(string id)
+        {
+
+            RecordRequest req = new RecordRequest();
+            req.RecordID = id;
+
+
+
+            List<Employee> emps = new List<Employee>();
+            RecordResponse<Employee> emp = _employeeService.Get<Employee>(req);
+            emps.Add(emp.result);
+            return emps;
+        }
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+            
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 2;
+            req.SortBy = "firstName";
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
+
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
 
 
         /// <summary>
@@ -309,10 +430,9 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-            leaveScheduleStore.Reload();
-
+            periodsGrid.Store[0].DataSource = new List<LeaveSchedulePeriod>();
+            periodsGrid.Store[0].DataBind();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-
 
             this.EditRecordWindow.Show();
         }
@@ -330,18 +450,12 @@ namespace AionHR.Web.UI.Forms
 
             //in this test will take a list of News
             ListRequest request = new ListRequest();
-
             request.Filter = "";
-            ListResponse<LeaveType> routers = _leaveManagementService.ChildGetAll<LeaveType>(request);
-            routers.Items.ForEach(x =>
-            {if (x.leaveType != 1 && x.leaveType != 2)
-                    x.leaveType = 1;
-            }
-            );
-            if (!routers.Success)
-                Common.errorMessage(routers);
-            this.Store1.DataSource = routers.Items;
-            e.Total = routers.Items.Count; ;
+            ListResponse<LeaveSchedule> resp = _branchService.ChildGetAll<LeaveSchedule>(request);
+            if (!resp.Success)
+                Common.errorMessage(resp);
+            this.Store1.DataSource = resp.Items;
+            e.Total = resp.count;
 
             this.Store1.DataBind();
         }
@@ -354,15 +468,14 @@ namespace AionHR.Web.UI.Forms
 
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-
-
-            string obj = e.ExtraParams["values"];
-            LeaveType b = JsonConvert.DeserializeObject<LeaveType>(obj);
-
             string id = e.ExtraParams["id"];
-            // Define the object to add or edit as null
-            b.apName = apId.SelectedItem.Text;
 
+            string obj = e.ExtraParams["schedule"];
+            LeaveSchedule b = JsonConvert.DeserializeObject<LeaveSchedule>(obj);
+            string pers = e.ExtraParams["periods"];
+            b.recordId = id;
+            // Define the object to add or edit as null
+          
             if (string.IsNullOrEmpty(id))
             {
 
@@ -370,11 +483,10 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<LeaveType> request = new PostRequest<LeaveType>();
-
+                    PostRequest<LeaveSchedule> request = new PostRequest<LeaveSchedule>();
                     request.entity = b;
-                    PostResponse<LeaveType> r = _leaveManagementService.ChildAddOrUpdate<LeaveType>(request);
-
+                    PostResponse<LeaveSchedule> r = _branchService.ChildAddOrUpdate<LeaveSchedule>(request);
+                    b.recordId = r.recordId;
 
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
@@ -384,9 +496,13 @@ namespace AionHR.Web.UI.Forms
                          Common.errorMessage(r);
                         return;
                     }
-                    else
+                    List<LeaveSchedulePeriod> periods = JsonConvert.DeserializeObject<List<LeaveSchedulePeriod>>(pers);
+                 bool Success =   AddPeriodsList(b.recordId, periods);
+                                 
+
+                   if (Success)
                     {
-                        b.recordId = r.recordId;
+
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
@@ -397,7 +513,7 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordSavingSucc
                         });
-                      
+
                         this.EditRecordWindow.Close();
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
@@ -422,29 +538,46 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
-                    //getting the id of the record
-                    PostRequest<LeaveType> request = new PostRequest<LeaveType>();
-                    request.entity = b;
-                    PostResponse<LeaveType> r = _leaveManagementService.ChildAddOrUpdate<LeaveType>(request);                      //Step 1 Selecting the object or building up the object for update purpose
-
-                    //Step 2 : saving to store
-
-                    //Step 3 :  Check if request fails
+                    int index = Convert.ToInt32(id);//getting the id of the record
+                    PostRequest<LeaveSchedule> modifyHeaderRequest = new PostRequest<LeaveSchedule>();
+                    modifyHeaderRequest.entity = b;
+                    PostResponse<LeaveSchedule> r = _branchService.ChildAddOrUpdate<LeaveSchedule>(modifyHeaderRequest);                   //Step 1 Selecting the object or building up the object for update purpose
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                         return;
                     }
-                    else
+                    LeaveSchedulesListRequest leaveScheduleReq = new LeaveSchedulesListRequest();
+                    leaveScheduleReq.LeaveScheduleId = b.recordId;
+                    ListResponse<LeaveSchedulePeriod> leaveScheduleResponse = _branchService.ChildGetAll<LeaveSchedulePeriod>(leaveScheduleReq);
+
+                   leaveScheduleResponse.Items.ForEach(x =>
+                   {
+                       PostRequest<LeaveSchedulePeriod> LeaveScheduleDEleteRequest = new PostRequest<LeaveSchedulePeriod>();
+                       LeaveScheduleDEleteRequest.entity = x;
+                       PostResponse<LeaveSchedulePeriod> LeaveScheduleDEleteResponse = _branchService.ChildDelete<LeaveSchedulePeriod>(LeaveScheduleDEleteRequest);
+                       if (!LeaveScheduleDEleteResponse.Success)
+                       {
+                           Common.errorMessage(LeaveScheduleDEleteResponse);
+                           throw new Exception();
+                       }
+                   });
+                   
+                    List<LeaveSchedulePeriod> periods = JsonConvert.DeserializeObject<List<LeaveSchedulePeriod>>(pers);
+                  bool result = AddPeriodsList(b.recordId, periods);
+
+                    //Step 2 : saving to store
+
+                    //Step 3 :  Check if request fails
+                    if (result)
                     {
 
 
-                        //ModelProxy record = this.Store1.GetById(id);
+                        ModelProxy record = this.Store1.GetById(index);
+                        BasicInfoTab.UpdateRecord(record);
 
-                        //BasicInfoTab.UpdateRecord(record);
-                        //record.Commit();
-                        Store1.Reload();
+                        record.Commit();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -464,7 +597,32 @@ namespace AionHR.Web.UI.Forms
                 }
             }
         }
+        private bool AddPeriodsList(string scheduleIdString, List<LeaveSchedulePeriod> periods)
+        {
+            short i = 1;
+            int scheduleId = Convert.ToInt32(scheduleIdString);
+            foreach (var period in periods)
+            {
+                period.seqNo = i++;
+                period.lsId = scheduleId;
+               
+            }
+            PostRequest<LeaveSchedulePeriod> periodRequest = new PostRequest<LeaveSchedulePeriod>();
+            PostResponse<LeaveSchedulePeriod> response;
+            periods.ForEach(x =>
+            {
+                periodRequest.entity = x;
+                response = _branchService.ChildAddOrUpdate<LeaveSchedulePeriod>(periodRequest);
+                if (!response.Success)
+                {
+                    Common.errorMessage(response);
+                    throw new Exception();
+                }
+            });
 
+
+            return true;
+        }
         [DirectMethod]
         public string CheckSession()
         {
@@ -479,56 +637,6 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-        
-        protected void ApprovalStory_RefreshData(object sender, StoreReadDataEventArgs e)
-        {
-
-            //GEtting the filter from the page
-            string filter = string.Empty;
-            int totalCount = 1;
-
-
-
-            //Fetching the corresponding list
-
-            //in this test will take a list of News
-            ListRequest request = new ListRequest();
-
-            request.Filter = "";
-            ListResponse<Approval> routers = _companyStructureService.ChildGetAll<Approval>(request);
-
-            if (!routers.Success)
-                Common.errorMessage(routers);
-            this.ApprovalStore.DataSource = routers.Items;
-            e.Total = routers.Items.Count; ;
-
-            this.ApprovalStore.DataBind();
-        }
-        protected void leaveSchedule_RefreshData(object sender, StoreReadDataEventArgs e)
-        {
-
-            //GEtting the filter from the page
-            string filter = string.Empty;
-            int totalCount = 1;
-
-
-
-            //Fetching the corresponding list
-
-            //in this test will take a list of News
-            ListRequest request = new ListRequest();
-
-            request.Filter = "";
-            ListResponse<LeaveSchedule> routers = _leaveManagementService.ChildGetAll<LeaveSchedule>(request);
-
-            if (!routers.Success)
-                Common.errorMessage(routers);
-            this.leaveScheduleStore.DataSource = routers.Items;
-            e.Total = routers.Items.Count; ;
-
-            this.leaveScheduleStore.DataBind();
-        }
-
 
     }
 }
