@@ -130,42 +130,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.FormPanel GeneralSettings;
         
         /// <summary>
-        /// bodyText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField bodyText;
-        
-        /// <summary>
-        /// teId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField teId;
-        
-        /// <summary>
-        /// templateUsage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField templateUsage;
-        
-        /// <summary>
-        /// editorHolder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Panel editorHolder;
-        
-        /// <summary>
         /// countryIdCombo control.
         /// </summary>
         /// <remarks>
@@ -263,6 +227,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store NQINidStore;
+        
+        /// <summary>
+        /// backofficeEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField backofficeEmail;
         
         /// <summary>
         /// noImage control.

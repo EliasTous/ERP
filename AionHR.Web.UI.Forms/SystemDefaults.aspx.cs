@@ -412,6 +412,7 @@ namespace AionHR.Web.UI.Forms
                 localServerIP.Text = items.Where(s => s.Key == "localServerIP").First().Value.Split('/')[0];
             }
             catch { }
+
             //try
 
             //{
@@ -569,11 +570,13 @@ namespace AionHR.Web.UI.Forms
             }
             catch { }
             try
+
             {
-                bodyText.Text = (items.Where(s => s.Key == "backofficeEmail").First().Value);
+                backofficeEmail.Text = items.Where(s => s.Key == "backofficeEmail").First().Value;
             }
             catch { }
-         
+
+
 
             FillCompanyLogo(); 
 
@@ -709,12 +712,15 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("NQINid", values.NQINid.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("NQINid",""));
-
+            if (!string.IsNullOrEmpty(values.backofficeEmail.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("backofficeEmail", values.backofficeEmail.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("backofficeEmail", ""));
 
             submittedValues.Add(new KeyValuePair<string, string>("enableHijri", values.enableHijri == null ? "false" : "true"));
             return submittedValues;
         }
-        private void SaveGeneralSettings(dynamic values ,string backofficeEmail)
+        private void SaveGeneralSettings(dynamic values )
         {
             List<KeyValuePair<string, string>> submittedValues = GetGeneralSettings(values);
             KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
@@ -1026,7 +1032,7 @@ namespace AionHR.Web.UI.Forms
             
             dynamic values = JsonConvert.DeserializeObject(e.ExtraParams["values"]);
             string backofficeEmail = e.ExtraParams["backofficeEmail"];
-            SaveGeneralSettings(values, backofficeEmail);
+            SaveGeneralSettings(values);
           
         }
         protected void SaveAttendanceSettings(object sender, DirectEventArgs e)
@@ -1059,12 +1065,7 @@ namespace AionHR.Web.UI.Forms
         {
            
             List<KeyValuePair<string, string>> allValues = new List<KeyValuePair<string, string>>();
-            string backofficeEmail = e.ExtraParams["backofficeEmail"];
-            backofficeEmail= backofficeEmail.Substring(1, backofficeEmail.Length - 2);
-          
-            KeyValuePair<string, string> backofficeEmailKey = new KeyValuePair<string, string>("backofficeEmail", backofficeEmail);
-
-            allValues.Add(backofficeEmailKey);
+           
 
             dynamic empValues = JsonConvert.DeserializeObject(e.ExtraParams["emp"]);
             allValues.AddRange(GetEmployeeSettings(empValues));

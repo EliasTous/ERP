@@ -845,8 +845,8 @@
                                                 Text="<%$ Resources:FieldAmount%>"
                                                 DataIndex="amount"
                                                 Align="Center">
-                                                <SummaryRenderer Handler="if(App.entitlementsGrid.getStore().getCount()>0) return #{CurrentCurrencyRef}.value+ '&nbsp;'+CalcENSum() ;" />
-                                                <Renderer Handler=" return #{CurrentCurrencyRef}.value+' &nbsp;' + record.data['amount']  ;" />
+                                                <SummaryRenderer Handler="if(App.entitlementsGrid.getStore().getCount()>0) return #{CurrentCurrencyRef}.value+ '&nbsp;'+CalcENSum().toLocaleString() ; ;" />
+                                                <Renderer Handler=" return #{CurrentCurrencyRef}.value+' &nbsp;' + record.data['amount'].toLocaleString() ;  ;" />
                                             </ext:NumberColumn>
 
                                             <ext:Column runat="server"
@@ -961,10 +961,10 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
-                                                <Renderer Handler="return #{CurrentCurrencyRef}.value+ '&nbsp;'+ record.data['amount'] ;">
+                                                <Renderer Handler="return #{CurrentCurrencyRef}.value+ '&nbsp;'+ record.data['amount'].toLocaleString() ; ;">
                                                     
                                               </Renderer>
-                                                <SummaryRenderer Handler="if(App.deductionGrid.getStore().getCount()>0) return #{CurrentCurrencyRef}.value+ '&nbsp;'+CalcDESum() ;" />
+                                                <SummaryRenderer Handler="if(App.deductionGrid.getStore().getCount()>0) return #{CurrentCurrencyRef}.value+ '&nbsp;'+CalcDESum().toLocaleString()  ;" />
                                             </ext:NumberColumn>
 
 

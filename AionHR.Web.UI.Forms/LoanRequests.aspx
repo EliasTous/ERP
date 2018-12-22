@@ -60,7 +60,44 @@
           
           
            
-        } 
+        }
+        function validateLdValue(value)
+        {
+            if (App.ldMethod.getValue() != null) {
+                if (value != null) {
+                    value = value.replace(/\D/g, '');
+                    value = parseInt(value)
+                  
+                }
+                else
+                    return false;
+
+                if (App.ldMethod.getValue() == 5)
+                    return true;
+
+                if (App.ldMethod.getValue() != 4)
+                {  
+
+                    if (value > 0 && value < 100)
+                        return true;
+                    else
+                        return false;
+                }
+                else {
+                    if (value <= 0)
+                        return false;
+                    if (parseInt(App.amount.getValue().replace(/\D/g, '')) < value)
+                        return false;
+                    else {
+
+                        return true;
+                    }
+                }
+            }
+            else
+                return false;
+
+        }
     </script>
 
 
@@ -619,9 +656,15 @@
                                         </ext:ComboBox>
                                         <ext:TextField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
                                       
-                                         <validator Handler="if(#{ldMethod}.getValue()!=4 ){ if (this.value>0&& this.value<100) return true ; else return false; } else {if (this.value<=0  ) return false;    if (parseInt(#{amount}.getValue().replace(/\D/g,''))<parseInt(this.value)){ return  false;} else return true;} ">
+                                         <validator Handler="return validateLdValue(this.value);">
                                              
                                          </validator>
+                                             <Listeners> 
+
+                                         <Change Handler="if (this.value!=null) this.setRawValue(thousandSeparator(this.value));" />
+                                           
+                                       
+                                    </Listeners>
                                            
                                             </ext:TextField>
                                 

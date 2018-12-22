@@ -28,32 +28,10 @@
 
 
 
-      <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/AdminTemplates.js?id=4"></script>
-    <script type="text/javascript" src="Scripts/common.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <%--<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>--%>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+     
 
     <script type="text/javascript">
-           function escapeHtml(unsafe) {
-            return unsafe
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                   .replace(/'/g, "&#039;");
-
-               alert(unsafe);
-        }
+          
         var checkExtension = function (file) {
           
         try {
@@ -93,13 +71,7 @@
                 field.setMaxValue(1000000);
             }
         }
-        function setWidth() {
-    
-    document.getElementById("summernote").style.width = App.editorHolder.getWidth() + 4 + 'px';
-    
-    document.getElementById("summernote").style.height = App.editorHolder.getHeight() - 20 + 'px';
-
-}
+       
     </script>
 
 </head>
@@ -131,42 +103,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                  <ext:TextField ID="bodyText" Hidden="true" runat="server" />
-                                <ext:TextField ID="teId" Hidden="true" runat="server" />
-                                <ext:TextField ID="templateUsage" Hidden="true" runat="server" />
-                                   <ext:Panel runat="server" Layout="FitLayout" Flex="1" ID="editorHolder" RTL="false">
-                                    <Items>
-                                        <ext:Container runat="server">
-                                            <Content>
-                                                <div id="summernote">
-                                                </div>
-
-                                            </Content>
-                                        </ext:Container>
-                                    </Items>
-                                    <Listeners>
-
-                                        <AfterLayout Handler=" $('#summernote').summernote('reset'); setWidth(); var s = unescape( #{bodyText}.getValue()); document.getElementById('summernote').style.direction = 'ltr'; $('#summernote').summernote('code',s);" />
-                                        <AfterRender Handler=" $('#summernote').summernote({
-                                                height: 150,
-                                              toolbar: [['mybutton', ['hello','admin','leave','loan','schedule','penalty']],
-            ['style', ['style']],
-            ['font', ['bold', 'underline', 'clear']],
-            ['fontname', ['fontname']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['table', ['table']],
-            ['insert', ['link', 'picture', 'video']],
-            ['view', ['fullscreen', 'codeview', 'help']],
-         
-    
-  ],
-
-
-                                                }); " />
-                                        <Resize Handler="setWidth();" />
-                                    </Listeners>
-                                </ext:Panel>
+                                
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" LabelWidth="150" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldCountry %>" Name="countryId" runat="server" DisplayField="name" ValueField="recordId" ID="countryIdCombo">
                                     <Store>
                                         <ext:Store runat="server" ID="NationalityStore">
@@ -289,6 +226,12 @@
                                                 </ext:Store>
                                             </Store>
                                             </ext:ComboBox>
+
+                                   <ext:TextField runat="server" Name="backofficeEmail" ID="backofficeEmail" FieldLabel="<%$Resources:backofficeEmail %>" Vtype="email">
+                                           
+
+                                        </ext:TextField>
+
                                  <ext:Image runat="server" ID="noImage" Hidden="true"  Width="100" Height="100" />
                         <ext:Image runat="server" ID="imgControl" MaxWidth="150" MaxHeight="150">
                             <Listeners>
@@ -1181,7 +1124,7 @@
                                                 <ext:Parameter Name="ta" Value="#{AttendanceSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
                                                 <ext:Parameter Name="py" Value="#{PayrollSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
                                                 <ext:Parameter Name="sec" Value="#{SecuritySettings}.getForm().getValues()" Mode="Raw" Encode="true" />
-                                                <ext:Parameter Name="backofficeEmail" Value="escapeHtml($('#summernote').summernote('code'))" Mode="Raw" Encode="true" />
+                                              
                                             </ExtraParams>
                                         </Click>
                                     </DirectEvents>

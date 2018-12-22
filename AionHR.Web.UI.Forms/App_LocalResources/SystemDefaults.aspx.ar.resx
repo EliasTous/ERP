@@ -447,4 +447,7 @@
   <data name="timeAttendance" xml:space="preserve">
     <value>رمز الدوام</value>
   </data>
+  <data name="backofficeEmail" xml:space="preserve">
+    <value>بريد الشركة</value>
+  </data>
 </root>

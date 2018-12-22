@@ -456,4 +456,7 @@
   <data name="timeAttendance" xml:space="preserve">
     <value>Time Attendance Reference</value>
   </data>
+  <data name="backofficeEmail" xml:space="preserve">
+    <value>Back Office Email</value>
+  </data>
 </root>

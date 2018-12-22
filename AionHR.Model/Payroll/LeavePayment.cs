@@ -15,7 +15,7 @@ namespace AionHR.Model.Payroll
         public int employeeId { get; set;  }
         public DateTime effectiveDate { get; set; }
         public string paymentRef { get; set; }
-        public int salary { get; set; }
+        public string salary { get; set; }
         public double days { get; set; }
         public int amount { get; set; }
         public double earnedLeaves { get; set; }
