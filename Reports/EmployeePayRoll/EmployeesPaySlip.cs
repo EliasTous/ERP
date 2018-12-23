@@ -35,7 +35,7 @@ namespace Reports.EmployeePayRoll
                     employee.FirstOrDefault().workingDays,
                    Convert.ToDecimal(benifits.Sum(u => u.edAmount)),
                     Convert.ToDecimal(deductions.Sum(u => u.edAmount)),
-                    NumberToWords.multiLingualNumberInText(Convert.ToDecimal(employee.FirstOrDefault().basicAmount + benifits.Sum(u => u.edAmount) - deductions.Sum(u => u.edAmount)), 2, isArabic),
+                    NumberToWords.multiLingualNumberInText(Convert.ToDecimal(employee.FirstOrDefault().basicAmount + benifits.Sum(u => u.edAmount) - deductions.Sum(u => u.edAmount)), (short)employee.FirstOrDefault().currencyProfileId, isArabic),
                     employee.FirstOrDefault().departmentName,
                     employee.FirstOrDefault().positionName
                     );

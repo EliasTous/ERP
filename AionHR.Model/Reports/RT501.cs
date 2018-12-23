@@ -252,6 +252,7 @@ namespace AionHR.Model.Reports
         public double edAmount { get; set; }
 
         public string currencyRef { get; set; }
+        public int currencyProfileId { get; set; }
 
         public int edType { get; set; }
         public double cssAmount { set; get; }
