@@ -447,6 +447,7 @@ namespace AionHR.Web.UI.Forms
             FilllanguageStore();
             FilldcStore();
             documentNotesPanel.Disabled = true;
+            DocumentDuesGrid.Disabled = true;
             currentDocumentId.Text = "";
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
@@ -516,7 +517,9 @@ namespace AionHR.Web.UI.Forms
             string date = DateTime.Parse(e.ExtraParams["date"]).ToString("yyyyMMdd");
             string rowId = e.ExtraParams["rowId"];
             documentNotesPanel.Disabled = false;
-       
+            DocumentDuesGrid.Disabled = false;
+
+
             switch (type)
             {
 
@@ -560,6 +563,7 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             GenerateAdminDocumentDue b = JsonConvert.DeserializeObject<GenerateAdminDocumentDue>(obj);
+            b.amount = string.IsNullOrEmpty(GDDAmount.Text) ? 0 : Convert.ToDouble(GDDAmount.Text);
 
             try { 
          
@@ -591,6 +595,7 @@ namespace AionHR.Web.UI.Forms
 
                     DocumentNoteListRequest req = new DocumentNoteListRequest();
                     req.documentId = Convert.ToInt32(currentDocumentId.Text);
+                    req.Filter = "";
                     ListResponse<AdminDocument> routers = _administrationService.ChildGetAll<AdminDocument>(req);
                     if (!routers.Success)
                     {
@@ -667,6 +672,7 @@ namespace AionHR.Web.UI.Forms
                             });
 
                             documentNotesPanel.Disabled = false;
+                            DocumentDuesGrid.Disabled = false;
                             Store1.Reload();
 
 

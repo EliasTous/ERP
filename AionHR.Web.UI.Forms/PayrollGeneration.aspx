@@ -456,14 +456,23 @@
                                                             }
                                                             else
                                                             App.selectedEmployeeId.setValue('0');
-
+                                                          
                                                             openInNewTab();" />
                                                                           </Listeners>
                                                
                                                 </ext:MenuItem>
 
-                                                <ext:MenuItem runat="server"  Text="Pdf" AutoPostBack="true" OnClick="ExportPdfPaySlip_Click"  >
-                                            
+                                                <ext:MenuItem runat="server"  Text="Pdf" AutoPostBack="true" OnClick="ExportPdfPaySlip_Click"  OnClientClick="openInNewTab();"  >
+                                             <Listeners>
+                                                        <Click Handler=" if (App.employeePayrolls.getSelectionModel().hasSelection()) {
+                                                               var row = App.employeePayrolls.getSelectionModel().getSelection()[0];
+                                                                App.selectedEmployeeId.setValue(row.get('employeeId'));
+                                                            }
+                                                            else
+                                                            App.selectedEmployeeId.setValue('0');
+                                                          
+                                                            openInNewTab();" />
+                                                                          </Listeners>
                                                     
                                                 </ext:MenuItem>
                                               <%--  <ext:MenuItem runat="server"  Text="Excel" AutoPostBack="true" OnClick="ExportXLSPaySlip_Click"  >

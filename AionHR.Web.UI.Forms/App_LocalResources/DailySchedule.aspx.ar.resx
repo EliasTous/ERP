@@ -252,4 +252,7 @@
   <data name="total" xml:space="preserve">
     <value>المجموع</value>
   </data>
+  <data name="NotifyEmployee" xml:space="preserve">
+    <value>اشعار الموظف</value>
+  </data>
 </root>

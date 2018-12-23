@@ -246,6 +246,8 @@ namespace AionHR.Web.UI.Forms
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     Common.errorMessage(resp);
+                    imgControl.ImageUrl = "Images/empPhoto.jpg";
+                    CurrentEmployeePhotoName.Text = "Images/empPhoto.jpg";
                     return;
                 }
                 if (resp.result != null)

@@ -117,6 +117,16 @@ namespace AionHR.Web.UI.Forms
             request.UserName = tbUsername.Text;
             request.Password = EncryptionHelper.encrypt(tbPassword.Text);
             AuthenticateResponse response = _systemService.Authenticate(request);
+            if (response.User == null)
+            {
+                lblError.Text = GetGlobalResourceObject("Errors", "authenticationError").ToString();
+                return "error";
+            }
+            if (response.User.isInactive)
+            {
+                lblError.Text = GetGlobalResourceObject("Errors", "inactiveUser").ToString();
+                return "error";
+            }
             if (response.Success)
             {
                 Response.Cookies.Add(new HttpCookie("accountName", accountName) { Expires = DateTime.Now.AddDays(30) });

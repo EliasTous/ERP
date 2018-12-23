@@ -1550,7 +1550,7 @@ namespace AionHR.Web.UI.Forms
             req.Add(Pm);
              req.Add(jobInfo1.GetJobInfo());
             EmployeeParameterSet s = new EmployeeParameterSet();
-            s.employeeId = Convert.ToInt32(selectedEmployeeId.Text);
+            s.employeeId =string.IsNullOrEmpty(selectedEmployeeId.Text)?0: Convert.ToInt32(selectedEmployeeId.Text);
             req.Add(s);
 
             return req;

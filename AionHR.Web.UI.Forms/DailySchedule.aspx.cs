@@ -26,6 +26,7 @@ using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
 using AionHR.Services.Messaging.System;
 using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Model.HelpFunction;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -1266,10 +1267,53 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
                 return;
             }
-            userSelectorStore.Reload();
-            this.groupUsersWindow.Show();
+          
            
         
+
+        }
+
+        public void NotifyEmployee_Click(object sender, DirectEventArgs e)
+        {
+            if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
+                return;
+            }
+            if (dateFrom.SelectedDate == DateTime.MinValue || dateTo.SelectedDate == DateTime.MinValue)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
+                return;
+            }
+            if (dateFrom.SelectedDate > dateTo.SelectedDate)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
+                return;
+            }
+            MailFlatShedule mailFS = new MailFlatShedule();
+            mailFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
+            mailFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            mailFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            mailFS.BranchId = string.IsNullOrEmpty(branchId.Value.ToString()) ? 0 : Convert.ToInt32(branchId.Value.ToString());
+            PostRequest <MailFlatShedule> req = new PostRequest<MailFlatShedule>();
+            req.entity = mailFS;
+            PostResponse<MailFlatShedule> resp = _timeAttendanceService.ChildAddOrUpdate<MailFlatShedule>(req); 
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return; 
+            }
+            else
+            {
+                X.Msg.Alert("", (string)GetGlobalResourceObject("Common", "operationCompleted")).Show();
+                return;
+            }
+
+
+
+
+
+
 
         }
         protected void ExportEmployees(object sender, DirectEventArgs e)

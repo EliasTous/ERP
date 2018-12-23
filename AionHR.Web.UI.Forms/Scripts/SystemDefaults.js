@@ -308,7 +308,7 @@ function GetCroppedImage() {
         Ext.net.Mask.show({ msg: App.lblLoading.getValue(), el: App.imageSelectionWindow.id });
         var fileName = App.FileUploadField1.value;
         if (fileName == '')
-            fileName = 'test';
+            fileName = 'CompanyLogo';
 
         fd.append('data', App.imageData.value, fileName);
         if (App.FileUploadField1.value == '')
@@ -321,7 +321,7 @@ function GetCroppedImage() {
             contentType: false,
             error: function (s) { Ext.net.Mask.hide(); alert(dump(s)); }
         }).done(function (data) {
-           
+            App.direct.FillCompanyLogo();
             Ext.net.Mask.hide();
             App.imageSelectionWindow.hide();
 

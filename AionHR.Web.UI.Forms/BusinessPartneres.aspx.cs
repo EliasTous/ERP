@@ -241,6 +241,7 @@ namespace AionHR.Web.UI.Forms
                     naId.Select(response.result.address.countryId);
                     stId.Select(response.result.address.stateId);
                     address.Text = response.result.address.recordId;
+                    addressForm.Reset();
                     addressForm.SetValues(response.result.address);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -411,6 +412,7 @@ namespace AionHR.Web.UI.Forms
             FillBcId();
             FillNationality();
             FillState();
+            addressForm.Reset();
             //timeZoneCombo.Select(timeZoneOffset.Text);
             this.EditRecordWindow.Show();
         }

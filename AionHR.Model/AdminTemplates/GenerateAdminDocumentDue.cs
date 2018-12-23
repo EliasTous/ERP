@@ -15,5 +15,6 @@ namespace AionHR.Model.AdminTemplates
         { get; set; }
         public short count
         { get; set; }
+        public double amount { set; get; }
     }
 }

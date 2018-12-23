@@ -185,7 +185,7 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-
+      
 
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
@@ -209,8 +209,11 @@ namespace AionHR.Web.UI.Forms.Reports
             }
 
 
-            resp.Items.ForEach(x => { x.licenseExpiryDateString = x.licenseExpiryDate.ToString(_systemService.SessionHelper.GetDateformat());
-                x.licenseIssueDateString = x.licenseIssueDate.ToString(_systemService.SessionHelper.GetDateformat());
+            resp.Items.ForEach(x => {
+
+                x.licenseExpiryDateString= x.licenseExpiryDate == null ? " " : ((DateTime)x.licenseExpiryDate).ToString(_systemService.SessionHelper.GetDateformat());
+                x.licenseIssueDateString = x.licenseIssueDate == null ? " " : ((DateTime)x.licenseIssueDate).ToString(_systemService.SessionHelper.GetDateformat());
+
             });
             BranchWorkforce h = new BranchWorkforce();
           

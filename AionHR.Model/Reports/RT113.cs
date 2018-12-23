@@ -8,9 +8,9 @@ namespace AionHR.Model.Reports
 {
   public  class RT113 :ModelBase
     {
-        public DateTime licenseIssueDate { get; set; }
+        public DateTime? licenseIssueDate { get; set; }
         public string licenseIssueDateString { get; set; }
-        public DateTime licenseExpiryDate { get; set; }
+        public DateTime? licenseExpiryDate { get; set; }
         public string licenseExpiryDateString { get; set; }
         public int localsMale { get; set; }
         public int localsFemale { get; set; }

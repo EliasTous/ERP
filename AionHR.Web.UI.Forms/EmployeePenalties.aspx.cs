@@ -141,7 +141,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id.ToString();
-                    RecordResponse<Model.Company.Structure.Position> response = _branchService.ChildGetRecord<Model.Company.Structure.Position>(r);
+                    RecordResponse<EmployeePenalty> response = _employeeService.ChildGetRecord<EmployeePenalty>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -150,7 +150,16 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-                  
+                    employeeId.GetStore().Add(new object[]
+                   {
+                                new
+                                {
+                                    recordId = response.result.employeeId,
+                                    fullName =response.result.employeeName.fullName
+                                }
+                   });
+                    employeeId.SetValue(response.result.employeeId);
+
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -389,7 +398,7 @@ namespace AionHR.Web.UI.Forms
             //    b.tsName = tsId.SelectedItem.Text;
             b.recordId = CurrentpenaltyId.Text;
             // Define the object to add or edit as null
-
+            b.apStatus = string.IsNullOrEmpty(b.apStatus) ? "1" : b.apStatus;
             if (string.IsNullOrEmpty(CurrentpenaltyId.Text))
             {
 
@@ -461,7 +470,7 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        Common.errorMessage(r);
                         return;
                     }
                     else

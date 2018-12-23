@@ -2,6 +2,7 @@
 using AionHR.Infrastructure.Domain;
 using AionHR.Model.Attendance;
 using AionHR.Model.Dashboard;
+using AionHR.Model.HelpFunction;
 using AionHR.Model.TimeAttendance;
 using System;
 using System.Collections.Generic;
@@ -79,6 +80,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(FlatSchedule), "setFS");
             ChildAddOrUpdateLookup.Add(typeof(Time), "setTA");
             ChildAddOrUpdateLookup.Add(typeof(DashBoardTimeVariation), "setTV");
+            ChildAddOrUpdateLookup.Add(typeof(MailFlatShedule), "mailFS");
 
             ChildDeleteLookup.Add(typeof(AttendanceBreak), "delSB");
             ChildDeleteLookup.Add(typeof(AttendanceSchedule), "delSC");

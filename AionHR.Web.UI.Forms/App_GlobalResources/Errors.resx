@@ -120,6 +120,9 @@
   <data name="AssignToEmployee" xml:space="preserve">
     <value>user did not assign to employee</value>
   </data>
+  <data name="authenticationError" xml:space="preserve">
+    <value>User Name or Passwrod is incorrect</value>
+  </data>
   <data name="EmptyBranch" xml:space="preserve">
     <value>Please adjust the  branch for employee   and retry generate again</value>
   </data>
@@ -539,5 +542,8 @@
   </data>
   <data name="FinalSettlementForEmployeeHaveLoans" xml:space="preserve">
     <value>Employee has loans </value>
+  </data>
+  <data name="inactiveUser" xml:space="preserve">
+    <value>User is inactive</value>
   </data>
 </root>

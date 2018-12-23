@@ -344,7 +344,7 @@ function ClearNoteText()
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                             <%--    <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>--%>
-                                   <ext:DateField ID="issueDate" runat="server" FieldLabel="<%$ Resources:FieldIssueDate%>" Name="issueDate"   >
+                                   <ext:DateField ID="issueDate" runat="server" FieldLabel="<%$ Resources:FieldIssueDate%>" Name="issueDate" AllowBlank="false"  >
                                        <Validator Handler="return this.value<#{expiryDate}.getValue();"></Validator>
                                        <Listeners> 
                                            <Change Handler="#{expiryDate}.validate();"></Change>
@@ -356,7 +356,7 @@ function ClearNoteText()
                                            <Change Handler="#{issueDate}.validate();"></Change>
                                        </Listeners>
                                        </ext:DateField>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="bpId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="bpId" FieldLabel="<%$ Resources:FieldBusinessPartner%>" SimpleSubmit="true">
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="bpId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="bpId" FieldLabel="<%$ Resources:FieldBusinessPartner%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="bpIdStore">
                                             <Model>
@@ -373,7 +373,7 @@ function ClearNoteText()
                                 </ext:ComboBox>
                                    <ext:TextField ID="docRef" runat="server" FieldLabel="<%$ Resources:FieldRef%>" Name="docRef"  />
                                    <ext:TextField ID="binNo" runat="server" FieldLabel="<%$ Resources:binNo%>" Name="binNo"  />
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="dcId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="dcId" FieldLabel="<%$ Resources:FieldDocumentCategory%>" SimpleSubmit="true">
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="dcId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="dcId" FieldLabel="<%$ Resources:FieldDocumentCategory%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="dcStore">
                                             <Model>
@@ -389,7 +389,7 @@ function ClearNoteText()
 
                                 </ext:ComboBox>
                                    <ext:TextField ID="oDocRef" runat="server" FieldLabel="<%$ Resources:oDocRef%>" Name="oDocRef"   />
-                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="languageId" AllowBlank="true"  Name="languageId"
+                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="languageId" AllowBlank="false"  Name="languageId"
                                     SubmitValue="true"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldLanguage%>">
@@ -864,6 +864,7 @@ function ClearNoteText()
 
                                     </Items>
                                 </ext:ComboBox>
+                                  <ext:NumberField ID="GDDAmount" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount"   AllowBlank="true" />
                                    <ext:NumberField ID="count" runat="server" FieldLabel="<%$ Resources:FieldCount%>" Name="count"   AllowBlank="false" MinValue="1" MaxValue="12"/>
                             </Items>
 

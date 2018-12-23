@@ -18,7 +18,7 @@ namespace AionHR.Services.Messaging.AdministrativeAffairs
             {
                 parameters = new Dictionary<string, string>();
                 parameters.Add("_doId", documentId.ToString());
-
+                parameters.Add("_filter", Filter);
 
                 return parameters;
             }

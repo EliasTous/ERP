@@ -24,7 +24,7 @@
     <script type="text/javascript" src="Scripts/jquery-new.js?id=125"></script>
   
     <script type="text/javascript" src="Scripts/cropper.js?id=126"></script>
-      <script type="text/javascript" src="Scripts/SystemDefaults.js?id=92"></script>
+      <script type="text/javascript" src="Scripts/SystemDefaults.js?id=100"></script>
 
 
 
@@ -227,7 +227,7 @@
                                             </Store>
                                             </ext:ComboBox>
 
-                                   <ext:TextField runat="server" Name="backofficeEmail" ID="backofficeEmail" FieldLabel="<%$Resources:backofficeEmail %>" Vtype="email">
+                                   <ext:TextField runat="server" Name="backofficeEmail" ID="backofficeEmail" FieldLabel="<%$Resources:backofficeEmail %>" Vtype="email" LabelWidth="150">
                                            
 
                                         </ext:TextField>

@@ -202,11 +202,19 @@
                                         </Click>
                                         
                                     </DirectEvents>
+
                                        <Listeners>
                                            <Click Handler="App.userSelector.toField.getStore().removeAll();"></Click>
                                        </Listeners>
                                 </ext:Button>
-
+                                 <ext:Button runat="server" Text="<%$ Resources: NotifyEmployee %>">
+                                    <DirectEvents>
+                                        <Click OnEvent="NotifyEmployee_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                        
+                                    </DirectEvents>
+                                     </ext:Button>
 
                             </Items>
                         </ext:Toolbar>

@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Name or Passwrod is incorrect.
+        /// </summary>
+        internal static string authenticationError {
+            get {
+                return ResourceManager.GetString("authenticationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please adjust the  branch for employee   and retry generate again.
         /// </summary>
         internal static string EmptyBranch {
@@ -1326,6 +1335,15 @@ namespace Resources {
         internal static string FinalSettlementForEmployeeHaveLoans {
             get {
                 return ResourceManager.GetString("FinalSettlementForEmployeeHaveLoans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User is inactive.
+        /// </summary>
+        internal static string inactiveUser {
+            get {
+                return ResourceManager.GetString("inactiveUser", resourceCulture);
             }
         }
     }

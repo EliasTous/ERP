@@ -120,6 +120,9 @@
   <data name="AssignToEmployee" xml:space="preserve">
     <value>المستخدم غير مربوط مع موظف</value>
   </data>
+  <data name="authenticationError" xml:space="preserve">
+    <value>خطأ في اسم المستخدم او كلمة السر </value>
+  </data>
   <data name="EmptyBranch" xml:space="preserve">
     <value>الرجاء تعيين الفرع الذي يعمل به الموظف</value>
   </data>
@@ -655,5 +658,8 @@
   </data>
   <data name="FinalSettlementForEmployeeHaveLoans" xml:space="preserve">
     <value>يوجد على الموظف سلف </value>
+  </data>
+  <data name="inactiveUser" xml:space="preserve">
+    <value>المستخدم غير فعال </value>
   </data>
 </root>

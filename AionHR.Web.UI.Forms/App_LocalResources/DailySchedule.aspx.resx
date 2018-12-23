@@ -231,4 +231,7 @@
   <data name="total" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="NotifyEmployee" xml:space="preserve">
+    <value>Notify Employee</value>
+  </data>
 </root>
