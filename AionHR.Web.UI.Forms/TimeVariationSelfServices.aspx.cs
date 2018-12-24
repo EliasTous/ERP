@@ -71,7 +71,13 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
- 
+
+                if (!string.IsNullOrEmpty(Request.QueryString["_employeeId"]) && !string.IsNullOrEmpty(Request.QueryString["_fromDayId"]) && !string.IsNullOrEmpty(Request.QueryString["_toDayId"]))
+                {
+                    dateRange1.DefaultStartDate = DateTime.ParseExact(Server.UrlDecode(Request.QueryString["_fromDayId"]).Trim('\''), "yyyyMMdd", new CultureInfo("en"));
+                    dateRange1.DefaultEndDate= DateTime.ParseExact(Server.UrlDecode(Request.QueryString["_toDayId"]).Trim('\''), "yyyyMMdd", new CultureInfo("en"));
+
+                }
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(RT305), null, GridPanel1, null, null);

@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure;
 using AionHR.Model.Access_Control;
+using AionHR.Model.Employees.Profile;
 using AionHR.Model.MasterModule;
 using AionHR.Model.Payroll;
 using AionHR.Model.System;
@@ -30,6 +31,7 @@ namespace AionHR.Web.UI.Forms
         IMasterService _masterService = ServiceLocator.Current.GetInstance<IMasterService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         /// <summary>
         /// Could be added in a base page, but we keep it here in order to control the page UI. This method should be copied to each page
         /// </summary>
@@ -57,37 +59,54 @@ namespace AionHR.Web.UI.Forms
             var parsed = HttpUtility.ParseQueryString(decrypted);
             if (string.IsNullOrEmpty(parsed["_a"]) || string.IsNullOrEmpty(parsed["_e"]) || string.IsNullOrEmpty(parsed["_p"]) || string.IsNullOrEmpty(parsed["_c"]))
                 return false;
-          
-            
+
+
             UrlKeyRequest reqkey = new UrlKeyRequest();
-            reqkey.keyId = Request.QueryString["param"];
-            RecordResponse<KeyId> keyresp = _systemService.ChildGetRecord<KeyId>(reqkey);
-            if(!keyresp.Success)
-            {
-                return false;
-            }
-            
+            reqkey.keyId = Server.UrlEncode(Request.QueryString["param"]);
+            _systemService.SessionHelper.Set("AccountId", parsed["_a"]);
+
+
+
             AuthenticateRequest req = new AuthenticateRequest();
             req.UserName = parsed["_e"];
             req.Password = parsed["_p"];
             _systemService.SessionHelper.Set("AccountId", parsed["_a"]);
             AuthenticateResponse resp = _systemService.Authenticate(req);
+
             if (!resp.Success)
             {
                 return false;
             }
-            
-            X.Call("openNewTab?record="+parsed["_k"],GetGlobalResourceObject("Classes","Class"+parsed["_c"]).ToString(), PageLookup.GetPageUrlByClassId(Convert.ToInt32(parsed["_c"])),"" , "");
+            if (resp.User.languageId == 2)
+                _systemService.SessionHelper.SetLanguage("ar");
+            else
+                _systemService.SessionHelper.SetLanguage("en");
+            RecordResponse<KeyId> keyresp = _systemService.ChildGetRecord<KeyId>(reqkey);
+            if (!keyresp.Success)
+            {
+                return false;
+            }
+            _systemService.SessionHelper.Set("CompanyName", " ");
+
+            _systemService.SessionHelper.SetUserType(resp.User.userType);
+            _systemService.SessionHelper.SetEmployeeId(resp.User.employeeId);
+            _systemService.SessionHelper.Set("CurrentUserName", parsed["_e"]);
+
+            _systemService.SessionHelper.Set("IsAdmin", resp.User.isAdmin);
+            StoreSystemDefaults();
+            string url = PageLookup.GetPageUrlByClassId(Convert.ToInt32(parsed["_c"])) + "?" +parsed["_k"].Replace('#', '&');
+            X.Call("openNewTab", parsed["_c"], url, GetGlobalResourceObject("Classes", "Class" + parsed["_c"]), "icon-Employees");
             return true;
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!string.IsNullOrEmpty( Request.QueryString["param"]))
+
+            if (!IsPostBack && !X.IsAjaxRequest&&!string.IsNullOrEmpty(Request.QueryString["param"]))
             {
                 bool success = HandleExternalUrl();
-                if(!success)
+                if (!success)
                     Response.Redirect("Login.aspx?timeout=yes", true);
-                
+
 
             }
             try
@@ -114,6 +133,7 @@ namespace AionHR.Web.UI.Forms
             //this.ResourceManager1.DirectEventUrl = this.ResourceManager1.DirectEventUrl.Replace("http", "https");
             if (!IsPostBack && !X.IsAjaxRequest)
             {
+               
                 SetExtLanguage();
                 SetHeaderStyle();
                 CompanyNameLiteral.Text = "" + _systemService.SessionHelper.Get("CompanyName").ToString();
@@ -442,7 +462,120 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert("", GetGlobalResourceObject("Common", "LoanSyncSucc").ToString()).Show();
             }
         }
+        private void StoreSystemDefaults()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
+            if (!defaults.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
+                return;
+            }
+            try
+            {
+                _systemService.SessionHelper.SetDateformat(defaults.Items.Where(s => s.Key == "dateFormat").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetDateformat("MMM, dd, yyyy");
+            }
+            try
+            {
+                _systemService.SessionHelper.SetNameFormat(defaults.Items.Where(s => s.Key == "nameFormat").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetNameFormat("{firstName}{lastName} ");
+            }
+            try
+            {
+                _systemService.SessionHelper.SetCurrencyId(defaults.Items.Where(s => s.Key == "currencyId").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetCurrencyId("0");
+            }
+            try
+            {
+                _systemService.SessionHelper.SetHijriSupport(Convert.ToBoolean(defaults.Items.Where(s => s.Key == "enableHijri").First().Value));
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetHijriSupport(false);
+            }
+            try
+            {
+                _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(defaults.Items.Where(s => s.Key == "timeZone").First().Value));
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetDefaultTimeZone(0);
+            }
+            try
+            {
+                _systemService.SessionHelper.SetCalendarId(defaults.Items.Where(s => s.Key == "caId").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetCalendarId("0");
+            }
+            try
+            {
+                _systemService.SessionHelper.SetVacationScheduleId(defaults.Items.Where(s => s.Key == "vsId").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetVacationScheduleId("0");
+            }
+            try
+            {
+                EmployeeListRequest request = new EmployeeListRequest();
+                request.BranchId = request.DepartmentId = request.PositionId = "0";
+                request.StartAt = "1";
+                request.SortBy = "hireDate";
+                request.Size = "1";
+                request.IncludeIsInactive = 2;
+                var resp = _employeeService.GetAll<Employee>(request);
 
+                _systemService.SessionHelper.SetStartDate(resp.Items[0].hireDate.Value);
+            }
+            catch (Exception exp)
+            {
+                _systemService.SessionHelper.SetStartDate(DateTime.Now);
+            }
+
+
+
+        }
+        private object GetDateFormat()
+        {
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "dateFormat";
+            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!response.Success)
+            {
+
+            }
+            return response.result.Value;
+        }
+        private string GetNameFormat()
+        {
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "nameFormat";
+            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!response.Success)
+            {
+
+            }
+            string paranthized = response.result.Value;
+            paranthized = paranthized.Replace('{', ' ');
+            paranthized = paranthized.Replace('}', ',');
+            paranthized = paranthized.Substring(0, paranthized.Length - 1);
+            paranthized = paranthized.Replace(" ", string.Empty);
+            return paranthized;
+
+        }
 
     }
 }

@@ -136,7 +136,10 @@ function setGlobalInterval(s)
     interval = s;
 }
 var openNewTab = function (id, url, title, iconCls) {
-
+    console.log(id);
+    console.log(url);
+    console.log(title);
+    console.log(iconCls);
     var tab = App.tabPanel.getComponent(id);
    // if (id != 'dashboard') {
         //alert(interval);

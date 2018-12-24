@@ -29,7 +29,7 @@ namespace AionHR.Infrastructure.Session
         /// <returns></returns>
         public bool CheckUserLoggedIn()
         {
-            if (Get("key") == null || Get("AccountId") == null || Get("UserId") == null)
+            if (Get("AccountId") == null || Get("UserId") == null)
                 return false;
             else return true;
         }
@@ -221,11 +221,13 @@ namespace AionHR.Infrastructure.Session
             headers.Add("Authorization", "Basic " + Get("key"));
             headers.Add("AccountId", "" + Get("AccountId"));
             headers.Add("UserId", Get("UserId").ToString());
-         
-            if (Get("Language").ToString()=="en")
-            headers.Add("languagId", "1");
-            else
-                headers.Add("languagId", "2");
+           
+                if (Get("Language").ToString() == "en")
+                    headers.Add("languagId", "1");
+                else
+                    headers.Add("languagId", "2");
+            
+            
             return headers;
         }
 

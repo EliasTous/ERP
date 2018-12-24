@@ -11,8 +11,12 @@ namespace AionHR.Web.UI.Forms
         {
             switch (classId)
             {
-                case 60108: return "AssetAllowanceSelfService.aspx";
-                case 60107: return "EmployeeComplaintsSelfService.aspx";
+                case 60108: return "TimeVariationSelfServices.aspx";
+                case 60109: return "TimeAttendanceViewSelfServices.aspx";
+                case 60110: return "PayrollGenerationSelfServices.aspx";
+                case 60104: return "LeaveRequestsSelfServices.aspx";
+                case 60105: return "LoanSelfServices.aspx";
+                case 60112: return "EmployeePenalties.aspx";
 
                 default:return "Default.aspx";
             }

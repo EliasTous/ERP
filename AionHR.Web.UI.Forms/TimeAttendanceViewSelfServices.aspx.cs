@@ -70,10 +70,16 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-             
+                
                 format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                startDayId.SelectedDate = DateTime.Today;
                 endDayId.SelectedDate = DateTime.Today;
+                if (!string.IsNullOrEmpty(Request.QueryString["_fromDayId"])&&!string.IsNullOrEmpty(Request.QueryString["_toDayId"]))
+                {
+                    startDayId.SelectedDate = DateTime.ParseExact(Server.UrlDecode(Request.QueryString["_fromDayId"]).Trim('\''), "yyyyMMdd", new CultureInfo("en") ) ;
+                    endDayId.SelectedDate =DateTime.ParseExact(Server.UrlDecode(Request.QueryString["_toDayId"]).Trim('\''), "yyyyMMdd", new CultureInfo("en"));
+
+                }
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceDay), null, GridPanel1, null, null);
@@ -97,6 +103,7 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
 
+                
             }
 
           
