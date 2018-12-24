@@ -96,19 +96,19 @@ namespace AionHR.Web.UI.Forms
 
                 }
                 Column2.Format = Column1.Format = _systemService.SessionHelper.GetDateformat();
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(leaveRequetsSelfservice), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                //try
+                //{
+                //    AccessControlApplier.ApplyAccessControlOnPage(typeof(leaveRequetsSelfservice), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                  
 
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
+                //}
+                //catch (AccessDeniedException exp)
+                //{
+                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
+                //    Viewport1.Hidden = true;
+                //    return;
+                //}
 
             }
 

@@ -147,18 +147,18 @@ namespace AionHR.Web.UI.Forms
                     PoPuP(null, new DirectEventArgs(col));
 
                 }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(loanSelfService), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                //try
+                //{
+                //    AccessControlApplier.ApplyAccessControlOnPage(typeof(loanSelfService), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
 
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
+                //}
+                //catch (AccessDeniedException exp)
+                //{
+                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
+                //    Viewport1.Hidden = true;
+                //    return;
+                //}
                 //try
 
                 //{

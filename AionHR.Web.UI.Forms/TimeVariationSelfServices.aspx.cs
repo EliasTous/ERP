@@ -78,17 +78,17 @@ namespace AionHR.Web.UI.Forms
                     dateRange1.DefaultEndDate= DateTime.ParseExact(Server.UrlDecode(Request.QueryString["_toDayId"]).Trim('\''), "yyyyMMdd", new CultureInfo("en"));
 
                 }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(RT305), null, GridPanel1, null, null);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
+                //try
+                //{
+                //    AccessControlApplier.ApplyAccessControlOnPage(typeof(RT305), null, GridPanel1, null, null);
+                //}
+                //catch (AccessDeniedException exp)
+                //{
+                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                //    Viewport1.Hidden = true;
+                //    return;
+                //}
                 dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                 FillStatus();
                 timeVariationType.Select(0);

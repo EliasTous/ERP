@@ -107,55 +107,55 @@ namespace AionHR.Web.UI.Forms
                 }
                 if (_systemService.SessionHelper.CheckIfIsAdmin())
                     return;
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(GenerationHeader), BasicInfoTab, payrollsGrid, AddButton, SaveButton);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeePayroll), EditEMForm, employeePayrolls, null, SaveDocumentButton);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    employeePayrolls.Hidden = true;
+                //try
+                //{
+                //    AccessControlApplier.ApplyAccessControlOnPage(typeof(GenerationHeader), BasicInfoTab, payrollsGrid, AddButton, SaveButton);
+                //}
+                //catch (AccessDeniedException exp)
+                //{
+                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                //    Viewport1.Hidden = true;
+                //    return;
+                //}
+                //try
+                //{
+                //    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeePayroll), EditEMForm, employeePayrolls, null, SaveDocumentButton);
+                //}
+                //catch (AccessDeniedException exp)
+                //{
+                //    employeePayrolls.Hidden = true;
 
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(PayrollEntitlementDeduction), EditEDForm, entitlementsGrid, AddENButton, saveEDBT);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    entitlementsGrid.Hidden = true;
+                //}
+                //try
+                //{
+                //    AccessControlApplier.ApplyAccessControlOnPage(typeof(PayrollEntitlementDeduction), EditEDForm, entitlementsGrid, AddENButton, saveEDBT);
+                //}
+                //catch (AccessDeniedException exp)
+                //{
+                //    entitlementsGrid.Hidden = true;
 
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(PayrollEntitlementDeduction), EditEDForm, deductionGrid, AddEDButton, saveEDBT);
-                }
-                catch (AccessDeniedException exp)
-                {
+                //}
+                //try
+                //{
+                //    AccessControlApplier.ApplyAccessControlOnPage(typeof(PayrollEntitlementDeduction), EditEDForm, deductionGrid, AddEDButton, saveEDBT);
+                //}
+                //catch (AccessDeniedException exp)
+                //{
 
-                    deductionGrid.Hidden = true;
+                //    deductionGrid.Hidden = true;
 
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(PayrollSocialSecurity), null, payCodeGrid, null, null);
-                }
-                catch (AccessDeniedException exp)
-                {
+                //}
+                //try
+                //{
+                //    AccessControlApplier.ApplyAccessControlOnPage(typeof(PayrollSocialSecurity), null, payCodeGrid, null, null);
+                //}
+                //catch (AccessDeniedException exp)
+                //{
 
-                    deductionGrid.Hidden = true;
+                //    deductionGrid.Hidden = true;
 
-                }
+                //}
                 var properties = AccessControlApplier.GetPropertiesLevels(typeof(PayrollEntitlementDeduction));
 
                 entitlementDisabled.Text = deductionDisabled.Text = (properties.Where(x => x.index == "amount").ToList()[0].accessLevel == 0).ToString();
