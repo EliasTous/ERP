@@ -321,12 +321,10 @@ namespace AionHR.Web.UI.Forms
 
         public void Update(string id)
         {
-            RecordRequest r = new RecordRequest();
-            r.RecordID = id;
-            CurrentLeave.Text = r.RecordID;
-            shouldDisableLastDay.Text = "0";
-
-            RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
+            SelfServiceLeaveRecordRequest r = new SelfServiceLeaveRecordRequest();
+            r.LeaveId = Convert.ToInt32(id);
+            CurrentLeave.Text = r.LeaveId.ToString();
+            RecordResponse<LeaveRequest> response = _selfServiceService.ChildGetRecord<LeaveRequest>(r);
             if (!response.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

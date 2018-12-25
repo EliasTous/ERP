@@ -4,6 +4,7 @@ using AionHR.Model.Attendance;
 using AionHR.Model.Dashboard;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.LeaveManagement;
+using AionHR.Model.LoadTracking;
 using AionHR.Model.Payroll;
 using AionHR.Model.SelfService;
 using AionHR.Model.TimeAttendance;
@@ -40,6 +41,8 @@ namespace AionHR.Repository.WebService.Repositories
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");
             ChildGetLookup.Add(typeof(EmployeeComplaintSelfService), "getCO");
+            ChildGetLookup.Add(typeof(Loan), "getLO");
+            ChildGetLookup.Add(typeof(LeaveRequest), "getLR");
 
 
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");

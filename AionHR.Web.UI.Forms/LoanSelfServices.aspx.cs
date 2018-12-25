@@ -352,10 +352,10 @@ namespace AionHR.Web.UI.Forms
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
-                    RecordRequest r = new RecordRequest();
-                    r.RecordID = id;
+                    SelfServiceLoanRecordRequest r = new SelfServiceLoanRecordRequest();
+                    r.LoanId = Convert.ToInt32(id);
 
-                    RecordResponse<Loan> response = _loanService.Get<Loan>(r);
+                    RecordResponse<Loan> response = _selfServiceService.ChildGetRecord<Loan>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
