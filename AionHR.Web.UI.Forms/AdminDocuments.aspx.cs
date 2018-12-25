@@ -82,7 +82,7 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
 
-                ColissueDate.Format = ColexpiryDate.Format = _systemService.SessionHelper.GetDateformat();
+        ColdayIdDate.Format= dayIdDate.Format= ColissueDate.Format = ColexpiryDate.Format = _systemService.SessionHelper.GetDateformat();
             }
 
         }
@@ -225,6 +225,73 @@ namespace AionHR.Web.UI.Forms
 
 
         }
+        protected void PoPuPDD(object sender, DirectEventArgs e)
+        {  
+                                 
+        
+                                     
+           
+                                            
+                             
+            string rowId = e.ExtraParams["rowId"];
+            string doId = e.ExtraParams["doId"];
+            string dayId = e.ExtraParams["dayId"];
+            string amount = e.ExtraParams["amount"];
+            string type = e.ExtraParams["type"];
+          
+            switch (type)
+            {
+                case "imgEdit":
+                    //Step 1 : get the object from the Web Service 
+                    DocumentDueRecordRequest r = new DocumentDueRecordRequest();
+                    r.dayId = dayId;
+                    r.doId = doId;
+
+                    RecordResponse<AdminDocumentDue> response = _administrationService.ChildGetRecord<AdminDocumentDue>(r);
+                    if (!response.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        Common.errorMessage(response);
+                        return;
+                    }
+
+                    //Step 2 : call setvalues with the retrieved object
+                    this.documentDueForm.SetValues(response.result);
+                    if (!string.IsNullOrEmpty(response.result.dayId))
+                    dayIdDate.Value= DateTime.ParseExact(response.result.dayId, "yyyyMMdd", new CultureInfo("en"));
+
+                    this.documentDueWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.documentDueWindow.Show();
+                    break;
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteDD({0})", dayId),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                case "imgAttach":
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
+
 
         /// <summary>
         /// This direct method will be called after confirming the delete
@@ -323,6 +390,52 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+        [DirectMethod]
+        public void DeleteDD(string dayId)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                AdminDocumentDue s = new AdminDocumentDue();
+                s.dayId = dayId;
+                s.doId = currentDocumentId.Text;
+
+                //s.intName = "";
+
+                PostRequest<AdminDocumentDue> req = new PostRequest<AdminDocumentDue>();
+                req.entity = s;
+                PostResponse<AdminDocumentDue> r = _administrationService.ChildDelete<AdminDocumentDue>(req);
+                if (!r.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(r); ;
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    DocumentDueStore.Reload();
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+
 
 
 
@@ -481,6 +594,42 @@ namespace AionHR.Web.UI.Forms
 
             this.Store1.DataBind();
         }
+
+        protected void DocumentDueStore_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+         
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            DocumentNoteListRequest req = new DocumentNoteListRequest();
+            req.documentId = Convert.ToInt32(currentDocumentId.Text);
+            req.Filter = string.Empty;
+            ListResponse<AdminDocumentDue> routers = _administrationService.ChildGetAll<AdminDocumentDue>(req);
+            if (!routers.Success)
+            {
+                Common.errorMessage(routers);
+                return;
+            }
+            routers.Items.ForEach(x =>
+            {
+                if (string.IsNullOrEmpty(x.dayId))
+                    x.dayIdDate = null;
+                else
+                {
+                    x.dayIdDate = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"));
+                }
+            });
+            this.DocumentDueStore.DataSource = routers.Items;
+            e.Total = routers.count;
+
+            this.DocumentDueStore.DataBind();
+        }
         protected void DocumentNotesStore_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
@@ -593,19 +742,7 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                    DocumentNoteListRequest req = new DocumentNoteListRequest();
-                    req.documentId = Convert.ToInt32(currentDocumentId.Text);
-                    req.Filter = "";
-                    ListResponse<AdminDocument> routers = _administrationService.ChildGetAll<AdminDocument>(req);
-                    if (!routers.Success)
-                    {
-                         Common.errorMessage(routers);
-                        return;
-                    }
-                    this.DocumentDueStore.DataSource = routers.Items;
-                   
-
-                    this.DocumentDueStore.DataBind();
+                    DocumentDueStore.Reload();
 
 
 
@@ -731,6 +868,132 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+            }
+        }
+        protected void saveDocumentDue(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            try
+            {
+               
+
+                string obj = e.ExtraParams["values"];
+                string rowId = e.ExtraParams["rowId"];
+                string dayId = e.ExtraParams["dayId"];
+                AdminDocumentDue b = JsonConvert.DeserializeObject<AdminDocumentDue>(obj);
+
+               if ( b.dayIdDate == null )
+                {
+                    return;
+                }else
+                    b.dayId=((DateTime)b.dayIdDate).ToString("yyyyMMdd");
+              
+                b.rowId = rowId;
+                b.doId = currentDocumentId.Text;
+
+               
+                // Define the object to add or edit as null
+
+             
+
+                    try
+                    {
+                        //New Mode
+                        //Step 1 : Fill The object and insert in the store 
+                        PostRequest<AdminDocumentDue> request = new PostRequest<AdminDocumentDue>();
+
+                        request.entity = b;
+                        PostResponse<AdminDocumentDue> r = _administrationService.ChildAddOrUpdate<AdminDocumentDue>(request);
+
+
+                        //check if the insert failed
+                        if (!r.Success)//it maybe be another condition
+                        {
+                            //Show an error saving...
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            Common.errorMessage(r); ;
+                            return;
+                        }
+                        else
+                        {
+                        DocumentDueStore.Reload();
+                           
+                            //Add this record to the store 
+                         
+
+                            //Display successful notification
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordSavingSucc
+                            });
+
+                         
+                          
+                        documentDueWindow.Close();
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //Error exception displaying a messsage box
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    }
+
+
+               
+                //else
+                //{
+                //    //Update Mode
+
+                //    try
+                //    {
+                //        //getting the id of the record
+                //        PostRequest<AdminDocument> request = new PostRequest<AdminDocument>();
+                //        request.entity = b;
+                //        PostResponse<AdminDocument> r = _administrationService.ChildAddOrUpdate<AdminDocument>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+
+                //        //Step 2 : saving to store
+
+                //        //Step 3 :  Check if request fails
+                //        if (!r.Success)//it maybe another check
+                //        {
+                //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //            Common.errorMessage(r); ;
+                //            return;
+                //        }
+                //        else
+                //        {
+
+                //            currentDocumentId.Text = r.recordId;
+                //            Store1.Reload();
+                //            Notification.Show(new NotificationConfig
+                //            {
+                //                Title = Resources.Common.Notification,
+                //                Icon = Icon.Information,
+                //                Html = Resources.Common.RecordUpdatedSucc
+                //            });
+                //            this.EditRecordWindow.Close();
+
+
+                //        }
+
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                //    }
+                //}
             }
             catch (Exception ex)
             {

@@ -24,5 +24,10 @@ public   class ProcessNotificationTypes
 
         public const short PAYROLL_PAYSLIP = ModuleId.PY * 100 + 1;
 
+        public const short TIME_VARIATION_NEW = ModuleId.TA * 100 + 2;
+        public const short TIME_VARIATION_APPROVED = ModuleId.TA * 100 + 3;
+        public const short TIME_VARIATION_REJECTED = ModuleId.TA * 100 + 4;
+
+
     }
 }

@@ -8,7 +8,11 @@ namespace AionHR.Model.AdminTemplates
 {
   public  class AdminDocumentDue
     {
-        public DateTime dueDate { get; set; }
+        public string dayId { get; set; }
+        public DateTime? dayIdDate { get; set; }
         public double amount   { get; set; }
+
+        public string rowId { get; set; }
+        public string doId { get; set; }
     }
 }

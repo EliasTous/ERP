@@ -159,4 +159,13 @@
   <data name="TIME_SCHEDULE" xml:space="preserve">
     <value>Time Schedule</value>
   </data>
+  <data name="TIME_VARIATION_APPROVED" xml:space="preserve">
+    <value>Time Variation Approved</value>
+  </data>
+  <data name="TIME_VARIATION_NEW" xml:space="preserve">
+    <value>Time Variation New</value>
+  </data>
+  <data name="TIME_VARIATION_REJECTED" xml:space="preserve">
+    <value>Time Variation Rejected </value>
+  </data>
 </root>

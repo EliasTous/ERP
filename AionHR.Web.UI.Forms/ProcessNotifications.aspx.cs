@@ -274,6 +274,11 @@ namespace AionHR.Web.UI.Forms
             PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LOAN_REQUEST_APPROVED").ToString(), processId = ProcessNotificationTypes.LOAN_REQUEST_APPROVED,  });
             PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LOAN_REQUEST_REJECTED").ToString(), processId = ProcessNotificationTypes.LOAN_REQUEST_REJECTED });
             PN.Add(new ProcessNotification { prName = GetLocalResourceObject("PAYROLL_PAYSLIP").ToString(), processId = ProcessNotificationTypes.PAYROLL_PAYSLIP,  });
+
+
+            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("TIME_VARIATION_NEW").ToString(), processId = ProcessNotificationTypes.TIME_VARIATION_NEW });
+            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("TIME_VARIATION_APPROVED").ToString(), processId = ProcessNotificationTypes.TIME_VARIATION_APPROVED });
+            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("TIME_VARIATION_REJECTED").ToString(), processId = ProcessNotificationTypes.TIME_VARIATION_REJECTED });
             res.Items.ForEach(x =>
             {
                if ( (PN.Where(y => y.processId == x.processId).First()!=null ) )
