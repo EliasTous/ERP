@@ -74,4 +74,16 @@
 
 ]
 }
+,
+{
+    
+    "type": "time_variations",
+    "tags": [
+"tv_timeCode",
+"tv_date",
+"tv_duration",
+"tv_url"
+
+]
+}
 ]

@@ -291,4 +291,16 @@
   <data name="penalty_url" xml:space="preserve">
     <value>رابط العقوبة</value>
   </data>
+  <data name="tv_date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="tv_duration" xml:space="preserve">
+    <value>المدة</value>
+  </data>
+  <data name="tv_timeCode" xml:space="preserve">
+    <value>Time Code</value>
+  </data>
+  <data name="tv_url" xml:space="preserve">
+    <value>الرابط</value>
+  </data>
 </root>

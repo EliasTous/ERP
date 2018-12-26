@@ -174,6 +174,7 @@
     <Content Include="AdminDocuments.aspx" />
     <Content Include="BusinessPartnerCategories.aspx" />
     <Content Include="BusinessPartneres.aspx" />
+    <Content Include="CompanyNews.aspx" />
     <Content Include="DocumentCategories.aspx" />
     <Content Include="EmployeeComplaints.aspx" />
     <Content Include="EmployeeComplaintSelfServices.aspx" />
@@ -185,6 +186,7 @@
     <Content Include="Reports\RT307.aspx" />
     <Content Include="Scripts\AdminTemplates.js" />
     <Content Include="Scripts\SystemDefaults.js" />
+    <Content Include="Tasks.aspx" />
     <Content Include="TimeAttendanceApprovals.aspx" />
     <Content Include="TimeAttendanceViewSelfServices.aspx" />
     <Content Include="TimeVariationSelfServices.aspx" />
@@ -632,6 +634,13 @@
     <Compile Include="BusinessPartneres.aspx.designer.cs">
       <DependentUpon>BusinessPartneres.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CompanyNews.aspx.cs">
+      <DependentUpon>CompanyNews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompanyNews.aspx.designer.cs">
+      <DependentUpon>CompanyNews.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ConstClasses\Common.cs" />
     <Compile Include="DocumentCategories.aspx.cs">
       <DependentUpon>DocumentCategories.aspx</DependentUpon>
@@ -695,6 +704,13 @@
     </Compile>
     <Compile Include="Reports\RT307.aspx.designer.cs">
       <DependentUpon>RT307.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks.aspx.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tasks.aspx.designer.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
     </Compile>
     <Compile Include="TimeAttendanceApprovals.aspx.cs">
       <DependentUpon>TimeAttendanceApprovals.aspx</DependentUpon>

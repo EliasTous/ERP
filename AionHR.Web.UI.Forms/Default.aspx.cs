@@ -96,6 +96,7 @@ namespace AionHR.Web.UI.Forms
             StoreSystemDefaults();
             string url = PageLookup.GetPageUrlByClassId(Convert.ToInt32(parsed["_c"])) + "?" +parsed["_k"].Replace('#', '&');
             X.Call("openNewTab", parsed["_c"], url, GetGlobalResourceObject("Classes", "Class" + parsed["_c"]), "icon-Employees");
+            //Response.Redirect("Default.aspx");
             return true;
         }
         protected void Page_Load(object sender, EventArgs e)
