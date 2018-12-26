@@ -637,7 +637,7 @@ function ClearNoteText()
                             RemoteSort="False"
                             RemoteFilter="true"
                            
-                            PageSize="50" IDMode="Explicit" Namespace="App">
+                            PageSize="50" IDMode="Explicit" Namespace="App" OnReadData="DocumentDueStore_RefreshData">
                           <%--  <Proxy>
                                 <ext:PageProxy>
                                     <Listeners>
@@ -646,13 +646,15 @@ function ClearNoteText()
                                 </ext:PageProxy>
                             </Proxy>--%>
                             <Model>
-                                <ext:Model ID="Model3" runat="server" >
+                                <ext:Model ID="Model3" runat="server"  >
                                     <Fields>
 
                                       
-                                          <ext:ModelField Name="dueDate" />
+                                          <ext:ModelField Name="dayId" />
+                                            <ext:ModelField Name="dayIdDate" />
                                           <ext:ModelField Name="amount" />
                                            <ext:ModelField Name="doId" />
+                                           <ext:ModelField Name="rowId" />
                                         
 
                                     </Fields>
@@ -668,7 +670,7 @@ function ClearNoteText()
                             <Items>
                                 <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Generate %>" Icon="Add">       
                                      <Listeners>
-                                        <Click Handler="CheckSession(); App.GenerateDocumentDuesWindow.show();" />
+                                        <Click Handler="CheckSession(); App.GenerateDocumentDuesWindow.show();#{startingDate}.setValue(new date());" />
 
                                     </Listeners>                           
                                    
@@ -686,10 +688,10 @@ function ClearNoteText()
                     <ColumnModel ID="ColumnModel3" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                          
-                            <ext:DateColumn    CellCls="cellLink" ID="dueDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDueDate%>" DataIndex="dueDate" Flex="2" Hideable="false">
+                            <ext:DateColumn    CellCls="cellLink" ID="ColdayIdDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDueDate%>" DataIndex="dayIdDate" Flex="2" Hideable="false">
                     
                                 </ext:DateColumn>
-                              <ext:NumberColumn    CellCls="cellLink" ID="amount" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount%>" DataIndex="amount" Flex="2" Hideable="false" />
+                              <ext:NumberColumn    CellCls="cellLink" ID="Colamount" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount%>" DataIndex="amount" Flex="2" Hideable="false" />
                         
                            
 
@@ -707,7 +709,7 @@ function ClearNoteText()
                                 <Renderer Fn="deleteRender" />
                               
                             </ext:Column>
-                            <ext:Column runat="server"
+                            <ext:Column runat="server" Visible="false"
                                 ID="Column6"
                                 Text="<%$ Resources:Common, Attach %>"
                                 Hideable="false"
@@ -775,12 +777,17 @@ function ClearNoteText()
                     </BottomBar>
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
+                     
+                        <Activate Handler="#{DocumentDueStore}.reload();" />
                     </Listeners>
                     <DirectEvents>
-                        <CellClick OnEvent="PoPuP">
+                        <CellClick OnEvent="PoPuPDD">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="rowId" Value="record.data['rowId']" Mode="Raw" />
+                                 <ext:Parameter Name="doId" Value="record.data['doId']" Mode="Raw" />
+                                 <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
+                                 <ext:Parameter Name="amount" Value="record.data['amount']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -890,6 +897,69 @@ function ClearNoteText()
                     </DirectEvents>
                 </ext:Button>
                 <ext:Button ID="Button3" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+
+
+          <ext:Window 
+            ID="documentDueWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:DocumentDuesWindowTitle %>"
+            Width="450"
+            Height="330"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+            
+            <Items>
+             
+                        <ext:FormPanel
+                            ID="documentDueForm" DefaultButton="DocumentDueBtn"
+                            runat="server"
+                      
+                         
+                            DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
+                            BodyPadding="5">
+                            <Items>
+                             
+                                <ext:DateField ID="dayIdDate" runat="server" FieldLabel="<%$ Resources:FieldDueDate%>" Name="dayIdDate"   AllowBlank="false" />
+                          
+                                  <ext:NumberField ID="amount" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount"   AllowBlank="false" />
+                              
+                                  
+                                <ext:TextField ID="rowId" runat="server"  Name="rowId"  Hidden="true"/>
+                                  <ext:TextField ID="dayId" runat="server"  Name="dayId"  Hidden="true"/>
+                            </Items>
+
+                        </ext:FormPanel>
+                        
+                    </Items>
+            
+         
+            <Buttons>
+                <ext:Button ID="DocumentDueBtn" runat="server" Text="<%$ Resources:Common, save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{documentDueForm}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="saveDocumentDue" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{documentDueWindow}.body}" />
+                            <ExtraParams>
+                                  <ext:Parameter Name="rowId" Value ="#{rowId}.getValue()" Mode="Raw"/>
+                                  <ext:Parameter Name="dayId" Value ="#{dayId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value ="#{documentDueForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button4" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>

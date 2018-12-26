@@ -25,6 +25,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(AdminDocument), "qryDO");
             ChildGetAllLookup.Add(typeof(AdminDocumentNote), "qryDN");
             ChildGetAllLookup.Add(typeof(ProcessNotification), "qryPN");
+            ChildGetAllLookup.Add(typeof(AdminDocumentDue), "qryDD");
 
 
             ChildGetLookup.Add(typeof(AdTemplate), "getTE");
@@ -37,6 +38,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(AdminDocument), "getDO");
             ChildGetLookup.Add(typeof(AdminDocumentNote), "getDN");
             ChildGetLookup.Add(typeof(ProcessNotification), "getPN");
+            ChildGetLookup.Add(typeof(AdminDocumentDue), "getDD");
 
             ChildAddOrUpdateLookup.Add(typeof(AdTemplate), "setTE");
             ChildAddOrUpdateLookup.Add(typeof(TemplateBody), "setTB");
@@ -49,6 +51,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(AdminDocumentNote), "setDN");
             ChildAddOrUpdateLookup.Add(typeof(GenerateAdminDocumentDue), "genDD");
             ChildAddOrUpdateLookup.Add(typeof(ProcessNotification), "setPN");
+            ChildAddOrUpdateLookup.Add(typeof(AdminDocumentDue), "setDD");
 
             ChildDeleteLookup.Add(typeof(AdTemplate), "delTE");
             ChildDeleteLookup.Add(typeof(TemplateBody), "delTB");
@@ -59,6 +62,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(AdminDocument), "delDO");
             ChildDeleteLookup.Add(typeof(AdminDocumentNote), "delDN");
             ChildDeleteLookup.Add(typeof(ProcessNotification), "delPN");
+            ChildDeleteLookup.Add(typeof(AdminDocumentDue), "delDD");
         }
         }
 }
