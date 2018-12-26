@@ -91,6 +91,7 @@ namespace AionHR.Web.UI.Forms
                 List<string> loanTags = null;
                 List<string> scheduleTags = null;
                 List<string> penaltyTags = null;
+                List<string> tvar = null;
                 foreach (var item in groups)
                 {
                     switch(item.type)
@@ -101,6 +102,7 @@ namespace AionHR.Web.UI.Forms
                         case "loan": loanTags = item.tags; break;
                         case "schedule": scheduleTags = item.tags; break;
                         case "penalty": penaltyTags = item.tags; break;
+                        case "time_variations": tvar = item.tags; break;
                         default:break;
                     }
                 }
@@ -152,7 +154,15 @@ namespace AionHR.Web.UI.Forms
                     }
                     catch { }
                 }
-                X.Call("InitTags", empTags, adminAffairsTags, leaveTags, loanTags,scheduleTags,penaltyTags);
+                for (int i = 0; i < tvar.Count; i++)
+                {
+                    try
+                    {
+                        tvar[i] += " (" + GetLocalResourceObject(tvar[i]).ToString() + ")";
+                    }
+                    catch { }
+                }
+                X.Call("InitTags", empTags, adminAffairsTags, leaveTags, loanTags,scheduleTags,penaltyTags,tvar);
             }
 
         }

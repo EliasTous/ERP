@@ -41,7 +41,8 @@
         var loanTags = null;
         var scheduleTags = null;
         var penaltyTags = null;
-        function InitTags(emp,admin,leave,loan,schedule,penalty) {
+        var tvarTags = null;
+        function InitTags(emp,admin,leave,loan,schedule,penalty,tv) {
             
             empTags = emp;
             adminAffairsTags = admin;
@@ -49,6 +50,7 @@
             loanTags = loan;
             scheduleTags = schedule;
             penaltyTags = penalty;
+            tvarTags = tv;
         }
         function escapeHtml(unsafe) {
             return unsafe
@@ -191,6 +193,30 @@
             }), ui.dropdown({
                 className: 'tags-dropdown',
                 items: penaltyTags,
+
+                click: function (d) {
+                    console.log(d);
+
+                    // invoke insertText method with 'hello' on editor module.
+                    context.invoke('editor.insertText', "#" + d.target.innerText.split('(')[0].trim() + "#");
+                }
+            })]);
+
+            return buttongroup.render();   // return button as jquery object
+        }
+        var tvParams = function (context) {
+            var ui = $.summernote.ui;
+
+            // create button
+            var buttongroup = ui.buttonGroup([ui.button({
+                contents: '<i class="material-icons">timelapse</i>',
+
+                data: {
+                    toggle: 'dropdown'
+                }
+            }), ui.dropdown({
+                    className: 'tags-dropdown',
+                    items: tvarTags,
 
                 click: function (d) {
                     console.log(d);
@@ -668,7 +694,7 @@
                                         <AfterLayout Handler=" $('#summernote').summernote('reset'); setWidth(); var s = unescape( #{bodyText}.getValue()); document.getElementById('summernote').style.direction = 'ltr'; $('#summernote').summernote('code',s);" />
                                         <AfterRender Handler=" App.TemplateBodyWindow.setMaxHeight(0.92*window.innerHeight);$('#summernote').summernote({
                                                 height: 270,
-                                              toolbar: [['mybutton', ['hello','admin','leave','loan','schedule','penalty']],
+                                              toolbar: [['mybutton', ['hello','admin','leave','loan','schedule','penalty','tv']],
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],
             ['fontname', ['fontname']],
@@ -682,7 +708,7 @@
   ],
 
   buttons: {
-    hello: employeeParams,admin:adminAffairParams,leave:leaveParams,loan:loanParams,schedule:scheduleParams,penalty:penaltyParams
+    hello: employeeParams,admin:adminAffairParams,leave:leaveParams,loan:loanParams,schedule:scheduleParams,penalty:penaltyParams,tv:tvParams
                                           
   }
                                                 }); " />
