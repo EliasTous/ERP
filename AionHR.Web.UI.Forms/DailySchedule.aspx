@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css?id=3" />
     <link rel="stylesheet" href="CSS/DailySchedule.css?id=100" />
   <%--  <link rel="stylesheet" href="CSS/defaultTheme.css?id=11" />--%>
-    <script type="text/javascript" src="Scripts/DailySchedule.js?id=61"></script>
+    <script type="text/javascript" src="Scripts/DailySchedule.js?id=31"></script>
     <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
  
     <script type="text/javascript" src="Scripts/jquery-new.js?id=30"></script>

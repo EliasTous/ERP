@@ -41,7 +41,8 @@ namespace Reports.EmployeePayRoll
                     );
 
                 employeePayrollDataSet1.SalaryDetails.AddSalaryDetailsRow(parentRow, isArabic ? "الراتب الاساسي" : "Basic Salary", 1, Convert.ToDecimal(employee.FirstOrDefault().basicAmount));
-
+                employeePayrollDataSet1.SalaryDetails.AddSalaryDetailsRow(parentRow, isArabic ? "التأمينات الاجتماعية" : "Social Security", 2, Convert.ToDecimal(employee.FirstOrDefault().essAmount));
+                
                 benifits.ForEach(u => employeePayrollDataSet1.SalaryDetails.AddSalaryDetailsRow(parentRow, u.edName, 1, Convert.ToDecimal(u.edAmount)));
 
                 deductions.ForEach(u => employeePayrollDataSet1.SalaryDetails.AddSalaryDetailsRow(parentRow, u.edName, 2, Convert.ToDecimal(u.edAmount)));

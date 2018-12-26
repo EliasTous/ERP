@@ -255,4 +255,7 @@
   <data name="NotifyEmployee" xml:space="preserve">
     <value>اشعار الموظف</value>
   </data>
+  <data name="disableEdit" xml:space="preserve">
+    <value>لايمكنك تعديل جدول الدوام اليومي ضمن هذه الفترة </value>
+  </data>
 </root>

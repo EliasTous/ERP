@@ -539,6 +539,11 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
                     return;
                 }
+                if (dateFrom.SelectedDate<DateTime.Today || dateTo.SelectedDate < DateTime.Today)
+                {
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
+                    return;
+                }
 
 
             }
