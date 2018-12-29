@@ -258,4 +258,7 @@
   <data name="disableEdit" xml:space="preserve">
     <value>لايمكنك تعديل جدول الدوام اليومي ضمن هذه الفترة </value>
   </data>
+  <data name="updateError" xml:space="preserve">
+    <value>لاتستطيع حفظ او تعديل جدول الدوام ضمن التاريخ المحدد </value>
+  </data>
 </root>

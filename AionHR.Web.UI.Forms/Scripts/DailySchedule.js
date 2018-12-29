@@ -111,26 +111,26 @@ var Init = function () {
 
 
                 var today = new Date();
+               
             
-                var cMonth = today.getMonth();
-                alert(cMonth.toString());
+                var cMonth = today.getMonth()+1;
+             
                 var cYear = today.getFullYear();
-                alert(cYear.toString());
-                var cDay = today.getDay().toString();
-                alert(cDay.toString());
+             
+                var cDay = today.getDate().toString();
+             
                 if (cMonth.toString().length < 2)
                     cMonth = "0" + today.getMonth().toString();
           
                 if (cDay.toString().length < 2)
                     cDay = "0" + today.getDay().toString();
               
-                alert(parseInt($(this)["0"].id));
-                alert(cYear.toString() + cMonth.toString() + cDay.toString());
+            
                 if (parseInt($(this)["0"].id) >= parseInt(cYear.toString() + cMonth.toString() + cDay.toString()))
                 {
                    
                     App.btnSave.setDisabled(false);
-                    App.btnDeleteDay.setDisabled(true);
+                    App.btnDeleteDay.setDisabled(false);
                 }
                 else
                 {
