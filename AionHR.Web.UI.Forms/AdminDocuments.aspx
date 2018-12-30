@@ -13,7 +13,7 @@
     <script type="text/javascript" src="Scripts/common.js?id=17" ></script>
      
   
-    <script type="text/javascript" src="../Scripts/moment.js?id=19"></script>
+    <script type="text/javascript" src="Scripts/moment.js?id=19"></script>
    <script type="text/javascript"  >
  
 var validateSave = function () {

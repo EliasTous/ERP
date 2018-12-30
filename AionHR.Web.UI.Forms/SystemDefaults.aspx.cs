@@ -1662,8 +1662,36 @@ namespace AionHR.Web.UI.Forms
          
         }
 
+        protected void RemovePicture(object sender, DirectEventArgs e)
+        {
+            Attachement at = new Attachement();
+            at.classId = 20030;
+            at.recordId = 1;
+            at.seqNo = 1;
+            at.fileName = "companyLogo"; 
 
+            PostRequest<Attachement> req = new PostRequest<Attachement>();
+            req.entity = at;
+            PostResponse<Attachement> resp = _systemService.ChildDelete<Attachement>(req);
 
+            if (!resp.Success)
+            {
+               
+                    Common.errorMessage(resp);
+                    return;
+                
+            }
+            else
+            {
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+                FillCompanyLogo();
+            }
 
+        }
     }
 }

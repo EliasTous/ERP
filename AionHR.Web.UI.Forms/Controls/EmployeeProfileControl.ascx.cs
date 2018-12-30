@@ -1221,7 +1221,7 @@ namespace AionHR.Web.UI.Forms
             X.Call("InitCropper", forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks);
 
             CurrentEmployeePhotoName.Text = forSummary.pictureUrl;
-            Store1.Reload();
+          //  Store1.Reload();
             //ModelProxy record = Store1.GetById(CurrentEmployee.Text);
             //record.Set("pictureUrl", imgControl.ImageUrl);
             //record.Set("departmentName", forSummary.departmentName);

@@ -306,7 +306,7 @@ function GetCroppedImage() {
         fd.append('id', null);
 
         Ext.net.Mask.show({ msg: App.lblLoading.getValue(), el: App.imageSelectionWindow.id });
-        var fileName = 'CompanyLogo';
+        var fileName = 'companyLogo';
        
 
         fd.append('data', App.imageData.value, fileName);
