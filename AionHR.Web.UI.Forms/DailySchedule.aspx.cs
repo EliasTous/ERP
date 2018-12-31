@@ -1283,9 +1283,10 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
                 return;
             }
-          
-           
-        
+
+            userSelectorStore.Reload();
+            this.groupUsersWindow.Show();
+
 
         }
 
