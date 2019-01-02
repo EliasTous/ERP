@@ -1374,6 +1374,10 @@ namespace AionHR.Web.UI.Forms
                 request.entity = fs;
 
                 PostResponse<FlatScheduleImport> r = _helpFunctionService.ChildAddOrUpdate<FlatScheduleImport>(request);
+               if (!r.Success)
+                {
+                    Common.errorMessage(r);
+                }
             }
 
             //check if the insert failed

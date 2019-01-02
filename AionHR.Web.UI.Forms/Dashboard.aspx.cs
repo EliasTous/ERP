@@ -341,10 +341,10 @@ namespace AionHR.Web.UI.Forms
                 retirementAgeLBL.Text = retirementAge.ToString();
                 vacationsLBL.Text = vacations.ToString();
 
-                LeavesGrid.Title = leaveGrid.Title.ToString() + " " + (APPROVAL_LEAVE != 0 ? APPROVAL_LEAVE.ToString() : "");
-                ApprovalLoanGrid.Title = ApprovalLoanGrid.Title.ToString() + " " + (APPROVAL_LOAN != 0 ? APPROVAL_LOAN.ToString() : "");
-                TimeGridPanel.Title = TimeGridPanel.Title.ToString() + " " + (APPROVAL_TIME != 0 ? APPROVAL_TIME.ToString() : "");
-                EmployeePenaltyApprovalGrid.Title = EmployeePenaltyApprovalGrid.Title.ToString() + " " + (APPROVAL_PENALTY != 0 ? APPROVAL_PENALTY.ToString() : "");
+                LeavesGrid.Title = GetLocalResourceObject("Leaves").ToString() + " " + (APPROVAL_LEAVE != 0 ? APPROVAL_LEAVE.ToString() : "");
+                ApprovalLoanGrid.Title = GetLocalResourceObject("ApprovalLoan").ToString() + " " + (APPROVAL_LOAN != 0 ? APPROVAL_LOAN.ToString() : "");
+                TimeGridPanel.Title = GetLocalResourceObject("Time").ToString() + " " + (APPROVAL_TIME != 0 ? APPROVAL_TIME.ToString() : "");
+                EmployeePenaltyApprovalGrid.Title = GetLocalResourceObject("EmployeePenaltyApproval").ToString() + " " + (APPROVAL_PENALTY != 0 ? APPROVAL_PENALTY.ToString() : "");
                 return dashoard;
             }
             catch (Exception exp)
