@@ -462,20 +462,21 @@ namespace AionHR.Web.UI.Forms
         }
         protected void Load_Click(object sender, DirectEventArgs e)
         {
-            if (dateFrom.SelectedDate <DateTime.Today || dateTo.SelectedDate < DateTime.Today)
-            {
+            X.Call("EnableTools");
+            //if (dateFrom.SelectedDate <DateTime.Today || dateTo.SelectedDate < DateTime.Today)
+            //{
 
 
-                this.btnSave.Disabled = true;
+            //    this.btnSave.Disabled = true;
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
                
-                X.Call("EnableTools");
+            //    X.Call("EnableTools");
                 
 
-            }
+            //}
             if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
@@ -539,6 +540,11 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
                     return;
                 }
+                if (dateFrom.SelectedDate<DateTime.Today || dateTo.SelectedDate < DateTime.Today)
+                {
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("disableEdit")).Show();
+                 
+                }
 
 
             }
@@ -583,91 +589,96 @@ namespace AionHR.Web.UI.Forms
                 RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
                 if (!SystemDefaultResponse.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + SystemDefaultResponse.LogId : SystemDefaultResponse.Summary).Show();
+                    Common.errorMessage(SystemDefaultResponse);
                     return;
+                   
                 }
                 FlatSchedule fs = new FlatSchedule();
                 fs.from = fsfromTime.ToString("HH:mm");
                 fs.to = fsToTime.ToString("HH:mm");
                 fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
                 fs.dayId = dayId.Value.ToString();
-                PostRequest<FlatSchedule> request = new PostRequest<FlatSchedule>();
-
-                request.entity = fs;
-                PostResponse<FlatSchedule> r = _timeAttendanceService.ChildAddOrUpdate<FlatSchedule>(request);
-
-
-                //check if the insert failed
-                if (!r.Success)//it maybe be another condition
+                if (DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en")) >= DateTime.Today)
                 {
-                    //Show an error saving...
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                  Common.errorMessage(r);
-                    return;
-                }
-                else
-                {
-                    //reloading the day only
-                    BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
-                    reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                    reqFS.FromDayId = dayId.Value.ToString();
-                    reqFS.ToDayId = dayId.Value.ToString();
-                    reqFS.BranchId = 0;
-                    ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
-                    if (!response.Success)
+                    PostRequest<FlatSchedule> request = new PostRequest<FlatSchedule>();
+
+                    request.entity = fs;
+                    PostResponse<FlatSchedule> r = _timeAttendanceService.ChildAddOrUpdate<FlatSchedule>(request);
+
+
+                    //check if the insert failed
+                    if (!r.Success)//it maybe be another condition
                     {
-                        X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                        //Show an error saving...
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        Common.errorMessage(r);
                         return;
                     }
-
-                    //Filling the ids list to reload
-                    List<string> listIds = new List<string>();
-                    foreach (FlatSchedule fss in response.Items)
+                    else
                     {
-                        DateTime activeDate = DateTime.ParseExact(fss.dayId, "yyyyMMdd", new CultureInfo("en"));
-                        DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.from.Split(':')[0]), Convert.ToInt32(fss.from.Split(':')[1]), 0);
-                        DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.to.Split(':')[0]), Convert.ToInt32(fss.to.Split(':')[1]), 0);
-                        if (fsToDate.Minute == 0 && fsToDate.Hour == 00)
+                        //reloading the day only
+                        BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+                        reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
+                        reqFS.FromDayId = dayId.Value.ToString();
+                        reqFS.ToDayId = dayId.Value.ToString();
+                        reqFS.BranchId = 0;
+                        ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
+                        if (!response.Success)
                         {
-                            fsToDate = fsToDate.AddDays(1);
-                            do
-                            {
-
-
-                                fsToDate = fsToDate.AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
-                                listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
-                            } while (fsToDate != fsfromDate);
-                        }
-                        else
-                        {
-                            do
-                            {
-                                listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                                fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
-                            } while (fsToDate >= fsfromDate);
+                            X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                            return;
                         }
 
+                        //Filling the ids list to reload
+                        List<string> listIds = new List<string>();
+                        foreach (FlatSchedule fss in response.Items)
+                        {
+                            DateTime activeDate = DateTime.ParseExact(fss.dayId, "yyyyMMdd", new CultureInfo("en"));
+
+                            DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.from.Split(':')[0]), Convert.ToInt32(fss.from.Split(':')[1]), 0);
+                            DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.to.Split(':')[0]), Convert.ToInt32(fss.to.Split(':')[1]), 0);
+                            if (fsToDate.Minute == 0 && fsToDate.Hour == 00)
+                            {
+                                fsToDate = fsToDate.AddDays(1);
+                                do
+                                {
+
+
+                                    fsToDate = fsToDate.AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
+                                    listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
+                                } while (fsToDate != fsfromDate);
+                            }
+                            else
+                            {
+                                do
+                                {
+                                    listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                                    fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                                } while (fsToDate >= fsfromDate);
+                            }
+
+                        }
+                        var d = response.Items.GroupBy(x => x.dayId);
+                        List<string> totaldayId = new List<string>();
+                        List<string> totaldaySum = new List<string>();
+                        d.ToList().ForEach(x =>
+                        {
+                            totaldayId.Add(x.ToList()[0].dayId + "_Total");
+                            totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration) / 60).ToString());
+                        });
+
+                        //eliasList<string> listIds = new List<string>();
+                        //DateTime effectiveDate = fsfromTime;
+                        //do
+                        //{
+                        //    listIds.Add(effectiveDate.ToString("yyyyMMdd") + "_" + fsfromTime.ToString("HH:mm"));
+                        //    fsfromTime = fsfromTime.AddMinutes(30);
+                        //} while (fsToTime >= fsfromTime);
+
+                        X.Call("DeleteDaySchedule", dayId.Value.ToString());
+                        X.Call("filldaytotal", totaldayId, totaldaySum);
+                        X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
                     }
-                    var d = response.Items.GroupBy(x => x.dayId);
-                    List<string> totaldayId = new List<string>();
-                    List<string> totaldaySum = new List<string>();
-                    d.ToList().ForEach(x =>
-                    {
-                        totaldayId.Add(x.ToList()[0].dayId + "_Total");
-                        totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration) / 60).ToString());
-                    });
-
-                    //eliasList<string> listIds = new List<string>();
-                    //DateTime effectiveDate = fsfromTime;
-                    //do
-                    //{
-                    //    listIds.Add(effectiveDate.ToString("yyyyMMdd") + "_" + fsfromTime.ToString("HH:mm"));
-                    //    fsfromTime = fsfromTime.AddMinutes(30);
-                    //} while (fsToTime >= fsfromTime);
-                 
-                    X.Call("DeleteDaySchedule", dayId.Value.ToString());
-                    X.Call("filldaytotal", totaldayId, totaldaySum);
-                    X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
                 }
             }
             else
@@ -678,6 +689,11 @@ namespace AionHR.Web.UI.Forms
                 fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
                 fs.fromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                 fs.toDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+                if (dateFrom.SelectedDate < DateTime.Today || dateTo.SelectedDate <DateTime.Today)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("updateError"));
+                    return;
+                }
                 PostRequest<FlatBulkSchedule> request = new PostRequest<FlatBulkSchedule>();
 
                 request.entity = fs;
@@ -1267,9 +1283,10 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
                 return;
             }
-          
-           
-        
+
+            userSelectorStore.Reload();
+            this.groupUsersWindow.Show();
+
 
         }
 
@@ -1357,6 +1374,10 @@ namespace AionHR.Web.UI.Forms
                 request.entity = fs;
 
                 PostResponse<FlatScheduleImport> r = _helpFunctionService.ChildAddOrUpdate<FlatScheduleImport>(request);
+               if (!r.Success)
+                {
+                    Common.errorMessage(r);
+                }
             }
 
             //check if the insert failed

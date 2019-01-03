@@ -410,14 +410,14 @@
                                       
                                     </Items>
                                 </ext:ComboBox>
-                                   <ext:NumberField ID="from" runat="server" FieldLabel="<%$ Resources: FieldFrom%>" Name="from" MinValue="0" AllowBlank="false"  >
+                                   <ext:NumberField ID="from" runat="server" FieldLabel="<%$ Resources: FieldFrom%>" Name="from" MinValue="0" AllowBlank="true"  >
                                     <%--  <Validator Handler=" if ( this.value<#{to}.getValue() ) {return fromToCheck(#{timeBase}.getValue(),this.value);} else return false; " />--%>
                                     <Validator Handler=" if (this.value>#{to}.getValue() &&  #{from}.getValue()!=null  && this.value!=null ) return false;else return true; " />
                                        <Listeners>
                                          <Change Handler="#{to}.validate();"></Change>
                                            </Listeners>
                                        </ext:NumberField>
-                                <ext:NumberField ID="to" runat="server" FieldLabel="<%$ Resources: FieldTo%>" Name="to"  MinValue="0" AllowBlank="false" >
+                                <ext:NumberField ID="to" runat="server" FieldLabel="<%$ Resources: FieldTo%>" Name="to"  MinValue="0" AllowBlank="true" >
                                     <Validator Handler="if (this.value<#{from}.getValue() && #{to}.getValue()!=null && this.value!=null  ){ return false;} else return true; " />
                                     <Listeners>
                                         <Change Handler="#{from}.validate();"></Change>

@@ -121,7 +121,7 @@
     <value>user did not assign to employee</value>
   </data>
   <data name="authenticationError" xml:space="preserve">
-    <value>User Name or Passwrod is incorrect</value>
+    <value>Incorrect user name or password</value>
   </data>
   <data name="EmptyBranch" xml:space="preserve">
     <value>Please adjust the  branch for employee   and retry generate again</value>

@@ -302,13 +302,12 @@ function GetCroppedImage() {
     roundedCanvas.toBlob(function (blob) {
 
         App.imageData.value = blob; var fd = new FormData();
-        fd.append('fname', App.FileUploadField1.value);
+        fd.append('fname', 'companyLogo');
         fd.append('id', null);
 
         Ext.net.Mask.show({ msg: App.lblLoading.getValue(), el: App.imageSelectionWindow.id });
-        var fileName = App.FileUploadField1.value;
-        if (fileName == '')
-            fileName = 'CompanyLogo';
+        var fileName = 'companyLogo';
+       
 
         fd.append('data', App.imageData.value, fileName);
         if (App.FileUploadField1.value == '')

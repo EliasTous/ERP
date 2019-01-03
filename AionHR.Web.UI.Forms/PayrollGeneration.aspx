@@ -598,10 +598,10 @@
                                         <Renderer Handler="if(record.data['netSalary']==0) return '-'; return record.data['currencyRef'] +'&nbsp; '+ record.data['netSalary'].toLocaleString()  ;" />
                                         </ext:Column>
                                     <ext:Column runat="server" DataIndex="cssAmount" Text="<%$ Resources: FieldCompanySocialSecurity%>" >
-                                      <Renderer Handler="if(record.data['cssAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['cssAmount']; " />
+                                      <Renderer Handler="if(record.data['cssAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['cssAmount'].toLocaleString() ; " />
                                         </ext:Column>
                                      <ext:Column runat="server" DataIndex="essAmount" Text="<%$ Resources: FieldEmployeeSocialSecurity%>" >
-                                      <Renderer Handler="if(record.data['essAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['essAmount']; " />
+                                      <Renderer Handler="if(record.data['essAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['essAmount'].toLocaleString() ; " />
                                         </ext:Column>
                                     <ext:Column runat="server"
                                         ID="Column1" Visible="true"

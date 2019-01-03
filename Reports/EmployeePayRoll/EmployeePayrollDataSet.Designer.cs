@@ -787,7 +787,7 @@ namespace Reports.EmployeePayRoll {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public EmployeeRow AddEmployeeRow(string reference, string FullName, string idRef, decimal NetSalary, int WorkingDays, decimal TotalBenifits, decimal TotalDeductions, string Tafkeet, string DepartmentName, string PositionName) {
+            public EmployeeRow AddEmployeeRow(string reference, string FullName, string idRef, double NetSalary, int WorkingDays, decimal TotalBenifits, decimal TotalDeductions, string Tafkeet, string DepartmentName, string PositionName) {
                 EmployeeRow rowEmployeeRow = ((EmployeeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         reference,
@@ -843,7 +843,7 @@ namespace Reports.EmployeePayRoll {
                 base.Columns.Add(this.columnFullName);
                 this.columnidRef = new global::System.Data.DataColumn("idRef", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnidRef);
-                this.columnNetSalary = new global::System.Data.DataColumn("NetSalary", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnNetSalary = new global::System.Data.DataColumn("NetSalary", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNetSalary);
                 this.columnWorkingDays = new global::System.Data.DataColumn("WorkingDays", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnWorkingDays);
@@ -1410,10 +1410,10 @@ namespace Reports.EmployeePayRoll {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal NetSalary {
+            public double NetSalary {
                 get {
                     try {
-                        return ((decimal)(this[this.tableEmployee.NetSalaryColumn]));
+                        return ((double)(this[this.tableEmployee.NetSalaryColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'NetSalary\' in table \'Employee\' is DBNull.", e);

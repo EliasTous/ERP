@@ -1213,8 +1213,11 @@
                         </ext:Button>
                         <ext:Button runat="server" Icon="Cancel" Text="RemovePicture ">
                             <Listeners>
-                                <Click Handler="ClearImage2(); InitCropper('Images/empPhoto.jpg'); App.uploadPhotoButton.setDisabled(false); " />
+                                <Click Handler=" InitCropper('Images/empPhoto.jpg'); App.uploadPhotoButton.setDisabled(false); " />
                             </Listeners>
+                            <DirectEvents>
+                                <Click OnEvent="RemovePicture"></Click>
+                            </DirectEvents>
                         </ext:Button>
                         <ext:FileUploadField ID="FileUploadField1" runat="server" ButtonOnly="true" Hidden="true">
                             <Listeners>

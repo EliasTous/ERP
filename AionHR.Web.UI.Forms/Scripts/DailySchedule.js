@@ -96,17 +96,11 @@ var Init = function () {
                 $(this).removeData("isselected");
                 App.dayId.setValue("");
               
-                if (App.dateFrom.getValue() >= new Date() || App.dateTo.getValue() >= new Date()) {
-                  
-                    App.btnSave.setDisabled(false);
-                    App.btnDeleteDay.setDisabled(true);
-                }
-                else
-                {
+               
                  
-                    App.btnSave.setDisabled(true);
                     App.btnDeleteDay.setDisabled(true);
-                }
+              
+               
             }
             else
             {
@@ -114,10 +108,29 @@ var Init = function () {
         $(this).css("background-color", "orange");
         $(this).data("isselected",true);
                 App.dayId.setValue($(this)["0"].id);
-                if (App.dateFrom.getValue() >= new Date() || App.dateTo.getValue() >= new Date()) {
+
+
+                var today = new Date();
+               
+            
+                var cMonth = today.getMonth()+1;
+             
+                var cYear = today.getFullYear();
+             
+                var cDay = today.getDate().toString();
+             
+                if (cMonth.toString().length < 2)
+                    cMonth = "0" + today.getMonth().toString();
+          
+                if (cDay.toString().length < 2)
+                    cDay = "0" + today.getDay().toString();
+              
+            
+                if (parseInt($(this)["0"].id) >= parseInt(cYear.toString() + cMonth.toString() + cDay.toString()))
+                {
                    
                     App.btnSave.setDisabled(false);
-                    App.btnDeleteDay.setDisabled(true);
+                    App.btnDeleteDay.setDisabled(false);
                 }
                 else
                 {

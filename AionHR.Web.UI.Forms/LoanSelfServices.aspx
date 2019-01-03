@@ -183,7 +183,7 @@
                             <%-- <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" Flex="2" />--%>
                              
                            
-
+                               <ext:Column ID="payments" DataIndex="payments" Text="<%$ Resources: FieldPayments %>" runat="server" Flex="2" />
 
 
                             <ext:Column runat="server"

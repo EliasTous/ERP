@@ -1228,7 +1228,7 @@
     <value>غياب بدون اذن</value>
   </data>
   <data name="MISSED_PUNCH" xml:space="preserve">
-    <value>لم يتم البصم </value>
+    <value>بصمة ناقصة</value>
   </data>
   <data name="OVERTIME" xml:space="preserve">
     <value>عمل إضافي</value>
@@ -1243,10 +1243,10 @@
     <value>فروقات الدوام</value>
   </data>
   <data name="DAY_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
-    <value>مغادرة خلال يوم العمل </value>
+    <value>غياب يوم دون عذر</value>
   </data>
   <data name="SHIFT_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
-    <value>مغادرة خلال ساعات العمل </value>
+    <value>غياب دوام دون عذر</value>
   </data>
   <data name="TimeVariationType" xml:space="preserve">
     <value>انواع التأخير</value>

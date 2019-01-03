@@ -234,4 +234,10 @@
   <data name="NotifyEmployee" xml:space="preserve">
     <value>Notify Employee</value>
   </data>
+  <data name="disableEdit" xml:space="preserve">
+    <value>you cannot edit schedule in this duration</value>
+  </data>
+  <data name="updateError" xml:space="preserve">
+    <value>You cannot update or save schedule at  specific  day range</value>
+  </data>
 </root>

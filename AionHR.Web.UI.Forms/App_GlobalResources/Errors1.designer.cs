@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User Name or Passwrod is incorrect.
+        ///   Looks up a localized string similar to Incorrect user name or password.
         /// </summary>
         internal static string authenticationError {
             get {

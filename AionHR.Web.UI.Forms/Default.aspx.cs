@@ -311,17 +311,17 @@ namespace AionHR.Web.UI.Forms
                     return nodes.ToJson();
                 case 7:
                     nodes = TreeBuilder.Instance.BuildSelftService(commonTree.Root);
-                    tabHome.Loader.Url = "MyInfos.aspx";
+                    tabHome.Loader.Url = "Dashboard.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 case 8:
                     nodes = TreeBuilder.Instance.BuildAdminTemplates(commonTree.Root);
-                    tabHome.Loader.Url = "MyInfos.aspx";
+                    tabHome.Loader.Url = "Dashboard.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 case 9:
                     nodes = TreeBuilder.Instance.BuildAdminTemplates(commonTree.Root);
-                    tabHome.Loader.Url = "AdminTemplates.aspx";
+                    tabHome.Loader.Url = "Dashboard.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 default:
