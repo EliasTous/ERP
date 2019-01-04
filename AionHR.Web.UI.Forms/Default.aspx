@@ -764,7 +764,7 @@
                             </ext:Button>
                             <ext:ToolbarFill runat="server" />
                             
-                            <ext:Button ID="Button1" runat="server" Icon="EmailAttach" ToolTip="<%$ Resources:Common , AdministrationAffairs %>">
+                            <ext:Button ID="btnAdminAffairs" runat="server" Icon="EmailAttach" ToolTip="<%$ Resources:Common , AdministrationAffairs %>">
                                 <Listeners>
                                     <Click Handler="openModule(9);" />
                                 </Listeners>

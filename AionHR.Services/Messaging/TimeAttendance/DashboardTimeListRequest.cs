@@ -16,9 +16,12 @@ namespace AionHR.Services.Messaging.TimeAttendance
         public string fromDayId { get; set; }
         public string toDayId { get; set; }
         public string apStatus { get; set; }
-        
 
-
+        public int? DepartmentId { get; set; }
+        public int? DivisionId { get; set; }
+        public int? PositionId { get; set; }
+        public int? BranchId { get; set; }
+        public int EsId { get; set; }
         public override Dictionary<string, string> Parameters
         {
             get
@@ -34,7 +37,11 @@ namespace AionHR.Services.Messaging.TimeAttendance
                 parameters.Add("_status", apStatus);
 
 
-
+                parameters.Add("_departmentId", DepartmentId.ToString());
+                parameters.Add("_divisionId", DivisionId.ToString());
+                parameters.Add("_branchId", BranchId.ToString());
+                parameters.Add("_esId", EsId.ToString());
+                parameters.Add("_positionId", PositionId.ToString());
 
 
                 return parameters;

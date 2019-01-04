@@ -1255,6 +1255,7 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
+                DashboardRequest req = GetDashboardRequest();
                 DashboardTimeListRequest r = new DashboardTimeListRequest();
                 r.dayId = "";
                 r.employeeId = 0;
@@ -1270,7 +1271,11 @@ namespace AionHR.Web.UI.Forms
                 r.timeCode = "0";
                 r.shiftId = "0";
                 r.apStatus = "1";
-
+                r.BranchId = req.BranchId;
+                r.DivisionId = req.DivisionId;
+                r.PositionId = req.PositionId;
+                r.DepartmentId = req.DepartmentId;
+                r.EsId = req.EsId;
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)
                 {

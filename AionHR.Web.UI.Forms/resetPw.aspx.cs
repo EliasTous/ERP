@@ -1,4 +1,5 @@
-﻿using AionHR.Model.MasterModule;
+﻿using AionHR.Infrastructure;
+using AionHR.Model.MasterModule;
 using AionHR.Services.Implementations;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
@@ -57,7 +58,7 @@ namespace AionHR.Web.UI.Forms
             ResetPasswordRequest request = new ResetPasswordRequest();
             request.Email = Request.QueryString["email"];
             request.Guid = Request.QueryString["guid"];
-            request.NewPassword = tbPassword.Text;
+            request.NewPassword = EncryptionHelper.encrypt(tbPassword.Text);
 
             PasswordRecoveryResponse response = _systemService.ResetPassword(request);
 

@@ -180,7 +180,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node files = BuildLeafNode("rootParent_CS_Files", Resources.Common.Files, "FolderTable", true, companyStructure);
          //   Ext.Net.Node companyNews = BuildLeafNode("rootParent_CS_CompanyNews", Resources.Common.CompanyNews, "Newspaper", true, companyStructure);
             Ext.Net.Node companyRightToWork = BuildLeafNode("rootParent_CS_CompanyRightTowork", Resources.Common.CompanyRightToWorks, "ScriptStart", true, companyStructure);
-            Ext.Net.Node companyLetter = BuildLeafNode("rootParent_CS_CompanyLetter", Resources.Common.Letters, "EmailLink" , true, companyStructure);
+         //   Ext.Net.Node companyLetter = BuildLeafNode("rootParent_CS_CompanyLetter", Resources.Common.Letters, "EmailLink" , true, companyStructure);
             
 
             //Ext.Net.Node departments = BuildLeafNode("rootParent_CS_DE", Resources.Common.Departments, "Group", true, setup);
@@ -203,7 +203,7 @@ namespace AionHR.Web.UI.Forms.Utilities
         //    FillConfigItem(companyNews, "companyNews", "CompanyNews.aspx", Resources.Common.CompanyNews, "icon-Employees", "1");
             //FillConfigItem(dashboard, "dashboard", "MainDashboard.aspx", Resources.Common.Dashboard, "icon-Employees", "1");
             FillConfigItem(companyRightToWork, "companyRightToWorks", "CompanyRightToWorks.aspx", Resources.Common.CompanyRightToWorks, "icon-Employees", "1");
-            FillConfigItem(companyLetter, "companyLetter", "Letters.aspx", Resources.Common.Letters, "icon-Employees", "1");
+         //   FillConfigItem(companyLetter, "companyLetter", "Letters.aspx", Resources.Common.Letters, "icon-Employees", "1");
 
             //FillConfigItem(branches, "branches", "Branches.aspx", Resources.Common.Branches, "icon-Employees", "1");
             //FillConfigItem(divisions, "divisions", "Divisions.aspx", Resources.Common.Divisions, "icon-Employees", "1");

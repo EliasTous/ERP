@@ -33,6 +33,7 @@ using AionHR.Model.LoadTracking;
 using AionHR.Services.Messaging.LoanManagment;
 using AionHR.Model.Attributes;
 using AionHR.Web.UI.Forms.ConstClasses;
+using System.Text.RegularExpressions;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -1077,146 +1078,154 @@ namespace AionHR.Web.UI.Forms
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
 
-           
-            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-
-
-            string obj = e.ExtraParams["values"];
-            Loan b = JsonConvert.DeserializeObject<Loan>(obj);
-
-            string id = e.ExtraParams["id"];
-            // Define the object to add or edit as null
-
-            b.employeeName = new EmployeeName();
-            //if (ldMethodCom.SelectedItem != null)
-            //    b.ldMethod = ldMethodCom.SelectedItem.Value; 
-            if (employeeId.SelectedItem != null)
-                b.employeeName.fullName = employeeId.SelectedItem.Text;
-
-            if (date.ReadOnly)
-                b.date = DateTime.Now;
-            //b.effectiveDate = new DateTime(b.effectiveDate.Year, b.effectiveDate.Month, b.effectiveDate.Day, 14, 0, 0);
-            if (currencyId.SelectedItem != null)
-                b.currencyRef = currencyId.SelectedItem.Text;
-            if (branchId.SelectedItem != null)
+            try
             {
-                b.branchName = branchId.SelectedItem.Text;
-            }
-            if (ltId.SelectedItem != null)
-                b.ltName = ltId.SelectedItem.Text;
+                //Getting the id to check if it is an Add or an edit as they are managed within the same form.
 
-            if (string.IsNullOrEmpty(id))
-            {
 
-                try
+                string obj = e.ExtraParams["values"];
+                Loan b = JsonConvert.DeserializeObject<Loan>(obj);
+                b.ldValue = Regex.Replace(b.ldValue, "[^.0-9]", "");
+                b.amount = Convert.ToDouble(Regex.Replace(b.amount.ToString(), "[^.0-9]", ""));
+
+                string id = e.ExtraParams["id"];
+                // Define the object to add or edit as null
+
+                b.employeeName = new EmployeeName();
+                //if (ldMethodCom.SelectedItem != null)
+                //    b.ldMethod = ldMethodCom.SelectedItem.Value; 
+                if (employeeId.SelectedItem != null)
+                    b.employeeName.fullName = employeeId.SelectedItem.Text;
+
+                if (date.ReadOnly)
+                    b.date = DateTime.Now;
+                //b.effectiveDate = new DateTime(b.effectiveDate.Year, b.effectiveDate.Month, b.effectiveDate.Day, 14, 0, 0);
+                if (currencyId.SelectedItem != null)
+                    b.currencyRef = currencyId.SelectedItem.Text;
+                if (branchId.SelectedItem != null)
                 {
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<Loan> request = new PostRequest<Loan>();
-                    request.entity = b;
-                    PostResponse<Loan> r = _loanService.AddOrUpdate<Loan>(request);
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                         Common.errorMessage(r);
-                        return;
-                    }
+                    b.branchName = branchId.SelectedItem.Text;
+                }
+                if (ltId.SelectedItem != null)
+                    b.ltName = ltId.SelectedItem.Text;
 
-                    else
-                    {
-                        LoanAmount.Text = b.amount.ToString();
-                        DeductionGridPanel.Disabled = false;
-                        b.recordId = r.recordId;
-                        if (b.effectiveDate != null)
-                            X.GetCmp<DateField>("deductionDate").MinDate =Convert.ToDateTime(b.effectiveDate);
-                    
-                        //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                if (string.IsNullOrEmpty(id))
+                {
 
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
+                    try
+                    {
+                        //New Mode
+                        //Step 1 : Fill The object and insert in the store 
+                        PostRequest<Loan> request = new PostRequest<Loan>();
+                        request.entity = b;
+                        PostResponse<Loan> r = _loanService.AddOrUpdate<Loan>(request);
+                        //check if the insert failed
+                        if (!r.Success)//it maybe be another condition
                         {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
-                        recordId.Text = b.recordId;
-                        //SetTabPanelEnable(true);
-                        currentCase.Text = b.recordId;
+                            //Show an error saving...
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            Common.errorMessage(r);
+                            return;
+                        }
 
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
+                        else
+                        {
+                            LoanAmount.Text = b.amount.ToString();
+                            DeductionGridPanel.Disabled = false;
+                            b.recordId = r.recordId;
+                            if (b.effectiveDate != null)
+                                X.GetCmp<DateField>("deductionDate").MinDate = Convert.ToDateTime(b.effectiveDate);
+
+                            //Add this record to the store 
+                            this.Store1.Insert(0, b);
+
+                            //Display successful notification
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordSavingSucc
+                            });
+                            recordId.Text = b.recordId;
+                            //SetTabPanelEnable(true);
+                            currentCase.Text = b.recordId;
+
+                            RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                            sm.DeselectAll();
+                            sm.Select(b.recordId.ToString());
 
 
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //Error exception displaying a messsage box
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    }
+
+
+                }
+                else
+                {
+                    //Update Mode
+
+                    try
+                    {
+                        //getting the id of the record
+                        PostRequest<Loan> request = new PostRequest<Loan>();
+                        request.entity = b;
+                        PostResponse<Loan> r = _loanService.AddOrUpdate<Loan>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+
+                        //Step 2 : saving to store
+
+                        //Step 3 :  Check if request fails
+                        if (!r.Success)//it maybe another check
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            Common.errorMessage(r);
+                            return;
+                        }
+                        else
+                        {
+                            DeductionGridPanel.Disabled = false;
+                            if (b.effectiveDate != null)
+                                X.GetCmp<DateField>("deductionDate").MinDate = Convert.ToDateTime(b.effectiveDate);
+                            LoanAmount.Text = b.amount.ToString();
+                            ModelProxy record = this.Store1.GetById(id);
+                            BasicInfoTab.UpdateRecord(record);
+                            record.Set("currencyRef", b.currencyRef);
+                            if (date.ReadOnly)
+                                record.Set("date", null);
+
+                            record.Set("employeeName", b.employeeName);
+
+                            record.Set("branchName", b.branchName);
+
+                            record.Commit();
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordUpdatedSucc
+                            });
+                            this.EditRecordWindow.Close();
+
+
+                        }
 
                     }
-                }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-                }
-
-
-            }
-            else
-            {
-                //Update Mode
-
-                try
-                {
-                    //getting the id of the record
-                    PostRequest<Loan> request = new PostRequest<Loan>();
-                    request.entity = b;
-                    PostResponse<Loan> r = _loanService.AddOrUpdate<Loan>(request);                      //Step 1 Selecting the object or building up the object for update purpose
-
-                    //Step 2 : saving to store
-
-                    //Step 3 :  Check if request fails
-                    if (!r.Success)//it maybe another check
+                    catch (Exception ex)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                         Common.errorMessage(r);
-                        return;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                     }
-                    else
-                    {
-                        DeductionGridPanel.Disabled = false;
-                        if (b.effectiveDate != null)
-                            X.GetCmp<DateField>("deductionDate").MinDate = Convert.ToDateTime(b.effectiveDate);
-                        LoanAmount.Text = b.amount.ToString();
-                        ModelProxy record = this.Store1.GetById(id);
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Set("currencyRef", b.currencyRef);
-                        if (date.ReadOnly)
-                            record.Set("date", null);
-
-                        record.Set("employeeName", b.employeeName);
-
-                        record.Set("branchName", b.branchName);
-
-                        record.Commit();
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                        });
-                        this.EditRecordWindow.Close();
-
-
-                    }
-
                 }
-                catch (Exception ex)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                }
+            }
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
         protected void SaveNewDeductionRecord(object sender, DirectEventArgs e)

@@ -91,6 +91,7 @@
     <Compile Include="Dashboard\DashBoardUL.cs" />
     <Compile Include="Dashboard\DepartmentActivity.cs" />
     <Compile Include="Dashboard\EmployeeBirthday.cs" />
+    <Compile Include="Dashboard\EmploymentReview.cs" />
     <Compile Include="Dashboard\EmpRTW.cs" />
     <Compile Include="Dashboard\IDashBoardRepository.cs" />
     <Compile Include="Dashboard\LeavingSoon.cs" />
