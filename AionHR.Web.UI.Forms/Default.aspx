@@ -643,11 +643,11 @@
 
                                                         
                                                        
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanSync%>">
+                                                     <%--   <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanSync%>">
                                                             <DirectEvents>
                                                                 <Click OnEvent="SyncLoanDeductions" />
                                                             </DirectEvents>
-                                                        </ext:MenuItem>
+                                                        </ext:MenuItem>--%>
                                                     
 
                                                     </Items>

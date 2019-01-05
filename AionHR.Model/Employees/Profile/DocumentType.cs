@@ -8,7 +8,7 @@ using AionHR.Model.Attributes;
 
 namespace AionHR.Model.Employees.Profile
 {
-    [ClassIdentifier("31050","31")]
+    [ClassIdentifier("20080", "20")]
    public class DocumentType : ModelBase
     {
         [PropertyID("31050_01")]

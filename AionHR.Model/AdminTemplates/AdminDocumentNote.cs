@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.AdminTemplates
 {
-   public class AdminDocumentNote
+    [ClassIdentifier("70304", "70")]
+    public class AdminDocumentNote
     {
         public string rowId { get; set; }
         public string email { get; set; }

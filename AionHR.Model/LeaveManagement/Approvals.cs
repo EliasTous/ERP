@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.LeaveManagement
 {
-   public class Approvals
+    [ClassIdentifier("21050", "21")]
+
+    public class Approvals
     {
         public EmployeeName employeeName { get; set; }
         public EmployeeName approverName { get; set; }

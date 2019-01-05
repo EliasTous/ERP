@@ -40,7 +40,7 @@ namespace AionHR.Model.Company.Structure
 
 
     }
-
+    [ClassIdentifier("82101", "82")]
     public class BranchSchedule
     {
      

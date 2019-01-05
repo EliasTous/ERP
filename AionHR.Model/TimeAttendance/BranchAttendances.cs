@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.TimeAttendance
 {
-  public  class BranchAttendance
+    [ClassIdentifier("84109", "84")]
+    public  class BranchAttendance
     {
         public int branchId { get; set; }
         public string fromDayId { get; set; }

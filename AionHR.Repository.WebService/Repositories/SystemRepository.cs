@@ -41,6 +41,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(LetterTemplate), "setLT");
             ChildAddOrUpdateLookup.Add(typeof(Letter), "setLE");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeSelfService), "setSS");
+            ChildAddOrUpdateLookup.Add(typeof(ResetPassword), "resetPW");
 
 
 

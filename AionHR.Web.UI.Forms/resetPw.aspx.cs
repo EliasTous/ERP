@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure;
 using AionHR.Model.MasterModule;
+using AionHR.Model.System;
 using AionHR.Services.Implementations;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
@@ -55,12 +56,14 @@ namespace AionHR.Web.UI.Forms
 
         protected void login_Click(object sender, EventArgs e)
         {
-            ResetPasswordRequest request = new ResetPasswordRequest();
-            request.Email = Request.QueryString["email"];
-            request.Guid = Request.QueryString["guid"];
-            request.NewPassword = EncryptionHelper.encrypt(tbPassword.Text);
+            ResetPassword RP = new ResetPassword();
+            RP.Email = Request.QueryString["email"];
+            RP.Guid = Request.QueryString["guid"];
+            RP.NewPassword = EncryptionHelper.encrypt(tbPassword.Text);
+            PostRequest<ResetPassword> depReq = new PostRequest<ResetPassword>();
+            depReq.entity = RP;
 
-            PasswordRecoveryResponse response = _systemService.ResetPassword(request);
+            PostResponse<ResetPassword> response = _systemService.ChildAddOrUpdate<ResetPassword>(depReq);
 
             if (response.Success)
             {
@@ -68,7 +71,7 @@ namespace AionHR.Web.UI.Forms
                 Response.Redirect("~/Login.aspx");
             }
             else
-                lblError.Text = response.Summary;
+                lblError.Text = response.Error;
 
 
         }

@@ -1,4 +1,5 @@
 ﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Profile
 {
+    [ClassIdentifier("31051", "31")]
     public class EmployeeDocument:ModelBase
     {
         public int employeeId { get; set; }

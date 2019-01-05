@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Benefits
 {
- public  class ScheduleBenefits
+    [ClassIdentifier("25013", "25")]
+    public  class ScheduleBenefits
     {
         public string benefitName { get; set; }
         public int bsId { get; set; }

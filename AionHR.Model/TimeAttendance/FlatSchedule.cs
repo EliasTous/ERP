@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.TimeAttendance
 {
+    [ClassIdentifier("41064", "41")]
     public class FlatSchedule
     {
 
@@ -29,7 +31,7 @@ namespace AionHR.Model.TimeAttendance
         public EmployeeName employeeName { get; set; }
 
     }
-
+    [ClassIdentifier("84104", "84")]
     public class FlatBulkSchedule
     {
         public string fromDayId { get; set; }
@@ -44,6 +46,7 @@ namespace AionHR.Model.TimeAttendance
     public class FlatScheduleRange : FlatSchedule
     {
     }
+    [ClassIdentifier("84101", "84")]
     public class FlatScheduleBranchAvailability
     {
         public int cnt { get; set; }
@@ -51,7 +54,7 @@ namespace AionHR.Model.TimeAttendance
         public string time { get; set; }
 
     }
-
+    [ClassIdentifier("84103", "84")]
     public class FlatScheduleImport
     {
         public int fromEmployeeId { get; set; }
@@ -60,7 +63,7 @@ namespace AionHR.Model.TimeAttendance
         public string toDayId { get; set; }
 
     }
-
+    [ClassIdentifier("84105", "84")]
     public class FlatScheduleEmployeeCell
     {
         public int employeeId { get; set; }
@@ -71,7 +74,7 @@ namespace AionHR.Model.TimeAttendance
 
 
     }
-
+    [ClassIdentifier("84106", "84")]
     public class FlatScheduleWorkingHours
     {
       

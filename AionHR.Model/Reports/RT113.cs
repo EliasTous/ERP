@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Reports
 {
-  public  class RT113 :ModelBase
+    [ClassIdentifier("80112", "80")]
+    public  class RT113 :ModelBase
     {
+
         public DateTime? licenseIssueDate { get; set; }
         public string licenseIssueDateString { get; set; }
         public DateTime? licenseExpiryDate { get; set; }

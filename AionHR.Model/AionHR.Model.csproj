@@ -137,6 +137,7 @@
     <Compile Include="Employees\Profile\TerminationReason.cs" />
     <Compile Include="HelpFunction\BenefitAcquisitionAcquisitionRate.cs" />
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
+    <Compile Include="System\ResetPassword.cs" />
     <Compile Include="TimeAttendance\MailFlatShedule.cs" />
     <Compile Include="HelpFunction\PayrollExport.cs" />
     <Compile Include="HelpFunction\SynchronizeAttendanceDay.cs" />
