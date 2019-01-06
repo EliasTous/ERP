@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AionHR.Services.Messaging.DashBoard
+{
+public    class CompanyRightToWorkListRequest:ListRequest
+    {
+      
+    
+       
+        public int? BranchId { get; set; }
+     
+
+
+
+        public override Dictionary<string, string> Parameters
+        {
+            get
+            {
+                parameters = new Dictionary<string, string>();
+             
+              
+                parameters.Add("_branchId", BranchId.ToString());
+            
+                return parameters;
+            }
+        }
+    }
+}

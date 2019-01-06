@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.TimeAttendance
 {
-    [ClassIdentifier("41064", "41")]
+    [ClassIdentifier("84111", "84")]
     public class FlatSchedule
     {
 

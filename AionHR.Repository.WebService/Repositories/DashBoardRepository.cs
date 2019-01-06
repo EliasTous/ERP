@@ -44,9 +44,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(ProbationEnd), "qryPR");
             ChildGetAllLookup.Add(typeof(WorkAnniversary), "qryWA");
             ChildGetAllLookup.Add(typeof(EmployeeBirthday), "qryBD");
-            ChildGetAllLookup.Add(typeof(RetirementAge), "qryRE");
+            ChildGetAllLookup.Add(typeof(RetirementAge), "qryRS");
             ChildGetAllLookup.Add(typeof(TermEndDate), "qryTE");
             ChildGetAllLookup.Add(typeof(LeavingSoon), "qryLS");
+            ChildGetAllLookup.Add(typeof(EmploymentReview), "qryRE");
 
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");

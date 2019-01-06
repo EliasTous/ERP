@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Dashboard
 {
- public   class EmploymentReview
+    [ClassIdentifier("81110", "81")]
+    public   class EmploymentReview
     {
         public EmployeeName employeeName { get; set; }
         public DateTime probationEndDate { get; set; }

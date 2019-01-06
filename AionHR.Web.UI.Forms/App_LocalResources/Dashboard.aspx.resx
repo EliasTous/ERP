@@ -717,4 +717,7 @@
   <data name="vacations" xml:space="preserve">
     <value>vacations</value>
   </data>
+  <data name="expiryDate" xml:space="preserve">
+    <value>Expiry Date</value>
+  </data>
 </root>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.NationalQuota
 {
-    [ClassIdentifier("10106", "10")]
+    [ClassIdentifier("10105", "10")]
     public  class LevelAcquisition
     {
         public string inName { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Reports
 {
-    [ClassIdentifier("80112", "80")]
+    [ClassIdentifier("80113", "80")]
     public  class RT113 :ModelBase
     {
 

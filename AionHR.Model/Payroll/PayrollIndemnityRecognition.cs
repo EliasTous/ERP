@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Payroll
 {
-    [ClassIdentifier("51019", "20")]
+    [ClassIdentifier("51019", "51")]
     public  class PayrollIndemnityRecognition
     {
         public int from { get; set; }
