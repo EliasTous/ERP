@@ -565,7 +565,19 @@ namespace AionHR.Web.UI.Forms
         }
         private void RefreshSecurityForControls()
         {
-            AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveRequest), BasicInfoTab, null, null, SaveButton);
+            try
+            {
+                AccessControlApplier.ApplyAccessControlOnPage(typeof(leaveRequetsSelfservice), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+
+
+            }
+            catch (AccessDeniedException exp)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
+                Viewport1.Hidden = true;
+                return;
+            }
         }
         [DirectMethod]
         public void Unnamed_Event(object sender, DirectEventArgs e)
