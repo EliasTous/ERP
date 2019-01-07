@@ -52,8 +52,9 @@
         } 
        function removethousandSeparator() {
          
-          //    App.ldValue.setValue(App.ldValue.getValue().replace(/\D/g, ''))
-              App.amount.setValue(App.amount.getValue().replace(/\D/g,''))
+          
+           App.amount.setValue(App.amount.getValue().replace(/\D/g, ''));
+           App.ldValue.setValue(App.ldValue.getValue().replace(/\D/g, ''));
           
          
           
@@ -674,7 +675,7 @@
                                 <ext:Button ID="SaveButton"  runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                                     <Listeners>
-                                        <Click Handler="CheckSession();removethousandSeparator(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                                        <Click Handler="CheckSession(); removethousandSeparator(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">

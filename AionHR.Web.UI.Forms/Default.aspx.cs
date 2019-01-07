@@ -151,7 +151,7 @@ namespace AionHR.Web.UI.Forms
                 if (_systemService.SessionHelper.GetUserType() == 4)
                 {
                     b1.Hidden = true;
-                    btnCompany.Hidden = btnEmployeeFiles.Hidden = btnPayroll.Hidden = btnReport.Hidden = btnScheduler.Hidden = true;
+                  btnAdminAffairs.Hidden=  btnCompany.Hidden = btnEmployeeFiles.Hidden = btnPayroll.Hidden = btnReport.Hidden = btnScheduler.Hidden = true;
                     sep1.Hidden = sep2.Hidden = sep3.Hidden = sep4.Hidden = true;
                     BuildTree(7);
                 }

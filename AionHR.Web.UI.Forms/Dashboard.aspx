@@ -2777,10 +2777,10 @@
                                                                             <Items>
                                                                                 <ext:Label runat="server" ID="EmploymentReviewDateLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
                                                                                 <ext:HyperlinkButton runat="server" Text="<%$Resources:EmploymentReviewDate %>" StyleSpec="font-size:12pt;" StyleHtmlCls="flashing" Cls="lblStyle">
-                                                                                 <%--   <Listeners>
+                                                                                  <Listeners>
 
-                                                                                        <Click Handler="App.completedLoansWindow.show();" />
-                                                                                    </Listeners>--%>
+                                                                                        <Click Handler="App.EmploymentReviewDateWindow.show();" />
+                                                                                    </Listeners>
                                                                                 </ext:HyperlinkButton>
                                                                             </Items>
                                                                         </ext:Container>
@@ -3262,6 +3262,8 @@
                         <Columns>
                             <ext:Column Visible="false" ID="Column21" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                              <ext:DateColumn ID="DateColumn12" MenuDisabled="true" runat="server" Text="<%$ Resources: expiryDate %>" DataIndex="expiryDate" Hideable="false" Width="100">
+                            </ext:DateColumn>
 
 
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
@@ -5498,7 +5500,89 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
+           <ext:Window runat="server" Modal="true" Layout="FitLayout"
+            Hidden="true" AutoShow="false" ID="EmploymentReviewDateWindow" Width="400" Height="250" Title="<%$ Resources: EmploymentReviewDate %>">
+            <Listeners>
+                <AfterLayout Handler="App.EmploymentReviewDateStore.reload()" />
+            </Listeners>
+            <Items>
+                <ext:GridPanel MarginSpec="0 0 0 0"
+                    ID="EmploymentReviewDateGrid"
+                    runat="server" HideHeaders="true"
+                    PaddingSpec="0 0 0 0"
+                    Header="false"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
 
+                    <Store>
+                        <ext:Store
+                            ID="EmploymentReviewDateStore"
+                            runat="server" OnReadData="EmploymentReviewDate_ReadData"
+                            PageSize="30">
+
+                            <Model>
+                                <ext:Model ID="Model36" runat="server">
+                                    <Fields>
+
+
+                                        <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                                     
+                                        <ext:ModelField Name="probationEndDate" />
+                                         <ext:ModelField Name="days" />
+                                         <ext:ModelField Name="nextReviewDate" />
+                                         <ext:ModelField Name="termEndDate" />
+                                         <ext:ModelField Name="npName" />
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+
+                        </ext:Store>
+                    </Store>
+
+                    <ColumnModel ID="ColumnModel37" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+
+                            <ext:Column Visible="false" ID="Column46" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" Width="75">
+                              <%--  <Renderer Handler=" return displayAnniversary(record.data);  ">
+                                </Renderer>--%>
+                            </ext:Column>
+                           <%-- <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
+                                <Renderer Handler="return record.data['days'] + ' ' + #{daysLeft}.value;" />
+
+
+                            </ext:Column>--%>
+                             <ext:DateColumn ID="DateColumn9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldProbationEndDate %>" DataIndex="probationEndDate" Hideable="false" Visible="false"  />
+                             <ext:DateColumn  ID="DateColumn10" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNextReviewDate %>" DataIndex="nextReviewDate" Hideable="false"  Visible="true"/>
+                             <ext:DateColumn  ID="DateColumn11" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTermEndDate %>" DataIndex="termEndDate" Hideable="false"  Visible="false" />
+                          <%--   <ext:Column  ID="npName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNpName %>" DataIndex="npName" Hideable="false"  />--%>
+
+
+
+
+
+
+
+
+                        </Columns>
+                    </ColumnModel>
+
+
+                    <View>
+                        <ext:GridView ID="GridView37" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel36" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+            </Items>
+        </ext:Window>
       
 
         <uc:leaveControl runat="server" ID="leaveRequest1" />

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Reports
 {
-    [ClassIdentifier("80502","81")]
+    [ClassIdentifier("80502","80")]
  public  class RT502
     {
         public EmployeeName name { get; set; }

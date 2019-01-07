@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees
 {
-   public class EmployeePenaltyApproval
+    [ClassIdentifier("31171", "31")]
+    public class EmployeePenaltyApproval
     {
         public EmployeeName approverName { get; set; }
         public string departmentName { get; set; }

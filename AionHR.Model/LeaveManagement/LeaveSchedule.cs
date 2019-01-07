@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Leaves
 {
-  
+    [ClassIdentifier("42013", "20")]
     public class LeaveSchedule : ModelBase,IEntity
     {
         
         public string name { get; set; }
     }
-  
+    [ClassIdentifier("42014", "20")]
     public  class LeaveSchedulePeriod
     {
        

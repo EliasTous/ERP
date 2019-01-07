@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace AionHR.Model.Reports
 {
 
-
+  
     public class CurrentEntitlementDeduction
     {
         public string name { get; set; }

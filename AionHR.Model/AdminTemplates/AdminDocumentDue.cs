@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.AdminTemplates
 {
-  public  class AdminDocumentDue
+    [ClassIdentifier("70302", "70")]
+    public  class AdminDocumentDue
     {
         public string dayId { get; set; }
         public DateTime? dayIdDate { get; set; }

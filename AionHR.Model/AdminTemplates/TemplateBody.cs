@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.AdminTemplates
 {
+    [ClassIdentifier("70101", "70")]
     public class TemplateBody
     {
         [PropertyID("77000_01")]

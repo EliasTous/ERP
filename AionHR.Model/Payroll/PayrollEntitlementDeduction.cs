@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Payroll
 {
-    [ClassIdentifier("51022", "51")]
+    [ClassIdentifier("51122", "51")]
   
     public class PayrollEntitlementDeduction
     {
-        [PropertyID("51022_01")]
+        [PropertyID("51122_01")]
         [ApplySecurity]
         public string edId { get; set; }
-        [PropertyID("51022_02")]
+        [PropertyID("51122_02")]
         [ApplySecurity]
         public double amount { get; set; }
-        [PropertyID("51022_03")]
+        [PropertyID("51122_03")]
         [ApplySecurity]
         public int type { get; set; }
         
         public string payId { get; set; }
-        [PropertyID("51022_01")]
+        [PropertyID("51122_01")]
         [ApplySecurity]
         public string edName { get; set; }
 

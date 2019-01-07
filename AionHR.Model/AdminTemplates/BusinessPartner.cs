@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.AdminTemplates
 {
-   public class BusinessPartner :ModelBase
+
+    [ClassIdentifier("70201", "70")]
+    public class BusinessPartner :ModelBase
     {
         public string name { get; set; }
         public string bcId { get; set; }

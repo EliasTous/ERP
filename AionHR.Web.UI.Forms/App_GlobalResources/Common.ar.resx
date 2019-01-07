@@ -214,7 +214,7 @@
     <value>مسح</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
-    <value>استعادة كلمة المرور</value>
+    <value>اعادة تعيين كلمة المرور</value>
   </data>
   <data name="Scheduler" xml:space="preserve">
     <value>إدارة الدوام</value>

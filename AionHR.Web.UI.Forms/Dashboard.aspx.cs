@@ -133,7 +133,7 @@ namespace AionHR.Web.UI.Forms
                         //missingPunchesStore.Reload();
                         //checkMontierStore.Reload();
                         format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                        ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
+                        DateColumn12.Format= DateColumn10.Format=DateColumn11.Format = DateColumn9.Format  =  ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
                         periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         CountDateTo.SelectedDate = DateTime.Now;
@@ -939,8 +939,10 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest req = GetDashboardRequest();
-                ListResponse<CompanyRTW> resp = _dashBoardService.ChildGetAll<CompanyRTW>(req);
+                CompanyRightToWorkListRequest req = new CompanyRightToWorkListRequest();
+                var d = jobInfo1.GetJobInfo();
+                req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+                ListResponse <CompanyRTW> resp = _dashBoardService.ChildGetAll<CompanyRTW>(req);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
@@ -1255,6 +1257,7 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
+                DashboardRequest req = GetDashboardRequest();
                 DashboardTimeListRequest r = new DashboardTimeListRequest();
                 r.dayId = "";
                 r.employeeId = 0;
@@ -1270,7 +1273,11 @@ namespace AionHR.Web.UI.Forms
                 r.timeCode = "0";
                 r.shiftId = "0";
                 r.apStatus = "1";
-
+                r.BranchId = req.BranchId;
+                r.DivisionId = req.DivisionId;
+                r.PositionId = req.PositionId;
+                r.DepartmentId = req.DepartmentId;
+                r.EsId = req.EsId;
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)
                 {
@@ -1977,7 +1984,19 @@ namespace AionHR.Web.UI.Forms
             DayOffStore.DataSource = resp.Items;
             DayOffStore.DataBind();
         }
+        protected void EmploymentReviewDate_ReadData(object sender, StoreReadDataEventArgs e)
+        {
 
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<EmploymentReview> resp = _dashBoardService.ChildGetAll<EmploymentReview>(req);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            EmploymentReviewDateStore.DataSource = resp.Items;
+            EmploymentReviewDateStore.DataBind();
+        }
         protected void Leave_ReadData(object sender, StoreReadDataEventArgs e)
         {
             DashboardRequest req = GetDashboardRequest();

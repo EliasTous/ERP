@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -235,7 +236,7 @@ namespace AionHR.Model.Reports
     }
 
 
-    
+    [ClassIdentifier("80503", "80")]
     public class RT503
     {
         public int departmentId { get; set; }

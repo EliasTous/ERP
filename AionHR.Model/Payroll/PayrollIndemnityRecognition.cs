@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Payroll
 {
-  public  class PayrollIndemnityRecognition
+    [ClassIdentifier("51019", "51")]
+    public  class PayrollIndemnityRecognition
     {
         public int from { get; set; }
         public int to { get; set; }
