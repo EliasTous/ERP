@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Benefits
 {
-   public class BenefitAcquisition :ModelBase
+    [ClassIdentifier("25101", "25")]
+    public class BenefitAcquisition :ModelBase
     {
         public EmployeeName employeeName { get; set; }
 

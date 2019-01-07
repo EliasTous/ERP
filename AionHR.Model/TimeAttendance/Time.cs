@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.TimeAttendance
 {
-  public  class Time
+    [ClassIdentifier("41065", "41")]
+    public  class Time
     {
         public EmployeeName employeeName { set; get; }
         public EmployeeName approverName { set; get; }

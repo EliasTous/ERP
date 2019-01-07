@@ -30,6 +30,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Services.Messaging.TimeAttendance;
 using AionHR.Model.TimeAttendance;
 using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -87,7 +88,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                   
+                    FillStatus();
                 }
                 catch { }
             }
@@ -311,6 +312,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             try
             {
+                DashboardRequest req = GetDashboardRequest();
                 DashboardTimeListRequest r = new DashboardTimeListRequest();
                
                
@@ -326,6 +328,14 @@ namespace AionHR.Web.UI.Forms.Reports
                 r.shiftId = "0";
                 r.Parameters.Add("_sortBy", "dayId");
                 r.apStatus = string.IsNullOrEmpty(apStatus.Value.ToString()) ? "0" : apStatus.Value.ToString();
+
+
+                r.BranchId = req.BranchId;
+                r.PositionId = req.PositionId;
+                r.DivisionId = req.DivisionId;
+                r.DepartmentId = req.DepartmentId;
+                r.EsId = req.EsId;
+
                 ListResponse <Time> resp = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!resp.Success)
                 {
@@ -411,6 +421,37 @@ namespace AionHR.Web.UI.Forms.Reports
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
 
+        }
+        private DashboardRequest GetDashboardRequest()
+        {
+
+            DashboardRequest req = new DashboardRequest();
+
+            int intResult;
+
+            var d = jobInfo1.GetJobInfo();
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
+            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
+            if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0")
+            {
+                req.EsId = Convert.ToInt32(esId.Value);
+
+
+
+            }
+            else
+            {
+                req.EsId = 0;
+
+            }
+
+
+
+
+
+            return req;
         }
         private string FillDamageLevelString(short? DamageLevel)
         {
@@ -595,7 +636,13 @@ namespace AionHR.Web.UI.Forms.Reports
             // {
             return data;
         }
+        private void FillStatus()
+        {
+            ListRequest statusReq = new ListRequest();
+            ListResponse<EmploymentStatus> resp = _employeeService.ChildGetAll<EmploymentStatus>(statusReq);
+            statusStore.DataSource = resp.Items;
+            statusStore.DataBind();
+        }
 
-       
     }
 }

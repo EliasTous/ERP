@@ -8,7 +8,7 @@ using AionHR.Model.Attributes;
 
 namespace AionHR.Model.LoadTracking
 {
-    [ClassIdentifier("45011", "45")]
+    [ClassIdentifier("45051", "45")]
     public class LoanComment:ModelBase
     {
         [PropertyID("45011_01")]

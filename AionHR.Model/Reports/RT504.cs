@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Reports
 {
-  public  class RT504
+    [ClassIdentifier("80504", "80")]
+    public  class RT504
     {
         public EmployeeName name { get; set; }
         public double ssAmount { get; set; }

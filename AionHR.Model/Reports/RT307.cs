@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Reports
 {
-   public class RT307
+    [ClassIdentifier("80307", "80")]
+    public class RT307
     {
         public EmployeeName approverName { get; set; }
         public int status_new { get; set; }

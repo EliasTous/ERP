@@ -55,9 +55,10 @@
                     Layout="FitLayout" AutoScroll="true"
                     Margins="0 0 0 0"
                     Region="Center">
-                    <TopBar>
-                        <ext:Toolbar runat="server" Height="60">
+                 <DockedItems>
+                        <ext:Toolbar runat="server" Height="50" Dock="Top">
 
+                   
                             <Items>
                              
                                        <ext:Container runat="server"  Layout="FitLayout">
@@ -139,8 +140,35 @@
 
                             </Items>
                         </ext:Toolbar>
+                       <ext:Toolbar runat="server" Dock="Top">
+                            <Items>
+                                 <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnableBranch="true" EnableDivision="true" EnablePosition="true" EnableDepartment="true" />
+                                    </Content>
+                                </ext:Container>
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
+                                    <Store>
+                                        <ext:Store runat="server" ID="statusStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
 
-                    </TopBar>
+                                    <Items>
+                                        <ext:ListItem Text="<%$Resources:All %>" Value="0" />
+                                    </Items>
+                                </ext:ComboBox>
+                                </Items>
+                           </ext:Toolbar>
+
+                 </DockedItems>
                     <Content>
 
                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server"  ClientSideEvents-CallbackError="alertNow" ClientInstanceName="callbackPanel"

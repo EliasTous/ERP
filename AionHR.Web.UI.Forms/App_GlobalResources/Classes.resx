@@ -132,6 +132,9 @@
   <data name="Class10105" xml:space="preserve">
     <value>Point Aquisition</value>
   </data>
+  <data name="Class10106" xml:space="preserve">
+    <value>Level Aquisition</value>
+  </data>
   <data name="Class20000" xml:space="preserve">
     <value>Folders</value>
   </data>
@@ -189,11 +192,20 @@
   <data name="Class21020" xml:space="preserve">
     <value>Branches</value>
   </data>
+  <data name="Class21021" xml:space="preserve">
+    <value>Branches Legal</value>
+  </data>
   <data name="Class21030" xml:space="preserve">
     <value>Positions</value>
   </data>
   <data name="Class21040" xml:space="preserve">
     <value>Departments</value>
+  </data>
+  <data name="Class21050" xml:space="preserve">
+    <value>Approvals</value>
+  </data>
+  <data name="Class21051" xml:space="preserve">
+    <value>Approvals Departments</value>
   </data>
   <data name="Class21099" xml:space="preserve">
     <value>Import Departments</value>
@@ -212,6 +224,18 @@
   </data>
   <data name="Class24010" xml:space="preserve">
     <value>Company News</value>
+  </data>
+  <data name="Class25011" xml:space="preserve">
+    <value>Benefits</value>
+  </data>
+  <data name="Class25012" xml:space="preserve">
+    <value>Benefit Schedule</value>
+  </data>
+  <data name="Class25013" xml:space="preserve">
+    <value>Schedule Benefit</value>
+  </data>
+  <data name="Class25101" xml:space="preserve">
+    <value>Benefit Acquisition</value>
   </data>
   <data name="Class31000" xml:space="preserve">
     <value>Employee Profile</value>
@@ -318,6 +342,15 @@
   <data name="Class31150" xml:space="preserve">
     <value>Dependants</value>
   </data>
+  <data name="Class31160" xml:space="preserve">
+    <value>Dependents</value>
+  </data>
+  <data name="Class31170" xml:space="preserve">
+    <value>Penalty</value>
+  </data>
+  <data name="Class31171" xml:space="preserve">
+    <value>Penalty Approvals</value>
+  </data>
   <data name="Class32000" xml:space="preserve">
     <value>Task Type</value>
   </data>
@@ -361,7 +394,16 @@
     <value>Days</value>
   </data>
   <data name="Class41063" xml:space="preserve">
-    <value>Absense</value>
+    <value>Over time</value>
+  </data>
+  <data name="Class41064" xml:space="preserve">
+    <value>Flat Schedule</value>
+  </data>
+  <data name="Class41065" xml:space="preserve">
+    <value>Time Approval</value>
+  </data>
+  <data name="Class41066" xml:space="preserve">
+    <value>Time Variation</value>
   </data>
   <data name="Class41070" xml:space="preserve">
     <value>Header</value>
@@ -389,6 +431,12 @@
   </data>
   <data name="Class42012" xml:space="preserve">
     <value>Schedule Period</value>
+  </data>
+  <data name="Class42013" xml:space="preserve">
+    <value>Leave Schedule</value>
+  </data>
+  <data name="Class42014" xml:space="preserve">
+    <value>Leave Schedule Period</value>
   </data>
   <data name="Class42020" xml:space="preserve">
     <value>Leave</value>
@@ -423,6 +471,9 @@
   <data name="Class45050" xml:space="preserve">
     <value>Loan Requests</value>
   </data>
+  <data name="Class45051" xml:space="preserve">
+    <value>Loan Comments</value>
+  </data>
   <data name="Class45099" xml:space="preserve">
     <value>Import Loans</value>
   </data>
@@ -447,6 +498,15 @@
   <data name="Class51016" xml:space="preserve">
     <value>Pay Codes</value>
   </data>
+  <data name="Class51017" xml:space="preserve">
+    <value>Indemnity Schedule </value>
+  </data>
+  <data name="Class51018" xml:space="preserve">
+    <value>Indemnity Details</value>
+  </data>
+  <data name="Class51019" xml:space="preserve">
+    <value>Indemnity Resignation</value>
+  </data>
   <data name="Class51020" xml:space="preserve">
     <value>Payroll Header</value>
   </data>
@@ -465,6 +525,27 @@
   <data name="Class51031" xml:space="preserve">
     <value>Final settlement Entitlement / Deduction</value>
   </data>
+  <data name="Class51040" xml:space="preserve">
+    <value>Penalty Type</value>
+  </data>
+  <data name="Class51041" xml:space="preserve">
+    <value>Penalty Type Details</value>
+  </data>
+  <data name="Class51120" xml:space="preserve">
+    <value>Payroll</value>
+  </data>
+  <data name="Class51121" xml:space="preserve">
+    <value>Payroll  Employee</value>
+  </data>
+  <data name="Class51122" xml:space="preserve">
+    <value>Payroll Employee Entitlements and Eeductions</value>
+  </data>
+  <data name="Class51123" xml:space="preserve">
+    <value>Payroll Employee Social Security</value>
+  </data>
+  <data name="Class51130" xml:space="preserve">
+    <value>Leave Payment</value>
+  </data>
   <data name="Class60101" xml:space="preserve">
     <value>My Info</value>
   </data>
@@ -482,6 +563,39 @@
   </data>
   <data name="Class60108" xml:space="preserve">
     <value>Asset Allowance</value>
+  </data>
+  <data name="Class70100" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="Class70101" xml:space="preserve">
+    <value>Template body</value>
+  </data>
+  <data name="Class70102" xml:space="preserve">
+    <value>Template metadata</value>
+  </data>
+  <data name="Class70103" xml:space="preserve">
+    <value>Process notification</value>
+  </data>
+  <data name="Class70200" xml:space="preserve">
+    <value>Business Partner Category</value>
+  </data>
+  <data name="Class70201" xml:space="preserve">
+    <value>Business Partner</value>
+  </data>
+  <data name="Class70300" xml:space="preserve">
+    <value>Document Category</value>
+  </data>
+  <data name="Class70301" xml:space="preserve">
+    <value>Document </value>
+  </data>
+  <data name="Class70302" xml:space="preserve">
+    <value>Document Dues</value>
+  </data>
+  <data name="Class70304" xml:space="preserve">
+    <value>Document note</value>
+  </data>
+  <data name="Class80100" xml:space="preserve">
+    <value>Employee Card</value>
   </data>
   <data name="Class80101" xml:space="preserve">
     <value>Age Breakdown</value>
@@ -504,8 +618,26 @@
   <data name="Class80107" xml:space="preserve">
     <value>Employee Missing Details</value>
   </data>
+  <data name="Class80108" xml:space="preserve">
+    <value>Employee List</value>
+  </data>
   <data name="Class80109" xml:space="preserve">
     <value>Right To Work</value>
+  </data>
+  <data name="Class80110" xml:space="preserve">
+    <value>Head Count by Dimension</value>
+  </data>
+  <data name="Class80111" xml:space="preserve">
+    <value>Bank Accounts</value>
+  </data>
+  <data name="Class80112" xml:space="preserve">
+    <value>Employee Notes</value>
+  </data>
+  <data name="Class80113" xml:space="preserve">
+    <value>Branch Workforce</value>
+  </data>
+  <data name="Class80114" xml:space="preserve">
+    <value>Skills</value>
   </data>
   <data name="Class80200" xml:space="preserve">
     <value>Current Salaries</value>
@@ -525,14 +657,38 @@
   <data name="Class80302" xml:space="preserve">
     <value>Daily Attendance</value>
   </data>
+  <data name="Class80303" xml:space="preserve">
+    <value>Detailed Attendance</value>
+  </data>
+  <data name="Class80304" xml:space="preserve">
+    <value>Department Availability</value>
+  </data>
+  <data name="Class80305" xml:space="preserve">
+    <value>Time Variations</value>
+  </data>
+  <data name="Class80306" xml:space="preserve">
+    <value>Time Approvals</value>
+  </data>
+  <data name="Class80307" xml:space="preserve">
+    <value>Approver Performance</value>
+  </data>
   <data name="Class80401" xml:space="preserve">
     <value>Loan History</value>
+  </data>
+  <data name="Class80402" xml:space="preserve">
+    <value>Statement Of Loan</value>
   </data>
   <data name="Class80501" xml:space="preserve">
     <value>Payroll Report</value>
   </data>
   <data name="Class80502" xml:space="preserve">
     <value>Attendance Entitlements and Deductions</value>
+  </data>
+  <data name="Class80503" xml:space="preserve">
+    <value>Job info</value>
+  </data>
+  <data name="Class80504" xml:space="preserve">
+    <value>Bank Transfer</value>
   </data>
   <data name="Class80601" xml:space="preserve">
     <value>Leave List</value>
@@ -546,11 +702,26 @@
   <data name="Class80802" xml:space="preserve">
     <value>Audit Trail</value>
   </data>
+  <data name="Class80803" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Class80804" xml:space="preserve">
+    <value>User Access</value>
+  </data>
   <data name="Class81000" xml:space="preserve">
     <value>Dashboard</value>
   </data>
   <data name="Class81100" xml:space="preserve">
     <value>Dashboard</value>
+  </data>
+  <data name="Class81110" xml:space="preserve">
+    <value>Retirement Soon</value>
+  </data>
+  <data name="Class81111" xml:space="preserve">
+    <value>Term end soon</value>
+  </data>
+  <data name="Class81112" xml:space="preserve">
+    <value>Leave start  soon</value>
   </data>
   <data name="Class90101" xml:space="preserve">
     <value>Security Groups</value>
@@ -563,5 +734,8 @@
   </data>
   <data name="Class90104" xml:space="preserve">
     <value>Property</value>
+  </data>
+  <data name="Class90105" xml:space="preserve">
+    <value>Data Access</value>
   </data>
 </root>

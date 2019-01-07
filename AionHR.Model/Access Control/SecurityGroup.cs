@@ -136,12 +136,13 @@ namespace AionHR.Model.Access_Control
 
         
     }
-
+    [ClassIdentifier("90105", "90")]
     public class DataAccessItemView:DataAccessItem
     {
         public string name { get; set; }
         public bool hasAccess { get; set; }
     }
+    [ClassIdentifier("90106", "90")]
     public class UserDataAccess : DataAccessItem
     {
      

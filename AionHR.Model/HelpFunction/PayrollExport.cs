@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.HelpFunction
 {
-   public class PayrollExport
+    [ClassIdentifier("85101", "85")]
+    public class PayrollExport
     {
         public string payRef { get; set; }
         public EmployeeName employeeName { get; set; }
