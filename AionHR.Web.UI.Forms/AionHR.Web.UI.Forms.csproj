@@ -48,74 +48,80 @@
     <Reference Include="DayPilot">
       <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\DayPilot.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Charts.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.Charts.v17.1.Core.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Charts.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.CodeParser.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.CodeParser.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.CodeParser.v17.1.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.CodeParser.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.Data.v17.1.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Data.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.DataAccess.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.DataAccess.v17.1.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.DataAccess.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Office.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.Office.v17.1.Core.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Office.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Pdf.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.Pdf.v17.1.Core.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Pdf.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.PivotGrid.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.PivotGrid.v17.1.Core.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.Printing.v17.1.Core.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Printing.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.RichEdit.v17.1.Core.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Sparkline.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.Sparkline.v17.1.Core.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Web.Resources.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Web.v17.1.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Web.Resources.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.Xpo.v17.1.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Web.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.XtraCharts.v17.1.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.Xpo.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraGauges.v17.1.Core, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.XtraGauges.v17.1.Core.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.XtraCharts.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v17.1, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGauges.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reports\bin\Debug\DevExpress.XtraReports.v17.1.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.XtraGauges.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v17.1.Web, Version=17.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.XtraReports.v17.1.Web.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\DevExpress.XtraReports.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="Ext.Net">
+    <Reference Include="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\dlls\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Ext.Net, Version=4.5.0.0, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\AION Dlls\Ext\Ext.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Ext.Net.Utilities">
+    <Reference Include="Ext.Net.Utilities, Version=2.5.0.0, Culture=neutral, PublicKeyToken=2c34ac34702a3c23, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\AION Dlls\Ext\Ext.Net.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
@@ -139,7 +145,7 @@
     </Reference>
     <Reference Include="Reports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Softmachine\Reports.dll</HintPath>
+      <HintPath>D:\Softmachine\dlls\Reports.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\StructureMap.dll</HintPath>
@@ -184,7 +190,6 @@
     <Content Include="Reports\RT307.aspx" />
     <Content Include="Scripts\AdminTemplates.js" />
     <Content Include="Scripts\SystemDefaults.js" />
-    <Content Include="SelfServiceResetPasswords.aspx" />
     <Content Include="Tasks.aspx" />
     <Content Include="TimeAttendanceApprovals.aspx" />
     <Content Include="TimeAttendanceViewSelfServices.aspx" />
@@ -703,13 +708,6 @@
     </Compile>
     <Compile Include="Reports\RT307.aspx.designer.cs">
       <DependentUpon>RT307.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SelfServiceResetPasswords.aspx.cs">
-      <DependentUpon>SelfServiceResetPasswords.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SelfServiceResetPasswords.aspx.designer.cs">
-      <DependentUpon>SelfServiceResetPasswords.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tasks.aspx.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>
@@ -2637,8 +2635,6 @@
     <Content Include="App_LocalResources\LeaveSchedules.aspx.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_LocalResources\SelfServiceResetPasswords.aspx.resx" />
-    <Content Include="App_LocalResources\SelfServiceResetPasswords.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
