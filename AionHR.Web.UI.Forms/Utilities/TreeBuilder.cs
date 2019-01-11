@@ -460,7 +460,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node TVSS = BuildLeafNode("TVSS", Resources.Common.timeVariations, "UserComment", true, ss);
             Ext.Net.Node TASS = BuildLeafNode("TASS", Resources.Common.TimeAttendance, "UserComment", true, ss);
             Ext.Net.Node PY = BuildLeafNode("TASS", Resources.Common.Payroll, "UserComment", true, ss);
-            Ext.Net.Node RP = BuildLeafNode("RP", Resources.Common.ResetPassword, "UserComment", true, ss);
+            Ext.Net.Node RP = BuildLeafNode("RP", Resources.Common.ChangePassword, "UserComment", true, ss);
 
 
 
@@ -475,7 +475,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(TVSS, "TimeVariationSelfServices", "TimeVariationSelfServices.aspx", Resources.Common.timeVariations, "icon-Employees", "1");
             FillConfigItem(TASS, "TimeAttendanceViewSelfServices", "TimeAttendanceViewSelfServices.aspx", Resources.Common.TimeAttendance, "icon-Employees", "1");
             FillConfigItem(PY, "PayrollsSelfServices", "PayrollGenerationSelfServices.aspx", Resources.Common.Payroll, "icon-Employees", "1");
-            FillConfigItem(RP, "SelfServiceResetPasswords", "SelfServiceResetPasswords.aspx", Resources.Common.ResetPassword, "icon-Employees", "1");
+            FillConfigItem(RP, "SelfServiceResetPasswords", "SelfServiceResetPasswords.aspx", Resources.Common.ChangePassword, "icon-Employees", "1");
 
             nodes.Add(rootParent);
             return nodes;

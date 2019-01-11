@@ -405,9 +405,14 @@ namespace AionHR.Web.UI.Forms
             string payRef = e.ExtraParams["payRef"];
             string salaryType = e.ExtraParams["salaryType"];
             string fiscalYear = e.ExtraParams["fiscalYear"];
+            if (status == "1")
+                DeleteAll.Disabled = false;
+            else
+                DeleteAll.Disabled = true;
             CurrentPayId.Text = id;
             salaryTypeHidden.Text = salaryType;
             fiscalYearHidden.Text = fiscalYear;
+
             payRefHidden.Text = payRef;
             IsPayrollPosted.Text = status;
             AddEDButton.Disabled = AddENButton.Disabled = /*SaveEDButton.Disabled*/  status == "2";

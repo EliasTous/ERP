@@ -40,7 +40,7 @@ namespace AionHR.Web.UI.Forms.Controls
 {
     public partial class LeaveRequestControl : System.Web.UI.UserControl
     {
-
+        public int fromSelfService { get; set; }
 
         public void FillLeaveType()
         {
@@ -84,21 +84,24 @@ namespace AionHR.Web.UI.Forms.Controls
                 startDate.Format = endDate.Format = _systemService.SessionHelper.GetDateformat();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveRequest), BasicInfoTab, null, null, SaveButton);
-                    ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
-                    classReq.ClassId = (typeof(LeaveRequest).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-                    classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
-                    RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
-                    if (modClass != null && modClass.result != null && modClass.result.accessLevel < 2)
+                    if (fromSelfService != 1)
                     {
-                        ViewOnly.Text = "1";
-                    }
-                    if (returnNotes.InputType == InputType.Password)
-                    {
-                        returnNotes.Visible = false;
-                        notesField.Visible = true;
-                        textField1.Visible = false;
-                        textField2.Visible = true;
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveRequest), BasicInfoTab, null, null, SaveButton);
+                        ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+                        classReq.ClassId = (typeof(LeaveRequest).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+                        classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+                        RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+                        if (modClass != null && modClass.result != null && modClass.result.accessLevel < 2)
+                        {
+                            ViewOnly.Text = "1";
+                        }
+                        if (returnNotes.InputType == InputType.Password)
+                        {
+                            returnNotes.Visible = false;
+                            notesField.Visible = true;
+                            textField1.Visible = false;
+                            textField2.Visible = true;
+                        }
                     }
 
                 }

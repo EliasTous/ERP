@@ -11,6 +11,7 @@ namespace AionHR.Services.Messaging.System
         public string DepartmentId { get; set; }
 
         public string PositionId { get; set; }
+        public string SortBy { get; set; }
 
         private Dictionary<string, string> parameters;
 
@@ -21,6 +22,7 @@ namespace AionHR.Services.Messaging.System
                 parameters = base.Parameters;
                 parameters.Add("_departmentId",DepartmentId);
                 parameters.Add("_positionId",PositionId);
+                parameters.Add("_sortBy", SortBy);
                 return parameters; 
             }
         }

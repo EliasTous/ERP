@@ -152,7 +152,8 @@ namespace AionHR.Web.UI.Forms
                     default: break;
                 }
             }
-           
+            if (modClass.result.accessLevel == 3)
+                return;
             List<UC> properites = new List<UC>();
 
 

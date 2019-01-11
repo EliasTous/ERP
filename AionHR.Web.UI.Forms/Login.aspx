@@ -175,7 +175,7 @@
                             <Listeners>
                                 <Click Handler="
                                         if (!#{panelLogin}.validate()|| #{tbAccountName}.value=='') {        
-                                            alert('no');
+                                           
                                             return false;
                                         }
                                     

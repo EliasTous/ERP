@@ -1380,7 +1380,7 @@
                                      <Click OnEvent="RefreshAllGrid" ></Click>
                                    </DirectEvents>
                                     <Listeners>
-                                        <Click Handler="RefreshAllGrids();" />
+                                        <Click Handler="RefreshAllGrids();App.LeaveRequestsStore.reload();" />
                                     </Listeners>
                                 </ext:Button>
 

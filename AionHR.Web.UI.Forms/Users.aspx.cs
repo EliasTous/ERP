@@ -553,11 +553,16 @@ namespace AionHR.Web.UI.Forms
             //in this test will take a list of News
             ListRequest request = new ListRequest();
             request.Filter = "";
+            request.StartAt = e.Start.ToString();
+            request.Size = "30";
             var s = jobInfo1.GetJobInfo();
             UsersListRequest req = new UsersListRequest();
             req.Filter = searchTrigger.Text;
+            req.StartAt = e.Start.ToString();
+            req.Size = "30";
             req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.Value.ToString() : "0";
             req.PositionId = s.PositionId.HasValue ? s.PositionId.Value.ToString() : "0";
+            req.SortBy = "employeeId";
             ListResponse<UserInfo> branches = _systemService.ChildGetAll<UserInfo>(req);
             if (!branches.Success)
             {
@@ -610,7 +615,7 @@ namespace AionHR.Web.UI.Forms
                 b.employeeId = employeeId.SelectedItem.Value;
                 b.fullName = employeeId.SelectedItem.Text;
             }
-            b.password = EncryptionHelper.encrypt(b.password);
+           
             if (string.IsNullOrEmpty(id))
             {
 
@@ -619,7 +624,7 @@ namespace AionHR.Web.UI.Forms
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
                     PostRequest<UserInfo> request = new PostRequest<UserInfo>();
-                    
+                    b.password = EncryptionHelper.encrypt(b.password);
                     request.entity = b;
                     PostResponse<UserInfo> r = _systemService.ChildAddOrUpdate<UserInfo>(request);
                    

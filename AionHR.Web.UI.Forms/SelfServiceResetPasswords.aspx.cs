@@ -167,7 +167,7 @@ namespace AionHR.Web.UI.Forms
                 Html = Resources.Common.RecordUpdatedSucc
             });
 
-
+            EditRecordWindow.Close();
         }
 
         /// <summary>

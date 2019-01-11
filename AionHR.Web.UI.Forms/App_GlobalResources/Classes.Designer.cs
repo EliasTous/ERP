@@ -19,7 +19,7 @@ namespace Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option or rebuild the Visual Studio project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "14.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Classes {
@@ -1053,9 +1053,9 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Import Leaves.
         /// </summary>
-        internal static string Class42099 {
+        internal static string Class42090 {
             get {
-                return ResourceManager.GetString("Class42099", resourceCulture);
+                return ResourceManager.GetString("Class42090", resourceCulture);
             }
         }
         
@@ -1134,9 +1134,9 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Import Loans.
         /// </summary>
-        internal static string Class45099 {
+        internal static string Class45090 {
             get {
-                return ResourceManager.GetString("Class45099", resourceCulture);
+                return ResourceManager.GetString("Class45090", resourceCulture);
             }
         }
         
@@ -1564,7 +1564,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employee List.
+        ///   Looks up a localized string similar to Employee Details.
         /// </summary>
         internal static string Class80108 {
             get {
@@ -1627,7 +1627,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current Salaries.
+        ///   Looks up a localized string similar to Current payroll.
         /// </summary>
         internal static string Class80200 {
             get {
@@ -1920,6 +1920,15 @@ namespace Resources {
         internal static string Class90105 {
             get {
                 return ResourceManager.GetString("Class90105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User / data access.
+        /// </summary>
+        internal static string Class90106 {
+            get {
+                return ResourceManager.GetString("Class90106", resourceCulture);
             }
         }
     }

@@ -662,4 +662,7 @@
   <data name="inactiveUser" xml:space="preserve">
     <value>المستخدم غير فعال </value>
   </data>
+  <data name="emptyLdMethod" xml:space="preserve">
+    <value>يرجى الاتصال بمسؤول النظام لتحديد القيمة الافتراضية لتغطية السلفة </value>
+  </data>
 </root>

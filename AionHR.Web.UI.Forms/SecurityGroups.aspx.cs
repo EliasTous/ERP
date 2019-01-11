@@ -497,14 +497,14 @@ namespace AionHR.Web.UI.Forms
             req.Size = "100";
             req.StartAt = "1";
             req.Filter = "";
-
+            req.SortBy = "fullName";
             var s = jobInfo1.GetJobInfo();
             req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.ToString() : "0";
             req.PositionId = s.PositionId.HasValue ? s.PositionId.ToString() : "0";
             ListResponse<UserInfo> groups = _systemService.ChildGetAll<UserInfo>(req);
             if (!groups.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
+                Common.errorMessage(groups);
                 return;
             }
             List<SecurityGroupUser> all = new List<SecurityGroupUser>();

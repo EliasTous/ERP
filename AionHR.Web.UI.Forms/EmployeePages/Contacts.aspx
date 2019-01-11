@@ -614,19 +614,22 @@
                                         </ext:ComboBox>
 
                                         <ext:TextField runat="server" Name="workPhone" AllowBlank="false" ID="TextField1" FieldLabel="<%$ Resources:FieldEMWorkPhone%>" >
-                                            <Plugins>
+                                              <Validator Handler="if ( !isNaN(this.value) && this.value.length<=10 ) return true; else return false; " />
+                                           <%-- <Plugins>
                                                 <ext:InputMask Mask="9999999?999" />
-                                            </Plugins>
+                                            </Plugins>--%>
                                             </ext:TextField>
                                         <ext:TextField runat="server" Name="homePhone" AllowBlank="false" ID="TextField2" FieldLabel="<%$ Resources:FieldEMHomePhone%>" >
-                                            <Plugins>
+                                             <Validator Handler="if ( !isNaN(this.value) && this.value.length<=10 ) return true; else return false; " />
+                                           <%-- <Plugins>
                                                 <ext:InputMask Mask="9999999?999" />
-                                            </Plugins>
+                                            </Plugins>--%>
                                             </ext:TextField>
                                         <ext:TextField runat="server" Name="cellPhone" AllowBlank="false" ID="TextField3" FieldLabel="<%$ Resources:FieldEMCellPhone%>" >
-                                            <Plugins>
+                                             <Validator Handler="if ( !isNaN(this.value) && this.value.length<=10 ) return true; else return false; " />
+                                           <%-- <Plugins>
                                                 <ext:InputMask Mask="9999999?999" />
-                                            </Plugins>
+                                            </Plugins>--%>
                                             </ext:TextField>
                                         <ext:TextField runat="server" Name="email"  ID="TextField4" FieldLabel="<%$ Resources:FieldEMEmail%>" Vtype="email" />
 

@@ -447,7 +447,7 @@
   <data name="Class42022" xml:space="preserve">
     <value>Approve Leave Request</value>
   </data>
-  <data name="Class42099" xml:space="preserve">
+  <data name="Class42090" xml:space="preserve">
     <value>Import Leaves</value>
   </data>
   <data name="Class43000" xml:space="preserve">
@@ -474,7 +474,7 @@
   <data name="Class45051" xml:space="preserve">
     <value>Loan Comments</value>
   </data>
-  <data name="Class45099" xml:space="preserve">
+  <data name="Class45090" xml:space="preserve">
     <value>Import Loans</value>
   </data>
   <data name="Class51010" xml:space="preserve">
@@ -619,7 +619,7 @@
     <value>Employee Missing Details</value>
   </data>
   <data name="Class80108" xml:space="preserve">
-    <value>Employee List</value>
+    <value>Employee Details</value>
   </data>
   <data name="Class80109" xml:space="preserve">
     <value>Right To Work</value>
@@ -640,7 +640,7 @@
     <value>Skills</value>
   </data>
   <data name="Class80200" xml:space="preserve">
-    <value>Current Salaries</value>
+    <value>Current payroll</value>
   </data>
   <data name="Class80201" xml:space="preserve">
     <value>Salary History</value>
@@ -737,5 +737,8 @@
   </data>
   <data name="Class90105" xml:space="preserve">
     <value>Data Access</value>
+  </data>
+  <data name="Class90106" xml:space="preserve">
+    <value>User / data access</value>
   </data>
 </root>

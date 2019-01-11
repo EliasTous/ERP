@@ -681,19 +681,27 @@ namespace AionHR.Web.UI.Forms
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
             BasicInfoTab.Reset();
-            ListRequest req = new ListRequest();
-            ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "ldMethod";
+            RecordResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
             if (!defaults.Success)
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
+                Common.errorMessage(defaults);
                 return;
             }
-            if (defaults.Items.Where(s => s.Key == "ldMethod").Count() != 0)
-                ldMethod.Select(defaults.Items.Where(s => s.Key == "ldMethod").First().Value);
-            if (defaults.Items.Where(s => s.Key == "ldValue").Count() != 0)
-                ldValue.Text = defaults.Items.Where(s => s.Key == "ldValue").First().Value.ToString();
-       
+          
+                ldMethod.Select(defaults.result.Value);
+          
+            req.Key = "ldValue";
+            RecordResponse<KeyValuePair<string, string>> ldValueResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!ldValueResponse.Success)
+            {
+                Common.errorMessage(ldValueResponse);
+                return;
+            }
+           
+                ldValue.Text = ldValueResponse.result.Value;
+
             //Reset all values of the relative object
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
@@ -776,8 +784,16 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             loanSelfService b = JsonConvert.DeserializeObject<loanSelfService>(obj);
-
+             string   ldMethod= e.ExtraParams["ldMethod"];
             string id = e.ExtraParams["id"];
+            if (b.ldMethod==null)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString() , GetGlobalResourceObject("Errors", "emptyLdMethod").ToString()).Show();
+                return;
+            }
+
+            //if (string.IsNullOrEmpty(ldMethod)
+            //b.ldMethod =Convert.ToInt16( ldMethod);
             // Define the object to add or edit as null
 
          

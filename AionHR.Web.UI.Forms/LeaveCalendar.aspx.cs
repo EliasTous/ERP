@@ -80,13 +80,21 @@ namespace AionHR.Web.UI.Forms
 
             DateTime startDate = new DateTime(Convert.ToInt32(year), Convert.ToInt32(month), 1);
             DateTime endDate = new DateTime(Convert.ToInt32(year), Convert.ToInt32(month), DateTime.DaysInMonth(Convert.ToInt32(year), Convert.ToInt32(month)));
+          
+            List<string> employeeid = new List<string>(); 
             foreach (var item in resp.Items)
             {
 
 
                 if (item.startDate > endDate || item.endDate < startDate)
                     continue;
-                DayPilotScheduler1.Resources.Add(new DayPilot.Web.Ui.Resource(item.employeeName.fullName, item.employeeId.ToString()));
+
+                if (!employeeid.Contains(item.employeeId))
+                {
+                    DayPilotScheduler1.Resources.Add(new DayPilot.Web.Ui.Resource(item.employeeName.fullName, item.employeeId.ToString()));
+                    employeeid.Add(item.employeeId);
+                }
+           
                 dr = dt.NewRow();
                 dr["id"] = item.recordId;
                 dr["start"] = item.startDate;

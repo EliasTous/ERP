@@ -106,6 +106,7 @@
     <Compile Include="Employees\EmployeePenalty.cs" />
     <Compile Include="Employees\EmployeePenaltyApproval.cs" />
     <Compile Include="Employees\EmploymentStatusByReferance.cs" />
+    <Compile Include="Employees\ImportEmploymentStatus.cs" />
     <Compile Include="Employees\Profile\AssetAllowance.cs" />
     <Compile Include="Employees\Profile\AssetCategory.cs" />
     <Compile Include="Employees\Profile\BatchEM.cs" />

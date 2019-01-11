@@ -863,7 +863,7 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-
+                DashboardRequest req1 = GetDashboardRequest();
                 LeaveApprovalListRequest req = new LeaveApprovalListRequest();
                 req.status = 1;
                 if (!String.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
@@ -871,7 +871,11 @@ namespace AionHR.Web.UI.Forms
                 else
                     return;
                 req.leaveId = "0";
-
+                req.PositionId = req1.PositionId;
+                req.DepartmentId = req1.DepartmentId;
+                req.EsId = req1.EsId;
+                req.BranchId = req1.BranchId;
+                req.DivisionId = req1.DivisionId;
 
 
                 if (req != null)
@@ -2231,6 +2235,7 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
+                DashboardRequest req = GetDashboardRequest();
                 DashboardTimeListRequest r = new DashboardTimeListRequest();
                 r.fromDayId = dayId.ToString();
                 r.toDayId = dayId.ToString();
@@ -2240,6 +2245,11 @@ namespace AionHR.Web.UI.Forms
                 r.shiftId = shiftId;
                 // r.apStatus = apstatus.ToString();
                 r.apStatus = "0";
+                r.PositionId = req.PositionId;
+                r.DepartmentId = req.DepartmentId;
+                r.DivisionId = req.DivisionId;
+                r.BranchId = req.BranchId;
+                r.EsId = req.EsId;
 
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);

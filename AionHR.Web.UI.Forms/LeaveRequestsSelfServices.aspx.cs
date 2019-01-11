@@ -382,7 +382,7 @@ namespace AionHR.Web.UI.Forms
             { setNormal(); }
             if (ViewOnly.Text == "1")
                 SaveButton.Disabled = true;
-            RefreshSecurityForControls();
+      //      RefreshSecurityForControls();
             this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
             this.EditRecordWindow.Show();
             X.Call("calcDays");
@@ -550,7 +550,7 @@ namespace AionHR.Web.UI.Forms
 
             ListRequest req = new ListRequest();
 
-            ListResponse<LeaveType> response = _leaveManagementService.ChildGetAll<LeaveType>(req);
+            ListResponse<LeaveType> response = _selfServiceService.ChildGetAll<LeaveType>(req);
             if (!response.Success)
             {
                  Common.errorMessage(response);
@@ -563,22 +563,22 @@ namespace AionHR.Web.UI.Forms
             ltStore.DataBind();
 
         }
-        private void RefreshSecurityForControls()
-        {
-            try
-            {
-                AccessControlApplier.ApplyAccessControlOnPage(typeof(leaveRequetsSelfservice), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+       //private void RefreshSecurityForControls()
+       // {
+       //     try
+       //     {
+       //         AccessControlApplier.ApplyAccessControlOnPage(typeof(leaveRequetsSelfservice), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
 
 
-            }
-            catch (AccessDeniedException exp)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
-                Viewport1.Hidden = true;
-                return;
-            }
-        }
+       //     }
+       //     catch (AccessDeniedException exp)
+       //     {
+       //         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+       //         X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
+       //         Viewport1.Hidden = true;
+       //         return;
+       //     }
+       // }
         [DirectMethod]
         public void Unnamed_Event(object sender, DirectEventArgs e)
         {
@@ -711,7 +711,7 @@ namespace AionHR.Web.UI.Forms
             EmployeeQuickViewRecordRequest r = new EmployeeQuickViewRecordRequest();
             r.RecordID = employeeId;
             r.asOfDate = DateTime.Now;
-            RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(r);
+            RecordResponse<EmployeeQuickView> resp = _selfServiceService.ChildGetRecord<EmployeeQuickView>(r);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -825,7 +825,7 @@ namespace AionHR.Web.UI.Forms
             EmployeeQuickViewRecordRequest r = new EmployeeQuickViewRecordRequest();
             r.RecordID = response.result.employeeId;
             r.asOfDate = DateTime.Now;
-            RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(r);
+            RecordResponse<EmployeeQuickView> resp = _selfServiceService.ChildGetRecord<EmployeeQuickView>(r);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -1255,7 +1255,7 @@ namespace AionHR.Web.UI.Forms
             EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
             req.RecordID = _systemService.SessionHelper.GetEmployeeId();
             req.asOfDate = DateTime.Now;
-            RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+            RecordResponse<EmployeeQuickView> qv = _selfServiceService.ChildGetRecord<EmployeeQuickView>(req);
             if (!qv.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

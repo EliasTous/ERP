@@ -546,4 +546,7 @@
   <data name="inactiveUser" xml:space="preserve">
     <value>User is inactive</value>
   </data>
+  <data name="emptyLdMethod" xml:space="preserve">
+    <value>Please contact with system administrator for set default loan coverage value</value>
+  </data>
 </root>
