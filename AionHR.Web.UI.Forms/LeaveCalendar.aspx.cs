@@ -470,6 +470,17 @@ namespace AionHR.Web.UI.Forms
             leaveRequest1.Return();
         }
 
-        
+        [DirectMethod]
+        public object FillReplacementEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
+
+
     }
 }

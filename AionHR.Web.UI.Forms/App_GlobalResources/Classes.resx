@@ -406,7 +406,7 @@
     <value>Time Variation</value>
   </data>
   <data name="Class41070" xml:space="preserve">
-    <value>Header</value>
+    <value>Calendars</value>
   </data>
   <data name="Class41071" xml:space="preserve">
     <value>Years</value>
@@ -463,19 +463,25 @@
     <value>Loan Type</value>
   </data>
   <data name="Class45010" xml:space="preserve">
-    <value>Loan Overrides</value>
+    <value>Employee Loan setup</value>
   </data>
   <data name="Class45011" xml:space="preserve">
     <value>Comments</value>
   </data>
   <data name="Class45050" xml:space="preserve">
-    <value>Loan Requests</value>
+    <value>Loan </value>
   </data>
   <data name="Class45051" xml:space="preserve">
     <value>Loan Comments</value>
   </data>
+  <data name="Class45052" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="Class45053" xml:space="preserve">
+    <value>Approvals</value>
+  </data>
   <data name="Class45090" xml:space="preserve">
-    <value>Import Loans</value>
+    <value>Import Loan Details</value>
   </data>
   <data name="Class51010" xml:space="preserve">
     <value>Fiscal Year</value>
@@ -553,7 +559,7 @@
     <value>Leave Requests</value>
   </data>
   <data name="Class60105" xml:space="preserve">
-    <value>Loan Requests</value>
+    <value>Loan </value>
   </data>
   <data name="Class60106" xml:space="preserve">
     <value>Letter</value>
@@ -562,7 +568,13 @@
     <value>Employee Complaints</value>
   </data>
   <data name="Class60108" xml:space="preserve">
-    <value>Asset Allowance</value>
+    <value>Time variations</value>
+  </data>
+  <data name="Class60109" xml:space="preserve">
+    <value>Daily schedule</value>
+  </data>
+  <data name="Class60111" xml:space="preserve">
+    <value>Payroll </value>
   </data>
   <data name="Class70100" xml:space="preserve">
     <value>Template</value>
@@ -655,7 +667,7 @@
     <value>Monthly Attendance</value>
   </data>
   <data name="Class80302" xml:space="preserve">
-    <value>Daily Attendance</value>
+    <value>Period Summary</value>
   </data>
   <data name="Class80303" xml:space="preserve">
     <value>Detailed Attendance</value>

@@ -158,11 +158,12 @@ namespace AionHR.Web.UI.Forms
                         }
                         FillApprovalStory();
                         FillensStore();
-                       
 
+                        this.BasicInfoTab.Reset();
                         //Step 2 : call setvalues with the retrieved object
                         this.BasicInfoTab.SetValues(response.result);
-
+                      if (!String.IsNullOrEmpty(timeCodeP))
+                        timeCodeCombo.Select(FillTimeCode(Convert.ToInt32( timeCodeP)));
                         this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                         this.EditRecordWindow.Show();
                         break;
@@ -349,25 +350,57 @@ namespace AionHR.Web.UI.Forms
             int totalCount = 1;
 
 
+            List<TimeCode> routers = new List<TimeCode>();
+            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.Day_Bonus });
+            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.DAY_LEAVE_WITHOUT_EXCUSE });
+            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.DURING_SHIFT_LEAVE });
+            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.EARLY_CHECKIN });
+            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.EARLY_LEAVE });
+            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.LATE_CHECKIN });
+            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.MISSED_PUNCH });
+            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.OVERTIME });
+            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.PAID_LEAVE });
+            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.SHIFT_LEAVE_WITHOUT_EXCUSE });
+            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.UNPAID_LEAVE });
+
 
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            ListRequest request = new ListRequest();
+            //ListRequest request = new ListRequest();
 
-            ListResponse<TimeCode> routers = _payrollService.ChildGetAll<TimeCode>(request);
-            if (!routers.Success)
+            //ListResponse<TimeCode> routers = _payrollService.ChildGetAll<TimeCode>(request);
+            //if (!routers.Success)
+            //{
+            //     Common.errorMessage(routers);
+            //    return;
+            //}
+            routers.ForEach(x =>
             {
-                 Common.errorMessage(routers);
-                return;
-            }
-            routers.Items.ForEach(x =>
-            {
+                TimeCodeRecordRequest r = new TimeCodeRecordRequest();
+                r.timeCode = x.timeCode.ToString();
+                RecordResponse<TimeCode> response = _payrollService.ChildGetRecord<TimeCode>(r);
+                if (!response.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(response);
+                    throw new Exception();
+                }
                 x.timeCodeString = FillTimeCode(x.timeCode);
-                x.edTypeString = FillEdType(x.edType);
+                if (response.result != null)
+                {
+                    x.edType = response.result.edType;
+                    x.apId = response.result.apId;
+                    x.apName = response.result.apName;
+                    x.edId = response.result.edId;
+                    x.edName = response.result.edName;
+                    x.edTypeString = response.result.edTypeString;
+                    x.gracePeriod = response.result.gracePeriod;
+                    x.edTypeString = FillEdType(x.edType);
+                }
             });
-            this.Store1.DataSource = routers.Items;
-            e.Total = routers.Items.Count; ;
+            this.Store1.DataSource = routers;
+            e.Total = routers.Count;
 
             this.Store1.DataBind();
         }
@@ -586,7 +619,7 @@ namespace AionHR.Web.UI.Forms
             if (!string.IsNullOrEmpty(currentEDtype.Text))
                 entsStore.DataSource = eds.Items.Where(s => s.type == Convert.ToInt16(currentEDtype.Text)).ToList();
             else
-                entsStore.DataSource = new List<EntitlementDeduction>();
+                entsStore.DataSource = eds.Items;
             entsStore.DataBind();
 
         }
@@ -668,8 +701,8 @@ namespace AionHR.Web.UI.Forms
                         R = GetGlobalResourceObject("Common", "OVERTIME").ToString();
                         break;
 
-                    case ConstTimeVariationType.COUNT:
-                        R = GetGlobalResourceObject("Common", "COUNT").ToString();
+                    case ConstTimeVariationType.Day_Bonus:
+                        R = GetGlobalResourceObject("Common", "Day_Bonus").ToString();
                         break;
 
 

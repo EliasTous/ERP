@@ -925,7 +925,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Header.
+        ///   Looks up a localized string similar to Calendars.
         /// </summary>
         internal static string Class41070 {
             get {
@@ -1096,7 +1096,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loan Overrides.
+        ///   Looks up a localized string similar to Employee Loan setup.
         /// </summary>
         internal static string Class45010 {
             get {
@@ -1114,7 +1114,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loan Requests.
+        ///   Looks up a localized string similar to Loan .
         /// </summary>
         internal static string Class45050 {
             get {
@@ -1132,7 +1132,25 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import Loans.
+        ///   Looks up a localized string similar to Deductions.
+        /// </summary>
+        internal static string Class45052 {
+            get {
+                return ResourceManager.GetString("Class45052", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approvals.
+        /// </summary>
+        internal static string Class45053 {
+            get {
+                return ResourceManager.GetString("Class45053", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Loan Details.
         /// </summary>
         internal static string Class45090 {
             get {
@@ -1366,7 +1384,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loan Requests.
+        ///   Looks up a localized string similar to Loan .
         /// </summary>
         internal static string Class60105 {
             get {
@@ -1393,11 +1411,29 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Asset Allowance.
+        ///   Looks up a localized string similar to Time variations.
         /// </summary>
         internal static string Class60108 {
             get {
                 return ResourceManager.GetString("Class60108", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Daily schedule.
+        /// </summary>
+        internal static string Class60109 {
+            get {
+                return ResourceManager.GetString("Class60109", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payroll .
+        /// </summary>
+        internal static string Class60111 {
+            get {
+                return ResourceManager.GetString("Class60111", resourceCulture);
             }
         }
         
@@ -1672,7 +1708,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Daily Attendance.
+        ///   Looks up a localized string similar to Period Summary.
         /// </summary>
         internal static string Class80302 {
             get {

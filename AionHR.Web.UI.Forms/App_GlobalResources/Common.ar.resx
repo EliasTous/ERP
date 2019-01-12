@@ -1359,4 +1359,10 @@
   <data name="LeaveSchedules" xml:space="preserve">
     <value>جداول المغادرة</value>
   </data>
+  <data name="Mod10" xml:space="preserve">
+    <value>نسبة النطاق</value>
+  </data>
+  <data name="Mod25" xml:space="preserve">
+    <value>المستحقات</value>
+  </data>
 </root>

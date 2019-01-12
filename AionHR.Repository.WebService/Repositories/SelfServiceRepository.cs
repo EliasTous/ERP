@@ -32,10 +32,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(EmployeeComplaintSelfService), "qryCO");
             ChildGetAllLookup.Add(typeof(LeaveDaySelfservice), "qryLD");
             ChildGetAllLookup.Add(typeof(leaveRequetsSelfservice), "qryLR");
-            ChildGetAllLookup.Add(typeof(FlatSchedule), "qryFS");
+            ChildGetAllLookup.Add(typeof(FlatScheduleSelfService), "qryFS");
             ChildGetAllLookup.Add(typeof(AttendanceDay), "qryAD");
-            ChildGetAllLookup.Add(typeof(DashBoardTimeVariation), "qryTV");
-            ChildGetAllLookup.Add(typeof(EmployeePayroll), "qryPE");
+            ChildGetAllLookup.Add(typeof(TimeVariationSelfService), "qryTV");
+            ChildGetAllLookup.Add(typeof(EmployeePayrollSelfService), "qryPE");
       
             ChildGetAllLookup.Add(typeof(LeaveType), "qryLT");
 

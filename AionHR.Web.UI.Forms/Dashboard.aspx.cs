@@ -1212,6 +1212,7 @@ namespace AionHR.Web.UI.Forms
 
                 //in this test will take a list of News
                 //ListRequest request = new ListRequest();
+                DashboardRequest req = GetDashboardRequest();
                 LoanManagementListRequest request = new LoanManagementListRequest();
                 if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
                 {
@@ -1220,14 +1221,16 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
                 request.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
-                request.BranchId = 0;
-                request.DepartmentId = 0;
-                request.DivisionId = 0;
+                request.BranchId = req.BranchId;
+                request.DepartmentId = req.DepartmentId;
+                request.DivisionId = req.DivisionId;
                 request.EmployeeId = 0;
                 request.Status = 1;
                 request.Filter = "";
                 request.LoanId = "0";
                 request.SortBy = "recordId";
+                request.PositionId = req.PositionId;
+                request.EsId = req.EsId;
 
 
 
@@ -2182,12 +2185,17 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
+                DashboardRequest request = GetDashboardRequest();
                 EmployeePenaltyApprovalListRequest req = new EmployeePenaltyApprovalListRequest();
 
                 req.apStatus = "1";
                 req.penaltyId = "0";
                 req.approverId = _systemService.SessionHelper.GetEmployeeId() != null ? _systemService.SessionHelper.GetEmployeeId().ToString() : null;
-
+                req.BranchId = request.BranchId;
+                req.PositionId = request.PositionId;
+                req.DivisionId = request.DivisionId;
+                req.DepartmentId = request.DepartmentId;
+                req.EsId = request.EsId;
                 if (string.IsNullOrEmpty(req.penaltyId) || string.IsNullOrEmpty(req.approverId))
                 {
                     EmployeePenaltyApprovalStore.DataSource = new List<EmployeePenaltyApproval>();

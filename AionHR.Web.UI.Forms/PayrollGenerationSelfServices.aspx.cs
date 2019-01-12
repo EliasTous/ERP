@@ -41,6 +41,7 @@ using System.Threading;
 using AionHR.Infrastructure.Tokens;
 using AionHR.Services.Implementations;
 using AionHR.Repository.WebService.Repositories;
+using AionHR.Model.SelfService;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -891,7 +892,7 @@ namespace AionHR.Web.UI.Forms
                                  
             req.PayId = CurrentPayId.Text;
         
-            ListResponse<EmployeePayroll> resp = _selfServiceService.ChildGetAll<EmployeePayroll>(req);
+            ListResponse<EmployeePayrollSelfService> resp = _selfServiceService.ChildGetAll<EmployeePayrollSelfService>(req);
             if (!resp.Success)
             {
 

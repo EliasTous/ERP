@@ -26,6 +26,7 @@ using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
 using AionHR.Services.Messaging.System;
 using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Model.SelfService;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -183,7 +184,7 @@ namespace AionHR.Web.UI.Forms
                 reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                 reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                 reqFS.BranchId = 0;
-                ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                ListResponse<FlatScheduleSelfService> response = _selfServiceService.ChildGetAll<FlatScheduleSelfService>(reqFS);
                 if (!response.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -295,7 +296,7 @@ namespace AionHR.Web.UI.Forms
                 reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                 reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                 reqFS.BranchId = 0;
-                ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                ListResponse<FlatScheduleSelfService> response = _selfServiceService.ChildGetAll<FlatScheduleSelfService>(reqFS);
                 if (!response.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -483,7 +484,7 @@ namespace AionHR.Web.UI.Forms
             reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
             reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
             reqFS.BranchId = 0;
-            ListResponse<FlatSchedule> response =_selfServiceService .ChildGetAll<FlatSchedule>(reqFS);
+            ListResponse<FlatScheduleSelfService> response =_selfServiceService .ChildGetAll<FlatScheduleSelfService>(reqFS);
             if (!response.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -492,14 +493,14 @@ namespace AionHR.Web.UI.Forms
             this.dayId.Value = string.Empty;
             BuildSchedule(response.Items);
 
-            ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS);
-            if (!workingHoursResponse.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
-                return;
-            }
-            else
-                workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString(); 
+            //ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS);
+            //if (!workingHoursResponse.Success)
+            //{
+            //    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+            //    return;
+            //}
+            //else
+            //    workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString(); 
 
         }
         protected void Save_Click(object sender, DirectEventArgs e)
@@ -672,7 +673,7 @@ namespace AionHR.Web.UI.Forms
                     reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                     reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                     reqFS.BranchId = 0;
-                    ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                    ListResponse<FlatScheduleSelfService> response = _timeAttendanceService.ChildGetAll<FlatScheduleSelfService>(reqFS);
                     if (!response.Success)
                     {
                         X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -700,7 +701,7 @@ namespace AionHR.Web.UI.Forms
                 workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString();
         }
 
-        private void BuildSchedule(List<FlatSchedule> items)
+        private void BuildSchedule(List<FlatScheduleSelfService> items)
         {
             try
             {
@@ -803,7 +804,7 @@ namespace AionHR.Web.UI.Forms
 
                 //Preparing the ids to get colorified
                 List<string> listIds = new List<string>();
-                foreach (FlatSchedule fs in items)
+                foreach (FlatScheduleSelfService fs in items)
                 {
                     DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
                     DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
@@ -1131,7 +1132,7 @@ namespace AionHR.Web.UI.Forms
             reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
             reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
             reqFS.BranchId = 0;
-            ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+            ListResponse<FlatScheduleSelfService> response = _timeAttendanceService.ChildGetAll<FlatScheduleSelfService>(reqFS);
             if (!response.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -1327,7 +1328,7 @@ namespace AionHR.Web.UI.Forms
                 reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                 reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                 reqFS.BranchId = 0;
-                ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                ListResponse<FlatScheduleSelfService> response = _timeAttendanceService.ChildGetAll<FlatScheduleSelfService>(reqFS);
                 if (!response.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();

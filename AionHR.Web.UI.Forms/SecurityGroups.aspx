@@ -515,19 +515,20 @@
                                                 <Select Handler="App.CurrentModule.value = this.value; App.classesStore.reload(); " />
                                             </Listeners>
                                             <Items>
-
+                                                 <ext:ListItem Text="<%$ Resources: Common,Mod10  %>" Value="10" />
                                                 <ext:ListItem Text="<%$ Resources: Common,Mod20  %>" Value="20" />
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod21  %>" Value="21" />
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod22  %>" Value="22" />
-                                                <ext:ListItem Text="<%$ Resources:  Common,Mod23 %>" Value="23" />
-                                                <ext:ListItem Text="<%$ Resources:  Common,Mod24  %>" Value="24" />
-                                                <ext:ListItem Text="<%$ Resources: Common,Mod30  %>" Value="30" />
+                                         <%--       <ext:ListItem Text="<%$ Resources:  Common,Mod23 %>" Value="23" />--%>
+                                          <%--      <ext:ListItem Text="<%$ Resources:  Common,Mod24  %>" Value="24" />--%>
+                                               <ext:ListItem Text="<%$ Resources:  Common,Mod25  %>" Value="25" />
+                                              <%--  <ext:ListItem Text="<%$ Resources: Common,Mod30  %>" Value="30" />--%>
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod31 %>" Value="31" />
-                                                <ext:ListItem Text="<%$ Resources:  Common,Mod32  %>" Value="32" />
+                                              <%--  <ext:ListItem Text="<%$ Resources:  Common,Mod32  %>" Value="32" />--%>
                                                 <ext:ListItem Text="<%$ Resources: Common,Mod41  %>" Value="41" />
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod42  %>" Value="42" />
-                                                <ext:ListItem Text="<%$ Resources:  Common,Mod43  %>" Value="43" />
-                                                <ext:ListItem Text="<%$ Resources:  Common,Mod44 %>" Value="44" />
+                                            <%--    <ext:ListItem Text="<%$ Resources:  Common,Mod43  %>" Value="43" />--%>
+                                              <%--  <ext:ListItem Text="<%$ Resources:  Common,Mod44 %>" Value="44" />--%>
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod45  %>" Value="45" />
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod51  %>" Value="51" />
                                                  <ext:ListItem Text="<%$ Resources: Common,Mod60  %>" Value="60" />

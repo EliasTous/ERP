@@ -1356,4 +1356,10 @@
   <data name="LeaveSchedules" xml:space="preserve">
     <value>Leave Schedules</value>
   </data>
+  <data name="Mod10" xml:space="preserve">
+    <value>National Quota</value>
+  </data>
+  <data name="Mod25" xml:space="preserve">
+    <value>Benefits</value>
+  </data>
 </root>

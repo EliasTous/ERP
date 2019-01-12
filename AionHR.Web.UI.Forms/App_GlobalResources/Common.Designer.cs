@@ -19,7 +19,7 @@ namespace Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option or rebuild the Visual Studio project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "14.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Common {
@@ -2086,6 +2086,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to National Quota.
+        /// </summary>
+        internal static string Mod10 {
+            get {
+                return ResourceManager.GetString("Mod10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to System.
         /// </summary>
         internal static string Mod20 {
@@ -2127,6 +2136,15 @@ namespace Resources {
         internal static string Mod24 {
             get {
                 return ResourceManager.GetString("Mod24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benefits.
+        /// </summary>
+        internal static string Mod25 {
+            get {
+                return ResourceManager.GetString("Mod25", resourceCulture);
             }
         }
         

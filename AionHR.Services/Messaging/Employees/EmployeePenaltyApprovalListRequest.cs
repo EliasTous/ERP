@@ -8,6 +8,11 @@ namespace AionHR.Services.Messaging.Employees
 {
    public class EmployeePenaltyApprovalListRequest :ListRequest
     {
+        public int? DepartmentId { get; set; }
+        public int? DivisionId { get; set; }
+        public int? PositionId { get; set; }
+        public int? BranchId { get; set; }
+        public int EsId { get; set; }
         public string penaltyId { get; set; }
         public string approverId { get; set; }
 
@@ -22,7 +27,12 @@ namespace AionHR.Services.Messaging.Employees
                 parameters.Add("_approverId", approverId);
                 parameters.Add("_penaltyId", penaltyId);
                 parameters.Add("_apStatus", apStatus);
-              
+                parameters.Add("_departmentId", DepartmentId.ToString());
+                parameters.Add("_divisionId", DivisionId.ToString());
+                parameters.Add("_branchId", BranchId.ToString());
+                parameters.Add("_esId", EsId.ToString());
+                parameters.Add("_positionId", PositionId.ToString());
+
                 return parameters;
             }
         }

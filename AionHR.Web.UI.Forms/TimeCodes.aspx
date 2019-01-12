@@ -97,7 +97,7 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
+                                <ext:Button ID="btnAdd" Visible="false" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
                                      <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>                           
@@ -341,7 +341,7 @@
                                      <Select OnEvent="Unnamed_Event" />
                                  </DirectEvents>
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeCode" runat="server" FieldLabel="<%$ Resources:FieldTimeVariationType%>" Name="timeCode" IDMode="Static" SubmitValue="true" AllowBlank="false" >
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeCodeCombo" runat="server" FieldLabel="<%$ Resources:FieldTimeVariationType%>" Name="timeCode" IDMode="Static" SubmitValue="true" AllowBlank="false" ReadOnly="true" >
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:Common ,  UnpaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_UNPAID_LEAVE %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  PaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_PAID_LEAVE %>"></ext:ListItem>

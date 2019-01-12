@@ -1301,6 +1301,11 @@ namespace AionHR.Web.UI.Forms.Controls
             req.leaveId = Id;
             req.approverId = "0";
             req.status = 0;
+            req.DivisionId = 0;
+            req.PositionId = 0;
+            req.DepartmentId = 0;
+            req.BranchId = 0;
+            req.EsId = 0;
             ListResponse<AionHR.Model.LeaveManagement.Approvals> response = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
             if (!response.Success)
             {

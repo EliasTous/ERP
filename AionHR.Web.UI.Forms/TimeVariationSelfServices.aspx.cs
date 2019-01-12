@@ -30,6 +30,7 @@ using AionHR.Services.Messaging.Reports;
 using AionHR.Model.Dashboard;
 using AionHR.Services.Messaging.TimeAttendance;
 using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Model.SelfService;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -276,7 +277,7 @@ namespace AionHR.Web.UI.Forms
 
                 TimeVariationListRequest req = GetAbsentRequest();
 
-                ListResponse<DashBoardTimeVariation> daysResponse = _selfServiceService.ChildGetAll<DashBoardTimeVariation>(req);
+                ListResponse<TimeVariationSelfService> daysResponse = _selfServiceService.ChildGetAll<TimeVariationSelfService>(req);
 
                 //ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 

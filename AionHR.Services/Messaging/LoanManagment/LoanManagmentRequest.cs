@@ -29,14 +29,15 @@ namespace AionHR.Services.Messaging.LoanManagment
     {
 
         public int EmployeeId { get; set; }
-        public int DepartmentId { get; set; }
-        public int BranchId { get; set; }
+        public int? DepartmentId { get; set; }
+        public int? BranchId { get; set; }
         public int Status { get; set; }
-        public int DivisionId { get; set; }
+        public int? DivisionId { get; set; }
         public int approverId { get; set; }
         public string LoanId { get; set; }
+        public int? EsId { get; set; }
 
-
+        public int? PositionId { get; set; }
         public override Dictionary<string, string> Parameters
         {
             get
@@ -50,6 +51,8 @@ namespace AionHR.Services.Messaging.LoanManagment
                 parameters.Add("_sortBy", SortBy.ToString());
                 parameters.Add("_approverId", approverId.ToString());
                 parameters.Add("_loanId", LoanId);
+                parameters.Add("_esId", EsId.ToString());
+                parameters.Add("_positionId", PositionId.ToString());
 
 
                 return parameters;

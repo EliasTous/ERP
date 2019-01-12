@@ -1431,6 +1431,8 @@ namespace AionHR.Web.UI.Forms
             req.EmployeeId = 0;
             req.Status = 1;
             req.Filter = "";
+            req.PositionId = 0;
+            req.EsId = 0;
             
             req.SortBy = "recordId";
 
