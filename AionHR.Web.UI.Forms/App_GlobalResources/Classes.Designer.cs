@@ -1438,6 +1438,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Password.
+        /// </summary>
+        internal static string Class60113 {
+            get {
+                return ResourceManager.GetString("Class60113", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Template.
         /// </summary>
         internal static string Class70100 {

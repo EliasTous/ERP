@@ -44,11 +44,14 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");
             ChildGetLookup.Add(typeof(EmployeeComplaintSelfService), "getCO");
             ChildGetLookup.Add(typeof(Loan), "getLO");
+
+            ChildGetLookup.Add(typeof(UserInfoSelfService), "getUS");
             ChildGetLookup.Add(typeof(LeaveRequest), "getLR");
             ChildGetLookup.Add(typeof(EmployeeQuickView), "getQV");
             ChildGetLookup.Add(typeof(KeyValuePair<string, string>), "getDE");
 
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");
+            ChildAddOrUpdateLookup.Add(typeof(UserInfoSelfService), "setUS");
             ChildAddOrUpdateLookup.Add(typeof(leaveRequetsSelfservice), "setLR");
             ChildAddOrUpdateLookup.Add(typeof(loanSelfService), "setLO");
             ChildAddOrUpdateLookup.Add(typeof(LetterSelfservice), "setLE");

@@ -71,7 +71,7 @@ namespace AionHR.Web.UI.Forms
                     return;
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(PayrollIndemnities), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(PayrollIndemnity), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
 
                 }
                 catch (AccessDeniedException exp)

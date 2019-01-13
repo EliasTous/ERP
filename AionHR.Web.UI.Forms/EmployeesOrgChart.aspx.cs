@@ -96,10 +96,10 @@ namespace AionHR.Web.UI.Forms
             empRequest.DepartmentId = "0";
          
             empRequest.IncludeIsInactive = 0;
+            string sortby= GetNameFormat();
+            empRequest.SortBy = "lastName";
 
-            empRequest.SortBy = GetNameFormat();
-
-            empRequest.Size = "100";
+            empRequest.Size = "1000";
             empRequest.StartAt = "1";
 
             ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
@@ -116,6 +116,7 @@ namespace AionHR.Web.UI.Forms
 
         private string GetNameFormat()
         {
+            string nameformat= _systemService.SessionHelper.Get("nameFormat").ToString();
             return _systemService.SessionHelper.Get("nameFormat").ToString();
 
         }

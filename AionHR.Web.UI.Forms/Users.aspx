@@ -530,6 +530,7 @@
 
                                     <Listeners>
                                         <Select Handler="App.direct.SetFullName();" />
+                                        <Change Handler="if (App.userType.getValue()!=1) #{employeeId}.allowBlank = false; else #{employeeId}.allowBlank = true;" />
                                         <FocusLeave Handler=" if(this.value==null|| isNaN(this.value) )SetNameEnabled(true,'');  if(isNaN(this.value)) this.setValue(null);" />
                                     </Listeners>
                                 </ext:ComboBox>

@@ -68,6 +68,18 @@ namespace AionHR.Web.UI.Forms
                 // endingDate.MinDate = startingDate.SelectedDate;
                 endingDate.Value = DateTime.Now;
 
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(FlatSchedule), null, null, null, null);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+
 
             }
            

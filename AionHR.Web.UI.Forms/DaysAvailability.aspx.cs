@@ -65,10 +65,27 @@ namespace AionHR.Web.UI.Forms
 
                 SetExtLanguage();
                 FillBranches();
-                dateFrom.SelectedDate = DateTime.Now;  
+                dateFrom.SelectedDate = DateTime.Now;
 
 
             }
+            try
+            {
+                AccessControlApplier.ApplyAccessControlOnPage(typeof(DailySchedule), null, null, null, null);
+            }
+            catch (AccessDeniedException exp)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
+                Viewport1.Hidden = true;
+
+
+
+
+
+                return;
+            }
+
 
 
         }

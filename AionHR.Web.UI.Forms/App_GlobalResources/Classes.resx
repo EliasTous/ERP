@@ -576,6 +576,9 @@
   <data name="Class60111" xml:space="preserve">
     <value>Payroll </value>
   </data>
+  <data name="Class60113" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
   <data name="Class70100" xml:space="preserve">
     <value>Template</value>
   </data>

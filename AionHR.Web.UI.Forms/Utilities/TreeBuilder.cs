@@ -197,7 +197,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             //Ext.Net.Node users = BuildLeafNode("rootParent_CS_US", Resources.Common.Users, "Group", true, systemSettings);
 
             FillConfigItem(emporg, "emporg", "EmployeesOrgChart.aspx", Resources.Common.EmpOrganizationChart, "icon-Employees", "1");
-            FillConfigItem(org, "emporg", "OrganizationChart.aspx", Resources.Common.OrganizationChart, "icon-Employees", "1");
+            FillConfigItem(org, "orgChart", "OrganizationChart.aspx", Resources.Common.OrganizationChart, "icon-Employees", "1");
           //  FillConfigItem(mediaItem, "mediaItem", "MediaItems.aspx", Resources.Common.MediaItems, "icon-Employees", "1");
             FillConfigItem(files, "csFiles", "CompanyFiles.aspx", Resources.Common.Files, "icon-Employees", "1");
         //    FillConfigItem(companyNews, "companyNews", "CompanyNews.aspx", Resources.Common.CompanyNews, "icon-Employees", "1");

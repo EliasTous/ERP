@@ -66,7 +66,7 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                lblError.Text = response.Summary;//(String)GetLocalResourceObject(response.Message);
+                lblError.Text = response.Error;//(String)GetLocalResourceObject(response.Message);
 
             }
         }

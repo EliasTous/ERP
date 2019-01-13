@@ -74,7 +74,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     try
                     {
-                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT112), null, null, null, null);
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT113), null, null, null, null);
                     }
                     catch (AccessDeniedException exp)
                     {

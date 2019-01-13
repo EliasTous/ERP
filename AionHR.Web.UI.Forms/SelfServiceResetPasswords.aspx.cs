@@ -29,7 +29,7 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
-        ISelfServiceService _iselfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
+        ISelfServiceService _selfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
         protected override void InitializeCulture()
         {
 
@@ -60,7 +60,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SelfServiceResetPassword), BasicInfoTab, null, null, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(UserInfoSelfService), BasicInfoTab, null, null, SaveButton);
 
                 }
                 catch (AccessDeniedException exp)
@@ -134,7 +134,7 @@ namespace AionHR.Web.UI.Forms
             SelfServiceResetPassword h = JsonConvert.DeserializeObject<SelfServiceResetPassword>(obj, settings);
             RecordRequest r = new RecordRequest();
             r.RecordID = _systemService.SessionHelper.GetCurrentUserId();
-            RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
+            RecordResponse<UserInfoSelfService> response = _selfServiceService.ChildGetRecord<UserInfoSelfService>(r);
             if (!response.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary, "closeCurrentTab()").Show();
@@ -147,13 +147,13 @@ namespace AionHR.Web.UI.Forms
             }
 
 
-            PostRequest<UserInfo> req = new PostRequest<UserInfo>();
+            PostRequest<UserInfoSelfService> req = new PostRequest<UserInfoSelfService>();
 
             req.entity = response.result;
             req.entity.password = EncryptionHelper.encrypt(h.Password);
 
 
-            PostResponse<UserInfo> resp = _systemService.ChildAddOrUpdate<UserInfo>(req);
+            PostResponse<UserInfoSelfService> resp = _selfServiceService.ChildAddOrUpdate<UserInfoSelfService>(req);
             if (!resp.Success)
             {
                 Common.errorMessage(resp);

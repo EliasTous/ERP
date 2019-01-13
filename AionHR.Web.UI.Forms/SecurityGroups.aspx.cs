@@ -309,47 +309,95 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveGroupUsers(object sender, DirectEventArgs e)
         {
-
-
-            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string id = e.ExtraParams["id"];
-
-            List<SecurityGroupUser> selectedUsers = new List<SecurityGroupUser>();
-            foreach (var item in userSelector.SelectedItems)
+            try
             {
-                selectedUsers.Add(new SecurityGroupUser() { userId = item.Value, fullName = item.Text, sgId = CurrentGroup.Text });
-            }
 
-            PostRequest<SecurityGroupUser> req = new PostRequest<SecurityGroupUser>();
-            PostResponse<SecurityGroupUser> resp = new PostResponse<SecurityGroupUser>();
-            req.entity = new SecurityGroupUser() { userId = "0", sgId = CurrentGroup.Text };
-            resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
-            if (!resp.Success)
-            {
-                Common.errorMessage(resp);
-                return;
-            }
-            foreach (var item in selectedUsers)
-            {
-                req.entity = item;
-                req.entity.sgId = CurrentGroup.Text;
-                resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(req);
-                if (!resp.Success)
+                //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+                string id = e.ExtraParams["id"];
+
+                List<SecurityGroupUser> selectedUsers = new List<SecurityGroupUser>();
+                foreach (var item in userSelector.SelectedItems)
                 {
-                    Common.errorMessage(resp);
+                    selectedUsers.Add(new SecurityGroupUser() { userId = item.Value, fullName = item.Text, sgId = CurrentGroup.Text });
+                }
+             
+                GroupUsersListRequest GUreq = new GroupUsersListRequest();
+                GUreq.Size = "100";
+                GUreq.StartAt = "1";
+                GUreq.Filter = "";
+                GUreq.GroupId = CurrentGroup.Text;
+
+
+
+
+                //Fetching the corresponding list
+
+                //in this test will take a list of News
+
+               
+                ListResponse<SecurityGroupUser> groups = _accessControlService.ChildGetAll<SecurityGroupUser>(GUreq);
+                if (!groups.Success)
+                {
+                    Common.errorMessage(groups);
+
                     return;
                 }
+                PostResponse<SecurityGroupUser> resp = new PostResponse<SecurityGroupUser>();
+                PostRequest<SecurityGroupUser> req = new PostRequest<SecurityGroupUser>();
+                groups.Items.ForEach(x =>
+                {
+                    req.entity = new SecurityGroupUser() { userId = x.userId, sgId = CurrentGroup.Text };
+                    resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        throw new Exception();
+                    }
 
+                });
+
+
+
+
+
+             
+               
+
+
+                
+                //req.entity = new SecurityGroupUser() { userId = "0", sgId = CurrentGroup.Text };
+                //resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
+                //if (!resp.Success)
+                //{
+                //    Common.errorMessage(resp);
+                //    return;
+                //}
+                foreach (var item in selectedUsers)
+                {
+                    req.entity = item;
+                    req.entity.sgId = CurrentGroup.Text;
+                    resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        throw new Exception();
+                    }
+
+                }
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
+                groupUsersWindow.Close();
+                usersStore.Reload();
             }
-            Notification.Show(new NotificationConfig
+            catch ( Exception exp)
             {
-                Title = Resources.Common.Notification,
-                Icon = Icon.Information,
-                Html = Resources.Common.RecordSavingSucc
-            });
-            groupUsersWindow.Close();
-            usersStore.Reload();
-
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(),exp.Message).Show();
+            }
+            
 
         }
 

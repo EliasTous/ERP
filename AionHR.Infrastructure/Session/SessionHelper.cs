@@ -65,9 +65,11 @@ namespace AionHR.Infrastructure.Session
         }
         public void SetNameFormat(string format)
         {
-            string commad = format.Replace('}', ',');
-            string removedBrace = commad.Replace('{', Char.MinValue);
-            string lastLetterRemoved = removedBrace.Substring(0, removedBrace.Length - 1);
+            string commad= format.Replace(" ", string.Empty);
+            commad = format.Replace("}", string.Empty);
+            string removedBrace = commad.Replace('{', ',');
+            removedBrace = removedBrace.Replace(" ", string.Empty);
+            string lastLetterRemoved = removedBrace.Substring(1, removedBrace.Length - 1);
             Set("nameFormat", lastLetterRemoved);
         }
         public void SetCurrencyId(string value)

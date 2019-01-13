@@ -161,7 +161,7 @@
                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                             </SelectionModel>
                   <Buttons>
-              <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk" >
+              <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk" >
                     <Listeners>
                         <Click Handler="#{ProcessNotificationGrid}.submitData();" />
                     </Listeners>
