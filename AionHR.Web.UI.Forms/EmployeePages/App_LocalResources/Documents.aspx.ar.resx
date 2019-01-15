@@ -255,4 +255,7 @@
   <data name="phone" xml:space="preserve">
     <value>الهاتف</value>
   </data>
+  <data name="DownloadImage" xml:space="preserve">
+    <value>تحميل </value>
+  </data>
 </root>

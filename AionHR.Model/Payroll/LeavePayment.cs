@@ -19,7 +19,7 @@ namespace AionHR.Model.Payroll
         public string paymentRef { get; set; }
         public string salary { get; set; }
         public double days { get; set; }
-        public int amount { get; set; }
+        public int? amount { get; set; }
         public double earnedLeaves { get; set; }
         public double usedLeaves { get; set; }
         public double paidLeaves { get; set; }

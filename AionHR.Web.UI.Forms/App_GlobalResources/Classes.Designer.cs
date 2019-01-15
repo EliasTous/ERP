@@ -196,6 +196,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Government Organisation.
+        /// </summary>
+        internal static string Class20041 {
+            get {
+                return ResourceManager.GetString("Class20041", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attachments.
         /// </summary>
         internal static string Class20050 {
@@ -1317,6 +1326,15 @@ namespace Resources {
         internal static string Class51041 {
             get {
                 return ResourceManager.GetString("Class51041", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Banks.
+        /// </summary>
+        internal static string Class51050 {
+            get {
+                return ResourceManager.GetString("Class51050", resourceCulture);
             }
         }
         

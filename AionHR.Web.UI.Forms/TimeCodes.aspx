@@ -335,13 +335,14 @@
                                       
                                     </Items>
                                 <Listeners>
-                                    <Select Handler="#{currentEDtype}.setValue(this.value);" />
+                                    <Select Handler="#{currentEDtype}.setValue(this.value);App.entEdId.select();" />
                                 </Listeners>
                                  <DirectEvents>
                                      <Select OnEvent="Unnamed_Event" />
                                  </DirectEvents>
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeCodeCombo" runat="server" FieldLabel="<%$ Resources:FieldTimeVariationType%>" Name="timeCode" IDMode="Static" SubmitValue="true" AllowBlank="false" ReadOnly="true" >
+                            
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timecode" runat="server" FieldLabel="<%$ Resources:FieldTimeVariationType%>" Name="timecode" IDMode="Static" SubmitValue="true" SimpleSubmit="true" ReadOnly="true"  >
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:Common ,  UnpaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_UNPAID_LEAVE %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  PaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_PAID_LEAVE %>"></ext:ListItem>
@@ -353,7 +354,7 @@
                                         <ext:ListItem Text="<%$ Resources:Common ,  EARLY_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_CHECKIN %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  OVERTIME %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_OVERTIME %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  MISSED_PUNCH %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_MISSED_PUNCH %>"></ext:ListItem>
-                                    
+                                      <ext:ListItem Text="<%$ Resources:Common ,  Day_Bonus %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_Day_Bonus %>"></ext:ListItem>
                                       
                                     </Items>
                                 </ext:ComboBox>

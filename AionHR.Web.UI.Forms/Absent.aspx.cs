@@ -742,7 +742,11 @@ namespace AionHR.Web.UI.Forms
                 r.shiftId = shiftId;
                 // r.apStatus = apstatus.ToString();
                 r.apStatus = "0";
-
+                r.DepartmentId = 0;
+                r.DivisionId = 0;
+                r.BranchId = 0;
+                r.PositionId = 0;
+                r.EsId = 0;
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)

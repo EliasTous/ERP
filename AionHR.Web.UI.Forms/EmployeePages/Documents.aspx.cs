@@ -52,6 +52,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
 
         }
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -183,6 +184,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     break;
 
                 case "imgAttach":
+                    ImageUrl.Text = path;
+                    var values = path.Split('.');
+                    if (values[values.Length-1].ToString().ToLower() == "jpg" || values[values.Length - 1].ToString().ToLower() == "png")
+                    {
+                        imgControl.Src = path;
+                        Window1.Show();
+                    }
+                    else
                     DownloadFile(path);
 
                     //Here will show up a winow relatice to attachement depending on the case we are working on
@@ -212,8 +221,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 //Create a WebRequest to get the file
                 HttpWebRequest fileReq = (HttpWebRequest)HttpWebRequest.Create(url);
-
-                //Create a response for this request
+              
                 HttpWebResponse fileResp = (HttpWebResponse)fileReq.GetResponse();
 
                 if (fileReq.ContentLength > 0)
@@ -531,7 +539,23 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
             return response.result;
         }
+        protected void downloadImage(object sender, DirectEventArgs e)
+        {
+
+            string ImageUrl = e.ExtraParams["ImageUrl"];
+            if(!string.IsNullOrEmpty(ImageUrl))
+
+            DownloadFile(ImageUrl);
+              
+        
+              
+
+
+
+
+        }
 
 
     }
+  
 }

@@ -2239,6 +2239,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin affairs.
+        /// </summary>
+        internal static string Mod70 {
+            get {
+                return ResourceManager.GetString("Mod70", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reports.
         /// </summary>
         internal static string Mod80 {

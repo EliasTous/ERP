@@ -145,8 +145,9 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     ApprovalStore.Reload();
+                    this.BasicInfoTab.Reset();
                     this.BasicInfoTab.SetValues(response.result);
-                    apId.Select(response.result.apId); 
+                    apId.Select(response.result.apId.ToString()); 
 
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;

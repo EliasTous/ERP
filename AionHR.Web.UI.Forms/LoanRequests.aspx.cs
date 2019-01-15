@@ -1429,7 +1429,7 @@ namespace AionHR.Web.UI.Forms
             req.DepartmentId = 0;
             req.DivisionId = 0;
             req.EmployeeId = 0;
-            req.Status = 1;
+            req.Status = 0;
             req.Filter = "";
             req.PositionId = 0;
             req.EsId = 0;

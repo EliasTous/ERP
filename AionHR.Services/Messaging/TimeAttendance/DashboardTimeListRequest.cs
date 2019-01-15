@@ -21,11 +21,22 @@ namespace AionHR.Services.Messaging.TimeAttendance
         public int? DivisionId { get; set; }
         public int? PositionId { get; set; }
         public int? BranchId { get; set; }
-        public int EsId { get; set; }
+        public int? EsId { get; set; }
         public override Dictionary<string, string> Parameters
         {
             get
             {
+                if (DepartmentId == null)
+                    DepartmentId = 0;
+                if (DivisionId == null)
+                    DivisionId = 0;
+                if (BranchId == null)
+                    BranchId = 0;
+                if (PositionId == null)
+                    PositionId = 0;
+                if (EsId == null)
+                    EsId = 0;
+
                 parameters = base.Parameters;
                 parameters.Add("_approverId", approverId.ToString());
                 parameters.Add("_employeeId", employeeId.ToString());

@@ -834,60 +834,69 @@ namespace AionHR.Web.UI.Forms
         //    return new { valid = true };
         protected void FillEmployeeInfo(object sender, DirectEventArgs e)
         {
-          string effectiveDate = e.ExtraParams["effectiveDate"];
-           string  employeeId= e.ExtraParams["employeeId"];
-            if (!string.IsNullOrEmpty(employeeId) || !string.IsNullOrEmpty(effectiveDate))
-            { 
-            EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
-                if (!string.IsNullOrEmpty(employeeId))
+            try
+            {
+                string effectiveDate = e.ExtraParams["effectiveDate"];
+                string employeeId = e.ExtraParams["employeeId"];
+                if (string.IsNullOrEmpty(employeeId))
+                    return;
+                if (!string.IsNullOrEmpty(effectiveDate))
+                {
+                    EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
+                   
                     req.RecordID = employeeId;
 
-                else
-                    req.RecordID = "0";
-            req.asOfDate = Convert.ToDateTime(effectiveDate);
 
-            RecordResponse<EmployeeQuickView> routers = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
-            if (!routers.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
+                    req.asOfDate = Convert.ToDateTime(effectiveDate);
 
-            }
-            //RecordRequest req = new RecordRequest();
-            //req.RecordID = employeeId.Value.ToString();
-            //RecordResponse<Employee> routers = _employeeService.Get<Employee>(req);
-            //if (!routers.Success)
-            //{
-            //    Common.errorMessage(routers);
-            //    return;
-            //}
-            //this.setFillEmployeeInfoDisable(false);
-            if (routers.result == null)
-                return;
+                    RecordResponse<EmployeeQuickView> routers = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+                    if (!routers.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
 
-            branchNameTx.Text = routers.result.branchName;
-            departmentNameTx.Text = routers.result.departmentName;
-            positionNameTx.Text = routers.result.positionName;
-            hireDateDf.Value = routers.result.hireDate;
-            nationalityTx.Text = routers.result.countryName;
-                if (updateLeaveBalance.Text == "false")
-                {
-                    earnedLeaves.Text = routers.result.earnedLeaves.ToString();
-                    leaveBalance.Text = routers.result.leaveBalance.ToString();
-                }
+                    }
+                    //RecordRequest req = new RecordRequest();
+                    //req.RecordID = employeeId.Value.ToString();
+                    //RecordResponse<Employee> routers = _employeeService.Get<Employee>(req);
+                    //if (!routers.Success)
+                    //{
+                    //    Common.errorMessage(routers);
+                    //    return;
+                    //}
+                    //this.setFillEmployeeInfoDisable(false);
+                    if (routers.result == null)
+                        return;
+
+                    branchNameTx.Text = routers.result.branchName;
+                    departmentNameTx.Text = routers.result.departmentName;
+                    positionNameTx.Text = routers.result.positionName;
+                    hireDateDf.Value = routers.result.hireDate;
+                    nationalityTx.Text = routers.result.countryName;
+                    if (updateLeaveBalance.Text == "false")
+                    {
+                        earnedLeaves.Text = routers.result.earnedLeaves.ToString();
+                        leaveBalance.Text = routers.result.leaveBalance.ToString();
+                    }
                     usedLeaves.Text = routers.result.usedLeaves.ToString();
-            paidLeaves.Text = routers.result.paidLeaves.ToString();
-         
-
-            lastLeaveStartDate.Value = routers.result.lastLeaveStartDate;
-            lastLeaveEndDate.Value = routers.result.lastLeaveEndDate;
-            salary.Text = routers.result.salary.ToString();
-            //days.Text = "0";
+                    paidLeaves.Text = routers.result.paidLeaves.ToString();
 
 
-            serviceDuration.Text = routers.result.serviceDuration;
-                updateLeaveBalance.Text = "false";
-        }
+                    lastLeaveStartDate.Value = routers.result.lastLeaveStartDate;
+                    lastLeaveEndDate.Value = routers.result.lastLeaveEndDate;
+                    salary.Text = routers.result.salary.ToString();
+                    //days.Text = "0";
+
+
+                    serviceDuration.Text = routers.result.serviceDuration;
+                    updateLeaveBalance.Text = "false";
+
+                }
+            }
+            catch(Exception exp)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common","Error").ToString(), exp.Message);
+            }
            
 
         }

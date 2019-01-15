@@ -1504,7 +1504,7 @@ namespace AionHR.Web.UI.Forms
             //jp.DepartmentId = 0;
             req.Add(p);
             req.Add(Pm);
-          req.Add(jobInfo1.GetJobInfo());
+            req.Add(jobInfo1.GetJobInfo());
             req.Add(employeeCombo1.GetEmployee());
 
             return req;

@@ -421,7 +421,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditDocumentWindowTitle %>"
             Width="600"
-            Height="350"
+            Height="550"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -447,6 +447,54 @@
             </Items>
         </ext:Window>
 
+        
+        <ext:Window ID="Window1"
+            runat="server"
+            Icon="PageEdit"
+         
+            Width="600"
+            Height="350"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Maximizable="false"
+            Resizable="false"
+            Draggable="false"
+            Layout="Fit">
+            <Items>
+          <ext:FormPanel runat="server">
+              <Items>
+                  <ext:TextField runat="server" Hidden="true" ID="ImageUrl" Name="ImageUrl" />
+                    <ext:Image runat="server" ID="imgControl"  Width="600"    Height="350" >
+                          
+
+                        </ext:Image>
+                  </Items>
+              </ext:FormPanel>
+
+            </Items>
+             <Buttons>
+                <ext:Button ID="Button1" runat="server" Text="<%$ Resources: DownloadImage %>" Icon="Disk">
+
+                  
+                    <DirectEvents>
+                        <Click OnEvent="downloadImage" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditDocumentWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="ImageUrl" Value="#{ImageUrl}.getValue()" Mode="Raw" />
+                              
+                             
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
 
 
     </form>

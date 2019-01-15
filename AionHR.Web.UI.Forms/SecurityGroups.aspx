@@ -518,7 +518,7 @@
                                                  <ext:ListItem Text="<%$ Resources: Common,Mod10  %>" Value="10" />
                                                 <ext:ListItem Text="<%$ Resources: Common,Mod20  %>" Value="20" />
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod21  %>" Value="21" />
-                                                <ext:ListItem Text="<%$ Resources:  Common,Mod22  %>" Value="22" />
+                                              <%--  <ext:ListItem Text="<%$ Resources:  Common,Mod22  %>" Value="22" />--%>
                                          <%--       <ext:ListItem Text="<%$ Resources:  Common,Mod23 %>" Value="23" />--%>
                                           <%--      <ext:ListItem Text="<%$ Resources:  Common,Mod24  %>" Value="24" />--%>
                                                <ext:ListItem Text="<%$ Resources:  Common,Mod25  %>" Value="25" />
@@ -532,6 +532,7 @@
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod45  %>" Value="45" />
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod51  %>" Value="51" />
                                                  <ext:ListItem Text="<%$ Resources: Common,Mod60  %>" Value="60" />
+                                                  <ext:ListItem Text="<%$ Resources: Common,Mod70  %>" Value="70" />
                                                 <ext:ListItem Text="<%$ Resources: Common,Mod80  %>" Value="80" />
                                                 <ext:ListItem Text="<%$ Resources: Common,Mod90  %>" Value="90" />
 

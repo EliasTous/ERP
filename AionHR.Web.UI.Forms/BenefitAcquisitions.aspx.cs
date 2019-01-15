@@ -1082,96 +1082,96 @@ namespace AionHR.Web.UI.Forms
 
 
         //}
-        [DirectMethod]
-        public void DeleteEN(string fsId, string seqNo)
-        {
-            try
-            {
-                //Step 1 Code to delete the object from the database 
-                FinalEntitlementsDeductions s = new FinalEntitlementsDeductions();
-                s.fsId = Convert.ToInt32(fsId);
-                s.seqNo = Convert.ToInt32(seqNo);
+        //[DirectMethod]
+        //public void DeleteEN(string fsId, string seqNo)
+        //{
+        //    try
+        //    {
+        //        //Step 1 Code to delete the object from the database 
+        //        FinalEntitlementsDeductions s = new FinalEntitlementsDeductions();
+        //        s.fsId = Convert.ToInt32(fsId);
+        //        s.seqNo = Convert.ToInt32(seqNo);
 
-                PostRequest<FinalEntitlementsDeductions> req = new PostRequest<FinalEntitlementsDeductions>();
-                req.entity = s;
-                PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildDelete<FinalEntitlementsDeductions>(req);
-                if (!r.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                  Common.errorMessage(r);
-                    return;
-                }
-                else
-                {
-                    //Step 2 :  remove the object from the store
-                    // ENSeq.Text = (Convert.ToInt32(ENSeq.Text) - 1).ToString(); 
-                    //entitlementsStore.Reload();
+        //        PostRequest<FinalEntitlementsDeductions> req = new PostRequest<FinalEntitlementsDeductions>();
+        //        req.entity = s;
+        //        PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildDelete<FinalEntitlementsDeductions>(req);
+        //        if (!r.Success)
+        //        {
+        //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //          Common.errorMessage(r);
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            //Step 2 :  remove the object from the store
+        //            // ENSeq.Text = (Convert.ToInt32(ENSeq.Text) - 1).ToString(); 
+        //            //entitlementsStore.Reload();
 
-                    //Step 3 : Showing a notification for the user 
-                    Notification.Show(new NotificationConfig
-                    {
-                        Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
-                        Html = Resources.Common.RecordDeletedSucc
-                    });
-                    FillEmployeeInfo(new object(), new DirectEventArgs(new Ext.Net.ParameterCollection()));
-                }
+        //            //Step 3 : Showing a notification for the user 
+        //            Notification.Show(new NotificationConfig
+        //            {
+        //                Title = Resources.Common.Notification,
+        //                Icon = Icon.Information,
+        //                Html = Resources.Common.RecordDeletedSucc
+        //            });
+        //            FillEmployeeInfo(new object(), new DirectEventArgs(new Ext.Net.ParameterCollection()));
+        //        }
 
-            }
+        //    }
 
-            catch (Exception ex)
-            {
-                //In case of error, showing a message box to the user
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+        //    catch (Exception ex)
+        //    {
+        //        //In case of error, showing a message box to the user
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
 
-            }
+        //    }
 
-        }
-        [DirectMethod]
-        public void DeleteDE(string fsId, string seqNo)
-        {
-            try
-            {
-                //Step 1 Code to delete the object from the database 
-                FinalEntitlementsDeductions s = new FinalEntitlementsDeductions();
-                s.fsId = Convert.ToInt32(fsId);
-                s.seqNo = Convert.ToInt32(seqNo);
+        //}
+        //[DirectMethod]
+        //public void DeleteDE(string fsId, string seqNo)
+        //{
+        //    try
+        //    {
+        //        //Step 1 Code to delete the object from the database 
+        //        FinalEntitlementsDeductions s = new FinalEntitlementsDeductions();
+        //        s.fsId = Convert.ToInt32(fsId);
+        //        s.seqNo = Convert.ToInt32(seqNo);
 
-                PostRequest<FinalEntitlementsDeductions> req = new PostRequest<FinalEntitlementsDeductions>();
-                req.entity = s;
-                PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildDelete<FinalEntitlementsDeductions>(req);
-                if (!r.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                  Common.errorMessage(r);
-                    return;
-                }
-                else
-                {
-                    //Step 2 :  remove the object from the store
+        //        PostRequest<FinalEntitlementsDeductions> req = new PostRequest<FinalEntitlementsDeductions>();
+        //        req.entity = s;
+        //        PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildDelete<FinalEntitlementsDeductions>(req);
+        //        if (!r.Success)
+        //        {
+        //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //          Common.errorMessage(r);
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            //Step 2 :  remove the object from the store
 
 
-                    //  deductionStore.Reload();
-                    //Step 3 : Showing a notification for the user 
-                    Notification.Show(new NotificationConfig
-                    {
-                        Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
-                        Html = Resources.Common.RecordDeletedSucc
-                    });
-                }
-                FillEmployeeInfo(new object(), new DirectEventArgs(new Ext.Net.ParameterCollection()));
-            }
-            catch (Exception ex)
-            {
-                //In case of error, showing a message box to the user
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+        //            //  deductionStore.Reload();
+        //            //Step 3 : Showing a notification for the user 
+        //            Notification.Show(new NotificationConfig
+        //            {
+        //                Title = Resources.Common.Notification,
+        //                Icon = Icon.Information,
+        //                Html = Resources.Common.RecordDeletedSucc
+        //            });
+        //        }
+        //        FillEmployeeInfo(new object(), new DirectEventArgs(new Ext.Net.ParameterCollection()));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //In case of error, showing a message box to the user
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
 
-            }
+        //    }
 
-        }
+        //}
 
         //protected void ADDNewEN(object sender, DirectEventArgs e)
         //{

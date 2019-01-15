@@ -159,6 +159,9 @@
   <data name="Class20040" xml:space="preserve">
     <value>الجنسيات</value>
   </data>
+  <data name="Class20041" xml:space="preserve">
+    <value>هيئات حكومية</value>
+  </data>
   <data name="Class20050" xml:space="preserve">
     <value>المرفقات</value>
   </data>
@@ -461,6 +464,9 @@
   </data>
   <data name="Class51031" xml:space="preserve">
     <value>نهاية الخدمة استحقاقات / مستحقات</value>
+  </data>
+  <data name="Class51050" xml:space="preserve">
+    <value>البنوك</value>
   </data>
   <data name="Class60101" xml:space="preserve">
     <value>معلوماتي الشخصية</value>

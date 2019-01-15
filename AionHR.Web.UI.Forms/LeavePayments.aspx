@@ -501,7 +501,7 @@
                               
                                       </ext:TextField>
                                 
-                                 <ext:NumberField runat="server" ReadOnly="true" ID="amount" Name="amount" FieldLabel="<%$ Resources: FieldAmount %>" AllowDecimals="false" >
+                                 <ext:NumberField runat="server" ReadOnly="true" ID="amount" Name="amount" FieldLabel="<%$ Resources: FieldAmount %>" AllowDecimals="false" AllowBlank="false" >
                                    
                                      </ext:NumberField>
                               

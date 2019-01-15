@@ -23,6 +23,16 @@ namespace AionHR.Services.Messaging.DashBoard
         {
             get
             {
+                if (DepartmentId == null)
+                    DepartmentId = 0;
+                if (DivisionId == null)
+                    DivisionId = 0;
+                if (BranchId == null)
+                    BranchId = 0;
+                if (PositionId == null)
+                    PositionId = 0;
+                if (EsId == null)
+                    EsId = 0;
                 parameters = new Dictionary<string, string>();
                 parameters.Add("_status", status.ToString());
                 parameters.Add("_approverId", approverId);

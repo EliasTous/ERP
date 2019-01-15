@@ -163,7 +163,7 @@ namespace AionHR.Web.UI.Forms
                         //Step 2 : call setvalues with the retrieved object
                         this.BasicInfoTab.SetValues(response.result);
                       if (!String.IsNullOrEmpty(timeCodeP))
-                        timeCodeCombo.Select(FillTimeCode(Convert.ToInt32( timeCodeP)));
+                        timecode.Select(timeCodeP);
                         this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                         this.EditRecordWindow.Show();
                         break;
@@ -417,7 +417,8 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             TimeCode b = JsonConvert.DeserializeObject<TimeCode>(obj);
-
+            //if (!string.IsNullOrEmpty(timeCodeCombo.Value.ToString()))
+            //    b.timeCode = Convert.ToInt16(timeCodeCombo.Value.ToString());
 
             // Define the object to add or edit as null
             try

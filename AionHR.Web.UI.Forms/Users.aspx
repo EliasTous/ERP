@@ -499,7 +499,7 @@
 
                                     </Items>
                                        <Listeners>
-                                           <Select Handler="if (this.value!=1) #{employeeId}.allowBlank = false; else #{employeeId}.allowBlank = true; "></Select>
+                                           <Select Handler="if (this.value!=1) #{employeeId}.allowBlank = false; else #{employeeId}.allowBlank = true; #{employeeId}.validate(); "></Select>
                                        </Listeners>
                                 </ext:ComboBox>
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" TabIndex="6" Name="employeeId"

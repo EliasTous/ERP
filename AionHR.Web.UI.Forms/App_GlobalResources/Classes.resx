@@ -162,6 +162,9 @@
   <data name="Class20040" xml:space="preserve">
     <value>Nationalities</value>
   </data>
+  <data name="Class20041" xml:space="preserve">
+    <value>Government Organisation</value>
+  </data>
   <data name="Class20050" xml:space="preserve">
     <value>Attachments</value>
   </data>
@@ -536,6 +539,9 @@
   </data>
   <data name="Class51041" xml:space="preserve">
     <value>Penalty Type Details</value>
+  </data>
+  <data name="Class51050" xml:space="preserve">
+    <value>Banks</value>
   </data>
   <data name="Class51120" xml:space="preserve">
     <value>Payroll</value>
