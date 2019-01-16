@@ -138,6 +138,7 @@
     <Compile Include="Employees\Profile\TerminationReason.cs" />
     <Compile Include="HelpFunction\BenefitAcquisitionAcquisitionRate.cs" />
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
+    <Compile Include="Reports\RT803.cs" />
     <Compile Include="SelfService\EmployeePayrollSelfService.cs" />
     <Compile Include="SelfService\FlatScheduleSelfService.cs" />
     <Compile Include="SelfService\SelfServiceResetPassword.cs" />

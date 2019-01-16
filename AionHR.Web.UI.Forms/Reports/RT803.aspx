@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT303.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT303" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT803.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT803" %>
 
 <%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
@@ -22,11 +22,20 @@
     <script src="https://superal.github.io/canvas2image/canvas2image.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../Scripts/moment.js"></script>
-    <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
+    <script type="text/javascript" src="../Scripts/RT201.js?id=18"></script>
     <script type="text/javascript">
+        var prev = '';
+        function printGrid(grid, window) {
+            window.show();
+
+
+            //bd.document.getElementById(grid.view.el.id).style.height = "auto";
+            //bd.document.getElementById(grid.view.scroller.id).style.height = "auto";
+
+        }
         function alertNow(s, e) {
 
-            Ext.MessageBox.alert(App.Error.getValue(), e.message);
+            Ext.MessageBox.alert('Error', e.message);
             e.handled = true;
         }
     </script>
@@ -39,9 +48,10 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-       <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
+
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
+
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
@@ -55,61 +65,79 @@
                     Layout="FitLayout" AutoScroll="true"
                     Margins="0 0 0 0"
                     Region="Center">
-                    <TopBar>
-                        <ext:Toolbar runat="server" Height="60">
 
+                    <TopBar>
+                        <ext:Toolbar runat="server" Height="50" Layout="HBoxLayout">
                             <Items>
-                             
-                                        <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:dateRange runat="server" ID="dateRange1" IsDayIdFormat="true"  />
-                                            </Content>
-                                        </ext:Container>
-                                <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:employeeCombo runat="server" ID="employeeCombo1" />
-                                            </Content>
-                                        </ext:Container>
-                                   <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                           
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableBranch="true" />
-                                            </Content>
-                                        </ext:Container>
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="sgId" EnableViewState="true" Width="120"
+                                    DisplayField="name"
+                                    ValueField="recordId"
+                                    TypeAhead="false"
+                                    EmptyText="<%$ Resources:Common, SecurityGroups%>"
+                                    HideTrigger="false" SubmitValue="true"
+                               
+                                    TriggerAction="All" ForceSelection="false">
+                                    <Store>
+                                        <ext:Store runat="server" ID="SecurityGroupStore" AutoLoad="false">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillSecurityGroup"></ext:PageProxy>
+                                            </Proxy>
+
+                                        </ext:Store>
+
+                                    </Store>
+                                </ext:ComboBox>
                               
-                                
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
-                                            <Listeners>
-                                                <Click Handler="callbackPanel.PerformCallback('1');" />
-                                            </Listeners>
-                                        </ext:Button>
+                                        <uc:usersCombo runat="server" ID="userCombo1" EnableViewState="true" />
                                     </Content>
                                 </ext:Container>
-                                       
-                        
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                           <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
+                                     <Listeners>
+                                                <Click Handler="callbackPanel.PerformCallback('1');" />
+                                            </Listeners>
+                                </ext:Button>
+                                    </Content>
+                                </ext:Container>
+                             
 
                             </Items>
                         </ext:Toolbar>
-
                     </TopBar>
                     <Content>
-
-                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server"  ClientSideEvents-CallbackError="alertNow" ClientInstanceName="callbackPanel"
-                            Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" >
-                            <PanelCollection>
+                        
+                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server"  ClientSideEvents-CallbackError="alertNow" ClientInstanceName="callbackPanel" OnLoad="ASPxCallbackPanel1_Load"
+                            Width="100%" OnCallback="ASPxCallbackPanel1_Callback">
+                            <panelcollection>
                                 <dx:PanelContent runat="server">
-                                   
                                     <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server" ></dx:ASPxWebDocumentViewer>
                                 </dx:PanelContent>
-                            </PanelCollection>
+                            </panelcollection>
                         </dx:ASPxCallbackPanel>
+
                     </Content>
                     <Items>
-                        <ext:Label runat="server" Text="fff" Hidden="true" />
+                        <ext:Panel runat="server" Height="200" Layout="AutoLayout" Width="1000" AutoScroll="true" ID="toPrint" Hidden="true">
+                            <Items>
+
+
+
+
+                                <ext:Label runat="server" Text="ggg" Hidden="true" />
+                            </Items>
+
+                        </ext:Panel>
                     </Items>
                 </ext:Panel>
 
@@ -122,6 +150,10 @@
 
 
 
+
     </form>
 </body>
 </html>
+
+
+

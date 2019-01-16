@@ -23,21 +23,22 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.Reports;
-using System.Threading;
+using DevExpress.XtraReports.Web;
+using DevExpress.XtraPrinting.Localization;
 using Reports;
-using AionHR.Model.Reports;
-using AionHR.Model.Employees.Profile;
-
+using System.Threading;
+using AionHR.Services.Messaging.System;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
-    public partial class RT303 : System.Web.UI.Page
+    public partial class RT803 : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
-        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         protected override void InitializeCulture()
         {
 
@@ -73,7 +74,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     try
                     {
-                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT302), null, null, null, null);
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT803), null, null, null, null);
                     }
                     catch (AccessDeniedException exp)
                     {
@@ -82,10 +83,11 @@ namespace AionHR.Web.UI.Forms.Reports
                         Viewport1.Hidden = true;
                         return;
                     }
-
-                    format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
+                 
+                    format.Text = _systemService.SessionHelper.GetDateformat();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                    dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+                    //FillReport(false);
+
                 }
                 catch { }
             }
@@ -135,9 +137,9 @@ namespace AionHR.Web.UI.Forms.Reports
                 this.Viewport1.RTL = true;
                 this.rtl.Text = rtl.ToString();
                 Culture = "ar";
-                UICulture = "ar-AE";
+                UICulture = "ar-SA";
                 Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-SA");
             }
             else
             {
@@ -167,124 +169,92 @@ namespace AionHR.Web.UI.Forms.Reports
 
             req.Size = "1000";
             req.StartAt = "1";
+            req.SortBy = "eventDt";
 
 
-            req.Add(dateRange1.GetRange());
-            req.Add(employeeCombo1.GetEmployee());
-            req.Add(jobInfo1.GetJobInfo());
+          
+            req.Add(userCombo1.GetUser());
+
+            //req.Add();
             return req;
         }
-
         [DirectMethod]
-        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        public object FillUsers(string action, Dictionary<string, object> extraParams)
         {
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
+            List<UserInfo> data = GetUsersFiltered(prms.Query);
+
             //  return new
             // {
             return data;
         }
 
-        private List<Employee> GetEmployeesFiltered(string query)
+        private List<UserInfo> GetUsersFiltered(string query)
         {
+            UsersListRequest req = new UsersListRequest();
 
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "1";
-            req.Size = "20";
             req.Filter = query;
+            req.DepartmentId = "0";
+            req.PositionId = "0";
 
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
+            ListResponse<UserInfo> users = _systemService.ChildGetAll<UserInfo>(req);
+            return users.Items;
         }
 
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
-        private void FillReport(bool isInitial = false, bool throwException = true)
+        private void FillReport(bool throwException = true)
         {
 
-            ReportCompositeRequest req = GetRequest();
-            if (req.Parameters["_employeeId"] == "0")
-                return;
-            ListResponse<AionHR.Model.Reports.RT303> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT303>(req);
+         
+            GroupUsersListRequest GroupUserReq = new GroupUsersListRequest();
+            GroupUserReq.Size = "";
+            GroupUserReq.StartAt = "";
+            GroupUserReq.Filter = "";
+            GroupUserReq.GroupId =string.IsNullOrEmpty(sgId.Value.ToString())?"0": sgId.Value.ToString();
+            GroupUserReq.UserId = userCombo1.GetUser().UserId.ToString();
+
+
+
+
+            ListResponse<SecurityGroupUser> resp = _accessControlService.ChildGetAll<SecurityGroupUser>(GroupUserReq);
+           
             if (!resp.Success)
             {
-                string message = GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + " - " + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary;
                 if (throwException)
-                    throw new Exception(message);
-
-            }
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            resp.Items.ForEach(x =>
-            {
-
-
-                if (rtl)
-                    x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                    throw new Exception(resp.Summary);
                 else
-                    x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
-
-
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(resp);
+                    return;
+                }
             }
-            );
+           
+            SecurityGroupsReport h = new SecurityGroupsReport();
 
-
-            DetailedAttendance h = new DetailedAttendance(); 
+          //  resp.Items.ForEach(x => x.DateString = x.eventDT.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"))); SignInTrail h = new SignInTrail();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.DataSource = resp.Items;
 
-            string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            h.DataSource = resp.Items;
+          //  string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+          //  string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             string user = _systemService.SessionHelper.GetCurrentUser();
 
-            h.Parameters["From"].Value = from;
-            h.Parameters["To"].Value = to;
+           // h.Parameters["From"].Value = from;
+          //  h.Parameters["To"].Value = to;
             h.Parameters["User"].Value = user;
-
-
-
-
-
-
-            //if (req.Parameters["_employeeId"] != "0")
+            //if (resp.Items.Count > 0)
             //{
-            //    RecordRequest empReq = new RecordRequest();
-            //    empReq.RecordID = req.Parameters["_employeeId"];
-            //    Employee emp = _employeeService.Get<Employee>(empReq).result;
-            //    h.Parameters["Employee"].Value = emp.name.fullName;
-            //    h.Parameters["Branch"].Value = emp.branchName;
-            //    h.Parameters["Division"].Value = emp.divisionName;
-
+            //    //if (req.Parameters["_userId"] != "0")
+            //    //    h.Parameters["UserId"].Value = resp.Items[0].userName;
+            //    else
+            //        h.Parameters["UserId"].Value = GetGlobalResourceObject("Common", "All");
             //}
-            //ListRequest def = new ListRequest();
-            //int lateness = 0;
-            //ListResponse<KeyValuePair<string, string>> items = _systemService.ChildGetAll<KeyValuePair<string, string>>(def);
-            //try
-            //{
-            //    lateness = Convert.ToInt32(items.Items.Where(s => s.Key == "allowedLateness").First().Value);
-            //}
-            //catch
-            //{
-
-            //}
-            //h.Parameters["AllowedLateness"].Value = lateness;
-
 
             h.CreateDocument();
-
-
             ASPxWebDocumentViewer1.OpenReport(h);
-
+            ASPxWebDocumentViewer1.DataBind();
         }
-
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
@@ -294,21 +264,35 @@ namespace AionHR.Web.UI.Forms.Reports
             if (pageIndex == 1)
             {
                 FillReport();
-
             }
-
-        }
-        protected void Unnamed_Click(object sender, EventArgs e)
-        {
-
-
-
         }
 
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
             //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-            //FillReport(true);
+            //FillReport();
+        }
+
+        [DirectMethod]
+        public object FillSecurityGroup(string action, Dictionary<string, object> extraParams)
+        {
+            //GEtting the filter from the page
+            string filter = string.Empty;
+
+
+            ListRequest req = new ListRequest();
+            req.Size = "1000";
+            req.StartAt = "1";
+            req.Filter = "";
+            
+
+            ListResponse<SecurityGroup> groups = _accessControlService.ChildGetAll<SecurityGroup>(req);
+            if (!groups.Success)
+            {
+                Common.errorMessage(groups);
+                return new List<SecurityGroup>();
+            }
+            return groups.Items;
         }
     }
 }

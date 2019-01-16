@@ -12,6 +12,10 @@ var attachRender = function () {
 var attachRender2 = function () {
     return '<img class="imgError"  src="../Images/Tools/error.png" />';
 };
+var previewRender = function () {
+    return '<img class="preAttach"  style="cursor:pointer;" src="../Images/Tools/preview.png" />';
+};
+
 
 var commandName;
 var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
@@ -24,6 +28,11 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         columnId = this.columns[columnIndex].id; // Get column id
 
     if (t.className == "imgEdit" ) {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+    if (t.className == "preAttach") {
         //the ajax call is allowed
         commandName = t.className;
         return true;

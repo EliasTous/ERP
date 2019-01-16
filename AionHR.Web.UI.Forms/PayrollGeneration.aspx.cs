@@ -318,7 +318,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")  + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             CurrentPayId.Text = resp.recordId;
@@ -380,7 +380,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")  + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             ModelProxy record = this.Store1.GetById(id);
@@ -501,7 +501,7 @@ namespace AionHR.Web.UI.Forms
             if (!res.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+                Common.errorMessage(res);
                 return;
             }
             Notification.Show(new NotificationConfig
@@ -754,7 +754,7 @@ namespace AionHR.Web.UI.Forms
             {
                 //In case of error, showing a message box to the user
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+                X.Msg.Alert(Resources.Common.Error, ex.Message).Show();
 
             }
         }
@@ -773,7 +773,7 @@ namespace AionHR.Web.UI.Forms
                 if (!res.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+                    Common.errorMessage(res);
                     return;
                 }
                 Notification.Show(new NotificationConfig
@@ -896,7 +896,7 @@ namespace AionHR.Web.UI.Forms
             {
 
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")  + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             Store1.DataSource = resp.Items;
@@ -957,7 +957,7 @@ namespace AionHR.Web.UI.Forms
             if (!headers.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, headers.Summary).Show();
+                Common.errorMessage(headers);
                 return;
             }
             payrollsStore.DataSource = headers.Items;

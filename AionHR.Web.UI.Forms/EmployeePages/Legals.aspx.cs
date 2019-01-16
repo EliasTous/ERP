@@ -26,6 +26,7 @@ using System.Net;
 using AionHR.Services.Messaging.System;
 using AionHR.Infrastructure.Domain;
 using AionHR.Web.UI.Forms.ConstClasses;
+using System.Text.RegularExpressions;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -589,6 +590,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             settings.NullValueHandling = NullValueHandling.Ignore;
 
             EmployeeRightToWork b = JsonConvert.DeserializeObject<EmployeeRightToWork>(obj, settings);
+            b.fileUrl = Regex.Replace(b.fileUrl, @"[^0-9a-zA-Z.]+", "");
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             bool hijriSupported = _systemService.SessionHelper.GetHijriSupport();
@@ -691,7 +693,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         {
                             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
                             req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPRW, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = null };
-                            req.FileNames.Add(rwFile.PostedFile.FileName);
+                            req.FileNames.Add(Regex.Replace(rwFile.PostedFile.FileName, @"[^0-9a-zA-Z.]+", ""));
                             req.FilesData.Add(fileData);
                             PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
                             if (!resp.Success)//it maybe be another condition
@@ -773,7 +775,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         {
                             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
                             req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPRW, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = 0 };
-                            req.FileNames.Add(rwFile.PostedFile.FileName);
+                            req.FileNames.Add(Regex.Replace(rwFile.PostedFile.FileName, @"[^0-9a-zA-Z.]+", ""));
                             req.FilesData.Add(fileData);
                             PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
                             if (!resp.Success)//it maybe be another condition
@@ -824,6 +826,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             string obj = e.ExtraParams["values"];
             EmployeeBackgroundCheck b = JsonConvert.DeserializeObject<EmployeeBackgroundCheck>(obj);
+            b.fileUrl = Regex.Replace(b.fileUrl, @"[^0-9a-zA-Z.]+", "");
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             b.date = new DateTime(b.date.Year, b.date.Month, b.date.Day, 14, 0, 0);
@@ -955,7 +958,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         {
                             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
                             req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPBC, recordId = Convert.ToInt32(b.recordId), fileName = bcFile.PostedFile.FileName, seqNo = 0 };
-                            req.FileNames.Add(bcFile.PostedFile.FileName);
+                            req.FileNames.Add(Regex.Replace(bcFile.PostedFile.FileName, @"[^0-9a-zA-Z.]+", "") );
                             req.FilesData.Add(fileData);
                             PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
                             if (!resp.Success)//it maybe be another condition

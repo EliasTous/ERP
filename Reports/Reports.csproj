@@ -180,6 +180,12 @@
     <Compile Include="Receipts.Designer.cs">
       <DependentUpon>Receipts.cs</DependentUpon>
     </Compile>
+    <Compile Include="SecurityGroupsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SecurityGroupsReport.Designer.cs">
+      <DependentUpon>SecurityGroupsReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skills\Skills.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -467,6 +473,9 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Receipts.resx">
       <DependentUpon>Receipts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SecurityGroupsReport.resx">
+      <DependentUpon>SecurityGroupsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Skills\Skills.ar.resx">
       <DependentUpon>Skills.cs</DependentUpon>

@@ -26,11 +26,13 @@ using AionHR.Model.Employees.Profile;
 using System.Net;
 using AionHR.Infrastructure.Domain;
 using AionHR.Web.UI.Forms.ConstClasses;
+using System.Drawing;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
     public partial class Documents : System.Web.UI.Page
     {
+        private Bitmap bitmap;
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
@@ -184,17 +186,22 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     break;
 
                 case "imgAttach":
+                   
+                   
+                        DownloadFile(path);
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                case "preAttach":
                     ImageUrl.Text = path;
                     var values = path.Split('.');
-                    if (values[values.Length-1].ToString().ToLower() == "jpg" || values[values.Length - 1].ToString().ToLower() == "png")
+                    if (values[values.Length - 1].ToString().ToLower() == "jpg" || values[values.Length - 1].ToString().ToLower() == "png")
                     {
                         imgControl.Src = path;
                         Window1.Show();
                     }
                     else
-                    DownloadFile(path);
-
-                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                        X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), GetLocalResourceObject("previewImage").ToString()).Show();
                     break;
                 default:
                     break;
@@ -202,6 +209,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
 
         }
+       
+
         [DirectMethod]
         public void DownloadFile(string url)
         {
@@ -221,7 +230,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 //Create a WebRequest to get the file
                 HttpWebRequest fileReq = (HttpWebRequest)HttpWebRequest.Create(url);
-              
+
                 HttpWebResponse fileResp = (HttpWebResponse)fileReq.GetResponse();
 
                 if (fileReq.ContentLength > 0)
@@ -311,7 +320,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Notification.Show(new NotificationConfig
                     {
                         Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
+                        Icon = Ext.Net.Icon.Information,
                         Html = Resources.Common.RecordDeletedSucc
 
                     });
@@ -457,7 +466,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Notification.Show(new NotificationConfig
                     {
                         Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
+                        Icon = Ext.Net.Icon.Information,
                         Html = Resources.Common.RecordUpdatedSucc
                     });
                     this.EditDocumentWindow.Close();
@@ -539,21 +548,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
             return response.result;
         }
-        protected void downloadImage(object sender, DirectEventArgs e)
-        {
-
-            string ImageUrl = e.ExtraParams["ImageUrl"];
-            if(!string.IsNullOrEmpty(ImageUrl))
-
-            DownloadFile(ImageUrl);
-              
-        
-              
-
-
-
-
-        }
+     
 
 
     }

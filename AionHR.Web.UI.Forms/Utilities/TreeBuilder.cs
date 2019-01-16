@@ -355,6 +355,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rt8 = BuildParentNode("report_rt8", Resources.Common.SystemSettings, true, timeAt, "Monitor");
             Ext.Net.Node rt801 = BuildLeafNode("report_rt801", Resources.Common.RT801, "", true, rt8);
             Ext.Net.Node rt802 = BuildLeafNode("report_rt802", Resources.Common.RT802, "", true, rt8);
+            Ext.Net.Node rt803 = BuildLeafNode("report_rt803", Resources.Common.SecurityGroups, "", true, rt8);
 
             FillConfigItem(rt101, "rt101", "Reports/RT01.aspx", Resources.Common.RT01, "icon-Employees", "1");
             FillConfigItem(rt102, "rt102", "Reports/RT102.aspx", Resources.Common.RT102, "icon-Employees", "1");
@@ -402,6 +403,7 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             FillConfigItem(rt801, "rt801", "Reports/RT801.aspx", Resources.Common.RT801, "icon-Employees", "1");
             FillConfigItem(rt802, "rt802", "Reports/RT802.aspx", Resources.Common.RT802, "icon-Employees", "1");
+            FillConfigItem(rt803, "rt803", "Reports/RT803.aspx", Resources.Common.SecurityGroups, "icon-Employees", "1");
             FillConfigItem(rt111, "rt111", "Reports/RT111.aspx", Resources.Common.RT111, "icon-Employees", "1");
 
             nodes.Add(rootParent);

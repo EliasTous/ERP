@@ -117,34 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DownloadImage" xml:space="preserve">
-    <value>Download Image</value>
-  </data>
-  <data name="EditDocumentWindowTitle" xml:space="preserve">
-    <value>Document</value>
-  </data>
-  <data name="FieldDate" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="FieldDocumentRef" xml:space="preserve">
-    <value>Reference</value>
-  </data>
-  <data name="FieldDocumentType" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="FieldExpiryDate" xml:space="preserve">
-    <value>Expiry Date</value>
-  </data>
-  <data name="FieldFile" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="FieldFolderName" xml:space="preserve">
-    <value>Folder</value>
-  </data>
-  <data name="FieldRemarks" xml:space="preserve">
-    <value>Remakrs</value>
-  </data>
-  <data name="previewImage" xml:space="preserve">
-    <value>you can preview only image</value>
-  </data>
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

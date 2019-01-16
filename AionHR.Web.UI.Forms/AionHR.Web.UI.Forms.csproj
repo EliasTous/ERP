@@ -143,21 +143,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\AionHR\dlls\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Reports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\Reports.dll</HintPath>
-    </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>G:\AionASP\AionHR.Web.UI.Forms\bin\StructureMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="system" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -188,6 +184,7 @@
     <Content Include="Reports\RT114.aspx" />
     <Content Include="Reports\RT303.aspx" />
     <Content Include="Reports\RT307.aspx" />
+    <Content Include="Reports\RT803.aspx" />
     <Content Include="Scripts\AdminTemplates.js" />
     <Content Include="Scripts\SystemDefaults.js" />
     <Content Include="SelfServiceResetPasswords.aspx" />
@@ -709,6 +706,13 @@
     </Compile>
     <Compile Include="Reports\RT307.aspx.designer.cs">
       <DependentUpon>RT307.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT803.aspx.cs">
+      <DependentUpon>RT803.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT803.aspx.designer.cs">
+      <DependentUpon>RT803.aspx</DependentUpon>
     </Compile>
     <Compile Include="SelfServiceResetPasswords.aspx.cs">
       <DependentUpon>SelfServiceResetPasswords.aspx</DependentUpon>
@@ -2110,6 +2114,10 @@
     <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
       <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
       <Name>AionHR.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reports\Reports.csproj">
+      <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
+      <Name>Reports</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
