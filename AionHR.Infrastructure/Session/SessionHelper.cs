@@ -225,9 +225,9 @@ namespace AionHR.Infrastructure.Session
             headers.Add("UserId", Get("UserId").ToString());
            
                 if (Get("Language").ToString() == "en")
-                    headers.Add("languagId", "1");
+                    headers.Add("LanguageId", "1");
                 else
-                    headers.Add("languagId", "2");
+                    headers.Add("LanguageId", "2");
             
             
             return headers;

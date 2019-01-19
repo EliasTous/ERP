@@ -723,4 +723,10 @@
   <data name="expiryDate" xml:space="preserve">
     <value>تاريخ الانتهاء</value>
   </data>
+  <data name="branchAvailability" xml:space="preserve">
+    <value>دوام الفروع</value>
+  </data>
+  <data name="present" xml:space="preserve">
+    <value>الحضور</value>
+  </data>
 </root>

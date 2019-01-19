@@ -562,6 +562,8 @@ namespace AionHR.Web.UI.Forms
             req.Size = "30";
             req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.Value.ToString() : "0";
             req.PositionId = s.PositionId.HasValue ? s.PositionId.Value.ToString() : "0";
+            req.BranchId = s.BranchId.HasValue ? s.BranchId.Value.ToString() : "0";
+
             req.SortBy = "employeeId";
             ListResponse<UserInfo> branches = _systemService.ChildGetAll<UserInfo>(req);
             if (!branches.Success)

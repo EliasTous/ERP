@@ -474,6 +474,9 @@
     <EmbeddedResource Include="Receipts.resx">
       <DependentUpon>Receipts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SecurityGroupsReport.ar.resx">
+      <DependentUpon>SecurityGroupsReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SecurityGroupsReport.resx">
       <DependentUpon>SecurityGroupsReport.cs</DependentUpon>
     </EmbeddedResource>

@@ -21,14 +21,19 @@ var appendRender = function () {
 
 var commandName;
 var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
-
+    
     CheckSession();
-
+    
 
     var t = e.getTarget(),
             columnId = this.columns[columnIndex].id; // Get column id
-
+   
     if (t.className === "imgEdit") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+    if (t.className == "LinkRender") {
         //the ajax call is allowed
         commandName = t.className;
         return true;
@@ -57,7 +62,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
 
 
 var getCellType = function (grid, rowIndex, cellIndex) {
-   
+    alert("test");
     var columnId = grid.columns[cellIndex].id; // Get column id
     return commandName;
 };

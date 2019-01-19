@@ -4,16 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.System
+namespace AionHR.Model.Dashboard
 {
-   public class DashboardItem
+   public class DashboardAlertItem
     {
-
-        public int itemId { get; set; }
+        public int alertId { get; set; }
 
         public int count { get; set; }
 
-        public string itemString { get; set; }
-
+        public string alertName { get; set; }
     }
 }

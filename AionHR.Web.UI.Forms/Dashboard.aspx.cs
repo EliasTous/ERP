@@ -81,7 +81,8 @@ namespace AionHR.Web.UI.Forms
             {
                 try
                 {
-
+                    alertStore.Reload();
+                    branchAvailabilityStore.Reload();
                     SetExtLanguage();
                     HideShowButtons();
                     HideShowColumns();
@@ -311,35 +312,48 @@ namespace AionHR.Web.UI.Forms
                     return new ListResponse<DashboardItem>();
                 }
 
-                int birth = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.BIRTHDAY).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.BIRTHDAY).First().count : 0;
-                int annev = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.WORK_ANNIVERSARY).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.WORK_ANNIVERSARY).First().count : 0;
-                int comp = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.COMPANY_RIGHT_TO_WORK).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.COMPANY_RIGHT_TO_WORK).First().count : 0;
-                int empRW = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.EMPLOYEE_RIGHT_TO_WORK).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.EMPLOYEE_RIGHT_TO_WORK).First().count : 0;
-                int scr = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.SALARY_CHANGE_DUE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.SALARY_CHANGE_DUE).First().count : 0;
-                int prob = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.END_OF_PROBATION).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.END_OF_PROBATION).First().count : 0;
-                int retirementAge = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.RETIREMENT).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.RETIREMENT).First().count : 0;
-                int TermEndDate = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TERM_END_DATE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TERM_END_DATE).First().count : 0;
-                int EmploymentReviewDate = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.EMPLOYMENT_REVIEW_DATE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.EMPLOYMENT_REVIEW_DATE).First().count : 0;
-                int totalLoans = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.LOANS).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.LOANS).First().count : 0;
-                int vacations = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.VACATIONS).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.VACATIONS).First().count : 0;
+                //int birth = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.BIRTHDAY).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.BIRTHDAY).First().count : 0;
+                //int annev = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.WORK_ANNIVERSARY).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.WORK_ANNIVERSARY).First().count : 0;
+                //int comp = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.COMPANY_RIGHT_TO_WORK).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.COMPANY_RIGHT_TO_WORK).First().count : 0;
+                //int empRW = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.EMPLOYEE_RIGHT_TO_WORK).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.EMPLOYEE_RIGHT_TO_WORK).First().count : 0;
+                //int scr = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.SALARY_CHANGE_DUE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.SALARY_CHANGE_DUE).First().count : 0;
+                //int prob = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.END_OF_PROBATION).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.END_OF_PROBATION).First().count : 0;
+                //int retirementAge = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.RETIREMENT).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.RETIREMENT).First().count : 0;
+                //int TermEndDate = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TERM_END_DATE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TERM_END_DATE).First().count : 0;
+                //int EmploymentReviewDate = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.EMPLOYMENT_REVIEW_DATE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.EMPLOYMENT_REVIEW_DATE).First().count : 0;
+                //int totalLoans = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.LOANS).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.LOANS).First().count : 0;
+                //int vacations = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.VACATIONS).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.VACATIONS).First().count : 0;
 
 
                 int APPROVAL_TIME = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_TIME).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_TIME).First().count : 0;
                 int APPROVAL_LEAVE = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LEAVE).First().count : 0;
                 int APPROVAL_LOAN = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LOAN).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LOAN).First().count : 0;
                 int APPROVAL_PENALTY = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PENALTY).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PENALTY).First().count : 0;
-
-                annversaries.Text = annev.ToString();
-                birthdays.Text = birth.ToString();
-                companyRW.Text = comp.ToString();
-                salaryChange.Text = scr.ToString();
-                probation.Text = prob.ToString();
-                employeeRW.Text = empRW.ToString();
-                totalLoansLbl.Text = totalLoans.ToString();
-                EmploymentReviewDateLbl.Text = EmploymentReviewDate.ToString();
-                termEndDateLBL.Text = TermEndDate.ToString();
-                retirementAgeLBL.Text = retirementAge.ToString();
-                vacationsLBL.Text = vacations.ToString();
+                //List<DashboardItem> alert = new List<DashboardItem>();
+                //alert.Add(new DashboardItem() { itemString=GetLocalResourceObject("Anneversaries").ToString(),count=annev,itemId= ConstDashboardItem.WORK_ANNIVERSARY });
+                //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("Birthdays").ToString(), count = birth, itemId = ConstDashboardItem.BIRTHDAY });
+                //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("ComapnyRightToWork").ToString(), count = comp, itemId = ConstDashboardItem.COMPANY_RIGHT_TO_WORK });
+                //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("SalaryChange").ToString(), count = scr, itemId = ConstDashboardItem.SALARY_CHANGE_DUE });
+                //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("Probation").ToString(), count = prob, itemId = ConstDashboardItem.END_OF_PROBATION});
+                //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("EmployeeRightToWork").ToString(), count = empRW, itemId = ConstDashboardItem.EMPLOYMENT_REVIEW_DATE });
+                //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("TotalLoans").ToString(), count = totalLoans, itemId = ConstDashboardItem.LOANS });
+                //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("EmploymentReviewDate").ToString(), count = EmploymentReviewDate, itemId = ConstDashboardItem.EMPLOYMENT_REVIEW_DATE });
+                //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("TermEndDate").ToString(), count = TermEndDate, itemId = ConstDashboardItem.TERM_END_DATE });
+                //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("retirementAge").ToString(), count = retirementAge, itemId = ConstDashboardItem.RETIREMENT});
+                //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("vacationsLBL").ToString(), count = vacations, itemId = ConstDashboardItem.VACATIONS });
+                //alertStore.DataSource = alert;
+                //alertStore.DataBind();
+                //annversaries.Text = annev.ToString();
+                //birthdays.Text = birth.ToString();
+                //companyRW.Text = comp.ToString();
+                //salaryChange.Text = scr.ToString();
+                //probation.Text = prob.ToString();
+                //employeeRW.Text = empRW.ToString();
+                //totalLoansLbl.Text = totalLoans.ToString();
+                //EmploymentReviewDateLbl.Text = EmploymentReviewDate.ToString();
+                //termEndDateLBL.Text = TermEndDate.ToString();
+                //retirementAgeLBL.Text = retirementAge.ToString();
+                //vacationsLBL.Text = vacations.ToString();
 
                 LeavesGrid.Title = GetLocalResourceObject("Leaves").ToString() + " " + (APPROVAL_LEAVE != 0 ? APPROVAL_LEAVE.ToString() : "");
                 ApprovalLoanGrid.Title = GetLocalResourceObject("ApprovalLoan").ToString() + " " + (APPROVAL_LOAN != 0 ? APPROVAL_LOAN.ToString() : "");
@@ -361,7 +375,7 @@ namespace AionHR.Web.UI.Forms
             {
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
                 ListResponse<DashboardItem> dashoard = FillDashBoardItems();
-
+               
 
                 if (dashoard.count == 0)
                 {
@@ -816,6 +830,8 @@ namespace AionHR.Web.UI.Forms
 
         protected void RefreshAllGrid(object sender, EventArgs e)
         {
+            alertStore.Reload();
+            branchAvailabilityStore.Reload();
             BindAlerts();
         }
 
@@ -1483,6 +1499,65 @@ namespace AionHR.Web.UI.Forms
             {
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
+        }
+        
+             [DirectMethod]
+        protected void alertPoPUP(object sender, DirectEventArgs e)
+        {
+         
+                string id = e.ExtraParams["id"];
+                switch (id)
+                {
+                    case "8":
+                        AnniversaryStore.Reload();
+                        anniversaryWindow.Show();
+                        break;
+                    case "3":
+                        ProbationStore.Reload();
+                        ProbationWindow.Show();
+                        break;
+                    case "7":
+                        TermEndDateStore.Reload();
+                        TermEndDateWindow.Show();
+                        break;
+                    case "5":
+                        EmploymentReviewDateStore.Reload();
+                        EmploymentReviewDateWindow.Show();
+
+                        break;
+                    case "2":
+                        EmployeeRightToWorkStore.Reload();
+                        EmployeeRightToWorkWindow.Show();
+                        break;
+                    case "9":
+                        BirthdaysStore.Reload();
+                        BirthdaysWindow.Show();
+                        break;
+                    case "4":
+                        SCRStore.Reload();
+                        SCRWindow.Show();
+                        break;
+                    case "6":
+                        retirementAgeStore.Reload();
+                        retirementAgeWindow.Show();
+                        break;
+                    case "10":
+                        totalLoansStore.Reload();
+                        totalLoansWindow.Show();
+                        break;
+                    case "11":
+                        LeaveingSoonStore.Reload();
+                        LeaveingSoonWindow.Show();
+                        break;
+                    case "1":
+                        CompanyRightToWorkStore.Reload();
+                        CompanyRightToWorkWindow.Show();
+                        break;
+
+
+                }
+            
+
         }
         [DirectMethod]
         protected void leavePoPUP(object sender, DirectEventArgs e)
@@ -2382,7 +2457,35 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+        protected void alertStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<DashboardAlertItem> resp = _dashBoardService.ChildGetAll<DashboardAlertItem>(req);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return; 
+                             
+            }
+            alertStore.DataSource = resp.Items;
+            alertStore.DataBind(); 
+        }
+        protected void branchAvailabilityStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<DashboardBranchAvailability> resp = _dashBoardService.ChildGetAll<DashboardBranchAvailability>(req);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
 
+            }
+          //  resp.Items.Add(new DashboardBranchAvailability() { branchName = "elias", scheduled = 10, present = 10 });
+            branchAvailabilityStore.DataSource = resp.Items;
+            branchAvailabilityStore.DataBind();
+        }
 
+       
     }
 }

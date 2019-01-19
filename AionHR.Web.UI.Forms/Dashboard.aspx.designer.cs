@@ -319,6 +319,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden currentLeaveIndex;
         
         /// <summary>
+        /// PresentChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden PresentChart;
+        
+        /// <summary>
+        /// AbsentChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden AbsentChart;
+        
+        /// <summary>
+        /// InChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden InChart;
+        
+        /// <summary>
         /// OverDueStore control.
         /// </summary>
         /// <remarks>
@@ -1318,6 +1345,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.RowSelectionModel rowSelectionModel32;
         
         /// <summary>
+        /// Panel4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel4;
+        
+        /// <summary>
+        /// Panel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel3;
+        
+        /// <summary>
         /// alerts control.
         /// </summary>
         /// <remarks>
@@ -1327,112 +1372,112 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TabPanel alerts;
         
         /// <summary>
-        /// companyRW control.
+        /// branchAvailabilityChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label companyRW;
+        protected global::Ext.Net.CartesianChart branchAvailabilityChart;
         
         /// <summary>
-        /// employeeRW control.
+        /// branchAvailabilityStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label employeeRW;
+        protected global::Ext.Net.Store branchAvailabilityStore;
         
         /// <summary>
-        /// salaryChange control.
+        /// Model38 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label salaryChange;
+        protected global::Ext.Net.Model Model38;
         
         /// <summary>
-        /// probation control.
+        /// TabPanel3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label probation;
+        protected global::Ext.Net.TabPanel TabPanel3;
         
         /// <summary>
-        /// totalLoansLbl control.
+        /// GridPanel4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label totalLoansLbl;
+        protected global::Ext.Net.GridPanel GridPanel4;
         
         /// <summary>
-        /// EmploymentReviewDateLbl control.
+        /// alertStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label EmploymentReviewDateLbl;
+        protected global::Ext.Net.Store alertStore;
         
         /// <summary>
-        /// annversaries control.
+        /// Model37 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label annversaries;
+        protected global::Ext.Net.Model Model37;
         
         /// <summary>
-        /// birthdays control.
+        /// Column48 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label birthdays;
+        protected global::Ext.Net.Column Column48;
         
         /// <summary>
-        /// retirementAgeLBL control.
+        /// Column50 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label retirementAgeLBL;
+        protected global::Ext.Net.Column Column50;
         
         /// <summary>
-        /// termEndDateLBL control.
+        /// Column53 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label termEndDateLBL;
+        protected global::Ext.Net.Column Column53;
         
         /// <summary>
-        /// vacationsLBL control.
+        /// GridView38 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label vacationsLBL;
+        protected global::Ext.Net.GridView GridView38;
         
         /// <summary>
-        /// Label1 control.
+        /// rowSelectionModel37 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label Label1;
+        protected global::Ext.Net.RowSelectionModel rowSelectionModel37;
         
         /// <summary>
         /// MaximumChartWindow control.
