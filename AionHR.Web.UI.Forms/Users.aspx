@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
-    <script src="Scripts/jquery-new.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-new.js"></script>
     <script type="text/javascript">
         function dump(obj) {
             var out = '';
@@ -163,11 +163,13 @@
 
             for (var i = 0; i < fromStore.getCount() ; i++) {
                 var s = fromStore.getAt(i);
+              
                 toStore.add(s);
 
                 var d = App.userSelector.fromField.getStore().getById(s.getId());
 
                 if (d != null) {
+                 
                     App.userSelector.fromField.getStore().remove(d);
 
                 }
@@ -699,6 +701,7 @@
                                     <BottomBar>
                                     </BottomBar>
                                     <Listeners>
+                                     
                                         <Render Handler="this.on('cellclick', cellClick);" />
                                     </Listeners>
                                     <DirectEvents>
@@ -714,6 +717,9 @@
                                 </ext:GridPanel>
 
                             </Items>
+                            <Listeners>
+                                   <Activate Handler="#{UserGroupsStore}.reload();" />
+                            </Listeners>
                         </ext:FormPanel>
                     </Items>
                 </ext:TabPanel>

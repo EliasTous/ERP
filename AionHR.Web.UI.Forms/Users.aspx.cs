@@ -153,8 +153,9 @@ namespace AionHR.Web.UI.Forms
         }
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-
+            panelRecordDetails.ActiveIndex = 0;
             DeactivatePassword(true);
+            userGroups.Disabled = false;
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             CurrentUser.Text = id.ToString();
@@ -381,7 +382,16 @@ namespace AionHR.Web.UI.Forms
 
 
             List<UserInfo> data;
-            ListRequest req = new ListRequest();
+            UsersListRequest req = new UsersListRequest();
+            req.Size = "1000";
+            req.StartAt = "1";
+            req.Filter = "";
+
+
+            req.DepartmentId = "0";
+            req.PositionId = "0";
+            req.BranchId = "0";
+
 
             ListResponse<UserInfo> response = _systemService.ChildGetAll<UserInfo>(req);
             data = response.Items;
@@ -528,7 +538,8 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-
+            CurrentUser.Text = "";
+            panelRecordDetails.ActiveIndex = 0;
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             fullName.Disabled = false;
@@ -536,6 +547,7 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             DeactivatePassword(false);
             this.EditRecordWindow.Show();
+            userGroups.Disabled = true;
             pro.Hidden = false;
         }
 
@@ -618,7 +630,7 @@ namespace AionHR.Web.UI.Forms
                 b.fullName = employeeId.SelectedItem.Text;
             }
            
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(CurrentUser.Text))
             {
 
                 try
@@ -639,23 +651,25 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     b.recordId = r.recordId;
+                    //elias
                     AccountRecoveryRequest req = new AccountRecoveryRequest();
                     req.Email = b.email;
-                    PasswordRecoveryResponse response = _systemService.RequestPasswordRecovery(req);
-                    if (!response.Success)
-                    //check if the insert failed
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                         Common.errorMessage(response);
-                        return;
-                    }
-                    else
-                    {
+                    //PasswordRecoveryResponse response = _systemService.RequestPasswordRecovery(req);
+                    //if (!response.Success)
+                  
+                    //{
+                    //    //Show an error saving...
+                    //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    //     Common.errorMessage(response);
+                    //    return;
+                    //}
+                    //else
+                    //{
 
                         //Add this record to the store 
                         Store1.Reload();
-
+                        CurrentUser.Text = r.recordId;
+                        userGroups.Disabled = false;
                         //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
@@ -664,14 +678,14 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditRecordWindow.Close();
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
+                        //this.EditRecordWindow.Close();
+                        //RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                        //sm.DeselectAll();
+                        //sm.Select(b.recordId.ToString());
 
 
 
-                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -851,47 +865,74 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveGroupUsers(object sender, DirectEventArgs e)
         {
-
-
-            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string id = e.ExtraParams["id"];
-
-            List<SecurityGroupUser> selectedUsers = new List<SecurityGroupUser>();
-            foreach (var item in  userSelector.SelectedItems)
+            try
             {
-                selectedUsers.Add(new SecurityGroupUser() { userId = CurrentUser.Text, sgName = item.Text, sgId = item.Value });
-            }
 
-            PostRequest<SecurityGroupUser> req = new PostRequest<SecurityGroupUser>();
-            PostResponse<SecurityGroupUser> resp = new PostResponse<SecurityGroupUser>();
-            req.entity = new SecurityGroupUser() { sgId = "0", userId = CurrentUser.Text };
-            resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
-            if (!resp.Success)
-            {
-                Common.errorMessage(resp);
-                return;
-            }
-            foreach (var item in selectedUsers)
-            {
-                req.entity = item;
-                req.entity.userId = CurrentUser.Text;
-                resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(req);
-                if (!resp.Success)
+                //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+                string id = e.ExtraParams["id"];
+
+                List<SecurityGroupUser> selectedUsers = new List<SecurityGroupUser>();
+                foreach (var item in userSelector.SelectedItems)
                 {
-                    Common.errorMessage(resp);
+                    selectedUsers.Add(new SecurityGroupUser() { userId = CurrentUser.Text, sgName = item.Text, sgId = item.Value });
+                }
+
+
+
+            
+                GroupUsersListRequest request = new GroupUsersListRequest();
+                request.UserId = CurrentUser.Text;
+                ListResponse<SecurityGroupUser> userGroups = _accessControlService.ChildGetAll<SecurityGroupUser>(request);
+                if (!userGroups.Success)
+                {
+                    Common.errorMessage(userGroups);
                     return;
                 }
 
-            }
-            Notification.Show(new NotificationConfig
-            {
-                Title = Resources.Common.Notification,
-                Icon = Icon.Information,
-                Html = Resources.Common.RecordSavingSucc
-            });
-            groupUsersWindow.Close();
-            UserGroupsStore.Reload();
+                PostRequest<SecurityGroupUser> req = new PostRequest<SecurityGroupUser>();
+                PostResponse<SecurityGroupUser> resp = new PostResponse<SecurityGroupUser>();
+                userGroups.Items.ForEach(x =>
+                {
+                    req.entity = x;
+                    resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        throw new Exception();
+                    }
 
+                });
+
+
+                //req.entity = new SecurityGroupUser() { sgId = "0", userId = CurrentUser.Text };
+                //resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
+              
+              
+                foreach (var item in selectedUsers)
+                {
+                    req.entity = item;
+                    req.entity.userId = CurrentUser.Text;
+                    resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        throw new Exception();
+                    }
+
+                }
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
+                groupUsersWindow.Close();
+                UserGroupsStore.Reload();
+            }
+            catch(Exception exp)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message);
+            }
 
         }
 
