@@ -147,6 +147,7 @@
     <Compile Include="SelfService\TimeVariationSelfService.cs" />
     <Compile Include="SelfService\UserInfoSelfService.cs" />
     <Compile Include="System\ResetPassword.cs" />
+    <Compile Include="System\XMLDictionary.cs" />
     <Compile Include="TimeAttendance\MailFlatShedule.cs" />
     <Compile Include="HelpFunction\PayrollExport.cs" />
     <Compile Include="HelpFunction\SynchronizeAttendanceDay.cs" />

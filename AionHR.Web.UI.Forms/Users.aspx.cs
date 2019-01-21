@@ -870,16 +870,13 @@ namespace AionHR.Web.UI.Forms
 
                 //Getting the id to check if it is an Add or an edit as they are managed within the same form.
                 string id = e.ExtraParams["id"];
+                string selected = e.ExtraParams["selectedUser"];
+                List<SecurityGroupUser> selectedUsers = JsonConvert.DeserializeObject<List<SecurityGroupUser>>(selected);
 
-                List<SecurityGroupUser> selectedUsers = new List<SecurityGroupUser>();
-                foreach (var item in userSelector.SelectedItems)
-                {
-                    selectedUsers.Add(new SecurityGroupUser() { userId = CurrentUser.Text, sgName = item.Text, sgId = item.Value });
-                }
+                selectedUsers.ForEach(x => x.userId = CurrentUser.Text);
 
 
 
-            
                 GroupUsersListRequest request = new GroupUsersListRequest();
                 request.UserId = CurrentUser.Text;
                 ListResponse<SecurityGroupUser> userGroups = _accessControlService.ChildGetAll<SecurityGroupUser>(request);
@@ -947,12 +944,33 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", userGroups.ErrorCode) != null ? GetGlobalResourceObject("Errors", userGroups.ErrorCode).ToString()+ "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +userGroups.LogId : userGroups.Summary).Show();
                 return;
             }
+
             List<SecurityGroupUser> list = new List<SecurityGroupUser>();
             userGroups.Items.ForEach(x => { list.Add(new SecurityGroupUser() { sgName = x.name, sgId = x.recordId, userId = CurrentUser.Text }); });
             groupSelectorGroup.DataSource = list;
             groupSelectorGroup.DataBind();
+            GroupUsersListRequest req = new GroupUsersListRequest();
+            req.Size = "100";
+            req.StartAt = "1";
+            req.Filter = "";
+            req.UserId = CurrentUser.Text;
+
+            ListResponse<SecurityGroupUser> groups = _accessControlService.ChildGetAll<SecurityGroupUser>(req);
+            if (!groups.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
+                return;
+            }
+            this.userSelector.SelectedItems.Clear();
+            groups.Items.ForEach(x =>
+            {
+                this.userSelector.SelectedItems.Add(new Ext.Net.ListItem() { Value = x.userId });
+            });
+
+
+            this.userSelector.UpdateSelectedItems();
             this.groupUsersWindow.Show();
-            X.Call("show");
+           
         }
     }
 }

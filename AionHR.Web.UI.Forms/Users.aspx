@@ -789,6 +789,15 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{GroupUsersForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                           <ext:Parameter 
+                            Name="selectedGroups"                                  
+                            Value="App.userSelector.toField.getStore().getRecordsValues()" 
+                            Mode="Raw" 
+                            Encode="true" />
+                       
+                  
+            
+                           
                             </ExtraParams>
                         </Click>
                     </DirectEvents>
