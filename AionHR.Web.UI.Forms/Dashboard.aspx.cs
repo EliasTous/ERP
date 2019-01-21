@@ -43,6 +43,7 @@ namespace AionHR.Web.UI.Forms
 {
     public partial class Dashboard : System.Web.UI.Page
     {
+        static int count = 0;
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
@@ -75,14 +76,15 @@ namespace AionHR.Web.UI.Forms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
+           
 
             if (!X.IsAjaxRequest && !IsPostBack)
             {
+                
                 try
                 {
-                    alertStore.Reload();
-                    branchAvailabilityStore.Reload();
+                   
                     SetExtLanguage();
                     HideShowButtons();
                     HideShowColumns();
@@ -122,8 +124,10 @@ namespace AionHR.Web.UI.Forms
                     }
                     try
                     {
-
-
+                       // DashboardRequest req2 = GetDashboardRequest();
+                        branchAvailabilityStore.Reload();
+                        BindAlerts();
+                        alertStore.Reload();
 
                         FillStatus();
 
@@ -139,7 +143,7 @@ namespace AionHR.Web.UI.Forms
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         CountDateTo.SelectedDate = DateTime.Now;
                         dimension.Select(0);
-                        BindAlerts();
+                      
                         LWFromField.Format = LWToField.Format = _systemService.SessionHelper.GetDateformat();
 
                     }

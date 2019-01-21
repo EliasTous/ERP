@@ -13,7 +13,7 @@ namespace AionHR.Model.Payroll
         public short? edType { get; set; }
         public string edTypeString { get; set; }
         public short? timeCode { get; set; }
-        public string timeCodeString { get; set; }
+        public string name { get; set; }
         public string edId { get; set; }
         public string edName { get; set; }
         public string apId { get; set; }

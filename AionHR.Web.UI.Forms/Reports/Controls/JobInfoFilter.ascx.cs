@@ -139,6 +139,7 @@ namespace AionHR.Web.UI.Forms.Reports
             if (udR.result == null || !udR.result.hasAccess)
             {
                 departmentId.Select(0);
+                departmentId.SetValue(resp.Items.Count != 0 ? resp.Items[0].recordId : null);
                 X.Call("setDepartmentAllowBlank", true);
             }
         }
@@ -162,6 +163,7 @@ namespace AionHR.Web.UI.Forms.Reports
             if (udR.result == null || !udR.result.hasAccess)
             {
                 branchId.Select(0);
+                branchId.SetValue(resp.Items.Count != 0 ? resp.Items[0].recordId : null);
                 X.Call("setBranchAllowBlank", true);
             }
         }
@@ -186,6 +188,7 @@ namespace AionHR.Web.UI.Forms.Reports
             if (udR.result == null || !udR.result.hasAccess)
             {
                 divisionId.Select(0);
+                divisionId.SetValue(resp.Items.Count != 0 ? resp.Items[0].recordId : null);
                 X.Call("setDivisionAllowBlank", true);
             }
         }

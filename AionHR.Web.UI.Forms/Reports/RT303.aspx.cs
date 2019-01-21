@@ -211,8 +211,7 @@ namespace AionHR.Web.UI.Forms.Reports
         {
 
             ReportCompositeRequest req = GetRequest();
-            if (req.Parameters["_employeeId"] == "0")
-                return;
+           
             ListResponse<AionHR.Model.Reports.RT303> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT303>(req);
             if (!resp.Success)
             {
@@ -279,9 +278,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
             h.CreateDocument();
-
-
             ASPxWebDocumentViewer1.OpenReport(h);
+            ASPxWebDocumentViewer1.DataBind();
 
         }
 

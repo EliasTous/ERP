@@ -146,6 +146,7 @@ namespace AionHR.Web.UI.Forms
                 if (string.IsNullOrEmpty(activeModule.Text))
                     activeModule.Text = "7";
                 //TryRegister();
+        
                 if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
                     btnSelfService.Disabled = true;
                 if (_systemService.SessionHelper.GetUserType() == 4)
@@ -157,6 +158,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 else
                 {
+                  
                     BuildTree(1);
                 }
 

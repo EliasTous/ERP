@@ -264,8 +264,12 @@
                          <ext:ModelField Name="userTypeString" />
                         <ext:ModelField Name="isInactive" />
                        <%-- <ext:ModelField Name="isAdmin" />--%>
-                        
-
+                         <ext:ModelField Name="branchName" />
+                         <ext:ModelField Name="departmentName" />
+                         <ext:ModelField Name="positionName" />
+                         <ext:ModelField Name="userTypeName" />
+                         <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                      
 
 
 
@@ -365,12 +369,15 @@
                                 <Renderer Handler="if(App.hide2.value=='True') return '****'; return record.data['email'];" />
                             </ext:Column>
 
-                            <ext:CheckColumn ID="ColIsInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Hideable="false" />
+                           <ext:Column ID="Column7" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldEmployeeName%>" DataIndex="employeeName" Flex="1" Hideable="false" />
                            <%-- <ext:CheckColumn ID="ColIsAdmin" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsAdmin %>" DataIndex="isAdmin" Hideable="false" />--%>
-                             <ext:Column ID="ColUserType" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldUserType%>" DataIndex="userTypeString" Flex="1" Hideable="false">
-                                
-                            </ext:Column>
+                             <ext:Column ID="ColUserType" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldUserType%>" DataIndex="userTypeString" Flex="1" Hideable="false" />
+                                  <ext:Column ID="Column3" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="1" Hideable="false" />
+                              <ext:Column ID="Column5" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="1" Hideable="false" />
+                              <ext:Column ID="Column6" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="1" Hideable="false" />
 
+                           
+                              <ext:CheckColumn ID="ColIsInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Hideable="false" />
 
                             <ext:Column runat="server"
                                 ID="colAttach" Visible="true"
