@@ -2207,6 +2207,52 @@
                                                             Scroll="Vertical"
                                                             Border="false"
                                                             ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
+                                                            <TopBar>
+                        <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                                <ext:Button ID="btnApprovals" runat="server" Text="<%$ Resources:approveAll  %>" Icon="StopGreen">
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="Timebatch">
+                                            <EventMask ShowMask="true" CustomTarget="={#{TimeGridPanel}.body}" />
+                                            <ExtraParams>
+                                                <ext:Parameter Name="approve" Value="true" Mode="Raw" />
+                                            </ExtraParams>
+                                        </Click>
+                                        
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                <ext:Button ID="btnReject" runat="server"  Icon="StopRed" Text="<%$ Resources:rejectAll  %>"> 
+                                     <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>      
+                                      <DirectEvents>
+                                        <Click OnEvent="Timebatch">
+                                            <EventMask ShowMask="true" CustomTarget="={#{TimeGridPanel}.body}" />
+                                             <ExtraParams>
+                                                <ext:Parameter Name="approve" Value="false" Mode="Raw" />
+                                            </ExtraParams>
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                <ext:Button ID="Button3" runat="server"  Icon="Reload">       
+                                     <Listeners>
+                                        <Click Handler="CheckSession();#{TimeStore}.reload();" />
+                                    </Listeners>                           
+                                   
+                                </ext:Button>
+                              
+
+                                
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
                                                             <Store>
                                                                 <ext:Store 
                                                                     ID="TimeStore"

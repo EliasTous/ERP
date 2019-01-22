@@ -34,8 +34,10 @@ using AionHR.Model.SelfService;
 
 namespace AionHR.Web.UI.Forms
 {
+   
     public partial class TimeVariationSelfServices : System.Web.UI.Page 
     {
+        public bool URLRouting { get; set; }
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
@@ -90,6 +92,10 @@ namespace AionHR.Web.UI.Forms
                 //    Viewport1.Hidden = true;
                 //    return;
                 //}
+                if (!string.IsNullOrEmpty(Request.QueryString["_employeeId"]) && !string.IsNullOrEmpty(Request.QueryString["_fromDayId"]) && !string.IsNullOrEmpty(Request.QueryString["_toDayId"]))
+
+                    Store1.Reload();
+              
                 dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                 FillStatus();
                 timeVariationType.Select(0);
@@ -234,13 +240,20 @@ namespace AionHR.Web.UI.Forms
             reqTV.fromDayId = dateRange1.GetRange().DateFrom;
             reqTV.toDayId = dateRange1.GetRange().DateTo;
             reqTV.employeeId = _systemService.SessionHelper.GetEmployeeId();
-            if (string.IsNullOrEmpty(apStatus.Value.ToString()))
+           
+                if (string.IsNullOrEmpty(apStatus.Value.ToString()))
             {
 
                 reqTV.apStatus = "0";
             }
             else
                 reqTV.apStatus = apStatus.Value.ToString();
+            if (!string.IsNullOrEmpty(Request.QueryString["_employeeId"]) && !string.IsNullOrEmpty(Request.QueryString["_fromDayId"]) && !string.IsNullOrEmpty(Request.QueryString["_toDayId"]))
+            {
+                reqTV.fromDayId = DateTime.ParseExact(Request.QueryString["_fromDayId"], "yyyyMMdd", new CultureInfo("en"));
+                reqTV.toDayId = DateTime.ParseExact(Request.QueryString["_toDayId"], "yyyyMMdd", new CultureInfo("en"));
+                reqTV.employeeId = Request.QueryString["_employeeId"];
+            }
             if (string.IsNullOrEmpty(fromDuration.Text))
             {
 

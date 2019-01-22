@@ -2490,6 +2490,56 @@ namespace AionHR.Web.UI.Forms
             branchAvailabilityStore.DataBind();
         }
 
-       
+        protected void Timebatch(object sender, DirectEventArgs e)
+        {
+            string approve = e.ExtraParams["approve"];
+            DashboardRequest req = GetDashboardRequest();
+            DashboardTimeListRequest r = new DashboardTimeListRequest();
+            r.dayId = "";
+            r.employeeId = 0;
+            if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+
+            else
+            {
+                TimeStore.DataSource = new List<Time>();
+                TimeStore.DataBind();
+                return;
+            }
+            r.timeCode = "0";
+            r.shiftId = "0";
+            r.apStatus = "1";
+            r.BranchId = req.BranchId;
+            r.DivisionId = req.DivisionId;
+            r.PositionId = req.PositionId;
+            r.DepartmentId = req.DepartmentId;
+            r.EsId = req.EsId;
+            ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
+            if (!Times.Success)
+            {
+                Common.errorMessage(Times);
+                return;
+            }
+            PostRequest<Time> request= new PostRequest<Time>();
+            PostResponse<Time> resp;
+            Times.Items.ForEach(x =>
+            {
+
+                request.entity = x;
+                if (approve == "true")
+                    request.entity.status = 2;
+                else
+                    request.entity.status = -1;
+                resp = _timeAttendanceService.ChildAddOrUpdate<Time>(request);
+            });
+            TimeStore.Reload();
+            BindAlerts();
+        }
+        protected void batchReject(object sender, DirectEventArgs e)
+        {
+
+            //Reset all values of the relative object
+          
+        }
     }
 }

@@ -729,4 +729,10 @@
   <data name="present" xml:space="preserve">
     <value>الحضور</value>
   </data>
+  <data name="approveAll" xml:space="preserve">
+    <value>موافقة الكل </value>
+  </data>
+  <data name="rejectAll" xml:space="preserve">
+    <value>رفض الكل</value>
+  </data>
 </root>

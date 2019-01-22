@@ -96,8 +96,9 @@ namespace AionHR.Web.UI.Forms
                 salaryTypeFilter.Select("5");
                 status.Select("0");
                 payrollsStore.Reload();
-                if (!string.IsNullOrEmpty(Request.QueryString["record"]))
+                if (!string.IsNullOrEmpty(Request.QueryString["payId"]))
                 {
+                  
                     var p1 = new Ext.Net.Parameter("id", Request.QueryString["record"]);
                     var p2 = new Ext.Net.Parameter("type", "imgAttach");
                     var col = new Ext.Net.ParameterCollection();
@@ -797,47 +798,7 @@ namespace AionHR.Web.UI.Forms
 
             }
         }
-        [DirectMethod]
-        //public void DeleteDE(PayrollEntitlementDeduction DE)
-        //{
-        //    try
-        //    {
-
-
-
-        //        try
-        //        {
-        //            PostRequest<PayrollEntitlementDeduction> delReq = new PostRequest<PayrollEntitlementDeduction>();
-        //            delReq.entity = DE;
-        //            PostResponse<PayrollEntitlementDeduction> resp = _payrollService.ChildDelete<PayrollEntitlementDeduction>(delReq);
-        //            if (!resp.Success)
-        //            {
-        //                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //                Common.errorMessage(resp);
-        //                return;
-        //            }
-        //            Notification.Show(new NotificationConfig
-        //            {
-        //                Title = Resources.Common.Notification,
-        //                Icon = Icon.Information,
-        //                Html = Resources.Common.RecordUpdatedSucc
-        //            });
-        //            deductionStore.Reload();
-
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            //In case of error, showing a message box to the user
-        //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //            X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
-
-        //        }
-
-        //        //Step 3 : Showing a notification for the user 
-
-        //    }
-          
-        //}
+       
 
 
 

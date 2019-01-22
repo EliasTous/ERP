@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Reports
 {
- public  class RT804
+ public  class RT803
     {
         public EmployeeName employeeName { get; set; }
         public string branchName { get; set; }

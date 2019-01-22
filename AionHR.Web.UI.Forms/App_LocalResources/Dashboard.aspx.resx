@@ -726,4 +726,10 @@
   <data name="present" xml:space="preserve">
     <value>Present</value>
   </data>
+  <data name="approveAll" xml:space="preserve">
+    <value>Approve All</value>
+  </data>
+  <data name="rejectAll" xml:space="preserve">
+    <value>Reject All</value>
+  </data>
 </root>
