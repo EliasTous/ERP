@@ -118,22 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>المجموعات الأمنية</value>
+    <value>المستخدمين</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
-    <value>xrLabel2</value>
-  </data>
-  <data name="xrLabel20.Text" xml:space="preserve">
     <value>من قبل :</value>
-  </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>xrLabel3</value>
-  </data>
-  <data name="xrLabel4.Text" xml:space="preserve">
-    <value>المجموعة الأمنية</value>
-  </data>
-  <data name="xrPageInfo1.Format" xml:space="preserve">
-    <value>{0:dddd, MMMM d, yyyy HH:mm}</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>
@@ -142,10 +130,40 @@
     <value>xrTableCell1</value>
   </data>
   <data name="xrTableCell10.Text" xml:space="preserve">
+    <value>xrTableCell10</value>
+  </data>
+  <data name="xrTableCell11.Text" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
+  <data name="xrTableCell12.Text" xml:space="preserve">
+    <value>xrTableCell12</value>
+  </data>
+  <data name="xrTableCell13.Text" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="xrTableCell14.Text" xml:space="preserve">
+    <value>xrTableCell14</value>
+  </data>
+  <data name="xrTableCell15.Text" xml:space="preserve">
+    <value>xrTableCell15</value>
+  </data>
+  <data name="xrTableCell16.Text" xml:space="preserve">
+    <value>xrTableCell16</value>
+  </data>
+  <data name="xrTableCell17.Text" xml:space="preserve">
+    <value>xrTableCell17</value>
+  </data>
+  <data name="xrTableCell19.Text" xml:space="preserve">
     <value>البريد الالكتروني</value>
   </data>
   <data name="xrTableCell2.Text" xml:space="preserve">
     <value>xrTableCell2</value>
+  </data>
+  <data name="xrTableCell21.Text" xml:space="preserve">
+    <value>نوع المستخدم </value>
+  </data>
+  <data name="xrTableCell23.Text" xml:space="preserve">
+    <value>الاسم</value>
   </data>
   <data name="xrTableCell3.Text" xml:space="preserve">
     <value>xrTableCell3</value>
@@ -160,12 +178,12 @@
     <value>xrTableCell6</value>
   </data>
   <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>المستخدم </value>
+    <value>الفرع</value>
   </data>
   <data name="xrTableCell8.Text" xml:space="preserve">
-    <value>المستخدم</value>
+    <value>xrTableCell8</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>البريد الالكتروني </value>
+    <value>القسم</value>
   </data>
 </root>
