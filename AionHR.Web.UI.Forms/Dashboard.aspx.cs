@@ -634,7 +634,8 @@ namespace AionHR.Web.UI.Forms
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
             req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
             req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
-
+            req.StartAt = "0";
+            req.Size = "1000";
             int intResult;
 
 
@@ -1305,6 +1306,10 @@ namespace AionHR.Web.UI.Forms
                 r.PositionId = req.PositionId;
                 r.DepartmentId = req.DepartmentId;
                 r.EsId = req.EsId;
+                r.Size = "50";
+                r.StartAt = "0";
+               
+
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)
                 {
@@ -2337,7 +2342,9 @@ namespace AionHR.Web.UI.Forms
                 r.DivisionId = req.DivisionId;
                 r.BranchId = req.BranchId;
                 r.EsId = req.EsId;
-
+                r.StartAt = "0";
+                r.Size = "1000";
+               
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)
@@ -2514,6 +2521,9 @@ namespace AionHR.Web.UI.Forms
             r.PositionId = req.PositionId;
             r.DepartmentId = req.DepartmentId;
             r.EsId = req.EsId;
+            r.StartAt = "0";
+            r.Size = "1000";
+            
             ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
             if (!Times.Success)
             {

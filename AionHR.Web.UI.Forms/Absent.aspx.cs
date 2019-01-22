@@ -747,6 +747,9 @@ namespace AionHR.Web.UI.Forms
                 r.BranchId = 0;
                 r.PositionId = 0;
                 r.EsId = 0;
+                r.StartAt = "0";
+                r.Size = "1000";
+                
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)

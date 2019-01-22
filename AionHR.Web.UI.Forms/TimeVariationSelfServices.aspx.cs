@@ -759,7 +759,9 @@ namespace AionHR.Web.UI.Forms
                 r.approverId = 0;
                 r.timeCode = timeCode;
                 r.shiftId = shiftId;
-
+                r.StartAt = "0";
+                r.Size = "1000";
+               
 
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);

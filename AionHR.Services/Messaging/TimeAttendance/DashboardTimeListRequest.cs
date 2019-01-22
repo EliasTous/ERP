@@ -22,6 +22,7 @@ namespace AionHR.Services.Messaging.TimeAttendance
         public int? PositionId { get; set; }
         public int? BranchId { get; set; }
         public int? EsId { get; set; }
+        public string sortBy { get; set; }
         public override Dictionary<string, string> Parameters
         {
             get
@@ -53,8 +54,13 @@ namespace AionHR.Services.Messaging.TimeAttendance
                 parameters.Add("_branchId", BranchId.ToString());
                 parameters.Add("_esId", EsId.ToString());
                 parameters.Add("_positionId", PositionId.ToString());
-
-
+                if (string.IsNullOrEmpty(sortBy))
+                    parameters.Add("_sortBy", "dayId");
+                if(string.IsNullOrEmpty(StartAt))
+                    
+                parameters.Add("_startAt", "0");
+                if (string.IsNullOrEmpty(Size))
+                    parameters.Add("_size", "1000");
                 return parameters;
             }
         }
