@@ -1276,6 +1276,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string FieldLanguage {
+            get {
+                return ResourceManager.GetString("FieldLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Penalty.
         /// </summary>
         internal static string FieldPenaltyName {

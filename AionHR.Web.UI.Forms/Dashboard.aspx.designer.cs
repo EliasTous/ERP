@@ -1039,6 +1039,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button btnReject;
         
         /// <summary>
+        /// timeVariationType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.TimeVariationTypeFilter timeVariationType;
+        
+        /// <summary>
         /// Button3 control.
         /// </summary>
         /// <remarks>

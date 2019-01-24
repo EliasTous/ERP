@@ -53,7 +53,7 @@ namespace AionHR.Model.Employees.Profile
         public int? bsId { set; get; }
 
 
-
+        public int? languageId { get; set; }
 
     }
 }

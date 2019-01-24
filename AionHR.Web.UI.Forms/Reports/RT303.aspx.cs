@@ -215,9 +215,9 @@ namespace AionHR.Web.UI.Forms.Reports
             ListResponse<AionHR.Model.Reports.RT303> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT303>(req);
             if (!resp.Success)
             {
-                string message = GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + " - " + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary;
+             
                 if (throwException)
-                    throw new Exception(message);
+                    throw new Exception(resp.Error);
 
             }
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();

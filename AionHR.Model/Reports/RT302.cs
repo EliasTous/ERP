@@ -17,8 +17,8 @@ namespace AionHR.Model.Reports
 
         public string branchName { get; set; }
 
-        public int calendarHours { get; set; }
-        public int workingHours { get; set; }
+        public double calendarHours { get; set; }
+        public double workingHours { get; set; }
         public int calendarDays { get; set; }
 
         public int workingDays { get; set; }

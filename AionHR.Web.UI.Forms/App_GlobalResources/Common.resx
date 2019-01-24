@@ -1365,4 +1365,7 @@
   <data name="Mod70" xml:space="preserve">
     <value>Admin affairs</value>
   </data>
+  <data name="FieldLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
 </root>

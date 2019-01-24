@@ -191,7 +191,7 @@ namespace AionHR.Web.UI.Forms.Reports
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
             req.BranchId = "0";
-            req.IncludeIsInactive = 2;
+            req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 
             req.StartAt = "1";
@@ -206,7 +206,7 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
-        private void FillReport( )
+        private void FillReport(bool isInitial = false, bool throwException = true)
         {
             try
             {
@@ -215,9 +215,10 @@ namespace AionHR.Web.UI.Forms.Reports
                 ListResponse<AionHR.Model.Reports.RT302> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT302>(req);
                 if (!resp.Success)
                 {
+                    if (throwException)
+                        throw new Exception(resp.Error);
 
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    Common.errorMessage(resp);
+               
                     return;
 
                 }

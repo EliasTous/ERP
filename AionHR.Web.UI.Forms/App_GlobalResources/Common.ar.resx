@@ -1368,4 +1368,7 @@
   <data name="Mod70" xml:space="preserve">
     <value>الشؤؤون الإدارية </value>
   </data>
+  <data name="FieldLanguage" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
 </root>

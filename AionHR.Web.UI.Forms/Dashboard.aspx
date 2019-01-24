@@ -2239,6 +2239,12 @@
                                     </DirectEvents>
                                 </ext:Button>
                                  <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                 <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:TimeVariationTypeControl runat="server" ID="timeVariationType" />
+                                    </Content>
+                                </ext:Container>
+                                  <ext:ToolbarSeparator></ext:ToolbarSeparator>
                                 <ext:Button ID="Button3" runat="server"  Icon="Reload">       
                                      <Listeners>
                                         <Click Handler="CheckSession();#{TimeStore}.reload();" />
@@ -5483,6 +5489,7 @@
       
 
         <uc:leaveControl runat="server" ID="leaveRequest1" />
+      
       
 
 

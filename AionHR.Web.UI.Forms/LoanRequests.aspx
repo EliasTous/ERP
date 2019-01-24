@@ -358,7 +358,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler="if (record.data['deductedAmount'] >0) return editRender(); else  return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
+                                <Renderer Handler=" if (record.data['status']==2) return; if (record.data['deductedAmount'] >0  ) return editRender(); else  return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
 
                             </ext:Column>
 

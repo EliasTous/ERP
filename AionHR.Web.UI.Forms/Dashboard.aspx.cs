@@ -1298,7 +1298,7 @@ namespace AionHR.Web.UI.Forms
                     TimeStore.DataBind();
                     return;
                 }
-                r.timeCode = "0";
+                r.timeCode = timeVariationType.GetTimeCode(); 
                 r.shiftId = "0";
                 r.apStatus = "1";
                 r.BranchId = req.BranchId;
@@ -2513,7 +2513,7 @@ namespace AionHR.Web.UI.Forms
                 TimeStore.DataBind();
                 return;
             }
-            r.timeCode = "0";
+            r.timeCode = timeVariationType.GetTimeCode();
             r.shiftId = "0";
             r.apStatus = "1";
             r.BranchId = req.BranchId;
@@ -2522,7 +2522,7 @@ namespace AionHR.Web.UI.Forms
             r.DepartmentId = req.DepartmentId;
             r.EsId = req.EsId;
             r.StartAt = "0";
-            r.Size = "1000";
+            r.Size = "50";
             
             ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
             if (!Times.Success)
