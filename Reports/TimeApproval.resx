@@ -195,7 +195,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell6.Weight" type="System.Double, mscorlib">
-    <value>0.24611979911958662</value>
+    <value>0.40972242720505558</value>
   </data>
   <data name="xrTableCell7.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -207,7 +207,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell7.Weight" type="System.Double, mscorlib">
-    <value>0.40747993993856058</value>
+    <value>0.40748067016970269</value>
   </data>
   <data name="xrTableCell8.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -219,7 +219,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
-    <value>0.13743126310795534</value>
+    <value>0.10468557646407319</value>
   </data>
   <data name="xrTableCell9.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -231,7 +231,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell9.Weight" type="System.Double, mscorlib">
-    <value>0.29861986912020538</value>
+    <value>0.16776219744747653</value>
   </data>
   <data name="xrTableCell11.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -301,7 +301,7 @@
     <value>234.005463, 0</value>
   </data>
   <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>91.00006, 23</value>
+    <value>91.00006, 45.9166832</value>
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
     <value>Branch</value>
@@ -316,7 +316,7 @@
     <value>934.4505, 0</value>
   </data>
   <data name="xrLabel38.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>68.54956, 23</value>
+    <value>68.54956, 45.9166832</value>
   </data>
   <data name="xrLabel38.Text" xml:space="preserve">
     <value>Damage</value>
@@ -328,10 +328,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel31.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>504.380341, 0</value>
+    <value>504.380371, 0</value>
   </data>
   <data name="xrLabel31.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>82.2861938, 23</value>
+    <value>136.984009, 45.9166832</value>
   </data>
   <data name="xrLabel31.Text" xml:space="preserve">
     <value>Notes</value>
@@ -346,7 +346,7 @@
     <value>433.7084, 0</value>
   </data>
   <data name="xrLabel30.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>70.67197, 23</value>
+    <value>70.67197, 45.9166832</value>
   </data>
   <data name="xrLabel30.Text" xml:space="preserve">
     <value>Status
@@ -362,7 +362,7 @@
     <value>120.0001, 0</value>
   </data>
   <data name="xrLabel28.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>114.005348, 23</value>
+    <value>114.005348, 45.9166832</value>
   </data>
   <data name="xrLabel28.Text" xml:space="preserve">
     <value>Approver</value>
@@ -374,10 +374,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel25.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>768.84845, 0</value>
+    <value>812.5986, 0</value>
   </data>
   <data name="xrLabel25.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>99.83862, 23</value>
+    <value>56.0886841, 45.9166832</value>
   </data>
   <data name="xrLabel25.Text" xml:space="preserve">
     <value>Clock Duration </value>
@@ -392,7 +392,7 @@
     <value>868.687134, 0</value>
   </data>
   <data name="xrLabel26.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>65.76343, 23</value>
+    <value>65.76343, 45.9166832</value>
   </data>
   <data name="xrLabel26.Text" xml:space="preserve">
     <value>Duration </value>
@@ -407,7 +407,7 @@
     <value>325.005524, 0</value>
   </data>
   <data name="xrLabel17.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>108.702927, 23</value>
+    <value>108.702927, 45.9166832</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
     <value>Time Code</value>
@@ -419,10 +419,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel20.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>586.666565, 0</value>
+    <value>641.3644, 0</value>
   </data>
   <data name="xrLabel20.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>136.234222, 23</value>
+    <value>136.234222, 45.9166832</value>
   </data>
   <data name="xrLabel20.Text" xml:space="preserve">
     <value>Employee</value>
@@ -434,10 +434,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel24.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>722.900757, 0</value>
+    <value>777.598633, 0</value>
   </data>
   <data name="xrLabel24.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>45.9477539, 23</value>
+    <value>35, 45.9166832</value>
   </data>
   <data name="xrLabel24.Text" xml:space="preserve">
     <value>Shift</value>
@@ -452,7 +452,7 @@
     <value>0, 0</value>
   </data>
   <data name="xrLabel19.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>120.0001, 23</value>
+    <value>120.0001, 45.9166832</value>
   </data>
   <data name="xrLabel19.Text" xml:space="preserve">
     <value>Day</value>
@@ -464,7 +464,7 @@
     <value>100</value>
   </data>
   <data name="groupHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>23</value>
+    <value>45.9166832</value>
   </data>
   <data name="UserParameter.Description" xml:space="preserve">
     <value>Parameter1</value>

@@ -135,55 +135,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
-    <value>16.348644201120926</value>
-  </data>
-  <data name="xrTableCell10.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell10.Text" xml:space="preserve">
-    <value>xrTableCell10</value>
-  </data>
-  <data name="xrTableCell10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell10.Weight" type="System.Double, mscorlib">
-    <value>5.4485899981826176</value>
-  </data>
-  <data name="xrTableCell12.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell12.Text" xml:space="preserve">
-    <value>xrTableCell12</value>
-  </data>
-  <data name="xrTableCell12.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell12.Weight" type="System.Double, mscorlib">
-    <value>5.4479426341157682</value>
-  </data>
-  <data name="xrTableCell14.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell14.Text" xml:space="preserve">
-    <value>xrTableCell14</value>
-  </data>
-  <data name="xrTableCell14.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell14.Weight" type="System.Double, mscorlib">
-    <value>4.797546093105737</value>
-  </data>
-  <data name="xrTableCell16.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell16.Text" xml:space="preserve">
-    <value>xrTableCell16</value>
-  </data>
-  <data name="xrTableCell16.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell16.Weight" type="System.Double, mscorlib">
-    <value>5.33110875600257</value>
+    <value>20.451405401196631</value>
   </data>
   <data name="xrTableCell18.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -195,43 +147,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell18.Weight" type="System.Double, mscorlib">
-    <value>8.1801546401359584</value>
-  </data>
-  <data name="xrTableCell20.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell20.Text" xml:space="preserve">
-    <value>xrTableCell20</value>
-  </data>
-  <data name="xrTableCell20.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell20.Weight" type="System.Double, mscorlib">
-    <value>6.6485784981989511</value>
-  </data>
-  <data name="xrTableCell22.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell22.Text" xml:space="preserve">
-    <value>xrTableCell22</value>
-  </data>
-  <data name="xrTableCell22.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell22.Weight" type="System.Double, mscorlib">
-    <value>8.9827110201072049</value>
-  </data>
-  <data name="xrTableCell24.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell24.Text" xml:space="preserve">
-    <value>xrTableCell24</value>
-  </data>
-  <data name="xrTableCell24.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell24.Weight" type="System.Double, mscorlib">
-    <value>6.73273223135899</value>
+    <value>10.3495019526844</value>
   </data>
   <data name="xrTableCell28.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -243,7 +159,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell28.Weight" type="System.Double, mscorlib">
-    <value>6.9699168814630053</value>
+    <value>14.149021629099082</value>
   </data>
   <data name="xrTableCell30.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -255,7 +171,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell30.Weight" type="System.Double, mscorlib">
-    <value>7.2444677842956748</value>
+    <value>14.907366730114358</value>
   </data>
   <data name="xrTableCell32.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -267,7 +183,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell32.Weight" type="System.Double, mscorlib">
-    <value>5.5924037696178157</value>
+    <value>10.567636617142908</value>
   </data>
   <data name="xrTableCell34.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -279,7 +195,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell34.Weight" type="System.Double, mscorlib">
-    <value>5.843401908533461</value>
+    <value>10.673694361138814</value>
   </data>
   <data name="xrTableCell36.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -291,7 +207,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell36.Weight" type="System.Double, mscorlib">
-    <value>8.9291148889659553</value>
+    <value>12.725136747696457</value>
   </data>
   <data name="xrTableCell38.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -303,7 +219,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell38.Weight" type="System.Double, mscorlib">
-    <value>6.1490565333293494</value>
+    <value>12.184621384515838</value>
   </data>
   <data name="xrTableCell40.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -315,7 +231,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell40.Weight" type="System.Double, mscorlib">
-    <value>6.6451414794454546</value>
+    <value>10.922417966625345</value>
   </data>
   <data name="xrTableCell42.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -327,7 +243,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell42.Weight" type="System.Double, mscorlib">
-    <value>9.6344120447309312</value>
+    <value>8.5000873345705781</value>
   </data>
   <data name="xrTableRow4.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -337,7 +253,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrTable2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>1237, 37</value>
+    <value>1242.00012, 37</value>
   </data>
   <data name="Detail.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -599,111 +515,19 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell7.Weight" type="System.Double, mscorlib">
-    <value>16.489202832230383</value>
-  </data>
-  <data name="xrTableCell9.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>day
-Start</value>
-  </data>
-  <data name="xrTableCell9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell9.Weight" type="System.Double, mscorlib">
-    <value>5.4954384784043</value>
-  </data>
-  <data name="xrTableCell11.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell11.Text" xml:space="preserve">
-    <value>day
-End</value>
-  </data>
-  <data name="xrTableCell11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell11.Weight" type="System.Double, mscorlib">
-    <value>5.4947824414749693</value>
-  </data>
-  <data name="xrTableCell13.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell13.Text" xml:space="preserve">
-    <value>first
-In</value>
-  </data>
-  <data name="xrTableCell13.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell13.Weight" type="System.Double, mscorlib">
-    <value>4.8387943006150369</value>
-  </data>
-  <data name="xrTableCell17.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell17.Text" xml:space="preserve">
-    <value>last
-Out</value>
-  </data>
-  <data name="xrTableCell17.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell17.Weight" type="System.Double, mscorlib">
-    <value>5.3769444491483815</value>
+    <value>20.627241854920054</value>
   </data>
   <data name="xrTableCell19.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="xrTableCell19.Text" xml:space="preserve">
-    <value>on
-Leave</value>
+    <value>On Leave</value>
   </data>
   <data name="xrTableCell19.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell19.Weight" type="System.Double, mscorlib">
-    <value>8.2504855872111413</value>
-  </data>
-  <data name="xrTableCell21.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell21.Text" xml:space="preserve">
-    <value>paid
-Leave</value>
-  </data>
-  <data name="xrTableCell21.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell21.Weight" type="System.Double, mscorlib">
-    <value>6.7057407400797011</value>
-  </data>
-  <data name="xrTableCell23.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell23.Text" xml:space="preserve">
-    <value>Unpaid 
-Leaves</value>
-  </data>
-  <data name="xrTableCell23.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell23.Weight" type="System.Double, mscorlib">
-    <value>9.0599422679585953</value>
-  </data>
-  <data name="xrTableCell25.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell25.Text" xml:space="preserve">
-    <value>Paid
-Leaves</value>
-  </data>
-  <data name="xrTableCell25.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell25.Weight" type="System.Double, mscorlib">
-    <value>6.7906182206765688</value>
+    <value>10.438487619341329</value>
   </data>
   <data name="xrTableCell27.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -715,7 +539,7 @@ Leaves</value>
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell27.Weight" type="System.Double, mscorlib">
-    <value>7.0298486812490371</value>
+    <value>14.270671707952335</value>
   </data>
   <data name="xrTableCell29.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -727,20 +551,19 @@ Leaves</value>
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell29.Weight" type="System.Double, mscorlib">
-    <value>7.3067350359617675</value>
+    <value>15.035537471011082</value>
   </data>
   <data name="xrTableCell31.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="xrTableCell31.Text" xml:space="preserve">
-    <value>Missed 
-Punch</value>
+    <value>Missed Punch</value>
   </data>
   <data name="xrTableCell31.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell31.Weight" type="System.Double, mscorlib">
-    <value>5.6404922262875594</value>
+    <value>10.658488689350257</value>
   </data>
   <data name="xrTableCell33.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -752,7 +575,7 @@ Punch</value>
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell33.Weight" type="System.Double, mscorlib">
-    <value>5.89364502182365</value>
+    <value>10.765452590280413</value>
   </data>
   <data name="xrTableCell35.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -764,7 +587,7 @@ Punch</value>
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell35.Weight" type="System.Double, mscorlib">
-    <value>9.005885243731548</value>
+    <value>12.834557744652237</value>
   </data>
   <data name="xrTableCell37.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -776,7 +599,7 @@ Punch</value>
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell37.Weight" type="System.Double, mscorlib">
-    <value>6.2019244274051024</value>
+    <value>12.289382626172626</value>
   </data>
   <data name="xrTableCell39.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -788,7 +611,7 @@ Punch</value>
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell39.Weight" type="System.Double, mscorlib">
-    <value>6.702274670894619</value>
+    <value>11.016326319462539</value>
   </data>
   <data name="xrTableCell41.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -800,7 +623,7 @@ Punch</value>
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell41.Weight" type="System.Double, mscorlib">
-    <value>9.7172504267270625</value>
+    <value>8.06386385936687</value>
   </data>
   <data name="xrTableRow3.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -809,7 +632,7 @@ Punch</value>
     <value>1</value>
   </data>
   <data name="xrTable1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>1237, 81</value>
+    <value>1237, 38.2916756</value>
   </data>
   <data name="xrTable1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
@@ -830,7 +653,7 @@ Punch</value>
     <value>100</value>
   </data>
   <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
-    <value>117</value>
+    <value>74.29167</value>
   </data>
   <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
