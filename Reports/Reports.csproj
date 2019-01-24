@@ -36,71 +36,71 @@
   <ItemGroup>
     <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.Charts.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Charts.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.CodeParser.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.CodeParser.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.CodeParser.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.Data.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Data.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.DataAccess.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.DataAccess.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.Office.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Office.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.Pdf.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Pdf.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.Printing.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Printing.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Web.Resources.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.Web.Resources.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Web.Resources.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.Web.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Web.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.Xpo.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Xpo.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraCharts.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.XtraCharts.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.XtraCharts.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraGauges.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.XtraGauges.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.XtraGauges.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.XtraReports.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.XtraReports.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\AionHR\dlls\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
