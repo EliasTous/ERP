@@ -32,7 +32,7 @@ using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
-    public partial class RT803 : System.Web.UI.Page
+    public partial class RT804 : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
@@ -74,7 +74,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     try
                     {
-                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT804), null, null, null, null);
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT803), null, null, null, null);
                     }
                     catch (AccessDeniedException exp)
                     {
@@ -83,7 +83,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         Viewport1.Hidden = true;
                         return;
                     }
-
+                 
                     format.Text = _systemService.SessionHelper.GetDateformat();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     //FillReport(false);
@@ -169,27 +169,58 @@ namespace AionHR.Web.UI.Forms.Reports
 
             req.Size = "1000";
             req.StartAt = "1";
-            req.SortBy = "fullName";
+            req.SortBy = "eventDt";
 
 
-
-            req.Add(jobInfo1.GetJobInfo());
+          
+            req.Add(userCombo1.GetUser());
 
             //req.Add();
             return req;
         }
         [DirectMethod]
-    
+        public object FillUsers(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<UserInfo> data = GetUsersFiltered(prms.Query);
 
-      
+            //  return new
+            // {
+            return data;
+        }
+
+        private List<UserInfo> GetUsersFiltered(string query)
+        {
+            UsersListRequest req = new UsersListRequest();
+            req.Size = "100";
+            req.StartAt = "1";
+            req.Filter = query;
+
+
+            req.DepartmentId = "0";
+            req.PositionId = "0";
+            req.BranchId = "0";
+
+            ListResponse<UserInfo> users = _systemService.ChildGetAll<UserInfo>(req);
+            return users.Items;
+        }
 
         private void FillReport(bool throwException = true)
         {
 
+         
+            GroupUsersListRequest GroupUserReq = new GroupUsersListRequest();
+            GroupUserReq.Size = "";
+            GroupUserReq.StartAt = "";
+            GroupUserReq.Filter = "";
+            GroupUserReq.GroupId =string.IsNullOrEmpty(sgId.Value.ToString())?"0": sgId.Value.ToString();
+            GroupUserReq.UserId = userCombo1.GetUser().UserId.ToString();
 
-            ReportCompositeRequest req = GetRequest();
-            ListResponse<AionHR.Model.Reports.RT803> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT803>(req);
 
+
+
+            ListResponse<SecurityGroupUser> resp = _accessControlService.ChildGetAll<SecurityGroupUser>(GroupUserReq);
+           
             if (!resp.Success)
             {
                 if (throwException)
@@ -201,20 +232,20 @@ namespace AionHR.Web.UI.Forms.Reports
                     return;
                 }
             }
+           
+            SecurityGroupsReport h = new SecurityGroupsReport();
 
-            UsersReport h = new UsersReport();
-
-            //  resp.Items.ForEach(x => x.DateString = x.eventDT.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"))); SignInTrail h = new SignInTrail();
+          //  resp.Items.ForEach(x => x.DateString = x.eventDT.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"))); SignInTrail h = new SignInTrail();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
             h.DataSource = resp.Items;
-            //  string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
-            //  string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+          //  string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+          //  string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             string user = _systemService.SessionHelper.GetCurrentUser();
 
-            // h.Parameters["From"].Value = from;
-            //  h.Parameters["To"].Value = to;
+           // h.Parameters["From"].Value = from;
+          //  h.Parameters["To"].Value = to;
             h.Parameters["User"].Value = user;
             //if (resp.Items.Count > 0)
             //{
@@ -246,6 +277,26 @@ namespace AionHR.Web.UI.Forms.Reports
             //FillReport();
         }
 
-      
+        [DirectMethod]
+        public object FillSecurityGroup(string action, Dictionary<string, object> extraParams)
+        {
+            //GEtting the filter from the page
+            string filter = string.Empty;
+
+
+            ListRequest req = new ListRequest();
+            req.Size = "1000";
+            req.StartAt = "1";
+            req.Filter = "";
+            
+
+            ListResponse<SecurityGroup> groups = _accessControlService.ChildGetAll<SecurityGroup>(req);
+            if (!groups.Success)
+            {
+                Common.errorMessage(groups);
+                return new List<SecurityGroup>();
+            }
+            return groups.Items;
+        }
     }
 }

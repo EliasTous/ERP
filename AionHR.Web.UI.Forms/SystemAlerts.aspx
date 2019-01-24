@@ -81,7 +81,8 @@
                         <ext:ModelField Name="sendTo" />
                         <ext:ModelField Name="days" />
                         <ext:ModelField Name="predefined" />
-
+                         <ext:ModelField Name="name" />
+                        
                     </Fields>
                 </ext:Model>
             </Model>
@@ -115,7 +116,7 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="alertId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Visible="false" ID="Column2" MenuDisabled="true" runat="server" DataIndex="predefined" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Visible="false" ID="Column2" MenuDisabled="true" runat="server" DataIndex="name" Hideable="false" Width="75" Align="Center" />
                     
                             <ext:WidgetColumn ID="Column1" MenuDisabled="true"  runat="server" Text="<%$ Resources: FieldActive %>" DataIndex="isActive" Hideable="false" Width="75" Align="Center">
                                 <Widget>
@@ -153,7 +154,7 @@
                              <ext:WidgetColumn ID="WidgetColumn2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDays %>" DataIndex="days" Hideable="false" Width="125" Align="Center">
                                 <Widget>
                                    
-                                    <ext:NumberField runat="server" MinValue="0" >
+                                    <ext:NumberField runat="server" MinValue="1" >
                                         <Listeners>
                                             <Change Handler="var rec = this.getWidgetRecord(); rec.set('days',this.value);" />
                                         </Listeners>

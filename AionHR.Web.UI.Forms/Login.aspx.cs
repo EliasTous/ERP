@@ -87,8 +87,8 @@ namespace AionHR.Web.UI.Forms
             Response<Account> getACResponse = _masterService.GetAccount(GetACrequest);
             if(!getACResponse.Success)
             {
-               
-                lblError.Text = GetGlobalResourceObject("Errors", getACResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", getACResponse.ErrorCode).ToString() : getACResponse.Message;
+
+                lblError.Text = getACResponse.Error;
                 return "error";//Error in authentication
             }
 

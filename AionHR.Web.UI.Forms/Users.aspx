@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
-    <script src="Scripts/jquery-new.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-new.js"></script>
     <script type="text/javascript">
         function dump(obj) {
             var out = '';
@@ -163,11 +163,13 @@
 
             for (var i = 0; i < fromStore.getCount() ; i++) {
                 var s = fromStore.getAt(i);
+              
                 toStore.add(s);
 
                 var d = App.userSelector.fromField.getStore().getById(s.getId());
 
                 if (d != null) {
+                 
                     App.userSelector.fromField.getStore().remove(d);
 
                 }
@@ -262,8 +264,12 @@
                          <ext:ModelField Name="userTypeString" />
                         <ext:ModelField Name="isInactive" />
                        <%-- <ext:ModelField Name="isAdmin" />--%>
-                        
-
+                         <ext:ModelField Name="branchName" />
+                         <ext:ModelField Name="departmentName" />
+                         <ext:ModelField Name="positionName" />
+                         <ext:ModelField Name="userTypeName" />
+                         <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                      
 
 
 
@@ -310,7 +316,7 @@
                                 </ext:Button>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" FieldWidth="150" EnableBranch="false" EnableDivision="false" />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" FieldWidth="150" EnableBranch="true" EnableDivision="false" />
 
                                     </Content>
 
@@ -363,12 +369,15 @@
                                 <Renderer Handler="if(App.hide2.value=='True') return '****'; return record.data['email'];" />
                             </ext:Column>
 
-                            <ext:CheckColumn ID="ColIsInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Hideable="false" />
+                           <ext:Column ID="Column7" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldEmployeeName%>" DataIndex="employeeName" Flex="1" Hideable="false" />
                            <%-- <ext:CheckColumn ID="ColIsAdmin" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsAdmin %>" DataIndex="isAdmin" Hideable="false" />--%>
-                             <ext:Column ID="ColUserType" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldUserType%>" DataIndex="userTypeString" Flex="1" Hideable="false">
-                                
-                            </ext:Column>
+                             <ext:Column ID="ColUserType" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldUserType%>" DataIndex="userTypeString" Flex="1" Hideable="false" />
+                                  <ext:Column ID="Column3" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="1" Hideable="false" />
+                              <ext:Column ID="Column5" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="1" Hideable="false" />
+                              <ext:Column ID="Column6" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="1" Hideable="false" />
 
+                           
+                              <ext:CheckColumn ID="ColIsInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Hideable="false" />
 
                             <ext:Column runat="server"
                                 ID="colAttach" Visible="true"
@@ -699,6 +708,7 @@
                                     <BottomBar>
                                     </BottomBar>
                                     <Listeners>
+                                     
                                         <Render Handler="this.on('cellclick', cellClick);" />
                                     </Listeners>
                                     <DirectEvents>
@@ -714,6 +724,9 @@
                                 </ext:GridPanel>
 
                             </Items>
+                            <Listeners>
+                                   <Activate Handler="#{UserGroupsStore}.reload();" />
+                            </Listeners>
                         </ext:FormPanel>
                     </Items>
                 </ext:TabPanel>
@@ -783,6 +796,15 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{GroupUsersForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                           <ext:Parameter 
+                            Name="selectedGroups"                                  
+                            Value="App.userSelector.toField.getStore().getRecordsValues()" 
+                            Mode="Raw" 
+                            Encode="true" />
+                       
+                  
+            
+                           
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

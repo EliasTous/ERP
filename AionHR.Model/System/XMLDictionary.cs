@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.System
 {
-   public class DashboardItem
+   public class XMLDictionary
     {
-
-        public int itemId { get; set; }
-
-        public int count { get; set; }
-
-        public string itemString { get; set; }
-
+        public int key { get; set; }
+        public string value { get; set; }
     }
 }

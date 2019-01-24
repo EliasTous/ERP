@@ -349,19 +349,34 @@ namespace AionHR.Web.UI.Forms
             string filter = string.Empty;
             int totalCount = 1;
 
+            ListRequest request = new ListRequest();
 
-            List<TimeCode> routers = new List<TimeCode>();
-            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.Day_Bonus });
-            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.DAY_LEAVE_WITHOUT_EXCUSE });
-            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.DURING_SHIFT_LEAVE });
-            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.EARLY_CHECKIN });
-            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.EARLY_LEAVE });
-            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.LATE_CHECKIN });
-            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.MISSED_PUNCH });
-            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.OVERTIME });
-            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.PAID_LEAVE });
-            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.SHIFT_LEAVE_WITHOUT_EXCUSE });
-            routers.Add(new TimeCode { timeCode = ConstTimeVariationType.UNPAID_LEAVE });
+            request.Filter = "";
+            ListResponse<TimeCode> response = _payrollService.ChildGetAll<TimeCode>(request);
+            if (!response.Success)
+            {
+                Common.errorMessage(response);
+                return;
+
+            }
+            response.Items.ForEach(x => x.edTypeString = FillEdType(x.edType));
+
+            Store1.DataSource = response.Items;
+            e.Total = response.Items.Count;
+            Store1.DataBind();
+
+            //List<TimeCode> routers = new List<TimeCode>();
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.Day_Bonus });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.DAY_LEAVE_WITHOUT_EXCUSE });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.DURING_SHIFT_LEAVE });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.EARLY_CHECKIN });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.EARLY_LEAVE });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.LATE_CHECKIN });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.MISSED_PUNCH });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.OVERTIME });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.PAID_LEAVE });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.SHIFT_LEAVE_WITHOUT_EXCUSE });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.UNPAID_LEAVE });
 
 
             //Fetching the corresponding list
@@ -375,34 +390,7 @@ namespace AionHR.Web.UI.Forms
             //     Common.errorMessage(routers);
             //    return;
             //}
-            routers.ForEach(x =>
-            {
-                TimeCodeRecordRequest r = new TimeCodeRecordRequest();
-                r.timeCode = x.timeCode.ToString();
-                RecordResponse<TimeCode> response = _payrollService.ChildGetRecord<TimeCode>(r);
-                if (!response.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    Common.errorMessage(response);
-                    throw new Exception();
-                }
-                x.timeCodeString = FillTimeCode(x.timeCode);
-                if (response.result != null)
-                {
-                    x.edType = response.result.edType;
-                    x.apId = response.result.apId;
-                    x.apName = response.result.apName;
-                    x.edId = response.result.edId;
-                    x.edName = response.result.edName;
-                    x.edTypeString = response.result.edTypeString;
-                    x.gracePeriod = response.result.gracePeriod;
-                    x.edTypeString = FillEdType(x.edType);
-                }
-            });
-            this.Store1.DataSource = routers;
-            e.Total = routers.Count;
-
-            this.Store1.DataBind();
+            
         }
 
 

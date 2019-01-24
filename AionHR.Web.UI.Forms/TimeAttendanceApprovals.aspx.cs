@@ -234,8 +234,9 @@ namespace AionHR.Web.UI.Forms
                     else
                         r.approverId = Convert.ToInt32(approverId.Value.ToString());
                     r.shiftId = "0";
-                    r.Parameters.Add("_sortBy", "dayId");
-
+                   
+                r.Size = "1000";
+                r.StartAt = "0";
                     ListResponse<Time> resp = _timeAttendanceService.ChildGetAll<Time>(r);
                     if (!resp.Success)
                     {
@@ -706,8 +707,9 @@ namespace AionHR.Web.UI.Forms
                 r.approverId = 0;
                 r.timeCode = timeCode;
                 r.shiftId = shiftId;
-
-
+                r.StartAt = "0";
+                r.Size = "1000";
+                
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)

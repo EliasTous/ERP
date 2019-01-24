@@ -159,6 +159,12 @@
     <Compile Include="EmployeePayRoll\EmployeePaySlipSub.Designer.cs">
       <DependentUpon>EmployeePaySlipSub.cs</DependentUpon>
     </Compile>
+    <Compile Include="GroupedDetailsAttendance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GroupedDetailsAttendance.Designer.cs">
+      <DependentUpon>GroupedDetailsAttendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="GroupedPayRollCross\dsSalaries.cs">
       <DependentUpon>dsSalaries.xsd</DependentUpon>
     </Compile>
@@ -408,6 +414,12 @@
     <Compile Include="DetailedAttendance.Designer.cs">
       <DependentUpon>DetailedAttendance.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsersReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UsersReport.Designer.cs">
+      <DependentUpon>UsersReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="YearsInService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -462,6 +474,9 @@
       <DependentUpon>EmployeePaySlipSub.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="GroupedDetailsAttendance.resx">
+      <DependentUpon>GroupedDetailsAttendance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GroupedPayRollCross\GroupedPayrollCrossReport.ar.resx">
       <DependentUpon>GroupedPayrollCrossReport.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -473,6 +488,9 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Receipts.resx">
       <DependentUpon>Receipts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SecurityGroupsReport.ar.resx">
+      <DependentUpon>SecurityGroupsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SecurityGroupsReport.resx">
       <DependentUpon>SecurityGroupsReport.cs</DependentUpon>
@@ -820,6 +838,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DetailedAttendance.resx">
       <DependentUpon>DetailedAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersReport.ar.resx">
+      <DependentUpon>UsersReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersReport.resx">
+      <DependentUpon>UsersReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="YearsInService.ar.resx">
       <DependentUpon>YearsInService.cs</DependentUpon>

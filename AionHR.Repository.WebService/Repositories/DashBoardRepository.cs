@@ -35,8 +35,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(DashBoardTimeVariation), "qryTV");
             ChildGetAllLookup.Add(typeof(AttendancePeriod), "qryAP");
             ChildGetAllLookup.Add(typeof(DashboardItem), "dashBoard");
-
-
+            ChildGetAllLookup.Add(typeof(DashboardAlertItem), "qryAA");
+            ChildGetAllLookup.Add(typeof(DashboardBranchAvailability), "qryBA");
+            
 
             ChildGetAllLookup.Add(typeof(CompanyRTW), "qryCR");
             ChildGetAllLookup.Add(typeof(EmpRTW), "qryER");

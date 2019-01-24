@@ -2,6 +2,7 @@
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.Reports;
+using AionHR.Services.Messaging.System;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using System;
@@ -36,10 +37,16 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
         private List<UserInfo> GetUsersFiltered(string query)
         {
-            ListRequest req = new ListRequest();
-
+            UsersListRequest req = new UsersListRequest();
+            req.Size = "100";
+            req.StartAt = "1";
             req.Filter = query;
 
+            
+            req.DepartmentId =  "0";
+            req.PositionId = "0";
+            req.BranchId =  "0";
+           
             ListResponse<UserInfo> users = _systemService.ChildGetAll<UserInfo>(req);
             return users.Items;
         }

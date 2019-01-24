@@ -117,103 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add" xml:space="preserve">
-    <value>Add</value>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>المجموعات الأمنية</value>
   </data>
-  <data name="All" xml:space="preserve">
-    <value>All</value>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>xrLabel2</value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>User Info</value>
+  <data name="xrLabel20.Text" xml:space="preserve">
+    <value>من قبل :</value>
   </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit User</value>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>xrLabel3</value>
   </data>
-  <data name="FieldAdministrator" xml:space="preserve">
-    <value>Supervisor</value>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>المجموعة الأمنية</value>
   </data>
-  <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
+  <data name="xrPageInfo1.Format" xml:space="preserve">
+    <value>{0:dddd, MMMM d, yyyy HH:mm}</value>
   </data>
-  <data name="FieldConfirmPassword" xml:space="preserve">
-    <value>Confirm Password</value>
+  <data name="xrPageInfo2.Format" xml:space="preserve">
+    <value>صفحة {0} من {1}</value>
   </data>
-  <data name="FieldDepartment" xml:space="preserve">
-    <value>Department</value>
+  <data name="xrTableCell1.Text" xml:space="preserve">
+    <value>xrTableCell1</value>
   </data>
-  <data name="FieldEmail" xml:space="preserve">
-    <value>Email</value>
+  <data name="xrTableCell10.Text" xml:space="preserve">
+    <value>البريد الالكتروني</value>
   </data>
-  <data name="FieldEmployeeFullName" xml:space="preserve">
-    <value>Employee</value>
+  <data name="xrTableCell2.Text" xml:space="preserve">
+    <value>xrTableCell2</value>
   </data>
-  <data name="FieldEmployeeName" xml:space="preserve">
-    <value>Employee</value>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>xrTableCell3</value>
   </data>
-  <data name="FieldFullName" xml:space="preserve">
-    <value>Name</value>
+  <data name="xrTableCell4.Text" xml:space="preserve">
+    <value>xrTableCell4</value>
   </data>
-  <data name="FieldGroup" xml:space="preserve">
-    <value>Group</value>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>xrTableCell5</value>
   </data>
-  <data name="FieldIsAdmin" xml:space="preserve">
-    <value>Is Admin?</value>
+  <data name="xrTableCell6.Text" xml:space="preserve">
+    <value>xrTableCell6</value>
   </data>
-  <data name="FieldIsInActive" xml:space="preserve">
-    <value>Is Inactive?</value>
+  <data name="xrTableCell7.Text" xml:space="preserve">
+    <value>المستخدم </value>
   </data>
-  <data name="FieldLanguageId" xml:space="preserve">
-    <value>Language</value>
+  <data name="xrTableCell8.Text" xml:space="preserve">
+    <value>المستخدم</value>
   </data>
-  <data name="FieldOperator" xml:space="preserve">
-    <value>H.R Operator</value>
-  </data>
-  <data name="FieldPassword" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="FieldPosition" xml:space="preserve">
-    <value>Position</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
-  <data name="FieldSelfService" xml:space="preserve">
-    <value>Self Service</value>
-  </data>
-  <data name="FieldSuperUser" xml:space="preserve">
-    <value>Super User</value>
-  </data>
-  <data name="FieldUserType" xml:space="preserve">
-    <value>User Type</value>
-  </data>
-  <data name="Groups" xml:space="preserve">
-    <value>Security Groups</value>
-  </data>
-  <data name="Mediocre" xml:space="preserve">
-    <value>Mediocre</value>
-  </data>
-  <data name="Remove" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="Selected" xml:space="preserve">
-    <value>Selected</value>
-  </data>
-  <data name="Strength" xml:space="preserve">
-    <value>Strength</value>
-  </data>
-  <data name="Strong" xml:space="preserve">
-    <value>Strong</value>
-  </data>
-  <data name="VeryStrong" xml:space="preserve">
-    <value>Very Strong</value>
-  </data>
-  <data name="VeryWeak" xml:space="preserve">
-    <value>Very Weak</value>
-  </data>
-  <data name="Weak" xml:space="preserve">
-    <value>Weak</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>Users</value>
+  <data name="xrTableCell9.Text" xml:space="preserve">
+    <value>البريد الالكتروني </value>
   </data>
 </root>

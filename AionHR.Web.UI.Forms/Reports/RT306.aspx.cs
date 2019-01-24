@@ -326,7 +326,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 else
                     r.approverId = Convert.ToInt32(approverId.Value.ToString());
                 r.shiftId = "0";
-                r.Parameters.Add("_sortBy", "dayId");
+               
                 r.apStatus = string.IsNullOrEmpty(apStatus.Value.ToString()) ? "0" : apStatus.Value.ToString();
 
 
@@ -335,7 +335,9 @@ namespace AionHR.Web.UI.Forms.Reports
                 r.DivisionId = req.DivisionId;
                 r.DepartmentId = req.DepartmentId;
                 r.EsId = req.EsId;
-
+                r.StartAt = "0";
+                r.Size = "1000";
+              
                 ListResponse <Time> resp = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!resp.Success)
                 {

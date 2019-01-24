@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Reports
 {
-    [ClassIdentifier("80802", "80")]
-    public class RT803: SecurityGroupUser
+    [ClassIdentifier("80803", "80")]
+    public class RT804: SecurityGroupUser
     {
     }
 }

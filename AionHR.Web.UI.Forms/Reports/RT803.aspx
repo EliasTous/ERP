@@ -69,36 +69,11 @@
                     <TopBar>
                         <ext:Toolbar runat="server" Height="50" Layout="HBoxLayout">
                             <Items>
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="sgId" EnableViewState="true" Width="120"
-                                    DisplayField="name"
-                                    ValueField="recordId"
-                                    TypeAhead="false"
-                                    EmptyText="<%$ Resources:Common, SecurityGroups%>"
-                                    HideTrigger="false" SubmitValue="true"
-                               
-                                    TriggerAction="All" ForceSelection="false">
-                                    <Store>
-                                        <ext:Store runat="server" ID="SecurityGroupStore" AutoLoad="false">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                            <Proxy>
-                                                <ext:PageProxy DirectFn="App.direct.FillSecurityGroup"></ext:PageProxy>
-                                            </Proxy>
-
-                                        </ext:Store>
-
-                                    </Store>
-                                </ext:ComboBox>
+                                 
                               
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:usersCombo runat="server" ID="userCombo1" EnableViewState="true" />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnableBranch="true" EnableDivision="false" EnableDepartment="true" EnablePosition="true" />
                                     </Content>
                                 </ext:Container>
                                 <ext:Container runat="server" Layout="FitLayout">

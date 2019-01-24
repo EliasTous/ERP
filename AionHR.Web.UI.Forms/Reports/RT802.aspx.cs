@@ -198,8 +198,15 @@ namespace AionHR.Web.UI.Forms.Reports
         private List<UserInfo> GetUsersFiltered(string query)
         {
             UsersListRequest req = new UsersListRequest();
+            req.Size = "100";
+            req.StartAt = "1";
+         
+
+
             req.DepartmentId = "0";
             req.PositionId = "0";
+            req.BranchId = "0";
+
             req.Filter = query;
 
             ListResponse<UserInfo> users = _systemService.ChildGetAll<UserInfo>(req);

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
-    <script src="Scripts/jquery-new.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-new.js"></script>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
 
@@ -166,6 +166,38 @@
                 </ext:Model>
             </Model>
         </ext:Store>
+
+          <ext:Store
+            ID="modulesStore"
+            runat="server"
+            RemoteSort="False"
+            RemoteFilter="true"
+            OnReadData="modulesStore_RefreshData"
+            PageSize="50" IDMode="Explicit" Namespace="App">
+            <Proxy>
+                <ext:PageProxy>
+                    <Listeners>
+                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                    </Listeners>
+                </ext:PageProxy>
+            </Proxy>
+            <Model>
+                <ext:Model ID="Model3" runat="server" IDProperty="key">
+                    <Fields>
+
+                        <ext:ModelField Name="key" />
+                        <ext:ModelField Name="value" />
+                      
+
+                      
+                    </Fields>
+                </ext:Model>
+            </Model>
+            <Sorters>
+                <ext:DataSorter Property="value" Direction="ASC" />
+            </Sorters>
+        </ext:Store>
+
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
@@ -509,37 +541,23 @@
                             <TopBar>
                                 <ext:Toolbar runat="server">
                                     <Items>
-                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Editable="false" ID="modulesCombo" ValueField="id" DisplayField="name" FieldLabel="<%$ Resources:SelectModule%>">
+                                      <%--  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Editable="false" ID="modulesCombo" ValueField="id" DisplayField="name" FieldLabel="<%$ Resources:SelectModule%>">
                                             <Listeners>
                                                 
                                                 <Select Handler="App.CurrentModule.value = this.value; App.classesStore.reload(); " />
                                             </Listeners>
-                                            <Items>
-                                                 <ext:ListItem Text="<%$ Resources: Common,Mod10  %>" Value="10" />
-                                                <ext:ListItem Text="<%$ Resources: Common,Mod20  %>" Value="20" />
-                                                <ext:ListItem Text="<%$ Resources:  Common,Mod21  %>" Value="21" />
-                                              <%--  <ext:ListItem Text="<%$ Resources:  Common,Mod22  %>" Value="22" />--%>
-                                         <%--       <ext:ListItem Text="<%$ Resources:  Common,Mod23 %>" Value="23" />--%>
-                                          <%--      <ext:ListItem Text="<%$ Resources:  Common,Mod24  %>" Value="24" />--%>
-                                               <ext:ListItem Text="<%$ Resources:  Common,Mod25  %>" Value="25" />
-                                              <%--  <ext:ListItem Text="<%$ Resources: Common,Mod30  %>" Value="30" />--%>
-                                                <ext:ListItem Text="<%$ Resources:  Common,Mod31 %>" Value="31" />
-                                              <%--  <ext:ListItem Text="<%$ Resources:  Common,Mod32  %>" Value="32" />--%>
-                                                <ext:ListItem Text="<%$ Resources: Common,Mod41  %>" Value="41" />
-                                                <ext:ListItem Text="<%$ Resources:  Common,Mod42  %>" Value="42" />
-                                            <%--    <ext:ListItem Text="<%$ Resources:  Common,Mod43  %>" Value="43" />--%>
-                                              <%--  <ext:ListItem Text="<%$ Resources:  Common,Mod44 %>" Value="44" />--%>
-                                                <ext:ListItem Text="<%$ Resources:  Common,Mod45  %>" Value="45" />
-                                                <ext:ListItem Text="<%$ Resources:  Common,Mod51  %>" Value="51" />
-                                                 <ext:ListItem Text="<%$ Resources: Common,Mod60  %>" Value="60" />
-                                                  <ext:ListItem Text="<%$ Resources: Common,Mod70  %>" Value="70" />
-                                                <ext:ListItem Text="<%$ Resources: Common,Mod80  %>" Value="80" />
-                                                <ext:ListItem Text="<%$ Resources: Common,Mod90  %>" Value="90" />
+                                       
+
+                                        </ext:ComboBox>--%>
+
+                                        <ext:ComboBox StoreID="modulesStore"   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="modulesCombo"  EmptyText="<%$ Resources:SelectModule%>" SubmitValue="true" SimpleSubmit="true">
+      
+            <Listeners>
+                   <Select Handler="App.CurrentModule.setValue( this.value); App.classesStore.reload(); " />
+            </Listeners>
 
 
-                                            </Items>
-
-                                        </ext:ComboBox>
+        </ext:ComboBox>
 
                                         <ext:Button runat="server" Icon="ApplicationSideExpand" ToolTip="<%$ Resources:ApplyModule%>" ID="openModuleLevelForm">
                                             <Listeners>
@@ -570,6 +588,10 @@
                                                         <ext:ModelField Name="id" />
                                                         <ext:ModelField Name="name" />
                                                         <ext:ModelField Name="accessLevel" />
+                                                        <ext:ModelField Name="className" />
+                                                            <ext:ModelField Name="classId" />
+
+                                                        
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
@@ -582,7 +604,7 @@
                                         <Columns>
 
                                             <ext:Column Visible="false" ID="Column3" MenuDisabled="true" runat="server" DataIndex="classId" Hideable="false" Width="75" />
-                                            <ext:Column ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources:Class%>" DataIndex="name" Hideable="false" Flex="1" />
+                                            <ext:Column ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources:Class%>" DataIndex="className" Hideable="false" Flex="1" />
                                             <ext:Column ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources:AccessLevel%>" DataIndex="accessLevel" Hideable="false" Width="100">
                                                 <Renderer Handler="return getAccessLevelText(record.data['accessLevel']);" />
                                             </ext:Column>
@@ -620,7 +642,7 @@
                                         <CellClick OnEvent="PoPuPClass">
                                             <EventMask ShowMask="true" />
                                             <ExtraParams>
-                                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                <ext:Parameter Name="id" Value="record.data['classId']" Mode="Raw" />
                                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                                 <ext:Parameter Name="accessLevel" Value="record.data['accessLevel']" Mode="Raw" />
                                             </ExtraParams>
@@ -837,6 +859,7 @@
                                     </Model>
                                 </ext:Store>
                             </Store>
+                            
                             <Listeners>
 
                                 <Change Handler="App.direct.GetFilteredUsers();" />
@@ -856,13 +879,23 @@
                         <Click Handler="CheckSession(); if (!#{GroupUsersForm}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
-                        <Click OnEvent="SaveGroupUsers" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                        <Click OnEvent="SaveGroupUsers"   Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{GroupUsersWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{GroupUsersForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                               <ext:Parameter 
+                            Name="selectedUser"                                  
+                            Value="App.userSelector.toField.getStore().getRecordsValues()" 
+                            Mode="Raw" 
+                            Encode="true" />
+                       
+                  
+            
                             </ExtraParams>
+                            
                         </Click>
+                        
                     </DirectEvents>
                 </ext:Button>
                 <ext:Button ID="Button4" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">

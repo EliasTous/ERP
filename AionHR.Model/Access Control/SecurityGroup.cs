@@ -104,7 +104,9 @@ namespace AionHR.Model.Access_Control
         public string name { get; set; }
 
         public string sgId { get; set; }
-
+        public string className { get; set; }
+        public string moduleId { get; set; }
+        
 
         public ModuleClass() { }
         public ModuleClass(ModuleClassDefinition def)

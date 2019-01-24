@@ -25,5 +25,7 @@ namespace AionHR.Model.System
         public string description { get; set; }
         public bool predefined { get; set; }
 
+        public string name { get; set; }
+
     }
 }

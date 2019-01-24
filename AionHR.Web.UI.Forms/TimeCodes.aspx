@@ -55,14 +55,14 @@
                 <ext:Model ID="Model1" runat="server" >
                     <Fields>
 
-                        <ext:ModelField Name="edType" />                       
+                        <ext:ModelField Name="edType" />   
+                         <ext:ModelField Name="edTypeString" />                         
                         <ext:ModelField Name="timeCode" />
-                          <ext:ModelField Name="timeCodeString" />
+                          <ext:ModelField Name="name" />
                           <ext:ModelField Name="edId" />
                           <ext:ModelField Name="apId" />
                            <ext:ModelField Name="edName" />
                            <ext:ModelField Name="apName" />
-                           <ext:ModelField Name="edTypeString" />
                           <ext:ModelField Name="gracePeriod" />
 
 
@@ -165,10 +165,10 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                              <ext:Column    CellCls="cellLink" ID="ColEdType" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldType%>" DataIndex="edTypeString" Flex="1" Visible="false">
+                              <ext:Column    CellCls="cellLink" ID="ColEdType" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldType%>" DataIndex="edtype" Flex="1" Visible="false">
                     
                                 </ext:Column>
-                            <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeCode%>" DataIndex="timeCodeString" Flex="2" Hideable="false">
+                            <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeCode%>" DataIndex="name" Flex="2" Hideable="false">
                     
                                 </ext:Column>
                                

@@ -79,6 +79,8 @@
     <Compile Include="Company\Structure\LegalReference.cs" />
     <Compile Include="Dashboard\CompanyRTW.cs" />
     <Compile Include="Dashboard\Dashboard.cs" />
+    <Compile Include="Dashboard\DashboardAlertItem.cs" />
+    <Compile Include="Dashboard\DashboardBranchAvailability.cs" />
     <Compile Include="Dashboard\DashBoardCH.cs" />
     <Compile Include="Dashboard\DashBoardDO.cs" />
     <Compile Include="Dashboard\DashBoardLE.cs" />
@@ -139,12 +141,14 @@
     <Compile Include="HelpFunction\BenefitAcquisitionAcquisitionRate.cs" />
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
     <Compile Include="Reports\RT803.cs" />
+    <Compile Include="Reports\RT804.cs" />
     <Compile Include="SelfService\EmployeePayrollSelfService.cs" />
     <Compile Include="SelfService\FlatScheduleSelfService.cs" />
     <Compile Include="SelfService\SelfServiceResetPassword.cs" />
     <Compile Include="SelfService\TimeVariationSelfService.cs" />
     <Compile Include="SelfService\UserInfoSelfService.cs" />
     <Compile Include="System\ResetPassword.cs" />
+    <Compile Include="System\XMLDictionary.cs" />
     <Compile Include="TimeAttendance\MailFlatShedule.cs" />
     <Compile Include="HelpFunction\PayrollExport.cs" />
     <Compile Include="HelpFunction\SynchronizeAttendanceDay.cs" />
