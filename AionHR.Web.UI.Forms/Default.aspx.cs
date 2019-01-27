@@ -313,7 +313,7 @@ namespace AionHR.Web.UI.Forms
                     return nodes.ToJson();
                 case 7:
                     nodes = TreeBuilder.Instance.BuildSelftService(commonTree.Root);
-                    tabHome.Loader.Url = "Dashboard.aspx";
+                    tabHome.Loader.Url = "BlankPage.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 case 8:

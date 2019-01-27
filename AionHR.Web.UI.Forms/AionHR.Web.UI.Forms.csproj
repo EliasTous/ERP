@@ -172,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminDocuments.aspx" />
+    <Content Include="BlankPage.aspx" />
     <Content Include="BusinessPartnerCategories.aspx" />
     <Content Include="BusinessPartneres.aspx" />
     <Content Include="CompanyNews.aspx" />
@@ -190,6 +191,7 @@
     <Content Include="Scripts\SystemDefaults.js" />
     <Content Include="SelfServiceResetPasswords.aspx" />
     <Content Include="Tasks.aspx" />
+    <Content Include="TimeApprovalsSelfServices.aspx" />
     <Content Include="TimeAttendanceApprovals.aspx" />
     <Content Include="TimeAttendanceViewSelfServices.aspx" />
     <Content Include="TimeVariationSelfServices.aspx" />
@@ -623,6 +625,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModuleIDs.resx</DependentUpon>
     </Compile>
+    <Compile Include="BlankPage.aspx.cs">
+      <DependentUpon>BlankPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlankPage.aspx.designer.cs">
+      <DependentUpon>BlankPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BusinessPartnerCategories.aspx.cs">
       <DependentUpon>BusinessPartnerCategories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -735,6 +744,13 @@
     </Compile>
     <Compile Include="Tasks.aspx.designer.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TimeApprovalsSelfServices.aspx.cs">
+      <DependentUpon>TimeApprovalsSelfServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeApprovalsSelfServices.aspx.designer.cs">
+      <DependentUpon>TimeApprovalsSelfServices.aspx</DependentUpon>
     </Compile>
     <Compile Include="TimeAttendanceApprovals.aspx.cs">
       <DependentUpon>TimeAttendanceApprovals.aspx</DependentUpon>
@@ -2661,6 +2677,8 @@
     </Content>
     <Content Include="App_LocalResources\SelfServiceResetPasswords.aspx.ar.resx" />
     <Content Include="App_LocalResources\SelfServiceResetPasswords.aspx.resx" />
+    <Content Include="App_LocalResources\TimeApprovalsSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TimeApprovalsSelfServices.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

@@ -3463,6 +3463,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Time Approvals .
+        /// </summary>
+        internal static string TimeApprovalsSelfService {
+            get {
+                return ResourceManager.GetString("TimeApprovalsSelfService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time Attendance.
         /// </summary>
         internal static string TimeAttendance {

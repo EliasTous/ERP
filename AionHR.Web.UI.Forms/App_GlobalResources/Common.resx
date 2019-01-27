@@ -1368,4 +1368,7 @@
   <data name="FieldLanguage" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="TimeApprovalsSelfService" xml:space="preserve">
+    <value>Time Approvals </value>
+  </data>
 </root>

@@ -117,154 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>الحضور التفصيلي </value>
+  <data name="approveAll" xml:space="preserve">
+    <value>موافقة الكل </value>
   </data>
-  <data name="xrLabel10.Text" xml:space="preserve">
-    <value>xrLabel10</value>
+  <data name="EditWindowsTimeApproval" xml:space="preserve">
+    <value>التعميد</value>
   </data>
-  <data name="xrLabel11.Text2" xml:space="preserve">
-    <value>القسم </value>
+  <data name="FieldApproverName" xml:space="preserve">
+    <value>المعمد</value>
   </data>
-  <data name="xrLabel2.Text" xml:space="preserve">
-    <value>من : </value>
+  <data name="FieldClockDuration" xml:space="preserve">
+    <value>فرق التوقيت عن جهاز البصمة</value>
   </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>الى : </value>
+  <data name="FielddamageLevel" xml:space="preserve">
+    <value>مستوى الضرر</value>
   </data>
-  <data name="xrLabel4.Text" xml:space="preserve">
-    <value>xrLabel4</value>
+  <data name="FieldDate" xml:space="preserve">
+    <value>التاريخ</value>
   </data>
-  <data name="xrLabel5.Text" xml:space="preserve">
-    <value>xrLabel5</value>
+  <data name="FieldDuration" xml:space="preserve">
+    <value>المدة</value>
   </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>الفرع </value>
+  <data name="FieldEmployeeName" xml:space="preserve">
+    <value>الموظف</value>
   </data>
-  <data name="xrLabel9.Text" xml:space="preserve">
-    <value>من قبل : </value>
+  <data name="FieldName" xml:space="preserve">
+    <value>الاسم</value>
   </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>صفحة {0} من {1}</value>
+  <data name="FieldNotes" xml:space="preserve">
+    <value>ملاحظات</value>
   </data>
-  <data name="xrTableCell1.Text" xml:space="preserve">
-    <value>xrTableCell1</value>
+  <data name="FieldShift" xml:space="preserve">
+    <value>الدوام</value>
   </data>
-  <data name="xrTableCell10.Text" xml:space="preserve">
-    <value>xrTableCell10</value>
+  <data name="FieldshiftEnd" xml:space="preserve">
+    <value>نهاية الدوام</value>
   </data>
-  <data name="xrTableCell11.Text" xml:space="preserve">
-    <value>نهاية اليوم</value>
+  <data name="FieldshiftStart" xml:space="preserve">
+    <value>بداية الدوام </value>
   </data>
-  <data name="xrTableCell12.Text" xml:space="preserve">
-    <value>xrTableCell12</value>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>الحالة</value>
   </data>
-  <data name="xrTableCell13.Text" xml:space="preserve">
-    <value>اول دخول</value>
+  <data name="FieldTimeCode" xml:space="preserve">
+    <value>نوع الغياب</value>
   </data>
-  <data name="xrTableCell14.Text" xml:space="preserve">
-    <value>xrTableCell14</value>
+  <data name="rejectAll" xml:space="preserve">
+    <value>رفض الكل</value>
   </data>
-  <data name="xrTableCell16.Text" xml:space="preserve">
-    <value>xrTableCell16</value>
+  <data name="Time" xml:space="preserve">
+    <value>الدوام</value>
   </data>
-  <data name="xrTableCell17.Text" xml:space="preserve">
-    <value>اخر خروج</value>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>مقبولة</value>
   </data>
-  <data name="xrTableCell18.Text" xml:space="preserve">
-    <value>xrTableCell18</value>
+  <data name="FieldEHStatus" xml:space="preserve">
+    <value>نوع التوظيف</value>
   </data>
-  <data name="xrTableCell19.Text" xml:space="preserve">
-    <value>في اجازة</value>
+  <data name="FieldNew" xml:space="preserve">
+    <value>جديد</value>
   </data>
-  <data name="xrTableCell2.Text" xml:space="preserve">
-    <value>xrTableCell2</value>
+  <data name="FieldRefused" xml:space="preserve">
+    <value>مرفوضة</value>
   </data>
-  <data name="xrTableCell20.Text" xml:space="preserve">
-    <value>xrTableCell20</value>
+  <data name="DamageWITHOUT_DAMAGE" xml:space="preserve">
+    <value>بدون ضرر</value>
   </data>
-  <data name="xrTableCell21.Text" xml:space="preserve">
-    <value>اجازة مدفوعة</value>
-  </data>
-  <data name="xrTableCell22.Text" xml:space="preserve">
-    <value>xrTableCell22</value>
-  </data>
-  <data name="xrTableCell23.Text" xml:space="preserve">
-    <value>اجازات غير مدفوعة</value>
-  </data>
-  <data name="xrTableCell24.Text" xml:space="preserve">
-    <value>xrTableCell24</value>
-  </data>
-  <data name="xrTableCell25.Text" xml:space="preserve">
-    <value>اجازات مدفوعة</value>
-  </data>
-  <data name="xrTableCell27.Text" xml:space="preserve">
-    <value>مغادرة خلال يوم العمل</value>
-  </data>
-  <data name="xrTableCell28.Text" xml:space="preserve">
-    <value>xrTableCell28</value>
-  </data>
-  <data name="xrTableCell29.Text" xml:space="preserve">
-    <value>مغادرة خلال ساعات العمل</value>
-  </data>
-  <data name="xrTableCell3.Text" xml:space="preserve">
-    <value>xrTableCell3</value>
-  </data>
-  <data name="xrTableCell30.Text" xml:space="preserve">
-    <value>xrTableCell30</value>
-  </data>
-  <data name="xrTableCell31.Text" xml:space="preserve">
-    <value>لم يتم البصم</value>
-  </data>
-  <data name="xrTableCell32.Text" xml:space="preserve">
-    <value>xrTableCell32</value>
-  </data>
-  <data name="xrTableCell33.Text" xml:space="preserve">
-    <value>حضور متأخر</value>
-  </data>
-  <data name="xrTableCell34.Text" xml:space="preserve">
-    <value>xrTableCell34</value>
-  </data>
-  <data name="xrTableCell35.Text" xml:space="preserve">
-    <value>مغادرة خلال ساعات العمل</value>
-  </data>
-  <data name="xrTableCell36.Text" xml:space="preserve">
-    <value>xrTableCell36</value>
-  </data>
-  <data name="xrTableCell37.Text" xml:space="preserve">
-    <value>خروج مبكر</value>
-  </data>
-  <data name="xrTableCell38.Text" xml:space="preserve">
-    <value>xrTableCell38</value>
-  </data>
-  <data name="xrTableCell39.Text" xml:space="preserve">
-    <value>حضور مبكر</value>
-  </data>
-  <data name="xrTableCell4.Text" xml:space="preserve">
-    <value>xrTableCell4</value>
-  </data>
-  <data name="xrTableCell40.Text" xml:space="preserve">
-    <value>xrTableCell40</value>
-  </data>
-  <data name="xrTableCell41.Text" xml:space="preserve">
-    <value>عمل إضافي</value>
-  </data>
-  <data name="xrTableCell42.Text" xml:space="preserve">
-    <value>xrTableCell42</value>
-  </data>
-  <data name="xrTableCell5.Text" xml:space="preserve">
-    <value>xrTableCell5</value>
-  </data>
-  <data name="xrTableCell6.Text" xml:space="preserve">
-    <value>xrTableCell6</value>
-  </data>
-  <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>التاريخ </value>
-  </data>
-  <data name="xrTableCell8.Text" xml:space="preserve">
-    <value>xrTableCell8</value>
-  </data>
-  <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>بداية اليوم </value>
+  <data name="DamageWITH_DAMAGE" xml:space="preserve">
+    <value>تسبب ضرر</value>
   </data>
 </root>

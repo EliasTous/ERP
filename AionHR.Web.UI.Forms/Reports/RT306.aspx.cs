@@ -360,7 +360,7 @@ namespace AionHR.Web.UI.Forms.Reports
                          if (rtl)
                              x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
                          else
-                             x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
+                             x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("ddd  dd MMM yyyy ", new System.Globalization.CultureInfo("en-US"));
 
 
                      }

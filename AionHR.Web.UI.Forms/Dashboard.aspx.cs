@@ -2541,15 +2541,15 @@ namespace AionHR.Web.UI.Forms
                 else
                     request.entity.status = -1;
                 resp = _timeAttendanceService.ChildAddOrUpdate<Time>(request);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return;
+                }
             });
             TimeStore.Reload();
             BindAlerts();
         }
-        protected void batchReject(object sender, DirectEventArgs e)
-        {
-
-            //Reset all values of the relative object
-          
-        }
+      
     }
 }

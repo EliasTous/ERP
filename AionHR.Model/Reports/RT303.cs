@@ -15,7 +15,8 @@ namespace AionHR.Model.Reports
         public string employeeId { get; set; }
         public string dayId { get; set; }
         public short dow { get; set; }
-
+        public string departmentName { get; set; }
+        public string branchName { get; set; }
         public bool onLeave { get; set; }
         public bool paidLeave { get; set; }
         public string dayStart { get; set; }

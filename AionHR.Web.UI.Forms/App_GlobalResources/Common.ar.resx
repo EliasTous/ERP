@@ -1371,4 +1371,7 @@
   <data name="FieldLanguage" xml:space="preserve">
     <value>اللغة</value>
   </data>
+  <data name="TimeApprovalsSelfService" xml:space="preserve">
+    <value>تعميد الدوام</value>
+  </data>
 </root>

@@ -84,7 +84,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                    dateRange1.DefaultStartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                  //  dateRange1.DefaultStartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                     //FillReport(false, false);
                 }
                 catch { }
@@ -171,7 +171,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Add(employeeFilter.GetEmployee());
 
 
-            req.Add(dateRange1.GetRange());
+            req.Add(date1.GetDate());
 
             req.Add(jobInfo1.GetJobInfo());
 
@@ -186,14 +186,24 @@ namespace AionHR.Web.UI.Forms.Reports
             ListResponse<AionHR.Model.Reports.RT602> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT602>(req);
             if (!resp.Success)
             {
-            
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
-                    return;
+
+                throw new Exception(resp.Error);
+                    
                 
             }
 
+            resp.Items.ForEach(x =>
+            {
+                if (x.hireDate != null)
+                    x.hireDateString = x.hireDate.Value.ToString(_systemService.SessionHelper.GetDateformat());
+                else
+                    x.hireDateString = string.Empty;
+                if (x.lastReturnDate != null)
+                    x.lastReturnDateString = x.lastReturnDate.Value.ToString(_systemService.SessionHelper.GetDateformat());
+                else
+                    x.lastReturnDateString = string.Empty;
 
+            });
             LeaveBalance h = new LeaveBalance();
             h.DataSource = resp.Items;
 
@@ -201,11 +211,11 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
             
-            string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
-            string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            //string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            //string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             string user = _systemService.SessionHelper.GetCurrentUser();
-            h.Parameters["From"].Value = from;
-            h.Parameters["To"].Value = to;
+            //h.Parameters["From"].Value = from;
+            //h.Parameters["To"].Value = to;
             h.Parameters["User"].Value = user;
             if (resp.Items.Count > 0)
             {

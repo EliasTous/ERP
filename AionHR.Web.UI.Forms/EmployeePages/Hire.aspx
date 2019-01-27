@@ -123,7 +123,7 @@
                         </ext:DateField>
                                              <ext:DateField  LabelWidth="150" runat="server" AllowBlank="true" ID="termEndDate" Name="termEndDate" FieldLabel="<%$ Resources:FieldTermEndDate %>"></ext:DateField>
                                                <ext:DateField  LabelWidth="150" runat="server" AllowBlank="false" ID="pyActiveDate" Name="pyActiveDate" FieldLabel="<%$ Resources:pyActiveDate %>"></ext:DateField>
-                                             <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="languageId" AllowBlank="false" Name="languageId"  LabelWidth="150"
+                                             <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="languageId" AllowBlank="true" Name="languageId"  LabelWidth="150"
                                     SubmitValue="true"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources:Common, FieldLanguage%>">

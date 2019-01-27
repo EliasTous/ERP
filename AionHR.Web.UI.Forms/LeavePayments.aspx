@@ -30,13 +30,14 @@
 
     <script type="text/javascript" src="Scripts/locales/ar.js?id=7"></script>
     <script type="text/javascript">
-          String.prototype.replaceAll = function(search, replacement) {
+        String.prototype.replaceAll = function (search, replacement) {
             var target = this;
             return target.replace(new RegExp(search, 'g'), replacement);
         };
+
       
         function thousandSeparator(num) {
-
+            
            var nf = new Intl.NumberFormat();
 
             if (num != null)
@@ -51,7 +52,8 @@
        function removethousandSeparator() {
          
           //    App.ldValue.setValue(App.ldValue.getValue().replace(/\D/g, ''))
-              App.salary.setValue(App.salary.getValue().replace(/\D/g,''))
+           App.salary.setValue(App.salary.getValue().replace(/\D/g, ''))
+          // App.amount.setValue(App.amount.getValue().replaceAll("[^\\d.]", ""))
           
          
           
@@ -493,7 +495,7 @@
                                      </ext:TextField>
                                   <ext:TextField runat="server" ID="days" Name="days" FieldLabel="<%$ Resources: FieldDays %>"  MsgTarget="None">
                                       <Listeners  >
-                                         <Change Handler=" this.next().setValue((this.prev().value/30)*this.value);"   ></Change>
+                                         <Change Handler=" this.next().setValue((this.prev().getValue().replace(/\D/g,'')/30)*this.value);"   ></Change>
                                       </Listeners>
                                        <Validator Handler=" if(!isNaN(this.value)&&this.value>0 && this.value<= #{leaveBalance}.getValue()) return true;">
                                            
@@ -501,9 +503,13 @@
                               
                                       </ext:TextField>
                                 
-                                 <ext:NumberField runat="server" ReadOnly="true" ID="amount" Name="amount" FieldLabel="<%$ Resources: FieldAmount %>" AllowDecimals="false" AllowBlank="false" >
-                                   
-                                     </ext:NumberField>
+                                 <ext:TextField runat="server" ReadOnly="true" ID="amount" Name="amount" FieldLabel="<%$ Resources: FieldAmount %>"  AllowBlank="false" >
+                                     <%--<Listeners> 
+                                         <Change Handler="if (this.value!=null) this.setRawValue(thousandSeparator(this.value));" />
+                                                                                 
+                                    </Listeners>--%>
+                                     </ext:TextField>
+                                
                               
                               
 

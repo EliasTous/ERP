@@ -1,6 +1,7 @@
 ﻿using AionHR.Model.Access_Control;
 using AionHR.Model.Attributes;
 using AionHR.Model.Company.Structure;
+using AionHR.Model.Employees.Profile;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.CompanyStructure;
@@ -18,8 +19,10 @@ namespace AionHR.Web.UI.Forms.Reports
 {
     public partial class JobInfoFilter : System.Web.UI.UserControl
     {
+        string defaultDepartmentId, defaultBranchId, defaultDivisiontId; 
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+        IEmployeeService _employeeService= ServiceLocator.Current.GetInstance<IEmployeeService>();
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,10 +37,32 @@ namespace AionHR.Web.UI.Forms.Reports
         }
         private void FillJobInfo()
         {
-            FillDepartment();
-            FillPosition();
-            FillBranch();
-            FillDivision();
+            try
+            {
+                if (_systemService.SessionHelper.GetEmployeeId() != null)
+                {
+                    RecordRequest req = new RecordRequest();
+                    req.RecordID = _systemService.SessionHelper.GetEmployeeId();
+                    RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
+                    if (!response.Success)
+                        Common.errorMessage(response);
+
+                    if (response.result != null)
+                    {
+                        defaultDepartmentId = response.result.departmentId.ToString();
+                        defaultBranchId = response.result.branchId.ToString();
+                        defaultDivisiontId = response.result.divisionId.ToString();
+                    }
+
+                }
+                FillDepartment();
+                FillPosition();
+                FillBranch();
+                FillDivision();
+            }catch(Exception exp)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message);
+            }
 
         }
 
@@ -138,8 +163,17 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (udR.result == null || !udR.result.hasAccess)
             {
-                departmentId.Select(0);
-                departmentId.SetValue(resp.Items.Count != 0 ? resp.Items[0].recordId : null);
+                if (defaultDepartmentId == null)
+                {
+                    departmentId.Select(0);
+
+                    departmentId.SetValue(resp.Items.Count != 0 ? resp.Items[0].recordId : null);
+                }else
+                {
+                    departmentId.Select(defaultDepartmentId);
+
+                    departmentId.SetValue(defaultDepartmentId);
+                }
                 X.Call("setDepartmentAllowBlank", true);
             }
         }
@@ -162,8 +196,18 @@ namespace AionHR.Web.UI.Forms.Reports
             RecordResponse<UserDataAccess> udR = _accessControlService.ChildGetRecord<UserDataAccess>(ud);
             if (udR.result == null || !udR.result.hasAccess)
             {
-                branchId.Select(0);
-                branchId.SetValue(resp.Items.Count != 0 ? resp.Items[0].recordId : null);
+                if (defaultBranchId == null)
+                {
+                    branchId.Select(0);
+
+                    branchId.SetValue(resp.Items.Count != 0 ? resp.Items[0].recordId : null);
+                }
+                else
+                {
+                    branchId.Select(defaultBranchId);
+
+                    branchId.SetValue(defaultBranchId);
+                }
                 X.Call("setBranchAllowBlank", true);
             }
         }
@@ -187,8 +231,18 @@ namespace AionHR.Web.UI.Forms.Reports
             RecordResponse<UserDataAccess> udR = _accessControlService.ChildGetRecord<UserDataAccess>(ud);
             if (udR.result == null || !udR.result.hasAccess)
             {
-                divisionId.Select(0);
-                divisionId.SetValue(resp.Items.Count != 0 ? resp.Items[0].recordId : null);
+                if (defaultDivisiontId == null)
+                {
+                    divisionId.Select(0);
+
+                    divisionId.SetValue(resp.Items.Count != 0 ? resp.Items[0].recordId : null);
+                }
+                else
+                {
+                    divisionId.Select(defaultDivisiontId);
+
+                    divisionId.SetValue(defaultDivisiontId);
+                }
                 X.Call("setDivisionAllowBlank", true);
             }
         }

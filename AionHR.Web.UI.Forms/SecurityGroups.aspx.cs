@@ -450,6 +450,7 @@ namespace AionHR.Web.UI.Forms
                 resp.Items.ForEach(x =>
                 {
                     req1.entity = x;
+                    req1.entity.sgId = CurrentGroup.Text;
                     req1.entity.accessLevel = Convert.ToInt32(moduleAccessLevel.SelectedItem.Value);
                     resp1 = _accessControlService.ChildAddOrUpdate<ModuleClass>(req1);
 

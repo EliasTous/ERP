@@ -145,6 +145,7 @@
     <Compile Include="SelfService\EmployeePayrollSelfService.cs" />
     <Compile Include="SelfService\FlatScheduleSelfService.cs" />
     <Compile Include="SelfService\SelfServiceResetPassword.cs" />
+    <Compile Include="SelfService\TimeSelfService.cs" />
     <Compile Include="SelfService\TimeVariationSelfService.cs" />
     <Compile Include="SelfService\UserInfoSelfService.cs" />
     <Compile Include="System\ResetPassword.cs" />

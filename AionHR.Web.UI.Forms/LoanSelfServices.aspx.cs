@@ -180,29 +180,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        protected void addLoanType(object sender, DirectEventArgs e)
-        {
-            LoanType obj = new LoanType();
-            obj.name = ltId.Text;
-
-            PostRequest<LoanType> req = new PostRequest<LoanType>();
-            req.entity = obj;
-            PostResponse<LoanType> response = _loanService.ChildAddOrUpdate<LoanType>(req);
-            if (response.Success)
-            {
-                obj.recordId = response.recordId;
-                FillLoanType();
-                ltId.Select(obj.recordId);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                 Common.errorMessage(response);
-                return;
-            }
-
-
-        }
+       
         protected void addBranch(object sender, DirectEventArgs e)
         {
             Branch obj = new Branch();
@@ -763,7 +741,7 @@ namespace AionHR.Web.UI.Forms
           
             request.Size = e.Limit.ToString();
             request.StartAt = e.Start.ToString();
-            ListResponse<Loan> routers = _loanService.GetAll<Loan>(request);
+            ListResponse<loanSelfService> routers = _selfServiceService.ChildGetAll<loanSelfService>(request);
             if (!routers.Success)
             {
                 Common.errorMessage(routers);

@@ -64,20 +64,20 @@
                              
                                         <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:dateRange runat="server" ID="dateRange1" />
+                                              
+                                                  <uc:date runat="server" ID="date1"   />
                                             </Content>
                                         </ext:Container>
                                    <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                              
                                                 <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false" EnablePosition="false" />
                                             </Content>
                                         </ext:Container>
 
                                     <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                             
                                                 <uc:employeeCombo runat="server" ID="employeeFilter" />
                                             </Content>
                                         </ext:Container>
