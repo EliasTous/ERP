@@ -168,12 +168,7 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 if (throwException)
                     throw new Exception(resp.Error);
-                else
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
-                    return;
-                }
+               
             }
 
             YearsInService y = new YearsInService();
