@@ -177,7 +177,7 @@ namespace AionHR.Web.UI.Forms.Reports
             // req.Add(dateRange1.GetRange());
             //  req.Add(employeeCombo1.GetEmployee());
             req.Add(new BranchWorkforceParameterSet { goId = string.IsNullOrEmpty(goId.Value.ToString()) ? "0" : goId.Value.ToString(), asOfDate = date1.GetDate().Date });
-         
+            req.Add(esId.GetStatus());
 
 
 

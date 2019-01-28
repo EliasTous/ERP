@@ -181,6 +181,7 @@
     <Content Include="EmployeeComplaintSelfServices.aspx" />
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
+    <Content Include="Reports\Controls\EmploymentStatusFilter.ascx" />
     <Content Include="Reports\RT113.aspx" />
     <Content Include="Reports\RT114.aspx" />
     <Content Include="Reports\RT303.aspx" />
@@ -688,6 +689,13 @@
     </Compile>
     <Compile Include="ProcessNotifications.aspx.designer.cs">
       <DependentUpon>ProcessNotifications.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\EmploymentStatusFilter.ascx.cs">
+      <DependentUpon>EmploymentStatusFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\EmploymentStatusFilter.ascx.designer.cs">
+      <DependentUpon>EmploymentStatusFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT113.aspx.cs">
       <DependentUpon>RT113.aspx</DependentUpon>
