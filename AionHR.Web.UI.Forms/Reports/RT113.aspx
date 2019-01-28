@@ -98,7 +98,14 @@
                                    
                                  
                                 </ext:ComboBox>
-                                
+                                  <ext:ToolbarSeparator runat="server" />
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                <uc:EmploymentStatusControl runat="server" ID="esId"   />
+                                            </Content>
+                                        </ext:Container>
+                                <ext:ToolbarSeparator runat="server" />
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
