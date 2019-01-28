@@ -158,9 +158,9 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        
-   
-        private void FillReport(bool throwException=true)
+
+
+        private void FillReport(bool throwException = true)
         {
             ReportCompositeRequest req = GetRequest();
             ListResponse<AionHR.Model.Reports.RT104> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT104>(req);
@@ -171,7 +171,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 else
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
+                    Common.errorMessage(resp);
                     return;
                 }
             }
@@ -182,7 +182,16 @@ namespace AionHR.Web.UI.Forms.Reports
 
             List<AionHR.Model.Reports.RT104> reordered = resp.Items.Where(x => x.hiredMonth >= DateTime.Now.Month).ToList();
             reordered.AddRange(resp.Items.Where(x => x.hiredMonth < DateTime.Now.Month).OrderBy(h => h.hiredMonth).ToList());
-            reordered.ForEach(x => x.HiredMonthString = GetGlobalResourceObject("Common", new CultureInfo("en-US").DateTimeFormat.GetMonthName(x.hiredMonth)).ToString());
+            reordered.ForEach(x =>
+                {
+                    x.HiredMonthString = GetGlobalResourceObject("Common", new CultureInfo("en-US").DateTimeFormat.GetMonthName(x.hiredMonth)).ToString();
+                    if (x.hireDate != null)
+                        x.hireDateString = x.hireDate.Value.ToString(_systemService.SessionHelper.GetDateformat());
+                    else
+                        x.hireDateString = string.Empty;
+
+
+                });
             y.DataSource = reordered;
             string user = _systemService.SessionHelper.GetCurrentUser();
             y.Parameters["User"].Value = user;

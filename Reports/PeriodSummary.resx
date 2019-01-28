@@ -832,7 +832,10 @@ Hours
     <value>60.66992, 23</value>
   </data>
   <data name="xrSummary1.FormatString" xml:space="preserve">
-    <value>{0:#}</value>
+    <value>{0:n0}</value>
+  </data>
+  <data name="xrLabel54.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel53.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -844,7 +847,10 @@ Hours
     <value>59.3748779, 23</value>
   </data>
   <data name="xrSummary2.FormatString" xml:space="preserve">
-    <value>{0:#}</value>
+    <value>{0:n0}</value>
+  </data>
+  <data name="xrLabel53.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel52.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -856,7 +862,10 @@ Hours
     <value>59.20215, 23</value>
   </data>
   <data name="xrSummary3.FormatString" xml:space="preserve">
-    <value>{0:#}</value>
+    <value>{0:n0}</value>
+  </data>
+  <data name="xrLabel52.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel51.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -868,7 +877,10 @@ Hours
     <value>109.234985, 23</value>
   </data>
   <data name="xrSummary4.FormatString" xml:space="preserve">
-    <value>{0:#}</value>
+    <value>{0:n0}</value>
+  </data>
+  <data name="xrLabel51.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel47.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -880,7 +892,10 @@ Hours
     <value>50.13965, 23</value>
   </data>
   <data name="xrSummary5.FormatString" xml:space="preserve">
-    <value>{0:#}</value>
+    <value>{0:n0}</value>
+  </data>
+  <data name="xrLabel47.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel43.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -892,7 +907,10 @@ Hours
     <value>47.70874, 23</value>
   </data>
   <data name="xrSummary6.FormatString" xml:space="preserve">
-    <value>{0:#}</value>
+    <value>{0:n0}</value>
+  </data>
+  <data name="xrLabel43.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel39.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -904,7 +922,10 @@ Hours
     <value>76.52661, 23</value>
   </data>
   <data name="xrSummary7.FormatString" xml:space="preserve">
-    <value>{0:#}</value>
+    <value>{0:n0}</value>
+  </data>
+  <data name="xrLabel39.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel38.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -916,7 +937,10 @@ Hours
     <value>76.0415649, 23</value>
   </data>
   <data name="xrSummary8.FormatString" xml:space="preserve">
-    <value>{0:#}</value>
+    <value>{0:n0}</value>
+  </data>
+  <data name="xrLabel38.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel37.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -927,6 +951,9 @@ Hours
   <data name="xrLabel37.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>73.02063, 23</value>
   </data>
+  <data name="xrLabel37.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel35.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -935,6 +962,9 @@ Hours
   </data>
   <data name="xrLabel35.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>59.20215, 23</value>
+  </data>
+  <data name="xrLabel35.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel18.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -945,6 +975,9 @@ Hours
   <data name="xrLabel18.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>66.80652, 23</value>
   </data>
+  <data name="xrLabel18.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel7.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -953,6 +986,9 @@ Hours
   </data>
   <data name="xrLabel7.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>61.041748, 23</value>
+  </data>
+  <data name="xrLabel7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel5.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -973,7 +1009,7 @@ Hours
     <value>100</value>
   </data>
   <data name="ReportFooter.HeightF" type="System.Single, mscorlib">
-    <value>31.3333321</value>
+    <value>31.3333187</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
