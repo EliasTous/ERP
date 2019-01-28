@@ -27,7 +27,7 @@ namespace AionHR.Model.Reports
         public DateTime? hireDate { get; set; }
         public string hireDateString { get; set; }
 
-        public int indemnity { get; set; }
+        public double indemnity { get; set; }
 
         public double salary { get; set; }
 
