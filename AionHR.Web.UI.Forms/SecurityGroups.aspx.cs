@@ -1059,13 +1059,14 @@ namespace AionHR.Web.UI.Forms
             //classes.ForEach(x => { x.name = GetGlobalResourceObject("Classes", x.name).ToString(); x.classId = x.id; });
             AccessControlListRequest req = new AccessControlListRequest();
             req.GroupId = CurrentGroup.Text;
+            req.ModuleId =string.IsNullOrEmpty( CurrentModule.Text)?"0": CurrentModule.Text;
             ListResponse<ModuleClass> resp = _accessControlService.ChildGetAll<ModuleClass>(req);
             if (!resp.Success)
             {
                 Common.errorMessage(resp);
                 return;
             }
-        resp.Items=    resp.Items.Where(x => x.moduleId == CurrentModule.Text).ToList();
+      //  resp.Items=    resp.Items.Where(x => x.moduleId == CurrentModule.Text).ToList();
             //List<ModuleClass> finalClasses = new List<ModuleClass>();
 
 

@@ -513,7 +513,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", respons.ErrorCode) != null ? GetGlobalResourceObject("Errors", respons.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + respons.LogId : respons.Summary).Show();
+                        Common.errorMessage(respons);
                         return;
                     }
                     else
@@ -817,7 +817,7 @@ namespace AionHR.Web.UI.Forms
             if (!bodies.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", bodies.ErrorCode) != null ? GetGlobalResourceObject("Errors", bodies.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + bodies.LogId : bodies.Summary).Show();
+                Common.errorMessage(bodies);
                 return;
             }
             this.Store2.DataSource = bodies.Items;

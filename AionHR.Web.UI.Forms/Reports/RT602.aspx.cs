@@ -281,19 +281,26 @@ namespace AionHR.Web.UI.Forms.Reports
 
         private List<Employee> GetEmployeesFiltered(string query)
         {
+            try
+            {
+                EmployeeListRequest req = new EmployeeListRequest();
+                req.DepartmentId = "0";
+                req.BranchId = jobInfo1.GetJobInfo().BranchId.ToString();
+                req.IncludeIsInactive = 2;
+                req.SortBy = GetNameFormat();
 
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
+                req.StartAt = "1";
+                req.Size = "20";
+                req.Filter = query;
 
-            req.StartAt = "1";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
+                ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+                return response.Items;
+            }
+            catch(Exception exp)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message).Show();
+                return new List<Employee>();
+            }
         }
 
 
