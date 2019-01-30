@@ -21,7 +21,6 @@ namespace Reports
         private XRTableCell xrTableCell1;
         private XRTableCell xrTableCell2;
         private XRTableCell xrTableCell3;
-        private XRTableCell xrTableCell4;
         private XRTableCell xrTableCell5;
         private XRTableCell xrTableCell6;
         private XRTableCell xrTableCell7;
@@ -32,7 +31,6 @@ namespace Reports
         private XRLabel xrLabel2;
         private XRLabel xrLabel3;
         private XRLabel xrLabel4;
-        private XRLabel xrLabel5;
         private XRLabel xrLabel6;
         private XRLabel xrLabel7;
         private XRLabel xrLabel8;
@@ -115,7 +113,6 @@ namespace Reports
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -127,7 +124,6 @@ namespace Reports
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
@@ -190,7 +186,6 @@ namespace Reports
             this.xrTableCell1,
             this.xrTableCell2,
             this.xrTableCell3,
-            this.xrTableCell4,
             this.xrTableCell5,
             this.xrTableCell6,
             this.xrTableCell7,
@@ -218,13 +213,6 @@ namespace Reports
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "branchName")});
             resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             this.xrTableCell3.Name = "xrTableCell3";
-            // 
-            // xrTableCell4
-            // 
-            this.xrTableCell4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "divisionName")});
-            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
-            this.xrTableCell4.Name = "xrTableCell4";
             // 
             // xrTableCell5
             // 
@@ -273,7 +261,6 @@ namespace Reports
             this.xrLabel2,
             this.xrLabel3,
             this.xrLabel4,
-            this.xrLabel5,
             this.xrLabel6,
             this.xrLabel7,
             this.xrLabel8});
@@ -310,13 +297,6 @@ namespace Reports
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.StyleName = "FieldCaption";
-            // 
-            // xrLabel5
-            // 
-            resources.ApplyResources(this.xrLabel5, "xrLabel5");
-            this.xrLabel5.Name = "xrLabel5";
-            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.StyleName = "FieldCaption";
             // 
             // xrLabel6
             // 
