@@ -427,6 +427,7 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel27.Name = "xrLabel27";
             this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel27.StyleName = "Title";
+            this.xrLabel27.StylePriority.UseTextAlignment = false;
             // 
             // Title
             // 
@@ -553,18 +554,21 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel17, "xrLabel17");
             this.xrLabel17.Name = "xrLabel17";
             this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel17.StylePriority.UseFont = false;
             // 
             // xrLabel19
             // 
             resources.ApplyResources(this.xrLabel19, "xrLabel19");
             this.xrLabel19.Name = "xrLabel19";
             this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel19.StylePriority.UseFont = false;
             // 
             // xrLabel28
             // 
             resources.ApplyResources(this.xrLabel28, "xrLabel28");
             this.xrLabel28.Name = "xrLabel28";
             this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel28.StylePriority.UseFont = false;
             // 
             // xrLabel29
             // 
@@ -573,12 +577,14 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel29, "xrLabel29");
             this.xrLabel29.Name = "xrLabel29";
             this.xrLabel29.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel29.StylePriority.UseFont = false;
             // 
             // xrLabel21
             // 
             resources.ApplyResources(this.xrLabel21, "xrLabel21");
             this.xrLabel21.Name = "xrLabel21";
             this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel21.StylePriority.UseFont = false;
             // 
             // xrLabel25
             // 
@@ -587,6 +593,7 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel25, "xrLabel25");
             this.xrLabel25.Name = "xrLabel25";
             this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel25.StylePriority.UseFont = false;
             // 
             // xrLine2
             // 

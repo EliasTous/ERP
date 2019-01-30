@@ -32,7 +32,6 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel4;
     private XRLabel xrLabel3;
     private XRLabel xrLabel2;
-    private XRLabel xrLabel1;
     private XRLabel xrLabel16;
     private XRLabel xrLabel15;
     private XRLabel xrLabel14;
@@ -68,7 +67,6 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel28;
     private XRLabel xrLabel32;
     private XRLabel xrLabel31;
-    private XRLabel xrLabel34;
     private XRLabel xrLabel33;
     private XRLabel xrLabel36;
     private XRLabel xrLabel35;
@@ -76,6 +74,8 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel38;
     private XRLabel xrLabel37;
     private XRLabel xrLabel40;
+    private XRLabel xrLabel34;
+    private XRLabel xrLabel1;
 
     /// <summary>
     /// Required designer variable.
@@ -117,7 +117,6 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel40 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel39 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel36 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel34 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel32 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
@@ -126,7 +125,6 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.groupHeaderBand1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
@@ -179,7 +177,9 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
             this.From = new DevExpress.XtraReports.Parameters.Parameter();
             this.To = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel34 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -187,10 +187,11 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel1,
+            this.xrLabel34,
             this.xrLabel40,
             this.xrLabel39,
             this.xrLabel36,
-            this.xrLabel34,
             this.xrLabel32,
             this.xrLabel8,
             this.xrLabel7,
@@ -198,8 +199,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel5,
             this.xrLabel4,
             this.xrLabel3,
-            this.xrLabel2,
-            this.xrLabel1});
+            this.xrLabel2});
             resources.ApplyResources(this.Detail, "Detail");
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -213,6 +213,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel40, "xrLabel40");
             this.xrLabel40.Name = "xrLabel40";
             this.xrLabel40.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel40.StylePriority.UseFont = false;
             this.xrLabel40.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel39
@@ -222,6 +223,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel39, "xrLabel39");
             this.xrLabel39.Name = "xrLabel39";
             this.xrLabel39.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel39.StylePriority.UseFont = false;
             this.xrLabel39.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel36
@@ -231,16 +233,8 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel36, "xrLabel36");
             this.xrLabel36.Name = "xrLabel36";
             this.xrLabel36.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel36.StylePriority.UseFont = false;
             this.xrLabel36.StylePriority.UseTextAlignment = false;
-            // 
-            // xrLabel34
-            // 
-            this.xrLabel34.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "leavePeriod")});
-            resources.ApplyResources(this.xrLabel34, "xrLabel34");
-            this.xrLabel34.Name = "xrLabel34";
-            this.xrLabel34.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel34.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel32
             // 
@@ -249,6 +243,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel32, "xrLabel32");
             this.xrLabel32.Name = "xrLabel32";
             this.xrLabel32.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel32.StylePriority.UseFont = false;
             this.xrLabel32.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel8
@@ -258,6 +253,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel8, "xrLabel8");
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel8.StylePriority.UseFont = false;
             this.xrLabel8.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel7
@@ -267,6 +263,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel7, "xrLabel7");
             this.xrLabel7.Name = "xrLabel7";
             this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel7.StylePriority.UseFont = false;
             this.xrLabel7.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel6
@@ -276,6 +273,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel6, "xrLabel6");
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel6.StylePriority.UseFont = false;
             this.xrLabel6.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel5
@@ -285,6 +283,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel5, "xrLabel5");
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel4
@@ -294,6 +293,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel4, "xrLabel4");
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel3
@@ -303,6 +303,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel3, "xrLabel3");
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel3.StylePriority.UseFont = false;
             this.xrLabel3.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel2
@@ -312,16 +313,8 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel2, "xrLabel2");
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.StylePriority.UseFont = false;
             this.xrLabel2.StylePriority.UseTextAlignment = false;
-            // 
-            // xrLabel1
-            // 
-            this.xrLabel1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "justification")});
-            resources.ApplyResources(this.xrLabel1, "xrLabel1");
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.StylePriority.UseTextAlignment = false;
             // 
             // TopMargin
             // 
@@ -362,6 +355,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel38, "xrLabel38");
             this.xrLabel38.Name = "xrLabel38";
             this.xrLabel38.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel38.StylePriority.UseFont = false;
             this.xrLabel38.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel37
@@ -369,6 +363,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel37, "xrLabel37");
             this.xrLabel37.Name = "xrLabel37";
             this.xrLabel37.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel37.StylePriority.UseFont = false;
             this.xrLabel37.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel35
@@ -376,6 +371,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel35, "xrLabel35");
             this.xrLabel35.Name = "xrLabel35";
             this.xrLabel35.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel35.StylePriority.UseFont = false;
             this.xrLabel35.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel33
@@ -383,6 +379,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel33, "xrLabel33");
             this.xrLabel33.Name = "xrLabel33";
             this.xrLabel33.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel33.StylePriority.UseFont = false;
             this.xrLabel33.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel31
@@ -390,6 +387,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel31, "xrLabel31");
             this.xrLabel31.Name = "xrLabel31";
             this.xrLabel31.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel31.StylePriority.UseFont = false;
             this.xrLabel31.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel16
@@ -397,6 +395,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel16, "xrLabel16");
             this.xrLabel16.Name = "xrLabel16";
             this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel16.StylePriority.UseFont = false;
             this.xrLabel16.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel15
@@ -404,6 +403,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel15, "xrLabel15");
             this.xrLabel15.Name = "xrLabel15";
             this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel15.StylePriority.UseFont = false;
             this.xrLabel15.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel14
@@ -411,6 +411,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel14, "xrLabel14");
             this.xrLabel14.Name = "xrLabel14";
             this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel14.StylePriority.UseFont = false;
             this.xrLabel14.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel13
@@ -418,6 +419,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel13, "xrLabel13");
             this.xrLabel13.Name = "xrLabel13";
             this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel13.StylePriority.UseFont = false;
             this.xrLabel13.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel12
@@ -425,6 +427,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel12, "xrLabel12");
             this.xrLabel12.Name = "xrLabel12";
             this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel12.StylePriority.UseFont = false;
             this.xrLabel12.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel11
@@ -432,6 +435,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel11, "xrLabel11");
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel11.StylePriority.UseFont = false;
             this.xrLabel11.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel10
@@ -439,6 +443,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel10, "xrLabel10");
             this.xrLabel10.Name = "xrLabel10";
             this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel10.StylePriority.UseFont = false;
             this.xrLabel10.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel9
@@ -446,6 +451,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel9, "xrLabel9");
             this.xrLabel9.Name = "xrLabel9";
             this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel9.StylePriority.UseFont = false;
             this.xrLabel9.StylePriority.UseTextAlignment = false;
             // 
             // groupHeaderBand2
@@ -524,6 +530,7 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel30.Name = "xrLabel30";
             this.xrLabel30.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel30.StyleName = "Title";
+            this.xrLabel30.StylePriority.UseTextAlignment = false;
             // 
             // Title
             // 
@@ -723,10 +730,30 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             this.To.Name = "To";
             this.To.Visible = false;
             // 
+            // xrLabel34
+            // 
+            this.xrLabel34.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "leaveDays")});
+            resources.ApplyResources(this.xrLabel34, "xrLabel34");
+            this.xrLabel34.Name = "xrLabel34";
+            this.xrLabel34.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel34.StylePriority.UseFont = false;
+            this.xrLabel34.StylePriority.UseTextAlignment = false;
+            // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT601);
             this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "destination")});
+            resources.ApplyResources(this.xrLabel1, "xrLabel1");
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
             // 
             // LeaveList
             // 
