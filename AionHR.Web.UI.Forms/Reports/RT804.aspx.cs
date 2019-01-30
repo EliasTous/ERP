@@ -195,7 +195,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Size = "100";
             req.StartAt = "1";
             req.Filter = query;
-
+            req.SortBy = "fullName";
 
             req.DepartmentId = "0";
             req.PositionId = "0";

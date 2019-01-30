@@ -553,7 +553,7 @@
                                         <ext:ComboBox StoreID="modulesStore"   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="modulesCombo"  EmptyText="<%$ Resources:SelectModule%>" SubmitValue="true" SimpleSubmit="true">
       
             <Listeners>
-                   <Select Handler="App.CurrentModule.setValue( this.value); App.classesStore.reload(); " />
+                   <Select Handler="App.CurrentModule.setValue(this.value); App.classesStore.reload(); " />
             </Listeners>
 
 
@@ -619,7 +619,7 @@
                                                 MenuDisabled="true"
                                                 Resizable="false">
 
-                                                <Renderer Handler="var r = record.data['accessLevel']<1?'&nbsp;&nbsp;&nbsp;&nbsp;':propertiesRender();return classRender()+'&nbsp;&nbsp;'+ r; " />
+                                                <Renderer Handler="var r = record.data['accessLevel']<1?'&nbsp;&nbsp;&nbsp;&nbsp;':propertiesRender();return classRender(); " />
                                             </ext:Column>
 
                                         </Columns>

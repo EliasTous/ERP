@@ -46,7 +46,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             req.DepartmentId =  "0";
             req.PositionId = "0";
             req.BranchId =  "0";
-           
+            req.SortBy = "fullName";
             ListResponse<UserInfo> users = _systemService.ChildGetAll<UserInfo>(req);
             return users.Items;
         }

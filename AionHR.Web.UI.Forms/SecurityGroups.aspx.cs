@@ -407,9 +407,12 @@ namespace AionHR.Web.UI.Forms
             ModuleClass m = JsonConvert.DeserializeObject<ModuleClass>(e.ExtraParams["values"]);
 
             PostRequest<ModuleClass> req = new PostRequest<ModuleClass>();
-            req.entity = m;
             m.classId = CurrentClass.Text; ;
             m.sgId = CurrentGroup.Text;
+            m.moduleId = CurrentModule.Text;
+            req.entity = m;
+           
+           
             PostResponse<ModuleClass> resp = _accessControlService.ChildAddOrUpdate<ModuleClass>(req);
 
             if (!resp.Success)
@@ -437,6 +440,7 @@ namespace AionHR.Web.UI.Forms
             {
                 AccessControlListRequest req = new AccessControlListRequest();
                 req.GroupId = CurrentGroup.Text;
+                req.ModuleId = CurrentModule.Text;
                 ListResponse<ModuleClass> resp = _accessControlService.ChildGetAll<ModuleClass>(req);
                 if (!resp.Success)
                 {
@@ -728,6 +732,7 @@ namespace AionHR.Web.UI.Forms
             string level = e.ExtraParams["accessLevel"];
             CurrentClass.Text = id.ToString();
             CurrentClassLevel.Text = level;
+            
             switch (type)
             {
 
@@ -1005,7 +1010,7 @@ namespace AionHR.Web.UI.Forms
             req.Size = "100";
             req.StartAt = "1";
             req.Filter = "";
-
+            req.SortBy = "fullName";
             var s = jobInfo1.GetJobInfo();
             req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.ToString() : "0";
             req.PositionId = s.PositionId.HasValue ? s.PositionId.ToString() : "0";

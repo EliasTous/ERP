@@ -206,7 +206,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.DepartmentId = "0";
             req.PositionId = "0";
             req.BranchId = "0";
-
+            req.SortBy = "fullName";
             req.Filter = query;
 
             ListResponse<UserInfo> users = _systemService.ChildGetAll<UserInfo>(req);

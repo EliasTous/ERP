@@ -37,6 +37,11 @@ namespace AionHR.Services.Messaging.TimeAttendance
                     PositionId = 0;
                 if (EsId == null)
                     EsId = 0;
+                if (StartAt == null)
+                    StartAt = "0";
+                if (Size == null)
+                    Size = "1000";
+
 
                 parameters = base.Parameters;
                 parameters.Add("_approverId", approverId.ToString());
@@ -56,11 +61,11 @@ namespace AionHR.Services.Messaging.TimeAttendance
                 parameters.Add("_positionId", PositionId.ToString());
                 if (string.IsNullOrEmpty(sortBy))
                     parameters.Add("_sortBy", "dayId");
-                if(string.IsNullOrEmpty(StartAt))
-                    
-                parameters.Add("_startAt", "0");
-                if (string.IsNullOrEmpty(Size))
-                    parameters.Add("_size", "1000");
+                //if(string.IsNullOrEmpty(StartAt))
+                //    if(parameters.get
+                //parameters.Add("_startAt", "0");
+                //if (string.IsNullOrEmpty(Size))
+                //    parameters.Add("_size", "1000");
                 return parameters;
             }
         }

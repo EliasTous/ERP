@@ -33,8 +33,8 @@ namespace Reports.EmployeePayRoll
                     employee.FirstOrDefault().idRef, employee.FirstOrDefault().netSalary
                  /*  Convert.ToDecimal(employee.FirstOrDefault().basicAmount + benifits.Sum(u => u.edAmount) - deductions.Sum(u => u.edAmount))*/,
                     employee.FirstOrDefault().workingDays,
-                   Convert.ToDecimal(benifits.Sum(u => u.edAmount)),
-                    Convert.ToDecimal(deductions.Sum(u => u.edAmount)),
+                   Convert.ToDecimal(benifits.Sum(u => u.edAmount)+employee.FirstOrDefault().basicAmount),
+                    Convert.ToDecimal(deductions.Sum(u => u.edAmount)+employee.FirstOrDefault().essAmount),
                     NumberToWords.multiLingualNumberInText(Convert.ToDecimal(employee.FirstOrDefault().netSalary), (short)employee.FirstOrDefault().currencyProfileId, isArabic),
                     employee.FirstOrDefault().departmentName,
                     employee.FirstOrDefault().positionName

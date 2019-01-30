@@ -323,11 +323,11 @@ namespace AionHR.Web.UI.Forms.Reports
                     req.approverId = Convert.ToInt32(approverId.Value.ToString());
 
 
-                ListResponse<AionHR.Model.Reports.RT307> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT307>(req);
+                ListResponse<AionHR.Model.Reports.RT307> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT307> (req);
                 if (!resp.Success)
                 {
-                    Common.errorMessage(resp);
-                    return;
+                    throw new Exception(resp.Error);
+                    
                 }
                 //bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
                 //resp.Items.ForEach(

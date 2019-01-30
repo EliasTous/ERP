@@ -487,7 +487,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 : Fill The object and insert in the store 
                 PostRequest<FiscalYear> request = new PostRequest<FiscalYear>();
                 request.entity = b;
-                if (b.startDate > b.endDate || b.startDate.Year != b.endDate.Year)
+                if (b.startDate > b.endDate)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorStartEnd").ToString()).Show();

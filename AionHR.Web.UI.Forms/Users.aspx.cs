@@ -391,7 +391,7 @@ namespace AionHR.Web.UI.Forms
             req.DepartmentId = "0";
             req.PositionId = "0";
             req.BranchId = "0";
-
+            req.SortBy = "fullName";
 
             ListResponse<UserInfo> response = _systemService.ChildGetAll<UserInfo>(req);
             data = response.Items;
