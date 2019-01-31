@@ -44,7 +44,6 @@ public class Hirings : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel16;
     private XRLabel xrLabel10;
     private XRRichText xrRichText1;
-    private XRLine xrLine1;
 
     /// <summary>
     /// Required designer variable.
@@ -114,7 +113,6 @@ public class Hirings : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
-            this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
             this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
             this.From = new DevExpress.XtraReports.Parameters.Parameter();
             this.To = new DevExpress.XtraReports.Parameters.Parameter();
@@ -432,17 +430,11 @@ public class Hirings : DevExpress.XtraReports.UI.XtraReport
             // PageHeader
             // 
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLine1,
             this.xrRichText1});
             resources.ApplyResources(this.PageHeader, "PageHeader");
             this.PageHeader.Name = "PageHeader";
             this.PageHeader.StyleName = "PageInfo";
             this.PageHeader.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.PageHeader_BeforePrint);
-            // 
-            // xrLine1
-            // 
-            resources.ApplyResources(this.xrLine1, "xrLine1");
-            this.xrLine1.Name = "xrLine1";
             // 
             // xrRichText1
             // 

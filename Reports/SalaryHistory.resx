@@ -292,10 +292,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>10.00001, 32.99999</value>
+    <value>10.0000067, 32.9999924</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>264.9529, 34.99999</value>
+    <value>254.952789, 34.9999924</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>Payment Frequency</value>
@@ -304,7 +304,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>274.9529, 32.99999</value>
+    <value>264.95285, 32.99999</value>
   </data>
   <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>117.7655, 34.99999</value>
@@ -316,10 +316,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>392.7184, 32.99999</value>
+    <value>382.718536, 32.99999</value>
   </data>
   <data name="xrLabel4.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>160.4816, 34.99999</value>
+    <value>170.481415, 34.99999</value>
   </data>
   <data name="xrLabel4.Text" xml:space="preserve">
     <value>Salary Type</value>
@@ -340,7 +340,7 @@
     <value>100</value>
   </data>
   <data name="groupHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>67.99998</value>
+    <value>67.9999847</value>
   </data>
   <data name="xrLine1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
