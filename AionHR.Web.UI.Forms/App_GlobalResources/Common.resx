@@ -1371,4 +1371,7 @@
   <data name="TimeApprovalsSelfService" xml:space="preserve">
     <value>Time Approvals </value>
   </data>
+  <data name="Module" xml:space="preserve">
+    <value>s</value>
+  </data>
 </root>

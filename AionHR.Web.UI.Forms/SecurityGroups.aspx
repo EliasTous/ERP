@@ -541,15 +541,13 @@
                             <TopBar>
                                 <ext:Toolbar runat="server">
                                     <Items>
-                                      <%--  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Editable="false" ID="modulesCombo" ValueField="id" DisplayField="name" FieldLabel="<%$ Resources:SelectModule%>">
-                                            <Listeners>
-                                                
-                                                <Select Handler="App.CurrentModule.value = this.value; App.classesStore.reload(); " />
-                                            </Listeners>
-                                       
-
-                                        </ext:ComboBox>--%>
-
+                                        <ext:Container runat="server" Layout="FitLayout"  >
+                                    <Content>
+                                        <uc:moduleCombo runat="server" ID="modulesCombo1" />
+                                    </Content>
+                                </ext:Container>
+                                    
+<%--
                                         <ext:ComboBox StoreID="modulesStore"   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="modulesCombo"  EmptyText="<%$ Resources:SelectModule%>" SubmitValue="true" SimpleSubmit="true">
       
             <Listeners>
@@ -557,7 +555,7 @@
             </Listeners>
 
 
-        </ext:ComboBox>
+        </ext:ComboBox>--%>
 
                                         <ext:Button runat="server" Icon="ApplicationSideExpand" ToolTip="<%$ Resources:ApplyModule%>" ID="openModuleLevelForm">
                                             <Listeners>

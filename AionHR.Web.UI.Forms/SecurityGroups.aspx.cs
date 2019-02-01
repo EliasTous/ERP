@@ -72,6 +72,7 @@ namespace AionHR.Web.UI.Forms
             if (!X.IsAjaxRequest && !IsPostBack)
             {
 
+                modulesCombo1.ADDHandler("select", "App.CurrentModule.setValue(this.value); App.classesStore.reload();");
                 SetExtLanguage();
                 HideShowButtons();
 
@@ -247,7 +248,7 @@ namespace AionHR.Web.UI.Forms
                         CurrentGroup.Text = b.recordId;
                         recordId.Text = b.recordId;
                         this.GroupWindow.Title = b.name;
-                        modulesCombo.Select(0);
+                   
                         classesStore.Reload();
                     }
                 }
@@ -766,7 +767,8 @@ namespace AionHR.Web.UI.Forms
                     masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("NoAccess").ToString(), "0"));
                     masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("Read").ToString(), "1"));
                     int maxLevel = 1;
-                    if (modulesCombo.SelectedItem.Value != "80" && !id.ToString().EndsWith("99") && !id.ToString().EndsWith("98") && !id.ToString().EndsWith("97") && !id.ToString().EndsWith("96") && !id.ToString().EndsWith("95"))
+                    
+                    if (modulesCombo1.GetModuleId().ToString() != "80" && !id.ToString().EndsWith("99") && !id.ToString().EndsWith("98") && !id.ToString().EndsWith("97") && !id.ToString().EndsWith("96") && !id.ToString().EndsWith("95"))
                     {
 
                         masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("WriteClass").ToString(), "2"));

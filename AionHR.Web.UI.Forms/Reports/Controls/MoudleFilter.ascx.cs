@@ -1,4 +1,9 @@
-﻿using AionHR.Services.Messaging.Reports;
+﻿using AionHR.Model.System;
+using AionHR.Services.Interfaces;
+using AionHR.Services.Messaging;
+using AionHR.Services.Messaging.Reports;
+using AionHR.Services.Messaging.System;
+using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +15,14 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 {
     public partial class MoudleFilter : System.Web.UI.UserControl
     {
+        ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                moduleId.Select(0);
-                if (!string.IsNullOrEmpty(selectHandler))
-                    moduleId.AddListener("Select", selectHandler);
+                FillModulesStore();
+                modulesCombo.Select(0);
+            
             }
         }
 
@@ -24,7 +30,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
             ClassIdParameterSet s = new ClassIdParameterSet();
             int bulk;
-            if (moduleId.Value == null || !int.TryParse(moduleId.Value.ToString(), out bulk))
+            if (modulesCombo.Value == null || !int.TryParse(modulesCombo.Value.ToString(), out bulk))
                 s.ClassId = 20;
             else
                 s.ClassId = bulk;
@@ -35,26 +41,35 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         public string GetModuleId()
         {
             int bulk;
-            if (moduleId.Value == null || !int.TryParse(moduleId.Value.ToString(), out bulk))
+            if (modulesCombo.Value == null || !int.TryParse(modulesCombo.Value.ToString(), out bulk))
                 return "20";
             else
-                return moduleId.Value.ToString();
+                return modulesCombo.Value.ToString();
 
         }
 
-        private string selectHandler;
-
-        public string SelectHandler
+      
+        private void FillModulesStore()
         {
-            get
-            {
-                return selectHandler;
-            }
+            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
-            set
+            request.database = "1";
+            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            if (!resp.Success)
             {
-                selectHandler = value;
+                Common.errorMessage(resp);
+                return;
             }
+                
+            this.modulesStore.DataSource = resp.Items;
+
+
+            this.modulesStore.DataBind();
+        }
+        public void ADDHandler(string Event,string Function)
+        {
+           
+            this.modulesCombo.AddListener(Event, "function() {" + Function + "}");
         }
     }
 }

@@ -1,17 +1,29 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SalaryTypeFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.SalaryTypeFilter" %>
 
-<ext:Panel runat="server" Layout="HBoxLayout" Width="190"  ><Items>
-<ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="salaryTypeId" Editable="false" Width="190" FieldLabel="<%$ Resources:Common,SalaryType %>" LabelWidth="80">
+<ext:Panel runat="server" Layout="HBoxLayout" Width="190"  >
     <Items>
+    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="salaryTypeId"  EmptyText="<%$ Resources:Common ,SalaryType%>" SubmitValue="true"  MaxWidth=190 >
+      <Store>
+      <ext:Store runat="server" ID="salaryTypeStore">
+                    <Model>
+                        <ext:Model runat="server">
+                            <Fields>
+                                <ext:ModelField Name="key" />
+                                <ext:ModelField Name="value" />
+                            </Fields>
+                        </ext:Model>
+                    </Model>
+                </ext:Store>
+    </Store>
         
-        <ext:ListItem Text="<%$ Resources: Common,Day  %>" Value="1" />
-        <ext:ListItem Text="<%$ Resources:  Common,Week %>" Value="2" />
-         <ext:ListItem Text="<%$ Resources:  Common,BiWeek  %>" Value="3" />
-        <ext:ListItem Text="<%$ Resources:  Common,FourWeek %>" Value="4" />
-        <ext:ListItem Text="<%$ Resources:  Common,Month  %>" Value="5" />
+      </ext:ComboBox>
+
+   
+        
+      
         
     
     </Items>
 
-</ext:ComboBox>
-</Items></ext:Panel>
+
+</ext:Panel>

@@ -1374,4 +1374,7 @@
   <data name="TimeApprovalsSelfService" xml:space="preserve">
     <value>تعميد الدوام</value>
   </data>
+  <data name="Module" xml:space="preserve">
+    <value>المكون</value>
+  </data>
 </root>
