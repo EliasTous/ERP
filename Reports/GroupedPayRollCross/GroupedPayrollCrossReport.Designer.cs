@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupedPayrollCrossReport));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrPivotGrid1 = new DevExpress.XtraReports.UI.XRPivotGrid();
-            this.dsSalaries1 = new dsSalaries();
+            this.dsSalaries1 = new Reports.GroupedPayRollCross.dsSalaries();
             this.fieldItemName = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldItemValue = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldSalaryDate = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
@@ -74,10 +74,19 @@
             // 
             // xrPivotGrid1
             // 
+            this.xrPivotGrid1.Appearance.Cell.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.xrPivotGrid1.Appearance.CustomTotalCell.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.xrPivotGrid1.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.xrPivotGrid1.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.xrPivotGrid1.Appearance.FieldValueGrandTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.xrPivotGrid1.Appearance.FieldValueGrandTotal.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.xrPivotGrid1.Appearance.FieldValueTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.xrPivotGrid1.Appearance.FieldValueTotal.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.xrPivotGrid1.Appearance.GrandTotalCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.xrPivotGrid1.Appearance.GrandTotalCell.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.xrPivotGrid1.Appearance.Lines.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.xrPivotGrid1.Appearance.TotalCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.xrPivotGrid1.Appearance.TotalCell.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.xrPivotGrid1.DataMember = "SalariesItems";
             this.xrPivotGrid1.DataSource = this.dsSalaries1;
             resources.ApplyResources(this.xrPivotGrid1, "xrPivotGrid1");
@@ -93,7 +102,6 @@
             this.fieldEntitlementsvDeduction});
             this.xrPivotGrid1.Name = "xrPivotGrid1";
             this.xrPivotGrid1.OptionsChartDataSource.ProvideColumnTotals = true;
-            this.xrPivotGrid1.OptionsDataField.Caption = resources.GetString("xrPivotGrid1.OptionsDataField.Caption");
             this.xrPivotGrid1.OptionsDataField.ColumnValueLineCount = 2;
             this.xrPivotGrid1.OptionsDataField.RowValueLineCount = 2;
             this.xrPivotGrid1.OptionsPrint.FilterSeparatorBarPadding = 3;
@@ -134,9 +142,9 @@
             this.fieldItemValue.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldItemValue.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
             this.fieldItemValue.AreaIndex = 0;
-            resources.ApplyResources(this.fieldItemValue, "fieldItemValue");
             this.fieldItemValue.CellFormat.FormatString = "N1";
             this.fieldItemValue.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            resources.ApplyResources(this.fieldItemValue, "fieldItemValue");
             this.fieldItemValue.FieldName = "ItemValue";
             this.fieldItemValue.Name = "fieldItemValue";
             this.fieldItemValue.ValueFormat.FormatString = "N1";
@@ -221,7 +229,6 @@
             this.fieldTaxableNoTaxable.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldTaxableNoTaxable.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
             this.fieldTaxableNoTaxable.AreaIndex = 1;
-            resources.ApplyResources(this.fieldTaxableNoTaxable, "fieldTaxableNoTaxable");
             this.fieldTaxableNoTaxable.FieldName = "TaxableNoTaxable";
             this.fieldTaxableNoTaxable.Name = "fieldTaxableNoTaxable";
             // 
@@ -233,7 +240,6 @@
             this.fieldEntitlementsvDeduction.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldEntitlementsvDeduction.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
             this.fieldEntitlementsvDeduction.AreaIndex = 0;
-            resources.ApplyResources(this.fieldEntitlementsvDeduction, "fieldEntitlementsvDeduction");
             this.fieldEntitlementsvDeduction.FieldName = "EntitlementsvDeduction";
             this.fieldEntitlementsvDeduction.Name = "fieldEntitlementsvDeduction";
             this.fieldEntitlementsvDeduction.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
@@ -324,7 +330,6 @@
             // 
             // Ref
             // 
-            resources.ApplyResources(this.Ref, "Ref");
             this.Ref.Name = "Ref";
             this.Ref.Visible = false;
             // 
@@ -429,7 +434,7 @@
             this.Branch,
             this.Payment,
             this.Ref});
-            this.Version = "16.1";
+            this.Version = "16.2";
             ((System.ComponentModel.ISupportInitialize)(this.dsSalaries1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 

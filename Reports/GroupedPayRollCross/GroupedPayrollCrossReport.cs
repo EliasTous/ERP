@@ -103,11 +103,11 @@ namespace Reports.GroupedPayRollCross
                     order++;
                 }
 
-                dsSalaries1.SalariesItems.AddSalariesItemsRow(employee.Key
-                         , order, "", employee.Sum(u => u.basicAmount) + employee.Where(u => u.edType == 1).Sum(u => u.edAmount) - employee.Where(u => u.edType == 2).Sum(u => u.edAmount) - employee.Sum(u => u.essAmount),
-                        isArabic ? "صافي الراتب" : "Net Salary", 1, employee.Sum(u => u.basicAmount), employee.Sum(u => u.cssAmount),
-                        employee.Sum(u => u.essAmount), "    "
-                         );
+                //dsSalaries1.SalariesItems.AddSalariesItemsRow(employee.Key
+                //         , order, "", employee.Sum(u => u.basicAmount) + employee.Where(u => u.edType == 1).Sum(u => u.edAmount) - employee.Where(u => u.edType == 2).Sum(u => u.edAmount) - employee.Sum(u => u.essAmount),
+                //        isArabic ? "صافي الراتب" : "Net Salary", 1, employee.Sum(u => u.basicAmount), employee.Sum(u => u.cssAmount),
+                //        employee.Sum(u => u.essAmount), "    "
+                //         );
             }
 
 

@@ -68,11 +68,11 @@ namespace Reports.EmployeePayRollCross
                     order++;
                 }
 
-                dsSalaries1.SalariesItems.AddSalariesItemsRow(defaultSal.employeeName.fullName,
-                         salaryDate, order, "", defaultSal.basicAmount + employee.Where(u => u.edType == 1).Sum(u => u.edAmount) - employee.Where(u => u.edType == 2).Sum(u => u.edAmount) - defaultSal.essAmount,
-                        isArabic ? "صافي الراتب" : "Net Salary", 1, defaultSal.basicAmount, defaultSal.cssAmount,
-                         defaultSal.essAmount, "    "
-                         );
+                //dsSalaries1.SalariesItems.AddSalariesItemsRow(defaultSal.employeeName.fullName,
+                //         salaryDate, order, "", defaultSal.basicAmount + employee.Where(u => u.edType == 1).Sum(u => u.edAmount) - employee.Where(u => u.edType == 2).Sum(u => u.edAmount) - defaultSal.essAmount,
+                //        isArabic ? "صافي الراتب" : "Net Salary", 1, defaultSal.basicAmount, defaultSal.cssAmount,
+                //         defaultSal.essAmount, "    "
+                //         );
             }
 
 
