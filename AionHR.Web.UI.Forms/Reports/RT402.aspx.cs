@@ -226,14 +226,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ListResponse<AionHR.Model.Reports.RT402> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT402>(req);
             if (!resp.Success)
             {
-                if (throwException)
-                    throw new Exception(resp.Summary);
-                else
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
-                    return;
-                }
+                throw new Exception(resp.Error);
             }
             
           for (int i=0; i<resp.Items.Count;i++)

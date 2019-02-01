@@ -226,8 +226,8 @@ namespace AionHR.Web.UI.Forms.Reports
             {
               
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
-                    return;
+                throw new Exception(resp.Error);
+                    
                 
             }
 

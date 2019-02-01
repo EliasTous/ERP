@@ -225,6 +225,7 @@ namespace AionHR.Web.UI.Forms
                 storage.Save("AccountId", _systemService.SessionHelper.Get("AccountId"));
                 storage.Save("UserId", _systemService.SessionHelper.Get("UserId"));
                 storage.Save("key", _systemService.SessionHelper.Get("Key"));
+                storage.Save("LanguageId", _systemService.SessionHelper.Get("Language").ToString() == "en" ? "1" : "2");
                 SessionHelper h = new SessionHelper(storage, new APIKeyBasedTokenGenerator());
                 EmployeeService emp = new EmployeeService(new EmployeeRepository(), h);
 

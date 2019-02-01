@@ -85,12 +85,7 @@ namespace AionHR.Services.Implementations
             PostResponse<Check> resp =timeAttendance.ChildAddOrUpdate<Check>(req);
             if (!resp.Success)
             {
-                if (arabicErrors.ContainsKey(resp.ErrorCode))
-                {
-                    errorMessages.Add(arabicErrors[resp.ErrorCode]);
-                }
-                else
-                    errorMessages.Add(resp.Summary);
+                errorMessages.Add(resp.Error);
 
                 errors.Add(item);
               
