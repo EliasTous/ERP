@@ -150,7 +150,7 @@
             <Model>
                 <ext:Model runat="server">
                     <Fields>
-                        <ext:ModelField Name="text" />
+                        <ext:ModelField Name="key" />
                         <ext:ModelField Name="value" />
                     </Fields>
                 </ext:Model>
@@ -160,7 +160,7 @@
             <Model>
                 <ext:Model runat="server">
                     <Fields>
-                        <ext:ModelField Name="text" />
+                        <ext:ModelField Name="key" />
                         <ext:ModelField Name="value" />
                     </Fields>
                 </ext:Model>
@@ -588,6 +588,7 @@
                                                         <ext:ModelField Name="accessLevel" />
                                                         <ext:ModelField Name="className" />
                                                             <ext:ModelField Name="classId" />
+                                                          <ext:ModelField Name="accessLevelString" />
 
                                                         
                                                     </Fields>
@@ -603,8 +604,8 @@
 
                                             <ext:Column Visible="false" ID="Column3" MenuDisabled="true" runat="server" DataIndex="classId" Hideable="false" Width="75" />
                                             <ext:Column ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources:Class%>" DataIndex="className" Hideable="false" Flex="1" />
-                                            <ext:Column ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources:AccessLevel%>" DataIndex="accessLevel" Hideable="false" Width="100">
-                                                <Renderer Handler="return getAccessLevelText(record.data['accessLevel']);" />
+                                            <ext:Column ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources:AccessLevel%>" DataIndex="accessLevelString" Hideable="false" Width="100">
+                                               
                                             </ext:Column>
                                             <ext:Column runat="server"
                                                 ID="Column7" Visible="true"
@@ -927,7 +928,7 @@
                     <Items>
                         <ext:TextField runat="server" Name="classId" ID="classId" Hidden="true" Disabled="true" />
 
-                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" FieldLabel="<%$ Resources:AccessLevel%>" DisplayField="text" ValueField="value" Editable="false" StoreID="classAccessLevelsStore" ID="accessLevel" Name="accessLevel">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" FieldLabel="<%$ Resources:AccessLevel%>" DisplayField="value" ValueField="key" Editable="false" StoreID="classAccessLevelsStore" ID="accessLevel" Name="accessLevel">
                          <%--   <Items>
 
                                 <ext:ListItem Text="<%$ Resources: NoAccess %>" Value="0" />
@@ -989,14 +990,8 @@
                     <Items>
 
                         <ext:TextField runat="server" Name="moduleId" ID="moduleId" Hidden="true" Disabled="true" />
-                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" FieldLabel="<%$ Resources:AccessLevel%>" Editable="false" ID="moduleAccessLevel" Name="moduleAccessLevel">
-                            <Items>
-
-                                <ext:ListItem Text="<%$ Resources: NoAccess %>" Value="0" />
-                                <ext:ListItem Text="<%$ Resources: Read %>" Value="1" />
-                                <ext:ListItem Text="<%$ Resources: WriteClass %>" Value="2" />
-                                <ext:ListItem Text="<%$ Resources: FullControl %>" Value="3" />
-                            </Items>
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" FieldLabel="<%$ Resources:AccessLevel%>" Editable="false" ID="moduleAccessLevel" Name="moduleAccessLevel" StoreID="accessLevelsStore">
+                           
 
 
                         </ext:ComboBox>
@@ -1094,7 +1089,7 @@
                                     <ext:Column ID="Column9" MenuDisabled="true" runat="server" DataIndex="name" Text="<%$ Resources:Property%>" Hideable="false" Flex="1" />
                                     <ext:WidgetColumn ID="WidgetColumn1" MenuDisabled="true" runat="server" Text="<%$ Resources:AccessLevel%>" DataIndex="accessLevel" Hideable="false" Width="150" Align="Center">
                                         <Widget>
-                                            <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Editable="false" DisplayField="text" ValueField="value" StoreID="accessLevelsStore">
+                                            <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Editable="false" DisplayField="key" ValueField="value" StoreID="accessLevelsStore">
 
                                                 <%--<Items>
                                                     <ext:ListItem Text="<%$ Resources: Write %>" Value="2" />

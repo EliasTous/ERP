@@ -654,7 +654,8 @@
     <Compile Include="CompanyNews.aspx.designer.cs">
       <DependentUpon>CompanyNews.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ConstClasses\Common.cs" />
+    <Compile Include="ConstClasse\Common.cs" />
+    <Compile Include="ConstClasse\ConstClasses.cs" />
     <Compile Include="DocumentCategories.aspx.cs">
       <DependentUpon>DocumentCategories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -862,8 +863,8 @@
     <Compile Include="BenefitsSchedules.aspx.designer.cs">
       <DependentUpon>BenefitsSchedules.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ConstClasses\ConstDashboardItem.cs" />
-    <Compile Include="ConstClasses\ConstTimeVariationType.cs" />
+    <Compile Include="ConstClasse\ConstDashboardItem.cs" />
+    <Compile Include="ConstClasse\ConstTimeVariationType.cs" />
     <Compile Include="DailyScheduleSelfServices.aspx.cs">
       <DependentUpon>DailyScheduleSelfServices.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

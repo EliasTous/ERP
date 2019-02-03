@@ -282,7 +282,36 @@
                 <ext:DataSorter Property="reference" Direction="ASC" />
             </Sorters>
         </ext:Store>
+           <ext:Store
+            ID="userTypeStore"
+            runat="server"
+            RemoteSort="False"
+            RemoteFilter="true"
+            OnReadData="userTypeStore_RefreshData"
+            PageSize="30" IDMode="Explicit" Namespace="App">
+            <Proxy>
+                <ext:PageProxy>
+                    <Listeners>
+                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                    </Listeners>
+                </ext:PageProxy>
+            </Proxy>
+            <Model>
+                <ext:Model ID="Model4" runat="server" IDProperty="key">
+                    <Fields>
 
+                        <ext:ModelField Name="key" />
+                        <ext:ModelField Name="value" />
+                     
+                      
+
+
+
+                    </Fields>
+                </ext:Model>
+            </Model>
+        
+        </ext:Store>
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
@@ -371,7 +400,7 @@
 
                            <ext:Column ID="Column7" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldEmployeeName%>" DataIndex="employeeName" Flex="1" Hideable="false" />
                            <%-- <ext:CheckColumn ID="ColIsAdmin" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsAdmin %>" DataIndex="isAdmin" Hideable="false" />--%>
-                             <ext:Column ID="ColUserType" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldUserType%>" DataIndex="userTypeString" Flex="1" Hideable="false" />
+                             <ext:Column ID="ColUserType" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldUserType%>" DataIndex="userTypeName" Flex="1" Hideable="false" />
                                   <ext:Column ID="Column3" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="1" Hideable="false" />
                               <ext:Column ID="Column5" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="1" Hideable="false" />
                               <ext:Column ID="Column6" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="1" Hideable="false" />
@@ -494,19 +523,19 @@
                                 <ext:Checkbox ID="isInactiveCheck" TabIndex="4" runat="server" FieldLabel="<%$ Resources: FieldIsInActive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
                            <%--     <ext:Checkbox ID="isAdminCheck" TabIndex="5" runat="server" FieldLabel="<%$ Resources: FieldIsAdmin%>" DataIndex="isAdmin" Name="isAdmin" InputValue="true" />--%>
 
-                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="userType" AllowBlank="false"  Name="userType"
+                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="userType" AllowBlank="false"  Name="userType" 
                                     SubmitValue="true"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldUserType%>">
-                                    <Items>
+                                   <%-- <Items>
                                       
-                                        <ext:ListItem Text="<%$Resources:FieldSuperUser %>" Value="1" />
+                                   <%--     <ext:ListItem Text="<%$Resources:FieldSuperUser %>" Value="1" />
                                           <ext:ListItem Text="<%$Resources:FieldAdministrator %>" Value="2" />
                                         <ext:ListItem Text="<%$Resources:FieldOperator %>" Value="3" />
                                         
                                           <ext:ListItem Text="<%$Resources:FieldSelfService %>" Value="4" />
 
-                                    </Items>
+                                    </Items>--%>
                                        <Listeners>
                                            <Select Handler="if (this.value!=1) #{employeeId}.allowBlank = false; else #{employeeId}.allowBlank = true; #{employeeId}.validate(); "></Select>
                                        </Listeners>

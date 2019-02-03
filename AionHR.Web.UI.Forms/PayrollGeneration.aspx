@@ -128,7 +128,7 @@
                                 </ext:ComboBox>
                                  <ext:Container runat="server" Layout="FitLayout"  >
                                     <Content>
-                                        <uc:salaryTypeControl runat="server" ID="salaryTypeId" />
+                                        <uc:salaryTypeControl runat="server" ID="salaryTypeId" Width="190" />
                                             
                                           
                                     </Content>
@@ -281,7 +281,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Listeners>
-                                <AfterLayout Handler="CheckSession(); App.fiscalYear.setValue(new Date().getFullYear()); App.salaryType.setValue(5);App.fiscalPeriodsStore.reload();" />
+                                <AfterLayout Handler="CheckSession(); App.fiscalYear.setValue(new Date().getFullYear());App.fiscalPeriodsStore.reload();" />
                             </Listeners>
                             <Items>
                                 <ext:TextField runat="server" ID="payRefTF" Name="payRef" FieldLabel="<%$ Resources: FieldPayRef %>" AllowBlank="true" />
@@ -310,7 +310,14 @@
                                         </Select>
                                     </DirectEvents>
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="salaryType" Name="salaryType" runat="server" FieldLabel="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                      <ext:Container runat="server" Layout="FitLayout"  >
+                                    <Content>
+                                        <uc:salaryTypeControl runat="server" ID="SalaryType2"  SetText="<%$ Resources: FieldPeriodType %>" Width="1200" />
+                                            
+                                          
+                                    </Content>
+                                </ext:Container>
+                              <%--  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="salaryType" Name="salaryType" runat="server" FieldLabel="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
@@ -329,7 +336,7 @@
                                             </ExtraParams>
                                         </Select>
                                     </DirectEvents>
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldPeriod %>" Name="periodId" DisplayField="name" ValueField="recordId" runat="server" ID="periodId">
                                     <Store>
                                         <ext:Store runat="server" ID="fiscalPeriodsStore" OnReadData="fiscalPeriodsStore_ReadData">

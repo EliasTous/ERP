@@ -550,7 +550,23 @@ namespace AionHR.Web.UI.Forms
             userGroups.Disabled = true;
             pro.Hidden = false;
         }
+        
+              protected void userTypeStore_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
 
+            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+
+            request.database = "7";
+            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            userTypeStore.DataSource = resp.Items;
+            userTypeStore.DataBind();
+        
+        }
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
@@ -583,24 +599,10 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +branches.LogId: branches.Summary).Show();
                 return;
             }
-            branches.Items.ForEach(x =>
-            {
-                switch (x.userType)
-                {
-                    case 1:x.userTypeString = GetLocalResourceObject("FieldSuperUser").ToString();
-                        break;
-                    case 2:x.userTypeString = GetLocalResourceObject("FieldAdministrator").ToString();
-                        break;
-                    case 3:x.userTypeString = GetLocalResourceObject("FieldOperator").ToString();
-                        break;
-                    case 4:x.userTypeString = GetLocalResourceObject("FieldSelfService").ToString();
-                        break;
-                    default:
-                        break;
-
-
-                }
-            }
+            //branches.Items.ForEach(x =>
+            //{
+            //    x.userTypeString = userTypeStore.GetById(x.userType).ToString();
+            //}
 
             );
             this.Store1.DataSource = branches.Items;

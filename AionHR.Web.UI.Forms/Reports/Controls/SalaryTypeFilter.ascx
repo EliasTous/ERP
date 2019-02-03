@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SalaryTypeFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.SalaryTypeFilter" %>
 
-<ext:Panel runat="server" Layout="HBoxLayout" Width="190"  >
+<ext:Panel runat="server" Layout="HBoxLayout"  id="SalaryPanel" >
     <Items>
-    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="salaryTypeId"  EmptyText="<%$ Resources:Common ,SalaryType%>" SubmitValue="true"  MaxWidth=190 >
+    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="salaryTypeId"  EmptyText="<%$ Resources:Common ,SalaryType%>" SubmitValue="true"   >
       <Store>
       <ext:Store runat="server" ID="salaryTypeStore">
                     <Model>

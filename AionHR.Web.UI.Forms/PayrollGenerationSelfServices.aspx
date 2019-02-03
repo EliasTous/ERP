@@ -118,12 +118,19 @@
                                     </Store>
                                     <Listeners>
                                       <%--  <Select Handler="App.salaryTypeFilter.setValue(5); App.payrollsStore.reload();">--%>
-                                               <Select Handler="App.salaryTypeFilter.setValue(5); App.payrollsStore.reload();">
+                                               <Select Handler="App.salaryTypeId_salaryTypeId.setValue(5); App.payrollsStore.reload();">
                                         </Select>
                                         
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="salaryTypeFilter"  Name="salaryTypeFilter" runat="server" EmptyText="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                 <ext:Container runat="server" Layout="FitLayout"  >
+                                    <Content>
+                                        <uc:salaryTypeControl runat="server" ID="salaryTypeId1" Width="190" />
+                                            
+                                          
+                                    </Content>
+                                </ext:Container>
+                                <%--<ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="salaryTypeFilter"  Name="salaryTypeFilter" runat="server" EmptyText="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
@@ -135,7 +142,7 @@
                                         <Select Handler="App.payrollsStore.reload();">
                                         </Select>
                                     </Listeners>
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="status"  runat="server" EmptyText="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 

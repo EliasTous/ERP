@@ -93,6 +93,7 @@ namespace AionHR.Web.UI.Forms
                 Viewport1.ActiveIndex = 0;
                 yearStore.DataSource = GetYears();
                 yearStore.DataBind();
+                salaryTypeId.setSalaryType("5");
                 salaryTypeId.ADDHandler("select", "App.payrollsStore.reload();");
                
                 status.Select("0");
@@ -314,6 +315,7 @@ namespace AionHR.Web.UI.Forms
             h.status = "1";
             PostRequest<GenerationHeader> req = new PostRequest<GenerationHeader>();
             req.entity = h;
+            req.entity.salaryType = SalaryType2.GetSalaryTypeId();
 
             PostResponse<GenerationHeader> resp = _payrollService.ChildAddOrUpdate<GenerationHeader>(req);
             if (!resp.Success)
@@ -856,7 +858,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.ActiveIndex = 0;
                     return;
                 }
-                req.PeriodType = (SalaryType)Convert.ToInt32(salaryType.Value.ToString());
+                req.PeriodType = (SalaryType)Convert.ToInt32(SalaryType2.GetSalaryTypeId());
                 req.Status = "1";
 
                 ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
@@ -875,10 +877,23 @@ namespace AionHR.Web.UI.Forms
             }
             catch { }
         }
-
+      
         public void UpdateStartEndDate(object sender, DirectEventArgs e)
         {
+            
             string s = e.ExtraParams["period"];
+            try
+            {
+                string d = s.Split('(')[1].Split(')')[0];
+                X.Call("setStartEnd", d.Split('-')[0], d.Split('-')[1]);
+            }
+            catch { }
+        }
+        [DirectMethod]
+        public void UpdateStartEndDateFromController()
+        {
+            fiscalPeriodsStore.Reload();
+            string s = periodId.Value.ToString();
             try
             {
                 string d = s.Split('(')[1].Split(')')[0];
@@ -967,6 +982,9 @@ namespace AionHR.Web.UI.Forms
         public void AddPayroll()
         {
             BasicInfoTab.Reset();
+           
+            SalaryType2.setSalaryType("5");
+            SalaryType2.ADDHandler("select", "App.direct.UpdateStartEndDateFromController()");
             fiscalyearStore.DataSource = GetYears();
             fiscalyearStore.DataBind();
             Viewport1.ActiveIndex = 1;

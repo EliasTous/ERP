@@ -665,7 +665,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             CurrentGroup.Text = id.ToString();
             usersStore.Reload();
-          
+            CurrentModule.Text = modulesCombo1.GetModuleId(); 
             switch (type)
             {
 
@@ -763,19 +763,28 @@ namespace AionHR.Web.UI.Forms
 
 
                 case "imgEdit":
-                    List<PropertyAccessLevel> masterLevels = new List<PropertyAccessLevel>();
-                    masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("NoAccess").ToString(), "0"));
-                    masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("Read").ToString(), "1"));
+                    //List<PropertyAccessLevel> masterLevels = new List<PropertyAccessLevel>();
+                    //masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("NoAccess").ToString(), "0"));
+                    //masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("Read").ToString(), "1"));
                     int maxLevel = 1;
-                    
+
                     if (modulesCombo1.GetModuleId().ToString() != "80" && !id.ToString().EndsWith("99") && !id.ToString().EndsWith("98") && !id.ToString().EndsWith("97") && !id.ToString().EndsWith("96") && !id.ToString().EndsWith("95"))
                     {
 
-                        masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("WriteClass").ToString(), "2"));
-                        masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("FullControl").ToString(), "3"));
+                        //masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("WriteClass").ToString(), "2"));
+                        //masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("FullControl").ToString(), "3"));
                         maxLevel = 3;
                     }
-                    classAccessLevelsStore.DataSource = masterLevels;
+                    XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+
+                    request.database = "5";
+                    ListResponse<XMLDictionary> masterLevels = _systemService.ChildGetAll<XMLDictionary>(request);
+                    if (!masterLevels.Success)
+                    {
+                        Common.errorMessage(masterLevels);
+                        return;
+                    }
+                    classAccessLevelsStore.DataSource = masterLevels.Items;
                     classAccessLevelsStore.DataBind();
                     EditClassLevelForm.Reset();
                     int levelInt = Convert.ToInt32(level);
@@ -1073,6 +1082,8 @@ namespace AionHR.Web.UI.Forms
                 Common.errorMessage(resp);
                 return;
             }
+            List<XMLDictionary> AccessLevel = ConstClasse.ConstClasses.FillAcessLevel(_systemService);
+            resp.Items.ForEach(x => x.accessLevelString = AccessLevel.Where(y => y.key == x.accessLevel).Count() != 0 ? AccessLevel.Where(y => y.key == x.accessLevel).First().value : string.Empty);
       //  resp.Items=    resp.Items.Where(x => x.moduleId == CurrentModule.Text).ToList();
             //List<ModuleClass> finalClasses = new List<ModuleClass>();
 
@@ -1315,21 +1326,15 @@ namespace AionHR.Web.UI.Forms
 
             //GEtting the filter from the page
             string filter = string.Empty;
-          
+
 
 
 
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
-            request.database = "1";
-            ListResponse<XMLDictionary> routers = _systemService.ChildGetAll<XMLDictionary>(request);
-            if (!routers.Success)
-                return;
-            this.modulesStore.DataSource = routers.Items;
-        
+            this.modulesStore.DataSource = ConstClasse.ConstClasses.FillAcessLevel(_systemService);
 
             this.modulesStore.DataBind();
         }

@@ -17,15 +17,19 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         public List<XMLDictionary> salaryTypeList = new List<XMLDictionary>();
+        public string SetText { get; set; }
+        public string Width { get; set; }
+        public string setEmptyText { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-              
+
                 XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
                 request.database = "2";
-                ListResponse< XMLDictionary>  resp = _systemService.ChildGetAll<XMLDictionary>(request);
+                ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
@@ -33,7 +37,18 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                 }
                 salaryTypeList.AddRange(resp.Items);
                 FillSalaryTypeStore();
-                salaryTypeId.Select(0);
+              //  salaryTypeId.Select(0);
+                if (string.IsNullOrEmpty(Width))
+                {
+                    this.SalaryPanel.SetWidth(Convert.ToInt16(Width));
+                    this.salaryTypeId.SetWidth(Convert.ToInt16(Width));
+                }
+
+                if (string.IsNullOrEmpty(SetText))
+
+                    this.salaryTypeId.EmptyText = GetGlobalResourceObject("Common", "SalaryType").ToString();
+                else
+                     this.salaryTypeId.FieldLabel = SetText.ToString();
 
             }
         }
@@ -43,7 +58,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             SalaryTypeParameterSet s = new SalaryTypeParameterSet();
             int bulk;
             if (salaryTypeId.Value == null || !int.TryParse(salaryTypeId.Value.ToString(), out bulk))
-                s.SalaryTypeId = 0; 
+                s.SalaryTypeId = 0;
             else
                 s.SalaryTypeId = bulk;
 
@@ -89,7 +104,8 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         public void setSalaryType(string value)
         {
             this.salaryTypeId.Select(value);
-          
+            this.salaryTypeId.SetValue(value);
         }
+       
     }
 }

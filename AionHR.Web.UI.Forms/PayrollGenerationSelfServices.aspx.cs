@@ -93,8 +93,9 @@ namespace AionHR.Web.UI.Forms
                 Viewport1.ActiveIndex = 0;
                 yearStore.DataSource = GetYears();
                 yearStore.DataBind();
-                salaryTypeFilter.Select("5");
+                salaryTypeId1.setSalaryType("5");
                 status.Select("0");
+                salaryTypeId1.ADDHandler("select", "App.payrollsStore.reload();");
                 payrollsStore.Reload();
                 if (!string.IsNullOrEmpty(Request.QueryString["payId"]))
                 {
@@ -880,9 +881,9 @@ namespace AionHR.Web.UI.Forms
                 req.Year = "0";
             }
 
-            if (!string.IsNullOrEmpty(salaryTypeFilter.Text) && !string.IsNullOrEmpty(salaryTypeFilter.Value.ToString()))
+            if (!string.IsNullOrEmpty(salaryTypeId1.GetSalaryTypeId()) )
             {
-                req.PeriodType = salaryTypeFilter.Value.ToString();
+                req.PeriodType = salaryTypeId1.GetSalaryTypeId();
 
             }
             else
@@ -939,7 +940,7 @@ namespace AionHR.Web.UI.Forms
 
             yearStore.DataSource = GetYears();
             yearStore.DataBind();
-            salaryTypeFilter.Select("5");
+            salaryTypeId1.setSalaryType("5");
             status.Select("0");
             Viewport1.ActiveIndex = 0;
         }

@@ -445,13 +445,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store fiscalyearStore;
         
         /// <summary>
-        /// salaryType control.
+        /// SalaryType2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox salaryType;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.SalaryTypeFilter SalaryType2;
         
         /// <summary>
         /// periodId control.

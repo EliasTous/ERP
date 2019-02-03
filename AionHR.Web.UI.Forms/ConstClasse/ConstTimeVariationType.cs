@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AionHR.Model.System;
+using AionHR.Services.Interfaces;
+using AionHR.Services.Messaging;
+using AionHR.Services.Messaging.System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -54,7 +58,19 @@ namespace AionHR.Web.UI.Forms.ConstClasses
             return formattedTime;
         }
 
+        public static string FillTimeCode(int? timeCode, ISystemService systemService)
+        {
+            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
+            request.database = "3";
+            ListResponse<XMLDictionary> resp = systemService.ChildGetAll<XMLDictionary>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return string.Empty;
+            }
+            return resp.Items.Where(x => x.key == timeCode).Count() != 0 ? resp.Items.Where(x => x.key == timeCode).First().value : string.Empty;
+        }
     }
 
 }

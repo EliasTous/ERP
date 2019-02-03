@@ -100,7 +100,7 @@ namespace AionHR.Model.Access_Control
         [PropertyID("90103_02")]
         [ApplySecurity]
         public int accessLevel { get; set; }
-
+        public string accessLevelString { get; set; }
         public string name { get; set; }
 
         public string sgId { get; set; }
