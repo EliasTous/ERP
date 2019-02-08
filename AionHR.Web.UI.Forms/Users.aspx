@@ -523,8 +523,8 @@
                                 <ext:Checkbox ID="isInactiveCheck" TabIndex="4" runat="server" FieldLabel="<%$ Resources: FieldIsInActive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
                            <%--     <ext:Checkbox ID="isAdminCheck" TabIndex="5" runat="server" FieldLabel="<%$ Resources: FieldIsAdmin%>" DataIndex="isAdmin" Name="isAdmin" InputValue="true" />--%>
 
-                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="userType" AllowBlank="false"  Name="userType" 
-                                    SubmitValue="true"
+                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="userType" AllowBlank="false"  Name="userType" DisplayField="value" ValueField="key" 
+                                    SubmitValue="true"  StoreID="userTypeStore"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldUserType%>">
                                    <%-- <Items>

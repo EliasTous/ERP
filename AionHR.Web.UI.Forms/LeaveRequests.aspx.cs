@@ -59,8 +59,10 @@ namespace AionHR.Web.UI.Forms
         {
 
             EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
+            req.DepartmentId = jobInfo1.GetDepartment();
+            req.BranchId = jobInfo1.GetBranch();
+            req.PositionId = jobInfo1.GetPosition();
+            req.DivisionId = jobInfo1.GetDivision();
             req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 

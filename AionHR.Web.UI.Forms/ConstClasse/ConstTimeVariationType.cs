@@ -58,7 +58,7 @@ namespace AionHR.Web.UI.Forms.ConstClasses
             return formattedTime;
         }
 
-        public static string FillTimeCode(int? timeCode, ISystemService systemService)
+        public static List<XMLDictionary> TimeCodeList(ISystemService systemService)
         {
             XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
@@ -67,9 +67,9 @@ namespace AionHR.Web.UI.Forms.ConstClasses
             if (!resp.Success)
             {
                 Common.errorMessage(resp);
-                return string.Empty;
+                return new List<XMLDictionary>();
             }
-            return resp.Items.Where(x => x.key == timeCode).Count() != 0 ? resp.Items.Where(x => x.key == timeCode).First().value : string.Empty;
+            return resp.Items;
         }
     }
 

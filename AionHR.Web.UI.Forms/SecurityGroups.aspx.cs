@@ -1338,5 +1338,22 @@ namespace AionHR.Web.UI.Forms
 
             this.modulesStore.DataBind();
         }
+        protected void accessLevelsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            List<XMLDictionary> AccessLevel = ConstClasse.ConstClasses.FillAcessLevel(_systemService);
+            accessLevelsStore.DataSource = AccessLevel;
+            accessLevelsStore.DataBind();
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+
+
+        }
     }
 }

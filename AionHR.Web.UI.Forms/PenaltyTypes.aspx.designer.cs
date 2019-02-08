@@ -436,6 +436,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox timeCode;
         
         /// <summary>
+        /// timeVariationStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store timeVariationStore;
+        
+        /// <summary>
         /// from control.
         /// </summary>
         /// <remarks>

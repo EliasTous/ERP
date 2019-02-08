@@ -262,29 +262,29 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        [DirectMethod]
-        public object FillTS(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+        //[DirectMethod]
+        //public object FillTS(string action, Dictionary<string, object> extraParams)
+        //{
+        //    StoreRequestParameters prms = new StoreRequestParameters(extraParams);
 
 
 
-            List<TimeSchedule> data;
-            ListRequest req = new ListRequest();
+        //    List<TimeSchedule> data;
+        //    ListRequest req = new ListRequest();
 
-            ListResponse<TimeSchedule> response = _payrollService.ChildGetAll<TimeSchedule>(req);
-            if (!response.Success)
-            {
-                 Common.errorMessage(response);
-                return new List<TimeSchedule>();
-            }
-            data = response.Items;
-            return new
-            {
-                data
-            };
+        //    ListResponse<TimeSchedule> response = _payrollService.ChildGetAll<TimeSchedule>(req);
+        //    if (!response.Success)
+        //    {
+        //         Common.errorMessage(response);
+        //        return new List<TimeSchedule>();
+        //    }
+        //    data = response.Items;
+        //    return new
+        //    {
+        //        data
+        //    };
 
-        }
+        //}
         [DirectMethod]
         public object FillSupervisor(string action, Dictionary<string, object> extraParams)
         {
@@ -445,8 +445,8 @@ namespace AionHR.Web.UI.Forms
             Model.Company.Structure.Position b = JsonConvert.DeserializeObject<Model.Company.Structure.Position>(obj);
             if (referToPositionId.SelectedItem != null)
                 b.referToPositionName = referToPositionId.SelectedItem.Text;
-            if (tsId.SelectedItem != null)
-                b.tsName = tsId.SelectedItem.Text;
+            //if (tsId.SelectedItem != null)
+            //    b.tsName = tsId.SelectedItem.Text;
             b.recordId = id;
             // Define the object to add or edit as null
 

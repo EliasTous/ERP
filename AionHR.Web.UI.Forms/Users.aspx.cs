@@ -604,7 +604,7 @@ namespace AionHR.Web.UI.Forms
             //    x.userTypeString = userTypeStore.GetById(x.userType).ToString();
             //}
 
-            );
+            
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 

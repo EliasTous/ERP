@@ -450,7 +450,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: 'EmployeePhotoUploaderHandler.ashx?classId=31000&recordId=' + App.employeeControl1_CurrentEmployee.value,
+                    url: 'EmployeePhotoUploaderHandler.ashx?classId=31201&recordId=' + App.employeeControl1_CurrentEmployee.value,
                     data: fd,
                     processData: false,
                     contentType: false,

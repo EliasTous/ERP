@@ -1029,6 +1029,7 @@ namespace AionHR.Web.UI.Forms
 
             request.Size = e.Limit.ToString();
             request.StartAt = e.Start.ToString();
+            request.LoanId = "0";
             ListResponse<Loan> routers = _loanService.GetAll<Loan>(request);
             if (!routers.Success)
             {

@@ -244,15 +244,19 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-                    resp.Items.ForEach(
+                List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
+                int currentTimeCode;
+                resp.Items.ForEach(
                          x =>
                          {
                              if (!string.IsNullOrEmpty(x.clockDuration))
                                  x.clockDuration = time(Convert.ToInt32(x.clockDuration), true);
                              if (!string.IsNullOrEmpty(x.duration))
                                  x.duration = time(Convert.ToInt32(x.duration), true);
-                             if (!string.IsNullOrEmpty(x.timeCode))
-                                 x.timeCodeString = ConstTimeVariationType.FillTimeCode(Convert.ToInt32(x.timeCode),_systemService);
+                             if (Int32.TryParse(x.timeCode, out currentTimeCode))
+                             {
+                                 x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+                             }
                              x.statusString = FillApprovalStatus(x.status);
                              if (!string.IsNullOrEmpty(x.damageLevel))
                                  x.damageLevel = FillDamageLevelString(Convert.ToInt16(x.damageLevel));
@@ -651,9 +655,14 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(Times);
                     return;
                 }
+                List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
+                int currentTimeCode;
                 Times.Items.ForEach(x =>
                 {
-                    x.timeCodeString = ConstTimeVariationType.FillTimeCode(Convert.ToInt32(x.timeCode),_systemService);
+                    if (Int32.TryParse(x.timeCode, out currentTimeCode))
+                    {
+                        x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+                    }
 
                     x.statusString = FillApprovalStatus(x.status);
                 });

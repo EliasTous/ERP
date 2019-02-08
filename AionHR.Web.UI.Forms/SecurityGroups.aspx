@@ -146,8 +146,16 @@
             </Model>
 
         </ext:Store>
-        <ext:Store runat="server" ID="accessLevelsStore">
+        <ext:Store runat="server" ID="accessLevelsStore"     RemoteSort="False" RemoteFilter="true" PageSize="30" IDMode="Explicit" Namespace="App" OnReadData="accessLevelsStore_ReadData">
+              <Proxy>
+                <ext:PageProxy>
+                    <Listeners>
+                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                    </Listeners>
+                </ext:PageProxy>
+            </Proxy>
             <Model>
+
                 <ext:Model runat="server">
                     <Fields>
                         <ext:ModelField Name="key" />
@@ -990,7 +998,7 @@
                     <Items>
 
                         <ext:TextField runat="server" Name="moduleId" ID="moduleId" Hidden="true" Disabled="true" />
-                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" FieldLabel="<%$ Resources:AccessLevel%>" Editable="false" ID="moduleAccessLevel" Name="moduleAccessLevel" StoreID="accessLevelsStore">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" FieldLabel="<%$ Resources:AccessLevel%>" Editable="false" ID="moduleAccessLevel" Name="moduleAccessLevel" StoreID="accessLevelsStore" DisplayField="value" ValueField="key">
                            
 
 

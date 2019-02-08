@@ -300,13 +300,17 @@ namespace AionHR.Web.UI.Forms
                    Common.errorMessage( daysResponse);
                     return;
                 }
-                bool rtl = _systemService.SessionHelper.CheckIfArabicSession(); 
+                bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+                List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
+               
                 daysResponse.Items.ForEach(
                     x =>
                     {
                         x.clockDurationString = time(x.clockDuration, true);
                         x.durationString = time(x.duration, true);
-                        x.timeCodeString = ConstTimeVariationType.FillTimeCode(x.timeCode,_systemService);
+                      
+                            x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt16(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+                        
                         x.apStatusString = FillApprovalStatus(x.apStatus);
                         x.damageLevelString = FillDamageLevelString(x.damageLevel);
                        if (rtl)
@@ -704,9 +708,14 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(Times);
                     return;
                 }
+                List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
+                int currentTimeCode;
                 Times.Items.ForEach(x =>
                 {
-                    x.timeCodeString = ConstTimeVariationType.FillTimeCode(Convert.ToInt32(x.timeCode),_systemService);
+                    if (Int32.TryParse(x.timeCode, out currentTimeCode))
+                    {
+                        x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+                    }
 
                     x.statusString = FillApprovalStatus(x.status);
                 });

@@ -93,7 +93,22 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+        private void FilltimeCodeStore()
+        {
+            ListRequest request = new ListRequest();
 
+            request.Filter = "";
+            ListResponse<TimeCode> response = _PayrollService.ChildGetAll<TimeCode>(request);
+            if (!response.Success)
+            {
+                Common.errorMessage(response);
+                return;
+
+            }
+            timeVariationStore.DataSource = response.Items;
+            timeVariationStore.DataBind();
+
+        }
 
 
         /// <summary>
@@ -136,15 +151,16 @@ namespace AionHR.Web.UI.Forms
 
         protected void PoPuP(object sender, DirectEventArgs e)
         {
+            FilltimeCodeStore();
             penaltyDetailStoreCount.Text = "0";
             panelRecordDetails.ActiveIndex = 0;
             penaltyDetailGrid.Disabled = false;
             string id = e.ExtraParams["id"];
             currentPenaltyType.Text = id;
             string type = e.ExtraParams["type"];
+            this.BasicInfoTab.Reset();
 
-
-              switch (type)
+            switch (type)
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
@@ -159,7 +175,10 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
+                   
                     this.BasicInfoTab.SetValues(response.result);
+                  
+                   
                     X.Call("ChangeReason", response.result.reason, GetGlobalResourceObject("ComboBoxValues", "Reason_ATTENDANCE").ToString(), GetGlobalResourceObject("ComboBoxValues", "TimeBasee_DAYS").ToString());
 
 
@@ -329,6 +348,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             //Reset all values of the relative object
+            FilltimeCodeStore();
             BasicInfoTab.Reset();
             currentPenaltyType.Text = "";
             panelRecordDetails.ActiveIndex = 0;
@@ -362,11 +382,17 @@ namespace AionHR.Web.UI.Forms
                 Common.errorMessage(response);
                 return;
             }
+            List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
+           
             response.Items.ForEach(x =>
            {
                x.reasonString = FillReasonString(x.reason);
                x.timeBaseString = FillTimeBaseString(x.timeBase);
-               x.timeCodeString = ConstTimeVariationType.FillTimeCode(x.timeCode,_systemService);
+
+          
+              
+                   x.timeCodeString = timeCode.Where(y => y.key == x.timeCode).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+               
 
            });
             this.Store1.DataSource = response.Items;

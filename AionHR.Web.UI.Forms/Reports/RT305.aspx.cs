@@ -227,108 +227,120 @@ namespace AionHR.Web.UI.Forms.Reports
         }
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
-
-            TimeVariationListRequest req = GetAbsentRequest();
-           
-            ListResponse<Model.Reports.RT305> resp = _reportsService.ChildGetAll<Model.Reports.RT305>(req);
-            if (!resp.Success)
+            try
             {
-                
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
-                    return;
-                
-            }
 
+                TimeVariationListRequest req = GetAbsentRequest();
 
-           // var edAmountList = resp.Items.GroupBy(x => new { x.employeeId, x.timeCode });
-           //// List<Model.Reports.RT305> RT305 = new List<Model.Reports.RT305>();
-           // foreach (var item in edAmountList)
-           // {
-
-
-           //     var sums = item.ToList().GroupBy(x => new {x.employeeId , x.timeCode })
-           //                      .Select(group => group.Sum(x => x.edAmount)).First();
-              
-           //         resp.Items.Where(x => x.employeeId == item.ToList().First().employeeId && x.timeCode == item.ToList().First().timeCode).ToList().ForEach(y => y.edAmount = Math.Round(sums, 3));
-           //     //item.ToList().First().edAmount = Convert.ToDouble(sums);
-           //     //RT305.Add(item.First());
-
-
-           // }
-
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            resp.Items.ForEach(
-                x =>
+                ListResponse<Model.Reports.RT305> resp = _reportsService.ChildGetAll<Model.Reports.RT305>(req);
+                if (!resp.Success)
                 {
-                    x.edAmount = Math.Round(x.edAmount, 2);
-                    x.clockDurationString = ConstTimeVariationType.time(x.clockDuration, true);
-                    x.durationString = ConstTimeVariationType.time(x.duration, true);
-                    x.timeCodeString = ConstTimeVariationType.FillTimeCode(x.timeCode,_systemService);
-                    x.apStatusString = FillApprovalStatus(x.apStatus);
-                    x.damageLevelString = FillDamageLevelString(x.damageLevel);
-                    if (rtl)
-                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
-                    else
-                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
 
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(resp);
+                    return;
 
                 }
-                );
-
-            Absense h = new Absense();
-            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.DataSource = resp.Items; 
-
-            string from = req.fromDayId.ToString(_systemService.SessionHelper.GetDateformat());
-            string to = req.toDayId.ToString(_systemService.SessionHelper.GetDateformat());
-            string user = _systemService.SessionHelper.GetCurrentUser();
-
-            h.Parameters["From"].Value = from;
-            h.Parameters["To"].Value = to;
-            h.Parameters["User"].Value = user;
 
 
-            if (resp.Items.Count > 0)
-            {
-                //if (req.Parameters["_departmentId"] != "0")
-                //    h.Parameters["Department"].Value = resp.Items[0].departmentName;
-                //else
-                //    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
+                // var edAmountList = resp.Items.GroupBy(x => new { x.employeeId, x.timeCode });
+                //// List<Model.Reports.RT305> RT305 = new List<Model.Reports.RT305>();
+                // foreach (var item in edAmountList)
+                // {
 
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["Branch"].Value = resp.Items[0].branchName;
-                else
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
-                if (req.Parameters["_positionId"] != "0")
-                    h.Parameters["Position"].Value = jobInfo1.GetPosition();
-                else
-                    h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
+                //     var sums = item.ToList().GroupBy(x => new {x.employeeId , x.timeCode })
+                //                      .Select(group => group.Sum(x => x.edAmount)).First();
 
-                if (req.Parameters["_divisionId"] != "0")
-                    h.Parameters["Division"].Value = jobInfo1.GetDivision();
-                else
-                    h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
+                //         resp.Items.Where(x => x.employeeId == item.ToList().First().employeeId && x.timeCode == item.ToList().First().timeCode).ToList().ForEach(y => y.edAmount = Math.Round(sums, 3));
+                //     //item.ToList().First().edAmount = Convert.ToDouble(sums);
+                //     //RT305.Add(item.First());
 
-                if (req.Parameters["_employeeId"] != "0")
-                    h.Parameters["Employee"].Value = resp.Items[0].employeeName.fullName;
-                else
-                    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
+
+                // }
+
+                bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+                List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
+
+                resp.Items.ForEach(
+                    x =>
+                    {
+                        x.edAmount = Math.Round(x.edAmount, 2);
+                        x.clockDurationString = ConstTimeVariationType.time(x.clockDuration, true);
+                        x.durationString = ConstTimeVariationType.time(x.duration, true);
+
+                        x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+
+                        x.apStatusString = FillApprovalStatus(x.apStatus);
+                        x.damageLevelString = FillDamageLevelString(x.damageLevel);
+                        if (rtl)
+                            x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                        else
+                            x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
+
+
+                    }
+                    );
+
+                Absense h = new Absense();
+                h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+                h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+                h.DataSource = resp.Items;
+
+                string from = req.fromDayId.ToString(_systemService.SessionHelper.GetDateformat());
+                string to = req.toDayId.ToString(_systemService.SessionHelper.GetDateformat());
+                string user = _systemService.SessionHelper.GetCurrentUser();
+
+                h.Parameters["From"].Value = from;
+                h.Parameters["To"].Value = to;
+                h.Parameters["User"].Value = user;
+
+
+                if (resp.Items.Count > 0)
+                {
+                    //if (req.Parameters["_departmentId"] != "0")
+                    //    h.Parameters["Department"].Value = resp.Items[0].departmentName;
+                    //else
+                    //    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
+
+                    if (req.Parameters["_branchId"] != "0")
+                        h.Parameters["Branch"].Value = resp.Items[0].branchName;
+                    else
+                        h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
+
+                    if (req.Parameters["_positionId"] != "0")
+                        h.Parameters["Position"].Value = jobInfo1.GetPosition();
+                    else
+                        h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
+
+                    if (req.Parameters["_divisionId"] != "0")
+                        h.Parameters["Division"].Value = jobInfo1.GetDivision();
+                    else
+                        h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
+
+                    if (req.Parameters["_employeeId"] != "0")
+                        h.Parameters["Employee"].Value = resp.Items[0].employeeName.fullName;
+                    else
+                        h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
+                }
+
+
+
+
+
+
+
+                h.PrintingSystem.Document.ScaleFactor = 4;
+                h.CreateDocument();
+
+
+                ASPxWebDocumentViewer1.OpenReport(h);
             }
-
-
-
-
-
-
-
-            h.PrintingSystem.Document.ScaleFactor = 4;
-            h.CreateDocument();
-
-
-            ASPxWebDocumentViewer1.OpenReport(h);
+            catch (Exception exp)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common","Error").ToString(),exp.Message).Show();
+                
+            }
 
         }
 

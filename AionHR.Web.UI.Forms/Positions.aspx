@@ -60,8 +60,8 @@
                         <ext:ModelField Name="description" />
                         <ext:ModelField Name="referToPositionId" />
                         <ext:ModelField Name="referToPositionName" />
-                        <ext:ModelField Name="tsId" />
-                        <ext:ModelField Name="tsName" />
+                      <%--  <ext:ModelField Name="tsId" />
+                        <ext:ModelField Name="tsName" />--%>
 
 
 
@@ -174,7 +174,7 @@
                             <ext:Column Visible="false" ID="ColrefererId" MenuDisabled="true" runat="server" DataIndex="referToPositionId" Flex="1" Hideable="false" />
                             <ext:Column Visible="true" ID="ColrefererName" MenuDisabled="true" runat="server" DataIndex="referToPositionName" Text="<%$ Resources: FieldReferer %>" Flex="1" Hideable="false" />
                             <ext:Column ID="ColDescription" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDescription %>" Flex="1" DataIndex="description" Hideable="false" />
-                            <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeSchedule %>" Flex="1" DataIndex="tsName" Hideable="false" />
+                          <%--  <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeSchedule %>" Flex="1" DataIndex="tsName" Hideable="false" />--%>
 
 
 
@@ -354,7 +354,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="tsId" Name="tsId" FieldLabel="<%$ Resources:FieldTimeSchedule%>" SimpleSubmit="true">
+                           <%--     <ext:ComboBox AnyMatch="true" CaseSensitive="false" Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="tsId" Name="tsId" FieldLabel="<%$ Resources:FieldTimeSchedule%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="tsStore">
                                             <Model>
@@ -372,7 +372,7 @@
                                     </Store>
                                    
                                   
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
 
 
                             </Items>

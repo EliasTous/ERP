@@ -1173,6 +1173,7 @@ namespace AionHR.Web.UI.Forms
                 LoanManagementListRequest req = new LoanManagementListRequest();
                 req = GetLoanManagementRequest();
                 req.Status = 2;
+                req.LoanId = "0";
                 ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
                 if (!resp.Success)
                 {
@@ -1316,11 +1317,17 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(Times);
                     return;
                 }
+                List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
+                int currentTimeCode;
                 Times.Items.ForEach(x =>
                 {
                     x.fullName = x.employeeName.fullName;
                     x.statusString = FillApprovalStatus(x.status);
-                    x.timeCodeString = ConstTimeVariationType.FillTimeCode(Convert.ToInt16(x.timeCode),_systemService);
+
+                    if (Int32.TryParse(x.timeCode, out currentTimeCode))
+                    {
+                        x.timeCodeString = timeCode.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+                    }
                     if (string.IsNullOrEmpty(x.notes))
                         x.notes = " ";
                 });
@@ -2293,9 +2300,15 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(Times);
                     return;
                 }
+                List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
+                int currentTimeCode;
                 Times.Items.ForEach(x =>
                 {
-                    x.timeCodeString = ConstTimeVariationType.FillTimeCode(Convert.ToInt32(x.timeCode),_systemService);
+                    if (Int32.TryParse(x.timeCode, out currentTimeCode))
+                    {
+                        x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+                    }
+
 
                     x.statusString = FillApprovalStatus(x.status);
                 });

@@ -38,7 +38,7 @@ namespace AionHR.Web.UI.Forms
                     PostRequest<Attachement> request = new PostRequest<Attachement>();
 
                     Attachement at = new Attachement();
-                    at.classId = ClassId.EPEM;
+                    at.classId = 31201;
                     at.recordId = Convert.ToInt32(context.Request.QueryString["recordId"]);
                     at.seqNo = 0;
                     at.folderId = null;
