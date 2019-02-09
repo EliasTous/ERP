@@ -239,8 +239,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             }
 
-            if (resp.Items.Count != 0)
-            {
+          
                 LoanStatement h = new LoanStatement();
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
@@ -271,7 +270,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 ASPxWebDocumentViewer1.DataBind();
                 ASPxWebDocumentViewer1.OpenReport(h);
-            }
+            
         }
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)

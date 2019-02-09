@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Vacation Schedule Info</value>
+    <value>Leave Schedule Info</value>
   </data>
   <data name="BtnAddPeriod" xml:space="preserve">
     <value>Add Period</value>
