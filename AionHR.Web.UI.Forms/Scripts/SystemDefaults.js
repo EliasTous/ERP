@@ -317,7 +317,7 @@ function GetCroppedImage() {
             fd.append('oldUrl', App.CurrentEmployeePhotoName.value);
         $.ajax({
             type: 'POST',
-            url: 'EmployeePhotoUploaderHandler.ashx?classId=20030' ,
+            url: 'EmployeePhotoUploaderHandler.ashx?classId=20203',
             data: fd,
             processData: false,
             contentType: false,

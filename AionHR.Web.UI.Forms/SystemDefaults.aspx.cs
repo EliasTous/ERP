@@ -28,6 +28,7 @@ using AionHR.Model.Payroll;
 using AionHR.Model.NationalQuota;
 using AionHR.Model.Benefits;
 using AionHR.Services.Messaging.System;
+using AionHR.Infrastructure.Domain;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -238,7 +239,7 @@ namespace AionHR.Web.UI.Forms
                 AttachementRecordRequest req = new AttachementRecordRequest();
                 req.RecordID = "1";
                 req.seqNo = "1";
-                req.classId = "20030";
+                req.classId = ClassId.SYDE.ToString();
 
                 RecordResponse<Attachement> resp = _systemService.ChildGetRecord<Attachement>(req);
 
@@ -1556,15 +1557,33 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest req = new ListRequest();
             ListResponse<PayrollIndemnity> eds = _payrollService.ChildGetAll<PayrollIndemnity>(req);
-            return eds.Items.ToList();
+            if (!eds.Success)
+            {
+                Common.errorMessage(eds);
+
+                return new List<PayrollIndemnity>(); 
+
+            }
+            if (eds.Items != null)
+                return eds.Items.ToList();
+            else
+                return new List<PayrollIndemnity>();
         }
         private List<TerminationReason> GetTerminationReasons()
         {
             ListRequest caRequest = new ListRequest();
             ListResponse<TerminationReason> resp = _employeeService.ChildGetAll<TerminationReason>(caRequest);
-          
-            return resp.Items.ToList(); 
-           
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+
+                return new List<TerminationReason>();
+
+            }
+            if (resp.Items != null)
+                return resp.Items.ToList();
+            else
+                return new List<TerminationReason>();
 
         }
         private void FillIndustry()

@@ -380,7 +380,7 @@ public class EmployeeUploadPhotoRequest : PostRequest<Attachement>
     public EmployeeUploadPhotoRequest()
     {
         entity = new Attachement();
-        entity.classId = 31201;
+        entity.classId = ClassId.EPEM;
         entity.folderId = null;
         entity.seqNo = 0;
         entity.folderId = null;

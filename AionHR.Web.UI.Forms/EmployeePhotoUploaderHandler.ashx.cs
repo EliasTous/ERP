@@ -38,7 +38,7 @@ namespace AionHR.Web.UI.Forms
                     PostRequest<Attachement> request = new PostRequest<Attachement>();
 
                     Attachement at = new Attachement();
-                    at.classId = 31201;
+                    at.classId = ClassId.EPEM;
                     at.recordId = Convert.ToInt32(context.Request.QueryString["recordId"]);
                     at.seqNo = 0;
                     at.folderId = null;
@@ -54,7 +54,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 else
                 {
-                    if (context.Request.QueryString["classId"].ToString() != "20030")
+                    if (context.Request.QueryString["classId"].ToString() != ClassId.SYDE.ToString())
                     {
                         EmployeeUploadPhotoRequest upreq = new EmployeeUploadPhotoRequest();
                         upreq.entity.fileName = context.Request.Files[0].FileName;
