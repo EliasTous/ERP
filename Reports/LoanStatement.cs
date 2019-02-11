@@ -661,6 +661,6 @@ public class LoanStatement : DevExpress.XtraReports.UI.XtraReport
 
     private void Detail_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        e.Cancel = RowCount > 0;
+        e.Cancel = RowCount == 0;
     }
 }

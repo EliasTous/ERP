@@ -1166,31 +1166,40 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
         public void DeleteFile(string url,int id)
         {
-            Attachement a = new Attachement();
-            a.recordId = id;
-
-            string[] line = url.Split('/');
-            a.classId = Convert.ToInt32(line[4]);
-            a.fileName = line[6];
-            string[] seq = line[6].Split('.');
-            string[] seq1=seq[0].Split('-');
-            a.seqNo = Convert.ToInt16(seq1[1]);
-
-
-            PostRequest<Attachement> request = new PostRequest<Attachement>();
-
-            request.entity = a;
-            PostResponse<Attachement> r = _systemService.ChildDelete<Attachement>(request);
-
-            if (!r.Success)//it maybe be another condition
+            try
             {
-                //Show an error saving...
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-              Common.errorMessage(r);
-                return;
-            }
+                Attachement a = new Attachement();
+                a.recordId = id;
 
-           
+                string[] line = url.Split('/');
+                if (line.Length >= 7)
+                {
+                    a.classId = Convert.ToInt32(line[4]);
+                    a.fileName = line[6];
+                    string[] seq = line[6].Split('.');
+                    
+                    string[] seq1 = seq[0].Split('-');
+                    if(seq1.Length>=2)
+                    a.seqNo = Convert.ToInt16(seq1[1]);
+                }
+
+                PostRequest<Attachement> request = new PostRequest<Attachement>();
+
+                request.entity = a;
+                PostResponse<Attachement> r = _systemService.ChildDelete<Attachement>(request);
+
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(r);
+                    return;
+                }
+
+            }catch (Exception exp)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message);
+            }
 
 
         }

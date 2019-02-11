@@ -2923,6 +2923,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Indemnity.
+        /// </summary>
+        internal static string RT115 {
+            get {
+                return ResourceManager.GetString("RT115", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Payroll.
         /// </summary>
         internal static string RT200 {
@@ -3099,6 +3108,15 @@ namespace Resources {
         internal static string RT504 {
             get {
                 return ResourceManager.GetString("RT504", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Period summary.
+        /// </summary>
+        internal static string RT506 {
+            get {
+                return ResourceManager.GetString("RT506", resourceCulture);
             }
         }
         

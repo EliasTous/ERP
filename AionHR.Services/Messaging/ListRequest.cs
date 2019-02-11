@@ -39,6 +39,10 @@ namespace AionHR.Services.Messaging
 
             get
             {
+                if (Size == null)
+                    Size = "30";
+                if (StartAt == null)
+                    StartAt = "0";
                 parameters = base.Parameters;
                 parameters.Add("_filter", Filter);
                 parameters.Add("_size", Size);

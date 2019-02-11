@@ -184,8 +184,10 @@
     <Content Include="Reports\Controls\EmploymentStatusFilter.ascx" />
     <Content Include="Reports\RT113.aspx" />
     <Content Include="Reports\RT114.aspx" />
+    <Content Include="Reports\RT115.aspx" />
     <Content Include="Reports\RT303.aspx" />
     <Content Include="Reports\RT307.aspx" />
+    <Content Include="Reports\RT506.aspx" />
     <Content Include="Reports\RT804.aspx" />
     <Content Include="Reports\RT803.aspx" />
     <Content Include="Scripts\AdminTemplates.js" />
@@ -712,6 +714,13 @@
     <Compile Include="Reports\RT114.aspx.designer.cs">
       <DependentUpon>RT114.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RT115.aspx.cs">
+      <DependentUpon>RT115.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT115.aspx.designer.cs">
+      <DependentUpon>RT115.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RT303.aspx.cs">
       <DependentUpon>RT303.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -725,6 +734,13 @@
     </Compile>
     <Compile Include="Reports\RT307.aspx.designer.cs">
       <DependentUpon>RT307.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT506.aspx.cs">
+      <DependentUpon>RT506.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT506.aspx.designer.cs">
+      <DependentUpon>RT506.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT804.aspx.cs">
       <DependentUpon>RT804.aspx</DependentUpon>

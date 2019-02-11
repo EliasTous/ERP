@@ -179,7 +179,19 @@
     <Compile Include="GroupedPayRollCross\GroupedPayrollCrossReport.Designer.cs">
       <DependentUpon>GroupedPayrollCrossReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="IndemnityReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IndemnityReport.Designer.cs">
+      <DependentUpon>IndemnityReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="NumbersToWords.cs" />
+    <Compile Include="PayrollPeriodSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PayrollPeriodSummary.Designer.cs">
+      <DependentUpon>PayrollPeriodSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="Receipts.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -484,6 +496,12 @@
     <EmbeddedResource Include="GroupedPayRollCross\GroupedPayrollCrossReport.resx">
       <DependentUpon>GroupedPayrollCrossReport.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndemnityReport.resx">
+      <DependentUpon>IndemnityReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayrollPeriodSummary.resx">
+      <DependentUpon>PayrollPeriodSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Receipts.resx">

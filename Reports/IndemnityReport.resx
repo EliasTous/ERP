@@ -117,49 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="xrLabel10.Text" xml:space="preserve">
-    <value>المستخدم</value>
-  </data>
-  <data name="xrLabel11.Text" xml:space="preserve">
-    <value>تاريخ اخر عودة</value>
-  </data>
-  <data name="xrLabel12.Text" xml:space="preserve">
-    <value>الراتب</value>
-  </data>
-  <data name="xrLabel13.Text" xml:space="preserve">
-    <value>رصيد الإجازات</value>
-  </data>
-  <data name="xrLabel14.Text" xml:space="preserve">
-    <value>لم يتم العثور على نتائج</value>
-  </data>
-  <data name="xrLabel17.Text" xml:space="preserve">
-    <value>القسم</value>
-  </data>
-  <data name="xrLabel19.Text" xml:space="preserve">
-    <value>الفرع</value>
-  </data>
-  <data name="xrLabel21.Text" xml:space="preserve">
-    <value>الموظف</value>
-  </data>
-  <data name="xrLabel23.Text" xml:space="preserve">
-    <value>المدفوع </value>
-  </data>
-  <data name="xrLabel24.Text" xml:space="preserve">
-    <value>الرصيد </value>
-  </data>
-  <data name="xrLabel27.Text" xml:space="preserve">
-    <value>مبلغ الاجازة</value>
-  </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>الاسم</value>
-  </data>
-  <data name="xrLabel8.Text" xml:space="preserve">
-    <value>تاريخ التوظيف</value>
-  </data>
-  <data name="xrLabel9.Text" xml:space="preserve">
-    <value>المستحق</value>
-  </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>صفحة {0} من {1}</value>
-  </data>
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

@@ -329,7 +329,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<LoanOverride> nationalities = _loanService.ChildGetAll<LoanOverride>(request);
             if (!nationalities.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, nationalities.Summary).Show(); ;
+                Common.errorMessage(nationalities); 
                 return;
             }
             this.Store1.DataSource = nationalities.Items;

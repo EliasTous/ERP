@@ -315,6 +315,8 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rt112 = BuildLeafNode("report_rt112", Resources.Common.RT112, "", true, rt1);
             Ext.Net.Node rt113 = BuildLeafNode("report_rt113", Resources.Common.RT113, "", true, rt1);
             Ext.Net.Node rt114 = BuildLeafNode("report_rt114", Resources.Common.RT114, "", true, rt1);
+            Ext.Net.Node rt115 = BuildLeafNode("report_rt115", Resources.Common.RT115, "", true, rt1);
+
 
 
             //Ext.Net.Node rt2 = BuildParentNode("report_rt2", Resources.Common.Salary,  true, timeAt);
@@ -347,6 +349,8 @@ namespace AionHR.Web.UI.Forms.Utilities
            
             Ext.Net.Node rt503 = BuildLeafNode("report_rt503", Resources.Common.RT503, "", true, rt5);
             Ext.Net.Node rt504 = BuildLeafNode("report_rt504", Resources.Common.RT504, "", true, rt5);
+            Ext.Net.Node rt506 = BuildLeafNode("report_rt506", Resources.Common.RT506, "", true, rt5);
+
 
             Ext.Net.Node rt6 = BuildParentNode("report_rt6", Resources.Common.LeaveReports, true, timeAt, "UserGo");
             Ext.Net.Node rt601 = BuildLeafNode("report_rt601", Resources.Common.RT601, "", true, rt6);
@@ -371,6 +375,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(rt112, "rt112", "Reports/RT112.aspx", Resources.Common.RT112, "icon-Employees", "1");
             FillConfigItem(rt113, "rt113", "Reports/RT113.aspx", Resources.Common.RT113, "icon-Employees", "1");
             FillConfigItem(rt114, "rt114", "Reports/RT114.aspx", Resources.Common.RT114, "icon-Employees", "1");
+            FillConfigItem(rt115, "rt115", "Reports/RT115.aspx", Resources.Common.RT115, "icon-Employees", "1");
 
 
 
@@ -398,6 +403,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(rt502, "rt502", "Reports/RT502.aspx", Resources.Common.RT502, "icon-Employees", "1");
             FillConfigItem(rt503, "rt503", "Reports/RT503.aspx", Resources.Common.RT503, "icon-Employees", "1");
             FillConfigItem(rt504, "rt504", "Reports/RT504.aspx", Resources.Common.RT504, "icon-Employees", "1");
+            FillConfigItem(rt506, "rt506", "Reports/RT506.aspx", Resources.Common.RT506, "icon-Employees", "1");
 
             FillConfigItem(rt601, "rt601", "Reports/RT601.aspx", Resources.Common.RT601, "icon-Employees", "1");
             FillConfigItem(rt602, "rt602", "Reports/RT602.aspx", Resources.Common.RT602, "icon-Employees", "1");

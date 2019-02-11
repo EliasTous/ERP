@@ -1377,4 +1377,10 @@
   <data name="Module" xml:space="preserve">
     <value>المكون</value>
   </data>
+  <data name="RT115" xml:space="preserve">
+    <value>نهاية الخدمة </value>
+  </data>
+  <data name="RT506" xml:space="preserve">
+    <value>إجمالي الرواتب</value>
+  </data>
 </root>
