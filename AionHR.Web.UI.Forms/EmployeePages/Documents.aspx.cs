@@ -195,7 +195,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 case "preAttach":
                     ImageUrl.Text = path;
                     var values = path.Split('.');
-                    if (values[values.Length - 1].ToString().ToLower() == "jpg" || values[values.Length - 1].ToString().ToLower() == "png")
+                    if (values[values.Length - 1].ToString().ToLower() == "jpg" || values[values.Length - 1].ToString().ToLower() == "png" || values[values.Length - 1].ToString().ToLower() == "jpg")
                     {
                         imgControl.Src = path;
                         Window1.Show();

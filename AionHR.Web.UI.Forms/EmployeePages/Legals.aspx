@@ -268,7 +268,14 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender()+'&nbsp;&nbsp;'+deleteAttachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +d;" />
+                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' ';
+                                     var att ='&nbsp;';
+                                     if(record.data['fileUrl']!=null)
+                                    {
+                                   
+                                     att = attachRender()+'&nbsp;&nbsp;'+deleteAttachRender(); 
+                                    }
+                                    return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +d;" />
 
                             </ext:Column>
 
@@ -449,7 +456,7 @@
                                 Resizable="false">
 
                                 <%--<Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender()+'&nbsp;&nbsp;'+ deleteAttachRender(); return att+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+d; " />--%>
-                                   <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender()+'&nbsp;&nbsp;'+deleteAttachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +d;" />
+                                   <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!=null) att = attachRender()+'&nbsp;&nbsp;'+deleteAttachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +d;" />
                             </ext:Column>
 
 
@@ -707,7 +714,7 @@
                                     </ext:DateField>
                                 <ext:TextArea runat="server" Name="remarks" ID="bcRemarks" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
                                 <ext:TextField Visible="false" InputType="Password" runat="server" Name="remarks" ID="bcRemarksField" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
-                                <ext:FileUploadField   ID="bcFile"  runat="server" Name="fileUrl" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true"/>
+                                <ext:FileUploadField   ID="bcFile"  runat="server" Name="fileUrl1" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true"/>
                               
                             
 
@@ -729,6 +736,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditBCWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{BCID}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="BcFile" Value="#{bcFile}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{EditBCTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

@@ -830,7 +830,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
+            string bcFileURl = e.ExtraParams["BcFile"];
             EmployeeBackgroundCheck b = JsonConvert.DeserializeObject<EmployeeBackgroundCheck>(obj);
+            b.fileUrl = bcFileURl; 
+            if (!string.IsNullOrEmpty(b.fileUrl))
             b.fileUrl = Regex.Replace(b.fileUrl, @"[^0-9a-zA-Z.]+", "");
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
