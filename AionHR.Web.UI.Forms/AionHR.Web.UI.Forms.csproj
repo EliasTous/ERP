@@ -2148,28 +2148,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
-      <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
-      <Name>AionHR.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AionHR.Model\AionHR.Model.csproj">
-      <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
-      <Name>AionHR.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AionHR.Repository.WebService\AionHR.Repository.WebService.csproj">
-      <Project>{9b6559d9-0fdf-4f9b-8ce0-0df9860e4057}</Project>
-      <Name>AionHR.Repository.WebService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
-      <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
-      <Name>AionHR.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Reports\Reports.csproj">
-      <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
-      <Name>Reports</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_LocalResources\ARLogin.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
@@ -2709,6 +2687,28 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RT201.aspx1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
+      <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
+      <Name>AionHR.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AionHR.Model\AionHR.Model.csproj">
+      <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
+      <Name>AionHR.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AionHR.Repository.WebService\AionHR.Repository.WebService.csproj">
+      <Project>{9b6559d9-0fdf-4f9b-8ce0-0df9860e4057}</Project>
+      <Name>AionHR.Repository.WebService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
+      <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
+      <Name>AionHR.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reports\Reports.csproj">
+      <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
+      <Name>Reports</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

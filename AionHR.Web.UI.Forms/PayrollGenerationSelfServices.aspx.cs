@@ -1468,7 +1468,10 @@ namespace AionHR.Web.UI.Forms
             req.Add(Pm);
             req.Add(jobInfo1.GetJobInfo());
             req.Add(employeeCombo1.GetEmployee());
-
+            DateRangeParameterSet dateRange = new DateRangeParameterSet();
+            dateRange.DateFrom = DateTime.Parse("1970-01-01");
+            dateRange.DateTo = DateTime.Parse("2050-01-01");
+            req.Add(dateRange);
             return req;
         }
 

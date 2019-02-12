@@ -707,7 +707,7 @@
                                     </ext:DateField>
                                 <ext:TextArea runat="server" Name="remarks" ID="bcRemarks" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
                                 <ext:TextField Visible="false" InputType="Password" runat="server" Name="remarks" ID="bcRemarksField" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
-                                <ext:FileUploadField   ID="bcFile"  runat="server" Name="fileUrl1" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true"/>
+                                <ext:FileUploadField   ID="bcFile"  runat="server" Name="fileUrl" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true"/>
                               
                             
 

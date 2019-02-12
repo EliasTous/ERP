@@ -534,10 +534,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             request.EmployeeId = CurrentEmployee.Text;
 
-            ListResponse<EmployeeRightToWork> currencies = _employeeService.ChildGetAll<EmployeeRightToWork>(request);
-            if (!currencies.Success)
-                X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
-            this.rightToWorkStore.DataSource = currencies.Items;
+            ListResponse<EmployeeRightToWork> resp = _employeeService.ChildGetAll<EmployeeRightToWork>(request);
+           if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            this.rightToWorkStore.DataSource = resp.Items;
 
 
             this.rightToWorkStore.DataBind();
@@ -557,10 +560,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             request.EmployeeId = CurrentEmployee.Text;
 
-            ListResponse<EmployeeBackgroundCheck> currencies = _employeeService.ChildGetAll<EmployeeBackgroundCheck>(request);
-            if (!currencies.Success)
-                X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
-            this.BCStore.DataSource = currencies.Items;
+            ListResponse<EmployeeBackgroundCheck> resp = _employeeService.ChildGetAll<EmployeeBackgroundCheck>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+            }
+            this.BCStore.DataSource = resp.Items;
 
 
             this.BCStore.DataBind();
@@ -692,7 +697,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         if (fileData != null)
                         {
                             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
-                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPRW, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = null };
+                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPRW, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = 0 };
                             req.FileNames.Add(Regex.Replace(rwFile.PostedFile.FileName, @"[^0-9a-zA-Z.]+", ""));
                             req.FilesData.Add(fileData);
                             PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
@@ -878,7 +883,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         if (fileData != null)
                         {
                             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
-                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPBC, recordId = Convert.ToInt32(b.recordId), fileName = bcFile.PostedFile.FileName, seqNo = null };
+                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPBC, recordId = Convert.ToInt32(b.recordId), fileName = bcFile.PostedFile.FileName, seqNo = 0 };
                             req.FileNames.Add(bcFile.PostedFile.FileName);
                             req.FilesData.Add(fileData);
                             PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
@@ -1174,7 +1179,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 string[] line = url.Split('/');
                 if (line.Length >= 7)
                 {
-                    a.classId = Convert.ToInt32(line[4]);
+                    a.classId = ClassId.EPRW;
                     a.fileName = line[6];
                     string[] seq = line[6].Split('.');
                     

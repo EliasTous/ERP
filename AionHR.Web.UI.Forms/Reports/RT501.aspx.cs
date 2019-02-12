@@ -176,7 +176,8 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Add(GetPayId());
             req.Add(jobInfo1.GetJobInfo());
             req.Add(employeeFilter.GetEmployee());
-
+            req.Add(dateRange1.GetRange());
+            
             return req;
         }
         private PayIdParameterSet GetPayId()

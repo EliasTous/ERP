@@ -587,16 +587,16 @@
                                                                 <Click Handler="openNewTab('payrollDefaults', 'PayrollDefaults.aspx', #{pyde}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>--%>
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanOverrides%>">
+                                                       <%-- <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanOverrides%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('loanOverrides', 'LoanOverrides.aspx', #{loTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
-                                                        </ext:MenuItem>
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common ,TimeSchedule%>">
+                                                        </ext:MenuItem>--%>
+                                                       <%-- <ext:MenuItem runat="server" Text="<%$Resources: Common ,TimeSchedule%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('TimeSchedule Setup ', 'PayrollTimeSchedule.aspx', #{PYTStitle}.value, 'icon-Employees')" />
                                                             </Listeners>
-                                                        </ext:MenuItem>
+                                                        </ext:MenuItem>--%>
                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common ,SocialSecuritySchedules%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('Social Security Schedule Setup ', 'SocialSecuritySchedules.aspx', #{SSStitle}.value, 'icon-Employees')" />

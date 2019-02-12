@@ -60,7 +60,7 @@
                         <ext:Toolbar runat="server" Height="60">
 
                             <Items>
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  EmptyText="<%$Resources:Common , PayRef %>"  Name="payId" runat="server" DisplayField="payRefWithDateRange" ValueField="recordId" ID="payId" Width="250">
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  EmptyText="<%$Resources:Common , PayRef %>"  Name="payId" runat="server" DisplayField="payRefWithDateRange" ValueField="recordId" ID="payId" Width="150">
                                     <Store>
                                         <ext:Store runat="server" ID="payIdStore">
                                             <Model>
@@ -104,13 +104,20 @@
                                  <uc:employeeCombo runat="server" ID="employeeFilter" />
                                     </Content>
                                 </ext:Container>
+                                   <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:dateRange runat="server" ID="dateRange1" />
+                              
+                                    </Content>
+                                </ext:Container>
                                  <ext:TextField Visible="false" Width="120" runat="server" ID="payRef" EmptyText="<%$Resources:Common , PayRef %>" />
                                   
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
-                                                <Click Handler="if(App.payId.getValue()==null)   {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}  callbackPanel.PerformCallback('1');" />
+                                              <%--  <Click Handler="if(App.payId.getValue()==null)   {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}  callbackPanel.PerformCallback('1');" />--%>
+                                                   <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
                                     </Content>

@@ -11,7 +11,7 @@ namespace AionHR.Services.Messaging.Benefits
         public int employeeId { get; set; }
         public int benefitId { get; set; }
 
-
+        public string SortBy { get; set; }
 
 
         public override Dictionary<string, string> Parameters
@@ -21,7 +21,7 @@ namespace AionHR.Services.Messaging.Benefits
                 parameters = base.Parameters;
                 parameters.Add("_employeeId", employeeId.ToString());
                 parameters.Add("_benefitId", benefitId.ToString());
-
+                parameters.Add("_sortBy", SortBy.ToString());
 
                 return parameters;
             }

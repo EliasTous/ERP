@@ -45,7 +45,10 @@ namespace AionHR.Web.UI.Forms
 
             }
             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
-            req.entity = new Model.System.Attachement() { date=DateTime.Now, classId = Convert.ToInt32(context.Request.QueryString["classId"]), recordId = Convert.ToInt32(context.Request.QueryString["recordId"]), fileName = Regex.Replace(context.Request.Files[0].FileName, @"[^0-9a-zA-Z.]+", "") , seqNo = null };
+            if(context.Request.Files.Count==1)
+            req.entity = new Model.System.Attachement() { date=DateTime.Now, classId = Convert.ToInt32(context.Request.QueryString["classId"]), recordId = Convert.ToInt32(context.Request.QueryString["recordId"]), fileName = Regex.Replace(context.Request.Files[0].FileName, @"[^0-9a-zA-Z.]+", "") , seqNo = 0 };
+            else
+                req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = Convert.ToInt32(context.Request.QueryString["classId"]), recordId = Convert.ToInt32(context.Request.QueryString["recordId"]), fileName = Regex.Replace(context.Request.Files[0].FileName, @"[^0-9a-zA-Z.]+", ""), seqNo = null };
             //write your handler implementation here.
             int bulk;
             if (int.TryParse(context.Request.Form["id"], out bulk))

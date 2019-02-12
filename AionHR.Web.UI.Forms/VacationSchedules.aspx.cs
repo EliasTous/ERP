@@ -610,12 +610,19 @@ namespace AionHR.Web.UI.Forms
             {
                 period.seqNo = i++;
                 period.vsId = scheduleId;
-               
+
             }
+            PostResponse<VacationSchedulePeriod[]> response; 
+            if (periods.Count != 0)
+            { 
             PostRequest<VacationSchedulePeriod[]> periodRequest = new PostRequest<VacationSchedulePeriod[]>();
-            periodRequest.entity = periods.ToArray() ;
-            PostResponse<VacationSchedulePeriod[]> response = _branchService.ChildAddOrUpdate<VacationSchedulePeriod[]>(periodRequest);
-            return response;
+            periodRequest.entity = periods.ToArray();
+            response = _branchService.ChildAddOrUpdate<VacationSchedulePeriod[]>(periodRequest);
+                return response;
+            }
+            response = new PostResponse<VacationSchedulePeriod[]>();
+            response.Success = true;
+            return response; 
         }
         [DirectMethod]
         public string CheckSession()

@@ -21,8 +21,9 @@ namespace Reports.EmployeePayRollCross
                 this.RightToLeftLayout = RightToLeftLayout.Yes;
             }
             dsSalaries1.DataTable1.AddDataTable1Row("ad");
-
-            var salaryDate = items.FirstOrDefault().payDate;
+            var salaryDate = new DateTime();
+            if (items.Count!=0)
+             salaryDate = items.FirstOrDefault().payDate;
 
             foreach (var employee in items.GroupBy(u => u.employeeName.reference))
             {
