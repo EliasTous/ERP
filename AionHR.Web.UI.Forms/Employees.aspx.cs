@@ -30,6 +30,7 @@ using AionHR.Infrastructure.Domain;
 using AionHR.Model.Attributes;
 using AionHR.Model.Access_Control;
 using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Services.Messaging.CompanyStructure;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -209,7 +210,11 @@ namespace AionHR.Web.UI.Forms
         }
         private List<Model.Company.Structure.Position> GetPositions()
         {
-            ListRequest positionsRequest = new ListRequest();
+            PositionListRequest positionsRequest = new PositionListRequest();
+          
+            positionsRequest.StartAt = "0";
+            positionsRequest.Size = "1000";
+            positionsRequest.SortBy = "positionRef";
             ListResponse<Model.Company.Structure.Position> resp = _companyStructureService.ChildGetAll<Model.Company.Structure.Position>(positionsRequest);
             if (!resp.Success)
             {
@@ -428,7 +433,7 @@ namespace AionHR.Web.UI.Forms
                 empRequest.SortBy = e.Sort[0].Property;
             if (storeSize.Text == "unlimited")
             {
-                empRequest.Size = "100000";
+                empRequest.Size = "1000";
                 empRequest.StartAt = "0";
                 storeSize.Text = "limited";
             }

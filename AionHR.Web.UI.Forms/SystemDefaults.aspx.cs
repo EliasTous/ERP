@@ -238,7 +238,7 @@ namespace AionHR.Web.UI.Forms
             {
                 AttachementRecordRequest req = new AttachementRecordRequest();
                 req.RecordID = "1";
-                req.seqNo = "1";
+                req.seqNo = "0";
                 req.classId = ClassId.SYDE.ToString();
 
                 RecordResponse<Attachement> resp = _systemService.ChildGetRecord<Attachement>(req);

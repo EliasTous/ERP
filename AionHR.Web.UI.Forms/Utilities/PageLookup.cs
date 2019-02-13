@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 namespace AionHR.Web.UI.Forms
-{
+{  
     public class PageLookup
     {
         public static string GetPageUrlByClassId(int classId)

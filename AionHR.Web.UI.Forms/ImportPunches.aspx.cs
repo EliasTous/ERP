@@ -93,7 +93,7 @@ namespace AionHR.Web.UI.Forms
                 //    return;
                 //}
                 BatchStatusRequest req = new BatchStatusRequest();
-                req.classId = ClassId.TACH;
+                req.classId = ClassId.TAIM ;
                 RecordResponse<BatchOperationStatus> resp = _systemService.ChildGetRecord<BatchOperationStatus>(req);
                 if (!resp.Success || resp.result == null)
                 {
@@ -233,21 +233,21 @@ namespace AionHR.Web.UI.Forms
                 SystemService _system = new SystemService(new SystemRepository(), h);
 
 
-                Dictionary<string, string> arabicErrors = new Dictionary<string, string>();
-                if (_systemService.SessionHelper.CheckIfArabicSession())
-                {
-                    System.Resources.ResourceManager MyResourceClass = new System.Resources.ResourceManager(typeof(Resources.Errors /* Reference to your resources class -- may be named differently in your case */));
+                //Dictionary<string, string> arabicErrors = new Dictionary<string, string>();
+                //if (_systemService.SessionHelper.CheckIfArabicSession())
+                //{
+                //    System.Resources.ResourceManager MyResourceClass = new System.Resources.ResourceManager(typeof(Resources.Errors /* Reference to your resources class -- may be named differently in your case */));
 
-                    ResourceSet resourceSet = Resources.Errors.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
-                    foreach (DictionaryEntry entry in resourceSet)
-                    {
-                        arabicErrors[entry.Key.ToString()] = entry.Value.ToString();
+                //    ResourceSet resourceSet = Resources.Errors.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+                //    foreach (DictionaryEntry entry in resourceSet)
+                //    {
+                //        arabicErrors[entry.Key.ToString()] = entry.Value.ToString();
                       
-                    }
-                }
+                //    }
+                //}
             
 
-                PunchesBatchRunner runner = new PunchesBatchRunner(storage, emp, _system, _timeAtt, arabicErrors) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
+                PunchesBatchRunner runner = new PunchesBatchRunner(storage, emp, _system, _timeAtt,GetGlobalResourceObject("Errors", "Error_1").ToString()) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
                 runner.Process();
                 
                 this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID);
@@ -280,7 +280,7 @@ namespace AionHR.Web.UI.Forms
 
             //object prep = _systemService.SessionHelper.Get("Preporcessing");
             BatchStatusRequest req = new BatchStatusRequest();
-            req.classId = ClassId.TACH;
+            req.classId = ClassId.TAIM ;
             RecordResponse<BatchOperationStatus> resp = _systemService.ChildGetRecord<BatchOperationStatus>(req);
             if (resp.result == null)
                 return;
@@ -325,7 +325,7 @@ namespace AionHR.Web.UI.Forms
             string content;
             try
             {
-                content = File.ReadAllText(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + ClassId.TACH.ToString() + ".txt"));
+                content = File.ReadAllText(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + ClassId.TAIM.ToString() + ".txt"));
             }
 
             catch (Exception exp)
@@ -340,7 +340,7 @@ namespace AionHR.Web.UI.Forms
             HttpContext.Current.Response.Write(content);
             PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
             BatchOperationStatus batch = new BatchOperationStatus();
-            batch.classId = ClassId.TACH;
+            batch.classId = ClassId.TAIM ;
             batch.status = 0;
             batch.processed = 0;
             batch.tableSize = 0;
@@ -373,7 +373,7 @@ namespace AionHR.Web.UI.Forms
         {
             PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
             BatchOperationStatus batch = new BatchOperationStatus();
-            batch.classId = ClassId.TACH;
+            batch.classId = ClassId.TAIM ;
             batch.status = 0;
             batch.processed = 0;
             batch.tableSize = 0;

@@ -403,14 +403,7 @@ namespace AionHR.Web.UI.Forms.Reports
             else
                 reqTV.toDuration = toDuration.Text;
 
-            if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
-            {
-
-                reqTV.timeCode = "0";
-            }
-            else
-                reqTV.timeCode = timeVariationType.Value.ToString();
-
+            reqTV.timeCode = timeVariationType1.GetTimeCode();
 
 
             return reqTV;

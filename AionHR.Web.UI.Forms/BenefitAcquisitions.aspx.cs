@@ -378,7 +378,9 @@ namespace AionHR.Web.UI.Forms
             BenefitAcquisitionsListRequest req = new BenefitAcquisitionsListRequest();
             req.StartAt = "0";
             req.Size = "50";
-            
+            req.SortBy = "employeeId";
+
+
             if (string.IsNullOrEmpty(employeeFilter.SelectedItem.Value))
                 req.employeeId = 0;
             else

@@ -117,7 +117,11 @@ namespace AionHR.Web.UI.Forms
                         if (fileData != null)
                         {
                             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
-                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.SYDE, recordId = 1, fileName = context.Request.Files[0].FileName, seqNo = 1 };
+                            if (context.Request.Files.Count == 1)
+                            
+                                req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.SYDE, recordId = 1, fileName = context.Request.Files[0].FileName, seqNo = 0 };
+                            else
+                                req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.SYDE, recordId = 1, fileName = context.Request.Files[0].FileName, seqNo = null };
                             req.FileNames.Add(context.Request.Files[0].FileName);
                             req.FilesData.Add(fileData);
                             PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
