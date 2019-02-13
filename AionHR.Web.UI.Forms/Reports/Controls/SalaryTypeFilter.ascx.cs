@@ -20,35 +20,48 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         public string SetText { get; set; }
         public string Width { get; set; }
         public string setEmptyText { get; set; }
-
+        public string setLabelWidth { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-
-                XMLDictionaryListRequest request = new XMLDictionaryListRequest();
-
-                request.database = "2";
-                ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
-                if (!resp.Success)
+                if (!IsPostBack)
                 {
-                    Common.errorMessage(resp);
-                    return;
-                }
-                salaryTypeList.AddRange(resp.Items);
-                FillSalaryTypeStore();
-              //  salaryTypeId.Select(0);
-                if (string.IsNullOrEmpty(Width))
-                {
-                    this.SalaryPanel.SetWidth(Convert.ToInt16(Width));
-                    this.salaryTypeId.SetWidth(Convert.ToInt16(Width));
-                }
 
-                if (string.IsNullOrEmpty(SetText))
+                    XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
-                    this.salaryTypeId.EmptyText = GetGlobalResourceObject("Common", "SalaryType").ToString();
-                else
-                     this.salaryTypeId.FieldLabel = SetText.ToString();
+                    request.database = "2";
+                    ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        return;
+                    }
+                    salaryTypeList.AddRange(resp.Items);
+                    FillSalaryTypeStore();
+                    //  salaryTypeId.Select(0);
+                    if (string.IsNullOrEmpty(Width))
+                    {
+                        this.SalaryPanel.SetWidth(Convert.ToInt16(Width));
+                        this.salaryTypeId.SetWidth(Convert.ToInt16(Width));
+                    }
+
+                    if (string.IsNullOrEmpty(SetText))
+
+                        this.salaryTypeId.EmptyText = GetGlobalResourceObject("Common", "SalaryType").ToString();
+                    else
+                        this.salaryTypeId.FieldLabel = SetText.ToString();
+                    if (string.IsNullOrEmpty(setLabelWidth))
+                        this.salaryTypeId.LabelWidth = 140;
+                    else
+                        this.salaryTypeId.LabelWidth = Convert.ToInt32(setLabelWidth);
+                }
+                
+            }
+            catch(Exception exp)
+
+            {
+             
 
             }
         }

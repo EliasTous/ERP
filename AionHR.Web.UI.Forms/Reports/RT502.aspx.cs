@@ -28,6 +28,7 @@ using Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -89,6 +90,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     fiscalyearStore.DataSource = GetYears();
                     fiscalyearStore.DataBind();
+                    fillSalaryType();
                 }
                 catch { }
             }
@@ -200,9 +202,8 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 throw new Exception(resp.Error + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId);
 
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
+            
+              
 
             }
             resp.Items.ForEach(x =>
@@ -328,7 +329,12 @@ namespace AionHR.Web.UI.Forms.Reports
             try
             {
                 req.Year = fiscalYear.Value.ToString();
-                req.PeriodType = (SalaryType)Convert.ToInt32( salaryType.Value);
+                if (!string.IsNullOrEmpty(salaryType.Value.ToString()))
+                req.PeriodType = Convert.ToInt32(salaryType.Value.ToString());
+                else
+                {
+                    return;
+                }
                 if (string.IsNullOrEmpty(req.Year))
                 {
                 //    X.Call("FiscalYearError", Resources.Errors.);
@@ -360,10 +366,24 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                 return new List<FiscalYear>();
             }
             return resp.Items;
+        }
+        private void fillSalaryType()
+        {
+            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+
+            request.database = "2";
+            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            salaryTypeStore.DataSource = resp.Items;
+            salaryTypeStore.DataBind();
         }
     }
 }

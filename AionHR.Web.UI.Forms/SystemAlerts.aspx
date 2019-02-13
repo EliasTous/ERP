@@ -132,8 +132,8 @@
                                 </Widget>
                               
                             </ext:WidgetColumn>
-                                <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName %>" DataIndex="alertId" Hideable="false" Flex="1">
-                                <Renderer Handler=" return GetAlertName(record.data['alertId']); " />
+                                <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName %>" DataIndex="name" Hideable="false" Flex="1">
+                              
                             </ext:Column>
                          <%--   <ext:WidgetColumn ID="WidgetColumn1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSendTo %>" DataIndex="sendTo" Hideable="false" Width="150" Align="Center">
                                 <Widget>
@@ -154,7 +154,7 @@
                              <ext:WidgetColumn ID="WidgetColumn2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDays %>" DataIndex="days" Hideable="false" Width="125" Align="Center">
                                 <Widget>
                                    
-                                    <ext:NumberField runat="server" MinValue="1" >
+                                    <ext:NumberField runat="server" MinValue="0" >
                                         <Listeners>
                                             <Change Handler="var rec = this.getWidgetRecord(); rec.set('days',this.value);" />
                                         </Listeners>

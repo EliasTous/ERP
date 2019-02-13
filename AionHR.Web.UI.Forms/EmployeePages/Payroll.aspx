@@ -579,15 +579,22 @@
                                         </ext:ComboBox>
                                         <ext:DateField AllowBlank="false" runat="server" LabelWidth="130" Width="275" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" />
 
-                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false" ID="salaryType" LabelWidth="130" Width="275" runat="server" FieldLabel="<%$ Resources:FieldSalaryType%>" Name="salaryType" IDMode="Static" SubmitValue="true">
-                                            <Items>
-                                               <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeDaily %>"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeWeekly %>"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryBiWeekly%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeBiWeekly %>"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryFourWeekly%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeFourWeekly %>"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeMonthly %>"></ext:ListItem>
-                                            </Items>
-                                        </ext:ComboBox>
+                                     
+                                         <ext:ComboBox  AllowBlank="false"  AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" Width="275" LabelWidth="130" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="salaryType"  FieldLabel="<%$ Resources:FieldSalaryType%>" SubmitValue="true"  Name="salaryType" >
+                                              <Store>
+                                              <ext:Store runat="server" ID="salaryTypeStore" >
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="key" />
+                                                                        <ext:ModelField Name="value" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                            </Store>
+        
+                                              </ext:ComboBox>
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false" ID="paymentFrequency" LabelWidth="130" Width="275" runat="server" FieldLabel="<%$ Resources:FieldPaymentFrequency%>" Name="paymentFrequency" IDMode="Static" SubmitValue="true">
                                             <Items>
                                                    <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="<%$ Resources:ComboBoxValues , PYEMPaymentFrequencyDaily %>"></ext:ListItem>

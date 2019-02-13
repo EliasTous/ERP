@@ -15,8 +15,15 @@ namespace Reports
 
         private void xrTableCell18_PrintOnPage(object sender, PrintOnPageEventArgs e)
         {
-            if ((sender as XRTableCell).Text == "False")
+            if ((sender as XRTableCell).Text.ToLower() == "false")
                 (sender as XRTableCell).Text = " ";
+        }
+
+        private void xrTableCell18_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            if ((sender as XRTableCell).Text.ToLower() == "false")
+                (sender as XRTableCell).Text = " ";
+
         }
     }
 }

@@ -816,7 +816,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.ActiveIndex = 0;
                     return;
                 }
-                req.PeriodType = (SalaryType)Convert.ToInt32(salaryType.Value.ToString());
+                req.PeriodType = Convert.ToInt32(salaryType.Value.ToString());
                 req.Status = "1";
 
                 ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);

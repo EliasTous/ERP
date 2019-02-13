@@ -91,14 +91,21 @@
                                                      <uc:employeeCombo runat="server" ID="employeeCombo1" />
                                             </Content>
                                         </ext:Container>
-                               <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   ID="salaryType" LabelWidth="130" Width="150" runat="server" EmptyText="<%$ Resources:FieldSalaryType%>" Name="salaryType" IDMode="Static" SubmitValue="true">
-                                            <Items>
-                                               <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="1"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryBiWeekly%>" Value="3"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryFourWeekly%>" Value="4"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="5"></ext:ListItem>
-                                            </Items>
+                              
+                                           <ext:ComboBox    AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" LabelWidth="130" Width="150"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="salaryType"   EmptyText="<%$ Resources:FieldSalaryType%>" SubmitValue="true"  Name="salaryType" >
+                                              <Store>
+                                              <ext:Store runat="server" ID="salaryTypeStore" >
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="key" />
+                                                                        <ext:ModelField Name="value" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                            </Store>
+        
                                      <Listeners>
                                         <Select Handler="App.fiscalPeriodsStore.reload(); ">
                                         </Select>

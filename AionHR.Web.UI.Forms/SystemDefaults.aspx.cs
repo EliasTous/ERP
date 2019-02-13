@@ -1684,9 +1684,9 @@ namespace AionHR.Web.UI.Forms
         protected void RemovePicture(object sender, DirectEventArgs e)
         {
             Attachement at = new Attachement();
-            at.classId = 20030;
+            at.classId = ClassId.SYDE;
             at.recordId = 1;
-            at.seqNo = 1;
+            at.seqNo = 0;
             at.fileName = "companyLogo"; 
 
             PostRequest<Attachement> req = new PostRequest<Attachement>();
@@ -1709,6 +1709,7 @@ namespace AionHR.Web.UI.Forms
                     Html = Resources.Common.RecordUpdatedSucc
                 });
                 FillCompanyLogo();
+                imageSelectionWindow.Close();
             }
 
         }

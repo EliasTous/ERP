@@ -6,7 +6,7 @@ public class FiscalPeriodsListRequest:ListRequest
 {
     public string Year { get; set; }
 
-    public SalaryType PeriodType { get; set; }
+    public int PeriodType { get; set; }
 
     public string Status { get; set; }
 
@@ -17,7 +17,7 @@ public class FiscalPeriodsListRequest:ListRequest
         {
             parameters = new Dictionary<string, string>();
             parameters.Add("_year", Year);
-            parameters.Add("_salaryType", ((int)PeriodType).ToString());
+            parameters.Add("_salaryType", (PeriodType).ToString());
             parameters.Add("_status", Status.ToString());
             return parameters;
         }

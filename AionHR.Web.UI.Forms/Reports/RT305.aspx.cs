@@ -235,10 +235,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 ListResponse<Model.Reports.RT305> resp = _reportsService.ChildGetAll<Model.Reports.RT305>(req);
                 if (!resp.Success)
                 {
+                    throw new Exception(resp.Error + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId);
 
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    Common.errorMessage(resp);
-                    return;
 
                 }
 

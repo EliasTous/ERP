@@ -177,4 +177,7 @@
   <data name="FieldLeaveSchedule" xml:space="preserve">
     <value>جدول الاجازات</value>
   </data>
+  <data name="FieldDeduction" xml:space="preserve">
+    <value>الخصم</value>
+  </data>
 </root>

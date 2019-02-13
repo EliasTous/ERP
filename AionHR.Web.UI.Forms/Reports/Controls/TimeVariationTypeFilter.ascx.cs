@@ -1,8 +1,10 @@
 ﻿
 using AionHR.Model.Payroll;
+using AionHR.Model.System;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.Reports;
+using AionHR.Services.Messaging.System;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
     public partial class TimeVariationTypeFilter : System.Web.UI.UserControl
     {
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+        ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -42,17 +45,18 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         }
         private void FilltimeCodeStore()
         {
-            ListRequest request = new ListRequest();
+            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
-            request.Filter = "";
-            ListResponse<TimeCode> response = _payrollService.ChildGetAll<TimeCode>(request);
-            if (!response.Success)
+            request.database = "3";
+            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            if (!resp.Success)
             {
-                Common.errorMessage(response);
+                Common.errorMessage(resp);
                 return;
-
             }
-            timeVariationStore.DataSource = response.Items;
+           
+       
+            timeVariationStore.DataSource = resp.Items;
             timeVariationStore.DataBind();
 
         }

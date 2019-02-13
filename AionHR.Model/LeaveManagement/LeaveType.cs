@@ -29,6 +29,7 @@ namespace AionHR.Model.Employees.Leaves
         public bool isPaid { get; set; }
         [PropertyID("42000_06")]
         [ApplySecurity]
+        public int? edId { get; set; }
         //public bool raReportTo { get; set; }
         //[PropertyID("42000_06")]
         //[ApplySecurity]

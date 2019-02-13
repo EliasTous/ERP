@@ -514,7 +514,7 @@
     <value>Arial, 10pt, style=Bold</value>
   </data>
   <data name="xrLabel13.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>0, 81</value>
+    <value>3.81469727E-05, 71.99997</value>
   </data>
   <data name="xrLabel13.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>89.97941, 35.99999</value>
@@ -532,7 +532,7 @@
     <value>Arial, 10pt</value>
   </data>
   <data name="xrLabel12.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>89.97942, 39.9999924</value>
+    <value>89.97946, 35.9999847</value>
   </data>
   <data name="xrLabel12.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>215.00708, 35.9999847</value>
@@ -550,7 +550,7 @@
     <value>Arial, 10pt, style=Bold</value>
   </data>
   <data name="xrLabel11.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>0, 40</value>
+    <value>3.81469727E-05, 35.9999847</value>
   </data>
   <data name="xrLabel11.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>89.97941, 35.99999</value>
@@ -755,7 +755,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell41.Weight" type="System.Double, mscorlib">
-    <value>8.06386385936687</value>
+    <value>8.5731730212692181</value>
   </data>
   <data name="xrTableRow3.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -764,7 +764,7 @@
     <value>1</value>
   </data>
   <data name="xrTable1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>1237, 38.2916756</value>
+    <value>1242.00012, 38.2916756</value>
   </data>
   <data name="xrTable1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
@@ -776,7 +776,7 @@
     <value>Arial, 10pt, style=Bold</value>
   </data>
   <data name="xrLabel6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>89.97941, 81</value>
+    <value>89.97944, 71.99997</value>
   </data>
   <data name="xrLabel6.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>355.1089, 36</value>

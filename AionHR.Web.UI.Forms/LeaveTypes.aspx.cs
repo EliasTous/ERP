@@ -24,6 +24,7 @@ using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Services.Messaging.CompanyStructure;
+using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -32,6 +33,7 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
 
@@ -528,7 +530,20 @@ namespace AionHR.Web.UI.Forms
 
             this.leaveScheduleStore.DataBind();
         }
+        protected void dedsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
 
+            ListRequest req = new ListRequest();
+            ListResponse<EntitlementDeduction> resp = _employeeService.ChildGetAll<EntitlementDeduction>(req);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            dedsStore.DataSource = resp.Items.Where(s => s.type == 2).ToList();
+            dedsStore.DataBind();
+
+        }
 
     }
 }

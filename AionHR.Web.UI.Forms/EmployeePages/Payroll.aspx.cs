@@ -27,6 +27,7 @@ using AionHR.Model.Attributes;
 using AionHR.Model.Access_Control;
 using AionHR.Model.Payroll;
 using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -222,7 +223,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         protected void PoPuPSA(object sender, DirectEventArgs e)
         {
 
-
+            fillSalaryType();
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             currentGrossSalary.Text = e.ExtraParams["grossSalary"];
@@ -702,6 +703,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         protected void ADDNewSA(object sender, DirectEventArgs e)
         {
+            fillSalaryType();
             CurrentSalary.Text = "";
             entitlementsForm.Disabled = true;
             DeductionForm.Disabled = true; 
@@ -1764,7 +1766,20 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
 
         }
+        private void  fillSalaryType()
+        {
+            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
+            request.database = "2";
+            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            if(!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return; 
+            }
+            salaryTypeStore.DataSource = resp.Items;
+            salaryTypeStore.DataBind();
+        }
 
     }
 }

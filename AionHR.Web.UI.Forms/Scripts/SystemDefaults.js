@@ -308,7 +308,7 @@ function GetCroppedImage() {
         Ext.net.Mask.show({ msg: App.lblLoading.getValue(), el: App.imageSelectionWindow.id });
         var fileName = App.FileUploadField1.value;
         if (fileName == '')
-            fileName = App.FileName.value;
+            fileName = 'CompanyLogo.jpg'
         fileName = fileName.replace(/[^0-9a-z%.]/gi, '');
        
 

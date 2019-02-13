@@ -2,16 +2,15 @@
 
 <ext:Panel runat="server" Layout="HBoxLayout"   ><Items>
    
-     <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="timeCode" DisplayField="name" ID="timeVariationType"   EmptyText="<%$ Resources:Common , FieldTimeVariationType%>" Name="timeVariationType" >
+     <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="timeVariationType"   EmptyText="<%$ Resources:Common , FieldTimeVariationType%>" Name="timeVariationType" >
             <Store>
                 <ext:Store runat="server" ID="timeVariationStore">
                     <Model>
                         <ext:Model runat="server">
                             <Fields>
                                                 
-                        <ext:ModelField Name="timeCode" />
-                          <ext:ModelField Name="name" />
-                       
+                         <ext:ModelField Name="key" />
+                         <ext:ModelField Name="value" />
 
                             </Fields>
                         </ext:Model>
