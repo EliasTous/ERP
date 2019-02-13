@@ -46,105 +46,105 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DayPilot">
-      <HintPath>..\..\..\Users\Rabih.Attar\Desktop\bin\bin\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Charts.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Charts.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.CodeParser.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.CodeParser.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.CodeParser.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Data.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Data.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.DataAccess.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.DataAccess.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Office.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Office.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Pdf.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Pdf.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Printing.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Printing.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Web.Resources.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Web.Resources.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Web.Resources.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Web.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Web.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.Xpo.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Xpo.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraCharts.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.XtraCharts.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.XtraCharts.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraGauges.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.XtraGauges.v16.2.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.XtraGauges.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.XtraReports.v16.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.XtraReports.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
     </Reference>
     <Reference Include="Ext.Net">
-      <HintPath>..\..\..\Users\Rabih.Attar\Desktop\bin\bin\Ext.Net.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Ext.Net.dll</HintPath>
     </Reference>
     <Reference Include="Ext.Net.Utilities">
-      <HintPath>..\..\..\Users\Rabih.Attar\Desktop\bin\bin\Ext.Net.Utilities.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Ext.Net.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\log4net.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Users\Rabih.Attar\Desktop\bin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Users\Rabih.Attar\Desktop\bin\bin\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Users\Rabih.Attar\Desktop\bin\bin\Microsoft.Web.Infrastructure.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Users\Rabih.Attar\Desktop\bin\bin\StructureMap.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\StructureMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="system" />
@@ -164,7 +164,7 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Transformer.NET">
-      <HintPath>..\..\..\Users\Rabih.Attar\Desktop\bin\bin\Transformer.NET.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Transformer.NET.dll</HintPath>
     </Reference>
     <Reference Include="WebActivatorEx">
       <HintPath>..\..\..\..\..\..\..\AION Dlls\WebActivatorEx.dll</HintPath>
