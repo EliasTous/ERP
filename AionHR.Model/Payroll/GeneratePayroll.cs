@@ -14,6 +14,7 @@ namespace AionHR.Model.Payroll
        public int employeeId { set; get; }
         public int departmentId { set; get; }
         public int branchId { set; get; }
-      
+       
+
     }
 }

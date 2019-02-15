@@ -1962,7 +1962,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     PostRequest<DeletePayroll> req = new PostRequest<DeletePayroll>();
-                    req.entity = new DeletePayroll { branchId = G.branchId, departmentId = G.departmentId, employeeId = G.employeeId, payId = G.payId };
+                    req.entity = new DeletePayroll { branchId = G.branchId, departmentId = G.departmentId, employeeId = G.employeeId, payId = G.payId ,positionId=0};
 
 
                     PostResponse<DeletePayroll> resp = payrollService.ChildAddOrUpdate<DeletePayroll>(req);

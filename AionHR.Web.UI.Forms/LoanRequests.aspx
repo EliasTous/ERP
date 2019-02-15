@@ -358,7 +358,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler=" if (record.data['status']==2) return; if (record.data['deductedAmount'] >0  ) return editRender(); else  return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
+                                <Renderer Handler=" if (record.data['status']==2) return editRender(); if (record.data['deductedAmount'] >0  ) return editRender(); else  return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
 
                             </ext:Column>
 
@@ -701,7 +701,7 @@
                                 <ext:Panel runat="server" Layout="HBoxLayout" Width="600">
                                     <Items>
                                         <ext:TextArea runat="server" ID="newNoteText" Region="West" Width="550" Height="60" />
-                                        <ext:Button Region="East" ID="Button1" MarginSpec="20 0 0 0" Height="25" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                        <ext:Button Region="East" ID="caseCommentsAddButton" MarginSpec="20 0 0 0" Height="25" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                             <Listeners>
                                                 <Click Handler="CheckSession();if(App.newNoteText.getValue()==''){Ext.MessageBox.alert(#{titleSavingError}.value, #{EmptyText}.value); return false;}" />
                                             </Listeners>

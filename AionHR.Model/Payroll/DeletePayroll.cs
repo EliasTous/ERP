@@ -8,5 +8,6 @@ namespace AionHR.Model.Payroll
 {
    public class DeletePayroll :GeneratePayroll
     {
+        public int positionId { get; set; }
     }
 }

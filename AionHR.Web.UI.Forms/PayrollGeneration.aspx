@@ -406,7 +406,7 @@
                                 </ext:Button>
                                   <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="true" EnableDivision="false" />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="true" EnableDivision="false"  />
 
                                     </Content>
 
@@ -643,8 +643,7 @@
                                           d+='&nbsp;&nbsp;';
                                           d+=attachRender1();
                                            d+='&nbsp;&nbsp;';
-                                          d+=deleteRender();
-                                          d+='&nbsp;&nbsp;';
+                                        
                                       
                                         }
                                         return d; "></Renderer>

@@ -128,6 +128,9 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
 
                 SetBasicInfoFormEnable(true);
+                caseCommentsAddButton.Disabled = false;
+                addDeduction.Disabled = false;
+                effectiveDate.Disabled = false;
                 statusPref.Select("0");
                 ldMethod.Select("0");
                 currentLoanId.Text = "0";
@@ -155,7 +158,7 @@ namespace AionHR.Web.UI.Forms
                 try
 
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LoanComment), null, loanCommentGrid, null, Button1);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LoanComment), null, loanCommentGrid, null, caseCommentsAddButton);
                     ApplyAccessControlOnLoanComments();
                 }
                 catch (AccessDeniedException exp)
@@ -339,6 +342,9 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.ActiveIndex = 0;
             //SetTabPanelEnable(true);
             SetBasicInfoFormEnable(true);
+            caseCommentsAddButton.Disabled = false;
+            addDeduction.Disabled = false;
+            effectiveDate.Disabled = false;
             DeductionGridPanel.Disabled = false;
             string id = e.ExtraParams["id"];
             currentLoanId.Text = id;
@@ -396,16 +402,24 @@ namespace AionHR.Web.UI.Forms
                     loanComments_RefreshData(Convert.ToInt32(id));
                     //if (!response.result.effectiveDate.HasValue)
                     //    effectiveDate.SelectedDate = DateTime.Now;
-                    if (response.result.status == 3)
+                    if (response.result.status == 2 || response.result.status==-1)
                     {
 
 
                         SetBasicInfoFormEnable(false);
                         effectiveDate.Disabled = true;
+                        caseCommentsAddButton.Disabled = true;
+                        addDeduction.Disabled = true;
 
                     }
                     else
+                    {
+                       
+                        SetBasicInfoFormEnable(true);
+                        caseCommentsAddButton.Disabled = false;
+                        addDeduction.Disabled = false;
                         effectiveDate.Disabled = false;
+                    }
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -870,6 +884,10 @@ namespace AionHR.Web.UI.Forms
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
             BasicInfoTab.Reset();
+           
+            effectiveDate.Disabled = false;
+            caseCommentsAddButton.Disabled = false;
+            addDeduction.Disabled = false;
             SetBasicInfoFormEnable(true);
             ListRequest req = new ListRequest();
             ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);

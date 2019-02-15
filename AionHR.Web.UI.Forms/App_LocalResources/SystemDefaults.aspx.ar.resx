@@ -388,7 +388,7 @@
     <value>القسم</value>
   </data>
   <data name="FieldIndustry" xml:space="preserve">
-    <value>نشاط منشأة</value>
+    <value>نشاط </value>
   </data>
   <data name="SourceAttendanceSchedule" xml:space="preserve">
     <value>مصدر جدول الدوام</value>
