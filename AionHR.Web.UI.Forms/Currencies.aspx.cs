@@ -192,8 +192,7 @@ namespace AionHR.Web.UI.Forms
                 if (!res.Success)
                 {
                     //Show an error saving...
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    Common.errorMessage(res);
                     return;
                 }
                 else
@@ -325,14 +324,14 @@ namespace AionHR.Web.UI.Forms
             ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<Currency> currencies = _systemService.ChildGetAll<Currency>(request);
-            if (!currencies.Success)
+            ListResponse<Currency> resp = _systemService.ChildGetAll<Currency>(request);
+            if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
-            this.Store1.DataSource = currencies.Items;
-            e.Total = currencies.count;
+            this.Store1.DataSource = resp.Items;
+            e.Total = resp.count;
 
             this.Store1.DataBind();
         }
@@ -421,8 +420,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 3 :  Check if request fails
                     if (!r.Success)//it maybe another check
                     {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        Common.errorMessage(r);
                         return;
                     }
                     else

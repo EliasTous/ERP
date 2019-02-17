@@ -172,6 +172,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminDocuments.aspx" />
+    <Content Include="AssetManagementAssets.aspx" />
+    <Content Include="AssetManagementCategories.aspx" />
+    <Content Include="AssetManagementSuppliers.aspx" />
     <Content Include="BlankPage.aspx" />
     <Content Include="BusinessPartnerCategories.aspx" />
     <Content Include="BusinessPartneres.aspx" />
@@ -182,6 +185,8 @@
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
     <Content Include="Reports\Controls\EmploymentStatusFilter.ascx" />
+    <Content Include="Reports\Controls\AssetCategoryFilter.ascx" />
+    <Content Include="Reports\Controls\SupplierFilter.ascx" />
     <Content Include="Reports\RT113.aspx" />
     <Content Include="Reports\RT114.aspx" />
     <Content Include="Reports\RT115.aspx" />
@@ -628,6 +633,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModuleIDs.resx</DependentUpon>
     </Compile>
+    <Compile Include="AssetManagementAssets.aspx.cs">
+      <DependentUpon>AssetManagementAssets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetManagementAssets.aspx.designer.cs">
+      <DependentUpon>AssetManagementAssets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagementCategories.aspx.cs">
+      <DependentUpon>AssetManagementCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetManagementCategories.aspx.designer.cs">
+      <DependentUpon>AssetManagementCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagementSuppliers.aspx.cs">
+      <DependentUpon>AssetManagementSuppliers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetManagementSuppliers.aspx.designer.cs">
+      <DependentUpon>AssetManagementSuppliers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BlankPage.aspx.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -699,6 +725,20 @@
     </Compile>
     <Compile Include="Reports\Controls\EmploymentStatusFilter.ascx.designer.cs">
       <DependentUpon>EmploymentStatusFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\AssetCategoryFilter.ascx.cs">
+      <DependentUpon>AssetCategoryFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\AssetCategoryFilter.ascx.designer.cs">
+      <DependentUpon>AssetCategoryFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\SupplierFilter.ascx.cs">
+      <DependentUpon>SupplierFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\SupplierFilter.ascx.designer.cs">
+      <DependentUpon>SupplierFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT113.aspx.cs">
       <DependentUpon>RT113.aspx</DependentUpon>
@@ -2641,8 +2681,12 @@
     <Content Include="App_LocalResources\TimeCodes.aspx.ar.resx" />
     <Content Include="App_LocalResources\TimeCodes.aspx.resx" />
     <Content Include="App_LocalResources\Departments.aspx.ar.resx" />
-    <Content Include="App_LocalResources\EmployeePenalties.aspx.resx" />
-    <Content Include="App_LocalResources\EmployeePenalties.aspx.ar.resx" />
+    <Content Include="App_LocalResources\EmployeePenalties.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\EmployeePenalties.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Reports\App_LocalResources\RT306.aspx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT306.aspx.resx" />
     <Content Include="App_LocalResources\AdminTemplates.aspx.ar.resx" />
@@ -2682,6 +2726,14 @@
     <Content Include="App_LocalResources\SelfServiceResetPasswords.aspx.resx" />
     <Content Include="App_LocalResources\TimeApprovalsSelfServices.aspx.ar.resx" />
     <Content Include="App_LocalResources\TimeApprovalsSelfServices.aspx.resx" />
+    <Content Include="App_LocalResources\AssetManagementSuppliers.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AssetManagementSuppliers.aspx.resx" />
+    <Content Include="App_LocalResources\AssetManagementCategories.aspx.resx" />
+    <Content Include="App_LocalResources\AssetManagementCategories.aspx.ar.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\SupplierFilter.ascx.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\SupplierFilter.ascx.ar.resx" />
+    <Content Include="App_LocalResources\AssetManagementAssets.aspx.resx" />
+    <Content Include="App_LocalResources\AssetManagementAssets.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

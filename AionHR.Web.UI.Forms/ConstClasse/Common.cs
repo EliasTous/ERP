@@ -1,4 +1,7 @@
-﻿using AionHR.Services.Messaging;
+﻿using AionHR.Model.System;
+using AionHR.Services.Interfaces;
+using AionHR.Services.Messaging;
+using AionHR.Services.Messaging.System;
 using Ext.Net;
 using System;
 using System.Collections;
@@ -37,6 +40,19 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, Resources.Errors.Error_1).Show();
             }
               
+        }
+        public static List<XMLDictionary> XMLDictionaryList(ISystemService systemService,string database)
+        {
+            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+
+            request.database = string.IsNullOrEmpty( database)?"0": database;
+            ListResponse<XMLDictionary> resp = systemService.ChildGetAll<XMLDictionary>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return new List<XMLDictionary>();
+            }
+            return resp.Items;
         }
     }
 }

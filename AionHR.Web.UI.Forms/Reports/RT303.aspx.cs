@@ -216,8 +216,8 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!resp.Success)
             {
              
-                if (throwException)
-                    throw new Exception(resp.Error);
+              
+                    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
 
             }
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();

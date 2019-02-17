@@ -616,6 +616,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden AFPN;
         
         /// <summary>
+        /// AMSU control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden AMSU;
+        
+        /// <summary>
+        /// AMCA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden AMCA;
+        
+        /// <summary>
         /// DBATitle control.
         /// </summary>
         /// <remarks>

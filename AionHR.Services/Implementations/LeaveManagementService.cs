@@ -20,17 +20,17 @@ namespace AionHR.Services.Implementations
             this._repository = repository;
         }
 
-        public PostResponse<LeaveDay> DeleteLeaveDays(int leaveId)
-        {
-            PostResponse<LeaveDay> response;
-            var headers = SessionHelper.GetAuthorizationHeadersForUser();
+        //public PostResponse<LeaveDay> DeleteLeaveDays(int leaveId)
+        //{
+        //    PostResponse<LeaveDay> response;
+        //    var headers = SessionHelper.GetAuthorizationHeadersForUser();
 
-            LeaveDay breaks = new LeaveDay() { leaveId = leaveId, dayId = ""};
-            var webResponse = GetRepository().ChildDelete<LeaveDay>(breaks, headers);
-            response = CreateServiceResponse<PostResponse<LeaveDay>>(webResponse);
+        //    LeaveDay breaks = new LeaveDay() { leaveId = leaveId, dayId = ""};
+        //    var webResponse = GetRepository().ChildDelete<LeaveDay>(breaks, headers);
+        //    response = CreateServiceResponse<PostResponse<LeaveDay>>(webResponse);
 
-            return response;
-        }
+        //    return response;
+        //}
 
         public PostResponse<VacationSchedulePeriod> DeleteVacationSchedulePeriods(int vacationScheduleId)
         {

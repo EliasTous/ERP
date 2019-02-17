@@ -180,14 +180,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ListResponse<AionHR.Model.Reports.RT108> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT108>(req);
             if (!resp.Success)
             {
-                if (throwException)
-                    throw new Exception(resp.Summary);
-                else
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
-                    return;
-                }
+                throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
             }
 
             EmployeeDetails y = new EmployeeDetails();

@@ -596,13 +596,13 @@ namespace AionHR.Web.UI.Forms.Controls
                         {
                             //LeaveRequestNotification(b);
                             CurrentLeave.Text = b.recordId;
-                            var deleteDesponse = _leaveManagementService.DeleteLeaveDays(Convert.ToInt32(b.recordId));
-                            if (!deleteDesponse.Success)//it maybe another check
-                            {
-                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                                X.Msg.Alert(Resources.Common.Error, deleteDesponse.Summary).Show();
-                                return;
-                            }
+                            //var deleteDesponse = _leaveManagementService.DeleteLeaveDays(Convert.ToInt32(b.recordId));
+                            //if (!deleteDesponse.Success)//it maybe another check
+                            //{
+                            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            //    X.Msg.Alert(Resources.Common.Error, deleteDesponse.Summary).Show();
+                            //    return;
+                            //}
                             days.ForEach(d =>
                             {
                                 d.leaveId = Convert.ToInt32(b.recordId);
@@ -674,6 +674,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 PostRequest<LeaveDay> request = new PostRequest<LeaveDay>();
                 request.entity = lD;
                 PostResponse<LeaveDay> r = _leaveManagementService.ChildAddOrUpdate<LeaveDay>(request);
+
                 if (!r.Success)//it maybe another check
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

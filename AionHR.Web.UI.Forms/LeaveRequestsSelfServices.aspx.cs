@@ -1147,13 +1147,13 @@ namespace AionHR.Web.UI.Forms
 
                     else
                     {
-                        var deleteDesponse = _leaveManagementService.DeleteLeaveDays(Convert.ToInt32(b.recordId));
-                        if (!deleteDesponse.Success)//it maybe another check
-                        {
-                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            X.Msg.Alert(Resources.Common.Error, deleteDesponse.Summary).Show();
-                            return;
-                        }
+                        //var deleteDesponse = _leaveManagementService.DeleteLeaveDays(Convert.ToInt32(b.recordId));
+                        //if (!deleteDesponse.Success)//it maybe another check
+                        //{
+                        //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        //    X.Msg.Alert(Resources.Common.Error, deleteDesponse.Summary).Show();
+                        //    return;
+                        //}
                         days.ForEach(x => x.leaveId = Convert.ToInt32(b.recordId));
                       //  AddDays(days);
                         if (Store1 != null)

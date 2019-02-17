@@ -30,6 +30,7 @@ using AionHR.Model.HelpFunction;
 using AionHR.Model.Benefits;
 using AionHR.Model.Dashboard;
 using AionHR.Model.AdminTemplates;
+using AionHR.Model.AssetManagementRepository;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -81,6 +82,7 @@ namespace AionHR.Web.UI.Forms
                 For<IBenefitsRepository>().Use<BenefitsRepository>();
                 For<IDashBoardRepository>().Use<DashBoardRepository>();
                 For<IAdministrationRepository>().Use<AdministrationRepository>();
+                For<IAssetManagementRepository>().Use<AssetManagementRepository>();
 
                 //Services
                 For<ISystemService>().Use<SystemService>();
@@ -104,6 +106,7 @@ namespace AionHR.Web.UI.Forms
                 For<IBenefitsService>().Use<BenefitsService>();
                 For<IDashBoardService>().Use<DashBoardService>();
                 For<IAdministrationService>().Use<AdministrationService>();
+                For<IAssetManagementService>().Use<AssetManagementService>();
 
             }
         }

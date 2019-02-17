@@ -222,7 +222,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 //X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
                 //X.Call("alertNow");
                 if (throwException)
-                    throw new Exception(resp.Summary);
+                    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
                 else
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

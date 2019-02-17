@@ -215,11 +215,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 ListResponse<AionHR.Model.Reports.RT302> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT302>(req);
                 if (!resp.Success)
                 {
-                    if (throwException)
-                        throw new Exception(resp.Error);
-
-               
-                    return;
+                    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
 
                 }
 

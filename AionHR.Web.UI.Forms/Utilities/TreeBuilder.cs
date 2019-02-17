@@ -526,20 +526,23 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node adminTemplates = BuildParentNode("rootParent_CS", Resources.Common.AdministrationAffairs, true, rootParent);
             Ext.Net.Node adminBusiness = BuildParentNode("rootParent_BP", Resources.Common.adminBusinessPartner, true, rootParent);
             Ext.Net.Node adminDocument = BuildParentNode("rootParent_DC", Resources.Common.Documents, true, rootParent);
+            Ext.Net.Node adminAssetManagement = BuildParentNode("rootParent_AS", Resources.Common.AssetManagement, true, rootParent);
 
-          
+
 
             Ext.Net.Node templatesLeave = BuildLeafNode("admintemplates_root", Resources.Common.AdminTemplates, "Photos", true, adminTemplates);
             Ext.Net.Node businessPartnerCategory = BuildLeafNode("BusinessPartnerCategories", Resources.Common.BusinessPartnerCategory, "Building", true, adminBusiness);
             Ext.Net.Node businessPartner = BuildLeafNode("businessPartneres", Resources.Common.BusinessPartner, "Building", true, adminBusiness);
             Ext.Net.Node DocumentCategory = BuildLeafNode("DocumentCategories", Resources.Common.DocumentCategory, "Building", true, adminDocument);
             Ext.Net.Node Document = BuildLeafNode("AdminDocuments", Resources.Common.Documents, "Building", true, adminDocument);
+            Ext.Net.Node Asset = BuildLeafNode("AssetManagementAssets", Resources.Common.Assets, "Building", true, adminAssetManagement);
 
             FillConfigItem(templatesLeave, "admintemplates_root", "AdminTemplates.aspx", Resources.Common.AdminTemplates, "icon-Employees", "1");
             FillConfigItem(businessPartnerCategory, "BusinessPartnerCategories", "BusinessPartnerCategories.aspx", Resources.Common.BusinessPartnerCategory, "icon-Employees", "1");
             FillConfigItem(businessPartner, "businessPartneres", "BusinessPartneres.aspx", Resources.Common.BusinessPartner, "icon-Employees", "1");
             FillConfigItem(DocumentCategory, "DocumentCategories", "DocumentCategories.aspx", Resources.Common.DocumentCategory, "icon-Employees", "1");
             FillConfigItem(Document, "AdminDocuments", "AdminDocuments.aspx", Resources.Common.Documents, "icon-Employees", "1");
+            FillConfigItem(Asset, "AssetManagementAssets", "AssetManagementAssets.aspx", Resources.Common.Assets, "icon-Employees", "1");
 
 
 

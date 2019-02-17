@@ -250,6 +250,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asset Management.
+        /// </summary>
+        internal static string AssetManagement {
+            get {
+                return ResourceManager.GetString("AssetManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        internal static string AssetManagementCategory {
+            get {
+                return ResourceManager.GetString("AssetManagementCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assets.
+        /// </summary>
+        internal static string Assets {
+            get {
+                return ResourceManager.GetString("Assets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attach.
         /// </summary>
         internal static string Attach {
@@ -1236,6 +1263,15 @@ namespace Resources {
         internal static string Female {
             get {
                 return ResourceManager.GetString("Female", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        internal static string FieldCategory {
+            get {
+                return ResourceManager.GetString("FieldCategory", resourceCulture);
             }
         }
         
@@ -3378,6 +3414,15 @@ namespace Resources {
         internal static string SundayText {
             get {
                 return ResourceManager.GetString("SundayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suppliers.
+        /// </summary>
+        internal static string Suppliers {
+            get {
+                return ResourceManager.GetString("Suppliers", resourceCulture);
             }
         }
         

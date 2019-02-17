@@ -187,9 +187,9 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!resp.Success)
             {
 
-                throw new Exception(resp.Error);
-                    
-                
+                throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
+
+
             }
 
             resp.Items.ForEach(x =>

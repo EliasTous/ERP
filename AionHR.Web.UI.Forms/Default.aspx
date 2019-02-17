@@ -115,7 +115,9 @@
      <ext:Hidden runat="server" ID="GADTitle" Text="<%$Resources:Common ,GenerateAttendanceDays  %>" />
      <ext:Hidden runat="server" ID="SADTitle" Text="<%$Resources:Common ,SynchronizeAttendanceDays  %>" />
       <ext:Hidden runat="server" ID="AFPN" Text="<%$Resources:Common ,ProcessNotifications  %>" />
-    
+    <ext:Hidden runat="server" ID="AMSU" Text="<%$Resources:Common ,Suppliers  %>" />
+     <ext:Hidden runat="server" ID="AMCA" Text="<%$Resources:Common ,AssetManagementCategory  %>" />
+  
   
       <ext:Hidden runat="server" ID="DBATitle" Text="<%$Resources:Common ,DeleteAllBranchAttendance  %>" />
 
@@ -694,6 +696,40 @@
                                                 </ext:Menu>
                                             </Menu>
                                         </ext:MenuItem>
+                                              <ext:MenuItem runat="server" Text="<%$ Resources:Common , AssetManagement %>">
+                                            <Menu>
+                                                <ext:Menu runat="server">
+                                                    <Items>
+                                                                                                        
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , Suppliers%>">
+                                                              <Listeners>
+                                                                <Click Handler="openNewTab('Suppliers', 'AssetManagementSuppliers.aspx', #{AMSU}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                                                                         
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , AssetManagementCategory%>">
+                                                              <Listeners>
+                                                                <Click Handler="openNewTab('AssetManagementCategories', 'AssetManagementCategories.aspx', #{AMCA}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+
+                                                          
+
+                                                          
+                                                    
+
+                                                    </Items>
+                                                </ext:Menu>
+                                              
+                                                  
+                                                       
+                                                    
+
+                                                  
+                                              
+                                            </Menu>
+                                        </ext:MenuItem>
+
 
 
 

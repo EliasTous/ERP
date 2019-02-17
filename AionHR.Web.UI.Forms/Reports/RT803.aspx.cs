@@ -193,7 +193,7 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!resp.Success)
             {
                 if (throwException)
-                    throw new Exception(resp.Summary);
+                    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
                 else
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

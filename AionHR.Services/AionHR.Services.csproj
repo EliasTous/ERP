@@ -47,6 +47,7 @@
     <Compile Include="Enumerations\SystemErrors.cs" />
     <Compile Include="Implementations\AccessControlService.cs" />
     <Compile Include="Implementations\AdministrationService.cs" />
+    <Compile Include="Implementations\AssetManagementService.cs" />
     <Compile Include="Implementations\AttendanceBatchRunner.cs" />
     <Compile Include="Implementations\AttendanceImportingService.cs" />
     <Compile Include="Implementations\BaseService.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Implementations\TimeAttendanceService.cs" />
     <Compile Include="Interfaces\IAccessControlService.cs" />
     <Compile Include="Interfaces\IAdministrationService.cs" />
+    <Compile Include="Interfaces\IAssetManagementService.cs" />
     <Compile Include="Interfaces\IBenefitsService.cs" />
     <Compile Include="Interfaces\ICompanyNewsService.cs" />
     <Compile Include="Interfaces\IComplaintsService.cs" />
@@ -125,6 +127,7 @@
     <Compile Include="Messaging\AdministrativeAffairs\DocumentDueRecordRequest.cs" />
     <Compile Include="Messaging\AdministrativeAffairs\DocumentNoteListRequest.cs" />
     <Compile Include="Messaging\AdministrativeAffairs\DocumentNoteRecordRequest.cs" />
+    <Compile Include="Messaging\Asset Management\AssetManagementAssetListRequest.cs" />
     <Compile Include="Messaging\Benefits\BenefitAcquisitionsListRequest.cs" />
     <Compile Include="Messaging\Benefits\PeriodOfTheDateRangeRequest .cs" />
     <Compile Include="Messaging\Benefits\ScheduleBenefitsListRequest.cs" />

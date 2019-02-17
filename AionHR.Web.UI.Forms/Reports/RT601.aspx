@@ -37,9 +37,9 @@
             }
             return out;
         }
-        function alertNow(s,e) {
-            
-            Ext.MessageBox.alert('Error', e.message);
+        function alertNow(s, e) {
+
+            Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
     </script>
@@ -55,7 +55,7 @@
         <ext:Hidden ID="errorMSG" runat="server" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
-
+               <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 

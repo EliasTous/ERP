@@ -61,6 +61,10 @@
     <Compile Include="AdminTemplates\ProcessNotificationTypes.cs" />
     <Compile Include="AdminTemplates\TemplateBody.cs" />
     <Compile Include="AdminTemplates\TemplateTag.cs" />
+    <Compile Include="AssetManagement\AssetManagementAsset.cs" />
+    <Compile Include="AssetManagement\AssetManagementCategory.cs" />
+    <Compile Include="AssetManagement\AssetManagementSupplier.cs" />
+    <Compile Include="AssetManagement\IAssetManagementRepository.cs" />
     <Compile Include="Attributes\PropertyID.cs" />
     <Compile Include="Benefits\Benefit.cs" />
     <Compile Include="Benefits\BenefitAcquisition.cs" />
@@ -353,6 +357,7 @@
       <Name>AionHR.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

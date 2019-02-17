@@ -219,11 +219,9 @@ namespace AionHR.Web.UI.Forms.Reports
             ListResponse<AionHR.Model.Reports.RT802> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT802>(req);
             if (!resp.Success)
             {
-              
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
-                    return;
-                
+
+                throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
+
             }
             resp.Items.ForEach(x => { x.TypeString = GetGlobalResourceObject("Common", "TrType" + x.type.ToString()).ToString(); x.ClassIdString = GetGlobalResourceObject("Classes", "Class" + x.classId.ToString())!=null? GetGlobalResourceObject("Classes", "Class" + x.classId.ToString()).ToString():"NA"; x.DateString = x.eventDt.ToString(_systemService.SessionHelper.GetDateformat()+ " HH:mm", new CultureInfo("en")); });
             AuditTrail h = new AuditTrail();
