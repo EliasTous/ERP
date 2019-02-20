@@ -872,7 +872,7 @@ namespace AionHR.Web.UI.Forms
 
                 //Getting the id to check if it is an Add or an edit as they are managed within the same form.
                 string id = e.ExtraParams["id"];
-                string selected = e.ExtraParams["selectedUser"];
+                string selected = e.ExtraParams["selectedGroups"];
                 List<SecurityGroupUser> selectedUsers = JsonConvert.DeserializeObject<List<SecurityGroupUser>>(selected);
 
                 selectedUsers.ForEach(x => x.userId = CurrentUser.Text);

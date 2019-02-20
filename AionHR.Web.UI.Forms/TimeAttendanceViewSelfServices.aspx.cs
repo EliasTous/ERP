@@ -710,7 +710,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : Fill The object and insert in the store 
                     PostRequest<AttendanceShift> request = new PostRequest<AttendanceShift>();
                     request.entity = b;
-                    PostResponse<AttendanceShift> r = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(request);
+                    PostResponse<AttendanceShift> r = _selfServiceService.ChildAddOrUpdate<AttendanceShift>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -762,7 +762,7 @@ namespace AionHR.Web.UI.Forms
                     int index = Convert.ToInt32(id);//getting the id of the record
                     PostRequest<AttendanceShift> request = new PostRequest<AttendanceShift>();
                     request.entity = b;
-                    PostResponse<AttendanceShift> r = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<AttendanceShift> r = _selfServiceService.ChildAddOrUpdate<AttendanceShift>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 

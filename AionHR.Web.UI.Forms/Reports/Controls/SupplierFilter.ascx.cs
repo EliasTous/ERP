@@ -21,6 +21,8 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         public string width { get; set; }
         public string labelWidth { get; set; }
         public string FieldLabel { get; set; }
+        public string Layout { get; set; }
+
         IAssetManagementService _assetManagementService = ServiceLocator.Current.GetInstance<IAssetManagementService>();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,14 +38,17 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             if (!string.IsNullOrEmpty(width))
             {
                 supplierId.Width = Convert.ToInt32(width);
-                supplierIdPanel.Width = Convert.ToInt32(width);
+                //supplierIdPanel.Width = Convert.ToInt32(width);
             }
             if (!string.IsNullOrEmpty(labelWidth))
                 supplierId.LabelWidth = Convert.ToInt32(labelWidth);
             if (!string.IsNullOrEmpty(FieldLabel))
                 supplierId.FieldLabel = FieldLabel;
-
-
+            //if (!string.IsNullOrEmpty(Layout) && Layout == "Auto")
+            //    supplierIdPanel.UpdateLayout(LayoutType.Auto);
+            //if (!string.IsNullOrEmpty(Layout) && Layout == "Fit")
+            //    supplierIdPanel.UpdateLayout(LayoutType.Fit);
+           
 
         }
 

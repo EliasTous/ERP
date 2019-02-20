@@ -2,6 +2,7 @@
 using AionHR.Infrastructure.Domain;
 using AionHR.Model.LeaveManagement;
 using AionHR.Model.LoadTracking;
+using AionHR.Model.SelfService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(LoanDeduction), "setLD");
             ChildAddOrUpdateLookup.Add(typeof(LoanOverride), "setEM");
             ChildDeleteLookup.Add(typeof(LoanComment), "delLC");
+            ChildDeleteLookup.Add(typeof(loanSelfService), "delLC");
 
 
         }

@@ -333,7 +333,7 @@ namespace AionHR.Web.UI.Forms
                     SelfServiceLoanRecordRequest r = new SelfServiceLoanRecordRequest();
                     r.LoanId = Convert.ToInt32(id);
 
-                    RecordResponse<Loan> response = _selfServiceService.ChildGetRecord<Loan>(r);
+                    RecordResponse<loanSelfService> response = _selfServiceService.ChildGetRecord<loanSelfService>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -452,7 +452,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                Loan s = new Loan();
+                loanSelfService s = new loanSelfService();
                 s.recordId = index;
                 s.employeeId = "0";
                 s.purpose = "";
@@ -465,9 +465,9 @@ namespace AionHR.Web.UI.Forms
 
                 s.currencyId = 0;
 
-                PostRequest<Loan> req = new PostRequest<Loan>();
+                PostRequest<loanSelfService> req = new PostRequest<loanSelfService>();
                 req.entity = s;
-                PostResponse<Loan> r = _loanService.Delete<Loan>(req);
+                PostResponse<loanSelfService> r = _selfServiceService.ChildDelete<loanSelfService>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

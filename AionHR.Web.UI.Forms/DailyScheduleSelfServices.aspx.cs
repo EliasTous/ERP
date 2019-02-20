@@ -67,8 +67,7 @@ namespace AionHR.Web.UI.Forms
             {
 
                 SetExtLanguage();
-                FillBranches();
-                FillDepartment();
+               
                 this.workingHours.Value = string.Empty;
                 dateFrom.SelectedDate = DateTime.Now;
                 dateTo.SelectedDate = DateTime.Now;
@@ -78,19 +77,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void FillBranches()
-        {
-            ListRequest request = new ListRequest();
-            request.Filter = string.Empty;
-            ListResponse<Branch> branches = _branchService.ChildGetAll<Branch>(request);
-            if (!branches.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString()+"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+branches.LogId : branches.Summary).Show();
-                return;
-            }
-            this.branchStore.DataSource = branches.Items;
-            this.branchStore.DataBind();
-        }
+      
 
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
@@ -484,7 +471,7 @@ namespace AionHR.Web.UI.Forms
             reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
             reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
             reqFS.BranchId = 0;
-            ListResponse<FlatScheduleSelfService> response =_selfServiceService .ChildGetAll<FlatScheduleSelfService>(reqFS);
+            ListResponse<FlatScheduleSelfService> response =_selfServiceService.ChildGetAll<FlatScheduleSelfService>(reqFS);
             if (!response.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -1054,16 +1041,7 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-        private void FillDepartment()
-        {
-            DepartmentListRequest departmentsRequest = new DepartmentListRequest();
-            departmentsRequest.type = 0;
-            ListResponse<Department> resp = _branchService.ChildGetAll<Department>(departmentsRequest);
-            if (!resp.Success)
-               Common.errorMessage(resp);
-            departmentStore.DataSource = resp.Items;
-            departmentStore.DataBind();
-        }
+       
 
         [DirectMethod]
         public string CheckSession()

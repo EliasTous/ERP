@@ -89,7 +89,7 @@
                                 <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
-                                                <uc:AssetCategoryControl runat="server" ID="categoryIdFilter"   />
+                                                <uc:AssetCategoryControl runat="server" ID="categoryIdFilter" Layout="Fit"  />
                                             </Content>
                                         </ext:Container>
                                 <ext:ToolbarSeparator runat="server" />
@@ -100,10 +100,10 @@
                                             </Content>
                                         </ext:Container>
                                 <ext:ToolbarSeparator runat="server" />
-                                  <ext:Container runat="server"  Layout="AutoLayout">
+                                  <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
-                                                <uc:SupplierControl runat="server" ID="supplierIdFilter"     />
+                                                <uc:SupplierControl runat="server" ID="supplierIdFilter"  Layout="Auto"    />
                                             </Content>
                                         </ext:Container>
                                 <ext:ToolbarSeparator runat="server" />
@@ -229,12 +229,12 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="450"
-            Height="330"
+           Width="400"
+            Height="400"
             AutoShow="false"
             Modal="true"
             Hidden="true"
-            Layout="AutoLayout" Scrollable="Vertical">
+           Layout="FitLayout" Resizable="false"  >
             
             <Items>
                 <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Layout="FitLayout" >
@@ -244,33 +244,33 @@
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
-                            DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
-                            BodyPadding="5">
+                            DefaultAnchor="100%" OnLoad="BasicInfoTab_Load" Scrollable="Vertical" >
+                          
                             <Items>
-                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:MainInfo%>" Width="430">
+                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:MainInfo%>" Width="350" >
                                      <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" />
                               <ext:Container runat="server"  Layout="AutoLayout">
                                             <Content>
                                              
-                                                <uc:AssetCategoryControl runat="server" ID="categoryId"  FieldLabel="<%$ Resources:FieldCategory%>"  />
+                                                <uc:AssetCategoryControl runat="server" ID="categoryId"  FieldLabel="<%$ Resources:FieldCategory%>"   />
                                             </Content>
                                         </ext:Container>
                                 <ext:TextField ID="serialNo" runat="server" FieldLabel="<%$ Resources:FieldSerialNo%>" Name="serialNo"  />
                               </Items>
                                      </ext:FieldSet>
-                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:PurchaseInfo%>" Width="430">
+                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:PurchaseInfo%>" >
                                      <Items>
                                    <ext:DateField ID="receptionDate" runat="server" FieldLabel="<%$ Resources:FieldReceptionDate%>" Name="receptionDate"   >
                                        <Listeners>
                                               <Change Handler="App.warrantyEndDate.setMinValue(this.value);App.warrantyEndDate.setValue(this.value);"></Change>
                                        </Listeners>
                                        </ext:DateField>
-                                          <ext:Container runat="server"  Layout="FitLayout">
+                                          <ext:Container runat="server"  Layout="AutoLayout">
                                             <Content>
                                              
-                                                <uc:SupplierControl runat="server" ID="supplierId"  FieldLabel="<%$ Resources: Fieldsupplier %>"     />
+                                                <uc:SupplierControl runat="server" ID="supplierId"  FieldLabel="<%$ Resources: Fieldsupplier %>"    />
                                             </Content>
                                         </ext:Container>
                                          <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldCurrency%>" >
@@ -353,7 +353,7 @@
                                             <ext:TextArea ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments"  DataIndex="comments" />
                                      </Items>
                                      </ext:FieldSet>
-                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:CurrentStatus%>" Width="430">
+                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:CurrentStatus%>" >
                                      <Items>
                                              <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server"  ValueField="key" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="value" ID="status" Name="status"  FieldLabel="<%$ Resources:FieldStatus%>" ReadOnly="true">
 

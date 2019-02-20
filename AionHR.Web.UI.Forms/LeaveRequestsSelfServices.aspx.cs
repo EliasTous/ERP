@@ -501,7 +501,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                LeaveRequest s = new LeaveRequest();
+                leaveRequetsSelfservice s = new leaveRequetsSelfservice();
                 s.recordId = index;
                 s.destination = "";
                 s.employeeId = "0";
@@ -512,9 +512,9 @@ namespace AionHR.Web.UI.Forms
                 s.justification = "";
                 s.ltId = 0;
 
-                PostRequest<LeaveRequest> req = new PostRequest<LeaveRequest>();
+                PostRequest<leaveRequetsSelfservice> req = new PostRequest<leaveRequetsSelfservice>();
                 req.entity = s;
-                PostResponse<LeaveRequest> r = _leaveManagementService.ChildDelete<LeaveRequest>(req);
+                PostResponse<leaveRequetsSelfservice> r = _selfServiceService.ChildDelete<leaveRequetsSelfservice>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -1056,7 +1056,7 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        //this.EditRecordWindow.Close();
+                        this.EditRecordWindow.Close();
                         //SetTabPanelEnabled(true);
                         //////RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         //////sm.DeselectAll();
@@ -1177,7 +1177,7 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
                         });
-                        //this.EditRecordWindow.Close();
+                        this.EditRecordWindow.Close();
 
 
                     }
