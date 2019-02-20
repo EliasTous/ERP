@@ -232,7 +232,7 @@ namespace AionHR.Web.UI.Forms
             foreach (var item in panelRecordDetails.Items)
             {
                 if (item.Loader != null)
-                    item.Loader.Url = item.Loader.Url + "?employeeId=" + employeeId + "&hireDate=" + hireDate + "&terminated=" + (terminated ? "1" : "0");
+                    item.Loader.Url = item.Loader.Url + "?employeeId=" + employeeId + "&hireDate=" + hireDate + "&terminated=" + (terminated ? "1" : "0"+ "&fromSelfService=true");
             }
         }
 

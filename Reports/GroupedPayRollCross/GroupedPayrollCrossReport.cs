@@ -58,7 +58,7 @@ namespace Reports.GroupedPayRollCross
             {
                 groupedItems = items.GroupBy(u => u.positionName);
             }
-
+            double basic1; 
             foreach (var employee in groupedItems)
             {
 
@@ -67,9 +67,10 @@ namespace Reports.GroupedPayRollCross
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(employee.Key,
                         order, salary.Key, salary.Sum(u => u.edAmount),
-                        isArabic ? "ضريبي" : "Taxable", 1, employee.Sum(u => u.basicAmount), employee.Sum(u => u.cssAmount),
+                        isArabic ? "ضريبي" : "Taxable", 1, employee.ToList().First().basicAmount, employee.Sum(u => u.cssAmount),
                         employee.Sum(u => u.essAmount), isArabic ? "الاستحقاقات" : "Entitlements"
                         );
+                    basic1 = employee.ToList().First().basicAmount;
                     order++;
                 }
 
@@ -77,9 +78,10 @@ namespace Reports.GroupedPayRollCross
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(employee.Key,
                          order, salary.Key, salary.Sum(u => u.edAmount),
-                       isArabic ? "غير ضريبي" : "Non Taxable", 1, employee.Sum(u => u.basicAmount), employee.Sum(u => u.cssAmount),
+                       isArabic ? "غير ضريبي" : "Non Taxable", 1, employee.ToList().First().basicAmount, employee.Sum(u => u.cssAmount),
                         employee.Sum(u => u.essAmount), isArabic ? "الاستحقاقات" : "Entitlements"
                         );
+                    basic1 = employee.ToList().First().basicAmount;
                     order++;
                 }
 
@@ -87,9 +89,10 @@ namespace Reports.GroupedPayRollCross
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(employee.Key,
                          order, salary.Key, salary.Sum(u => u.edAmount),
-                        isArabic ? "ضريبي" : "Taxable", 1, employee.Sum(u => u.basicAmount), employee.Sum(u => u.cssAmount),
+                        isArabic ? "ضريبي" : "Taxable", 1, employee.ToList().First().basicAmount, employee.Sum(u => u.cssAmount),
                         employee.Sum(u => u.essAmount), isArabic ? "استقطاعات" : "Deductions"
                         );
+                    basic1 = employee.ToList().First().basicAmount;
                     order++;
                 }
 
@@ -97,17 +100,19 @@ namespace Reports.GroupedPayRollCross
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(employee.Key,
                          order, salary.Key, salary.Sum(u => u.edAmount),
-                       isArabic ? "غير ضريبي" : "Non Taxable", 1, employee.Sum(u => u.basicAmount), employee.Sum(u => u.cssAmount),
+                       isArabic ? "غير ضريبي" : "Non Taxable", 1, employee.ToList().First().basicAmount, employee.Sum(u => u.cssAmount),
                         employee.Sum(u => u.essAmount), isArabic ? "استقطاعات" : "Deductions"
                         );
+                    basic1 = employee.ToList().First().basicAmount;
                     order++;
                 }
 
                 dsSalaries1.SalariesItems.AddSalariesItemsRow(employee.Key
                          , order, "", employee.Sum(u => u.basicAmount) + employee.Where(u => u.edType == 1).Sum(u => u.edAmount) - employee.Where(u => u.edType == 2).Sum(u => u.edAmount) - employee.Sum(u => u.essAmount),
-                        isArabic ? "صافي الراتب" : "Net Salary", 1, employee.Sum(u => u.basicAmount), employee.Sum(u => u.cssAmount),
+                        isArabic ? "صافي الراتب" : "Net Salary", 1, employee.ToList().First().basicAmount, employee.Sum(u => u.cssAmount),
                         employee.Sum(u => u.essAmount), "    "
                          );
+                basic1 = employee.ToList().First().basicAmount;
             }
 
 

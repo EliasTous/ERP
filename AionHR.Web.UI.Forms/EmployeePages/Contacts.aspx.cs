@@ -33,8 +33,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
     public partial class Contacts : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
-        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
-        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IBaseService _employeeService;
+      
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         protected override void InitializeCulture()
         {
@@ -67,18 +67,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 HideShowColumns();
                 if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
+
+
+               
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
                 EmployeeTerminated.Text = Request.QueryString["terminated"];
 
                 bool disabled = EmployeeTerminated.Text == "1";
 
                 Button7.Disabled = Button2.Disabled = btnAdd.Disabled = SaveEmergencyContactButton.Disabled = disabled;
-                if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
-                    return;
-                ApplySecurityContacts();
+                //if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
+                //    return;
+                ////ApplySecurityContacts();
 
-                ApplySecurityEmergencyContacts();
+                //ApplySecurityEmergencyContacts();
             }
+            if (!string.IsNullOrEmpty(Request.QueryString["fromselfservice"]) && Request.QueryString["fromselfservice"] == "true")
+                _employeeService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
+            else
+                _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
         }
 
@@ -226,8 +233,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
         private void FillRelationshipType()
         {
+           
             ListRequest documentTypes = new ListRequest();
-            ListResponse<RelationshipType> resp = _employeeService.ChildGetAll<RelationshipType>(documentTypes);
+            ListResponse<RelationshipType> resp = ServiceLocator.Current.GetInstance<IEmployeeService>().ChildGetAll<RelationshipType>(documentTypes);
             if (!resp.Success)
             {
                Common.errorMessage(resp);

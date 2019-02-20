@@ -33,8 +33,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
     public partial class Dependants : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
-        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
-        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IBaseService _employeeService;
+       
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         protected override void InitializeCulture()
         {
@@ -68,7 +68,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
-
+               
                 birthDate.Format = birthDateCol.Format = _systemService.SessionHelper.GetDateformat();
                 EmployeeTerminated.Text = Request.QueryString["terminated"];
 
@@ -88,8 +88,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Viewport11.Hidden = true;
                     return;
                 }
-                ApplyAccessControlOnAddress();
+                //ApplyAccessControlOnAddress();
+               
             }
+            if (!string.IsNullOrEmpty(Request.QueryString["fromselfservice"]) && Request.QueryString["fromselfservice"] == "true")
+                _employeeService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
+            else
+                _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
         }
         private void ApplyAccessControlOnAddress()

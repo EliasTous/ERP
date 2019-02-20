@@ -1573,7 +1573,9 @@ namespace AionHR.Web.UI.Forms
             //jp.DepartmentId = 0;
             req.Add(p);
             req.Add(Pm);
-             req.Add(jobInfo1.GetJobInfo());
+            JobInfoParameterSet j = jobInfo1.GetJobInfo();
+            j.DivisionId = 0;
+             req.Add(j);
             DateRangeParameterSet dateRange = new DateRangeParameterSet();
             dateRange.DateFrom = DateTime.Parse("1970-01-01");
             dateRange.DateTo = DateTime.Parse("2050-01-01");

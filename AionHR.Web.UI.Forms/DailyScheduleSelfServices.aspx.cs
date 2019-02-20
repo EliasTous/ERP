@@ -707,7 +707,7 @@ namespace AionHR.Web.UI.Forms
             {
                 SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
                 req.Key = "dailySchedule";
-                RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _selfServiceService.ChildGetRecord<KeyValuePair<string, string>>(req);
+                RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
                 if (!SystemDefaultResponse.Success)
                 {
                     Common.errorMessage(SystemDefaultResponse);

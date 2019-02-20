@@ -39,8 +39,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(TimeSelfService), "qryTA");
             ChildGetAllLookup.Add(typeof(LeaveType), "qryLT");
             ChildGetAllLookup.Add(typeof(loanSelfService), "qryLO");
-
-
+            ChildGetAllLookup.Add(typeof(Dependant), "qryDE");
+            ChildGetAllLookup.Add(typeof(EmployeeContact), "qryCO");
+            ChildGetAllLookup.Add(typeof(EmployeeEmergencyContact), "qryEC");
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");
             ChildGetLookup.Add(typeof(EmployeeComplaintSelfService), "getCO");
@@ -49,7 +50,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(UserInfoSelfService), "getUS");
             ChildGetLookup.Add(typeof(LeaveRequest), "getLR");
             ChildGetLookup.Add(typeof(EmployeeQuickView), "getQV");
-            ChildGetLookup.Add(typeof(KeyValuePair<string, string>), "getDE");
+            //ChildGetLookup.Add(typeof(KeyValuePair<string, string>), "getDE");
+            ChildGetLookup.Add(typeof(Dependant), "getDE");
+            ChildGetLookup.Add(typeof(EmployeeContact), "getCO");
+            ChildGetLookup.Add(typeof(EmployeeEmergencyContact), "getEC");
 
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");
             ChildAddOrUpdateLookup.Add(typeof(UserInfoSelfService), "setUS");
@@ -59,9 +63,15 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(LeaveDay[]), "arrLD");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeComplaintSelfService), "setCO");
             ChildAddOrUpdateLookup.Add(typeof(TimeSelfService), "setTA");
+            ChildAddOrUpdateLookup.Add(typeof(Dependant), "setDE");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeContact), "setCO");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeEmergencyContact), "setEC");
 
             ChildDeleteLookup.Add(typeof(MyInfo), "delEM");
             ChildDeleteLookup.Add(typeof(EmployeeComplaintSelfService), "delCO");
+            ChildDeleteLookup.Add(typeof(Dependant), "delDE");
+            ChildDeleteLookup.Add(typeof(EmployeeContact), "delCO");
+            ChildDeleteLookup.Add(typeof(EmployeeEmergencyContact), "delEC");
         }
         }
     

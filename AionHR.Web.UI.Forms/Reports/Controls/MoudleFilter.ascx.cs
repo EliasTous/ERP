@@ -16,13 +16,14 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
     public partial class MoudleFilter : System.Web.UI.UserControl
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+        List<XMLDictionary> moduleList = new List<XMLDictionary>(); 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 FillModulesStore();
                 modulesCombo.Select(0);
-            
+                modulesCombo.SetValue(moduleList.Count != 0 ? moduleList.First().value : "10");
             }
         }
 
@@ -42,7 +43,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
             int bulk;
             if (modulesCombo.Value == null || !int.TryParse(modulesCombo.Value.ToString(), out bulk))
-                return "20";
+                return moduleList.Count != 0 ? moduleList.First().value : "10";
             else
                 return modulesCombo.Value.ToString();
 
@@ -60,7 +61,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                 Common.errorMessage(resp);
                 return;
             }
-                
+            moduleList = resp.Items; 
             this.modulesStore.DataSource = resp.Items;
 
 
