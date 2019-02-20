@@ -385,7 +385,7 @@
     <value>208.333282, 36.5416679</value>
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>Grouped PayRoll Report</value>
+    <value>Grouped Payroll Report</value>
   </data>
   <data name="xrLabel1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>

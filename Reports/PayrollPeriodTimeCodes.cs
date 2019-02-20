@@ -1200,7 +1200,8 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             if (!string.IsNullOrEmpty((sender as XRTableCell).Text))
             {
 
-                (sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N0");
+                //(sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N0");
+                //(sender as XRTableCell).Text = Convert.ToDecimal((sender as XRTableCell).Text).ToString();
 
 
             }
@@ -1218,7 +1219,8 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             if (!string.IsNullOrEmpty((sender as XRTableCell).Text))
             {
 
-                (sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N0");
+                //(sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N0");
+                //(sender as XRTableCell).Text = Convert.ToDecimal((sender as XRTableCell).Text).ToString();
 
 
             }
@@ -1236,7 +1238,7 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             if (!string.IsNullOrEmpty((sender as XRLabel).Text))
             {
 
-                (sender as XRLabel).Text = Convert.ToDouble((sender as XRLabel).Text).ToString("N0");
+                //(sender as XRLabel).Text = Convert.ToDouble((sender as XRLabel).Text).ToString("N0");
 
 
             }
