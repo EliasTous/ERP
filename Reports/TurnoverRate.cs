@@ -214,7 +214,7 @@ namespace Reports
             // xrTableCell4
             // 
             this.xrTableCell4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "rate", "{0:0%}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "rate", "{0:0.00%}")});
             resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             this.xrTableCell4.Name = "xrTableCell4";
             // 

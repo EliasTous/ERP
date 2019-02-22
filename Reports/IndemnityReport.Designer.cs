@@ -154,7 +154,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell14.CanGrow = false;
             this.xrTableCell14.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "hireDate")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "hireDate", "{0:dd/MM/yyyy}")});
             resources.ApplyResources(this.xrTableCell14, "xrTableCell14");
             this.xrTableCell14.Name = "xrTableCell14";
             this.xrTableCell14.StyleName = "DataField";
@@ -167,7 +167,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell16.CanGrow = false;
             this.xrTableCell16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "terminationDate", "{0:MM/dd/yyyy}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "terminationDate", "{0:dd/MM/yyyy}")});
             resources.ApplyResources(this.xrTableCell16, "xrTableCell16");
             this.xrTableCell16.Name = "xrTableCell16";
             this.xrTableCell16.StyleName = "DataField";
