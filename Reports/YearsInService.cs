@@ -139,7 +139,7 @@ namespace Reports
             this.xrLabel16,
             this.xrLabel4});
             resources.ApplyResources(this.Detail, "Detail");
-            this.Detail.MultiColumn.ColumnCount = 3;
+            this.Detail.MultiColumn.ColumnCount = 2;
             this.Detail.MultiColumn.ColumnWidth = 0.5F;
             this.Detail.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
             this.Detail.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;

@@ -127,7 +127,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrLabel10.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>131.666687, 25.00001</value>
+    <value>156.000061, 25.00001</value>
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
     <value>xrLabel10</value>
@@ -240,11 +240,14 @@
   <data name="xrLabel9.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrLabel9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 10pt, style=Bold</value>
+  </data>
   <data name="xrLabel9.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
     <value>728.999939, 0</value>
   </data>
   <data name="xrLabel9.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>131.666687, 36.00001</value>
+    <value>156.000061, 36.0000153</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
     <value>Termination Reason</value>
@@ -254,6 +257,9 @@
   </data>
   <data name="xrLabel1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
+  </data>
+  <data name="xrLabel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 10pt, style=Bold</value>
   </data>
   <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
     <value>0, 0</value>
@@ -270,6 +276,9 @@
   <data name="xrLabel2.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrLabel2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 10pt, style=Bold</value>
+  </data>
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
     <value>222.2222, 0</value>
   </data>
@@ -284,6 +293,9 @@
   </data>
   <data name="xrLabel3.Dpi" type="System.Single, mscorlib">
     <value>100</value>
+  </data>
+  <data name="xrLabel3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 10pt, style=Bold</value>
   </data>
   <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
     <value>376.2175, 0</value>
@@ -300,6 +312,9 @@
   <data name="xrLabel4.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrLabel4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 10pt, style=Bold</value>
+  </data>
   <data name="xrLabel4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
     <value>483.3334, 0</value>
   </data>
@@ -314,6 +329,9 @@
   </data>
   <data name="xrLabel5.Dpi" type="System.Single, mscorlib">
     <value>100</value>
+  </data>
+  <data name="xrLabel5.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 10pt, style=Bold</value>
   </data>
   <data name="xrLabel5.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
     <value>585.3254, 0</value>
@@ -442,7 +460,7 @@
     <value>0, 22.999979</value>
   </data>
   <data name="xrLine1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>875, 10.4167</value>
+    <value>885, 10.4167</value>
   </data>
   <data name="xrRichText1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
