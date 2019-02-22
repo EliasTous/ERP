@@ -1398,4 +1398,7 @@
   <data name="FieldCategory" xml:space="preserve">
     <value>الفئة</value>
   </data>
+  <data name="RT507" xml:space="preserve">
+    <value>ايصالات رواتب الموظفين</value>
+  </data>
 </root>

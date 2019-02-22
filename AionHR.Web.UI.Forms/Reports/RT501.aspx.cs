@@ -41,6 +41,7 @@ namespace AionHR.Web.UI.Forms.Reports
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+     static   List<GenerationHeader> payIdList;
         protected override void InitializeCulture()
         {
 
@@ -86,6 +87,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         Viewport1.Hidden = true;
                         return;
                     }
+                    payIdList = new List<GenerationHeader>();
                     fillPayId();
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
@@ -434,11 +436,46 @@ namespace AionHR.Web.UI.Forms.Reports
                 Common.errorMessage(resp);
                 return;
             }
+            payIdList.AddRange(resp.Items);
             string dateFormat = _systemService.SessionHelper.GetDateformat();
-            resp.Items.ForEach(x => x.payRefWithDateRange = x.payRef + " ( " + x.startDate.ToString(dateFormat) + " - " + x.endDate.ToString(dateFormat) + " )");
+            if (_systemService.SessionHelper.CheckIfArabicSession())
+            resp.Items.ForEach(x => x.payRefWithDateRange = x.payRef + " ( " + x.startDate.ToString(dateFormat,new CultureInfo("ar-AE")) + " - " + x.endDate.ToString(dateFormat, new CultureInfo("ar-AE")) + " )");
+            else
+                resp.Items.ForEach(x => x.payRefWithDateRange = x.payRef + " ( " + x.startDate.ToString(dateFormat, new CultureInfo("en")) + " - " + x.endDate.ToString(dateFormat, new CultureInfo("en")) + " )");
             payIdStore.DataSource = resp.Items;
             payIdStore.DataBind();
 
+
+        }
+
+        protected void setDateRange(object sender, DirectEventArgs e)
+        {
+            DateTime? startDate;
+            DateTime? endDate;
+            if (payIdList == null)
+                return;
+            try
+            {
+                string id = e.ExtraParams["id"];
+                if (payIdList.Where(x => x.recordId == id).Count() != 0)
+                {
+                    startDate = payIdList.Where(x => x.recordId == id).First().startDate;
+                    endDate = payIdList.Where(x => x.recordId == id).First().endDate;
+
+                    dateRange1.setDateRange(startDate, endDate);
+                }
+                else
+                {
+                    startDate = null;
+                    endDate = null;
+                }
+             
+
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
 
         }
     }

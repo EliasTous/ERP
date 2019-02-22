@@ -58,104 +58,112 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             if (!X.IsAjaxRequest && !IsPostBack)
             {
-              
-                SetExtLanguage();
-                HideShowButtons();
-             
-                if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
-                CurrentEmployee.Text = Request.QueryString["employeeId"];
-                FillNoticePeriod();
-                FillBranchField();
-                FillSponseCombo();
-                FillPrevRecordIdField();
-                FillBenefitSchedules();
-
-
-                HireInfoRecordRequest req = new HireInfoRecordRequest();
-                req.EmployeeId = Request.QueryString["employeeId"];
-                RecordResponse<HireInfo> resp = _employeeService.ChildGetRecord<HireInfo>(req);
-                if(!resp.Success)
-                {
-                   Common.errorMessage(resp);
-                    return;
-                }
-              
-                probationPeriod.SuspendEvent("Change");
-                if (resp.result != null)
-                {
-                    hireInfoForm.SetValues(resp.result);
-                    npId.Select(resp.result.npId.ToString());
-                    recBranchId.Select(resp.result.recBranchId.ToString());
-                    sponsorId.Select(resp.result.sponsorId.ToString());
-                    prevRecordId.Select(resp.result.prevRecordId.ToString());
-                  
-
-                    pyActiveDate.Value = resp.result.pyActiveDate;
-                    probationPeriod.Value = resp.result.probationPeriod;
-                    //if(resp.result.probationEndDate!=null)
-                    //    probationEndDateHidden.Value = resp.result.probationEndDate;
-                    //else
-                    //    probationEndDateHidden.Value = resp.result.hireDate;
-                    hireDate.Text = resp.result.hireDate.Value.ToShortDateString();
-                    probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
-                    bsId.Select(resp.result.bsId.ToString());
-               
-
-                }
-                else
-                {
-                    RecordRequest r = new RecordRequest();
-                    r.RecordID = Request.QueryString["employeeId"];
-                    RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
-
-                    probationEndDateHidden.Value = response.result.hireDate;
-                    hireDate.Text = response.result.hireDate.Value.ToShortDateString();
-                    probationEndDate.Value= response.result.hireDate;
-                    probationEndDate.MinDate = Convert.ToDateTime(response.result.hireDate);
-                    pyActiveDate.Value = response.result.hireDate;
-                }
-              
-                probationEndDate.Format = nextReviewDate.Format = termEndDate.Format = pyActiveDate.Format= _systemService.SessionHelper.GetDateformat();
-
-                EmployeeTerminated.Text = Request.QueryString["terminated"];
-
-                bool disabled = EmployeeTerminated.Text == "1";
-
-                saveButton.Disabled = disabled;
-                probationPeriod.Value = 0;
-
-                probationPeriod.ResumeEvent("Change");
-
-
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(HireInfo), left, null, null, saveButton);
-                    
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport11.Hidden = true;
-                    return;
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(HireInfo), rightPanel, null, null, saveButton);
 
+                    SetExtLanguage();
+                    HideShowButtons();
+
+                    if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
+                    CurrentEmployee.Text = Request.QueryString["employeeId"];
+                    FillNoticePeriod();
+                    FillBranchField();
+                    FillSponseCombo();
+                    FillPrevRecordIdField();
+                    FillBenefitSchedules();
+
+
+                    HireInfoRecordRequest req = new HireInfoRecordRequest();
+                    req.EmployeeId = Request.QueryString["employeeId"];
+                    RecordResponse<HireInfo> resp = _employeeService.ChildGetRecord<HireInfo>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        return;
+                    }
+
+                    probationPeriod.SuspendEvent("Change");
+                    if (resp.result != null)
+                    {
+                        hireInfoForm.SetValues(resp.result);
+                        npId.Select(resp.result.npId.ToString());
+                        recBranchId.Select(resp.result.recBranchId.ToString());
+                        sponsorId.Select(resp.result.sponsorId.ToString());
+                        prevRecordId.Select(resp.result.prevRecordId.ToString());
+
+
+                        pyActiveDate.Value = resp.result.pyActiveDate;
+                        probationPeriod.Value = resp.result.probationPeriod;
+                        //if(resp.result.probationEndDate!=null)
+                        //    probationEndDateHidden.Value = resp.result.probationEndDate;
+                        //else
+                        //    probationEndDateHidden.Value = resp.result.hireDate;
+                        hireDate.Text = resp.result.hireDate.Value.ToShortDateString();
+                        probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
+                        bsId.Select(resp.result.bsId.ToString());
+
+
+                    }
+                    else
+                    {
+                        RecordRequest r = new RecordRequest();
+                        r.RecordID = Request.QueryString["employeeId"];
+                        RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
+
+                        probationEndDateHidden.Value = response.result.hireDate;
+                        hireDate.Text = response.result.hireDate.Value.ToShortDateString();
+                        probationEndDate.Value = response.result.hireDate;
+                        probationEndDate.MinDate = Convert.ToDateTime(response.result.hireDate);
+                        pyActiveDate.Value = response.result.hireDate;
+                    }
+
+                    probationEndDate.Format = nextReviewDate.Format = termEndDate.Format = pyActiveDate.Format = _systemService.SessionHelper.GetDateformat();
+
+                    EmployeeTerminated.Text = Request.QueryString["terminated"];
+
+                    bool disabled = EmployeeTerminated.Text == "1";
+
+                    saveButton.Disabled = disabled;
+                    probationPeriod.Value = 0;
+
+                    probationPeriod.ResumeEvent("Change");
+
+
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(HireInfo), left, null, null, saveButton);
+
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport11.Hidden = true;
+                        return;
+                    }
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(HireInfo), rightPanel, null, null, saveButton);
+
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport11.Hidden = true;
+                        return;
+                    }
+                    if (recruitmentInfo.InputType == InputType.Password)
+                    {
+                        recruitmentInfo.Visible = false;
+                        infoField.Visible = true;
+                    }
                 }
-                catch (AccessDeniedException exp)
+                catch(Exception exp)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport11.Hidden = true;
-                    return;
-                }
-                if (recruitmentInfo.InputType == InputType.Password)
-                {
-                    recruitmentInfo.Visible = false;
-                    infoField.Visible = true;
+                    X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
                 }
                
             }

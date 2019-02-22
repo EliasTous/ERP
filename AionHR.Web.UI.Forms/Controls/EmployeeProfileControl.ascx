@@ -1560,6 +1560,13 @@
                             <Listeners>
                                 <Click Handler="ClearImage2(); InitCropper('Images/empPhoto.jpg'); App.employeeControl1_uploadPhotoButton.setDisabled(false); " />
                             </Listeners>
+                         <%--   <DirectEvents >
+                                <Click OnEvent="RemovePicture"  Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                      <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{imageSelectionWindow}.body}" />
+                                           
+                                    </Click>
+
+                            </DirectEvents>--%>
                         </ext:Button>
                         <ext:FileUploadField ID="FileUploadField1" runat="server" ButtonOnly="true" Hidden="true">
                             <Listeners>

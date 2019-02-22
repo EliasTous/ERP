@@ -88,5 +88,12 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
         public bool IsDayIdFormat { get; set; }
+        public void setDateRange(DateTime? startDate,DateTime? endDate)
+        {
+            if (startDate!=null)
+            dateFrom.SetValue(startDate);
+            if(endDate!=null)
+            dateTo.SetValue(endDate);
+        }
     }
 }

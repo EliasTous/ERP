@@ -3157,6 +3157,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pay Slips .
+        /// </summary>
+        internal static string RT507 {
+            get {
+                return ResourceManager.GetString("RT507", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leave List.
         /// </summary>
         internal static string RT601 {

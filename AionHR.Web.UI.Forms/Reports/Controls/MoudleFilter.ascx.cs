@@ -15,6 +15,8 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 {
     public partial class MoudleFilter : System.Web.UI.UserControl
     {
+        public string FromReport { get; set; }
+        
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         List<XMLDictionary> moduleList = new List<XMLDictionary>(); 
         protected void Page_Load(object sender, EventArgs e)
@@ -25,6 +27,17 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                 modulesCombo.Select(0);
                 modulesCombo.SetValue(moduleList.Count != 0 ? moduleList.First().value : "10");
             }
+            //if (moduleList != null)
+            //{
+            //    if (FromReport == "True")
+            //        moduleList.Add(new XMLDictionary() { value = GetGlobalResourceObject("Common", "All").ToString(), key = 0 });
+            //    else
+            //    {
+            //        if (moduleList.Where(x => x.key == 0).Count() != 0)
+            //            moduleList.Remove(new XMLDictionary() { value = GetGlobalResourceObject("Common", "All").ToString(), key = 0 });
+            //    }
+            //}
+
         }
 
         public ClassIdParameterSet GetModule()
@@ -32,7 +45,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             ClassIdParameterSet s = new ClassIdParameterSet();
             int bulk;
             if (modulesCombo.Value == null || !int.TryParse(modulesCombo.Value.ToString(), out bulk))
-                s.ClassId = 20;
+                s.ClassId =0;
             else
                 s.ClassId = bulk;
 
@@ -43,7 +56,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
             int bulk;
             if (modulesCombo.Value == null || !int.TryParse(modulesCombo.Value.ToString(), out bulk))
-                return moduleList.Count != 0 ? moduleList.First().value : "10";
+                return moduleList.Count != 0 ? moduleList.First().value :"10";
             else
                 return modulesCombo.Value.ToString();
 
@@ -61,8 +74,10 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                 Common.errorMessage(resp);
                 return;
             }
-            moduleList = resp.Items; 
-            this.modulesStore.DataSource = resp.Items;
+            if (FromReport=="True")
+                moduleList.Add(new XMLDictionary() { value = GetGlobalResourceObject("Common", "All").ToString(), key = 0 });
+            moduleList.AddRange(resp.Items);
+            this.modulesStore.DataSource = moduleList;
 
 
             this.modulesStore.DataBind();

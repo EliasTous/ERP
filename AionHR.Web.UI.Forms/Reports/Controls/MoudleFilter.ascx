@@ -5,11 +5,11 @@
 
 </script>
 <ext:Panel runat="server" Layout="HBoxLayout" Width="150"  ><Items>
-  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="modulesCombo"  EmptyText="<%$ Resources:Common ,Module%>" SubmitValue="true" SimpleSubmit="true" MaxWidth=150 >
+  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="modulesCombo"  EmptyText="<%$ Resources:Common ,Module%>"  MaxWidth=150 >
       <Store>
       <ext:Store runat="server" ID="modulesStore">
                     <Model>
-                        <ext:Model runat="server">
+                        <ext:Model runat="server" >
                             <Fields>
                                 <ext:ModelField Name="key" />
                                 <ext:ModelField Name="value" />

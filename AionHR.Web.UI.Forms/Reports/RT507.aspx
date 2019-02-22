@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT501.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT501" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT507.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT507" %>
 
 <%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
@@ -29,8 +29,6 @@
             Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
-
-      
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -62,28 +60,28 @@
                           <ext:Toolbar runat="server" Height="50" Dock="Top">
 
                             <Items>
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  EmptyText="<%$Resources:Common , PayRef %>"  Name="payId" runat="server" DisplayField="payRefWithDateRange" ValueField="recordId" ID="payId" Width="100">
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  EmptyText="<%$Resources:Common , PayRef %>"  Name="payId" runat="server" DisplayField="payRefWithDateRange" ValueField="recordId" ID="payId" Width="180">
                                     <Store>
                                         <ext:Store runat="server" ID="payIdStore">
                                             <Model>
-                                                <ext:Model runat="server" IDProperty="recordId">
+                                                <ext:Model runat="server">
                                                     <Fields>
 
                                                         <ext:ModelField Name="recordId" />
                                                         <ext:ModelField Name="payRefWithDateRange" />
-                                                           
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
                                         </ext:Store>
                                     </Store>
-                                  <DirectEvents>
+                                     <DirectEvents>
                                       <Select OnEvent="setDateRange" >
                                           <ExtraParams>
                                                <ext:Parameter Name="id" Value="this.value" Mode="Raw" />
                                           </ExtraParams>
                                           </Select>
                                   </DirectEvents>
+                                 
                                 </ext:ComboBox>
                              
                                         <ext:Container runat="server"  Layout="FitLayout">
@@ -100,12 +98,6 @@
                                         </ext:Container>
                               
 
-                                  <%--  <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />
-                                                <uc:payRefCombo runat="server" ID="payRefFilter" />
-                                            </Content>
-                                        </ext:Container>--%>
                                    <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                         <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
@@ -113,7 +105,7 @@
                                     </Content>
                                 </ext:Container>
                                 
-                                </items>
+                                 </Items>
                               </ext:Toolbar>
                          <ext:Toolbar runat="server" Dock="Top">
                              <Items>

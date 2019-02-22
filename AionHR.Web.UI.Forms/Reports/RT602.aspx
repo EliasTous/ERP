@@ -71,7 +71,7 @@
                                    <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                               
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false" EnableBranch="true" EnablePosition="false" />
+                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false" EnableBranch="true" EnablePosition="false"  EnableDepartment="true"/>
                                             </Content>
                                         </ext:Container>
 

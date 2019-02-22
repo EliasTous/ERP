@@ -146,6 +146,7 @@
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
     <Compile Include="Reports\RT115.cs" />
     <Compile Include="Reports\RT506.cs" />
+    <Compile Include="Reports\RT507.cs" />
     <Compile Include="Reports\RT803.cs" />
     <Compile Include="Reports\RT804.cs" />
     <Compile Include="SelfService\EmployeePayrollSelfService.cs" />

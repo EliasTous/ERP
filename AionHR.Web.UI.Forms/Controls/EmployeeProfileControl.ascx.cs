@@ -1912,5 +1912,10 @@ namespace AionHR.Web.UI.Forms
             else
                 nqciId.Disabled = true;
         }
+
+        protected void Unnamed_Event()
+        {
+
+        }
     }
 }

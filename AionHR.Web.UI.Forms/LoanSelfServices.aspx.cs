@@ -358,15 +358,15 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
                     FillCurrency();
-                    FillBranchField();
+                    //FillBranchField();
                     FillLoanType();
                     ltId.Select(response.result.ltId.ToString());
                     CurrentAmountCurrency.Text = response.result.currencyRef;
                     currencyId.Select(response.result.currencyId.ToString());
                     status.Select(response.result.status.ToString());
                     ldMethod.Select(response.result.ldMethod.ToString());
-                    if (!string.IsNullOrEmpty(response.result.branchId))
-                        branchId.Select(response.result.branchId);
+                    //if (!string.IsNullOrEmpty(response.result.branchId))
+                    //    branchId.Select(response.result.branchId);
                     //loanComments_RefreshData(Convert.ToInt32(id));
                     //if (!response.result.effectiveDate.HasValue)
                     //    effectiveDate.SelectedDate = DateTime.Now;
@@ -687,7 +687,7 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.ActiveIndex = 0;
             SetTabPanelEnable(false);
             FillLoanType();
-            FillBranchField();
+            //FillBranchField();
             FillCurrency();
           
             RecordRequest req1 = new RecordRequest();
@@ -702,7 +702,7 @@ namespace AionHR.Web.UI.Forms
             }
 
             branchId.Select(r.result.branchId);
-
+            effectiveDate.Disabled = false;
             this.EditRecordWindow.Show();
         }
 
@@ -878,19 +878,19 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
+                        Store1.Reload();
 
+                       // ModelProxy record = this.Store1.GetById(id);
+                       // BasicInfoTab.UpdateRecord(record);
+                       // record.Set("currencyRef", b.currencyRef);
+                       // if (date.ReadOnly)
+                       //     record.Set("date", null);
 
-                        ModelProxy record = this.Store1.GetById(id);
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Set("currencyRef", b.currencyRef);
-                        if (date.ReadOnly)
-                            record.Set("date", null);
+                       // record.Set("employeeName", b.employeeName);
 
-                        record.Set("employeeName", b.employeeName);
+                       //// record.Set("branchName", b.branchName);
 
-                        record.Set("branchName", b.branchName);
-
-                        record.Commit();
+                       // record.Commit();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,

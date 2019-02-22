@@ -82,7 +82,7 @@
                                 </ext:Container>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:moduleCombo runat="server" ID="moduleCombo1" EnableViewState="true" />
+                                        <uc:moduleCombo runat="server" ID="moduleCombo1" EnableViewState="true" FromReport="True" />
                                     </Content>
                                 </ext:Container>
                                 <ext:Container runat="server" Layout="FitLayout">
