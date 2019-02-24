@@ -736,7 +736,7 @@ namespace AionHR.Web.UI.Forms
 
 
             req.Size = "30";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.SortBy = "dueDate";
             req.InRelationToId = 0;
@@ -760,7 +760,7 @@ namespace AionHR.Web.UI.Forms
 
 
             req.Size = "30";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.SortBy = "recordId";
             req.Status = 2;
@@ -793,7 +793,7 @@ namespace AionHR.Web.UI.Forms
 
 
             req.Size = "30";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.SortBy = "recordId";
 

@@ -169,7 +169,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = new ReportCompositeRequest();
 
             req.Size = "1000";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.SortBy = "eventDt";
 
 
@@ -199,7 +199,7 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             UsersListRequest req = new UsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
          
 
 
@@ -215,7 +215,43 @@ namespace AionHR.Web.UI.Forms.Reports
 
         private void FillReport(bool throwException = true)
         {
+            int count = 0; 
             ReportCompositeRequest req = GetRequest();
+
+
+            foreach (KeyValuePair<string, string> entry in req.Parameters)
+            {
+                if (entry.Key == "_fromDate" || entry.Key == "_toDate" || entry.Key == "_size" || entry.Key == "_startAt"|| entry.Key == "_sortBy" || entry.Key == "_filter")
+                {
+                    continue;
+                }
+                if (entry.Key == "_masterRef" && !string.IsNullOrEmpty(entry.Value))
+                {
+                    count++;
+                    continue;
+                }
+                if (entry.Key == "_data" && !string.IsNullOrEmpty(entry.Value))
+                {
+                    count++;
+                    continue;
+                }
+                if (entry.Key == "_data" && string.IsNullOrEmpty(entry.Value))
+                {
+                   continue;
+                }
+                if (entry.Value != "0"   && entry.Key != "_masterRef")
+                    count++;
+               
+            }
+
+
+
+            if (dateRange1.DifferenceBetweenDates()!=null && dateRange1.DifferenceBetweenDates()>30&& count<2)
+            {
+                throw new Exception(FilterSelection.Value.ToString());
+              
+            }
+
             ListResponse<AionHR.Model.Reports.RT802> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT802>(req);
             if (!resp.Success)
             {
@@ -294,7 +330,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 

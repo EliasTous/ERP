@@ -355,7 +355,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 2;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -395,7 +395,7 @@ namespace AionHR.Web.UI.Forms
 
             }
             req.Size = "50";
-            req.StartAt = "1";
+            req.StartAt = "0";
             return req;
         }
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)

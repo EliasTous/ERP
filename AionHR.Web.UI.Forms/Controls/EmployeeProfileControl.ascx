@@ -659,7 +659,7 @@
                         <ext:Image runat="server" ID="imgControl" Width="100" Height="100" Align="Middle" MarginSpec="15 0 0 20 ">
                             <Listeners>
                                 <%--<Click Handler="triggierImageClick(App.employeeControl1_picturePath.fileInputEl.id); " />--%>
-                                <Click Handler="if(App.employeeControl1_terminated.value=='0'&& App.employeeControl1_photoReadOnly.value=='False'){InitCropper(App.employeeControl1_CurrentEmployeePhotoName.value); App.employeeControl1_imageSelectionWindow.show()}" />
+                                <Click Handler="if(App.employeeControl1_terminated.value=='0'&& App.employeeControl1_photoReadOnly.value=='False'){InitCropper(App.employeeControl1_CurrentEmployeePhotoName.value+'?x='+new Date().getTime()); App.employeeControl1_imageSelectionWindow.show()}" />
                             </Listeners>
 
                         </ext:Image>
@@ -1560,13 +1560,13 @@
                             <Listeners>
                                 <Click Handler="ClearImage2(); InitCropper('Images/empPhoto.jpg'); App.employeeControl1_uploadPhotoButton.setDisabled(false); " />
                             </Listeners>
-                         <%--   <DirectEvents >
-                                <Click OnEvent="RemovePicture"  Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <DirectEvents >
+                                <Click OnEvent="RemoveEmployeePicture"  Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                       <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{imageSelectionWindow}.body}" />
                                            
                                     </Click>
 
-                            </DirectEvents>--%>
+                            </DirectEvents>
                         </ext:Button>
                         <ext:FileUploadField ID="FileUploadField1" runat="server" ButtonOnly="true" Hidden="true">
                             <Listeners>

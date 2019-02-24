@@ -776,7 +776,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             request.Filter = "";
 
             request.Size = "50";
-            request.StartAt = "1";
+            request.StartAt = "0";
             
             ListResponse<EmployeeSalary> currencies = _employeeService.ChildGetAll<EmployeeSalary>(request);
             if (!currencies.Success)
@@ -797,7 +797,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             request.Filter = "";
 
             request.Size = "50";
-            request.StartAt = "1";
+            request.StartAt = "0";
             ListResponse<Bonus> currencies = _employeeService.ChildGetAll<Bonus>(request);
             if (!currencies.Success)
             {

@@ -553,7 +553,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             req.IncludeIsInactive = 2;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 

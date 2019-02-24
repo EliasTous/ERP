@@ -133,7 +133,7 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             ReportCompositeRequest request = new ReportCompositeRequest();
             request.Size = "1000";
-            request.StartAt = "1";
+            request.StartAt = "0";
 
 
 
@@ -1045,7 +1045,7 @@ namespace AionHR.Web.UI.Forms.Controls
             }
             req.BranchId = req.DepartmentId = 0;
             req.status = 0;
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "1";
             req.SortBy = "endDate";
 

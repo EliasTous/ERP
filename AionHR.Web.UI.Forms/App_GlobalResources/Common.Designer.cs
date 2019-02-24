@@ -1375,6 +1375,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please choose at least two filters or decrease the difference between dates.
+        /// </summary>
+        internal static string FilterSelection {
+            get {
+                return ResourceManager.GetString("FilterSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Final Settlements.
         /// </summary>
         internal static string FinalSettlements {
@@ -2320,7 +2329,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to s.
+        ///   Looks up a localized string similar to Module.
         /// </summary>
         internal static string Module {
             get {

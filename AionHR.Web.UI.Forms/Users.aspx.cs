@@ -384,7 +384,7 @@ namespace AionHR.Web.UI.Forms
             List<UserInfo> data;
             UsersListRequest req = new UsersListRequest();
             req.Size = "1000";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
 
 
@@ -449,7 +449,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 0;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -772,7 +772,7 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest groupsReq = new ListRequest();
             groupsReq.Size = "100";
-            groupsReq.StartAt = "1";
+            groupsReq.StartAt = "0";
             groupsReq.Filter = "";
 
             //Fetching the corresponding list
@@ -841,7 +841,7 @@ namespace AionHR.Web.UI.Forms
 
             GroupUsersListRequest req = new GroupUsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.UserId = CurrentUser.Text;
 
@@ -953,7 +953,7 @@ namespace AionHR.Web.UI.Forms
             groupSelectorGroup.DataBind();
             GroupUsersListRequest req = new GroupUsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.UserId = CurrentUser.Text;
 

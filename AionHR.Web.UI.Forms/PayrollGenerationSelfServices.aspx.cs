@@ -243,7 +243,7 @@ namespace AionHR.Web.UI.Forms
         //        req.EmployeeId = employeeId;
 
         //    req.Size = "30";
-        //    req.StartAt = "1";
+        //    req.StartAt = "0";
         //    req.Filter = "";
 
         //    return req;
@@ -257,7 +257,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 0;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -336,7 +336,7 @@ namespace AionHR.Web.UI.Forms
             r.RecordID = resp.recordId;
 
 
-            AddEDButton.Disabled = AddENButton.Disabled = saveEDBT.Disabled = false;
+           saveEDBT.Disabled = false;
         }
 
         protected void SaveHE(object sender, DirectEventArgs e)
@@ -416,7 +416,7 @@ namespace AionHR.Web.UI.Forms
             fiscalYearHidden.Text = fiscalYear;
             payRefHidden.Text = payRef;
             IsPayrollPosted.Text = status;
-            AddEDButton.Disabled = AddENButton.Disabled = /*SaveEDButton.Disabled*/  status == "2";
+          
             switch (type)
             {
                 case "imgAttach":
@@ -907,7 +907,7 @@ namespace AionHR.Web.UI.Forms
 
 
             req.Size = "30";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
 
             return req;
@@ -1216,7 +1216,7 @@ namespace AionHR.Web.UI.Forms
             req.SeqNo = CurrentSeqNo.Text;
            
 
-            ListResponse<PayrollEntitlementDeduction> resp = _payrollService.ChildGetAll<PayrollEntitlementDeduction>(req);
+            ListResponse<PayrollEntitlementDeduction> resp = _selfServiceService.ChildGetAll<PayrollEntitlementDeduction>(req);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -1238,7 +1238,7 @@ namespace AionHR.Web.UI.Forms
             req.payId = CurrentPayId.Text;
             req.seqNo = CurrentSeqNo.Text;
 
-            ListResponse<PayrollSocialSecurity> resp = _payrollService.ChildGetAll<PayrollSocialSecurity>(req);
+            ListResponse<PayrollSocialSecurity> resp = _selfServiceService.ChildGetAll<PayrollSocialSecurity>(req);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -1456,7 +1456,7 @@ namespace AionHR.Web.UI.Forms
             ReportCompositeRequest req = new ReportCompositeRequest();
 
             req.Size = "1000";
-            req.StartAt = "1";
+            req.StartAt = "0";
             PayRefParameterSet p = new PayRefParameterSet();
             p.payRef = payRef;
             PaymentMethodParameterSet Pm = new PaymentMethodParameterSet();

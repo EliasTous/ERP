@@ -1372,7 +1372,7 @@
     <value>Time Approvals </value>
   </data>
   <data name="Module" xml:space="preserve">
-    <value>s</value>
+    <value>Module</value>
   </data>
   <data name="RT115" xml:space="preserve">
     <value>Indemnity</value>
@@ -1397,5 +1397,8 @@
   </data>
   <data name="RT507" xml:space="preserve">
     <value>Pay Slips </value>
+  </data>
+  <data name="FilterSelection" xml:space="preserve">
+    <value>Please choose at least two filters or decrease the difference between dates</value>
   </data>
 </root>

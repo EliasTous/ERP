@@ -323,7 +323,7 @@ namespace AionHR.Web.UI.Forms
 
                   GroupUsersListRequest GUreq = new GroupUsersListRequest();
                 GUreq.Size = "100";
-                GUreq.StartAt = "1";
+                GUreq.StartAt = "0";
                 GUreq.Filter = "";
                 GUreq.GroupId = CurrentGroup.Text;
 
@@ -575,7 +575,7 @@ namespace AionHR.Web.UI.Forms
             
             UsersListRequest req = new UsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.SortBy = "fullName";
             var s = jobInfo1.GetJobInfo();
@@ -596,7 +596,7 @@ namespace AionHR.Web.UI.Forms
 
             GroupUsersListRequest userGroupRequest = new GroupUsersListRequest();
             userGroupRequest.Size = "100";
-            userGroupRequest.StartAt = "1";
+            userGroupRequest.StartAt = "0";
             userGroupRequest.Filter = "";
             userGroupRequest.GroupId = CurrentGroup.Text;
             ListResponse<SecurityGroupUser> usersGroup = _accessControlService.ChildGetAll<SecurityGroupUser>(userGroupRequest);
@@ -942,7 +942,7 @@ namespace AionHR.Web.UI.Forms
 
             ListRequest req = new ListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
 
 
@@ -975,7 +975,7 @@ namespace AionHR.Web.UI.Forms
 
             GroupUsersListRequest req = new GroupUsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.GroupId = CurrentGroup.Text;
 
@@ -1019,7 +1019,7 @@ namespace AionHR.Web.UI.Forms
         {
             UsersListRequest req = new UsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.SortBy = "fullName";
             var s = jobInfo1.GetJobInfo();
@@ -1043,7 +1043,7 @@ namespace AionHR.Web.UI.Forms
         {
             UsersListRequest req = new UsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.SortBy = "fullName";
             var s = jobInfo1.GetJobInfo();

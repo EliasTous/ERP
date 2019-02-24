@@ -95,5 +95,19 @@ namespace AionHR.Web.UI.Forms.Reports
             if(endDate!=null)
             dateTo.SetValue(endDate);
         }
+        public int?  DifferenceBetweenDates()
+        {
+           if( dateTo.SelectedDate!=null && dateFrom.SelectedDate!=null)
+            {
+               if( dateTo.SelectedDate> dateFrom.SelectedDate)
+                {
+                    return (dateTo.SelectedDate - dateFrom.SelectedDate).Days;
+                }
+               
+              
+
+            }
+            return null;
+        }
     }
 }

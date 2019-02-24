@@ -564,7 +564,7 @@
                                       <Renderer Handler="if(record.data['essAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['essAmount']; " />
                                         </ext:Column>
                                     <ext:Column runat="server"
-                                        ID="Column1" Visible="false"
+                                        ID="Column1" Visible="true"
                                         Text=""
                                         Width="100"
                                         Hideable="false"
@@ -575,22 +575,8 @@
                                         Resizable="false">
 
                                       <%--  <Renderer Handler="  var d = (#{IsPayrollPosted}.value=='2')?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender();return d+'&nbsp;&nbsp;' +attachRender1();" />--%>
-                                      <Renderer Handler="
-                                          var d;
-                                        if (#{IsPayrollPosted}.value=='2') 
-                                        d='&nbsp;&nbsp;' +attachRender1();
-                                        else
-                                        {
+                                      <Renderer Handler="return attachRender1();" />
                                          
-                                          d=editRender();
-                                          d+='&nbsp;&nbsp;';
-                                          d+=attachRender1();
-                                           d+='&nbsp;&nbsp;';
-                                          d+=deleteRender();
-                                          d+='&nbsp;&nbsp;';
-                                      
-                                        }
-                                        return d; "></Renderer>
                                     </ext:Column>
                                 </Columns>
                             </ColumnModel>
@@ -755,25 +741,7 @@
                                     Width="600" Header="false"
                                     Height="350" Layout="FitLayout"
                                     Frame="true" TitleCollapse="true" Scroll="Vertical">
-                                    <TopBar>
-                                        <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
-                                            <Items>
-                                                <ext:Button ID="AddENButton" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
-                                                    <Listeners>
-                                                        <Click Handler="CheckSession();" />
-                                                    </Listeners>
-                                                    <DirectEvents>
-                                                        <Click OnEvent="ADDNewEN">
-                                                            <EventMask ShowMask="true" CustomTarget="={#{entitlementsGrid}.body}" />
-                                                        </Click>
-                                                    </DirectEvents>
-                                                </ext:Button>
-
-
-                                            </Items>
-                                        </ext:Toolbar>
-
-                                    </TopBar>
+                                   
                                     <Store>
                                         <ext:Store ID="entitlementsStore" runat="server">
                                             <Model>
@@ -815,7 +783,7 @@
                                             </ext:NumberColumn>
 
                                             <ext:Column runat="server"
-                                                ID="ColENDelete" Visible="true"
+                                                ID="ColENDelete" Visible="false"
                                                 Text=""
                                                 Width="80"
                                                 Align="Center"
@@ -832,10 +800,10 @@
                                     <Features>
                                         <ext:Summary runat="server" />
                                     </Features>
-                                    <Listeners>
+                                   <%-- <Listeners>
                                         <Render Handler="this.on('cellclick', cellClick);" />
-                                    </Listeners>
-                                    <DirectEvents>
+                                    </Listeners>--%>
+                                   <%-- <DirectEvents>
 
                                         <CellClick OnEvent="PoPuPEN">
                                             <EventMask ShowMask="true" />
@@ -847,7 +815,7 @@
                                             </ExtraParams>
 
                                         </CellClick>
-                                    </DirectEvents>
+                                    </DirectEvents>--%>
 
 
                                 </ext:GridPanel>
@@ -888,7 +856,7 @@
                                         </ext:Store>
                                     </Store>
 
-                                    <TopBar>
+                                  <%--  <TopBar>
                                         <ext:Toolbar ID="Toolbar4" runat="server" ClassicButtonStyle="false">
                                             <Items>
                                                 <ext:Button ID="AddEDButton" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
@@ -905,7 +873,7 @@
 
                                             </Items>
                                         </ext:Toolbar>
-                                    </TopBar>
+                                    </TopBar>--%>
                                     <ColumnModel>
                                         <Columns>
                                             <ext:Column ID="ColDEName"
@@ -934,7 +902,7 @@
 
 
                                             <ext:Column runat="server"
-                                                ID="ColDEDelete" Visible="true"
+                                                ID="ColDEDelete" Visible="false"
                                                 Text=""
                                                 Width="80"
                                                 Align="Center"
@@ -952,7 +920,7 @@
                                     <Features>
                                         <ext:Summary runat="server" />
                                     </Features>
-                                    <Listeners>
+                                 <%--   <Listeners>
                                         <Render Handler="this.on('cellclick', cellClick);" />
                                     </Listeners>
                                     <DirectEvents>
@@ -967,7 +935,7 @@
                                             </ExtraParams>
 
                                         </CellClick>
-                                    </DirectEvents>
+                                    </DirectEvents>--%>
                                 </ext:GridPanel>
                             </Items>
 
@@ -1085,15 +1053,15 @@
                         </ext:Button>--%>
                         <ext:Button ID="Button7" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
-                        <Click Handler="this.up('window').hide(); #{Store1}.reload();" />
+                        <Click Handler="this.up('window').hide(); " />
                     </Listeners>
                 </ext:Button>
                     </Buttons>
                 </ext:TabPanel>
             </Items>
-            <Listeners>
+           <%-- <Listeners>
                 <Close Handler="#{Store1}.reload();" />
-            </Listeners>
+            </Listeners>--%>
         </ext:Window>
 
         <ext:Window
@@ -1394,7 +1362,7 @@
                 </ext:Task>
             </Tasks>
         </ext:TaskManager>
-
+        
     </form>
 </body>
 </html>

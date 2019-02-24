@@ -552,7 +552,7 @@ namespace AionHR.Web.UI.Forms
             CompanyRightToworkListRequest request = new CompanyRightToworkListRequest();
 
             request.Size = "50";
-            request.StartAt = "1";
+            request.StartAt = "0";
             request.SortBy = "dtName";
             request.DTid = 0;
             request.BranchId = 0;

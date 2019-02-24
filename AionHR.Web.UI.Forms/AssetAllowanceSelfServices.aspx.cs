@@ -61,7 +61,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 2;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -446,7 +446,7 @@ namespace AionHR.Web.UI.Forms
             AssetAllowanceListRequest request = GetFilteredRequest();
 
             request.Size = "50";
-            request.StartAt = "1";
+            request.StartAt = "0";
             request.SortBy = "firstName";
 
             request.Filter = "";

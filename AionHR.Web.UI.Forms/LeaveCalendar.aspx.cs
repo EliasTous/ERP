@@ -253,7 +253,7 @@ namespace AionHR.Web.UI.Forms
             }
 
             req.Size = "50";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.SortBy = "firstName";
 
             return req;
@@ -375,7 +375,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 

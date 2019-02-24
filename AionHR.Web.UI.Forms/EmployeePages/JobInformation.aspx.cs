@@ -516,7 +516,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             request.Filter = "";
             request.SortBy = "firstName,lastName";
             request.Size = "50";
-            request.StartAt = "1";
+            request.StartAt = "0";
             ListResponse<EmploymentHistory> currencies = _employeeService.ChildGetAll<EmploymentHistory>(request);
             if (!currencies.Success)
                 X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
@@ -537,7 +537,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             request.Filter = "";
             request.SortBy = "firstName,lastName";
             request.Size = "50";
-            request.StartAt = "1";
+            request.StartAt = "0";
             ListResponse<JobInfo> currencies = _employeeService.ChildGetAll<JobInfo>(request);
             if (!currencies.Success)
                 X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
@@ -902,7 +902,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 

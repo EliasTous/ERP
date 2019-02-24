@@ -351,6 +351,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rt504 = BuildLeafNode("report_rt504", Resources.Common.RT504, "", true, rt5);
             Ext.Net.Node rt506 = BuildLeafNode("report_rt506", Resources.Common.RT506, "", true, rt5);
             Ext.Net.Node rt507 = BuildLeafNode("report_rt507", Resources.Common.RT507, "", true, rt5);
+            Ext.Net.Node rt508 = BuildLeafNode("report_rt508", Resources.Common.LeavePayment, "", true, rt5);
 
 
             Ext.Net.Node rt6 = BuildParentNode("report_rt6", Resources.Common.LeaveReports, true, timeAt, "UserGo");
@@ -406,6 +407,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(rt504, "rt504", "Reports/RT504.aspx", Resources.Common.RT504, "icon-Employees", "1");
             FillConfigItem(rt506, "rt506", "Reports/RT506.aspx", Resources.Common.RT506, "icon-Employees", "1");
             FillConfigItem(rt507, "rt507", "Reports/RT507.aspx", Resources.Common.RT507, "icon-Employees", "1");
+            FillConfigItem(rt508, "rt508", "Reports/RT508.aspx", Resources.Common.LeavePayment, "icon-Employees", "1");
 
             FillConfigItem(rt601, "rt601", "Reports/RT601.aspx", Resources.Common.RT601, "icon-Employees", "1");
             FillConfigItem(rt602, "rt602", "Reports/RT602.aspx", Resources.Common.RT602, "icon-Employees", "1");

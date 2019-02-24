@@ -209,7 +209,7 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             ReportCompositeRequest request = new ReportCompositeRequest();
             request.Size = "1000";
-            request.StartAt = "1";
+            request.StartAt = "0";
             request.SortBy = "yearsInService";
             request.Add(jobInfoFilter1.GetJobInfo());
             return request;

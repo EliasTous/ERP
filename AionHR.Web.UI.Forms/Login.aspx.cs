@@ -219,7 +219,7 @@ namespace AionHR.Web.UI.Forms
             {
                 EmployeeListRequest request = new EmployeeListRequest();
                 request.BranchId = request.DepartmentId = request.PositionId = "0";
-                request.StartAt = "1";
+                request.StartAt = "0";
                 request.SortBy = "hireDate";
                 request.Size = "1";
                 request.IncludeIsInactive = 2;

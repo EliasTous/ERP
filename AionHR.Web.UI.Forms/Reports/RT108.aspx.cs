@@ -282,7 +282,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ReportCompositeRequest request = new ReportCompositeRequest();
             request.Size = "1000";
-            request.StartAt = "1";
+            request.StartAt = "0";
             request.SortBy = "hireDate";
             request.Add(jobInfo1.GetJobInfo());
             request.Add(activeControl.GetActiveStatus());
@@ -388,7 +388,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.IncludeIsInactive = 2;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 

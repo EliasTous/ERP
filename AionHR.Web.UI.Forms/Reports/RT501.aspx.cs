@@ -172,7 +172,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = new ReportCompositeRequest();
 
             req.Size = "1000";
-            req.StartAt = "1";
+            req.StartAt = "0";
 
             req.Add(paymentMethodCombo.GetPaymentMethod());
             req.Add(GetPayId());
@@ -407,7 +407,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.IncludeIsInactive = 2;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -427,7 +427,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.PeriodType = "5";
             req.Status = "0";
             req.Size = "30";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
 
             ListResponse<GenerationHeader> resp = _payrollService.ChildGetAll<GenerationHeader>(req);

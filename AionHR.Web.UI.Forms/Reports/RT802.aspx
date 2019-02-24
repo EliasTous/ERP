@@ -38,6 +38,9 @@
             //bd.document.getElementById(grid.view.scroller.id).style.height = "auto";
 
         }
+        function searchNarrowDown() {
+            Ext.MessageBox.alert(App.Error.getValue(), App.FilterSelection.getValue());
+        }
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -52,7 +55,7 @@
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
                <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
-
+          <ext:Hidden ID="FilterSelection" runat="server" Text="<%$ Resources:Common , FilterSelection %>" />
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 

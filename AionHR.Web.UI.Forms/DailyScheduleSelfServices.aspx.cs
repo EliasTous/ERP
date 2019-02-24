@@ -1008,7 +1008,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 2;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
@@ -1151,7 +1151,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 0;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "1000";
             req.Filter = "";
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
@@ -1161,7 +1161,7 @@ namespace AionHR.Web.UI.Forms
             else
                 //UsersListRequest req = new UsersListRequest();
                 //req.Size = "100";
-                //req.StartAt = "1";
+                //req.StartAt = "0";
                 //req.Filter = "";
 
                 //var s = jobInfo1.GetJobInfo();
@@ -1203,7 +1203,7 @@ namespace AionHR.Web.UI.Forms
         //    req.IncludeIsInactive = 2;
         //    req.SortBy = "firstName";
 
-        //    req.StartAt = "1";
+        //    req.StartAt = "0";
         //    req.Size = "20";
         //    req.Filter = "";
         //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);

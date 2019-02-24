@@ -20,6 +20,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
     {
         public bool? disabled { get; set; }
         public string width { get; set; }
+        public string AllowBlank { get; set; }
         public string labelWidth { get; set; }
         public string FieldLabel { get; set; }
         public string Layout { get; set; }
@@ -44,6 +45,8 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                 categoryId.LabelWidth = Convert.ToInt32(labelWidth);
             if (!string.IsNullOrEmpty(FieldLabel))
                 categoryId.FieldLabel = FieldLabel;
+            if (!string.IsNullOrEmpty(AllowBlank))
+                categoryId.AllowBlank = Convert.ToBoolean(AllowBlank) ;
             //if (!string.IsNullOrEmpty(Layout) && Layout == "Auto")
             //    categoryIdPanel.UpdateLayout(LayoutType.Auto);
             //if (!string.IsNullOrEmpty(Layout) && Layout == "Fit")

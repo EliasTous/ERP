@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Reports
 {
-   public class RT507 :RT501
+    public class RT508
     {
-
     }
 }

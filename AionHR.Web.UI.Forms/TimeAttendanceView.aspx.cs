@@ -527,7 +527,7 @@ namespace AionHR.Web.UI.Forms
             req.Month = "0";
             req.Year = "0";
             req.Size = "30";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.SortBy = "dayId,checkIn";
           
@@ -691,7 +691,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 0;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 

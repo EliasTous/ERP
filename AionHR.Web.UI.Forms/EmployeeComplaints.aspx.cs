@@ -56,7 +56,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 2;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -418,7 +418,7 @@ namespace AionHR.Web.UI.Forms
                 req.Status = 0;
             }
             req.Size = "30";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.SortBy = "employeeId";
             req.EmployeeId = 0;

@@ -39,7 +39,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
             UsersListRequest req = new UsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = query;
 
             

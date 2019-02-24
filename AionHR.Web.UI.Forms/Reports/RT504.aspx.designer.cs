@@ -130,13 +130,22 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Panel Center;
         
         /// <summary>
-        /// payRef control.
+        /// payId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField payRef;
+        protected global::Ext.Net.ComboBox payId;
+        
+        /// <summary>
+        /// payIdStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store payIdStore;
         
         /// <summary>
         /// jobInfo1 control.

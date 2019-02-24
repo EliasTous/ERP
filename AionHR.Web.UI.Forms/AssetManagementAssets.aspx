@@ -46,7 +46,10 @@
                           <ext:ModelField Name="categoryName" />
                          <ext:ModelField Name="supplierName" />
                          <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
-                  
+                        <ext:ModelField Name="departmentName" />
+                         <ext:ModelField Name="serialNo" />
+                               <ext:ModelField Name="statusName" />
+                        
                                </Fields>
                 </ext:Model>
             </Model>
@@ -137,9 +140,10 @@
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="1" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="ColCategory" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCategory%>" DataIndex="categoryName" Flex="1" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="ColSupplierName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSupplier%>" DataIndex="supplierName" Flex="1" Hideable="false" /> 
-                         
-                           
-
+                            <ext:Column CellCls="cellLink" ID="ColSerialNo" MenuDisabled="true" runat="server" Text="<%$ Resources:FieldSerialNo%>" DataIndex="serialNo" Flex="1" Hideable="false" /> 
+                               <ext:Column CellCls="cellLink" ID="ColDepartment" MenuDisabled="true" runat="server" Text="<%$ Resources:FieldDepartment%>" DataIndex="department" Flex="1" Hideable="false" /> 
+                             <ext:Column CellCls="cellLink" ID="ColStatusName" MenuDisabled="true" runat="server" Text="<%$ Resources:CurrentStatus%>" DataIndex="statusName" Flex="1" Hideable="false" /> 
+                             
                             <ext:Column runat="server"
                                 ID="colEdit"  Visible="true"
                                 Text=""
@@ -230,7 +234,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
            Width="400"
-            Height="400"
+            Height="500"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -244,7 +248,7 @@
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
-                            DefaultAnchor="100%" OnLoad="BasicInfoTab_Load" Scrollable="Vertical" >
+                            DefaultAnchor="100%" OnLoad="BasicInfoTab_Load" >
                           
                             <Items>
                                  <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:MainInfo%>" Width="350" >
@@ -254,10 +258,10 @@
                               <ext:Container runat="server"  Layout="AutoLayout">
                                             <Content>
                                              
-                                                <uc:AssetCategoryControl runat="server" ID="categoryId"  FieldLabel="<%$ Resources:FieldCategory%>"   />
+                                                <uc:AssetCategoryControl runat="server" ID="categoryId"  FieldLabel="<%$ Resources:FieldCategory%>" AllowBlank="false"  />
                                             </Content>
                                         </ext:Container>
-                                <ext:TextField ID="serialNo" runat="server" FieldLabel="<%$ Resources:FieldSerialNo%>" Name="serialNo"  />
+                                <ext:TextField ID="serialNo" runat="server" FieldLabel="<%$ Resources:FieldSerialNo%>" Name="serialNo" AllowBlank="false" />
                               </Items>
                                      </ext:FieldSet>
                                  <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:PurchaseInfo%>" >
@@ -273,7 +277,7 @@
                                                 <uc:SupplierControl runat="server" ID="supplierId"  FieldLabel="<%$ Resources: Fieldsupplier %>"    />
                                             </Content>
                                         </ext:Container>
-                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldCurrency%>" >
+                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldCurrency%>" >
 
                                             <Store>
                                                 <ext:Store runat="server" ID="currencyStore">
@@ -372,9 +376,10 @@
                                        
                                         </ext:ComboBox>
                                       
-                                           <ext:TextField ID="employeeFullName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeFullName" ReadOnly="true"  />
+                                        
                                            <ext:TextField ID="department" runat="server" FieldLabel="<%$ Resources:FieldDepartment%>" Name="department" ReadOnly="true"  />
                                            <ext:TextField ID="disposedDate" runat="server" FieldLabel="FieldDisposedDate" Name="disposedDate" ReadOnly="true" Hidden="true"  />
+                                            <ext:TextField ID="employeeFullName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeFullName" ReadOnly="true"  />
                                          </Items>
                                          </ext:FieldSet>
                             </Items>

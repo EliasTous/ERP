@@ -186,6 +186,12 @@
       <DependentUpon>IndemnityReport.cs</DependentUpon>
     </Compile>
     <Compile Include="NumbersToWords.cs" />
+    <Compile Include="PayrollLeavePaymentsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PayrollLeavePaymentsReport.Designer.cs">
+      <DependentUpon>PayrollLeavePaymentsReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="PayrollPeriodSummary.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -502,6 +508,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IndemnityReport.resx">
       <DependentUpon>IndemnityReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayrollLeavePaymentsReport.resx">
+      <DependentUpon>PayrollLeavePaymentsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PayrollPeriodSummary.ar.resx">
       <DependentUpon>PayrollPeriodSummary.cs</DependentUpon>

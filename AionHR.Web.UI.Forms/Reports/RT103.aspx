@@ -95,7 +95,7 @@
                                     <Content>
                                            <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
                                             <Listeners>
-                                                <Click Handler="App.firstStore.reload(); App.secondStore.reload();" />
+                                                <Click Handler="App.firstStore.reload(); " />
                                             </Listeners>
                                         </ext:Button>
                                     </Content>

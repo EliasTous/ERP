@@ -312,7 +312,7 @@
                                 </ext:ComboBox>
                                       <ext:Container runat="server" Layout="FitLayout"  >
                                     <Content>
-                                        <uc:salaryTypeControl runat="server" ID="SalaryType2"  SetText="<%$ Resources: FieldPeriodType %>" Width="1200" />
+                                        <uc:salaryTypeControl runat="server" ID="SalaryType2"  SetText="<%$ Resources: FieldPeriodType %>"  />
                                             
                                           
                                     </Content>

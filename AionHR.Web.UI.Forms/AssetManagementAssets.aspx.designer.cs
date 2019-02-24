@@ -202,6 +202,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColSupplierName;
         
         /// <summary>
+        /// ColSerialNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColSerialNo;
+        
+        /// <summary>
+        /// ColDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColDepartment;
+        
+        /// <summary>
+        /// ColStatusName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColStatusName;
+        
+        /// <summary>
         /// colEdit control.
         /// </summary>
         /// <remarks>
@@ -454,15 +481,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store statusStore;
         
         /// <summary>
-        /// employeeFullName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField employeeFullName;
-        
-        /// <summary>
         /// department control.
         /// </summary>
         /// <remarks>
@@ -479,6 +497,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField disposedDate;
+        
+        /// <summary>
+        /// employeeFullName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField employeeFullName;
         
         /// <summary>
         /// SaveButton control.

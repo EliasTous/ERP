@@ -100,7 +100,7 @@ namespace AionHR.Web.UI.Forms
             empRequest.SortBy = "lastName";
 
             empRequest.Size = "1000";
-            empRequest.StartAt = "1";
+            empRequest.StartAt = "0";
 
             ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
             if (!emps.Success)

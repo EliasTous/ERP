@@ -114,7 +114,7 @@ namespace AionHR.Web.UI.Forms
         {
             ActiveAttendanceRequest r = new ActiveAttendanceRequest();
             r.BranchId = r.DepartmentId = r.PositionId = 0;
-            r.StartAt = "1";
+            r.StartAt = "0";
             r.Size = "1000";
             
             ListResponse<ActiveLate> ALs = _timeAttendanceService.ChildGetAll<ActiveLate>(r);

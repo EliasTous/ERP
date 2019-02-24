@@ -166,7 +166,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = new ReportCompositeRequest();
 
             req.Size = "1000";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.SortBy = "eventDt";
 
 
@@ -191,7 +191,7 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             UsersListRequest req = new UsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = query;
 
 

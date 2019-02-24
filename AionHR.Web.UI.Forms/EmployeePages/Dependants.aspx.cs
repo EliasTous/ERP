@@ -344,7 +344,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
             else
             {
-                if (string.IsNullOrEmpty(add.city) || string.IsNullOrEmpty(add.countryId) || string.IsNullOrEmpty(add.street1) || string.IsNullOrEmpty(add.stateId) || string.IsNullOrEmpty(add.phone))
+                if (string.IsNullOrEmpty(add.city) || string.IsNullOrEmpty(add.countryId) || string.IsNullOrEmpty(add.street1) || string.IsNullOrEmpty(add.stateId) )
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorAddressMissing")).Show();

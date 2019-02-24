@@ -43,6 +43,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(EmployeeContact), "qryCO");
             ChildGetAllLookup.Add(typeof(EmployeeEmergencyContact), "qryEC");
             ChildGetAllLookup.Add(typeof(DashBoardTimeVariation), "qryTV");
+            ChildGetAllLookup.Add(typeof(PayrollEntitlementDeduction), "qryED");
+            ChildGetAllLookup.Add(typeof(PayrollSocialSecurity), "qryES");
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");
             ChildGetLookup.Add(typeof(EmployeeComplaintSelfService), "getCO");

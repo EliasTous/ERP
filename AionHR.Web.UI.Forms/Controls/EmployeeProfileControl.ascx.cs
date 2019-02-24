@@ -1816,7 +1816,7 @@ namespace AionHR.Web.UI.Forms
 
 
             empRequest.Size = "30";
-            empRequest.StartAt = "1";
+            empRequest.StartAt = "0";
 
 
             ListResponse<TeamMember> emps = _employeeService.ChildGetAll<TeamMember>(empRequest);
@@ -1913,8 +1913,33 @@ namespace AionHR.Web.UI.Forms
                 nqciId.Disabled = true;
         }
 
-        protected void Unnamed_Event()
+        protected void RemoveEmployeePicture(object sender, DirectEventArgs e)
         {
+
+
+            Attachement n = new Attachement();
+            n.classId = ClassId.EPEM;
+            if (!string.IsNullOrEmpty(CurrentEmployee.Text))
+                n.recordId = Convert.ToInt32(CurrentEmployee.Text);
+            n.seqNo = 0;
+            n.fileName = string.Empty;
+
+            PostRequest<Attachement> req = new PostRequest<Attachement>();
+            req.entity = n;
+            PostResponse<Attachement> resp = _systemService.ChildDelete<Attachement>(req);
+            if (!resp.Success)
+            {
+                //Show an error saving...
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Error).Show();
+                return;
+            }
+            FillLeftPanel();
+            CurrentEmployeePhotoName.Text = "Images/empPhoto.jpg";
+            imageSelectionWindow.Close(); 
+
+
+
 
         }
     }

@@ -1401,4 +1401,7 @@
   <data name="RT507" xml:space="preserve">
     <value>ايصالات رواتب الموظفين</value>
   </data>
+  <data name="FilterSelection" xml:space="preserve">
+    <value>يرجى اختيار اثنان من الفلاتر على الاقل او انقاص الفرق بين التواريخ</value>
+  </data>
 </root>

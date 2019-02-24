@@ -42,7 +42,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                     //  salaryTypeId.Select(0);
                     if (string.IsNullOrEmpty(Width))
                     {
-                        this.SalaryPanel.SetWidth(Convert.ToInt16(Width));
+                     
                         this.salaryTypeId.SetWidth(Convert.ToInt16(Width));
                     }
 
@@ -51,10 +51,9 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                         this.salaryTypeId.EmptyText = GetGlobalResourceObject("Common", "SalaryType").ToString();
                     else
                         this.salaryTypeId.FieldLabel = SetText.ToString();
-                    if (string.IsNullOrEmpty(setLabelWidth))
-                        this.salaryTypeId.LabelWidth = 140;
-                    else
+                    if (!string.IsNullOrEmpty(setLabelWidth))
                         this.salaryTypeId.LabelWidth = Convert.ToInt32(setLabelWidth);
+                    
                 }
                 
             }
