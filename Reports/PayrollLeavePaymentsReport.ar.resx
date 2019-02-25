@@ -118,135 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>نوع الإجازة</value>
-  </data>
-  <data name="xrLabel2.Text" xml:space="preserve">
-    <value>التاريخ</value>
-  </data>
-  <data name="xrRichText1.SerializableRtfString" xml:space="preserve">
-    <value>ewBcAHIAdABmADEAXABhAG4AcwBpAGMAcABnADEAMgA1ADIADQAKAHsADQAKAFwAZgBvAG4AdAB0AGIAbAANAAoAewBcAGYAMAAgAFQAaQBtAGUAcwAgAE4AZQB3ACAAUgBvAG0AYQBuADsAfQANAAoAfQANAAoAewANAAoAXABjAG8AbABvAHIAdABiAGwADQAKADsADQAKAFwAcgBlAGQAMABcAGcAcgBlAGUAbgAwAFwAYgBsAHUAZQAyADUANQA7AA0ACgBcAHIAZQBkADAAXABnAHIAZQBlAG4AMABcAGIAbAB1AGUAMAA7AA0ACgB9AA0ACgBcAG4AbwB1AGkAYwBvAG0AcABhAHQAXABzAHAAbAB5AHQAdwBuAGkAbgBlAFwAaAB0AG0AYQB1AHQAcwBwAHsAXABwAGEAcgBkAFwAcABsAGEAaQBuAFwAcQBsAHsAXABmAHMAMgAwAFwAYwBmADIAIAB4AHIAUgBpAGMAaABUAGUAeAB0ADEAfQBcAGYAcwAyADQAXABwAGEAcgB9AA0ACgB9AA0ACgA=</value>
+    <value>تسديد الاجازات</value>
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
-    <value>الراتب الاساسي</value>
+    <value>تسديد الاجازات :</value>
   </data>
   <data name="xrLabel11.Text" xml:space="preserve">
-    <value>آخر إجازة</value>
+    <value>المبلغ المستحق :</value>
   </data>
-  <data name="xrLabel12.Text" xml:space="preserve">
-    <value>البنك</value>
-  </data>
-  <data name="xrLabel13.Text" xml:space="preserve">
-    <value>الإستحقاقات</value>
-  </data>
-  <data name="xrLabel14.Text" xml:space="preserve">
-    <value>الإستقطاعات</value>
-  </data>
-  <data name="xrLabel15.Text" xml:space="preserve">
-    <value>الأيبان</value>
-  </data>
-  <data name="xrLabel16.Text" xml:space="preserve">
-    <value>تاريخ بداية الإجازة</value>
-  </data>
-  <data name="xrLabel17.Text" xml:space="preserve">
-    <value>أيام الإجازة مع الراتب</value>
-  </data>
-  <data name="xrLabel18.Text" xml:space="preserve">
-    <value>الإجازة المستحقة</value>
-  </data>
-  <data name="xrLabel19.Text" xml:space="preserve">
-    <value>أيام الإجازة بدون راتب</value>
-  </data>
-  <data name="xrLabel20.Text" xml:space="preserve">
-    <value>نهاية الإجازة</value>
-  </data>
-  <data name="xrLabel21.Text" xml:space="preserve">
-    <value>المبلغ المستحق</value>
-  </data>
-  <data name="xrLabel22.Text" xml:space="preserve">
-    <value>الأساسي</value>
-  </data>
-  <data name="xrLabel24.Text" xml:space="preserve">
-    <value>عدد الأيام المطلوبة</value>
-  </data>
-  <data name="xrLabel25.Text" xml:space="preserve">
-    <value>السكن</value>
-  </data>
-  <data name="xrLabel26.Text" xml:space="preserve">
-    <value>مواصلات</value>
-  </data>
-  <data name="xrLabel27.Text" xml:space="preserve">
-    <value>أخرى</value>
-  </data>
-  <data name="xrLabel29.Text" xml:space="preserve">
-    <value>راتب الإجازة</value>
-  </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>الإدارة / القسم</value>
-  </data>
-  <data name="xrLabel30.Text" xml:space="preserve">
-    <value>مجموع الإستحقاقات</value>
-  </data>
-  <data name="xrLabel31.Text" xml:space="preserve">
-    <value>سلف</value>
-  </data>
-  <data name="xrLabel32.Text" xml:space="preserve">
-    <value>عجوزات</value>
-  </data>
-  <data name="xrLabel33.Text" xml:space="preserve">
-    <value>تأمينات إجتماعية</value>
-  </data>
-  <data name="xrLabel34.Text" xml:space="preserve">
-    <value>تأخير</value>
-  </data>
-  <data name="xrLabel35.Text" xml:space="preserve">
-    <value>غياب</value>
-  </data>
-  <data name="xrLabel36.Text" xml:space="preserve">
-    <value>مجموع الإستقطاعات</value>
-  </data>
-  <data name="xrLabel37.Text" xml:space="preserve">
-    <value>الجنسية</value>
-  </data>
-  <data name="xrLabel38.Text" xml:space="preserve">
-    <value>صافي المستحق</value>
-  </data>
-  <data name="xrLabel39.Text" xml:space="preserve">
-    <value>إعداد</value>
-  </data>
-  <data name="xrLabel4.Text" xml:space="preserve">
-    <value>الأجمالي</value>
-  </data>
-  <data name="xrLabel40.Text" xml:space="preserve">
-    <value>إسم الموظف</value>
-  </data>
-  <data name="xrLabel41.Text" xml:space="preserve">
-    <value>إدارة الموارد البشرية</value>
-  </data>
-  <data name="xrLabel42.Text" xml:space="preserve">
-    <value>الإدارة المالية</value>
-  </data>
-  <data name="xrLabel43.Text" xml:space="preserve">
-    <value>الرقم الوظيفي</value>
-  </data>
-  <data name="xrLabel44.Text" xml:space="preserve">
-    <value>المدير</value>
-  </data>
-  <data name="xrLabel5.Text" xml:space="preserve">
-    <value>الفرع</value>
-  </data>
-  <data name="xrLabel6.Text" xml:space="preserve">
-    <value>تاريخ التعيين</value>
-  </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>نوع الإجازة</value>
-  </data>
-  <data name="xrLabel8.Text" xml:space="preserve">
-    <value>أيام الإجازة السنوية</value>
-  </data>
-  <data name="xrLabel9.Text" xml:space="preserve">
-    <value>المسمى الوظيفي</value>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>اسم الموظف :</value>
   </data>
   <data name="xrLabel23.Text" xml:space="preserve">
-    <value>مخالصة إجازة</value>
+    <value>رصيد الاجازات :</value>
+  </data>
+  <data name="xrLabel25.Text" xml:space="preserve">
+    <value>لم يتم العثور على نتائج</value>
+  </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>الرمز :</value>
+  </data>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>التاريخ :</value>
+  </data>
+  <data name="xrLabel5.Text" xml:space="preserve">
+    <value>تاريخ الاستحقاق :</value>
+  </data>
+  <data name="xrLabel6.Text" xml:space="preserve">
+    <value>مستحقات الاجازة :</value>
+  </data>
+  <data name="xrLabel7.Text" xml:space="preserve">
+    <value>اجازات :</value>
+  </data>
+  <data name="xrLabel8.Text" xml:space="preserve">
+    <value>بدل الاجازات :</value>
+  </data>
+  <data name="xrLabel9.Text" xml:space="preserve">
+    <value>الراتب :</value>
   </data>
 </root>

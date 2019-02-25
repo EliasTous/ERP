@@ -120,14 +120,38 @@
   <data name="fieldCSS.Caption" xml:space="preserve">
     <value>Css</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="fieldCSS.Width" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
   <data name="fieldEmployeeName.Caption" xml:space="preserve">
     <value>اسم الموظف</value>
+  </data>
+  <data name="fieldEmployeeName.Width" type="System.Int32, mscorlib">
+    <value>190</value>
   </data>
   <data name="fieldESS.Caption" xml:space="preserve">
     <value>Ess</value>
   </data>
+  <data name="fieldESS.Width" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
   <data name="fieldBasicSalary.Caption" xml:space="preserve">
     <value>اساسي</value>
+  </data>
+  <data name="fieldBasicSalary.Width" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <assembly alias="DevExpress.Data.v16.2" name="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="xrPivotGrid1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
+    <value>0, 0</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="xrPivotGrid1.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>1141.00012, 115</value>
+  </data>
+  <data name="Detail.HeightF" type="System.Single, mscorlib">
+    <value>156.666672</value>
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
     <value>المرجع</value>
