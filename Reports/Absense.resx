@@ -814,7 +814,7 @@
     <value>76.78113, 23</value>
   </data>
   <data name="xrSummary2.FormatString" xml:space="preserve">
-    <value>{0:#.00}</value>
+    <value>{0:n2}</value>
   </data>
   <data name="xrLabel29.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>

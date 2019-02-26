@@ -300,7 +300,7 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             // xrTableCell5
             // 
             this.xrTableCell5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "edAmount", "{0:C2}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "edAmount", "{0:n2}")});
             resources.ApplyResources(this.xrTableCell5, "xrTableCell5");
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.StylePriority.UseTextAlignment = false;
@@ -902,13 +902,13 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
     {
         try
         {
-            if (!string.IsNullOrEmpty((sender as XRTableCell).Text))
-            {
+            //if (!string.IsNullOrEmpty((sender as XRTableCell).Text))
+            //{
 
-                (sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N0");
+            //    (sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N0");
 
 
-            }
+            //}
         }
         catch
         {
