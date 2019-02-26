@@ -139,5 +139,23 @@ public class LeaveDayListRequest : ListRequest
         }
     }
 }
+public class LeaveRequestTamplateRequest : ListRequest
+{
+    public string LeaveId { get; set; }
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_leaveId", LeaveId.ToString());
+
+
+
+
+            return parameters;
+        }
+    }
+}
+
 
 

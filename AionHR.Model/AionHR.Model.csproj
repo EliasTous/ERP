@@ -144,6 +144,7 @@
     <Compile Include="Employees\Profile\TerminationReason.cs" />
     <Compile Include="HelpFunction\BenefitAcquisitionAcquisitionRate.cs" />
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
+    <Compile Include="Reports\PT501.cs" />
     <Compile Include="Reports\RT115.cs" />
     <Compile Include="Reports\RT506.cs" />
     <Compile Include="Reports\RT507.cs" />

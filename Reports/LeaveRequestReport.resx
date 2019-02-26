@@ -128,42 +128,6 @@
   <data name="Detail.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>TopLeft</value>
   </data>
-  <data name="IsPaid.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="LeaveType.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="Destination.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="Employee.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="Ref.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="Days.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="Hours.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="Justification.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="To.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="From.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="YearsInService.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="LeaveBalance.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
   <data name="TopMargin.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -687,6 +651,9 @@
   <data name="PageHeader.HeightF" type="System.Single, mscorlib">
     <value>507.291656</value>
   </data>
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

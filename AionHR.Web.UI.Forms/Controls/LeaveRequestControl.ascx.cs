@@ -1130,46 +1130,61 @@ namespace AionHR.Web.UI.Forms.Controls
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-
-            string dateFormat = _systemService.SessionHelper.GetDateformat();
-            LeaveRequestReport y = new LeaveRequestReport();
-            RecordRequest r = new RecordRequest();
-            r.RecordID = CurrentLeave.Text;
-
-            RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
-            if (response.result == null)
-                return;
-
-            EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
-            req.RecordID = response.result.employeeId;
-            req.asOfDate = DateTime.Now;
-            RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-               Common.errorMessage(resp);
-                return;
-            }
             try
             {
-                leaveBalance.Text = resp.result.leaveBalance.ToString();
-                yearsInService.Text = resp.result.serviceDuration;
-                LeaveRequest request = response.result;
+            string dateFormat = _systemService.SessionHelper.GetDateformat();
+            LeaveRequestReport y = new LeaveRequestReport();
+
+                ReportCompositeRequest req = new ReportCompositeRequest();
+                LeaveIdParameter LIP = new LeaveIdParameter();
+                LIP.leaveId = CurrentLeave.Text;
+                req.Add(LIP);
+
+                ListResponse<AionHR.Model.Reports.PT501> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.PT501>(req);
+                if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                Common.errorMessage(resp);
+                return;
+            }
+                y.DataSource = resp.Items;
+              
+            //RecordRequest r = new RecordRequest();
+            //r.RecordID = CurrentLeave.Text;
+
+            //RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
+            //if (response.result == null)
+            //    return;
+
+            //EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
+            //req.RecordID = response.result.employeeId;
+            //req.asOfDate = DateTime.Now;
+            //RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+            //if (!resp.Success)
+            //{
+            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+            //   Common.errorMessage(resp);
+            //    return;
+            //}
+           
+                //leaveBalance.Text = resp.result.leaveBalance.ToString();
+                //yearsInService.Text = resp.result.serviceDuration;
+                //LeaveRequest request = response.result;
                 y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-
-                y.Parameters["Employee"].Value = request.employeeName.fullName;
-                y.Parameters["Ref"].Value = request.leaveRef;
-                y.Parameters["From"].Value = request.startDate.ToString(dateFormat);
-                y.Parameters["To"].Value = request.endDate.ToString(dateFormat);
-                y.Parameters["Days"].Value = calDays.Text;
-                y.Parameters["Hours"].Value = request.leavePeriod;
-                y.Parameters["Justification"].Value = request.justification;
-                y.Parameters["Destination"].Value = request.destination;
-                y.Parameters["LeaveType"].Value = request.ltName;
-                y.Parameters["LeaveBalance"].Value = resp.result.leaveBalance;
-                y.Parameters["YearsInService"].Value = resp.result.serviceDuration;
-                y.Parameters["IsPaid"].Value = request.isPaid.HasValue && request.isPaid.Value ? "Yes" : "No";
+                y.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+                //y.Parameters["Employee"].Value = request.employeeName.fullName;
+                //y.Parameters["Ref"].Value = request.leaveRef;
+                //y.Parameters["From"].Value = request.startDate.ToString(dateFormat);
+                //y.Parameters["To"].Value = request.endDate.ToString(dateFormat);
+                //y.Parameters["Days"].Value = calDays.Text;
+                //y.Parameters["Hours"].Value = request.leavePeriod;
+                //y.Parameters["Justification"].Value = request.justification;
+                //y.Parameters["Destination"].Value = request.destination;
+                //y.Parameters["LeaveType"].Value = request.ltName;
+                //y.Parameters["LeaveBalance"].Value = resp.result.leaveBalance;
+                //y.Parameters["YearsInService"].Value = resp.result.serviceDuration;
+                //y.Parameters["IsPaid"].Value = request.isPaid.HasValue && request.isPaid.Value ? "Yes" : "No";
                 string format = "Pdf";
                 string fileName = String.Format("Report.{0}", format);
                 string user = _systemService.SessionHelper.GetCurrentUser();
