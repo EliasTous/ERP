@@ -531,6 +531,9 @@
   <data name="xrLabel7.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>114.2657, 23</value>
   </data>
+  <data name="xrSummary1.FormatString" xml:space="preserve">
+    <value>{0:#,#.00}</value>
+  </data>
   <data name="xrLabel6.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>

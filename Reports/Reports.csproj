@@ -509,6 +509,9 @@
     <EmbeddedResource Include="IndemnityReport.resx">
       <DependentUpon>IndemnityReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PayrollLeavePaymentsReport.ar.resx">
+      <DependentUpon>PayrollLeavePaymentsReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PayrollLeavePaymentsReport.resx">
       <DependentUpon>PayrollLeavePaymentsReport.cs</DependentUpon>
     </EmbeddedResource>
