@@ -548,8 +548,8 @@ namespace AionHR.Web.UI.Forms
                 {
 
 
-
-                    reportsTo = qv.result.reportToName.fullName,
+                   
+                    reportsTo = qv.result.reportToName!=null? qv.result.reportToName.fullName:"",
                     indemnity = qv.result.indemnity,
                     salary = qv.result.salary,
                     leavesBalance = qv.result.leaveBalance,
