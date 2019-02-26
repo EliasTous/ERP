@@ -236,7 +236,7 @@
                         <ext:Image runat="server" ID="imgControl" MaxWidth="150" MaxHeight="150">
                             <Listeners>
                                 <%--<Click Handler="triggierImageClick(App.employeeControl1_picturePath.fileInputEl.id); " />--%>
-                                <Click Handler="InitCropper(App.CurrentEmployeePhotoName.value'?x='+new Date().getTime()); App.imageSelectionWindow.show();" />
+                                <Click Handler="InitCropper(App.CurrentEmployeePhotoName.value+'?x='+ new Date().getTime()); App.imageSelectionWindow.show();" />
                             </Listeners>
 
                         </ext:Image>
