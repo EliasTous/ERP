@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FieldSupplier" xml:space="preserve">
-    <value>المورد</value>
+  <data name="BasicInfoTabEditOnBoardingWindowTitle" xml:space="preserve">
+    <value>On Boarding Info</value>
+  </data>
+  <data name="EditOnBoardingRecordWindowsTitle" xml:space="preserve">
+    <value>Edit On Boarding Info</value>
+  </data>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Edit Position On Boarding</value>
+  </data>
+  <data name="FieldCategoryName" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="FieldDeliveryDuration" xml:space="preserve">
+    <value>DeliveryDuration</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="OnboardingWindowTitle" xml:space="preserve">
+    <value>On Boarding</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>On Boarding</value>
   </data>
 </root>

@@ -128,6 +128,8 @@
     <Compile Include="Messaging\AdministrativeAffairs\DocumentNoteListRequest.cs" />
     <Compile Include="Messaging\AdministrativeAffairs\DocumentNoteRecordRequest.cs" />
     <Compile Include="Messaging\Asset Management\AssetManagementAssetListRequest.cs" />
+    <Compile Include="Messaging\Asset Management\AssetManagementOnBoardingListRequest.cs" />
+    <Compile Include="Messaging\Asset Management\AssetManagementPurchaseOrdersListRequest.cs" />
     <Compile Include="Messaging\Benefits\BenefitAcquisitionsListRequest.cs" />
     <Compile Include="Messaging\Benefits\PeriodOfTheDateRangeRequest .cs" />
     <Compile Include="Messaging\Benefits\ScheduleBenefitsListRequest.cs" />

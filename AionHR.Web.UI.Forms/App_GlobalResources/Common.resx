@@ -1401,4 +1401,28 @@
   <data name="FilterSelection" xml:space="preserve">
     <value>Please choose at least two filters or decrease the difference between dates</value>
   </data>
+  <data name="PurchaseOrders" xml:space="preserve">
+    <value>Purchase Orders</value>
+  </data>
+  <data name="FieldApprovalStatus" xml:space="preserve">
+    <value>Approval Status</value>
+  </data>
+  <data name="FieldAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="FieldNew" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="FieldRejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="FieldCurrency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="Onboarding" xml:space="preserve">
+    <value>On Boarding</value>
+  </data>
 </root>

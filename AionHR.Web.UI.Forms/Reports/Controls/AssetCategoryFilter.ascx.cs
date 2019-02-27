@@ -97,5 +97,10 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             }
           
         }
+        public void ADDHandler(string Event, string Function)
+        {
+
+            this.categoryId.AddListener(Event, "function() {" + Function + "}");
+        }
     }
 }

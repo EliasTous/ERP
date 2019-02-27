@@ -63,6 +63,8 @@
     <Compile Include="AdminTemplates\TemplateTag.cs" />
     <Compile Include="AssetManagement\AssetManagementAsset.cs" />
     <Compile Include="AssetManagement\AssetManagementCategory.cs" />
+    <Compile Include="AssetManagement\AssetManagementOnBoarding.cs" />
+    <Compile Include="AssetManagement\AssetManagementPurchaseOrder.cs" />
     <Compile Include="AssetManagement\AssetManagementSupplier.cs" />
     <Compile Include="AssetManagement\IAssetManagementRepository.cs" />
     <Compile Include="Attributes\PropertyID.cs" />

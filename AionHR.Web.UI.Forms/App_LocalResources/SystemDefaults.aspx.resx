@@ -459,4 +459,49 @@
   <data name="backofficeEmail" xml:space="preserve">
     <value>Back Office Email</value>
   </data>
+  <data name="access" xml:space="preserve">
+    <value>Access</value>
+  </data>
+  <data name="BiometricSettings" xml:space="preserve">
+    <value>Biometric Settings</value>
+  </data>
+  <data name="clearOnSuccess" xml:space="preserve">
+    <value>Clear On Success</value>
+  </data>
+  <data name="csvFile" xml:space="preserve">
+    <value>Csv File</value>
+  </data>
+  <data name="debugMode" xml:space="preserve">
+    <value>Debug Mode</value>
+  </data>
+  <data name="pendingPunchesFolder" xml:space="preserve">
+    <value>Pending Punches Folder</value>
+  </data>
+  <data name="pull" xml:space="preserve">
+    <value>Pull</value>
+  </data>
+  <data name="punchInterface" xml:space="preserve">
+    <value>PunchI Interface</value>
+  </data>
+  <data name="push" xml:space="preserve">
+    <value>Push</value>
+  </data>
+  <data name="serialNo" xml:space="preserve">
+    <value>Serial No</value>
+  </data>
+  <data name="shiftData" xml:space="preserve">
+    <value>Shift Data</value>
+  </data>
+  <data name="sleepTime" xml:space="preserve">
+    <value>Sleep Time</value>
+  </data>
+  <data name="sqlServer" xml:space="preserve">
+    <value>Sql Server</value>
+  </data>
+  <data name="storeConnection" xml:space="preserve">
+    <value>Store Connection</value>
+  </data>
+  <data name="storeType" xml:space="preserve">
+    <value>Store Type</value>
+  </data>
 </root>

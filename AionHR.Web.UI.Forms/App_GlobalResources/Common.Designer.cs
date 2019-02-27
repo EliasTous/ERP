@@ -1267,6 +1267,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        internal static string FieldAll {
+            get {
+                return ResourceManager.GetString("FieldAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approval Status.
+        /// </summary>
+        internal static string FieldApprovalStatus {
+            get {
+                return ResourceManager.GetString("FieldApprovalStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approved.
+        /// </summary>
+        internal static string FieldApproved {
+            get {
+                return ResourceManager.GetString("FieldApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
         internal static string FieldCategory {
@@ -1281,6 +1308,15 @@ namespace Resources {
         internal static string FieldChangeType {
             get {
                 return ResourceManager.GetString("FieldChangeType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        internal static string FieldCurrency {
+            get {
+                return ResourceManager.GetString("FieldCurrency", resourceCulture);
             }
         }
         
@@ -1321,11 +1357,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        internal static string FieldNew {
+            get {
+                return ResourceManager.GetString("FieldNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Penalty.
         /// </summary>
         internal static string FieldPenaltyName {
             get {
                 return ResourceManager.GetString("FieldPenaltyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejected.
+        /// </summary>
+        internal static string FieldRejected {
+            get {
+                return ResourceManager.GetString("FieldRejected", resourceCulture);
             }
         }
         
@@ -2482,6 +2536,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to On Boarding.
+        /// </summary>
+        internal static string Onboarding {
+            get {
+                return ResourceManager.GetString("Onboarding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to operation is completed successfully.
         /// </summary>
         internal static string operationCompleted {
@@ -2649,6 +2712,15 @@ namespace Resources {
         internal static string ProcessNotifications {
             get {
                 return ResourceManager.GetString("ProcessNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase Orders.
+        /// </summary>
+        internal static string PurchaseOrders {
+            get {
+                return ResourceManager.GetString("PurchaseOrders", resourceCulture);
             }
         }
         

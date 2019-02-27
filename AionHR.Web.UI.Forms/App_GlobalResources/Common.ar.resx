@@ -1384,16 +1384,16 @@
     <value>إجمالي الرواتب</value>
   </data>
   <data name="AssetManagement" xml:space="preserve">
-    <value>Asset Management</value>
+    <value>ادارة الأصول</value>
   </data>
   <data name="Suppliers" xml:space="preserve">
-    <value>Suppliers</value>
+    <value>الموردون</value>
   </data>
   <data name="AssetManagementCategory" xml:space="preserve">
-    <value>Categories</value>
+    <value>الفئات</value>
   </data>
   <data name="Assets" xml:space="preserve">
-    <value>Assets</value>
+    <value>الأصول</value>
   </data>
   <data name="FieldCategory" xml:space="preserve">
     <value>الفئة</value>
@@ -1403,5 +1403,26 @@
   </data>
   <data name="FilterSelection" xml:space="preserve">
     <value>يرجى اختيار اثنان من الفلاتر على الاقل او انقاص الفرق بين التواريخ</value>
+  </data>
+  <data name="PurchaseOrders" xml:space="preserve">
+    <value>طلبات الشراء</value>
+  </data>
+  <data name="FieldApprovalStatus" xml:space="preserve">
+    <value>التعميد</value>
+  </data>
+  <data name="FieldAll" xml:space="preserve">
+    <value>الكل </value>
+  </data>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>مقبولة</value>
+  </data>
+  <data name="FieldNew" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="FieldRejected" xml:space="preserve">
+    <value>مرفوض </value>
+  </data>
+  <data name="FieldCurrency" xml:space="preserve">
+    <value>العملة</value>
   </data>
 </root>

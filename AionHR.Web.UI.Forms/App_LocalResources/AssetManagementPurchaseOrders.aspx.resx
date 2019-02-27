@@ -117,7 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FieldSupplier" xml:space="preserve">
-    <value>المورد</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Purchase Order info</value>
+  </data>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Edit Purchase Order</value>
+  </data>
+  <data name="FieldCategoryName" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="FieldComments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="FieldCostPrice" xml:space="preserve">
+    <value>Cost Price</value>
+  </data>
+  <data name="FieldCurrencyName" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="FieldDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FieldQty" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="FieldSupplierName" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="Status0" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Status1" xml:space="preserve">
+    <value>In Process</value>
+  </data>
+  <data name="Status2" xml:space="preserve">
+    <value>Post</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Purchase Orders</value>
   </data>
 </root>

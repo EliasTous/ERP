@@ -1106,7 +1106,54 @@
                             </Buttons>
                         </ext:FormPanel>
 
+                           <ext:FormPanel DefaultButton="SaveBiometricSettingsBtn"
+                            ID="BiometricSettings"
+                            runat="server"
+                            Title="<%$ Resources: BiometricSettings %>"
+                            Icon="ApplicationSideList" AutoScroll="true"
+                            DefaultAnchor="100%"
+                            BodyPadding="5">
+                            <Items>
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="storeType"   runat="server" FieldLabel="<%$ Resources: storeType %>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                    <Items>
 
+                                        <ext:ListItem Text="<%$ Resources: sqlServer %>" Value="1"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: access%>" Value="2"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: csvFile%>" Value="3"></ext:ListItem>
+
+                                    </Items>
+                                
+                                </ext:ComboBox>  
+                                  <ext:TextArea FieldLabel="<%$ Resources: storeConnection %>" LabelWidth="150" runat="server" Name="storeConnection" ID="storeConnection" MaxLength="100" />
+                                <ext:Checkbox FieldLabel="<%$ Resources: pull %>" LabelWidth="150" runat="server" InputValue="True" Name="pull" ID="pull" />
+                                <ext:Checkbox FieldLabel="<%$ Resources: push %>" LabelWidth="150" runat="server" InputValue="True" Name="push" ID="push" />
+                                <ext:Checkbox FieldLabel="<%$ Resources: clearOnSuccess %>" LabelWidth="150" runat="server" InputValue="True" Name="clearOnSuccess" ID="clearOnSuccess" />
+                                <ext:NumberField FieldLabel="<%$ Resources: sleepTime %>" LabelWidth="150" runat="server"  Name="sleepTime" ID="sleepTime" MinValue="0"></ext:NumberField>
+                                 <ext:NumberField FieldLabel="<%$ Resources: serialNo %>" LabelWidth="150" runat="server"  Name="serialNo" ID="serialNo" MinValue="0"></ext:NumberField>
+                                 <ext:Checkbox FieldLabel="<%$ Resources: debugMode %>" LabelWidth="150" runat="server" InputValue="True" Name="debugMode" ID="debugMode" />
+                                 <ext:Checkbox FieldLabel="<%$ Resources: shiftData %>" LabelWidth="150" runat="server" InputValue="True" Name="shiftData" ID="shiftData" />
+                                <ext:TextField FieldLabel="<%$ Resources: pendingPunchesFolder %>" LabelWidth="150" runat="server" Name="pendingPunchesFolder" ID="pendingPunchesFolder" MaxLength="100" />
+                              <ext:TextArea FieldLabel="<%$ Resources: punchInterface %>" LabelWidth="150" runat="server" Name="punchInterface" ID="punchInterface" MaxLength="255" />
+                                    
+                            </Items>
+                            <Buttons>
+                                <ext:Button Hidden="true"  ID="SaveBiometricSettingsBtn" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); if (!#{BiometricSettings}.getForm().isValid()) {return false;}  " />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="SaveBiometricSettings" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                            <EventMask ShowMask="true"  />
+                                            <ExtraParams>
+
+                                                <ext:Parameter Name="values" Value="#{BiometricSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                            </ExtraParams>
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                            </Buttons>
+                        </ext:FormPanel>
                     </Items>
                        <Buttons>
                                 <ext:Button ID="Button11" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
@@ -1124,6 +1171,7 @@
                                                 <ext:Parameter Name="ta" Value="#{AttendanceSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
                                                 <ext:Parameter Name="py" Value="#{PayrollSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
                                                 <ext:Parameter Name="sec" Value="#{SecuritySettings}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                                <ext:Parameter Name="bio" Value="#{BiometricSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
                                               
                                             </ExtraParams>
                                         </Click>

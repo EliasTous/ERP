@@ -371,7 +371,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(rt104, "rt104", "Reports/RT104.aspx", Resources.Common.RT104, "icon-Employees", "1");
             FillConfigItem(rt105, "rt105", "Reports/RT105.aspx", Resources.Common.RT105, "icon-Employees", "1");
             FillConfigItem(rt106, "rt106", "Reports/RT106.aspx", Resources.Common.RT106, "icon-Employees", "1");
-            FillConfigItem(rt107, "rt107", "Reports/RT107.aspx", Resources.Common.RT107, "icon-Employees", "1");
+            FillConfigItem(rt107, "rt107", "RT107.aspx", Resources.Common.RT107, "icon-Employees", "1");
             FillConfigItem(rt108, "rt108", "Reports/RT108.aspx", Resources.Common.RT108, "icon-Employees", "1");
             FillConfigItem(rt111, "rt111", "Reports/RT111.aspx", Resources.Common.RT111, "icon-Employees", "1");
             FillConfigItem(rt112, "rt112", "Reports/RT112.aspx", Resources.Common.RT112, "icon-Employees", "1");
@@ -540,6 +540,8 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node DocumentCategory = BuildLeafNode("DocumentCategories", Resources.Common.DocumentCategory, "Building", true, adminDocument);
             Ext.Net.Node Document = BuildLeafNode("AdminDocuments", Resources.Common.Documents, "Building", true, adminDocument);
             Ext.Net.Node Asset = BuildLeafNode("AssetManagementAssets", Resources.Common.Assets, "Building", true, adminAssetManagement);
+            Ext.Net.Node AssetManagementPurchaseOrder = BuildLeafNode("AssetManagementPurchaseOrders", Resources.Common.PurchaseOrders, "Building", true, adminAssetManagement);
+            Ext.Net.Node AssetManagementOnboarding = BuildLeafNode("AssetManagementOnboarding", Resources.Common.Onboarding, "Building", true, adminAssetManagement);
 
             FillConfigItem(templatesLeave, "admintemplates_root", "AdminTemplates.aspx", Resources.Common.AdminTemplates, "icon-Employees", "1");
             FillConfigItem(businessPartnerCategory, "BusinessPartnerCategories", "BusinessPartnerCategories.aspx", Resources.Common.BusinessPartnerCategory, "icon-Employees", "1");
@@ -547,6 +549,8 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(DocumentCategory, "DocumentCategories", "DocumentCategories.aspx", Resources.Common.DocumentCategory, "icon-Employees", "1");
             FillConfigItem(Document, "AdminDocuments", "AdminDocuments.aspx", Resources.Common.Documents, "icon-Employees", "1");
             FillConfigItem(Asset, "AssetManagementAssets", "AssetManagementAssets.aspx", Resources.Common.Assets, "icon-Employees", "1");
+            FillConfigItem(AssetManagementPurchaseOrder, "AssetManagementPurchaseOrders", "AssetManagementPurchaseOrders.aspx", Resources.Common.PurchaseOrders, "icon-Employees", "1");
+            FillConfigItem(AssetManagementOnboarding, "AssetManagementOnboarding", "AssetManagementOnboardings.aspx", Resources.Common.Onboarding, "icon-Employees", "1");
 
 
 

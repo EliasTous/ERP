@@ -581,6 +581,73 @@ namespace AionHR.Web.UI.Forms
 
 
 
+            try { storeType.Select(items.Where(s => s.Key == "storeType").First().Value); }
+
+            catch { }
+            try
+
+            {
+                storeConnection.Text = items.Where(s => s.Key == "storeConnection").First().Value;
+            }
+            catch { }
+            try
+
+            {
+                pull.Checked = items.Where(s => s.Key == "pull").First().Value == "true";
+            }
+            catch { }
+            try
+
+            {
+                push.Checked = items.Where(s => s.Key == "push").First().Value == "true";
+            }
+            catch { }
+            try
+
+            {
+                clearOnSuccess.Checked = items.Where(s => s.Key == "clearOnSuccess").First().Value == "true";
+            }
+            catch { }
+
+            try
+
+            {
+                sleepTime.Text = items.Where(s => s.Key == "sleepTime").First().Value;
+            }
+            catch { }
+            try
+
+            {
+                serialNo.Text = items.Where(s => s.Key == "serialNo").First().Value;
+            }
+            catch { }
+            try
+
+            {
+                clearOnSuccess.Checked = items.Where(s => s.Key == "debugMode").First().Value == "true";
+            }
+            catch { }
+            try
+
+            {
+                shiftData.Checked = items.Where(s => s.Key == "shiftData").First().Value == "true";
+            }
+            catch { }
+            try
+
+            {
+                pendingPunchesFolder.Text = items.Where(s => s.Key == "pendingPunchesFolder").First().Value;
+            }
+            catch { }
+            try
+
+            {
+                punchInterface.Text = items.Where(s => s.Key == "punchInterface").First().Value;
+            }
+            catch { }
+            
+
+
             FillCompanyLogo(); 
 
 
@@ -1023,6 +1090,74 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        private List<KeyValuePair<string, string>> GetBiometricSettings(dynamic values)
+        {
+            List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
+            if (!string.IsNullOrEmpty(values.storeType.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("storeType", values.storeType.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("storeType", ""));
+
+            if (!string.IsNullOrEmpty(values.storeConnection.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("storeConnection", values.storeConnection.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("storeConnection", ""));
+
+            submittedValues.Add(new KeyValuePair<string, string>("pull", values.pull == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("push", values.push == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("clearOnSuccess", values.clearOnSuccess == null ? "false" : "true"));
+
+            submittedValues.Add(new KeyValuePair<string, string>("debugMode", values.debugMode == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("shiftData", values.shiftData == null ? "false" : "true"));
+
+            if (!string.IsNullOrEmpty(values.sleepTime.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("sleepTime", values.sleepTime.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("sleepTime", ""));
+            if (!string.IsNullOrEmpty(values.serialNo.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("serialNo", values.serialNo.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("serialNo", ""));
+            if (!string.IsNullOrEmpty(values.pendingPunchesFolder.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pendingPunchesFolder", values.pendingPunchesFolder.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("pendingPunchesFolder", ""));
+            if (!string.IsNullOrEmpty(values.punchInterface.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("punchInterface", values.punchInterface.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("punchInterface", ""));
+
+            return submittedValues;
+        }
+        private void SaveBiometricSettings(dynamic values)
+        {
+            List<KeyValuePair<string, string>> submittedValues = GetBiometricSettings(values);
+            KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
+            PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
+            req.entity = valArr;
+            PostResponse<KeyValuePair<string, string>[]> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>[]>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                return;
+            }
+            else
+            {
+                FillDefaults(submittedValues);
+
+
+
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+            }
+        }
+
+
         protected void SaveEmployeeSettings(object sender, DirectEventArgs e)
         {
             List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
@@ -1063,6 +1198,13 @@ namespace AionHR.Web.UI.Forms
             SaveSecuritySettings(values);
             
         }
+        protected void SaveBiometricSettings(object sender, DirectEventArgs e)
+        {
+
+            dynamic values = JsonConvert.DeserializeObject(e.ExtraParams["values"]);
+            SaveBiometricSettings(values);
+
+        }
 
         protected void SaveAll(object sender, DirectEventArgs e)
         {
@@ -1082,7 +1224,9 @@ namespace AionHR.Web.UI.Forms
             dynamic secValues = JsonConvert.DeserializeObject(e.ExtraParams["sec"]);
 
             allValues.AddRange(GetSecuritySettings(secValues));
-            
+            dynamic bioValues = JsonConvert.DeserializeObject(e.ExtraParams["bio"]);
+            allValues.AddRange(GetBiometricSettings(bioValues));
+
             KeyValuePair<string, string>[] valArr = allValues.ToArray();
             PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
             req.entity = valArr;

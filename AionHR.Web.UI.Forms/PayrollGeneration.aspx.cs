@@ -328,6 +328,7 @@ namespace AionHR.Web.UI.Forms
             Viewport1.ActiveIndex = 0;
 
             Store1.Reload();
+            payrollsStore.Reload();
             RecordRequest r = new RecordRequest();
 
             r.RecordID = resp.recordId;
