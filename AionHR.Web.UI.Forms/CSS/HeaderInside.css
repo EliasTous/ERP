@@ -33,6 +33,21 @@
     transition: all 0.2s ease-out;
    border: 1px solid #7db9ee;
 }
+.ComboButton {
+    float:left;
+ 
+   
+    display: inline-block;
+  
+   
+   
+  
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+   border: 1px solid #7db9ee;
+}
 
 
 

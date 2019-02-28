@@ -75,38 +75,38 @@ function GetChangeTypeString(index)
     $(function () {
 
 
-        $('#btnChangeLanguage').click(function () {
+        //$('#btnChangeLanguage').click(function () {
 
-            Ext.net.Mask.show(App.lblLoading.getValue());
-            App.direct.Localise({
-                success: function (result) {
+        //    Ext.net.Mask.show(App.lblLoading.getValue());
+        //    App.direct.Localise({
+        //        success: function (result) {
 
-                    switch (result) {
+        //            switch (result) {
 
-                        case "ok":
-                            location.reload();
-                            break;
+        //                case "ok":
+        //                    location.reload();
+        //                    break;
 
-                        default:
+        //                default:
 
-                            Ext.net.Mask.hide();
-                            Ext.Msg.buttonText.ok = App.lblOk.getValue();
-                            Ext.Msg.alert(App.lblError.getValue(), App.lblErrorOperation.getValue(), function () {
-                            });
-                            break;
-                    }
-                },
-                failure: function (errorMsg) {
-                    Ext.net.Mask.hide();
-                    Ext.Msg.buttonText.ok = App.lblOk.getValue();
-                    Ext.Msg.alert(App.lblError.getValue(), App.lblErrorOperation.getValue(), function () {
-                    });
-                }
+        //                    Ext.net.Mask.hide();
+        //                    Ext.Msg.buttonText.ok = App.lblOk.getValue();
+        //                    Ext.Msg.alert(App.lblError.getValue(), App.lblErrorOperation.getValue(), function () {
+        //                    });
+        //                    break;
+        //            }
+        //        },
+        //        failure: function (errorMsg) {
+        //            Ext.net.Mask.hide();
+        //            Ext.Msg.buttonText.ok = App.lblOk.getValue();
+        //            Ext.Msg.alert(App.lblError.getValue(), App.lblErrorOperation.getValue(), function () {
+        //            });
+        //        }
 
-            });
+        //    });
 
 
-        });
+        //});
 
 
         $('#btnLogout').click(function () {

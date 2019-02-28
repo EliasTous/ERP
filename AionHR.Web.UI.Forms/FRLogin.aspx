@@ -1,6 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ARLogin.aspx.cs" Inherits="AionHR.Web.UI.Forms.ARLogin" %>
+﻿
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FRLogin.aspx.cs" Inherits="AionHR.Web.UI.Forms.FRLogin" %>
 
-<%@ Register TagPrefix="ext" Namespace="Ext.Net" Assembly="Ext.Net" %>
+<%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -10,16 +11,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 
-
-    <link rel="stylesheet" type="text/css" href="CSS/HeaderAR.css" />
-    <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-
+    <link rel="stylesheet" type="text/css" href="CSS/Header.css?id=2" />
+    <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=1" />
+   <%-- <script src="Scripts/jquery-new.js"></script>
+    <link href="CSS/PasswordStrength.css?id=3" rel="stylesheet" />
+    <script src="Scripts/strength.js"></script>--%>
     <style type="text/css">
         .error {
             color: red;
         }
     </style>
+    
+  
     <title>
         <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:Common , ApplicationTitle%>" /></title>
 </head>
@@ -28,22 +33,24 @@
     <div class="header">
         <div class="left">
             <div class="logoImage">
-                <img src="Images/logo-light.png" style="margin-top:20px;margin-left:5px;margin-right:15px;"  width="73" height="20" />
+                <img src="Images/logo-light.png" style="margin-top:20px;margin-left:5px;margin-right:5px;"  width="73" height="20" />
             </div>
             <div class="title">
-                <div>
+                <div style="width: 400px">
                     <span class="title-sub">
                         <asp:Literal ID="Literal5" runat="server" Text="<%$ Resources:Common ,ApplicationTitle%>" /></span>
                 </div>
-            <%--    <div class="SubTitles">
+             <%--   <div class="SubTitles">
                     <span class="subTitleSpan">
-                        <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:Common ,ApplicationModule%>" /></span>
+                        <asp:Literal ID="Literal3" runat="server"  /></span>
                 </div>--%>
             </div>
         </div>
         <div class="right">
             <div class="button-group" style="margin-top: 15px;">
-                <ext:ComboBox FieldStyle="background-color:#6fb0e9; color: white;text-align: center; font-weight: bold;
+      
+       
+        <ext:ComboBox FieldStyle="background-color:#6fb0e9; color: white;text-align: center; font-weight: bold;
     font-size: 15px;
     text-decoration: none;
     text-align: center;
@@ -51,7 +58,8 @@
             ID="languageId"
             runat="server"
             DisplayField="text"
-           ValueField="value" ForceSelection="true" Width="75"  AnyMatch="true"   CaseSensitive="false"  QueryMode="Local"  TypeAhead="true" MinChars="1" >
+            ValueField="value" ForceSelection="true" Width="75"  AnyMatch="true"   CaseSensitive="false"  QueryMode="Local"  TypeAhead="true" MinChars="1" >
+         
             <Store>
                 <ext:Store runat="server">
                     <Model>
@@ -97,6 +105,7 @@
                 </Tpl>                              
             </ListConfig> 
         </ext:ComboBox>
+    
             </div>
         </div>
     </div>
@@ -115,10 +124,11 @@
 
 
     </div>
-
+    <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
     <form id="Form1" runat="server">
+       
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="12000" />
-        <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
+
         <ext:Viewport ID="Viewport1" runat="server">
             <Defaults>
                 <ext:Parameter Name="margin" Value="100 0 5 0" Mode="Value" />
@@ -127,7 +137,7 @@
                 <ext:VBoxLayoutConfig Align="Center" />
             </LayoutConfig>
             <Items>
-                 <ext:FormPanel
+               <ext:FormPanel 
                     ID="panelLogin"
                     runat="server"
                     Icon="LockGo"
@@ -135,25 +145,25 @@
                     Draggable="false"
                     Width="400"
                     Frame="true"
-                    Layout="FormLayout" RTL="true"
+                    Layout="FormLayout"
                     BodyPadding="10" AutoUpdateLayout="false" DefaultAnchor="100%"
                     DefaultButton="btnLogin" Border="false" Shadow="true">
-                    <FieldDefaults PreserveIndicatorIcon="true" />
+                    <FieldDefaults PreserveIndicatorIcon="false" />
                     <Items>
-                        <ext:TextField
+                      <ext:TextField
                             ID="tbAccountName"
                             runat="server"
                             AutoFocus="true"
                             
                             MsgTarget="Side"
                             FieldLabel="<%$ Resources:  Account %>"
-                          
+                            
                             BlankText="<%$ Resources: Common, MandatoryField %>"
                             EmptyText="<%$ Resources:  EnterYourAccount %>">
 
-                       
+                            
                             <Listeners>
-  <Change Handler=" App.direct.CheckFieldDirect(#{tbAccountName}.value,{
+                                <Change Handler=" App.direct.CheckFieldDirect(#{tbAccountName}.value,{
                 success: function (result) {
                     if(result=='1'){
                     App.tbAccountName.setIndicatorIconCls('icon-tick'); App.tbAccountName.setIndicatorIconCls('icon-tick');}
@@ -166,6 +176,7 @@
                     if(result=='1')
                     App.tbAccountName.setIndicatorIconCls('icon-tick');
                                     else{
+                                    
                                     App.tbAccountName.setIndicatorIconCls('icon-error');App.tbAccountName.setIndicatorIconCls('icon-error');}
                 }
             });    " />
@@ -176,13 +187,16 @@
                                     else
                                      {App.tbAccountName.setIndicatorIconCls('');App.tbAccountName.setIndicatorIconCls('');}
                 }
-            });   " /> </Listeners>
+            });   " />
+                                <%--<RemoteValidationValid Handler="this.setIndicatorIconCls('icon-tick');this.setIndicatorIconCls('icon-tick'); " />--%>
+                               <%--<RemoteValidationInvalid Handler="this.setIndicatorIconCls('icon-error'); " />--%>
+                            </Listeners>
 
                         </ext:TextField>
 
                         <ext:TextField ID="tbUsername"
                             runat="server"
-                             vtype="email"
+                            vtype="email"
                              ValidateOnChange="false"
                              ValidateOnBlur="true"
                             BlankText="<%$ Resources:Common, MandatoryField %>"
@@ -190,14 +204,17 @@
                             FieldLabel="<%$ Resources:  UserID %>"
                             EmptyText="<%$ Resources:  EnterYourID %>" />
                         <ext:TextField ID="tbPassword"
-                            runat="server"
+                            runat="server" 
                             AllowBlank="false"
-                           
+                            
                             BlankText="<%$ Resources:Common , MandatoryField %>"
                             FieldLabel="<%$ Resources: Password %>"
                             EmptyText="<%$ Resources: EnterYourPassword %>"
-                            InputType="Password" />
-                           <ext:Checkbox ID="rememberMeCheck" runat="server" FieldLabel="<%$ Resources: RememberMe %>" InputValue="True" />
+                            InputType="Password"  >
+                        
+                            </ext:TextField>
+                        
+                        <ext:Checkbox ID="rememberMeCheck" runat="server" FieldLabel="<%$ Resources: RememberMe %>" InputValue="True" />
                         <ext:FieldContainer runat="server" ID="lblErroContainer" FieldLabel="">
                             <Items>
                                 <ext:Label ID="lblError"
@@ -207,15 +224,17 @@
                                     Cls="error" />
                             </Items>
                         </ext:FieldContainer>
+                        
                     </Items>
                     <Buttons>
                         <ext:Button ID="btnLogin" runat="server" Text="<%$ Resources:  Login %>">
                             <Listeners>
                                 <Click Handler="
-                                        if (!#{panelLogin}.validate()) {                                
+                                        if (!#{panelLogin}.validate()|| #{tbAccountName}.value=='') {        
+                                           
                                             return false;
                                         }
-                                   
+                                    
                                       Ext.net.Mask.show({msg:App.lblLoading.getValue(),el:#{panelLogin}.id});
                                     
                                     App.direct.Authenticate(#{tbAccountName}.value,#{tbUsername}.value,#{tbPassword}.value, {
@@ -234,7 +253,8 @@
                             </Listeners>
                           
                         </ext:Button>
-                        <ext:Button ID="btnForgot" runat="server" Text="<%$ Resources: ResetPassword %>">
+                        
+                        <ext:Button ID="btnForgot" runat="server" Text="<%$ Resources:Common , ResetPassword %>">
                             <DirectEvents>
                                 <Click OnEvent="forgotpw_Event">
                                     <EventMask ShowMask="true" Msg="<%$ Resources:Common , Loading %>" MinDelay="500" />

@@ -1114,7 +1114,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="storeType"   runat="server" FieldLabel="<%$ Resources: storeType %>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="storeType" LabelWidth="150"  runat="server" FieldLabel="<%$ Resources: storeType %>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: sqlServer %>" Value="1"></ext:ListItem>

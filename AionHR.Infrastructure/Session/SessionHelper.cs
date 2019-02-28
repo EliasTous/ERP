@@ -45,6 +45,14 @@ namespace AionHR.Infrastructure.Session
                     return true;
             return false;
         }
+        public string getLangauge()
+        {
+            if (Get("Language") != null)
+            {
+                return Get("Language").ToString();
+            }
+            return "en";
+        }
 
         /// <summary>
         /// Clear session for the current storage

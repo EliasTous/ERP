@@ -22,7 +22,7 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class Login : Page
+    public partial class FRLogin : Page
     {
 
 
@@ -34,9 +34,9 @@ namespace AionHR.Web.UI.Forms
         {
 
             base.InitializeCulture();
-            //User came to english login so set the language to english           
-            _systemService.SessionHelper.SetLanguage("en");
-            LocalisationManager.Instance.SetEnglishLocalisation();
+            //User came to english login so set the language to franch           
+            _systemService.SessionHelper.SetLanguage("fr");
+            LocalisationManager.Instance.SetFrenchLocalisation();
 
         }
 
@@ -57,7 +57,7 @@ namespace AionHR.Web.UI.Forms
             }
             languageId.HideBaseTrigger = true;
             this.languageId.Call("getTrigger(0).hide");
-            languageId.Select(0);
+            languageId.Select(2);
             //ResourceManager1.RegisterIcon(Icon.Tick);
             //ResourceManager1.RegisterIcon(Icon.Error);
             if (Request.QueryString["timeout"] != null && Request.QueryString["timeout"].ToString() == "yes")
@@ -385,8 +385,8 @@ namespace AionHR.Web.UI.Forms
 
         protected void Change_language(object sender, DirectEventArgs e)
         {
-        string language=e.ExtraParams["value"];
-           
+            string language = e.ExtraParams["value"];
+
             if (string.IsNullOrEmpty(language))
             {
                 language = "1";
@@ -394,7 +394,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
 
-           
+
             switch (language)
             {
                 case "1":

@@ -121,10 +121,24 @@ namespace AionHR.Web.UI.Forms
             }
             if (!_systemService.SessionHelper.CheckUserLoggedIn())
             {
-                if (_systemService.SessionHelper.CheckIfArabicSession())
-                    Response.Redirect("ARLogin.aspx?timeout=yes", true);
-                else
-                    Response.Redirect("Login.aspx?timeout=yes", true);
+                switch (_systemService.SessionHelper.getLangauge())
+                {
+                    case "1":
+                        Response.Redirect("Login.aspx?timeout=yes", true);
+                        break;
+                    case "2":
+                        Response.Redirect("ARLogin.aspx?timeout=yes", true);
+                        break;
+                    case "3":
+                        Response.Redirect("FRLogin.aspx?timeout=yes", true);
+                        break;
+                    default: Response.Redirect("Login.aspx?timeout=yes", true);
+                        break;
+                }
+
+
+             
+                  
             }
 
             //if (!X.IsAjaxRequest)
@@ -134,7 +148,32 @@ namespace AionHR.Web.UI.Forms
             //this.ResourceManager1.DirectEventUrl = this.ResourceManager1.DirectEventUrl.Replace("http", "https");
             if (!IsPostBack && !X.IsAjaxRequest)
             {
-               
+                if (!X.IsAjaxRequest)
+                {
+                    ResourceManager1.RegisterIcon(Icon.Tick);
+                    ResourceManager1.RegisterIcon(Icon.Error);
+
+                    Store store = this.languageId.GetStore();
+                    store.DataSource = new object[]
+                    {
+                new object[] { "1", "English" },
+                new object[] { "2", "عربي" },
+                new object[] { "3", "French" }
+                    };
+                }
+                languageId.HideBaseTrigger = true;
+                this.languageId.Call("getTrigger(0).hide");
+                switch (_systemService.SessionHelper.getLangauge())
+                {
+                    case "en":languageId.Select(0);
+                        break; 
+                    case "ar":languageId.Select(1);
+                        break;
+                    case "fr":
+                        languageId.Select(2);
+                        break;
+                    
+                }
                 SetExtLanguage();
                 SetHeaderStyle();
                 CompanyNameLiteral.Text = "" + _systemService.SessionHelper.Get("CompanyName").ToString();
@@ -249,7 +288,7 @@ namespace AionHR.Web.UI.Forms
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             HtmlLink css = new HtmlLink();
             if (rtl)
-                css.Href = "CSS/HeaderInsideAR.css";
+                css.Href = "CSS/HeaderInsideAR.css?id=1";
             else
                 css.Href = "CSS/HeaderInside.css";
 
@@ -580,6 +619,45 @@ namespace AionHR.Web.UI.Forms
             paranthized = paranthized.Substring(0, paranthized.Length - 1);
             paranthized = paranthized.Replace(" ", string.Empty);
             return paranthized;
+
+        }
+        [DirectMethod]
+        public void Change_language(string language )
+        {
+            
+
+            if (string.IsNullOrEmpty(language))
+            {
+                language = "1";
+                _systemService.SessionHelper.SetLanguage("en");
+                return;
+            }
+
+
+            switch (language)
+            {
+                case "1":
+                    {
+                        _systemService.SessionHelper.SetLanguage("en");
+                    }
+                    break;
+                case "2":
+                  
+                    _systemService.SessionHelper.SetLanguage("ar");
+                    SetHeaderStyle();
+                    break;
+                case "3":
+                    _systemService.SessionHelper.SetLanguage("fr");
+                    break;
+                default:
+                    _systemService.SessionHelper.SetLanguage("en");
+                  
+                    break;
+                  
+
+            }
+
+            Response.Redirect("~/Default.aspx");
 
         }
 

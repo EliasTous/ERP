@@ -10,7 +10,7 @@
 namespace AionHR.Web.UI.Forms {
     
     
-    public partial class Login {
+    public partial class FRLogin {
         
         /// <summary>
         /// Literal4 control.

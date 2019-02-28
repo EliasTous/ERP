@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AssignToEmployee" xml:space="preserve">
+    <value>user did not assign to employee</value>
+  </data>
+  <data name="authenticationError" xml:space="preserve">
+    <value>Incorrect user name or password</value>
+  </data>
+  <data name="EmptyBranch" xml:space="preserve">
+    <value>Please adjust the  branch for employee   and retry generate again</value>
+  </data>
+  <data name="EmptyHireDate" xml:space="preserve">
+    <value>Please adjust the Hire date for employee and retry generate again</value>
+  </data>
+  <data name="EmptyWorkEmail" xml:space="preserve">
+    <value>please set valid work mail for this user for activate self service</value>
+  </data>
+  <data name="ErrorEmployeeTimeOutside" xml:space="preserve">
+    <value>there is an Employee in this branch who has  attendance schedule is out of branch schedule - Employee Reference :</value>
+  </data>
+  <data name="ErrorInvalidAccount" xml:space="preserve">
+    <value>Invalid Account</value>
+  </data>
+  <data name="ErrorLogId" xml:space="preserve">
+    <value>Error Reference : </value>
+  </data>
+  <data name="ErrorMsg" xml:space="preserve">
+    <value>Error Message : </value>
+  </data>
+  <data name="Error_1" xml:space="preserve">
+    <value>Error in the returned  structure from web service</value>
+  </data>
+  <data name="Error_10001" xml:space="preserve">
+    <value>API_KEY_AUTHENTICATION_ERROR</value>
+  </data>
+  <data name="Error_10002" xml:space="preserve">
+    <value>AUTHENTICATION_COMPUTE_HASH_ERROR</value>
+  </data>
+  <data name="Error_10101" xml:space="preserve">
+    <value>INVALID USER ID %d</value>
+  </data>
+  <data name="Error_10102" xml:space="preserve">
+    <value>INVALID EMPLOYEE ID %d</value>
+  </data>
+  <data name="Error_10103" xml:space="preserve">
+    <value>INVALID LETTER TEMPLATE ID %d</value>
+  </data>
+  <data name="Error_10104" xml:space="preserve">
+    <value>INVALID INDEMNITY SCHEDULE ID %d</value>
+  </data>
+  <data name="Error_10105" xml:space="preserve">
+    <value>INVALID BENEFIT SCHEDULE ID %d</value>
+  </data>
+  <data name="Error_10106" xml:space="preserve">
+    <value>INVALID VACATION SCHEDULE SEQNO %d</value>
+  </data>
+  <data name="Error_10107" xml:space="preserve">
+    <value>INVALID FISCAL YEAR PERIOD SALARY TYPE %d</value>
+  </data>
+  <data name="Error_10108" xml:space="preserve">
+    <value>INVALID EMPLOYEE REFERENCE %s</value>
+  </data>
+  <data name="Error_10109" xml:space="preserve">
+    <value>INVALID BIOMETRIC DEVICE REFERENCE %s</value>
+  </data>
+  <data name="Error_10110" xml:space="preserve">
+    <value>INVALID PAYROLL ID %d</value>
+  </data>
+  <data name="Error_10111" xml:space="preserve">
+    <value>EMPLOYEE %s STATUS NOT TERMINATED</value>
+  </data>
+  <data name="Error_10112" xml:space="preserve">
+    <value>INACTIVE ALERT ID %d</value>
+  </data>
+  <data name="Error_10113" xml:space="preserve">
+    <value>RENEWAL DATE ERROR</value>
+  </data>
+  <data name="Error_10114" xml:space="preserve">
+    <value>INVALID TIME VARIATION RECORD</value>
+  </data>
+  <data name="Error_10115" xml:space="preserve">
+    <value>INVALID DAY ID %s</value>
+  </data>
+  <data name="Error_10116" xml:space="preserve">
+    <value>invalid template body %d</value>
+  </data>
+  <data name="Error_102" xml:space="preserve">
+    <value>Sql Expression Syntax error</value>
+  </data>
+  <data name="Error_1033" xml:space="preserve">
+    <value>invalid ORDER BY clause in SQL statement</value>
+  </data>
+  <data name="Error_11001" xml:space="preserve">
+    <value>ABSTRACT METHOD NOT SUBCLASSED</value>
+  </data>
+  <data name="Error_11002" xml:space="preserve">
+    <value>SQL OBJECT NOT SET</value>
+  </data>
+  <data name="Error_11003" xml:space="preserve">
+    <value>SQL OBJECT MISSING COLUMN %s</value>
+  </data>
+  <data name="Error_11004" xml:space="preserve">
+    <value>UNHANDLED EXCEPTION</value>
+  </data>
+  <data name="Error_11005" xml:space="preserve">
+    <value>LOAD TEMPLATE ERROR %s</value>
+  </data>
+  <data name="Error_11006" xml:space="preserve">
+    <value>PUNCH AUTHENTICATE MODE %d VALUE OUT OF RANGE ERROR</value>
+  </data>
+  <data name="Error_11007" xml:space="preserve">
+    <value>Cannot Close Sql Connection</value>
+  </data>
+  <data name="Error_12101" xml:space="preserve">
+    <value>ERROR CONVERTING DAY ID %s TO INTEGER</value>
+  </data>
+  <data name="Error_12102" xml:space="preserve">
+    <value>ERROR CONVERTING DAY ID %s TO DATE</value>
+  </data>
+  <data name="Error_12103" xml:space="preserve">
+    <value>ERROR CONVERTING CHECKIN %s TO TIME</value>
+  </data>
+  <data name="Error_12104" xml:space="preserve">
+    <value>ERROR CONVERTING CHECKOUT %s TO TIME</value>
+  </data>
+  <data name="Error_12105" xml:space="preserve">
+    <value>ERROR CASTING IDNAME OBJECT</value>
+  </data>
+  <data name="Error_12106" xml:space="preserve">
+    <value>TYPE MISMATCH ERROR</value>
+  </data>
+  <data name="Error_12107" xml:space="preserve">
+    <value>FIELD FORMAT ERROR</value>
+  </data>
+  <data name="Error_12108" xml:space="preserve">
+    <value>FIELD MANDATORY EMPTY</value>
+  </data>
+  <data name="Error_12109" xml:space="preserve">
+    <value>READING NULL DATA ERROR</value>
+  </data>
+  <data name="Error_12110" xml:space="preserve">
+    <value>OUT OF RANGE ERROR DOW</value>
+  </data>
+  <data name="Error_12111" xml:space="preserve">
+    <value>OUT OF RANGE ERROR SHORT</value>
+  </data>
+  <data name="Error_12112" xml:space="preserve">
+    <value>OUT OF RANGE ERROR INT</value>
+  </data>
+  <data name="Error_12113" xml:space="preserve">
+    <value>PARAMETER NULL DATA ERROR</value>
+  </data>
+  <data name="Error_12201" xml:space="preserve">
+    <value>JSON SERIALIZATION EXCEPTION</value>
+  </data>
+  <data name="Error_12202" xml:space="preserve">
+    <value>JSON INVALID OPERATION EXCEPTION</value>
+  </data>
+  <data name="Error_12203" xml:space="preserve">
+    <value>JSON FORMAT EXCEPTION</value>
+  </data>
+  <data name="Error_12204" xml:space="preserve">
+    <value>JSON ARGUMENT EXCEPTION</value>
+  </data>
+  <data name="Error_12205" xml:space="preserve">
+    <value>JSON READER EXCEPTION</value>
+  </data>
+  <data name="Error_12400" xml:space="preserve">
+    <value>sql connection failed</value>
+  </data>
+  <data name="Error_12401" xml:space="preserve">
+    <value>INPUT FORM MISSING TAG</value>
+  </data>
+  <data name="Error_12402" xml:space="preserve">
+    <value>INPUT FORM EMPTY MANDATORY TAG</value>
+  </data>
+  <data name="Error_12403" xml:space="preserve">
+    <value>INPUT FORM TYPE MISMATCH TAG</value>
+  </data>
+  <data name="Error_12404" xml:space="preserve">
+    <value>SQL ERROR READING SYSTEM DEFAULT</value>
+  </data>
+  <data name="Error_12405" xml:space="preserve">
+    <value>input form missing tag %s</value>
+  </data>
+  <data name="Error_12406" xml:space="preserve">
+    <value>input form empty mandatory tag %s</value>
+  </data>
+  <data name="Error_12407" xml:space="preserve">
+    <value>input form type mismatch tag %s</value>
+  </data>
+  <data name="Error_12408" xml:space="preserve">
+    <value>sql error reading system default %s</value>
+  </data>
+  <data name="Error_12501" xml:space="preserve">
+    <value>File Creation Error</value>
+  </data>
+  <data name="Error_12502" xml:space="preserve">
+    <value>File Open Error</value>
+  </data>
+  <data name="Error_13001" xml:space="preserve">
+    <value>SQL CONNECTION FAILED</value>
+  </data>
+  <data name="Error_13002" xml:space="preserve">
+    <value>DATABASE CONNECTION FAILED</value>
+  </data>
+  <data name="Error_13003" xml:space="preserve">
+    <value>SQL BATCH RUN ERROR</value>
+  </data>
+  <data name="Error_19001" xml:space="preserve">
+    <value>Sytem is in Maintainance Mode</value>
+  </data>
+  <data name="Error_19002" xml:space="preserve">
+    <value>INVALID ADMIN EMAIL %s</value>
+  </data>
+  <data name="Error_19003" xml:space="preserve">
+    <value>AUTHENTICATION ERROR</value>
+  </data>
+  <data name="Error_19004" xml:space="preserve">
+    <value>PASSIVE USER</value>
+  </data>
+  <data name="Error_19005" xml:space="preserve">
+    <value>INVALID VACATION SCHEDULE DAY RANGE</value>
+  </data>
+  <data name="Error_19006" xml:space="preserve">
+    <value>INPUT FORM FAILED RULE CHECK</value>
+  </data>
+  <data name="Error_19007" xml:space="preserve">
+    <value>MISSING DATA EMPLOYEE SALARY</value>
+  </data>
+  <data name="Error_19008" xml:space="preserve">
+    <value>FIELD_MANDATORY_EMPTY_TIME_ZONE</value>
+  </data>
+  <data name="Error_19009" xml:space="preserve">
+    <value>FIELD_MANDATORY_EMPTY_TIME_CODE_SETUP</value>
+  </data>
+  <data name="Error_19010" xml:space="preserve">
+    <value>TIME_PENALTY_CANNOT_EXCEED_THE_CLOCK_DURATION</value>
+  </data>
+  <data name="Error_19011" xml:space="preserve">
+    <value>INVALID DATE RANGE %s</value>
+  </data>
+  <data name="Error_19012" xml:space="preserve">
+    <value>MISSING_DATA_EMPLOYEE_HIRE_DATE</value>
+  </data>
+  <data name="Error_19013" xml:space="preserve">
+    <value>ACTIVITY_BEFORE_EMPLOYEE_HIRE_DATE</value>
+  </data>
+  <data name="Error_19014" xml:space="preserve">
+    <value>EMPLOYEE_STATUS_NOT_ACTIVE</value>
+  </data>
+  <data name="Error_19015" xml:space="preserve">
+    <value>INVALID_EMPLOYEE_CALENDAR</value>
+  </data>
+  <data name="Error_19016" xml:space="preserve">
+    <value>INVALID_EMPLOYEE_SCHEDULE</value>
+  </data>
+  <data name="Error_19017" xml:space="preserve">
+    <value>INVALID_CALENDAR_DAY</value>
+  </data>
+  <data name="Error_19018" xml:space="preserve">
+    <value>INVALID_ATTENDANCE_DAY</value>
+  </data>
+  <data name="Error_19019" xml:space="preserve">
+    <value>LEAVE_DATE_CONFLICT</value>
+  </data>
+  <data name="Error_19020" xml:space="preserve">
+    <value>INVALID_TIME_RANGE</value>
+  </data>
+  <data name="Error_19021" xml:space="preserve">
+    <value>INVALID_EMPLOYEE_BRANCH</value>
+  </data>
+  <data name="Error_19022" xml:space="preserve">
+    <value>department %s has %d active children</value>
+  </data>
+  <data name="Error_19023" xml:space="preserve">
+    <value>Employee reference is not set</value>
+  </data>
+  <data name="Error_19024" xml:space="preserve">
+    <value>pending employee %s time variations</value>
+  </data>
+  <data name="Error_19025" xml:space="preserve">
+    <value>invalid job information for employee %s0 on %s1</value>
+  </data>
+  <data name="Error_19026" xml:space="preserve">
+    <value>team leader %s cannot be deleted</value>
+  </data>
+  <data name="Error_19027" xml:space="preserve">
+    <value>time approver %s cannot be deleted</value>
+  </data>
+  <data name="Error_19100" xml:space="preserve">
+    <value>SECURITY_ERROR</value>
+  </data>
+  <data name="Error_19101" xml:space="preserve">
+    <value>SECURITY ERROR SUPERVISOR UPDATE ATTEMPT</value>
+  </data>
+  <data name="Error_19102" xml:space="preserve">
+    <value>SECURITY ERROR USER BRANCH</value>
+  </data>
+  <data name="Error_19103" xml:space="preserve">
+    <value>SECURITY ERROR USER DEPARTMENT</value>
+  </data>
+  <data name="Error_19104" xml:space="preserve">
+    <value>SECURITY ERROR USER DIVISION</value>
+  </data>
+  <data name="Error_19201" xml:space="preserve">
+    <value>SMTP SEND ERROR</value>
+  </data>
+  <data name="Error_2" xml:space="preserve">
+    <value>Unknown Error :</value>
+  </data>
+  <data name="Error_201" xml:space="preserve">
+    <value>Procedure or function expects a parameter which was not supplied.</value>
+  </data>
+  <data name="Error_20100" xml:space="preserve">
+    <value>SMTP send error</value>
+  </data>
+  <data name="Error_20101" xml:space="preserve">
+    <value>Error loading template</value>
+  </data>
+  <data name="Error_207" xml:space="preserve">
+    <value>Invalid Column name</value>
+  </data>
+  <data name="Error_2601" xml:space="preserve">
+    <value>Duplicate key row</value>
+  </data>
+  <data name="Error_2627" xml:space="preserve">
+    <value>Violation of unique key error</value>
+  </data>
+  <data name="Error_4060" xml:space="preserve">
+    <value>Database connection error</value>
+  </data>
+  <data name="Error_50005" xml:space="preserve">
+    <value>Reference already exist</value>
+  </data>
+  <data name="Error_50006" xml:space="preserve">
+    <value>Name already exist</value>
+  </data>
+  <data name="Error_50007" xml:space="preserve">
+    <value>Attempting to update an unknown record</value>
+  </data>
+  <data name="Error_50015" xml:space="preserve">
+    <value>Router Mac address format error</value>
+  </data>
+  <data name="Error_50029" xml:space="preserve">
+    <value>Invalid Email</value>
+  </data>
+  <data name="Error_50030" xml:space="preserve">
+    <value>Invalid Reset Password link,please try again</value>
+  </data>
+  <data name="Error_50031" xml:space="preserve">
+    <value>fiscal year periods already generated</value>
+  </data>
+  <data name="Error_50032" xml:space="preserve">
+    <value>Data overlapping error</value>
+  </data>
+  <data name="Error_50035" xml:space="preserve">
+    <value>Error generating day-type from the selected schedule. please refer to the schedule setup</value>
+  </data>
+  <data name="Error_50039" xml:space="preserve">
+    <value>payroll period setup record not found</value>
+  </data>
+  <data name="Error_50044" xml:space="preserve">
+    <value>payroll already posted, it cannot be deleted</value>
+  </data>
+  <data name="Error_50045" xml:space="preserve">
+    <value>unposted payroll already exist for the same period type</value>
+  </data>
+  <data name="Error_50047" xml:space="preserve">
+    <value>could not find an unposted record to post</value>
+  </data>
+  <data name="Error_50048" xml:space="preserve">
+    <value>an error has occured while creating the account database</value>
+  </data>
+  <data name="Error_50049" xml:space="preserve">
+    <value>an error has occured while backing-up the sample database</value>
+  </data>
+  <data name="Error_50050" xml:space="preserve">
+    <value>an error has occured while restoring the sample database</value>
+  </data>
+  <data name="Error_50054" xml:space="preserve">
+    <value>Parent/child cyclic relation</value>
+  </data>
+  <data name="Error_50056" xml:space="preserve">
+    <value>An employee job info record exist for the same date</value>
+  </data>
+  <data name="Error_50057" xml:space="preserve">
+    <value>There is another user with this employee name </value>
+  </data>
+  <data name="Error_50058" xml:space="preserve">
+    <value>employee hire date is greater than the selected date</value>
+  </data>
+  <data name="Error_50061" xml:space="preserve">
+    <value>Error in loan : Amount to deduct is bigger than the loan balance</value>
+  </data>
+  <data name="Error_50066" xml:space="preserve">
+    <value>Final Settelment already generated</value>
+  </data>
+  <data name="Error_515" xml:space="preserve">
+    <value>Cannot insert the value NULL into SQL table column</value>
+  </data>
+  <data name="Error_53" xml:space="preserve">
+    <value>Database connection error</value>
+  </data>
+  <data name="Error_547" xml:space="preserve">
+    <value>Data Integrity Error</value>
+  </data>
+  <data name="Error_8114" xml:space="preserve">
+    <value>Type casting value from string error</value>
+  </data>
+  <data name="Error_8144" xml:space="preserve">
+    <value>Procedure missing arguments or too many arguments specified</value>
+  </data>
+  <data name="Error_8146" xml:space="preserve">
+    <value>Unknown parameter send to stored procedure</value>
+  </data>
+  <data name="Error_8152" xml:space="preserve">
+    <value>Field size error, data truncation</value>
+  </data>
+  <data name="Error_Empty_IndemnityDetails_IndemnityResignation" xml:space="preserve">
+    <value>you must enter at lest  one Indemnity Details role  and one Indemnity Resignation rule </value>
+  </data>
+  <data name="FillFiscalYear" xml:space="preserve">
+    <value>Fill Fiscal Year</value>
+  </data>
+  <data name="FinalSettlementForEmployeeHaveLoans" xml:space="preserve">
+    <value>Employee has loans </value>
+  </data>
+  <data name="inactiveUser" xml:space="preserve">
+    <value>User is inactive</value>
+  </data>
+  <data name="emptyLdMethod" xml:space="preserve">
+    <value>Please contact with system administrator for set default loan coverage value</value>
+  </data>
+</root>

@@ -184,6 +184,7 @@
     <Content Include="DocumentCategories.aspx" />
     <Content Include="EmployeeComplaints.aspx" />
     <Content Include="EmployeeComplaintSelfServices.aspx" />
+    <Content Include="FRLogin.aspx" />
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
     <Content Include="Reports\Controls\CurrencyFilter.ascx" />
@@ -634,6 +635,16 @@
     <Compile Include="AdminDocuments.aspx.designer.cs">
       <DependentUpon>AdminDocuments.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\Common.fr.designer.cs">
+      <DependentUpon>Common.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Errors.fr.designer.cs">
+      <DependentUpon>Errors.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="App_GlobalResources\ModuleIDs.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -724,6 +735,13 @@
     </Compile>
     <Compile Include="EmployeeComplaintSelfServices.aspx.designer.cs">
       <DependentUpon>EmployeeComplaintSelfServices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FRLogin.aspx.cs">
+      <DependentUpon>FRLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FRLogin.aspx.designer.cs">
+      <DependentUpon>FRLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="PayrollGenerationSelfServices.aspx.cs">
       <DependentUpon>PayrollGenerationSelfServices.aspx</DependentUpon>
@@ -2786,6 +2804,21 @@
     <Content Include="App_LocalResources\AssetManagementPurchaseOrders.aspx.resx" />
     <Content Include="App_LocalResources\AssetManagementOnboardings.aspx.ar.resx" />
     <Content Include="App_LocalResources\AssetManagementOnboardings.aspx.resx" />
+    <Content Include="App_LocalResources\Login.aspx.fr.resx" />
+    <Content Include="App_GlobalResources\Common.fr.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Common.fr.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_GlobalResources\Errors.fr.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Errors.fr.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\FRLogin.aspx.fr.resx" />
+    <Content Include="App_LocalResources\FRLogin.aspx.resx" />
+    <Content Include="App_LocalResources\FRLogin.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Login.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

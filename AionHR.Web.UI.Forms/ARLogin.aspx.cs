@@ -77,7 +77,21 @@ namespace AionHR.Web.UI.Forms
             {
                 ResourceManager1.RegisterIcon(Icon.Tick);
                 ResourceManager1.RegisterIcon(Icon.Error);
+
+
+                Store store = this.languageId.GetStore();
+                store.DataSource = new object[]
+                {
+                new object[] { "1", "English" },
+                new object[] { "2", "عربي" },
+                new object[] { "3", "French" }
+                };
+
+                languageId.HideBaseTrigger = true;
+                this.languageId.Call("getTrigger(0).hide");
+                languageId.Select(1);
             }
+        
         }
 
         private void RemoveCookies()
@@ -360,6 +374,41 @@ namespace AionHR.Web.UI.Forms
 
 
             Response.Redirect("~/ARForgotPassword.aspx");
+
+        }
+        protected void Change_language(object sender, DirectEventArgs e)
+        {
+            string language = e.ExtraParams["value"];
+
+            if (string.IsNullOrEmpty(language))
+            {
+                language = "1";
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+
+
+            switch (language)
+            {
+                case "1":
+                    {
+                        Response.Redirect("~/Login.aspx");
+                    }
+                    break;
+                case "2":
+                    Response.Redirect("~/ARLogin.aspx");
+                    break;
+                case "3":
+                    Response.Redirect("~/FRLogin.aspx");
+                    break;
+                default:
+                    Response.Redirect("~/Login.aspx");
+                    break;
+
+
+            }
+
+
 
         }
     }

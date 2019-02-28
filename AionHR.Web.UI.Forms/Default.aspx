@@ -167,8 +167,57 @@
                             </div>
                             <div class="buttons">
 
-                                <a id="btnChangeLanguage" class="button" href="#">
-                                    <asp:Literal ID="Literal8" runat="server" Text="<%$ Resources:Common ,LanguageSwitch%>" /></a>
+                                <div  class="ComboButton" >
+                                     <ext:ComboBox  FieldStyle="background-color:#6fb0e9; color: white;text-align: center; font-weight: bold; 
+    font-size: 15px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;"  
+            ID="languageId"
+            runat="server"
+            DisplayField="text"
+          ValueField="value" ForceSelection="true" Width="75"  AnyMatch="true"   CaseSensitive="false"  QueryMode="Local"  TypeAhead="true" MinChars="1" >
+            <Store>
+                <ext:Store runat="server">
+                    <Model>
+                        <ext:Model runat="server">
+                            <Fields>
+                                <ext:ModelField Name="value" />
+                                <ext:ModelField Name="text" />
+                          
+                            </Fields>
+                        </ext:Model>
+                    </Model>
+                    <Reader>
+                        <ext:ArrayReader />
+                    </Reader>
+                </ext:Store>
+            </Store>
+          <Listeners>
+                 <FocusEnter Handler="App.languageId.onTriggerClick();"   />    
+                 <Select Handler="App.direct.Change_language(this.value);" />
+            </Listeners>
+
+           
+            <ListConfig>
+                <Tpl runat="server" >
+                    <Html>
+                        <ul class="x-list-plain">
+                            <tpl for=".">
+                                <li role="option" class="x-boundlist-item" style="background-color:#6fb0e9;color:white; text-align: center;font-weight: bold;
+                                                  font-size: 15px;
+                                                     text-decoration: none;
+                                                             text-align: center;
+                                                          cursor: pointer;">
+                                    {text}
+                                </li>
+                            </tpl>
+                        </ul>
+                    </Html>
+                </Tpl>                              
+            </ListConfig> 
+        </ext:ComboBox>
+                                  </div>
                                 <a id="btnLogout" class="button" href="#">
                                     <img src="Images/logoff.png" />
                                 </a>
