@@ -183,4 +183,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>الأصول</value>
   </data>
+  <data name="FieldcostPrice" xml:space="preserve">
+    <value>التكلفة</value>
+  </data>
 </root>

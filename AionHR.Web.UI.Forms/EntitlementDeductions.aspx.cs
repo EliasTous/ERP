@@ -35,23 +35,32 @@ namespace AionHR.Web.UI.Forms
         IPayrollService _PayrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
             }
-
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -574,6 +583,32 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-       
+
+        protected void addED(object sender, DirectEventArgs e)
+        {
+            PayCode obj = new PayCode();
+            obj.name = paycodeRef.Text;
+            obj.payCode = paycodeRef.Text;
+
+            PostRequest<PayCode> req = new PostRequest<PayCode>();
+            req.entity = obj;
+            PostResponse<PayCode> response = _PayrollService.ChildAddOrUpdate<PayCode>(req);
+            if (response.Success)
+            {
+
+                Store2.Reload();
+                paycodeRef.Select(paycodeRef.Text);
+                paycodeRef.SetValue(paycodeRef.Text);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                Common.errorMessage(response);
+                return;
+            }
+
+
+        }
+
     }
 }

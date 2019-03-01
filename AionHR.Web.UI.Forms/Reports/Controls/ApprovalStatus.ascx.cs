@@ -19,6 +19,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
     public partial class ApprovalStatus : System.Web.UI.UserControl
     {
         public string FieldLabel { get; set; }
+        public string FieldType { get; set; }
         IAssetManagementService _assetManagementService = ServiceLocator.Current.GetInstance<IAssetManagementService>();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,10 +27,14 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             if (!string.IsNullOrEmpty(FieldLabel))
                 apStatus.FieldLabel = FieldLabel;
 
+            if (!string.IsNullOrEmpty(FieldType)&&FieldType=="Form")
+                apStatus.RemoveByValue("0");
+         
+               
 
         }
 
-       
+
         public string GetApprovalStatus()
         {
           

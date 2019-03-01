@@ -33,6 +33,7 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+
         protected override void InitializeCulture()
         {
 
@@ -51,16 +52,14 @@ namespace AionHR.Web.UI.Forms
                     }
                     break;
 
-                case "fn":
+                case "fr":
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetFrenchLocalisation();
                     }
                     break;
-
             }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 

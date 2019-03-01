@@ -36,6 +36,7 @@ namespace AionHR.Web.UI.Forms
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IAdministrationService _administrationService = ServiceLocator.Current.GetInstance<IAdministrationService>();
+
         protected override void InitializeCulture()
         {
 
@@ -54,7 +55,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     break;
 
-                case "fn":
+                case "fr":
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetFrenchLocalisation();
@@ -62,7 +63,6 @@ namespace AionHR.Web.UI.Forms
                     break;
             }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 

@@ -30,11 +30,28 @@ namespace AionHR.Web.UI.Forms
         protected override void InitializeCulture()
         {
 
-            base.InitializeCulture();
-            //User came to english login so set the language to english           
-            _systemService.SessionHelper.SetLanguage("en");
-            LocalisationManager.Instance.SetEnglishLocalisation();
+            switch (_systemService.SessionHelper.getLangauge())
+            {
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)

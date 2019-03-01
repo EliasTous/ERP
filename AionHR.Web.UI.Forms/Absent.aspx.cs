@@ -59,7 +59,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     break;
 
-                case "fn":
+                case "fr":
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetFrenchLocalisation();

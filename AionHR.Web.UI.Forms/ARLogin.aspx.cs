@@ -32,6 +32,7 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
         protected override void InitializeCulture()
+      
         {
 
             base.InitializeCulture();

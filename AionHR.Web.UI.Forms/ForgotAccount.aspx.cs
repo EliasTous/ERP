@@ -26,6 +26,7 @@ namespace AionHR.Web.UI.Forms
         IMasterService _masterService = ServiceLocator.Current.GetInstance<IMasterService>();
 
         protected override void InitializeCulture()
+       
         {
 
             base.InitializeCulture();

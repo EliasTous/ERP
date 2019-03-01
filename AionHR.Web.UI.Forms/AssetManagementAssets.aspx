@@ -233,26 +233,29 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-           Width="400"
+            Width="600"
             Height="500"
             AutoShow="false"
             Modal="true"
             Hidden="true"
-           Layout="FitLayout" Resizable="false"  >
+           Layout="FitLayout" Resizable="true"  >
             
             <Items>
                 <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Layout="FitLayout" >
-                    <Items>
+                    <Items> 
+                           
+                          
                         <ext:FormPanel
                             ID="BasicInfoTab" DefaultButton="SaveButton"
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
-                            DefaultAnchor="100%" OnLoad="BasicInfoTab_Load" >
+                            DefaultAnchor="100%" Layout="TableLayout" >
                           
                             <Items>
-                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:MainInfo%>" Width="350" >
-                                     <Items>
+                                 <ext:Panel runat="server" MarginSpec="0 20 0 20" ID="left">
+                                       <Items>
+                                
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" />
                               <ext:Container runat="server"  Layout="AutoLayout">
@@ -262,10 +265,56 @@
                                             </Content>
                                         </ext:Container>
                                 <ext:TextField ID="serialNo" runat="server" FieldLabel="<%$ Resources:FieldSerialNo%>" Name="serialNo" AllowBlank="false" />
-                              </Items>
-                                     </ext:FieldSet>
-                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:PurchaseInfo%>" >
-                                     <Items>
+                             
+  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="key" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="value" ID="condition" Name="condition" FieldLabel="<%$ Resources:FieldCondition%>" SimpleSubmit="true">
+
+                                            <Store>
+                                                <ext:Store runat="server" ID="conditionStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="key" />
+                                                                <ext:ModelField Name="value" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       
+                                        </ext:ComboBox>
+                                            <ext:DateField ID="warrantyEndDate" runat="server" FieldLabel="<%$ Resources:FieldWarrantyEndDate%>" Name="warrantyEndDate"   >
+                                                  <Listeners>
+                                                      <Change Handler="#{depreciationDate}.validate(); " />
+                                                  </Listeners>
+                                               </ext:DateField>
+                                           
+                                      
+                                        
+                                           <ext:TextField ID="department" runat="server" FieldLabel="<%$ Resources:FieldDepartment%>" Name="department" ReadOnly="true"  />
+                                           <ext:TextField ID="disposedDate" runat="server" FieldLabel="FieldDisposedDate" Name="disposedDate" ReadOnly="true" Hidden="true"  />
+                                            <ext:TextField ID="employeeFullName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeFullName" ReadOnly="true"  />
+                                             <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server"  ValueField="key" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="value" ID="status" Name="status"  FieldLabel="<%$ Resources:FieldStatus%>" ReadOnly="true">
+
+                                            <Store>
+                                                <ext:Store runat="server" ID="statusStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="key" />
+                                                                <ext:ModelField Name="value" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       
+                                        </ext:ComboBox>
+                                         </Items>
+                                        
+                                           </ext:Panel>
+                                   <ext:Panel runat="server" MarginSpec="0 0 0 0" ID="rightPanel"  >
+                                  <Items>
+                                
                                    <ext:DateField ID="receptionDate" runat="server" FieldLabel="<%$ Resources:FieldReceptionDate%>" Name="receptionDate"   >
                                        <Listeners>
                                               <Change Handler="App.warrantyEndDate.setMinValue(this.value);App.warrantyEndDate.setValue(this.value);"></Change>
@@ -309,12 +358,9 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
+                                       <ext:NumberField ID="costPrice" runat="server" FieldLabel="cost" Name="<%$ Resources:FieldcostPrice%>" AllowDecimals="true" />
                                             <ext:TextField ID="poRef" runat="server" FieldLabel="<%$ Resources:FieldpoRef%>" Name="poRef"  />
-                                           <ext:DateField ID="warrantyEndDate" runat="server" FieldLabel="<%$ Resources:FieldWarrantyEndDate%>" Name="warrantyEndDate"   >
-                                                  <Listeners>
-                                                      <Change Handler="#{depreciationDate}.validate(); " />
-                                                  </Listeners>
-                                               </ext:DateField>
+                                          
                                            <ext:DateField ID="depreciationDate" runat="server" FieldLabel="<%$ Resources:FieldDepreciationDate%>" Name="depreciationDate"   >
                                                <Validator Handler="if (#{warrantyEndDate}.getValue()!=null) return this.value>#{warrantyEndDate}.getValue(); else return true;" />
                                                <Listeners>
@@ -322,22 +368,7 @@
                                                </Listeners>
                                                </ext:DateField>
 
-                                           <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="key" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="value" ID="condition" Name="condition" FieldLabel="<%$ Resources:FieldCondition%>" SimpleSubmit="true">
-
-                                            <Store>
-                                                <ext:Store runat="server" ID="conditionStore">
-                                                    <Model>
-                                                        <ext:Model runat="server">
-                                                            <Fields>
-                                                                <ext:ModelField Name="key" />
-                                                                <ext:ModelField Name="value" />
-                                                            </Fields>
-                                                        </ext:Model>
-                                                    </Model>
-                                                </ext:Store>
-                                            </Store>
-                                       
-                                        </ext:ComboBox>
+                                         
                                            <ext:ComboBox      AnyMatch="true" CaseSensitive="false" MaxWidth="300"  runat="server" EnableRegEx="true"   ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SubmitValue="true" ReadOnly="true">
                                                 <Store>
                                                     <ext:Store runat="server" ID="branchStore">
@@ -356,32 +387,9 @@
                                             </ext:ComboBox> 
                                             <ext:TextArea ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments"  DataIndex="comments" />
                                      </Items>
-                                     </ext:FieldSet>
-                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:CurrentStatus%>" >
-                                     <Items>
-                                             <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server"  ValueField="key" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="value" ID="status" Name="status"  FieldLabel="<%$ Resources:FieldStatus%>" ReadOnly="true">
-
-                                            <Store>
-                                                <ext:Store runat="server" ID="statusStore">
-                                                    <Model>
-                                                        <ext:Model runat="server">
-                                                            <Fields>
-                                                                <ext:ModelField Name="key" />
-                                                                <ext:ModelField Name="value" />
-                                                            </Fields>
-                                                        </ext:Model>
-                                                    </Model>
-                                                </ext:Store>
-                                            </Store>
-                                       
-                                        </ext:ComboBox>
-                                      
-                                        
-                                           <ext:TextField ID="department" runat="server" FieldLabel="<%$ Resources:FieldDepartment%>" Name="department" ReadOnly="true"  />
-                                           <ext:TextField ID="disposedDate" runat="server" FieldLabel="FieldDisposedDate" Name="disposedDate" ReadOnly="true" Hidden="true"  />
-                                            <ext:TextField ID="employeeFullName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeFullName" ReadOnly="true"  />
-                                         </Items>
-                                         </ext:FieldSet>
+                                   
+                                      </ext:Panel>
+                               
                             </Items>
 
                         </ext:FormPanel>

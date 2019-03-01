@@ -345,7 +345,7 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="600"
+            Width="850"
             Height="430"
             AutoShow="false"
             Modal="true"

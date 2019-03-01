@@ -183,4 +183,7 @@
   <data name="FieldSupplier" xml:space="preserve">
     <value>Supplier</value>
   </data>
+  <data name="FieldcostPrice" xml:space="preserve">
+    <value>Cost Price</value>
+  </data>
 </root>

@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Branches.js?id=1" ></script>
-    <script type="text/javascript" src="Scripts/common.js" ></script>s
+    <script type="text/javascript" src="Scripts/common.js" ></script>
  
     
        
@@ -338,7 +338,7 @@
                                   <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
-                                                <uc:ApprovalStatusControl  runat="server" ID="apStatus" FieldLabel="<%$ Resources:Common, FieldApprovalStatus %>"  />
+                                                <uc:ApprovalStatusControl  runat="server" ID="apStatus" FieldLabel="<%$ Resources:Common, FieldApprovalStatus %>"  FieldType="Form" />
                                             </Content>
                                         </ext:Container>  
                                   <ext:Container runat="server"  Layout="FitLayout">
@@ -351,7 +351,7 @@
                                    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="status" Name="status"  runat="server" FieldLabel="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
-                                        <ext:ListItem Text="<%$ Resources: Status0%>" Value="0"></ext:ListItem>
+                                      
                                         <ext:ListItem Text="<%$ Resources: Status1%>" Value="1"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources: Status2%>" Value="2"></ext:ListItem>
 

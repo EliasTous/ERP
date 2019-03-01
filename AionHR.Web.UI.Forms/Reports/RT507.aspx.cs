@@ -45,25 +45,33 @@ namespace AionHR.Web.UI.Forms.Reports
             IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
             static List<GenerationHeader> payIdList;
         protected override void InitializeCulture()
+        {
+
+            switch (_systemService.SessionHelper.getLangauge())
             {
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-                bool rtl = true;
-                if (!_systemService.SessionHelper.CheckIfArabicSession())
-                {
-                    rtl = false;
-                    base.InitializeCulture();
-                    LocalisationManager.Instance.SetEnglishLocalisation();
-                }
-
-                if (rtl)
-                {
-                    base.InitializeCulture();
-                    LocalisationManager.Instance.SetArabicLocalisation();
-                }
-
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
             }
+        }
 
-            protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
             {
 
 

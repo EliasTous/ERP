@@ -40,20 +40,31 @@ namespace AionHR.Web.UI.Forms
         ICompanyNewsService _companyNewsService = ServiceLocator.Current.GetInstance<ICompanyNewsService>();
 
 
+
         protected override void InitializeCulture()
         {
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
-            {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
 
-            if (rtl)
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
             }
         }
 
