@@ -1425,4 +1425,7 @@
   <data name="Onboarding" xml:space="preserve">
     <value>On Boarding</value>
   </data>
+  <data name="FrenchLanguage" xml:space="preserve">
+    <value>French</value>
+  </data>
 </root>

@@ -1501,6 +1501,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to French.
+        /// </summary>
+        internal static string FrenchLanguage {
+            get {
+                return ResourceManager.GetString("FrenchLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Friday.
         /// </summary>
         internal static string FridayText {

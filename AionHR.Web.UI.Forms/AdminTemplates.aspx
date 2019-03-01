@@ -672,6 +672,7 @@
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:English%>" Value="1"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Arabic%>" Value="2"></ext:ListItem>
+                                         <ext:ListItem Text="<%$Resources:Common,FrenchLanguage %>" Value="3" />
 
                                     </Items>
                                 </ext:ComboBox>

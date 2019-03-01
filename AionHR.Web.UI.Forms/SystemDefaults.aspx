@@ -209,7 +209,7 @@
                                     <Items>
                                         <ext:ListItem Text="<%$Resources:Common,EnglishLanguage %>" Value="1" />
                                         <ext:ListItem Text="<%$Resources:Common,ArabicLanguage %>" Value="2" />
-
+                                         <ext:ListItem Text="<%$Resources:Common,FrenchLanguage %>" Value="3" />
                                     </Items>
                                 </ext:ComboBox>
                                  <ext:ComboBox AllowBlank="true"   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" LabelWidth="150" DisplayField="name" ID="NQINid" Name="NQINid"  FieldLabel="<%$ Resources:FieldIndustry%>">

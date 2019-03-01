@@ -579,7 +579,7 @@
                                     <Items>
                                         <ext:ListItem Text="<%$Resources:Common,EnglishLanguage %>" Value="1" />
                                         <ext:ListItem Text="<%$Resources:Common,ArabicLanguage %>" Value="2" />
-
+                                         <ext:ListItem Text="<%$Resources:Common,FrenchLanguage %>" Value="3" />
                                     </Items>
                                 </ext:ComboBox>
 

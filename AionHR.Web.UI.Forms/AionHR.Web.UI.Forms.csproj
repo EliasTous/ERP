@@ -641,9 +641,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="App_GlobalResources\Errors.fr.designer.cs">
-      <DependentUpon>Errors.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Errors.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\ModuleIDs.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -2810,15 +2810,142 @@
       <LastGenOutput>Common.fr.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_GlobalResources\Errors.fr.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Errors.fr.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="App_LocalResources\FRLogin.aspx.fr.resx" />
     <Content Include="App_LocalResources\FRLogin.aspx.resx" />
     <Content Include="App_LocalResources\FRLogin.aspx.ar.resx" />
     <Content Include="App_LocalResources\Login.aspx.ar.resx" />
+    <Content Include="App_GlobalResources\Errors.fr.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Errors.fr.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_LocalResources\Absent.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AdminDocuments.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AdminTemplates.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AllowanceTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Approvals.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetAllowances.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetAllowanceSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetCategories.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetManagementAssets.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetManagementCategories.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetManagementOnboardings.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetManagementPurchaseOrders.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetManagementSuppliers.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Banks.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BenefitAcquisitions.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Benefits.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BenefitsSchedules.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BiometricDevices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BonusTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Branches.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BusinessPartnerCategories.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BusinessPartneres.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Cases.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CertificateLevels.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CheckTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CompanyDocumentTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CompanyFiles.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CompanyNews.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CompanyRightToWorks.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Currencies.aspx.fr.resx" />
+    <Content Include="App_LocalResources\DailySchedule.aspx.fr.resx" />
+    <Content Include="App_LocalResources\DailyScheduleSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Dashboard.aspx.fr.resx" />
+    <Content Include="App_LocalResources\DaysAvailability.aspx.fr.resx" />
+    <Content Include="App_LocalResources\DayTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\DeleteBranchAttendance.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Departments.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Divisions.aspx.fr.resx" />
+    <Content Include="App_LocalResources\DocumentCategories.aspx.fr.resx" />
+    <Content Include="App_LocalResources\DocumentTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\EmployeeCals.aspx.fr.resx" />
+    <Content Include="App_LocalResources\EmployeeComplaints.aspx.fr.resx" />
+    <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\EmployeePenalties.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Employees.aspx.fr.resx" />
+    <Content Include="App_LocalResources\EmployeesOrgChart.aspx.fr.resx" />
+    <Content Include="App_LocalResources\EntitlementDeductions.aspx.fr.resx" />
+    <Content Include="App_LocalResources\FinalSettlements.aspx.fr.resx" />
+    <Content Include="App_LocalResources\FiscalYears.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Folders.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ForgotPassword.aspx.fr.resx" />
+    <Content Include="App_LocalResources\GenerateAttendanceDays.aspx.fr.resx" />
+    <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Geofences.aspx.fr.resx" />
+    <Content Include="App_LocalResources\GovernmentOrganisations.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportAttendance.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportDepartments.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportEmployeeNotes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportEmployees.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportEmploymentStatus.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportJobInfo.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportLeaves.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportLoans.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportOvertimeSettings.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportPayCodes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportPunches.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportRTW.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportSalaries.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LeaveCalendar.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LeavePayments.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LeaveRequests.aspx.fr.resx" />
+    <Content Include="App_LocalResources\leaveRequestsSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LeaveSchedules.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LeaveTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Letters.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LettersSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LetterTemplates.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LoanOverrides.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LoanRequests.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LoanSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LoanTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\MainDashboard.aspx.fr.resx" />
+    <Content Include="App_LocalResources\MediaCategories.aspx.fr.resx" />
+    <Content Include="App_LocalResources\MediaItems.aspx.fr.resx" />
+    <Content Include="App_LocalResources\MyInfo.aspx.fr.resx" />
+    <Content Include="App_LocalResources\MyInfos.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Nationalities.aspx.fr.resx" />
+    <Content Include="App_LocalResources\NationalQuotas.aspx.fr.resx" />
+    <Content Include="App_LocalResources\NoticePeriods.aspx.fr.resx" />
+    <Content Include="App_LocalResources\OrganizationChart.aspx.fr.resx" />
+    <Content Include="App_LocalResources\OvertimeSettings.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Overtime_Lateness.aspx.fr.resx" />
+    <Content Include="App_LocalResources\PayCodes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\PayrollDefaults.aspx.fr.resx" />
+    <Content Include="App_LocalResources\PayrollGeneration.aspx.fr.resx" />
+    <Content Include="App_LocalResources\PayrollGenerationSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\PayrollIndemnities.aspx.fr.resx" />
+    <Content Include="App_LocalResources\PayrollTimeSchedule.aspx.fr.resx" />
+    <Content Include="App_LocalResources\PenaltyTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Positions.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ProcessNotifications.aspx.fr.resx" />
+    <Content Include="App_LocalResources\RelationshipTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\resetPw.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Routers.aspx.fr.resx" />
+    <Content Include="App_LocalResources\RT107.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SalaryChangeReasons.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Schedules.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SecurityGroups.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SelfServiceResetPasswords.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SocialSecuritySchedules.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Sponsors.aspx.fr.resx" />
+    <Content Include="App_LocalResources\States.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Status.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SynchronizeAttendanceDays.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SystemAlerts.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SystemDefaults.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TerminationReasons.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Test.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TimeApprovalsSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceApprovals.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceView.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceViewSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TimeCodes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TimeVariationSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TrainingTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Users.aspx.fr.resx" />
+    <Content Include="App_LocalResources\VacationSchedules.aspx.fr.resx" />
+    <Content Include="App_LocalResources\WorkingCalendars.aspx.fr.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
