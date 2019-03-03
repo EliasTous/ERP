@@ -63,7 +63,8 @@
            
         }
         function validateLdValue(value)
-        {
+       {
+            alert(parseFloat(App.amount.getValue().replace(/\D/g, '')));
             if (App.ldMethod.getValue() != null) {
                 if (value != null) {
                     value = value.replace(/\D/g, '');
@@ -87,10 +88,12 @@
                 else {
                     if (value <= 0)
                         return false;
-                    if (parseInt(App.amount.getValue().replace(/\D/g, '')) < value)
+                    if (parseFloat(App.amount.getValue().replace(/\D/g, '')) < value) {
+                       
                         return false;
+                    }
                     else {
-
+                      
                         return true;
                     }
                 }
@@ -99,6 +102,15 @@
                 return false;
 
         }
+        function decimalthousandSeparator(num) {
+
+
+            num = num.toString().replaceAll(",", "");
+
+
+            return parseFloat(num).toLocaleString(undefined, { minimumFractionDigits: 2 });
+        }
+
     </script>
 
 
@@ -601,19 +613,19 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:TextField  ID="amount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount">
+                                <ext:NumberField  ID="amount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount" AllowDecimals="true" >
 
                                  
-                                    <Validator Handler="return   this.value.replace(/\D/g,'')>0;" />
+                                    <Validator Handler="return   this.value>0;" />
                                    <%-- <Listeners> 
                                         <Change Handler="if (#{ldMethod}.getValue()==4) #{ldValue}.setValue('0');"></Change>
                                     </Listeners>--%>
-                                    <Listeners> 
-                                         <Change Handler="this.setRawValue(thousandSeparator(this.value));#{ldValue}.validate();" />
+                                  <%--  <Listeners> 
+                                         <FocusLeave Handler="this.setRawValue(decimalthousandSeparator(this.value));#{ldValue}.validate();" />
                                            
                                        
-                                    </Listeners>
-                                </ext:TextField>
+                                    </Listeners>--%>
+                                </ext:NumberField>
 
 
                                 <ext:TextArea ID="purpose" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />

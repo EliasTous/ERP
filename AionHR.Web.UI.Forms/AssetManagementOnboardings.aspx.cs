@@ -137,7 +137,7 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
-
+            deliveryDuration.Hidden = false;
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             CurrentPositionId.Text = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
@@ -328,6 +328,7 @@ namespace AionHR.Web.UI.Forms
          //   CurrentPositionId.Text = "";
             //Reset all values of the relative object
             OnBoardingTab.Reset();
+            deliveryDuration.Hidden = true;
             this.EditOnBoardingRecordWindow.Title = Resources.Common.AddNewRecord;
 
             this.EditOnBoardingRecordWindow.Show();

@@ -118,322 +118,322 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="apply_ALDA_CSBR" xml:space="preserve">
-    <value>Apply Data Access Control To Branches</value>
+    <value>Appliquer le contrôle d'accès aux données aux branches</value>
   </data>
   <data name="apply_ALDA_CSDE" xml:space="preserve">
-    <value>Apply Data Access Control To Departments</value>
+    <value>Appliquer le contrôle d'accès aux données aux ministères</value>
   </data>
   <data name="apply_ALDA_CSDI" xml:space="preserve">
-    <value>Apply Data Access Control To Divisions</value>
+    <value>Appliquer le contrôle d'accès aux données aux divisions</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>System Defaults</value>
+    <value>Valeurs par défaut du système</value>
   </data>
   <data name="DayMonthYear" xml:space="preserve">
-    <value>Day - Month - Year</value>
+    <value>jour - mois - année</value>
   </data>
   <data name="DayYearMonth" xml:space="preserve">
-    <value>Day- Year - Month</value>
+    <value>Jour- Année - Mois</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit System Defaults</value>
+    <value>Modifier les valeurs par défaut du système</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
+    <value>Branche</value>
   </data>
   <data name="FieldCountry" xml:space="preserve">
-    <value>Default Country</value>
+    <value>Pays par défaut</value>
   </data>
   <data name="FieldCurrency" xml:space="preserve">
-    <value>Default Currency</value>
+    <value>devise par défaut</value>
   </data>
   <data name="FieldDateFormat" xml:space="preserve">
-    <value>Date Format</value>
+    <value>Format de date</value>
   </data>
   <data name="FieldEnableCamera" xml:space="preserve">
-    <value>Enable Camera</value>
+    <value>Activer la caméra</value>
   </data>
   <data name="FieldEnableHijri" xml:space="preserve">
-    <value>Enable Hijri Calendar</value>
+    <value>Activer le calendrier Hijri</value>
   </data>
   <data name="FieldFirstDayOfWeek" xml:space="preserve">
-    <value>First Day Of The Week</value>
+    <value>Premier jour de la semaine</value>
   </data>
   <data name="FieldIsInactive" xml:space="preserve">
-    <value>Is Inactive</value>
+    <value>Est inactif</value>
   </data>
   <data name="FieldLog" xml:space="preserve">
-    <value>Save Transaction Log</value>
+    <value>Enregistrer le journal des transactions</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>prénom</value>
   </data>
   <data name="FieldNameFormat" xml:space="preserve">
-    <value>Default Name Format</value>
+    <value>Format de nom par défaut</value>
   </data>
   <data name="FieldNumberFormat" xml:space="preserve">
     <value>Default Number Format</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>ID d'enregistrement</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
   </data>
   <data name="FieldSchedule" xml:space="preserve">
-    <value>Attendance Schedule</value>
+    <value>Calendrier de présence</value>
   </data>
   <data name="FieldTimeZone" xml:space="preserve">
-    <value>Default Time Zone</value>
+    <value>Fuseau horaire par défaut</value>
   </data>
   <data name="FieldVacationSchedule" xml:space="preserve">
-    <value>Default Vacation Schedule</value>
+    <value>Calendrier de vacances par défaut</value>
   </data>
   <data name="FieldWorkingCalendar" xml:space="preserve">
-    <value>Default Calendar</value>
+    <value>Calendrier par défaut</value>
   </data>
   <data name="FirstNameLastName" xml:space="preserve">
-    <value>First Name , Last Name</value>
+    <value>Prénom,nom de famille</value>
   </data>
   <data name="FirstNameMiddleNameLastName" xml:space="preserve">
-    <value>First Name, Middle Name, Last Name</value>
+    <value>Prénom deuxième prénom nom de famille</value>
   </data>
   <data name="IDRTW" xml:space="preserve">
-    <value>ID Document Type</value>
+    <value>Type de document d'identification</value>
   </data>
   <data name="LastNameFirstName" xml:space="preserve">
-    <value>Last Name, First Name</value>
+    <value>Nom, Prénom</value>
   </data>
   <data name="LocalServerIP" xml:space="preserve">
-    <value>Local Server IP</value>
+    <value>IP du serveur local</value>
   </data>
   <data name="MonthDayYear" xml:space="preserve">
-    <value>Month - Day - Year</value>
+    <value>Année -mois -jour</value>
   </data>
   <data name="MonthYearDay" xml:space="preserve">
-    <value>Month - Year - Day</value>
+    <value>Mois - Année - Jour</value>
   </data>
   <data name="PassportRTW" xml:space="preserve">
-    <value>Passport Document Type</value>
+    <value>Type de document de passeport</value>
   </data>
   <data name="ReferenceFirstNameLastName" xml:space="preserve">
-    <value>Reference, First Name, LastName</value>
+    <value>Référence, Prénom, Nom</value>
   </data>
   <data name="ReferenceFirstNameMiddleNameFamilyNameLastName" xml:space="preserve">
-    <value>Reference, First Name, Middle Name, Family Name, Last Name</value>
+    <value>Référence, prénom, deuxième prénom, nom de famille, nom de famille</value>
   </data>
   <data name="ReferenceFirstNameMiddleNameLastName" xml:space="preserve">
     <value>Reference, First Name, Middle Name, Last Name</value>
   </data>
   <data name="ReferenceLastNameFirstName" xml:space="preserve">
-    <value>Reference, LastName, First Name</value>
+    <value>Référence, Nom, Prénom</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Routers</value>
+    <value>Routeurs</value>
   </data>
   <data name="YearDayMonth" xml:space="preserve">
-    <value>Year - Day - Month</value>
+    <value>Année - Jour - Mois</value>
   </data>
   <data name="YearMonthDay" xml:space="preserve">
-    <value>Year - Month - Day</value>
+    <value>Année -mois- jour</value>
   </data>
   <data name="lastGeneratedTADayId" xml:space="preserve">
-    <value>Last Generated Attendance Day</value>
+    <value>Dernier jour de présence généré</value>
   </data>
   <data name="FieldTSId" xml:space="preserve">
-    <value>Time Schedule</value>
+    <value>Horaire</value>
   </data>
   <data name="AllowedLateness" xml:space="preserve">
-    <value>Allowed Lateness(hours)</value>
+    <value>Retard permis (heures)</value>
   </data>
   <data name="DeductionFrom" xml:space="preserve">
-    <value>Deduction Of</value>
+    <value>Déduction de</value>
   </data>
   <data name="EditWindowsTitle1" xml:space="preserve">
-    <value>Payroll Defaults</value>
+    <value>Paquets par défaut</value>
   </data>
   <data name="EntitlementTo" xml:space="preserve">
-    <value>Entitlement Of</value>
+    <value>Droit de</value>
   </data>
   <data name="FieldLatenessDeduction" xml:space="preserve">
-    <value>Lateness Deduction</value>
+    <value>Déduction de retard</value>
   </data>
   <data name="FieldLoan" xml:space="preserve">
-    <value>Loan Deduction Id</value>
+    <value>Id de déduction de prêt</value>
   </data>
   <data name="FieldOT" xml:space="preserve">
-    <value>Over Time Entitlement</value>
+    <value>Format numérique par défaut</value>
   </data>
   <data name="FieldOvertimeEntitlement" xml:space="preserve">
-    <value>Overtime Entitlement</value>
+    <value>Droit aux heures supplémentaires</value>
   </data>
   <data name="FieldPE" xml:space="preserve">
-    <value>Penalty Deduction</value>
+    <value>Déduction de pénalité</value>
   </data>
   <data name="FieldSS" xml:space="preserve">
-    <value>Social Security Deduction</value>
+    <value>Déduction Sociale</value>
   </data>
   <data name="FieldUL" xml:space="preserve">
-    <value>Unpaid Leave Deduction</value>
+    <value>Déduction pour congés sans solde</value>
   </data>
   <data name="FixedAmount" xml:space="preserve">
-    <value>Fixed Amount</value>
+    <value>Montant fixé</value>
   </data>
   <data name="FixedPayment" xml:space="preserve">
-    <value>Fixed Payment</value>
+    <value>Paiement fixe</value>
   </data>
   <data name="Lateness" xml:space="preserve">
-    <value>Lateness</value>
+    <value>Retard</value>
   </data>
   <data name="LatenessAmount" xml:space="preserve">
-    <value>Deduction Percentage %</value>
+    <value>Pourcentage de déduction</value>
   </data>
   <data name="LoanCoverageType" xml:space="preserve">
-    <value>Loan Coverage</value>
+    <value>Couverture de prêt</value>
   </data>
   <data name="MinimumOvertime" xml:space="preserve">
-    <value>Minimum Overtime(hours)</value>
+    <value>Heures supplémentaires minimales (heures)</value>
   </data>
   <data name="Overtime" xml:space="preserve">
-    <value>Overtime</value>
+    <value>Heures supplémentaires</value>
   </data>
   <data name="OvertimeAmount" xml:space="preserve">
-    <value>Entitlement Percentage %</value>
+    <value>Pourcentage d'admissibilité%</value>
   </data>
   <data name="PaymentValue" xml:space="preserve">
-    <value>Payment Value</value>
+    <value>Valeur du paiement</value>
   </data>
   <data name="PaymentValueP" xml:space="preserve">
-    <value>Payment Value %</value>
+    <value>Valeur du paiement%</value>
   </data>
   <data name="PercentageOf" xml:space="preserve">
     <value />
   </data>
   <data name="PFromBasicSalary" xml:space="preserve">
-    <value>Percentage of Basic Salary</value>
+    <value>Pourcentage du salaire de base</value>
   </data>
   <data name="PFromLoan" xml:space="preserve">
-    <value>Percentage of Loan</value>
+    <value>Pourcentage du prêt</value>
   </data>
   <data name="PFromNetSalary" xml:space="preserve">
-    <value>Percentage of Net Salary</value>
+    <value>Pourcentage du salaire net</value>
   </data>
   <data name="AttendanceSettings" xml:space="preserve">
-    <value>Attendance Settings</value>
+    <value>Paramètres de présence</value>
   </data>
   <data name="EmployeesDefaults" xml:space="preserve">
-    <value>Employee </value>
+    <value>Employé</value>
   </data>
   <data name="GeneralsDefaults" xml:space="preserve">
-    <value>General Defaults</value>
+    <value>Défauts généraux</value>
   </data>
   <data name="PayrollSettings" xml:space="preserve">
-    <value>Payroll Settings</value>
+    <value>Paramètres de paie</value>
   </data>
   <data name="SecuritySettings" xml:space="preserve">
-    <value>Security Settings</value>
+    <value>Les paramètres de sécurité</value>
   </data>
   <data name="absence" xml:space="preserve">
     <value>Absence</value>
   </data>
   <data name="disappearance" xml:space="preserve">
-    <value>Disappearance</value>
+    <value>Disparition</value>
   </data>
   <data name="missedPunch" xml:space="preserve">
-    <value>Missed Punch</value>
+    <value>Punch raté</value>
   </data>
   <data name="SocialSecuritySchedule" xml:space="preserve">
-    <value>Social Security Schedule</value>
+    <value>Calendrier de sécurité sociale</value>
   </data>
   <data name="MinEPLocalRate" xml:space="preserve">
-    <value>Min Locals Rate</value>
+    <value>Tarif Mini Locaux</value>
   </data>
   <data name="FieldEntitlement" xml:space="preserve">
-    <value>Entitlement</value>
+    <value>Droit</value>
   </data>
   <data name="payrollIndemnityEntitlement" xml:space="preserve">
-    <value>Payroll Indemnity Entitlement</value>
+    <value>Droit à l'indemnité salariale</value>
   </data>
   <data name="PYFSLeaveBalEDId" xml:space="preserve">
-    <value>Entitlement For The Final Settlement Leave Balance</value>
+    <value>Droit au solde du solde de règlement final</value>
   </data>
   <data name="IndemnitySchedules" xml:space="preserve">
-    <value>Indemnity Schedules</value>
+    <value>Horaires d'indemnisation</value>
   </data>
   <data name="PYISfemale" xml:space="preserve">
-    <value>Default Indemnity Schedules For Females </value>
+    <value>Horaires d'indemnisation par défaut pour les femmes</value>
   </data>
   <data name="PYISmale" xml:space="preserve">
-    <value>Default Indemnity Schedules For Males</value>
+    <value>Horaires d'indemnisation par défaut pour les hommes</value>
   </data>
   <data name="exemptDeliveryTRId" xml:space="preserve">
-    <value>Exempt Delivery Termination Reason</value>
+    <value>Raison de la résiliation de la livraison exonérée</value>
   </data>
   <data name="exemptMarriageTRId" xml:space="preserve">
-    <value>Exempt Marriage Termination Reason</value>
+    <value>Raison de la résiliation du mariage exempté</value>
   </data>
   <data name="TerminationReason" xml:space="preserve">
-    <value>Termination Reason</value>
+    <value>Motif de la résiliation</value>
   </data>
   <data name="ReferenceFirstNameMiddleNameFamilyName" xml:space="preserve">
-    <value>Reference, First Name, Middle Name, Family Name</value>
+    <value>Référence, prénom, deuxième prénom, nom de famille</value>
   </data>
   <data name="FieldLanguageId" xml:space="preserve">
-    <value>Language</value>
+    <value>langue</value>
   </data>
   <data name="FirstNameMiddleNameFamilyNameLastName" xml:space="preserve">
-    <value>FirstName, MiddleName, FamilyName, LastName</value>
+    <value>Prénom, deuxième prénom, nom de famille, nom de famille</value>
   </data>
   <data name="FieldCalendar" xml:space="preserve">
-    <value>Calendar</value>
+    <value>Calendrier</value>
   </data>
   <data name="FieldDepartment" xml:space="preserve">
-    <value>Department</value>
+    <value>département</value>
   </data>
   <data name="FieldIndustry" xml:space="preserve">
-    <value>Industry</value>
+    <value>Industrie</value>
   </data>
   <data name="SourceAttendanceSchedule" xml:space="preserve">
-    <value>Source Attendance Schedule</value>
+    <value>Calendrier de présence à la source</value>
   </data>
   <data name="yearDays" xml:space="preserve">
-    <value>Year Days</value>
+    <value>Année Jours</value>
   </data>
   <data name="SourceWorkingCalender" xml:space="preserve">
-    <value>Source Calendar</value>
+    <value>Calendrier source</value>
   </data>
   <data name="retirementAge" xml:space="preserve">
-    <value>Retirement Age</value>
+    <value>L'âge de la retraite</value>
   </data>
   <data name="employeeRefSize" xml:space="preserve">
-    <value>Employee Ref Size</value>
+    <value>Taille de référence de l'employé</value>
   </data>
   <data name="minPunchInterval" xml:space="preserve">
-    <value>Min Punch Interval</value>
+    <value>Intervalle de poinçon min.</value>
   </data>
   <data name="monthWorkDays" xml:space="preserve">
-    <value>Month Work Days</value>
+    <value>Mois Jours de travail</value>
   </data>
   <data name="benefitSchedule" xml:space="preserve">
-    <value>Benefit Schedule</value>
+    <value>Calendrier des prestations</value>
   </data>
   <data name="basicSalaryPayCode" xml:space="preserve">
-    <value>Basic Salary Pay Code</value>
+    <value>Code de salaire de base</value>
   </data>
   <data name="FSWDEDId" xml:space="preserve">
-    <value>Final Settlement Working Days</value>
+    <value>Jours de règlement définitifs</value>
   </data>
   <data name="MaxLoanDeduction" xml:space="preserve">
-    <value>Max Loan Deduction</value>
+    <value>Déduction Max.</value>
   </data>
   <data name="pyaaDays" xml:space="preserve">
-    <value>Penalty Accumulated absence without excuse in days</value>
+    <value>Pénalité Absence accumulée sans excuse en jours</value>
   </data>
   <data name="pyalDays" xml:space="preserve">
-    <value>Penalty Accumulated lateness in days</value>
+    <value>Pénalité retard accumulé en jours</value>
   </data>
   <data name="pylvDays" xml:space="preserve">
-    <value>Penalty Accumulated law violation in days</value>
+    <value>Pénalité Violation de la loi accumulée en jours</value>
   </data>
   <data name="dailySchedule_15" xml:space="preserve">
     <value>15</value>
@@ -445,63 +445,63 @@
     <value>60</value>
   </data>
   <data name="FieldDailySchedule" xml:space="preserve">
-    <value>Daily Schedule</value>
+    <value>Horaire quotidien</value>
   </data>
   <data name="employeeReference" xml:space="preserve">
-    <value>Employee Reference</value>
+    <value>Référence de l'employé</value>
   </data>
   <data name="punchSource" xml:space="preserve">
     <value>Punch Source</value>
   </data>
   <data name="timeAttendance" xml:space="preserve">
-    <value>Time Attendance Reference</value>
+    <value>Temps de référence de référence</value>
   </data>
   <data name="backofficeEmail" xml:space="preserve">
-    <value>Back Office Email</value>
+    <value>Email du back-office</value>
   </data>
   <data name="access" xml:space="preserve">
-    <value>Access</value>
+    <value>Accès</value>
   </data>
   <data name="BiometricSettings" xml:space="preserve">
-    <value>Biometric Settings</value>
+    <value>Paramètres biométriques</value>
   </data>
   <data name="clearOnSuccess" xml:space="preserve">
-    <value>Clear On Success</value>
+    <value>Clair sur le succès</value>
   </data>
   <data name="csvFile" xml:space="preserve">
-    <value>Csv File</value>
+    <value>Fichier CSV</value>
   </data>
   <data name="debugMode" xml:space="preserve">
-    <value>Debug Mode</value>
+    <value>Mode débogage</value>
   </data>
   <data name="pendingPunchesFolder" xml:space="preserve">
-    <value>Pending Punches Folder</value>
+    <value>Dossier perforé en attente</value>
   </data>
   <data name="pull" xml:space="preserve">
-    <value>Pull</value>
+    <value>tirer</value>
   </data>
   <data name="punchInterface" xml:space="preserve">
-    <value>PunchI Interface</value>
+    <value>Interface PunchI</value>
   </data>
   <data name="push" xml:space="preserve">
-    <value>Push</value>
+    <value>Pousser</value>
   </data>
   <data name="serialNo" xml:space="preserve">
-    <value>Serial No</value>
+    <value>Numéro de série</value>
   </data>
   <data name="shiftData" xml:space="preserve">
-    <value>Shift Data</value>
+    <value>Données de décalage</value>
   </data>
   <data name="sleepTime" xml:space="preserve">
-    <value>Sleep Time</value>
+    <value>Temps de sommeil</value>
   </data>
   <data name="sqlServer" xml:space="preserve">
-    <value>Sql Server</value>
+    <value>Serveur SQL</value>
   </data>
   <data name="storeConnection" xml:space="preserve">
-    <value>Store Connection</value>
+    <value>Connexion magasin</value>
   </data>
   <data name="storeType" xml:space="preserve">
-    <value>Store Type</value>
+    <value>Type de magasin</value>
   </data>
 </root>

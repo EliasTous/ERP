@@ -40,6 +40,7 @@ namespace AionHR.Web.UI.Forms
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        ICompanyStructureService _companyStructureService= ServiceLocator.Current.GetInstance<ICompanyStructureService>();
 
         protected override void InitializeCulture()
         {
@@ -96,13 +97,26 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+                FillBranch();
 
             }
 
 
         }
 
-     
+        private void FillBranch()
+        {
+
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
+            if (!resp.Success)
+                Common.errorMessage(resp);
+            branchStore.DataSource = resp.Items;
+            branchStore.DataBind();
+            if (_systemService.SessionHelper.CheckIfIsAdmin())
+                return;
+
+        }
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
@@ -147,7 +161,7 @@ namespace AionHR.Web.UI.Forms
 
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
-
+            FillBranch();
             string type = e.ExtraParams["type"];
             switch (type)
             {
@@ -337,6 +351,7 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+            FillBranch();
             date.SelectedDate  = DateTime.Now;
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
            

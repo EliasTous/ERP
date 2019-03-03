@@ -481,7 +481,7 @@
                                                 <uc:AssetCategoryControl runat="server" ID="AssetCategoryControl" FieldLabel="<%$ Resources: Common ,FieldCategory%>"   />
                                             </Content>
                                         </ext:Container>
-                                  <ext:NumberField ID="deliveryDuration" runat="server" FieldLabel="<%$ Resources:FieldDeliveryDuration%>" Name="deliveryDuration"   AllowBlank="false" MinValue="0"/>
+                                  <ext:NumberField ID="deliveryDuration" runat="server" FieldLabel="<%$ Resources:FieldDeliveryDuration%>" Name="deliveryDuration"  ReadOnly="true" AllowBlank="true" MinValue="0"/>
                                 <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
                             </Items>
 

@@ -51,6 +51,7 @@
 
                         <ext:ModelField Name="recordId" />
                         <ext:ModelField Name="supplierName" />
+                        <ext:ModelField Name="branchName" />
                         <ext:ModelField Name="categoryName" />
                         <ext:ModelField Name="currencyName" />
                         <ext:ModelField Name="date" />
@@ -178,6 +179,7 @@
                               <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="recordId" />
                             <ext:Column ID="ColSupplierName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSupplierName%>" DataIndex="supplierName"  Hideable="false" Flex="1"/>
                             <ext:Column   ID="ColCategoryName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCategoryName%>" DataIndex="categoryName" Flex="1" />
+                               <ext:Column   ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch %>" DataIndex="branchName" Flex="1" />
                              <ext:Column   ID="ColCurrencyName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCurrencyName%>" DataIndex="currencyName" Flex="1" />
                             <ext:DateColumn  ID="Coldate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="1" Hideable="false" />
                         
@@ -356,8 +358,24 @@
                                         <ext:ListItem Text="<%$ Resources: Status2%>" Value="2"></ext:ListItem>
 
                                     </Items>
-                                   
+                                    
                                 </ext:ComboBox>
+                                 <ext:ComboBox      AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false"   ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SubmitValue="true" >
+                                                <Store>
+                                                    <ext:Store runat="server" ID="branchStore">
+                                                        <Model>
+                                                            <ext:Model runat="server">
+                                                                <Fields>
+                                                                    <ext:ModelField Name="recordId" />
+                                                                    <ext:ModelField Name="name" />
+                                                                </Fields>
+                                                            </ext:Model>
+                                                        </Model>
+                                                    </ext:Store>
+                                                </Store>
+                                               
+                                              
+                                            </ext:ComboBox> 
                                       <ext:TextArea ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
                                  <ext:NumberField ID="costPrice" runat="server" FieldLabel="<%$ Resources:FieldCostPrice%>" Name="costPrice" MinValue="0"  />
                             </Items>

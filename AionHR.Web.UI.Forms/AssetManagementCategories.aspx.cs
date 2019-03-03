@@ -147,7 +147,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-
+                    apId.setApprovalStatus(response.result.apId);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -360,7 +360,7 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             AssetManagementCategory b = JsonConvert.DeserializeObject<AssetManagementCategory>(obj);
-
+            b.apId = apId.GetApprovalStatus();
             b.recordId = id;
             // Define the object to add or edit as null
 
@@ -433,7 +433,7 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        Common.errorMessage(r);
                         return;
                     }
                     else
@@ -461,6 +461,31 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
+        }
+
+        [DirectMethod]
+        public object FillParent(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+
+
+
+            List<AssetManagementCategory> data;
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<AssetManagementCategory> resp = _assetManagementService.ChildGetAll<AssetManagementCategory>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return new List<AssetManagementCategory>();
+            }
+            data = resp.Items;
+            return new
+            {
+                data
+            };
+
         }
 
         [DirectMethod]

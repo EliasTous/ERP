@@ -1280,19 +1280,19 @@
                                     <Validator Handler="return !isNaN(this.value) && this.value>0 && this.value<100;" />
                                 </ext:TextField>
 
-                                <ext:TextField
+                                <ext:NumberField
                                     runat="server" Name="fixedAmount"
                                     AllowBlank="false"
                                     MinValue="0"
                                     ID="enFixedAmount"
-                                    FieldLabel="<%$ Resources:FieldFixedAmount%>">
+                                    FieldLabel="<%$ Resources:FieldFixedAmount%>" AllowDecimals="true">
                                    <Listeners>
-                                                 <Change Handler="this.setRawValue(thousandSeparator(this.value));" />
+                                                 
                                            
                                                
                                             </Listeners>
-                                    <Validator Handler="return this.value.replace(/\D/g,'')>0 ;" />
-                                </ext:TextField>
+                                    <Validator Handler="return this.value >0 ;" />
+                                </ext:NumberField>
                                 <ext:TextArea runat="server" ID="enComment" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:TextField runat="server" InputType="Password" Visible="false" ID="enCommentField" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:Checkbox ID="isTaxable" FieldLabel="<%$ Resources: FieldIsTaxable %>" runat="server" DataIndex="isTaxable" Name="isTaxable" InputValue="true" />
@@ -1402,17 +1402,15 @@
                                   <Validator Handler="return !isNaN(this.value) && this.value>0 && this.value<100;" />
                                 </ext:TextField>
 
-                                <ext:TextField
+                                <ext:NumberField
                                     runat="server" Name="fixedAmount"
                                     AllowBlank="false"
                                     MinValue="0"
                                     ID="deFixedAmount"
                                     FieldLabel="<%$ Resources:FieldFixedAmount%>">
-                                    <Listeners>
-                                     <Change Handler="this.setRawValue(thousandSeparator(this.value));" />
-                                    </Listeners>
-                                  <Validator Handler="return this.value.replace(/\D/g,'')>0;" />
-                                </ext:TextField>
+                                  
+                                  <Validator Handler="return this.value>0;" />
+                                </ext:NumberField>
                                 <ext:TextArea runat="server" Name="comment" DataIndex="comment" ID="deComment" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:TextField InputType="Password" Visible="false" runat="server" Name="comment" DataIndex="comment" ID="deCommentField" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:Checkbox ID="deIsTaxable" FieldLabel="<%$ Resources: FieldIsTaxable %>" runat="server" DataIndex="isTaxable" Name="isTaxable" InputValue="true" />

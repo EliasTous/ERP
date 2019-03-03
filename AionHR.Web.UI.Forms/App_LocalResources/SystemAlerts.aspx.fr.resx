@@ -118,22 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Administrator" xml:space="preserve">
-    <value>Administrator</value>
+    <value>Administrateur</value>
   </data>
   <data name="Alert101Description" xml:space="preserve">
     <value />
   </data>
   <data name="Alert10Title" xml:space="preserve">
-    <value>Loans</value>
+    <value> prêts</value>
   </data>
   <data name="alert11Title" xml:space="preserve">
-    <value>Vacations</value>
+    <value>vacances</value>
   </data>
   <data name="Alert1Title" xml:space="preserve">
-    <value>Company Right To Work Documents</value>
+    <value>Documents du droit au travail de l'entreprise</value>
   </data>
   <data name="Alert2Title" xml:space="preserve">
-    <value>Employee Right to Work documents</value>
+    <value>Documents sur le droit au travail des employés</value>
   </data>
   <data name="Alert301Description" xml:space="preserve">
     <value />
@@ -148,7 +148,7 @@
     <value />
   </data>
   <data name="Alert304Title" xml:space="preserve">
-    <value>Employee termination</value>
+    <value>Cessation d'emploi</value>
   </data>
   <data name="Alert305Description" xml:space="preserve">
     <value />
@@ -157,13 +157,13 @@
     <value />
   </data>
   <data name="Alert306Title" xml:space="preserve">
-    <value>Employee Background check</value>
+    <value>Vérification des antécédents des employés</value>
   </data>
   <data name="Alert307Description" xml:space="preserve">
     <value />
   </data>
   <data name="Alert307Title" xml:space="preserve">
-    <value>Task Due</value>
+    <value>Tâche due</value>
   </data>
   <data name="Alert308Description" xml:space="preserve">
     <value />
@@ -178,48 +178,48 @@
     <value />
   </data>
   <data name="Alert3Title" xml:space="preserve">
-    <value>Employee Probation</value>
+    <value>Probation des employés</value>
   </data>
   <data name="Alert4Title" xml:space="preserve">
-    <value>Employee Salary change</value>
+    <value>Changement de salaire des employés</value>
   </data>
   <data name="Alert5Title" xml:space="preserve">
-    <value>Next Review Date</value>
+    <value>Date de révision suivante</value>
   </data>
   <data name="Alert6Title" xml:space="preserve">
-    <value>Retirement Age</value>
+    <value>L'âge de la retraite</value>
   </data>
   <data name="Alert7Title" xml:space="preserve">
-    <value>Term End Date</value>
+    <value>Date de fin du mandat</value>
   </data>
   <data name="Alert8Title" xml:space="preserve">
-    <value>Work Anniversaries</value>
+    <value>Anniversaires de travail</value>
   </data>
   <data name="Alert9Title" xml:space="preserve">
-    <value>Employee birthday</value>
+    <value>Anniversaire d'employé</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>All</value>
+    <value>tout</value>
   </data>
   <data name="FieldActive" xml:space="preserve">
-    <value>Active</value>
+    <value>Actif</value>
   </data>
   <data name="FieldDays" xml:space="preserve">
-    <value>Days</value>
+    <value>jours</value>
   </data>
   <data name="FieldDescription" xml:space="preserve">
     <value>Description</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>prénom</value>
   </data>
   <data name="FieldSendTo" xml:space="preserve">
-    <value>To</value>
+    <value>À</value>
   </data>
   <data name="User" xml:space="preserve">
-    <value>User</value>
+    <value>Utilisateur</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>System Alerts</value>
+    <value>Alertes système</value>
   </data>
 </root>

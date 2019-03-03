@@ -118,30 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Router Info</value>
+    <value>Info routeur</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Router</value>
+    <value>Modifier le routeur</value>
   </data>
   <data name="ErrorInvalidMacAddress" xml:space="preserve">
-    <value>Router MAC address must be 12 characters</value>
+    <value>L'adresse MAC du routeur doit comporter 12 caractères.</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
+    <value>Branche</value>
   </data>
   <data name="FieldIsInactive" xml:space="preserve">
-    <value>Is Inactive</value>
+    <value>Est inactif</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>prénom</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>ID d'enregistrement</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Routers</value>
+    <value>Routeurs</value>
   </data>
 </root>

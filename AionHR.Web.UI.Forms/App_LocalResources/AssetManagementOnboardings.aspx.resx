@@ -126,6 +126,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Position On Boarding</value>
   </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
   <data name="FieldCategoryName" xml:space="preserve">
     <value>Category</value>
   </data>
