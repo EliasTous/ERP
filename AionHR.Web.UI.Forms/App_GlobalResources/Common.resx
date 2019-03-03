@@ -1428,4 +1428,7 @@
   <data name="FrenchLanguage" xml:space="preserve">
     <value>French</value>
   </data>
+  <data name="PendingTransfers" xml:space="preserve">
+    <value>Pending Transfers</value>
+  </data>
 </root>
