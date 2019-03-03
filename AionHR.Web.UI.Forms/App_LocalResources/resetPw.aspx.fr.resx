@@ -118,30 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Mediocre" xml:space="preserve">
-    <value>Mediocre</value>
+    <value>Médiocre</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
-    <value>New Password</value>
+    <value>nouveau mot de passe</value>
   </data>
   <data name="PasswordConfirm" xml:space="preserve">
-    <value>Password Confirmation</value>
+    <value>Confirmation mot de passe</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
-    <value>Reset Password</value>
+    <value>réinitialiser le mot de passe</value>
   </data>
   <data name="Strength" xml:space="preserve">
-    <value>Strength</value>
+    <value>Force</value>
   </data>
   <data name="Strong" xml:space="preserve">
-    <value>Strong</value>
+    <value>Fort</value>
   </data>
   <data name="VeryStrong" xml:space="preserve">
-    <value>Very Strong</value>
+    <value>Très fort</value>
   </data>
   <data name="VeryWeak" xml:space="preserve">
-    <value>Very Weak</value>
+    <value>Très faible</value>
   </data>
   <data name="Weak" xml:space="preserve">
-    <value>Weak</value>
+    <value>Faible</value>
   </data>
 </root>

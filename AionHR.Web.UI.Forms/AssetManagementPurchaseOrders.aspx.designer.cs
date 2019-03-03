@@ -202,6 +202,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColCategoryName;
         
         /// <summary>
+        /// Column1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column1;
+        
+        /// <summary>
         /// ColCurrencyName control.
         /// </summary>
         /// <remarks>
@@ -407,6 +416,24 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox status;
+        
+        /// <summary>
+        /// branchId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox branchId;
+        
+        /// <summary>
+        /// branchStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store branchStore;
         
         /// <summary>
         /// comments control.

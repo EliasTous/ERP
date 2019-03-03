@@ -118,99 +118,99 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessLevel" xml:space="preserve">
-    <value>Access Level</value>
+    <value>Niveau d'accès</value>
   </data>
   <data name="AccessLevels" xml:space="preserve">
-    <value>Access Levels</value>
+    <value>Niveaux d'accès</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Ajouter</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>All</value>
+    <value>tout</value>
   </data>
   <data name="Class" xml:space="preserve">
-    <value>Class</value>
+    <value>Classe</value>
   </data>
   <data name="EditGroup" xml:space="preserve">
-    <value>Edit Group</value>
+    <value>Editer le groupe</value>
   </data>
   <data name="EditGroupUsers" xml:space="preserve">
-    <value>Group Users</value>
+    <value>Utilisateurs du groupe</value>
   </data>
   <data name="FieldDescription" xml:space="preserve">
-    <value>Description</value>
+    <value>La description</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>prénom</value>
   </data>
   <data name="Filter" xml:space="preserve">
-    <value>Filter</value>
+    <value>Filtre</value>
   </data>
   <data name="GroupInfo" xml:space="preserve">
-    <value>Group Info</value>
+    <value>Informations sur le groupe</value>
   </data>
   <data name="Groups" xml:space="preserve">
-    <value>Groups</value>
+    <value>Groupes</value>
   </data>
   <data name="Property" xml:space="preserve">
-    <value>Property</value>
+    <value>Propriété</value>
   </data>
   <data name="Read" xml:space="preserve">
-    <value>View</value>
+    <value>Vue</value>
   </data>
   <data name="Remove" xml:space="preserve">
-    <value>Remove</value>
+    <value>Retirer</value>
   </data>
   <data name="Selected" xml:space="preserve">
-    <value>In Group</value>
+    <value>En groupe</value>
   </data>
   <data name="SelectModule" xml:space="preserve">
-    <value>Select a Module</value>
+    <value>Sélectionnez un module</value>
   </data>
   <data name="Users" xml:space="preserve">
-    <value>Users</value>
+    <value>Utilisateurs</value>
   </data>
   <data name="NoAccess" xml:space="preserve">
-    <value>No access</value>
+    <value>Pas d'accès</value>
   </data>
   <data name="WriteClass" xml:space="preserve">
-    <value>Add, Edit</value>
+    <value>Ajouter, modifier</value>
   </data>
   <data name="FullControl" xml:space="preserve">
-    <value>Full Control</value>
+    <value>Controle total</value>
   </data>
   <data name="DefaultAccessLevel" xml:space="preserve">
-    <value>Default Access Level</value>
+    <value>Niveau d'accès par défaut</value>
   </data>
   <data name="WriteProperty" xml:space="preserve">
-    <value>Edit</value>
+    <value>modifier</value>
   </data>
   <data name="ApplyModule" xml:space="preserve">
-    <value>Apply Module</value>
+    <value>Appliquer le module</value>
   </data>
   <data name="ResetProperties" xml:space="preserve">
-    <value>Reset</value>
+    <value>Réinitialiser</value>
   </data>
   <data name="Active" xml:space="preserve">
-    <value>Active</value>
+    <value>Actif</value>
   </data>
   <data name="DataAccess" xml:space="preserve">
-    <value>Data Access</value>
+    <value>Accès aux données</value>
   </data>
   <data name="Record" xml:space="preserve">
     <value>Record</value>
   </data>
   <data name="DaSaveText" xml:space="preserve">
-    <value>All changes will be discarded, Proceed?</value>
+    <value>Toutes les modifications seront annulées, Continuer?</value>
   </data>
   <data name="DaSaveTitle" xml:space="preserve">
-    <value>Confirm</value>
+    <value>Confirmer</value>
   </data>
   <data name="IsSuperUser" xml:space="preserve">
-    <value>Is super user</value>
+    <value>Est super utilisateur</value>
   </data>
   <data name="FieldEmail" xml:space="preserve">
-    <value>Email</value>
+    <value>mail</value>
   </data>
 </root>

@@ -52,7 +52,7 @@ namespace AionHR.Web.UI.Forms
                 {
                 new object[] { "1", "English" },
                 new object[] { "2", "عربي" },
-                new object[] { "3", "French" }
+                new object[] { "3", "Français" }
                 };
             }
             languageId.HideBaseTrigger = true;

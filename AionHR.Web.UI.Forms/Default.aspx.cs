@@ -38,20 +38,28 @@ namespace AionHR.Web.UI.Forms
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
             }
-
         }
         private bool HandleExternalUrl()
         {
@@ -158,7 +166,7 @@ namespace AionHR.Web.UI.Forms
                     {
                 new object[] { "1", "English" },
                 new object[] { "2", "عربي" },
-                new object[] { "3", "French" }
+                new object[] { "3", "Français" }
                     };
                 }
                 languageId.HideBaseTrigger = true;

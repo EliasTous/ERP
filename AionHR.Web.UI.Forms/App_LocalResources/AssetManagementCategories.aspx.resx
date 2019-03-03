@@ -135,4 +135,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Categories</value>
   </data>
+  <data name="FieldParentName" xml:space="preserve">
+    <value>Parent </value>
+  </data>
 </root>

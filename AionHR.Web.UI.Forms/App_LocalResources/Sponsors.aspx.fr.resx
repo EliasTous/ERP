@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Sponsor Info</value>
+    <value>Informations sur le sponsor</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Nationality</value>
+    <value>Editer la nationalité</value>
   </data>
   <data name="FieldAddress" xml:space="preserve">
-    <value>Address</value>
+    <value>Adresse</value>
   </data>
   <data name="FieldCity" xml:space="preserve">
-    <value>City</value>
+    <value>Ville</value>
   </data>
   <data name="FieldEmail" xml:space="preserve">
     <value>Email</value>
@@ -148,15 +148,15 @@
     <value>Phone</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>ID d'enregistrement</value>
   </data>
   <data name="FieldRTWRef" xml:space="preserve">
-    <value>Right to work Ref</value>
+    <value>Droit de travailler Ref</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Sponsors</value>
   </data>
   <data name="FieldIsSupplier" xml:space="preserve">
-    <value>Is Supplier</value>
+    <value>Est le fournisseur</value>
   </data>
 </root>

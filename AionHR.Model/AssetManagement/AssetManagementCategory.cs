@@ -10,5 +10,8 @@ namespace AionHR.Model.AssetManagement
     {
         public string name { get; set; }
         public int? deliveryDuration { get; set; }
+        public string apId { get; set; }
+        public string parentId { get; set; }
+        
     }
 }

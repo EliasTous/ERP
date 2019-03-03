@@ -140,11 +140,8 @@
       <HintPath>..\..\..\..\..\Desktop\bin\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Reports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Softmachine\Reports.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\Desktop\bin\bin\StructureMap.dll</HintPath>
@@ -178,6 +175,7 @@
     <Content Include="AdminDocuments.aspx" />
     <Content Include="AssetManagementAssets.aspx" />
     <Content Include="AssetManagementCategories.aspx" />
+    <Content Include="AssetManagementLoans.aspx" />
     <Content Include="AssetManagementOnboardings.aspx" />
     <Content Include="AssetManagementPurchaseOrders.aspx" />
     <Content Include="AssetManagementSuppliers.aspx" />
@@ -191,9 +189,9 @@
     <Content Include="FRLogin.aspx" />
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
+    <Content Include="Reports\Controls\AssetFilter.ascx" />
     <Content Include="Reports\Controls\CurrencyFilter.ascx" />
     <Content Include="Reports\Controls\ApprovalStatus.ascx" />
-    <Content Include="Reports\Controls\DepartmentFilter.ascx" />
     <Content Include="Reports\Controls\EmploymentStatusFilter.ascx" />
     <Content Include="Reports\Controls\AssetCategoryFilter.ascx" />
     <Content Include="Reports\Controls\SupplierFilter.ascx" />
@@ -210,7 +208,6 @@
     <Content Include="Scripts\AdminTemplates.js" />
     <Content Include="Scripts\SystemDefaults.js" />
     <Content Include="SelfServiceResetPasswords.aspx" />
-    <Content Include="SSTransfers.aspx" />
     <Content Include="Tasks.aspx" />
     <Content Include="TimeApprovalsSelfServices.aspx" />
     <Content Include="TimeAttendanceApprovals.aspx" />
@@ -649,9 +646,9 @@
       <DependentUpon>AdminDocuments.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Common.fr.designer.cs">
-      <DependentUpon>Common.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Common.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Errors.fr.designer.cs">
       <AutoGen>True</AutoGen>
@@ -676,6 +673,13 @@
     </Compile>
     <Compile Include="AssetManagementCategories.aspx.designer.cs">
       <DependentUpon>AssetManagementCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagementLoans.aspx.cs">
+      <DependentUpon>AssetManagementLoans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetManagementLoans.aspx.designer.cs">
+      <DependentUpon>AssetManagementLoans.aspx</DependentUpon>
     </Compile>
     <Compile Include="AssetManagementOnboardings.aspx.cs">
       <DependentUpon>AssetManagementOnboardings.aspx</DependentUpon>
@@ -770,6 +774,13 @@
     <Compile Include="ProcessNotifications.aspx.designer.cs">
       <DependentUpon>ProcessNotifications.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Controls\AssetFilter.ascx.cs">
+      <DependentUpon>AssetFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\AssetFilter.ascx.designer.cs">
+      <DependentUpon>AssetFilter.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Controls\CurrencyFilter.ascx.cs">
       <DependentUpon>CurrencyFilter.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -783,13 +794,6 @@
     </Compile>
     <Compile Include="Reports\Controls\ApprovalStatus.ascx.designer.cs">
       <DependentUpon>ApprovalStatus.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Controls\DepartmentFilter.ascx.cs">
-      <DependentUpon>DepartmentFilter.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\Controls\DepartmentFilter.ascx.designer.cs">
-      <DependentUpon>DepartmentFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\EmploymentStatusFilter.ascx.cs">
       <DependentUpon>EmploymentStatusFilter.ascx</DependentUpon>
@@ -888,13 +892,6 @@
     </Compile>
     <Compile Include="SelfServiceResetPasswords.aspx.designer.cs">
       <DependentUpon>SelfServiceResetPasswords.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SSTransfers.aspx.cs">
-      <DependentUpon>SSTransfers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SSTransfers.aspx.designer.cs">
-      <DependentUpon>SSTransfers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tasks.aspx.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>
@@ -2782,7 +2779,9 @@
     </Content>
     <Content Include="Reports\App_LocalResources\RT306.aspx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT306.aspx.resx" />
-    <Content Include="App_LocalResources\AdminTemplates.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AdminTemplates.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_LocalResources\AdminTemplates.aspx.resx" />
     <Content Include="App_LocalResources\DailyScheduleSelfServices.aspx.ar.resx" />
     <Content Include="App_LocalResources\DailyScheduleSelfServices.aspx.resx" />
@@ -2832,11 +2831,6 @@
     <Content Include="App_LocalResources\AssetManagementOnboardings.aspx.ar.resx" />
     <Content Include="App_LocalResources\AssetManagementOnboardings.aspx.resx" />
     <Content Include="App_LocalResources\Login.aspx.fr.resx" />
-    <Content Include="App_GlobalResources\Common.fr.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Common.fr.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="App_LocalResources\FRLogin.aspx.fr.resx" />
     <Content Include="App_LocalResources\FRLogin.aspx.resx" />
     <Content Include="App_LocalResources\FRLogin.aspx.ar.resx" />
@@ -2973,9 +2967,28 @@
     <Content Include="App_LocalResources\Users.aspx.fr.resx" />
     <Content Include="App_LocalResources\VacationSchedules.aspx.fr.resx" />
     <Content Include="App_LocalResources\WorkingCalendars.aspx.fr.resx" />
-    <Content Include="App_LocalResources\SSTransfers.aspx.resx" />
-    <Content Include="App_LocalResources\SSTransfers.aspx.ar.resx" />
-    <Content Include="App_LocalResources\SSTransfers.aspx.fr.resx" />
+    <Content Include="App_GlobalResources\Common.fr.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Common.fr.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_LocalResources\AssetManagementLoans.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AssetManagementLoans.aspx.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\ActiveStatusFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\BranchFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\DateFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\DateRangeFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\DepartmentBranchFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\EmployeeFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\JobInfoFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\LeaveStatusFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\LeaveTypeFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\LoanStatusFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\PaymentMethodFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\PayRefFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\SalaryChangeReasonFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\SupplierFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\UserComboFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\WeekPicker.ascx.fr.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -2998,6 +3011,10 @@
     <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
       <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
       <Name>AionHR.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reports\Reports.csproj">
+      <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
+      <Name>Reports</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

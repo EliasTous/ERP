@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>State Info</value>
+    <value>Informations sur l'état</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit State</value>
+    <value>Etat d'édition</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>prénom</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>ID d'enregistrement</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>States</value>
+    <value>États</value>
   </data>
 </root>

@@ -121,69 +121,69 @@
     <value>Absence</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Social Security Schedule </value>
+    <value>Calendrier de sécurité sociale</value>
   </data>
   <data name="deductPeriod" xml:space="preserve">
-    <value>Deduct Period</value>
+    <value>Période de déduction</value>
   </data>
   <data name="dtext" xml:space="preserve">
-    <value>Disspear</value>
+    <value>Disparaître</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Payroll Time Schedule</value>
+    <value>Modifier le calendrier de paie</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>prénom</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>ID d'enregistrement</value>
   </data>
   <data name="fullPeriod" xml:space="preserve">
-    <value>Full Period</value>
+    <value>Période complète</value>
   </data>
   <data name="intName" xml:space="preserve">
-    <value>Int Name</value>
+    <value>Nom Int</value>
   </data>
   <data name="isEnable" xml:space="preserve">
-    <value>Is Enable</value>
+    <value>Est activé</value>
   </data>
   <data name="ltext" xml:space="preserve">
-    <value>Lateness</value>
+    <value>Retard</value>
   </data>
   <data name="mtext" xml:space="preserve">
-    <value>Missed Punch </value>
+    <value>Punch raté</value>
   </data>
   <data name="multiplier" xml:space="preserve">
-    <value>Multiplier</value>
+    <value>Multiplicateur</value>
   </data>
   <data name="otext" xml:space="preserve">
-    <value>Overtime</value>
+    <value>Heures supplémentaires</value>
   </data>
   <data name="String1" xml:space="preserve">
-    <value>attendance</value>
+    <value>présence</value>
   </data>
   <data name="timeCodeColumn" xml:space="preserve">
-    <value>Time Code</value>
+    <value>Code horaire</value>
   </data>
   <data name="TimeCodeTitle" xml:space="preserve">
-    <value>Time Code</value>
+    <value>Code horaire</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Payroll Time Schedule</value>
+    <value>Horaire de paie</value>
   </data>
   <data name="CompanyPercentage" xml:space="preserve">
-    <value>Company Percentage</value>
+    <value>Compagnie Pourcentage</value>
   </data>
   <data name="EmployeePercentage" xml:space="preserve">
-    <value>Employee Percentage</value>
+    <value>Pourcentage d'employés</value>
   </data>
   <data name="ceiling" xml:space="preserve">
-    <value>Ceiling</value>
+    <value>Plafond</value>
   </data>
   <data name="EditSocialSecuritySetupWindowTitle" xml:space="preserve">
-    <value>Social Security Schedule Setup</value>
+    <value>Configuration du calendrier de la sécurité sociale</value>
   </data>
   <data name="payCode" xml:space="preserve">
-    <value>Pay Code</value>
+    <value>Code de paye</value>
   </data>
 </root>

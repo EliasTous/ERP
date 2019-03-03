@@ -220,10 +220,49 @@
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:NumberField ID="deliveryDuration" runat="server" FieldLabel="<%$ Resources:deliveryDuration%>" Name="deliveryDuration"  AllowDecimals="false" />
-                               
+                                 <ext:Container runat="server"  Layout="AutoLayout">
+                                            <Content>
+                                             
+                                                 <uc:ApprovalStatusControl runat="server" ID="apId"  FieldLabel="<%$ Resources:Common,FieldApprovalStatus%>" FieldType="Form"  />
+                                            </Content>
+                                        </ext:Container>
+                                     <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="parentId" Name="parentId" FieldLabel="<%$ Resources:FieldParentName%>" SimpleSubmit="true">
+                                    <Store>
+                                        <ext:Store runat="server" ID="parentStore"  AutoLoad="true" AutoSync="true">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillParent"></ext:PageProxy>
+                                            </Proxy>
+                                        </ext:Store>
+                                    </Store>
+                               <%--     <RightButtons>
+                                        <ext:Button ID="Button2" runat="server" Icon="Add" Hidden="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();  " />
+                                            </Listeners>
+                                            <DirectEvents>
+
+                                                <Click OnEvent="addDepartment">
+                                                    
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </RightButtons>--%>
+                                    <Listeners>
+                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
+                                </ext:ComboBox>
                               
                             </Items>
-
+                          
                         </ext:FormPanel>
                         
                     </Items>

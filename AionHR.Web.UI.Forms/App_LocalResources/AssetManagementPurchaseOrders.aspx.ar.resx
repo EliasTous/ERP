@@ -123,6 +123,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل طلب شراء</value>
   </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>الموقع </value>
+  </data>
   <data name="FieldCategoryName" xml:space="preserve">
     <value>الفئة</value>
   </data>
@@ -155,9 +158,6 @@
   </data>
   <data name="Status2" xml:space="preserve">
     <value>مثبت</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>طلبات الشراء</value>

@@ -118,30 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Status Info</value>
+    <value>information d'état</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Status</value>
+    <value>Modifier le statut</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>prénom</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>ID d'enregistrement</value>
   </data>
   <data name="intName" xml:space="preserve">
-    <value>Int Name</value>
+    <value>Nom Int</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Status</value>
+    <value>Statut</value>
   </data>
   <data name="excludeSocialSecurity" xml:space="preserve">
-    <value>Exclude Social Security</value>
+    <value>Exclure la sécurité sociale</value>
   </data>
   <data name="FieldRef" xml:space="preserve">
     <value>Ref</value>
   </data>
   <data name="excludeTimeAttendance" xml:space="preserve">
-    <value>Exclude Time Attendance</value>
+    <value>Exclure le temps de présence</value>
   </data>
 </root>

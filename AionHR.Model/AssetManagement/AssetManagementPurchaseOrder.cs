@@ -17,8 +17,10 @@ namespace AionHR.Model.AssetManagement
         public string supplierId { get; set; }
         public string comments { get; set; }
         public string apStatus { get; set; }
-        public short status { get; set; }
+        public short? status { get; set; }
         public string currencyId { get; set; }
         public double? costPrice { get; set; }
+        public string branchId { get; set; }
+        public string branchName { get; set; }
     }
 }

@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Date" xml:space="preserve">
-    <value>Start Date</value>
+    <value>Date de début</value>
   </data>
   <data name="endDate" xml:space="preserve">
-    <value>End Date</value>
+    <value>Date de fin</value>
   </data>
   <data name="FilterEmployee" xml:space="preserve">
-    <value>Employee</value>
+    <value>Employé</value>
   </data>
   <data name="Synchronize" xml:space="preserve">
-    <value>Synchronize</value>
+    <value>Synchroniser</value>
   </data>
   <data name="SynchronizeAttendanceDays" xml:space="preserve">
-    <value>Synchronize Attendance Schedule</value>
+    <value>Synchroniser l'horaire de présence</value>
   </data>
   <data name="processingSyn" xml:space="preserve">
-    <value>Another synchronization is in progress. Please wait</value>
+    <value>Une autre synchronisation est en cours. S'il vous plaît, attendez</value>
   </data>
 </root>

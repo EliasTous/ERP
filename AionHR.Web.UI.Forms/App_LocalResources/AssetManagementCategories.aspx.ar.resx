@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Supplier Info</value>
+    <value>الفئات</value>
   </data>
   <data name="deliveryDuration" xml:space="preserve">
-    <value>Delivery Duration</value>
+    <value>مدة التسليم </value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Supplier</value>
+    <value>تعديل الفئة</value>
   </data>
   <data name="FieldName" xml:space="preserve">
     <value>الاسم</value>
@@ -133,6 +133,9 @@
     <value>الرقم</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Suppliers</value>
+    <value>الفئات</value>
+  </data>
+  <data name="FieldParentName" xml:space="preserve">
+    <value>الفئة الاساسية</value>
   </data>
 </root>
