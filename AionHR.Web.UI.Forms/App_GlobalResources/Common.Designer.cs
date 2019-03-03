@@ -2671,7 +2671,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pending Transfers.
+        ///   Looks up a localized string similar to Documents Transfers.
         /// </summary>
         internal static string PendingTransfers {
             get {

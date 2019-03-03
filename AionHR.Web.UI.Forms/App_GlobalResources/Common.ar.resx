@@ -1425,4 +1425,7 @@
   <data name="FieldCurrency" xml:space="preserve">
     <value>العملة</value>
   </data>
+  <data name="PendingTransfers" xml:space="preserve">
+    <value>Documents Transfers</value>
+  </data>
 </root>
