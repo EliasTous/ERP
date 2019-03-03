@@ -12,7 +12,9 @@
     <script type="text/javascript" src="../Scripts/Payroll.js?id=250"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=97"></script>
     <script type="text/javascript">
-        
+         function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
         String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
@@ -137,7 +139,7 @@
                                         <ext:ModelField Name="currencyRef" />
                                         <ext:ModelField Name="scrId" />
                                         <ext:ModelField Name="scrName" />
-                                        <ext:ModelField Name="effectiveDate" ServerMapping="effectiveDate.ToShortDateString()" />
+                                        <ext:ModelField Name="effectiveDate"  />
                                         <ext:ModelField Name="salaryType" />
                                         <ext:ModelField Name="paymentFrequency" />
                                         <ext:ModelField Name="paymentMethod" />
@@ -208,12 +210,12 @@
                             </ext:Column>
                     
                             <ext:Column  ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBasicAmount %>" DataIndex="basicAmount" Hideable="false" Flex="1" Width="75" Align="Center" >
-                                <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['basicAmount'].toLocaleString()  ;">
+                                <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+numberWithCommas(record.data['basicAmount'].toFixed(2))  ;">
 
                                 </Renderer>
                                 </ext:Column>
                             <ext:Column  ID="Column21" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFinalAmount %>" DataIndex="finalAmount" Hideable="false" Flex="1" Width="75" Align="Center" >
-                                   <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['finalAmount'].toLocaleString()  ;">
+                                   <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+numberWithCommas(record.data['finalAmount'].toFixed(2))  ;">
 
                                 </Renderer>
                                 </ext:Column>
@@ -339,7 +341,7 @@
                                         <ext:ModelField Name="currencyRef" />
                                         <ext:ModelField Name="btId" />
                                         <ext:ModelField Name="btName" />
-                                        <ext:ModelField Name="date" ServerMapping="date.ToShortDateString()" />
+                                        <ext:ModelField Name="date"  />
                                         <ext:ModelField Name="comment" />
                                         <ext:ModelField Name="amount" />
 
@@ -805,7 +807,7 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
-                                                <Renderer Handler=" return App.currencyId.getRawValue()+ '&nbsp;' +record.data['fixedAmount']  ;"/>
+                                                <Renderer Handler=" return App.currencyId.getRawValue()+ '&nbsp;' +numberWithCommas(record.data['fixedAmount'].toFixed(2));"/>
                                             </ext:NumberColumn>
                                             <ext:Column
                                                 runat="server" 
@@ -995,7 +997,7 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
-                                                <Renderer Handler="return App.currencyId.getRawValue()+ '&nbsp;'+record.data['fixedAmount'].toLocaleString();">
+                                                <Renderer Handler="return App.currencyId.getRawValue()+ '&nbsp;'+numberWithCommas(record.data['fixedAmount'].toFixed(2));">
 
                                 </Renderer>
                                

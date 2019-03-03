@@ -994,10 +994,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
 
                             ModelProxy record = this.SAStore.GetById(index);
-                            EditSAForm.UpdateRecord(record);
+                            //EditSAForm.UpdateRecord(record);
                             record.Set("currencyRef", b.currencyRef);
-                            record.Set("scrName", b.scrName);
-                            record.Set("effectiveDate", b.effectiveDate.ToShortDateString());
+                            //record.Set("scrName", b.scrName);
+                            record.Set("effectiveDate", b.effectiveDate);
+                            record.Set("basicAmount", b.basicAmount);
+                            record.Set("finalAmount", b.finalAmount);
                             record.Commit();
                             Notification.Show(new NotificationConfig
                             {

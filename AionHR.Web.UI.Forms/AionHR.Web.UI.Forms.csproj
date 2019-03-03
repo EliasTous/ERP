@@ -212,6 +212,7 @@
     <Content Include="Scripts\AdminTemplates.js" />
     <Content Include="Scripts\SystemDefaults.js" />
     <Content Include="SelfServiceResetPasswords.aspx" />
+    <Content Include="SSTransfers.aspx" />
     <Content Include="Tasks.aspx" />
     <Content Include="TimeApprovalsSelfServices.aspx" />
     <Content Include="TimeAttendanceApprovals.aspx" />
@@ -896,6 +897,13 @@
     </Compile>
     <Compile Include="SelfServiceResetPasswords.aspx.designer.cs">
       <DependentUpon>SelfServiceResetPasswords.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SSTransfers.aspx.cs">
+      <DependentUpon>SSTransfers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SSTransfers.aspx.designer.cs">
+      <DependentUpon>SSTransfers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tasks.aspx.cs">
       <DependentUpon>Tasks.aspx</DependentUpon>
