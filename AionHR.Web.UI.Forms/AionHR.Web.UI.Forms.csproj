@@ -140,8 +140,11 @@
       <HintPath>..\..\..\..\..\Desktop\bin\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Reports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\bin\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>D:\Softmachine\Reports.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\Desktop\bin\bin\StructureMap.dll</HintPath>
@@ -189,6 +192,7 @@
     <Content Include="ProcessNotifications.aspx" />
     <Content Include="Reports\Controls\CurrencyFilter.ascx" />
     <Content Include="Reports\Controls\ApprovalStatus.ascx" />
+    <Content Include="Reports\Controls\DepartmentFilter.ascx" />
     <Content Include="Reports\Controls\EmploymentStatusFilter.ascx" />
     <Content Include="Reports\Controls\AssetCategoryFilter.ascx" />
     <Content Include="Reports\Controls\SupplierFilter.ascx" />
@@ -770,6 +774,13 @@
     </Compile>
     <Compile Include="Reports\Controls\ApprovalStatus.ascx.designer.cs">
       <DependentUpon>ApprovalStatus.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\DepartmentFilter.ascx.cs">
+      <DependentUpon>DepartmentFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\DepartmentFilter.ascx.designer.cs">
+      <DependentUpon>DepartmentFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\EmploymentStatusFilter.ascx.cs">
       <DependentUpon>EmploymentStatusFilter.ascx</DependentUpon>
@@ -2968,10 +2979,6 @@
     <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
       <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
       <Name>AionHR.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Reports\Reports.csproj">
-      <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
-      <Name>Reports</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
