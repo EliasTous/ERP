@@ -34,3 +34,26 @@ public class SelfServiceLeaveRecordRequest : RecordRequest
         }
     }
 }
+
+public class SelfServiceTransfersListRequest : ListRequest
+{
+    public string EmployeeId { get; set; }
+
+    public string Status { get; set; }
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_size", Size);
+            
+            parameters.Add("_sortBy", "apStatus");
+            parameters.Add("_startAt", StartAt);
+            parameters.Add("_employeeId", EmployeeId);
+            parameters.Add("_apStatus", Status);
+            return parameters;
+
+        }
+    }
+}

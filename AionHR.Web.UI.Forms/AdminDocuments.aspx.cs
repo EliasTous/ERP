@@ -27,6 +27,8 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.AdminTemplates;
 using AionHR.Services.Messaging.AdministrativeAffairs;
 using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Model;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -36,6 +38,7 @@ namespace AionHR.Web.UI.Forms
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IAdministrationService _administrationService = ServiceLocator.Current.GetInstance<IAdministrationService>();
+        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
 
         protected override void InitializeCulture()
         {
@@ -90,7 +93,9 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
 
-        ColdayIdDate.Format= dayIdDate.Format= ColissueDate.Format = ColexpiryDate.Format = _systemService.SessionHelper.GetDateformat();
+                ColdayIdDate.Format = dayIdDate.Format = ColissueDate.Format = ColexpiryDate.Format = _systemService.SessionHelper.GetDateformat();
+                FillDepartment();
+                
             }
 
         }
@@ -182,10 +187,14 @@ namespace AionHR.Web.UI.Forms
             FilllanguageStore();
             FillBpId();
             FilldcStore();
-            currentDocumentId.Text = id; 
+            currentDocumentId.Text = id;
             switch (type)
             {
                 case "imgEdit":
+                    //Important to enable the grids every time, in case an add attempt was made without saving
+                    documentNotesPanel.Disabled = false;
+                    DocumentDuesGrid.Disabled = false;
+                    DocumentTransfersGrid.Disabled = false;
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
@@ -197,7 +206,7 @@ namespace AionHR.Web.UI.Forms
                         Common.errorMessage(response);
                         return;
                     }
-                  
+
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab1.SetValues(response.result);
 
@@ -234,19 +243,19 @@ namespace AionHR.Web.UI.Forms
 
         }
         protected void PoPuPDD(object sender, DirectEventArgs e)
-        {  
-                                 
-        
-                                     
-           
-                                            
-                             
+        {
+
+
+
+
+
+
             string rowId = e.ExtraParams["rowId"];
             string doId = e.ExtraParams["doId"];
             string dayId = e.ExtraParams["dayId"];
             string amount = e.ExtraParams["amount"];
             string type = e.ExtraParams["type"];
-          
+
             switch (type)
             {
                 case "imgEdit":
@@ -266,7 +275,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     this.documentDueForm.SetValues(response.result);
                     if (!string.IsNullOrEmpty(response.result.dayId))
-                    dayIdDate.Value= DateTime.ParseExact(response.result.dayId, "yyyyMMdd", new CultureInfo("en"));
+                        dayIdDate.Value = DateTime.ParseExact(response.result.dayId, "yyyyMMdd", new CultureInfo("en"));
 
                     this.documentDueWindow.Title = Resources.Common.EditWindowsTitle;
                     this.documentDueWindow.Show();
@@ -308,18 +317,18 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public void DeleteDN(string rowId, string seqNo, string date)
         {
-           
+
             try
             {
                 //Step 1 Code to delete the object from the database 
                 AdminDocumentNote n = new AdminDocumentNote();
-              
+
                 n.notes = "";
-                n.date = DateTime.ParseExact(date,"yyyyMMdd", new CultureInfo("en")); 
-                n.doId =Convert.ToInt32( currentDocumentId.Text);
+                n.date = DateTime.ParseExact(date, "yyyyMMdd", new CultureInfo("en"));
+                n.doId = Convert.ToInt32(currentDocumentId.Text);
                 n.seqNo = seqNo;
                 n.rowId = rowId;
-                n.userId = _systemService.SessionHelper.GetCurrentUserId(); 
+                n.userId = _systemService.SessionHelper.GetCurrentUserId();
                 PostRequest<AdminDocumentNote> req = new PostRequest<AdminDocumentNote>();
                 req.entity = n;
                 PostResponse<AdminDocumentNote> res = _administrationService.ChildDelete<AdminDocumentNote>(req);
@@ -355,6 +364,54 @@ namespace AionHR.Web.UI.Forms
 
         }
         [DirectMethod]
+        public void DeleteDT(string seqNo, string docId)
+        {
+
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                AdminDocTransfer n = new AdminDocTransfer();
+
+                n.notes = "";
+                
+                n.doId = Convert.ToInt32(currentDocumentId.Text);
+                n.seqNo = seqNo;
+                
+                PostRequest<AdminDocTransfer> req = new PostRequest<AdminDocTransfer>();
+                req.entity = n;
+                PostResponse<AdminDocTransfer> res = _administrationService.ChildDelete<AdminDocTransfer>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    documentsTransfersStore.Reload();
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+        [DirectMethod]
         public void DeleteRecord(string index)
         {
             try
@@ -362,7 +419,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 Code to delete the object from the database 
                 AdminDocument s = new AdminDocument();
                 s.recordId = index;
-                
+
                 //s.intName = "";
 
                 PostRequest<AdminDocument> req = new PostRequest<AdminDocument>();
@@ -371,7 +428,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(r);;
+                    Common.errorMessage(r); ;
                     return;
                 }
                 else
@@ -551,7 +608,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 DocumentNotesStore.Reload();
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
@@ -569,11 +626,24 @@ namespace AionHR.Web.UI.Forms
             FilldcStore();
             documentNotesPanel.Disabled = true;
             DocumentDuesGrid.Disabled = true;
+            DocumentTransfersGrid.Disabled = true;
             currentDocumentId.Text = "";
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
             this.EditRecordWindow.Show();
+        }
+        protected void AddNewTransfer(object sender, DirectEventArgs e)
+        {
+            
+            //Reset all values of the relative object
+            DocumentTransferForm.Reset();
+            FillDepartment();
+            seqNo.Text = "";
+            
+
+
+            this.DocumentTransferWindow.Show();
         }
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
@@ -588,13 +658,14 @@ namespace AionHR.Web.UI.Forms
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            ListRequest request = new ListRequest();
-
+            DocumentListRequest request = new DocumentListRequest();
+            request.Status = 0;
             request.Filter = "";
+            
             ListResponse<AdminDocument> routers = _administrationService.ChildGetAll<AdminDocument>(request);
             if (!routers.Success)
             {
-                 Common.errorMessage(routers);
+                Common.errorMessage(routers);
                 return;
             }
             this.Store1.DataSource = routers.Items;
@@ -607,7 +678,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             //GEtting the filter from the page
-         
+
             int totalCount = 1;
 
 
@@ -654,7 +725,7 @@ namespace AionHR.Web.UI.Forms
             if (string.IsNullOrEmpty(currentDocumentId.Text))
                 return;
             DocumentNoteListRequest req = new DocumentNoteListRequest();
-            req.documentId = Convert.ToInt32(currentDocumentId.Text); 
+            req.documentId = Convert.ToInt32(currentDocumentId.Text);
             ListResponse<AdminDocumentNote> notes = _administrationService.ChildGetAll<AdminDocumentNote>(req);
             if (!notes.Success)
                 X.Msg.Alert(Resources.Common.Error, notes.Summary).Show();
@@ -663,12 +734,41 @@ namespace AionHR.Web.UI.Forms
 
             this.DocumentNotesStore.DataBind();
         }
+        protected void documentsTransfersStore_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            if (string.IsNullOrEmpty(currentDocumentId.Text))
+                return;
+            DocumentTransfersListRequest req = new DocumentTransfersListRequest();
+            req.DocumentId = currentDocumentId.Text;
+            ListResponse<AdminDocTransfer> transfers = _administrationService.ChildGetAll<AdminDocTransfer>(req);
+            if (!transfers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, transfers.Summary).Show();
+                return;
+            }
+            this.documentsTransfersStore.DataSource = transfers.Items;
+            e.Total = transfers.count;
+
+            this.documentsTransfersStore.DataBind();
+        }
+
 
         protected void PoPuPDN(object sender, DirectEventArgs e)
         {
 
 
-             string seqNo= e.ExtraParams["seqNo"];
+            string seqNo = e.ExtraParams["seqNo"];
             string type = e.ExtraParams["type"];
             string index = e.ExtraParams["index"];
             string date = DateTime.Parse(e.ExtraParams["date"]).ToString("yyyyMMdd");
@@ -710,8 +810,69 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-        
-               protected void generateDocument(object sender, DirectEventArgs e)
+        protected void PoPuPDT(object sender, DirectEventArgs e)
+        {
+
+            string type = e.ExtraParams["type"];
+            string seqNo = e.ExtraParams["seqNo"];
+            string docId = e.ExtraParams["doId"];
+
+            switch (type)
+            {
+
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteDT('{0}','{1}')", seqNo, docId),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+                case "imgEdit":
+                    
+                    DocumentTransfersRecordRequest req = new DocumentTransfersRecordRequest();
+                    req.SeqNo = Convert.ToInt32(seqNo);
+                    req.DocumentId = Convert.ToInt32(currentDocumentId.Text);
+                    RecordResponse<AdminDocTransfer> resp = _administrationService.ChildGetRecord<AdminDocTransfer>(req);
+                    if(!resp.Success)
+
+                    {
+                        Common.errorMessage(resp);
+                        return;
+                    }
+                    DocumentTransferForm.SetValues(resp.result);
+                    employeeId.GetStore().Add(new object[]
+                           {
+                                new
+                                {
+                                    recordId = resp.result.employeeId,
+                                    fullName =resp.result.employeeName.fullName
+                                }
+                           });
+                    employeeId.SetValue(resp.result.employeeId);
+                    DocumentTransferWindow.Show();
+                    break;
+                case "colAttach":
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
+
+        protected void generateDocument(object sender, DirectEventArgs e)
         {
 
 
@@ -722,49 +883,50 @@ namespace AionHR.Web.UI.Forms
             GenerateAdminDocumentDue b = JsonConvert.DeserializeObject<GenerateAdminDocumentDue>(obj);
             b.amount = string.IsNullOrEmpty(GDDAmount.Text) ? 0 : Convert.ToDouble(GDDAmount.Text);
 
-            try { 
-         
-                    PostRequest<GenerateAdminDocumentDue> request = new PostRequest<GenerateAdminDocumentDue>();
-                    b.doId = currentDocumentId.Text;
-                    request.entity = b;
-                    PostResponse<GenerateAdminDocumentDue> r = _administrationService.ChildAddOrUpdate<GenerateAdminDocumentDue>(request);
+            try
+            {
+
+                PostRequest<GenerateAdminDocumentDue> request = new PostRequest<GenerateAdminDocumentDue>();
+                b.doId = currentDocumentId.Text;
+                request.entity = b;
+                PostResponse<GenerateAdminDocumentDue> r = _administrationService.ChildAddOrUpdate<GenerateAdminDocumentDue>(request);
 
 
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(r); ;
+                    return;
+                }
+                else
+                {
+
+
+                    //Display successful notification
+                    Notification.Show(new NotificationConfig
                     {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                       Common.errorMessage(r);;
-                        return;
-                    }
-                    else
-                    {
-                      
-
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordSavingSucc
+                    });
 
                     DocumentDueStore.Reload();
 
 
 
                 }
-                }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-                }
+            }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
 
 
-         
+
         }
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
@@ -798,7 +960,7 @@ namespace AionHR.Web.UI.Forms
                         {
                             //Show an error saving...
                             X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                           Common.errorMessage(r);;
+                            Common.errorMessage(r); ;
                             return;
                         }
                         else
@@ -818,6 +980,7 @@ namespace AionHR.Web.UI.Forms
 
                             documentNotesPanel.Disabled = false;
                             DocumentDuesGrid.Disabled = false;
+                            DocumentTransfersGrid.Disabled = false;
                             Store1.Reload();
 
 
@@ -850,7 +1013,7 @@ namespace AionHR.Web.UI.Forms
                         if (!r.Success)//it maybe another check
                         {
                             X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                           Common.errorMessage(r);;
+                            Common.errorMessage(r); ;
                             return;
                         }
                         else
@@ -890,75 +1053,76 @@ namespace AionHR.Web.UI.Forms
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             try
             {
-               
+
 
                 string obj = e.ExtraParams["values"];
                 string rowId = e.ExtraParams["rowId"];
                 string dayId = e.ExtraParams["dayId"];
                 AdminDocumentDue b = JsonConvert.DeserializeObject<AdminDocumentDue>(obj);
 
-               if ( b.dayIdDate == null )
+                if (b.dayIdDate == null)
                 {
                     return;
-                }else
-                    b.dayId=((DateTime)b.dayIdDate).ToString("yyyyMMdd");
-              
+                }
+                else
+                    b.dayId = ((DateTime)b.dayIdDate).ToString("yyyyMMdd");
+
                 b.rowId = rowId;
                 b.doId = currentDocumentId.Text;
 
-               
+
                 // Define the object to add or edit as null
 
-             
 
-                    try
+
+                try
+                {
+                    //New Mode
+                    //Step 1 : Fill The object and insert in the store 
+                    PostRequest<AdminDocumentDue> request = new PostRequest<AdminDocumentDue>();
+
+                    request.entity = b;
+                    PostResponse<AdminDocumentDue> r = _administrationService.ChildAddOrUpdate<AdminDocumentDue>(request);
+
+
+                    //check if the insert failed
+                    if (!r.Success)//it maybe be another condition
                     {
-                        //New Mode
-                        //Step 1 : Fill The object and insert in the store 
-                        PostRequest<AdminDocumentDue> request = new PostRequest<AdminDocumentDue>();
-
-                        request.entity = b;
-                        PostResponse<AdminDocumentDue> r = _administrationService.ChildAddOrUpdate<AdminDocumentDue>(request);
-
-
-                        //check if the insert failed
-                        if (!r.Success)//it maybe be another condition
-                        {
-                            //Show an error saving...
-                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            Common.errorMessage(r); ;
-                            return;
-                        }
-                        else
-                        {
+                        //Show an error saving...
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        Common.errorMessage(r); ;
+                        return;
+                    }
+                    else
+                    {
                         DocumentDueStore.Reload();
-                           
-                            //Add this record to the store 
-                         
 
-                            //Display successful notification
-                            Notification.Show(new NotificationConfig
-                            {
-                                Title = Resources.Common.Notification,
-                                Icon = Icon.Information,
-                                Html = Resources.Common.RecordSavingSucc
-                            });
+                        //Add this record to the store 
 
-                         
-                          
+
+                        //Display successful notification
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordSavingSucc
+                        });
+
+
+
                         documentDueWindow.Close();
 
-                        }
                     }
-                    catch (Exception ex)
-                    {
-                        //Error exception displaying a messsage box
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-                    }
+                }
+                catch (Exception ex)
+                {
+                    //Error exception displaying a messsage box
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                }
 
 
-               
+
                 //else
                 //{
                 //    //Update Mode
@@ -1009,6 +1173,120 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
             }
         }
+        protected void saveDocumentTransfer(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            try
+            {
+
+
+                string obj = e.ExtraParams["values"];
+                
+                AdminDocTransfer b = JsonConvert.DeserializeObject<AdminDocTransfer>(obj);
+
+               
+               
+                b.doId = Convert.ToInt32(currentDocumentId.Text);
+
+
+                // Define the object to add or edit as null
+
+
+
+                if(b.seqNo=="")
+                {
+                    b.apStatus = "1";
+                    //New Mode
+                    //Step 1 : Fill The object and insert in the store 
+                    PostRequest<AdminDocTransfer> request = new PostRequest<AdminDocTransfer>();
+
+                    request.entity = b;
+                    PostResponse<AdminDocTransfer> r = _administrationService.ChildAddOrUpdate<AdminDocTransfer>(request);
+
+                   
+                    //check if the insert failed
+                    if (!r.Success)//it maybe be another condition
+                    {
+                        //Show an error saving...
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        Common.errorMessage(r); ;
+                        return;
+                    }
+                    else
+                    {
+                        documentsTransfersStore.Reload();
+
+                        //Add this record to the store 
+
+
+                        //Display successful notification
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordSavingSucc
+                        });
+
+
+
+                        DocumentTransferWindow.Close();
+
+                    }
+                }
+
+
+
+                else
+                {
+                    //Update Mode
+
+                    try
+                    {
+                        //getting the id of the record
+                        PostRequest<AdminDocTransfer> request = new PostRequest<AdminDocTransfer>();
+                        request.entity = b;
+                        PostResponse<AdminDocTransfer> r = _administrationService.ChildAddOrUpdate<AdminDocTransfer>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+
+                        //Step 2 : saving to store
+
+                        //Step 3 :  Check if request fails
+                        if (!r.Success)//it maybe another check
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            Common.errorMessage(r); ;
+                            return;
+                        }
+                        else
+                        {
+                            
+                            documentsTransfersStore.Reload();
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordUpdatedSucc
+                            });
+                            this.DocumentTransferWindow.Close();
+
+
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+            }
+        }
 
         [DirectMethod]
         public string CheckSession()
@@ -1028,7 +1306,7 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-        
+
         protected void printBtn_Click(object sender, EventArgs e)
         {
             DocumentTypesReport p = GetReport();
@@ -1140,5 +1418,116 @@ namespace AionHR.Web.UI.Forms
             DocumentNotesStore.Reload();
             return new { valid = true };
         }
+
+
+        #region comboboxFilling
+        private void FillDepartment()
+        {
+            DepartmentListRequest departmentsRequest = new DepartmentListRequest();
+            departmentsRequest.type = 0;
+            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
+            if (!resp.Success)
+                Common.errorMessage(resp);
+            departmentStore.DataSource = resp.Items;
+            departmentStore.DataBind();
+        }
+        private string GetNameFormat()
+        {
+            string format = "";
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "nameFormat";
+            RecordResponse<KeyValuePair<string, string>> r = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!r.Success)
+            {
+                Common.errorMessage(r); ;
+                return null;
+            }
+            format = r.result.Value;
+            if (string.IsNullOrEmpty(r.result.Value))
+            {
+
+                PostRequest<KeyValuePair<string, string>> request = new PostRequest<KeyValuePair<string, string>>();
+                request.entity = new KeyValuePair<string, string>("nameFormat", "{firstName} {lastName}");
+                PostResponse<KeyValuePair<string, string>> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>>(request);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return null;
+                }
+                format = "{firstName} {lastName}";
+
+            }
+
+
+            string paranthized = format;
+            paranthized = paranthized.Replace('{', ' ');
+            paranthized = paranthized.Replace('}', ',');
+            paranthized = paranthized.Substring(0, paranthized.Length - 1);
+            paranthized = paranthized.Replace(" ", string.Empty);
+            return paranthized;
+
+        }
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+
+            req.DepartmentId = "0";
+
+            req.BranchId = "0";
+            req.IncludeIsInactive = 1;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "0";
+            req.Size = "20";
+            req.Filter = query;
+
+
+
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
+        [DirectMethod]
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        {
+
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+
+
+
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            if (data == null)
+                data = new List<Employee>();
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+            //};
+
+        }
+        protected void addDepartment(object sender, DirectEventArgs e)
+        {
+            Department dept = new Department();
+            dept.name = departmentId.Text;
+
+            PostRequest<Department> depReq = new PostRequest<Department>();
+            depReq.entity = dept;
+            PostResponse<Department> response = _companyStructureService.ChildAddOrUpdate<Department>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillDepartment();
+                departmentId.Select(dept.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                Common.errorMessage(response);
+                return;
+            }
+
+        }
+        #endregion
     }
 }

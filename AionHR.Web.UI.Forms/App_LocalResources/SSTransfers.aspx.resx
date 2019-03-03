@@ -117,98 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Document Category Info </value>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
   </data>
-  <data name="binNo" xml:space="preserve">
-    <value>binNo</value>
-  </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Document Category</value>
-  </data>
-  <data name="FieldBusinessPartner" xml:space="preserve">
-    <value>Business Partner</value>
-  </data>
-  <data name="FieldDocumentCategory" xml:space="preserve">
-    <value>Document Category</value>
-  </data>
-  <data name="FieldExpiryDate" xml:space="preserve">
-    <value>Expiry Date</value>
-  </data>
-  <data name="FieldIssueDate" xml:space="preserve">
-    <value>Issue Date</value>
-  </data>
-  <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="FieldNotes" xml:space="preserve">
-    <value>Notes</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
-  <data name="FieldRef" xml:space="preserve">
-    <value>Ref</value>
-  </data>
-  <data name="intName" xml:space="preserve">
-    <value>Int Name</value>
-  </data>
-  <data name="oDocRef" xml:space="preserve">
-    <value>oDocRef</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>Document Category</value>
-  </data>
-  <data name="Fieldlanguage" xml:space="preserve">
-    <value>language</value>
-  </data>
-  <data name="DNGridTitle" xml:space="preserve">
-    <value>Document Notes</value>
-  </data>
-  <data name="FieldDNStatus" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="DocumentDuesWindowTitle" xml:space="preserve">
-    <value>Document Dues</value>
-  </data>
-  <data name="FieldCount" xml:space="preserve">
-    <value>Count</value>
-  </data>
-  <data name="FieldFrequency" xml:space="preserve">
-    <value>Frequency</value>
-  </data>
-  <data name="FieldStartingDate" xml:space="preserve">
-    <value>Starting Date</value>
-  </data>
-  <data name="DAILY" xml:space="preserve">
-    <value>Daily</value>
-  </data>
-  <data name="FieldDueDate" xml:space="preserve">
-    <value>Due Date</value>
-  </data>
-  <data name="HALF_YEALRY" xml:space="preserve">
-    <value>Half Yearly</value>
-  </data>
-  <data name="MONTHLY" xml:space="preserve">
-    <value>Monthly</value>
-  </data>
-  <data name="QUARTERLY" xml:space="preserve">
-    <value>Quarterly</value>
-  </data>
-  <data name="WEEKLY" xml:space="preserve">
-    <value>Weekly</value>
-  </data>
-  <data name="YEARLY" xml:space="preserve">
-    <value>Yearly</value>
-  </data>
-  <data name="FieldAmount" xml:space="preserve">
-    <value>Amount</value>
+  <data name="Approved" xml:space="preserve">
+    <value>Approved</value>
   </data>
   <data name="Department" xml:space="preserve">
     <value>Department</value>
   </data>
   <data name="DocumentsTransfers" xml:space="preserve">
     <value>Transfers</value>
+  </data>
+  <data name="DocumentTransferWindow" xml:space="preserve">
+    <value>Document Transfer</value>
   </data>
   <data name="Employee" xml:space="preserve">
     <value>Employee</value>
@@ -219,7 +141,13 @@
   <data name="FieldStatus" xml:space="preserve">
     <value>Status</value>
   </data>
-  <data name="DocumentTransferWindow" xml:space="preserve">
-    <value>Document Transfer</value>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Refused" xml:space="preserve">
+    <value>Refused</value>
+  </data>
+  <data name="FieldNotes" xml:space="preserve">
+    <value>Notes</value>
   </data>
 </root>

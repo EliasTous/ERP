@@ -58,5 +58,54 @@ public class TemplateBodyListReuqest:ListRequest
             }
         }
     }
-   
+    public class DocumentTransfersRecordRequest : RecordRequest
+    {
+        public int DocumentId { get; set; }
+        public int SeqNo { get; set; }
+        
+        public override Dictionary<string, string> Parameters
+        {
+            get
+            {
+                parameters = base.Parameters;
+                parameters.Add("_doId", DocumentId.ToString());
+                parameters.Add("_seqNo", SeqNo.ToString());
+
+                return parameters;
+            }
+        }
+    }
+    public class DocumentTransfersListRequest:ListRequest
+    {
+        public string DocumentId { get; set; }
+
+        public override Dictionary<string, string> Parameters
+        {
+            get
+            {
+                parameters = new Dictionary<string, string>();
+                parameters.Add("_employeeId", "0");
+                parameters.Add("_doId", DocumentId);
+                parameters.Add("_apStatus", "0");
+                return parameters;
+
+            }
+        }
+    }
+    public class DocumentListRequest : ListRequest
+    {
+        public int Status { get; set; }
+
+        public override Dictionary<string, string> Parameters
+        {
+            get
+            {
+                parameters = new Dictionary<string, string>();
+                
+                parameters.Add("_statusId", Status.ToString());
+                return parameters;
+
+            }
+        }
+    }
 }

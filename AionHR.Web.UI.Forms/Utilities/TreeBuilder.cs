@@ -476,7 +476,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node PY = BuildLeafNode("PY", Resources.Common.Payroll, "UserComment", true, ss);
             Ext.Net.Node TimeApprovals = BuildLeafNode("TimeApprovals", Resources.Common.TimeApprovalsSelfService, "UserComment", true, ss);
             Ext.Net.Node RP = BuildLeafNode("RP", Resources.Common.ChangePassword, "UserComment", true, ss);
-
+            Ext.Net.Node TR = BuildLeafNode("TR", Resources.Common.PendingTransfers, "ArrowSwitchBluegreen", true, ss);
 
 
 
@@ -492,6 +492,8 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(PY, "PayrollsSelfServices", "PayrollGenerationSelfServices.aspx", Resources.Common.Payroll, "icon-Employees", "1");
             FillConfigItem(RP, "SelfServiceResetPasswords", "SelfServiceResetPasswords.aspx", Resources.Common.ChangePassword, "icon-Employees", "1");
             FillConfigItem(TimeApprovals, "TimeApprovalsSelfServices", "TimeApprovalsSelfServices.aspx", Resources.Common.TimeApprovalsSelfService, "icon-Employees", "1");
+            FillConfigItem(TR, "TR", "SSTransfers.aspx", Resources.Common.PendingTransfers, "ArrowSwitchBluegreen", "1");
+
 
             nodes.Add(rootParent);
             return nodes;

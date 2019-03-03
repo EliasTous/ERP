@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure.Configuration;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model;
 using AionHR.Model.Attendance;
 using AionHR.Model.Dashboard;
 using AionHR.Model.Employees.Leaves;
@@ -45,6 +46,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(DashBoardTimeVariation), "qryTV");
             ChildGetAllLookup.Add(typeof(PayrollEntitlementDeduction), "qryED");
             ChildGetAllLookup.Add(typeof(PayrollSocialSecurity), "qryES");
+            ChildGetAllLookup.Add(typeof(AdminDocTransfer), "qryTR");
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");
             ChildGetLookup.Add(typeof(EmployeeComplaintSelfService), "getCO");
@@ -71,7 +73,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(EmployeeEmergencyContact), "setEC");
             ChildAddOrUpdateLookup.Add(typeof(DashBoardTimeVariation), "setTV");
             ChildAddOrUpdateLookup.Add(typeof(AttendanceShift), "setAS");
-            
+            ChildAddOrUpdateLookup.Add(typeof(AdminDocTransfer), "setTR");
 
             ChildDeleteLookup.Add(typeof(MyInfo), "delEM");
             ChildDeleteLookup.Add(typeof(EmployeeComplaintSelfService), "delCO");
