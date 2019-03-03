@@ -204,4 +204,19 @@
   <data name="FieldAmount1" xml:space="preserve">
     <value>الكمية</value>
   </data>
+  <data name="Department" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="DocumentsTransfers" xml:space="preserve">
+    <value>التنقلات</value>
+  </data>
+  <data name="DocumentTransferWindow" xml:space="preserve">
+    <value>تنقلات الملف</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
 </root>
