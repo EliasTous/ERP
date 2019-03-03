@@ -1428,4 +1428,7 @@
   <data name="Yes" xml:space="preserve">
     <value>Oui</value>
   </data>
+  <data name="PendingTransfers" xml:space="preserve">
+    <value>Documents Transfers</value>
+  </data>
 </root>

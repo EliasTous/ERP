@@ -53,7 +53,7 @@
        function removethousandSeparator() {
          
           
-           App.amount.setValue(App.amount.getValue().replace(/\D/g, ''));
+         
            App.ldValue.setValue(App.ldValue.getValue().replace(/\D/g, ''));
           
          
@@ -64,7 +64,7 @@
         }
         function validateLdValue(value)
        {
-            alert(parseFloat(App.amount.getValue().replace(/\D/g, '')));
+           
             if (App.ldMethod.getValue() != null) {
                 if (value != null) {
                     value = value.replace(/\D/g, '');
@@ -613,7 +613,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:NumberField  ID="amount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount" AllowDecimals="true" >
+                                <ext:NumberField  ID="amount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount" AllowDecimals="true"  DecimalPrecision="2">
 
                                  
                                     <Validator Handler="return   this.value>0;" />
