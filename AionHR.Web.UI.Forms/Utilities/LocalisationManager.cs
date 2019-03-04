@@ -28,7 +28,7 @@ namespace AionHR.Web.UI.Forms.Utilities
         public void SetArabicLocalisation()
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("ar");
-            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("ar");
+            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en");
         }
 
         /// <summary>
