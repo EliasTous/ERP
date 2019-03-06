@@ -540,6 +540,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node businessPartnerCategory = BuildLeafNode("BusinessPartnerCategories", Resources.Common.BusinessPartnerCategory, "Building", true, adminBusiness);
             Ext.Net.Node businessPartner = BuildLeafNode("businessPartneres", Resources.Common.BusinessPartner, "Building", true, adminBusiness);
             Ext.Net.Node DocumentCategory = BuildLeafNode("DocumentCategories", Resources.Common.DocumentCategory, "Building", true, adminDocument);
+            Ext.Net.Node DocumentNavigation = BuildLeafNode("DocumentNavigation", "Document Navigation", "Building", true, adminDocument);
             Ext.Net.Node Document = BuildLeafNode("AdminDocuments", Resources.Common.Documents, "Building", true, adminDocument);
             Ext.Net.Node Asset = BuildLeafNode("AssetManagementAssets", Resources.Common.Assets, "Building", true, adminAssetManagement);
             Ext.Net.Node AssetManagementPurchaseOrder = BuildLeafNode("AssetManagementPurchaseOrders", Resources.Common.PurchaseOrders, "Building", true, adminAssetManagement);
@@ -551,6 +552,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(businessPartner, "businessPartneres", "BusinessPartneres.aspx", Resources.Common.BusinessPartner, "icon-Employees", "1");
             FillConfigItem(DocumentCategory, "DocumentCategories", "DocumentCategories.aspx", Resources.Common.DocumentCategory, "icon-Employees", "1");
             FillConfigItem(Document, "AdminDocuments", "AdminDocuments.aspx", Resources.Common.Documents, "icon-Employees", "1");
+            FillConfigItem(DocumentNavigation, "DocumentNavigation", "AdminDocNav.aspx", Resources.Common.Documents, "icon-Employees", "1");
             FillConfigItem(Asset, "AssetManagementAssets", "AssetManagementAssets.aspx", Resources.Common.Assets, "icon-Employees", "1");
             FillConfigItem(AssetManagementPurchaseOrder, "AssetManagementPurchaseOrders", "AssetManagementPurchaseOrders.aspx", Resources.Common.PurchaseOrders, "icon-Employees", "1");
             FillConfigItem(AssetManagementOnboarding, "AssetManagementOnboarding", "AssetManagementOnboardings.aspx", Resources.Common.Onboarding, "icon-Employees", "1");

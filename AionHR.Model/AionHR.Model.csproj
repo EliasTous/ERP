@@ -49,6 +49,7 @@
     <Compile Include="AdminTemplates\AdminDocTransfer.cs" />
     <Compile Include="AdminTemplates\AdminDocument.cs" />
     <Compile Include="AdminTemplates\AdminDocumentDue.cs" />
+    <Compile Include="AdminTemplates\AdminDocumentDX.cs" />
     <Compile Include="AdminTemplates\AdminDocumentNote.cs" />
     <Compile Include="AdminTemplates\AdTemplate.cs" />
     <Compile Include="AdminTemplates\BusinessPartner.cs" />

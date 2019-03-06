@@ -231,12 +231,12 @@ namespace AionHR.Infrastructure.Session
             headers.Add("Authorization", "Basic " + Get("key"));
             headers.Add("AccountId", "" + Get("AccountId"));
             headers.Add("UserId", Get("UserId").ToString());
-           
-                if (Get("Language").ToString() == "en")
-                    headers.Add("LanguageId", "1");
-                else
-                    headers.Add("LanguageId", "2");
-            
+            switch(Get("Language"))
+            {
+                case "en": headers.Add("LanguageId", "1"); break;
+                case "ar": headers.Add("LanguageId", "2"); break;
+                case "fr": headers.Add("LanguageId", "3"); break;
+            }
             
             return headers;
         }

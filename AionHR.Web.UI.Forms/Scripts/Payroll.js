@@ -10,7 +10,9 @@ var attachRender = function () {
     return '<img class="imgAttach"  style="cursor:pointer;" src="../Images/Tools/attach.png" />';
 };
 
-
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 var commandName;
 var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
 
@@ -240,11 +242,12 @@ function ChangeFinalAmount(amountOffset) {
 function ReCalculateFinal()
 
 {
+   
     
-    var x = App.eAmount.getValue() - App.dAmount.getValue() + parseFloat(App.BasicSalary.getValue());
+    var x = parseFloat(App.eAmount.getValue().replace(/,/g, '')) - parseFloat(App.dAmount.getValue().replace(/,/g, '')) + parseFloat(App.BasicSalary.getValue().replace(/,/g, ''));
+   //alert("final is" + x);
     
-  
-    App.finalAmount.setValue(parseFloat(x));
+    App.finalAmount.setValue(numberWithCommas(parseFloat(x).toFixed(2)));
    
 }
 function ChangeEntitlementsAmount(amountOffset) {
@@ -258,14 +261,14 @@ function ChangeEntitlementsAmount(amountOffset) {
             sum += parseFloat(record.data['fixedAmount']);
         else {
 
-            x = (record.data['pct'] / 100) * parseFloat(App.BasicSalary.getValue());
+            x = (record.data['pct'] / 100) * parseFloat(App.BasicSalary.getValue().replace(/,/g, ''));
            
             record.set('fixedAmount', x);
             record.commit();
             sum += x;
         }
     });
-    
+    //alert("entitlements are " + sum);
     App.eAmount.setValue(sum);
     ChangeDeductionsAmount(0);
     ReCalculateFinal();
@@ -283,16 +286,16 @@ function ChangeDeductionsAmount(amountOffset) {
             sum += record.data['fixedAmount'];
         else {
             if (record.data['pctOf'] == '1')
-                x = (record.data['pct'] / 100) * parseFloat(App.BasicSalary.getValue());
+                x = (record.data['pct'] / 100) * parseFloat(App.BasicSalary.getValue().replace(/,/g, ''));
             else
-                x = (record.data['pct'] / 100) * ( parseFloat(App.BasicSalary.getValue())+ parseFloat(App.eAmount.value));
+                x = (record.data['pct'] / 100) * (parseFloat(App.BasicSalary.getValue().replace(/,/g, '')) + parseFloat(App.eAmount.value.replace(/,/g, '')));
             record.set('fixedAmount', x);
             record.commit();
             sum += x;
 
         }
     });
-   
+    //alert("deductions are " + sum);
     App.dAmount.setValue(sum);
     ReCalculateFinal();
 }
