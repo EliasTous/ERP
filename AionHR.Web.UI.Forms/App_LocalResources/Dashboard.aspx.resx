@@ -732,4 +732,7 @@
   <data name="rejectAll" xml:space="preserve">
     <value>Reject All</value>
   </data>
+  <data name="PurchasesApproval" xml:space="preserve">
+    <value>Purchase orders</value>
+  </data>
 </root>

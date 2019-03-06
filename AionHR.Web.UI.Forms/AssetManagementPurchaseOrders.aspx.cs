@@ -98,6 +98,7 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
                 FillBranch();
+                currentPurchaseOrderId.Text = "";
 
             }
 
@@ -159,8 +160,9 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
-
+            panelRecordDetails.ActiveIndex = 0;
             int id = Convert.ToInt32(e.ExtraParams["id"]);
+            currentPurchaseOrderId.Text = id.ToString();
             FillBranch();
             string type = e.ExtraParams["type"];
             switch (type)
@@ -348,10 +350,11 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-
+            panelRecordDetails.ActiveIndex = 0;
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             FillBranch();
+            currentPurchaseOrderId.Text = "";
             date.SelectedDate  = DateTime.Now;
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
            
@@ -536,15 +539,73 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-       
 
-       
-      
-      
 
-       
-       
-       
+
+
+
+        protected void ApprovalsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            AssetManagementPurchaseOrderApprovalListRequest req = new AssetManagementPurchaseOrderApprovalListRequest();
+            req.PurchaseOrderId = currentPurchaseOrderId.Text;
+          
+            if (string.IsNullOrEmpty(req.PurchaseOrderId))
+            {
+                ApprovalStore.DataSource = new List<AssetManagementPurchaseOrderApproval>();
+                ApprovalStore.DataBind();
+            }
+            req.approverId = 0;
+            req.BranchId = 0;
+            req.DepartmentId = 0;
+            req.DivisionId = 0;
+            req.EmployeeId = 0;
+            req.Status = 0;
+            req.Filter = "";
+            req.PositionId = 0;
+            req.EsId = 0;
+
+            req.SortBy = "recordId";
+
+
+
+
+
+            req.Size = "1000";
+            req.StartAt = "0";
+            ListResponse<AssetManagementPurchaseOrderApproval> response = _assetManagementService.ChildGetAll<AssetManagementPurchaseOrderApproval>(req);
+
+            if (!response.Success)
+            {
+                Common.errorMessage(response);
+                return;
+            }
+            response.Items.ForEach(x =>
+            {
+
+                switch (x.status)
+                {
+                    case 1:
+                        x.statusString = StatusNew.Text;
+                        break;
+                    case 2:
+                        x.statusString = StatusApproved.Text;
+                        ;
+                        break;
+
+
+                    case -1:
+                        x.statusString = StatusRejected.Text;
+
+                        break;
+                }
+            }
+          );
+            ApprovalStore.DataSource = response.Items;
+            ApprovalStore.DataBind();
+        }
+
+
+
 
 
 
