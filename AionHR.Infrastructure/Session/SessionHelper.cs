@@ -231,7 +231,8 @@ namespace AionHR.Infrastructure.Session
             headers.Add("Authorization", "Basic " + Get("key"));
             headers.Add("AccountId", "" + Get("AccountId"));
             headers.Add("UserId", Get("UserId").ToString());
-            switch(Get("Language"))
+            
+            switch(Get("Language").ToString())
             {
                 case "en": headers.Add("LanguageId", "1"); break;
                 case "ar": headers.Add("LanguageId", "2"); break;
