@@ -43,7 +43,7 @@ namespace AionHR.Web.UI.Forms.Utilities
         public void SetFrenchLocalisation()
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr-FR");
-            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
+            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en");
         }
     }
 }
