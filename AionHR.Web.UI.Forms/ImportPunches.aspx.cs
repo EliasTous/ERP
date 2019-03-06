@@ -331,7 +331,22 @@ namespace AionHR.Web.UI.Forms
             HttpContext.Current.Response.AddHeader("content-disposition", attachment);
             HttpContext.Current.Response.ContentType = "application/octet-stream";
             HttpContext.Current.Response.AddHeader("Pragma", "public");
-            string content;
+            string content = "";
+            PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
+            BatchOperationStatus batch = new BatchOperationStatus();
+            batch.classId = ClassId.TAIM;
+            batch.status = 0;
+            batch.processed = 0;
+            batch.tableSize = 0;
+            req.entity = batch;
+            PostResponse<BatchOperationStatus> resp = _systemService.ChildAddOrUpdate<BatchOperationStatus>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                Common.errorMessage(resp);
+
+            }
+            Viewport1.ActiveIndex = 0;
             try
             {
                 content = File.ReadAllText(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + ClassId.TAIM.ToString() + ".txt"));
@@ -345,23 +360,10 @@ namespace AionHR.Web.UI.Forms
                 return;
 
             }
+          
             HttpContext.Current.Response.ClearContent();
             HttpContext.Current.Response.Write(content);
-            PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
-            BatchOperationStatus batch = new BatchOperationStatus();
-            batch.classId = ClassId.TAIM ;
-            batch.status = 0;
-            batch.processed = 0;
-            batch.tableSize = 0;
-            req.entity = batch;
-            PostResponse<BatchOperationStatus> resp = _systemService.ChildAddOrUpdate<BatchOperationStatus>(req);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-               Common.errorMessage(resp);
-                return;
-            }
-            Viewport1.ActiveIndex = 0;
+            
             HttpContext.Current.Response.Flush();
             this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID);
             Response.Close();
