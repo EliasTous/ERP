@@ -296,9 +296,9 @@ namespace AionHR.Web.UI.Forms
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             HtmlLink css = new HtmlLink();
             if (rtl)
-                css.Href = "CSS/HeaderInsideAR.css?id=1";
+                css.Href = "CSS/HeaderInsideAR.css?id=10";
             else
-                css.Href = "CSS/HeaderInside.css";
+                css.Href = "CSS/HeaderInside.css?id=20";
 
             css.Attributes["rel"] = "stylesheet";
             css.Attributes["type"] = "text/css";

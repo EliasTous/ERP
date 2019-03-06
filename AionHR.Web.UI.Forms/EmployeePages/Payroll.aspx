@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
-    <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Payroll.js?id=250"></script>
-    <script type="text/javascript" src="../Scripts/common.js?id=97"></script>
+    <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=2" />
+    <link rel="stylesheet" href="../CSS/LiveSearch.css?id=123" />
+    <script type="text/javascript" src="../Scripts/Payroll.js?id=123"></script>
+    <script type="text/javascript" src="../Scripts/common.js?id=12"></script>
     <script type="text/javascript">
         
         String.prototype.replaceAll = function(search, replacement) {
