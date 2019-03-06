@@ -95,7 +95,7 @@ namespace AionHR.Web.UI.Forms
 
                 ColdayIdDate.Format = dayIdDate.Format = ColissueDate.Format = ColexpiryDate.Format = _systemService.SessionHelper.GetDateformat();
                 FillDepartment();
-                
+
             }
 
         }
@@ -195,6 +195,8 @@ namespace AionHR.Web.UI.Forms
                     documentNotesPanel.Disabled = false;
                     DocumentDuesGrid.Disabled = false;
                     DocumentTransfersGrid.Disabled = false;
+                    DXGrid.Disabled = false;
+
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
@@ -373,10 +375,10 @@ namespace AionHR.Web.UI.Forms
                 AdminDocTransfer n = new AdminDocTransfer();
 
                 n.notes = "";
-                
+
                 n.doId = Convert.ToInt32(currentDocumentId.Text);
                 n.seqNo = seqNo;
-                
+
                 PostRequest<AdminDocTransfer> req = new PostRequest<AdminDocTransfer>();
                 req.entity = n;
                 PostResponse<AdminDocTransfer> res = _administrationService.ChildDelete<AdminDocTransfer>(req);
@@ -391,6 +393,54 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Step 2 :  remove the object from the store
                     documentsTransfersStore.Reload();
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+        [DirectMethod]
+        public void DeleteDX(string seqNo, string docId)
+        {
+
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                AdminDocumentDX n = new AdminDocumentDX();
+
+
+
+                n.doId = Convert.ToInt32(currentDocumentId.Text);
+                n.seqNo = seqNo;
+
+                PostRequest<AdminDocumentDX> req = new PostRequest<AdminDocumentDX>();
+                req.entity = n;
+                PostResponse<AdminDocumentDX> res = _administrationService.ChildDelete<AdminDocumentDX>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    DXStore.Reload();
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
@@ -627,6 +677,7 @@ namespace AionHR.Web.UI.Forms
             documentNotesPanel.Disabled = true;
             DocumentDuesGrid.Disabled = true;
             DocumentTransfersGrid.Disabled = true;
+            DXGrid.Disabled = true;
             currentDocumentId.Text = "";
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
@@ -635,17 +686,27 @@ namespace AionHR.Web.UI.Forms
         }
         protected void AddNewTransfer(object sender, DirectEventArgs e)
         {
-            
+
             //Reset all values of the relative object
             DocumentTransferForm.Reset();
             FillDepartment();
             seqNo.Text = "";
-            
+
 
 
             this.DocumentTransferWindow.Show();
         }
+        protected void AddDX(object sender, DirectEventArgs e)
+        {
+            DXForm.Reset();
 
+            DXseqNo.Text = "";
+
+
+
+            this.DXWindow.Show();
+
+        }
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
@@ -661,7 +722,7 @@ namespace AionHR.Web.UI.Forms
             DocumentListRequest request = new DocumentListRequest();
             request.Status = 0;
             request.Filter = "";
-            
+
             ListResponse<AdminDocument> routers = _administrationService.ChildGetAll<AdminDocument>(request);
             if (!routers.Success)
             {
@@ -762,7 +823,33 @@ namespace AionHR.Web.UI.Forms
 
             this.documentsTransfersStore.DataBind();
         }
+        protected void DXStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            string filter = string.Empty;
+            int totalCount = 1;
 
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            if (string.IsNullOrEmpty(currentDocumentId.Text))
+                return;
+            DocumentDXListRequest req = new DocumentDXListRequest();
+
+            req.DocumentId = currentDocumentId.Text;
+            ListResponse<AdminDocumentDX> transfers = _administrationService.ChildGetAll<AdminDocumentDX>(req);
+            if (!transfers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, transfers.Summary).Show();
+                return;
+            }
+            List<AdminDocumentDX> SortedList = transfers.Items.OrderBy(x => x.priority).ToList();
+            this.DXStore.DataSource = SortedList;
+            e.Total = transfers.count;
+            this.CurrentDXCount.Text = transfers.count.ToString();
+            this.DXStore.DataBind();
+        }
 
         protected void PoPuPDN(object sender, DirectEventArgs e)
         {
@@ -838,12 +925,12 @@ namespace AionHR.Web.UI.Forms
                     }).Show();
                     break;
                 case "imgEdit":
-                    
+
                     DocumentTransfersRecordRequest req = new DocumentTransfersRecordRequest();
                     req.SeqNo = Convert.ToInt32(seqNo);
                     req.DocumentId = Convert.ToInt32(currentDocumentId.Text);
                     RecordResponse<AdminDocTransfer> resp = _administrationService.ChildGetRecord<AdminDocTransfer>(req);
-                    if(!resp.Success)
+                    if (!resp.Success)
 
                     {
                         Common.errorMessage(resp);
@@ -860,6 +947,60 @@ namespace AionHR.Web.UI.Forms
                            });
                     employeeId.SetValue(resp.result.employeeId);
                     DocumentTransferWindow.Show();
+                    break;
+                case "colAttach":
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
+
+        protected void PoPuPDX(object sender, DirectEventArgs e)
+        {
+
+            string type = e.ExtraParams["type"];
+            string seqNo = e.ExtraParams["seqNo"];
+            string docId = e.ExtraParams["doId"];
+            string description = e.ExtraParams["description"];
+            string priority = e.ExtraParams["priority"];
+            string isDone = e.ExtraParams["isDone"];
+            switch (type)
+            {
+
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteDX('{0}','{1}')", seqNo, docId),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+                case "imgEdit":
+
+                    DXForm.Reset();
+                    AdminDocumentDX d = new AdminDocumentDX();
+                    d.seqNo = seqNo;
+                    d.description = description;
+
+                    d.isDone = isDone == "true";
+                    d.priority = Convert.ToInt32(priority);
+
+
+                    DXForm.SetValues(d);
+                    DXWindow.Show();
                     break;
                 case "colAttach":
 
@@ -1183,11 +1324,11 @@ namespace AionHR.Web.UI.Forms
 
 
                 string obj = e.ExtraParams["values"];
-                
+
                 AdminDocTransfer b = JsonConvert.DeserializeObject<AdminDocTransfer>(obj);
 
-               
-               
+
+
                 b.doId = Convert.ToInt32(currentDocumentId.Text);
 
 
@@ -1195,7 +1336,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-                if(b.seqNo=="")
+                if (b.seqNo == "")
                 {
                     b.apStatus = "1";
                     //New Mode
@@ -1205,7 +1346,7 @@ namespace AionHR.Web.UI.Forms
                     request.entity = b;
                     PostResponse<AdminDocTransfer> r = _administrationService.ChildAddOrUpdate<AdminDocTransfer>(request);
 
-                   
+
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
                     {
@@ -1260,7 +1401,7 @@ namespace AionHR.Web.UI.Forms
                         }
                         else
                         {
-                            
+
                             documentsTransfersStore.Reload();
                             Notification.Show(new NotificationConfig
                             {
@@ -1269,6 +1410,122 @@ namespace AionHR.Web.UI.Forms
                                 Html = Resources.Common.RecordUpdatedSucc
                             });
                             this.DocumentTransferWindow.Close();
+
+
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+            }
+        }
+        protected void SaveDX(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            try
+            {
+
+
+                string obj = e.ExtraParams["values"];
+
+                AdminDocumentDX b = JsonConvert.DeserializeObject<AdminDocumentDX>(obj);
+
+
+
+                b.doId = Convert.ToInt32(currentDocumentId.Text);
+
+
+                // Define the object to add or edit as null
+
+
+
+                if (b.seqNo == "")
+                {
+                    b.priority = Convert.ToInt32(CurrentDXCount.Text) + 1;
+                    //New Mode
+                    //Step 1 : Fill The object and insert in the store 
+                    PostRequest<AdminDocumentDX> request = new PostRequest<AdminDocumentDX>();
+
+                    request.entity = b;
+                    PostResponse<AdminDocumentDX> r = _administrationService.ChildAddOrUpdate<AdminDocumentDX>(request);
+
+
+                    //check if the insert failed
+                    if (!r.Success)//it maybe be another condition
+                    {
+                        //Show an error saving...
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        Common.errorMessage(r); ;
+                        return;
+                    }
+                    else
+                    {
+                        DXStore.Reload();
+
+                        //Add this record to the store 
+
+
+                        //Display successful notification
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordSavingSucc
+                        });
+
+
+
+                        DXWindow.Close();
+
+                    }
+                }
+
+
+
+                else
+                {
+                    //Update Mode
+
+                    try
+                    {
+                        //getting the id of the record
+
+                        PostRequest<AdminDocumentDX> request = new PostRequest<AdminDocumentDX>();
+                        request.entity = b;
+
+                        PostResponse<AdminDocumentDX> r = _administrationService.ChildAddOrUpdate<AdminDocumentDX>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+
+                        //Step 2 : saving to store
+
+                        //Step 3 :  Check if request fails
+                        if (!r.Success)//it maybe another check
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            Common.errorMessage(r); ;
+                            return;
+                        }
+                        else
+                        {
+
+                            DXStore.Reload();
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordUpdatedSucc
+                            });
+                            this.DXWindow.Close();
 
 
                         }
@@ -1528,6 +1785,32 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+
         #endregion
+
+
+
+        protected void SaveDXGrid(object sender, DirectEventArgs e)
+        {
+            string itemsString = e.ExtraParams["items"];
+            List<AdminDocumentDX> items = JsonConvert.DeserializeObject<List<AdminDocumentDX>>(itemsString);
+            for (int i = 0; i < items.Count; i++)
+            {
+                items[i].priority = i + 1;
+
+            }
+
+            PostRequest<AdminDocumentDX[]> req2 = new PostRequest<AdminDocumentDX[]>();
+            req2.entity = items.ToArray<AdminDocumentDX>();
+            PostResponse<AdminDocumentDX[]> resp2 = _administrationService.ChildAddOrUpdate<AdminDocumentDX[]>(req2);
+            if (!resp2.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                Common.errorMessage(resp2); ;
+                return;
+            }
+            DXStore.Reload();
+
+        }
     }
 }

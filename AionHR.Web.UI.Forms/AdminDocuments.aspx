@@ -67,6 +67,8 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="currentDocumentId" runat="server" />
+        <ext:Hidden ID="CurrentDXCount" runat="server" />
+        <ext:Hidden ID="isDrag" runat="server" />
 
         <ext:Store
             ID="Store1"
@@ -842,11 +844,11 @@
                                                 <Click Handler="CheckSession();" />
 
                                             </Listeners>
-                                              <DirectEvents>
-                                        <Click OnEvent="AddNewTransfer">
-                                            <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
-                                        </Click>
-                                    </DirectEvents>
+                                            <DirectEvents>
+                                                <Click OnEvent="AddNewTransfer">
+                                                    <EventMask ShowMask="true" CustomTarget="={#{DocumentTransfersGrid}.body}" />
+                                                </Click>
+                                            </DirectEvents>
                                         </ext:Button>
 
                                     </Items>
@@ -918,6 +920,172 @@
 
                             <SelectionModel>
                                 <ext:RowSelectionModel ID="rowSelectionModel3" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                            </SelectionModel>
+                        </ext:GridPanel>
+                         <ext:GridPanel
+                            ID="DXGrid"
+                            runat="server"
+                            PaddingSpec="0 0 1 0"
+                            Header="false"
+                            Title="<%$ Resources: DocumentsDX %>"
+                            Layout="FitLayout"
+                            Scroll="Vertical"
+                            Border="false"
+                            Icon="CheckError"
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                            <Store>
+                                <ext:Store
+                                    ID="DXStore"
+                                    runat="server"
+                                    RemoteSort="False"
+                                    RemoteFilter="true"
+                                    PageSize="50" IDMode="Explicit" Namespace="App" OnReadData="DXStore_ReadData">
+                                    <%--  <Proxy>
+                                <ext:PageProxy>
+                                    <Listeners>
+                                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                                    </Listeners>
+                                </ext:PageProxy>
+                            </Proxy>--%>
+                                    <Model>
+                                        <ext:Model ID="Model5" runat="server" IDProperty="seqNo">
+                                            <Fields>
+
+
+                                                <ext:ModelField Name="seqNo" />
+                                                <ext:ModelField Name="priority" />
+                                                <ext:ModelField Name="description" />
+                                                <ext:ModelField Name="isDone" />
+                                                <ext:ModelField Name="doId" />
+                                                  </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                    <Sorters>
+                                
+                            </Sorters>
+                                </ext:Store>
+                            </Store>
+                            <TopBar>
+                                <ext:Toolbar ID="Toolbar9" runat="server" ClassicButtonStyle="false">
+                                    <Items>
+                                        <ext:Button ID="Button5" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();" />
+
+                                            </Listeners>
+                                            <DirectEvents>
+                                                <Click OnEvent="AddDX">
+                                                    <EventMask ShowMask="true" CustomTarget="={#{DXGrid}.body}" />
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                            <ext:Button ID="dxSaveBtn" runat="server" Icon="Disk" Disabled="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession(); App.dxSaveBtn.setDisabled(true);" />
+                                                
+                                            </Listeners>
+                                            <DirectEvents>
+                                                <Click OnEvent="SaveDXGrid" Failure="App.dxSaveBtn.setDisabled(false);">
+                                                    
+                                                    <EventMask ShowMask="true" CustomTarget="={#{DXGrid}.body}" />
+                                                    <ExtraParams>
+                                                      <ext:Parameter Name="items" Value="Ext.encode(#{DXGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />
+                                                    </ExtraParams>
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </Items>
+                                </ext:Toolbar>
+
+                            </TopBar>
+
+                            <ColumnModel ID="ColumnModel5" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                <Columns>
+                                     <ext:WidgetColumn ID="WidgetColumn1" MenuDisabled="true"  runat="server" Text="<%$ Resources: Done %>" DataIndex="isDone" Hideable="false" Width="75" Align="Center">
+                                <Widget>
+                                    <ext:Checkbox runat="server" Name="isDone"  ID="isDoneChk">
+                                        <Listeners>
+                                            
+                                         <Change Handler="var rec = this.getWidgetRecord(); rec.set('isDone',this.value); if(rec.dirty) App.dxSaveBtn.setDisabled(false);" >
+                                                
+                                            </Change>
+                                        </Listeners>
+                                    </ext:Checkbox>
+
+                                </Widget>
+                              
+                            </ext:WidgetColumn>
+                                    <ext:Column ID="Column4" runat="server" MenuDisabled="true" Text="<%$ Resources: Description%>" DataIndex="description" Flex="2" Hideable="false" />
+                                   
+                                    <ext:Column runat="server"
+                                        ID="Column11" Visible="true"
+                                        Text=""
+                                        Width="100"
+                                        Hideable="false"
+                                        Align="Center"
+                                        Fixed="true"
+                                        Filterable="false"
+                                        MenuDisabled="true"
+                                        Resizable="false">
+
+                                        <Renderer Handler=" return editRender()+'&nbsp;&nbsp;'+deleteRender();  " />
+
+                                    </ext:Column>
+
+
+                                </Columns>
+                            </ColumnModel>
+                            <DockedItems>
+
+                                <ext:Toolbar ID="Toolbar10" runat="server" Dock="Bottom">
+                                    <Items>
+                                        <ext:StatusBar ID="StatusBar5" runat="server" />
+                                        <ext:ToolbarFill />
+
+                                    </Items>
+                                </ext:Toolbar>
+
+                            </DockedItems>
+
+                            <Listeners>
+                               
+                                
+                                <Render Handler="this.on('cellclick', cellClick);" />
+
+                                <Activate Handler="#{DXStore}.reload();" />
+                                <Drag Handler="App.dxSaveBtn.setDisabled(false);" />
+                            </Listeners>
+                            <DirectEvents>
+                                
+                               
+                                <CellClick OnEvent="PoPuPDX">
+                                    <EventMask ShowMask="true" />
+                                    <ExtraParams>
+                                        <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
+                                        <ext:Parameter Name="doId" Value="record.data['doId']" Mode="Raw" />
+                                        <ext:Parameter Name="priority" Value="record.data['priority']" Mode="Raw" />
+                                        <ext:Parameter Name="description" Value="record.data['description']" Mode="Raw" />
+                                        <ext:Parameter Name="isDone" Value="record.data['isDone']" Mode="Raw" />
+                                        <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                    </ExtraParams>
+
+                                </CellClick>
+                            </DirectEvents>
+                            <View>
+                                <ext:GridView ID="GridView5" runat="server" >
+                                     <Plugins>
+                        <ext:GridDragDrop runat="server" DragText="Drag and drop to reorganize" >
+                           
+                            </ext:GridDragDrop>
+                    </Plugins>
+                                    </ext:GridView>
+                            </View>
+
+
+
+                            <SelectionModel>
+                                <ext:RowSelectionModel ID="rowSelectionModel4" runat="server" Mode="Single" StopIDModeInheritance="true" />
                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                             </SelectionModel>
                         </ext:GridPanel>
@@ -1159,7 +1327,7 @@
 
                             </Store>
                         </ext:ComboBox>
-                        
+
                         <ext:TextField ID="seqNo" runat="server" Name="seqNo" Hidden="true" />
                         <ext:TextField ID="apStatus" runat="server" Name="apStatus" Hidden="true" />
                         <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />
@@ -1181,7 +1349,7 @@
                         <Click OnEvent="saveDocumentTransfer" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{DocumentTransferWindow}.body}" />
                             <ExtraParams>
-                                
+
                                 <ext:Parameter Name="values" Value="#{DocumentTransferForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
@@ -1194,7 +1362,66 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+        <ext:Window
+            ID="DXWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:DXWindow %>"
+            Width="300"
+            Height="150"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
 
+            <Items>
+
+                <ext:FormPanel
+                    ID="DXForm" DefaultButton="Button9"
+                    runat="server"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+
+                        
+
+                        <ext:TextArea TabIndex="0" ID="description" runat="server" Name="description"  FieldLabel="<%$ Resources:Description%>" />
+                       
+                        <ext:TextField ID="DXseqNo" runat="server" Name="seqNo" Hidden="true" />
+                        <ext:TextField ID="priority" runat="server" Name="priority" Hidden="true" />
+                       <ext:Checkbox ID="isDone" runat="server" Name="isDone" InputValue="true" Hidden="true"  SubmitValue="true"/>
+                        
+                        
+                    </Items>
+
+                </ext:FormPanel>
+
+            </Items>
+
+
+            <Buttons>
+                <ext:Button ID="Button9" runat="server" Text="<%$ Resources:Common, save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{DXForm}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveDX" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{DXWindow}.body}" />
+                            <ExtraParams>
+
+                                <ext:Parameter Name="values" Value="#{DXForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button10" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
 
     </form>
 </body>

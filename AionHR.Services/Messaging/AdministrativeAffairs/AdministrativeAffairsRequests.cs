@@ -92,6 +92,23 @@ public class TemplateBodyListReuqest:ListRequest
             }
         }
     }
+    public class DocumentDXListRequest : ListRequest
+    {
+        public string DocumentId { get; set; }
+
+        public override Dictionary<string, string> Parameters
+        {
+            get
+            {
+                parameters = new Dictionary<string, string>();
+                
+                parameters.Add("_doId", DocumentId);
+                parameters.Add("_sortBy", "priority");
+                return parameters;
+
+            }
+        }
+    }
     public class DocumentListRequest : ListRequest
     {
         public int Status { get; set; }
