@@ -2554,6 +2554,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open Documents.
+        /// </summary>
+        internal static string OpenDocuments {
+            get {
+                return ResourceManager.GetString("OpenDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to operation is completed successfully.
         /// </summary>
         internal static string operationCompleted {

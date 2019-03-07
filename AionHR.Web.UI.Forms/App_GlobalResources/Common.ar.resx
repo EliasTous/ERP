@@ -1428,4 +1428,7 @@
   <data name="PendingTransfers" xml:space="preserve">
     <value>Documents Transfers</value>
   </data>
+  <data name="OpenDocuments" xml:space="preserve">
+    <value>Open Documents</value>
+  </data>
 </root>

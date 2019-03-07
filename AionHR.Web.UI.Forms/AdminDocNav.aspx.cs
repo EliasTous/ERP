@@ -78,7 +78,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AdminDocument), BasicInfoTab1, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AdminDocument), BasicInfoTab1, GridPanel1, null, null);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -109,7 +109,11 @@ namespace AionHR.Web.UI.Forms
             //this.OtherInfoTab.Visible = false;
         }
 
+        protected void PoPuP(object sender, DirectEventArgs e)
+        {
+            
 
+        }
 
         private void HideShowButtons()
         {
@@ -137,9 +141,34 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+        protected void documentsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            int totalCount = 1;
 
 
-      
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            DocumentListRequest request = new DocumentListRequest();
+            request.Status = 0;
+            request.Filter = "";
+
+            ListResponse<AdminDocument> routers = _administrationService.ChildGetAll<AdminDocument>(request);
+            if (!routers.Success)
+            {
+                Common.errorMessage(routers);
+                return;
+            }
+            this.documentsStore.DataSource = routers.Items;
+            e.Total = routers.Items.Count; ;
+
+            this.documentsStore.DataBind();
+        }
+
+        
 
     }
 }

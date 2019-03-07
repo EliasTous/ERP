@@ -540,7 +540,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node businessPartnerCategory = BuildLeafNode("BusinessPartnerCategories", Resources.Common.BusinessPartnerCategory, "Building", true, adminBusiness);
             Ext.Net.Node businessPartner = BuildLeafNode("businessPartneres", Resources.Common.BusinessPartner, "Building", true, adminBusiness);
             Ext.Net.Node DocumentCategory = BuildLeafNode("DocumentCategories", Resources.Common.DocumentCategory, "Building", true, adminDocument);
-            Ext.Net.Node DocumentNavigation = BuildLeafNode("DocumentNavigation", "Document Navigation", "Building", true, adminDocument);
+            Ext.Net.Node DocumentNavigation = BuildLeafNode("DocumentNavigation", Resources.Common.OpenDocuments, "Building", true, adminDocument);
             Ext.Net.Node Document = BuildLeafNode("AdminDocuments", Resources.Common.Documents, "Building", true, adminDocument);
             Ext.Net.Node Asset = BuildLeafNode("AssetManagementAssets", Resources.Common.Assets, "Building", true, adminAssetManagement);
             Ext.Net.Node AssetManagementPurchaseOrder = BuildLeafNode("AssetManagementPurchaseOrders", Resources.Common.PurchaseOrders, "Building", true, adminAssetManagement);
