@@ -590,68 +590,68 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            try { storeType.Select(items.Where(s => s.Key == "storeType").First().Value); }
+            try { pp_storeType.Select(items.Where(s => s.Key == "pp_storeType").First().Value); }
 
             catch { }
             try
 
             {
-                storeConnection.Text = items.Where(s => s.Key == "storeConnection").First().Value;
+                pp_storeConnection.Text = items.Where(s => s.Key == "pp_storeConnection").First().Value;
             }
             catch { }
             try
 
             {
-                pull.Checked = items.Where(s => s.Key == "pull").First().Value == "true";
+                pp_pull.Checked = items.Where(s => s.Key == "pp_pull").First().Value == "true";
             }
             catch { }
             try
 
             {
-                push.Checked = items.Where(s => s.Key == "push").First().Value == "true";
+                pp_push.Checked = items.Where(s => s.Key == "pp_push").First().Value == "true";
             }
             catch { }
             try
 
             {
-                clearOnSuccess.Checked = items.Where(s => s.Key == "clearOnSuccess").First().Value == "true";
+                pp_clearOnSuccess.Checked = items.Where(s => s.Key == "pp_clearOnSuccess").First().Value == "true";
             }
             catch { }
 
             try
 
             {
-                sleepTime.Text = items.Where(s => s.Key == "sleepTime").First().Value;
+                pp_sleepTime.Text = items.Where(s => s.Key == "pp_sleepTime").First().Value;
             }
             catch { }
             try
 
             {
-                serialNo.Text = items.Where(s => s.Key == "serialNo").First().Value;
+                pp_serialNo.Text = items.Where(s => s.Key == "pp_serialNo").First().Value;
             }
             catch { }
             try
 
             {
-                clearOnSuccess.Checked = items.Where(s => s.Key == "debugMode").First().Value == "true";
+                pp_clearOnSuccess.Checked = items.Where(s => s.Key == "pp_debugMode").First().Value == "true";
             }
             catch { }
             try
 
             {
-                shiftData.Checked = items.Where(s => s.Key == "shiftData").First().Value == "true";
+                pp_shiftData.Checked = items.Where(s => s.Key == "pp_shiftData").First().Value == "true";
             }
             catch { }
             try
 
             {
-                pendingPunchesFolder.Text = items.Where(s => s.Key == "pendingPunchesFolder").First().Value;
+                pp_pendingPunchesFolder.Text = items.Where(s => s.Key == "pp_pendingPunchesFolder").First().Value;
             }
             catch { }
             try
 
             {
-                punchInterface.Text = items.Where(s => s.Key == "punchInterface").First().Value;
+                pp_punchInterface.Text = items.Where(s => s.Key == "pp_punchInterface").First().Value;
             }
             catch { }
             
@@ -1102,39 +1102,39 @@ namespace AionHR.Web.UI.Forms
         private List<KeyValuePair<string, string>> GetBiometricSettings(dynamic values)
         {
             List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
-            if (!string.IsNullOrEmpty(values.storeType.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("storeType", values.storeType.ToString()));
+            if (!string.IsNullOrEmpty(values.pp_storeType.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pp_storeType", values.pp_storeType.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("storeType", ""));
+                submittedValues.Add(new KeyValuePair<string, string>("pp_storeType", ""));
 
-            if (!string.IsNullOrEmpty(values.storeConnection.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("storeConnection", values.storeConnection.ToString()));
+            if (!string.IsNullOrEmpty(values.pp_storeConnection.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pp_storeConnection", values.pp_storeConnection.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("storeConnection", ""));
+                submittedValues.Add(new KeyValuePair<string, string>("pp_storeConnection", ""));
 
-            submittedValues.Add(new KeyValuePair<string, string>("pull", values.pull == null ? "false" : "true"));
-            submittedValues.Add(new KeyValuePair<string, string>("push", values.push == null ? "false" : "true"));
-            submittedValues.Add(new KeyValuePair<string, string>("clearOnSuccess", values.clearOnSuccess == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("pp_pull", values.pp_pull == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("pp_push", values.pp_push == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("pp_clearOnSuccess", values.pp_clearOnSuccess == null ? "false" : "true"));
 
-            submittedValues.Add(new KeyValuePair<string, string>("debugMode", values.debugMode == null ? "false" : "true"));
-            submittedValues.Add(new KeyValuePair<string, string>("shiftData", values.shiftData == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("pp_debugMode", values.pp_debugMode == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("pp_shiftData", values.pp_shiftData == null ? "false" : "true"));
 
-            if (!string.IsNullOrEmpty(values.sleepTime.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("sleepTime", values.sleepTime.ToString()));
+            if (!string.IsNullOrEmpty(values.pp_sleepTime.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pp_sleepTime", values.pp_sleepTime.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("sleepTime", ""));
-            if (!string.IsNullOrEmpty(values.serialNo.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("serialNo", values.serialNo.ToString()));
+                submittedValues.Add(new KeyValuePair<string, string>("pp_sleepTime", ""));
+            if (!string.IsNullOrEmpty(values.pp_serialNo.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pp_serialNo", values.pp_serialNo.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("serialNo", ""));
-            if (!string.IsNullOrEmpty(values.pendingPunchesFolder.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("pendingPunchesFolder", values.pendingPunchesFolder.ToString()));
+                submittedValues.Add(new KeyValuePair<string, string>("pp_serialNo", ""));
+            if (!string.IsNullOrEmpty(values.pp_pendingPunchesFolder.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pp_pendingPunchesFolder", values.pp_pendingPunchesFolder.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("pendingPunchesFolder", ""));
-            if (!string.IsNullOrEmpty(values.punchInterface.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("punchInterface", values.punchInterface.ToString()));
+                submittedValues.Add(new KeyValuePair<string, string>("pp_pendingPunchesFolder", ""));
+            if (!string.IsNullOrEmpty(values.pp_punchInterface.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pp_punchInterface", values.pp_punchInterface.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("punchInterface", ""));
+                submittedValues.Add(new KeyValuePair<string, string>("pp_punchInterface", ""));
 
             return submittedValues;
         }

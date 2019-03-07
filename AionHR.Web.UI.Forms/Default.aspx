@@ -4,13 +4,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" type="text/css" href="CSS/Tools.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=1" />
+    <link rel="stylesheet" type="text/css" href="CSS/Tools.css?id=12" />
 
     <script type="text/javascript" src="Scripts/jquery.min.js?id=5"></script>
     <script type="text/javascript" src="Scripts/app.js?id=7"></script>
     <script type="text/javascript" src="Scripts/Common.js?id=6"></script>
-    <script type="text/javascript" src="Scripts/default.js?id=14"></script>
+    <script type="text/javascript" src="Scripts/default.js?id=15"></script>
     <script type="text/javascript">
         //var beforeMenu = function (pnl, tab, menu) {
         //    menu.items.get(0).setText(tab.title);

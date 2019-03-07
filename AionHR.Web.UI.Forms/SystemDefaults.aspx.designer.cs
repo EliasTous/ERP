@@ -994,103 +994,103 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.FormPanel BiometricSettings;
         
         /// <summary>
-        /// storeType control.
+        /// pp_storeType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox storeType;
+        protected global::Ext.Net.ComboBox pp_storeType;
         
         /// <summary>
-        /// storeConnection control.
+        /// pp_storeConnection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextArea storeConnection;
+        protected global::Ext.Net.TextArea pp_storeConnection;
         
         /// <summary>
-        /// pull control.
+        /// pp_pull control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox pull;
+        protected global::Ext.Net.Checkbox pp_pull;
         
         /// <summary>
-        /// push control.
+        /// pp_push control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox push;
+        protected global::Ext.Net.Checkbox pp_push;
         
         /// <summary>
-        /// clearOnSuccess control.
+        /// pp_clearOnSuccess control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox clearOnSuccess;
+        protected global::Ext.Net.Checkbox pp_clearOnSuccess;
         
         /// <summary>
-        /// sleepTime control.
+        /// pp_sleepTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField sleepTime;
+        protected global::Ext.Net.NumberField pp_sleepTime;
         
         /// <summary>
-        /// serialNo control.
+        /// pp_serialNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField serialNo;
+        protected global::Ext.Net.NumberField pp_serialNo;
         
         /// <summary>
-        /// debugMode control.
+        /// pp_debugMode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox debugMode;
+        protected global::Ext.Net.Checkbox pp_debugMode;
         
         /// <summary>
-        /// shiftData control.
+        /// pp_shiftData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox shiftData;
+        protected global::Ext.Net.Checkbox pp_shiftData;
         
         /// <summary>
-        /// pendingPunchesFolder control.
+        /// pp_pendingPunchesFolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField pendingPunchesFolder;
+        protected global::Ext.Net.TextField pp_pendingPunchesFolder;
         
         /// <summary>
-        /// punchInterface control.
+        /// pp_punchInterface control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextArea punchInterface;
+        protected global::Ext.Net.TextArea pp_punchInterface;
         
         /// <summary>
         /// SaveBiometricSettingsBtn control.

@@ -26,7 +26,11 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-      
+         <ext:Hidden ID="currentPurchaseOrderId" runat="server" />
+       <ext:Hidden ID="StatusNew" runat="server" Text="<%$ Resources:FieldNew %>" />
+        <ext:Hidden ID="StatusInProcess" runat="server" Text="<%$ Resources: FieldInProcess %>" />
+        <ext:Hidden ID="StatusApproved" runat="server" Text="<%$ Resources: FieldApproved %>" />
+        <ext:Hidden ID="StatusRejected" runat="server" Text="<%$ Resources: FieldRejected %>" />
        
         
       
@@ -381,7 +385,87 @@
                             </Items>
 
                         </ext:FormPanel>
-                     
+                          <ext:GridPanel
+                            ID="ApprovalsGridPanel"
+                            runat="server"
+                            PaddingSpec="0 0 1 0"
+                            Header="false"
+                            MaxHeight="350"
+                            Layout="FitLayout"
+                            Scroll="Vertical"
+                            Border="false"
+                             Title="<%$ Resources: Approvals %>"
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True" >
+                            
+                            <Store>
+                                <ext:Store runat="server" ID="ApprovalStore" OnReadData="ApprovalsStore_ReadData">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="approverName" IsComplex="true" />
+                                                <ext:ModelField Name="departmentName" />
+                                                 <ext:ModelField Name="poId" />
+                                                <ext:ModelField Name="approverId" />
+                                                <ext:ModelField Name="status" />
+                                                 <ext:ModelField Name="statusString" />
+                                                 <ext:ModelField Name="notes" />
+                                                
+                                                
+                                                
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+
+
+                            <ColumnModel ID="ColumnModel4" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                <Columns>
+                                    <ext:Column ID="poId" Visible="false" DataIndex="poId" runat="server" />
+                                    <ext:Column ID="approverId" Visible="false" DataIndex="approverId" runat="server" />
+                                 
+                                        <ext:Column ID="Column8" DataIndex="approverName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
+                                           <Renderer Handler=" return record.data['approverName'].fullName; ">
+                                           </Renderer>
+                                         </ext:Column>
+                                <%--    <ext:Column ID="departmentName" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1"/>--%>
+                                    <ext:Column ID="PAstatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
+                                       
+                                    </ext:Column>
+                                      
+                                    <ext:Column ID="PAnotes" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
+                                       
+                                    </ext:Column>
+                                   
+
+
+
+                                </Columns>
+                            </ColumnModel>
+
+                            <%--  alert(last.dayId);
+                                                        if(App.leaveRequest1_shouldDisableLastDay.value=='1')
+                                                             if(last.dayId==rec.data['dayId'])  
+                                                                        this.setDisabled(false);
+                                                            else this.setDisabled(true); 
+                                                        else
+                                                            this.setDisabled(true); --%>
+                            
+                           <Listeners>
+                               <Activate Handler="#{ApprovalStore}.reload();" />
+                           </Listeners>
+
+                            <View>
+                                <ext:GridView ID="GridView4" runat="server" />
+                            </View>
+
+
+                            <SelectionModel>
+                                <ext:RowSelectionModel ID="rowSelectionModel3" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                            </SelectionModel>
+                         
+                     </ext:GridPanel>
                     </Items>
                     
                 </ext:TabPanel>

@@ -20,6 +20,10 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
     {
         public string FieldLabel { get; set; }
         public string FieldType { get; set; }
+        public string AllowBlank { get; set; }
+        public string  ReadOnly { get; set; }
+
+
         IAssetManagementService _assetManagementService = ServiceLocator.Current.GetInstance<IAssetManagementService>();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,8 +33,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
             if (!string.IsNullOrEmpty(FieldType)&&FieldType=="Form")
                 apStatus.RemoveByValue("0");
-         
-               
+            if (!string.IsNullOrEmpty(AllowBlank))
+                apStatus.AllowBlank = Convert.ToBoolean(AllowBlank);
+            if (!string.IsNullOrEmpty(ReadOnly))
+                apStatus.ReadOnly = Convert.ToBoolean(ReadOnly);
+
 
         }
 

@@ -130,6 +130,7 @@
     <Compile Include="Messaging\Asset Management\AssetManagementAssetListRequest.cs" />
     <Compile Include="Messaging\Asset Management\AssetManagementLoanListRequest.cs" />
     <Compile Include="Messaging\Asset Management\AssetManagementOnBoardingListRequest.cs" />
+    <Compile Include="Messaging\Asset Management\AssetManagementPurchaseOrderApprovalListRequest.cs" />
     <Compile Include="Messaging\Asset Management\AssetManagementPurchaseOrdersListRequest.cs" />
     <Compile Include="Messaging\Benefits\BenefitAcquisitionsListRequest.cs" />
     <Compile Include="Messaging\Benefits\PeriodOfTheDateRangeRequest .cs" />

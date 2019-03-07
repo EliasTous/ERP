@@ -81,7 +81,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-
+                FillParent();
 
             }
 
@@ -132,6 +132,7 @@ namespace AionHR.Web.UI.Forms
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
+            
             switch (type)
             {
                 case "imgEdit":
@@ -146,6 +147,7 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
+                    FillParent();
                     this.BasicInfoTab.SetValues(response.result);
                     apId.setApprovalStatus(response.result.apId);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
@@ -315,6 +317,7 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+            FillParent();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
          
 
@@ -463,14 +466,9 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        [DirectMethod]
-        public object FillParent(string action, Dictionary<string, object> extraParams)
+        
+        private void FillParent()
         {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<AssetManagementCategory> data;
             ListRequest request = new ListRequest();
 
             request.Filter = "";
@@ -478,13 +476,12 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 Common.errorMessage(resp);
-                return new List<AssetManagementCategory>();
+                return;
             }
-            data = resp.Items;
-            return new
-            {
-                data
-            };
+            this.parentStore.DataSource = resp.Items;
+         
+
+            this.parentStore.DataBind();
 
         }
 

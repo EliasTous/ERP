@@ -293,13 +293,13 @@
                                  <ext:Container runat="server"  Layout="AutoLayout" >
                                             <Content>
                                              
-                                                <uc:AssetControl runat="server" ID="assetId"  FieldLabel="<%$ Resources:FieldAsset%>"  />
+                                                <uc:AssetControl runat="server" ID="assetId" AllowBlank="false"   FieldLabel="<%$ Resources:FieldAsset%>"  />
                                             </Content>
                                         </ext:Container>
                               <ext:Container runat="server"  Layout="AutoLayout">
                                             <Content>
                                              
-                                                 <uc:ApprovalStatusControl runat="server" ID="apId"  FieldLabel="<%$ Resources:FieldApproval%>" FieldType="Form"  />
+                                                 <uc:ApprovalStatusControl ReadOnly="true" runat="server" ID="apId"  AllowBlank="false" FieldLabel="<%$ Resources:FieldApproval%>" FieldType="Form"  />
                                             </Content>
                                         </ext:Container>
                                   
@@ -307,7 +307,7 @@
                             
                              
   
-                                            <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date"   >
+                                            <ext:DateField ID="date"  AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date"   >
                                               
                                                </ext:DateField>
                                            
