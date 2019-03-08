@@ -665,11 +665,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModuleIDs.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\StaticComboBox.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StaticComboBox.resx</DependentUpon>
-    </Compile>
     <Compile Include="AssetManagementAssets.aspx.cs">
       <DependentUpon>AssetManagementAssets.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3006,10 +3001,9 @@
     <Content Include="Reports\Controls\App_LocalResources\SupplierFilter.ascx.fr.resx" />
     <Content Include="Reports\Controls\App_LocalResources\UserComboFilter.ascx.fr.resx" />
     <Content Include="Reports\Controls\App_LocalResources\WeekPicker.ascx.fr.resx" />
-    <Content Include="App_GlobalResources\StaticComboBox.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>StaticComboBox.Designer.cs</LastGenOutput>
-    </Content>
+    <Content Include="App_LocalResources\AdminDocNav.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AdminDocNav.aspx.resx" />
+    <Content Include="App_LocalResources\AdminDocNav.aspx.fr.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,4 +1,5 @@
 ﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,11 @@ namespace AionHR.Model.AdminTemplates
         public string oDocRef { get; set; }
         public int? languageId { get; set; }
 
+        public EmployeeName employeeName { get; set;}
+
+        public string departmentId { get; set; }
+        
+        public string departmentName { get; set; }
 
 
     }

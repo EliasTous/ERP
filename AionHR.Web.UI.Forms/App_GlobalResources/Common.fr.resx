@@ -1428,4 +1428,7 @@
   <data name="FrenchLanguage" xml:space="preserve">
     <value>Francais</value>
   </data>
+  <data name="OpenDocuments" xml:space="preserve">
+    <value>Open Documents</value>
+  </data>
 </root>

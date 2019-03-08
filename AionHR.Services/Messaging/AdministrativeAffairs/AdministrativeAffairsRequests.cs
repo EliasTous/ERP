@@ -119,7 +119,7 @@ public class TemplateBodyListReuqest:ListRequest
             {
                 parameters = new Dictionary<string, string>();
                 
-                parameters.Add("_statusId", Status.ToString());
+                parameters.Add("_status", Status.ToString());
                 return parameters;
 
             }
