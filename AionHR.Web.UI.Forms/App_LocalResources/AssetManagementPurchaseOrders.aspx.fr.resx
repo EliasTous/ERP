@@ -117,17 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Approvals" xml:space="preserve">
-    <value>Approbations</value>
-  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Informations de commande</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Informations de commande</value>
-  </data>
-  <data name="FieldApproved" xml:space="preserve">
-    <value>Approuvé</value>
   </data>
   <data name="FieldCategoryName" xml:space="preserve">
     <value>Categorie</value>
@@ -144,32 +138,14 @@
   <data name="FieldDate" xml:space="preserve">
     <value>Date</value>
   </data>
-  <data name="FieldDepartment" xml:space="preserve">
-    <value>Department</value>
-  </data>
-  <data name="FieldEmployeeName" xml:space="preserve">
-    <value>Nom de l'employé</value>
-  </data>
-  <data name="FieldInProcess" xml:space="preserve">
-    <value>en cours</value>
-  </data>
-  <data name="FieldNew" xml:space="preserve">
-    <value>nouvelle</value>
-  </data>
   <data name="FieldQty" xml:space="preserve">
     <value>Quantite</value>
-  </data>
-  <data name="FieldRejected" xml:space="preserve">
-    <value>Rejeté</value>
   </data>
   <data name="FieldStatus" xml:space="preserve">
     <value>Statut</value>
   </data>
   <data name="FieldSupplierName" xml:space="preserve">
     <value>Fournisseur</value>
-  </data>
-  <data name="ReturnNotes" xml:space="preserve">
-    <value>Notes</value>
   </data>
   <data name="Status0" xml:space="preserve">
     <value>Tout</value>

@@ -121,39 +121,39 @@
     <value>Account Name test</value>
   </data>
   <data name="AccountValid" xml:space="preserve">
-    <value>Account is valid. </value>
+    <value>Le compte est valide</value>
   </data>
   <data name="EnterYourAccount" xml:space="preserve">
-    <value>Enter Your Accoun</value>
+    <value>Entrez votre compte</value>
   </data>
   <data name="EnterYourID" xml:space="preserve">
-    <value>Enter Your ID</value>
+    <value>Entrer votre identifiant</value>
   </data>
   <data name="EnterYourPassword" xml:space="preserve">
-    <value>Enter Your Password</value>
+    <value>Tapez votre mot de passe</value>
   </data>
   <data name="InvalidAccount" xml:space="preserve">
-    <value>Invalid Account Name.</value>
+    <value>Nom de compte invalide</value>
   </data>
   <data name="InvalidCredentials" xml:space="preserve">
-    <value>Invalid Username or Password</value>
+    <value>Nom d'utilisateur ou mot de passe invalide</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Login</value>
+    <value>Identifier</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>mot de passe</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
-    <value>Remember Me</value>
+    <value>Souviens de moi</value>
   </data>
   <data name="RequestError" xml:space="preserve">
-    <value>Error in request, Try Again Later.</value>
+    <value>Erreur dans la demande, réessayer plus tard.</value>
   </data>
   <data name="UserID" xml:space="preserve">
-    <value>Username | Email</value>
+    <value>Nom d'utilisateur | Email</value>
   </data>
   <data name="ValidAccount" xml:space="preserve">
-    <value>Valid Account Name</value>
+    <value>Nom de compte valide</value>
   </data>
 </root>

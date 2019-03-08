@@ -186,4 +186,7 @@
   <data name="FieldcostPrice" xml:space="preserve">
     <value>Cost Price</value>
   </data>
+  <data name="FieldAssetRef" xml:space="preserve">
+    <value>Ref</value>
+  </data>
 </root>

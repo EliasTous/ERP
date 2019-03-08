@@ -35,6 +35,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(AssetManagementOnBoarding), "qryOB");
             ChildGetAllLookup.Add(typeof(AssetManagementLoan), "qryLO");
             ChildGetAllLookup.Add(typeof(AssetManagementPurchaseOrderApproval), "qryPA");
+            ChildGetAllLookup.Add(typeof(AssetManagementCategoryProperty), "qryCP");
 
 
 
@@ -46,6 +47,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(AssetManagementPurchaseOrder), "getPO");
             ChildGetLookup.Add(typeof(AssetManagementOnBoarding), "getOB");
             ChildGetLookup.Add(typeof(AssetManagementLoan), "getLO");
+            ChildGetLookup.Add(typeof(AssetManagementCategoryProperty), "getCP");
 
 
 
@@ -55,7 +57,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementPurchaseOrder), "setPO");
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementOnBoarding), "setOB");
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementLoan), "setLO");
-
+            ChildAddOrUpdateLookup.Add(typeof(AssetManagementCategoryProperty), "setCP");
 
             ChildDeleteLookup.Add(typeof(AssetManagementSupplier), "delSU");
             ChildDeleteLookup.Add(typeof(AssetManagementCategory), "delCA");
@@ -63,6 +65,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(AssetManagementPurchaseOrder), "delPO");
             ChildDeleteLookup.Add(typeof(AssetManagementOnBoarding), "delOB");
             ChildDeleteLookup.Add(typeof(AssetManagementLoan), "delLO");
+            ChildDeleteLookup.Add(typeof(AssetManagementCategoryProperty), "delCP");
 
         }
         }

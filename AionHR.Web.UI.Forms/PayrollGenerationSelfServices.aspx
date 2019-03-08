@@ -26,8 +26,7 @@
             App.payDate.setValue(d.toDate());
         }
         function CalcENSum() {
-            if (App.entitlementDisabled.value == 'True')
-                return '****';
+          
             var enSum = 0;
             App.entitlementsGrid.getStore().each(function (record) {
                 enSum += record.data['amount'];
@@ -38,8 +37,7 @@
 
         }
         function CalcDESum() {
-            if (App.deductionDisabled.value == 'True')
-                return '****';
+           
             var deSum = 0;
             App.deductionGrid.getStore().each(function (record) {
                 deSum += record.data['amount'];
