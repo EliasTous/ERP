@@ -629,11 +629,15 @@ namespace AionHR.Web.UI.Forms
             {
                 pp_serialNo.Text = items.Where(s => s.Key == "pp_serialNo").First().Value;
             }
-            catch { }
+            catch {
+               
+
+
+            }
             try
 
             {
-                pp_clearOnSuccess.Checked = items.Where(s => s.Key == "pp_debugMode").First().Value == "true";
+                pp_debugMode.Checked = items.Where(s => s.Key == "pp_debugMode").First().Value == "true";
             }
             catch { }
             try
@@ -645,7 +649,7 @@ namespace AionHR.Web.UI.Forms
             try
 
             {
-                pp_pendingPunchesFolder.Text = items.Where(s => s.Key == "pp_pendingPunchesFolder").First().Value;
+                pp_pendingDataFolder.Text = items.Where(s => s.Key == "pp_pendingDataFolder").First().Value;
             }
             catch { }
             try
@@ -1122,15 +1126,15 @@ namespace AionHR.Web.UI.Forms
             if (!string.IsNullOrEmpty(values.pp_sleepTime.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("pp_sleepTime", values.pp_sleepTime.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("pp_sleepTime", ""));
+                submittedValues.Add(new KeyValuePair<string, string>("pp_sleepTime", "0"));
             if (!string.IsNullOrEmpty(values.pp_serialNo.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("pp_serialNo", values.pp_serialNo.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("pp_serialNo", ""));
-            if (!string.IsNullOrEmpty(values.pp_pendingPunchesFolder.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("pp_pendingPunchesFolder", values.pp_pendingPunchesFolder.ToString()));
+            if (!string.IsNullOrEmpty(values.pp_pendingDataFolder.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pp_pendingDataFolder", values.pp_pendingDataFolder.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("pp_pendingPunchesFolder", ""));
+                submittedValues.Add(new KeyValuePair<string, string>("pp_pendingDataFolder", ""));
             if (!string.IsNullOrEmpty(values.pp_punchInterface.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("pp_punchInterface", values.pp_punchInterface.ToString()));
             else

@@ -184,6 +184,7 @@
                             <ext:Column ID="ColSupplierName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSupplierName%>" DataIndex="supplierName"  Hideable="false" Flex="1"/>
                             <ext:Column   ID="ColCategoryName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCategoryName%>" DataIndex="categoryName" Flex="1" />
                                <ext:Column   ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch %>" DataIndex="branchName" Flex="1" />
+                                 <ext:Column   ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment %>" DataIndex="departmentName" Flex="1" />
                              <ext:Column   ID="ColCurrencyName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCurrencyName%>" DataIndex="currencyName" Flex="1" />
                             <ext:DateColumn  ID="Coldate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="1" Hideable="false" />
                         
@@ -329,7 +330,7 @@
                                       <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
-                                                <uc:SupplierControl runat="server" ID="supplierId"  FieldLabel="<%$ Resources:FieldSupplierName%>"  AllowBlank="false"   />
+                                                <uc:SupplierControl runat="server" ID="supplierId"  FieldLabel="<%$ Resources:FieldSupplierName%>"     />
                                             </Content>
                                         </ext:Container>    
                                     <ext:Container runat="server"  Layout="FitLayout">
@@ -380,6 +381,22 @@
                                                
                                               
                                             </ext:ComboBox> 
+                                 <ext:ComboBox AutoScroll="true" AnyMatch="true" CaseSensitive="false" EnableRegEx="true" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldDepartment%>">
+                          
+                            <Store>
+                                <ext:Store runat="server" ID="departmentStore">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="name" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+                           
+                        </ext:ComboBox>
                                       <ext:TextArea ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
                                  <ext:NumberField ID="costPrice" runat="server" FieldLabel="<%$ Resources:FieldCostPrice%>" Name="costPrice" MinValue="0"  />
                             </Items>
@@ -402,13 +419,17 @@
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
-                                                <ext:ModelField Name="approverName" IsComplex="true" />
-                                                <ext:ModelField Name="departmentName" />
-                                                 <ext:ModelField Name="poId" />
+                                                <ext:ModelField Name="poId"  />
                                                 <ext:ModelField Name="approverId" />
-                                                <ext:ModelField Name="status" />
-                                                 <ext:ModelField Name="statusString" />
-                                                 <ext:ModelField Name="notes" />
+                                                 <ext:ModelField Name="status" />
+                                                <ext:ModelField Name="statusString" />
+                                                <ext:ModelField Name="notes" />
+                                                 <ext:ModelField Name="employeeName"  ServerMapping="employeeName.fullName"/>
+                                                 <ext:ModelField Name="approverName"  ServerMapping="approverName.fullName" />
+                                                 <ext:ModelField Name="departmentName" />
+                                                   <ext:ModelField Name="branchName" />
+                                                   <ext:ModelField Name="categoryName" />
+                                                  <ext:ModelField Name="qty" />
                                                 
                                                 
                                                 
@@ -423,17 +444,21 @@
                                 <Columns>
                                     <ext:Column ID="poId" Visible="false" DataIndex="poId" runat="server" />
                                     <ext:Column ID="approverId" Visible="false" DataIndex="approverId" runat="server" />
+
                                  
-                                        <ext:Column ID="Column8" DataIndex="approverName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
-                                           <Renderer Handler=" return record.data['approverName'].fullName; ">
-                                           </Renderer>
+                                        <ext:Column ID="Column8" DataIndex="approverName" Text="approver name " runat="server" Flex="1">
+                                          
+                                          
                                          </ext:Column>
-                                <%--    <ext:Column ID="departmentName" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1"/>--%>
-                                    <ext:Column ID="PAstatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
+                                    <ext:Column ID="departmentName" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1"/>
+                                     <ext:Column ID="Column2" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1"/>
+                                     <ext:Column ID="Column3" DataIndex="categoryName" Text="<%$ Resources: FieldCategoryName%>" runat="server" Flex="1"/>
+                                     <ext:Column ID="Column4" DataIndex="qty" Text="<%$ Resources: FieldQty%>" runat="server" Flex="1"/>
+                                    <ext:Column ID="PoStatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="status " >
                                        
                                     </ext:Column>
                                       
-                                    <ext:Column ID="PAnotes" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
+                                    <ext:Column ID="PAnotes" DataIndex="notes" Text="notes" runat="server" Flex="2">
                                        
                                     </ext:Column>
                                    

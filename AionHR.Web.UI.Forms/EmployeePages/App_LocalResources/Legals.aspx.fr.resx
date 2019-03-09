@@ -117,76 +117,82 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Approvals" xml:space="preserve">
-    <value>تعميد</value>
+  <data name="BCGridTitle" xml:space="preserve">
+    <value>Vérification des antécédents</value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات طلب الشراء </value>
+  <data name="EditBCWindow" xml:space="preserve">
+    <value>Informations sur la vérification des antécédents</value>
   </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>تعديل طلب شراء</value>
+  <data name="EditBCWindowTitle" xml:space="preserve">
+    <value>Modifier la vérification en arrière-plan</value>
   </data>
-  <data name="FieldApproved" xml:space="preserve">
-    <value>موافق عليه</value>
+  <data name="EditRWWindow" xml:space="preserve">
+    <value>Droit au travail Info</value>
   </data>
-  <data name="FieldBranch" xml:space="preserve">
-    <value>الموقع </value>
+  <data name="EditRWWindowTitle" xml:space="preserve">
+    <value>Modifier le droit de travailler</value>
   </data>
-  <data name="FieldCategoryName" xml:space="preserve">
-    <value>الفئة</value>
+  <data name="FieldBCCheckType" xml:space="preserve">
+    <value>Type de chèque</value>
   </data>
-  <data name="FieldComments" xml:space="preserve">
-    <value>ملاحظات</value>
+  <data name="FieldBCCTName" xml:space="preserve">
+    <value>Type de chèque</value>
   </data>
-  <data name="FieldCostPrice" xml:space="preserve">
-    <value>سعر التكلفة</value>
+  <data name="FieldBCEmployeeName" xml:space="preserve">
+    <value>Nom de l'employé</value>
   </data>
-  <data name="FieldCurrencyName" xml:space="preserve">
-    <value>العملة</value>
+  <data name="FieldBCExpiryDate" xml:space="preserve">
+    <value>Date d'expiration</value>
   </data>
-  <data name="FieldDate" xml:space="preserve">
-    <value>التاريخ</value>
+  <data name="FieldBCIssueDate" xml:space="preserve">
+    <value>Date d'émission</value>
   </data>
-  <data name="FieldDepartment" xml:space="preserve">
-    <value>القسم</value>
+  <data name="FieldBCRemarks" xml:space="preserve">
+    <value>Remarques</value>
   </data>
-  <data name="FieldDepartment1" xml:space="preserve">
-    <value>القسم</value>
+  <data name="FieldRWDocumentRef" xml:space="preserve">
+    <value>Document Ref</value>
   </data>
-  <data name="FieldEmployeeName" xml:space="preserve">
-    <value>اسم الموظف</value>
+  <data name="FieldRWDocumentType" xml:space="preserve">
+    <value>Document Type</value>
   </data>
-  <data name="FieldInProcess" xml:space="preserve">
-    <value>قيد المعالجة</value>
+  <data name="FieldRWDtName" xml:space="preserve">
+    <value>Document Type</value>
   </data>
-  <data name="FieldNew" xml:space="preserve">
-    <value>جديد</value>
+  <data name="FieldRWEmployeeName" xml:space="preserve">
+    <value>Nom de l'employé</value>
   </data>
-  <data name="FieldQty" xml:space="preserve">
-    <value>الكمية</value>
+  <data name="FieldRWExpiryDate" xml:space="preserve">
+    <value>Date d'expiration</value>
   </data>
-  <data name="FieldRejected" xml:space="preserve">
-    <value>مرفوض</value>
+  <data name="FieldRWIssueDate" xml:space="preserve">
+    <value>Date d'émission</value>
   </data>
-  <data name="FieldStatus" xml:space="preserve">
-    <value>الحالة</value>
+  <data name="FieldRWRemarks" xml:space="preserve">
+    <value>Remarques</value>
   </data>
-  <data name="FieldSupplierName" xml:space="preserve">
-    <value>المورد</value>
+  <data name="RWGridTitle" xml:space="preserve">
+    <value>Droit de travailler</value>
   </data>
-  <data name="ReturnNotes" xml:space="preserve">
-    <value>ملاحظات</value>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
   </data>
-  <data name="Status0" xml:space="preserve">
-    <value>الكل</value>
+  <data name="FieldFile" xml:space="preserve">
+    <value>Attachment</value>
   </data>
-  <data name="Status1" xml:space="preserve">
-    <value>قيد المعالجة </value>
+  <data name="ChooseCalendarType" xml:space="preserve">
+    <value>Choisissez le calendrier</value>
   </data>
-  <data name="Status2" xml:space="preserve">
-    <value>مثبت</value>
+  <data name="DateFormatError" xml:space="preserve">
+    <value>Erreur de format de date, veuillez utiliser le sélecteur de date pour choisir une date correctement</value>
   </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>طلبات الشراء</value>
+  <data name="DateRangeError" xml:space="preserve">
+    <value>La date d'expiration doit être supérieure à la date d'émission</value>
+  </data>
+  <data name="FieldExpiryDate" xml:space="preserve">
+    <value>Date d'expiration</value>
+  </data>
+  <data name="FieldIssueDate" xml:space="preserve">
+    <value>Date d'émission</value>
   </data>
 </root>

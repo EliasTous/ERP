@@ -137,20 +137,21 @@ namespace AionHR.Web.UI.Forms
                     RemoveCookies();
                     
                 }
-                switch (response.User.languageId)
-                {
-                    case 1: _systemService.SessionHelper.SetLanguage("en");
-                        break;
-                    case 2:
-                        _systemService.SessionHelper.SetLanguage("ar");
-                        break;
-                    case 3: _systemService.SessionHelper.SetLanguage("fr");
-                        break;
-                    default: _systemService.SessionHelper.SetLanguage("en");
-                        break; 
+                //switch (response.User.languageId)
+                //{
+                //    case 1: _systemService.SessionHelper.SetLanguage("en");
+                //        break;
+                //    case 2:
+                //        _systemService.SessionHelper.SetLanguage("ar");
+                //        break;
+                //    case 3: _systemService.SessionHelper.SetLanguage("fr");
+                //        break;
+                //    default: _systemService.SessionHelper.SetLanguage("en");
+                //        break; 
 
-                }
-                
+                //}
+
+                _systemService.SessionHelper.SetLanguage("en");
 
                 _systemService.SessionHelper.Set("CompanyName", getACResponse.result.companyName);
 

@@ -1075,13 +1075,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Checkbox pp_shiftData;
         
         /// <summary>
-        /// pp_pendingPunchesFolder control.
+        /// pp_pendingDataFolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField pp_pendingPunchesFolder;
+        protected global::Ext.Net.TextField pp_pendingDataFolder;
         
         /// <summary>
         /// pp_punchInterface control.

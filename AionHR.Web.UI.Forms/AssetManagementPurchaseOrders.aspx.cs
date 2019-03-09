@@ -99,6 +99,7 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
                 FillBranch();
+                FillDepartment();
                 currentPurchaseOrderId.Text = "";
 
             }
@@ -118,6 +119,16 @@ namespace AionHR.Web.UI.Forms
             if (_systemService.SessionHelper.CheckIfIsAdmin())
                 return;
 
+        }
+        private void FillDepartment()
+        {
+            DepartmentListRequest departmentsRequest = new DepartmentListRequest();
+            departmentsRequest.type = 0;
+            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
+            if (!resp.Success)
+                Common.errorMessage(resp);
+            departmentStore.DataSource = resp.Items;
+            departmentStore.DataBind();
         }
 
         /// <summary>
@@ -165,6 +176,7 @@ namespace AionHR.Web.UI.Forms
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             currentPurchaseOrderId.Text = id.ToString();
             FillBranch();
+            FillDepartment();
             status.Select("1");
             status.SetValue("1");
             string type = e.ExtraParams["type"];
@@ -369,6 +381,7 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             FillBranch();
+            FillDepartment();
             currentPurchaseOrderId.Text = "";
             date.SelectedDate  = DateTime.Now;
             apStatus.setApprovalStatus("1");
@@ -565,9 +578,9 @@ namespace AionHR.Web.UI.Forms
         protected void ApprovalsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             AssetManagementPurchaseOrderApprovalListRequest req = new AssetManagementPurchaseOrderApprovalListRequest();
-            req.PurchaseOrderId = currentPurchaseOrderId.Text;
+            req.poId = currentPurchaseOrderId.Text;
           
-            if (string.IsNullOrEmpty(req.PurchaseOrderId))
+            if (string.IsNullOrEmpty(req.poId))
             {
                 ApprovalStore.DataSource = new List<AssetManagementPurchaseOrderApproval>();
                 ApprovalStore.DataBind();
@@ -575,21 +588,12 @@ namespace AionHR.Web.UI.Forms
             req.approverId = 0;
             req.BranchId = 0;
             req.DepartmentId = 0;
-            req.DivisionId = 0;
-            req.EmployeeId = 0;
+         
             req.Status = 0;
             req.Filter = "";
-            req.PositionId = 0;
-            req.EsId = 0;
+          
 
-            req.SortBy = "recordId";
-
-
-
-
-
-            req.Size = "1000";
-            req.StartAt = "0";
+         
             ListResponse<AssetManagementPurchaseOrderApproval> response = _assetManagementService.ChildGetAll<AssetManagementPurchaseOrderApproval>(req);
 
             if (!response.Success)

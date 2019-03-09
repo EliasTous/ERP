@@ -117,76 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Approvals" xml:space="preserve">
-    <value>تعميد</value>
+  <data name="DownloadImage" xml:space="preserve">
+    <value>Télécharger l'image</value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات طلب الشراء </value>
-  </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>تعديل طلب شراء</value>
-  </data>
-  <data name="FieldApproved" xml:space="preserve">
-    <value>موافق عليه</value>
-  </data>
-  <data name="FieldBranch" xml:space="preserve">
-    <value>الموقع </value>
-  </data>
-  <data name="FieldCategoryName" xml:space="preserve">
-    <value>الفئة</value>
-  </data>
-  <data name="FieldComments" xml:space="preserve">
-    <value>ملاحظات</value>
-  </data>
-  <data name="FieldCostPrice" xml:space="preserve">
-    <value>سعر التكلفة</value>
-  </data>
-  <data name="FieldCurrencyName" xml:space="preserve">
-    <value>العملة</value>
+  <data name="EditDocumentWindowTitle" xml:space="preserve">
+    <value>Document</value>
   </data>
   <data name="FieldDate" xml:space="preserve">
-    <value>التاريخ</value>
+    <value>Date</value>
   </data>
-  <data name="FieldDepartment" xml:space="preserve">
-    <value>القسم</value>
+  <data name="FieldDocumentRef" xml:space="preserve">
+    <value>Reference</value>
   </data>
-  <data name="FieldDepartment1" xml:space="preserve">
-    <value>القسم</value>
+  <data name="FieldDocumentType" xml:space="preserve">
+    <value>Type</value>
   </data>
-  <data name="FieldEmployeeName" xml:space="preserve">
-    <value>اسم الموظف</value>
+  <data name="FieldExpiryDate" xml:space="preserve">
+    <value>Date d'expiration</value>
   </data>
-  <data name="FieldInProcess" xml:space="preserve">
-    <value>قيد المعالجة</value>
+  <data name="FieldFile" xml:space="preserve">
+    <value>Fichier</value>
   </data>
-  <data name="FieldNew" xml:space="preserve">
-    <value>جديد</value>
+  <data name="FieldFolderName" xml:space="preserve">
+    <value>Dossier</value>
   </data>
-  <data name="FieldQty" xml:space="preserve">
-    <value>الكمية</value>
+  <data name="FieldRemarks" xml:space="preserve">
+    <value>Remarques</value>
   </data>
-  <data name="FieldRejected" xml:space="preserve">
-    <value>مرفوض</value>
-  </data>
-  <data name="FieldStatus" xml:space="preserve">
-    <value>الحالة</value>
-  </data>
-  <data name="FieldSupplierName" xml:space="preserve">
-    <value>المورد</value>
-  </data>
-  <data name="ReturnNotes" xml:space="preserve">
-    <value>ملاحظات</value>
-  </data>
-  <data name="Status0" xml:space="preserve">
-    <value>الكل</value>
-  </data>
-  <data name="Status1" xml:space="preserve">
-    <value>قيد المعالجة </value>
-  </data>
-  <data name="Status2" xml:space="preserve">
-    <value>مثبت</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>طلبات الشراء</value>
+  <data name="previewImage" xml:space="preserve">
+    <value>vous ne pouvez prévisualiser que l'image</value>
   </data>
 </root>

@@ -22,5 +22,7 @@ namespace AionHR.Model.AssetManagement
         public double? costPrice { get; set; }
         public string branchId { get; set; }
         public string branchName { get; set; }
+        public string departmentId { get; set; }
+        public string departmentName { get; set; }
     }
 }

@@ -117,76 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Approvals" xml:space="preserve">
-    <value>تعميد</value>
+  <data name="FieldNextReviewDate" xml:space="preserve">
+    <value>Date de révision suivante</value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات طلب الشراء </value>
+  <data name="FieldNP" xml:space="preserve">
+    <value>Période de préavis</value>
   </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>تعديل طلب شراء</value>
+  <data name="FieldProbationEndDate" xml:space="preserve">
+    <value>Date de fin de probation</value>
   </data>
-  <data name="FieldApproved" xml:space="preserve">
-    <value>موافق عليه</value>
+  <data name="FieldRecruitmentCost" xml:space="preserve">
+    <value>Coût du recrutement</value>
+  </data>
+  <data name="FieldRecruitmentInfo" xml:space="preserve">
+    <value>recrutement Info</value>
+  </data>
+  <data name="FieldTermEndDate" xml:space="preserve">
+    <value>Date de fin du mandat</value>
+  </data>
+  <data name="pyActiveDate" xml:space="preserve">
+    <value>Date d'activation de la paie</value>
+  </data>
+  <data name="pyReference" xml:space="preserve">
+    <value>Référence de la paie</value>
+  </data>
+  <data name="taReference" xml:space="preserve">
+    <value>Temps de référence de référence</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>الموقع </value>
+    <value>Branche</value>
   </data>
-  <data name="FieldCategoryName" xml:space="preserve">
-    <value>الفئة</value>
+  <data name="FieldProbationPeriod" xml:space="preserve">
+    <value>Période de probation</value>
   </data>
-  <data name="FieldComments" xml:space="preserve">
-    <value>ملاحظات</value>
+  <data name="sponsor" xml:space="preserve">
+    <value>Parrainer</value>
   </data>
-  <data name="FieldCostPrice" xml:space="preserve">
-    <value>سعر التكلفة</value>
+  <data name="otherRef" xml:space="preserve">
+    <value>Autre réf</value>
   </data>
-  <data name="FieldCurrencyName" xml:space="preserve">
-    <value>العملة</value>
+  <data name="prevRecord" xml:space="preserve">
+    <value>Réf précédente</value>
   </data>
-  <data name="FieldDate" xml:space="preserve">
-    <value>التاريخ</value>
-  </data>
-  <data name="FieldDepartment" xml:space="preserve">
-    <value>القسم</value>
-  </data>
-  <data name="FieldDepartment1" xml:space="preserve">
-    <value>القسم</value>
-  </data>
-  <data name="FieldEmployeeName" xml:space="preserve">
-    <value>اسم الموظف</value>
-  </data>
-  <data name="FieldInProcess" xml:space="preserve">
-    <value>قيد المعالجة</value>
-  </data>
-  <data name="FieldNew" xml:space="preserve">
-    <value>جديد</value>
-  </data>
-  <data name="FieldQty" xml:space="preserve">
-    <value>الكمية</value>
-  </data>
-  <data name="FieldRejected" xml:space="preserve">
-    <value>مرفوض</value>
-  </data>
-  <data name="FieldStatus" xml:space="preserve">
-    <value>الحالة</value>
-  </data>
-  <data name="FieldSupplierName" xml:space="preserve">
-    <value>المورد</value>
-  </data>
-  <data name="ReturnNotes" xml:space="preserve">
-    <value>ملاحظات</value>
-  </data>
-  <data name="Status0" xml:space="preserve">
-    <value>الكل</value>
-  </data>
-  <data name="Status1" xml:space="preserve">
-    <value>قيد المعالجة </value>
-  </data>
-  <data name="Status2" xml:space="preserve">
-    <value>مثبت</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>طلبات الشراء</value>
+  <data name="FieldbsId" xml:space="preserve">
+    <value>Calendrier des prestations</value>
   </data>
 </root>

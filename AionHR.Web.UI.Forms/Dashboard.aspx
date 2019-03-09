@@ -2658,7 +2658,7 @@
                             </SelectionModel>
                          
                      </ext:GridPanel>
-                                                         <ext:GridPanel
+                                                         <%--<ext:GridPanel
                             ID="PurchasesGrid"
                             runat="server"
                             PaddingSpec="0 0 1 0"
@@ -2676,14 +2676,18 @@
                                         <ext:Model runat="server">
                                             <Fields>
                                                 <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                                                   <ext:ModelField Name="approverName" ServerMapping="approverName.fullName" />
                                                 <ext:ModelField Name="departmentName" />
-                                                 <ext:ModelField Name="poId" />
-                                                <ext:ModelField Name="penaltyName" />
+                                                 <ext:ModelField Name="branchName" />
+                                                 <ext:ModelField Name="categoryName" />
+                                                 <ext:ModelField Name="qty" />
+                                                  <ext:ModelField Name="poId" />
+                                               
                                                 <ext:ModelField Name="approverId" />
                                                 <ext:ModelField Name="status" />
                                                  <ext:ModelField Name="statusString" />
                                                  <ext:ModelField Name="notes" />
-                                                 <ext:ModelField Name="Date" />
+                                                
                                                
                                                 
                                                 
@@ -2699,15 +2703,20 @@
                                     <ext:Column ID="Column54" Visible="false" DataIndex="poId" runat="server" />
                                     <ext:Column ID="Column55" Visible="false" DataIndex="approverId" runat="server" />
                                  
-                                        <ext:Column ID="Column56" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
+                                        <ext:Column ID="Column56" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2" />
+                                     <ext:Column ID="Column57" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2" />
+                                     <ext:Column ID="Column61" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1" />
+                                     <ext:Column ID="Column62" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
+                                     <ext:Column ID="Column63" DataIndex="categoryName" Text="<%$ Resources: FieldCategory%>" runat="server" Flex="1" />
+                                     <ext:Column ID="Column64" DataIndex="qty" Text="<%$ Resources: FieldQty%>" runat="server" Flex="1" />
+                                     
                                         
                                            
-                                         </ext:Column>
-                                     <%--<ext:Column CellCls="cellLink" ID="Column57" MenuDisabled="true" runat="server" Text="<%$ Resources:Common, FieldPenaltyName%>" DataIndex="penaltyName" />--%>
-                                    <ext:DateColumn  ID="DateColumn13" MenuDisabled="true" runat="server" DataIndex="Date" Text="<%$ Resources: FieldDate%>" Flex="1" Hideable="false" />
-                                    <ext:Column ID="Column58" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
                                        
-                                    </ext:Column>
+                                
+                                    <ext:Column ID="Column58" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> "  />
+                                       
+                                
                                       
                                     <ext:Column ID="Column59" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
                                        
@@ -2731,7 +2740,7 @@
                                     <Listeners>
                                                                 <Render Handler="this.on('cellclick', cellClick);" />
                                                             </Listeners>
-                                                            <%--<DirectEvents>
+                                                            <DirectEvents>
                                                                 <CellClick OnEvent="PurchasesApprovalPoPUP">
                                                                     <EventMask ShowMask="true" />
                                                                     <ExtraParams>
@@ -2740,20 +2749,14 @@
                                                                     </ExtraParams>
 
                                                                 </CellClick>
-                                                            </DirectEvents>--%>
+                                                            </DirectEvents>
 
 
 
 
                                
 
-                            <%--  alert(last.dayId);
-                                                        if(App.leaveRequest1_shouldDisableLastDay.value=='1')
-                                                             if(last.dayId==rec.data['dayId'])  
-                                                                        this.setDisabled(false);
-                                                            else this.setDisabled(true); 
-                                                        else
-                                                            this.setDisabled(true); --%>
+                         
                             
                            <Listeners>
                                <Activate Handler="#{PurchasesApprovalStore}.reload();" />
@@ -2766,10 +2769,10 @@
 
                             <SelectionModel>
                                 <ext:RowSelectionModel ID="rowSelectionModel38" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                              
                             </SelectionModel>
                          
-                     </ext:GridPanel>
+                     </ext:GridPanel>--%>
 
                                                       
                                                          
@@ -5599,7 +5602,186 @@
             </Items>
         </ext:Window>
       
+      <%--   <ext:Window
+            ID="purchaseApprovalWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:purchaseApproval %>"
+            Width="600"
+            Height="526"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Maximizable="false"
+            Resizable="false"
+            Draggable="True"
+            Layout="Fit">
 
+            <Items>
+                <ext:TabPanel ID="TabPanel4" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                    <Items>
+                        <ext:FormPanel
+                            ID="purchaseApprovalForm" DefaultButton="SavePurchaseApprovalButton"
+                            runat="server"
+                            Title="<%$ Resources: purchaseApproval %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" OnLoad="purchaseApprovalTab_load"
+                            BodyPadding="5"  AutoScroll="true">
+                            <Items>
+                                <ext:TextField  ID="TextField2" runat="server" Name="recordId" Hidden="true" />
+                                <ext:TextField  ID="TextField3" FieldLabel="<%$ Resources: FieldEmployeeName %>"  runat="server" Name="employeeName" ReadOnly="true" />
+                          
+                                
+
+                                
+
+                              
+
+                              
+
+                              
+
+                               
+
+                                
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ComboBox1" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false" SubmitValue="true">
+                                    <Items>
+                                         <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusNew %>"  />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusApproved %>" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusRefused %>" />
+                                    </Items>
+                                    <Listeners>
+                                       
+                                    </Listeners>
+                                </ext:ComboBox>
+
+                              
+                                     
+                                   <ext:TextArea ID="TextArea2" runat="server" FieldLabel="<%$ Resources:FieldNotes%>" Name="notes" AllowBlank="true"   MaxHeight="200"  Height="100"/>
+                                
+
+                            </Items>
+                            <Buttons>
+                                <ext:Button ID="Button5"  runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); if (!#{ApprovalLoanForm}.getForm().isValid()) {return false;}  " />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="SavePurchaseApprovalRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{ApprovalLoanWindow}.body}" />
+                                            <ExtraParams>
+                                                <ext:Parameter Name="id" Value="#{ApprovalRecordId}.getValue()" Mode="Raw" />
+                                                <ext:Parameter Name="status" Value="#{ApprovalLoanStatus}.getValue()" Mode="Raw" />
+                                                  <ext:Parameter Name="notes" Value="#{LoanNotes}.getValue()" Mode="Raw" />
+                                                 
+                                                <ext:Parameter Name="values" Value="#{purchaseApprovalForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                            </ExtraParams>
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:Button ID="Button6" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                                    <Listeners>
+                                        <Click Handler="this.up('window').hide();" />
+                                    </Listeners>
+                                </ext:Button>
+                            </Buttons>
+
+                        </ext:FormPanel>
+
+                     <ext:GridPanel MarginSpec="0 0 0 0"
+                                                            ID="GridPanel5"
+                                                            runat="server"
+                                                            PaddingSpec="0 0 1 0"
+                                                            Header="false"
+                                                            Title="<%$ Resources:EditWindowsTimeApproval %>"
+                                                            Layout="FitLayout"
+                                                            Scroll="Vertical"
+                                                           
+                                                            Border="false"
+                                                              ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                                                          <Store>
+                                                                <ext:Store 
+                                                                    ID="store2"
+                                                                    runat="server" 
+                                                                    RemoteSort="false"
+                                                                    RemoteFilter="false" >
+                                                                  
+                                                                    <Model>
+                                                                        <ext:Model ID="Model39" runat="server" >
+                                                                            <Fields>
+                                                                                                                                                            
+                                                                                <ext:ModelField Name="employeeId" />
+                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                               
+                                                                               <ext:ModelField Name="approverName" IsComplex="true" />
+                                                                               
+                                                                                <ext:ModelField Name="approverId" />
+                                                                                <ext:ModelField Name="status" />
+                                                                                <ext:ModelField Name="notes" />
+                                                                                  <ext:ModelField Name="statusString" />
+                                                                            
+
+                                                                            </Fields>
+                                                                        </ext:Model>
+                                                                    </Model>
+                                                                   
+                                                                </ext:Store>
+                                                         
+
+                                                              </Store>
+                                                            <ColumnModel ID="ColumnModel40" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                                                <Columns>
+                                                                  
+                                                                   <ext:Column ID="Column65" DataIndex="employeeId"  runat="server" Visible="false" />
+                                                                 
+
+                                                                     <ext:Column ID="Column66" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
+                                                                    <Renderer Handler=" return record.data['approverName'].fullName;" />
+                                                                    </ext:Column>
+                                                                                                                              
+                                                                                                                                
+                          
+
+                                                                    
+                                                                     <ext:Column ID="Column67" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
+                                                                      
+                                                                    </ext:Column>
+                                                                     <ext:Column ID="Column68" DataIndex="notes" Text="<%$ Resources: FieldNotes %>" runat="server" Flex="2" />
+
+                                                                
+                                                                  
+
+
+
+                                                                </Columns>
+                                                            </ColumnModel>
+                                                           
+
+                                                            <View>
+                                                                <ext:GridView ID="GridView40" runat="server" />
+                                                            </View>
+
+
+                                                            <SelectionModel>
+                                                                <ext:RowSelectionModel ID="rowSelectionModel39" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                                               
+                                                            </SelectionModel>
+                                                        </ext:GridPanel>
+
+                  
+
+
+                      
+
+
+
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+
+        </ext:Window>--%>
         <uc:leaveControl runat="server" ID="leaveRequest1" />
       
       
