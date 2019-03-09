@@ -1054,7 +1054,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField pp_serialNo;
+        protected global::Ext.Net.TextField pp_serialNo;
         
         /// <summary>
         /// pp_debugMode control.

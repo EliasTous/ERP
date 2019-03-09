@@ -1129,7 +1129,9 @@
                                 <ext:Checkbox FieldLabel="<%$ Resources: push %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_push" ID="pp_push" />
                                 <ext:Checkbox FieldLabel="<%$ Resources: clearOnSuccess %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_clearOnSuccess" ID="pp_clearOnSuccess" />
                                 <ext:NumberField FieldLabel="<%$ Resources: sleepTime %>" AllowBlank="true" LabelWidth="150" runat="server"  Name="pp_sleepTime" ID="pp_sleepTime" MinValue="0" ></ext:NumberField>
-                                 <ext:NumberField FieldLabel="<%$ Resources: serialNo %>" AllowBlank="true" LabelWidth="150" runat="server"  Name="pp_serialNo" ID="pp_serialNo" ></ext:NumberField>
+                                    <ext:TextField runat="server" Name="pp_serialNo" AllowBlank="true" ID="pp_serialNo" FieldLabel="<%$ Resources:serialNo%>" LabelWidth="150" >
+                                      <Validator Handler="return !isNaN(this.value);" />
+                                     </ext:TextField>
                                  <ext:Checkbox FieldLabel="<%$ Resources: debugMode %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_debugMode" ID="pp_debugMode" />
                                  <ext:Checkbox FieldLabel="<%$ Resources: shiftData %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_shiftData" ID="pp_shiftData" />
                                 <ext:TextField FieldLabel="<%$ Resources: pendingPunchesFolder %>" LabelWidth="150" runat="server" Name="pp_pendingDataFolder" ID="pp_pendingDataFolder" MaxLength="100" />
@@ -1159,7 +1161,7 @@
                                 <ext:Button ID="Button11" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                                     <Listeners>
-                                        <Click Handler="CheckSession(); if (!#{GeneralSettings}.getForm().isValid()||!#{EmployeeSettings}.getForm().isValid()||!#{AttendanceSettings}.getForm().isValid()||!#{PayrollSettings}.getForm().isValid()||!#{SecuritySettings}.getForm().isValid()) {return false;}  " />
+                                        <Click Handler="CheckSession(); if (!#{GeneralSettings}.getForm().isValid()||!#{EmployeeSettings}.getForm().isValid()||!#{AttendanceSettings}.getForm().isValid()||!#{PayrollSettings}.getForm().isValid()||!#{SecuritySettings}.getForm().isValid()||!#{BiometricSettings}.getForm().isValid()) {return false;}  " />
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="SaveAll" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
