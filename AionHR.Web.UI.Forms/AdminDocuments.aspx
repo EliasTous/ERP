@@ -1409,7 +1409,7 @@
                         <Click OnEvent="SaveDX" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{DXWindow}.body}" />
                             <ExtraParams>
-
+                                 <ext:Parameter Name="description" Value="#{description}.getValue()" Mode="Raw"  />
                                 <ext:Parameter Name="values" Value="#{DXForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

@@ -1433,15 +1433,24 @@ namespace AionHR.Web.UI.Forms
 
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+
+            AdminDocumentDX b = null;
             try
             {
-
-
                 string obj = e.ExtraParams["values"];
 
-                AdminDocumentDX b = JsonConvert.DeserializeObject<AdminDocumentDX>(obj);
 
+                 b= JsonConvert.DeserializeObject<AdminDocumentDX>(obj);
+            }
+            catch
+            {
+                b = new AdminDocumentDX();
+                b.description = e.ExtraParams["description"];
+                
+            }
 
+            try
+            {
 
                 b.doId = Convert.ToInt32(currentDocumentId.Text);
 
@@ -1450,7 +1459,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-                if (b.seqNo == "")
+                if (string.IsNullOrEmpty(b.seqNo ))
                 {
                     b.priority = Convert.ToInt32(CurrentDXCount.Text) + 1;
                     //New Mode
