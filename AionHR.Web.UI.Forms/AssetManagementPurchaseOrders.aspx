@@ -329,22 +329,22 @@
                                       <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
-                                                <uc:SupplierControl runat="server" ID="supplierId"  FieldLabel="<%$ Resources:FieldSupplierName%>"    />
+                                                <uc:SupplierControl runat="server" ID="supplierId"  FieldLabel="<%$ Resources:FieldSupplierName%>"  AllowBlank="false"   />
                                             </Content>
                                         </ext:Container>    
                                     <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
-                                                <uc:AssetCategoryControl runat="server" ID="categoryId" FieldLabel="<%$ Resources:FieldCategoryName%>"  />
+                                                <uc:AssetCategoryControl runat="server" ID="categoryId" FieldLabel="<%$ Resources:FieldCategoryName%>" AllowBlank="false" />
                                             </Content>
                                         </ext:Container>                             
                                 
                                <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date"  />
-                               <ext:NumberField ID="qty" runat="server" FieldLabel="<%$ Resources:FieldQty%>" Name="qty" MinValue="0" />
+                               <ext:NumberField ID="qty" runat="server" FieldLabel="<%$ Resources:FieldQty%>" Name="qty" MinValue="0" AllowBlank="false" />
                                   <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
-                                                <uc:ApprovalStatusControl  runat="server" ID="apStatus" FieldLabel="<%$ Resources:Common, FieldApprovalStatus %>"  FieldType="Form" />
+                                                <uc:ApprovalStatusControl  runat="server" ID="apStatus" FieldLabel="<%$ Resources:Common, FieldApprovalStatus %>"  FieldType="Form" ReadOnly="True"/>
                                             </Content>
                                         </ext:Container>  
                                   <ext:Container runat="server"  Layout="FitLayout">
@@ -354,7 +354,7 @@
                                             </Content>
                                         </ext:Container>  
                                          
-                                   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="status" Name="status"  runat="server" FieldLabel="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="status" Name="status" AllowBlank="false"  runat="server" FieldLabel="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
                                       

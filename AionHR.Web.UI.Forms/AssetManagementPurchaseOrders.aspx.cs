@@ -30,6 +30,7 @@ using AionHR.Model.Attendance;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Model.AssetManagement;
 using AionHR.Services.Messaging.Asset_Management;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -164,6 +165,8 @@ namespace AionHR.Web.UI.Forms
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             currentPurchaseOrderId.Text = id.ToString();
             FillBranch();
+            status.Select("1");
+            status.SetValue("1");
             string type = e.ExtraParams["type"];
             switch (type)
             {
@@ -186,8 +189,19 @@ namespace AionHR.Web.UI.Forms
                     this.BasicInfoTab.SetValues(response.result);
                     supplierId.setSupplier(response.result.supplierId);
                     categoryId.setCategory(response.result.categoryId);
+                    if (string.IsNullOrEmpty( response.result.currencyId))
+                        CurrencyControl.setCurrency(_systemService.SessionHelper.GetDefaultCurrency());
+                    else
+                       
                     CurrencyControl.setCurrency(response.result.currencyId);
-                    apStatus.setApprovalStatus(response.result.apStatus);
+
+
+                    if (response.result.status == null)
+                    {
+                        status.Select("1");
+                        status.SetValue("1");
+                    }
+                    apStatus.setApprovalStatus("1");
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -350,12 +364,16 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
+            CurrencyControl.setCurrency(_systemService.SessionHelper.GetDefaultCurrency());
             panelRecordDetails.ActiveIndex = 0;
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             FillBranch();
             currentPurchaseOrderId.Text = "";
             date.SelectedDate  = DateTime.Now;
+            apStatus.setApprovalStatus("1");
+            status.SetValue("1");
+            status.Select("1");
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
            
 

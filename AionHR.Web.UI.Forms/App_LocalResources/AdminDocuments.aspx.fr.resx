@@ -204,31 +204,4 @@
   <data name="FieldAmount" xml:space="preserve">
     <value>Montant</value>
   </data>
-  <data name="Department" xml:space="preserve">
-    <value>Department</value>
-  </data>
-  <data name="DocumentsTransfers" xml:space="preserve">
-    <value>DocumentsTransfers</value>
-  </data>
-  <data name="DocumentTransferWindow" xml:space="preserve">
-    <value>DocumentTransferWindow</value>
-  </data>
-  <data name="Employee" xml:space="preserve">
-    <value>Employee</value>
-  </data>
-  <data name="FieldStatus" xml:space="preserve">
-    <value>FieldStatus</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="DocumentsDX" xml:space="preserve">
-    <value>CheckList</value>
-  </data>
-  <data name="Done" xml:space="preserve">
-    <value>Done</value>
-  </data>
-  <data name="DXWindow" xml:space="preserve">
-    <value>CheckList Item</value>
-  </data>
 </root>

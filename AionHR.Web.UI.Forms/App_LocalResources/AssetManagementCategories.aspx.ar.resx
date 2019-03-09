@@ -138,4 +138,31 @@
   <data name="FieldParentName" xml:space="preserve">
     <value>الفئة الاساسية</value>
   </data>
+  <data name="FieldApproval" xml:space="preserve">
+    <value>التعميد</value>
+  </data>
+  <data name="DATE" xml:space="preserve">
+    <value>تاريخ </value>
+  </data>
+  <data name="DATE_TIME" xml:space="preserve">
+    <value>تاريخ ووقت </value>
+  </data>
+  <data name="FieldCaption" xml:space="preserve">
+    <value>شرح</value>
+  </data>
+  <data name="NUMERIC" xml:space="preserve">
+    <value>رقم </value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>خصائص</value>
+  </data>
+  <data name="PropertiesEditWindowTitle" xml:space="preserve">
+    <value>تعديل الخاصية </value>
+  </data>
+  <data name="TEXT" xml:space="preserve">
+    <value>نص </value>
+  </data>
+  <data name="FieldMask" xml:space="preserve">
+    <value>القناع</value>
+  </data>
 </root>

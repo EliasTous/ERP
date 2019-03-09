@@ -22,6 +22,7 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
+         <ext:Hidden ID="currentCategory" runat="server"  />
         
         <ext:Store
             ID="Store1"
@@ -220,12 +221,22 @@
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:NumberField ID="deliveryDuration" runat="server" FieldLabel="<%$ Resources:deliveryDuration%>" Name="deliveryDuration"  AllowDecimals="false" />
-                                 <ext:Container runat="server"  Layout="AutoLayout">
-                                            <Content>
-                                             
-                                                 <uc:ApprovalStatusControl runat="server" ID="apId"  FieldLabel="<%$ Resources:Common,FieldApprovalStatus%>" FieldType="Form"  />
-                                            </Content>
-                                        </ext:Container>
+                                 <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="apId" Name="apId" FieldLabel="<%$ Resources:FieldApproval%>"  >
+                              
+                                                <Store>
+                                                    <ext:Store runat="server" ID="ApprovalStore" OnReadData="ApprovalStory_RefreshData">
+                                                        <Model>
+                                                            <ext:Model runat="server">
+                                                                <Fields>
+                                                                    <ext:ModelField Name="recordId" />
+                                                                    <ext:ModelField Name="name" />
+                                                                </Fields>
+                                                            </ext:Model>
+                                                        </Model>
+                                                    </ext:Store>
+                                                </Store>
+                                                
+                                            </ext:ComboBox>
                                      <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="parentId" Name="parentId" FieldLabel="<%$ Resources:FieldParentName%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="parentStore" >
@@ -260,6 +271,118 @@
                             </Items>
                           
                         </ext:FormPanel>
+                           <ext:GridPanel
+                            ID="PropertiesGrid"
+                            runat="server"
+                            PaddingSpec="0 0 1 0"
+                            Header="false"
+                            MaxHeight="350"
+                            Layout="FitLayout"
+                            Scroll="Vertical"
+                            Border="false"
+                             Title="<%$ Resources: Properties %>"
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True" >
+                                  <TopBar>
+                        <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                                <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
+                                     <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>                           
+                                    <DirectEvents>
+                                        <Click OnEvent="ADDNewPropertyRecord">
+                                            <EventMask ShowMask="true" CustomTarget="={#{PropertiesGrid}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                               
+                            
+                            
+                            
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
+                            
+                            <Store>
+                                <ext:Store runat="server" ID="PropertiesStore" OnReadData="PropertiesStore_ReadData">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="categoryId"  />
+                                                <ext:ModelField Name="propertyId" />
+                                                 <ext:ModelField Name="caption" />
+                                                <ext:ModelField Name="mask" />
+                                              
+                                                
+                                                
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+
+
+                            <ColumnModel ID="ColumnModel4" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                <Columns>
+                                    <ext:Column ID="ColCategoryId" Visible="false" DataIndex="categoryId" runat="server" />
+                                    <ext:Column ID="ColPropertyId" Visible="false" DataIndex="propertyId" runat="server" />
+                                     <ext:Column ID="ColMask" Visible="false" DataIndex="mask" runat="server" />
+                                 
+                                    <ext:Column ID="Colcaption" DataIndex="caption" Text="<%$ Resources: FieldCaption%>" runat="server" Flex="1"/>
+                                   
+                                   
+                                    
+                            <ext:Column runat="server"
+                                ID="Column1"  Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+
+                            </ext:Column>
+
+
+                                </Columns>
+                            </ColumnModel>
+
+                          
+                          <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
+                    <DirectEvents>
+                        <CellClick OnEvent="PoPuPCP">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                <ext:Parameter Name="categoryId" Value="record.data['categoryId']" Mode="Raw" />
+                                  <ext:Parameter Name="propertyId" Value="record.data['propertyId']" Mode="Raw" />
+                                   <ext:Parameter Name="mask" Value="record.data['mask']" Mode="Raw" />
+                                 <ext:Parameter Name="caption" Value="record.data['caption']" Mode="Raw" />
+
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>
+
+                            <View>
+                                <ext:GridView ID="GridView4" runat="server" />
+                            </View>
+
+
+                            <SelectionModel>
+                                <ext:RowSelectionModel ID="rowSelectionModel3" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                            </SelectionModel>
+                         
+                     </ext:GridPanel>
+
                         
                     </Items>
                 </ext:TabPanel>
@@ -281,6 +404,79 @@
                     </DirectEvents>
                 </ext:Button>
                 <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+
+          <ext:Window 
+            ID="EditPropertyWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:Properties %>"
+            Width="450"
+            Height="330"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+            
+            <Items>
+                <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                    <Items>
+                        <ext:FormPanel
+                            ID="PropertiesForm" DefaultButton="SavePropertiesButton"
+                            runat="server"
+                            Title="<%$ Resources: PropertiesEditWindowTitle %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" 
+                            BodyPadding="5">
+                            <Items>
+                                <ext:TextField ID="categoryId" Hidden="true" runat="server"  Disabled="true" Name="categoryId" />
+                                 <ext:TextField ID="propertyId" Hidden="true" runat="server"  Disabled="true" Name="propertyId" />
+                                <ext:TextArea ID="caption" AllowBlank="false" runat="server"   Name="caption" FieldLabel="<%$ Resources: FieldCaption%>" MaxLength="50"  />
+                              <ext:ComboBox AnyMatch="true"  CaseSensitive="false" runat="server" ID="mask" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false"  FieldLabel="<%$ Resources: FieldMask %>">
+                                    <Items>
+
+                                        <ext:ListItem Text="<%$ Resources: TEXT %>" Value="<%$ Resources:StaticComboBox, AM_CP_mask_Text %>" />
+                                        <ext:ListItem Text="<%$ Resources: NUMERIC %>" Value="<%$ Resources:StaticComboBox, AM_CP_mask_NUMERIC %>"/>
+                                        <ext:ListItem Text="<%$ Resources: DATE %>" Value="<%$ Resources:StaticComboBox, AM_CP_mask_DATE %>" />
+                                        <ext:ListItem Text="<%$ Resources:  DATE_TIME %>" Value="<%$ Resources:StaticComboBox, AM_CP_mask_DATE_TIME %>" />
+                                    </Items>
+
+                                </ext:ComboBox>
+
+                                
+                                  
+                            </Items>
+                          
+                        </ext:FormPanel>
+                          
+
+                        
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="SavePropertiesButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession();  if (!#{PropertiesForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveNewPropertyRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditPropertyWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="categoryId" Value="#{categoryId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="propertyId" Value="#{propertyId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value ="#{PropertiesForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>

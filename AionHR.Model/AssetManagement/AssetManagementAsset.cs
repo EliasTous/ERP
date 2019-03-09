@@ -9,6 +9,8 @@ namespace AionHR.Model.AssetManagement
 {
   public  class AssetManagementAsset:ModelBase
     {
+        
+        public string assetRef { get; set; }
         public string categoryName { get; set; }
         public string supplierName { get; set; }
         public EmployeeName employeeName { get; set; }

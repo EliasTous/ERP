@@ -138,4 +138,31 @@
   <data name="FieldParentName" xml:space="preserve">
     <value>Parent </value>
   </data>
+  <data name="FieldApproval" xml:space="preserve">
+    <value>Approval</value>
+  </data>
+  <data name="DATE" xml:space="preserve">
+    <value>DATE</value>
+  </data>
+  <data name="DATE_TIME" xml:space="preserve">
+    <value>DATE TIME</value>
+  </data>
+  <data name="FieldCaption" xml:space="preserve">
+    <value>Caption</value>
+  </data>
+  <data name="NUMERIC" xml:space="preserve">
+    <value>NUMERIC</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="PropertiesEditWindowTitle" xml:space="preserve">
+    <value>Edit Property</value>
+  </data>
+  <data name="TEXT" xml:space="preserve">
+    <value>TEXT</value>
+  </data>
+  <data name="FieldMask" xml:space="preserve">
+    <value>Mask</value>
+  </data>
 </root>

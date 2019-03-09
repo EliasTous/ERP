@@ -166,6 +166,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColrecordId;
         
         /// <summary>
+        /// ColAssetRef control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColAssetRef;
+        
+        /// <summary>
         /// ColEmployeeName control.
         /// </summary>
         /// <remarks>
@@ -328,6 +337,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField recordId;
         
         /// <summary>
+        /// assetRef control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField assetRef;
+        
+        /// <summary>
         /// name control.
         /// </summary>
         /// <remarks>
@@ -481,13 +499,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button Button7;
         
         /// <summary>
-        ///  costPrice control.
+        /// costPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField  costPrice;
+        protected global::Ext.Net.NumberField costPrice;
         
         /// <summary>
         /// poRef control.

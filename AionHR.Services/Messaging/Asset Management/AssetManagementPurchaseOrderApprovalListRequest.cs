@@ -47,7 +47,7 @@ namespace AionHR.Services.Messaging.Asset_Management
                 parameters.Add("_poId", PurchaseOrderId);
                 parameters.Add("_esId", EsId.ToString());
                 parameters.Add("_positionId", PositionId.ToString());
-                parameters.Add("_positionId", poId.ToString());
+                parameters.Add("_poId", poId.ToString());
                 parameters.Add("_apStatus", apStatus.ToString());
 
 

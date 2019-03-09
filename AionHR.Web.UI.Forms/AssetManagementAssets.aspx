@@ -49,6 +49,7 @@
                         <ext:ModelField Name="departmentName" />
                          <ext:ModelField Name="serialNo" />
                                <ext:ModelField Name="statusName" />
+                          <ext:ModelField Name="assetRef" />
                         
                                </Fields>
                 </ext:Model>
@@ -136,7 +137,9 @@
                       
                        
                               <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
+                            <ext:Column    CellCls="cellLink" ID="ColAssetRef" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAssetRef%>" DataIndex="assetRef" Flex="1" Hideable="false" />
                            <ext:Column    CellCls="cellLink" ID="ColEmployeeName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee%>" DataIndex="employeeName" Flex="2" Hideable="false" />
+                      
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="1" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="ColCategory" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCategory%>" DataIndex="categoryName" Flex="1" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="ColSupplierName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSupplier%>" DataIndex="supplierName" Flex="1" Hideable="false" /> 
@@ -250,13 +253,14 @@
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
-                            DefaultAnchor="100%" Layout="TableLayout" >
+                            DefaultAnchor="100%" Layout="HBoxLayout"  BodyPadding="5" >
                           
                             <Items>
-                                 <ext:Panel runat="server" MarginSpec="0 20 0 20" ID="left">
+                                <ext:Panel runat="server" MarginSpec="0 20 0 0" ID="left">
                                        <Items>
                                 
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" Disabled="true" Name="recordId" />
+                               <ext:TextField ID="assetRef" runat="server" FieldLabel="<%$ Resources:FieldAssetRef%>" Name="assetRef"  />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" />
                               <ext:Container runat="server"  Layout="AutoLayout">
                                             <Content>
@@ -309,10 +313,11 @@
                                             </Store>
                                        
                                         </ext:ComboBox>
+                                            
                                          </Items>
                                         
                                            </ext:Panel>
-                                   <ext:Panel runat="server" MarginSpec="0 0 0 0" ID="rightPanel"  >
+                                 <ext:Panel runat="server" MarginSpec="0 0 0 0" ID="rightPanel">
                                   <Items>
                                 
                                    <ext:DateField ID="receptionDate" runat="server" FieldLabel="<%$ Resources:FieldReceptionDate%>" Name="receptionDate"   >
@@ -385,7 +390,7 @@
                                                
                                               
                                             </ext:ComboBox> 
-                                            <ext:TextArea ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments"  DataIndex="comments" />
+                                           <ext:TextArea ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments"  DataIndex="comments" />
                                      </Items>
                                    
                                       </ext:Panel>

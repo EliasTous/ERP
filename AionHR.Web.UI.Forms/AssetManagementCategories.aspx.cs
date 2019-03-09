@@ -25,6 +25,7 @@ using AionHR.Infrastructure.Domain;
 using AionHR.Model.Access_Control;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Model.AssetManagement;
+using AionHR.Services.Messaging.Asset_Management;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -32,7 +33,7 @@ namespace AionHR.Web.UI.Forms
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IAssetManagementService _assetManagementService = ServiceLocator.Current.GetInstance<IAssetManagementService>();
-
+        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         protected override void InitializeCulture()
         {
 
@@ -82,6 +83,7 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
                 FillParent();
+                currentCategory.Text = "";
 
             }
 
@@ -132,7 +134,9 @@ namespace AionHR.Web.UI.Forms
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
-            
+            currentCategory.Text = id.ToString();
+            PropertiesStore.Reload();
+            panelRecordDetails.ActiveIndex = 0;
             switch (type)
             {
                 case "imgEdit":
@@ -148,8 +152,9 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     FillParent();
+                    ApprovalStore.Reload();
                     this.BasicInfoTab.SetValues(response.result);
-                    apId.setApprovalStatus(response.result.apId);
+                    
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -161,6 +166,64 @@ namespace AionHR.Web.UI.Forms
                         {
                             //We are call a direct request metho for deleting a record
                             Handler = String.Format("App.direct.DeleteRecord({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                case "imgAttach":
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
+
+
+        protected void PoPuPCP(object sender, DirectEventArgs e)
+        {
+
+
+         
+            string propertyId = e.ExtraParams["propertyId"];
+            string type = e.ExtraParams["type"];
+            switch (type)
+            {
+                case "imgEdit":
+                    //Step 1 : get the object from the Web Service 
+                    AssetManagementCategoryPropertyRecordRequest r = new AssetManagementCategoryPropertyRecordRequest();
+                    r.categoryId = currentCategory.Text;
+                    r.propertyId = propertyId;
+                    RecordResponse<AssetManagementCategoryProperty> response = _assetManagementService.ChildGetRecord<AssetManagementCategoryProperty>(r);
+                    if (!response.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        Common.errorMessage(response);
+                        return;
+                    }
+                    //Step 2 : call setvalues with the retrieved object
+                   
+                    this.PropertiesForm.SetValues(response.result);
+
+                    this.EditPropertyWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.EditPropertyWindow.Show();
+                    break;
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeletePropertyRecord({0})",propertyId),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -213,6 +276,52 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Step 2 :  remove the object from the store
                     Store1.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+        [DirectMethod]
+        public void DeletePropertyRecord(string propertyId)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                AssetManagementCategoryProperty n = new AssetManagementCategoryProperty();
+                n.categoryId = currentCategory.Text;
+                n.propertyId = propertyId;
+
+
+
+                PostRequest<AssetManagementCategoryProperty> req = new PostRequest<AssetManagementCategoryProperty>();
+                req.entity = n;
+                PostResponse<AssetManagementCategoryProperty> res = _assetManagementService.ChildDelete<AssetManagementCategoryProperty>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(res);
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    PropertiesStore.Reload();
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
@@ -312,16 +421,32 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
 
             //Reset all values of the relative object
+            currentCategory.Text = "";
             BasicInfoTab.Reset();
             FillParent();
+            panelRecordDetails.ActiveIndex = 0;
+            PropertiesStore.Reload();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
          
 
             this.EditRecordWindow.Show();
+        }
+        protected void ADDNewPropertyRecord(object sender, DirectEventArgs e)
+        {
+
+            //Reset all values of the relative object
+
+            PropertiesForm.Reset();
+          
+            this.EditPropertyWindow.Title = Resources.Common.AddNewRecord;
+
+
+            this.EditPropertyWindow.Show();
         }
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
@@ -363,7 +488,7 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             AssetManagementCategory b = JsonConvert.DeserializeObject<AssetManagementCategory>(obj);
-            b.apId = apId.GetApprovalStatus();
+           
             b.recordId = id;
             // Define the object to add or edit as null
 
@@ -465,8 +590,116 @@ namespace AionHR.Web.UI.Forms
                 }
             }
         }
+        protected void SaveNewPropertyRecord(object sender, DirectEventArgs e)
+        {
 
-        
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            
+            string propertyId = e.ExtraParams["categoryId"];
+            
+            string obj = e.ExtraParams["values"];
+            AssetManagementCategoryProperty b = JsonConvert.DeserializeObject<AssetManagementCategoryProperty>(obj);
+            b.categoryId = currentCategory.Text;
+            b.propertyId = propertyId;
+          
+            // Define the object to add or edit as null
+
+            if (string.IsNullOrEmpty(propertyId))
+            {
+
+                try
+                {
+                    //New Mode
+                    //Step 1 : Fill The object and insert in the store 
+                    PostRequest<AssetManagementCategoryProperty> request = new PostRequest<AssetManagementCategoryProperty>();
+                    request.entity = b;
+                    PostResponse<AssetManagementCategoryProperty> r = _assetManagementService.ChildAddOrUpdate<AssetManagementCategoryProperty>(request);
+                   
+
+                    //check if the insert failed
+                    if (!r.Success)//it maybe be another condition
+                    {
+                        //Show an error saving...
+
+                        Common.errorMessage(r);
+                        return;
+                    }
+                    else
+                    {
+
+                        //Add this record to the store 
+                        this.PropertiesStore.Reload();
+
+                        //Display successful notification
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordSavingSucc
+                        });
+
+                        this.EditPropertyWindow.Close();
+                       
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //Error exception displaying a messsage box
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                }
+
+
+            }
+            else
+            {
+                //Update Mode
+
+                try
+                {
+                  
+                    PostRequest<AssetManagementCategoryProperty> request = new PostRequest<AssetManagementCategoryProperty>();
+                    request.entity = b;
+                    PostResponse<AssetManagementCategoryProperty> r = _assetManagementService.ChildAddOrUpdate<AssetManagementCategoryProperty>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+
+                    //Step 2 : saving to store
+
+                    //Step 3 :  Check if request fails
+                    if (!r.Success)//it maybe another check
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        Common.errorMessage(r);
+                        return;
+                    }
+                    else
+                    {
+
+
+                        PropertiesStore.Reload();
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordUpdatedSucc
+                        });
+                        this.EditPropertyWindow.Close();
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                }
+            }
+        }
+
+
         private void FillParent()
         {
             ListRequest request = new ListRequest();
@@ -499,7 +732,57 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
+        protected void ApprovalStory_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            int totalCount = 1;
 
 
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<Approval> routers = _companyStructureService.ChildGetAll<Approval>(request);
+
+            if (!routers.Success)
+                Common.errorMessage(routers);
+            this.ApprovalStore.DataSource = routers.Items;
+            e.Total = routers.Items.Count; ;
+
+            this.ApprovalStore.DataBind();
+        }
+        protected void PropertiesStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            AssetManagementCategoryPropertyListRequest request = new AssetManagementCategoryPropertyListRequest();
+            if (string.IsNullOrEmpty(currentCategory.Text))
+                return;
+            request.categoryId = currentCategory.Text;
+
+            request.Filter = "";
+            ListResponse<AssetManagementCategoryProperty> routers = _assetManagementService.ChildGetAll<AssetManagementCategoryProperty>(request);
+
+            if (!routers.Success)
+                Common.errorMessage(routers);
+            this.PropertiesStore.DataSource = routers.Items;
+            e.Total = routers.Items.Count; ;
+
+            this.PropertiesStore.DataBind();
+        }
+        
     }
 }

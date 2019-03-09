@@ -186,4 +186,7 @@
   <data name="FieldcostPrice" xml:space="preserve">
     <value>التكلفة</value>
   </data>
+  <data name="FieldAssetRef" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
 </root>
