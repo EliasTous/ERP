@@ -27,7 +27,8 @@ namespace AionHR.Model.AdminTemplates
         public EmployeeName employeeName { get; set;}
 
         public string departmentId { get; set; }
-        
+        public string employeeId { get; set; }
+
         public string departmentName { get; set; }
 
 

@@ -552,7 +552,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(businessPartner, "businessPartneres", "BusinessPartneres.aspx", Resources.Common.BusinessPartner, "icon-Employees", "1");
             FillConfigItem(DocumentCategory, "DocumentCategories", "DocumentCategories.aspx", Resources.Common.DocumentCategory, "icon-Employees", "1");
             FillConfigItem(Document, "AdminDocuments", "AdminDocuments.aspx", Resources.Common.Documents, "icon-Employees", "1");
-            FillConfigItem(DocumentNavigation, "DocumentNavigation", "AdminDocNav.aspx", Resources.Common.Documents, "icon-Employees", "1");
+            FillConfigItem(DocumentNavigation, "DocumentNavigation", "AdminDocNav.aspx", Resources.Common.OpenDocuments, "icon-Employees", "1");
             FillConfigItem(Asset, "AssetManagementAssets", "AssetManagementAssets.aspx", Resources.Common.Assets, "icon-Employees", "1");
             FillConfigItem(AssetManagementPurchaseOrder, "AssetManagementPurchaseOrders", "AssetManagementPurchaseOrders.aspx", Resources.Common.PurchaseOrders, "icon-Employees", "1");
             FillConfigItem(AssetManagementOnboarding, "AssetManagementOnboarding", "AssetManagementOnboardings.aspx", Resources.Common.Onboarding, "icon-Employees", "1");
