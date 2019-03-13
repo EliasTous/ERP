@@ -135,4 +135,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Categories</value>
   </data>
+  <data name="CHECKBOX" xml:space="preserve">
+    <value>Case à Cocher</value>
+  </data>
 </root>

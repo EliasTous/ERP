@@ -14,7 +14,7 @@ namespace AionHR.Model.Reports
 
         public DateTime date { get; set; }
         public string trxType { get; set; }
-        public int amount { get; set; }
+        public double amount { get; set; }
      
         public string reference { get; set; }
         public double balance { get; set; }

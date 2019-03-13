@@ -661,6 +661,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModuleIDs.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\StaticComboBox.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaticComboBox.resx</DependentUpon>
+    </Compile>
     <Compile Include="AssetManagementAssets.aspx.cs">
       <DependentUpon>AssetManagementAssets.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3003,6 +3008,11 @@
     <Content Include="EmployeePages\App_LocalResources\Documents.aspx.fr.resx" />
     <Content Include="EmployeePages\App_LocalResources\Legals.aspx.fr.resx" />
     <Content Include="EmployeePages\App_LocalResources\Hire.aspx.fr.resx" />
+    <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.fr.resx" />
+    <Content Include="App_GlobalResources\StaticComboBox.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>StaticComboBox.designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

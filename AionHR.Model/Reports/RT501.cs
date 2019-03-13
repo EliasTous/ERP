@@ -235,10 +235,12 @@ namespace AionHR.Model.Reports
         public int calendarDays { get; set; }
 
         public DateTime endDate { get; set; }
+        public string endDateString { get; set; }
 
         public string fiscalYear { get; set; }
         public string notes { get; set; }
         public DateTime startDate { get; set; }
+        public string  startDateString { get; set; }
         public int seqNo { get; set; }
         public int workingDays { get; set; }
         public double basicAmount { get; set; }

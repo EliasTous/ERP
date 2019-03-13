@@ -165,4 +165,7 @@
   <data name="FieldMask" xml:space="preserve">
     <value>القناع</value>
   </data>
+  <data name="CHECKBOX" xml:space="preserve">
+    <value>خانة الاختيار</value>
+  </data>
 </root>

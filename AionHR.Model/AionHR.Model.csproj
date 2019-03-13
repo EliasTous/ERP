@@ -149,6 +149,7 @@
     <Compile Include="Employees\Profile\SalaryTree.cs" />
     <Compile Include="Employees\Profile\TeamMember.cs" />
     <Compile Include="Employees\Profile\TerminationReason.cs" />
+    <Compile Include="Employees\SyncFullName.cs" />
     <Compile Include="HelpFunction\BenefitAcquisitionAcquisitionRate.cs" />
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
     <Compile Include="Reports\PT501.cs" />

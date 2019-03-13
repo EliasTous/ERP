@@ -167,6 +167,45 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+        [DirectMethod]
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        {
+
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+
+
+
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            if (data == null)
+                data = new List<Employee>();
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+            //};
+
+        }
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+
+            req.DepartmentId = "0";
+
+            req.BranchId = "0";
+            req.IncludeIsInactive = 0;
+            req.SortBy = _systemService.SessionHelper.GetNameformat();
+
+            req.StartAt = "0";
+            req.Size = "20";
+            req.Filter = query;
+
+
+
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
 
 
         protected void PoPuP(object sender, DirectEventArgs e)
@@ -194,10 +233,20 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
-                  
-                
 
-                   
+
+
+                    employeeId.GetStore().Add(new object[]
+                         {
+                                        new
+                                        {
+                                            recordId =response.result.employeeId,
+                                            fullName =response.result.employeeName
+
+                                        }
+                         });
+
+                    employeeId.SetValue(response.result.employeeId);
                     this.BasicInfoTab.SetValues(response.result);
                     supplierId.setSupplier(response.result.supplierId);
                     categoryId.setCategory(response.result.categoryId);
@@ -447,11 +496,11 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["values"];
 
             AssetManagementPurchaseOrder b = JsonConvert.DeserializeObject<AssetManagementPurchaseOrder>(obj);
-            b.supplierId = supplierId.GetSupplierId();
+            b.supplierId = supplierId.GetSupplierId() == "0" ? null : supplierId.GetSupplierId();
             b.categoryId = categoryId.GetCategoryId();
             b.currencyId = CurrencyControl.getCurrency()=="0"?null : CurrencyControl.getCurrency();
-            b.apStatus = apStatus.GetApprovalStatus();
-          
+            b.apStatus = apStatus.GetApprovalStatus() == "0" ? null : apStatus.GetApprovalStatus();
+
             b.recordId = id;
             // Define the object to add or edit as null
            
@@ -531,11 +580,7 @@ namespace AionHR.Web.UI.Forms
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(id);
-                        
-                        BasicInfoTab.UpdateRecord(record);
-
-                        record.Commit();
+                        Store1.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,

@@ -181,7 +181,7 @@
     <value>Filtre</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Home</value>
+    <value>Accueil</value>
   </data>
   <data name="LanguageSwitch" xml:space="preserve">
     <value>عربي</value>
@@ -352,7 +352,7 @@
     <value>Structure de l'entreprise</value>
   </data>
   <data name="Departments" xml:space="preserve">
-    <value>Departments</value>
+    <value>Départements</value>
   </data>
   <data name="Positions" xml:space="preserve">
     <value>Positions</value>
@@ -508,7 +508,7 @@
     <value>Mois - Année - Jour</value>
   </data>
   <data name="SystemDefaults" xml:space="preserve">
-    <value>Defaults</value>
+    <value>Défauts</value>
   </data>
   <data name="YearDayMonth" xml:space="preserve">
     <value>Année - Jour - Mois</value>
@@ -840,7 +840,7 @@
   <data name="RT301B" xml:space="preserve">
     <value>Présence quotidienne</value>
   </data>
-  <data name="Fiscal Years" xml:space="preserve">
+  <data name="FiscalYears" xml:space="preserve">
     <value>Années fiscales</value>
   </data>
   <data name="GeneratePayroll" xml:space="preserve">
@@ -1366,7 +1366,7 @@
     <value>Admin affairs</value>
   </data>
   <data name="FieldLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>Langue</value>
   </data>
   <data name="TimeApprovalsSelfService" xml:space="preserve">
     <value>Approbation du temps</value>
@@ -1423,12 +1423,15 @@
     <value>Monnaie</value>
   </data>
   <data name="Onboarding" xml:space="preserve">
-    <value>On Boarding</value>
+    <value>Embarquement</value>
   </data>
   <data name="FrenchLanguage" xml:space="preserve">
     <value>Francais</value>
   </data>
   <data name="OpenDocuments" xml:space="preserve">
     <value>Open Documents</value>
+  </data>
+  <data name="SaveRecord" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir sauvegarder ?</value>
   </data>
 </root>

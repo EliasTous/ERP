@@ -40,12 +40,22 @@ namespace AionHR.Model.Employees.Profile
                 return "/";
             return lastLeaveStartDate.Value.ToString(format) + "-" + lastLeaveEndDate.Value.ToString(format);
         }
-        public string serviceDuractionFriendly(string day, string month, string year)
+        public string serviceDuractionFriendly(string day, string month, string year,string language)
         {
+            string yeard;
+            string monthd; 
             if (string.IsNullOrEmpty(serviceDuration))
                 return "";
-             string yeard = serviceDuration.Replace("y", year);
-            string monthd = yeard.Replace("m", month);
+            if(language=="fr")
+            {
+               yeard = serviceDuration.Replace("an", year);
+               
+                monthd = yeard.Replace("m", month);
+                return monthd.Replace("j", day);
+            }
+         
+               yeard = serviceDuration.Replace("y", year);
+              monthd = yeard.Replace("m", month);
             return monthd.Replace("d", day);
 
            

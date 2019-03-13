@@ -88,7 +88,7 @@
                 else {
                     if (value <= 0)
                         return false;
-                    if (parseFloat(App.amount.getValue().replace(/\D/g, '')) < value) {
+                    if (parseFloat(App.amount.getValue()) < value) {
                        
                         return false;
                     }

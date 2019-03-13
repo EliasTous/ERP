@@ -1189,7 +1189,7 @@ namespace AionHR.Web.UI.Forms
                   forSummary.salary,
 
 
-               forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString()),
+               forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString(),_systemService.SessionHelper.getLangauge()),
                forSummary.terminationDate != null ? forSummary.terminationDate.Value.ToString(_systemService.SessionHelper.GetDateformat()) :"",
                forSummary.unpaidLeaves
             );

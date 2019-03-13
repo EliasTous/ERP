@@ -338,6 +338,15 @@
 
 
                                     </Items>
+                                    <DirectEvents>
+                                           <Select OnEvent="NameFormatChanged">
+                                              
+                                                <ExtraParams>
+
+                                                <ext:Parameter Name="nameFormat" Value="this.value" Mode="Raw" Encode="true" />
+                                               </ExtraParams>
+                                                </Select>
+                                    </DirectEvents>
                                 </ext:ComboBox>
                          
 

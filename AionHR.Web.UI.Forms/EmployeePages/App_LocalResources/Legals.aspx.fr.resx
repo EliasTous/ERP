@@ -151,13 +151,13 @@
     <value>Remarques</value>
   </data>
   <data name="FieldRWDocumentRef" xml:space="preserve">
-    <value>Document Ref</value>
+    <value>Référence de document</value>
   </data>
   <data name="FieldRWDocumentType" xml:space="preserve">
-    <value>Document Type</value>
+    <value>Type de document</value>
   </data>
   <data name="FieldRWDtName" xml:space="preserve">
-    <value>Document Type</value>
+    <value>Type de document</value>
   </data>
   <data name="FieldRWEmployeeName" xml:space="preserve">
     <value>Nom de l'employé</value>

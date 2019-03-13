@@ -229,6 +229,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColrecordId;
         
         /// <summary>
+        /// ColReference control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColReference;
+        
+        /// <summary>
+        /// ColEmployeeName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColEmployeeName;
+        
+        /// <summary>
         /// ColSupplierName control.
         /// </summary>
         /// <remarks>
@@ -407,6 +425,33 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField recordId;
+        
+        /// <summary>
+        /// poRef control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField poRef;
+        
+        /// <summary>
+        /// employeeId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox employeeId;
+        
+        /// <summary>
+        /// supervisorStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store supervisorStore;
         
         /// <summary>
         /// supplierId control.

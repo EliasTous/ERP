@@ -151,7 +151,7 @@
     <value>Department</value>
   </data>
   <data name="FieldEmployeeName" xml:space="preserve">
-    <value>Employee Name</value>
+    <value>Employee </value>
   </data>
   <data name="FieldInProcess" xml:space="preserve">
     <value>In Process</value>
@@ -161,6 +161,9 @@
   </data>
   <data name="FieldQty" xml:space="preserve">
     <value>Quantity</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>Ref</value>
   </data>
   <data name="FieldRejected" xml:space="preserve">
     <value>Rejected</value>

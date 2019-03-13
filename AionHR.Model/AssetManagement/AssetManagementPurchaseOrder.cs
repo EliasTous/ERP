@@ -24,5 +24,8 @@ namespace AionHR.Model.AssetManagement
         public string branchName { get; set; }
         public string departmentId { get; set; }
         public string departmentName { get; set; }
+        public string employeeId { get; set; }
+        public string employeeName { get; set; }
+        public string poRef { get; set; }
     }
 }

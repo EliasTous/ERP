@@ -229,7 +229,11 @@ namespace AionHR.Web.UI.Forms.Reports
 
             //Filters parameters as string 
 
-
+            resp.Items.ForEach(x =>
+            {
+                x.startDateString = x.startDate.ToString(_systemService.SessionHelper.GetDateformat());
+                x.endDateString = x.endDate.ToString(_systemService.SessionHelper.GetDateformat());
+            });
 
             string user = _systemService.SessionHelper.GetCurrentUser();
             string paymentMethod = paymentMethodCombo.GetPaymentMethodString();

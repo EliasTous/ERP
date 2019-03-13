@@ -136,19 +136,19 @@
     <value>Nom</value>
   </data>
   <data name="FieldParentName" xml:space="preserve">
-    <value>Parent</value>
+    <value>Département parent</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
-    <value>Reference</value>
+    <value>Référence</value>
   </data>
   <data name="FieldSegmentCode" xml:space="preserve">
     <value>Segment</value>
   </data>
   <data name="FieldSvFullName" xml:space="preserve">
-    <value>Departement Manager</value>
+    <value>Gestionnaire département</value>
   </data>
   <data name="FieldTimeZone" xml:space="preserve">
     <value>Fuseau horaire</value>
@@ -157,7 +157,7 @@
     <value>Est l'authentifiant des congés</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Departements</value>
+    <value>Départements</value>
   </data>
   <data name="administrationType" xml:space="preserve">
     <value>Administration</value>

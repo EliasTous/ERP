@@ -1431,4 +1431,7 @@
   <data name="OpenDocuments" xml:space="preserve">
     <value>Open Documents</value>
   </data>
+  <data name="SaveRecord" xml:space="preserve">
+    <value>هل تريد الحفظ ؟ </value>
+  </data>
 </root>

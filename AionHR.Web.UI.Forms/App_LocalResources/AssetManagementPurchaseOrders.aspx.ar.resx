@@ -165,6 +165,9 @@
   <data name="FieldQty" xml:space="preserve">
     <value>الكمية</value>
   </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
   <data name="FieldRejected" xml:space="preserve">
     <value>مرفوض</value>
   </data>

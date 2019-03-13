@@ -67,8 +67,11 @@
                          <ext:ModelField Name="status" />
                          <ext:ModelField Name="currencyId"  />
                       <ext:ModelField Name="costPrice"  />
+                          <ext:ModelField Name="employeeName"  />
+                          <ext:ModelField Name="employeeId"  />
+                          <ext:ModelField Name="poRef"  />
       
-       
+        
 
 
                     </Fields>
@@ -181,10 +184,14 @@
                                                                  
                     
                               <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="recordId" />
+                              <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference %>" DataIndex="poRef"  Hideable="false" Flex="1"/>
+                             <ext:Column ID="ColEmployeeName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployeeName%>" DataIndex="employeeName"  Hideable="false" Flex="2"/>
+                             
                             <ext:Column ID="ColSupplierName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSupplierName%>" DataIndex="supplierName"  Hideable="false" Flex="1"/>
-                            <ext:Column   ID="ColCategoryName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCategoryName%>" DataIndex="categoryName" Flex="1" />
-                               <ext:Column   ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch %>" DataIndex="branchName" Flex="1" />
-                                 <ext:Column   ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment %>" DataIndex="departmentName" Flex="1" />
+
+                            <ext:Column   ID="ColCategoryName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCategoryName%>" DataIndex="categoryName" Flex="2" />
+                               <ext:Column   ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch %>" DataIndex="branchName" Flex="2" />
+                                 <ext:Column   ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment %>" DataIndex="departmentName" Flex="2" />
                              <ext:Column   ID="ColCurrencyName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCurrencyName%>" DataIndex="currencyName" Flex="1" />
                             <ext:DateColumn  ID="Coldate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="1" Hideable="false" />
                         
@@ -309,7 +316,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="450"
+            Height="500"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -327,6 +334,36 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
+                                <ext:TextField ID="poRef"  runat="server" FieldLabel="<%$ Resources: FieldReference%>" Name="poRef" />
+
+
+                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId"
+                            DisplayField="fullName"
+                            ValueField="recordId"
+                            TypeAhead="false" Name="employeeId"
+                            FieldLabel="<%$ Resources: FieldEmployeeName%>"
+                            HideTrigger="true" SubmitValue="true"
+                            MinChars="3"
+                            TriggerAction="Query" ForceSelection="true" AllowBlank="true">
+                            <Store>
+                                <ext:Store runat="server" ID="supervisorStore" AutoLoad="false">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="fullName" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                    <Proxy>
+                                        <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
+                                    </Proxy>
+
+                                </ext:Store>
+
+                            </Store>
+                        </ext:ComboBox>
+
                                       <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              

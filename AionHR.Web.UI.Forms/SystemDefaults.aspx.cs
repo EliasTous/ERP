@@ -29,6 +29,7 @@ using AionHR.Model.NationalQuota;
 using AionHR.Model.Benefits;
 using AionHR.Services.Messaging.System;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model.Employees;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -202,9 +203,78 @@ namespace AionHR.Web.UI.Forms
             //exemptDeliveryTR_Store.DataBind();
 
         }
+        protected void NameFormatChanged(object sender, DirectEventArgs e)
+        {
+            string nameFormat = e.ExtraParams["nameFormat"];
 
-      
-   
+            X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.SaveRecord, new MessageBoxButtonsConfig
+            {
+                Yes = new MessageBoxButtonConfig
+                {
+                    //We are call a direct request metho for deleting a record
+                    Handler = String.Format("App.direct.saveNameFormat({0})", nameFormat),
+                    Text = Resources.Common.Yes
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Text = Resources.Common.No
+                }
+
+            }).Show();
+            
+         
+
+        }
+        [DirectMethod]
+        public void saveNameFormat(string nameFormat)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                PostRequest<KeyValuePair<string, string>> req = new PostRequest<KeyValuePair<string, string>>();
+                req.entity = new KeyValuePair<string, string>("nameFormat", nameFormat);
+                PostResponse<KeyValuePair<string, string>> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>>(req);
+                if (resp.Success)
+                {
+
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                    PostRequest<SyncFullName> request = new PostRequest<SyncFullName>();
+                    request.entity = new SyncFullName();
+                    request.entity.recordId = "1";
+                    PostResponse<SyncFullName> response = _employeeService.ChildAddOrUpdate<SyncFullName>(request);
+                    if (!response.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        Common.errorMessage(response);
+                        return;
+                    }
+                }
+                else
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(resp);
+                    return;
+                }
+              
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+
+
+
         private void FillSchedules()
         {
             ListRequest vsRequest = new ListRequest();

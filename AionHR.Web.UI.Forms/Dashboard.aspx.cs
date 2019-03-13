@@ -779,37 +779,37 @@ namespace AionHR.Web.UI.Forms
             return req;
         }
 
-        private LeaveRequestListRequest GetLeaveManagementRequest()
-        {
-            LeaveRequestListRequest req = new LeaveRequestListRequest();
+        //private LeaveRequestListRequest GetLeaveManagementRequest()
+        //{
+        //    LeaveRequestListRequest req = new LeaveRequestListRequest();
 
-            var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            RecordRequest r = new RecordRequest();
-            r.RecordID = _systemService.SessionHelper.GetCurrentUserId();
-            RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
-            if (response.result == null)
-                return null;
+        //    var d = jobInfo1.GetJobInfo();
+        //    req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+        //    req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+        //    RecordRequest r = new RecordRequest();
+        //    r.RecordID = _systemService.SessionHelper.GetCurrentUserId();
+        //    RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
+        //    if (response.result == null)
+        //        return null;
 
-            req.raEmployeeId = Convert.ToInt32(response.result.employeeId);
-            if (string.IsNullOrEmpty(response.result.employeeId))
-                return null;
-            userSessionEmployeeId.Text = response.result.employeeId;
-            req.status = 1;
-            if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-                req.ApproverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
-
-
-
-            req.Size = "30";
-            req.StartAt = "0";
-            req.Filter = "";
-            req.SortBy = "recordId";
+        //    req.raEmployeeId = Convert.ToInt32(response.result.employeeId);
+        //    if (string.IsNullOrEmpty(response.result.employeeId))
+        //        return null;
+        //    userSessionEmployeeId.Text = response.result.employeeId;
+        //    req.status = 1;
+        //    if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+        //        req.ApproverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
 
 
-            return req;
-        }
+
+        //    req.Size = "30";
+        //    req.StartAt = "0";
+        //    req.Filter = "";
+        //    req.SortBy = "recordId";
+
+
+        //    return req;
+        //}
 
         private DashboardRequest GetDashboardRequest()
         {
@@ -1567,11 +1567,11 @@ namespace AionHR.Web.UI.Forms
                         retirementAgeStore.Reload();
                         retirementAgeWindow.Show();
                         break;
+                    //case "10":
+                    //    totalLoansStore.Reload();
+                    //    totalLoansWindow.Show();
+                    //    break;
                     case "10":
-                        totalLoansStore.Reload();
-                        totalLoansWindow.Show();
-                        break;
-                    case "11":
                         LeaveingSoonStore.Reload();
                         LeaveingSoonWindow.Show();
                         break;
