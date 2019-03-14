@@ -56,12 +56,14 @@ namespace AionHR.Web.UI.Forms.Reports
             }
 
         }
+
         public void setCurrency(string id)
         {
             if (!string.IsNullOrEmpty(id))
             {
                 currencyId.SetValue(id);
                 currencyId.Select(id);
+              
             }
 
         }

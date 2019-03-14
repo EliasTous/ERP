@@ -540,30 +540,30 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        protected void missingPunchesStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            try
-            {
-                ActiveAttendanceRequest r = GetActiveAttendanceRequest();
+        //protected void missingPunchesStore_ReadData(object sender, StoreReadDataEventArgs e)
+        //{
+        //    try
+        //    {
+        //        ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
-                ListResponse<MissedPunch> ACs = _timeAttendanceService.ChildGetAll<MissedPunch>(r);
-                if (!ACs.Success)
-                {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ACs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ACs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ACs.LogId : ACs.Summary).Show();
-                    return;
-                }
+        //        ListResponse<MissedPunch> ACs = _timeAttendanceService.ChildGetAll<MissedPunch>(r);
+        //        if (!ACs.Success)
+        //        {
+        //            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ACs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ACs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ACs.LogId : ACs.Summary).Show();
+        //            return;
+        //        }
 
-                //List<MissedPunch> s = new List<MissedPunch>();
-                //s.Add(new MissedPunch() { date = DateTime.Now, employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "issa" }, missedIn = true, missedOut = false, recordId = "1", time = "08:30" });
-                missingPunchesStore.DataSource = ACs.Items;
-                missingPunchesStore.DataBind();
-                mpCount.Text = "6";
-            }
-            catch (Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
-        }
+        //        //List<MissedPunch> s = new List<MissedPunch>();
+        //        //s.Add(new MissedPunch() { date = DateTime.Now, employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "issa" }, missedIn = true, missedOut = false, recordId = "1", time = "08:30" });
+        //        missingPunchesStore.DataSource = ACs.Items;
+        //        missingPunchesStore.DataBind();
+        //        mpCount.Text = "6";
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+        //    }
+        //}
 
         //protected void checkMontierStore_ReadData(object sender, StoreReadDataEventArgs e)
         //{

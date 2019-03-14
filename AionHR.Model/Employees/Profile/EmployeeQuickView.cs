@@ -73,6 +73,9 @@ namespace AionHR.Model.Employees.Profile
         public DateTime? terminationDate { get; set; }
         public double? unpaidLeaves { get; set; }
 
+        public string departmentId { get; set; }
+        public string branchId { get; set; }
+
 
     }
 }

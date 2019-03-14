@@ -226,20 +226,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ListResponse<AionHR.Model.Reports.RT601> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT601>(req);
             if (!resp.Success)
-            {
-                //X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                //X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-                //X.Call("alertNow");
-                if (throwException)
-                    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-                else
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
-                    return;
-                }
-
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
             errorMSG.Text = "";
             string format = _systemService.SessionHelper.GetDateformat();
             resp.Items.ForEach(s =>

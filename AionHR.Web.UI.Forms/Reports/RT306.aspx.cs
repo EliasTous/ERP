@@ -348,10 +348,7 @@ namespace AionHR.Web.UI.Forms.Reports
               
                 ListResponse <Time> resp = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!resp.Success)
-                {
-                    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-                   
-                }
+                    Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
                 List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
                 int currentTimeCode;

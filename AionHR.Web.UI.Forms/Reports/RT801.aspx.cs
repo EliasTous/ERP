@@ -219,16 +219,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = GetRequest();
             ListResponse<AionHR.Model.Reports.RT801> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT801>(req);
             if (!resp.Success)
-            {
-                if (throwException)
-                    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-                else
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
-                    return;
-                }
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
             resp.Items.ForEach(x => x.DateString = x.eventDT.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"))); SignInTrail h = new SignInTrail();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;

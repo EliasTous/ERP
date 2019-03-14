@@ -210,14 +210,14 @@ namespace AionHR.Web.UI.Forms
 
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-
+            FillBranch();
+            FillDepartment();
+            BasicInfoTab.Reset();
             panelRecordDetails.ActiveIndex = 0;
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             currentPurchaseOrderId.Text = id.ToString();
-            FillBranch();
-            FillDepartment();
-            status.Select("1");
-            status.SetValue("1");
+          
+         
             string type = e.ExtraParams["type"];
             switch (type)
             {
@@ -250,18 +250,16 @@ namespace AionHR.Web.UI.Forms
                     this.BasicInfoTab.SetValues(response.result);
                     supplierId.setSupplier(response.result.supplierId);
                     categoryId.setCategory(response.result.categoryId);
-                    if (string.IsNullOrEmpty( response.result.currencyId))
-                        CurrencyControl.setCurrency(_systemService.SessionHelper.GetDefaultCurrency());
-                    else
-                       
+                  
+                       if(!string.IsNullOrEmpty(response.result.currencyId))
                     CurrencyControl.setCurrency(response.result.currencyId);
 
 
-                    if (response.result.status == null)
-                    {
-                        status.Select("1");
-                        status.SetValue("1");
-                    }
+                    //if (response.result.status == null)
+                    //{
+                    //    status.Select("1");
+                    //    status.SetValue("1");
+                    //}
                     apStatus.setApprovalStatus("1");
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
@@ -425,12 +423,42 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-            CurrencyControl.setCurrency(_systemService.SessionHelper.GetDefaultCurrency());
+            
             panelRecordDetails.ActiveIndex = 0;
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+            CurrencyControl.setCurrency(_systemService.SessionHelper.GetDefaultCurrency());
             FillBranch();
             FillDepartment();
+            if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+            {
+                EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
+                req.RecordID = _systemService.SessionHelper.GetEmployeeId();
+                req.asOfDate = DateTime.Now;
+                RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return;
+                }
+                branchId.Select(resp.result.branchId);
+                departmentId.Select(resp.result.departmentId);
+                employeeId.GetStore().Add(new object[]
+                      {
+                                        new
+                                        {
+                                            recordId =_systemService.SessionHelper.GetEmployeeId(),
+                                            fullName =resp.result.name.fullName
+
+                                        }
+                      });
+
+
+            }
+            employeeId.SetValue(_systemService.SessionHelper.GetEmployeeId());
+            status.Select("1");
+            status.SetValue("1");
+            qty.SetValue(1);
             currentPurchaseOrderId.Text = "";
             date.SelectedDate  = DateTime.Now;
             apStatus.setApprovalStatus("1");

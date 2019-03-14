@@ -228,19 +228,10 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
             ListResponse<SecurityGroupUser> resp = _accessControlService.ChildGetAll<SecurityGroupUser>(GroupUserReq);
-           
+
             if (!resp.Success)
-            {
-                if (throwException)
-                    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-                else
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    Common.errorMessage(resp);
-                    return;
-                }
-            }
-           
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+
             SecurityGroupsReport h = new SecurityGroupsReport();
 
           //  resp.Items.ForEach(x => x.DateString = x.eventDT.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"))); SignInTrail h = new SignInTrail();

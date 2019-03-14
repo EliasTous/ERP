@@ -1676,7 +1676,7 @@
 
 
 
-                                                        <ext:Panel ID="pnlDepartmentCount" AutoUpdateLayout="true" Hidden="true" runat="server" Title="<%$Resources: DepartmentsCount %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
+                                                      <%--  <ext:Panel ID="pnlDepartmentCount" AutoUpdateLayout="true" Hidden="true" runat="server" Title="<%$Resources: DepartmentsCount %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
                                                             <Defaults>
                                                                 <ext:Parameter Name="margin" Value="0 5 0 0" Mode="Value" />
                                                             </Defaults>
@@ -1708,7 +1708,7 @@
                                                                     Layout="FitLayout" Flex="1" Html="<div id='deparmentsCountHighChart' style='width:100%;height:100%' />">
                                                                 </ext:Panel>
                                                             </Items>
-                                                        </ext:Panel>
+                                                        </ext:Panel>--%>
                                                         <ext:Panel Header="true" Resizable="true" ID="pnlAttendancePeriod" AutoUpdateLayout="true" runat="server" Title="<%$Resources: AttendancePeriod %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
                                                             <TopBar>
                                                                 <ext:Toolbar runat="server">
@@ -1850,7 +1850,7 @@
 
                                                             </Items>
                                                         </ext:Panel>
-                                                        <ext:GridPanel MarginSpec="0 0 0 0"
+                                                     <%--   <ext:GridPanel MarginSpec="0 0 0 0"
                                                             ID="missingPunchesGrid" Hidden="true"
                                                             runat="server" HideHeaders="true"
                                                             PaddingSpec="0 0 1 0"
@@ -1899,7 +1899,7 @@
                                     </ext:Column>
                                     <ext:CheckColumn MenuDisabled="true" runat="server" Text="<%$ Resources: FieldMissedIn%>" DataIndex="missedIn" Flex="2" Hideable="false" />
                                     <ext:CheckColumn MenuDisabled="true" runat="server" Text="<%$ Resources: FieldMissedOut%>" DataIndex="missedOut" Flex="2" Hideable="false" />
-                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Flex="2" Hideable="false" />--%>
+                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Flex="2" Hideable="false" />
                                                                 </Columns>
                                                             </ColumnModel>
 
@@ -1911,9 +1911,9 @@
 
                                                             <SelectionModel>
                                                                 <ext:RowSelectionModel ID="rowSelectionModel4" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                                                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />
                                                             </SelectionModel>
-                                                        </ext:GridPanel>
+                                                        </ext:GridPanel>--%>
 
                                                     </Items>
                                                     <Listeners>
@@ -2116,7 +2116,7 @@
                                                         </ext:GridPanel>
 
                                                        
-                                                        <ext:Panel runat="server" Hidden="true" Layout="HBoxLayout" Title="<%$Resources:Tasks %>" StyleSpec=" border: 1px solid #add2ed !important;">
+                                                     <%--   <ext:Panel runat="server" Hidden="true" Layout="HBoxLayout" Title="<%$Resources:Tasks %>" StyleSpec=" border: 1px solid #add2ed !important;">
                                                             <LayoutConfig>
                                                                 <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
                                                             </LayoutConfig>
@@ -2195,7 +2195,7 @@
                                                                     </Items>
                                                                 </ext:Panel>
                                                             </Items>
-                                                        </ext:Panel>
+                                                        </ext:Panel>--%>
 
                                                         <ext:GridPanel MarginSpec="0 0 0 0"
                                                             ID="TimeGridPanel"

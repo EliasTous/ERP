@@ -217,12 +217,14 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = GetRequest();
 
             ListResponse<AionHR.Model.Reports.RT200> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT200>(req);
+            //if (!resp.Success)
+            //{
+
+            //        throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
+
+            //}
             if (!resp.Success)
-            {
-              
-                    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-             
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
             var d = resp.Items.GroupBy(x =>  x.employeeName.reference );
             CurrentPayrollLineCollection lines = new CurrentPayrollLineCollection();

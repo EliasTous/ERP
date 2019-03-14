@@ -205,10 +205,12 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
+            //if (!resp.Success)
+            //{
+            //    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
+            //}
             if (!resp.Success)
-            {
-                throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
 
             resp.Items.ForEach(x => {

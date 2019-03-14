@@ -216,16 +216,7 @@ namespace AionHR.Web.UI.Forms.Reports
                             { x.prevBasicAmount = null; x.prevCurrencyRef = ""; x.PrevSalaryTypeString = ""; }
             });
             if (!resp.Success)
-            {
-                if (throwException)
-                    throw new Exception(resp.Summary);
-                else
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
-                    return;
-                }
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
             //resp.Items.ForEach(x => { x.PaymentFrequencyString = GetGlobalResourceObject("Common", ((PaymentFrequency)x.paymentFrequency).ToString()).ToString(); });
             resp.Items.ForEach(x => { x.SalaryTypeString = x.salaryType.HasValue ? GetGlobalResourceObject("Common", ((SalaryType)x.salaryType).ToString()).ToString() : ""; });
             resp.Items.ForEach(x => { x.PrevSalaryTypeString = x.prevSalaryType.HasValue? GetGlobalResourceObject("Common", ((SalaryType)x.prevSalaryType).ToString()).ToString():""; x.DateString = x.effectiveDate.ToString(_systemService.SessionHelper.GetDateformat(),new CultureInfo("en")); });

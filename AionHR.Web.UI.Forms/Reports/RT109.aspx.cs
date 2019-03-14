@@ -231,14 +231,16 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = GetRequest();
 
             ListResponse<AionHR.Model.Reports.RT109> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT109>(req);
+            //if (!resp.Success)
+            //{
+
+            //    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
+
+            //}
             if (!resp.Success)
-            {
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
-                throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
 
-            }
-
-           
             resp.Items.ForEach(s =>
             {
            
