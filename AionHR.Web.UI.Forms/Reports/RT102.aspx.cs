@@ -174,7 +174,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Size = "1000";
             req.StartAt = "0";
             req.SortBy = "departmentName";
-            
+
             req.Add(dateRange1.GetRange());
             req.Add(jobInfo1.GetJobInfo());
             return req;

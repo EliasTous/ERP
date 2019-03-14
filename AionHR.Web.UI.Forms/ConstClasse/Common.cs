@@ -44,7 +44,7 @@ namespace AionHR.Web.UI.Forms
         }
         public static void ReportErrorMessage(ResponseBase resp,string Error1,string LogId)
         {
-            if (resp == null || string.IsNullOrEmpty(resp.Error))
+            if ( string.IsNullOrEmpty(resp.Error))
             {
                 throw new Exception(Error1);
             }
