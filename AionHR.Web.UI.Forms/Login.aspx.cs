@@ -112,7 +112,11 @@ namespace AionHR.Web.UI.Forms
             AuthenticateResponse response = _systemService.Authenticate(request);
             if (response.User==null)
             {
-                lblError.Text = GetGlobalResourceObject("Errors", "authenticationError").ToString();
+                if (string.IsNullOrEmpty(response.Error))
+                    lblError.Text = GetGlobalResourceObject("Errors", "authenticationError").ToString();
+                else
+                    lblError.Text = response.Error;
+             
                 return "error";
             }
             if (response.User.isInactive)
