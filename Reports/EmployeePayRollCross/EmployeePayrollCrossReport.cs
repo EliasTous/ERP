@@ -33,8 +33,8 @@ namespace Reports.EmployeePayRollCross
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName.fullName,
                         salaryDate, order, salary.edName, salary.edAmount,
-                        isArabic ? "ضريبي" : "Taxable", 1, 
-                       isArabic ? "الاستحقاقات" : "Entitlements",  salary.startDateString,salary.endDateString
+                        isArabic ? "ضريبي" : "Taxable", 1, salary.basicAmount, salary.cssAmount,
+                        salary.essAmount, isArabic ? "الاستحقاقات" : "Entitlements"
                         );
                     order++;
                 }
@@ -43,8 +43,8 @@ namespace Reports.EmployeePayRollCross
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName.fullName,
                         salaryDate, order, salary.edName, salary.edAmount,
-                       isArabic ? "غير ضريبي" : "Non Taxable", 1,  isArabic ? "الاستحقاقات" : "Entitlements", salary.startDateString, salary.endDateString
-                       
+                       isArabic ? "غير ضريبي" : "Non Taxable", 1, salary.basicAmount, salary.cssAmount,
+                        salary.essAmount, isArabic ? "الاستحقاقات" : "Entitlements"
                         );
                     order++;
                 }
@@ -53,8 +53,8 @@ namespace Reports.EmployeePayRollCross
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName.fullName,
                         salaryDate, order, salary.edName, salary.edAmount,
-                        isArabic ? "ضريبي" : "Taxable", 1, isArabic ? "استقطاعات" : "Deductions",salary.startDateString, salary.endDateString
-                       
+                        isArabic ? "ضريبي" : "Taxable", 1, salary.basicAmount, salary.cssAmount,
+                        salary.essAmount, isArabic ? "استقطاعات" : "Deductions"
                         );
                     order++;
                 }
@@ -63,36 +63,17 @@ namespace Reports.EmployeePayRollCross
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName.fullName,
                         salaryDate, order, salary.edName, salary.edAmount,
-                       isArabic ? "غير ضريبي" : "Non Taxable", 1, isArabic ? "استقطاعات" : "Deductions", salary.startDateString, salary.endDateString
-                       
+                       isArabic ? "غير ضريبي" : "Non Taxable", 1, salary.basicAmount, salary.cssAmount,
+                        salary.essAmount, isArabic ? "استقطاعات" : "Deductions"
                         );
                     order++;
                 }
-                dsSalaries1.SalariesItems.AddSalariesItemsRow(defaultSal.employeeName.fullName,
-                    salaryDate, order, "", defaultSal.basicAmount,
-                   isArabic ? "الراتب" : "Basic Amount", 1, "        ", defaultSal.startDateString, defaultSal.endDateString
 
-                     );
-                order++;
-                dsSalaries1.SalariesItems.AddSalariesItemsRow(defaultSal.employeeName.fullName,
-                        salaryDate, order, "", defaultSal.cssAmount,
-                       isArabic ? "CSS" : "CSS", 1, "       ", defaultSal.startDateString, defaultSal.endDateString
-
-                         );
-                order++;
-                dsSalaries1.SalariesItems.AddSalariesItemsRow(defaultSal.employeeName.fullName,
-                        salaryDate, order, "", defaultSal.essAmount,
-                       isArabic ? "ESS" : "ESS", 1, "      ", defaultSal.startDateString, defaultSal.endDateString
-
-                         );
-                order++;
                 dsSalaries1.SalariesItems.AddSalariesItemsRow(defaultSal.employeeName.fullName,
                          salaryDate, order, "", defaultSal.basicAmount + employee.Where(u => u.edType == 1).Sum(u => u.edAmount) - employee.Where(u => u.edType == 2).Sum(u => u.edAmount) - defaultSal.essAmount,
-                        isArabic ? "صافي الراتب" : "Net Salary", 1, "     ", defaultSal.startDateString, defaultSal.endDateString
-                       
+                        isArabic ? "صافي الراتب" : "Net Salary", 1, defaultSal.basicAmount, defaultSal.cssAmount,
+                         defaultSal.essAmount, "    "
                          );
-              
-            
             }
 
 

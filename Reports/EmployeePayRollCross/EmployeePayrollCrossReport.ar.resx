@@ -117,11 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="fieldstartDate.Caption" xml:space="preserve">
-    <value>من</value>
+  <data name="fieldCSS.Caption" xml:space="preserve">
+    <value>Css</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="fieldstartDate.Width" type="System.Int32, mscorlib">
+  <data name="fieldCSS.Width" type="System.Int32, mscorlib">
     <value>35</value>
   </data>
   <data name="fieldEmployeeName.Caption" xml:space="preserve">
@@ -130,11 +130,17 @@
   <data name="fieldEmployeeName.Width" type="System.Int32, mscorlib">
     <value>190</value>
   </data>
-  <data name="fieldendDate.Caption" xml:space="preserve">
-    <value>الى </value>
+  <data name="fieldESS.Caption" xml:space="preserve">
+    <value>Ess</value>
   </data>
-  <data name="fieldendDate.Width" type="System.Int32, mscorlib">
+  <data name="fieldESS.Width" type="System.Int32, mscorlib">
     <value>35</value>
+  </data>
+  <data name="fieldBasicSalary.Caption" xml:space="preserve">
+    <value>اساسي</value>
+  </data>
+  <data name="fieldBasicSalary.Width" type="System.Int32, mscorlib">
+    <value>40</value>
   </data>
   <assembly alias="DevExpress.Data.v16.2" name="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="xrPivotGrid1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">

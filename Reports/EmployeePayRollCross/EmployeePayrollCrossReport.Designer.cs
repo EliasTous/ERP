@@ -35,9 +35,10 @@
             this.fieldItemName = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldItemValue = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldSalaryDate = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldstartDate = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldCSS = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldEmployeeName = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldendDate = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldESS = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldBasicSalary = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldTaxableNoTaxable = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldEntitlementsvDeduction = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
@@ -94,9 +95,10 @@
             this.fieldItemName,
             this.fieldItemValue,
             this.fieldSalaryDate,
-            this.fieldstartDate,
+            this.fieldCSS,
             this.fieldEmployeeName,
-            this.fieldendDate,
+            this.fieldESS,
+            this.fieldBasicSalary,
             this.fieldTaxableNoTaxable,
             this.fieldEntitlementsvDeduction});
             this.xrPivotGrid1.Name = "xrPivotGrid1";
@@ -151,13 +153,13 @@
             this.fieldSalaryDate.ValueFormat.FormatString = "dd/MM/yyyy";
             this.fieldSalaryDate.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             // 
-            // fieldstartDate
+            // fieldCSS
             // 
-            this.fieldstartDate.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldstartDate.AreaIndex = 1;
-            resources.ApplyResources(this.fieldstartDate, "fieldstartDate");
-            this.fieldstartDate.FieldName = "startDate";
-            this.fieldstartDate.Name = "fieldstartDate";
+            this.fieldCSS.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldCSS.AreaIndex = 2;
+            resources.ApplyResources(this.fieldCSS, "fieldCSS");
+            this.fieldCSS.FieldName = "CSS";
+            this.fieldCSS.Name = "fieldCSS";
             // 
             // fieldEmployeeName
             // 
@@ -167,13 +169,21 @@
             this.fieldEmployeeName.FieldName = "EmployeeName";
             this.fieldEmployeeName.Name = "fieldEmployeeName";
             // 
-            // fieldendDate
+            // fieldESS
             // 
-            this.fieldendDate.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldendDate.AreaIndex = 2;
-            resources.ApplyResources(this.fieldendDate, "fieldendDate");
-            this.fieldendDate.FieldName = "endDate";
-            this.fieldendDate.Name = "fieldendDate";
+            this.fieldESS.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldESS.AreaIndex = 3;
+            resources.ApplyResources(this.fieldESS, "fieldESS");
+            this.fieldESS.FieldName = "ESS";
+            this.fieldESS.Name = "fieldESS";
+            // 
+            // fieldBasicSalary
+            // 
+            this.fieldBasicSalary.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldBasicSalary.AreaIndex = 1;
+            resources.ApplyResources(this.fieldBasicSalary, "fieldBasicSalary");
+            this.fieldBasicSalary.FieldName = "BasicSalary";
+            this.fieldBasicSalary.Name = "fieldBasicSalary";
             // 
             // fieldTaxableNoTaxable
             // 
@@ -399,9 +409,10 @@
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldItemName;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldItemValue;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldSalaryDate;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldstartDate;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldCSS;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldEmployeeName;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldendDate;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldESS;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldBasicSalary;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldTaxableNoTaxable;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldEntitlementsvDeduction;
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
