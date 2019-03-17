@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Admin Depts.
+        ///   Looks up a localized string similar to Admin Departments.
         /// </summary>
         internal static string AdminDepts {
             get {
