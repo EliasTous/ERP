@@ -186,45 +186,13 @@
                             <ext:Column ID="ColbpId" Visible="false" DataIndex="bpId" runat="server" />
                             <ext:Column CellCls="cellLink" ID="ColdocRef" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRef%>" DataIndex="docRef" Flex="1" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="ColbpName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBusinessPartner%>" DataIndex="bpName" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="ColdcName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentCategory%>" DataIndex="dcName" Flex="2" Hideable="false" />
+                            <%--<ext:Column CellCls="cellLink" ID="ColdcName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentCategory%>" DataIndex="dcName" Flex="2" Hideable="false" />
                             <ext:DateColumn CellCls="cellLink" ID="ColissueDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIssueDate%>" DataIndex="issueDate" Flex="2" Hideable="false" />
                             <ext:DateColumn CellCls="cellLink" ID="ColexpiryDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldExpiryDate%>" DataIndex="expiryDate" Flex="2" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="ColbinNo" MenuDisabled="true" runat="server" Text="<%$ Resources: binNo%>" DataIndex="binNo" Flex="2" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="Colnotes" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNotes%>" DataIndex="notes" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="ColoDocRef" MenuDisabled="true" runat="server" Text="<%$ Resources: oDocRef%>" DataIndex="oDocRef" Flex="2" Hideable="false" />
-
-
-
-
-
-
-                            <ext:Column runat="server"
-                                ID="colDelete" Visible="false"
-                                Text="<%$ Resources: Common , Delete %>"
-                                Width="100"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                Hideable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="deleteRender" />
-
-                            </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colAttach"
-                                Text="<%$ Resources:Common, Attach %>"
-                                Hideable="false"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="attachRender" />
-                            </ext:Column>
-
-                            <ext:Column runat="server"
+                            <ext:Column CellCls="cellLink" ID="ColoDocRef" MenuDisabled="true" runat="server" Text="<%$ Resources: oDocRef%>" DataIndex="oDocRef" Flex="2" Hideable="false" />--%>
+                         <ext:Column runat="server"
                                 ID="colEdit" Visible="true"
                                 Text=""
                                 Width="100"

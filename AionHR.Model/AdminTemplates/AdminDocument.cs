@@ -11,6 +11,8 @@ namespace AionHR.Model.AdminTemplates
     [ClassIdentifier("70301", "70")]
     public class AdminDocument : ModelBase
     {
+        public string status { get; set; }
+        public string statusName { get; set; }
         public string bpName { get; set; }
         public string dcName { get; set; }
         public DateTime issueDate { get; set; }

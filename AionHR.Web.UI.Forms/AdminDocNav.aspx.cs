@@ -136,7 +136,6 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         private void HideShowColumns()
         {
-            this.colAttach.Visible = false;
         }
 
 

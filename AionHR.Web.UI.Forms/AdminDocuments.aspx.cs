@@ -208,11 +208,25 @@ namespace AionHR.Web.UI.Forms
                         Common.errorMessage(response);
                         return;
                     }
-
+                    fdSet.Hidden = false;
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab1.SetValues(response.result);
-
-
+                    statusName.Text = response.result.statusName;
+                    if (string.IsNullOrEmpty(response.result.departmentName))
+                        departmentName.Hidden = true;
+                    else
+                    {
+                        departmentName.Hidden = false;
+                        departmentName.Text = response.result.departmentName;
+                    }
+                        
+                    if (string.IsNullOrEmpty(response.result.employeeId))
+                        employeeName.Hidden = true;
+                    else
+                    {
+                        employeeName.Hidden = false;
+                        employeeName.Text = response.result.employeeName.fullName;
+                    }
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -669,6 +683,7 @@ namespace AionHR.Web.UI.Forms
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
             panelRecordDetails.ActiveIndex = 0;
+            fdSet.Hidden = true;
             //Reset all values of the relative object
             BasicInfoTab1.Reset();
             FillBpId();
@@ -1440,13 +1455,13 @@ namespace AionHR.Web.UI.Forms
                 string obj = e.ExtraParams["values"];
 
 
-                 b= JsonConvert.DeserializeObject<AdminDocumentDX>(obj);
+                b = JsonConvert.DeserializeObject<AdminDocumentDX>(obj);
             }
             catch
             {
                 b = new AdminDocumentDX();
                 b.description = e.ExtraParams["description"];
-                
+
             }
 
             try
@@ -1459,7 +1474,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-                if (string.IsNullOrEmpty(b.seqNo ))
+                if (string.IsNullOrEmpty(b.seqNo))
                 {
                     b.priority = Convert.ToInt32(CurrentDXCount.Text) + 1;
                     //New Mode
