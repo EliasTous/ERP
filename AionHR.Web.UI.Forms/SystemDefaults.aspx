@@ -338,6 +338,15 @@
 
 
                                     </Items>
+                                    <DirectEvents>
+                                           <Select OnEvent="NameFormatChanged">
+                                              
+                                                <ExtraParams>
+
+                                                <ext:Parameter Name="nameFormat" Value="this.value" Mode="Raw" Encode="true" />
+                                               </ExtraParams>
+                                                </Select>
+                                    </DirectEvents>
                                 </ext:ComboBox>
                          
 
@@ -404,7 +413,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
                                 <ext:NumberField  runat="server" LabelWidth="150" ID="retirementAge" Name="retirementAge" FieldLabel="<%$ Resources: retirementAge %>" MinValue="0"  MaxValue="100"/>
-                                  <ext:NumberField  runat="server" LabelWidth="150" ID="employeeRefSize" Name="employeeRefSize" FieldLabel="<%$ Resources: employeeRefSize %>" MinValue="0"  MaxValue="10">
+                                  <ext:NumberField  runat="server" AllowBlank="false" LabelWidth="150" ID="employeeRefSize" Name="employeeRefSize" FieldLabel="<%$ Resources: employeeRefSize %>" MinValue="0"  MaxValue="10">
                                       <Validator Handler="if(this.value==1 ||this.value==2 ) return false; else return true;"></Validator>
                                       </ext:NumberField>
                          
@@ -1128,11 +1137,13 @@
                                 <ext:Checkbox FieldLabel="<%$ Resources: pull %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_pull" ID="pp_pull" />
                                 <ext:Checkbox FieldLabel="<%$ Resources: push %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_push" ID="pp_push" />
                                 <ext:Checkbox FieldLabel="<%$ Resources: clearOnSuccess %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_clearOnSuccess" ID="pp_clearOnSuccess" />
-                                <ext:NumberField FieldLabel="<%$ Resources: sleepTime %>" LabelWidth="150" runat="server"  Name="pp_sleepTime" ID="pp_sleepTime" MinValue="0"></ext:NumberField>
-                                 <ext:NumberField FieldLabel="<%$ Resources: serialNo %>" LabelWidth="150" runat="server"  Name="pp_serialNo" ID="pp_serialNo" MinValue="0"></ext:NumberField>
+                                <ext:NumberField FieldLabel="<%$ Resources: sleepTime %>" AllowBlank="true" LabelWidth="150" runat="server"  Name="pp_sleepTime" ID="pp_sleepTime" MinValue="0" ></ext:NumberField>
+                                    <ext:TextField runat="server" Name="pp_serialNo" AllowBlank="true" ID="pp_serialNo" FieldLabel="<%$ Resources:serialNo%>" LabelWidth="150" >
+                                      <Validator Handler="return !isNaN(this.value);" />
+                                     </ext:TextField>
                                  <ext:Checkbox FieldLabel="<%$ Resources: debugMode %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_debugMode" ID="pp_debugMode" />
                                  <ext:Checkbox FieldLabel="<%$ Resources: shiftData %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_shiftData" ID="pp_shiftData" />
-                                <ext:TextField FieldLabel="<%$ Resources: pendingPunchesFolder %>" LabelWidth="150" runat="server" Name="pp_pendingPunchesFolder" ID="pp_pendingPunchesFolder" MaxLength="100" />
+                                <ext:TextField FieldLabel="<%$ Resources: pendingPunchesFolder %>" LabelWidth="150" runat="server" Name="pp_pendingDataFolder" ID="pp_pendingDataFolder" MaxLength="100" />
                               <ext:TextArea FieldLabel="<%$ Resources: punchInterface %>" LabelWidth="150" runat="server" Name="pp_punchInterface" ID="pp_punchInterface" MaxLength="255" />
                                     
                             </Items>
@@ -1159,7 +1170,7 @@
                                 <ext:Button ID="Button11" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                                     <Listeners>
-                                        <Click Handler="CheckSession(); if (!#{GeneralSettings}.getForm().isValid()||!#{EmployeeSettings}.getForm().isValid()||!#{AttendanceSettings}.getForm().isValid()||!#{PayrollSettings}.getForm().isValid()||!#{SecuritySettings}.getForm().isValid()) {return false;}  " />
+                                        <Click Handler="CheckSession(); if (!#{GeneralSettings}.getForm().isValid()||!#{EmployeeSettings}.getForm().isValid()||!#{AttendanceSettings}.getForm().isValid()||!#{PayrollSettings}.getForm().isValid()||!#{SecuritySettings}.getForm().isValid()||!#{BiometricSettings}.getForm().isValid()) {return false;}  " />
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="SaveAll" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">

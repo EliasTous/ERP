@@ -143,10 +143,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\Softmachine\UI\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Reports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Softmachine\Reports.dll</HintPath>
-    </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\Desktop\bin\bin\StructureMap.dll</HintPath>
       <Private>True</Private>
@@ -187,6 +183,7 @@
     <Content Include="BusinessPartnerCategories.aspx" />
     <Content Include="BusinessPartneres.aspx" />
     <Content Include="CompanyNews.aspx" />
+    <Content Include="DELogin.aspx" />
     <Content Include="DocumentCategories.aspx" />
     <Content Include="EmployeeComplaints.aspx" />
     <Content Include="EmployeeComplaintSelfServices.aspx" />
@@ -650,6 +647,11 @@
     <Compile Include="AdminDocuments.aspx.designer.cs">
       <DependentUpon>AdminDocuments.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\Common.de-DE.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.de-DE.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\Common.fr.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -664,6 +666,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModuleIDs.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\StaticComboBox.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaticComboBox.resx</DependentUpon>
     </Compile>
     <Compile Include="AssetManagementAssets.aspx.cs">
       <DependentUpon>AssetManagementAssets.aspx</DependentUpon>
@@ -737,6 +744,13 @@
     </Compile>
     <Compile Include="ConstClasse\Common.cs" />
     <Compile Include="ConstClasse\ConstClasses.cs" />
+    <Compile Include="DELogin.aspx.cs">
+      <DependentUpon>DELogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DELogin.aspx.designer.cs">
+      <DependentUpon>DELogin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DocumentCategories.aspx.cs">
       <DependentUpon>DocumentCategories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2842,11 +2856,8 @@
     <Content Include="App_LocalResources\AssetManagementPurchaseOrders.aspx.resx" />
     <Content Include="App_LocalResources\AssetManagementOnboardings.aspx.ar.resx" />
     <Content Include="App_LocalResources\AssetManagementOnboardings.aspx.resx" />
-    <Content Include="App_LocalResources\Login.aspx.fr.resx" />
     <Content Include="App_LocalResources\FRLogin.aspx.fr.resx" />
     <Content Include="App_LocalResources\FRLogin.aspx.resx" />
-    <Content Include="App_LocalResources\FRLogin.aspx.ar.resx" />
-    <Content Include="App_LocalResources\Login.aspx.ar.resx" />
     <Content Include="App_GlobalResources\Errors.fr.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Errors.fr.designer.cs</LastGenOutput>
@@ -3004,6 +3015,21 @@
     <Content Include="App_LocalResources\AdminDocNav.aspx.ar.resx" />
     <Content Include="App_LocalResources\AdminDocNav.aspx.resx" />
     <Content Include="App_LocalResources\AdminDocNav.aspx.fr.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Documents.aspx.fr.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Legals.aspx.fr.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Hire.aspx.fr.resx" />
+    <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.fr.resx" />
+    <Content Include="App_GlobalResources\StaticComboBox.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>StaticComboBox.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Common.de-DE.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Common.de-DE.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_LocalResources\DELogin.aspx.de-DE.resx" />
+    <Content Include="App_LocalResources\DELogin.aspx.resx" />
+    <Content Include="App_LocalResources\ARLogin.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -3026,6 +3052,10 @@
     <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
       <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
       <Name>AionHR.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reports\Reports.csproj">
+      <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
+      <Name>Reports</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

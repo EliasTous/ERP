@@ -43,6 +43,7 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService= ServiceLocator.Current.GetInstance<ICompanyStructureService>();
 
+
         protected override void InitializeCulture()
         {
 
@@ -67,9 +68,22 @@ namespace AionHR.Web.UI.Forms
                         LocalisationManager.Instance.SetFrenchLocalisation();
                     }
                     break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
             }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -99,6 +113,7 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
                 FillBranch();
+                FillDepartment();
                 currentPurchaseOrderId.Text = "";
 
             }
@@ -118,6 +133,16 @@ namespace AionHR.Web.UI.Forms
             if (_systemService.SessionHelper.CheckIfIsAdmin())
                 return;
 
+        }
+        private void FillDepartment()
+        {
+            DepartmentListRequest departmentsRequest = new DepartmentListRequest();
+            departmentsRequest.type = 0;
+            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
+            if (!resp.Success)
+                Common.errorMessage(resp);
+            departmentStore.DataSource = resp.Items;
+            departmentStore.DataBind();
         }
 
         /// <summary>
@@ -156,17 +181,57 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+        [DirectMethod]
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        {
+
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+
+
+
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            if (data == null)
+                data = new List<Employee>();
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+            //};
+
+        }
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+
+            req.DepartmentId = "0";
+
+            req.BranchId = "0";
+            req.IncludeIsInactive = 0;
+            req.SortBy = _systemService.SessionHelper.GetNameformat();
+
+            req.StartAt = "0";
+            req.Size = "20";
+            req.Filter = query;
+
+
+
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
 
 
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-
+            FillBranch();
+            FillDepartment();
+            BasicInfoTab.Reset();
             panelRecordDetails.ActiveIndex = 0;
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             currentPurchaseOrderId.Text = id.ToString();
-            FillBranch();
-            status.Select("1");
-            status.SetValue("1");
+          
+         
             string type = e.ExtraParams["type"];
             switch (type)
             {
@@ -182,25 +247,33 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
-                  
-                
 
-                   
+
+
+                    employeeId.GetStore().Add(new object[]
+                         {
+                                        new
+                                        {
+                                            recordId =response.result.employeeId,
+                                            fullName =response.result.employeeName
+
+                                        }
+                         });
+
+                    employeeId.SetValue(response.result.employeeId);
                     this.BasicInfoTab.SetValues(response.result);
                     supplierId.setSupplier(response.result.supplierId);
                     categoryId.setCategory(response.result.categoryId);
-                    if (string.IsNullOrEmpty( response.result.currencyId))
-                        CurrencyControl.setCurrency(_systemService.SessionHelper.GetDefaultCurrency());
-                    else
-                       
+                  
+                       if(!string.IsNullOrEmpty(response.result.currencyId))
                     CurrencyControl.setCurrency(response.result.currencyId);
 
 
-                    if (response.result.status == null)
-                    {
-                        status.Select("1");
-                        status.SetValue("1");
-                    }
+                    //if (response.result.status == null)
+                    //{
+                    //    status.Select("1");
+                    //    status.SetValue("1");
+                    //}
                     apStatus.setApprovalStatus("1");
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
@@ -364,11 +437,42 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-            CurrencyControl.setCurrency(_systemService.SessionHelper.GetDefaultCurrency());
+            
             panelRecordDetails.ActiveIndex = 0;
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+            CurrencyControl.setCurrency(_systemService.SessionHelper.GetDefaultCurrency());
             FillBranch();
+            FillDepartment();
+            if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+            {
+                EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
+                req.RecordID = _systemService.SessionHelper.GetEmployeeId();
+                req.asOfDate = DateTime.Now;
+                RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return;
+                }
+                branchId.Select(resp.result.branchId);
+                departmentId.Select(resp.result.departmentId);
+                employeeId.GetStore().Add(new object[]
+                      {
+                                        new
+                                        {
+                                            recordId =_systemService.SessionHelper.GetEmployeeId(),
+                                            fullName =resp.result.name.fullName
+
+                                        }
+                      });
+
+
+            }
+            employeeId.SetValue(_systemService.SessionHelper.GetEmployeeId());
+            status.Select("1");
+            status.SetValue("1");
+            qty.SetValue(1);
             currentPurchaseOrderId.Text = "";
             date.SelectedDate  = DateTime.Now;
             apStatus.setApprovalStatus("1");
@@ -434,11 +538,11 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["values"];
 
             AssetManagementPurchaseOrder b = JsonConvert.DeserializeObject<AssetManagementPurchaseOrder>(obj);
-            b.supplierId = supplierId.GetSupplierId();
+            b.supplierId = supplierId.GetSupplierId() == "0" ? null : supplierId.GetSupplierId();
             b.categoryId = categoryId.GetCategoryId();
             b.currencyId = CurrencyControl.getCurrency()=="0"?null : CurrencyControl.getCurrency();
-            b.apStatus = apStatus.GetApprovalStatus();
-          
+            b.apStatus = apStatus.GetApprovalStatus() == "0" ? null : apStatus.GetApprovalStatus();
+
             b.recordId = id;
             // Define the object to add or edit as null
            
@@ -518,11 +622,7 @@ namespace AionHR.Web.UI.Forms
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(id);
-                        
-                        BasicInfoTab.UpdateRecord(record);
-
-                        record.Commit();
+                        Store1.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -565,9 +665,9 @@ namespace AionHR.Web.UI.Forms
         protected void ApprovalsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             AssetManagementPurchaseOrderApprovalListRequest req = new AssetManagementPurchaseOrderApprovalListRequest();
-            req.PurchaseOrderId = currentPurchaseOrderId.Text;
+            req.poId = currentPurchaseOrderId.Text;
           
-            if (string.IsNullOrEmpty(req.PurchaseOrderId))
+            if (string.IsNullOrEmpty(req.poId))
             {
                 ApprovalStore.DataSource = new List<AssetManagementPurchaseOrderApproval>();
                 ApprovalStore.DataBind();
@@ -575,21 +675,12 @@ namespace AionHR.Web.UI.Forms
             req.approverId = 0;
             req.BranchId = 0;
             req.DepartmentId = 0;
-            req.DivisionId = 0;
-            req.EmployeeId = 0;
+         
             req.Status = 0;
             req.Filter = "";
-            req.PositionId = 0;
-            req.EsId = 0;
+          
 
-            req.SortBy = "recordId";
-
-
-
-
-
-            req.Size = "1000";
-            req.StartAt = "0";
+         
             ListResponse<AssetManagementPurchaseOrderApproval> response = _assetManagementService.ChildGetAll<AssetManagementPurchaseOrderApproval>(req);
 
             if (!response.Success)

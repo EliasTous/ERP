@@ -39,6 +39,7 @@ using AionHR.Services.Messaging.Employees;
 using AionHR.Model.Employees;
 using AionHR.Services.Messaging.DashBoard;
 using AionHR.Services.Messaging.Asset_Management;
+using AionHR.Model.AssetManagement;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -56,6 +57,8 @@ namespace AionHR.Web.UI.Forms
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
         IDashBoardService _dashBoardService = ServiceLocator.Current.GetInstance<IDashBoardService>();
+        IAssetManagementService _assetManagementService = ServiceLocator.Current.GetInstance<IAssetManagementService>();
+
         protected override void InitializeCulture()
         {
 
@@ -78,6 +81,20 @@ namespace AionHR.Web.UI.Forms
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
                     }
                     break;
             }
@@ -538,30 +555,30 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        protected void missingPunchesStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            try
-            {
-                ActiveAttendanceRequest r = GetActiveAttendanceRequest();
+        //protected void missingPunchesStore_ReadData(object sender, StoreReadDataEventArgs e)
+        //{
+        //    try
+        //    {
+        //        ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
-                ListResponse<MissedPunch> ACs = _timeAttendanceService.ChildGetAll<MissedPunch>(r);
-                if (!ACs.Success)
-                {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ACs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ACs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ACs.LogId : ACs.Summary).Show();
-                    return;
-                }
+        //        ListResponse<MissedPunch> ACs = _timeAttendanceService.ChildGetAll<MissedPunch>(r);
+        //        if (!ACs.Success)
+        //        {
+        //            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", ACs.ErrorCode) != null ? GetGlobalResourceObject("Errors", ACs.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + ACs.LogId : ACs.Summary).Show();
+        //            return;
+        //        }
 
-                //List<MissedPunch> s = new List<MissedPunch>();
-                //s.Add(new MissedPunch() { date = DateTime.Now, employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "issa" }, missedIn = true, missedOut = false, recordId = "1", time = "08:30" });
-                missingPunchesStore.DataSource = ACs.Items;
-                missingPunchesStore.DataBind();
-                mpCount.Text = "6";
-            }
-            catch (Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
-        }
+        //        //List<MissedPunch> s = new List<MissedPunch>();
+        //        //s.Add(new MissedPunch() { date = DateTime.Now, employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "issa" }, missedIn = true, missedOut = false, recordId = "1", time = "08:30" });
+        //        missingPunchesStore.DataSource = ACs.Items;
+        //        missingPunchesStore.DataBind();
+        //        mpCount.Text = "6";
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+        //    }
+        //}
 
         //protected void checkMontierStore_ReadData(object sender, StoreReadDataEventArgs e)
         //{
@@ -777,37 +794,37 @@ namespace AionHR.Web.UI.Forms
             return req;
         }
 
-        private LeaveRequestListRequest GetLeaveManagementRequest()
-        {
-            LeaveRequestListRequest req = new LeaveRequestListRequest();
+        //private LeaveRequestListRequest GetLeaveManagementRequest()
+        //{
+        //    LeaveRequestListRequest req = new LeaveRequestListRequest();
 
-            var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            RecordRequest r = new RecordRequest();
-            r.RecordID = _systemService.SessionHelper.GetCurrentUserId();
-            RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
-            if (response.result == null)
-                return null;
+        //    var d = jobInfo1.GetJobInfo();
+        //    req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+        //    req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+        //    RecordRequest r = new RecordRequest();
+        //    r.RecordID = _systemService.SessionHelper.GetCurrentUserId();
+        //    RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
+        //    if (response.result == null)
+        //        return null;
 
-            req.raEmployeeId = Convert.ToInt32(response.result.employeeId);
-            if (string.IsNullOrEmpty(response.result.employeeId))
-                return null;
-            userSessionEmployeeId.Text = response.result.employeeId;
-            req.status = 1;
-            if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-                req.ApproverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
-
-
-
-            req.Size = "30";
-            req.StartAt = "0";
-            req.Filter = "";
-            req.SortBy = "recordId";
+        //    req.raEmployeeId = Convert.ToInt32(response.result.employeeId);
+        //    if (string.IsNullOrEmpty(response.result.employeeId))
+        //        return null;
+        //    userSessionEmployeeId.Text = response.result.employeeId;
+        //    req.status = 1;
+        //    if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+        //        req.ApproverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
 
 
-            return req;
-        }
+
+        //    req.Size = "30";
+        //    req.StartAt = "0";
+        //    req.Filter = "";
+        //    req.SortBy = "recordId";
+
+
+        //    return req;
+        //}
 
         private DashboardRequest GetDashboardRequest()
         {
@@ -1565,11 +1582,11 @@ namespace AionHR.Web.UI.Forms
                         retirementAgeStore.Reload();
                         retirementAgeWindow.Show();
                         break;
+                    //case "10":
+                    //    totalLoansStore.Reload();
+                    //    totalLoansWindow.Show();
+                    //    break;
                     case "10":
-                        totalLoansStore.Reload();
-                        totalLoansWindow.Show();
-                        break;
-                    case "11":
                         LeaveingSoonStore.Reload();
                         LeaveingSoonWindow.Show();
                         break;
@@ -2280,65 +2297,64 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        protected void PurchasesApprovalStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            try
-            {
-                DashboardRequest request = GetDashboardRequest();
-                AssetManagementPurchaseOrderApprovalListRequest req = new AssetManagementPurchaseOrderApprovalListRequest();
+        //protected void PurchasesApprovalStore_ReadData(object sender, StoreReadDataEventArgs e)
+        //{
+        //    try
+        //    {
+        //        DashboardRequest request = GetDashboardRequest();
+        //        AssetManagementPurchaseOrderApprovalListRequest req = new AssetManagementPurchaseOrderApprovalListRequest();
 
-                req.apStatus = "1";
-                
-                req.approverId = _systemService.SessionHelper.GetEmployeeId() != null ?Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId().ToString()) : 0;
-                req.BranchId = request.BranchId;
-                req.PositionId = request.PositionId;
-                req.DivisionId = request.DivisionId;
-                req.DepartmentId = request.DepartmentId;
-                req.EsId = request.EsId;
-                if (string.IsNullOrEmpty(req.poId) || string.IsNullOrEmpty(req.poId))
-                {
-                    EmployeePenaltyApprovalStore.DataSource = new List<EmployeePenaltyApproval>();
-                    EmployeePenaltyApprovalStore.DataBind();
-                    return;
-                }
-                ListResponse<EmployeePenaltyApproval> response = _employeeService.ChildGetAll<EmployeePenaltyApproval>(req);
+        //        req.poId = "0";
+        //        req.Status = 1;
+        //        req.approverId = _systemService.SessionHelper.GetEmployeeId() != null ?Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId().ToString()) : 0;
+        //        req.BranchId = request.BranchId;
+               
+        //        req.DepartmentId = request.DepartmentId;
+              
+        //        if (string.IsNullOrEmpty(req.poId)|| string.IsNullOrEmpty(req.approverId.ToString()))
+        //        {
+        //            PurchasesApprovalStore.DataSource = new List<AssetManagementPurchaseOrderApproval>();
+        //            PurchasesApprovalStore.DataBind();
+        //            return;
+        //        }
+        //        ListResponse<AssetManagementPurchaseOrderApproval> response = _assetManagementService.ChildGetAll<AssetManagementPurchaseOrderApproval>(req);
 
-                if (!response.Success)
-                {
-                    Common.errorMessage(response);
-                    return;
-                }
-                response.Items.ForEach(x =>
-                {
+        //        if (!response.Success)
+        //        {
+        //            Common.errorMessage(response);
+        //            return;
+        //        }
+        //        response.Items.ForEach(x =>
+        //        {
 
-                    switch (x.status)
-                    {
-                        case 1:
-                            x.statusString = StatusNew.Text;
-                            break;
-                        case 2:
-                            x.statusString = StatusInProcess.Text;
-                            ;
-                            break;
-                        case 3:
-                            x.statusString = StatusApproved.Text;
-                            ;
-                            break;
-                        case -1:
-                            x.statusString = StatusRejected.Text;
+        //            switch (x.status)
+        //            {
+        //                case 1:
+        //                    x.statusString = StatusNew.Text;
+        //                    break;
+        //                case 2:
+        //                    x.statusString = StatusInProcess.Text;
+        //                    ;
+        //                    break;
+        //                case 3:
+        //                    x.statusString = StatusApproved.Text;
+        //                    ;
+        //                    break;
+        //                case -1:
+        //                    x.statusString = StatusRejected.Text;
 
-                            break;
-                    }
-                }
-              );
-                EmployeePenaltyApprovalStore.DataSource = response.Items;
-                EmployeePenaltyApprovalStore.DataBind();
-            }
-            catch (Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
-        }
+        //                    break;
+        //            }
+        //        }
+        //      );
+        //        PurchasesApprovalStore.DataSource = response.Items;
+        //        PurchasesApprovalStore.DataBind();
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+        //    }
+        //}
         private void FillTimeApproval(int dayId, int employeeId, string timeCode, string shiftId, string apstatus)
         {
             try

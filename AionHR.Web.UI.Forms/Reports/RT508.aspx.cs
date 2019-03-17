@@ -40,6 +40,7 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
 
+
         protected override void InitializeCulture()
         {
 
@@ -62,6 +63,20 @@ namespace AionHR.Web.UI.Forms
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
                     }
                     break;
             }
@@ -194,13 +209,9 @@ namespace AionHR.Web.UI.Forms
             ListResponse<AionHR.Model.Reports.RT508> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT508>(req);
 
             if (!resp.Success)
-            {
-                
-                    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-              
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
-          
+
 
             PayrollLeavePaymentsReport h = new PayrollLeavePaymentsReport();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;

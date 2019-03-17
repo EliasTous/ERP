@@ -33,7 +33,7 @@ namespace AionHR.Services.Messaging.LoanManagment
         public int? BranchId { get; set; }
         public int Status { get; set; }
         public int? DivisionId { get; set; }
-        public int approverId { get; set; }
+        public int? approverId { get; set; }
         public string LoanId { get; set; }
         public int? EsId { get; set; }
 
@@ -53,6 +53,8 @@ namespace AionHR.Services.Messaging.LoanManagment
                 if (EsId == null)
                     EsId = 0;
                 parameters = base.Parameters;
+                if (approverId!=null)
+                    parameters.Add("_approverId", approverId.ToString());
                 parameters.Add("_employeeId", EmployeeId.ToString());
                
                 parameters.Add("_departmentId", DepartmentId.ToString());
@@ -60,7 +62,7 @@ namespace AionHR.Services.Messaging.LoanManagment
                 parameters.Add("_divisionId", DivisionId.ToString());
                 parameters.Add("_status", Status.ToString());
                 parameters.Add("_sortBy", SortBy.ToString());
-                parameters.Add("_approverId", approverId.ToString());
+             
                 parameters.Add("_loanId", LoanId);
                 parameters.Add("_esId", EsId.ToString());
                 parameters.Add("_positionId", PositionId.ToString());

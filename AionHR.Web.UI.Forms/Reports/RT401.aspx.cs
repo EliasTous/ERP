@@ -38,6 +38,7 @@ namespace AionHR.Web.UI.Forms.Reports
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
+
         protected override void InitializeCulture()
         {
 
@@ -60,6 +61,20 @@ namespace AionHR.Web.UI.Forms.Reports
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
                     }
                     break;
             }
@@ -196,16 +211,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ListResponse<AionHR.Model.Reports.RT401> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT401>(req);
             if (!resp.Success)
-            {
-                if (throwException)
-                    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-                else
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(resp);
-                    return;
-                }
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
             resp.Items.ForEach(x => x.StatusString = GetLocalResourceObject("Status" + x.status.ToString()).ToString());
            

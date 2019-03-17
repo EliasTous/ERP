@@ -138,8 +138,17 @@
   <data name="FieldDate" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Département</value>
+  </data>
+  <data name="FieldEmployeeName" xml:space="preserve">
+    <value>Employée</value>
+  </data>
   <data name="FieldQty" xml:space="preserve">
     <value>Quantite</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>Ref</value>
   </data>
   <data name="FieldStatus" xml:space="preserve">
     <value>Statut</value>

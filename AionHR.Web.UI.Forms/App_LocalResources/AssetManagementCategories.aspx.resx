@@ -165,4 +165,7 @@
   <data name="FieldMask" xml:space="preserve">
     <value>Mask</value>
   </data>
+  <data name="CHECKBOX" xml:space="preserve">
+    <value>CHECK BOX</value>
+  </data>
 </root>

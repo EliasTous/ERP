@@ -38,6 +38,7 @@ namespace AionHR.Web.UI.Forms.Reports
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
+
         protected override void InitializeCulture()
         {
 
@@ -62,9 +63,22 @@ namespace AionHR.Web.UI.Forms.Reports
                         LocalisationManager.Instance.SetFrenchLocalisation();
                     }
                     break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
             }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -221,12 +235,14 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = GetRequest();
 
             ListResponse<AionHR.Model.Reports.RT301> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT301>(req);
+            //if (!resp.Success)
+            //{
+
+            //    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
+
+            //}
             if (!resp.Success)
-            {
-
-                throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
             var monthlyGrouped = resp.Items.GroupBy(x => x.month);
             MonthlyEmployeeAttendanceCollection monthlyAtts = new MonthlyEmployeeAttendanceCollection();

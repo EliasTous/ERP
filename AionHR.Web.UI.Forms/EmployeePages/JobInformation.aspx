@@ -631,14 +631,14 @@
                                                     <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                 </Listeners>
                                             </ext:ComboBox>
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false" runat="server" ID="reportToId"
+                                  <ext:ComboBox   AnyMatch="true"  CaseSensitive="false" runat="server" ID="reportToId"
                                     DisplayField="fullName"
                                     ValueField="recordId" Name="reportToId"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldReportsTo%>"
                                     HideTrigger="true" SubmitValue="true"
                                     MinChars="3"
-                                    TriggerAction="Query" ForceSelection="false">
+                                    TriggerAction="Query" ForceSelection="true">
                                     <Store>
                                         <ext:Store runat="server" ID="reportToStore" AutoLoad="false">
                                             <Model>

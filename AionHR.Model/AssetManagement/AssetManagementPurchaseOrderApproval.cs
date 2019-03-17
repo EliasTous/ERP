@@ -9,18 +9,17 @@ namespace AionHR.Model.AssetManagement
 {
   public  class AssetManagementPurchaseOrderApproval
     {
-        public EmployeeName approverName { get; set; }
-        //public EmployeeName employeeName { get; set; }
-        //public double amount { get; set; }
-        //public string currencyRef { get; set; }
-
-        public string departmentName { get; set; }
-        public string poId { get; set; }
-        public int approverId { get; set; }
-        public int employeeId { get; set; }
-
-        public string notes { get; set; }
+        public int? poId { get; set; }
+        public int? approverId { get; set; }
+        public short? status { get; set; }
         public string statusString { get; set; }
-        public short status { get; set; }
+        public string notes { get; set; }
+        public EmployeeName employeeName { get; set; }
+        public EmployeeName  approverName { get; set; }
+        public string departmentName { get; set; }
+        public string branchName { get; set; }
+        public string categoryName { get; set; }
+        public int? qty { get; set; }
+       
     }
 }

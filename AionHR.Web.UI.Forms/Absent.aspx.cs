@@ -65,6 +65,20 @@ namespace AionHR.Web.UI.Forms
                         LocalisationManager.Instance.SetFrenchLocalisation();
                     }
                     break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
             }
         }
 

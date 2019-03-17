@@ -117,43 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>اسم الحساب</value>
+  <data name="AM_CP_mask_CHECKBOX" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="AccountValid" xml:space="preserve">
-    <value>الحساب صالح</value>
+  <data name="AM_CP_mask_DATE" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="EnterYourAccount" xml:space="preserve">
-    <value>ادخل حسابك</value>
+  <data name="AM_CP_mask_DATE_TIME" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="EnterYourID" xml:space="preserve">
-    <value>ادخل اسم المستخدم</value>
+  <data name="AM_CP_mask_NUMERIC" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="EnterYourPassword" xml:space="preserve">
-    <value>ادخل كلمة السر</value>
-  </data>
-  <data name="InvalidAccount" xml:space="preserve">
-    <value>اسم الحساب غير صحيح</value>
-  </data>
-  <data name="InvalidCredentials" xml:space="preserve">
-    <value>خطأ في اسم المستخدم أو كلمة السر</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>تسجيل الدخول</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>كلمة السر</value>
-  </data>
-  <data name="RememberMe" xml:space="preserve">
-    <value>تذكرني</value>
-  </data>
-  <data name="RequestError" xml:space="preserve">
-    <value>خطأ في الطلب، حاول ثانية لاحقاً</value>
-  </data>
-  <data name="UserID" xml:space="preserve">
-    <value>اسم المستخدم | كلمة السر</value>
-  </data>
-  <data name="ValidAccount" xml:space="preserve">
-    <value>اسم الحساب صالح</value>
+  <data name="AM_CP_mask_Text" xml:space="preserve">
+    <value>1</value>
   </data>
 </root>

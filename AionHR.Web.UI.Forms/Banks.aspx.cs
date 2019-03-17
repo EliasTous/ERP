@@ -36,6 +36,7 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
 
+
         protected override void InitializeCulture()
         {
 
@@ -60,9 +61,22 @@ namespace AionHR.Web.UI.Forms
                         LocalisationManager.Instance.SetFrenchLocalisation();
                     }
                     break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
             }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 

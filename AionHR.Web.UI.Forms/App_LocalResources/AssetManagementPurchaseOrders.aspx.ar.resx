@@ -150,6 +150,9 @@
   <data name="FieldDepartment" xml:space="preserve">
     <value>القسم</value>
   </data>
+  <data name="FieldDepartment1" xml:space="preserve">
+    <value>القسم</value>
+  </data>
   <data name="FieldEmployeeName" xml:space="preserve">
     <value>اسم الموظف</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="FieldQty" xml:space="preserve">
     <value>الكمية</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>الرمز</value>
   </data>
   <data name="FieldRejected" xml:space="preserve">
     <value>مرفوض</value>

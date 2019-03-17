@@ -36,9 +36,10 @@ namespace AionHR.Web.UI.Forms.Reports
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
-       
-        
-  protected override void InitializeCulture()
+
+
+
+        protected override void InitializeCulture()
         {
 
             switch (_systemService.SessionHelper.getLangauge())
@@ -60,6 +61,20 @@ namespace AionHR.Web.UI.Forms.Reports
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
                     }
                     break;
             }
@@ -187,10 +202,16 @@ namespace AionHR.Web.UI.Forms.Reports
         {
            ReportCompositeRequest req = GetRequest();
             ListResponse<AionHR.Model.Reports.RT108> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT108>(req);
+            //if (resp == null || string.IsNullOrEmpty(resp.Error))
+            //{
+            //    throw new Exception(GetGlobalResourceObject("Errors", "Error_1").ToString());
+            //}
+            //if (!resp.Success)
+            //{
+            //    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
+            //}
             if (!resp.Success)
-            {
-                throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
             EmployeeDetails y = new EmployeeDetails();
             y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;

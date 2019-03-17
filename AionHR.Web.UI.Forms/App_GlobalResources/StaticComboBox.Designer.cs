@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 5.
+        /// </summary>
+        internal static string AM_CP_mask_CHECKBOX {
+            get {
+                return ResourceManager.GetString("AM_CP_mask_CHECKBOX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 3.
         /// </summary>
         internal static string AM_CP_mask_DATE {

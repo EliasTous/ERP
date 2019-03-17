@@ -149,6 +149,7 @@
     <Compile Include="Employees\Profile\SalaryTree.cs" />
     <Compile Include="Employees\Profile\TeamMember.cs" />
     <Compile Include="Employees\Profile\TerminationReason.cs" />
+    <Compile Include="Employees\SyncFullName.cs" />
     <Compile Include="HelpFunction\BenefitAcquisitionAcquisitionRate.cs" />
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
     <Compile Include="Reports\PT501.cs" />
@@ -367,7 +368,6 @@
       <Name>AionHR.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

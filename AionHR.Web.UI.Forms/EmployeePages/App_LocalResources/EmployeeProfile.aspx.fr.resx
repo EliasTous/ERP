@@ -117,43 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Nom du compte</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Fiche Employe</value>
   </data>
-  <data name="AccountValid" xml:space="preserve">
-    <value>Le compte est valide.</value>
+  <data name="ContractEndingDate" xml:space="preserve">
+    <value>Date de fin du contrat</value>
   </data>
-  <data name="EnterYourAccount" xml:space="preserve">
-    <value>Entrez votre compte</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Branche</value>
   </data>
-  <data name="EnterYourID" xml:space="preserve">
-    <value>Entrer votre ID</value>
+  <data name="FieldBirthPlace" xml:space="preserve">
+    <value>Lieu de naissance</value>
   </data>
-  <data name="EnterYourPassword" xml:space="preserve">
-    <value>Tapez votre mot de passe</value>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branche</value>
   </data>
-  <data name="InvalidAccount" xml:space="preserve">
-    <value>Nom de compte invalide.</value>
+  <data name="FieldDateOfBirth" xml:space="preserve">
+    <value>Date de naissance</value>
   </data>
-  <data name="InvalidCredentials" xml:space="preserve">
-    <value>Nom d'utilisateur ou mot de passe invalide</value>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Department</value>
   </data>
-  <data name="Login" xml:space="preserve">
-    <value>s'identifier</value>
+  <data name="FieldFamilyName" xml:space="preserve">
+    <value>Nom de famille</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>Mot de passe</value>
+  <data name="FieldFirstName" xml:space="preserve">
+    <value>Prénom</value>
   </data>
-  <data name="RememberMe" xml:space="preserve">
-    <value>souviens-toi de moi</value>
+  <data name="FieldFullName" xml:space="preserve">
+    <value>Nom</value>
   </data>
-  <data name="RequestError" xml:space="preserve">
-    <value>Erreur dans la demande, réessayer plus tard.</value>
+  <data name="FieldGender" xml:space="preserve">
+    <value>Gendre</value>
   </data>
-  <data name="UserID" xml:space="preserve">
-    <value>Nom d'utilisateur | Email</value>
+  <data name="FieldHireDate" xml:space="preserve">
+    <value>Date d'embauche</value>
   </data>
-  <data name="ValidAccount" xml:space="preserve">
-    <value>Nom de compte valide</value>
+  <data name="FieldHomeEmail" xml:space="preserve">
+    <value>Courriel personnel</value>
+  </data>
+  <data name="FieldIsInactive" xml:space="preserve">
+    <value>Est inactif?</value>
+  </data>
+  <data name="FieldLastName" xml:space="preserve">
+    <value>Nom de famille</value>
+  </data>
+  <data name="FieldLastTACheck" xml:space="preserve">
+    <value>Last Check In</value>
+  </data>
+  <data name="FieldLastTACheckStatus" xml:space="preserve">
+    <value>Dernier statut d'enregistrement</value>
+  </data>
+  <data name="FieldMiddleName" xml:space="preserve">
+    <value>Nom du père</value>
+  </data>
+  <data name="FieldMobile" xml:space="preserve">
+    <value>Portable</value>
+  </data>
+  <data name="FieldNationality" xml:space="preserve">
+    <value>Nationalité</value>
+  </data>
+  <data name="FieldPicturePath" xml:space="preserve">
+    <value>Chemin de l'image</value>
+  </data>
+  <data name="FieldPosition" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="FieldReligion" xml:space="preserve">
+    <value>Religion</value>
+  </data>
+  <data name="FieldSponsor" xml:space="preserve">
+    <value>Parrainer</value>
+  </data>
+  <data name="FieldVacationSchedule" xml:space="preserve">
+    <value>Horaire de vacances</value>
+  </data>
+  <data name="FieldWorkEmail" xml:space="preserve">
+    <value>Email de travail</value>
+  </data>
+  <data name="FieldWorkingCalendar" xml:space="preserve">
+    <value>Calendrier</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Employés</value>
   </data>
 </root>

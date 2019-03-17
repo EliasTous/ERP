@@ -67,7 +67,7 @@ public class LeaveRequestListRequest : ListRequest
     public int BranchId { get; set; }
     public int DepartmentId { get; set; }
     public int EmployeeId { get; set; }
-    public int ApproverId { get; set; }
+    //public int ApproverId { get; set; }
 
 
     public string SortBy { get; set; }
@@ -83,7 +83,7 @@ public class LeaveRequestListRequest : ListRequest
             parameters.Add("_employeeId", EmployeeId.ToString());
             parameters.Add("_sortBy", SortBy.ToString());
             parameters.Add("_raEmployeeId", raEmployeeId.ToString());
-            parameters.Add("_approverId", ApproverId.ToString());
+            //parameters.Add("_approverId", ApproverId.ToString());
 
 
 

@@ -444,6 +444,7 @@
                                         <ext:ListItem Text="<%$ Resources: NUMERIC %>" Value="<%$ Resources:StaticComboBox, AM_CP_mask_NUMERIC %>"/>
                                         <ext:ListItem Text="<%$ Resources: DATE %>" Value="<%$ Resources:StaticComboBox, AM_CP_mask_DATE %>" />
                                         <ext:ListItem Text="<%$ Resources:  DATE_TIME %>" Value="<%$ Resources:StaticComboBox, AM_CP_mask_DATE_TIME %>" />
+                                          <ext:ListItem Text="<%$ Resources:  CHECKBOX  %>" Value="<%$ Resources:StaticComboBox, AM_CP_mask_CHECKBOX  %>" />
                                     </Items>
 
                                 </ext:ComboBox>

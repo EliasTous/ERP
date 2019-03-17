@@ -41,6 +41,7 @@ namespace AionHR.Web.UI.Forms.Reports
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IDashBoardService _dashBoardService = ServiceLocator.Current.GetInstance<IDashBoardService>();
 
+
         protected override void InitializeCulture()
         {
 
@@ -65,9 +66,22 @@ namespace AionHR.Web.UI.Forms.Reports
                         LocalisationManager.Instance.SetFrenchLocalisation();
                     }
                     break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
             }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -243,11 +257,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 ListResponse<Model.Reports.RT305> resp = _reportsService.ChildGetAll<Model.Reports.RT305>(req);
                 if (!resp.Success)
-                {
-                    throw new Exception(resp.Error + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId);
-
-
-                }
+                    Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
 
                 // var edAmountList = resp.Items.GroupBy(x => new { x.employeeId, x.timeCode });

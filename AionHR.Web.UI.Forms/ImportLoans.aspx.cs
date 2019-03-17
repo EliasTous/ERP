@@ -47,6 +47,7 @@ namespace AionHR.Web.UI.Forms
         IReportsService _reportService = ServiceLocator.Current.GetInstance<IReportsService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
 
+
         protected override void InitializeCulture()
         {
 
@@ -69,6 +70,20 @@ namespace AionHR.Web.UI.Forms
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
                     }
                     break;
             }

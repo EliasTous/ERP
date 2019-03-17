@@ -39,6 +39,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
             IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
             IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+
         protected override void InitializeCulture()
         {
 
@@ -61,6 +62,20 @@ namespace AionHR.Web.UI.Forms.Reports
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
                     }
                     break;
             }
@@ -233,11 +248,9 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ListResponse<AionHR.Model.Reports.RT402> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT402>(req);
             if (!resp.Success)
-            {
-                throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-            }
-            
-          for (int i=0; i<resp.Items.Count;i++)
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+
+            for (int i=0; i<resp.Items.Count;i++)
             {
                 if (i == 0)
                     resp.Items[i].balance = resp.Items[i].amount;

@@ -44,6 +44,7 @@ namespace AionHR.Web.UI.Forms.Reports
             IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
             IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
             static List<GenerationHeader> payIdList;
+
         protected override void InitializeCulture()
         {
 
@@ -68,9 +69,22 @@ namespace AionHR.Web.UI.Forms.Reports
                         LocalisationManager.Instance.SetFrenchLocalisation();
                     }
                     break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
             }
         }
-
         protected void Page_Load(object sender, EventArgs e)
             {
 
@@ -218,14 +232,9 @@ namespace AionHR.Web.UI.Forms.Reports
                 ReportCompositeRequest req = GetRequest();
 
                 ListResponse<AionHR.Model.Reports.RT507> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT507>(req);
-          
-                if (!resp.Success)
-                {
 
-                    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-
-
-                }
+            if (!resp.Success)
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
             List<AionHR.Model.Reports.RT501> Items = new List<AionHR.Model.Reports.RT501>();
             Items.AddRange(resp.Items);
           

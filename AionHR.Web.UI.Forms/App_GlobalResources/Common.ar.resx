@@ -1348,7 +1348,7 @@
     <value>حصر الموظفين </value>
   </data>
   <data name="RT114" xml:space="preserve">
-    <value>المهارات</value>
+    <value>المؤهلات</value>
   </data>
   <data name="operationCompleted" xml:space="preserve">
     <value>تم اكمال العملية بنجاح </value>
@@ -1430,5 +1430,8 @@
   </data>
   <data name="OpenDocuments" xml:space="preserve">
     <value>Open Documents</value>
+  </data>
+  <data name="SaveRecord" xml:space="preserve">
+    <value>هل تريد الحفظ ؟ </value>
   </data>
 </root>

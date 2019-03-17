@@ -67,6 +67,20 @@ namespace AionHR.Web.UI.Forms.Reports
                         LocalisationManager.Instance.SetFrenchLocalisation();
                     }
                     break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
             }
         }
 
@@ -218,18 +232,17 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ListResponse<AionHR.Model.Reports.RT501> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT501>(req);
             if (!resp.Success)
-            {
-
-                throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-
-
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
             //resp.Items is the list of RT501 objects  that you can used it as data source for reprot  
 
 
             //Filters parameters as string 
 
-
+            resp.Items.ForEach(x =>
+            {
+                x.startDateString = x.startDate.ToString(_systemService.SessionHelper.GetDateformat());
+                x.endDateString = x.endDate.ToString(_systemService.SessionHelper.GetDateformat());
+            });
 
             string user = _systemService.SessionHelper.GetCurrentUser();
             string paymentMethod = paymentMethodCombo.GetPaymentMethodString();

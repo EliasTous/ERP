@@ -237,6 +237,7 @@ namespace AionHR.Infrastructure.Session
                 case "en": headers.Add("LanguageId", "1"); break;
                 case "ar": headers.Add("LanguageId", "2"); break;
                 case "fr": headers.Add("LanguageId", "3"); break;
+                case "de": headers.Add("LanguageId", "4"); break;
             }
             
             return headers;

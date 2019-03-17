@@ -35,6 +35,7 @@ namespace AionHR.Web.UI.Forms.Reports
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
 
+
         protected override void InitializeCulture()
         {
 
@@ -59,9 +60,22 @@ namespace AionHR.Web.UI.Forms.Reports
                         LocalisationManager.Instance.SetFrenchLocalisation();
                     }
                     break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
             }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -174,7 +188,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Size = "1000";
             req.StartAt = "0";
             req.SortBy = "departmentName";
-            
+
             req.Add(dateRange1.GetRange());
             req.Add(jobInfo1.GetJobInfo());
             return req;
@@ -186,10 +200,17 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = GetRequest();
             
             ListResponse<AionHR.Model.Reports.RT102A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102A>(req);
+          
             if (!resp.Success)
-            {
-                throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+            //if(resp==null || string.IsNullOrEmpty(resp.Error))
+            //{
+            //    throw new Exception(GetGlobalResourceObject("Errors","Error_1").ToString());
+            //}
+            //if (!resp.Success)
+            //{
+            //    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
+            //}
             resp.Items.ForEach(x => x.DateString = x.date.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en")));
             Hirings h = new Hirings();
 

@@ -45,6 +45,7 @@ namespace AionHR.Web.UI.Forms
         IMasterService _masterService = ServiceLocator.Current.GetInstance<IMasterService>();
         ICompanyStructureService _company = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
 
+
         protected override void InitializeCulture()
         {
 
@@ -67,6 +68,20 @@ namespace AionHR.Web.UI.Forms
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
                     }
                     break;
             }
@@ -591,6 +606,7 @@ namespace AionHR.Web.UI.Forms
             req.PositionId = s.PositionId.HasValue ? s.PositionId.ToString() : "0";
             req.BranchId = s.BranchId.HasValue ? s.BranchId.ToString() : "0";
             ListResponse<UserInfo> groups = _systemService.ChildGetAll<UserInfo>(req);
+         
             if (!groups.Success)
             {
                 Common.errorMessage(groups);

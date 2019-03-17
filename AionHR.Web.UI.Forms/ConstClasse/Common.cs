@@ -10,6 +10,7 @@ using System.Globalization;
 using System.Linq;
 using System.Resources;
 using System.Web;
+using AionHR.Web.UI.Forms.App_GlobalResources;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -40,6 +41,21 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, Resources.Errors.Error_1).Show();
             }
               
+        }
+        public static void ReportErrorMessage(ResponseBase resp,string Error1,string LogId)
+        {
+            if ( string.IsNullOrEmpty(resp.Error))
+            {
+                throw new Exception(Error1);
+            }
+            if (!resp.Success)
+            {
+                throw new Exception(resp.Error + "<br>" + LogId + resp.LogId + "</br>");
+
+            }
+
+
+
         }
         public static List<XMLDictionary> XMLDictionaryList(ISystemService systemService,string database)
         {

@@ -45,5 +45,10 @@ namespace AionHR.Web.UI.Forms.Utilities
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr-FR");
             System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en");
         }
+        public void SetGermanyLocalisation()
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
+            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en");
+        }
     }
 }
