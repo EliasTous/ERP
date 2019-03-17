@@ -171,6 +171,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminDepts.aspx" />
     <Content Include="AdminDocNav.aspx" />
     <Content Include="AdminDocuments.aspx" />
     <Content Include="AssetLoans.aspx" />
@@ -634,6 +635,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminDepts.aspx.cs">
+      <DependentUpon>AdminDepts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminDepts.aspx.designer.cs">
+      <DependentUpon>AdminDepts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminDocNav.aspx.cs">
       <DependentUpon>AdminDocNav.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3050,6 +3058,9 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>OldCommon.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="App_LocalResources\AdminDepts.aspx.resx" />
+    <Content Include="App_LocalResources\AdminDepts.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AdminDepts.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
