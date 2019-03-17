@@ -462,17 +462,17 @@
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
-                                                <ext:ModelField Name="poId"  />
-                                                <ext:ModelField Name="approverId" />
+                                                   <ext:ModelField Name="approverName" />
+                                                <ext:ModelField Name="departmentName"  />
+                                                <ext:ModelField Name="branchName" />
+                                                 <ext:ModelField Name="categoryName" />
+                                                <ext:ModelField Name="qty" />
+                                                <ext:ModelField Name="poId" />
+                                                 <ext:ModelField Name="approverId"  />
+                                              
                                                  <ext:ModelField Name="status" />
-                                                <ext:ModelField Name="statusString" />
-                                                <ext:ModelField Name="notes" />
-                                                 <ext:ModelField Name="employeeName"  ServerMapping="employeeName.fullName"/>
-                                                 <ext:ModelField Name="approverName"  ServerMapping="approverName.fullName" />
-                                                 <ext:ModelField Name="departmentName" />
-                                                   <ext:ModelField Name="branchName" />
-                                                   <ext:ModelField Name="categoryName" />
-                                                  <ext:ModelField Name="qty" />
+                                                   <ext:ModelField Name="comments" />
+                                                 
                                                 
                                                 
                                                 
@@ -489,7 +489,7 @@
                                     <ext:Column ID="approverId" Visible="false" DataIndex="approverId" runat="server" />
 
                                  
-                                        <ext:Column ID="Column8" DataIndex="approverName" Text="approver name " runat="server" Flex="1">
+                                        <ext:Column ID="Column8" DataIndex="approverName" Text="<%$ Resources: FieldApprover%> " runat="server" Flex="1">
                                           
                                           
                                          </ext:Column>
@@ -497,11 +497,9 @@
                                      <ext:Column ID="Column2" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1"/>
                                      <ext:Column ID="Column3" DataIndex="categoryName" Text="<%$ Resources: FieldCategoryName%>" runat="server" Flex="1"/>
                                      <ext:Column ID="Column4" DataIndex="qty" Text="<%$ Resources: FieldQty%>" runat="server" Flex="1"/>
-                                    <ext:Column ID="PoStatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="status " >
-                                       
-                                    </ext:Column>
+                                    
                                       
-                                    <ext:Column ID="PAnotes" DataIndex="notes" Text="notes" runat="server" Flex="2">
+                                    <ext:Column ID="PAComments" DataIndex="comments" Text="<%$ Resources: FieldComments%>" runat="server" Flex="2">
                                        
                                     </ext:Column>
                                    

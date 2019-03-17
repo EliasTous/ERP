@@ -2658,7 +2658,7 @@
                             </SelectionModel>
                          
                      </ext:GridPanel>
-                                                         <%--<ext:GridPanel
+                                                         <ext:GridPanel
                             ID="PurchasesGrid"
                             runat="server"
                             PaddingSpec="0 0 1 0"
@@ -2670,25 +2670,23 @@
                             Title="<%$ Resources: PurchasesApproval %>"
                             ColumnLines="True" IDMode="Explicit" RenderXType="True" >
                             
-                            <Store>
+                       <Store>
                                 <ext:Store runat="server" ID="PurchasesApprovalStore" OnReadData="PurchasesApprovalStore_ReadData">
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
-                                                <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
-                                                   <ext:ModelField Name="approverName" ServerMapping="approverName.fullName" />
-                                                <ext:ModelField Name="departmentName" />
-                                                 <ext:ModelField Name="branchName" />
+                                                   <ext:ModelField Name="approverName" />
+                                                <ext:ModelField Name="departmentName"  />
+                                                <ext:ModelField Name="branchName" />
                                                  <ext:ModelField Name="categoryName" />
-                                                 <ext:ModelField Name="qty" />
-                                                  <ext:ModelField Name="poId" />
-                                               
-                                                <ext:ModelField Name="approverId" />
-                                                <ext:ModelField Name="status" />
-                                                 <ext:ModelField Name="statusString" />
-                                                 <ext:ModelField Name="notes" />
+                                                <ext:ModelField Name="qty" />
+                                                <ext:ModelField Name="poId" />
+                                                 <ext:ModelField Name="approverId"  />
+                                              
+                                                 <ext:ModelField Name="status" />
+                                                   <ext:ModelField Name="comments" />
+                                                 
                                                 
-                                               
                                                 
                                                 
                                             </Fields>
@@ -2697,13 +2695,12 @@
                                 </ext:Store>
                             </Store>
 
-
                             <ColumnModel ID="ColumnModel39" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                 <Columns>
                                     <ext:Column ID="Column54" Visible="false" DataIndex="poId" runat="server" />
                                     <ext:Column ID="Column55" Visible="false" DataIndex="approverId" runat="server" />
                                  
-                                        <ext:Column ID="Column56" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2" />
+                                       
                                      <ext:Column ID="Column57" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2" />
                                      <ext:Column ID="Column61" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1" />
                                      <ext:Column ID="Column62" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
@@ -2714,14 +2711,14 @@
                                            
                                        
                                 
-                                    <ext:Column ID="Column58" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> "  />
+                                   
                                        
                                 
                                       
-                                    <ext:Column ID="Column59" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
-                                       
-                                    </ext:Column>
-                                      <ext:Column runat="server"
+                                     <ext:Column ID="PAComments" DataIndex="comments" Text="<%$ Resources: FieldComments%>" runat="server" Flex="2" />
+                                    </Columns>
+                            </ColumnModel>
+<%--                                      <ext:Column runat="server"
                                 ID="Column60" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
                                 Width="80"
@@ -2734,11 +2731,11 @@
 
                                 <Renderer Handler="return editRender(); " />
                             </ext:Column>
-                                     </Columns>
-                            </ColumnModel>
+                                  
 
                                     <Listeners>
                                                                 <Render Handler="this.on('cellclick', cellClick);" />
+                                          <Activate Handler="#{PurchasesApprovalStore}.reload();" />
                                                             </Listeners>
                                                             <DirectEvents>
                                                                 <CellClick OnEvent="PurchasesApprovalPoPUP">
@@ -2752,15 +2749,12 @@
                                                             </DirectEvents>
 
 
-
+--%>
 
                                
 
                          
-                            
-                           <Listeners>
-                               <Activate Handler="#{PurchasesApprovalStore}.reload();" />
-                           </Listeners>
+                        
 
                             <View>
                                 <ext:GridView ID="GridView39" runat="server" />
@@ -2772,7 +2766,7 @@
                               
                             </SelectionModel>
                          
-                     </ext:GridPanel>--%>
+                     </ext:GridPanel>
 
                                                       
                                                          

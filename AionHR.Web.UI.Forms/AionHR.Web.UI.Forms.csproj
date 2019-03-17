@@ -173,6 +173,7 @@
   <ItemGroup>
     <Content Include="AdminDocNav.aspx" />
     <Content Include="AdminDocuments.aspx" />
+    <Content Include="AssetLoans.aspx" />
     <Content Include="AssetManagementAssets.aspx" />
     <Content Include="AssetManagementCategories.aspx" />
     <Content Include="AssetManagementLoans.aspx" />
@@ -667,10 +668,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModuleIDs.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\OldCommon.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldCommon.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\StaticComboBox.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StaticComboBox.resx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetLoans.aspx.cs">
+      <DependentUpon>AssetLoans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetLoans.aspx.designer.cs">
+      <DependentUpon>AssetLoans.aspx</DependentUpon>
     </Compile>
     <Compile Include="AssetManagementAssets.aspx.cs">
       <DependentUpon>AssetManagementAssets.aspx</DependentUpon>
@@ -3030,6 +3043,13 @@
     <Content Include="App_LocalResources\DELogin.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\DELogin.aspx.resx" />
     <Content Include="App_LocalResources\ARLogin.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AssetLoans.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetLoans.aspx.resx" />
+    <Content Include="App_LocalResources\AssetLoans.aspx.ar.resx" />
+    <Content Include="App_GlobalResources\OldCommon.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>OldCommon.designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

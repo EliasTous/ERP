@@ -129,6 +129,9 @@
   <data name="FieldApproved" xml:space="preserve">
     <value>Approved</value>
   </data>
+  <data name="FieldApprover" xml:space="preserve">
+    <value>Approver</value>
+  </data>
   <data name="FieldBranch" xml:space="preserve">
     <value>Branch</value>
   </data>

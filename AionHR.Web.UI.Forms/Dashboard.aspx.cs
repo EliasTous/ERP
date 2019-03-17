@@ -2297,64 +2297,64 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        //protected void PurchasesApprovalStore_ReadData(object sender, StoreReadDataEventArgs e)
-        //{
-        //    try
-        //    {
-        //        DashboardRequest request = GetDashboardRequest();
-        //        AssetManagementPurchaseOrderApprovalListRequest req = new AssetManagementPurchaseOrderApprovalListRequest();
+        protected void PurchasesApprovalStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            try
+            {
+                DashboardRequest request = GetDashboardRequest();
+                AssetManagementPurchaseOrderApprovalListRequest req = new AssetManagementPurchaseOrderApprovalListRequest();
 
-        //        req.poId = "0";
-        //        req.Status = 1;
-        //        req.approverId = _systemService.SessionHelper.GetEmployeeId() != null ?Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId().ToString()) : 0;
-        //        req.BranchId = request.BranchId;
-               
-        //        req.DepartmentId = request.DepartmentId;
-              
-        //        if (string.IsNullOrEmpty(req.poId)|| string.IsNullOrEmpty(req.approverId.ToString()))
-        //        {
-        //            PurchasesApprovalStore.DataSource = new List<AssetManagementPurchaseOrderApproval>();
-        //            PurchasesApprovalStore.DataBind();
-        //            return;
-        //        }
-        //        ListResponse<AssetManagementPurchaseOrderApproval> response = _assetManagementService.ChildGetAll<AssetManagementPurchaseOrderApproval>(req);
+                req.poId = "0";
+                req.Status = 1;
+                req.approverId = _systemService.SessionHelper.GetEmployeeId() != null ? Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId().ToString()) : 0;
+                req.BranchId = request.BranchId;
 
-        //        if (!response.Success)
-        //        {
-        //            Common.errorMessage(response);
-        //            return;
-        //        }
-        //        response.Items.ForEach(x =>
-        //        {
+                req.DepartmentId = request.DepartmentId;
 
-        //            switch (x.status)
-        //            {
-        //                case 1:
-        //                    x.statusString = StatusNew.Text;
-        //                    break;
-        //                case 2:
-        //                    x.statusString = StatusInProcess.Text;
-        //                    ;
-        //                    break;
-        //                case 3:
-        //                    x.statusString = StatusApproved.Text;
-        //                    ;
-        //                    break;
-        //                case -1:
-        //                    x.statusString = StatusRejected.Text;
+                if (string.IsNullOrEmpty(req.poId) || string.IsNullOrEmpty(req.approverId.ToString()))
+                {
+                    PurchasesApprovalStore.DataSource = new List<AssetManagementPurchaseOrderApproval>();
+                    PurchasesApprovalStore.DataBind();
+                    return;
+                }
+                ListResponse<AssetManagementPurchaseOrderApproval> response = _assetManagementService.ChildGetAll<AssetManagementPurchaseOrderApproval>(req);
 
-        //                    break;
-        //            }
-        //        }
-        //      );
-        //        PurchasesApprovalStore.DataSource = response.Items;
-        //        PurchasesApprovalStore.DataBind();
-        //    }
-        //    catch (Exception exp)
-        //    {
-        //        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-        //    }
-        //}
+                if (!response.Success)
+                {
+                    Common.errorMessage(response);
+                    return;
+                }
+                response.Items.ForEach(x =>
+                {
+
+                    switch (x.status)
+                    {
+                        case 1:
+                            x.statusString = StatusNew.Text;
+                            break;
+                        case 2:
+                            x.statusString = StatusInProcess.Text;
+                            ;
+                            break;
+                        case 3:
+                            x.statusString = StatusApproved.Text;
+                            ;
+                            break;
+                        case -1:
+                            x.statusString = StatusRejected.Text;
+
+                            break;
+                    }
+                }
+              );
+                PurchasesApprovalStore.DataSource = response.Items;
+                PurchasesApprovalStore.DataBind();
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+        }
         private void FillTimeApproval(int dayId, int employeeId, string timeCode, string shiftId, string apstatus)
         {
             try
