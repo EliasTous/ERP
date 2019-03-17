@@ -912,9 +912,6 @@
   <data name="ImportNotes" xml:space="preserve">
     <value>Import Employee Notes</value>
   </data>
-  <data name="AccessControl" xml:space="preserve">
-    <value>Access Control</value>
-  </data>
   <data name="SecurityGroups" xml:space="preserve">
     <value>Security Groups</value>
   </data>
@@ -947,9 +944,6 @@
   </data>
   <data name="MissingHireDate" xml:space="preserve">
     <value>Employee Must Have a hire date to complete this operation</value>
-  </data>
-  <data name="Active" xml:space="preserve">
-    <value>Active</value>
   </data>
   <data name="Inactive" xml:space="preserve">
     <value>Inactive</value>
@@ -1436,5 +1430,11 @@
   </data>
   <data name="SaveRecord" xml:space="preserve">
     <value>Are you sure you want to save  ?</value>
+  </data>
+  <data name="AccessControl" xml:space="preserve">
+    <value>Access Control</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
   </data>
 </root>

@@ -44,6 +44,7 @@ namespace AionHR.Web.UI.Forms.Reports
             IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
             IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
             static List<GenerationHeader> payIdList;
+
         protected override void InitializeCulture()
         {
 
@@ -68,9 +69,22 @@ namespace AionHR.Web.UI.Forms.Reports
                         LocalisationManager.Instance.SetFrenchLocalisation();
                     }
                     break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
             }
         }
-
         protected void Page_Load(object sender, EventArgs e)
             {
 

@@ -118,42 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Account" xml:space="preserve">
-    <value>Nom du compte</value>
+    <value>Account Name  de</value>
   </data>
   <data name="AccountValid" xml:space="preserve">
-    <value>Le compte est valide.</value>
+    <value>Account is valid.</value>
   </data>
   <data name="EnterYourAccount" xml:space="preserve">
-    <value>Entrez votre compte</value>
+    <value>Enter Your Account</value>
   </data>
   <data name="EnterYourID" xml:space="preserve">
-    <value>Entrer votre ID</value>
+    <value>Enter Your ID</value>
   </data>
   <data name="EnterYourPassword" xml:space="preserve">
-    <value>Tapez votre mot de passe</value>
+    <value>Enter Your Password</value>
   </data>
   <data name="InvalidAccount" xml:space="preserve">
-    <value>Nom de compte invalide.</value>
+    <value>Invalid Account Name.</value>
   </data>
   <data name="InvalidCredentials" xml:space="preserve">
-    <value>Nom d'utilisateur ou mot de passe invalide</value>
+    <value>Invalid Username or Password</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>s'identifier</value>
+    <value>Login</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Mot de passe</value>
+    <value>Password</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
-    <value>souviens-toi de moi</value>
+    <value>Remember Me</value>
   </data>
   <data name="RequestError" xml:space="preserve">
-    <value>Erreur dans la demande, réessayer plus tard.</value>
+    <value>Error in request, Try Again Later.</value>
   </data>
   <data name="UserID" xml:space="preserve">
-    <value>Nom d'utilisateur | Email</value>
+    <value>Username | Email</value>
   </data>
   <data name="ValidAccount" xml:space="preserve">
-    <value>Nom de compte valide</value>
+    <value>Valid Account Name</value>
   </data>
 </root>

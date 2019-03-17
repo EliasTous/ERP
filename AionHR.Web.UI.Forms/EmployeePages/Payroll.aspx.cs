@@ -39,6 +39,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
 
+
         protected override void InitializeCulture()
         {
 
@@ -61,6 +62,20 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
                     }
                     break;
             }

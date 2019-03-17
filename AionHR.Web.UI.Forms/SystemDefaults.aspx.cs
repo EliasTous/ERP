@@ -71,6 +71,20 @@ namespace AionHR.Web.UI.Forms
                         LocalisationManager.Instance.SetFrenchLocalisation();
                     }
                     break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
             }
         }
 
@@ -241,7 +255,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         Title = Resources.Common.Notification,
                         Icon = Icon.Information,
-                        Html = Resources.Common.RecordDeletedSucc
+                        Html = Resources.Common.RecordUpdatedSucc
                     });
                     PostRequest<SyncFullName> request = new PostRequest<SyncFullName>();
                     request.entity = new SyncFullName();

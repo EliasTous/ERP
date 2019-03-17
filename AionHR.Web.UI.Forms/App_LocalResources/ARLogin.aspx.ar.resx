@@ -118,42 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Account" xml:space="preserve">
-    <value>اسم الحساب</value>
+    <value>أسم الحساب</value>
   </data>
   <data name="AccountValid" xml:space="preserve">
-    <value>الحساب صالح</value>
+    <value>رقم الحساب صحيح</value>
   </data>
   <data name="EnterYourAccount" xml:space="preserve">
-    <value>ادخل حسابك</value>
+    <value>أدخل حسابك</value>
   </data>
   <data name="EnterYourID" xml:space="preserve">
-    <value>ادخل اسم المستخدم</value>
+    <value>أدخل المعرف</value>
   </data>
   <data name="EnterYourPassword" xml:space="preserve">
-    <value>ادخل كلمة السر</value>
+    <value>ادخل رقمك السري</value>
   </data>
   <data name="InvalidAccount" xml:space="preserve">
-    <value>اسم الحساب غير صحيح</value>
+    <value>اسم الحساب غير صالح.</value>
   </data>
   <data name="InvalidCredentials" xml:space="preserve">
-    <value>خطأ في اسم المستخدم أو كلمة السر</value>
+    <value>خطأ في اسم المستخدم أو كلمة مرور</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>تسجيل الدخول</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>كلمة السر</value>
+    <value>كلمه السر</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
-    <value>تذكرني</value>
+    <value>تذكر معلومات الدخول</value>
   </data>
   <data name="RequestError" xml:space="preserve">
-    <value>خطأ في الطلب، حاول ثانية لاحقاً</value>
+    <value>خطأ في الطلب، حاول مرة أخرى ...</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>استعادة كلمة المرور</value>
   </data>
   <data name="UserID" xml:space="preserve">
-    <value>اسم المستخدم | كلمة السر</value>
-  </data>
-  <data name="ValidAccount" xml:space="preserve">
-    <value>اسم الحساب صالح</value>
+    <value>البريد الإلكتروني</value>
   </data>
 </root>

@@ -20,24 +20,22 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace AionHR.Web.UI.Forms
 {
-    public partial class FRLogin : Page
+    public partial class DELogin : System.Web.UI.Page
     {
-
-
-
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IMasterService _masterService = ServiceLocator.Current.GetInstance<IMasterService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
-           
+        
 
             base.InitializeCulture();
-            //User came to english login so set the language to franch           
-            _systemService.SessionHelper.SetLanguage("fr");
-            LocalisationManager.Instance.SetFrenchLocalisation();
+            //User came to english login so set the language to english           
+            _systemService.SessionHelper.SetLanguage("de");
+            LocalisationManager.Instance.SetGermanyLocalisation();
 
         }
 
@@ -59,12 +57,12 @@ namespace AionHR.Web.UI.Forms
             }
             languageId.HideBaseTrigger = true;
             this.languageId.Call("getTrigger(0).hide");
-            languageId.Select(2);
+            languageId.Select(3);
             //ResourceManager1.RegisterIcon(Icon.Tick);
             //ResourceManager1.RegisterIcon(Icon.Error);
             if (Request.QueryString["timeout"] != null && Request.QueryString["timeout"].ToString() == "yes")
             {
-              //  lblError.Text = Resources.Common.SessionDisconnected;
+                //  lblError.Text = Resources.Common.SessionDisconnected;
             }
             if (!IsPostBack && Request.QueryString["account"] != null)
             {
@@ -78,7 +76,7 @@ namespace AionHR.Web.UI.Forms
             }
             if (!IsPostBack)
             {
-                
+
                 tbAccountName.IndicatorIcon = Icon.Accept;
                 ResourceManager1.RegisterIcon(Icon.Accept);
             }
@@ -89,7 +87,7 @@ namespace AionHR.Web.UI.Forms
                 rememberMeCheck.Checked = true;
             }
 
-           
+
         }
 
         [DirectMethod]
@@ -99,7 +97,7 @@ namespace AionHR.Web.UI.Forms
             GetACrequest.Account = tbAccountName.Text;
 
             Response<Account> getACResponse = _masterService.GetAccount(GetACrequest);
-            if(!getACResponse.Success)
+            if (!getACResponse.Success)
             {
 
                 lblError.Text = getACResponse.Error;
@@ -112,13 +110,13 @@ namespace AionHR.Web.UI.Forms
             request.UserName = tbUsername.Text;
             request.Password = EncryptionHelper.encrypt(tbPassword.Text);
             AuthenticateResponse response = _systemService.Authenticate(request);
-            if (response.User==null)
+            if (response.User == null)
             {
                 if (string.IsNullOrEmpty(response.Error))
                     lblError.Text = GetGlobalResourceObject("Errors", "authenticationError").ToString();
                 else
                     lblError.Text = response.Error;
-                
+
                 return "error";
             }
             if (response.User.isInactive)
@@ -128,8 +126,8 @@ namespace AionHR.Web.UI.Forms
             }
             if (response.Success)
             {
-               
-             
+
+
                 //Redirecting..
                 Response.Cookies.Add(new HttpCookie("accountName", accountName) { Expires = DateTime.Now.AddDays(30) });
                 if (rememberMeCheck.Checked)
@@ -141,9 +139,8 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     RemoveCookies();
-                    
+
                 }
-                _systemService.SessionHelper.SetLanguage("fr");
                 //switch (response.User.languageId)
                 //{
                 //    case 1: _systemService.SessionHelper.SetLanguage("en");
@@ -158,6 +155,7 @@ namespace AionHR.Web.UI.Forms
 
                 //}
 
+                _systemService.SessionHelper.SetLanguage("de");
 
                 _systemService.SessionHelper.Set("CompanyName", getACResponse.result.companyName);
 
@@ -253,10 +251,10 @@ namespace AionHR.Web.UI.Forms
                 request.Size = "1";
                 request.IncludeIsInactive = 2;
                 var resp = _employeeService.GetAll<Employee>(request);
-                
+
                 _systemService.SessionHelper.SetStartDate(resp.Items[0].hireDate.Value);
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 _systemService.SessionHelper.SetStartDate(DateTime.Now);
             }
@@ -271,7 +269,7 @@ namespace AionHR.Web.UI.Forms
             RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
             if (!response.Success)
             {
-               
+
             }
             return response.result.Value;
         }
@@ -327,11 +325,11 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                
-                lblError.Text =  response.Error;
+
+                lblError.Text = response.Error;
             }
-            
-            
+
+
             return response.Success;
         }
         protected void CheckField(object sender, RemoteValidationEventArgs e)
@@ -352,7 +350,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
 
-              
+
             }
             //tbAccountName.ShowIndicator();
 
@@ -361,13 +359,13 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public string CheckFieldDirect(string accName)
         {
-            
+
             GetAccountRequest request = new GetAccountRequest();
             request.Account = accName;
 
             Response<Account> response = _masterService.GetAccount(request);
 
-            if (response.result!=null)
+            if (response.result != null)
             {
 
 
@@ -379,7 +377,7 @@ namespace AionHR.Web.UI.Forms
 
                 return "0";
             }
-           
+
 
         }
 

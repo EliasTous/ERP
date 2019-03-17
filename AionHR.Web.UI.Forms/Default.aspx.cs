@@ -59,6 +59,20 @@ namespace AionHR.Web.UI.Forms
                         LocalisationManager.Instance.SetFrenchLocalisation();
                     }
                     break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default: 
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
             }
         }
         private bool HandleExternalUrl()
@@ -140,6 +154,9 @@ namespace AionHR.Web.UI.Forms
                     case "3":
                         Response.Redirect("FRLogin.aspx?timeout=yes", true);
                         break;
+                    case "4":
+                        Response.Redirect("DELogin.aspx?timeout=yes", true);
+                        break;
                     default: Response.Redirect("Login.aspx?timeout=yes", true);
                         break;
                 }
@@ -166,7 +183,8 @@ namespace AionHR.Web.UI.Forms
                     {
                 new object[] { "1", "English" },
                 new object[] { "2", "عربي" },
-                new object[] { "3", "Français" }
+                new object[] { "3", "Français" },
+                 new object[] { "4", "Deutsch" }
                     };
                 }
                 languageId.HideBaseTrigger = true;
@@ -179,6 +197,9 @@ namespace AionHR.Web.UI.Forms
                         break;
                     case "fr":
                         languageId.Select(2);
+                        break;
+                    case "de":
+                        languageId.Select(3);
                         break;
                     
                 }

@@ -32,6 +32,7 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
+        
 
             base.InitializeCulture();
             //User came to english login so set the language to english           
@@ -52,7 +53,8 @@ namespace AionHR.Web.UI.Forms
                 {
                 new object[] { "1", "English" },
                 new object[] { "2", "عربي" },
-                new object[] { "3", "Français" }
+                new object[] { "3", "Français" },
+                new object[] { "4", "Deutsch" }
                 };
             }
             languageId.HideBaseTrigger = true;
@@ -412,6 +414,9 @@ namespace AionHR.Web.UI.Forms
                     break;
                 case "3":
                     Response.Redirect("~/FRLogin.aspx");
+                    break;
+                case "4":
+                    Response.Redirect("~/DELogin.aspx");
                     break;
                 default:
                     Response.Redirect("~/Login.aspx");
