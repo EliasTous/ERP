@@ -1771,7 +1771,7 @@ namespace AionHR.Web.UI.Forms
             req.DepartmentId = "0";
 
             req.BranchId = "0";
-            req.IncludeIsInactive = 1;
+            req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 
             req.StartAt = "0";

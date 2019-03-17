@@ -546,6 +546,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node AssetManagementPurchaseOrder = BuildLeafNode("AssetManagementPurchaseOrders", Resources.Common.PurchaseOrders, "Building", true, adminAssetManagement);
             Ext.Net.Node AssetManagementOnboarding = BuildLeafNode("AssetManagementOnboarding", Resources.Common.Onboarding, "Building", true, adminAssetManagement);
             Ext.Net.Node AssetManagementloan = BuildLeafNode("AssetManagementloan", Resources.Common.Loan, "Building", true, adminAssetManagement);
+            Ext.Net.Node AdminDepts = BuildLeafNode("admindepts", Resources.Common.AdminDepts, "Building", true, rootParent);
 
             FillConfigItem(templatesLeave, "admintemplates_root", "AdminTemplates.aspx", Resources.Common.AdminTemplates, "icon-Employees", "1");
             FillConfigItem(businessPartnerCategory, "BusinessPartnerCategories", "BusinessPartnerCategories.aspx", Resources.Common.BusinessPartnerCategory, "icon-Employees", "1");
@@ -557,6 +558,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(AssetManagementPurchaseOrder, "AssetManagementPurchaseOrders", "AssetManagementPurchaseOrders.aspx", Resources.Common.PurchaseOrders, "icon-Employees", "1");
             FillConfigItem(AssetManagementOnboarding, "AssetManagementOnboarding", "AssetManagementOnboardings.aspx", Resources.Common.Onboarding, "icon-Employees", "1");
             FillConfigItem(AssetManagementloan, "AssetManagementloan", "AssetManagementloans.aspx", Resources.Common.Loan, "icon-Employees", "1");
+            FillConfigItem(AdminDepts, "admindepts", "AdminDepts.aspx", Resources.Common.AdminDepts, "icon-Employees", "1");
 
 
 

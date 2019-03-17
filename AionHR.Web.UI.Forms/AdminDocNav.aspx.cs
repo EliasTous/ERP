@@ -103,12 +103,57 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
 
 
-                    
+
 
 
                     return;
                 }
                 FillDepartment();
+
+                ListRequest req = new ListRequest();
+                ListResponse<AdminDepartment> resp = _administrationService.ChildGetAll<AdminDepartment>(req);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return;
+                }
+                if (resp.Items.Count > 0)
+                {
+                    DeptId1.Text = resp.Items[0].departmentId;
+                    GridPanel1.Hidden = false;
+                    GridPanel1.Title = resp.Items[0].departmentName;
+                }
+                if (resp.Items.Count > 1)
+                {
+                    DeptId2.Text = resp.Items[1].departmentId;
+                    GridPanel2.Hidden = false;
+                    GridPanel2.Title = resp.Items[1].departmentName;
+                }
+                if (resp.Items.Count > 2)
+                {
+                    DeptId3.Text = resp.Items[2].departmentId;
+                    GridPanel3.Hidden = false;
+                    GridPanel3.Title = resp.Items[2].departmentName;
+                }
+                if (resp.Items.Count > 3)
+                {
+                    DeptId4.Text = resp.Items[3].departmentId;
+                    GridPanel4.Hidden = false;
+                    GridPanel4.Title = resp.Items[3].departmentName;
+                }
+                if (resp.Items.Count > 4)
+                {
+                    DeptId5.Text = resp.Items[4].departmentId;
+                    GridPanel5.Hidden = false;
+                    GridPanel5.Title = resp.Items[4].departmentName;
+                }
+                if (resp.Items.Count > 5)
+                {
+                    DeptId6.Text = resp.Items[5].departmentId;
+                    GridPanel6.Hidden = false;
+                    GridPanel6.Title = resp.Items[5].departmentName;
+                }
+
 
 
 
@@ -136,7 +181,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-            
+
 
         }
 
@@ -179,50 +224,50 @@ namespace AionHR.Web.UI.Forms
 
 
 
-                
-                    b.apStatus = "1";
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<AdminDocTransfer> request = new PostRequest<AdminDocTransfer>();
 
-                    request.entity = b;
-                    PostResponse<AdminDocTransfer> r = _administrationService.ChildAddOrUpdate<AdminDocTransfer>(request);
+                b.apStatus = "1";
+                //New Mode
+                //Step 1 : Fill The object and insert in the store 
+                PostRequest<AdminDocTransfer> request = new PostRequest<AdminDocTransfer>();
+
+                request.entity = b;
+                PostResponse<AdminDocTransfer> r = _administrationService.ChildAddOrUpdate<AdminDocTransfer>(request);
 
 
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        Common.errorMessage(r); ;
-                        return;
-                    }
-                    else
-                    {
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(r); ;
+                    return;
+                }
+                else
+                {
 
 
                     //Add this record to the store 
                     documentsStore.Reload();
 
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
+                    //Display successful notification
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordSavingSucc
+                    });
 
 
 
-                        DocumentTransferWindow.Close();
+                    DocumentTransferWindow.Close();
 
-                    }
                 }
+            }
 
 
 
-              
-            
+
+
             catch (Exception ex)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -250,10 +295,37 @@ namespace AionHR.Web.UI.Forms
                 Common.errorMessage(routers);
                 return;
             }
-            this.documentsStore.DataSource = routers.Items;
-            e.Total = routers.Items.Count; ;
+            if (!string.IsNullOrEmpty(DeptId1.Text))
+            {
+                Store1.DataSource = routers.Items.Where(x => x.departmentId == DeptId1.Text);
+                Store1.DataBind();
+            }
+            if (!string.IsNullOrEmpty(DeptId2.Text))
+            {
+                Store2.DataSource = routers.Items.Where(x => x.departmentId == DeptId2.Text);
+                Store2.DataBind();
+            }
+            if (!string.IsNullOrEmpty(DeptId3.Text))
+            {
+                Store3.DataSource = routers.Items.Where(x => x.departmentId == DeptId3.Text);
+                Store3.DataBind();
+            }
+            if (!string.IsNullOrEmpty(DeptId4.Text))
+            {
+                Store3.DataSource = routers.Items.Where(x => x.departmentId == DeptId4.Text);
+                Store4.DataBind();
+            }
+            if (!string.IsNullOrEmpty(DeptId5.Text))
+            {
+                Store5.DataSource = routers.Items.Where(x => x.departmentId == DeptId5.Text);
+                Store5.DataBind();
+            }
+            if (!string.IsNullOrEmpty(DeptId6.Text))
+            {
+                Store6.DataSource = routers.Items.Where(x => x.departmentId == DeptId6.Text);
+                Store6.DataBind();
+            }
 
-            this.documentsStore.DataBind();
         }
 
         #region comboboxFilling
