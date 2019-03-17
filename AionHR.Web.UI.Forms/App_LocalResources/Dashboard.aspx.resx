@@ -735,4 +735,13 @@
   <data name="PurchasesApproval" xml:space="preserve">
     <value>Purchase orders</value>
   </data>
+  <data name="FieldCategory" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="FieldComments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="FieldQty" xml:space="preserve">
+    <value>Qty</value>
+  </data>
 </root>

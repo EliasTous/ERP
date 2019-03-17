@@ -732,4 +732,10 @@
   <data name="rejectAll" xml:space="preserve">
     <value>Rejeter tout</value>
   </data>
+  <data name="FieldCategory" xml:space="preserve">
+    <value>Catégorie</value>
+  </data>
+  <data name="FieldQty" xml:space="preserve">
+    <value>Qty</value>
+  </data>
 </root>

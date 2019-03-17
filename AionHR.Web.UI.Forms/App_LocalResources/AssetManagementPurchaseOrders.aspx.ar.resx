@@ -129,6 +129,9 @@
   <data name="FieldApproved" xml:space="preserve">
     <value>موافق عليه</value>
   </data>
+  <data name="FieldApprover" xml:space="preserve">
+    <value>المعمد</value>
+  </data>
   <data name="FieldBranch" xml:space="preserve">
     <value>الموقع </value>
   </data>

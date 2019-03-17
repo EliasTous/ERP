@@ -160,6 +160,7 @@
     <Compile Include="Reports\RT508.cs" />
     <Compile Include="Reports\RT803.cs" />
     <Compile Include="Reports\RT804.cs" />
+    <Compile Include="SelfService\AssetLoan.cs" />
     <Compile Include="SelfService\EmployeePayrollSelfService.cs" />
     <Compile Include="SelfService\FlatScheduleSelfService.cs" />
     <Compile Include="SelfService\SelfServiceResetPassword.cs" />

@@ -19,17 +19,17 @@ namespace Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option or rebuild the Visual Studio project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "14.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Common {
+    internal class OldCommon {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Common() {
+        internal OldCommon() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.Common", global::System.Reflection.Assembly.Load("App_GlobalResources"));
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.OldCommon", global::System.Reflection.Assembly.Load("App_GlobalResources"));
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -120,15 +120,6 @@ namespace Resources {
         internal static string adminBusinessPartner {
             get {
                 return ResourceManager.GetString("adminBusinessPartner", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Admin Depts.
-        /// </summary>
-        internal static string AdminDepts {
-            get {
-                return ResourceManager.GetString("AdminDepts", resourceCulture);
             }
         }
         
@@ -255,15 +246,6 @@ namespace Resources {
         internal static string AssetCategories {
             get {
                 return ResourceManager.GetString("AssetCategories", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Asset Loans.
-        /// </summary>
-        internal static string AssetLoans {
-            get {
-                return ResourceManager.GetString("AssetLoans", resourceCulture);
             }
         }
         
@@ -403,6 +385,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BiWeek.
+        /// </summary>
+        internal static string BiWeek {
+            get {
+                return ResourceManager.GetString("BiWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bonus Types.
         /// </summary>
         internal static string BonusTypes {
@@ -444,6 +435,15 @@ namespace Resources {
         internal static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Case Commands.
+        /// </summary>
+        internal static string CaseCommands {
+            get {
+                return ResourceManager.GetString("CaseCommands", resourceCulture);
             }
         }
         
@@ -700,6 +700,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DayFriday.
+        /// </summary>
+        internal static string DayFriday {
+            get {
+                return ResourceManager.GetString("DayFriday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DayMonday.
+        /// </summary>
+        internal static string DayMonday {
+            get {
+                return ResourceManager.GetString("DayMonday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day - Month - Year.
+        /// </summary>
+        internal static string DayMonthYear {
+            get {
+                return ResourceManager.GetString("DayMonthYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vacation(Hours).
         /// </summary>
         internal static string Days {
@@ -709,11 +736,65 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DaySaturday.
+        /// </summary>
+        internal static string DaySaturday {
+            get {
+                return ResourceManager.GetString("DaySaturday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DaySunday.
+        /// </summary>
+        internal static string DaySunday {
+            get {
+                return ResourceManager.GetString("DaySunday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DayThursday.
+        /// </summary>
+        internal static string DayThursday {
+            get {
+                return ResourceManager.GetString("DayThursday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DayTuesday.
+        /// </summary>
+        internal static string DayTuesday {
+            get {
+                return ResourceManager.GetString("DayTuesday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Day Types.
         /// </summary>
         internal static string DayTypes {
             get {
                 return ResourceManager.GetString("DayTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DayWednesday.
+        /// </summary>
+        internal static string DayWednesday {
+            get {
+                return ResourceManager.GetString("DayWednesday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day- Year - Month.
+        /// </summary>
+        internal static string DayYearMonth {
+            get {
+                return ResourceManager.GetString("DayYearMonth", resourceCulture);
             }
         }
         
@@ -1069,6 +1150,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Enter Pay Ref.
+        /// </summary>
+        internal static string ErrorEmptyPayRef {
+            get {
+                return ResourceManager.GetString("ErrorEmptyPayRef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please Select Employee.
         /// </summary>
         internal static string ErrorEmptyValue {
@@ -1110,6 +1200,15 @@ namespace Resources {
         internal static string ExceptionMessage {
             get {
                 return ResourceManager.GetString("ExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        internal static string Exit {
+            get {
+                return ResourceManager.GetString("Exit", resourceCulture);
             }
         }
         
@@ -1393,6 +1492,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FourWeek.
+        /// </summary>
+        internal static string FourWeek {
+            get {
+                return ResourceManager.GetString("FourWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to French.
         /// </summary>
         internal static string FrenchLanguage {
@@ -1407,6 +1515,15 @@ namespace Resources {
         internal static string FridayText {
             get {
                 return ResourceManager.GetString("FridayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From(Months).
+        /// </summary>
+        internal static string FromMonths {
+            get {
+                return ResourceManager.GetString("FromMonths", resourceCulture);
             }
         }
         
@@ -2086,6 +2203,195 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to National Quota.
+        /// </summary>
+        internal static string Mod10 {
+            get {
+                return ResourceManager.GetString("Mod10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        internal static string Mod20 {
+            get {
+                return ResourceManager.GetString("Mod20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company.
+        /// </summary>
+        internal static string Mod21 {
+            get {
+                return ResourceManager.GetString("Mod21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Documents.
+        /// </summary>
+        internal static string Mod22 {
+            get {
+                return ResourceManager.GetString("Mod22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Media.
+        /// </summary>
+        internal static string Mod23 {
+            get {
+                return ResourceManager.GetString("Mod23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to News.
+        /// </summary>
+        internal static string Mod24 {
+            get {
+                return ResourceManager.GetString("Mod24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benefits.
+        /// </summary>
+        internal static string Mod25 {
+            get {
+                return ResourceManager.GetString("Mod25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recruitment.
+        /// </summary>
+        internal static string Mod30 {
+            get {
+                return ResourceManager.GetString("Mod30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employees.
+        /// </summary>
+        internal static string Mod31 {
+            get {
+                return ResourceManager.GetString("Mod31", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tasks.
+        /// </summary>
+        internal static string Mod32 {
+            get {
+                return ResourceManager.GetString("Mod32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attendance.
+        /// </summary>
+        internal static string Mod41 {
+            get {
+                return ResourceManager.GetString("Mod41", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leaves.
+        /// </summary>
+        internal static string Mod42 {
+            get {
+                return ResourceManager.GetString("Mod42", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cases.
+        /// </summary>
+        internal static string Mod43 {
+            get {
+                return ResourceManager.GetString("Mod43", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complaints.
+        /// </summary>
+        internal static string Mod44 {
+            get {
+                return ResourceManager.GetString("Mod44", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loans.
+        /// </summary>
+        internal static string Mod45 {
+            get {
+                return ResourceManager.GetString("Mod45", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payroll.
+        /// </summary>
+        internal static string Mod51 {
+            get {
+                return ResourceManager.GetString("Mod51", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Self Service.
+        /// </summary>
+        internal static string Mod60 {
+            get {
+                return ResourceManager.GetString("Mod60", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin affairs.
+        /// </summary>
+        internal static string Mod70 {
+            get {
+                return ResourceManager.GetString("Mod70", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reports.
+        /// </summary>
+        internal static string Mod80 {
+            get {
+                return ResourceManager.GetString("Mod80", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        internal static string Mod81 {
+            get {
+                return ResourceManager.GetString("Mod81", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access Control.
+        /// </summary>
+        internal static string Mod90 {
+            get {
+                return ResourceManager.GetString("Mod90", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Module.
         /// </summary>
         internal static string Module {
@@ -2118,6 +2424,24 @@ namespace Resources {
         internal static string Month {
             get {
                 return ResourceManager.GetString("Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month - Day - Year.
+        /// </summary>
+        internal static string MonthDayYear {
+            get {
+                return ResourceManager.GetString("MonthDayYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month - Year - Day.
+        /// </summary>
+        internal static string MonthYearDay {
+            get {
+                return ResourceManager.GetString("MonthYearDay", resourceCulture);
             }
         }
         
@@ -2271,6 +2595,15 @@ namespace Resources {
         internal static string OvertimeSettings {
             get {
                 return ResourceManager.GetString("OvertimeSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overtime/Lateness.
+        /// </summary>
+        internal static string Overtime_Lateness {
+            get {
+                return ResourceManager.GetString("Overtime_Lateness", resourceCulture);
             }
         }
         
@@ -2775,6 +3108,24 @@ namespace Resources {
         internal static string RT203 {
             get {
                 return ResourceManager.GetString("RT203", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RightToWork.
+        /// </summary>
+        internal static string RT204 {
+            get {
+                return ResourceManager.GetString("RT204", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RightToWork.
+        /// </summary>
+        internal static string RT2041 {
+            get {
+                return ResourceManager.GetString("RT2041", resourceCulture);
             }
         }
         
@@ -3391,11 +3742,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To(Months).
+        /// </summary>
+        internal static string ToMonths {
+            get {
+                return ResourceManager.GetString("ToMonths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total.
         /// </summary>
         internal static string Total {
             get {
                 return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        internal static string TransactionLogTitle {
+            get {
+                return ResourceManager.GetString("TransactionLogTitle", resourceCulture);
             }
         }
         
@@ -3621,6 +3990,24 @@ namespace Resources {
         internal static string Year {
             get {
                 return ResourceManager.GetString("Year", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year - Day - Month.
+        /// </summary>
+        internal static string YearDayMonth {
+            get {
+                return ResourceManager.GetString("YearDayMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year - Month - Day.
+        /// </summary>
+        internal static string YearMonthDay {
+            get {
+                return ResourceManager.GetString("YearMonthDay", resourceCulture);
             }
         }
         
