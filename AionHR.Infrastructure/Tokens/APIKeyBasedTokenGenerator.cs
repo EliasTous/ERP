@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -12,7 +13,11 @@ namespace AionHR.Infrastructure.Tokens
     /// </summary>
     public class APIKeyBasedTokenGenerator : ITokenGenerator
     {
-        private string APIKey = "ty67u4WHJGiOLF986700OGmghJDNEYuIKqWJyYxjtHRyN5htyrhfdgwSJhtygUIOm";
+        public  APIKeyBasedTokenGenerator()
+        {
+            APIKey = ConfigurationManager.AppSettings.Get("API_Token");
+        }
+        private string APIKey = "";
         public string UserId { get; set; }
         public string AccountId { get; set; }
 

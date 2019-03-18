@@ -31,6 +31,7 @@ using AionHR.Model.Benefits;
 using AionHR.Model.Dashboard;
 using AionHR.Model.AdminTemplates;
 using AionHR.Model.AssetManagementRepository;
+using System.Configuration;
 
 namespace AionHR.Web.UI.Forms
 {

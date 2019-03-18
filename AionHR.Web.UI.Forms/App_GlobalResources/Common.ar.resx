@@ -1437,4 +1437,7 @@
   <data name="AssetLoans" xml:space="preserve">
     <value>سلف الاصول</value>
   </data>
+  <data name="AdminDepts" xml:space="preserve">
+    <value>Admin Departments</value>
+  </data>
 </root>

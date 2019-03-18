@@ -2,6 +2,7 @@
 using AionHR.Infrastructure.Domain;
 using AionHR.Model;
 using AionHR.Model.AdminTemplates;
+using AionHR.Model.Company.Structure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(AdminDocumentDue), "qryDD");
             ChildGetAllLookup.Add(typeof(AdminDocTransfer), "qryDT");
             ChildGetAllLookup.Add(typeof(AdminDocumentDX), "qryDX");
+            ChildGetAllLookup.Add(typeof(AdminDepartment), "qryDE");
 
             ChildGetLookup.Add(typeof(AdTemplate), "getTE");
             ChildGetLookup.Add(typeof(TemplateBody), "getTB");
@@ -58,6 +60,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(AdminDocumentDue), "setDD");
             ChildAddOrUpdateLookup.Add(typeof(AdminDocTransfer), "setDT");
             ChildAddOrUpdateLookup.Add(typeof(AdminDocumentDX), "setDX");
+            ChildAddOrUpdateLookup.Add(typeof(AdminDepartment), "setDE");
             ChildAddOrUpdateLookup.Add(typeof(AdminDocumentDX[]), "aseDX");
 
             ChildDeleteLookup.Add(typeof(AdTemplate), "delTE");
@@ -72,6 +75,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(AdminDocumentDue), "delDD");
             ChildDeleteLookup.Add(typeof(AdminDocTransfer), "delDT");
             ChildDeleteLookup.Add(typeof(AdminDocumentDX), "delDX");
+            ChildDeleteLookup.Add(typeof(AdminDepartment), "delDE");
             ChildDeleteLookup.Add(typeof(AdminDocumentDX[]), "adeDX ");
         }
         }

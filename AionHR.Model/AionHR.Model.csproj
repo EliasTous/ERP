@@ -54,6 +54,7 @@
     <Compile Include="AdminTemplates\AdTemplate.cs" />
     <Compile Include="AdminTemplates\BusinessPartner.cs" />
     <Compile Include="AdminTemplates\BusinessPartnerCategory.cs" />
+    <Compile Include="AdminTemplates\Department.cs" />
     <Compile Include="AdminTemplates\DocumentCategory.cs" />
     <Compile Include="AdminTemplates\EmployeeTemplatePreview.cs" />
     <Compile Include="AdminTemplates\GenerateAdminDocumentDue.cs" />

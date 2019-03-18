@@ -321,7 +321,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="700"
-            Height="450"
+            Height="480"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -338,9 +338,16 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
+                                <ext:FieldSet ID="fdSet" runat="server" Layout="HBoxLayout" PaddingSpec="0 0 2 0" ><Items><ext:TextField Width="150" LabelWidth="50" ID="statusName"  FieldLabel="<%$ Resources:FieldStatus%>" runat="server" ReadOnly="true" />
+                                 <ext:TextField ID="departmentName" FieldLabel="<%$ Resources:Department%>" runat="server" LabelWidth="75" Width="200" ReadOnly="true" />
+                                <ext:TextField ID="employeeName" FieldLabel="<%$ Resources:Employee%>" runat="server" ReadOnly="true" />
+                               </Items></ext:FieldSet>
+                                
+                                
+                                <ext:TextField ID="recordId"  runat="server" Name="recordId" Hidden="true"  />
+                               
                                 <%--    <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>--%>
-                                <ext:DateField ID="issueDate" runat="server" FieldLabel="<%$ Resources:FieldIssueDate%>" Name="issueDate" AllowBlank="false">
+                                <ext:DateField  ID="issueDate" runat="server" FieldLabel="<%$ Resources:FieldIssueDate%>" Name="issueDate" AllowBlank="false">
                                     <Validator Handler="return this.value<#{expiryDate}.getValue();"></Validator>
                                     <Listeners>
                                         <Change Handler="#{expiryDate}.validate();"></Change>

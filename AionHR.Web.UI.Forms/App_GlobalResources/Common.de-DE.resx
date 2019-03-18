@@ -1437,4 +1437,7 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="AdminDepts" xml:space="preserve">
+    <value>Admin Departments</value>
+  </data>
 </root>
