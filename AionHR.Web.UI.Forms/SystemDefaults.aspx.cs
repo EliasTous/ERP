@@ -90,79 +90,83 @@ namespace AionHR.Web.UI.Forms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-            if (!X.IsAjaxRequest && !IsPostBack)
+            try
             {
 
-                SetExtLanguage();
-                HideShowButtons();
-                HideShowColumns();
-                try
+                if (!X.IsAjaxRequest && !IsPostBack)
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), EmployeeSettings, null, null, SaveButton);
+
+                    SetExtLanguage();
+                    HideShowButtons();
+                    HideShowColumns();
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), EmployeeSettings, null, null, SaveButton);
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport1.Hidden = true;
+                        return;
+                    }
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), GeneralSettings, null, null, SaveButton);
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport1.Hidden = true;
+                        return;
+                    }
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), PayrollSettings, null, null, SaveButton);
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport1.Hidden = true;
+                        return;
+                    }
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), AttendanceSettings, null, null, SaveButton);
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport1.Hidden = true;
+                        return;
+                    }
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), SecuritySettings, null, null, SaveButton);
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport1.Hidden = true;
+                        return;
+                    }
+                    ListRequest req = new ListRequest();
+                    ListResponse<KeyValuePair<string, string>> resp = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        return;
+                    }
+                    FillCombos();
+                    FillDefaults(resp.Items);
                 }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), GeneralSettings, null, null, SaveButton);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), PayrollSettings, null, null, SaveButton);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), AttendanceSettings, null, null, SaveButton);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), SecuritySettings, null, null, SaveButton);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                ListRequest req = new ListRequest();
-                ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
-                if (!defaults.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
-                    return;
-                }
-                FillCombos();
-                FillDefaults(defaults.Items);
+            }catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
 
         }
@@ -1305,56 +1309,61 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveAll(object sender, DirectEventArgs e)
         {
-           
-            List<KeyValuePair<string, string>> allValues = new List<KeyValuePair<string, string>>();
-           
+            try {
 
-            dynamic empValues = JsonConvert.DeserializeObject(e.ExtraParams["emp"]);
-            allValues.AddRange(GetEmployeeSettings(empValues));
+                List<KeyValuePair<string, string>> allValues = new List<KeyValuePair<string, string>>();
 
-            dynamic taValues = JsonConvert.DeserializeObject(e.ExtraParams["ta"]);
-            allValues.AddRange(GetAttendanceSettings(taValues));
-            dynamic pyValues = JsonConvert.DeserializeObject(e.ExtraParams["py"]);
-            allValues.AddRange(GetPayrollSettings(pyValues));
-            dynamic genValues = JsonConvert.DeserializeObject(e.ExtraParams["gen"]);
-            allValues.AddRange(GetGeneralSettings(genValues));
-            dynamic secValues = JsonConvert.DeserializeObject(e.ExtraParams["sec"]);
 
-            allValues.AddRange(GetSecuritySettings(secValues));
-            dynamic bioValues = JsonConvert.DeserializeObject(e.ExtraParams["bio"]);
-            allValues.AddRange(GetBiometricSettings(bioValues));
+                dynamic empValues = JsonConvert.DeserializeObject(e.ExtraParams["emp"]);
+                allValues.AddRange(GetEmployeeSettings(empValues));
 
-            KeyValuePair<string, string>[] valArr = allValues.ToArray();
-            PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
-            req.entity = valArr;
-            PostResponse<KeyValuePair<string, string>[]> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>[]>(req);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-               Common.errorMessage(resp);
-                return;
-            }
-            else
-            {
-                FillDefaults(allValues);
-                if (!string.IsNullOrEmpty(genValues.dateFormat.ToString()))
-                    _systemService.SessionHelper.SetDateformat(genValues.dateFormat.ToString());
+                dynamic taValues = JsonConvert.DeserializeObject(e.ExtraParams["ta"]);
+                allValues.AddRange(GetAttendanceSettings(taValues));
+                dynamic pyValues = JsonConvert.DeserializeObject(e.ExtraParams["py"]);
+                allValues.AddRange(GetPayrollSettings(pyValues));
+                dynamic genValues = JsonConvert.DeserializeObject(e.ExtraParams["gen"]);
+                allValues.AddRange(GetGeneralSettings(genValues));
+                dynamic secValues = JsonConvert.DeserializeObject(e.ExtraParams["sec"]);
 
-                if (!string.IsNullOrEmpty(genValues.countryId.ToString()))
-                    _systemService.SessionHelper.SetDefaultCountry(genValues.countryId.ToString());
-                if (!string.IsNullOrEmpty(genValues.timeZone.ToString()))
-                    _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(genValues.timeZone.ToString()));
-                _systemService.SessionHelper.SetHijriSupport(empValues.enableHijri == null ? false : true);
+                allValues.AddRange(GetSecuritySettings(secValues));
+                dynamic bioValues = JsonConvert.DeserializeObject(e.ExtraParams["bio"]);
+                allValues.AddRange(GetBiometricSettings(bioValues));
 
-                Notification.Show(new NotificationConfig
+                KeyValuePair<string, string>[] valArr = allValues.ToArray();
+                PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
+                req.entity = valArr;
+                PostResponse<KeyValuePair<string, string>[]> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>[]>(req);
+                if (!resp.Success)
                 {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.RecordUpdatedSucc
-                });
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(resp);
+                    return;
+                }
+                else
+                {
+                    FillDefaults(allValues);
+                    if (!string.IsNullOrEmpty(genValues.dateFormat.ToString()))
+                        _systemService.SessionHelper.SetDateformat(genValues.dateFormat.ToString());
 
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Hint, GetGlobalResourceObject("Common", "systemDefaultAlert")).Show();
+                    if (!string.IsNullOrEmpty(genValues.countryId.ToString()))
+                        _systemService.SessionHelper.SetDefaultCountry(genValues.countryId.ToString());
+                    if (!string.IsNullOrEmpty(genValues.timeZone.ToString()))
+                        _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(genValues.timeZone.ToString()));
+                    _systemService.SessionHelper.SetHijriSupport(empValues.enableHijri == null ? false : true);
+
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordUpdatedSucc
+                    });
+
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Hint, GetGlobalResourceObject("Common", "systemDefaultAlert")).Show();
+                }
+            }catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
 

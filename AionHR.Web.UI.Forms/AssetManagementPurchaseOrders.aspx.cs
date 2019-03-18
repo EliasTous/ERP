@@ -86,36 +86,41 @@ namespace AionHR.Web.UI.Forms
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            try {
 
+                if (!X.IsAjaxRequest && !IsPostBack)
+                {
 
-            if (!X.IsAjaxRequest && !IsPostBack)
+                    SetExtLanguage();
+                    HideShowButtons();
+                    HideShowColumns();
+
+                    //releaseDate.Format = expiryDate.Format = releaseDateDF.Format = expiryDateDF.Format = _systemService.SessionHelper.GetDateformat();
+
+                    date.Format = Coldate.Format = _systemService.SessionHelper.GetDateformat();
+                    if (_systemService.SessionHelper.CheckIfIsAdmin())
+                        return;
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AssetManagementPurchaseOrder), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport1.Hidden = true;
+                        return;
+                    }
+                    FillBranch();
+                    FillDepartment();
+                    currentPurchaseOrderId.Text = "";
+
+                }
+            }
+            catch (Exception exp)
             {
-
-                SetExtLanguage();
-                HideShowButtons();
-                HideShowColumns();
-
-                //releaseDate.Format = expiryDate.Format = releaseDateDF.Format = expiryDateDF.Format = _systemService.SessionHelper.GetDateformat();
-
-                date.Format = Coldate.Format = _systemService.SessionHelper.GetDateformat();
-                if (_systemService.SessionHelper.CheckIfIsAdmin())
-                    return;
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AssetManagementPurchaseOrder), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
-                   
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                FillBranch();
-                FillDepartment();
-                currentPurchaseOrderId.Text = "";
-
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
 
 

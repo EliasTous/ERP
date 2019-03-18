@@ -28,13 +28,19 @@ namespace AionHR.Web.UI.Forms.Reports
         }
         private void FillCurrency()
         {
-            ListRequest request = new ListRequest();
-            ListResponse<Currency> resp = _systemService.ChildGetAll<Currency>(request);
-            if (!resp.Success)
-            
-                Common.errorMessage(resp);
-            currencyStore.DataSource = resp.Items;
-            currencyStore.DataBind();
+            try
+            {
+                ListRequest request = new ListRequest();
+                ListResponse<Currency> resp = _systemService.ChildGetAll<Currency>(request);
+                if (!resp.Success)
+
+                    Common.errorMessage(resp);
+                currencyStore.DataSource = resp.Items;
+                currencyStore.DataBind();
+            }catch(Exception exp)
+            {
+                Common.errorMessage(new ListResponse < Currency >());
+            }
         }
 
 
