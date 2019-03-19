@@ -94,6 +94,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden departmentText;
         
         /// <summary>
+        /// dateFormat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden dateFormat;
+        
+        /// <summary>
         /// currentDocumentId control.
         /// </summary>
         /// <remarks>
@@ -247,15 +256,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColdocRef;
         
         /// <summary>
-        /// ColdcName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column ColdcName;
-        
-        /// <summary>
         /// colEdit control.
         /// </summary>
         /// <remarks>
@@ -362,15 +362,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column3;
-        
-        /// <summary>
-        /// Column4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column4;
         
         /// <summary>
         /// Column5 control.
@@ -481,15 +472,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column Column8;
         
         /// <summary>
-        /// Column9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column9;
-        
-        /// <summary>
         /// Column10 control.
         /// </summary>
         /// <remarks>
@@ -596,15 +578,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column13;
-        
-        /// <summary>
-        /// Column14 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column14;
         
         /// <summary>
         /// Column15 control.
@@ -715,15 +688,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column Column18;
         
         /// <summary>
-        /// Column19 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column19;
-        
-        /// <summary>
         /// Column20 control.
         /// </summary>
         /// <remarks>
@@ -830,15 +794,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column23;
-        
-        /// <summary>
-        /// Column24 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column24;
         
         /// <summary>
         /// Column25 control.
