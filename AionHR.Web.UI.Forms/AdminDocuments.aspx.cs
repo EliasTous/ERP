@@ -236,11 +236,11 @@ namespace AionHR.Web.UI.Forms
                     }
                         
                     if (string.IsNullOrEmpty(response.result.employeeId))
-                        employeeName.Hidden = true;
+                        employeeNameTB.Hidden = true;
                     else
                     {
-                        employeeName.Hidden = false;
-                        employeeName.Text = response.result.employeeName.fullName;
+                        employeeNameTB.Hidden = false;
+                        employeeNameTB.Text = response.result.employeeName.fullName;
                     }
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();

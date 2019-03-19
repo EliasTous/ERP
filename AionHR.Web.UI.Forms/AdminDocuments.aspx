@@ -340,7 +340,7 @@
                             <Items>
                                 <ext:FieldSet ID="fdSet" runat="server" Layout="HBoxLayout" PaddingSpec="0 0 2 0" ><Items><ext:TextField Width="150" LabelWidth="50" ID="statusName"  FieldLabel="<%$ Resources:FieldStatus%>" runat="server" ReadOnly="true" />
                                  <ext:TextField ID="departmentName" FieldLabel="<%$ Resources:Department%>" runat="server" LabelWidth="75" Width="200" ReadOnly="true" />
-                                <ext:TextField ID="employeeName" FieldLabel="<%$ Resources:Employee%>" runat="server" ReadOnly="true" />
+                                <ext:TextField ID="employeeNameTB" FieldLabel="<%$ Resources:Employee%>" runat="server" ReadOnly="true" />
                                </Items></ext:FieldSet>
                                 
                                 
