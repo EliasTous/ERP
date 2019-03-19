@@ -907,43 +907,50 @@ namespace AionHR.Web.UI.Forms
 
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-            BasicInfoTab.Reset();
-           
-            effectiveDate.Disabled = false;
-            caseCommentsAddButton.Disabled = false;
-            addDeduction.Disabled = false;
-            SetBasicInfoFormEnable(true);
-            ListRequest req = new ListRequest();
-            ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
-            if (!defaults.Success)
+            try
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
-                return;
+                BasicInfoTab.Reset();
+
+                effectiveDate.Disabled = false;
+                caseCommentsAddButton.Disabled = false;
+                addDeduction.Disabled = false;
+                SetBasicInfoFormEnable(true);
+                ListRequest req = new ListRequest();
+                ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
+                if (!defaults.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
+                    return;
+                }
+                if (defaults.Items.Where(s => s.Key == "ldMethod").Count() != 0)
+                    ldMethod.Select(defaults.Items.Where(s => s.Key == "ldMethod").First().Value);
+                if (defaults.Items.Where(s => s.Key == "ldValue").Count() != 0)
+                    ldValue.Text = defaults.Items.Where(s => s.Key == "ldValue").First().Value.ToString();
+                caseCommentStore.DataSource = new List<CaseComment>();
+                caseCommentStore.DataBind();
+                //Reset all values of the relative object
+
+                this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
+                date.SelectedDate = DateTime.Now;
+                //effectiveDate.SelectedDate= DateTime.Now;
+                date.MaxDate = new DateTime();
+                DeductionGridPanel.Disabled = true;
+                panelRecordDetails.ActiveIndex = 0;
+                effectiveDate.SelectedDate = DateTime.Now;
+                //SetTabPanelEnable(false);
+                FillLoanType();
+                FillBranchField();
+                FillCurrency();
+
+                currencyId.Select(defaults.Items.Where(s => s.Key == "currencyId").First().Value.ToString());
+                //  effectiveDate.Disabled = true;
+                this.EditRecordWindow.Show();
             }
-            if(defaults.Items.Where(s => s.Key == "ldMethod").Count()!=0)
-             ldMethod.Select(defaults.Items.Where(s => s.Key == "ldMethod").First().Value);
-            if (defaults.Items.Where(s => s.Key == "ldValue").Count() != 0)
-                ldValue.Text = defaults.Items.Where(s => s.Key == "ldValue").First().Value.ToString();
-            caseCommentStore.DataSource = new List<CaseComment>();
-            caseCommentStore.DataBind();
-            //Reset all values of the relative object
-
-            this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-            date.SelectedDate = DateTime.Now;
-            //effectiveDate.SelectedDate= DateTime.Now;
-            date.MaxDate = new DateTime();
-            DeductionGridPanel.Disabled = true;
-            panelRecordDetails.ActiveIndex = 0;
-            effectiveDate.SelectedDate = DateTime.Now;
-            //SetTabPanelEnable(false);
-            FillLoanType();
-            FillBranchField();
-            FillCurrency();
-
-            currencyId.Select(defaults.Items.Where(s => s.Key == "currencyId").First().Value.ToString());
-          //  effectiveDate.Disabled = true;
-            this.EditRecordWindow.Show();
+            catch(Exception exp)
+            {
+                X.Msg.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message).Show();
+            }
         }
         protected void ADDNewDeductionRecord(object sender, DirectEventArgs e)
         {
