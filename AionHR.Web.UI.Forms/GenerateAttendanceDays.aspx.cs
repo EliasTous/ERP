@@ -292,10 +292,17 @@ namespace AionHR.Web.UI.Forms
                 PostResponse<GenerateAttendanceDay> resp = _time.ChildAddOrUpdate<GenerateAttendanceDay>(request);
                 if (!resp.Success)
                 { //Show an error saving...
-
-                    HttpRuntime.Cache.Insert("ErrorMsgGenAD", resp.Message);
-                    HttpRuntime.Cache.Insert("ErrorLogIdGenAD", resp.LogId);
-                    HttpRuntime.Cache.Insert("ErrorErrorCodeGenAD", resp.ErrorCode);
+                    if (resp.ErrorCode == "Error_1")
+                    {
+                        HttpRuntime.Cache.Insert("ErrorMsgGenAD", Resources.Errors.Error_1);
+                        HttpRuntime.Cache.Insert("ErrorLogIdGenAD", " ");
+                    }
+                    else
+                    {
+                        HttpRuntime.Cache.Insert("ErrorMsgGenAD", resp.Error);
+                        HttpRuntime.Cache.Insert("ErrorLogIdGenAD", resp.LogId);
+                    }
+              //      HttpRuntime.Cache.Insert("ErrorErrorCodeGenAD", resp.ErrorCode);
 
                 }
                 else
@@ -342,14 +349,16 @@ namespace AionHR.Web.UI.Forms
 
 
                 double progress = 0;
-                if (
-                HttpRuntime.Cache.Get("ErrorMsgGenAD")!=null|| 
-                HttpRuntime.Cache.Get("ErrorLogIdGenAD" ) != null ||
-                HttpRuntime.Cache.Get("ErrorErrorCodeGenAD") != null )
+                if (HttpRuntime.Cache.Get("ErrorMsgGenAD")!=null||  HttpRuntime.Cache.Get("ErrorLogIdGenAD" ) != null)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "Error_" + HttpRuntime.Cache.Get("ErrorErrorCodeGenAD").ToString()) != null ? GetGlobalResourceObject("Errors", "Error_" + HttpRuntime.Cache.Get("ErrorErrorCodeGenAD").ToString()).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + HttpRuntime.Cache.Get("ErrorLogIdGenAD").ToString() : HttpRuntime.Cache.Get("ErrorErrorCodeGenAD")).Show();
-                    HttpRuntime.Cache.Remove("genFS_RecordId");
+                    X.Msg.Alert(Resources.Common.Error,HttpRuntime.Cache.Get("ErrorMsgGenAD").ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + HttpRuntime.Cache.Get("ErrorLogIdGenAD").ToString()).Show();
+                   
+
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                    HttpRuntime.Cache.Remove("genFS_RecordId");
+                    HttpRuntime.Cache.Remove("ErrorMsgGenAD");
+                    HttpRuntime.Cache.Remove("ErrorLogIdGenAD");
+
                 }
                 RecordRequest req = new RecordRequest();
                 if (HttpRuntime.Cache["genFS_RecordId"] != null)
@@ -363,26 +372,31 @@ namespace AionHR.Web.UI.Forms
                     //var infolist = resp.result.infoList.Split(',');
                     //string ErrorMessage;
                     //if (GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId) != null)
-                    
-                        //    values = GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId).ToString().Split(new string[] { "%s" }, StringSplitOptions.None);
-                        //    for (int i = 0; i < infolist.Length; i++)
-                        //    {
 
-                        //        values[0] += infolist[i] + "  ";
-                        //    }
-                        //    if (values.Length == 2)
-                        //        ErrorMessage = values[0] + " " + values[1];
-                        //    else
-                        //        ErrorMessage = values[0];
-                        //}
-                        //else
-                        //    ErrorMessage = GetGlobalResourceObject("Errors", "Error_2").ToString() + resp.ErrorCode;
+                    //    values = GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId).ToString().Split(new string[] { "%s" }, StringSplitOptions.None);
+                    //    for (int i = 0; i < infolist.Length; i++)
+                    //    {
+
+                    //        values[0] += infolist[i] + "  ";
+                    //    }
+                    //    if (values.Length == 2)
+                    //        ErrorMessage = values[0] + " " + values[1];
+                    //    else
+                    //        ErrorMessage = values[0];
+                    //}
+                    //else
+                    //    ErrorMessage = GetGlobalResourceObject("Errors", "Error_2").ToString() + resp.ErrorCode;
 
 
-                        //X.Msg.Alert(Resources.Common.Error, ErrorMessage).Show();
-                        X.Msg.Alert(Resources.Common.Error, resp.result.errorName + "  " + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId).Show();
-                        HttpRuntime.Cache.Remove("genFS_RecordId");
+                    //X.Msg.Alert(Resources.Common.Error, ErrorMessage).Show();
+                    Common.errorMessage(resp);
+                      
+
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                    HttpRuntime.Cache.Remove("genFS_RecordId");
+                    HttpRuntime.Cache.Remove("ErrorMsgGenAD");
+                    HttpRuntime.Cache.Remove("ErrorLogIdGenAD");
+
                 }
                 else
                 {
