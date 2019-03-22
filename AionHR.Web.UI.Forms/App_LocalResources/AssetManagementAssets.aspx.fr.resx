@@ -168,12 +168,6 @@
   <data name="FieldWarrantyEndDate" xml:space="preserve">
     <value>Fin de garantie</value>
   </data>
-  <data name="MainInfo" xml:space="preserve">
-    <value>Informations principales</value>
-  </data>
-  <data name="PurchaseInfo" xml:space="preserve">
-    <value>Informations d'achat</value>
-  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Actif</value>
   </data>

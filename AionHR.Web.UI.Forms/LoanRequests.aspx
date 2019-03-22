@@ -779,7 +779,7 @@
                                     <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                         <Columns>
 
-                                            <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="seqNo" Hideable="false" Width="75" Align="Center">
+                                            <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server"  DataIndex="seqNo" Hideable="false" Width="75" Align="Center">
                                             </ext:Column>
                                             <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" DataIndex="comment" Flex="7" Hideable="false">
                                                 <Renderer Handler=" var s = moment(record.data['date']);  return '<b>'+ record.data['userName'] +'</b>  - '+ s.calendar()+'<br />'+ record.data['comment'];">
@@ -1193,7 +1193,7 @@
                             DefaultAnchor="100%" OnLoad="DeductionInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="DeductionRecordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" DataIndex="recordId" />
+                                <ext:TextField ID="DeductionRecordId" Hidden="true" runat="server"  Disabled="true" DataIndex="recordId" />
                                 <ext:Checkbox ReadOnly="true" ID="payrollDeduction" runat="server" LabelWidth="130" FieldLabel="<%$ Resources: payrollDeduction%>" DataIndex="payrollDeduction" Name="payrollDeduction" InputValue="true"  />
                          <ext:NumberField ID="deductionAmount" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" DataIndex="amount" AllowBlank="false" Name="amount" MinValue="1" >
                              <Validator Handler=" if (this.value <= #{LoanAmount}.getValue()) return true; else return false;"></Validator>

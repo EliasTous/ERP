@@ -144,9 +144,6 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Règlement final</value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle1" xml:space="preserve">
-    <value>Info sur la monnaie</value>
-  </data>
   <data name="benefitId" xml:space="preserve">
     <value>avantage</value>
   </data>
@@ -183,14 +180,8 @@
   <data name="deductionGrid" xml:space="preserve">
     <value>Deductions</value>
   </data>
-  <data name="DeductionName" xml:space="preserve">
-    <value>Deduction</value>
-  </data>
   <data name="Deductions" xml:space="preserve">
     <value>Deductions</value>
-  </data>
-  <data name="DeductionsEntitlements" xml:space="preserve">
-    <value>Déductions et droits</value>
   </data>
   <data name="departmentName" xml:space="preserve">
     <value>Department :</value>
@@ -212,9 +203,6 @@
   </data>
   <data name="eosBalanceTitle" xml:space="preserve">
     <value>Balance:</value>
-  </data>
-  <data name="ErrorWithPCTOf" xml:space="preserve">
-    <value>La valeur PCTOF n'est pas valide, le PCTOF sera défini sur Pourcentage du salaire de base</value>
   </data>
   <data name="esName" xml:space="preserve">
     <value>Employe Statut:</value>
@@ -282,12 +270,6 @@
   <data name="FieldName" xml:space="preserve">
     <value>Employe</value>
   </data>
-  <data name="FieldName1" xml:space="preserve">
-    <value>NOM</value>
-  </data>
-  <data name="FieldOvertimeEntitlement" xml:space="preserve">
-    <value>Droit aux heures supplémentaires</value>
-  </data>
   <data name="FieldPaymentFrequency" xml:space="preserve">
     <value>Fréquence de paiement</value>
   </data>
@@ -302,9 +284,6 @@
   </data>
   <data name="FieldPosition" xml:space="preserve">
     <value>Position:</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>ID d'enregistrement</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
@@ -336,9 +315,6 @@
   <data name="lastLeaveStartDateTitle" xml:space="preserve">
     <value>Dernier congé:</value>
   </data>
-  <data name="lastLeaveStartDateTitle1" xml:space="preserve">
-    <value>Dernier congé:</value>
-  </data>
   <data name="Lateness" xml:space="preserve">
     <value>Retard</value>
   </data>
@@ -354,9 +330,6 @@
   <data name="MinimumOvertime" xml:space="preserve">
     <value>Minimum Overtime</value>
   </data>
-  <data name="MinimumOvertime1" xml:space="preserve">
-    <value>Heures supplémentaires minimales</value>
-  </data>
   <data name="nationality" xml:space="preserve">
     <value>Nationalite</value>
   </data>
@@ -368,9 +341,6 @@
   </data>
   <data name="paidLeavesYTDTitle" xml:space="preserve">
     <value>Congés payés:</value>
-  </data>
-  <data name="paidLeavesYTDTitle1" xml:space="preserve">
-    <value>Paid Leaves:</value>
   </data>
   <data name="PaymentMethodBank" xml:space="preserve">
     <value>Banque</value>

@@ -129,23 +129,14 @@
   <data name="FieldIsInactive" xml:space="preserve">
     <value>غير نشط؟</value>
   </data>
-  <data name="FieldIsSegmentedHead" xml:space="preserve">
-    <value>قسم رئيسي؟</value>
-  </data>
   <data name="FieldName" xml:space="preserve">
     <value>الاسم</value>
   </data>
   <data name="FieldParentName" xml:space="preserve">
     <value>القسم الأساسي</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>الرقم</value>
-  </data>
   <data name="FieldReference" xml:space="preserve">
     <value>الرمز</value>
-  </data>
-  <data name="FieldSegmentCode" xml:space="preserve">
-    <value>رقم الحساب</value>
   </data>
   <data name="FieldSvFullName" xml:space="preserve">
     <value>مدير القسم</value>

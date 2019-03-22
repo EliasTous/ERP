@@ -129,9 +129,6 @@
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Categories</value>
   </data>

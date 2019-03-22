@@ -129,9 +129,6 @@
   <data name="Clear" xml:space="preserve">
     <value>مسح</value>
   </data>
-  <data name="ConfirmDeleteAllDays" xml:space="preserve">
-    <value>هل انت متأكد ؟</value>
-  </data>
   <data name="ConfirmDeleteDay" xml:space="preserve">
     <value>هل انت متأكد ؟</value>
   </data>
@@ -147,9 +144,6 @@
   <data name="ErrorBranchWorkingHours" xml:space="preserve">
     <value>خطأ في استرجاع دوام الفرع</value>
   </data>
-  <data name="ErrorGettingEmployees" xml:space="preserve">
-    <value>خطأ في استرجاع الموظفين</value>
-  </data>
   <data name="ErrorGettingSchedule" xml:space="preserve">
     <value>خطأ في التحميل</value>
   </data>
@@ -158,9 +152,6 @@
   </data>
   <data name="ExportSchedule" xml:space="preserve">
     <value>تصدير الى </value>
-  </data>
-  <data name="ExportSuccess" xml:space="preserve">
-    <value>تم تصدير الدوام بنجاح</value>
   </data>
   <data name="FieldDepartment" xml:space="preserve">
     <value>القسم </value>
@@ -180,17 +171,11 @@
   <data name="ImportFrom" xml:space="preserve">
     <value>استيراد من</value>
   </data>
-  <data name="ImportSuccess" xml:space="preserve">
-    <value>تم استيراد الدوام بنجاح</value>
-  </data>
   <data name="Load" xml:space="preserve">
     <value>تحميل</value>
   </data>
   <data name="Mon" xml:space="preserve">
     <value>الاثنين     </value>
-  </data>
-  <data name="multiImport" xml:space="preserve">
-    <value>multiImport</value>
   </data>
   <data name="Sat" xml:space="preserve">
     <value>السبت    </value>
@@ -201,26 +186,11 @@
   <data name="SelectBranch" xml:space="preserve">
     <value>اختر الفرع</value>
   </data>
-  <data name="SelectDay" xml:space="preserve">
-    <value>اختر اليوم</value>
-  </data>
-  <data name="SelectdayOrFromToDate" xml:space="preserve">
-    <value>اختر اليوم او فترة </value>
-  </data>
   <data name="Selected" xml:space="preserve">
     <value>سيتم التصدير الى </value>
   </data>
   <data name="SelectEmp" xml:space="preserve">
     <value>اختر موظف</value>
-  </data>
-  <data name="SelectEmployee" xml:space="preserve">
-    <value>اختر موظف</value>
-  </data>
-  <data name="SelectExport" xml:space="preserve">
-    <value>الرجاء اختيار الموظفين من اجل عملية التصدير</value>
-  </data>
-  <data name="SelectImport" xml:space="preserve">
-    <value>حدد الموظف لاستيراده</value>
   </data>
   <data name="Sun" xml:space="preserve">
     <value>الاحد      </value>
@@ -231,20 +201,11 @@
   <data name="To" xml:space="preserve">
     <value>الى</value>
   </data>
-  <data name="ToDateHigherFromDate" xml:space="preserve">
-    <value>اختر تواريخ صحيحة</value>
-  </data>
   <data name="total" xml:space="preserve">
     <value>المجموع</value>
   </data>
   <data name="Tue" xml:space="preserve">
     <value>الثلاثاء     </value>
-  </data>
-  <data name="ValideFromToTime" xml:space="preserve">
-    <value>اختر اوقات صحيحة</value>
-  </data>
-  <data name="ValidFromToDate" xml:space="preserve">
-    <value>اختر تواريخ صحيحة</value>
   </data>
   <data name="Wed" xml:space="preserve">
     <value>الاربعاء    </value>

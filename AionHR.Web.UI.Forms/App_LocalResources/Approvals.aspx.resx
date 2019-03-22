@@ -144,9 +144,6 @@
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
   </data>
@@ -185,9 +182,6 @@
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Leave Types</value>
-  </data>
-  <data name="ApprovelDepartments" xml:space="preserve">
-    <value>Departments</value>
   </data>
   <data name="ApprovelDepartmentsWindowTitle" xml:space="preserve">
     <value>Departments</value>

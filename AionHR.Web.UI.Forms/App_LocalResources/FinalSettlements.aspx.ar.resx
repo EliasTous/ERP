@@ -123,20 +123,11 @@
   <data name="BOGridTitle" xml:space="preserve">
     <value>الحوافز</value>
   </data>
-  <data name="DateFrom" xml:space="preserve">
-    <value>من </value>
-  </data>
-  <data name="DateTo" xml:space="preserve">
-    <value>إلى</value>
-  </data>
   <data name="Day" xml:space="preserve">
     <value>اليوم</value>
   </data>
   <data name="Deductions" xml:space="preserve">
     <value>الخصومات</value>
-  </data>
-  <data name="DeductionsEntitlements" xml:space="preserve">
-    <value>الخصومات والاستحقاقات</value>
   </data>
   <data name="EditBOWindowTitle" xml:space="preserve">
     <value>الحوافز</value>
@@ -146,9 +137,6 @@
   </data>
   <data name="Entitlements" xml:space="preserve">
     <value>الاستحقاقات</value>
-  </data>
-  <data name="ErrorWithPCTOf" xml:space="preserve">
-    <value>خطأ في مصدر حساب النسبة،سيتم الاعتماد على الراتب الأساسي في حساب نسبة الحسم</value>
   </data>
   <data name="FieldAccountNumber" xml:space="preserve">
     <value>رقم الحساب</value>
@@ -215,9 +203,6 @@
   </data>
   <data name="FieldPctOf" xml:space="preserve">
     <value>نسبة من</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>الرقم</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>الرمز</value>

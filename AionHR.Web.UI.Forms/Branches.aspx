@@ -186,7 +186,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
 
-                              <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
+                              <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
                             <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="branchRef" width="150" Hideable="false" Visible="false"/>
                             <ext:Column   CellCls="cellLink" ID="ColManger" MenuDisabled="true" runat="server" Text="<%$ Resources: manager%>" DataIndex="managerName" Flex="2" >
                                 <Renderer Handler=" return record.data['managerName'].fullName ;"></Renderer>
@@ -338,7 +338,7 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
                                      <ext:TextField ID="branchRef" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="branchRef"  />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                            
@@ -753,8 +753,8 @@
                             BodyPadding="5">
                             <Items>
 
-                                  <ext:TextField ID="goIdd" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="goId" />
-                              <ext:TextField ID="branchIdd" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="goId" />
+                                  <ext:TextField ID="goIdd" Hidden="true" runat="server"  Disabled="true" Name="goId" />
+                              <ext:TextField ID="branchIdd" Hidden="true" runat="server"  Disabled="true" Name="goId" />
                                 <ext:TextField  ID="goNameTF" runat="server" ReadOnly="true" FieldLabel="<%$ Resources:goName %>"  Name="goName" />
                                  <ext:TextField   ID="referenceTF"  runat="server" FieldLabel="<%$ Resources:FieldReference %>" Name="reference" />
                                 <ext:DateField   ID="releaseDateDF" AllowBlank="false"   runat="server" FieldLabel="<%$ Resources:releaseDate %>" Name="releaseDate" />

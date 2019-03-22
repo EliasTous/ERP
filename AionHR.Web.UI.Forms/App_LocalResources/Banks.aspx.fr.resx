@@ -126,9 +126,6 @@
   <data name="FieldName" xml:space="preserve">
     <value>Nom</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>ID d'enregistrement</value>
-  </data>
   <data name="FieldSwiftCode" xml:space="preserve">
     <value>Code rapide</value>
   </data>

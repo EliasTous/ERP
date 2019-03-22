@@ -71,7 +71,7 @@
 
                     <Items>
                         
-                                <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Name="recordId" />
+                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Name="recordId" />
                                 <ext:TextField ID="reference" MsgTarget="None"  runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" ReadOnly="true" LabelWidth="120" >
                                    <%-- <Listeners>
                                        <FocusLeave Handler="if(#{CurrentEmployee}.value!='') return; App.direct.employeeControl1.CheckReference(this.value,{

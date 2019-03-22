@@ -855,7 +855,7 @@
                     </TopBar>
                     <ColumnModel>
                         <Columns>
-                          <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
+                          <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
 
                             <ext:ComponentColumn runat="server" DataIndex="pictureUrl" Sortable="false">
                                 <Component>

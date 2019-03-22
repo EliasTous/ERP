@@ -120,9 +120,6 @@
   <data name="Account" xml:space="preserve">
     <value>Nom du compte</value>
   </data>
-  <data name="AccountValid" xml:space="preserve">
-    <value>Le compte est valide</value>
-  </data>
   <data name="EnterYourAccount" xml:space="preserve">
     <value>Entrez votre compte</value>
   </data>
@@ -132,12 +129,6 @@
   <data name="EnterYourPassword" xml:space="preserve">
     <value>Tapez votre mot de passe</value>
   </data>
-  <data name="InvalidAccount" xml:space="preserve">
-    <value>Nom de compte invalide</value>
-  </data>
-  <data name="InvalidCredentials" xml:space="preserve">
-    <value>Nom d'utilisateur ou mot de passe invalide</value>
-  </data>
   <data name="Login" xml:space="preserve">
     <value>Identifier</value>
   </data>
@@ -146,9 +137,6 @@
   </data>
   <data name="RememberMe" xml:space="preserve">
     <value>Souviens de moi</value>
-  </data>
-  <data name="RequestError" xml:space="preserve">
-    <value>Erreur dans la demande, réessayer plus tard.</value>
   </data>
   <data name="UserID" xml:space="preserve">
     <value>Nom d'utilisateur | Email</value>

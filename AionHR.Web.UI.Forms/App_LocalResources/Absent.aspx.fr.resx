@@ -153,9 +153,6 @@
   <data name="FieldRejected" xml:space="preserve">
     <value>Rejeté</value>
   </data>
-  <data name="FiledPosition" xml:space="preserve">
-    <value>Position</value>
-  </data>
   <data name="Go" xml:space="preserve">
     <value>chercher</value>
   </data>
@@ -164,9 +161,6 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Statut</value>
-  </data>
-  <data name="status0" xml:space="preserve">
-    <value>Jour de repos</value>
   </data>
   <data name="status1" xml:space="preserve">
     <value>Jour ouvrable</value>
@@ -204,20 +198,11 @@
   <data name="atext" xml:space="preserve">
     <value>Absence</value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle1" xml:space="preserve">
-    <value>details dea horaire</value>
-  </data>
   <data name="ButtonClear" xml:space="preserve">
     <value>Clair</value>
   </data>
-  <data name="ButtonRefresh" xml:space="preserve">
-    <value>rafraîchir</value>
-  </data>
   <data name="CA" xml:space="preserve">
     <value>Calendrier</value>
-  </data>
-  <data name="ContractEndingDate" xml:space="preserve">
-    <value>fin du contrat</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
@@ -228,17 +213,11 @@
   <data name="DeleteAll" xml:space="preserve">
     <value>Supprimer les présences de branche</value>
   </data>
-  <data name="DeleteBranchAttendances" xml:space="preserve">
-    <value>Are you sure do you want to delete the selected branch attendances on the selected Date Range  ?</value>
-  </data>
   <data name="dtext" xml:space="preserve">
     <value>Disparaître</value>
   </data>
   <data name="EditWindowsTimeApproval" xml:space="preserve">
     <value>Approbation du temps</value>
-  </data>
-  <data name="EditWindowsTitle1" xml:space="preserve">
-    <value>Modifier la branche</value>
   </data>
   <data name="FieldAll" xml:space="preserve">
     <value>Tout</value>
@@ -251,9 +230,6 @@
   </data>
   <data name="FieldBirthPlace" xml:space="preserve">
     <value>Lieu de naissance</value>
-  </data>
-  <data name="FieldBranch1" xml:space="preserve">
-    <value>choisir un branch</value>
   </data>
   <data name="FieldBreaks" xml:space="preserve">
     <value>Pauses</value>
@@ -269,12 +245,6 @@
   </data>
   <data name="FieldDateOfBirth" xml:space="preserve">
     <value>Date de naissance</value>
-  </data>
-  <data name="FieldDay1" xml:space="preserve">
-    <value>journee</value>
-  </data>
-  <data name="FieldDepartment1" xml:space="preserve">
-    <value>choisir une departement</value>
   </data>
   <data name="FieldDivision" xml:space="preserve">
     <value>choisir une division</value>
@@ -292,9 +262,6 @@
     <value>prenom</value>
   </data>
   <data name="FieldFirstName" xml:space="preserve">
-    <value>nom</value>
-  </data>
-  <data name="FieldFullName1" xml:space="preserve">
     <value>nom</value>
   </data>
   <data name="FieldGender" xml:space="preserve">
@@ -315,12 +282,6 @@
   <data name="FieldLastName" xml:space="preserve">
     <value>Nom de famille</value>
   </data>
-  <data name="FieldLastTACheck" xml:space="preserve">
-    <value>dernier enregistrement</value>
-  </data>
-  <data name="FieldLastTACheckStatus" xml:space="preserve">
-    <value>Dernier statut d'enregistrement</value>
-  </data>
   <data name="FieldMiddleName" xml:space="preserve">
     <value>Deuxième nom</value>
   </data>
@@ -336,26 +297,14 @@
   <data name="FieldPending" xml:space="preserve">
     <value>en suspens</value>
   </data>
-  <data name="FieldPending1" xml:space="preserve">
-    <value>en suspens</value>
-  </data>
   <data name="FieldPicturePath" xml:space="preserve">
     <value>Chemin de l'image</value>
-  </data>
-  <data name="FieldPosition1" xml:space="preserve">
-    <value>Position</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>ID d'enregistrement</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
   </data>
   <data name="FieldReligion" xml:space="preserve">
     <value>Religion</value>
-  </data>
-  <data name="FieldSponsor" xml:space="preserve">
-    <value>sponser</value>
   </data>
   <data name="FieldStartDate" xml:space="preserve">
     <value>date de début</value>

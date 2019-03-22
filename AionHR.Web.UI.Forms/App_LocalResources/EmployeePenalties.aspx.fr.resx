@@ -126,12 +126,6 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Infos sur les pénalités des employés</value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle1" xml:space="preserve">
-    <value>Infos sur le prêt</value>
-  </data>
-  <data name="ButtonClear" xml:space="preserve">
-    <value>nettoyer</value>
-  </data>
   <data name="CaseCommentsTabTitle" xml:space="preserve">
     <value>commentaires</value>
   </data>
@@ -141,9 +135,6 @@
   <data name="deductionTab" xml:space="preserve">
     <value>Deduction</value>
   </data>
-  <data name="DeductionTabEditWindowTitle" xml:space="preserve">
-    <value>Info déduction</value>
-  </data>
   <data name="discountType" xml:space="preserve">
     <value>Remise</value>
   </data>
@@ -152,9 +143,6 @@
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Modifier la pénalité des employés</value>
-  </data>
-  <data name="EditWindowsTitle1" xml:space="preserve">
-    <value>Modifier le prêt</value>
   </data>
   <data name="EmptyComment" xml:space="preserve">
     <value>S'il vous plaît entrer un commentaire avant d'appuyer sur le bouton Ajouter</value>
@@ -167,12 +155,6 @@
   </data>
   <data name="FieldBranch" xml:space="preserve">
     <value>Branche</value>
-  </data>
-  <data name="FieldCurrencyId" xml:space="preserve">
-    <value>ID de devise</value>
-  </data>
-  <data name="FieldCurrencyRef" xml:space="preserve">
-    <value>Ref monnaie</value>
   </data>
   <data name="FieldDate" xml:space="preserve">
     <value>Date</value>
@@ -192,9 +174,6 @@
   <data name="FieldEffectiveDate" xml:space="preserve">
     <value>Date effective</value>
   </data>
-  <data name="FieldEmployeeId" xml:space="preserve">
-    <value>ID d'employé</value>
-  </data>
   <data name="FieldEmployeeName" xml:space="preserve">
     <value>Nom de l'employé</value>
   </data>
@@ -203,9 +182,6 @@
   </data>
   <data name="FieldIsInactive" xml:space="preserve">
     <value>Est inactif?</value>
-  </data>
-  <data name="FieldIsSegmentedHead" xml:space="preserve">
-    <value>Est tête segmentée</value>
   </data>
   <data name="FieldLtName" xml:space="preserve">
     <value>Type de prêt</value>
@@ -228,17 +204,8 @@
   <data name="FieldPurpose" xml:space="preserve">
     <value>Objectif</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
-  <data name="FieldRecordId1" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
-  </data>
-  <data name="FieldReference1" xml:space="preserve">
-    <value>Ref</value>
   </data>
   <data name="FieldReferer" xml:space="preserve">
     <value>Nom Parrain</value>
@@ -260,15 +227,6 @@
   </data>
   <data name="FieldType" xml:space="preserve">
     <value>Type</value>
-  </data>
-  <data name="FilterBranch" xml:space="preserve">
-    <value>Sélectionnez une branche</value>
-  </data>
-  <data name="FilterDepartment" xml:space="preserve">
-    <value>Sélectionnez un département</value>
-  </data>
-  <data name="FilterDivision" xml:space="preserve">
-    <value>Sélectionnez une division</value>
   </data>
   <data name="FilterStatus" xml:space="preserve">
     <value>Sélectionnez un statut</value>

@@ -120,9 +120,6 @@
   <data name="Account" xml:space="preserve">
     <value>أسم الحساب</value>
   </data>
-  <data name="AccountValid" xml:space="preserve">
-    <value>رقم الحساب صحيح</value>
-  </data>
   <data name="EnterYourAccount" xml:space="preserve">
     <value>أدخل حسابك</value>
   </data>
@@ -132,12 +129,6 @@
   <data name="EnterYourPassword" xml:space="preserve">
     <value>ادخل رقمك السري</value>
   </data>
-  <data name="InvalidAccount" xml:space="preserve">
-    <value>اسم الحساب غير صالح.</value>
-  </data>
-  <data name="InvalidCredentials" xml:space="preserve">
-    <value>خطأ في اسم المستخدم أو كلمة مرور</value>
-  </data>
   <data name="Login" xml:space="preserve">
     <value>تسجيل الدخول</value>
   </data>
@@ -146,9 +137,6 @@
   </data>
   <data name="RememberMe" xml:space="preserve">
     <value>تذكر معلومات الدخول</value>
-  </data>
-  <data name="RequestError" xml:space="preserve">
-    <value>خطأ في الطلب، حاول مرة أخرى ...</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
     <value>استعادة كلمة المرور</value>

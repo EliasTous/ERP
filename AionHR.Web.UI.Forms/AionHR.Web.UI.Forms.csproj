@@ -186,13 +186,13 @@
     <Content Include="AssetManagementPurchaseOrders.aspx" />
     <Content Include="AssetManagementSuppliers.aspx" />
     <Content Include="BlankPage.aspx" />
+    <Content Include="BonusTypes.aspx" />
     <Content Include="BusinessPartnerCategories.aspx" />
     <Content Include="BusinessPartneres.aspx" />
-    <Content Include="CompanyNews.aspx" />
+    <Content Include="CertificateLevels.aspx" />
+    <Content Include="CheckTypes.aspx" />
     <Content Include="DELogin.aspx" />
     <Content Include="DocumentCategories.aspx" />
-    <Content Include="EmployeeComplaints.aspx" />
-    <Content Include="EmployeeComplaintSelfServices.aspx" />
     <Content Include="FRLogin.aspx" />
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
@@ -216,14 +216,12 @@
     <Content Include="Scripts\SystemDefaults.js" />
     <Content Include="SelfServiceResetPasswords.aspx" />
     <Content Include="SSTransfers.aspx" />
-    <Content Include="Tasks.aspx" />
     <Content Include="TimeApprovalsSelfServices.aspx" />
     <Content Include="TimeAttendanceApprovals.aspx" />
     <Content Include="TimeAttendanceViewSelfServices.aspx" />
     <Content Include="TimeVariationSelfServices.aspx" />
     <Content Include="Absent.aspx" />
     <Content Include="AdminTemplates.aspx" />
-    <Content Include="AllowanceTypes.aspx" />
     <Content Include="Approvals.aspx" />
     <Content Include="App_LocalResources\ARForgotPassword.aspx.resx" />
     <Content Include="App_Readme\Ext.NET.Utilities\BREAKING_CHANGES.txt" />
@@ -231,18 +229,12 @@
     <Content Include="App_Readme\Ext.NET.Utilities\README.txt" />
     <Content Include="ARForgotPassword.aspx" />
     <Content Include="ARresetPW.aspx" />
-    <Content Include="AssetAllowances.aspx" />
-    <Content Include="AssetAllowanceSelfServices.aspx" />
-    <Content Include="AssetCategories.aspx" />
     <Content Include="Banks.aspx" />
     <Content Include="BenefitAcquisitions.aspx" />
     <Content Include="Benefits.aspx" />
     <Content Include="BenefitsSchedules.aspx" />
     <Content Include="BiometricDevices.aspx" />
-    <Content Include="BonusTypes.aspx" />
     <Content Include="Branches.aspx" />
-    <Content Include="CertificateLevels.aspx" />
-    <Content Include="CheckTypes.aspx" />
     <Content Include="CompanyDocumentTypes.aspx" />
     <Content Include="CompanyFiles.aspx" />
     <Content Include="CompanyRightToWorks.aspx" />
@@ -275,7 +267,6 @@
     <Content Include="DaysAvailability.aspx" />
     <Content Include="DayTypes.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="DeleteBranchAttendance.aspx" />
     <Content Include="Departments.aspx" />
     <Content Include="Divisions.aspx" />
     <Content Include="DocumentTypes.aspx" />
@@ -299,10 +290,8 @@
     <Content Include="FinalSettlements.aspx" />
     <Content Include="FiscalYears.aspx" />
     <Content Include="Folders.aspx" />
-    <Content Include="ForgotAccount.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="GenerateAttendanceDays.aspx" />
-    <Content Include="GenerateAttendanceShifts.aspx" />
     <Content Include="Geofences.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Controls\HijriGregDatePicker.ascx" />
@@ -357,7 +346,6 @@
     <Content Include="Letters.aspx" />
     <Content Include="LettersSelfServices.aspx" />
     <Content Include="LetterTemplates.aspx" />
-    <Content Include="LoanOverrides.aspx" />
     <Content Include="LoanRequests.aspx" />
     <Content Include="LoanSelfServices.aspx" />
     <Content Include="LoanTypes.aspx" />
@@ -368,13 +356,10 @@
     <Content Include="NationalQuotas.aspx" />
     <Content Include="NoticePeriods.aspx" />
     <Content Include="OrganizationChart.aspx" />
-    <Content Include="OvertimeSettings.aspx" />
     <Content Include="packages.config" />
     <Content Include="PayCodes.aspx" />
-    <Content Include="PayrollDefaults.aspx" />
     <Content Include="PayrollGeneration.aspx" />
     <Content Include="PayrollIndemnities.aspx" />
-    <Content Include="PayrollTimeSchedule.aspx" />
     <Content Include="PenaltyTypes.aspx" />
     <Content Include="RelationshipTypes.aspx" />
     <Content Include="Reports\App_LocalResources\Hirings.cs.resx" />
@@ -746,6 +731,13 @@
     <Compile Include="BlankPage.aspx.designer.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BonusTypes.aspx.cs">
+      <DependentUpon>BonusTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BonusTypes.aspx.designer.cs">
+      <DependentUpon>BonusTypes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BusinessPartnerCategories.aspx.cs">
       <DependentUpon>BusinessPartnerCategories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -760,12 +752,19 @@
     <Compile Include="BusinessPartneres.aspx.designer.cs">
       <DependentUpon>BusinessPartneres.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CompanyNews.aspx.cs">
-      <DependentUpon>CompanyNews.aspx</DependentUpon>
+    <Compile Include="CertificateLevels.aspx.cs">
+      <DependentUpon>CertificateLevels.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CompanyNews.aspx.designer.cs">
-      <DependentUpon>CompanyNews.aspx</DependentUpon>
+    <Compile Include="CertificateLevels.aspx.designer.cs">
+      <DependentUpon>CertificateLevels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckTypes.aspx.cs">
+      <DependentUpon>CheckTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckTypes.aspx.designer.cs">
+      <DependentUpon>CheckTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="ConstClasse\Common.cs" />
     <Compile Include="ConstClasse\ConstClasses.cs" />
@@ -782,20 +781,6 @@
     </Compile>
     <Compile Include="DocumentCategories.aspx.designer.cs">
       <DependentUpon>DocumentCategories.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeeComplaints.aspx.cs">
-      <DependentUpon>EmployeeComplaints.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EmployeeComplaints.aspx.designer.cs">
-      <DependentUpon>EmployeeComplaints.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeeComplaintSelfServices.aspx.cs">
-      <DependentUpon>EmployeeComplaintSelfServices.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EmployeeComplaintSelfServices.aspx.designer.cs">
-      <DependentUpon>EmployeeComplaintSelfServices.aspx</DependentUpon>
     </Compile>
     <Compile Include="FRLogin.aspx.cs">
       <DependentUpon>FRLogin.aspx</DependentUpon>
@@ -944,13 +929,6 @@
     <Compile Include="SSTransfers.aspx.designer.cs">
       <DependentUpon>SSTransfers.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tasks.aspx.cs">
-      <DependentUpon>Tasks.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Tasks.aspx.designer.cs">
-      <DependentUpon>Tasks.aspx</DependentUpon>
-    </Compile>
     <Compile Include="TimeApprovalsSelfServices.aspx.cs">
       <DependentUpon>TimeApprovalsSelfServices.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1025,13 +1003,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reports.resx</DependentUpon>
     </Compile>
-    <Compile Include="AssetAllowanceSelfServices.aspx.cs">
-      <DependentUpon>AssetAllowanceSelfServices.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AssetAllowanceSelfServices.aspx.designer.cs">
-      <DependentUpon>AssetAllowanceSelfServices.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Banks.aspx.cs">
       <DependentUpon>Banks.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1076,13 +1047,6 @@
     <Compile Include="DaysAvailability.aspx.designer.cs">
       <DependentUpon>DaysAvailability.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DeleteBranchAttendance.aspx.cs">
-      <DependentUpon>DeleteBranchAttendance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DeleteBranchAttendance.aspx.designer.cs">
-      <DependentUpon>DeleteBranchAttendance.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EmployeeCals.aspx.cs">
       <DependentUpon>EmployeeCals.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1117,13 +1081,6 @@
     </Compile>
     <Compile Include="GenerateAttendanceDays.aspx.designer.cs">
       <DependentUpon>GenerateAttendanceDays.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GenerateAttendanceShifts.aspx.cs">
-      <DependentUpon>GenerateAttendanceShifts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GenerateAttendanceShifts.aspx.designer.cs">
-      <DependentUpon>GenerateAttendanceShifts.aspx</DependentUpon>
     </Compile>
     <Compile Include="GovernmentOrganisations.aspx.cs">
       <DependentUpon>GovernmentOrganisations.aspx</DependentUpon>
@@ -1265,13 +1222,6 @@
     <Compile Include="NoticePeriods.aspx.designer.cs">
       <DependentUpon>NoticePeriods.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OvertimeSettings.aspx.cs">
-      <DependentUpon>OvertimeSettings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OvertimeSettings.aspx.designer.cs">
-      <DependentUpon>OvertimeSettings.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PayCodes.aspx.cs">
       <DependentUpon>PayCodes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1285,13 +1235,6 @@
     </Compile>
     <Compile Include="PayrollIndemnities.aspx.designer.cs">
       <DependentUpon>PayrollIndemnities.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PayrollTimeSchedule.aspx.cs">
-      <DependentUpon>PayrollTimeSchedule.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PayrollTimeSchedule.aspx.designer.cs">
-      <DependentUpon>PayrollTimeSchedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="PenaltyTypes.aspx.cs">
       <DependentUpon>PenaltyTypes.aspx</DependentUpon>
@@ -1462,13 +1405,6 @@
       <DependentUpon>TimeCodes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AccessControlApplier.cs" />
-    <Compile Include="AllowanceTypes.aspx.cs">
-      <DependentUpon>AllowanceTypes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AllowanceTypes.aspx.designer.cs">
-      <DependentUpon>AllowanceTypes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_GlobalResources\AccessControl.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1518,33 +1454,12 @@
     <Compile Include="ARresetPW.aspx.designer.cs">
       <DependentUpon>ARresetPW.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AssetAllowances.aspx.cs">
-      <DependentUpon>AssetAllowances.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AssetAllowances.aspx.designer.cs">
-      <DependentUpon>AssetAllowances.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AssetCategories.aspx.cs">
-      <DependentUpon>AssetCategories.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AssetCategories.aspx.designer.cs">
-      <DependentUpon>AssetCategories.aspx</DependentUpon>
-    </Compile>
     <Compile Include="BiometricDevices.aspx.cs">
       <DependentUpon>BiometricDevices.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BiometricDevices.aspx.designer.cs">
       <DependentUpon>BiometricDevices.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BonusTypes.aspx.cs">
-      <DependentUpon>BonusTypes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BonusTypes.aspx.designer.cs">
-      <DependentUpon>BonusTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="BootStrapper.cs" />
     <Compile Include="Branches.aspx.cs">
@@ -1655,13 +1570,6 @@
     <Compile Include="ImportLoans.aspx.designer.cs">
       <DependentUpon>ImportLoans.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LoanOverrides.aspx.cs">
-      <DependentUpon>LoanOverrides.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LoanOverrides.aspx.designer.cs">
-      <DependentUpon>LoanOverrides.aspx</DependentUpon>
-    </Compile>
     <Compile Include="LoanRequests.aspx.cs">
       <DependentUpon>LoanRequests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1682,13 +1590,6 @@
     </Compile>
     <Compile Include="MainDashboard.aspx.designer.cs">
       <DependentUpon>MainDashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PayrollDefaults.aspx.cs">
-      <DependentUpon>PayrollDefaults.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PayrollDefaults.aspx.designer.cs">
-      <DependentUpon>PayrollDefaults.aspx</DependentUpon>
     </Compile>
     <Compile Include="PayrollGeneration.aspx.cs">
       <DependentUpon>PayrollGeneration.aspx</DependentUpon>
@@ -1971,20 +1872,6 @@
     <Compile Include="SystemAttachmentsUploader.ashx.cs">
       <DependentUpon>SystemAttachmentsUploader.ashx</DependentUpon>
     </Compile>
-    <Compile Include="CertificateLevels.aspx.cs">
-      <DependentUpon>CertificateLevels.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CertificateLevels.aspx.designer.cs">
-      <DependentUpon>CertificateLevels.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CheckTypes.aspx.cs">
-      <DependentUpon>CheckTypes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CheckTypes.aspx.designer.cs">
-      <DependentUpon>CheckTypes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Currencies.aspx.cs">
       <DependentUpon>Currencies.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2117,13 +2004,6 @@
     </Compile>
     <Compile Include="EntitlementDeductions.aspx.designer.cs">
       <DependentUpon>EntitlementDeductions.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ForgotAccount.aspx.cs">
-      <DependentUpon>ForgotAccount.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ForgotAccount.aspx.designer.cs">
-      <DependentUpon>ForgotAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
@@ -2426,12 +2306,6 @@
     <Content Include="App_LocalResources\Divisions.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\AllowanceTypes.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\CertificateLevels.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_LocalResources\TrainingTypes.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
@@ -2442,12 +2316,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\DocumentTypes.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\AssetCategories.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\BonusTypes.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\SalaryChangeReasons.aspx.resx" />
@@ -2470,9 +2338,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\LeaveCalendar.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\Cases.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="EmployeePages\App_LocalResources\Notes.aspx.resx">
@@ -2506,21 +2371,10 @@
     <Content Include="EmployeePages\App_LocalResources\Legals.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\CheckTypes.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\AssetAllowances.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_LocalResources\EmployeesOrgChart.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="EmployeePages\App_LocalResources\Contacts.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\EmployeeComplaints.aspx.resx">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\resetPw.aspx.resx" />
@@ -2541,9 +2395,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\Folders.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\CompanyNews.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\LoanTypes.aspx.resx" />
@@ -2570,19 +2421,14 @@
     </Content>
     <Content Include="App_LocalResources\CompanyDocumentTypes.aspx.resx" />
     <Content Include="App_LocalResources\CompanyRightToWorks.aspx.resx" />
-    <Content Include="App_LocalResources\Tasks.aspx.resx" />
     <Content Include="App_LocalResources\TaskTypes.aspx.resx" />
     <Content Include="App_LocalResources\CompanyRightToWorks.aspx.ar.resx" />
     <Content Include="App_LocalResources\SystemDefaults.aspx.ar.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_LocalResources\PayrollDefaults.aspx.resx" />
-    <Content Include="App_LocalResources\PayrollDefaults.aspx.ar.resx" />
     <Content Include="App_LocalResources\FiscalYears.aspx.resx" />
     <Content Include="App_LocalResources\PayrollGeneration.aspx.resx" />
-    <Content Include="App_LocalResources\LoanOverrides.aspx.resx" />
     <Content Include="App_LocalResources\States.aspx.resx" />
-    <Content Include="App_LocalResources\LoanOverrides.aspx.ar.resx" />
     <Content Include="App_LocalResources\FiscalYears.aspx.ar.resx" />
     <Content Include="App_LocalResources\Branches.aspx.ar.resx" />
     <Content Include="App_LocalResources\States.aspx.ar.resx" />
@@ -2612,7 +2458,6 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>AccessControl.designer.cs</LastGenOutput>
     </Content>
-    <Content Include="App_LocalResources\Tasks.aspx.ar.resx" />
     <Content Include="App_GlobalResources\AccessControl.ar.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>AccessControl.ar.designer.cs</LastGenOutput>
@@ -2624,9 +2469,6 @@
     <Content Include="App_LocalResources\ImportDepartments.aspx.resx" />
     <Content Include="App_LocalResources\ImportDepartments.aspx.ar.resx" />
     <Content Include="App_LocalResources\LoanRequests.aspx.ar.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_LocalResources\Cases.aspx.ar.resx">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_LocalResources\LeaveRequests.aspx.ar.resx" />
@@ -2654,16 +2496,12 @@
     </Content>
     <Content Include="App_LocalResources\LeaveTypes.aspx.ar.resx" />
     <Content Include="App_LocalResources\LoanTypes.aspx.ar.resx" />
-    <Content Include="App_LocalResources\OvertimeSettings.aspx.resx" />
-    <Content Include="App_LocalResources\OvertimeSettings.aspx.ar.resx" />
     <Content Include="App_LocalResources\Absent.aspx.resx" />
     <Content Include="App_LocalResources\Absent.aspx.ar.resx" />
     <Content Include="App_LocalResources\Employees.aspx.ar.resx" />
     <Content Include="App_LocalResources\TimeAttendanceView.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportOvertimeSettings.aspx.resx" />
     <Content Include="App_LocalResources\ImportOvertimeSettings.aspx.ar.resx" />
-    <Content Include="App_LocalResources\PayrollTimeSchedule.aspx.resx" />
-    <Content Include="App_LocalResources\PayrollTimeSchedule.aspx.ar.resx" />
     <Content Include="App_LocalResources\Positions.aspx.ar.resx" />
     <Content Include="EmployeePages\App_LocalResources\Hire.aspx.ar.resx" />
     <Content Include="EmployeePages\App_LocalResources\EmployeeCalendars.aspx.ar.resx" />
@@ -2671,7 +2509,6 @@
     <Content Include="App_LocalResources\EntitlementDeductions.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportSalaries.aspx.resx" />
     <Content Include="App_LocalResources\ImportSalaries.aspx.ar.resx" />
-    <Content Include="App_LocalResources\BonusTypes.aspx.ar.resx" />
     <Content Include="App_LocalResources\SocialSecuritySchedules.aspx.resx" />
     <Content Include="App_LocalResources\SocialSecuritySchedules.aspx.ar.resx" />
     <Content Include="App_LocalResources\Nationalities.aspx.ar.resx" />
@@ -2772,14 +2609,6 @@
     <Content Include="Reports\App_LocalResources\RT306Old.aspx.resx" />
     <Content Include="App_LocalResources\NationalQuotas.aspx.resx" />
     <Content Include="App_LocalResources\NationalQuotas.aspx.ar.resx" />
-    <Content Include="App_LocalResources\AssetAllowanceSelfServices.aspx.resx" />
-    <Content Include="App_LocalResources\AssetAllowanceSelfServices.aspx.ar.resx" />
-    <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.ar.resx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="App_LocalResources\DailySchedule.aspx.ar.resx" />
     <Content Include="App_LocalResources\DailySchedule.aspx.resx" />
     <Content Include="App_LocalResources\SynchronizeAttendanceDays.aspx.resx" />
@@ -2791,8 +2620,6 @@
     <Content Include="App_LocalResources\ImportEmploymentStatus.aspx.resx" />
     <Content Include="App_LocalResources\ImportPunches.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportPunches.aspx.resx" />
-    <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.ar.resx" />
-    <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.resx" />
     <Content Include="App_LocalResources\Folders.aspx.ar.resx" />
     <Content Include="App_LocalResources\Benefits.aspx.resx" />
     <Content Include="App_LocalResources\Benefits.aspx.ar.resx" />
@@ -2815,8 +2642,6 @@
     <Content Include="App_LocalResources\ImportPayCodes.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportPayCodes.aspx.resx" />
     <Content Include="App_LocalResources\BiometricDevices.aspx.ar.resx" />
-    <Content Include="App_LocalResources\DeleteBranchAttendance.aspx.ar.resx" />
-    <Content Include="App_LocalResources\DeleteBranchAttendance.aspx.resx" />
     <Content Include="App_LocalResources\PenaltyTypes.aspx.ar.resx" />
     <Content Include="App_LocalResources\PenaltyTypes.aspx.resx" />
     <Content Include="App_LocalResources\TimeCodes.aspx.ar.resx" />
@@ -2890,11 +2715,7 @@
     <Content Include="App_LocalResources\Absent.aspx.fr.resx" />
     <Content Include="App_LocalResources\AdminDocuments.aspx.fr.resx" />
     <Content Include="App_LocalResources\AdminTemplates.aspx.fr.resx" />
-    <Content Include="App_LocalResources\AllowanceTypes.aspx.fr.resx" />
     <Content Include="App_LocalResources\Approvals.aspx.fr.resx" />
-    <Content Include="App_LocalResources\AssetAllowances.aspx.fr.resx" />
-    <Content Include="App_LocalResources\AssetAllowanceSelfServices.aspx.fr.resx" />
-    <Content Include="App_LocalResources\AssetCategories.aspx.fr.resx" />
     <Content Include="App_LocalResources\AssetManagementAssets.aspx.fr.resx" />
     <Content Include="App_LocalResources\AssetManagementCategories.aspx.fr.resx" />
     <Content Include="App_LocalResources\AssetManagementOnboardings.aspx.fr.resx" />
@@ -2905,16 +2726,11 @@
     <Content Include="App_LocalResources\Benefits.aspx.fr.resx" />
     <Content Include="App_LocalResources\BenefitsSchedules.aspx.fr.resx" />
     <Content Include="App_LocalResources\BiometricDevices.aspx.fr.resx" />
-    <Content Include="App_LocalResources\BonusTypes.aspx.fr.resx" />
     <Content Include="App_LocalResources\Branches.aspx.fr.resx" />
     <Content Include="App_LocalResources\BusinessPartnerCategories.aspx.fr.resx" />
     <Content Include="App_LocalResources\BusinessPartneres.aspx.fr.resx" />
-    <Content Include="App_LocalResources\Cases.aspx.fr.resx" />
-    <Content Include="App_LocalResources\CertificateLevels.aspx.fr.resx" />
-    <Content Include="App_LocalResources\CheckTypes.aspx.fr.resx" />
     <Content Include="App_LocalResources\CompanyDocumentTypes.aspx.fr.resx" />
     <Content Include="App_LocalResources\CompanyFiles.aspx.fr.resx" />
-    <Content Include="App_LocalResources\CompanyNews.aspx.fr.resx" />
     <Content Include="App_LocalResources\CompanyRightToWorks.aspx.fr.resx" />
     <Content Include="App_LocalResources\Currencies.aspx.fr.resx" />
     <Content Include="App_LocalResources\DailySchedule.aspx.fr.resx" />
@@ -2922,14 +2738,11 @@
     <Content Include="App_LocalResources\Dashboard.aspx.fr.resx" />
     <Content Include="App_LocalResources\DaysAvailability.aspx.fr.resx" />
     <Content Include="App_LocalResources\DayTypes.aspx.fr.resx" />
-    <Content Include="App_LocalResources\DeleteBranchAttendance.aspx.fr.resx" />
     <Content Include="App_LocalResources\Departments.aspx.fr.resx" />
     <Content Include="App_LocalResources\Divisions.aspx.fr.resx" />
     <Content Include="App_LocalResources\DocumentCategories.aspx.fr.resx" />
     <Content Include="App_LocalResources\DocumentTypes.aspx.fr.resx" />
     <Content Include="App_LocalResources\EmployeeCals.aspx.fr.resx" />
-    <Content Include="App_LocalResources\EmployeeComplaints.aspx.fr.resx" />
-    <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.fr.resx" />
     <Content Include="App_LocalResources\EmployeePenalties.aspx.fr.resx" />
     <Content Include="App_LocalResources\Employees.aspx.fr.resx" />
     <Content Include="App_LocalResources\EmployeesOrgChart.aspx.fr.resx" />
@@ -2939,7 +2752,6 @@
     <Content Include="App_LocalResources\Folders.aspx.fr.resx" />
     <Content Include="App_LocalResources\ForgotPassword.aspx.fr.resx" />
     <Content Include="App_LocalResources\GenerateAttendanceDays.aspx.fr.resx" />
-    <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.fr.resx" />
     <Content Include="App_LocalResources\Geofences.aspx.fr.resx" />
     <Content Include="App_LocalResources\GovernmentOrganisations.aspx.fr.resx" />
     <Content Include="App_LocalResources\ImportAttendance.aspx.fr.resx" />
@@ -2964,7 +2776,6 @@
     <Content Include="App_LocalResources\Letters.aspx.fr.resx" />
     <Content Include="App_LocalResources\LettersSelfServices.aspx.fr.resx" />
     <Content Include="App_LocalResources\LetterTemplates.aspx.fr.resx" />
-    <Content Include="App_LocalResources\LoanOverrides.aspx.fr.resx" />
     <Content Include="App_LocalResources\LoanRequests.aspx.fr.resx" />
     <Content Include="App_LocalResources\LoanSelfServices.aspx.fr.resx" />
     <Content Include="App_LocalResources\LoanTypes.aspx.fr.resx" />
@@ -2977,14 +2788,11 @@
     <Content Include="App_LocalResources\NationalQuotas.aspx.fr.resx" />
     <Content Include="App_LocalResources\NoticePeriods.aspx.fr.resx" />
     <Content Include="App_LocalResources\OrganizationChart.aspx.fr.resx" />
-    <Content Include="App_LocalResources\OvertimeSettings.aspx.fr.resx" />
     <Content Include="App_LocalResources\Overtime_Lateness.aspx.fr.resx" />
     <Content Include="App_LocalResources\PayCodes.aspx.fr.resx" />
-    <Content Include="App_LocalResources\PayrollDefaults.aspx.fr.resx" />
     <Content Include="App_LocalResources\PayrollGeneration.aspx.fr.resx" />
     <Content Include="App_LocalResources\PayrollGenerationSelfServices.aspx.fr.resx" />
     <Content Include="App_LocalResources\PayrollIndemnities.aspx.fr.resx" />
-    <Content Include="App_LocalResources\PayrollTimeSchedule.aspx.fr.resx" />
     <Content Include="App_LocalResources\PenaltyTypes.aspx.fr.resx" />
     <Content Include="App_LocalResources\Positions.aspx.fr.resx" />
     <Content Include="App_LocalResources\ProcessNotifications.aspx.fr.resx" />
@@ -3065,6 +2873,15 @@
     <Content Include="App_LocalResources\AdminDepts.aspx.resx" />
     <Content Include="App_LocalResources\AdminDepts.aspx.fr.resx" />
     <Content Include="App_LocalResources\AdminDepts.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BonusTypes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BonusTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BonusTypes.aspx.resx" />
+    <Content Include="App_LocalResources\CertificateLevels.aspx.ar.resx" />
+    <Content Include="App_LocalResources\CertificateLevels.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CertificateLevels.aspx.resx" />
+    <Content Include="App_LocalResources\CheckTypes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\CheckTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CheckTypes.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

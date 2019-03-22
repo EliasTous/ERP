@@ -505,7 +505,7 @@
                                         <Columns>
 
 
-                                            <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="rowId" Hideable="false" Width="75" Align="Center" />
+                                            <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server"  DataIndex="rowId" Hideable="false" Width="75" Align="Center" />
 
                                             <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNotes%>" DataIndex="notes" Flex="6" Hideable="false">
                                                 <Renderer Handler="var s = moment(record.data['date']);  return '<b>'+ record.data['fullName']+'</b>- '+ s.calendar()+'<br />'+ record.data['notes'];">

@@ -153,9 +153,6 @@
   <data name="FieldRejected" xml:space="preserve">
     <value>Rejected</value>
   </data>
-  <data name="FiledPosition" xml:space="preserve">
-    <value>Position</value>
-  </data>
   <data name="Go" xml:space="preserve">
     <value>Search</value>
   </data>
@@ -164,9 +161,6 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
-  </data>
-  <data name="status0" xml:space="preserve">
-    <value>Non-working Day</value>
   </data>
   <data name="status1" xml:space="preserve">
     <value>Working Day</value>
@@ -204,20 +198,11 @@
   <data name="atext" xml:space="preserve">
     <value>Absence</value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle1" xml:space="preserve">
-    <value>Shift Details</value>
-  </data>
   <data name="ButtonClear" xml:space="preserve">
     <value>Clear</value>
   </data>
-  <data name="ButtonRefresh" xml:space="preserve">
-    <value>Refresh</value>
-  </data>
   <data name="CA" xml:space="preserve">
     <value>Calendar</value>
-  </data>
-  <data name="ContractEndingDate" xml:space="preserve">
-    <value>Contract Ending Date</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
@@ -228,17 +213,11 @@
   <data name="DeleteAll" xml:space="preserve">
     <value>Delete Branch Attendances</value>
   </data>
-  <data name="DeleteBranchAttendances" xml:space="preserve">
-    <value>Are you sure do you want to delete the selected branch attendances on the selected Date Range  ?</value>
-  </data>
   <data name="dtext" xml:space="preserve">
     <value>Disappear</value>
   </data>
   <data name="EditWindowsTimeApproval" xml:space="preserve">
     <value>Time Approval</value>
-  </data>
-  <data name="EditWindowsTitle1" xml:space="preserve">
-    <value>Edit Branch</value>
   </data>
   <data name="FieldAll" xml:space="preserve">
     <value>All</value>
@@ -251,9 +230,6 @@
   </data>
   <data name="FieldBirthPlace" xml:space="preserve">
     <value>Place of Birth</value>
-  </data>
-  <data name="FieldBranch1" xml:space="preserve">
-    <value>Select a Branch</value>
   </data>
   <data name="FieldBreaks" xml:space="preserve">
     <value>Breaks</value>
@@ -269,12 +245,6 @@
   </data>
   <data name="FieldDateOfBirth" xml:space="preserve">
     <value>Birth Date</value>
-  </data>
-  <data name="FieldDay1" xml:space="preserve">
-    <value>Day</value>
-  </data>
-  <data name="FieldDepartment1" xml:space="preserve">
-    <value>Select a Department</value>
   </data>
   <data name="FieldDivision" xml:space="preserve">
     <value>Select a Division</value>
@@ -294,9 +264,6 @@
   <data name="FieldFirstName" xml:space="preserve">
     <value>First Name</value>
   </data>
-  <data name="FieldFullName1" xml:space="preserve">
-    <value>Name</value>
-  </data>
   <data name="FieldGender" xml:space="preserve">
     <value>Gender</value>
   </data>
@@ -315,12 +282,6 @@
   <data name="FieldLastName" xml:space="preserve">
     <value>Last Name</value>
   </data>
-  <data name="FieldLastTACheck" xml:space="preserve">
-    <value>Last Check In</value>
-  </data>
-  <data name="FieldLastTACheckStatus" xml:space="preserve">
-    <value>Last Check In Status</value>
-  </data>
   <data name="FieldMiddleName" xml:space="preserve">
     <value>Middle Name</value>
   </data>
@@ -336,26 +297,11 @@
   <data name="FieldPending" xml:space="preserve">
     <value>Pending</value>
   </data>
-  <data name="FieldPending1" xml:space="preserve">
-    <value>Pending</value>
-  </data>
-  <data name="FieldPicturePath" xml:space="preserve">
-    <value>PicturePath</value>
-  </data>
-  <data name="FieldPosition1" xml:space="preserve">
-    <value>Position</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
   </data>
   <data name="FieldReligion" xml:space="preserve">
     <value>Religion</value>
-  </data>
-  <data name="FieldSponsor" xml:space="preserve">
-    <value>Sponsor</value>
   </data>
   <data name="FieldStartDate" xml:space="preserve">
     <value>Start Date</value>

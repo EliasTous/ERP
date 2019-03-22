@@ -126,9 +126,6 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Branch</value>
   </data>
-  <data name="ErrorImporting" xml:space="preserve">
-    <value>Couldn't load file, please check the file format</value>
-  </data>
   <data name="Import" xml:space="preserve">
     <value>استيراد</value>
   </data>

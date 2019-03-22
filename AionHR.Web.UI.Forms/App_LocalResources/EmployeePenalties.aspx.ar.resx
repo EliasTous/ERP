@@ -126,12 +126,6 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>معلومات جزاء الموظف</value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle1" xml:space="preserve">
-    <value>معلومات السلفة</value>
-  </data>
-  <data name="ButtonClear" xml:space="preserve">
-    <value>مسح</value>
-  </data>
   <data name="CaseCommentsTabTitle" xml:space="preserve">
     <value>التعليقات</value>
   </data>
@@ -150,9 +144,6 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل جزاء الموظف</value>
   </data>
-  <data name="EditWindowsTitle1" xml:space="preserve">
-    <value>تعديل السلفة</value>
-  </data>
   <data name="EmptyComment" xml:space="preserve">
     <value>يرجى إدخال تعليق قبل ضغط زر الإضافة</value>
   </data>
@@ -164,12 +155,6 @@
   </data>
   <data name="FieldBranch" xml:space="preserve">
     <value>الفرع المسحوب منه السلفة</value>
-  </data>
-  <data name="FieldCurrencyId" xml:space="preserve">
-    <value>العملة</value>
-  </data>
-  <data name="FieldCurrencyRef" xml:space="preserve">
-    <value>العملة</value>
   </data>
   <data name="FieldDate" xml:space="preserve">
     <value>التاريخ</value>
@@ -189,9 +174,6 @@
   <data name="FieldEffectiveDate" xml:space="preserve">
     <value>التاريخ</value>
   </data>
-  <data name="FieldEmployeeId" xml:space="preserve">
-    <value>الموظف</value>
-  </data>
   <data name="FieldEmployeeName" xml:space="preserve">
     <value>اسم الموظف</value>
   </data>
@@ -200,9 +182,6 @@
   </data>
   <data name="FieldIsInactive" xml:space="preserve">
     <value>غير نشط؟</value>
-  </data>
-  <data name="FieldIsSegmentedHead" xml:space="preserve">
-    <value>وظيفة رئيسية؟</value>
   </data>
   <data name="FieldLtName" xml:space="preserve">
     <value>نوع السلفة</value>
@@ -225,16 +204,7 @@
   <data name="FieldPurpose" xml:space="preserve">
     <value>السبب</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>الرقم</value>
-  </data>
-  <data name="FieldRecordId1" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
   <data name="FieldReference" xml:space="preserve">
-    <value>الرمز</value>
-  </data>
-  <data name="FieldReference1" xml:space="preserve">
     <value>الرمز</value>
   </data>
   <data name="FieldReferer" xml:space="preserve">
@@ -257,15 +227,6 @@
   </data>
   <data name="FieldType" xml:space="preserve">
     <value>النوع</value>
-  </data>
-  <data name="FilterBranch" xml:space="preserve">
-    <value>اختر فرع</value>
-  </data>
-  <data name="FilterDepartment" xml:space="preserve">
-    <value>اختر قسم</value>
-  </data>
-  <data name="FilterDivision" xml:space="preserve">
-    <value>اختر الادارة العليا</value>
   </data>
   <data name="FilterStatus" xml:space="preserve">
     <value>اختر الحالة</value>

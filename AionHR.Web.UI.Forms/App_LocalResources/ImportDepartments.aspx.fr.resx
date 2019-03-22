@@ -120,22 +120,6 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Détails du poste</value>
   </data>
-  <data name="ButtonClear" xml:space="preserve">
-    <value>Résultats de la recherche
-Résultat de la traduction
-Anglais
-Le français
-
-Effacer
-
-Clair</value>
-  </data>
-  <data name="ButtonRefresh" xml:space="preserve">
-    <value>reposer</value>
-  </data>
-  <data name="ContractEndingDate" xml:space="preserve">
-    <value>Date de fin du contrat</value>
-  </data>
   <data name="DayShifts" xml:space="preserve">
     <value>Shifts</value>
   </data>
@@ -144,9 +128,6 @@ Clair</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Branch</value>
-  </data>
-  <data name="ErrorImporting" xml:space="preserve">
-    <value>Couldn't load file, please check the file format</value>
   </data>
   <data name="FieldBirthPlace" xml:space="preserve">
     <value>Lieu de naissance</value>
@@ -208,12 +189,6 @@ Clair</value>
   <data name="FieldLastName" xml:space="preserve">
     <value>Last Name</value>
   </data>
-  <data name="FieldLastTACheck" xml:space="preserve">
-    <value>Last Check In</value>
-  </data>
-  <data name="FieldLastTACheckStatus" xml:space="preserve">
-    <value>Last Check In Status</value>
-  </data>
   <data name="FieldMiddleName" xml:space="preserve">
     <value>Middle Name</value>
   </data>
@@ -223,23 +198,14 @@ Clair</value>
   <data name="FieldNationality" xml:space="preserve">
     <value>Nationality</value>
   </data>
-  <data name="FieldPicturePath" xml:space="preserve">
-    <value>PicturePath</value>
-  </data>
   <data name="FieldPosition" xml:space="preserve">
     <value>Position</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
   </data>
   <data name="FieldReligion" xml:space="preserve">
     <value>Religion</value>
-  </data>
-  <data name="FieldSponsor" xml:space="preserve">
-    <value>Sponsor</value>
   </data>
   <data name="FieldVacationSchedule" xml:space="preserve">
     <value>Vacation Schedule</value>
@@ -261,9 +227,6 @@ Clair</value>
   </data>
   <data name="ResultReady" xml:space="preserve">
     <value>Your Result is ready, click to download</value>
-  </data>
-  <data name="saved" xml:space="preserve">
-    <value>{0} items were saved successfully, {1} failed</value>
   </data>
   <data name="TotalBreaks" xml:space="preserve">
     <value>Total Breaks</value>

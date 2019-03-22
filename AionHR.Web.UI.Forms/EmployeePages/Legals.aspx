@@ -669,7 +669,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5"   >
                             <Items>
-                                <ext:TextField ID="BCID" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:TextField ID="BCID" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
 
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="ctId" Name="ctId" FieldLabel="<%$ Resources:FieldBCCheckType%>" SimpleSubmit="true">
                                     <Store>

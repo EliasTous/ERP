@@ -153,7 +153,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
-                            <ext:Column ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column ID="colsubject" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldsubject%>" DataIndex="subject" Flex="1" Hideable="false">
                                 <Renderer Handler="return '<b>' + record.data['subject'] + '</b>' " />
                             </ext:Column>
@@ -320,7 +320,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:TextField ID="recordId" runat="server"  Disabled="true" Name="recordId" />
                                 <ext:TextField ID="subject" runat="server" FieldLabel="<%$ Resources:Fieldsubject%>" Name="subject" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="newsText" runat="server" FieldLabel="<%$ Resources: FieldnewsText %>" DataIndex="newsText" AllowBlank="false" />
                                 <ext:Checkbox ID="notifyViaEmail" runat="server" FieldLabel="<%$ Resources: FieldnotifyViaEmail%>" DataIndex="notifyViaEmail" Name="notifyViaEmail" />

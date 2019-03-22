@@ -126,9 +126,6 @@
   <data name="FieldName" xml:space="preserve">
     <value>الاسم</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>الرقم</value>
-  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Suppliers</value>
   </data>

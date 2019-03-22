@@ -177,9 +177,6 @@
   <data name="Deductions" xml:space="preserve">
     <value>الخصومات</value>
   </data>
-  <data name="DeductionsEntitlements" xml:space="preserve">
-    <value>الخصومات والاستحقاقات</value>
-  </data>
   <data name="departmentName" xml:space="preserve">
     <value>القسم </value>
   </data>
@@ -197,9 +194,6 @@
   </data>
   <data name="eosBalanceTitle" xml:space="preserve">
     <value>رصيد نهاية الخدمة</value>
-  </data>
-  <data name="ErrorWithPCTOf" xml:space="preserve">
-    <value>خطأ في مصدر حساب النسبة،سيتم الاعتماد على الراتب الأساسي في حساب نسبة الحسم</value>
   </data>
   <data name="esName" xml:space="preserve">
     <value>حالة الموظف </value>
@@ -281,9 +275,6 @@
   </data>
   <data name="FieldPosition" xml:space="preserve">
     <value>المنصب</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>الرقم</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>الرمز</value>

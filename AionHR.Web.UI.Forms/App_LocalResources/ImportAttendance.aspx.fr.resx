@@ -120,23 +120,11 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Détails du poste</value>
   </data>
-  <data name="ButtonClear" xml:space="preserve">
-    <value>Clair</value>
-  </data>
-  <data name="ButtonRefresh" xml:space="preserve">
-    <value>reposer</value>
-  </data>
-  <data name="ContractEndingDate" xml:space="preserve">
-    <value>Date de fin du contrat</value>
-  </data>
   <data name="DayShifts" xml:space="preserve">
     <value>postes</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Modifier la branche</value>
-  </data>
-  <data name="ErrorImporting" xml:space="preserve">
-    <value>Impossible de charger le fichier, veuillez vérifier le format du fichier.</value>
   </data>
   <data name="FieldBirthPlace" xml:space="preserve">
     <value>Lieu de naissance</value>
@@ -198,12 +186,6 @@
   <data name="FieldLastName" xml:space="preserve">
     <value>Nom de famille</value>
   </data>
-  <data name="FieldLastTACheck" xml:space="preserve">
-    <value>Dernier enregistrement</value>
-  </data>
-  <data name="FieldLastTACheckStatus" xml:space="preserve">
-    <value>Dernier statut d'enregistrement</value>
-  </data>
   <data name="FieldMiddleName" xml:space="preserve">
     <value>Deuxième nom</value>
   </data>
@@ -213,23 +195,14 @@
   <data name="FieldNationality" xml:space="preserve">
     <value>Nationalité</value>
   </data>
-  <data name="FieldPicturePath" xml:space="preserve">
-    <value>Chemin de l'image</value>
-  </data>
   <data name="FieldPosition" xml:space="preserve">
     <value>Position</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>ID d'enregistrement</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
   </data>
   <data name="FieldReligion" xml:space="preserve">
     <value>Religion</value>
-  </data>
-  <data name="FieldSponsor" xml:space="preserve">
-    <value>Sponsor</value>
   </data>
   <data name="FieldVacationSchedule" xml:space="preserve">
     <value>Horaire de vacances</value>
@@ -245,9 +218,6 @@
   </data>
   <data name="Pick" xml:space="preserve">
     <value>Choisissez un fichier à importer</value>
-  </data>
-  <data name="saved" xml:space="preserve">
-    <value>{0} éléments ont été enregistrés avec succès, {1} a échoué</value>
   </data>
   <data name="TotalBreaks" xml:space="preserve">
     <value>Total des pauses</value>

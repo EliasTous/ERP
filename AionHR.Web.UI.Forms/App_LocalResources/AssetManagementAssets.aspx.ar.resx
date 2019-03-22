@@ -174,12 +174,6 @@
   <data name="FieldWarrantyEndDate" xml:space="preserve">
     <value>تاريخ انتهاء الكفالة</value>
   </data>
-  <data name="MainInfo" xml:space="preserve">
-    <value>معلومات الاساسية</value>
-  </data>
-  <data name="PurchaseInfo" xml:space="preserve">
-    <value>معلومات الشراء </value>
-  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>الأصول</value>
   </data>

@@ -129,9 +129,6 @@
   <data name="Clear" xml:space="preserve">
     <value>nettoyer</value>
   </data>
-  <data name="ConfirmDeleteAllDays" xml:space="preserve">
-    <value>Êtes-vous sûr de vouloir supprimer le rang de programme sélectionnée?</value>
-  </data>
   <data name="ConfirmDeleteDay" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir supprimer le jour de planification sélectionné?</value>
   </data>
@@ -147,9 +144,6 @@
   <data name="ErrorBranchWorkingHours" xml:space="preserve">
     <value>Incapable d'obtenir les heures de travail de cette branche</value>
   </data>
-  <data name="ErrorGettingEmployees" xml:space="preserve">
-    <value>Erreur d'obtenir les employés</value>
-  </data>
   <data name="ErrorGettingSchedule" xml:space="preserve">
     <value>Erreur d'obtenir l'horaire</value>
   </data>
@@ -158,9 +152,6 @@
   </data>
   <data name="ExportSchedule" xml:space="preserve">
     <value>Exporter l'horaire</value>
-  </data>
-  <data name="ExportSuccess" xml:space="preserve">
-    <value>Horaire exporté avec succès</value>
   </data>
   <data name="FieldDepartment" xml:space="preserve">
     <value>Departement</value>
@@ -177,14 +168,8 @@
   <data name="ImportFrom" xml:space="preserve">
     <value>Importer de</value>
   </data>
-  <data name="ImportSuccess" xml:space="preserve">
-    <value>Horaire importer avec succès</value>
-  </data>
   <data name="Load" xml:space="preserve">
     <value>Charger</value>
-  </data>
-  <data name="multiImport" xml:space="preserve">
-    <value>importation multiple</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Sauvegarder</value>
@@ -192,41 +177,17 @@
   <data name="SelectBranch" xml:space="preserve">
     <value>Choisir une branche</value>
   </data>
-  <data name="SelectDay" xml:space="preserve">
-    <value>Choisir une jour</value>
-  </data>
-  <data name="SelectdayOrFromToDate" xml:space="preserve">
-    <value>Sélectionnez le jour ou de à la date</value>
-  </data>
   <data name="Selected" xml:space="preserve">
     <value>sélectionner</value>
   </data>
   <data name="SelectEmp" xml:space="preserve">
     <value>Sélectionnez un employé</value>
   </data>
-  <data name="SelectEmployee" xml:space="preserve">
-    <value>Veuillez sélectionner un employé</value>
-  </data>
-  <data name="SelectExport" xml:space="preserve">
-    <value>Sélectionner les employés à exporter</value>
-  </data>
-  <data name="SelectImport" xml:space="preserve">
-    <value>Sélectionnez l'employé à partir duquel importer</value>
-  </data>
   <data name="To" xml:space="preserve">
     <value>À</value>
   </data>
-  <data name="ToDateHigherFromDate" xml:space="preserve">
-    <value>À cette date devrait être plus élevé que de date.</value>
-  </data>
   <data name="total" xml:space="preserve">
     <value>Total</value>
-  </data>
-  <data name="ValideFromToTime" xml:space="preserve">
-    <value>Veuillez sélectionner une période valide de début et de fin</value>
-  </data>
-  <data name="ValidFromToDate" xml:space="preserve">
-    <value>Veuillez sélectionner une date valide de début et de fin</value>
   </data>
   <data name="workingHours" xml:space="preserve">
     <value>Heures de travail</value>

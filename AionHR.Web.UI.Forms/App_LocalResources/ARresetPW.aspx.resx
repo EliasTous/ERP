@@ -129,9 +129,6 @@
   <data name="ResetPassword" xml:space="preserve">
     <value>تغيير كلمة السر</value>
   </data>
-  <data name="Strength" xml:space="preserve">
-    <value>صعوبة كلمة السر</value>
-  </data>
   <data name="Strong" xml:space="preserve">
     <value>قوية</value>
   </data>

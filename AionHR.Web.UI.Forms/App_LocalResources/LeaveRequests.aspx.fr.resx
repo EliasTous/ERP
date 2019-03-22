@@ -120,9 +120,6 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Information de conges</value>
   </data>
-  <data name="ButtonClear" xml:space="preserve">
-    <value>Clair</value>
-  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Modifier la demande de congé</value>
   </data>
@@ -162,9 +159,6 @@
   <data name="FieldPending" xml:space="preserve">
     <value>en suspens</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>ID d'enregistrement</value>
-  </data>
   <data name="FieldRefused" xml:space="preserve">
     <value>Refusé</value>
   </data>
@@ -177,32 +171,14 @@
   <data name="FieldWorkingHours" xml:space="preserve">
     <value>Heures de travail</value>
   </data>
-  <data name="FilterBranch" xml:space="preserve">
-    <value>choisir un Branch</value>
-  </data>
-  <data name="FilterDepartment" xml:space="preserve">
-    <value>choisir un Department</value>
-  </data>
-  <data name="FilterDivision" xml:space="preserve">
-    <value>choisir une division Division</value>
-  </data>
   <data name="FilterEmployee" xml:space="preserve">
     <value>choisir un Employe</value>
-  </data>
-  <data name="FilterOpen" xml:space="preserve">
-    <value>Afficher les demandes ouvertes</value>
   </data>
   <data name="FilterStatus" xml:space="preserve">
     <value>choisir une Statut</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Demandes de congés</value>
-  </data>
-  <data name="ErrorSelectDate" xml:space="preserve">
-    <value>Veuillez d'abord sélectionner une plage de dates valide</value>
-  </data>
-  <data name="ErrorSelectEmployee" xml:space="preserve">
-    <value>S'il vous plaît sélectionnez un employé d'abord</value>
   </data>
   <data name="LeaveDaysWindowTitle" xml:space="preserve">
     <value>Jours de congé</value>
@@ -216,20 +192,11 @@
   <data name="FieldReturnDate" xml:space="preserve">
     <value>Date de retour</value>
   </data>
-  <data name="LeaveInfo" xml:space="preserve">
-    <value>Laisser des informations</value>
-  </data>
   <data name="ReturnInfo" xml:space="preserve">
     <value>Informations de retour</value>
   </data>
-  <data name="LeaveEndWindowTitle" xml:space="preserve">
-    <value>Laisser le retour</value>
-  </data>
   <data name="FieldUsed" xml:space="preserve">
     <value>Used</value>
-  </data>
-  <data name="ErrorNoCalendar" xml:space="preserve">
-    <value>Erreur: vous ne pouvez pas créer de congé sans avoir au moins un calendrier.</value>
   </data>
   <data name="CalDays" xml:space="preserve">
     <value>jours</value>

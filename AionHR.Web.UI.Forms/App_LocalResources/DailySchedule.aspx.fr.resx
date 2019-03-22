@@ -210,9 +210,6 @@
   <data name="All" xml:space="preserve">
     <value>Tout</value>
   </data>
-  <data name="multiImport" xml:space="preserve">
-    <value>importation multiple</value>
-  </data>
   <data name="Selected" xml:space="preserve">
     <value>sélectionner</value>
   </data>
