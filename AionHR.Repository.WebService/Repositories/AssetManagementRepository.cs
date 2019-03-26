@@ -58,6 +58,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementOnBoarding), "setOB");
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementLoan), "setLO");
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementCategoryProperty), "setCP");
+            ChildAddOrUpdateLookup.Add(typeof(AssetPOReception), "genAS");
 
             ChildDeleteLookup.Add(typeof(AssetManagementSupplier), "delSU");
             ChildDeleteLookup.Add(typeof(AssetManagementCategory), "delCA");

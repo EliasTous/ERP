@@ -633,6 +633,7 @@ namespace AionHR.Web.UI.Forms
                     return;
                    
                 }
+                
                 FlatSchedule fs = new FlatSchedule();
                 fs.from = fsfromTime.ToString("HH:mm");
                 fs.to = fsToTime.ToString("HH:mm");

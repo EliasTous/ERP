@@ -12,12 +12,12 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
 
-    <script type="text/javascript" src="Scripts/common.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" href="CSS/Calendars.css" />
-    <script type="text/javascript" src="Scripts/Calendars.js?id=2"></script>
+    <script type="text/javascript" src="Scripts/common.js?id=2"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script  type="text/javascript"  src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="CSS/Calendars.css?id=1" />
+    <script type="text/javascript" src="Scripts/Calendars.js?id=3"></script>
 
     <script type="text/javascript">
 

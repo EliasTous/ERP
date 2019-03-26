@@ -830,6 +830,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server"  Name="recordId" />
                                 <ext:TextField ID="reference" ValidateBlank="false" MsgTarget="None" ValidateOnChange="false" ValidateOnBlur="true" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference"  >
+                                       <Validator Handler="return !isNaN(this.value);" />
                                    <%-- <Listeners>
                                        <FocusLeave Handler="if(#{CurrentEmployee}.value!='') return; App.direct.employeeControl1.CheckReference(this.value,{
                 success: function (result) {

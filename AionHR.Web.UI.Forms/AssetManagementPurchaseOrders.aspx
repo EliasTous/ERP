@@ -11,7 +11,16 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Branches.js?id=1" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
- 
+ <script type="text/javascript">
+     function actionRenderer(key) {
+         if (App.conditionStore.getById(key) != null) {
+         
+             return App.conditionStore.getById(key).data.value;
+         } else {
+             return key;
+         }
+     }
+ </script>
     
        
   
@@ -81,7 +90,25 @@
                 <ext:DataSorter Property="recordId" Direction="ASC" />
             </Sorters>
         </ext:Store>
+          <ext:Store
+            ID="conditionStore"
+            runat="server">
+           
+            <Model>
+                <ext:Model ID="Model3" runat="server" IDProperty="key">
+                    <Fields>
 
+                        <ext:ModelField Name="key" />
+                        <ext:ModelField Name="value" />
+                     
+                    </Fields>
+                </ext:Model>
+            </Model>
+            <Sorters>
+                <ext:DataSorter Property="key" Direction="ASC" />
+            </Sorters>
+        </ext:Store>
+        
 
     
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
@@ -334,7 +361,9 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
-                                <ext:TextField ID="poRef"  runat="server" FieldLabel="<%$ Resources: FieldReference%>" Name="poRef" />
+                                <ext:TextField ID="poRef"  runat="server" FieldLabel="<%$ Resources: FieldReference%>" Name="poRef" >
+                                      <Validator Handler="return !isNaN(this.value);" ></Validator>
+                                    </ext:TextField>
                                  <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />
 
                                   <ext:Container runat="server"  Layout="FitLayout">
@@ -360,7 +389,7 @@
                             FieldLabel="<%$ Resources: FieldEmployeeName%>"
                             HideTrigger="true" SubmitValue="true"
                             MinChars="3"
-                            TriggerAction="Query" ForceSelection="true" AllowBlank="false">
+                            TriggerAction="Query" ForceSelection="true" AllowBlank="true">
                             <Store>
                                 <ext:Store runat="server" ID="supervisorStore" AutoLoad="false">
                                     <Model>
@@ -562,7 +591,228 @@
         </ext:Window>
 
          
+         <ext:Window 
+            ID="AssetPOReceptionWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:EditAssetPOReceptionWindow %>"
+            Width="550"
+            Height="500"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+            
+            <Items>
+                <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                    <Items>
+                  
+                         <ext:GridPanel
+                            ID="AssetPOReceptionGrid"
+                            runat="server"
+                            PaddingSpec="0 0 1 0"
+                            Header="false"
+                            Title="<%$ Resources: AssetPOReceptionTitle %>"
+                            Layout="FitLayout"
+                            Scroll="Vertical"
+                            Border="false"
+                            Icon="User"
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True" >
+                            <Plugins>
+	<ext:CellEditing ClicksToEdit="1" >
+		
+	</ext:CellEditing>
+</Plugins> 
+                            
+                              <Store>
+                                <ext:Store
+                                    ID="AssetPOReceptionStore"
+                                    runat="server" >
 
+                                    <Model>
+                                        <ext:Model ID="Model2" runat="server" IDProperty="recordId">
+                                            <Fields>
+                                                
+                                                <ext:ModelField Name="recordId" />
+                                                 <ext:ModelField Name="categoryName" />
+                                                   <ext:ModelField Name="supplierName" />
+                                                 <ext:ModelField Name="branchName" />
+                                                 <ext:ModelField Name="departmentName" />
+                                                  <ext:ModelField Name="statusName" />
+                                                 <ext:ModelField Name="conditionName" />
+                                                  
+                                                  <ext:ModelField Name="employeeName" />
+                                                  <ext:ModelField Name="assetRef" />
+                                                <ext:ModelField Name="serialNo" />
+                                                <ext:ModelField Name="supplierId" />
+                                                  <ext:ModelField Name="categoryId" />
+                                                 <ext:ModelField Name="poRef" />
+                                                 <ext:ModelField Name="costPrice" />
+                                                 <ext:ModelField Name="receptionDate" />
+                                                  <ext:ModelField Name="branchId" />
+                                                  <ext:ModelField Name="comments" />
+                                                <ext:ModelField Name="status" />
+                                                  <ext:ModelField Name="employeeId" />
+                                                 <ext:ModelField Name="departmentId" />
+                                                 <ext:ModelField Name="name" />
+                                                
+                                                <ext:ModelField Name="warrantyEndDate" />
+                                                <ext:ModelField Name="depreciationDate" />
+                                                <ext:ModelField Name="condition" />
+                                          
+                      
+                        
+                               <ext:ModelField Name="statusName" />
+                          <ext:ModelField Name="assetRef" />
+                                              
+
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                    <Sorters>
+                                        <ext:DataSorter Property="recordId" Direction="ASC" />
+                                    </Sorters>
+                                </ext:Store>
+
+                            </Store>
+
+  <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                <Columns>
+                                 <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="Name" DataIndex="name" Flex="1" Hideable="false" />
+                                 <ext:WidgetColumn ID="WidgetColumn3" Visible="true" DataIndex="serialNo" runat="server" Text="<%$ Resources: FieldSerialNo  %>" Flex ="2" >
+                                        <Widget>
+                                            <ext:TextField AllowBlank="true" runat="server" Name="serialNo"  >
+                                                 <Listeners>
+
+                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('serialNo',this.value); ">
+                                                    </Change>
+                                                     
+                                                </Listeners>
+                                             
+                                                </ext:TextField>
+                                        </Widget>
+                                    </ext:WidgetColumn>
+                                   
+                                    
+                                          <ext:DateColumn ID="WidgetColumn2" Visible="true" DataIndex="warrantyEndDate" runat="server" Text="<%$ Resources: FieldWarrantyEndDate  %>" Flex ="2" >
+                                            
+                                      <Editor>
+                                            <ext:DateField ID="warrantyEndDate" runat="server"  Name="warrantyEndDate"   >
+                                                 
+                                                 <Listeners>
+
+                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('warrantyEndDate',this.value); ">
+                                                    </Change>
+                                                     
+                                                </Listeners>
+                                             
+                                                </ext:DateField>
+                                      </Editor>
+                                    </ext:DateColumn>
+
+                                     <ext:DateColumn ID="WidgetColumn1" MenuDisabled="true"    DataIndex="depreciationDate" runat="server" Text="<%$ Resources: FieldDepreciationDate  %>"  Flex="2"   >
+                                     <Editor>
+                                               <ext:DateField ID="depreciationDate" runat="server"  Name="depreciationDate"   >
+                                             <%--  <Validator Handler="if (this.getWidgetRecord().getData().warrantyEndDate!=null) return this.value>this.getWidgetRecord().getData().warrantyEndDate; else return true;" />--%>
+                                             
+                                           
+                                         
+                                                <Listeners>
+
+                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('depreciationDate',this.value); ">
+                                                    </Change>
+                                                </Listeners>
+                                                       </ext:DateField>
+                                           
+                                      </Editor>
+                                    </ext:DateColumn>
+                                 
+
+                                          
+                                       
+                                  
+                                       <ext:Column ID="COCondition" Visible="true" DataIndex="condition" runat="server" Text="<%$ Resources: FieldCondition  %>" Flex="2" >
+                                           <Renderer Handler="actionRenderer" />
+                               <Editor>
+                                           <ext:ComboBox 
+                                                            runat="server" 
+                                                            Shadow="false" 
+                                                            Mode="Local" 
+                                                            TriggerAction="All" 
+                                                            ForceSelection="true"
+                                                            StoreID="ConditionStore" 
+                                                            DisplayField="value" 
+                                                            ValueField="key"
+                                                            Name="condition"
+                                                            AllowBlank="false"
+                                                            >
+                                                <Listeners>
+
+                                                    <Select Handler="var rec = this.getWidgetRecord(); rec.set('condition',this.value); ">
+                                                    </Select>
+                                                </Listeners>
+                                               </ext:ComboBox>
+                                  
+                </Editor>
+                                             
+                                           </ext:Column>
+                                     
+
+                                  
+                                  
+                                   
+
+                                   
+
+                                    
+                                    
+
+
+
+                                </Columns>
+                            </ColumnModel>
+                        
+ 
+                            <View>
+                                <ext:GridView ID="GridView2" runat="server" />
+                            </View>
+
+
+                            <SelectionModel>
+                                <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                            </SelectionModel>
+                          <%--  <Listeners> 
+                                <Activate Handler=" #{penaltyDetailStore}.reload();  #{penaltyDetailStoreCount}.setValue(1);"></Activate>
+                            </Listeners>--%>
+                        </ext:GridPanel>
+                    </Items>
+                    
+                </ext:TabPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="SaveAssetPOReceptionButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession();  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveAssetPOReception" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{AssetPOReceptionWindow}.body}" />
+                            <ExtraParams>
+                            
+                               <ext:Parameter Name="values" Value="Ext.encode(#{AssetPOReceptionGrid}.getRowsValues( ))" Mode="Raw"   />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
         
 
 

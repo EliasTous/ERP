@@ -201,7 +201,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="330"
+            Height="380"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -218,10 +218,10 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
-                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:NumberField ID="deliveryDuration" runat="server" FieldLabel="<%$ Resources:deliveryDuration%>" Name="deliveryDuration"  AllowDecimals="false" />
-                                 <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="apId" Name="apId" FieldLabel="<%$ Resources:FieldApproval%>"  >
+                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" Name="recordId"  />
+                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" LabelWidth="150" />
+                                <ext:NumberField ID="deliveryDuration" runat="server" FieldLabel="<%$ Resources:deliveryDuration%>" Name="deliveryDuration"  AllowDecimals="false" LabelWidth="150" />
+                                 <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="true" LabelWidth="150" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="apId" Name="apId" FieldLabel="<%$ Resources:FieldApproval%>"  >
                               
                                                 <Store>
                                                     <ext:Store runat="server" ID="ApprovalStore" OnReadData="ApprovalStory_RefreshData">
@@ -237,7 +237,7 @@
                                                 </Store>
                                                 
                                             </ext:ComboBox>
-                                     <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="parentId" Name="parentId" FieldLabel="<%$ Resources:FieldParentName%>" SimpleSubmit="true">
+                                     <ext:ComboBox LabelWidth="150"   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="parentId" Name="parentId" FieldLabel="<%$ Resources:FieldParentName%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="parentStore" >
                                             <Model>
@@ -267,6 +267,9 @@
                                     </RightButtons>--%>
                                    
                                 </ext:ComboBox>
+                                  <ext:NumberField LabelWidth="150" ID="defaultWarrantyYears" runat="server" FieldLabel="<%$ Resources:DefaultWarrantyYears%>" Name="DefaultWarrantyYears"  AllowDecimals="false" />
+                                 <ext:NumberField LabelWidth="150" ID="defaultDepreciationYears" runat="server" FieldLabel="<%$ Resources:DefaultDepreciationYears%>" Name="defaultDepreciationYears"  AllowDecimals="false"  />
+                               
                               
                             </Items>
                           

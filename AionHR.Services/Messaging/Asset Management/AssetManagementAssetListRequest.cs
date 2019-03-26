@@ -14,10 +14,13 @@ namespace AionHR.Services.Messaging.Asset_Management
         public string departmentId { get; set; }
         public string supplierId { get; set; }
         public string branchId { get; set; }
+        public string PurchaseOrderId { get; set; }
         public override Dictionary<string, string> Parameters
         {
             get
             {
+                if (string.IsNullOrEmpty(PurchaseOrderId))
+                    PurchaseOrderId = "0";
                 parameters = base.Parameters;
                 parameters.Add("_categoryId", categoryId);
                 parameters.Add("_positionId", positionId);
@@ -25,6 +28,7 @@ namespace AionHR.Services.Messaging.Asset_Management
                 parameters.Add("_departmentId", departmentId);
                 parameters.Add("_supplierId", supplierId);
                 parameters.Add("_branchId", branchId);
+                parameters.Add("_poRef", PurchaseOrderId);
 
 
 

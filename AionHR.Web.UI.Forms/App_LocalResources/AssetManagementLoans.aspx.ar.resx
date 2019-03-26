@@ -120,6 +120,12 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>معلومات السلفة </value>
   </data>
+  <data name="DefaultDepreciationYears" xml:space="preserve">
+    <value>سنوات الاستهلاك الافتراضية</value>
+  </data>
+  <data name="DefaultWarrantyYears" xml:space="preserve">
+    <value>سنوات الضمان الافتراضية</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل معلومات السلفة </value>
   </data>

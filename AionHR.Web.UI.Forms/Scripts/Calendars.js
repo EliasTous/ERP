@@ -166,11 +166,15 @@ var enterKeyPressSearchHandler = function (el, event) {
     }
 };
 
-var colorify = function (tdID, color,date,dow) {
+var colorify = function (tdID, color, date, dow) {
+    if ($("#" + tdID) == null)
+        return;
     $("#" + tdID).attr("style", "background:" + color);
     $("#" + tdID).attr("title", dow+" -"+ date);
 };
 var init = function () {
+    if ($('#tbCalendar td') == null)
+        return;
     $('#tbCalendar td').each(function () {
         $(this).css('backgroundColor', '#ffffff');
     });
@@ -178,7 +182,8 @@ var init = function () {
 var setLeapDay = function () {
     
     
-   
+    if ($("#td0229") == null)
+        return;
     $("#td0229").addClass("notexist");
         $("#td0229").html("X");
         

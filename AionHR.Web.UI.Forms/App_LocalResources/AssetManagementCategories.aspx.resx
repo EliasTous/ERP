@@ -165,4 +165,10 @@
   <data name="CHECKBOX" xml:space="preserve">
     <value>CHECK BOX</value>
   </data>
+  <data name="DefaultDepreciationYears" xml:space="preserve">
+    <value>Default Depreciation Years</value>
+  </data>
+  <data name="DefaultWarrantyYears" xml:space="preserve">
+    <value>Default Warranty Years</value>
+  </data>
 </root>

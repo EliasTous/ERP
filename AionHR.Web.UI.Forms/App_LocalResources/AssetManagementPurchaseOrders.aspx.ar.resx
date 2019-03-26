@@ -190,7 +190,7 @@
     <value>قيد المعالجة </value>
   </data>
   <data name="Status2" xml:space="preserve">
-    <value>مثبت</value>
+    <value>تلقى</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>طلبات الشراء</value>
