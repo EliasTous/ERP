@@ -512,7 +512,7 @@ namespace AionHR.Web.UI.Forms
             //ListRequest request = new ListRequest();
             AssetLoanListRequest request = new AssetLoanListRequest();
             request.employeeId = _systemService.SessionHelper.GetEmployeeId();
-            request.apStatus = apStatusFilter.GetApprovalStatus();
+            request.status = apStatusFilter.GetApprovalStatus();
             ListResponse<AssetLoan> resp = _selfServiceService.ChildGetAll<AssetLoan>(request);
             if (!resp.Success)
             {

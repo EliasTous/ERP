@@ -256,7 +256,10 @@ namespace AionHR.Web.UI.Forms
             ListRequest branchesRequest = new ListRequest();
             ListResponse<LoanType> resp = _loanService.ChildGetAll<LoanType>(branchesRequest);
             if (!resp.Success)
-               Common.errorMessage(resp);
+            {
+                Common.errorMessage(resp);
+                return;
+            }
             ltStore.DataSource = resp.Items;
             ltStore.DataBind();
         }
@@ -842,7 +845,10 @@ namespace AionHR.Web.UI.Forms
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Currency> resp = _systemService.ChildGetAll<Currency>(branchesRequest);
             if (!resp.Success)
+            {
                 Common.errorMessage(resp);
+                return;
+            }
             currencyStore.DataSource = resp.Items;
             currencyStore.DataBind();
         }
