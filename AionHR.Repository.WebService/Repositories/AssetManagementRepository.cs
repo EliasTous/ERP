@@ -49,7 +49,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(AssetManagementOnBoarding), "getOB");
             ChildGetLookup.Add(typeof(AssetManagementLoan), "getLO");
             ChildGetLookup.Add(typeof(AssetManagementCategoryProperty), "getCP");
-
+            ChildAddOrUpdateLookup.Add(typeof(AssetPOReception), "genAS");
 
 
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementSupplier), "setSU");

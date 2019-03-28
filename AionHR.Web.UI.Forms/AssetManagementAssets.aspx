@@ -261,7 +261,9 @@
                                     <Items>
 
                                         <ext:TextField ID="recordId" Hidden="true" runat="server" Disabled="true" Name="recordId" />
-                                        <ext:TextField ID="assetRef" runat="server" FieldLabel="<%$ Resources:FieldAssetRef%>" Name="assetRef" />
+                                         <ext:TextField ID="assetRef" runat="server" FieldLabel="<%$ Resources:FieldAssetRef%>" Name="assetRef"  >
+                                      <Validator Handler="return !isNaN(this.value);" ></Validator>
+                                   </ext:TextField>
                                         <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" />
                                         <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="categoryId" FieldLabel="<%$ Resources:FieldCategory%>">
 
