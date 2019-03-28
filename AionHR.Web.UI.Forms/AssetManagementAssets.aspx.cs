@@ -86,7 +86,7 @@ namespace AionHR.Web.UI.Forms
 
             if (!X.IsAjaxRequest && !IsPostBack)
             {
-
+            
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
@@ -102,7 +102,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-
+                
 
             }
 
@@ -201,7 +201,8 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             FillCurrency();
             FillBranch();
-            
+            Panel8.Disabled = false;
+            panelRecordDetails.ActiveIndex = 0;
             switch (type)
             {
                 case "imgEdit":
@@ -218,6 +219,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     FillStatus();
                     FillCondition();
+                    FillCategories();
                     this.BasicInfoTab.SetValues(response.result);
                     if (response.result.status == 4)
                     {
@@ -233,7 +235,7 @@ namespace AionHR.Web.UI.Forms
                    
                   //  status.Select( XMLStatus.Where(x => x.key == response.result.status).Count() != 0 ? XMLStatus.Where(x => x.key == response.result.status).First().value.ToString() : string.Empty);
                     supplierId.setSupplier(response.result.supplierId);
-                    categoryId.setCategory(response.result.categoryId);
+                   
                     employeeFullName.Text = response.result.employeeName.fullName;
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -406,8 +408,11 @@ namespace AionHR.Web.UI.Forms
             FillBranch();
             FillStatus();
             FillCondition();
+            FillCategories();
+            Panel8.Disabled = true;
             SetBasicInfoFormEnable(true);
             BasicInfoTab.Reset();
+            panelRecordDetails.ActiveIndex = 0;
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -454,7 +459,7 @@ namespace AionHR.Web.UI.Forms
                 
             }
            
-            categoryId.disabled= !isEnable;
+            categoryId.Disabled= !isEnable;
             supplierId.disabled= !isEnable;
 
             SaveButton.Disabled = !isEnable;
@@ -493,7 +498,20 @@ namespace AionHR.Web.UI.Forms
             this.Store1.DataBind();
         }
 
+        private void FillCategories()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<AssetManagementCategory> resp = _assetManagementService.ChildGetAll<AssetManagementCategory>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                Common.errorMessage(resp);
+                return;
+            }
 
+            categoryIdStore.DataSource = resp.Items;
+            categoryIdStore.DataBind();
+        }
 
         private void FillCurrency()
         {
@@ -519,7 +537,7 @@ namespace AionHR.Web.UI.Forms
                     b.depreciationDate = DateTime.Parse(disposedDate);
                 b.recordId = id;
                 b.supplierId = supplierId.GetSupplierId()=="0"?null: supplierId.GetSupplierId();
-                b.categoryId = categoryId.GetCategoryId() == "0" ? null : categoryId.GetCategoryId();
+                
 
                 // Define the object to add or edit as null
 
@@ -557,10 +575,10 @@ namespace AionHR.Web.UI.Forms
                                 Html = Resources.Common.RecordSavingSucc
                             });
 
-                            this.EditRecordWindow.Close();
+                            
                             Store1.Reload();
-
-
+                            Panel8.Disabled = false;
+                            currentAsset.Text = r.recordId;
 
                         }
                     }
@@ -640,6 +658,8 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
+
+        
 
 
     }

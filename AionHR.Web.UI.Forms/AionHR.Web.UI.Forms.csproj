@@ -185,6 +185,7 @@
     <Content Include="AssetManagementOnboardings.aspx" />
     <Content Include="AssetManagementPurchaseOrders.aspx" />
     <Content Include="AssetManagementSuppliers.aspx" />
+    <Content Include="AssetPropertyExplorer.aspx" />
     <Content Include="BlankPage.aspx" />
     <Content Include="BonusTypes.aspx" />
     <Content Include="BusinessPartnerCategories.aspx" />
@@ -723,6 +724,13 @@
     </Compile>
     <Compile Include="AssetManagementSuppliers.aspx.designer.cs">
       <DependentUpon>AssetManagementSuppliers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetPropertyExplorer.aspx.cs">
+      <DependentUpon>AssetPropertyExplorer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetPropertyExplorer.aspx.designer.cs">
+      <DependentUpon>AssetPropertyExplorer.aspx</DependentUpon>
     </Compile>
     <Compile Include="BlankPage.aspx.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>

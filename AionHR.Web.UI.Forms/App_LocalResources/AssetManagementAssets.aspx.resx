@@ -183,4 +183,7 @@
   <data name="FieldAssetRef" xml:space="preserve">
     <value>Ref</value>
   </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
 </root>

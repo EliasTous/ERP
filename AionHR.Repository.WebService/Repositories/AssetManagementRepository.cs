@@ -36,7 +36,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(AssetManagementLoan), "qryLO");
             ChildGetAllLookup.Add(typeof(AssetManagementPurchaseOrderApproval), "qryPA");
             ChildGetAllLookup.Add(typeof(AssetManagementCategoryProperty), "qryCP");
-
+            ChildGetAllLookup.Add(typeof(AssetPropertyValue), "qryAP");
 
 
 
@@ -59,7 +59,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementLoan), "setLO");
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementCategoryProperty), "setCP");
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementPurchaseOrderApproval), "setPA");
-            
+            ChildAddOrUpdateLookup.Add(typeof(AssetPropertyValue), "setAP");
+
             ChildAddOrUpdateLookup.Add(typeof(AssetPOReception), "genAS");
 
             ChildDeleteLookup.Add(typeof(AssetManagementSupplier), "delSU");

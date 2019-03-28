@@ -183,4 +183,7 @@
   <data name="FieldAssetRef" xml:space="preserve">
     <value>الرمز</value>
   </data>
+  <data name="Properties" xml:space="preserve">
+    <value>خصائص</value>
+  </data>
 </root>
