@@ -26,4 +26,24 @@ namespace AionHR.Services.Messaging.Asset_Management
             }
         }
     }
+
+    public class AssetPropertyValueListRequest : ListRequest
+    {
+        public string categoryId { get; set; }
+        public string assetId { get; set; }
+        public override Dictionary<string, string> Parameters
+        {
+            get
+            {
+                
+                parameters = base.Parameters;
+
+                parameters.Add("_categoryId", categoryId);
+                parameters.Add("_assetId", assetId);
+
+
+                return parameters;
+            }
+        }
+    }
 }

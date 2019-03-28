@@ -72,6 +72,7 @@
     <Compile Include="AssetManagement\AssetManagementPurchaseOrderApproval.cs" />
     <Compile Include="AssetManagement\AssetManagementSupplier.cs" />
     <Compile Include="AssetManagement\AssetManagementCategoryProperty.cs" />
+    <Compile Include="AssetManagement\AssetPropertyValue.cs" />
     <Compile Include="AssetManagement\IAssetManagementRepository.cs" />
     <Compile Include="Attributes\PropertyID.cs" />
     <Compile Include="Benefits\Benefit.cs" />

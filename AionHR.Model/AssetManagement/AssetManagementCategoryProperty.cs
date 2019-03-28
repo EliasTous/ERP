@@ -12,5 +12,7 @@ namespace AionHR.Model.AssetManagement
         public string propertyId { get; set; }
         public string caption { get; set; }
         public short? mask { get; set; }
+        
+        
     }
 }

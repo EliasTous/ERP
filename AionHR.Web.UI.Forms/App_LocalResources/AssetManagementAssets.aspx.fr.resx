@@ -177,4 +177,7 @@
   <data name="FieldSupplier" xml:space="preserve">
     <value>Fournisseur</value>
   </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
 </root>

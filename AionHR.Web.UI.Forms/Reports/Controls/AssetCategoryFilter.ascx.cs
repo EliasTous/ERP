@@ -12,10 +12,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static Ext.Net.ComponentDirectEvent;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-   
+
     public partial class AssetCategoryFilter : System.Web.UI.UserControl
     {
         public bool? disabled { get; set; }
@@ -24,6 +25,9 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         public string labelWidth { get; set; }
         public string FieldLabel { get; set; }
         public string Layout { get; set; }
+
+
+
         IAssetManagementService _assetManagementService = ServiceLocator.Current.GetInstance<IAssetManagementService>();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -39,14 +43,14 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             if (!string.IsNullOrEmpty(width))
             {
                 categoryId.Width = Convert.ToInt32(width);
-               // categoryIdPanel.Width = Convert.ToInt32(width);
+                // categoryIdPanel.Width = Convert.ToInt32(width);
             }
             if (!string.IsNullOrEmpty(labelWidth))
                 categoryId.LabelWidth = Convert.ToInt32(labelWidth);
             if (!string.IsNullOrEmpty(FieldLabel))
                 categoryId.FieldLabel = FieldLabel;
             if (!string.IsNullOrEmpty(AllowBlank))
-                categoryId.AllowBlank = Convert.ToBoolean(AllowBlank) ;
+                categoryId.AllowBlank = Convert.ToBoolean(AllowBlank);
             //if (!string.IsNullOrEmpty(Layout) && Layout == "Auto")
             //    categoryIdPanel.UpdateLayout(LayoutType.Auto);
             //if (!string.IsNullOrEmpty(Layout) && Layout == "Fit")
@@ -55,6 +59,8 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
         }
 
+
+
         private void FillCategories()
         {
             ListRequest req = new ListRequest();
@@ -62,7 +68,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-               Common.errorMessage(resp);
+                Common.errorMessage(resp);
                 return;
             }
 
@@ -72,7 +78,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
         public string GetCategoryId()
         {
-          
+
 
             if (!string.IsNullOrEmpty(categoryId.Text) && categoryId.Value.ToString() != "0")
             {
@@ -86,21 +92,23 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                 return "0";
 
             }
-          
+
         }
         public void setCategory(string category)
         {
-            if(!string.IsNullOrEmpty(category))
+            if (!string.IsNullOrEmpty(category))
             {
                 categoryId.SetValue(category);
                 categoryId.Select(category);
             }
-          
+
         }
         public void ADDHandler(string Event, string Function)
         {
 
             this.categoryId.AddListener(Event, "function() {" + Function + "}");
         }
+
+   
     }
 }

@@ -14,6 +14,7 @@ namespace AionHR.Services.Messaging.Asset_Management
         public string departmentId { get; set; }
         public string supplierId { get; set; }
         public string branchId { get; set; }
+        public string poRef { get; set; }
         public override Dictionary<string, string> Parameters
         {
             get
@@ -25,7 +26,7 @@ namespace AionHR.Services.Messaging.Asset_Management
                 parameters.Add("_departmentId", departmentId);
                 parameters.Add("_supplierId", supplierId);
                 parameters.Add("_branchId", branchId);
-
+                parameters.Add("_poRef", "0");
 
 
                 return parameters;
