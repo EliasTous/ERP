@@ -13,7 +13,7 @@
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" >
         function hideWindow() {
-            App.EditRecordWindow.hide();
+            App.EditRecordWindow.close();
         }
 
     </script>
@@ -437,7 +437,7 @@
                 </ext:Button>
                 <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
-                        <Click Handler="this.up('window').hide();" />
+                        <Click Handler="this.up('window').close();" />
                     </Listeners>
                 </ext:Button>
             </Buttons>

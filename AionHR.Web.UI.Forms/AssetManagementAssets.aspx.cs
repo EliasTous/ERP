@@ -197,6 +197,7 @@ namespace AionHR.Web.UI.Forms
         {
             branchId.ReadOnly = true;
             disposedDate.Hidden = true;
+            BasicInfoTab.Reset();
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             FillCurrency();
