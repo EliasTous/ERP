@@ -135,4 +135,10 @@
   <data name="CHECKBOX" xml:space="preserve">
     <value>Case à Cocher</value>
   </data>
+  <data name="DefaultDepreciationYears" xml:space="preserve">
+    <value>Années d'amortissement par défaut</value>
+  </data>
+  <data name="DefaultWarrantyYears" xml:space="preserve">
+    <value>Années de garantie par défaut</value>
+  </data>
 </root>

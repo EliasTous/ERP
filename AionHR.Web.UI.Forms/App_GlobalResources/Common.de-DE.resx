@@ -118,43 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessControl" xml:space="preserve">
-    <value>Access Control</value>
+    <value>Zugangkontrolle</value>
   </data>
   <data name="Active" xml:space="preserve">
-    <value>Active</value>
+    <value>Aktiv</value>
   </data>
   <data name="ActiveModule" xml:space="preserve">
-    <value>Active Module</value>
+    <value>Aktieves Modul</value>
   </data>
   <data name="Activities" xml:space="preserve">
-    <value>Activities</value>
+    <value>Tätigkeiten</value>
   </data>
   <data name="Add" xml:space="preserve">
     <value />
   </data>
   <data name="AddNewRecord" xml:space="preserve">
-    <value>Add New Record</value>
+    <value>Füge neuen Datensatz hinzu</value>
   </data>
   <data name="adminBusinessPartner" xml:space="preserve">
-    <value>Business Partner </value>
-  </data>
-  <data name="AdminDepts" xml:space="preserve">
-    <value>Admin Departments</value>
+    <value>Arbeitspartner</value>
   </data>
   <data name="AdministrationAffairs" xml:space="preserve">
-    <value>Administration Affairs</value>
+    <value>Administration Angelegnhiten</value>
   </data>
   <data name="AdminTemplates" xml:space="preserve">
-    <value>Letters Templates</value>
+    <value>Buchstaben Vorlagen</value>
   </data>
   <data name="AfterPageText" xml:space="preserve">
-    <value>of {0}</value>
+    <value>auf {0}</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>All</value>
-  </data>
-  <data name="AllowanceTypes" xml:space="preserve">
-    <value>Allowance Types</value>
+    <value>Alles</value>
   </data>
   <data name="ApplicationModule" xml:space="preserve">
     <value />
@@ -163,1149 +157,1155 @@
     <value>AionHR</value>
   </data>
   <data name="Approvals" xml:space="preserve">
-    <value>Approvals</value>
+    <value>Bestätigungen</value>
   </data>
   <data name="Approved" xml:space="preserve">
-    <value>Approved</value>
+    <value>Bestätigt</value>
   </data>
   <data name="April" xml:space="preserve">
     <value>April</value>
   </data>
   <data name="ArabicLanguage" xml:space="preserve">
-    <value>Arabic</value>
+    <value>Arabisch</value>
   </data>
   <data name="AssetAllowances" xml:space="preserve">
-    <value>Asset Allowances</value>
+    <value>Abschreibungsbeträge</value>
   </data>
   <data name="AssetAllowancesSelfService" xml:space="preserve">
-    <value>Asset Allowances</value>
+    <value>Abschreibungsbeträge</value>
   </data>
   <data name="AssetCategories" xml:space="preserve">
-    <value>Asset Categories</value>
-  </data>
-  <data name="AssetLoans" xml:space="preserve">
-    <value>Asset Loans</value>
+    <value>Asset Kategorien</value>
   </data>
   <data name="AssetManagement" xml:space="preserve">
-    <value>Asset Management</value>
+    <value>Assetlmanagement</value>
   </data>
   <data name="AssetManagementCategory" xml:space="preserve">
-    <value>Categories</value>
+    <value>Katagorien</value>
   </data>
   <data name="Assets" xml:space="preserve">
-    <value>Assets</value>
+    <value>Asset</value>
   </data>
   <data name="Attach" xml:space="preserve">
-    <value>Attach</value>
+    <value>Anhang</value>
   </data>
   <data name="Attendance" xml:space="preserve">
-    <value>Attendance</value>
+    <value>Anwesenheit</value>
   </data>
   <data name="AttendanceDay" xml:space="preserve">
-    <value>Attendance Day</value>
+    <value>Anwesenheitstag</value>
   </data>
   <data name="AttendanceSchedule" xml:space="preserve">
-    <value>Schedule</value>
+    <value>Plan</value>
   </data>
   <data name="August" xml:space="preserve">
     <value>August</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>zurück</value>
   </data>
   <data name="bank" xml:space="preserve">
-    <value>Banks</value>
+    <value>Bänke</value>
   </data>
   <data name="BeforePageText" xml:space="preserve">
-    <value>Page</value>
+    <value>Seite</value>
   </data>
   <data name="BenefitAcquisition" xml:space="preserve">
-    <value>Benefit Acquisition</value>
+    <value>Vorteile Acquisition</value>
   </data>
   <data name="Benefits" xml:space="preserve">
-    <value>Benefits</value>
+    <value>Vorteile</value>
   </data>
   <data name="BenefitsSchedule" xml:space="preserve">
-    <value>Schedule</value>
+    <value>Plan</value>
   </data>
   <data name="BiometricDevices" xml:space="preserve">
-    <value>Biometric Devices</value>
+    <value>Biometrische Geräte </value>
   </data>
   <data name="BonusTypes" xml:space="preserve">
-    <value>Bonus Types</value>
+    <value>Zugabe Art </value>
   </data>
   <data name="Branches" xml:space="preserve">
-    <value>Branches</value>
+    <value>Branche</value>
   </data>
   <data name="BusinessPartner" xml:space="preserve">
-    <value>Business Partner</value>
+    <value>Arbeitspartner</value>
   </data>
   <data name="BusinessPartnerCategory" xml:space="preserve">
-    <value>Business Partner Category</value>
+    <value>Arbeitspartner Kategorie</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Abbrechen</value>
   </data>
   <data name="CaseManagement" xml:space="preserve">
-    <value>Cases</value>
+    <value>Fälle</value>
   </data>
   <data name="Cases" xml:space="preserve">
-    <value>Cases</value>
+    <value>Fälle</value>
   </data>
   <data name="CaseSensitive" xml:space="preserve">
-    <value>Case Sensitive</value>
+    <value>Kritischer Fall</value>
   </data>
   <data name="CasesLeaf" xml:space="preserve">
-    <value>Manage Cases</value>
+    <value>Fall Behandlung</value>
   </data>
   <data name="CertificateLevels" xml:space="preserve">
-    <value>Certificate Levels</value>
+    <value>Zertifikat Niveau</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
-    <value>Change Password</value>
+    <value>Passwort ändern</value>
   </data>
   <data name="CheckTypes" xml:space="preserve">
-    <value>BackgroundCheck Types</value>
+    <value>Art der Hintergrundekontrolle </value>
   </data>
   <data name="CloseAllTabsText" xml:space="preserve">
-    <value>Close All Tabs</value>
+    <value>Alle Fenster schließen</value>
   </data>
   <data name="CloseOthersTabsText" xml:space="preserve">
-    <value>Close Others Tabs</value>
+    <value>Andere Fester schließen</value>
   </data>
   <data name="CloseTabText" xml:space="preserve">
-    <value>Close Tab </value>
+    <value>Fenster schließen</value>
   </data>
   <data name="CollapseAll" xml:space="preserve">
-    <value>Collapse All</value>
+    <value>Alles scheitern</value>
   </data>
   <data name="CollapsePanel" xml:space="preserve">
-    <value>Close</value>
+    <value>Schließen</value>
   </data>
   <data name="ColumnsText" xml:space="preserve">
-    <value>Columns</value>
+    <value>Spalten</value>
   </data>
   <data name="Company" xml:space="preserve">
-    <value>Company Information</value>
+    <value>Firma Informationen</value>
   </data>
   <data name="CompanyDocumentTypes" xml:space="preserve">
-    <value>Document Types</value>
+    <value>Dokument´s Art</value>
   </data>
   <data name="CompanyLetter" xml:space="preserve">
-    <value>Letter</value>
+    <value>Buchstaben</value>
   </data>
   <data name="CompanyNews" xml:space="preserve">
-    <value>News</value>
+    <value>Nachrichten</value>
   </data>
   <data name="CompanyRightToWorks" xml:space="preserve">
-    <value>Right To Work</value>
+    <value>Arbeitsrecht </value>
   </data>
   <data name="CompanyStructure" xml:space="preserve">
-    <value>Company Structure</value>
+    <value>Firmastruktur</value>
   </data>
   <data name="Confirmation" xml:space="preserve">
-    <value>Confirmation</value>
+    <value>Bestätigung</value>
   </data>
   <data name="CopyRight" xml:space="preserve">
-    <value>© 2017 AionHR. All rights reserved.</value>
+    <value>© 2017 AionHR. Alle Rechte reserviert.</value>
   </data>
   <data name="COUNT" xml:space="preserve">
-    <value>Count</value>
+    <value>zählen</value>
   </data>
   <data name="Currencies" xml:space="preserve">
-    <value>Currencies</value>
+    <value>Währung</value>
   </data>
   <data name="DailySchedule" xml:space="preserve">
-    <value>Daily Schedule</value>
+    <value>Täglicher Plan</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>Armaturenbrett</value>
   </data>
   <data name="data" xml:space="preserve">
-    <value>Data</value>
+    <value>Datei</value>
   </data>
   <data name="Day" xml:space="preserve">
-    <value> Day</value>
+    <value>Tag</value>
   </data>
   <data name="DayAvailability" xml:space="preserve">
-    <value>Day Availability</value>
+    <value>Verfügbartag</value>
   </data>
   <data name="Days" xml:space="preserve">
-    <value>Vacation(Hours)</value>
+    <value>Urlaub(Stunden)</value>
   </data>
   <data name="DayTypes" xml:space="preserve">
-    <value>Day Types</value>
+    <value>Tag´s Art</value>
   </data>
   <data name="Day_Bonus" xml:space="preserve">
-    <value>Day Bonus</value>
+    <value>Tageszugabe</value>
   </data>
   <data name="DAY_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
-    <value>Day Leave Without Excuse</value>
+    <value>Aufhörntag ohne Grund</value>
   </data>
   <data name="December" xml:space="preserve">
-    <value>December</value>
+    <value>Dezember</value>
   </data>
   <data name="Deduction" xml:space="preserve">
-    <value>Deduction</value>
+    <value>Abteilug</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>löschen</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
-    <value>Delete </value>
+    <value>löschen</value>
   </data>
   <data name="DeleteAllBranchAttendance" xml:space="preserve">
-    <value>Delete Branch Attendances</value>
+    <value>Anwesenheitesbrunche löschen</value>
   </data>
   <data name="deleteAttendanceDaySucc" xml:space="preserve">
-    <value>Attendance Schedule Deleted Successfully</value>
+    <value>Anweseheitspan erfolgreich gelöscht</value>
   </data>
   <data name="DeleteManyRecord" xml:space="preserve">
-    <value>Are you sure you want to delete the selected records ?</value>
+    <value>Möchten Sie die ausgewälten Datensätze löschen?</value>
   </data>
   <data name="DeleteOneRecord" xml:space="preserve">
-    <value>Are you sure you want to delete the selected record ?</value>
+    <value>Möchten Sie die ausgewälten Datensätze löschen?</value>
   </data>
   <data name="Departments" xml:space="preserve">
-    <value>Departments</value>
+    <value>Abteiungen</value>
   </data>
   <data name="DisplayMsg" xml:space="preserve">
-    <value>Displaying Records {0} - {1} of {2}</value>
+    <value>Anzeigen Datensätze {0} - {1} auf {2}</value>
   </data>
   <data name="Divisions" xml:space="preserve">
-    <value>Divisions</value>
+    <value>Bereiche</value>
   </data>
   <data name="DocumentCategory" xml:space="preserve">
-    <value>Document Category</value>
+    <value>Dokument Kategorien</value>
   </data>
   <data name="Documents" xml:space="preserve">
-    <value>Documents</value>
+    <value>Dokumente</value>
   </data>
   <data name="DocumentTypes" xml:space="preserve">
-    <value>Document Types</value>
+    <value>Dokument Art</value>
   </data>
   <data name="DURING_SHIFT_LEAVE" xml:space="preserve">
-    <value>During Shift Leave</value>
+    <value>Wähernd der Schicht Losgehen</value>
   </data>
   <data name="EARLY_CHECKIN" xml:space="preserve">
-    <value>Early Check In</value>
+    <value>Früher Check In</value>
   </data>
   <data name="EARLY_LEAVE" xml:space="preserve">
-    <value>Early Leave</value>
+    <value>Früher Losghen</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Bearbeiten</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Record</value>
+    <value>Datensatz bearbeiten</value>
   </data>
   <data name="EmailNotFound" xml:space="preserve">
-    <value>Could not find a vaild email to send the reset password link</value>
+    <value>Es wurde keine gültige E-Mail Adresse zur Zurücksetzung des Passworts gefunden</value>
   </data>
   <data name="EmailReport" xml:space="preserve">
-    <value>Email Report</value>
+    <value>Email Berichte</value>
   </data>
   <data name="Employee" xml:space="preserve">
-    <value>Employees</value>
+    <value>Mitarbeiter</value>
   </data>
   <data name="EmployeeCalender" xml:space="preserve">
-    <value>Employee Calender </value>
+    <value>Mitarbeiter-kalender</value>
   </data>
   <data name="EmployeeComplaints" xml:space="preserve">
-    <value>Employee Complaints</value>
+    <value>Mitarbeiter Beschwerde</value>
   </data>
   <data name="EmployeeComplaintsSelfServices" xml:space="preserve">
-    <value>Complaints</value>
+    <value>Beschwerde</value>
   </data>
   <data name="EmployeeFiles" xml:space="preserve">
-    <value>Employees</value>
+    <value>Mitarbeiter</value>
   </data>
   <data name="EmployeeLeaf" xml:space="preserve">
-    <value>Directory</value>
+    <value>Adressenverzeichnis</value>
   </data>
   <data name="EmployeePenalty" xml:space="preserve">
-    <value>Employee Penalty</value>
+    <value>Mitarbeiterstrafe</value>
   </data>
   <data name="EmpOrganizationChart" xml:space="preserve">
-    <value>Employee Chart</value>
+    <value>Mitarbeitsdiagramm</value>
   </data>
   <data name="EmptyMsg" xml:space="preserve">
-    <value>No Record to Display</value>
+    <value>Keine Rekorde anzuzeigen</value>
   </data>
   <data name="EmptyPayRef" xml:space="preserve">
-    <value>Please fill Pay Ref</value>
+    <value>Bitte fülle Pay Ref aus!</value>
   </data>
   <data name="EnglishLanguage" xml:space="preserve">
-    <value>English</value>
+    <value>Englisch</value>
   </data>
   <data name="Entitlement" xml:space="preserve">
-    <value>Entitlement</value>
+    <value>Anspruch</value>
   </data>
   <data name="EntitlementDeduction" xml:space="preserve">
-    <value>Entitlement Deduction</value>
+    <value>Anspruchsabzug</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Error</value>
+    <value>Fehler</value>
   </data>
   <data name="ErrorAccessDenied" xml:space="preserve">
-    <value>You don't have access to view this resource, please contact your administrator for more information</value>
+    <value>Sie haben keinen Zugriff auf diese Ressource. Wenden Sie sich an Ihren Administrator, um weitere Informationen zu erhalten</value>
   </data>
   <data name="ErrorDeletingRecord" xml:space="preserve">
-    <value>Error Deleting Record,try again later.</value>
+    <value>Fehler beim Löschen des Datensatzes. Versuchen Sie es später erneut!</value>
   </data>
   <data name="ErrorEmptyValue" xml:space="preserve">
-    <value>Please Select Employee</value>
+    <value>Bitte wählen Sie Mitarbeiter aus!</value>
   </data>
   <data name="ErrorOperation" xml:space="preserve">
-    <value>Error In Operation, Try again Later !</value>
+    <value>Fehler im Betrieb, später erneut versuchen!</value>
   </data>
   <data name="ErrorSavingRecord" xml:space="preserve">
-    <value>Error Saving this Record.</value>
+    <value>Fehler beim Speichern dieses Datensatzes.</value>
   </data>
   <data name="ErrorUpdatingRecord" xml:space="preserve">
-    <value>Error Updating this Record.</value>
+    <value>Fehler beim Aktualisieren dieses Datensatzes.</value>
   </data>
   <data name="ExceptionMessage" xml:space="preserve">
-    <value>Exception Message :</value>
+    <value>Ausnahmemeldung:</value>
   </data>
   <data name="ExpandAll" xml:space="preserve">
-    <value>Expand All</value>
+    <value>Alle erweitern</value>
   </data>
   <data name="ExpandPanel" xml:space="preserve">
-    <value>Expand</value>
+    <value>Erweitern</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Export</value>
+    <value>Exportieren</value>
   </data>
   <data name="ExportAsPdf" xml:space="preserve">
-    <value>Export as PDF</value>
+    <value>Export als PDF</value>
   </data>
   <data name="February" xml:space="preserve">
-    <value>February</value>
+    <value>Februar</value>
   </data>
   <data name="Female" xml:space="preserve">
-    <value>Female</value>
+    <value>Weiblich</value>
   </data>
   <data name="FieldAll" xml:space="preserve">
-    <value>All</value>
+    <value>Alles</value>
   </data>
   <data name="FieldApprovalStatus" xml:space="preserve">
-    <value>Approval Status</value>
+    <value>Freigabestand</value>
   </data>
   <data name="FieldApproved" xml:space="preserve">
-    <value>Approved</value>
+    <value>Genehmigt</value>
   </data>
   <data name="FieldCategory" xml:space="preserve">
-    <value>Category</value>
+    <value>Kategorie</value>
   </data>
   <data name="FieldChangeType" xml:space="preserve">
-    <value>Activity</value>
+    <value>Tätigkeit</value>
   </data>
   <data name="FieldCurrency" xml:space="preserve">
-    <value>Currency</value>
+    <value>Währung</value>
   </data>
   <data name="FieldDate" xml:space="preserve">
-    <value>Date</value>
+    <value>Datum</value>
   </data>
   <data name="FieldDetails" xml:space="preserve">
     <value>Details</value>
   </data>
   <data name="FieldEHStatus" xml:space="preserve">
-    <value>Employment Status</value>
+    <value>Arbeitsverhältnis</value>
   </data>
   <data name="FieldLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>Sprache</value>
   </data>
   <data name="FieldNew" xml:space="preserve">
-    <value>New</value>
+    <value>Neu</value>
   </data>
   <data name="FieldPenaltyName" xml:space="preserve">
-    <value>Penalty</value>
+    <value>Strafe</value>
   </data>
   <data name="FieldRejected" xml:space="preserve">
-    <value>Rejected</value>
+    <value>Abgelehnt</value>
   </data>
   <data name="FieldTimeVariationType" xml:space="preserve">
-    <value>Time Variation Type</value>
+    <value>Zeitvariationstyp</value>
   </data>
   <data name="FieldUsername" xml:space="preserve">
-    <value>User</value>
+    <value>Nutzer</value>
   </data>
   <data name="Files" xml:space="preserve">
-    <value>Files</value>
+    <value>Dateien</value>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Filter</value>
   </data>
   <data name="FilterEmployee" xml:space="preserve">
-    <value>Employee</value>
+    <value>Mitarbeiter</value>
   </data>
   <data name="FilterSelection" xml:space="preserve">
-    <value>Please choose at least two filters or decrease the difference between dates</value>
+    <value>Bitte wählen Sie mindestens zwei Filter aus oder verringern Sie die Differenz zwischen den Daten</value>
   </data>
   <data name="FinalSettlements" xml:space="preserve">
-    <value>Final Settlements</value>
+    <value>Schlussabrechnungen</value>
   </data>
   <data name="FirstNameLastName" xml:space="preserve">
-    <value>First Name , Last Name</value>
+    <value>Vorname, Nachname</value>
   </data>
   <data name="FirstNameMiddleNameLastName" xml:space="preserve">
-    <value>First Name, Middle Name, Last Name</value>
+    <value>Vorname, Mittelname, Nachname</value>
   </data>
   <data name="FirstText" xml:space="preserve">
-    <value>First</value>
+    <value>Erst</value>
   </data>
   <data name="FiscalYears" xml:space="preserve">
-    <value>Fiscal Years</value>
+    <value>Geschäftsjahre</value>
   </data>
   <data name="Folders" xml:space="preserve">
-    <value>Folders</value>
+    <value>Ordner</value>
   </data>
   <data name="FrenchLanguage" xml:space="preserve">
-    <value>French</value>
+    <value>Französisch</value>
   </data>
   <data name="FridayText" xml:space="preserve">
-    <value>Friday</value>
+    <value>Freitag</value>
   </data>
   <data name="Generate" xml:space="preserve">
-    <value>Generate</value>
+    <value>erzeugen</value>
+    <comment>generieren</comment>
   </data>
   <data name="GenerateAttendanceDays" xml:space="preserve">
-    <value>Generate Default Schedule</value>
+    <value>Standardzeitplan erzeugen</value>
   </data>
   <data name="GenerateAttendanceDaySucc" xml:space="preserve">
-    <value>Attendance Schedule Generated Successfully</value>
+    <value>Anwesenheitsplan erfolgreich erstellt</value>
   </data>
   <data name="GenerateAttendanceShift" xml:space="preserve">
-    <value>Generate Attendance Shifts</value>
+    <value>Anwesenheitsverschiebungen erzeugen</value>
   </data>
   <data name="GenerateAttendanceShiftSucc" xml:space="preserve">
-    <value>Attendance Shifts Generated Successfully</value>
+    <value>Anwesenheitsverschiebungen erfolgreich erzeugt</value>
   </data>
   <data name="GeneratePayroll" xml:space="preserve">
-    <value>Generate Payroll</value>
+    <value>Personalabrechnung erzeugen</value>
   </data>
   <data name="Geofences" xml:space="preserve">
     <value>Geofences</value>
   </data>
   <data name="Go" xml:space="preserve">
-    <value>Go</value>
+    <value>Los</value>
   </data>
   <data name="Gold" xml:space="preserve">
     <value>Gold</value>
   </data>
   <data name="GovernmentOrganisations" xml:space="preserve">
-    <value>Government Organisations</value>
+    <value>Regierungsorganisationen</value>
   </data>
   <data name="Gregorian" xml:space="preserve">
-    <value>Gregorian</value>
+    <value>Gregorianisch</value>
   </data>
   <data name="Hijri" xml:space="preserve">
     <value>Hijri</value>
   </data>
   <data name="Hint" xml:space="preserve">
-    <value>Hint</value>
+    <value>Hinweis</value>
   </data>
   <data name="History" xml:space="preserve">
-    <value>History</value>
+    <value>Historie</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Home</value>
+    <value>Erste Seite</value>
   </data>
   <data name="Import" xml:space="preserve">
-    <value>Import</value>
+    <value>Einführen</value>
   </data>
   <data name="ImportAttendance" xml:space="preserve">
-    <value>Import Attendance</value>
+    <value>Anwesenheit einführen </value>
   </data>
   <data name="importCalendar" xml:space="preserve">
-    <value>Import Calendar</value>
+    <value>Kalender einführen  </value>
   </data>
   <data name="ImportDepartments" xml:space="preserve">
-    <value>Import Departments</value>
+    <value>Abteilungen einführen  </value>
   </data>
   <data name="ImportEmployees" xml:space="preserve">
-    <value>Import Employees</value>
+    <value>Mitarbeiter einführen</value>
   </data>
   <data name="ImportEmploymentStatus" xml:space="preserve">
-    <value>Import Employment Status</value>
+    <value>Arbeitsverhältnis einführen </value>
   </data>
   <data name="ImportJobInfo" xml:space="preserve">
-    <value>Import Job Info</value>
+    <value>Job Info einführen </value>
   </data>
   <data name="ImportLeaves" xml:space="preserve">
-    <value>Import Leaves</value>
+    <value>Verlassen einführen</value>
+    <comment>(Urlaub)</comment>
   </data>
   <data name="ImportLoans" xml:space="preserve">
-    <value>Import Loans Details</value>
+    <value>Darlehensdetails einführen</value>
   </data>
   <data name="ImportNotes" xml:space="preserve">
-    <value>Import Employee Notes</value>
+    <value>Mitarbeiterhinweise einführen</value>
   </data>
   <data name="ImportOvertimeSettings" xml:space="preserve">
-    <value>Import Overtime Settings</value>
+    <value>Überstundeneinstellungen einführen</value>
   </data>
   <data name="importPayCodes" xml:space="preserve">
-    <value>Import Pay Codes</value>
+    <value>Zahlungscodes einführen</value>
   </data>
   <data name="ImportPunches" xml:space="preserve">
-    <value>Import Punches</value>
+    <value>Punches einführen</value>
   </data>
   <data name="ImportRTW" xml:space="preserve">
-    <value>Import Right To Work</value>
+    <value>Arbeitsrechte einführen</value>
   </data>
   <data name="importSa" xml:space="preserve">
-    <value>Import Salaries</value>
+    <value>Gehälter einführen</value>
   </data>
   <data name="Inactive" xml:space="preserve">
-    <value>Inactive</value>
+    <value>Inaktiv</value>
   </data>
   <data name="January" xml:space="preserve">
-    <value>January</value>
+    <value>Januar</value>
   </data>
   <data name="July" xml:space="preserve">
-    <value>July</value>
+    <value>Juli</value>
   </data>
   <data name="June" xml:space="preserve">
-    <value>June</value>
+    <value>Junie</value>
   </data>
   <data name="LanguageSwitch" xml:space="preserve">
-    <value>عربي</value>
+    <value>Arabisch</value>
   </data>
   <data name="LastNameFirstName" xml:space="preserve">
-    <value>Last Name, First Name</value>
+    <value>Name, Vorname</value>
   </data>
   <data name="LastText" xml:space="preserve">
-    <value>Last</value>
+    <value>Letzt</value>
   </data>
   <data name="LATE_CHECKIN" xml:space="preserve">
-    <value>Late Check In</value>
+    <value>Später Check-In</value>
   </data>
   <data name="Leave" xml:space="preserve">
-    <value>Leave</value>
+    <value>Verlassen</value>
+    <comment>Urlaub</comment>
   </data>
   <data name="LeaveCalendar" xml:space="preserve">
-    <value>Leave Calendar</value>
+    <value>Verlassen-Kalender</value>
   </data>
   <data name="LeaveManagement" xml:space="preserve">
-    <value>Leave Management</value>
+    <value>Verlassen-Management</value>
   </data>
   <data name="LeavePayment" xml:space="preserve">
-    <value>Leave Payment</value>
+    <value>Verlassen-Zahlung</value>
   </data>
   <data name="LeaveReports" xml:space="preserve">
-    <value>Leave Reports</value>
+    <value>Verlassen-Berichte</value>
   </data>
   <data name="LeaveRequests" xml:space="preserve">
-    <value>Leave Requests</value>
+    <value>Verlassen-Anträge</value>
   </data>
   <data name="Leaves" xml:space="preserve">
-    <value>Leaves</value>
+    <value>Verlassen</value>
   </data>
   <data name="LeaveSchedules" xml:space="preserve">
-    <value>Leave Schedules</value>
+    <value>Verlassenplan</value>
   </data>
   <data name="LeaveTypes" xml:space="preserve">
-    <value>LeaveTypes</value>
+    <value>Verlassesart</value>
   </data>
   <data name="LeaveWithoutExcuse" xml:space="preserve">
-    <value>Leave Without Excuse</value>
+    <value>Verlassen ohne grund</value>
   </data>
   <data name="Lebanon" xml:space="preserve">
-    <value>Lebanon</value>
+    <value>Libanon</value>
   </data>
   <data name="Legals" xml:space="preserve">
-    <value>Legals</value>
+    <value>Legale</value>
   </data>
   <data name="Letters" xml:space="preserve">
-    <value>Letters</value>
+    <value>Buchstaben</value>
   </data>
   <data name="LetterTemplates" xml:space="preserve">
-    <value>Letter Templates</value>
+    <value>Buchstaben Vorlage</value>
   </data>
   <data name="LineNO" xml:space="preserve">
-    <value>Error In imported File - Line number :</value>
+    <value>Fehler in importierter Datei - Zeilennummer:</value>
   </data>
   <data name="LiveSearch" xml:space="preserve">
-    <value>Live Search</value>
+    <value>Live Suche</value>
   </data>
   <data name="LoadFailed" xml:space="preserve">
-    <value>Load Failed</value>
+    <value>Laden fehlgeschlagen</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Loading...</value>
+    <value>Wird geladen...</value>
   </data>
   <data name="Loan" xml:space="preserve">
-    <value>Loans</value>
+    <value>Kredite</value>
   </data>
   <data name="LoanOverrides" xml:space="preserve">
-    <value>Employee Loan Setup</value>
+    <value>Mitarbeiter Darlehen einrichten</value>
   </data>
   <data name="Loans" xml:space="preserve">
-    <value>Loans</value>
+    <value>Kredite</value>
   </data>
   <data name="LoanSync" xml:space="preserve">
-    <value>Sync Loan Deductions</value>
+    <value>Darlehensabzüge synchronisieren</value>
   </data>
   <data name="LoanSyncSucc" xml:space="preserve">
-    <value>Loan Deductions Synced Successfully</value>
+    <value>Darlehensabzüge erfolgreich synchronisiert</value>
   </data>
   <data name="LoanTypes" xml:space="preserve">
-    <value>Loan Types</value>
+    <value>Darlehensarten</value>
   </data>
   <data name="Male" xml:space="preserve">
-    <value>Male</value>
+    <value>Männlich</value>
   </data>
   <data name="MandatoryField" xml:space="preserve">
-    <value>Field is mandatory !</value>
+    <value>Das Feld ist obligatorisch !</value>
   </data>
   <data name="ManyRecordDeletedSucc" xml:space="preserve">
-    <value>Records Deleted Successfully</value>
+    <value>Datesatz erfolgreich gelöscht</value>
   </data>
   <data name="March" xml:space="preserve">
-    <value>March</value>
-  </data>
-  <data name="married" xml:space="preserve">
-    <value>Married</value>
+    <value>März</value>
   </data>
   <data name="MatchFound" xml:space="preserve">
-    <value>match(es) found.</value>
+    <value>Match(es) gefunden.</value>
   </data>
   <data name="May" xml:space="preserve">
-    <value>May</value>
+    <value>Mai</value>
   </data>
   <data name="Media" xml:space="preserve">
-    <value>Media</value>
+    <value>Medien</value>
   </data>
   <data name="MediaCategory" xml:space="preserve">
-    <value>Media Category</value>
+    <value>Medien Kategorie</value>
   </data>
   <data name="MediaItems" xml:space="preserve">
-    <value>Media Items</value>
+    <value>Medienelemente</value>
   </data>
   <data name="Mediocre" xml:space="preserve">
-    <value>Mediocre</value>
+    <value>Mittelmäßig</value>
   </data>
   <data name="MISSED_PUNCH" xml:space="preserve">
-    <value>Missed Punch</value>
+    <value>Verpasster Schlag</value>
   </data>
   <data name="MissingHireDate" xml:space="preserve">
-    <value>Employee Must Have a hire date to complete this operation</value>
+    <value>Der Mitarbeiter muss ein Einstellungsdatum haben, um diesen Vorgang abzuschließen</value>
   </data>
   <data name="Module" xml:space="preserve">
-    <value>Module</value>
+    <value>Modul</value>
   </data>
   <data name="Modules" xml:space="preserve">
     <value />
   </data>
   <data name="MondayText" xml:space="preserve">
-    <value>Monday</value>
+    <value>Montag</value>
   </data>
   <data name="Month" xml:space="preserve">
-    <value> Month</value>
+    <value>Monat</value>
   </data>
   <data name="Nationalities" xml:space="preserve">
-    <value>Nationalities</value>
+    <value>Natinalität</value>
   </data>
   <data name="NationalQuotas" xml:space="preserve">
-    <value>National Quotas</value>
+    <value>Nationale Quoten</value>
   </data>
   <data name="NavigationPane" xml:space="preserve">
     <value>Navigation</value>
   </data>
   <data name="New" xml:space="preserve">
-    <value>New</value>
+    <value>Neu</value>
   </data>
   <data name="NextText" xml:space="preserve">
-    <value>Next</value>
+    <value>Nächst</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>No</value>
+    <value>Nein</value>
   </data>
   <data name="NoticePeriods" xml:space="preserve">
-    <value>Notice Periods</value>
+    <value>Bemerkenfristen</value>
   </data>
   <data name="Notification" xml:space="preserve">
-    <value>Notification</value>
+    <value>Benachrichtigung</value>
   </data>
   <data name="November" xml:space="preserve">
     <value>November</value>
   </data>
   <data name="October" xml:space="preserve">
-    <value>October</value>
+    <value>OKtober</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
   <data name="Onboarding" xml:space="preserve">
-    <value>On Boarding</value>
+    <value>Beim Einsteigen</value>
   </data>
   <data name="OpenDocuments" xml:space="preserve">
-    <value>Open Documents</value>
+    <value>Dokument öffnen</value>
   </data>
   <data name="operationCompleted" xml:space="preserve">
-    <value>operation is completed successfully</value>
+    <value>Vorgang ist erfolgreich abgeschlossen</value>
   </data>
   <data name="OrganizationChart" xml:space="preserve">
-    <value>Organization Chart</value>
+    <value>Organisationsplan</value>
   </data>
   <data name="OVERTIME" xml:space="preserve">
-    <value>Over Time</value>
+    <value>Überstunden</value>
   </data>
   <data name="OvertimeSettings" xml:space="preserve">
-    <value>Overtime Exceptions</value>
+    <value>Überstundenausnahmen</value>
   </data>
   <data name="PaidLeaves" xml:space="preserve">
-    <value>Paid Leaves</value>
+    <value>Bezahlte Blätter</value>
   </data>
   <data name="PatternAppliedSucc" xml:space="preserve">
-    <value>Pattern Applied Successfully</value>
+    <value>Muster erfolgreich angewendet</value>
   </data>
   <data name="PayCodes" xml:space="preserve">
-    <value>Pay Codes</value>
+    <value>Zahlencodes</value>
   </data>
   <data name="PayRef" xml:space="preserve">
-    <value>Pay Ref</value>
+    <value>Ref bezahlen</value>
   </data>
   <data name="Payroll" xml:space="preserve">
-    <value>Payroll</value>
+    <value>Abrechnung</value>
   </data>
   <data name="PayrollDefaults" xml:space="preserve">
-    <value>Payroll Defaults</value>
+    <value>Standartabrechnung</value>
   </data>
   <data name="PayrollIndemnity" xml:space="preserve">
-    <value>Payroll Indemnity</value>
+    <value>Entschädigungsabrchnung</value>
   </data>
   <data name="PenaltyType" xml:space="preserve">
-    <value>Penalty Type</value>
+    <value>Strafetyp</value>
   </data>
   <data name="PendingTransfers" xml:space="preserve">
-    <value>Documents Transfers</value>
+    <value>Dokumente übertragen</value>
   </data>
   <data name="periodError" xml:space="preserve">
-    <value>Please choose salary type and fiscal year </value>
+    <value>Bitte wählen Sie Lohnart und Geschäftsjahr</value>
   </data>
   <data name="PersonalInfo" xml:space="preserve">
-    <value>My Info </value>
+    <value>Meine Infos</value>
   </data>
   <data name="Positions" xml:space="preserve">
-    <value>Positions</value>
+    <value>Positionen</value>
   </data>
   <data name="PrevText" xml:space="preserve">
-    <value>Previous</value>
+    <value>Bisherige</value>
   </data>
   <data name="Print" xml:space="preserve">
-    <value>Print</value>
+    <value>Drucken</value>
   </data>
   <data name="ProcessNotifications" xml:space="preserve">
-    <value>Process Notifications</value>
+    <value>Benachrichtigungen verarbeiten</value>
   </data>
   <data name="PurchaseOrders" xml:space="preserve">
-    <value>Purchase Orders</value>
+    <value>Kauforder</value>
   </data>
   <data name="RecordDeletedSucc" xml:space="preserve">
-    <value>Record Deleted Successfully</value>
+    <value>Datensatz erfolgreich gelöscht</value>
   </data>
   <data name="RecordSavingSucc" xml:space="preserve">
-    <value>Record Saved Successfully</value>
+    <value>Datensatz erfolgreich gespeichert</value>
   </data>
   <data name="RecordUpdatedSucc" xml:space="preserve">
-    <value>Record Updated Successfully</value>
+    <value>Datensatz erfolgreich aktualisiert</value>
   </data>
   <data name="RecoverySentSucc" xml:space="preserve">
-    <value>Your Reset password email has been sent successfully</value>
+    <value>Ihre E-Mail zum Zurücksetzen des Passworts wurde erfolgreich gesendet</value>
   </data>
   <data name="Refresh" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Aktualisierung</value>
   </data>
   <data name="RefreshText" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Aktualisierung</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
-    <value>Regular Expression</value>
+    <value>Regulären Ausdruck</value>
   </data>
   <data name="Rejected" xml:space="preserve">
-    <value>Rejected</value>
+    <value>Bgelehnt</value>
   </data>
   <data name="RelationshipTypes" xml:space="preserve">
-    <value>Relationships Types</value>
+    <value>Beziehungstypen</value>
   </data>
   <data name="Religion0" xml:space="preserve">
-    <value>Christian</value>
+    <value>Christ</value>
   </data>
   <data name="Religion1" xml:space="preserve">
     <value>Muslim</value>
   </data>
   <data name="Religion2" xml:space="preserve">
-    <value>Jew</value>
+    <value>Jude</value>
   </data>
   <data name="Religion3" xml:space="preserve">
-    <value>Budha</value>
+    <value>Buddha</value>
   </data>
   <data name="Religion4" xml:space="preserve">
-    <value>Seikh</value>
+    <value>Sikh</value>
   </data>
   <data name="Religion5" xml:space="preserve">
     <value>Hindu</value>
   </data>
   <data name="Religion6" xml:space="preserve">
-    <value>Other</value>
+    <value>Anderes</value>
   </data>
   <data name="Renew" xml:space="preserve">
-    <value>Renew</value>
+    <value>Erneut</value>
   </data>
   <data name="Reports" xml:space="preserve">
-    <value>Reports</value>
+    <value>Berichte</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>Zurücksetzen</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
-    <value>Reset Password</value>
+    <value>Passwort Zurücksetzen</value>
   </data>
   <data name="Routers" xml:space="preserve">
-    <value>Routers</value>
+    <value>Router</value>
   </data>
   <data name="RT01" xml:space="preserve">
-    <value>Ages Breakdown</value>
+    <value>Altersaufschlüsselung</value>
   </data>
   <data name="RT102" xml:space="preserve">
-    <value>Hirings </value>
+    <value>Einstellungen</value>
   </data>
   <data name="RT102B" xml:space="preserve">
-    <value>Terminations</value>
+    <value>Kündigungen</value>
   </data>
   <data name="RT103" xml:space="preserve">
-    <value>Employees Head Count</value>
+    <value>Mitarbeiterzahl</value>
   </data>
   <data name="RT104" xml:space="preserve">
-    <value>Years in Service</value>
+    <value>Jahre im Dienst</value>
   </data>
   <data name="RT105" xml:space="preserve">
-    <value>Job History</value>
+    <value>Job Historie</value>
   </data>
   <data name="RT106" xml:space="preserve">
-    <value>Turnover Rate</value>
+    <value>Umsatzrate</value>
   </data>
   <data name="RT107" xml:space="preserve">
-    <value>Employee Missing Details</value>
+    <value>Fehlende Angaben zum Mitarbeiter</value>
   </data>
   <data name="RT108" xml:space="preserve">
-    <value>Employee Details</value>
+    <value>Angaben zum Mitarbeiter</value>
   </data>
   <data name="RT109" xml:space="preserve">
-    <value>Right To Work</value>
+    <value>Arbeitsrecht</value>
   </data>
   <data name="RT111" xml:space="preserve">
-    <value>Bank Accounts</value>
+    <value>Bankkonto</value>
   </data>
   <data name="RT112" xml:space="preserve">
-    <value>Employee Notes</value>
+    <value>Mitarbeiteranmerkungen</value>
   </data>
   <data name="RT113" xml:space="preserve">
-    <value>Branch Workforce</value>
+    <value>Belegschaft der Niederlassung</value>
   </data>
   <data name="RT114" xml:space="preserve">
-    <value>Skills</value>
+    <value>Kompetenzen</value>
   </data>
   <data name="RT115" xml:space="preserve">
-    <value>Indemnity</value>
+    <value>Entschädigung</value>
   </data>
   <data name="RT200" xml:space="preserve">
-    <value>Current Payroll</value>
+    <value>Aktuelle Gehaltsabrechnung</value>
   </data>
   <data name="RT201" xml:space="preserve">
-    <value>Salary History</value>
+    <value>Gehaltshistorie</value>
   </data>
   <data name="RT202" xml:space="preserve">
-    <value>Salary Changes</value>
+    <value>Gehaltsänderungen</value>
   </data>
   <data name="RT203" xml:space="preserve">
-    <value>Point-in-time Salary</value>
+    <value>Gehalt zu einem bestimmten Zeitpunkt</value>
   </data>
   <data name="RT301" xml:space="preserve">
-    <value>Monthly Attendance</value>
+    <value>Monatliche Anwesenheit</value>
   </data>
   <data name="RT301B" xml:space="preserve">
-    <value>Daily Attendance</value>
+    <value>Tägliche Anwesenheit</value>
   </data>
   <data name="RT302" xml:space="preserve">
-    <value>Period Summary</value>
+    <value>Periodenzusammenfassung</value>
   </data>
   <data name="RT303" xml:space="preserve">
-    <value>Detailed Attendance</value>
+    <value>Detaillierte Anwesenheit</value>
   </data>
   <data name="RT304" xml:space="preserve">
-    <value>Departments Activity</value>
+    <value>Abteilungen Tätigkeit</value>
   </data>
   <data name="RT305" xml:space="preserve">
-    <value>Time Variation</value>
+    <value>Zeitvariation</value>
   </data>
   <data name="RT306" xml:space="preserve">
-    <value>Time Approval</value>
+    <value>Zeitgenehmigung</value>
   </data>
   <data name="RT307" xml:space="preserve">
-    <value>Approver Performance</value>
+    <value>Genehmiger´s Leistung</value>
   </data>
   <data name="RT401" xml:space="preserve">
-    <value>Loans History</value>
+    <value>Darlehnshistorie</value>
   </data>
   <data name="RT402" xml:space="preserve">
-    <value>Loan Statement</value>
+    <value>Darlehenserklärung</value>
   </data>
   <data name="RT501" xml:space="preserve">
-    <value>Payroll Report</value>
+    <value>Abrechnungsbericht</value>
   </data>
   <data name="RT502" xml:space="preserve">
-    <value>Attendance Entitlements and Deductions</value>
+    <value>Anwesenheitsansprüche und -abzüge</value>
   </data>
   <data name="RT503" xml:space="preserve">
-    <value>Job Info Payroll</value>
+    <value>Job Info Abrechnung</value>
   </data>
   <data name="RT504" xml:space="preserve">
-    <value>Bank Transfers</value>
+    <value>Banküberweisungen</value>
   </data>
   <data name="RT506" xml:space="preserve">
-    <value>Period summary</value>
+    <value>Periodenzusammenfassung</value>
   </data>
   <data name="RT507" xml:space="preserve">
-    <value>Pay Slips </value>
+    <value>Lohnzettel</value>
   </data>
   <data name="RT601" xml:space="preserve">
-    <value>Leave List</value>
+    <value>Verlassen Liste</value>
   </data>
   <data name="RT602" xml:space="preserve">
-    <value>Leave Balance</value>
+    <value>Verlassen Balance</value>
   </data>
   <data name="RT801" xml:space="preserve">
-    <value>Sign-in Trail</value>
+    <value>Anmeldepfad</value>
   </data>
   <data name="RT802" xml:space="preserve">
-    <value>Audit Trail</value>
+    <value>Buchungskontrolle</value>
   </data>
   <data name="Salary" xml:space="preserve">
-    <value>Salary</value>
+    <value>Gehalt</value>
   </data>
   <data name="SalaryChangeReasons" xml:space="preserve">
-    <value>Salary Change Reasons</value>
+    <value>Gründe für Gehatsänderungen</value>
   </data>
   <data name="SalaryType" xml:space="preserve">
-    <value>Salary Type</value>
+    <value>Gehaltsart</value>
   </data>
   <data name="SaturdayText" xml:space="preserve">
-    <value>Saturday</value>
+    <value>Samstag</value>
   </data>
   <data name="SaudiArabia" xml:space="preserve">
-    <value>SaudiArabia</value>
+    <value>Saudi Arabien</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Speicher</value>
   </data>
   <data name="SaveRecord" xml:space="preserve">
-    <value>Are you sure you want to save  ?</value>
+    <value>Möchten Sie wirklich speichern?</value>
   </data>
   <data name="Scheduler" xml:space="preserve">
-    <value>Time Management</value>
+    <value>Zeitmanagement</value>
   </data>
   <data name="SecurityGroups" xml:space="preserve">
-    <value>Security Groups</value>
+    <value>Sicherheitsgruppen</value>
   </data>
   <data name="SelfService" xml:space="preserve">
-    <value>Self Service</value>
+    <value>Selbstbedienung</value>
   </data>
   <data name="September" xml:space="preserve">
     <value>September</value>
   </data>
   <data name="SessionDisconnected" xml:space="preserve">
-    <value>Session Disconnected !</value>
+    <value>Sitzung getrennt!</value>
   </data>
   <data name="Setup" xml:space="preserve">
-    <value>Setup</value>
+    <value>Konfiguratin</value>
   </data>
   <data name="SHIFT_LEAVE_WITHOUT_EXCUSE" xml:space="preserve">
-    <value>Shift Leave Without Excuse</value>
-  </data>
-  <data name="single" xml:space="preserve">
-    <value>Single</value>
+    <value>Schichtverlassen ohne Grunde</value>
   </data>
   <data name="SocialSecuritySchedules" xml:space="preserve">
-    <value>Social Security Schedule</value>
+    <value>Zeitplan für die soziale Sicherheit</value>
   </data>
   <data name="SortAscText" xml:space="preserve">
-    <value>Sort Ascending</value>
+    <value>Aufsteigend sortieren</value>
   </data>
   <data name="SortClearText" xml:space="preserve">
-    <value>Clear Sorting</value>
+    <value>Klare Sortierung</value>
   </data>
   <data name="SortDescText" xml:space="preserve">
-    <value>Sort Descending</value>
+    <value>Absteigend sortieren</value>
   </data>
   <data name="Sponsors" xml:space="preserve">
-    <value>Sponsors</value>
+    <value>Sponsore</value>
   </data>
   <data name="StandardReports" xml:space="preserve">
-    <value>Standard Reports</value>
+    <value>Standardberichte</value>
   </data>
   <data name="States" xml:space="preserve">
-    <value>States</value>
+    <value>Zustände</value>
   </data>
   <data name="status" xml:space="preserve">
     <value>Status</value>
   </data>
   <data name="Step" xml:space="preserve">
-    <value>Step {0} of {1}...</value>
+    <value>Step {0} auf {1}...</value>
   </data>
   <data name="Strong" xml:space="preserve">
-    <value>Strong</value>
+    <value>Stark</value>
   </data>
   <data name="SundayText" xml:space="preserve">
-    <value>Sunday</value>
+    <value>Sonntag</value>
   </data>
   <data name="Suppliers" xml:space="preserve">
-    <value>Suppliers</value>
+    <value>Lieferanten</value>
   </data>
   <data name="SynchronizeAttendanceDays" xml:space="preserve">
-    <value>Synchronize Attendance Days</value>
+    <value>Anwesenheitstage synchronisieren</value>
   </data>
   <data name="SynchronizeDaySucc" xml:space="preserve">
-    <value>Attendance Schedule Synchronized Successfully</value>
+    <value>Teilnahmezeitplan erfolgreich synchronisiert</value>
   </data>
   <data name="Syria" xml:space="preserve">
-    <value>Syria</value>
+    <value>Syrien</value>
   </data>
   <data name="SystemAlerts" xml:space="preserve">
-    <value>System Alerts</value>
+    <value>System Alarme</value>
   </data>
   <data name="systemDefaultAlert" xml:space="preserve">
-    <value>Please Logout and Login Again For Apply Changes</value>
+    <value>Bitte loggen Sie sich aus und melden Sie sich erneut an, um Änderungen zu übernehmen</value>
   </data>
   <data name="SystemDefaults" xml:space="preserve">
-    <value>Defaults</value>
+    <value>Standardwerte</value>
   </data>
   <data name="SystemSettings" xml:space="preserve">
-    <value>System Settings</value>
+    <value>Systemeinstellungen</value>
   </data>
   <data name="Tasks" xml:space="preserve">
-    <value>Tasks</value>
+    <value>Aufgaben</value>
   </data>
   <data name="TaskTypes" xml:space="preserve">
-    <value>Task Types</value>
+    <value>Aufgabensart</value>
   </data>
   <data name="TerminationReasons" xml:space="preserve">
-    <value>Termination Reason</value>
+    <value>Kündigungsgrund</value>
   </data>
   <data name="ThursdayText" xml:space="preserve">
-    <value>Thursday</value>
+    <value>Donnerstag</value>
   </data>
   <data name="TimeApprovals" xml:space="preserve">
-    <value>Time Approvals</value>
+    <value>Zeitgenehmigungen</value>
   </data>
   <data name="TimeApprovalsSelfService" xml:space="preserve">
-    <value>Time Approvals </value>
+    <value>Zeitgenehmigungen</value>
   </data>
   <data name="TimeAttendance" xml:space="preserve">
-    <value>Time Attendance</value>
+    <value>Zeit der Anwesenheit</value>
   </data>
   <data name="TimeCode" xml:space="preserve">
-    <value>Time Code</value>
+    <value>Zeitcode</value>
   </data>
   <data name="TimeFieldError" xml:space="preserve">
-    <value>Value is required and should be of form hh:mm</value>
+    <value>Der Wert ist erforderlich und sollte die Form HH: MM haben</value>
   </data>
   <data name="TimeSchedule" xml:space="preserve">
-    <value>Time Schedule</value>
+    <value>Zeitplan</value>
   </data>
   <data name="timeVariations" xml:space="preserve">
-    <value>Time Variations</value>
+    <value>Zeitvariationen</value>
   </data>
   <data name="TimeVariationType" xml:space="preserve">
-    <value>TimeVariationType</value>
+    <value>Zeitvariationstyp</value>
   </data>
   <data name="TitleSavingError" xml:space="preserve">
-    <value>Error Saving Record</value>
+    <value>Fehler beim Speichern des Datensatzes</value>
   </data>
   <data name="TitleSavingErrorMessage" xml:space="preserve">
-    <value>Error During Saving, Try again later.</value>
+    <value>Fehler beim Speichern, später erneut versuchen.</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
   <data name="Transfers" xml:space="preserve">
-    <value>Transfers</value>
+    <value>Überweisungen</value>
   </data>
   <data name="TrType1" xml:space="preserve">
-    <value>Add</value>
+    <value>Addieren</value>
   </data>
   <data name="TrType11" xml:space="preserve">
-    <value>Read</value>
+    <value>Lesen</value>
   </data>
   <data name="TrType12" xml:space="preserve">
-    <value>Read Multiple</value>
+    <value>Lesen Sie mehrfach</value>
   </data>
   <data name="TrType2" xml:space="preserve">
-    <value>Edit</value>
+    <value>Bearbeiten</value>
   </data>
   <data name="TrType21" xml:space="preserve">
-    <value>Send Mail</value>
+    <value>Senden Sie  eine  Mail</value>
   </data>
   <data name="TrType3" xml:space="preserve">
-    <value>Delete</value>
+    <value>Löschen</value>
   </data>
   <data name="TrType4" xml:space="preserve">
-    <value>Exceute</value>
+    <value>Ausführen</value>
   </data>
   <data name="TrType5" xml:space="preserve">
-    <value>Add Multiple</value>
+    <value>Addieren Sie  Mehrfach</value>
   </data>
   <data name="TuesdayText" xml:space="preserve">
-    <value>Tuesday</value>
+    <value>Diestag</value>
   </data>
   <data name="Tunisia" xml:space="preserve">
-    <value>Tunisia</value>
+    <value>Tunesien</value>
   </data>
   <data name="UAE" xml:space="preserve">
     <value>UAE</value>
   </data>
   <data name="UnpaidLeaves" xml:space="preserve">
-    <value>Unpaid Leaves</value>
-  </data>
-  <data name="unspecified" xml:space="preserve">
-    <value>Unspecified</value>
+    <value>Unbezahlte Blätter</value>
   </data>
   <data name="USDollar" xml:space="preserve">
     <value>US Dollar</value>
   </data>
   <data name="Users" xml:space="preserve">
-    <value>Users</value>
+    <value>Nutzer</value>
   </data>
   <data name="VacationSchedules" xml:space="preserve">
-    <value>Vacation Schedules</value>
+    <value>Urlaubsplan</value>
   </data>
   <data name="VeryStrong" xml:space="preserve">
-    <value>Very Strong</value>
+    <value>sehr stark</value>
   </data>
   <data name="VeryWeak" xml:space="preserve">
-    <value>Very Weak</value>
+    <value>sehr scwach</value>
   </data>
   <data name="Weak" xml:space="preserve">
-    <value>Weak</value>
+    <value>schwach</value>
   </data>
   <data name="WednesdayText" xml:space="preserve">
-    <value>Wednesday</value>
+    <value>Mittwoch</value>
   </data>
   <data name="Week" xml:space="preserve">
-    <value>Week</value>
+    <value>Woche</value>
   </data>
   <data name="working" xml:space="preserve">
-    <value>Working</value>
+    <value>Arbeiten</value>
   </data>
   <data name="WorkingCalendars" xml:space="preserve">
-    <value>Calendars</value>
+    <value>Kalender</value>
   </data>
   <data name="Year" xml:space="preserve">
-    <value> Year</value>
+    <value>Jahr</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Ja</value>
+  </data>
+  <data name="AssetLoans" xml:space="preserve">
+    <value>Asset Kredit</value>
+  </data>
+  <data name="married" xml:space="preserve">
+    <value>Verheiratet</value>
+  </data>
+  <data name="single" xml:space="preserve">
+    <value>Ledig</value>
+  </data>
+  <data name="unspecified" xml:space="preserve">
+    <value>Nicht spezifiziert</value>
+  </data>
+  <data name="AdminDepts" xml:space="preserve">
+    <value>Admin Abteilung</value>
   </data>
 </root>

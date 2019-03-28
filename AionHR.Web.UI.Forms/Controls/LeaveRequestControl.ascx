@@ -278,7 +278,9 @@
                     BodyPadding="5">
                     <Items>
                         <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
-                        <ext:TextField ID="leaveRef" runat="server" Name="leaveRef"  FieldLabel="<%$ Resources:FieldLeaveRef%>" />
+                        <ext:TextField ID="leaveRef" runat="server" Name="leaveRef"  FieldLabel="<%$ Resources:FieldLeaveRef%>" >
+                               <Validator Handler="return !isNaN(this.value);" />
+                            </ext:TextField>
                            <ext:ComboBox    AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" AllowBlank="false"
                             DisplayField="fullName" Name="employeeId"
                             ValueField="recordId"

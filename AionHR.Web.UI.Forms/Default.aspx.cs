@@ -678,6 +678,9 @@ namespace AionHR.Web.UI.Forms
                 case "3":
                     _systemService.SessionHelper.SetLanguage("fr");
                     break;
+                case "4":
+                    _systemService.SessionHelper.SetLanguage("de");
+                    break;
                 default:
                     _systemService.SessionHelper.SetLanguage("en");
                   

@@ -97,7 +97,7 @@ namespace AionHR.Web.UI.Forms
 
                     //releaseDate.Format = expiryDate.Format = releaseDateDF.Format = expiryDateDF.Format = _systemService.SessionHelper.GetDateformat();
 
-                    date.Format = Coldate.Format = _systemService.SessionHelper.GetDateformat();
+                    WidgetColumn1.Format= WidgetColumn2.Format= depreciationDate.Format=warrantyEndDate.Format= date.Format = Coldate.Format = _systemService.SessionHelper.GetDateformat();
                     if (_systemService.SessionHelper.CheckIfIsAdmin())
                         return;
                     try
@@ -231,6 +231,7 @@ namespace AionHR.Web.UI.Forms
         {
             FillBranch();
             FillDepartment();
+      
             BasicInfoTab.Reset();
             panelRecordDetails.ActiveIndex = 0;
             int id = Convert.ToInt32(e.ExtraParams["id"]);
@@ -638,6 +639,46 @@ namespace AionHR.Web.UI.Forms
                         //    this.EditRecordWindow.Close();
 
                     }
+                    AssetPOReception POReception = JsonConvert.DeserializeObject<AssetPOReception>(obj);
+                    POReception.recordId = id;
+                    POReception.supplierId = supplierId.GetSupplierId() == "0" ? null : supplierId.GetSupplierId();
+                    POReception.categoryId = categoryId.GetCategoryId();
+                    POReception.currencyId = CurrencyControl.getCurrency() == "0" ? null : CurrencyControl.getCurrency();
+                    POReception.apStatus = apStatus.GetApprovalStatus() == "0" ? null : apStatus.GetApprovalStatus();
+                    if (b.status == 2)
+                    {
+                        PostRequest<AssetPOReception> req = new PostRequest<AssetPOReception>();
+                        req.entity = POReception;
+                        PostResponse<AssetPOReception> resp = _assetManagementService.ChildAddOrUpdate<AssetPOReception>(req);
+                        if (!resp.Success)//it maybe another check
+                        {
+
+                            Common.errorMessage(resp);
+                            return;
+                        }
+                        AssetManagementAssetListRequest request1 = new AssetManagementAssetListRequest();
+                       
+                        request1.branchId ="0";
+                        request1.departmentId = "0";
+                        request1.positionId =  "0";
+                        request1.categoryId = "0";
+                        request1.employeeId = "0";
+                        request1.supplierId = "0";
+                        request1.PurchaseOrderId = b.poRef;
+                        request1.Filter = "";
+                        ListResponse<AssetManagementAsset> resp1 = _assetManagementService.ChildGetAll<AssetManagementAsset>(request1);
+                        if (!resp1.Success)//it maybe another check
+                        {
+
+                            Common.errorMessage(resp1);
+                            return;
+                        }
+                        FillCondition();
+                        AssetPOReceptionStore.DataSource = resp1.Items;
+                        AssetPOReceptionStore.DataBind();
+                        
+                        AssetPOReceptionWindow.Show();
+                    }
 
                 }
                 catch (Exception ex)
@@ -646,6 +687,50 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
+           
+
+
+        }
+
+
+        private void FillCondition()
+        {
+            conditionStore.DataSource = Common.XMLDictionaryList(_systemService, "10");
+            conditionStore.DataBind();
+        }
+        protected void SaveAssetPOReception(object sender, DirectEventArgs e)
+        {
+             try
+            {
+                List<AssetManagementAsset> values = JsonConvert.DeserializeObject<List<AssetManagementAsset>>(e.ExtraParams["values"]);
+                PostRequest<AssetManagementAsset> request = new PostRequest<AssetManagementAsset>();
+                values.ForEach(x =>
+                {
+
+                    request.entity = x;
+                    PostResponse<AssetManagementAsset> resp = _assetManagementService.ChildAddOrUpdate<AssetManagementAsset>(request);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                       
+
+                    }
+                });
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
+            }
+            catch(Exception exp)
+            {
+                if (!string.IsNullOrEmpty( exp.Message))
+                X.MessageBox.Alert(GetGlobalResourceObject("Common","Error").ToString(), exp.Message); 
+
+            }
+
+           
         }
 
         [DirectMethod]

@@ -12,6 +12,8 @@ namespace AionHR.Model.AssetManagement
         public int? deliveryDuration { get; set; }
         public string apId { get; set; }
         public string parentId { get; set; }
-        
+        public int? defaultDepreciationYears { get; set; }
+        public int? defaultWarrantyYears { get; set; }
+
     }
 }

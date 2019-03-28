@@ -310,6 +310,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store parentStore;
         
         /// <summary>
+        /// defaultWarrantyYears control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField defaultWarrantyYears;
+        
+        /// <summary>
+        /// defaultDepreciationYears control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField defaultDepreciationYears;
+        
+        /// <summary>
         /// PropertiesGrid control.
         /// </summary>
         /// <remarks>

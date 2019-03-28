@@ -72,12 +72,16 @@ namespace AionHR.Web.UI.Forms
         {
             SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
             req.Key = "nameFormat";
-            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
-            if (!response.Success)
+            RecordResponse<KeyValuePair<string, string>> resp = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!resp.Success )
             {
-
+                Common.errorMessage(resp);
+                return "recordId";
             }
-            string paranthized = response.result.Value;
+
+            string paranthized = resp.result.Value;
+            if (string.IsNullOrEmpty(paranthized))
+                return "recordId";
             paranthized = paranthized.Replace('{', ' ');
             paranthized = paranthized.Replace('}', ',');
             paranthized = paranthized.Substring(0, paranthized.Length - 1);
@@ -252,7 +256,10 @@ namespace AionHR.Web.UI.Forms
             ListRequest branchesRequest = new ListRequest();
             ListResponse<LoanType> resp = _loanService.ChildGetAll<LoanType>(branchesRequest);
             if (!resp.Success)
-               Common.errorMessage(resp);
+            {
+                Common.errorMessage(resp);
+                return;
+            }
             ltStore.DataSource = resp.Items;
             ltStore.DataBind();
         }
@@ -838,7 +845,10 @@ namespace AionHR.Web.UI.Forms
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Currency> resp = _systemService.ChildGetAll<Currency>(branchesRequest);
             if (!resp.Success)
+            {
                 Common.errorMessage(resp);
+                return;
+            }
             currencyStore.DataSource = resp.Items;
             currencyStore.DataBind();
         }
@@ -942,7 +952,7 @@ namespace AionHR.Web.UI.Forms
                 FillLoanType();
                 FillBranchField();
                 FillCurrency();
-
+               if( defaults.Items.Where(s => s.Key == "currencyId").Count()!=0)
                 currencyId.Select(defaults.Items.Where(s => s.Key == "currencyId").First().Value.ToString());
                 //  effectiveDate.Disabled = true;
                 this.EditRecordWindow.Show();

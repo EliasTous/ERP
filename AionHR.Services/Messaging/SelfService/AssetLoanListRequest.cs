@@ -9,7 +9,7 @@ namespace AionHR.Services.Messaging.SelfService
   public  class AssetLoanListRequest:ListRequest
     {
         public string employeeId { get; set; }
-        public string apStatus { get; set; }
+        public string status { get; set; }
 
 
 
@@ -21,7 +21,7 @@ namespace AionHR.Services.Messaging.SelfService
                 parameters = base.Parameters;
 
                 parameters.Add("_employeeId", employeeId);
-                parameters.Add("_apStatus", apStatus);
+                parameters.Add("_status", status);
 
                 return parameters;
             }
