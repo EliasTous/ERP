@@ -41,7 +41,6 @@ namespace AionHR.Repository.WebService.Repositories
 
 
 
-
             ChildGetLookup.Add(typeof(AssetManagementSupplier), "getSU");
             ChildGetLookup.Add(typeof(AssetManagementCategory), "getCA");
             ChildGetLookup.Add(typeof(AssetManagementAsset), "getAS");
@@ -49,7 +48,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(AssetManagementOnBoarding), "getOB");
             ChildGetLookup.Add(typeof(AssetManagementLoan), "getLO");
             ChildGetLookup.Add(typeof(AssetManagementCategoryProperty), "getCP");
-            ChildAddOrUpdateLookup.Add(typeof(AssetPOReception), "genAS");
+
 
 
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementSupplier), "setSU");
@@ -59,7 +58,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementOnBoarding), "setOB");
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementLoan), "setLO");
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementCategoryProperty), "setCP");
+            ChildAddOrUpdateLookup.Add(typeof(AssetManagementPurchaseOrderApproval), "setPA");
             ChildAddOrUpdateLookup.Add(typeof(AssetPropertyValue), "setAP");
+
+            ChildAddOrUpdateLookup.Add(typeof(AssetPOReception), "genAS");
 
             ChildDeleteLookup.Add(typeof(AssetManagementSupplier), "delSU");
             ChildDeleteLookup.Add(typeof(AssetManagementCategory), "delCA");
