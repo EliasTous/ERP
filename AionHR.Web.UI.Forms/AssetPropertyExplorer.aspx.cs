@@ -147,6 +147,13 @@ namespace AionHR.Web.UI.Forms
                 }
 
             });
+
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordSavingSucc
+            });
         }
 
         [DirectMethod]
@@ -158,6 +165,9 @@ namespace AionHR.Web.UI.Forms
             }
             else return "1";
         }
-
+        protected void CancelClicked(object sender, DirectEventArgs e)
+        {
+            X.Call("parent.hideWindow");
+        }
     }
 }

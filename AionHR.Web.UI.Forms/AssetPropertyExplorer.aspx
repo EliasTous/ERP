@@ -50,7 +50,14 @@
                         </Click>
                     </DirectEvents>
                 </ext:Button>
-              
+               <ext:Button ID="Button8" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        
+                    </Listeners>
+                   <DirectEvents>
+                       <Click OnEvent="CancelClicked" />
+                   </DirectEvents>
+                </ext:Button>
                      </Buttons>
                      </ext:FormPanel>
                 </Items>
