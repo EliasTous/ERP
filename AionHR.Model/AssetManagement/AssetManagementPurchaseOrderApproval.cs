@@ -15,7 +15,7 @@ namespace AionHR.Model.AssetManagement
         public string categoryName { get; set; }
         public int? qty { get; set; }
         public int? poId { get; set; }
-        public int? approverId { get; set; }
+        public string approverId { get; set; }
         public short? status { get; set; }
         public string statusString { get; set; }
         public string Comments { get; set; }

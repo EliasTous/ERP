@@ -2682,8 +2682,8 @@
                                                 <ext:ModelField Name="qty" />
                                                 <ext:ModelField Name="poId" />
                                                  <ext:ModelField Name="approverId"  />
-                                              
                                                  <ext:ModelField Name="status" />
+                                                   <ext:ModelField Name="statusString" />
                                                    <ext:ModelField Name="comments" />
                                                  
                                                 
@@ -2706,19 +2706,17 @@
                                      <ext:Column ID="Column62" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
                                      <ext:Column ID="Column63" DataIndex="categoryName" Text="<%$ Resources: FieldCategory%>" runat="server" Flex="1" />
                                      <ext:Column ID="Column64" DataIndex="qty" Text="<%$ Resources: FieldQty%>" runat="server" Flex="1" />
-                                     
-                                        
-                                           
+                                     <ext:Column ID="Column7"  DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " />
                                        
-                                
+                                          
+                                                                   
                                    
                                        
                                 
                                       
                                      <ext:Column ID="PAComments" DataIndex="comments" Text="<%$ Resources: FieldComments%>" runat="server" Flex="2" />
-                                    </Columns>
-                            </ColumnModel>
-<%--                                      <ext:Column runat="server"
+                                   
+                                      <ext:Column runat="server"
                                 ID="Column60" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
                                 Width="80"
@@ -2732,7 +2730,8 @@
                                 <Renderer Handler="return editRender(); " />
                             </ext:Column>
                                   
-
+ </Columns>
+                            </ColumnModel>
                                     <Listeners>
                                                                 <Render Handler="this.on('cellclick', cellClick);" />
                                           <Activate Handler="#{PurchasesApprovalStore}.reload();" />
@@ -2741,15 +2740,22 @@
                                                                 <CellClick OnEvent="PurchasesApprovalPoPUP">
                                                                     <EventMask ShowMask="true" />
                                                                     <ExtraParams>
-                                                                        <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                                                        <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                                                          <ext:Parameter Name="poIdParameter" Value="record.data['poId']" Mode="Raw" />
+                                                                    
+                                                                           <ext:Parameter Name="qtyParameter" Value="record.data['qty']" Mode="Raw" />
+                                                                           <ext:Parameter Name="statusParameter" Value="record.data['status']" Mode="Raw" />
+                                                                         <ext:Parameter Name="department" Value="record.data['departmentName']" Mode="Raw" />
+                                                                         <ext:Parameter Name="branchName" Value="record.data['branchName']" Mode="Raw" />
+                                                                         <ext:Parameter Name="categoryName" Value="record.data['categoryName']" Mode="Raw" />
+                                                                         <ext:Parameter Name="comments" Value="record.data['comments']" Mode="Raw" />
+                                                                       <%-- <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />--%>
                                                                     </ExtraParams>
 
                                                                 </CellClick>
                                                             </DirectEvents>
 
 
---%>
+
 
                                
 
@@ -5596,11 +5602,11 @@
             </Items>
         </ext:Window>
       
-      <%--   <ext:Window
+         <ext:Window
             ID="purchaseApprovalWindow"
             runat="server"
             Icon="PageEdit"
-            Title="<%$ Resources:purchaseApproval %>"
+            Title="<%$ Resources: PurchasesApproval%>"
             Width="600"
             Height="526"
             AutoShow="false"
@@ -5617,16 +5623,16 @@
                         <ext:FormPanel
                             ID="purchaseApprovalForm" DefaultButton="SavePurchaseApprovalButton"
                             runat="server"
-                            Title="<%$ Resources: purchaseApproval %>"
+                            Title="<%$ Resources: PurchasesApproval%>"
                             Icon="ApplicationSideList"
-                            DefaultAnchor="100%" OnLoad="purchaseApprovalTab_load"
+                            DefaultAnchor="100%" 
                             BodyPadding="5"  AutoScroll="true">
                             <Items>
-                                <ext:TextField  ID="TextField2" runat="server" Name="recordId" Hidden="true" />
-                                <ext:TextField  ID="TextField3" FieldLabel="<%$ Resources: FieldEmployeeName %>"  runat="server" Name="employeeName" ReadOnly="true" />
-                          
-                                
-
+                               
+                                  <ext:TextField  ID="poId" Hidden="true"  runat="server" Name="poId"  />
+                            <ext:TextField  ID="departmentName" FieldLabel="<%$ Resources: FieldDepartment %>"  runat="server" Name="departmentName" ReadOnly="true" />
+                            <ext:TextField  ID="branchName" FieldLabel="<%$ Resources: FieldBranch %>"  runat="server" Name="branchName" ReadOnly="true" />
+                            <ext:TextField  ID="categoryName" FieldLabel="<%$ Resources: FieldCategory %>"  runat="server" Name="categoryName" ReadOnly="true" />
                                 
 
                               
@@ -5638,10 +5644,10 @@
                                
 
                                 
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ComboBox1" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="PAstatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false" SubmitValue="true">
                                     <Items>
-                                         <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusNew %>"  />
+                                       
                                         <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusApproved %>" />
                                         <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusRefused %>" />
                                     </Items>
@@ -5651,8 +5657,8 @@
                                 </ext:ComboBox>
 
                               
-                                     
-                                   <ext:TextArea ID="TextArea2" runat="server" FieldLabel="<%$ Resources:FieldNotes%>" Name="notes" AllowBlank="true"   MaxHeight="200"  Height="100"/>
+                                   <ext:NumberField ID="qty" runat="server" FieldLabel="<%$ Resources:FieldQty%>" Name="qty" ReadOnly="true"/>
+                                   <ext:TextArea ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" AllowBlank="true"   MaxHeight="200"  Height="100"/>
                                 
 
                             </Items>
@@ -5660,15 +5666,15 @@
                                 <ext:Button ID="Button5"  runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                                     <Listeners>
-                                        <Click Handler="CheckSession(); if (!#{ApprovalLoanForm}.getForm().isValid()) {return false;}  " />
+                                        <Click Handler="CheckSession(); if (!#{purchaseApprovalForm}.getForm().isValid()) {return false;}  " />
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="SavePurchaseApprovalRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{ApprovalLoanWindow}.body}" />
+                                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{purchaseApprovalWindow}.body}" />
                                             <ExtraParams>
-                                                <ext:Parameter Name="id" Value="#{ApprovalRecordId}.getValue()" Mode="Raw" />
-                                                <ext:Parameter Name="status" Value="#{ApprovalLoanStatus}.getValue()" Mode="Raw" />
-                                                  <ext:Parameter Name="notes" Value="#{LoanNotes}.getValue()" Mode="Raw" />
+                                               
+                                                  <ext:Parameter Name="PAstatus" Value="#{PAstatus}.getValue()" Mode="Raw" />
+                                                   <ext:Parameter Name="poId" Value="#{poId}.getValue()" Mode="Raw" />
                                                  
                                                 <ext:Parameter Name="values" Value="#{purchaseApprovalForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                                             </ExtraParams>
@@ -5684,7 +5690,7 @@
 
                         </ext:FormPanel>
 
-                     <ext:GridPanel MarginSpec="0 0 0 0"
+                   <%--  <ext:GridPanel MarginSpec="0 0 0 0"
                                                             ID="GridPanel5"
                                                             runat="server"
                                                             PaddingSpec="0 0 1 0"
@@ -5762,7 +5768,7 @@
                                                                 <ext:RowSelectionModel ID="rowSelectionModel39" runat="server" Mode="Single" StopIDModeInheritance="true" />
                                                                
                                                             </SelectionModel>
-                                                        </ext:GridPanel>
+                                                        </ext:GridPanel>--%>
 
                   
 
@@ -5775,7 +5781,7 @@
                 </ext:TabPanel>
             </Items>
 
-        </ext:Window>--%>
+        </ext:Window>
         <uc:leaveControl runat="server" ID="leaveRequest1" />
       
       

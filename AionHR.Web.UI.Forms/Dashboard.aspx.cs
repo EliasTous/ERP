@@ -1419,7 +1419,7 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-
+        
         [DirectMethod]
         protected void TimePoPUP(object sender, DirectEventArgs e)
         {
@@ -1474,7 +1474,58 @@ namespace AionHR.Web.UI.Forms
             this.TimeWindow.Show();
 
         }
+        [DirectMethod]
+        protected void PurchasesApprovalPoPUP(object sender, DirectEventArgs e)
+        {
+            //TabPanel1.ActiveIndex = 0;
+            string poIdParameter = e.ExtraParams["poIdParameter"];
+            string qtyParameter = e.ExtraParams["qtyParameter"];
+            string statusParameter = e.ExtraParams["statusParameter"];
+            string department = e.ExtraParams["department"];
+            string branch = e.ExtraParams["branchName"];
+            string category = e.ExtraParams["categoryName"];
+            string commentsParameter = e.ExtraParams["comments"];
+            PAstatus.Select(statusParameter);
 
+
+
+            //TimeApprovalRecordRequest r = new TimeApprovalRecordRequest();
+            //r.approverId = _systemService.SessionHelper.GetEmployeeId().ToString();
+            //r.employeeId = employeeId;
+            //r.dayId = dayId;
+            //r.timeCode = timeCode;
+            //r.shiftId = shiftId;
+            //RecordResponse<Time> response = _timeAttendanceService.ChildGetRecord<Time>(r);
+            //if (!response.Success)
+            //{
+            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+            //    Common.errorMessage(response);
+            //    return;
+            //}
+            //TimeStatus.Select(response.result.status.ToString());
+            //if (response.result.damageLevel == "1")
+            //    response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
+            //else
+            //    response.result.damageLevel = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
+
+            //TimeFormPanel.SetValues(response.result);
+
+
+            departmentName.Text = department;
+            branchName.Text = branch;
+            categoryName.Text = category;
+
+            qty.Text = qtyParameter;
+            comments.Text = commentsParameter;
+            poId.Text = poIdParameter;
+
+
+            //FillTimeApproval(Convert.ToInt32(dayId), Convert.ToInt32(employeeId), timeCode, shiftId, status);
+
+            this.purchaseApprovalWindow.Title = Resources.Common.EditWindowsTitle;
+            this.purchaseApprovalWindow.Show();
+
+        }
         [DirectMethod]
         protected void ApprovalLoanPoPUP(object sender, DirectEventArgs e)
         {
@@ -1655,7 +1706,6 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-
         protected void SaveApprovalLoanRecord(object sender, DirectEventArgs e)
         {
             string obj = e.ExtraParams["values"];
@@ -1699,7 +1749,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(r);;
+                    Common.errorMessage(r); ;
                     return;
                 }
                 else
@@ -1712,8 +1762,62 @@ namespace AionHR.Web.UI.Forms
                         Icon = Icon.Information,
                         Html = Resources.Common.RecordSavingSucc
                     });
-                    BindAlerts(); 
+                    BindAlerts();
                     this.approvalLoanWindow.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
+
+        }
+        protected void SavePurchaseApprovalRecord(object sender, DirectEventArgs e)
+        {
+            string obj = e.ExtraParams["values"];
+            string poId = e.ExtraParams["poId"];
+
+            string status = e.ExtraParams["PAstatus"];
+            
+            AssetManagementPurchaseOrderApproval PA = JsonConvert.DeserializeObject<AssetManagementPurchaseOrderApproval>(obj);
+
+            PA.status = string.IsNullOrEmpty(status) ? (Int16?)null : Convert.ToInt16(status);
+            PA.poId = string.IsNullOrEmpty(poId) ? (Int32?)null : Convert.ToInt32(poId);
+        
+            PA.approverId = _systemService.SessionHelper.GetEmployeeId();
+            try
+            {
+                //New Mode
+                //Step 1 : Fill The object and insert in the store 
+              
+               
+
+                PostRequest<AssetManagementPurchaseOrderApproval> request = new PostRequest<AssetManagementPurchaseOrderApproval>();
+                request.entity = PA;
+                PostResponse<AssetManagementPurchaseOrderApproval> r = _assetManagementService.ChildAddOrUpdate<AssetManagementPurchaseOrderApproval>(request);
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                   Common.errorMessage(r);;
+                    return;
+                }
+                else
+                {
+
+                    PurchasesApprovalStore.Reload();
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordSavingSucc
+                    });
+               
+                    this.purchaseApprovalWindow.Close();
                 }
 
             }
@@ -2311,7 +2415,7 @@ namespace AionHR.Web.UI.Forms
 
                 req.DepartmentId = request.DepartmentId;
 
-                if (string.IsNullOrEmpty(req.poId) || string.IsNullOrEmpty(req.approverId.ToString()))
+                if ( string.IsNullOrEmpty(req.approverId.ToString()))
                 {
                     PurchasesApprovalStore.DataSource = new List<AssetManagementPurchaseOrderApproval>();
                     PurchasesApprovalStore.DataBind();
