@@ -1305,4 +1305,10 @@
   <data name="AdminDepts" xml:space="preserve">
     <value>Admin Departments</value>
   </data>
+  <data name="CFACurrency" xml:space="preserve">
+    <value>CFA</value>
+  </data>
+  <data name="ApprovalReason" xml:space="preserve">
+    <value>Approval Reason</value>
+  </data>
 </root>

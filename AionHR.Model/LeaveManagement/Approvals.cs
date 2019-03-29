@@ -25,6 +25,8 @@ namespace AionHR.Model.LeaveManagement
         public string ltName { set; get; }
 
         public string branchName { get; set; }
+        public string arName { get; set; }
+        public string arId { get; set; }
 
     }
 }

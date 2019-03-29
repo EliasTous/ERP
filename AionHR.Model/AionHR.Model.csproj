@@ -85,6 +85,7 @@
     <Compile Include="Company\Cases\ICasesRepository.cs" />
     <Compile Include="Company\News\ICompanyNewsRepository.cs" />
     <Compile Include="Company\Structure\Approval.cs" />
+    <Compile Include="Company\Structure\ApprovalReason.cs" />
     <Compile Include="Company\Structure\ApprovelDepartment.cs" />
     <Compile Include="Company\Structure\Division.cs" />
     <Compile Include="Company\Structure\ICompanyStructureRepository.cs" />

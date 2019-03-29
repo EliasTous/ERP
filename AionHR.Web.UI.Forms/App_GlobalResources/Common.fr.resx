@@ -1377,4 +1377,10 @@
   <data name="Yes" xml:space="preserve">
     <value>Oui</value>
   </data>
+  <data name="CFACurrency" xml:space="preserve">
+    <value>CFA</value>
+  </data>
+  <data name="ApprovalReason" xml:space="preserve">
+    <value>Motifs d'approbation</value>
+  </data>
 </root>

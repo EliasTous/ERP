@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Currencies.aspx.cs" Inherits="AionHR.Web.UI.Forms.Currencies" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ApprovalReasons.aspx.cs" Inherits="AionHR.Web.UI.Forms.ApprovalReasons" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Nationalities.js?id=1" ></script>
+    <script type="text/javascript" src="Scripts/CertificateLevels.js" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
    
  
@@ -42,8 +42,9 @@
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
+                        
                         <ext:ModelField Name="name" />
-                        <ext:ModelField Name="reference" />
+                        <%--<ext:ModelField Name="reference" />--%>
                       
                                </Fields>
                 </ext:Model>
@@ -71,6 +72,7 @@
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
 
                     <TopBar>
+                        
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
                                 <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
@@ -83,33 +85,13 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                                <ext:Button ID="btnReload" runat="server"  Icon="Reload">       
-                                     <Listeners>
-                                        <Click Handler="CheckSession();#{Store1}.reload();" />
-                                    </Listeners>                           
+                               
+                                  
                                    
-                                </ext:Button>
-                                <ext:Button Visible="false" ID="btnDeleteSelected" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
-                                 <Listeners>
-                                        <Click Handler="CheckSession();"></Click>
-                                    </Listeners>
-                                    <DirectEvents>
-                                        <Click OnEvent="btnDeleteAll">
-                                            <EventMask ShowMask="true" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
-                                <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
-                                 <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180" >
-                                        <Triggers>
-                                            <ext:FieldTrigger Icon="Search" />
-                                        </Triggers>
-                                        <Listeners>
-                                            <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                            <TriggerClick Handler="#{Store1}.reload();" />
-                                        </Listeners>
-                                    </ext:TextField>
+                               
+                        
+                             
+                              
                             
                             </Items>
                         </ext:Toolbar>
@@ -118,16 +100,41 @@
 
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
-
-                              <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
-                            <ext:Column   ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference %>" DataIndex="reference" Hideable="false" width="150" Align="Center"/> 
+                            <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
+                        </ext:Column>
+                            <%--<ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Width ="300" Hideable="false" />--%>
+                             
                         
-                                </ext:Column>
-                         
                            
 
                             <ext:Column runat="server"
+                                ID="colDelete" Visible="false"
+                                Text="<%$ Resources: Common , Delete %>"
+                                Width="100"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="deleteRender" />
+                              
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                ID="colAttach"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
+                            
+                           <ext:Column runat="server"
                                 ID="colEdit"  Visible="true"
                                 Text=""
                                 Width="100"
@@ -141,8 +148,6 @@
                                 <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
-                           
-
 
 
 
@@ -187,6 +192,7 @@
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
+                        
                         <CellClick OnEvent="PoPuP">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
@@ -234,24 +240,16 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
-                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField  ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" MaxLength="3" />
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="profileId" runat="server" FieldLabel="<%$ Resources:FieldProfile%>" Name="profileId" IDMode="Static" SubmitValue="true" ForceSelection="true">
-                                    <Items>
-                                        <ext:ListItem Text="<%$ Resources:Common, UAE %>" Value="0"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Syria %>" Value="1"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, SaudiArabia %>" Value="2"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Tunisia %>" Value="3"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Gold %>" Value="4"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, Lebanon %>" Value="5"></ext:ListItem>
-                                       <ext:ListItem Text="<%$ Resources:Common, USDollar %>" Value="6"></ext:ListItem>
-                                         <ext:ListItem Text="<%$ Resources:Common, CFACurrency %>" Value="7"></ext:ListItem>
-                                        
-                                      
-                                    </Items>
-                                </ext:ComboBox>
-                              
+                                <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
+                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
+                                <%--<ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference"   AllowBlank="false"/>--%>
+                                
+
+                                
+                                
+                                
+                               
+
                             </Items>
 
                         </ext:FormPanel>
@@ -263,14 +261,14 @@
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession();  if (!#{BasicInfoTab}.getForm().isValid()) {return false;} " />
+                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                                <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

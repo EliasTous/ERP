@@ -18,5 +18,7 @@ namespace AionHR.Model.Employees
         public short status { get; set; }
         public string notes { get; set; }
         public string statusString { get; set; }
+        public string arId { get; set; }
+        public string arName { get; set; }
     }
 }

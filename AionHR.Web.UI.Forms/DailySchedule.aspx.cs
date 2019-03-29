@@ -791,6 +791,7 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
+                string dailyScheduleVariation; 
                 SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
                 req.Key = "dailySchedule";
                 RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
@@ -799,8 +800,11 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + SystemDefaultResponse.LogId : SystemDefaultResponse.Summary).Show();
                     return; 
                 }
-               
-                   
+
+                if (string.IsNullOrEmpty(SystemDefaultResponse.result.Value))
+                    dailyScheduleVariation = "60";
+                else
+                    dailyScheduleVariation = SystemDefaultResponse.result.Value;
                 string html = @"<div style = 'margin: 0px auto; max-width: 99%;width:auto; height: 98%; overflow:auto;' > 
                              <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' style='width:auto;' >";
 
@@ -845,10 +849,15 @@ namespace AionHR.Web.UI.Forms
                 //Filling The Times Slot
                 List<TimeSlot> timesList = new List<TimeSlot>();
                 DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
-                DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
-              if (dtEnd==dtStart)
+                DateTime dtEnd;
+                if (tsStart> tsClose)
+                   dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day+1, tsClose.Hours, tsClose.Minutes, 0);
+                else
+                    dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day , tsClose.Hours, tsClose.Minutes, 0);
+
+                if (dtEnd==dtStart)
                 {
-                    dtEnd= dtEnd.AddDays(1).AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
+                    dtEnd= dtEnd.AddDays(1).AddMinutes(-Convert.ToInt32(dailyScheduleVariation));
                 }
                 do
                 {
@@ -856,8 +865,8 @@ namespace AionHR.Web.UI.Forms
                     ts.ID = dtStart.ToString("HH:mm");
                     ts.Time = dtStart.ToString("HH:mm");
                     timesList.Add(ts);
-                    dtStart = dtStart.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
-                } while (dtStart <= dtEnd&& !string.IsNullOrEmpty(SystemDefaultResponse.result.Value));
+                    dtStart = dtStart.AddMinutes(Convert.ToInt32(dailyScheduleVariation));
+                } while (dtStart <= dtEnd&& !string.IsNullOrEmpty(dailyScheduleVariation));
 
                 //filling the Day slots
                 int totalDays = Convert.ToInt32(Math.Ceiling((dateTo.SelectedDate - dateFrom.SelectedDate).TotalDays));
@@ -880,7 +889,7 @@ namespace AionHR.Web.UI.Forms
                         fsToDate = fsToDate.AddDays(1);
                         do
                         {
-                            fsToDate = fsToDate.AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
+                            fsToDate = fsToDate.AddMinutes(-Convert.ToInt32(dailyScheduleVariation));
                             listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
                            
                         
@@ -892,7 +901,7 @@ namespace AionHR.Web.UI.Forms
                         {
 
                             listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(dailyScheduleVariation));
                         } while (fsToDate >= fsfromDate);
                     }
                     
@@ -926,6 +935,7 @@ namespace AionHR.Web.UI.Forms
 
         private void BuildAvailability(List<FlatScheduleBranchAvailability> items)
         {
+            string dailyScheduleVariation; 
             SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
             req.Key = "dailySchedule";
             RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
@@ -934,6 +944,10 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + SystemDefaultResponse.LogId : SystemDefaultResponse.Summary).Show();
                 return;
             }
+            if (string.IsNullOrEmpty(SystemDefaultResponse.result.Value))
+                dailyScheduleVariation = "60";
+            else
+                dailyScheduleVariation = SystemDefaultResponse.result.Value;
             string html = @"<div style = 'margin: 5px auto; width: 99%; height: 98%; overflow:auto;' > 
                              <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' >";
 
@@ -941,6 +955,7 @@ namespace AionHR.Web.UI.Forms
 
             string startAt, closeAt = string.Empty;
             GetBranchSchedule(out startAt, out closeAt);
+
             if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
             {
 
@@ -970,7 +985,7 @@ namespace AionHR.Web.UI.Forms
             DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
             if (dtEnd == dtStart)
             {
-                dtEnd = dtEnd.AddDays(1).AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
+                dtEnd = dtEnd.AddDays(1).AddMinutes(-Convert.ToInt32(dailyScheduleVariation));
             }
             do
             {
@@ -978,7 +993,7 @@ namespace AionHR.Web.UI.Forms
                 ts.ID = dtStart.ToString("HH:mm");
                 ts.Time = dtStart.ToString("HH:mm");
                 timesList.Add(ts);
-                dtStart = dtStart.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
+                dtStart = dtStart.AddMinutes(Convert.ToInt32(dailyScheduleVariation));
             } while (dtStart <= dtEnd);
 
             //filling the Day slots

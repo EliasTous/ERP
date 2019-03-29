@@ -1965,6 +1965,10 @@
                                                                                 <ext:ModelField Name="branchName" />
                                                                                 <ext:ModelField Name="departmentName" />
                                                                                 <ext:ModelField Name="leaveId" />
+                                                                                 <ext:ModelField Name="arId" />
+                                                                                   <ext:ModelField Name="arName" />
+
+                                                                                
                                                                             
 
                                                                             </Fields>
@@ -1983,7 +1987,7 @@
                                                                     </ext:Column>
                                                                     <ext:DateColumn ID="DateColumn1" DataIndex="startDate" Text="<%$ Resources: FieldStartDate%>" runat="server" Width="100" />
                                                                     <ext:DateColumn ID="DateColumn2" DataIndex="endDate" Text="<%$ Resources: FieldEndDate%>" runat="server" Width="100" />
-
+                                                                     <ext:Column ID="Column65" DataIndex="arName" Text="<%$ Resources: Common, ApprovalReason%>" runat="server" Flex="1" />
                                                                     <ext:Column ID="Column8" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />
                                                                     <ext:Column runat="server"
                                                                         ID="colEdit" Visible="true"
@@ -2011,6 +2015,8 @@
                                                                     <EventMask ShowMask="true" />
                                                                     <ExtraParams>
                                                                         <ext:Parameter Name="id" Value="record.data['leaveId']" Mode="Raw" />
+                                                                        <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
+
                                                                         <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                                                     </ExtraParams>
 
@@ -2419,6 +2425,9 @@
                                                                         <ext:ModelField Name="employeeName" IsComplex="true" />
                                                                          <ext:ModelField Name="loanId" />
                                                                                   <ext:ModelField Name="departmentName" />
+                                                                                    <ext:ModelField Name="arName" />
+                                                                                 <ext:ModelField Name="arId" />
+
                                                                             
 
                                                                             </Fields>
@@ -2455,6 +2464,9 @@
 
 
                                                 <ext:Column ID="colStatus" DataIndex="statusString" Text="<%$ Resources: FieldStatus%>" runat="server" Width="100">
+                                                   
+                                                </ext:Column>
+                                                                     <ext:Column ID="Column58" DataIndex="arName" Text="<%$ Resources:Common, ApprovalReason%>" runat="server" Width="100">
                                                    
                                                 </ext:Column>
 
@@ -2526,6 +2538,7 @@
                                                                       <ExtraParams>
                                                                         <ext:Parameter Name="id" Value="record.data['loanId']" Mode="Raw" />
                                                                          <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
+                                                                            <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
                                                                                                                                  
                                                                                                                                                 
                                                                     </ExtraParams>
@@ -2685,6 +2698,8 @@
                                                  <ext:ModelField Name="status" />
                                                    <ext:ModelField Name="statusString" />
                                                    <ext:ModelField Name="comments" />
+                                                       <ext:ModelField Name="arId" />
+                                                       <ext:ModelField Name="arName" />
                                                  
                                                 
                                                 
@@ -2707,6 +2722,7 @@
                                      <ext:Column ID="Column63" DataIndex="categoryName" Text="<%$ Resources: FieldCategory%>" runat="server" Flex="1" />
                                      <ext:Column ID="Column64" DataIndex="qty" Text="<%$ Resources: FieldQty%>" runat="server" Flex="1" />
                                      <ext:Column ID="Column7"  DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " />
+                                     <ext:Column ID="Column56"  DataIndex="arName" runat="server" Flex="1" text="<%$ Resources:Common, ApprovalReason%> " />
                                        
                                           
                                                                    
@@ -2748,6 +2764,8 @@
                                                                          <ext:Parameter Name="branchName" Value="record.data['branchName']" Mode="Raw" />
                                                                          <ext:Parameter Name="categoryName" Value="record.data['categoryName']" Mode="Raw" />
                                                                          <ext:Parameter Name="comments" Value="record.data['comments']" Mode="Raw" />
+                                                                           <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
+                                                                        
                                                                        <%-- <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />--%>
                                                                     </ExtraParams>
 
@@ -4327,7 +4345,12 @@
 
                                 </ext:ComboBox>
 
-
+                                  <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalReasonControl  runat="server" ID="LeaveApprovalReasonControl" FieldLabel="<%$ Resources:Common, ApprovalReason %>" />
+                                            </Content>
+                                        </ext:Container>  
 
 
 
@@ -4593,7 +4616,12 @@
 
                                 </ext:ComboBox>
 
-
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalReasonControl  runat="server" ID="TimeApprovalReasonControl" FieldLabel="<%$ Resources:Common, ApprovalReason %>" />
+                                            </Content>
+                                        </ext:Container>  
 
 
 
@@ -4636,6 +4664,7 @@
                                                                                 <ext:ModelField Name="status" />
                                                                                 <ext:ModelField Name="notes" />
                                                                                   <ext:ModelField Name="statusString" />
+                                                                                 <ext:ModelField Name="arName" />
                                                                             
 
                                                                             </Fields>
@@ -4661,8 +4690,10 @@
 
                                                                      <ext:Column ID="Column43"  DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="1" />
                                                                      <ext:Column ID="Column44" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
-                                                                      
+                                                                         
                                                                     </ext:Column>
+                                                                     <ext:Column ID="Column66" DataIndex="arName" Text="<%$ Resources: Common,ApprovalReason %>" Flex="1" runat="server"  />
+                                                                      
                                                                      <ext:Column ID="Column45" DataIndex="notes" Text="<%$ Resources: FieldNotes %>" runat="server" Flex="2" />
 
                                                                 
@@ -4780,7 +4811,12 @@
                                         </Change>--%>
                                     </Listeners>
                                 </ext:ComboBox>
-
+                                  <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalReasonControl  runat="server" ID="LoanApprovalReasonControl" FieldLabel="<%$ Resources:Common, ApprovalReason %>" />
+                                            </Content>
+                                        </ext:Container>  
                                 <ext:DateField AllowBlank="true"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" Vtype="daterange" ReadOnly="true"  >
                                    <%-- <CustomConfig>
                         <ext:ConfigItem Name="startDateField" Value="date" Mode="Value" />
@@ -4856,6 +4892,8 @@
                                                                                 <ext:ModelField Name="status" />
                                                                                 <ext:ModelField Name="notes" />
                                                                                   <ext:ModelField Name="statusString" />
+                                                                                  <ext:ModelField Name="arName" />
+
                                                                             
 
                                                                             </Fields>
@@ -4881,8 +4919,10 @@
 
                                                                     
                                                                      <ext:Column ID="Column51" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
+
                                                                       
                                                                     </ext:Column>
+                                                                     <ext:Column ID="Column59" DataIndex="arName" Text="<%$ Resources: Common,ApprovalReason %>" Flex="1" runat="server" />
                                                                      <ext:Column ID="Column52" DataIndex="notes" Text="<%$ Resources: FieldNotes %>" runat="server" Flex="2" />
 
                                                                 
@@ -5655,6 +5695,12 @@
                                        
                                     </Listeners>
                                 </ext:ComboBox>
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalReasonControl  runat="server" ID="PurchasApprovalReasonControl" FieldLabel="<%$ Resources:Common, ApprovalReason %>" />
+                                            </Content>
+                                        </ext:Container>  
 
                               
                                    <ext:NumberField ID="qty" runat="server" FieldLabel="<%$ Resources:FieldQty%>" Name="qty" ReadOnly="true"/>

@@ -187,6 +187,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approval Reason.
+        /// </summary>
+        internal static string ApprovalReason {
+            get {
+                return ResourceManager.GetString("ApprovalReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Approvals.
         /// </summary>
         internal static string Approvals {
@@ -480,6 +489,15 @@ namespace Resources {
         internal static string CertificateLevels {
             get {
                 return ResourceManager.GetString("CertificateLevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CFA.
+        /// </summary>
+        internal static string CFACurrency {
+            get {
+                return ResourceManager.GetString("CFACurrency", resourceCulture);
             }
         }
         

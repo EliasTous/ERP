@@ -1485,8 +1485,9 @@ namespace AionHR.Web.UI.Forms
             string branch = e.ExtraParams["branchName"];
             string category = e.ExtraParams["categoryName"];
             string commentsParameter = e.ExtraParams["comments"];
+            string arIdParameter = e.ExtraParams["arId"];
             PAstatus.Select(statusParameter);
-
+            PurchasApprovalReasonControl.setApprovalReason(arIdParameter);
 
 
             //TimeApprovalRecordRequest r = new TimeApprovalRecordRequest();
@@ -1533,6 +1534,7 @@ namespace AionHR.Web.UI.Forms
             {
                 string id = e.ExtraParams["id"];
                 string employeeId = e.ExtraParams["employeeId"];
+                string arId = e.ExtraParams["arId"];
 
                 //SetTabPanelEnable(true);
 
@@ -1564,7 +1566,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 2 : call setvalues with the retrieved object
                 this.ApprovalLoanForm.SetValues(response.result);
                 ApprovalLoanStatus.Select("1");
-
+                LoanApprovalReasonControl.setApprovalReason(arId);
 
                 ApprovalLoanEmployeeName.Text = response.result.employeeName.fullName.ToString();
 
@@ -1656,7 +1658,7 @@ namespace AionHR.Web.UI.Forms
         {
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-
+            string arId= e.ExtraParams["arId"];
             switch (type)
             {
 
@@ -1680,7 +1682,7 @@ namespace AionHR.Web.UI.Forms
 
                     this.LeaveRecordForm.SetValues(response.result);
                     employeeName.Text = response.result.employeeName.fullName;
-
+                    LeaveApprovalReasonControl.setApprovalReason(arId);
                     this.LeaveRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.LeaveRecordWindow.Show();
                     break;
@@ -1736,7 +1738,7 @@ namespace AionHR.Web.UI.Forms
                 LA.notes = notes;
                 LA.loanId = id;
                 LA.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
-
+                LA.arId = LoanApprovalReasonControl.getApprovalReason() == "0" ? null : LoanApprovalReasonControl.getApprovalReason();
                 PostRequest<LoanApproval> request = new PostRequest<LoanApproval>();
                 request.entity = LA;
 
@@ -1786,7 +1788,7 @@ namespace AionHR.Web.UI.Forms
 
             PA.status = string.IsNullOrEmpty(status) ? (Int16?)null : Convert.ToInt16(status);
             PA.poId = string.IsNullOrEmpty(poId) ? (Int32?)null : Convert.ToInt32(poId);
-        
+            PA.arId = PurchasApprovalReasonControl.getApprovalReason() == "0" ? null : PurchasApprovalReasonControl.getApprovalReason();
             PA.approverId = _systemService.SessionHelper.GetEmployeeId();
             try
             {
@@ -1852,7 +1854,7 @@ namespace AionHR.Web.UI.Forms
                 else
                     request.entity.notes = " ";
 
-
+                request.entity.arId = LeaveApprovalReasonControl.getApprovalReason() == "0" ? null : LeaveApprovalReasonControl.getApprovalReason();
                 PostResponse<DashboardLeave> r = _leaveManagementService.ChildAddOrUpdate<DashboardLeave>(request);
 
 
