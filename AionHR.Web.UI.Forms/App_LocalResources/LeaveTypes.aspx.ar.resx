@@ -124,7 +124,7 @@
     <value>معلومات نوع الإجازة</value>
   </data>
   <data name="Business" xml:space="preserve">
-    <value>عمل / مرضية</value>
+    <value>عمل</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل نوع الإجازة</value>
@@ -173,5 +173,11 @@
   </data>
   <data name="FieldApproval" xml:space="preserve">
     <value>التعميد</value>
+  </data>
+  <data name="FieldLeaveSchedule" xml:space="preserve">
+    <value>جدول الاجازات</value>
+  </data>
+  <data name="FieldDeduction" xml:space="preserve">
+    <value>الخصم</value>
   </data>
 </root>

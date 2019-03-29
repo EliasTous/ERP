@@ -126,8 +126,14 @@
   <data name="FieldYear" xml:space="preserve">
     <value>Year</value>
   </data>
+  <data name="fillPeriod" xml:space="preserve">
+    <value>please choose Period</value>
+  </data>
   <data name="Month" xml:space="preserve">
     <value>Month</value>
+  </data>
+  <data name="periodError" xml:space="preserve">
+    <value>Please choose salary type and fiscal year </value>
   </data>
   <data name="SalaryBiWeekly" xml:space="preserve">
     <value>Bi-weekly</value>

@@ -136,7 +136,7 @@
     <value>معلومات النشاط </value>
   </data>
   <data name="EditLevelWindowsTitle" xml:space="preserve">
-    <value>معلومات النطاق</value>
+    <value>معلومات استحصال النطاق</value>
   </data>
   <data name="EmployeeCount" xml:space="preserve">
     <value>عدد الموظفين </value>
@@ -175,19 +175,19 @@
     <value>النشاط</value>
   </data>
   <data name="LevelAcquisitionTitle" xml:space="preserve">
-    <value>نسبة نطاق</value>
+    <value>استحصال النطاق</value>
   </data>
   <data name="levelInfoTabEditWindowTitle" xml:space="preserve">
     <value>معلومات نطاق</value>
   </data>
   <data name="levelWindowTitle" xml:space="preserve">
-    <value>نطاق</value>
+    <value>نطاقات</value>
   </data>
   <data name="pct" xml:space="preserve">
     <value>النسبة المئوية</value>
   </data>
   <data name="PointAcquisitionTitle" xml:space="preserve">
-    <value>نقاط التوظيف</value>
+    <value>استحصال النقاط</value>
   </data>
   <data name="points" xml:space="preserve">
     <value>النقاط</value>

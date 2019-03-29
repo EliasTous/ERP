@@ -12,5 +12,8 @@ namespace AionHR.Model.System
         public int itemId { get; set; }
 
         public int count { get; set; }
+
+        public string itemString { get; set; }
+
     }
 }

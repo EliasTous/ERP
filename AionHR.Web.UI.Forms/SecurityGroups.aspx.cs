@@ -44,25 +44,48 @@ namespace AionHR.Web.UI.Forms
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         IMasterService _masterService = ServiceLocator.Current.GetInstance<IMasterService>();
         ICompanyStructureService _company = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -72,6 +95,7 @@ namespace AionHR.Web.UI.Forms
             if (!X.IsAjaxRequest && !IsPostBack)
             {
 
+                modulesCombo1.ADDHandler("select", "App.CurrentModule.setValue(this.value); App.classesStore.reload();");
                 SetExtLanguage();
                 HideShowButtons();
 
@@ -223,7 +247,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -247,7 +271,7 @@ namespace AionHR.Web.UI.Forms
                         CurrentGroup.Text = b.recordId;
                         recordId.Text = b.recordId;
                         this.GroupWindow.Title = b.name;
-                        modulesCombo.Select(0);
+                   
                         classesStore.Reload();
                     }
                 }
@@ -309,47 +333,91 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveGroupUsers(object sender, DirectEventArgs e)
         {
-
-
-            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string id = e.ExtraParams["id"];
-
-            List<SecurityGroupUser> selectedUsers = new List<SecurityGroupUser>();
-            foreach (var item in userSelector.SelectedItems)
+            try
             {
-                selectedUsers.Add(new SecurityGroupUser() { userId = item.Value, fullName = item.Text, sgId = CurrentGroup.Text });
-            }
+                
+                //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+                string id = e.ExtraParams["id"];
+                string selected = e.ExtraParams["selectedUser"];
+                List<SecurityGroupUser> selectedUsers = JsonConvert.DeserializeObject<List<SecurityGroupUser>>(selected);
+                selectedUsers.ForEach(x => x.sgId = CurrentGroup.Text);
 
-            PostRequest<SecurityGroupUser> req = new PostRequest<SecurityGroupUser>();
-            PostResponse<SecurityGroupUser> resp = new PostResponse<SecurityGroupUser>();
-            req.entity = new SecurityGroupUser() { userId = "0", sgId = CurrentGroup.Text };
-            resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
-            if (!resp.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
-            }
-            foreach (var item in selectedUsers)
-            {
-                req.entity = item;
-                req.entity.sgId = CurrentGroup.Text;
-                resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(req);
-                if (!resp.Success)
+
+
+                  GroupUsersListRequest GUreq = new GroupUsersListRequest();
+                GUreq.Size = "100";
+                GUreq.StartAt = "0";
+                GUreq.Filter = "";
+                GUreq.GroupId = CurrentGroup.Text;
+
+
+
+
+              
+               
+                ListResponse<SecurityGroupUser> groups = _accessControlService.ChildGetAll<SecurityGroupUser>(GUreq);
+                if (!groups.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(groups);
+
                     return;
                 }
+                PostResponse<SecurityGroupUser> resp = new PostResponse<SecurityGroupUser>();
+                PostRequest<SecurityGroupUser> req = new PostRequest<SecurityGroupUser>();
+                groups.Items.ForEach(x =>
+                {
+                    req.entity = new SecurityGroupUser() { userId = x.userId, sgId = CurrentGroup.Text };
+                    resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        throw new Exception();
+                    }
 
+                });
+
+
+
+
+
+             
+               
+
+
+                
+                //req.entity = new SecurityGroupUser() { userId = "0", sgId = CurrentGroup.Text };
+                //resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
+                //if (!resp.Success)
+                //{
+                //    Common.errorMessage(resp);
+                //    return;
+                //}
+                foreach (var item in selectedUsers)
+                {
+                    req.entity = item;
+                    req.entity.sgId = CurrentGroup.Text;
+                    resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        throw new Exception();
+                    }
+
+                }
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
+                groupUsersWindow.Close();
+                usersStore.Reload();
             }
-            Notification.Show(new NotificationConfig
+            catch ( Exception exp)
             {
-                Title = Resources.Common.Notification,
-                Icon = Icon.Information,
-                Html = Resources.Common.RecordSavingSucc
-            });
-            groupUsersWindow.Close();
-            usersStore.Reload();
-
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(),exp.Message).Show();
+            }
+            
 
         }
 
@@ -363,14 +431,17 @@ namespace AionHR.Web.UI.Forms
             ModuleClass m = JsonConvert.DeserializeObject<ModuleClass>(e.ExtraParams["values"]);
 
             PostRequest<ModuleClass> req = new PostRequest<ModuleClass>();
-            req.entity = m;
             m.classId = CurrentClass.Text; ;
             m.sgId = CurrentGroup.Text;
+            m.moduleId = CurrentModule.Text;
+            req.entity = m;
+           
+           
             PostResponse<ModuleClass> resp = _accessControlService.ChildAddOrUpdate<ModuleClass>(req);
 
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
 
@@ -389,25 +460,58 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveModuleLevel(object sender, DirectEventArgs e)
         {
-
-
-            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string moduleId = modulesCombo.SelectedItem.Value;
-            List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); if (d != null && d.ModuleId == moduleId) return true; else return false; }).ToList();
-
-            int level = Convert.ToInt32(moduleAccessLevel.SelectedItem.Value);
-            PostRequest<ModuleClass[]> batch = new PostRequest<ModuleClass[]>();
-            List<ModuleClass> allClasses = new List<ModuleClass>();
-            types.ForEach(x => { allClasses.Add(new ModuleClass() { classId = x.GetCustomAttribute<ClassIdentifier>().ClassID, accessLevel = level, id = x.GetCustomAttribute<ClassIdentifier>().ClassID, sgId = CurrentGroup.Text }); });
-            allClasses.Where(x => x.classId.StartsWith("80") || x.classId.EndsWith("99")).ToList().ForEach(y => y.accessLevel = Math.Min(1, y.accessLevel));
-            batch.entity = allClasses.ToArray();
-            PostResponse<ModuleClass[]> batResp = _accessControlService.ChildAddOrUpdate<ModuleClass[]>(batch);
-            if (!batResp.Success)
+            try
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, batResp.Summary).Show();
-                return;
+                AccessControlListRequest req = new AccessControlListRequest();
+                req.GroupId = CurrentGroup.Text;
+                req.ModuleId = CurrentModule.Text;
+                ListResponse<ModuleClass> resp = _accessControlService.ChildGetAll<ModuleClass>(req);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return;
+                }
+                resp.Items = resp.Items.Where(x => x.moduleId == CurrentModule.Text).ToList();
+              
+                PostRequest<ModuleClass> req1 = new PostRequest<ModuleClass>();
+                PostResponse<ModuleClass> resp1;
+                resp.Items.ForEach(x =>
+                {
+                    req1.entity = x;
+                    req1.entity.sgId = CurrentGroup.Text;
+                    req1.entity.accessLevel = Convert.ToInt32(moduleAccessLevel.SelectedItem.Value);
+                    resp1 = _accessControlService.ChildAddOrUpdate<ModuleClass>(req1);
+
+                    if (!resp1.Success)
+                    {
+                        Common.errorMessage(resp1);
+                        return;
+                    }
+                });
+
             }
+            catch(Exception exp)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message);
+            }
+           
+
+            //string moduleId = modulesCombo.SelectedItem.Value;
+            //List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); if (d != null && d.ModuleId == moduleId) return true; else return false; }).ToList();
+
+            //int level = Convert.ToInt32(moduleAccessLevel.SelectedItem.Value);
+            //PostRequest<ModuleClass[]> batch = new PostRequest<ModuleClass[]>();
+            //List<ModuleClass> allClasses = new List<ModuleClass>();
+            //types.ForEach(x => { allClasses.Add(new ModuleClass() { classId = x.GetCustomAttribute<ClassIdentifier>().ClassID, accessLevel = level, id = x.GetCustomAttribute<ClassIdentifier>().ClassID, sgId = CurrentGroup.Text }); });
+            //allClasses.Where(x => x.classId.StartsWith("80") || x.classId.EndsWith("99")).ToList().ForEach(y => y.accessLevel = Math.Min(1, y.accessLevel));
+            //batch.entity = allClasses.ToArray();
+            //PostResponse<ModuleClass[]> batResp = _accessControlService.ChildAddOrUpdate<ModuleClass[]>(batch);
+            //if (!batResp.Success)
+            //{
+            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+            //    X.Msg.Alert(Resources.Common.Error, batResp.Summary).Show();
+            //    return;
+            //}
 
 
 
@@ -442,7 +546,7 @@ namespace AionHR.Web.UI.Forms
                 resp = _accessControlService.ChildAddOrUpdate<ClassProperty>(req);
                 if (!resp.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(resp);
                     return;
                 }
             }
@@ -488,23 +592,24 @@ namespace AionHR.Web.UI.Forms
 
         protected void ADDUsers(object sender, DirectEventArgs e)
         {
+          
+           
 
-            //Reset all values of the relative object
-
-
-
+            
             UsersListRequest req = new UsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
-
+            req.SortBy = "fullName";
             var s = jobInfo1.GetJobInfo();
             req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.ToString() : "0";
             req.PositionId = s.PositionId.HasValue ? s.PositionId.ToString() : "0";
+            req.BranchId = s.BranchId.HasValue ? s.BranchId.ToString() : "0";
             ListResponse<UserInfo> groups = _systemService.ChildGetAll<UserInfo>(req);
+         
             if (!groups.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
+                Common.errorMessage(groups);
                 return;
             }
             List<SecurityGroupUser> all = new List<SecurityGroupUser>();
@@ -513,8 +618,31 @@ namespace AionHR.Web.UI.Forms
             userSelectorStore.DataSource = all;
             userSelectorStore.DataBind();
 
+            GroupUsersListRequest userGroupRequest = new GroupUsersListRequest();
+            userGroupRequest.Size = "100";
+            userGroupRequest.StartAt = "0";
+            userGroupRequest.Filter = "";
+            userGroupRequest.GroupId = CurrentGroup.Text;
+            ListResponse<SecurityGroupUser> usersGroup = _accessControlService.ChildGetAll<SecurityGroupUser>(userGroupRequest);
+            if (!usersGroup.Success)
+            {
+                Common.errorMessage(usersGroup);
+
+                return;
+            }
+
+
+            //Reset all values of the relative object
+            this.userSelector.SelectedItems.Clear();
+            usersGroup.Items.ForEach(x =>
+            {
+                this.userSelector.SelectedItems.Add(new Ext.Net.ListItem() { Value = x.userId });
+            });
+
+
+            this.userSelector.UpdateSelectedItems();
             this.groupUsersWindow.Show();
-            X.Call("show");
+         
         }
 
         private void HideShowButtons()
@@ -561,7 +689,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             CurrentGroup.Text = id.ToString();
             usersStore.Reload();
-          
+            CurrentModule.Text = modulesCombo1.GetModuleId(); 
             switch (type)
             {
 
@@ -581,7 +709,7 @@ namespace AionHR.Web.UI.Forms
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                         Common.errorMessage(response);
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
@@ -591,7 +719,7 @@ namespace AionHR.Web.UI.Forms
                     this.GroupWindow.Show();
                     SetTabPanelActivated(true);
                     panelRecordDetails.ActiveIndex = 0;
-                    modulesCombo.Select(0);
+                  
                     classesStore.Reload();
                     break;
 
@@ -629,6 +757,7 @@ namespace AionHR.Web.UI.Forms
             string level = e.ExtraParams["accessLevel"];
             CurrentClass.Text = id.ToString();
             CurrentClassLevel.Text = level;
+            
             switch (type)
             {
 
@@ -658,18 +787,28 @@ namespace AionHR.Web.UI.Forms
 
 
                 case "imgEdit":
-                    List<PropertyAccessLevel> masterLevels = new List<PropertyAccessLevel>();
-                    masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("NoAccess").ToString(), "0"));
-                    masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("Read").ToString(), "1"));
+                    //List<PropertyAccessLevel> masterLevels = new List<PropertyAccessLevel>();
+                    //masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("NoAccess").ToString(), "0"));
+                    //masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("Read").ToString(), "1"));
                     int maxLevel = 1;
-                    if (modulesCombo.SelectedItem.Value != "80" && !id.ToString().EndsWith("99") && !id.ToString().EndsWith("98") && !id.ToString().EndsWith("97") && !id.ToString().EndsWith("96") && !id.ToString().EndsWith("95"))
+
+                    if (modulesCombo1.GetModuleId().ToString() != "80" && !id.ToString().EndsWith("99") && !id.ToString().EndsWith("98") && !id.ToString().EndsWith("97") && !id.ToString().EndsWith("96") && !id.ToString().EndsWith("95"))
                     {
 
-                        masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("WriteClass").ToString(), "2"));
-                        masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("FullControl").ToString(), "3"));
+                        //masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("WriteClass").ToString(), "2"));
+                        //masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("FullControl").ToString(), "3"));
                         maxLevel = 3;
                     }
-                    classAccessLevelsStore.DataSource = masterLevels;
+                    XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+
+                    request.database = "5";
+                    ListResponse<XMLDictionary> masterLevels = _systemService.ChildGetAll<XMLDictionary>(request);
+                    if (!masterLevels.Success)
+                    {
+                        Common.errorMessage(masterLevels);
+                        return;
+                    }
+                    classAccessLevelsStore.DataSource = masterLevels.Items;
                     classAccessLevelsStore.DataBind();
                     EditClassLevelForm.Reset();
                     int levelInt = Convert.ToInt32(level);
@@ -827,7 +966,7 @@ namespace AionHR.Web.UI.Forms
 
             ListRequest req = new ListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
 
 
@@ -860,7 +999,7 @@ namespace AionHR.Web.UI.Forms
 
             GroupUsersListRequest req = new GroupUsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.GroupId = CurrentGroup.Text;
 
@@ -904,12 +1043,13 @@ namespace AionHR.Web.UI.Forms
         {
             UsersListRequest req = new UsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
-
+            req.SortBy = "fullName";
             var s = jobInfo1.GetJobInfo();
             req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.ToString() : "0";
             req.PositionId = s.PositionId.HasValue ? s.PositionId.ToString() : "0";
+            req.BranchId = s.BranchId.HasValue ? s.BranchId.ToString() : "0";
             ListResponse<UserInfo> groups = _systemService.ChildGetAll<UserInfo>(req);
             if (!groups.Success)
             {
@@ -927,12 +1067,13 @@ namespace AionHR.Web.UI.Forms
         {
             UsersListRequest req = new UsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
-
+            req.SortBy = "fullName";
             var s = jobInfo1.GetJobInfo();
             req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.ToString() : "0";
             req.PositionId = s.PositionId.HasValue ? s.PositionId.ToString() : "0";
+            req.BranchId = s.BranchId.HasValue ? s.BranchId.ToString() : "0";
             ListResponse<UserInfo> groups = _systemService.ChildGetAll<UserInfo>(req);
             if (!groups.Success)
             {
@@ -945,41 +1086,34 @@ namespace AionHR.Web.UI.Forms
             X.Call("AddSource", all);
 
         }
-
-        protected void modulesStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            //List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().ToList();
-            //HashSet<string> mods = new HashSet<string>();
-            //types.ForEach(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); if(d!= null) mods.Add(x.GetCustomAttribute<ClassIdentifier>().ModuleId); });
-            //List<Model.Access_Control.Module> modules = new List<Model.Access_Control.Module>();
-
-            //mods.ToList().ForEach(x => modules.Add(new Model.Access_Control.Module() { id = x, name = GetGlobalResourceObject("Common", "Mod" + x).ToString() }));
-            ////preDefined.ForEach(x => x.name = GetGlobalResourceObject("Common", x.name).ToString());
-            //modulesStore.DataSource = modules;
-            //modulesStore.DataBind();
-        }
+        
+       
 
         protected void classesStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            List<ModuleClassDefinition> classes = new List<ModuleClassDefinition>();
-            List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); if (d != null && d.ModuleId == modulesCombo.SelectedItem.Value) return true; else return false; }).ToList();
+            //List<ModuleClassDefinition> classes = new List<ModuleClassDefinition>();
+            //List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); if (d != null && d.ModuleId == modulesCombo.SelectedItem.Value) return true; else return false; }).ToList();
 
-            types.ForEach(x => classes.Add(new ModuleClassDefinition() { classId = x.GetCustomAttribute<ClassIdentifier>().ClassID, id = x.GetCustomAttribute<ClassIdentifier>().ClassID, name = "Class" + x.GetCustomAttribute<ClassIdentifier>().ClassID }));
+            //types.ForEach(x => classes.Add(new ModuleClassDefinition() { classId = x.GetCustomAttribute<ClassIdentifier>().ClassID, id = x.GetCustomAttribute<ClassIdentifier>().ClassID, name = "Class" + x.GetCustomAttribute<ClassIdentifier>().ClassID }));
 
-            classes.ForEach(x => { x.name = GetGlobalResourceObject("Classes", x.name).ToString(); x.classId = x.id; });
+            //classes.ForEach(x => { x.name = GetGlobalResourceObject("Classes", x.name).ToString(); x.classId = x.id; });
             AccessControlListRequest req = new AccessControlListRequest();
             req.GroupId = CurrentGroup.Text;
-            ListResponse<ModuleClass> stored = _accessControlService.ChildGetAll<ModuleClass>(req);
-            if (!stored.Success)
+            req.ModuleId =string.IsNullOrEmpty( CurrentModule.Text)?"0": CurrentModule.Text;
+            ListResponse<ModuleClass> resp = _accessControlService.ChildGetAll<ModuleClass>(req);
+            if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, stored.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
-            List<ModuleClass> finalClasses = new List<ModuleClass>();
-            classes.ForEach(x => { List<ModuleClass> match = stored.Items.Where(y => y.classId == x.classId).ToList(); ModuleClass temp = new ModuleClass(x); if (match.Count > 0) temp.accessLevel = match[0].accessLevel; else temp.accessLevel = 0; finalClasses.Add(temp); });
+            List<XMLDictionary> AccessLevel = ConstClasse.ConstClasses.FillAcessLevel(_systemService);
+            resp.Items.ForEach(x => x.accessLevelString = AccessLevel.Where(y => y.key == x.accessLevel).Count() != 0 ? AccessLevel.Where(y => y.key == x.accessLevel).First().value : string.Empty);
+      //  resp.Items=    resp.Items.Where(x => x.moduleId == CurrentModule.Text).ToList();
+            //List<ModuleClass> finalClasses = new List<ModuleClass>();
 
 
-            classesStore.DataSource = finalClasses;
+
+            classesStore.DataSource = resp.Items;
             classesStore.DataBind();
         }
 
@@ -1024,37 +1158,48 @@ namespace AionHR.Web.UI.Forms
 
         protected void dataStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            string classId = "";
-            if (classIdCombo.SelectedItem == null || string.IsNullOrEmpty(classIdCombo.SelectedItem.Value))
-                classId = "21010";
-            else
-                classId = classIdCombo.SelectedItem.Value;
-            DataAccessRecordRequest recordReq = new DataAccessRecordRequest();
-            recordReq.RecordID = "0";
-            recordReq.sgId = CurrentGroup.Text;
-            recordReq.classId = classId;
-            RecordResponse<DataAccessItemView> recordRes = _accessControlService.ChildGetRecord<DataAccessItemView>(recordReq);
-            if (recordRes.result != null)
+            try
             {
-                superUserCheck.Checked = true;
-                dataStore.DataSource = new List<DataAccessItemView>();
-                dataStore.DataBind();
-            }
-            else
+                string classId = "";
+                if (classIdCombo.SelectedItem == null || string.IsNullOrEmpty(classIdCombo.SelectedItem.Value))
+                    classId = "21010";
+                else
+                    classId = classIdCombo.SelectedItem.Value;
+                DataAccessListRequest dataListRequest = new DataAccessListRequest();
+
+
+                dataListRequest.classId = classId;
+                dataListRequest.sgId = CurrentGroup.Text;
+                ListResponse<DataAccessItemView> stored = _accessControlService.ChildGetAll<DataAccessItemView>(dataListRequest);
+                if (!stored.Success)
+                {
+                    Common.errorMessage(stored);
+                    return;
+                }
+                if (stored.Items.Count == 0)
+                {
+                    superUserCheck.Checked = true;
+                    dataStore.DataSource = new List<DataAccessItemView>();
+                    dataStore.DataBind();
+                }
+                else
+                {
+
+
+                    //DataAccessListRequest req = new DataAccessListRequest();
+
+
+                    //req.classId = classId;
+                    //req.sgId = CurrentGroup.Text;
+                    //ListResponse<DataAccessItemView> stored = _accessControlService.ChildGetAll<DataAccessItemView>(req);
+                    dataStore.DataSource = stored.Items;
+                    dataStore.DataBind();
+                    superUserCheck.Checked = false;
+                }
+            }catch(Exception exp)
             {
-
-
-                DataAccessListRequest req = new DataAccessListRequest();
-
-
-                req.classId = classId;
-                req.sgId = CurrentGroup.Text;
-                ListResponse<DataAccessItemView> stored = _accessControlService.ChildGetAll<DataAccessItemView>(req);
-                dataStore.DataSource = stored.Items;
-                dataStore.DataBind();
-                superUserCheck.Checked = false;
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message);
             }
-
 
         }
 
@@ -1122,7 +1267,7 @@ namespace AionHR.Web.UI.Forms
                     if(!resp.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                        Common.errorMessage(resp);
                         return;
                     }
                 });
@@ -1139,40 +1284,100 @@ namespace AionHR.Web.UI.Forms
         {
             if (superUserCheck.Checked)
             {
-                PostRequest<DataAccessItemView> req = new PostRequest<DataAccessItemView>();
-                DataAccessItemView x = new DataAccessItemView();
-                x.classId = classIdCombo.SelectedItem.Value;
-                x.sgId = CurrentGroup.Text;
-                x.hasAccess = true;
-                x.recordId = "0";
-                req.entity = x;
-                PostResponse<DataAccessItemView> resp = _accessControlService.ChildAddOrUpdate<DataAccessItemView>(req);
-                if (!resp.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                    return;
-                }
+            //    PostRequest<DataAccessItemView> req = new PostRequest<DataAccessItemView>();
+            //    DataAccessItemView x = new DataAccessItemView();
+            //    x.classId = classIdCombo.SelectedItem.Value;
+            //    x.sgId = CurrentGroup.Text;
+            //    x.hasAccess = true;
+            //    x.recordId = "0";
+            //    req.entity = x;
+            //    PostResponse<DataAccessItemView> resp = _accessControlService.ChildAddOrUpdate<DataAccessItemView>(req);
+            //    if (!resp.Success)
+            //    {
+            //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+            //        Common.errorMessage(resp);
+            //        return;
+            //    }
 
-            }
-            else
-            {
-                PostRequest<DataAccessItemView> req = new PostRequest<DataAccessItemView>();
-                DataAccessItemView x = new DataAccessItemView();
-                x.classId = classIdCombo.SelectedItem.Value;
-                x.sgId = CurrentGroup.Text;
-                x.hasAccess = false;
-                x.recordId = "0";
-                req.entity = x;
-                PostResponse<DataAccessItemView> resp = _accessControlService.ChildDelete<DataAccessItemView>(req);
-                if (!resp.Success)
+            //}
+            //else
+            //{
+                DataAccessListRequest req = new DataAccessListRequest();
+
+
+                req.classId = classIdCombo.SelectedItem.Value;
+                req.sgId = CurrentGroup.Text;
+                ListResponse<DataAccessItemView> stored = _accessControlService.ChildGetAll<DataAccessItemView>(req);
+                if (!stored.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")+ resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(stored);
                     return;
                 }
+                PostRequest<DataAccessItemView> req1 = new PostRequest<DataAccessItemView>();
+                stored.Items.ForEach(x =>
+                {
+                    req1.entity = x;
+                    PostResponse<DataAccessItemView> resp = _accessControlService.ChildDelete<DataAccessItemView>(req1);
+                    if (!resp.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        Common.errorMessage(resp);
+                        return;
+                    }
+                });
+
+                //PostRequest<DataAccessItemView> req = new PostRequest<DataAccessItemView>();
+                //DataAccessItemView x = new DataAccessItemView();
+                //x.classId = classIdCombo.SelectedItem.Value;
+                //x.sgId = CurrentGroup.Text;
+                //x.hasAccess = false;
+                //x.recordId = "0";
+                //req.entity = x;
+                //PostResponse<DataAccessItemView> resp = _accessControlService.ChildDelete<DataAccessItemView>(req);
+                //if (!resp.Success)
+                //{
+                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //    Common.errorMessage(resp);
+                //    return;
+                //}
             }
             dataStore.Reload();
+        }
+
+        protected void modulesStore_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+
+            this.modulesStore.DataSource = ConstClasse.ConstClasses.FillAcessLevel(_systemService);
+
+            this.modulesStore.DataBind();
+        }
+        protected void accessLevelsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            List<XMLDictionary> AccessLevel = ConstClasse.ConstClasses.FillAcessLevel(_systemService);
+            accessLevelsStore.DataSource = AccessLevel;
+            accessLevelsStore.DataBind();
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+
+
         }
     }
 }

@@ -51,25 +51,48 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -93,7 +116,7 @@ namespace AionHR.Web.UI.Forms
                 //    return;
                 //}
                 BatchStatusRequest req = new BatchStatusRequest();
-                req.classId = ClassId.TACH;
+                req.classId = ClassId.TAIM ;
                 RecordResponse<BatchOperationStatus> resp = _systemService.ChildGetRecord<BatchOperationStatus>(req);
                 if (!resp.Success || resp.result == null)
                 {
@@ -225,6 +248,7 @@ namespace AionHR.Web.UI.Forms
                 storage.Save("AccountId", _systemService.SessionHelper.Get("AccountId"));
                 storage.Save("UserId", _systemService.SessionHelper.Get("UserId"));
                 storage.Save("key", _systemService.SessionHelper.Get("Key"));
+                storage.Save("LanguageId", _systemService.SessionHelper.Get("Language").ToString() == "en" ? "1" : "2");
                 SessionHelper h = new SessionHelper(storage, new APIKeyBasedTokenGenerator());
                 EmployeeService emp = new EmployeeService(new EmployeeRepository(), h);
 
@@ -232,21 +256,21 @@ namespace AionHR.Web.UI.Forms
                 SystemService _system = new SystemService(new SystemRepository(), h);
 
 
-                Dictionary<string, string> arabicErrors = new Dictionary<string, string>();
-                if (_systemService.SessionHelper.CheckIfArabicSession())
-                {
-                    System.Resources.ResourceManager MyResourceClass = new System.Resources.ResourceManager(typeof(Resources.Errors /* Reference to your resources class -- may be named differently in your case */));
+                //Dictionary<string, string> arabicErrors = new Dictionary<string, string>();
+                //if (_systemService.SessionHelper.CheckIfArabicSession())
+                //{
+                //    System.Resources.ResourceManager MyResourceClass = new System.Resources.ResourceManager(typeof(Resources.Errors /* Reference to your resources class -- may be named differently in your case */));
 
-                    ResourceSet resourceSet = Resources.Errors.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
-                    foreach (DictionaryEntry entry in resourceSet)
-                    {
-                        arabicErrors[entry.Key.ToString()] = entry.Value.ToString();
+                //    ResourceSet resourceSet = Resources.Errors.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+                //    foreach (DictionaryEntry entry in resourceSet)
+                //    {
+                //        arabicErrors[entry.Key.ToString()] = entry.Value.ToString();
                       
-                    }
-                }
+                //    }
+                //}
             
 
-                PunchesBatchRunner runner = new PunchesBatchRunner(storage, emp, _system, _timeAtt, arabicErrors) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
+                PunchesBatchRunner runner = new PunchesBatchRunner(storage, emp, _system, _timeAtt,GetGlobalResourceObject("Errors", "Error_1").ToString()) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
                 runner.Process();
                 
                 this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID);
@@ -279,7 +303,7 @@ namespace AionHR.Web.UI.Forms
 
             //object prep = _systemService.SessionHelper.Get("Preporcessing");
             BatchStatusRequest req = new BatchStatusRequest();
-            req.classId = ClassId.TACH;
+            req.classId = ClassId.TAIM ;
             RecordResponse<BatchOperationStatus> resp = _systemService.ChildGetRecord<BatchOperationStatus>(req);
             if (resp.result == null)
                 return;
@@ -321,10 +345,25 @@ namespace AionHR.Web.UI.Forms
             HttpContext.Current.Response.AddHeader("content-disposition", attachment);
             HttpContext.Current.Response.ContentType = "application/octet-stream";
             HttpContext.Current.Response.AddHeader("Pragma", "public");
-            string content;
+            string content = "";
+            PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
+            BatchOperationStatus batch = new BatchOperationStatus();
+            batch.classId = ClassId.TAIM;
+            batch.status = 0;
+            batch.processed = 0;
+            batch.tableSize = 0;
+            req.entity = batch;
+            PostResponse<BatchOperationStatus> resp = _systemService.ChildAddOrUpdate<BatchOperationStatus>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                Common.errorMessage(resp);
+
+            }
+            Viewport1.ActiveIndex = 0;
             try
             {
-                content = File.ReadAllText(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + ClassId.TACH.ToString() + ".txt"));
+                content = File.ReadAllText(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + ClassId.TAIM.ToString() + ".txt"));
             }
 
             catch (Exception exp)
@@ -335,23 +374,10 @@ namespace AionHR.Web.UI.Forms
                 return;
 
             }
+          
             HttpContext.Current.Response.ClearContent();
             HttpContext.Current.Response.Write(content);
-            PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
-            BatchOperationStatus batch = new BatchOperationStatus();
-            batch.classId = ClassId.TACH;
-            batch.status = 0;
-            batch.processed = 0;
-            batch.tableSize = 0;
-            req.entity = batch;
-            PostResponse<BatchOperationStatus> resp = _systemService.ChildAddOrUpdate<BatchOperationStatus>(req);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-                return;
-            }
-            Viewport1.ActiveIndex = 0;
+            
             HttpContext.Current.Response.Flush();
             this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID);
             Response.Close();
@@ -372,7 +398,7 @@ namespace AionHR.Web.UI.Forms
         {
             PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
             BatchOperationStatus batch = new BatchOperationStatus();
-            batch.classId = ClassId.TACH;
+            batch.classId = ClassId.TAIM ;
             batch.status = 0;
             batch.processed = 0;
             batch.tableSize = 0;
@@ -381,7 +407,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return;
             }
         }

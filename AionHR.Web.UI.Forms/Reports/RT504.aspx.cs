@@ -27,6 +27,7 @@ using System.Threading;
 using Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.Payroll;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -37,25 +38,49 @@ namespace AionHR.Web.UI.Forms.Reports
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!X.IsAjaxRequest && !IsPostBack)
@@ -81,7 +106,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         return;
                     }
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-
+                    fillPayId();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     //FillReport(false, false);
                 }
@@ -164,11 +189,11 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = new ReportCompositeRequest();
 
             req.Size = "1000";
-            req.StartAt = "1";
+            req.StartAt = "0";
 
             //req.Add(paymentMethodCombo.GetPaymentMethod());
             req.Add(jobInfo1.GetJobInfo());
-            req.Add(GetPayRef());
+            req.Add(GetPayId());
 
 
 
@@ -193,7 +218,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.IncludeIsInactive = 2;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -211,16 +236,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ListResponse<AionHR.Model.Reports.RT504> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT504>(req);
             if (!resp.Success)
-            {
-                if (throwException)
-                    throw new Exception(resp.Summary);
-                else
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-                    return;
-                }
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
 
 
@@ -250,10 +266,10 @@ namespace AionHR.Web.UI.Forms.Reports
                     h.Parameters["Branch"].Value = jobInfo1.GetBranch();
                 else
                     h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-                if (req.Parameters["_payRef"] != "0")
-                    h.Parameters["PayRef"].Value = req.Parameters["_payRef"];
-                else
-                    h.Parameters["PayRef"].Value = GetGlobalResourceObject("Common", "All");
+            if (req.Parameters["_payId"] != "0")
+                h.Parameters["PayRef"].Value = payId.SelectedItem.Text;
+            else
+                h.Parameters["PayRef"].Value = GetGlobalResourceObject("Common", "All");
 
                 //if (req.Parameters["_employeeId"] != "0")
                 //    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
@@ -304,26 +320,52 @@ namespace AionHR.Web.UI.Forms.Reports
             //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport(true);
         }
-        private PayRefParameterSet GetPayRef()
+        private PayIdParameterSet GetPayId()
         {
-            PayRefParameterSet p = new PayRefParameterSet();
+            PayIdParameterSet p = new PayIdParameterSet();
 
 
-            if (!string.IsNullOrEmpty(payRef.Text) && payRef.Value.ToString() != "0")
+            if (!string.IsNullOrEmpty(payId.Text) && payId.Value.ToString() != "0")
             {
-                p.payRef = payRef.Value.ToString(); ;
+                p.payId = payId.Value.ToString(); ;
 
 
 
             }
             else
             {
-                p.payRef = "0";
+                p.payId = "0";
 
             }
             return p;
         }
+        private void fillPayId()
+        {
+            PayrollListRequest req = new PayrollListRequest();
+            req.Year = "0";
+            req.PeriodType = "5";
+            req.Status = "0";
+            req.Size = "30";
+            req.StartAt = "0";
+            req.Filter = "";
 
+            ListResponse<GenerationHeader> resp = _payrollService.ChildGetAll<GenerationHeader>(req);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+         
+            string dateFormat = _systemService.SessionHelper.GetDateformat();
+            if (_systemService.SessionHelper.CheckIfArabicSession())
+                resp.Items.ForEach(x => x.payRefWithDateRange = x.payRef + " ( " + x.startDate.ToString(dateFormat, new CultureInfo("ar-AE")) + " - " + x.endDate.ToString(dateFormat, new CultureInfo("ar-AE")) + " )");
+            else
+                resp.Items.ForEach(x => x.payRefWithDateRange = x.payRef + " ( " + x.startDate.ToString(dateFormat, new CultureInfo("en")) + " - " + x.endDate.ToString(dateFormat, new CultureInfo("en")) + " )");
+            payIdStore.DataSource = resp.Items;
+            payIdStore.DataBind();
+
+
+        }
 
     }
 }

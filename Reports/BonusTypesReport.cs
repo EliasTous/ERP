@@ -80,25 +80,28 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BonusTypesReport));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.pageHeaderBand1 = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.pageFooterBand1 = new DevExpress.XtraReports.UI.PageFooterBand();
+            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
+            this.User = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrPageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.reportHeaderBand1 = new DevExpress.XtraReports.UI.ReportHeaderBand();
@@ -109,12 +112,9 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
             this.DataField = new DevExpress.XtraReports.UI.XRControlStyle();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
-            this.User = new DevExpress.XtraReports.Parameters.Parameter();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -124,6 +124,31 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.Detail, "Detail");
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            // 
+            // xrTable2
+            // 
+            this.xrTable2.AnchorVertical = ((DevExpress.XtraReports.UI.VerticalAnchorStyles)((DevExpress.XtraReports.UI.VerticalAnchorStyles.Top | DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom)));
+            resources.ApplyResources(this.xrTable2, "xrTable2");
+            this.xrTable2.Name = "xrTable2";
+            this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrTableRow4});
+            // 
+            // xrTableRow4
+            // 
+            this.xrTableRow4.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell8});
+            resources.ApplyResources(this.xrTableRow4, "xrTableRow4");
+            this.xrTableRow4.Name = "xrTableRow4";
+            // 
+            // xrTableCell8
+            // 
+            this.xrTableCell8.CanGrow = false;
+            this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "name")});
+            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
+            this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.StyleName = "DataField";
+            this.xrTableCell8.StylePriority.UseTextAlignment = false;
             // 
             // TopMargin
             // 
@@ -157,6 +182,21 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow3});
             // 
+            // xrTableRow3
+            // 
+            this.xrTableRow3.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell7});
+            resources.ApplyResources(this.xrTableRow3, "xrTableRow3");
+            this.xrTableRow3.Name = "xrTableRow3";
+            // 
+            // xrTableCell7
+            // 
+            this.xrTableCell7.CanGrow = false;
+            resources.ApplyResources(this.xrTableCell7, "xrTableCell7");
+            this.xrTableCell7.Name = "xrTableCell7";
+            this.xrTableCell7.StyleName = "FieldCaption";
+            this.xrTableCell7.StylePriority.UseTextAlignment = false;
+            // 
             // xrTableRow1
             // 
             this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
@@ -180,14 +220,6 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
             // 
             resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             this.xrTableCell3.Name = "xrTableCell3";
-            // 
-            // xrTable2
-            // 
-            this.xrTable2.AnchorVertical = ((DevExpress.XtraReports.UI.VerticalAnchorStyles)((DevExpress.XtraReports.UI.VerticalAnchorStyles.Top | DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom)));
-            resources.ApplyResources(this.xrTable2, "xrTable2");
-            this.xrTable2.Name = "xrTable2";
-            this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xrTableRow4});
             // 
             // xrTableRow2
             // 
@@ -213,38 +245,6 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             this.xrTableCell6.Name = "xrTableCell6";
             // 
-            // xrTableRow3
-            // 
-            this.xrTableRow3.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell7});
-            resources.ApplyResources(this.xrTableRow3, "xrTableRow3");
-            this.xrTableRow3.Name = "xrTableRow3";
-            // 
-            // xrTableRow4
-            // 
-            this.xrTableRow4.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell8});
-            resources.ApplyResources(this.xrTableRow4, "xrTableRow4");
-            this.xrTableRow4.Name = "xrTableRow4";
-            // 
-            // xrTableCell7
-            // 
-            this.xrTableCell7.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell7, "xrTableCell7");
-            this.xrTableCell7.Name = "xrTableCell7";
-            this.xrTableCell7.StyleName = "FieldCaption";
-            this.xrTableCell7.StylePriority.UseTextAlignment = false;
-            // 
-            // xrTableCell8
-            // 
-            this.xrTableCell8.CanGrow = false;
-            this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "name")});
-            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
-            this.xrTableCell8.Name = "xrTableCell8";
-            this.xrTableCell8.StyleName = "DataField";
-            this.xrTableCell8.StylePriority.UseTextAlignment = false;
-            // 
             // pageFooterBand1
             // 
             this.pageFooterBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -254,6 +254,28 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
             this.xrPageInfo2});
             resources.ApplyResources(this.pageFooterBand1, "pageFooterBand1");
             this.pageFooterBand1.Name = "pageFooterBand1";
+            // 
+            // xrLabel7
+            // 
+            resources.ApplyResources(this.xrLabel7, "xrLabel7");
+            this.xrLabel7.Multiline = true;
+            this.xrLabel7.Name = "xrLabel7";
+            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel7.StylePriority.UseTextAlignment = false;
+            // 
+            // xrLabel6
+            // 
+            this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.User, "Text", "")});
+            resources.ApplyResources(this.xrLabel6, "xrLabel6");
+            this.xrLabel6.Name = "xrLabel6";
+            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel6.StylePriority.UseTextAlignment = false;
+            // 
+            // User
+            // 
+            this.User.Name = "User";
+            this.User.Visible = false;
             // 
             // xrPageInfo1
             // 
@@ -342,28 +364,6 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel17.StylePriority.UseTextAlignment = false;
             // 
-            // xrLabel6
-            // 
-            this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.User, "Text", "")});
-            resources.ApplyResources(this.xrLabel6, "xrLabel6");
-            this.xrLabel6.Name = "xrLabel6";
-            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel6.StylePriority.UseTextAlignment = false;
-            // 
-            // xrLabel7
-            // 
-            resources.ApplyResources(this.xrLabel7, "xrLabel7");
-            this.xrLabel7.Multiline = true;
-            this.xrLabel7.Name = "xrLabel7";
-            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel7.StylePriority.UseTextAlignment = false;
-            // 
-            // User
-            // 
-            this.User.Name = "User";
-            this.User.Visible = false;
-            // 
             // BonusTypesReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -386,9 +386,9 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
             this.PageInfo,
             this.DataField});
             this.Version = "16.2";
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
     }

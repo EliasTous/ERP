@@ -29,23 +29,47 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -114,7 +138,7 @@ namespace AionHR.Web.UI.Forms
         {
             ActiveAttendanceRequest r = new ActiveAttendanceRequest();
             r.BranchId = r.DepartmentId = r.PositionId = 0;
-            r.StartAt = "1";
+            r.StartAt = "0";
             r.Size = "1000";
             
             ListResponse<ActiveLate> ALs = _timeAttendanceService.ChildGetAll<ActiveLate>(r);

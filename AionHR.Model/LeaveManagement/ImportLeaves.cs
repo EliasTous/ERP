@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.LeaveManagement
 {
-    [ClassIdentifier("42099", "42")]
+    [ClassIdentifier("42090", "42")]
     public class ImportLeaves
     {
     }

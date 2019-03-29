@@ -6,7 +6,7 @@ public class FiscalPeriodsListRequest:ListRequest
 {
     public string Year { get; set; }
 
-    public SalaryType PeriodType { get; set; }
+    public int PeriodType { get; set; }
 
     public string Status { get; set; }
 
@@ -17,7 +17,7 @@ public class FiscalPeriodsListRequest:ListRequest
         {
             parameters = new Dictionary<string, string>();
             parameters.Add("_year", Year);
-            parameters.Add("_salaryType", ((int)PeriodType).ToString());
+            parameters.Add("_salaryType", (PeriodType).ToString());
             parameters.Add("_status", Status.ToString());
             return parameters;
         }
@@ -303,4 +303,34 @@ public class PenaltyDetailListRequest :ListRequest
             return parameters;
         }
     }
+}
+
+public class FiscalPeriodRecordRequest : RecordRequest
+{
+
+
+
+    public string year { get; set; }
+    public string salaryType { get; set; }
+    public string periodId { get; set; }
+    
+
+
+    private Dictionary<string, string> parameters;
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_year", year);
+            parameters.Add("_salaryType", salaryType);
+            parameters.Add("_periodId", periodId);
+
+
+
+
+            return parameters;
+        }
+    }
+
 }

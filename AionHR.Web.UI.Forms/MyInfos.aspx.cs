@@ -32,23 +32,47 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ISelfServiceService _iselfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -92,7 +116,7 @@ namespace AionHR.Web.UI.Forms
                 RecordResponse<MyInfo> resp = _iselfServiceService.ChildGetRecord<MyInfo>(req);
                 if (!resp.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+                   Common.errorMessage(resp);
                     return;
                 }
                 if (resp.result != null)
@@ -197,7 +221,7 @@ namespace AionHR.Web.UI.Forms
             PostResponse<MyInfo> resp = _iselfServiceService.ChildAddOrUpdate<MyInfo>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
 
@@ -232,7 +256,7 @@ namespace AionHR.Web.UI.Forms
             foreach (var item in panelRecordDetails.Items)
             {
                 if (item.Loader != null)
-                    item.Loader.Url = item.Loader.Url + "?employeeId=" + employeeId + "&hireDate=" + hireDate + "&terminated=" + (terminated ? "1" : "0");
+                    item.Loader.Url = item.Loader.Url + "?employeeId=" + employeeId + "&hireDate=" + hireDate + "&terminated=" + (terminated ? "1" : "0"+ "&fromSelfService=true");
             }
         }
 

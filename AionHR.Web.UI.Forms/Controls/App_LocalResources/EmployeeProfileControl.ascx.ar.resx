@@ -405,4 +405,7 @@
   <data name="FieldCivilStatus" xml:space="preserve">
     <value>الحالة الاجتماعية</value>
   </data>
+  <data name="uploadImageError" xml:space="preserve">
+    <value>الرجاء اختيار صورة ذات حجم اصغر</value>
+  </data>
 </root>

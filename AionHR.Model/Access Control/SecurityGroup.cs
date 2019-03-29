@@ -100,11 +100,13 @@ namespace AionHR.Model.Access_Control
         [PropertyID("90103_02")]
         [ApplySecurity]
         public int accessLevel { get; set; }
-
+        public string accessLevelString { get; set; }
         public string name { get; set; }
 
         public string sgId { get; set; }
-
+        public string className { get; set; }
+        public string moduleId { get; set; }
+        
 
         public ModuleClass() { }
         public ModuleClass(ModuleClassDefinition def)
@@ -136,12 +138,13 @@ namespace AionHR.Model.Access_Control
 
         
     }
-
+    [ClassIdentifier("90105", "90")]
     public class DataAccessItemView:DataAccessItem
     {
         public string name { get; set; }
         public bool hasAccess { get; set; }
     }
+    [ClassIdentifier("90106", "90")]
     public class UserDataAccess : DataAccessItem
     {
      

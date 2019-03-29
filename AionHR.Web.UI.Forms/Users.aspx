@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
-    <script src="Scripts/jquery-new.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-new.js"></script>
     <script type="text/javascript">
         function dump(obj) {
             var out = '';
@@ -163,11 +163,13 @@
 
             for (var i = 0; i < fromStore.getCount() ; i++) {
                 var s = fromStore.getAt(i);
+              
                 toStore.add(s);
 
                 var d = App.userSelector.fromField.getStore().getById(s.getId());
 
                 if (d != null) {
+                 
                     App.userSelector.fromField.getStore().remove(d);
 
                 }
@@ -196,14 +198,14 @@
         function SwapRTL() {
             if (document.getElementById("isRTL").value == '1') {
 
-                $(".x-form-itemselector-add").css('background-image', 'url(/Site/ux/resources/images/itemselector/left-gif/ext.axd)');
-                $(".x-form-itemselector-remove").css('background-image', 'url(/Site/ux/resources/images/itemselector/right-gif/ext.axd)');
+                $(".x-form-itemselector-add").css('background-image', 'url(ux/resources/images/itemselector/left-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(ux/resources/images/itemselector/right-gif/ext.axd)');
 
             }
             else {
 
-                $(".x-form-itemselector-add").css('background-image', 'url(/Site//ux/resources/images/itemselector/right-gif/ext.axd)');
-                $(".x-form-itemselector-remove").css('background-image', 'url(/Site//ux/resources/images/itemselector/left-gif/ext.axd)');
+                $(".x-form-itemselector-add").css('background-image', 'url(ux/resources/images/itemselector/right-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(ux/resources/images/itemselector/left-gif/ext.axd)');
 
             }
         }
@@ -262,8 +264,12 @@
                          <ext:ModelField Name="userTypeString" />
                         <ext:ModelField Name="isInactive" />
                        <%-- <ext:ModelField Name="isAdmin" />--%>
-                        
-
+                         <ext:ModelField Name="branchName" />
+                         <ext:ModelField Name="departmentName" />
+                         <ext:ModelField Name="positionName" />
+                         <ext:ModelField Name="userTypeName" />
+                         <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                      
 
 
 
@@ -276,7 +282,36 @@
                 <ext:DataSorter Property="reference" Direction="ASC" />
             </Sorters>
         </ext:Store>
+           <ext:Store
+            ID="userTypeStore"
+            runat="server"
+            RemoteSort="False"
+            RemoteFilter="true"
+            OnReadData="userTypeStore_RefreshData"
+            PageSize="30" IDMode="Explicit" Namespace="App">
+            <Proxy>
+                <ext:PageProxy>
+                    <Listeners>
+                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                    </Listeners>
+                </ext:PageProxy>
+            </Proxy>
+            <Model>
+                <ext:Model ID="Model4" runat="server" IDProperty="key">
+                    <Fields>
 
+                        <ext:ModelField Name="key" />
+                        <ext:ModelField Name="value" />
+                     
+                      
+
+
+
+                    </Fields>
+                </ext:Model>
+            </Model>
+        
+        </ext:Store>
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
@@ -350,7 +385,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="true">
                         <Columns>
 
-                            <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column Visible="false" ID="ColEmployeeId" MenuDisabled="true" runat="server" DataIndex="employeeId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column Visible="false" ID="ColPassword" MenuDisabled="true" runat="server" DataIndex="password" Hideable="false" Width="75" Align="Center" />
 
@@ -363,12 +398,15 @@
                                 <Renderer Handler="if(App.hide2.value=='True') return '****'; return record.data['email'];" />
                             </ext:Column>
 
-                            <ext:CheckColumn ID="ColIsInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Hideable="false" />
+                           <ext:Column ID="Column7" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldEmployeeName%>" DataIndex="employeeName" Flex="1" Hideable="false" />
                            <%-- <ext:CheckColumn ID="ColIsAdmin" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsAdmin %>" DataIndex="isAdmin" Hideable="false" />--%>
-                             <ext:Column ID="ColUserType" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldUserType%>" DataIndex="userTypeString" Flex="1" Hideable="false">
-                                
-                            </ext:Column>
+                             <ext:Column ID="ColUserType" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldUserType%>" DataIndex="userTypeName" Flex="1" Hideable="false" />
+                                  <ext:Column ID="Column3" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="1" Hideable="false" />
+                              <ext:Column ID="Column5" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="1" Hideable="false" />
+                              <ext:Column ID="Column6" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="1" Hideable="false" />
 
+                           
+                              <ext:CheckColumn ID="ColIsInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Hideable="false" />
 
                             <ext:Column runat="server"
                                 ID="colAttach" Visible="true"
@@ -485,21 +523,21 @@
                                 <ext:Checkbox ID="isInactiveCheck" TabIndex="4" runat="server" FieldLabel="<%$ Resources: FieldIsInActive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
                            <%--     <ext:Checkbox ID="isAdminCheck" TabIndex="5" runat="server" FieldLabel="<%$ Resources: FieldIsAdmin%>" DataIndex="isAdmin" Name="isAdmin" InputValue="true" />--%>
 
-                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="userType" AllowBlank="false"  Name="userType"
-                                    SubmitValue="true"
+                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="userType" AllowBlank="false"  Name="userType" DisplayField="value" ValueField="key" 
+                                    SubmitValue="true"  StoreID="userTypeStore"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldUserType%>">
-                                    <Items>
+                                   <%-- <Items>
                                       
-                                        <ext:ListItem Text="<%$Resources:FieldSuperUser %>" Value="1" />
+                                   <%--     <ext:ListItem Text="<%$Resources:FieldSuperUser %>" Value="1" />
                                           <ext:ListItem Text="<%$Resources:FieldAdministrator %>" Value="2" />
                                         <ext:ListItem Text="<%$Resources:FieldOperator %>" Value="3" />
                                         
                                           <ext:ListItem Text="<%$Resources:FieldSelfService %>" Value="4" />
 
-                                    </Items>
+                                    </Items>--%>
                                        <Listeners>
-                                           <Select Handler="if (this.value!=1) #{employeeId}.allowBlank = false; else #{employeeId}.allowBlank = true; "></Select>
+                                           <Select Handler="if (this.value!=1) #{employeeId}.allowBlank = false; else #{employeeId}.allowBlank = true; #{employeeId}.validate(); "></Select>
                                        </Listeners>
                                 </ext:ComboBox>
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" TabIndex="6" Name="employeeId"
@@ -530,6 +568,7 @@
 
                                     <Listeners>
                                         <Select Handler="App.direct.SetFullName();" />
+                                        <Change Handler="if (App.userType.getValue()!=1) #{employeeId}.allowBlank = false; else #{employeeId}.allowBlank = true;" />
                                         <FocusLeave Handler=" if(this.value==null|| isNaN(this.value) )SetNameEnabled(true,'');  if(isNaN(this.value)) this.setValue(null);" />
                                     </Listeners>
                                 </ext:ComboBox>
@@ -540,7 +579,7 @@
                                     <Items>
                                         <ext:ListItem Text="<%$Resources:Common,EnglishLanguage %>" Value="1" />
                                         <ext:ListItem Text="<%$Resources:Common,ArabicLanguage %>" Value="2" />
-
+                                         <ext:ListItem Text="<%$Resources:Common,FrenchLanguage %>" Value="3" />
                                     </Items>
                                 </ext:ComboBox>
 
@@ -698,6 +737,7 @@
                                     <BottomBar>
                                     </BottomBar>
                                     <Listeners>
+                                     
                                         <Render Handler="this.on('cellclick', cellClick);" />
                                     </Listeners>
                                     <DirectEvents>
@@ -713,6 +753,9 @@
                                 </ext:GridPanel>
 
                             </Items>
+                            <Listeners>
+                                   <Activate Handler="#{UserGroupsStore}.reload();" />
+                            </Listeners>
                         </ext:FormPanel>
                     </Items>
                 </ext:TabPanel>
@@ -782,6 +825,15 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{GroupUsersForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                           <ext:Parameter 
+                            Name="selectedGroups"                                  
+                            Value="App.userSelector.toField.getStore().getRecordsValues()" 
+                            Mode="Raw" 
+                            Encode="true" />
+                       
+                  
+            
+                           
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

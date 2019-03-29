@@ -21,22 +21,24 @@ namespace AionHR.Services.Implementations
         ITimeAttendanceService timeAttendance;
         IEmployeeService employee; 
         Dictionary<string, int> udId;
-        //Dictionary<string, int> employeeId;
-        Dictionary<string, string> arabicErrors;
-      
+        string UnknownError;
 
-        public PunchesBatchRunner(ISessionStorage store, IEmployeeService employee, ISystemService system, ITimeAttendanceService timeAttendance,Dictionary<string,string> arabicErrors) :base(system, employee)
+
+
+
+        public PunchesBatchRunner(ISessionStorage store, IEmployeeService employee, ISystemService system, ITimeAttendanceService timeAttendance,string UnknownError) :base(system, employee)
         {
             this.timeAttendance = timeAttendance;
+            this.UnknownError = UnknownError;
             this.employee = employee;
             this.SessionStore = store;
             SessionHelper h = new SessionHelper(store, new APIKeyBasedTokenGenerator());
 
 
-            BatchStatus = new BatchOperationStatus() { classId = ClassId.TACH, processed = 0, tableSize = 0, status = 0 };
+            BatchStatus = new BatchOperationStatus() { classId = ClassId.TAIM, processed = 0, tableSize = 0, status = 0 };
             errors = new List<Check>();
             udId = new Dictionary<string, int>();
-            this.arabicErrors = arabicErrors;
+         
             //this.InactivePref = InactivePref;
             //this.NameFormat = NameFormat;
             FillUdId();
@@ -51,7 +53,13 @@ namespace AionHR.Services.Implementations
             int i = 0;
             foreach (var error in errors)
             {
-                b.AppendLine(error.employeeRef + "," + error.clockStamp + "," + error.udId + "," + errorMessages[i++].Replace('\r', ' ').Replace(',', ';'));
+                if (errorMessages[i] != null)
+                    b.AppendLine(error.employeeRef + "," + error.clockStamp + "," + error.udId + "," + errorMessages[i++].Replace('\r', ' ').Replace(',', ';'));
+                else
+                {
+                    i++;
+                    b.AppendLine(error.employeeRef + "," + error.clockStamp + "," + error.udId);
+                }
 
             }
 
@@ -85,15 +93,13 @@ namespace AionHR.Services.Implementations
             PostResponse<Check> resp =timeAttendance.ChildAddOrUpdate<Check>(req);
             if (!resp.Success)
             {
-                if (arabicErrors.ContainsKey(resp.ErrorCode))
-                {
-                    errorMessages.Add(arabicErrors[resp.ErrorCode]);
-                }
+                if (!string.IsNullOrEmpty(resp.Error))
+                  errorMessages.Add(resp.Error);
+                              
                 else
-                    errorMessages.Add(resp.Summary);
-
+                    errorMessages.Add(UnknownError);
                 errors.Add(item);
-              
+
             }
         }
         private void FillUdId()

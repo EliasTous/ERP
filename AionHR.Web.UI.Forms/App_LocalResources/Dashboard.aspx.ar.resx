@@ -162,17 +162,11 @@
   <data name="Birthdays" xml:space="preserve">
     <value>أعياد الميلاد</value>
   </data>
-  <data name="CheckMoniterGridTitle" xml:space="preserve">
-    <value>شاشة المراقبة</value>
-  </data>
   <data name="ComapnyRightToWork" xml:space="preserve">
     <value>وثائق الشركة</value>
   </data>
   <data name="CompletedLoans" xml:space="preserve">
     <value>السلف المسددة</value>
-  </data>
-  <data name="ContractEndingDate" xml:space="preserve">
-    <value>تاريخ نهاية العقد</value>
   </data>
   <data name="DepartmentsCount" xml:space="preserve">
     <value>احصائية الاقسام</value>
@@ -182,9 +176,6 @@
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل الفرع</value>
-  </data>
-  <data name="empCount" xml:space="preserve">
-    <value>عدد موظفين </value>
   </data>
   <data name="EmployeeRightToWork" xml:space="preserve">
     <value>وثائق الموظفين</value>
@@ -267,12 +258,6 @@
   <data name="FieldLastName" xml:space="preserve">
     <value>الاسم الأخير</value>
   </data>
-  <data name="FieldLastTACheck" xml:space="preserve">
-    <value>آخر تسجيل دخول</value>
-  </data>
-  <data name="FieldLastTACheckStatus" xml:space="preserve">
-    <value>حالة آخر تسجيل دخول</value>
-  </data>
   <data name="FieldLtName" xml:space="preserve">
     <value>السبب</value>
   </data>
@@ -288,17 +273,11 @@
   <data name="FieldMobile" xml:space="preserve">
     <value>رقم الجوال</value>
   </data>
-  <data name="FieldMonitor" xml:space="preserve">
-    <value>الإعدادات</value>
-  </data>
   <data name="FieldName" xml:space="preserve">
     <value>الاسم</value>
   </data>
   <data name="FieldNationality" xml:space="preserve">
     <value>الجنسية</value>
-  </data>
-  <data name="FieldPicturePath" xml:space="preserve">
-    <value>مسار الصورة</value>
   </data>
   <data name="FieldPosition" xml:space="preserve">
     <value>الوظيفة</value>
@@ -306,17 +285,11 @@
   <data name="FieldPurpose" xml:space="preserve">
     <value>السبب</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>الرقم</value>
-  </data>
   <data name="FieldReference" xml:space="preserve">
     <value>الرمز</value>
   </data>
   <data name="FieldReligion" xml:space="preserve">
     <value>الدين</value>
-  </data>
-  <data name="FieldSponsor" xml:space="preserve">
-    <value>الكفيل</value>
   </data>
   <data name="FieldStartDate" xml:space="preserve">
     <value>من</value>
@@ -357,23 +330,11 @@
   <data name="Leaves" xml:space="preserve">
     <value>الإجازات</value>
   </data>
-  <data name="LeavesGridTitle" xml:space="preserve">
-    <value>الإجازات</value>
-  </data>
   <data name="Loan" xml:space="preserve">
     <value>السلفة</value>
   </data>
   <data name="Loans" xml:space="preserve">
     <value>السلف</value>
-  </data>
-  <data name="LocalsCount" xml:space="preserve">
-    <value>عدد موظفين محلين </value>
-  </data>
-  <data name="LocalsRate" xml:space="preserve">
-    <value>نسبة المحليين</value>
-  </data>
-  <data name="MinLocalRate" xml:space="preserve">
-    <value>نسبة مطلوبة</value>
   </data>
   <data name="MissingPunchesGridTitle" xml:space="preserve">
     <value>دوام غير مسجل</value>
@@ -381,14 +342,8 @@
   <data name="OnLeave" xml:space="preserve">
     <value>في إجازة</value>
   </data>
-  <data name="OnTime" xml:space="preserve">
-    <value>على الوقت</value>
-  </data>
   <data name="Out" xml:space="preserve">
     <value>الغائبين</value>
-  </data>
-  <data name="OutGridTitle" xml:space="preserve">
-    <value>في الخارج</value>
   </data>
   <data name="OverDue" xml:space="preserve">
     <value>متأخرة</value>
@@ -401,9 +356,6 @@
   </data>
   <data name="Probation" xml:space="preserve">
     <value>الفترات التجريبية</value>
-  </data>
-  <data name="Requests" xml:space="preserve">
-    <value>الطلبات</value>
   </data>
   <data name="SalaryChange" xml:space="preserve">
     <value>تغييرات الرواتب</value>
@@ -471,32 +423,11 @@
   <data name="FieldNew" xml:space="preserve">
     <value>جديد</value>
   </data>
-  <data name="NAttendance" xml:space="preserve">
-    <value>الغياب</value>
-  </data>
-  <data name="NLate" xml:space="preserve">
-    <value>الملتزمين</value>
-  </data>
   <data name="Today" xml:space="preserve">
     <value>اليوم</value>
   </data>
   <data name="Break" xml:space="preserve">
     <value>استراحة</value>
-  </data>
-  <data name="BusinessLeave" xml:space="preserve">
-    <value>غياب عملي</value>
-  </data>
-  <data name="LeaveNoExcuse" xml:space="preserve">
-    <value>غياب بدون عذر</value>
-  </data>
-  <data name="NBreak" xml:space="preserve">
-    <value>مكتبهم</value>
-  </data>
-  <data name="NLeaves" xml:space="preserve">
-    <value>اخرى</value>
-  </data>
-  <data name="NPaidLeaves" xml:space="preserve">
-    <value>غير مدفوعة</value>
   </data>
   <data name="Vacation" xml:space="preserve">
     <value>عطلة</value>
@@ -550,7 +481,7 @@
     <value>سن التقاعد</value>
   </data>
   <data name="TermEndDate" xml:space="preserve">
-    <value>تاريخ انتهاء المدة</value>
+    <value>تاريخ انتهاء العقد</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>الدوام</value>
@@ -584,9 +515,6 @@
   </data>
   <data name="ApproveLoan" xml:space="preserve">
     <value>القرض</value>
-  </data>
-  <data name="Loan1" xml:space="preserve">
-    <value>السلف</value>
   </data>
   <data name="ApprovalLoan" xml:space="preserve">
     <value>السلف</value>
@@ -695,5 +623,53 @@
   </data>
   <data name="FieldTermEndDate" xml:space="preserve">
     <value>نهاية العقد</value>
+  </data>
+  <data name="EditWindowsTimeApproval" xml:space="preserve">
+    <value>التعميد</value>
+  </data>
+  <data name="FieldApproverName" xml:space="preserve">
+    <value>المعمد</value>
+  </data>
+  <data name="vacations" xml:space="preserve">
+    <value>العطلات</value>
+  </data>
+  <data name="FieldReplacement" xml:space="preserve">
+    <value>الموظف البديل</value>
+  </data>
+  <data name="leaveDays" xml:space="preserve">
+    <value>عدد ايام الاجازة </value>
+  </data>
+  <data name="ltName" xml:space="preserve">
+    <value>نوع الاجازة</value>
+  </data>
+  <data name="FieldEffectiveDate" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="PaymentValue" xml:space="preserve">
+    <value>قيمة الدفعة</value>
+  </data>
+  <data name="expiryDate" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+  </data>
+  <data name="branchAvailability" xml:space="preserve">
+    <value>دوام الفروع</value>
+  </data>
+  <data name="present" xml:space="preserve">
+    <value>الحضور</value>
+  </data>
+  <data name="approveAll" xml:space="preserve">
+    <value>موافقة الكل </value>
+  </data>
+  <data name="rejectAll" xml:space="preserve">
+    <value>رفض الكل</value>
+  </data>
+  <data name="FieldCategory" xml:space="preserve">
+    <value>الفئة</value>
+  </data>
+  <data name="FieldComments" xml:space="preserve">
+    <value>ملاحظات</value>
+  </data>
+  <data name="FieldQty" xml:space="preserve">
+    <value>الكمية</value>
   </data>
 </root>

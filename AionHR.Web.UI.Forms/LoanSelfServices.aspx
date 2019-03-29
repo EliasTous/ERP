@@ -183,7 +183,7 @@
                             <%-- <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" Flex="2" />--%>
                              
                            
-
+                               <ext:Column ID="payments" DataIndex="payments" Text="<%$ Resources: FieldPayments %>" runat="server" Flex="2" />
 
 
                             <ext:Column runat="server"
@@ -361,22 +361,8 @@
                                             </Model>
                                         </ext:Store>
                                     </Store>
-                                    <RightButtons>
-                                        <ext:Button ID="Button3" runat="server" Icon="Add" >
-                                            <Listeners>
-                                                <Click Handler="CheckSession();" />
-                                            </Listeners>
-                                            <DirectEvents>
-
-                                                <Click OnEvent="addBranch">
-                                                </Click>
-                                            </DirectEvents>
-                                        </ext:Button>
-                                    </RightButtons>
-                                    <Listeners>
-                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
-                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                    </Listeners>
+                                   
+                                 
                                 </ext:ComboBox>
 
                                 <ext:ComboBox  AnyMatch="true"  CaseSensitive="false"  runat="server" ID="ltId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
@@ -398,22 +384,8 @@
                                         </ext:Store>
 
                                     </Store>
-                                    <RightButtons>
-                                        <ext:Button ID="Button9" runat="server" Icon="Add" >
-                                            <Listeners>
-                                                <Click Handler="CheckSession();  " />
-                                            </Listeners>
-                                            <DirectEvents>
-
-                                                <Click OnEvent="addLoanType">
-                                                </Click>
-                                            </DirectEvents>
-                                        </ext:Button>
-                                    </RightButtons>
-                                    <Listeners>
-                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
-                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                    </Listeners>
+                                  
+                                  
                                 </ext:ComboBox>
 
                                 <%--<ext:TextField ID="employeeName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeName"   AllowBlank="false"/>--%>
@@ -437,22 +409,10 @@
                                             </Model>
                                         </ext:Store>
                                     </Store>
-                                    <RightButtons>
-                                        <ext:Button ID="Button7" runat="server" Icon="Add" >
-                                            <Listeners>
-                                                <Click Handler="CheckSession();  " />
-                                            </Listeners>
-                                            <DirectEvents>
-
-                                                <Click OnEvent="addSACurrency">
-                                                </Click>
-                                            </DirectEvents>
-                                        </ext:Button>
-                                    </RightButtons>
+                               
                                     <Listeners>
                                         <Change Handler="CurrentAmountCurrency.value = App.currencyId.getRawValue();" />
-                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                      
                                     </Listeners>
                                 </ext:ComboBox>
 
@@ -524,7 +484,8 @@
                                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                                             <ExtraParams>
-                                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                                <ext:Parameter Name="ldMethod" Value="#{ldMethod}.getValue()" Mode="Raw" />
+                                                   <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                                 <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
                                             </ExtraParams>
                                         </Click>

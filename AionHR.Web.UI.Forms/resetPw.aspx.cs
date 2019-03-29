@@ -1,4 +1,6 @@
-﻿using AionHR.Model.MasterModule;
+﻿using AionHR.Infrastructure;
+using AionHR.Model.MasterModule;
+using AionHR.Model.System;
 using AionHR.Services.Implementations;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
@@ -28,11 +30,42 @@ namespace AionHR.Web.UI.Forms
         protected override void InitializeCulture()
         {
 
-            base.InitializeCulture();
-            //User came to english login so set the language to english           
-            _systemService.SessionHelper.SetLanguage("en");
-            LocalisationManager.Instance.SetEnglishLocalisation();
+            switch (_systemService.SessionHelper.getLangauge())
+            {
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -54,12 +87,14 @@ namespace AionHR.Web.UI.Forms
 
         protected void login_Click(object sender, EventArgs e)
         {
-            ResetPasswordRequest request = new ResetPasswordRequest();
-            request.Email = Request.QueryString["email"];
-            request.Guid = Request.QueryString["guid"];
-            request.NewPassword = tbPassword.Text;
+            ResetPassword RP = new ResetPassword();
+            RP.Email = Request.QueryString["email"];
+            RP.Guid = Request.QueryString["guid"];
+            RP.NewPassword = EncryptionHelper.encrypt(tbPassword.Text);
+            PostRequest<ResetPassword> depReq = new PostRequest<ResetPassword>();
+            depReq.entity = RP;
 
-            PasswordRecoveryResponse response = _systemService.ResetPassword(request);
+            PostResponse<ResetPassword> response = _systemService.ChildAddOrUpdate<ResetPassword>(depReq);
 
             if (response.Success)
             {
@@ -67,7 +102,7 @@ namespace AionHR.Web.UI.Forms
                 Response.Redirect("~/Login.aspx");
             }
             else
-                lblError.Text = response.Summary;
+                lblError.Text = response.Error;
 
 
         }

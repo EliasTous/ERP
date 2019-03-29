@@ -132,9 +132,6 @@
   <data name="FieldCCity" xml:space="preserve">
     <value>المدينة</value>
   </data>
-  <data name="FieldCCountryId" xml:space="preserve">
-    <value>الدولة</value>
-  </data>
   <data name="FieldCCountryName" xml:space="preserve">
     <value>الدولة</value>
   </data>
@@ -147,14 +144,8 @@
   <data name="FieldName" xml:space="preserve">
     <value>الاسم</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>الرقم</value>
-  </data>
   <data name="FieldReference" xml:space="preserve">
     <value>الرمز</value>
-  </data>
-  <data name="FieldSegmentCode" xml:space="preserve">
-    <value>رقم الحساب</value>
   </data>
   <data name="FieldState" xml:space="preserve">
     <value>المنطقة</value>
@@ -194,5 +185,8 @@
   </data>
   <data name="manager" xml:space="preserve">
     <value>مدير الفرع </value>
+  </data>
+  <data name="expiryDate" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
   </data>
 </root>

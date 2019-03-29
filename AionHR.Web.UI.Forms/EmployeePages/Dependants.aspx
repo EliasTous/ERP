@@ -17,7 +17,7 @@
             //App.street1.allowBlank = d;
             App.stateId.allowBlank = d;
             App.countryId.allowBlank = d;
-            App.phone.allowBlank = d;
+            //App.phone.allowBlank = d;
         }
     </script>
 

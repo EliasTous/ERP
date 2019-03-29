@@ -40,25 +40,48 @@ namespace AionHR.Web.UI.Forms.Reports
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IDashBoardService _dashBoardService = ServiceLocator.Current.GetInstance<IDashBoardService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -182,7 +205,7 @@ namespace AionHR.Web.UI.Forms.Reports
            
 
             req.Size = "1000";
-            req.StartAt = "1";
+            req.StartAt = "0";
 
             
             
@@ -213,7 +236,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.IncludeIsInactive = 2;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -227,90 +250,114 @@ namespace AionHR.Web.UI.Forms.Reports
         }
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
-
-            TimeVariationListRequest req = GetAbsentRequest();
-           
-            ListResponse<DashBoardTimeVariation> resp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);
-            if (!resp.Success)
+            try
             {
-                
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-                    return;
-                
-            }
 
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            resp.Items.ForEach(
-                x =>
+                TimeVariationListRequest req = GetAbsentRequest();
+
+                ListResponse<Model.Reports.RT305> resp = _reportsService.ChildGetAll<Model.Reports.RT305>(req);
+                if (!resp.Success)
+                    Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+
+
+                // var edAmountList = resp.Items.GroupBy(x => new { x.employeeId, x.timeCode });
+                //// List<Model.Reports.RT305> RT305 = new List<Model.Reports.RT305>();
+                // foreach (var item in edAmountList)
+                // {
+
+
+                //     var sums = item.ToList().GroupBy(x => new {x.employeeId , x.timeCode })
+                //                      .Select(group => group.Sum(x => x.edAmount)).First();
+
+                //         resp.Items.Where(x => x.employeeId == item.ToList().First().employeeId && x.timeCode == item.ToList().First().timeCode).ToList().ForEach(y => y.edAmount = Math.Round(sums, 3));
+                //     //item.ToList().First().edAmount = Convert.ToDouble(sums);
+                //     //RT305.Add(item.First());
+
+
+                // }
+
+                bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+                List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
+
+                resp.Items.ForEach(
+                    x =>
+                    {
+                        x.edAmount = Math.Round(x.edAmount, 2);
+                        x.clockDurationString = ConstTimeVariationType.time(x.clockDuration, true);
+                        x.durationString = ConstTimeVariationType.time(x.duration, true);
+
+                        x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+
+                        x.apStatusString = FillApprovalStatus(x.apStatus);
+                        x.damageLevelString = FillDamageLevelString(x.damageLevel);
+                        if (rtl)
+                            x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                        else
+                            x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
+
+
+                    }
+                    );
+
+                Absense h = new Absense();
+                h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+                h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+                h.DataSource = resp.Items;
+
+                string from = req.fromDayId.ToString(_systemService.SessionHelper.GetDateformat());
+                string to = req.toDayId.ToString(_systemService.SessionHelper.GetDateformat());
+                string user = _systemService.SessionHelper.GetCurrentUser();
+
+                h.Parameters["From"].Value = from;
+                h.Parameters["To"].Value = to;
+                h.Parameters["User"].Value = user;
+
+
+                if (resp.Items.Count > 0)
                 {
-                    x.clockDurationString = ConstTimeVariationType.time(x.clockDuration, true);
-                    x.durationString = ConstTimeVariationType.time(x.duration, true);
-                    x.timeCodeString = FillTimeCode(x.timeCode);
-                    x.apStatusString = FillApprovalStatus(x.apStatus);
-                    x.damageLevelString = FillDamageLevelString(x.damageLevel);
-                    if (rtl)
-                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                    //if (req.Parameters["_departmentId"] != "0")
+                    //    h.Parameters["Department"].Value = resp.Items[0].departmentName;
+                    //else
+                    //    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
+
+                    if (req.Parameters["_branchId"] != "0")
+                        h.Parameters["Branch"].Value = resp.Items[0].branchName;
                     else
-                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
+                        h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
+                    if (req.Parameters["_positionId"] != "0")
+                        h.Parameters["Position"].Value = jobInfo1.GetPosition();
+                    else
+                        h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
 
+                    if (req.Parameters["_divisionId"] != "0")
+                        h.Parameters["Division"].Value = jobInfo1.GetDivision();
+                    else
+                        h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
+
+                    if (req.Parameters["_employeeId"] != "0")
+                        h.Parameters["Employee"].Value = resp.Items[0].employeeName.fullName;
+                    else
+                        h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
                 }
-                );
-
-            Absense h = new Absense();
-            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.DataSource = resp.Items;
-
-            string from = req.fromDayId.ToString(_systemService.SessionHelper.GetDateformat());
-            string to = req.toDayId.ToString(_systemService.SessionHelper.GetDateformat());
-            string user = _systemService.SessionHelper.GetCurrentUser();
-
-            h.Parameters["From"].Value = from;
-            h.Parameters["To"].Value = to;
-            h.Parameters["User"].Value = user;
 
 
-            if (resp.Items.Count > 0)
-            {
-                //if (req.Parameters["_departmentId"] != "0")
-                //    h.Parameters["Department"].Value = resp.Items[0].departmentName;
-                //else
-                //    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
 
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["Branch"].Value = resp.Items[0].branchName;
-                else
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
-                if (req.Parameters["_positionId"] != "0")
-                    h.Parameters["Position"].Value = jobInfo1.GetPosition();
-                else
-                    h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
 
-                if (req.Parameters["_divisionId"] != "0")
-                    h.Parameters["Division"].Value = jobInfo1.GetDivision();
-                else
-                    h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
 
-                if (req.Parameters["_employeeId"] != "0")
-                    h.Parameters["Employee"].Value = resp.Items[0].employeeName.fullName;
-                else
-                    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
+
+                h.PrintingSystem.Document.ScaleFactor = 4;
+                h.CreateDocument();
+
+
+                ASPxWebDocumentViewer1.OpenReport(h);
             }
-
-
-
-
-
-
-
-            h.PrintingSystem.Document.ScaleFactor = 4;
-            h.CreateDocument();
-
-
-            ASPxWebDocumentViewer1.OpenReport(h);
+            catch (Exception exp)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common","Error").ToString(),exp.Message).Show();
+                
+            }
 
         }
 
@@ -373,87 +420,13 @@ namespace AionHR.Web.UI.Forms.Reports
             else
                 reqTV.toDuration = toDuration.Text;
 
-            if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
-            {
-
-                reqTV.timeCode = "0";
-            }
-            else
-                reqTV.timeCode = timeVariationType.Value.ToString();
-
+            reqTV.timeCode = timeVariationType1.GetTimeCode();
 
 
             return reqTV;
         }
 
-        private string FillTimeCode(int timeCode)
-        {
-            string R = "";
-
-
-            // Retrieve the value of the string resource named "welcome".
-            // The resource manager will retrieve the value of the  
-            // localized resource using the caller's current culture setting.
-
-
-            try
-            {
-
-                switch (timeCode)
-                {
-                    case ConstTimeVariationType.UNPAID_LEAVE:
-                        R = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
-                        break;
-                    case ConstTimeVariationType.PAID_LEAVE:
-                        R = GetGlobalResourceObject("Common", "PaidLeaves").ToString();
-                        break;
-
-
-                    case ConstTimeVariationType.SHIFT_LEAVE_WITHOUT_EXCUSE:
-                        R = GetGlobalResourceObject("Common", "SHIFT_LEAVE_WITHOUT_EXCUSE").ToString();
-                        break;
-                    case ConstTimeVariationType.DAY_LEAVE_WITHOUT_EXCUSE:
-                        R = GetGlobalResourceObject("Common", "DAY_LEAVE_WITHOUT_EXCUSE").ToString();
-                        break;
-
-
-                    case ConstTimeVariationType.LATE_CHECKIN:
-                        R = GetGlobalResourceObject("Common", "LATE_CHECKIN").ToString();
-                        break;
-                    case ConstTimeVariationType.DURING_SHIFT_LEAVE:
-                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
-                        break;
-                    case ConstTimeVariationType.EARLY_LEAVE:
-                        R = GetGlobalResourceObject("Common", "EARLY_LEAVE").ToString();
-                        break;
-
-
-
-                    case ConstTimeVariationType.MISSED_PUNCH:
-                        R = GetGlobalResourceObject("Common", "MISSED_PUNCH").ToString();
-                        break;
-
-                    case ConstTimeVariationType.EARLY_CHECKIN:
-                        R = GetGlobalResourceObject("Common", "EARLY_CHECKIN").ToString();
-                        break;
-                    case ConstTimeVariationType.OVERTIME:
-                        R = GetGlobalResourceObject("Common", "OVERTIME").ToString();
-                        break;
-
-                    case ConstTimeVariationType.COUNT:
-                        R = GetGlobalResourceObject("Common", "COUNT").ToString();
-                        break;
-                    case ConstTimeVariationType.Day_Bonus:
-                        R = GetGlobalResourceObject("Common", "Day_Bonus").ToString();
-                        break;
-
-                }
-
-                return R;
-            }
-            catch { return string.Empty; }
-        }
-
+     
         private string FillApprovalStatus(short? apStatus)
         {
             string R;

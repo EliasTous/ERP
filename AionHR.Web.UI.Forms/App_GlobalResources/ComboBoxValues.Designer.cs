@@ -385,7 +385,7 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.
+        ///   Looks up a localized string similar to 1.
         /// </summary>
         internal static string EPEMRehireNo {
             get {
@@ -403,7 +403,7 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.
+        ///   Looks up a localized string similar to 3.
         /// </summary>
         internal static string EPEMRehireYes {
             get {
@@ -903,6 +903,15 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         internal static string SYTATATimeStatusApproved {
             get {
                 return ResourceManager.GetString("SYTATATimeStatusApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        internal static string SYTATATimeStatusNew {
+            get {
+                return ResourceManager.GetString("SYTATATimeStatusNew", resourceCulture);
             }
         }
         

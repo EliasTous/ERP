@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Profile
 {
-
-  public class EmployeeCalendar
+    [ClassIdentifier("31160", "31")]
+    public class EmployeeCalendar
     {
         public string caName { get; set; }
         public string scName { get; set;  }

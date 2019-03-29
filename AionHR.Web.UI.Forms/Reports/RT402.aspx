@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
     <script type="text/javascript">
         function alertNow(s, e) {
-           
-            Ext.MessageBox.alert('Error', e.message);
+
+            Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
         function cheackEmployeeValue()
@@ -50,7 +50,7 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="ErrorEmptyValue" runat="server" Text="<%$ Resources:Common , ErrorEmptyValue %>" />
           <ext:Hidden ID="ErrorTitlEmptyValue" runat="server" Text="<%$ Resources:Common , Error %>" />
-
+               <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
          <ext:Hidden ID="dtIdValue" runat="server" Text="" />
 
         

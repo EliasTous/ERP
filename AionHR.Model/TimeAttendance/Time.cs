@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,10 +9,14 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.TimeAttendance
 {
-  public  class Time
+    [ClassIdentifier("41065", "41")]
+    public  class Time
     {
         public EmployeeName employeeName { set; get; }
         public EmployeeName approverName { set; get; }
+        public string fullName { get; set; }
+        public string departmentName { get; set; }
+        public string branchName { get; set; }
         public string dayId { set; get;  }
         public string dayIdString { set; get; }
         public DateTime? dayIdDate
@@ -38,7 +43,9 @@ namespace AionHR.Model.TimeAttendance
 
 
         public string clockDuration { get; set; }
+        public string clockDurationString { get; set; }
         public string duration { get; set; }
+        public string durationString { get; set; }
         public string damageLevel { get; set; }
         public string shiftStart { get; set; }
         public string shiftEnd { get; set; }

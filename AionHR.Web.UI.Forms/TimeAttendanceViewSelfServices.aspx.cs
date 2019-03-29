@@ -41,23 +41,47 @@ namespace AionHR.Web.UI.Forms
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
         ISelfServiceService _selfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -70,33 +94,40 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-             
+                
                 format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                startDayId.SelectedDate = DateTime.Today;
                 endDayId.SelectedDate = DateTime.Today;
-                try
+                if (!string.IsNullOrEmpty(Request.QueryString["_fromDayId"])&&!string.IsNullOrEmpty(Request.QueryString["_toDayId"]))
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceDay), null, GridPanel1, null, null);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceShift), EditShiftForm, attendanceShiftGrid, btnAdd, SaveButton);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
+                    startDayId.SelectedDate = DateTime.ParseExact(Server.UrlDecode(Request.QueryString["_fromDayId"]).Trim('\''), "yyyyMMdd", new CultureInfo("en") ) ;
+                    endDayId.SelectedDate =DateTime.ParseExact(Server.UrlDecode(Request.QueryString["_toDayId"]).Trim('\''), "yyyyMMdd", new CultureInfo("en"));
 
+                }
+                //try
+                //{
+                //    AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceDay), null, GridPanel1, null, null);
+                //}
+                //catch (AccessDeniedException exp)
+                //{
+                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                //    Viewport1.Hidden = true;
+                //    return;
+                //}
+                //try
+                //{
+                //    AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceShift), EditShiftForm, attendanceShiftGrid, btnAdd, SaveButton);
+                //}
+                //catch (AccessDeniedException exp)
+                //{
+                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                //    Viewport1.Hidden = true;
+                //    return;
+                //}
+
+                
             }
 
           
@@ -250,7 +281,7 @@ namespace AionHR.Web.UI.Forms
                 if (!resp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(resp);
                     return;
                 }
                 SynchronizeAttendanceDay GD = new SynchronizeAttendanceDay();
@@ -420,7 +451,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+                  Common.errorMessage(r);
                     return;
                 }
                 else
@@ -494,7 +525,7 @@ namespace AionHR.Web.UI.Forms
             req.Month = "0";
             req.Year = "0";
             req.Size = "30";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.SortBy = "dayId,checkIn";
           
@@ -515,7 +546,7 @@ namespace AionHR.Web.UI.Forms
                 ListResponse<AttendanceDay> daysResponse = _selfServiceService.ChildGetAll<AttendanceDay>(req);
                 if (!daysResponse.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", daysResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", daysResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + daysResponse.LogId : daysResponse.Summary).Show();
+                   Common.errorMessage( daysResponse);
                     return;
                 }
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
@@ -658,7 +689,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 0;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -667,7 +698,7 @@ namespace AionHR.Web.UI.Forms
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if(!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
             return response.Items;
         }
 
@@ -703,7 +734,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : Fill The object and insert in the store 
                     PostRequest<AttendanceShift> request = new PostRequest<AttendanceShift>();
                     request.entity = b;
-                    PostResponse<AttendanceShift> r = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(request);
+                    PostResponse<AttendanceShift> r = _selfServiceService.ChildAddOrUpdate<AttendanceShift>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -711,7 +742,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -755,7 +786,7 @@ namespace AionHR.Web.UI.Forms
                     int index = Convert.ToInt32(id);//getting the id of the record
                     PostRequest<AttendanceShift> request = new PostRequest<AttendanceShift>();
                     request.entity = b;
-                    PostResponse<AttendanceShift> r = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<AttendanceShift> r = _selfServiceService.ChildAddOrUpdate<AttendanceShift>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -763,7 +794,7 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                       Common.errorMessage(r);;
                         return;
                     }
                     else
@@ -820,12 +851,14 @@ namespace AionHR.Web.UI.Forms
                 r.dayId = dayId.ToString();
                 r.employeeId = employeeId;
                 r.approverId = 0;
-
+                r.StartAt = "0";
+                r.Size = "1000";
+              
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", Times.ErrorCode) != null ? GetGlobalResourceObject("Errors", Times.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + Times.LogId : Times.Summary).Show();
+                    Common.errorMessage(Times);
                     return;
                 }
                 Times.Items.ForEach(x =>

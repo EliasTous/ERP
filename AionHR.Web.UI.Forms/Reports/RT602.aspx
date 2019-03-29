@@ -27,7 +27,7 @@
     <script type="text/javascript">
         function alertNow(s, e) {
 
-            Ext.MessageBox.alert('Error', e.message);
+            Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
     </script>
@@ -44,7 +44,7 @@
         <ext:Hidden runat="server" ID="dateTo" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
-
+               <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
@@ -64,20 +64,20 @@
                              
                                         <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:dateRange runat="server" ID="dateRange1" />
+                                              
+                                                  <uc:date runat="server" ID="date1"   />
                                             </Content>
                                         </ext:Container>
                                    <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false" EnablePosition="false" />
+                                              
+                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false" EnableBranch="true" EnablePosition="false"  EnableDepartment="true"/>
                                             </Content>
                                         </ext:Container>
 
                                     <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                             
                                                 <uc:employeeCombo runat="server" ID="employeeFilter" />
                                             </Content>
                                         </ext:Container>

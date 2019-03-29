@@ -112,15 +112,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden scrTitle;
         
         /// <summary>
-        /// acTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden acTitle;
-        
-        /// <summary>
         /// btTitle control.
         /// </summary>
         /// <remarks>
@@ -308,6 +299,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden vsTitle;
+        
+        /// <summary>
+        /// lsTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden lsTitle;
         
         /// <summary>
         /// pyye control.
@@ -607,6 +607,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden SADTitle;
         
         /// <summary>
+        /// AFPN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden AFPN;
+        
+        /// <summary>
+        /// AMSU control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden AMSU;
+        
+        /// <summary>
+        /// AMCA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden AMCA;
+        
+        /// <summary>
         /// DBATitle control.
         /// </summary>
         /// <remarks>
@@ -859,13 +886,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::System.Web.UI.WebControls.Literal username;
         
         /// <summary>
-        /// Literal8 control.
+        /// languageId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal8;
+        protected global::Ext.Net.ComboBox languageId;
         
         /// <summary>
         /// leftPanel control.
@@ -985,13 +1012,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button btnPayroll;
         
         /// <summary>
-        /// Button1 control.
+        /// btnAdminAffairs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button Button1;
+        protected global::Ext.Net.Button btnAdminAffairs;
         
         /// <summary>
         /// commonTree control.

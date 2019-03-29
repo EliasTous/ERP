@@ -32,6 +32,8 @@ using AionHR.Infrastructure.Domain;
 using AionHR.Model.LoadTracking;
 using AionHR.Services.Messaging.LoanManagment;
 using AionHR.Model.Attributes;
+using AionHR.Web.UI.Forms.ConstClasses;
+using System.Text.RegularExpressions;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -58,7 +60,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -70,12 +72,16 @@ namespace AionHR.Web.UI.Forms
         {
             SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
             req.Key = "nameFormat";
-            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
-            if (!response.Success)
+            RecordResponse<KeyValuePair<string, string>> resp = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!resp.Success )
             {
-
+                Common.errorMessage(resp);
+                return "recordId";
             }
-            string paranthized = response.result.Value;
+
+            string paranthized = resp.result.Value;
+            if (string.IsNullOrEmpty(paranthized))
+                return "recordId";
             paranthized = paranthized.Replace('{', ' ');
             paranthized = paranthized.Replace('}', ',');
             paranthized = paranthized.Substring(0, paranthized.Length - 1);
@@ -95,23 +101,47 @@ namespace AionHR.Web.UI.Forms
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
 
 
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -126,6 +156,9 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
 
                 SetBasicInfoFormEnable(true);
+                caseCommentsAddButton.Disabled = false;
+                addDeduction.Disabled = false;
+                effectiveDate.Disabled = false;
                 statusPref.Select("0");
                 ldMethod.Select("0");
                 currentLoanId.Text = "0";
@@ -153,7 +186,7 @@ namespace AionHR.Web.UI.Forms
                 try
 
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LoanComment), null, loanCommentGrid, null, Button1);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LoanComment), null, loanCommentGrid, null, caseCommentsAddButton);
                     ApplyAccessControlOnLoanComments();
                 }
                 catch (AccessDeniedException exp)
@@ -188,7 +221,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -211,7 +244,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -223,7 +256,10 @@ namespace AionHR.Web.UI.Forms
             ListRequest branchesRequest = new ListRequest();
             ListResponse<LoanType> resp = _loanService.ChildGetAll<LoanType>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+            {
+                Common.errorMessage(resp);
+                return;
+            }
             ltStore.DataSource = resp.Items;
             ltStore.DataBind();
         }
@@ -283,7 +319,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -337,6 +373,9 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.ActiveIndex = 0;
             //SetTabPanelEnable(true);
             SetBasicInfoFormEnable(true);
+            caseCommentsAddButton.Disabled = false;
+            addDeduction.Disabled = false;
+            effectiveDate.Disabled = false;
             DeductionGridPanel.Disabled = false;
             string id = e.ExtraParams["id"];
             currentLoanId.Text = id;
@@ -356,7 +395,7 @@ namespace AionHR.Web.UI.Forms
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                         Common.errorMessage(response);
                         return;
                     }
 
@@ -394,16 +433,24 @@ namespace AionHR.Web.UI.Forms
                     loanComments_RefreshData(Convert.ToInt32(id));
                     //if (!response.result.effectiveDate.HasValue)
                     //    effectiveDate.SelectedDate = DateTime.Now;
-                    if (response.result.status == 3)
+                    if (response.result.status == 2 || response.result.status==-1)
                     {
 
 
                         SetBasicInfoFormEnable(false);
                         effectiveDate.Disabled = true;
+                        caseCommentsAddButton.Disabled = true;
+                        addDeduction.Disabled = true;
 
                     }
                     else
+                    {
+                       
+                        SetBasicInfoFormEnable(true);
+                        caseCommentsAddButton.Disabled = false;
+                        addDeduction.Disabled = false;
                         effectiveDate.Disabled = false;
+                    }
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -495,7 +542,7 @@ namespace AionHR.Web.UI.Forms
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                       Common.errorMessage(response);
                         return;
                     }
                    
@@ -566,7 +613,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                     Common.errorMessage(r);
                     return;
                 }
                 else
@@ -617,7 +664,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+                  Common.errorMessage(r);
                     return;
                 }
                 else
@@ -669,7 +716,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                     Common.errorMessage(r);
                     return;
                 }
                 else
@@ -718,7 +765,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+                  Common.errorMessage(r);
                     return;
                 }
                 else
@@ -785,7 +832,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             branchStore.DataSource = resp.Items;
@@ -798,7 +845,10 @@ namespace AionHR.Web.UI.Forms
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Currency> resp = _systemService.ChildGetAll<Currency>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+            {
+                Common.errorMessage(resp);
+                return;
+            }
             currencyStore.DataSource = resp.Items;
             currencyStore.DataBind();
         }
@@ -867,38 +917,50 @@ namespace AionHR.Web.UI.Forms
 
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-            BasicInfoTab.Reset();
-            SetBasicInfoFormEnable(true);
-            ListRequest req = new ListRequest();
-            ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
-            if (!defaults.Success)
+            try
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
-                return;
+                BasicInfoTab.Reset();
+
+                effectiveDate.Disabled = false;
+                caseCommentsAddButton.Disabled = false;
+                addDeduction.Disabled = false;
+                SetBasicInfoFormEnable(true);
+                ListRequest req = new ListRequest();
+                ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
+                if (!defaults.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
+                    return;
+                }
+                if (defaults.Items.Where(s => s.Key == "ldMethod").Count() != 0)
+                    ldMethod.Select(defaults.Items.Where(s => s.Key == "ldMethod").First().Value);
+                if (defaults.Items.Where(s => s.Key == "ldValue").Count() != 0)
+                    ldValue.Text = defaults.Items.Where(s => s.Key == "ldValue").First().Value.ToString();
+                caseCommentStore.DataSource = new List<CaseComment>();
+                caseCommentStore.DataBind();
+                //Reset all values of the relative object
+
+                this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
+                date.SelectedDate = DateTime.Now;
+                //effectiveDate.SelectedDate= DateTime.Now;
+                date.MaxDate = new DateTime();
+                DeductionGridPanel.Disabled = true;
+                panelRecordDetails.ActiveIndex = 0;
+                effectiveDate.SelectedDate = DateTime.Now;
+                //SetTabPanelEnable(false);
+                FillLoanType();
+                FillBranchField();
+                FillCurrency();
+               if( defaults.Items.Where(s => s.Key == "currencyId").Count()!=0)
+                currencyId.Select(defaults.Items.Where(s => s.Key == "currencyId").First().Value.ToString());
+                //  effectiveDate.Disabled = true;
+                this.EditRecordWindow.Show();
             }
-            if(defaults.Items.Where(s => s.Key == "ldMethod").Count()!=0)
-             ldMethod.Select(defaults.Items.Where(s => s.Key == "ldMethod").First().Value);
-            if (defaults.Items.Where(s => s.Key == "ldValue").Count() != 0)
-                ldValue.Text = defaults.Items.Where(s => s.Key == "ldValue").First().Value.ToString();
-            caseCommentStore.DataSource = new List<CaseComment>();
-            caseCommentStore.DataBind();
-            //Reset all values of the relative object
-
-            this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-            date.SelectedDate = DateTime.Now;
-            //effectiveDate.SelectedDate= DateTime.Now;
-            date.MaxDate = new DateTime();
-            DeductionGridPanel.Disabled = true;
-            panelRecordDetails.ActiveIndex = 0;
-            //SetTabPanelEnable(false);
-            FillLoanType();
-            FillBranchField();
-            FillCurrency();
-
-            currencyId.Select(defaults.Items.Where(s => s.Key == "currencyId").First().Value.ToString());
-          //  effectiveDate.Disabled = true;
-            this.EditRecordWindow.Show();
+            catch(Exception exp)
+            {
+                X.Msg.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message).Show();
+            }
         }
         protected void ADDNewDeductionRecord(object sender, DirectEventArgs e)
         {
@@ -993,7 +1055,7 @@ namespace AionHR.Web.UI.Forms
 
 
             req.Size = "2000";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.SortBy = "employeeId";
 
@@ -1026,10 +1088,11 @@ namespace AionHR.Web.UI.Forms
 
             request.Size = e.Limit.ToString();
             request.StartAt = e.Start.ToString();
+            request.LoanId = "0";
             ListResponse<Loan> routers = _loanService.GetAll<Loan>(request);
             if (!routers.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId: routers.Summary).Show();
+                Common.errorMessage(routers);
                 return;
             }
             this.Store1.DataSource = routers.Items;
@@ -1075,146 +1138,154 @@ namespace AionHR.Web.UI.Forms
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
 
-           
-            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-
-
-            string obj = e.ExtraParams["values"];
-            Loan b = JsonConvert.DeserializeObject<Loan>(obj);
-
-            string id = e.ExtraParams["id"];
-            // Define the object to add or edit as null
-
-            b.employeeName = new EmployeeName();
-            //if (ldMethodCom.SelectedItem != null)
-            //    b.ldMethod = ldMethodCom.SelectedItem.Value; 
-            if (employeeId.SelectedItem != null)
-                b.employeeName.fullName = employeeId.SelectedItem.Text;
-
-            if (date.ReadOnly)
-                b.date = DateTime.Now;
-            //b.effectiveDate = new DateTime(b.effectiveDate.Year, b.effectiveDate.Month, b.effectiveDate.Day, 14, 0, 0);
-            if (currencyId.SelectedItem != null)
-                b.currencyRef = currencyId.SelectedItem.Text;
-            if (branchId.SelectedItem != null)
+            try
             {
-                b.branchName = branchId.SelectedItem.Text;
-            }
-            if (ltId.SelectedItem != null)
-                b.ltName = ltId.SelectedItem.Text;
+                //Getting the id to check if it is an Add or an edit as they are managed within the same form.
 
-            if (string.IsNullOrEmpty(id))
-            {
 
-                try
+                string obj = e.ExtraParams["values"];
+                Loan b = JsonConvert.DeserializeObject<Loan>(obj);
+                b.ldValue = Regex.Replace(b.ldValue, "[^.0-9]", "");
+                b.amount = Convert.ToDouble(Regex.Replace(b.amount.ToString(), "[^.0-9]", ""));
+
+                string id = e.ExtraParams["id"];
+                // Define the object to add or edit as null
+
+                b.employeeName = new EmployeeName();
+                //if (ldMethodCom.SelectedItem != null)
+                //    b.ldMethod = ldMethodCom.SelectedItem.Value; 
+                if (employeeId.SelectedItem != null)
+                    b.employeeName.fullName = employeeId.SelectedItem.Text;
+
+                if (date.ReadOnly)
+                    b.date = DateTime.Now;
+                //b.effectiveDate = new DateTime(b.effectiveDate.Year, b.effectiveDate.Month, b.effectiveDate.Day, 14, 0, 0);
+                if (currencyId.SelectedItem != null)
+                    b.currencyRef = currencyId.SelectedItem.Text;
+                if (branchId.SelectedItem != null)
                 {
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<Loan> request = new PostRequest<Loan>();
-                    request.entity = b;
-                    PostResponse<Loan> r = _loanService.AddOrUpdate<Loan>(request);
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
-                        return;
-                    }
+                    b.branchName = branchId.SelectedItem.Text;
+                }
+                if (ltId.SelectedItem != null)
+                    b.ltName = ltId.SelectedItem.Text;
 
-                    else
-                    {
-                        LoanAmount.Text = b.amount.ToString();
-                        DeductionGridPanel.Disabled = false;
-                        b.recordId = r.recordId;
-                        if (b.effectiveDate != null)
-                            X.GetCmp<DateField>("deductionDate").MinDate =Convert.ToDateTime(b.effectiveDate);
-                    
-                        //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                if (string.IsNullOrEmpty(id))
+                {
 
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
+                    try
+                    {
+                        //New Mode
+                        //Step 1 : Fill The object and insert in the store 
+                        PostRequest<Loan> request = new PostRequest<Loan>();
+                        request.entity = b;
+                        PostResponse<Loan> r = _loanService.AddOrUpdate<Loan>(request);
+                        //check if the insert failed
+                        if (!r.Success)//it maybe be another condition
                         {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
-                        recordId.Text = b.recordId;
-                        //SetTabPanelEnable(true);
-                        currentCase.Text = b.recordId;
+                            //Show an error saving...
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            Common.errorMessage(r);
+                            return;
+                        }
 
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
+                        else
+                        {
+                            LoanAmount.Text = b.amount.ToString();
+                            DeductionGridPanel.Disabled = false;
+                            b.recordId = r.recordId;
+                            if (b.effectiveDate != null)
+                                X.GetCmp<DateField>("deductionDate").MinDate = Convert.ToDateTime(b.effectiveDate);
+
+                            //Add this record to the store 
+                            this.Store1.Insert(0, b);
+
+                            //Display successful notification
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordSavingSucc
+                            });
+                            recordId.Text = b.recordId;
+                            //SetTabPanelEnable(true);
+                            currentCase.Text = b.recordId;
+
+                            RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                            sm.DeselectAll();
+                            sm.Select(b.recordId.ToString());
 
 
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //Error exception displaying a messsage box
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    }
+
+
+                }
+                else
+                {
+                    //Update Mode
+
+                    try
+                    {
+                        //getting the id of the record
+                        PostRequest<Loan> request = new PostRequest<Loan>();
+                        request.entity = b;
+                        PostResponse<Loan> r = _loanService.AddOrUpdate<Loan>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+
+                        //Step 2 : saving to store
+
+                        //Step 3 :  Check if request fails
+                        if (!r.Success)//it maybe another check
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            Common.errorMessage(r);
+                            return;
+                        }
+                        else
+                        {
+                            DeductionGridPanel.Disabled = false;
+                            if (b.effectiveDate != null)
+                                X.GetCmp<DateField>("deductionDate").MinDate = Convert.ToDateTime(b.effectiveDate);
+                            LoanAmount.Text = b.amount.ToString();
+                            ModelProxy record = this.Store1.GetById(id);
+                            BasicInfoTab.UpdateRecord(record);
+                            record.Set("currencyRef", b.currencyRef);
+                            if (date.ReadOnly)
+                                record.Set("date", null);
+
+                            record.Set("employeeName", b.employeeName);
+
+                            record.Set("branchName", b.branchName);
+
+                            record.Commit();
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordUpdatedSucc
+                            });
+                            this.EditRecordWindow.Close();
+
+
+                        }
 
                     }
-                }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-                }
-
-
-            }
-            else
-            {
-                //Update Mode
-
-                try
-                {
-                    //getting the id of the record
-                    PostRequest<Loan> request = new PostRequest<Loan>();
-                    request.entity = b;
-                    PostResponse<Loan> r = _loanService.AddOrUpdate<Loan>(request);                      //Step 1 Selecting the object or building up the object for update purpose
-
-                    //Step 2 : saving to store
-
-                    //Step 3 :  Check if request fails
-                    if (!r.Success)//it maybe another check
+                    catch (Exception ex)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
-                        return;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                     }
-                    else
-                    {
-                        DeductionGridPanel.Disabled = false;
-                        if (b.effectiveDate != null)
-                            X.GetCmp<DateField>("deductionDate").MinDate = Convert.ToDateTime(b.effectiveDate);
-                        LoanAmount.Text = b.amount.ToString();
-                        ModelProxy record = this.Store1.GetById(id);
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Set("currencyRef", b.currencyRef);
-                        if (date.ReadOnly)
-                            record.Set("date", null);
-
-                        record.Set("employeeName", b.employeeName);
-
-                        record.Set("branchName", b.branchName);
-
-                        record.Commit();
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                        });
-                        this.EditRecordWindow.Close();
-
-
-                    }
-
                 }
-                catch (Exception ex)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                }
+            }
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
         protected void SaveNewDeductionRecord(object sender, DirectEventArgs e)
@@ -1252,7 +1323,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+                      Common.errorMessage(r);
                         return;
                     }
                     else
@@ -1381,7 +1452,7 @@ namespace AionHR.Web.UI.Forms
             PostResponse<LoanComment> resp = _loanService.ChildAddOrUpdate<LoanComment>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return new { valid = false };
             }
             loanComments_RefreshData(note.loanId);
@@ -1400,24 +1471,42 @@ namespace AionHR.Web.UI.Forms
 
             }
             else
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
 
         }
 
         protected void ApprovalsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            LoanApprovalListRequest req = new LoanApprovalListRequest();
+            LoanManagementListRequest req = new LoanManagementListRequest();
             req.LoanId = currentLoanId.Text;
             if(string.IsNullOrEmpty(req.LoanId))
             {
                 ApprovalStore.DataSource = new List<LoanApproval>();
                 ApprovalStore.DataBind();
             }
+            req.approverId = 0;
+            req.BranchId = 0;
+            req.DepartmentId = 0;
+            req.DivisionId = 0;
+            req.EmployeeId = 0;
+            req.Status = 0;
+            req.Filter = "";
+            req.PositionId = 0;
+            req.EsId = 0;
+            
+            req.SortBy = "recordId";
+
+
+
+
+
+            req.Size = "1000";
+            req.StartAt = "0";
             ListResponse<LoanApproval> response = _loanService.ChildGetAll<LoanApproval>(req);
           
             if (!response.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+               Common.errorMessage(response);
                 return;
             }
             response.Items.ForEach(x =>
@@ -1429,13 +1518,11 @@ namespace AionHR.Web.UI.Forms
                         x.statusString = StatusNew.Text;
                         break;
                     case 2:
-                        x.statusString = StatusInProcess.Text;
-                        ;
-                        break;
-                    case 3:
                         x.statusString = StatusApproved.Text;
                         ;
                         break;
+                 
+                       
                     case -1:
                         x.statusString = StatusRejected.Text;
 

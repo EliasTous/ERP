@@ -180,4 +180,7 @@
   <data name="minResignationDays" xml:space="preserve">
     <value>الحد الأدنى أيام الاستقالة</value>
   </data>
+  <data name="addPenalty" xml:space="preserve">
+    <value>اضافة جزاء</value>
+  </data>
 </root>

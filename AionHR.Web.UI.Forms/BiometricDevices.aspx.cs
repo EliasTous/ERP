@@ -23,6 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.TimeAttendance;
 using Reports;
+using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -32,23 +33,47 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -135,7 +160,7 @@ namespace AionHR.Web.UI.Forms
                         if (!response.Success)
                         {
                             X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                            Common.errorMessage(response);
                             return;
                         }
                         //Step 2 : call setvalues with the retrieved object
@@ -208,7 +233,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", res.ErrorCode) != null ? GetGlobalResourceObject("Errors", res.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + res.LogId : res.Summary).Show();
+                   Common.errorMessage(res);
                     return;
                 }
                 else
@@ -512,7 +537,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -619,7 +644,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                Common.errorMessage(response);
                 return;
             }
 
@@ -630,7 +655,7 @@ namespace AionHR.Web.UI.Forms
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
             BranchStore.DataSource = resp.Items;
             BranchStore.DataBind();
         }

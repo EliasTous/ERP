@@ -13,12 +13,21 @@ namespace AionHR.Web.UI.Forms.Reports.Controls {
     public partial class MoudleFilter {
         
         /// <summary>
-        /// moduleId control.
+        /// modulesCombo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox moduleId;
+        protected global::Ext.Net.ComboBox modulesCombo;
+        
+        /// <summary>
+        /// modulesStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store modulesStore;
     }
 }

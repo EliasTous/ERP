@@ -67,6 +67,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
+        /// Error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden Error;
+        
+        /// <summary>
         /// rtl control.
         /// </summary>
         /// <remarks>
@@ -112,15 +121,6 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter date2;
         
         /// <summary>
-        /// employeeCombo1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeCombo1;
-        
-        /// <summary>
         /// approverId control.
         /// </summary>
         /// <remarks>
@@ -137,24 +137,6 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store ApproverStore;
-        
-        /// <summary>
-        /// timeVariationType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.TimeVariationTypeFilter timeVariationType;
-        
-        /// <summary>
-        /// apStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox apStatus;
         
         /// <summary>
         /// ASPxCallbackPanel1 control.

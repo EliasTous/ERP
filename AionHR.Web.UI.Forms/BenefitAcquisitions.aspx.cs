@@ -35,6 +35,7 @@ using AionHR.Model.Benefits;
 using AionHR.Services.Messaging.Benefits;
 using AionHR.Services.Messaging.HelpFunction;
 using AionHR.Model.HelpFunction;
+using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -49,23 +50,47 @@ namespace AionHR.Web.UI.Forms
         ILoanTrackingService _loanService = ServiceLocator.Current.GetInstance<ILoanTrackingService>();
         IBenefitsService _benefitsService = ServiceLocator.Current.GetInstance<IBenefitsService>();
         IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -189,7 +214,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                   Common.errorMessage(r);;
                     return;
                 }
                 else
@@ -348,7 +373,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 0;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -357,7 +382,7 @@ namespace AionHR.Web.UI.Forms
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                Common.errorMessage(response);
             return response.Items;
         }
 
@@ -377,7 +402,9 @@ namespace AionHR.Web.UI.Forms
             BenefitAcquisitionsListRequest req = new BenefitAcquisitionsListRequest();
             req.StartAt = "0";
             req.Size = "50";
-            
+            req.SortBy = "employeeId";
+
+
             if (string.IsNullOrEmpty(employeeFilter.SelectedItem.Value))
                 req.employeeId = 0;
             else
@@ -391,7 +418,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<BenefitAcquisition> routers = _benefitsService.ChildGetAll<BenefitAcquisition>(req);
             if (!routers.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
+                 Common.errorMessage(routers);
                 return;
             }
             this.Store1.DataSource = routers.Items;
@@ -416,7 +443,7 @@ namespace AionHR.Web.UI.Forms
 
             if (!response.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                Common.errorMessage(response);
                 return;
             }
             response.Items.RemoveAll(x => x.isChecked == false);
@@ -468,7 +495,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                       Common.errorMessage(r);;
                         return;
                     }
                     else
@@ -523,7 +550,7 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                       Common.errorMessage(r);;
                         return;
                     }
                     else
@@ -598,7 +625,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                       Common.errorMessage(r);;
                         return;
                     }
                     else
@@ -720,7 +747,7 @@ namespace AionHR.Web.UI.Forms
         //    if (!resp.Success)
         //    {
         //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+        //       Common.errorMessage(resp);
         //        return null;
         //    }
         //    OvertimeSettingsReport p = new OvertimeSettingsReport();
@@ -752,7 +779,7 @@ namespace AionHR.Web.UI.Forms
             if (!routers.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
+                 Common.errorMessage(routers);
                 return;
             }
             //RecordRequest req = new RecordRequest();
@@ -760,7 +787,7 @@ namespace AionHR.Web.UI.Forms
             //RecordResponse<Employee> routers = _employeeService.Get<Employee>(req);
             //if (!routers.Success)
             //{
-            //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId: routers.Summary).Show();
+            //    Common.errorMessage(routers);
             //    return;
             //}
        //     this.setFillEmployeeInfoDisable(false);
@@ -871,7 +898,7 @@ namespace AionHR.Web.UI.Forms
             hireDateDf.Value = routers.result.hireDate;
             nationalityTx.Text = routers.result.countryName;
             divisionName.Text = routers.result.divisionName;
-            reportToName.Text = routers.result.reportToName.fullName;
+            reportToName.Text = routers.result.reportToName!=null? routers.result.reportToName.fullName:"";
             eosBalance.Text = routers.result.indemnity.ToString();
             lastLeaveStartDate.Value = routers.result.lastLeaveStartDate;
             lastLeaveEndDate.Value = routers.result.lastLeaveEndDate;
@@ -1081,96 +1108,96 @@ namespace AionHR.Web.UI.Forms
 
 
         //}
-        [DirectMethod]
-        public void DeleteEN(string fsId, string seqNo)
-        {
-            try
-            {
-                //Step 1 Code to delete the object from the database 
-                FinalEntitlementsDeductions s = new FinalEntitlementsDeductions();
-                s.fsId = Convert.ToInt32(fsId);
-                s.seqNo = Convert.ToInt32(seqNo);
+        //[DirectMethod]
+        //public void DeleteEN(string fsId, string seqNo)
+        //{
+        //    try
+        //    {
+        //        //Step 1 Code to delete the object from the database 
+        //        FinalEntitlementsDeductions s = new FinalEntitlementsDeductions();
+        //        s.fsId = Convert.ToInt32(fsId);
+        //        s.seqNo = Convert.ToInt32(seqNo);
 
-                PostRequest<FinalEntitlementsDeductions> req = new PostRequest<FinalEntitlementsDeductions>();
-                req.entity = s;
-                PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildDelete<FinalEntitlementsDeductions>(req);
-                if (!r.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
-                    return;
-                }
-                else
-                {
-                    //Step 2 :  remove the object from the store
-                    // ENSeq.Text = (Convert.ToInt32(ENSeq.Text) - 1).ToString(); 
-                    //entitlementsStore.Reload();
+        //        PostRequest<FinalEntitlementsDeductions> req = new PostRequest<FinalEntitlementsDeductions>();
+        //        req.entity = s;
+        //        PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildDelete<FinalEntitlementsDeductions>(req);
+        //        if (!r.Success)
+        //        {
+        //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //          Common.errorMessage(r);
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            //Step 2 :  remove the object from the store
+        //            // ENSeq.Text = (Convert.ToInt32(ENSeq.Text) - 1).ToString(); 
+        //            //entitlementsStore.Reload();
 
-                    //Step 3 : Showing a notification for the user 
-                    Notification.Show(new NotificationConfig
-                    {
-                        Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
-                        Html = Resources.Common.RecordDeletedSucc
-                    });
-                    FillEmployeeInfo(new object(), new DirectEventArgs(new Ext.Net.ParameterCollection()));
-                }
+        //            //Step 3 : Showing a notification for the user 
+        //            Notification.Show(new NotificationConfig
+        //            {
+        //                Title = Resources.Common.Notification,
+        //                Icon = Icon.Information,
+        //                Html = Resources.Common.RecordDeletedSucc
+        //            });
+        //            FillEmployeeInfo(new object(), new DirectEventArgs(new Ext.Net.ParameterCollection()));
+        //        }
 
-            }
+        //    }
 
-            catch (Exception ex)
-            {
-                //In case of error, showing a message box to the user
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+        //    catch (Exception ex)
+        //    {
+        //        //In case of error, showing a message box to the user
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
 
-            }
+        //    }
 
-        }
-        [DirectMethod]
-        public void DeleteDE(string fsId, string seqNo)
-        {
-            try
-            {
-                //Step 1 Code to delete the object from the database 
-                FinalEntitlementsDeductions s = new FinalEntitlementsDeductions();
-                s.fsId = Convert.ToInt32(fsId);
-                s.seqNo = Convert.ToInt32(seqNo);
+        //}
+        //[DirectMethod]
+        //public void DeleteDE(string fsId, string seqNo)
+        //{
+        //    try
+        //    {
+        //        //Step 1 Code to delete the object from the database 
+        //        FinalEntitlementsDeductions s = new FinalEntitlementsDeductions();
+        //        s.fsId = Convert.ToInt32(fsId);
+        //        s.seqNo = Convert.ToInt32(seqNo);
 
-                PostRequest<FinalEntitlementsDeductions> req = new PostRequest<FinalEntitlementsDeductions>();
-                req.entity = s;
-                PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildDelete<FinalEntitlementsDeductions>(req);
-                if (!r.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
-                    return;
-                }
-                else
-                {
-                    //Step 2 :  remove the object from the store
+        //        PostRequest<FinalEntitlementsDeductions> req = new PostRequest<FinalEntitlementsDeductions>();
+        //        req.entity = s;
+        //        PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildDelete<FinalEntitlementsDeductions>(req);
+        //        if (!r.Success)
+        //        {
+        //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //          Common.errorMessage(r);
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            //Step 2 :  remove the object from the store
 
 
-                    //  deductionStore.Reload();
-                    //Step 3 : Showing a notification for the user 
-                    Notification.Show(new NotificationConfig
-                    {
-                        Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
-                        Html = Resources.Common.RecordDeletedSucc
-                    });
-                }
-                FillEmployeeInfo(new object(), new DirectEventArgs(new Ext.Net.ParameterCollection()));
-            }
-            catch (Exception ex)
-            {
-                //In case of error, showing a message box to the user
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+        //            //  deductionStore.Reload();
+        //            //Step 3 : Showing a notification for the user 
+        //            Notification.Show(new NotificationConfig
+        //            {
+        //                Title = Resources.Common.Notification,
+        //                Icon = Icon.Information,
+        //                Html = Resources.Common.RecordDeletedSucc
+        //            });
+        //        }
+        //        FillEmployeeInfo(new object(), new DirectEventArgs(new Ext.Net.ParameterCollection()));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //In case of error, showing a message box to the user
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
 
-            }
+        //    }
 
-        }
+        //}
 
         //protected void ADDNewEN(object sender, DirectEventArgs e)
         //{
@@ -1214,7 +1241,7 @@ namespace AionHR.Web.UI.Forms
         //            if (!r.Success)
         //            {
         //                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+        //              Common.errorMessage(r);
         //                return;
 
         //            }
@@ -1244,7 +1271,7 @@ namespace AionHR.Web.UI.Forms
         //        {
         //            //Error exception displaying a messsage box
         //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //             X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+        //              Common.errorMessage(r);
         //        }
 
 
@@ -1261,7 +1288,7 @@ namespace AionHR.Web.UI.Forms
         //            if (!r.Success)
         //            {
         //                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+        //              Common.errorMessage(r);
         //                return;
 
         //            }
@@ -1312,7 +1339,7 @@ namespace AionHR.Web.UI.Forms
         //            if (!r.Success)
         //            {
         //                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+        //              Common.errorMessage(r);
         //                return;
 
         //            }
@@ -1341,7 +1368,7 @@ namespace AionHR.Web.UI.Forms
         //        {
         //            //Error exception displaying a messsage box
         //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //             X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+        //              Common.errorMessage(r);
         //        }
 
 
@@ -1359,7 +1386,7 @@ namespace AionHR.Web.UI.Forms
         //            if (!r.Success)
         //            {
         //                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+        //              Common.errorMessage(r);
         //                return;
 
         //            }
@@ -1430,7 +1457,7 @@ namespace AionHR.Web.UI.Forms
         //    else
         //    {
         //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+        //       Common.errorMessage(response);
         //        return;
         //    }
 
@@ -1456,7 +1483,7 @@ namespace AionHR.Web.UI.Forms
         //    else
         //    {
         //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+        //       Common.errorMessage(response);
         //        return;
         //    }
 
@@ -1479,7 +1506,7 @@ namespace AionHR.Web.UI.Forms
         //    ListResponse<FinalEntitlementsDeductions> routers = _payrollService.ChildGetAll<FinalEntitlementsDeductions>(req);
         //    if (!routers.Success)
         //    {
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId: routers.Summary).Show();
+        //        Common.errorMessage(routers);
         //        return;
         //    }
 
@@ -1513,7 +1540,7 @@ namespace AionHR.Web.UI.Forms
         //    ListResponse<FinalEntitlementsDeductions> routers = _payrollService.ChildGetAll<FinalEntitlementsDeductions>(req);
         //    if (!routers.Success)
         //    {
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId: routers.Summary).Show();
+        //        Common.errorMessage(routers);
         //        return;
         //    }
         //    if (routers.Items.Count != 0)
@@ -1717,7 +1744,7 @@ namespace AionHR.Web.UI.Forms
             p.Parameters["positionName"].Value = routers.result.positionName;
             p.Parameters["branchName"].Value = routers.result.branchName;
             p.Parameters["divisionName"].Value = routers.result.divisionName;
-            p.Parameters["reportToName"].Value = routers.result.reportToName.fullName;
+            p.Parameters["reportToName"].Value = routers.result.reportToName!=null?routers.result.reportToName.fullName:"";
 
 
 
@@ -1757,7 +1784,7 @@ namespace AionHR.Web.UI.Forms
             if (!response.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+               Common.errorMessage(response);
                 return;
             }
             aqType.Select(response.result.aqType.ToString());
@@ -1790,7 +1817,7 @@ namespace AionHR.Web.UI.Forms
             if (!response.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+               Common.errorMessage(response);
                 return;
             }
             if (response.result != null)

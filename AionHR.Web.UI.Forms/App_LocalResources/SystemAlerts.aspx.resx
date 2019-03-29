@@ -126,6 +126,9 @@
   <data name="Alert10Title" xml:space="preserve">
     <value>Loans</value>
   </data>
+  <data name="alert11Title" xml:space="preserve">
+    <value>Vacations</value>
+  </data>
   <data name="Alert1Title" xml:space="preserve">
     <value>Company Right To Work Documents</value>
   </data>

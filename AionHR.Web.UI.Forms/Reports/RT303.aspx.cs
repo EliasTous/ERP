@@ -38,25 +38,48 @@ namespace AionHR.Web.UI.Forms.Reports
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -166,12 +189,12 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = new ReportCompositeRequest();
 
             req.Size = "1000";
-            req.StartAt = "1";
+            req.StartAt = "0";
 
 
             req.Add(dateRange1.GetRange());
             req.Add(employeeCombo1.GetEmployee());
-
+            req.Add(jobInfo1.GetJobInfo());
             return req;
         }
 
@@ -195,7 +218,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.IncludeIsInactive = 2;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -211,16 +234,17 @@ namespace AionHR.Web.UI.Forms.Reports
         {
 
             ReportCompositeRequest req = GetRequest();
-            if (req.Parameters["_employeeId"] == "0")
-                return;
+           
             ListResponse<AionHR.Model.Reports.RT303> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT303>(req);
-            if (!resp.Success)
-            {
-                string message = GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + " - " + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary;
-                if (throwException)
-                    throw new Exception(message);
+            //if (!resp.Success)
+            //{
 
-            }
+
+            //        throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
+
+            //}
+            if (!resp.Success)
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             resp.Items.ForEach(x =>
             {
@@ -229,7 +253,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 if (rtl)
                     x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
                 else
-                    x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
+                    x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("ddd, dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
 
 
             }
@@ -279,9 +303,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
             h.CreateDocument();
-
-
             ASPxWebDocumentViewer1.OpenReport(h);
+            ASPxWebDocumentViewer1.DataBind();
 
         }
 

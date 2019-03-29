@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.LoadTracking
 {
-    [ClassIdentifier("45099","45")]
+    [ClassIdentifier("45090", "45")]
     public class ImportLoans
     {
     }

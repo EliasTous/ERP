@@ -35,25 +35,48 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -65,10 +88,27 @@ namespace AionHR.Web.UI.Forms
 
                 SetExtLanguage();
                 FillBranches();
-                dateFrom.SelectedDate = DateTime.Now;  
+                dateFrom.SelectedDate = DateTime.Now;
 
 
             }
+            try
+            {
+                AccessControlApplier.ApplyAccessControlOnPage(typeof(DailySchedule), null, null, null, null);
+            }
+            catch (AccessDeniedException exp)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
+                Viewport1.Hidden = true;
+
+
+
+
+
+                return;
+            }
+
 
 
         }
@@ -80,7 +120,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<Branch> branches = _branchService.ChildGetAll<Branch>(request);
             if (!branches.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + branches.LogId : branches.Summary).Show();
+                Common.errorMessage(branches);
                 return;
             }
             this.branchStore.DataSource = branches.Items;
@@ -660,7 +700,7 @@ namespace AionHR.Web.UI.Forms
             {
                 //Show an error saving...
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+              Common.errorMessage(r);
                 return;
             }
             OpenCell(currentEmployee.Text);
@@ -703,7 +743,7 @@ namespace AionHR.Web.UI.Forms
             {
                 //Show an error saving...
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+              Common.errorMessage(r);
                 return;
             }
 

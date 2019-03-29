@@ -175,12 +175,12 @@ namespace AionHR.Web.UI.Forms.Utilities
             //Ext.Net.Node dashboard = BuildLeafNode("dashboard", Resources.Common.Dashboard, "TableLightning", true, companyStructure);
             Ext.Net.Node org = BuildLeafNode("rootParent_CS_ORG", Resources.Common.OrganizationChart, "ChartOrganisation", true, companyStructure);
             Ext.Net.Node emporg = BuildLeafNode("rootParent_CS_EMPORG", Resources.Common.EmpOrganizationChart, "ChartOrganisation", true, companyStructure);
-            Ext.Net.Node mediaItem = BuildLeafNode("rootParent_CS_MediaItem", Resources.Common.MediaItems, "Photos", true, companyStructure);
+         //   Ext.Net.Node mediaItem = BuildLeafNode("rootParent_CS_MediaItem", Resources.Common.MediaItems, "Photos", true, companyStructure);
             //Ext.Net.Node setup = BuildParentNode("rootParent_setup", Resources.Common.Setup, false, rootParent);
             Ext.Net.Node files = BuildLeafNode("rootParent_CS_Files", Resources.Common.Files, "FolderTable", true, companyStructure);
-            Ext.Net.Node companyNews = BuildLeafNode("rootParent_CS_CompanyNews", Resources.Common.CompanyNews, "Newspaper", true, companyStructure);
+         //   Ext.Net.Node companyNews = BuildLeafNode("rootParent_CS_CompanyNews", Resources.Common.CompanyNews, "Newspaper", true, companyStructure);
             Ext.Net.Node companyRightToWork = BuildLeafNode("rootParent_CS_CompanyRightTowork", Resources.Common.CompanyRightToWorks, "ScriptStart", true, companyStructure);
-            Ext.Net.Node companyLetter = BuildLeafNode("rootParent_CS_CompanyLetter", Resources.Common.Letters, "EmailLink" , true, companyStructure);
+         //   Ext.Net.Node companyLetter = BuildLeafNode("rootParent_CS_CompanyLetter", Resources.Common.Letters, "EmailLink" , true, companyStructure);
             
 
             //Ext.Net.Node departments = BuildLeafNode("rootParent_CS_DE", Resources.Common.Departments, "Group", true, setup);
@@ -197,13 +197,13 @@ namespace AionHR.Web.UI.Forms.Utilities
             //Ext.Net.Node users = BuildLeafNode("rootParent_CS_US", Resources.Common.Users, "Group", true, systemSettings);
 
             FillConfigItem(emporg, "emporg", "EmployeesOrgChart.aspx", Resources.Common.EmpOrganizationChart, "icon-Employees", "1");
-            FillConfigItem(org, "emporg", "OrganizationChart.aspx", Resources.Common.OrganizationChart, "icon-Employees", "1");
-            FillConfigItem(mediaItem, "mediaItem", "MediaItems.aspx", Resources.Common.MediaItems, "icon-Employees", "1");
+            FillConfigItem(org, "orgChart", "OrganizationChart.aspx", Resources.Common.OrganizationChart, "icon-Employees", "1");
+          //  FillConfigItem(mediaItem, "mediaItem", "MediaItems.aspx", Resources.Common.MediaItems, "icon-Employees", "1");
             FillConfigItem(files, "csFiles", "CompanyFiles.aspx", Resources.Common.Files, "icon-Employees", "1");
-            FillConfigItem(companyNews, "companyNews", "CompanyNews.aspx", Resources.Common.CompanyNews, "icon-Employees", "1");
+        //    FillConfigItem(companyNews, "companyNews", "CompanyNews.aspx", Resources.Common.CompanyNews, "icon-Employees", "1");
             //FillConfigItem(dashboard, "dashboard", "MainDashboard.aspx", Resources.Common.Dashboard, "icon-Employees", "1");
             FillConfigItem(companyRightToWork, "companyRightToWorks", "CompanyRightToWorks.aspx", Resources.Common.CompanyRightToWorks, "icon-Employees", "1");
-            FillConfigItem(companyLetter, "companyLetter", "Letters.aspx", Resources.Common.Letters, "icon-Employees", "1");
+         //   FillConfigItem(companyLetter, "companyLetter", "Letters.aspx", Resources.Common.Letters, "icon-Employees", "1");
 
             //FillConfigItem(branches, "branches", "Branches.aspx", Resources.Common.Branches, "icon-Employees", "1");
             //FillConfigItem(divisions, "divisions", "Divisions.aspx", Resources.Common.Divisions, "icon-Employees", "1");
@@ -313,6 +313,11 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rt108 = BuildLeafNode("report_rt108", Resources.Common.RT108, "", true, rt1);
             Ext.Net.Node rt111 = BuildLeafNode("report_rt111", Resources.Common.RT111, "", true, rt1);
             Ext.Net.Node rt112 = BuildLeafNode("report_rt112", Resources.Common.RT112, "", true, rt1);
+            Ext.Net.Node rt113 = BuildLeafNode("report_rt113", Resources.Common.RT113, "", true, rt1);
+            Ext.Net.Node rt114 = BuildLeafNode("report_rt114", Resources.Common.RT114, "", true, rt1);
+            Ext.Net.Node rt115 = BuildLeafNode("report_rt115", Resources.Common.RT115, "", true, rt1);
+
+
 
             //Ext.Net.Node rt2 = BuildParentNode("report_rt2", Resources.Common.Salary,  true, timeAt);
 
@@ -324,13 +329,14 @@ namespace AionHR.Web.UI.Forms.Utilities
 
 
             Ext.Net.Node rt3 = BuildParentNode("report_rt3", Resources.Common.TimeAttendance, true, timeAt, "CalendarViewMonth");
-            Ext.Net.Node rt301 = BuildLeafNode("report_rt301", Resources.Common.RT301, "", true, rt3);
+        //    Ext.Net.Node rt301 = BuildLeafNode("report_rt301", Resources.Common.RT301, "", true, rt3);
             //Ext.Net.Node rt301B = BuildLeafNode("report_rt301B", Resources.Common.RT301B, "", true, rt3);
             Ext.Net.Node rt302 = BuildLeafNode("report_rt302", Resources.Common.RT302, "", true, rt3);
             Ext.Net.Node rt303= BuildLeafNode("report_rt303", Resources.Common.RT303, "", true, rt3);
-            Ext.Net.Node rt304 = BuildLeafNode("report_rt304", Resources.Common.RT304, "", true, rt3);
+        //    Ext.Net.Node rt304 = BuildLeafNode("report_rt304", Resources.Common.RT304, "", true, rt3);
             Ext.Net.Node rt305 = BuildLeafNode("report_rt305", Resources.Common.RT305, "", true, rt3);
        //    Ext.Net.Node rt306 = BuildLeafNode("report_rt306", Resources.Common.RT306, "", true, rt3);
+            Ext.Net.Node rt306 = BuildLeafNode("report_rt306", Resources.Common.RT306, "", true, rt3);
             Ext.Net.Node rt307 = BuildLeafNode("report_rt307", Resources.Common.RT307, "", true, rt3);
 
             Ext.Net.Node rt4 = BuildParentNode("report_rt4", Resources.Common.Loans, true, timeAt, "MoneyDelete");
@@ -343,14 +349,20 @@ namespace AionHR.Web.UI.Forms.Utilities
            
             Ext.Net.Node rt503 = BuildLeafNode("report_rt503", Resources.Common.RT503, "", true, rt5);
             Ext.Net.Node rt504 = BuildLeafNode("report_rt504", Resources.Common.RT504, "", true, rt5);
+            Ext.Net.Node rt506 = BuildLeafNode("report_rt506", Resources.Common.RT506, "", true, rt5);
+            Ext.Net.Node rt507 = BuildLeafNode("report_rt507", Resources.Common.RT507, "", true, rt5);
+            Ext.Net.Node rt508 = BuildLeafNode("report_rt508", Resources.Common.LeavePayment, "", true, rt5);
+
 
             Ext.Net.Node rt6 = BuildParentNode("report_rt6", Resources.Common.LeaveReports, true, timeAt, "UserGo");
             Ext.Net.Node rt601 = BuildLeafNode("report_rt601", Resources.Common.RT601, "", true, rt6);
             Ext.Net.Node rt602 = BuildLeafNode("report_rt602", Resources.Common.RT602, "", true, rt6);
 
             Ext.Net.Node rt8 = BuildParentNode("report_rt8", Resources.Common.SystemSettings, true, timeAt, "Monitor");
-            Ext.Net.Node rt801 = BuildLeafNode("report_rt801", Resources.Common.RT801, "", true, rt8);
+          //  Ext.Net.Node rt801 = BuildLeafNode("report_rt801", Resources.Common.RT801, "", true, rt8);
             Ext.Net.Node rt802 = BuildLeafNode("report_rt802", Resources.Common.RT802, "", true, rt8);
+            Ext.Net.Node rt803 = BuildLeafNode("report_rt803", Resources.Common.Users, "", true, rt8);
+            Ext.Net.Node rt804 = BuildLeafNode("report_rt804", Resources.Common.SecurityGroups, "", true, rt8);
 
             FillConfigItem(rt101, "rt101", "Reports/RT01.aspx", Resources.Common.RT01, "icon-Employees", "1");
             FillConfigItem(rt102, "rt102", "Reports/RT102.aspx", Resources.Common.RT102, "icon-Employees", "1");
@@ -359,10 +371,14 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(rt104, "rt104", "Reports/RT104.aspx", Resources.Common.RT104, "icon-Employees", "1");
             FillConfigItem(rt105, "rt105", "Reports/RT105.aspx", Resources.Common.RT105, "icon-Employees", "1");
             FillConfigItem(rt106, "rt106", "Reports/RT106.aspx", Resources.Common.RT106, "icon-Employees", "1");
-            FillConfigItem(rt107, "rt107", "Reports/RT107.aspx", Resources.Common.RT107, "icon-Employees", "1");
+            FillConfigItem(rt107, "rt107", "RT107.aspx", Resources.Common.RT107, "icon-Employees", "1");
             FillConfigItem(rt108, "rt108", "Reports/RT108.aspx", Resources.Common.RT108, "icon-Employees", "1");
             FillConfigItem(rt111, "rt111", "Reports/RT111.aspx", Resources.Common.RT111, "icon-Employees", "1");
             FillConfigItem(rt112, "rt112", "Reports/RT112.aspx", Resources.Common.RT112, "icon-Employees", "1");
+            FillConfigItem(rt113, "rt113", "Reports/RT113.aspx", Resources.Common.RT113, "icon-Employees", "1");
+            FillConfigItem(rt114, "rt114", "Reports/RT114.aspx", Resources.Common.RT114, "icon-Employees", "1");
+            FillConfigItem(rt115, "rt115", "Reports/RT115.aspx", Resources.Common.RT115, "icon-Employees", "1");
+
 
 
             FillConfigItem(rt201, "rt201", "Reports/RT201.aspx", Resources.Common.RT201, "icon-Employees", "1");
@@ -370,13 +386,14 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(rt203, "rt203", "Reports/RT203.aspx", Resources.Common.RT203, "icon-Employees", "1");
             FillConfigItem(rt109, "rt109", "Reports/RT109.aspx", Resources.Common.RT109, "icon-Employees", "1");
 
-            FillConfigItem(rt301, "rt301", "Reports/RT301.aspx", Resources.Common.RT301, "icon-Employees", "1");
+         //   FillConfigItem(rt301, "rt301", "Reports/RT301.aspx", Resources.Common.RT301, "icon-Employees", "1");
             //FillConfigItem(rt301B, "rt301b", "Reports/RT301B.aspx", Resources.Common.RT301B, "icon-Employees", "1");
             FillConfigItem(rt302, "rt302", "Reports/RT302.aspx", Resources.Common.RT302, "icon-Employees", "1");
             FillConfigItem(rt303, "rt303", "Reports/RT303.aspx", Resources.Common.RT303, "icon-Employees", "1");
-            FillConfigItem(rt304, "rt304", "Reports/RT304.aspx", Resources.Common.RT304, "icon-Employees", "1");
+         //   FillConfigItem(rt304, "rt304", "Reports/RT304.aspx", Resources.Common.RT304, "icon-Employees", "1");
             FillConfigItem(rt305, "rt305", "Reports/RT305.aspx", Resources.Common.RT305, "icon-Employees", "1");
             // FillConfigItem(rt306, "rt306", "Reports/RT306.aspx", Resources.Common.RT306, "icon-Employees", "1");
+            FillConfigItem(rt306, "rt306", "Reports/RT306.aspx", Resources.Common.RT306, "icon-Employees", "1");
             FillConfigItem(rt307, "rt307", "Reports/RT307.aspx", Resources.Common.RT307, "icon-Employees", "1");
 
             FillConfigItem(rt401, "rt401", "Reports/RT401.aspx", Resources.Common.RT401, "icon-Employees", "1");
@@ -388,12 +405,17 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(rt502, "rt502", "Reports/RT502.aspx", Resources.Common.RT502, "icon-Employees", "1");
             FillConfigItem(rt503, "rt503", "Reports/RT503.aspx", Resources.Common.RT503, "icon-Employees", "1");
             FillConfigItem(rt504, "rt504", "Reports/RT504.aspx", Resources.Common.RT504, "icon-Employees", "1");
+            FillConfigItem(rt506, "rt506", "Reports/RT506.aspx", Resources.Common.RT506, "icon-Employees", "1");
+            FillConfigItem(rt507, "rt507", "Reports/RT507.aspx", Resources.Common.RT507, "icon-Employees", "1");
+            FillConfigItem(rt508, "rt508", "Reports/RT508.aspx", Resources.Common.LeavePayment, "icon-Employees", "1");
 
             FillConfigItem(rt601, "rt601", "Reports/RT601.aspx", Resources.Common.RT601, "icon-Employees", "1");
             FillConfigItem(rt602, "rt602", "Reports/RT602.aspx", Resources.Common.RT602, "icon-Employees", "1");
 
-            FillConfigItem(rt801, "rt801", "Reports/RT801.aspx", Resources.Common.RT801, "icon-Employees", "1");
+          //  FillConfigItem(rt801, "rt801", "Reports/RT801.aspx", Resources.Common.RT801, "icon-Employees", "1");
             FillConfigItem(rt802, "rt802", "Reports/RT802.aspx", Resources.Common.RT802, "icon-Employees", "1");
+            FillConfigItem(rt803, "rt803", "Reports/RT803.aspx", Resources.Common.Users, "icon-Employees", "1");
+            FillConfigItem(rt804, "rt804", "Reports/RT804.aspx", Resources.Common.SecurityGroups, "icon-Employees", "1");
             FillConfigItem(rt111, "rt111", "Reports/RT111.aspx", Resources.Common.RT111, "icon-Employees", "1");
 
             nodes.Add(rootParent);
@@ -451,9 +473,15 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node DS = BuildLeafNode("DS", Resources.Common.DailySchedule, "UserComment", true, ss);
             Ext.Net.Node TVSS = BuildLeafNode("TVSS", Resources.Common.timeVariations, "UserComment", true, ss);
             Ext.Net.Node TASS = BuildLeafNode("TASS", Resources.Common.TimeAttendance, "UserComment", true, ss);
+            Ext.Net.Node PY = BuildLeafNode("PY", Resources.Common.Payroll, "UserComment", true, ss);
+            Ext.Net.Node TimeApprovals = BuildLeafNode("TimeApprovals", Resources.Common.TimeApprovalsSelfService, "UserComment", true, ss);
+            Ext.Net.Node AL = BuildLeafNode("AL", Resources.Common.AssetLoans, "UserComment", true, ss);
+            Ext.Net.Node RP = BuildLeafNode("RP", Resources.Common.ChangePassword, "UserComment", true, ss);
+            Ext.Net.Node TR = BuildLeafNode("TR", Resources.Common.PendingTransfers, "ArrowSwitchBluegreen", true, ss);
 
 
-          //  FillConfigItem(lt, "LettersSelfServices", "LettersSelfServices.aspx", Resources.Common.Letters, "icon-Employees", "1");
+
+            //  FillConfigItem(lt, "LettersSelfServices", "LettersSelfServices.aspx", Resources.Common.Letters, "icon-Employees", "1");
             FillConfigItem(pi, "MyInfos","Myinfos.aspx", Resources.Common.PersonalInfo, "icon-Employees", "1");
             FillConfigItem(lv, "LeaveRequestsSelfService", "LeaveRequestsSelfServices.aspx", Resources.Common.LeaveRequests, "icon-Employees", "1");
             FillConfigItem(ln, "LoanSelfService", "LoanSelfServices.aspx", Resources.Common.Loan, "icon-Employees", "1");
@@ -462,6 +490,12 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(DS, "DailyScheduleSelfServices", "DailyScheduleSelfServices.aspx", Resources.Common.DailySchedule, "icon-Employees", "1");
             FillConfigItem(TVSS, "TimeVariationSelfServices", "TimeVariationSelfServices.aspx", Resources.Common.timeVariations, "icon-Employees", "1");
             FillConfigItem(TASS, "TimeAttendanceViewSelfServices", "TimeAttendanceViewSelfServices.aspx", Resources.Common.TimeAttendance, "icon-Employees", "1");
+            FillConfigItem(PY, "PayrollsSelfServices", "PayrollGenerationSelfServices.aspx", Resources.Common.Payroll, "icon-Employees", "1");
+            FillConfigItem(RP, "SelfServiceResetPasswords", "SelfServiceResetPasswords.aspx", Resources.Common.ChangePassword, "icon-Employees", "1");
+            FillConfigItem(TimeApprovals, "TimeApprovalsSelfServices", "TimeApprovalsSelfServices.aspx", Resources.Common.TimeApprovalsSelfService, "icon-Employees", "1");
+            FillConfigItem(TR, "TR", "SSTransfers.aspx", Resources.Common.PendingTransfers, "ArrowSwitchBluegreen", "1");
+            FillConfigItem(AL, "AL", "AssetLoans.aspx", Resources.Common.AssetLoans, "icon-Employees", "1");
+
 
             nodes.Add(rootParent);
             return nodes;
@@ -498,12 +532,35 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             Ext.Net.Node rootParent = BuildRootParentNode("rootParent", Resources.Common.AdministrationAffairs, true);
             Ext.Net.Node adminTemplates = BuildParentNode("rootParent_CS", Resources.Common.AdministrationAffairs, true, rootParent);
-            
-            
+            Ext.Net.Node adminBusiness = BuildParentNode("rootParent_BP", Resources.Common.adminBusinessPartner, true, rootParent);
+            Ext.Net.Node adminDocument = BuildParentNode("rootParent_DC", Resources.Common.Documents, true, rootParent);
+            Ext.Net.Node adminAssetManagement = BuildParentNode("rootParent_AS", Resources.Common.AssetManagement, true, rootParent);
+
 
 
             Ext.Net.Node templatesLeave = BuildLeafNode("admintemplates_root", Resources.Common.AdminTemplates, "Photos", true, adminTemplates);
-            FillConfigItem(templatesLeave, "1", "AdminTemplates.aspx", Resources.Common.AdminTemplates, "icon-Employees", "1");
+            Ext.Net.Node businessPartnerCategory = BuildLeafNode("BusinessPartnerCategories", Resources.Common.BusinessPartnerCategory, "Building", true, adminBusiness);
+            Ext.Net.Node businessPartner = BuildLeafNode("businessPartneres", Resources.Common.BusinessPartner, "Building", true, adminBusiness);
+            Ext.Net.Node DocumentCategory = BuildLeafNode("DocumentCategories", Resources.Common.DocumentCategory, "Building", true, adminDocument);
+            Ext.Net.Node DocumentNavigation = BuildLeafNode("DocumentNavigation", Resources.Common.OpenDocuments, "Building", true, adminDocument);
+            Ext.Net.Node Document = BuildLeafNode("AdminDocuments", Resources.Common.Documents, "Building", true, adminDocument);
+            Ext.Net.Node Asset = BuildLeafNode("AssetManagementAssets", Resources.Common.Assets, "Building", true, adminAssetManagement);
+            Ext.Net.Node AssetManagementPurchaseOrder = BuildLeafNode("AssetManagementPurchaseOrders", Resources.Common.PurchaseOrders, "Building", true, adminAssetManagement);
+            Ext.Net.Node AssetManagementOnboarding = BuildLeafNode("AssetManagementOnboarding", Resources.Common.Onboarding, "Building", true, adminAssetManagement);
+            Ext.Net.Node AssetManagementloan = BuildLeafNode("AssetManagementloan", Resources.Common.Loan, "Building", true, adminAssetManagement);
+            Ext.Net.Node AdminDepts = BuildLeafNode("admindepts", Resources.Common.AdminDepts, "Building", true, adminDocument);
+
+            FillConfigItem(templatesLeave, "admintemplates_root", "AdminTemplates.aspx", Resources.Common.AdminTemplates, "icon-Employees", "1");
+            FillConfigItem(businessPartnerCategory, "BusinessPartnerCategories", "BusinessPartnerCategories.aspx", Resources.Common.BusinessPartnerCategory, "icon-Employees", "1");
+            FillConfigItem(businessPartner, "businessPartneres", "BusinessPartneres.aspx", Resources.Common.BusinessPartner, "icon-Employees", "1");
+            FillConfigItem(DocumentCategory, "DocumentCategories", "DocumentCategories.aspx", Resources.Common.DocumentCategory, "icon-Employees", "1");
+            FillConfigItem(Document, "AdminDocuments", "AdminDocuments.aspx", Resources.Common.Documents, "icon-Employees", "1");
+            FillConfigItem(DocumentNavigation, "DocumentNavigation", "AdminDocNav.aspx", Resources.Common.OpenDocuments, "icon-Employees", "1");
+            FillConfigItem(Asset, "AssetManagementAssets", "AssetManagementAssets.aspx", Resources.Common.Assets, "icon-Employees", "1");
+            FillConfigItem(AssetManagementPurchaseOrder, "AssetManagementPurchaseOrders", "AssetManagementPurchaseOrders.aspx", Resources.Common.PurchaseOrders, "icon-Employees", "1");
+            FillConfigItem(AssetManagementOnboarding, "AssetManagementOnboarding", "AssetManagementOnboardings.aspx", Resources.Common.Onboarding, "icon-Employees", "1");
+            FillConfigItem(AssetManagementloan, "AssetManagementloan", "AssetManagementloans.aspx", Resources.Common.Loan, "icon-Employees", "1");
+            FillConfigItem(AdminDepts, "admindepts", "AdminDepts.aspx", Resources.Common.AdminDepts, "icon-Employees", "1");
 
 
 

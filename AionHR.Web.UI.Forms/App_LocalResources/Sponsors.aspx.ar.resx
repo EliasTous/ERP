@@ -156,4 +156,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>الكفلاء</value>
   </data>
+  <data name="FieldIsSupplier" xml:space="preserve">
+    <value>هو المورد</value>
+  </data>
 </root>

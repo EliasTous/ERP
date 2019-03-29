@@ -25,6 +25,8 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
 using AionHR.Services.Messaging.System;
+using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Model.SelfService;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -36,23 +38,47 @@ namespace AionHR.Web.UI.Forms
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
         ISelfServiceService _selfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -65,8 +91,7 @@ namespace AionHR.Web.UI.Forms
             {
 
                 SetExtLanguage();
-                FillBranches();
-                FillDepartment();
+               
                 this.workingHours.Value = string.Empty;
                 dateFrom.SelectedDate = DateTime.Now;
                 dateTo.SelectedDate = DateTime.Now;
@@ -76,19 +101,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void FillBranches()
-        {
-            ListRequest request = new ListRequest();
-            request.Filter = string.Empty;
-            ListResponse<Branch> branches = _branchService.ChildGetAll<Branch>(request);
-            if (!branches.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString()+"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+branches.LogId : branches.Summary).Show();
-                return;
-            }
-            this.branchStore.DataSource = branches.Items;
-            this.branchStore.DataBind();
-        }
+      
 
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
@@ -162,7 +175,7 @@ namespace AionHR.Web.UI.Forms
             {
                 //Show an error saving...
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+              Common.errorMessage(r);
                 return;
             }
             else
@@ -182,7 +195,7 @@ namespace AionHR.Web.UI.Forms
                 reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                 reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                 reqFS.BranchId = 0;
-                ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                ListResponse<FlatScheduleSelfService> response = _selfServiceService.ChildGetAll<FlatScheduleSelfService>(reqFS);
                 if (!response.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -283,7 +296,7 @@ namespace AionHR.Web.UI.Forms
             {
                 //Show an error saving...
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+              Common.errorMessage(r);
                 return;
             }
             else
@@ -294,7 +307,7 @@ namespace AionHR.Web.UI.Forms
                 reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                 reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                 reqFS.BranchId = 0;
-                ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                ListResponse<FlatScheduleSelfService> response = _selfServiceService.ChildGetAll<FlatScheduleSelfService>(reqFS);
                 if (!response.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -367,7 +380,7 @@ namespace AionHR.Web.UI.Forms
             {
                 //Show an error saving...
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+              Common.errorMessage(r);
                 return;
             }
 
@@ -482,7 +495,7 @@ namespace AionHR.Web.UI.Forms
             reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
             reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
             reqFS.BranchId = 0;
-            ListResponse<FlatSchedule> response =_selfServiceService .ChildGetAll<FlatSchedule>(reqFS);
+            ListResponse<FlatScheduleSelfService> response =_selfServiceService.ChildGetAll<FlatScheduleSelfService>(reqFS);
             if (!response.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -491,14 +504,14 @@ namespace AionHR.Web.UI.Forms
             this.dayId.Value = string.Empty;
             BuildSchedule(response.Items);
 
-            ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS);
-            if (!workingHoursResponse.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
-                return;
-            }
-            else
-                workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString(); 
+            //ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS);
+            //if (!workingHoursResponse.Success)
+            //{
+            //    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+            //    return;
+            //}
+            //else
+            //    workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString(); 
 
         }
         protected void Save_Click(object sender, DirectEventArgs e)
@@ -565,7 +578,7 @@ namespace AionHR.Web.UI.Forms
                 RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
                 if (!SystemDefaultResponse.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + SystemDefaultResponse.LogId : SystemDefaultResponse.Summary).Show();
+                    Common.errorMessage(SystemDefaultResponse);
                     return;
                 }
                 FlatSchedule fs = new FlatSchedule();
@@ -584,7 +597,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+                  Common.errorMessage(r);
                     return;
                 }
                 else
@@ -658,7 +671,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+                  Common.errorMessage(r);
                     return;
                 }
                 else
@@ -671,7 +684,7 @@ namespace AionHR.Web.UI.Forms
                     reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                     reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                     reqFS.BranchId = 0;
-                    ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                    ListResponse<FlatScheduleSelfService> response = _timeAttendanceService.ChildGetAll<FlatScheduleSelfService>(reqFS);
                     if (!response.Success)
                     {
                         X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -699,7 +712,7 @@ namespace AionHR.Web.UI.Forms
                 workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString();
         }
 
-        private void BuildSchedule(List<FlatSchedule> items)
+        private void BuildSchedule(List<FlatScheduleSelfService> items)
         {
             try
             {
@@ -708,7 +721,7 @@ namespace AionHR.Web.UI.Forms
                 RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
                 if (!SystemDefaultResponse.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + SystemDefaultResponse.LogId : SystemDefaultResponse.Summary).Show();
+                    Common.errorMessage(SystemDefaultResponse);
                     return; 
                 }
                
@@ -733,56 +746,56 @@ namespace AionHR.Web.UI.Forms
 
                 }
                 //   GetBranchSchedule(out startAt, out closeAt);
-                TimeSpan tsStart = new TimeSpan(); ;
-                TimeSpan tsClose = new TimeSpan();
+                //TimeSpan tsStart = new TimeSpan(); ;
+                //TimeSpan tsClose = new TimeSpan();
 
-                for (int i =0; i<items.Count; i++)
-                {
-                    if (i==0)
-                    {
-                        tsStart= TimeSpan.Parse(items[i].from);
-                        tsClose= TimeSpan.Parse(items[i].to);
-                        continue; 
-                    }
+                //for (int i =0; i<items.Count; i++)
+                //{
+                //    if (i==0)
+                //    {
+                //        tsStart= TimeSpan.Parse(items[i].from);
+                //        tsClose= TimeSpan.Parse(items[i].to);
+                //        continue; 
+                //    }
 
-                    if (TimeSpan.Parse(items[i].from) < tsStart)
-                        tsStart = TimeSpan.Parse(items[i].from);
-                    if (TimeSpan.Parse(items[i].to) > tsClose)
-                        tsClose = TimeSpan.Parse(items[i].to);
+                //    if (TimeSpan.Parse(items[i].from) < tsStart)
+                //        tsStart = TimeSpan.Parse(items[i].from);
+                //    if (TimeSpan.Parse(items[i].to) > tsClose)
+                //        tsClose = TimeSpan.Parse(items[i].to);
 
-                }
+                //}
               
-                timeFrom.Value = tsStart;
+                //timeFrom.Value = tsStart;
                 // timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
               
-                timeTo.Value = tsClose;
+                //timeTo.Value = tsClose;
 
                
-                TimeSpan EmployeeTsStart, EmployeeTsEnd;
+                //TimeSpan EmployeeTsStart, EmployeeTsEnd;
 
 
-                items.ForEach(x =>
-                 {
-                     EmployeeTsStart = TimeSpan.Parse(x.from);
-                     EmployeeTsEnd = TimeSpan.Parse(x.to);
-                     if (EmployeeTsStart < tsStart || EmployeeTsEnd > tsClose)
-                     {
-                         html += @"</table></div>";
-                         this.pnlSchedule.Html = html;
-                         X.Call("DisableTools");
-                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName.reference).Show();
-                         return; 
-                     }
-                 });
+                //items.ForEach(x =>
+                // {
+                //     EmployeeTsStart = TimeSpan.Parse(x.from);
+                //     EmployeeTsEnd = TimeSpan.Parse(x.to);
+                //     if (EmployeeTsStart < tsStart || EmployeeTsEnd > tsClose)
+                //     {
+                //         html += @"</table></div>";
+                //         this.pnlSchedule.Html = html;
+                //         X.Call("DisableTools");
+                //         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName.reference).Show();
+                //         return; 
+                //     }
+                // });
 
 
                 //Filling The Times Slot
                 List<TimeSlot> timesList = new List<TimeSlot>();
-                DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
-                DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
-                if (dtStart >= dtEnd)
+                DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                if (dtEnd == dtStart)
                 {
-                    dtEnd = dtEnd.AddDays(1);
+                    dtEnd = dtEnd.AddDays(1).AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
                 }
                 do
                 {
@@ -790,7 +803,7 @@ namespace AionHR.Web.UI.Forms
                     ts.ID = dtStart.ToString("HH:mm");
                     ts.Time = dtStart.ToString("HH:mm");
                     timesList.Add(ts);
-                    dtStart = dtStart.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
+                    dtStart = dtStart.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
                 } while (dtStart <= dtEnd);
 
                 //filling the Day slots
@@ -802,26 +815,31 @@ namespace AionHR.Web.UI.Forms
 
                 //Preparing the ids to get colorified
                 List<string> listIds = new List<string>();
-                foreach (FlatSchedule fs in items)
+                foreach (FlatScheduleSelfService fs in items)
                 {
                     DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
                     DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
                     DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
-                    if (fsfromDate >= fsToDate)
+                    if (fsToDate.Minute == 0 && fsToDate.Hour == 00)
                     {
                         fsToDate = fsToDate.AddDays(1);
-                    }
-                    do
-                    {
-                        if (fsfromDate.ToString("HH:mm") == "00:00")
+                        do
                         {
-                            listIds.Add(fsfromDate.AddDays(-1).ToString("yyyyMMdd") + "_00:00");
-                            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
-                            continue;
-                        }
-                        listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                        fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
-                    } while (fsToDate >= fsfromDate);
+
+
+                            fsToDate = fsToDate.AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
+                            listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
+                        } while (fsToDate != fsfromDate);
+                    }
+                    else
+                    {
+                        do
+                        {
+
+                            listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                        } while (fsToDate >= fsfromDate);
+                    }
 
                 }
 
@@ -1014,12 +1032,12 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 2;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+               Common.errorMessage(response);
             return response.Items;
         }
 
@@ -1047,16 +1065,7 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-        private void FillDepartment()
-        {
-            DepartmentListRequest departmentsRequest = new DepartmentListRequest();
-            departmentsRequest.type = 0;
-            ListResponse<Department> resp = _branchService.ChildGetAll<Department>(departmentsRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-            departmentStore.DataSource = resp.Items;
-            departmentStore.DataBind();
-        }
+       
 
         [DirectMethod]
         public string CheckSession()
@@ -1125,7 +1134,7 @@ namespace AionHR.Web.UI.Forms
             reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
             reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
             reqFS.BranchId = 0;
-            ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+            ListResponse<FlatScheduleSelfService> response = _timeAttendanceService.ChildGetAll<FlatScheduleSelfService>(reqFS);
             if (!response.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -1166,17 +1175,17 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 0;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "1000";
             req.Filter = "";
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+               Common.errorMessage(response);
 
             else
                 //UsersListRequest req = new UsersListRequest();
                 //req.Size = "100";
-                //req.StartAt = "1";
+                //req.StartAt = "0";
                 //req.Filter = "";
 
                 //var s = jobInfo1.GetJobInfo();
@@ -1218,12 +1227,12 @@ namespace AionHR.Web.UI.Forms
         //    req.IncludeIsInactive = 2;
         //    req.SortBy = "firstName";
 
-        //    req.StartAt = "1";
+        //    req.StartAt = "0";
         //    req.Size = "20";
         //    req.Filter = "";
         //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
         //    if (!response.Success)
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+        //       Common.errorMessage(response);
             
         //    else
         //        response.Items.ForEach(x => x.fullName = x.name.fullName);
@@ -1301,7 +1310,7 @@ namespace AionHR.Web.UI.Forms
             //{
             //    //Show an error saving...
             //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-            //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+            //  Common.errorMessage(r);
             //    return;
             //}
             //else
@@ -1321,7 +1330,7 @@ namespace AionHR.Web.UI.Forms
                 reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                 reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                 reqFS.BranchId = 0;
-                ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                ListResponse<FlatScheduleSelfService> response = _timeAttendanceService.ChildGetAll<FlatScheduleSelfService>(reqFS);
                 if (!response.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();

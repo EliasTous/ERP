@@ -34,8 +34,21 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
             return s;
         }
-        
-       
+        public String GetEmployeeName()
+        {
+           
+            int bulk;
+            if (employeeFilter.Value == null || !int.TryParse(employeeFilter.Value.ToString(), out bulk))
+
+                return "";
+            else
+                return employeeFilter.SelectedItem.Text.ToString();
+
+
+        }
+
+
+
 
     }
 }

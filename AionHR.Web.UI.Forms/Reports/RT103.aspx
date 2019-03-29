@@ -22,7 +22,7 @@
     <script type="text/javascript">
         function alertNow(s, e) {
 
-            Ext.MessageBox.alert('Error', e.message);
+            Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
     </script>
@@ -35,7 +35,8 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-
+          <ext:Hidden ID="MaximumValue" runat="server" Text="100" />
+               <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
 
@@ -94,7 +95,7 @@
                                     <Content>
                                            <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
                                             <Listeners>
-                                                <Click Handler="App.firstStore.reload(); App.secondStore.reload();" />
+                                                <Click Handler="App.firstStore.reload(); " />
                                             </Listeners>
                                         </ext:Button>
                                     </Content>
@@ -123,8 +124,8 @@
                                             Fields="headCount"
                                             Position="Left"
                                             Grid="true"
-                                            Minimum="0"
-                                            Maximum="100">
+                                            Minimum="0">
+                                  
                                             <Renderer Handler="return layoutContext.renderer(label) ;" />
                                         </ext:NumericAxis>
 

@@ -34,23 +34,47 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -65,7 +89,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                yearFrom.Format = yearTo.Format = periodFrom.Format = periodTo.Format = _systemService.SessionHelper.GetDateformat();
+                PE_startDate.Format=PE_endDate.Format= yearFrom.Format = yearTo.Format = periodFrom.Format = periodTo.Format = _systemService.SessionHelper.GetDateformat();
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(FiscalYear), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
@@ -201,6 +225,37 @@ namespace AionHR.Web.UI.Forms
 
 
         }
+        protected void PoPuPPE(object sender, DirectEventArgs e)
+        {
+
+
+            string salaryType =e.ExtraParams["salaryType"];
+            string periodId = e.ExtraParams["periodId"];
+
+            FiscalPeriodRecordRequest request = new FiscalPeriodRecordRequest();
+            request.year = CurrentYear.Text;
+            request.salaryType = salaryType;
+            request.periodId = periodId;
+            RecordResponse<FiscalPeriod> response = _payrollService.ChildGetRecord<FiscalPeriod>(request);
+            if (!response.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                Common.errorMessage(response);
+                return;
+            }
+            //PE_startDate.MinDate = PE_endDate.MinDate = response.result.startDate;
+            //PE_startDate.MaxDate = PE_endDate.MaxDate = response.result.endDate;
+
+            //Step 2 : call setvalues with the retrieved object
+            
+            this.fiscalPeriodForm.SetValues(response.result);         
+            this.fiscalPeriodWindow.Show();
+
+
+
+
+
+        }
 
 
 
@@ -224,7 +279,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                     Common.errorMessage(r);
                     return;
                 }
                 else
@@ -310,7 +365,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 2;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -456,7 +511,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 : Fill The object and insert in the store 
                 PostRequest<FiscalYear> request = new PostRequest<FiscalYear>();
                 request.entity = b;
-                if (b.startDate > b.endDate || b.startDate.Year != b.endDate.Year)
+                if (b.startDate > b.endDate)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorStartEnd").ToString()).Show();
@@ -470,7 +525,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                     Common.errorMessage(r);
                     return;
                 }
 
@@ -495,6 +550,77 @@ namespace AionHR.Web.UI.Forms
                     sm.DeselectAll();
                     sm.Select(b.fiscalYear.ToString());
 
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
+
+
+
+
+        }
+        protected void saveNewFiscalPeriod(object sender, DirectEventArgs e)
+        {
+
+
+            try
+            {
+                //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+                string salaryType = e.ExtraParams["salaryType"];
+            string periodId = e.ExtraParams["periodId"];
+            string status = e.ExtraParams["status"];
+
+            string obj = e.ExtraParams["schedule"];
+            FiscalPeriod b = JsonConvert.DeserializeObject<FiscalPeriod>(obj);
+            b.fiscalYear = CurrentYear.Text;
+            b.salaryType = Convert.ToInt16(salaryType);
+            b.status = Convert.ToInt16(status );
+
+
+            // Define the object to add or edit as null
+
+
+                //New Mode
+                //Step 1 : Fill The object and insert in the store 
+                PostRequest<FiscalPeriod> request = new PostRequest<FiscalPeriod>();
+                request.entity = b;
+             
+                PostResponse<FiscalPeriod> r = _payrollService.ChildAddOrUpdate<FiscalPeriod>(request);
+
+
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                   Common.errorMessage(r);;
+                    return;
+                }
+
+
+
+                else
+                {
+
+                    //Add this record to the store 
+                    fiscalPeriodsStore.Reload();
+
+                    //Display successful notification
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordSavingSucc
+                    });
+
+                    this.fiscalPeriodWindow.Close();
+                   
 
 
                 }
@@ -637,7 +763,7 @@ namespace AionHR.Web.UI.Forms
         {
             FiscalPeriodsListRequest req = new FiscalPeriodsListRequest();
             req.Year = CurrentYear.Text;
-            req.PeriodType = (SalaryType)Convert.ToInt32(periodType.Value.ToString());
+            req.PeriodType = Convert.ToInt32(periodType.Value.ToString());
             req.Status = "3";
             ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
             if (!resp.Success)

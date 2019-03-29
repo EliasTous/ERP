@@ -801,7 +801,7 @@
     </DirectEvents>
 </ext:Window>
 
-          <uc:leaveControl runat="server" ID="leaveRequest1" />
+          <uc:leaveControl runat="server" ID="leaveRequest1" fromSelfService="1" />
     </form>
 </body>
 </html>

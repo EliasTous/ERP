@@ -103,6 +103,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden format;
         
         /// <summary>
+        /// Error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden Error;
+        
+        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -121,13 +130,13 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Panel Center;
         
         /// <summary>
-        /// dateRange1 control.
+        /// date1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter dateRange1;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.DateFilter date1;
         
         /// <summary>
         /// jobInfo1 control.

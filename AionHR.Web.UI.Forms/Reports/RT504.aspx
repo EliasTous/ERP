@@ -26,7 +26,7 @@
     <script type="text/javascript">
         function alertNow(s, e) {
 
-            Ext.MessageBox.alert('Error', e.message);
+            Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
     </script>
@@ -41,7 +41,7 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
          <ext:Hidden ID="hint" runat="server" Text="<%$ Resources:Common , hint %>" />
           <ext:Hidden ID="EmptyPayRef" runat="server" Text="<%$ Resources:Common , EmptyPayRef %>" />
-
+               <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
 
@@ -69,7 +69,23 @@
                                                 <uc:payRefCombo runat="server" ID="payRefFilter" />
                                             </Content>
                                         </ext:Container>--%>
-                                     <ext:TextField Width="120" runat="server" ID="payRef" EmptyText="<%$Resources:Common , PayRef %>" />
+                                       <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  EmptyText="<%$Resources:Common , PayRef %>"  Name="payId" runat="server" DisplayField="payRefWithDateRange" ValueField="recordId" ID="payId" Width="150">
+                                    <Store>
+                                        <ext:Store runat="server" ID="payIdStore">
+                                            <Model>
+                                                <ext:Model runat="server" IDProperty="recordId">
+                                                    <Fields>
+
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="payRefWithDateRange" />
+                                                           
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                 
+                                </ext:ComboBox>
 
                                
                                         <ext:Container runat="server"  Layout="FitLayout">
@@ -85,7 +101,7 @@
                                     <Content>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
-                                                  <Click Handler="if(App.payRef.getValue()=='')  {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}  callbackPanel.PerformCallback('1');" />
+                                                  <Click Handler="if(App.payId.getValue()==null ||App.payId.getValue()=='0' || App.payId.getValue()=='')  {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}  callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
                                     </Content>

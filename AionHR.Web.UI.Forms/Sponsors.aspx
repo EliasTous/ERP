@@ -148,7 +148,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
 
-                              <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
+                              <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
                           
                             <ext:Column   CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="1" Hideable="false">
 
@@ -296,7 +296,7 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="idRef" runat="server" FieldLabel="<%$ Resources:FieldIdRef%>" Name="idRef"  />
                                 <ext:TextField ID="rtwRef" runat="server" FieldLabel="<%$ Resources:FieldRTWRef%>" Name="rtwRef" />
@@ -317,6 +317,7 @@
                                     </ext:TextField>
                                 <ext:TextField Vtype="email" ID="email" runat="server" FieldLabel="<%$ Resources:FieldEmail%>" Name="email" />
                                 <ext:TextField ID="fax" runat="server" FieldLabel="<%$ Resources:FieldFax%>" Name="fax" />
+                                     <ext:Checkbox ID="isSupplier" runat="server" FieldLabel="<%$ Resources:FieldIsSupplier %>" Name="isSupplier" SubmitValue="true" InputValue="true" />
                                
 
                             </Items>

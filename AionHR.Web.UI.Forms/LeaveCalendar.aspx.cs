@@ -39,23 +39,47 @@ namespace AionHR.Web.UI.Forms
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
         protected DataTable getData(string month, string year)
         {
@@ -80,13 +104,21 @@ namespace AionHR.Web.UI.Forms
 
             DateTime startDate = new DateTime(Convert.ToInt32(year), Convert.ToInt32(month), 1);
             DateTime endDate = new DateTime(Convert.ToInt32(year), Convert.ToInt32(month), DateTime.DaysInMonth(Convert.ToInt32(year), Convert.ToInt32(month)));
+          
+            List<string> employeeid = new List<string>(); 
             foreach (var item in resp.Items)
             {
 
 
                 if (item.startDate > endDate || item.endDate < startDate)
                     continue;
-                DayPilotScheduler1.Resources.Add(new DayPilot.Web.Ui.Resource(item.employeeName.fullName, item.employeeId.ToString()));
+
+                if (!employeeid.Contains(item.employeeId))
+                {
+                    DayPilotScheduler1.Resources.Add(new DayPilot.Web.Ui.Resource(item.employeeName.fullName, item.employeeId.ToString()));
+                    employeeid.Add(item.employeeId);
+                }
+           
                 dr = dt.NewRow();
                 dr["id"] = item.recordId;
                 dr["start"] = item.startDate;
@@ -245,7 +277,7 @@ namespace AionHR.Web.UI.Forms
             }
 
             req.Size = "50";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.SortBy = "firstName";
 
             return req;
@@ -364,10 +396,10 @@ namespace AionHR.Web.UI.Forms
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
             req.BranchId = "0";
-            req.IncludeIsInactive = 2;
+            req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -462,6 +494,17 @@ namespace AionHR.Web.UI.Forms
             leaveRequest1.Return();
         }
 
-        
+        [DirectMethod]
+        public object FillReplacementEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
+
+
     }
 }

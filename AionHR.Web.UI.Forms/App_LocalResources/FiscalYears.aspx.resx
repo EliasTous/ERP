@@ -138,6 +138,9 @@
   <data name="FieldYear" xml:space="preserve">
     <value>Year</value>
   </data>
+  <data name="fiscalPeriodWindowTitle" xml:space="preserve">
+    <value>Fiscal Period</value>
+  </data>
   <data name="SalaryBiWeekly" xml:space="preserve">
     <value>Bi-weekly</value>
   </data>

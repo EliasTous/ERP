@@ -121,7 +121,7 @@
     <value>Leave Type Info</value>
   </data>
   <data name="Business" xml:space="preserve">
-    <value>Business / Sick</value>
+    <value>Business </value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Leave Type</value>
@@ -173,5 +173,11 @@
   </data>
   <data name="FieldApproval" xml:space="preserve">
     <value>Aprroval </value>
+  </data>
+  <data name="FieldLeaveSchedule" xml:space="preserve">
+    <value>Leave Schedule</value>
+  </data>
+  <data name="FieldDeduction" xml:space="preserve">
+    <value>Deduction</value>
   </data>
 </root>

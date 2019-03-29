@@ -59,7 +59,25 @@
             </Sorters>
         </ext:Store>
 
+          <ext:Store runat="server" ID="dedsStore" OnReadData="dedsStore_ReadData" AutoLoad="true"   RemoteSort="False"
+            RemoteFilter="true"   PageSize="50" IDMode="Explicit" Namespace="App">
+               <Proxy>
+                <ext:PageProxy>
+                    <Listeners>
+                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                    </Listeners>
+                </ext:PageProxy>
+            </Proxy>
+            <Model>
+                <ext:Model runat="server" IDProperty="recordId">
+                    <Fields>
+                        <ext:ModelField Name="recordId" />
+                        <ext:ModelField Name="name" />
+                    </Fields>
+                </ext:Model>
+            </Model>
 
+        </ext:Store>
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
             <Items>
@@ -247,7 +265,7 @@
             Modal="true"
             Hidden="true"
             Layout="Fit">
-
+           
             <Items>
                 <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
                     <Items>
@@ -295,7 +313,23 @@
                                                     <IconClick Handler="App.ApprovalStore.reload();" />
                                                 </Listeners>
                                             </ext:ComboBox>
-                           
+                                  <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="lsId" Name="lsId" FieldLabel="<%$ Resources:FieldLeaveSchedule %>" >
+                              
+                                                <Store>
+                                                    <ext:Store runat="server" ID="leaveScheduleStore" OnReadData="leaveSchedule_RefreshData">
+                                                        <Model>
+                                                            <ext:Model runat="server">
+                                                                <Fields>
+                                                                    <ext:ModelField Name="recordId" />
+                                                                    <ext:ModelField Name="name" />
+                                                                </Fields>
+                                                            </ext:Model>
+                                                        </Model>
+                                                    </ext:Store>
+                                                </Store>
+                                              
+                                            </ext:ComboBox>
+                            <ext:ComboBox    AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="true" DisplayField="name" ID="edId" Name="edId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true" StoreID="dedsStore" />
                                  <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" LabelWidth="200" FieldLabel="<%$ Resources:isPaid%>" Checked="true" />
                                     
                               <%--  <ext:FieldSet ID="ApprovalLevelFS" runat="server" Disabled="true" Title="<%$ Resources:Approvallevel %>" >

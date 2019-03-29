@@ -227,6 +227,7 @@
                                         <ext:Model runat="server">
                                             <Fields>
                                                 <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                   <ext:ModelField Name="approverName" IsComplex="true" />
                                                 <ext:ModelField Name="departmentName" />
                                                 <ext:ModelField Name="stringStatus" />
                                                 <ext:ModelField Name="notes" />
@@ -277,7 +278,9 @@
                     BodyPadding="5">
                     <Items>
                         <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
-                        <ext:TextField ID="leaveRef" runat="server" Name="leaveRef"  FieldLabel="<%$ Resources:FieldLeaveRef%>" />
+                        <ext:TextField ID="leaveRef" runat="server" Name="leaveRef"  FieldLabel="<%$ Resources:FieldLeaveRef%>" >
+                               <Validator Handler="return !isNaN(this.value);" />
+                            </ext:TextField>
                            <ext:ComboBox    AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" AllowBlank="false"
                             DisplayField="fullName" Name="employeeId"
                             ValueField="recordId"
@@ -694,6 +697,10 @@
                                 <Columns>
                                     <ext:Column ID="leaveIdCO" Visible="false" DataIndex="leaveId" runat="server">
                                     </ext:Column>
+                                      <ext:Column ID="Column2" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="1">
+                                           <Renderer Handler=" return record.data['approverName'].fullName; ">
+                                           </Renderer>
+                                         </ext:Column>
                                         <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
                                            <Renderer Handler=" return record.data['employeeName'].fullName; ">
                                            </Renderer>

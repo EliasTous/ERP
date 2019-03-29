@@ -392,32 +392,32 @@
                                 </ext:ComboBox>
 
 
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeCode" runat="server" FieldLabel="<%$ Resources:FieldTimeVariationType%>" Name="timeCode" IDMode="Static" SubmitValue="true" AllowBlank="false">
-                                    <Items>
-                                           <ext:ListItem Text="<%$ Resources:Common ,  UnpaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_UNPAID_LEAVE %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  PaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_PAID_LEAVE %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  SHIFT_LEAVE_WITHOUT_EXCUSE %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_SHIFT_LEAVE_WITHOUT_EXCUSE %>" ></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  DAY_LEAVE_WITHOUT_EXCUSE  %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_DAY_LEAVE_WITHOUT_EXCUSE %>" ></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  LATE_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_LATE_CHECKIN %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  DURING_SHIFT_LEAVE %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_DURING_SHIFT_LEAVE %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_LEAVE   %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_LEAVE   %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  EARLY_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_CHECKIN %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  OVERTIME %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_OVERTIME %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common ,  MISSED_PUNCH %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_MISSED_PUNCH %>"></ext:ListItem>
-                                         <ext:ListItem Text="<%$ Resources:Common ,  Day_Bonus %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_Day_Bonus %>"></ext:ListItem>
-                                         
-                                      
-                                      
-                                    </Items>
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeCode" runat="server" FieldLabel="<%$ Resources:FieldTimeVariationType%>" Name="timeCode" ValueField="timeCode" DisplayField="name"  AllowBlank="false">
+                                   <Store>
+                <ext:Store runat="server" ID="timeVariationStore">
+                    <Model>
+                        <ext:Model runat="server">
+                            <Fields>
+                                                
+                        <ext:ModelField Name="timeCode" />
+                          <ext:ModelField Name="name" />
+                       
+
+                            </Fields>
+                        </ext:Model>
+                    </Model>
+                </ext:Store>
+            </Store>
+            
                                 </ext:ComboBox>
-                                   <ext:NumberField ID="from" runat="server" FieldLabel="<%$ Resources: FieldFrom%>" Name="from" MinValue="0" AllowBlank="false"  >
+                                   <ext:NumberField ID="from" runat="server" FieldLabel="<%$ Resources: FieldFrom%>" Name="from" MinValue="0" AllowBlank="true"  >
                                     <%--  <Validator Handler=" if ( this.value<#{to}.getValue() ) {return fromToCheck(#{timeBase}.getValue(),this.value);} else return false; " />--%>
                                     <Validator Handler=" if (this.value>#{to}.getValue() &&  #{from}.getValue()!=null  && this.value!=null ) return false;else return true; " />
                                        <Listeners>
                                          <Change Handler="#{to}.validate();"></Change>
                                            </Listeners>
                                        </ext:NumberField>
-                                <ext:NumberField ID="to" runat="server" FieldLabel="<%$ Resources: FieldTo%>" Name="to"  MinValue="0" AllowBlank="false" >
+                                <ext:NumberField ID="to" runat="server" FieldLabel="<%$ Resources: FieldTo%>" Name="to"  MinValue="0" AllowBlank="true" >
                                     <Validator Handler="if (this.value<#{from}.getValue() && #{to}.getValue()!=null && this.value!=null  ){ return false;} else return true; " />
                                     <Listeners>
                                         <Change Handler="#{from}.validate();"></Change>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.AdminTemplates
 {
-    [ClassIdentifier("77000", "43")]
+    [ClassIdentifier("70100", "70")]
     public class AdTemplate: ModelBase, IEntity
     {
         

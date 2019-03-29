@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayrollGeneration.aspx.cs" Inherits="AionHR.Web.UI.Forms.PayrollGeneration" %>
+﻿ <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayrollGeneration.aspx.cs" Inherits="AionHR.Web.UI.Forms.PayrollGeneration" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -12,6 +12,7 @@
     <script type="text/javascript" src="Scripts/PayrollGeneration.js?id=10"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
+   
     <script type="text/javascript">
    function openInNewTab() {
             window.document.forms[0].target = '_blank';
@@ -49,7 +50,15 @@
 
 
         }
-      
+        function getSelectedEmployee()
+        {
+            var grid = Ext.getCmp('employeePayrolls');
+            var rec = grid.getSelectionModel().getSelected();
+         
+            alert(rec.get('employeeId'));
+           
+        }
+
     </script>
 
 </head>
@@ -78,7 +87,11 @@
          <ext:Hidden ID="salaryTypeHidden" runat="server" />
         <ext:Hidden ID="fiscalYearHidden" runat="server" />
          <ext:Hidden ID="CurrentPayRef" runat="server" />
-
+       <ext:Hidden ID="GenerateCurrentPayroll" runat="server" Text="true" />
+          <ext:Hidden ID="selectedEmployeeId" runat="server" />
+         <ext:Hidden ID="paySlipsStartAt" runat="server" />
+           <ext:Hidden ID="isSelected" runat="server" Text="false"/>
+        
       
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
             
@@ -105,14 +118,23 @@
                                             </Model>
                                         </ext:Store>
                                     </Store>
-                                    <Listeners>
-                                      <%--  <Select Handler="App.salaryTypeFilter.setValue(5); App.payrollsStore.reload();">--%>
-                                               <Select Handler="App.salaryTypeFilter.setValue(5); App.payrollsStore.reload();">
-                                        </Select>
+                                    <DirectEvents>
+                                   
+                                            <%--   <Select Handler="App.salaryTypeFilter.setValue(5); App.payrollsStore.reload();">--%>
+                                                   
+                                      <Select OnEvent="fiscalYearSelected" />
                                         
-                                    </Listeners>
+                                    </DirectEvents>
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="salaryTypeFilter"  Name="salaryTypeFilter" runat="server" EmptyText="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                 <ext:Container runat="server" Layout="FitLayout"  >
+                                    <Content>
+                                        <uc:salaryTypeControl runat="server" ID="salaryTypeId" Width="190" />
+                                            
+                                          
+                                    </Content>
+                                </ext:Container>
+
+                                <%--<ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="salaryTypeFilter"  Name="salaryTypeFilter" runat="server" EmptyText="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
@@ -124,7 +146,7 @@
                                         <Select Handler="App.payrollsStore.reload();">
                                         </Select>
                                     </Listeners>
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="status"  runat="server" EmptyText="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
@@ -199,8 +221,8 @@
                             <Listeners>
                                 <Render Handler="this.on('cellclick', cellClick);" />
                         <%--        <AfterRender Handler="App.year.setValue(new Date().getFullYear()); App.salaryTypeFilter.setValue(5); App.status.setValue(2); App.payrollsStore.reload();" />--%>
-                               <AfterRender Handler="App.year.setValue(new Date().getFullYear()); App.payrollsStore.reload();" />
-                                <AfterLayout Handler="App.payrollsStore.reload();" />
+                               <AfterRender Handler="App.year.setValue(new Date().getFullYear());" />
+                              <%--  <AfterLayout Handler="alert('fterlayout');App.payrollsStore.reload();" />--%>
                                 
                             </Listeners>
                             <DirectEvents> 
@@ -259,7 +281,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Listeners>
-                                <AfterLayout Handler="CheckSession(); App.fiscalYear.setValue(new Date().getFullYear()); App.salaryType.setValue(5);App.fiscalPeriodsStore.reload();" />
+                                <AfterLayout Handler="CheckSession(); App.fiscalYear.setValue(new Date().getFullYear());App.fiscalPeriodsStore.reload();" />
                             </Listeners>
                             <Items>
                                 <ext:TextField runat="server" ID="payRefTF" Name="payRef" FieldLabel="<%$ Resources: FieldPayRef %>" AllowBlank="true" />
@@ -288,7 +310,14 @@
                                         </Select>
                                     </DirectEvents>
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="salaryType" Name="salaryType" runat="server" FieldLabel="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                      <ext:Container runat="server" Layout="FitLayout"  >
+                                    <Content>
+                                        <uc:salaryTypeControl runat="server" ID="SalaryType2"  SetText="<%$ Resources: FieldPeriodType %>"  />
+                                            
+                                          
+                                    </Content>
+                                </ext:Container>
+                              <%--  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="salaryType" Name="salaryType" runat="server" FieldLabel="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
@@ -307,7 +336,7 @@
                                             </ExtraParams>
                                         </Select>
                                     </DirectEvents>
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldPeriod %>" Name="periodId" DisplayField="name" ValueField="recordId" runat="server" ID="periodId">
                                     <Store>
                                         <ext:Store runat="server" ID="fiscalPeriodsStore" OnReadData="fiscalPeriodsStore_ReadData">
@@ -377,7 +406,7 @@
                                 </ext:Button>
                                   <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="true" EnableDivision="false"  />
 
                                     </Content>
 
@@ -397,7 +426,7 @@
                                     </Listeners>
                                 </ext:Button>
                                  <ext:ToolbarSeparator runat="server" />
-                                       <ext:Button runat="server" Icon="Printer">
+                                     <%--  <ext:Button runat="server" Icon="Printer">
                                     <Menu>
                                         <ext:Menu runat="server">
                                             <Items>
@@ -418,7 +447,7 @@
                                             </Items>
                                         </ext:Menu>
                                     </Menu>
-                                </ext:Button>
+                                </ext:Button>--%>
                                 <ext:ToolbarSeparator runat="server" />
                            <%--       <ext:Button runat="server"  AutoPostBack="true" Text="<%$ Resources: Common,Export%>" MarginSpec="0 0 0 0" >
                                        <Listeners>
@@ -428,6 +457,50 @@
                                       <Click OnEvent="ExportExcel_Click" />
                                   </DirectEvents>
                                 </ext:Button>--%>
+                                
+                                 
+                                   <ext:ToolbarSeparator runat="server" />
+                                       <ext:Button runat="server" Icon="Printer" Text="<%$Resources:paySlip %>" >
+                                    <Menu>
+                                        <ext:Menu runat="server">
+                                            <Items>
+                                                <ext:MenuItem runat="server"  Text="<%$Resources:Common,Print%>" AutoPostBack="true"  OnClientClick="openInNewTab();"  OnClick="printPaySlip_Click"  >
+                                            
+                                                    <Listeners>
+                                                        <Click Handler=" if (App.employeePayrolls.getSelectionModel().hasSelection()) {
+                                                               var row = App.employeePayrolls.getSelectionModel().getSelection()[0];
+                                                                App.selectedEmployeeId.setValue(row.get('employeeId'));
+                                                            }
+                                                            else
+                                                            App.selectedEmployeeId.setValue('0');
+                                                          
+                                                            openInNewTab();" />
+                                                                          </Listeners>
+                                               
+                                                </ext:MenuItem>
+
+                                                <ext:MenuItem runat="server"  Text="Pdf" AutoPostBack="true" OnClick="ExportPdfPaySlip_Click"  OnClientClick="openInNewTab();"  >
+                                             <Listeners>
+                                                        <Click Handler=" if (App.employeePayrolls.getSelectionModel().hasSelection()) {
+                                                               var row = App.employeePayrolls.getSelectionModel().getSelection()[0];
+                                                                App.selectedEmployeeId.setValue(row.get('employeeId'));
+                                                            }
+                                                            else
+                                                            App.selectedEmployeeId.setValue('0');
+                                                          
+                                                            openInNewTab();" />
+                                                                          </Listeners>
+                                                    
+                                                </ext:MenuItem>
+                                              <%--  <ext:MenuItem runat="server"  Text="Excel" AutoPostBack="true" OnClick="ExportXLSPaySlip_Click"  >
+                                            --%>
+                                                    
+                                             <%--   </ext:MenuItem>--%>
+                                            </Items>
+                                        </ext:Menu>
+                                    </Menu>
+                                </ext:Button>
+                                <ext:ToolbarSeparator runat="server" />
 
                                    <ext:Button runat="server" Icon="TableGo">
                                     <Menu>
@@ -444,9 +517,14 @@
                                         </ext:Menu>
                                     </Menu>
                                 </ext:Button>
-                                  <ext:Button runat="server" Text="<%$ Resources: DeleteAll%>" MarginSpec="0 0 0 0" Width="100" Icon="DatabaseDelete">
+                                  <ext:Button runat="server"  ID="DeleteAll"  Text="<%$ Resources: DeleteAll%>" MarginSpec="0 0 0 0" Width="100" Icon="DatabaseDelete">
                                     <DirectEvents> 
                                         <Click OnEvent="deleteAllEmployeePayrolls" />
+                                    </DirectEvents>
+                                </ext:Button>
+                                   <ext:Button runat="server" Text="<%$ Resources: payList%>" MarginSpec="0 0 0 0" Width="100" Icon="Mail">
+                                    <DirectEvents> 
+                                        <Click OnEvent="StartPayList" />
                                     </DirectEvents>
                                 </ext:Button>
 
@@ -470,9 +548,16 @@
                                     Scroll="Vertical"
                                     Border="false"
                    
-                                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                                    ColumnLines="True" IDMode="Explicit" RenderXType="True" >
                             <Store>
-                                <ext:Store ID="Store1" runat="server" OnReadData="Store1_ReadData">
+                            
+         
+         
+         
+         
+         
+                                <ext:Store ID="Store1" runat="server"    RemoteSort="False"     RemoteFilter="true"     PageSize="50" IDMode="Explicit" Namespace="App" OnReadData="Store1_ReadData">
+                                       
                                     <Model>
                                         <ext:Model runat="server" IDProperty="seqNo">
                                             <Fields>
@@ -480,6 +565,7 @@
                                                 <ext:ModelField Name="taxAmount" />
                                                   <ext:ModelField Name="cssAmount" />
                                                  <ext:ModelField Name="essAmount" />
+                                                  <ext:ModelField Name="employeeId" />
 
                                                 <ext:ModelField Name="netSalary" />
                                                 <ext:ModelField Name="name" IsComplex="true" />
@@ -501,6 +587,10 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
+                                     <ext:Column runat="server" DataIndex="employeeId"  Visible="false"/>
+                                      <ext:Column runat="server" DataIndex="name" Text="<%$ Resources: FieldRef %>" width="75">
+                                        <Renderer Handler="return record.data['name'].reference;" />
+                                    </ext:Column>
                                     <ext:Column runat="server" DataIndex="name" Text="<%$ Resources: FieldEmployee%>" Flex="2">
                                         <Renderer Handler="return record.data['name'].fullName;" />
                                     </ext:Column>
@@ -511,24 +601,24 @@
                                     
                                     <ext:Column runat="server" DataIndex="workingDays" Text="<%$ Resources: FieldDays%>" Width="100" />
                                     <ext:Column runat="server" DataIndex="basicAmount" Text="<%$ Resources: FieldBasicAmount%>" >
-                                        <Renderer Handler="return record.data['currencyRef']+'&nbsp; '+ record.data['basicAmount'] ;" />
+                                        <Renderer Handler="return record.data['currencyRef']+'&nbsp; '+ record.data['basicAmount'].toLocaleString()  ;" />
                                         </ext:Column>
                                     
                                     <ext:Column runat="server" DataIndex="eAmount" Text="<%$ Resources: Entitlements%>" >
-                                        <Renderer Handler="if(record.data['eAmount']==0) return '-';return  record.data['currencyRef'] +' &nbsp;'+ record.data['eAmount'];" />
+                                        <Renderer Handler="if(record.data['eAmount']==0) return '-';return  record.data['currencyRef'] +' &nbsp;'+ record.data['eAmount'].toLocaleString() ;" />
                                         </ext:Column>
                                     
                                     <ext:Column runat="server" DataIndex="dAmount" Text="<%$ Resources: Deductions%>" >
-                                        <Renderer Handler="if(record.data['dAmount']==0) return '-'; return '- '+record.data['currencyRef']+'&nbsp; '+ record.data['dAmount'] ;" />
+                                        <Renderer Handler="if(record.data['dAmount']==0) return '-'; return '- '+record.data['currencyRef']+'&nbsp; '+ record.data['dAmount'].toLocaleString()  ;" />
                                      </ext:Column>
                                     <ext:Column runat="server" DataIndex="netSalary" Text="<%$ Resources: FieldNetSalary%>" >
-                                        <Renderer Handler="if(record.data['netSalary']==0) return '-'; return record.data['currencyRef'] +'&nbsp; '+ record.data['netSalary'] ;" />
+                                        <Renderer Handler="if(record.data['netSalary']==0) return '-'; return record.data['currencyRef'] +'&nbsp; '+ record.data['netSalary'].toLocaleString()  ;" />
                                         </ext:Column>
                                     <ext:Column runat="server" DataIndex="cssAmount" Text="<%$ Resources: FieldCompanySocialSecurity%>" >
-                                      <Renderer Handler="if(record.data['cssAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['cssAmount']; " />
+                                      <Renderer Handler="if(record.data['cssAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['cssAmount'].toLocaleString() ; " />
                                         </ext:Column>
                                      <ext:Column runat="server" DataIndex="essAmount" Text="<%$ Resources: FieldEmployeeSocialSecurity%>" >
-                                      <Renderer Handler="if(record.data['essAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['essAmount']; " />
+                                      <Renderer Handler="if(record.data['essAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['essAmount'].toLocaleString() ; " />
                                         </ext:Column>
                                     <ext:Column runat="server"
                                         ID="Column1" Visible="true"
@@ -553,8 +643,7 @@
                                           d+='&nbsp;&nbsp;';
                                           d+=attachRender1();
                                            d+='&nbsp;&nbsp;';
-                                          d+=deleteRender();
-                                          d+='&nbsp;&nbsp;';
+                                        
                                       
                                         }
                                         return d; "></Renderer>
@@ -565,8 +654,9 @@
                                  
                                        <BeforeRender  Handler="this.setHeight(App.detailsPanel.getHeight());" />
                                 <Render Handler="this.on('cellclick', cellClick);" />
-                                
-                         
+                             <CellDblClick Handler=" App.employeePayrolls.getSelectionModel().deselectAll();  App.selectedEmployeeId.setValue('0');" />
+                            
+                     
                             </Listeners>
                             <DirectEvents>
                                 <CellClick OnEvent="PoPuPEM">
@@ -587,6 +677,44 @@
 
                                 </CellClick>
                             </DirectEvents>
+                              <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar2" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar1" runat="server" />
+                                <ext:ToolbarFill />
+                                
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                    <BottomBar>
+
+                        <ext:PagingToolbar ID="PagingToolbar1"
+                            runat="server"
+                            FirstText="<%$ Resources:Common , FirstText %>"
+                            NextText="<%$ Resources:Common , NextText %>"
+                            PrevText="<%$ Resources:Common , PrevText %>"
+                            LastText="<%$ Resources:Common , LastText %>"
+                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
+                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
+                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
+                            DisplayInfo="true"
+                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
+                            Border="true"
+                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
+                            <Items>
+                               
+                            </Items>
+                            <Listeners>
+                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                             
+     
+                            </Listeners>
+                            
+                        </ext:PagingToolbar>
+
+                    </BottomBar>
                             <View>
                                 <ext:GridView ID="GridView2" runat="server" />
                             </View>
@@ -742,8 +870,8 @@
                                                 Text="<%$ Resources:FieldAmount%>"
                                                 DataIndex="amount"
                                                 Align="Center">
-                                                <SummaryRenderer Handler="if(App.entitlementsGrid.getStore().getCount()>0) return #{CurrentCurrencyRef}.value+ '&nbsp;'+CalcENSum() ;" />
-                                                <Renderer Handler=" return #{CurrentCurrencyRef}.value+' &nbsp;' + record.data['amount']  ;" />
+                                                <SummaryRenderer Handler="if(App.entitlementsGrid.getStore().getCount()>0) return #{CurrentCurrencyRef}.value+ '&nbsp;'+CalcENSum().toLocaleString() ; ;" />
+                                                <Renderer Handler=" return #{CurrentCurrencyRef}.value+' &nbsp;' + record.data['amount'].toLocaleString() ;  ;" />
                                             </ext:NumberColumn>
 
                                             <ext:Column runat="server"
@@ -858,10 +986,10 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
-                                                <Renderer Handler="return #{CurrentCurrencyRef}.value+ '&nbsp;'+ record.data['amount'] ;">
+                                                <Renderer Handler="return #{CurrentCurrencyRef}.value+ '&nbsp;'+ record.data['amount'].toLocaleString() ; ;">
                                                     
                                               </Renderer>
-                                                <SummaryRenderer Handler="if(App.deductionGrid.getStore().getCount()>0) return #{CurrentCurrencyRef}.value+ '&nbsp;'+CalcDESum() ;" />
+                                                <SummaryRenderer Handler="if(App.deductionGrid.getStore().getCount()>0) return #{CurrentCurrencyRef}.value+ '&nbsp;'+CalcDESum().toLocaleString()  ;" />
                                             </ext:NumberColumn>
 
 
@@ -1310,7 +1438,36 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+         <ext:Window
+            ID="payListWidow"
+            runat="server"
+            Icon="PageEdit"
+            Draggable="false"
+            Maximizable="false" Resizable="false"
+            Width="450"
+            Height="250"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
 
+            <Items>
+                <ext:FormPanel
+                    ID="payListForm" DefaultButton="payListButton"
+                    runat="server"
+                    Header="false"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+                                                    
+                                    <ext:ProgressBar ID="payListProgressBar" runat="server"  />
+                       
+                    </Items>
+
+                </ext:FormPanel>
+            </Items>
+         
+        </ext:Window>
           <ext:TaskManager ID="TaskManager1" runat="server">
             <Tasks>
                 <ext:Task 

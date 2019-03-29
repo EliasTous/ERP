@@ -98,9 +98,6 @@
             this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrCrossBandBox4 = new DevExpress.XtraReports.UI.XRCrossBandBox();
-            this.xrCrossBandLine14 = new DevExpress.XtraReports.UI.XRCrossBandLine();
-            this.xrCrossBandLine15 = new DevExpress.XtraReports.UI.XRCrossBandLine();
             this.columnCount = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -148,11 +145,14 @@
             // 
             // xrLabel28
             // 
+            this.xrLabel28.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel28.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding(this.EmployeeName, "Text", "")});
             resources.ApplyResources(this.xrLabel28, "xrLabel28");
             this.xrLabel28.Name = "xrLabel28";
             this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel28.StylePriority.UseBorders = false;
             // 
             // EmployeeName
             // 
@@ -161,19 +161,26 @@
             // 
             // xrLabel27
             // 
+            this.xrLabel27.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             resources.ApplyResources(this.xrLabel27, "xrLabel27");
             this.xrLabel27.Multiline = true;
             this.xrLabel27.Name = "xrLabel27";
             this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel27.StylePriority.UseBorders = false;
             this.xrLabel27.StylePriority.UseFont = false;
             // 
             // xrLabel24
             // 
+            this.xrLabel24.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel24.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding(this.Branch, "Text", "")});
             resources.ApplyResources(this.xrLabel24, "xrLabel24");
             this.xrLabel24.Name = "xrLabel24";
             this.xrLabel24.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel24.StylePriority.UseBorders = false;
             this.xrLabel24.StylePriority.UseFont = false;
             // 
             // Branch
@@ -184,11 +191,14 @@
             // 
             // xrLabel22
             // 
+            this.xrLabel22.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding(this.Payment, "Text", "")});
             resources.ApplyResources(this.xrLabel22, "xrLabel22");
             this.xrLabel22.Name = "xrLabel22";
             this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel22.StylePriority.UseBorders = false;
             this.xrLabel22.StylePriority.UseFont = false;
             // 
             // Payment
@@ -199,11 +209,14 @@
             // 
             // xrLabel18
             // 
+            this.xrLabel18.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding(this.Department, "Text", "")});
             resources.ApplyResources(this.xrLabel18, "xrLabel18");
             this.xrLabel18.Name = "xrLabel18";
             this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel18.StylePriority.UseBorders = false;
             this.xrLabel18.StylePriority.UseFont = false;
             // 
             // Department
@@ -214,23 +227,35 @@
             // 
             // xrLabel21
             // 
+            this.xrLabel21.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             resources.ApplyResources(this.xrLabel21, "xrLabel21");
             this.xrLabel21.Name = "xrLabel21";
             this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel21.StylePriority.UseBorders = false;
             this.xrLabel21.StylePriority.UseFont = false;
             // 
             // xrLabel19
             // 
+            this.xrLabel19.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             resources.ApplyResources(this.xrLabel19, "xrLabel19");
             this.xrLabel19.Name = "xrLabel19";
             this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel19.StylePriority.UseBorders = false;
             this.xrLabel19.StylePriority.UseFont = false;
             // 
             // xrLabel20
             // 
+            this.xrLabel20.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             resources.ApplyResources(this.xrLabel20, "xrLabel20");
             this.xrLabel20.Name = "xrLabel20";
             this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel20.StylePriority.UseBorders = false;
             this.xrLabel20.StylePriority.UseFont = false;
             // 
             // xrTableRow1
@@ -786,31 +811,6 @@
             this.xrLabel15.StylePriority.UseFont = false;
             this.xrLabel15.StylePriority.UseTextAlignment = false;
             // 
-            // xrCrossBandBox4
-            // 
-            this.xrCrossBandBox4.BorderWidth = 2F;
-            resources.ApplyResources(this.xrCrossBandBox4, "xrCrossBandBox4");
-            this.xrCrossBandBox4.EndBand = this.pageHeaderBand1;
-            this.xrCrossBandBox4.Name = "xrCrossBandBox4";
-            this.xrCrossBandBox4.StartBand = this.pageHeaderBand1;
-            this.xrCrossBandBox4.WidthF = 918.7501F;
-            // 
-            // xrCrossBandLine14
-            // 
-            resources.ApplyResources(this.xrCrossBandLine14, "xrCrossBandLine14");
-            this.xrCrossBandLine14.EndBand = this.pageHeaderBand1;
-            this.xrCrossBandLine14.Name = "xrCrossBandLine14";
-            this.xrCrossBandLine14.StartBand = this.pageHeaderBand1;
-            this.xrCrossBandLine14.WidthF = 916.6667F;
-            // 
-            // xrCrossBandLine15
-            // 
-            resources.ApplyResources(this.xrCrossBandLine15, "xrCrossBandLine15");
-            this.xrCrossBandLine15.EndBand = this.pageHeaderBand1;
-            this.xrCrossBandLine15.Name = "xrCrossBandLine15";
-            this.xrCrossBandLine15.StartBand = this.pageHeaderBand1;
-            this.xrCrossBandLine15.WidthF = 1.041667F;
-            // 
             // columnCount
             // 
             this.columnCount.Name = "columnCount";
@@ -833,10 +833,6 @@
             this.DetailReport4});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
-            this.CrossBandControls.AddRange(new DevExpress.XtraReports.UI.XRCrossBandControl[] {
-            this.xrCrossBandLine15,
-            this.xrCrossBandLine14,
-            this.xrCrossBandBox4});
             this.DataSource = this.objectDataSource1;
             resources.ApplyResources(this, "$this");
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
@@ -920,9 +916,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel21;
         private DevExpress.XtraReports.UI.XRLabel xrLabel25;
         private DevExpress.XtraReports.UI.XRLabel xrLabel26;
-        private DevExpress.XtraReports.UI.XRCrossBandBox xrCrossBandBox4;
-        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine14;
-        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine15;
         private DevExpress.XtraReports.UI.XRLabel xrLabel4;
         private DevExpress.XtraReports.Parameters.Parameter columnCount;
         private DevExpress.XtraReports.UI.XRLabel xrLabel28;

@@ -43,12 +43,32 @@ public class VacationPeriodsListRequest : ListRequest
         }
     }
 }
+
+public class LeaveSchedulesListRequest : ListRequest
+{
+    public string LeaveScheduleId { get; set; }
+
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_lsId", LeaveScheduleId);
+
+
+            return parameters;
+        }
+    }
+}
 public class LeaveRequestListRequest : ListRequest
 {
     public int status { get; set; }
     public int BranchId { get; set; }
     public int DepartmentId { get; set; }
     public int EmployeeId { get; set; }
+    //public int ApproverId { get; set; }
+
 
     public string SortBy { get; set; }
     public int raEmployeeId { get; set; }
@@ -63,6 +83,8 @@ public class LeaveRequestListRequest : ListRequest
             parameters.Add("_employeeId", EmployeeId.ToString());
             parameters.Add("_sortBy", SortBy.ToString());
             parameters.Add("_raEmployeeId", raEmployeeId.ToString());
+            //parameters.Add("_approverId", ApproverId.ToString());
+
 
 
 
@@ -117,5 +139,23 @@ public class LeaveDayListRequest : ListRequest
         }
     }
 }
+public class LeaveRequestTamplateRequest : ListRequest
+{
+    public string LeaveId { get; set; }
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_leaveId", LeaveId.ToString());
+
+
+
+
+            return parameters;
+        }
+    }
+}
+
 
 

@@ -38,7 +38,7 @@ namespace AionHR.Web.UI.Forms
             //if (!resp.Success)
             //{
             //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-            //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+            //   Common.errorMessage(resp);
             //    return;
             //}
             //bool classLevel = false;
@@ -109,142 +109,144 @@ namespace AionHR.Web.UI.Forms
             //    g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler = "return '';";
             //}
             #endregion
-            if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
-                return;
-            ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
-            try
-            {
-                classReq.ClassId = type.GetCustomAttribute<ClassIdentifier>().ClassID;
-            }
-            catch
-            {
-                return;
-            }
+            //New 
+            //if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
+            //    return;
+            //ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+            //try
+            //{
+            //    classReq.ClassId = type.GetCustomAttribute<ClassIdentifier>().ClassID;
+            //}
+            //catch
+            //{
+            //    return;
+            //}
             
-            classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
-            if (modClass == null || modClass.result == null)
-            {
-                throw new AccessDeniedException();
-            }
-            else
-            {
-                switch (modClass.result.accessLevel)
-                {
-                    case 0: throw new AccessDeniedException();
-                    case 1:
-                        if (g != null)
-                            g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler = g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler.Replace("deleteRender()", "' ' ");
-                        if (addButton != null)
-                            addButton.Disabled = true;
-                        if (saveButton != null)
-                            saveButton.Disabled = true;
-                        if (form != null)
-                            foreach (var item in form.Items)
-                            {
-                                item.Disabled = true;
-                            }
-                        break;
-                    case 2:
-                        if(g!=null)
-                            g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler = g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler.Replace("deleteRender()", "' ' ");
-                        break;
-                    default: break;
-                }
-            }
-           
-            List<UC> properites = new List<UC>();
+            //classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            //RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+            //if (modClass == null || modClass.result == null)
+            //{
+            //    throw new AccessDeniedException();
+            //}
+            //else
+            //{
+            //    switch (modClass.result.accessLevel)
+            //    {
+            //        case 0: throw new AccessDeniedException();
+            //        case 1:
+            //            if (g != null)
+            //                g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler = g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler.Replace("deleteRender()", "' ' ");
+            //            if (addButton != null)
+            //                addButton.Disabled = true;
+            //            if (saveButton != null)
+            //                saveButton.Disabled = true;
+            //            if (form != null)
+            //                foreach (var item in form.Items)
+            //                {
+            //                    item.Disabled = true;
+            //                }
+            //            break;
+            //        case 2:
+            //            if(g!=null)
+            //                g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler = g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler.Replace("deleteRender()", "' ' ");
+            //            break;
+            //        default: break;
+            //    }
+            //}
+            //if (modClass.result.accessLevel == 3)
+            //    return;
+            //List<UC> properites = new List<UC>();
 
 
 
-            type.GetProperties().ToList<PropertyInfo>().ForEach(x =>
-            {
-                if (x.GetCustomAttribute<PropertyID>() != null)
-                {
-                    properites.Add(new UC() { index = x.Name, propertyId = x.GetCustomAttribute<PropertyID>().ID ,accessLevel= modClass.result.accessLevel });
-                }
-            });
+            //type.GetProperties().ToList<PropertyInfo>().ForEach(x =>
+            //{
+            //    if (x.GetCustomAttribute<PropertyID>() != null)
+            //    {
+            //        properites.Add(new UC() { index = x.Name, propertyId = x.GetCustomAttribute<PropertyID>().ID ,accessLevel= modClass.result.accessLevel });
+            //    }
+            //});
 
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = type.GetCustomAttribute<ClassIdentifier>().ClassID;
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
-            resp.Items.ForEach(x =>
-            {
-                properites.ForEach(y =>
-                {
-                    if (x.propertyId == y.propertyId)
-                        y.accessLevel = x.accessLevel;
+            //UserPropertiesPermissions req = new UserPropertiesPermissions();
+            //req.ClassId = type.GetCustomAttribute<ClassIdentifier>().ClassID;
+            //req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            //ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+            //resp.Items.ForEach(x =>
+            //{
+            //    properites.ForEach(y =>
+            //    {
+            //        if (x.propertyId == y.propertyId)
+            //            y.accessLevel = x.accessLevel;
                     
-                });
-            });
-            int level = 2;
-            if (form != null)
-            {
-                foreach (var item in form.Items)
-                {
-                    if (item is Field)
-                    {
+            //    });
+            //});
+            //int level = 2;
+            //if (form != null)
+            //{
+            //    foreach (var item in form.Items)
+            //    {
+            //        if (item is Field)
+            //        {
 
-                        var results = properites.Where(x => x.index == (item as Field).Name || x.index == (item as Field).DataIndex).ToList();
+            //            var results = properites.Where(x => x.index == (item as Field).Name || x.index == (item as Field).DataIndex).ToList();
 
-                        if (results.Count > 0)
-                        {
-                            level = results[0].accessLevel;
-                        }
-                        else
-                            continue;
+            //            if (results.Count > 0)
+            //            {
+            //                level = results[0].accessLevel;
+            //            }
+            //            else
+            //                continue;
 
-                        switch (level)
-                        {
-                            case 0:
+            //            switch (level)
+            //            {
+            //                case 0:
 
-                                (item as Field).InputType = InputType.Password; 
-                                (item as Field).ReadOnly = true; break;
-                            case 1:
-                                (item as Field).ReadOnly = true; break;
-                            case 2:
-                                break;
-                            default:
-                                break;
+            //                    (item as Field).InputType = InputType.Password; 
+            //                    (item as Field).ReadOnly = true; break;
+            //                case 1:
+            //                    (item as Field).ReadOnly = true; break;
+            //                case 2:
+            //                    break;
+            //                default:
+            //                    break;
 
-                        }
-                    }
-                    else if (item is RadioGroup)
-                    {
-                        var results = properites.Where(x => x.index == (item as RadioGroup).GroupName).ToList();
+            //            }
+            //        }
+            //        else if (item is RadioGroup)
+            //        {
+            //            var results = properites.Where(x => x.index == (item as RadioGroup).GroupName).ToList();
 
-                        if (results.Count > 0)
-                        {
-                            level = results[0].accessLevel;
-                        }
+            //            if (results.Count > 0)
+            //            {
+            //                level = results[0].accessLevel;
+            //            }
 
-                        switch (level)
-                        {
-                            case 0:
-                                item.LazyItems.ForEach(x => (x as Radio).Disabled = true);
-                                break;
-                            case 1:
-                                item.LazyItems.ForEach(x => (x as Radio).ReadOnly = true);
-                                break;
-                            default: break;
-                        }
+            //            switch (level)
+            //            {
+            //                case 0:
+            //                    item.LazyItems.ForEach(x => (x as Radio).Disabled = true);
+            //                    break;
+            //                case 1:
+            //                    item.LazyItems.ForEach(x => (x as Radio).ReadOnly = true);
+            //                    break;
+            //                default: break;
+            //            }
 
-                    }
+            //        }
                    
-                }
-            }
-            if (g != null)
-            {
-                foreach (var item in g.ColumnModel.Columns)
-                {
+            //    }
+            //}
+            //if (g != null)
+            //{
+            //    foreach (var item in g.ColumnModel.Columns)
+            //    {
 
-                    var results = properites.Where(x => x.index == item.DataIndex).ToList();
-                    if (results.Count > 0 && results[0].accessLevel < 1)
-                        item.Renderer.Handler = "return '*****';";
+            //        var results = properites.Where(x => x.index == item.DataIndex).ToList();
+            //        if (results.Count > 0 && results[0].accessLevel < 1)
+            //            item.Renderer.Handler = "return '*****';";
 
-                }
-            }
+            //    }
+            //}
         }
 
         public static List<UC> GetPropertiesLevels(Type type)

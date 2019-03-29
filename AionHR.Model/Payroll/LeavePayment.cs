@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Payroll
 {
-   public class LeavePayment:ModelBase
+    [ClassIdentifier("51130", "51")]
+    public class LeavePayment:ModelBase
     {
         public EmployeeName employeeName { set; get; }
         public DateTime date { get; set; }
@@ -15,9 +17,9 @@ namespace AionHR.Model.Payroll
         public int employeeId { get; set;  }
         public DateTime effectiveDate { get; set; }
         public string paymentRef { get; set; }
-        public int salary { get; set; }
+        public string salary { get; set; }
         public double days { get; set; }
-        public int amount { get; set; }
+        public int? amount { get; set; }
         public double earnedLeaves { get; set; }
         public double usedLeaves { get; set; }
         public double paidLeaves { get; set; }

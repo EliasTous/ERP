@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Dashboard
 {
+    [ClassIdentifier("82001", "82")]
     public class LocalsRate
     {
          public int employeeCount { get; set; }

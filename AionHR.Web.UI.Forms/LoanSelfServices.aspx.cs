@@ -33,6 +33,7 @@ using AionHR.Model.LoadTracking;
 using AionHR.Services.Messaging.LoanManagment;
 using AionHR.Model.Attributes;
 using AionHR.Model.SelfService;
+using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -59,7 +60,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -97,25 +98,48 @@ namespace AionHR.Web.UI.Forms
         ISelfServiceService _selfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
 
 
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -136,18 +160,28 @@ namespace AionHR.Web.UI.Forms
                 //CurrentEmployee.Text = Request.QueryString["employeeId"];
 
                 //cc.Format = _systemService.SessionHelper.GetDateformat();
-                try
+                if (!string.IsNullOrEmpty(Request.QueryString["_employeeId"]) && !string.IsNullOrEmpty(Request.QueryString["_loanId"]))
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(loanSelfService), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    var p1 = new Ext.Net.Parameter("id", Request.QueryString["_loanId"]);
+                    var p2 = new Ext.Net.Parameter("type", "imgEdit");
+                    var col = new Ext.Net.ParameterCollection();
+                    col.Add(p1);
+                    col.Add(p2);
+                    PoPuP(null, new DirectEventArgs(col));
 
                 }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
+                //try
+                //{
+                //    AccessControlApplier.ApplyAccessControlOnPage(typeof(loanSelfService), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+
+                //}
+                //catch (AccessDeniedException exp)
+                //{
+                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
+                //    Viewport1.Hidden = true;
+                //    return;
+                //}
                 //try
 
                 //{
@@ -169,29 +203,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        protected void addLoanType(object sender, DirectEventArgs e)
-        {
-            LoanType obj = new LoanType();
-            obj.name = ltId.Text;
-
-            PostRequest<LoanType> req = new PostRequest<LoanType>();
-            req.entity = obj;
-            PostResponse<LoanType> response = _loanService.ChildAddOrUpdate<LoanType>(req);
-            if (response.Success)
-            {
-                obj.recordId = response.recordId;
-                FillLoanType();
-                ltId.Select(obj.recordId);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
-                return;
-            }
-
-
-        }
+       
         protected void addBranch(object sender, DirectEventArgs e)
         {
             Branch obj = new Branch();
@@ -209,7 +221,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -221,7 +233,7 @@ namespace AionHR.Web.UI.Forms
             ListRequest branchesRequest = new ListRequest();
             ListResponse<LoanType> resp = _loanService.ChildGetAll<LoanType>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
             ltStore.DataSource = resp.Items;
             ltStore.DataBind();
         }
@@ -281,7 +293,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -341,14 +353,14 @@ namespace AionHR.Web.UI.Forms
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
-                    RecordRequest r = new RecordRequest();
-                    r.RecordID = id;
+                    SelfServiceLoanRecordRequest r = new SelfServiceLoanRecordRequest();
+                    r.LoanId = Convert.ToInt32(id);
 
-                    RecordResponse<Loan> response = _loanService.Get<Loan>(r);
+                    RecordResponse<loanSelfService> response = _selfServiceService.ChildGetRecord<loanSelfService>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                         Common.errorMessage(response);
                         return;
                     }
 
@@ -369,15 +381,15 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
                     FillCurrency();
-                    FillBranchField();
+                    //FillBranchField();
                     FillLoanType();
                     ltId.Select(response.result.ltId.ToString());
                     CurrentAmountCurrency.Text = response.result.currencyRef;
                     currencyId.Select(response.result.currencyId.ToString());
                     status.Select(response.result.status.ToString());
                     ldMethod.Select(response.result.ldMethod.ToString());
-                    if (!string.IsNullOrEmpty(response.result.branchId))
-                        branchId.Select(response.result.branchId);
+                    //if (!string.IsNullOrEmpty(response.result.branchId))
+                    //    branchId.Select(response.result.branchId);
                     //loanComments_RefreshData(Convert.ToInt32(id));
                     //if (!response.result.effectiveDate.HasValue)
                     //    effectiveDate.SelectedDate = DateTime.Now;
@@ -463,7 +475,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                Loan s = new Loan();
+                loanSelfService s = new loanSelfService();
                 s.recordId = index;
                 s.employeeId = "0";
                 s.purpose = "";
@@ -476,13 +488,13 @@ namespace AionHR.Web.UI.Forms
 
                 s.currencyId = 0;
 
-                PostRequest<Loan> req = new PostRequest<Loan>();
+                PostRequest<loanSelfService> req = new PostRequest<loanSelfService>();
                 req.entity = s;
-                PostResponse<Loan> r = _loanService.Delete<Loan>(req);
+                PostResponse<loanSelfService> r = _selfServiceService.ChildDelete<loanSelfService>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                     Common.errorMessage(r);
                     return;
                 }
                 else
@@ -533,7 +545,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                     Common.errorMessage(r);
                     return;
                 }
                 else
@@ -600,7 +612,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return;
             }
             branchStore.DataSource = resp.Items;
@@ -613,7 +625,7 @@ namespace AionHR.Web.UI.Forms
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Currency> resp = _systemService.ChildGetAll<Currency>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             currencyStore.DataSource = resp.Items;
             currencyStore.DataBind();
         }
@@ -670,19 +682,27 @@ namespace AionHR.Web.UI.Forms
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
             BasicInfoTab.Reset();
-            ListRequest req = new ListRequest();
-            ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "ldMethod";
+            RecordResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
             if (!defaults.Success)
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
+                Common.errorMessage(defaults);
                 return;
             }
-            if (defaults.Items.Where(s => s.Key == "ldMethod").Count() != 0)
-                ldMethod.Select(defaults.Items.Where(s => s.Key == "ldMethod").First().Value);
-            if (defaults.Items.Where(s => s.Key == "ldValue").Count() != 0)
-                ldValue.Text = defaults.Items.Where(s => s.Key == "ldValue").First().Value.ToString();
-       
+          
+                ldMethod.Select(defaults.result.Value);
+          
+            req.Key = "ldValue";
+            RecordResponse<KeyValuePair<string, string>> ldValueResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!ldValueResponse.Success)
+            {
+                Common.errorMessage(ldValueResponse);
+                return;
+            }
+           
+                ldValue.Text = ldValueResponse.result.Value;
+
             //Reset all values of the relative object
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
@@ -690,7 +710,7 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.ActiveIndex = 0;
             SetTabPanelEnable(false);
             FillLoanType();
-            FillBranchField();
+            //FillBranchField();
             FillCurrency();
           
             RecordRequest req1 = new RecordRequest();
@@ -700,12 +720,12 @@ namespace AionHR.Web.UI.Forms
             {
                 //Show an error saving...
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
+              Common.errorMessage(r);
                 return;
             }
 
             branchId.Select(r.result.branchId);
-
+            effectiveDate.Disabled = false;
             this.EditRecordWindow.Show();
         }
 
@@ -744,10 +764,10 @@ namespace AionHR.Web.UI.Forms
           
             request.Size = e.Limit.ToString();
             request.StartAt = e.Start.ToString();
-            ListResponse<Loan> routers = _loanService.GetAll<Loan>(request);
+            ListResponse<loanSelfService> routers = _selfServiceService.ChildGetAll<loanSelfService>(request);
             if (!routers.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId: routers.Summary).Show();
+                Common.errorMessage(routers);
                 return;
             }
             this.Store1.DataSource = routers.Items;
@@ -765,8 +785,16 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             loanSelfService b = JsonConvert.DeserializeObject<loanSelfService>(obj);
-
+             string   ldMethod= e.ExtraParams["ldMethod"];
             string id = e.ExtraParams["id"];
+            if (b.ldMethod==null)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString() , GetGlobalResourceObject("Errors", "emptyLdMethod").ToString()).Show();
+                return;
+            }
+
+            //if (string.IsNullOrEmpty(ldMethod)
+            //b.ldMethod =Convert.ToInt16( ldMethod);
             // Define the object to add or edit as null
 
          
@@ -807,7 +835,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
 
@@ -868,24 +896,24 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
                     {
+                        Store1.Reload();
 
+                       // ModelProxy record = this.Store1.GetById(id);
+                       // BasicInfoTab.UpdateRecord(record);
+                       // record.Set("currencyRef", b.currencyRef);
+                       // if (date.ReadOnly)
+                       //     record.Set("date", null);
 
-                        ModelProxy record = this.Store1.GetById(id);
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Set("currencyRef", b.currencyRef);
-                        if (date.ReadOnly)
-                            record.Set("date", null);
+                       // record.Set("employeeName", b.employeeName);
 
-                        record.Set("employeeName", b.employeeName);
+                       //// record.Set("branchName", b.branchName);
 
-                        record.Set("branchName", b.branchName);
-
-                        record.Commit();
+                       // record.Commit();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -943,7 +971,7 @@ namespace AionHR.Web.UI.Forms
             PostResponse<LoanComment> resp = _loanService.ChildAddOrUpdate<LoanComment>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return new { valid = false };
             }
             //loanComments_RefreshData(note.loanId);

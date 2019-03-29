@@ -121,10 +121,10 @@
     <value>المستخدم</value>
   </data>
   <data name="xrLabel11.Text" xml:space="preserve">
-    <value>المجدول</value>
+    <value>تاريخ اخر عودة</value>
   </data>
   <data name="xrLabel12.Text" xml:space="preserve">
-    <value>الرصيد النهائي</value>
+    <value>الراتب</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
     <value>رصيد الإجازات</value>
@@ -141,11 +141,20 @@
   <data name="xrLabel21.Text" xml:space="preserve">
     <value>الموظف</value>
   </data>
+  <data name="xrLabel23.Text" xml:space="preserve">
+    <value>المدفوع </value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>الرصيد </value>
+  </data>
+  <data name="xrLabel27.Text" xml:space="preserve">
+    <value>مبلغ الاجازة</value>
+  </data>
   <data name="xrLabel7.Text" xml:space="preserve">
     <value>الاسم</value>
   </data>
   <data name="xrLabel8.Text" xml:space="preserve">
-    <value>رصيد البداية</value>
+    <value>تاريخ التوظيف</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
     <value>المستحق</value>

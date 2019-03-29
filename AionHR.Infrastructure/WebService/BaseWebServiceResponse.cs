@@ -22,6 +22,7 @@ namespace AionHR.Infrastructure.WebService
         public string message { get; set; }
 
         public string error { get; set; }
+        public string errorName { get; set; }
 
         public string logId { get; set; }
 

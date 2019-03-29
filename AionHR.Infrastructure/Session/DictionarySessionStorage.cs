@@ -17,6 +17,8 @@ namespace AionHR.Infrastructure.Session
 
         public object Retrieve(string key)
         {
+            if (!dict.ContainsKey(key))
+                dict.Add(key, 1);
             return dict[key];
         }
 

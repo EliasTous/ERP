@@ -26,7 +26,7 @@
     <script type="text/javascript">
         function alertNow(s, e) {
 
-            Ext.MessageBox.alert('Error', e.message);
+            Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
     </script>
@@ -39,7 +39,7 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-
+               <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
 
@@ -87,6 +87,15 @@
                                 <uc:loanStatusCombo runat="server" ID="loanStatusFilter" />
                                     </Content>
                                 </ext:Container>
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   ID="balanceStatus" LabelWidth="130" Width="150" runat="server" EmptyText="<%$ Resources: balanceStatus%>" Name="balanceStatus" IDMode="Static" SubmitValue="true">
+                                            <Items>
+                                               <ext:ListItem Text="<%$ Resources: All %>" Value="0"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: open %>" Value="1"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: closed %>" Value="2"></ext:ListItem>
+                                              
+                                            </Items>
+                                     
+                                        </ext:ComboBox>
 
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>

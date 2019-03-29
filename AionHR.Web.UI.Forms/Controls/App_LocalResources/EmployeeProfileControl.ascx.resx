@@ -414,4 +414,7 @@
   <data name="FieldCivilStatus" xml:space="preserve">
     <value>Civil Status</value>
   </data>
+  <data name="uploadImageError" xml:space="preserve">
+    <value>Uploaded image size is to large</value>
+  </data>
 </root>

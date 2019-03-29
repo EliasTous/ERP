@@ -76,6 +76,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden dtIdValue;
         
         /// <summary>
+        /// Error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden Error;
+        
+        /// <summary>
         /// rtl control.
         /// </summary>
         /// <remarks>
@@ -137,6 +146,24 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store RWDocumentTypeStore;
+        
+        /// <summary>
+        /// esId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox esId;
+        
+        /// <summary>
+        /// statusStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store statusStore;
         
         /// <summary>
         /// jobInfo1 control.

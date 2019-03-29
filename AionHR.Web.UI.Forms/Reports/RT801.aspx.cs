@@ -37,23 +37,47 @@ namespace AionHR.Web.UI.Forms.Reports
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -166,7 +190,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = new ReportCompositeRequest();
 
             req.Size = "1000";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.SortBy = "eventDt";
 
 
@@ -190,10 +214,15 @@ namespace AionHR.Web.UI.Forms.Reports
         private List<UserInfo> GetUsersFiltered(string query)
         {
             UsersListRequest req = new UsersListRequest();
-
+            req.Size = "100";
+            req.StartAt = "0";
             req.Filter = query;
+
+
             req.DepartmentId = "0";
             req.PositionId = "0";
+            req.BranchId = "0";
+            req.SortBy = "fullName";
 
             ListResponse<UserInfo> users = _systemService.ChildGetAll<UserInfo>(req);
             return users.Items;
@@ -205,16 +234,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = GetRequest();
             ListResponse<AionHR.Model.Reports.RT801> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT801>(req);
             if (!resp.Success)
-            {
-                if (throwException)
-                    throw new Exception(resp.Summary);
-                else
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-                    return;
-                }
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
             resp.Items.ForEach(x => x.DateString = x.eventDT.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"))); SignInTrail h = new SignInTrail();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;

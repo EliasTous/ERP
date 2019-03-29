@@ -679,6 +679,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.ComboBox salaryType;
         
         /// <summary>
+        /// salaryTypeStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store salaryTypeStore;
+        
+        /// <summary>
         /// paymentFrequency control.
         /// </summary>
         /// <remarks>
@@ -1153,7 +1162,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField enFixedAmount;
+        protected global::Ext.Net.NumberField enFixedAmount;
         
         /// <summary>
         /// enComment control.
@@ -1306,7 +1315,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField deFixedAmount;
+        protected global::Ext.Net.NumberField deFixedAmount;
         
         /// <summary>
         /// deComment control.

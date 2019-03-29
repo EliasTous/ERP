@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Class10101" xml:space="preserve">
+    <value>النشاط</value>
+  </data>
+  <data name="Class10102" xml:space="preserve">
+    <value>حجم المنشأة</value>
+  </data>
+  <data name="Class10103" xml:space="preserve">
+    <value>نطاق</value>
+  </data>
+  <data name="Class10104" xml:space="preserve">
+    <value>نوع الهوية</value>
+  </data>
+  <data name="Class10105" xml:space="preserve">
+    <value>نقاط التوظيف</value>
+  </data>
   <data name="Class20000" xml:space="preserve">
     <value>الملفات</value>
   </data>
   <data name="Class20001" xml:space="preserve">
-    <value>لوحة التحكم </value>
+    <value>اجراءات ثانوية  </value>
   </data>
   <data name="Class20002" xml:space="preserve">
     <value>مخطط الموظفين التنظيمي</value>
@@ -144,6 +159,9 @@
   <data name="Class20040" xml:space="preserve">
     <value>الجنسيات</value>
   </data>
+  <data name="Class20041" xml:space="preserve">
+    <value>هيئات حكومية</value>
+  </data>
   <data name="Class20050" xml:space="preserve">
     <value>المرفقات</value>
   </data>
@@ -164,6 +182,9 @@
   </data>
   <data name="Class20090" xml:space="preserve">
     <value>تنبيه تلقائي</value>
+  </data>
+  <data name="Class20100" xml:space="preserve">
+    <value>استيراد معلومات</value>
   </data>
   <data name="Class21010" xml:space="preserve">
     <value>الادارات العليا</value>
@@ -444,6 +465,9 @@
   <data name="Class51031" xml:space="preserve">
     <value>نهاية الخدمة استحقاقات / مستحقات</value>
   </data>
+  <data name="Class51050" xml:space="preserve">
+    <value>البنوك</value>
+  </data>
   <data name="Class60101" xml:space="preserve">
     <value>معلوماتي الشخصية</value>
   </data>
@@ -524,6 +548,9 @@
   </data>
   <data name="Class80802" xml:space="preserve">
     <value>سجل المراقبة</value>
+  </data>
+  <data name="Class81000" xml:space="preserve">
+    <value>لوحة التحكم </value>
   </data>
   <data name="Class81100" xml:space="preserve">
     <value>لوحة المراقبة</value>

@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="apply_ALDA_CSBR" xml:space="preserve">
+    <value>Appliquer le contrôle d'accès aux données aux branches</value>
+  </data>
+  <data name="apply_ALDA_CSDE" xml:space="preserve">
+    <value>Appliquer le contrôle d'accès aux données aux ministères</value>
+  </data>
+  <data name="apply_ALDA_CSDI" xml:space="preserve">
+    <value>Appliquer le contrôle d'accès aux données aux divisions</value>
+  </data>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Valeurs par défaut du système</value>
+  </data>
+  <data name="DayMonthYear" xml:space="preserve">
+    <value>jour - mois - année</value>
+  </data>
+  <data name="DayYearMonth" xml:space="preserve">
+    <value>Jour- Année - Mois</value>
+  </data>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Modifier les valeurs par défaut du système</value>
+  </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branche</value>
+  </data>
+  <data name="FieldCountry" xml:space="preserve">
+    <value>Pays par défaut</value>
+  </data>
+  <data name="FieldCurrency" xml:space="preserve">
+    <value>devise par défaut</value>
+  </data>
+  <data name="FieldDateFormat" xml:space="preserve">
+    <value>Format de date</value>
+  </data>
+  <data name="FieldEnableCamera" xml:space="preserve">
+    <value>Activer la caméra</value>
+  </data>
+  <data name="FieldEnableHijri" xml:space="preserve">
+    <value>Activer le calendrier Hijri</value>
+  </data>
+  <data name="FieldFirstDayOfWeek" xml:space="preserve">
+    <value>Premier jour de la semaine</value>
+  </data>
+  <data name="FieldIsInactive" xml:space="preserve">
+    <value>Est inactif</value>
+  </data>
+  <data name="FieldLog" xml:space="preserve">
+    <value>Enregistrer le journal des transactions</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>prénom</value>
+  </data>
+  <data name="FieldNameFormat" xml:space="preserve">
+    <value>Format de nom par défaut</value>
+  </data>
+  <data name="FieldNumberFormat" xml:space="preserve">
+    <value>Default Number Format</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>ID d'enregistrement</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="FieldSchedule" xml:space="preserve">
+    <value>Calendrier de présence</value>
+  </data>
+  <data name="FieldTimeZone" xml:space="preserve">
+    <value>Fuseau horaire par défaut</value>
+  </data>
+  <data name="FieldVacationSchedule" xml:space="preserve">
+    <value>Calendrier de vacances par défaut</value>
+  </data>
+  <data name="FieldWorkingCalendar" xml:space="preserve">
+    <value>Calendrier par défaut</value>
+  </data>
+  <data name="FirstNameLastName" xml:space="preserve">
+    <value>Prénom,nom de famille</value>
+  </data>
+  <data name="FirstNameMiddleNameLastName" xml:space="preserve">
+    <value>Prénom deuxième prénom nom de famille</value>
+  </data>
+  <data name="IDRTW" xml:space="preserve">
+    <value>Type de document d'identification</value>
+  </data>
+  <data name="LastNameFirstName" xml:space="preserve">
+    <value>Nom, Prénom</value>
+  </data>
+  <data name="LocalServerIP" xml:space="preserve">
+    <value>IP du serveur local</value>
+  </data>
+  <data name="MonthDayYear" xml:space="preserve">
+    <value>Année -mois -jour</value>
+  </data>
+  <data name="MonthYearDay" xml:space="preserve">
+    <value>Mois - Année - Jour</value>
+  </data>
+  <data name="PassportRTW" xml:space="preserve">
+    <value>Type de document de passeport</value>
+  </data>
+  <data name="ReferenceFirstNameLastName" xml:space="preserve">
+    <value>Référence, Prénom, Nom</value>
+  </data>
+  <data name="ReferenceFirstNameMiddleNameFamilyNameLastName" xml:space="preserve">
+    <value>Référence, prénom, deuxième prénom, nom de famille, nom de famille</value>
+  </data>
+  <data name="ReferenceFirstNameMiddleNameLastName" xml:space="preserve">
+    <value>Reference, First Name, Middle Name, Last Name</value>
+  </data>
+  <data name="ReferenceLastNameFirstName" xml:space="preserve">
+    <value>Référence, Nom, Prénom</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Routeurs</value>
+  </data>
+  <data name="YearDayMonth" xml:space="preserve">
+    <value>Année - Jour - Mois</value>
+  </data>
+  <data name="YearMonthDay" xml:space="preserve">
+    <value>Année -mois- jour</value>
+  </data>
+  <data name="lastGeneratedTADayId" xml:space="preserve">
+    <value>Dernier jour de présence généré</value>
+  </data>
+  <data name="FieldTSId" xml:space="preserve">
+    <value>Horaire</value>
+  </data>
+  <data name="AllowedLateness" xml:space="preserve">
+    <value>Retard permis (heures)</value>
+  </data>
+  <data name="DeductionFrom" xml:space="preserve">
+    <value>Déduction de</value>
+  </data>
+  <data name="EditWindowsTitle1" xml:space="preserve">
+    <value>Paquets par défaut</value>
+  </data>
+  <data name="EntitlementTo" xml:space="preserve">
+    <value>Droit de</value>
+  </data>
+  <data name="FieldLatenessDeduction" xml:space="preserve">
+    <value>Déduction de retard</value>
+  </data>
+  <data name="FieldLoan" xml:space="preserve">
+    <value>Id de déduction de prêt</value>
+  </data>
+  <data name="FieldOT" xml:space="preserve">
+    <value>Format numérique par défaut</value>
+  </data>
+  <data name="FieldOvertimeEntitlement" xml:space="preserve">
+    <value>Droit aux heures supplémentaires</value>
+  </data>
+  <data name="FieldPE" xml:space="preserve">
+    <value>Déduction de pénalité</value>
+  </data>
+  <data name="FieldSS" xml:space="preserve">
+    <value>Déduction Sociale</value>
+  </data>
+  <data name="FieldUL" xml:space="preserve">
+    <value>Déduction pour congés sans solde</value>
+  </data>
+  <data name="FixedAmount" xml:space="preserve">
+    <value>Montant fixé</value>
+  </data>
+  <data name="FixedPayment" xml:space="preserve">
+    <value>Paiement fixe</value>
+  </data>
+  <data name="Lateness" xml:space="preserve">
+    <value>Retard</value>
+  </data>
+  <data name="LatenessAmount" xml:space="preserve">
+    <value>Pourcentage de déduction</value>
+  </data>
+  <data name="LoanCoverageType" xml:space="preserve">
+    <value>Couverture de prêt</value>
+  </data>
+  <data name="MinimumOvertime" xml:space="preserve">
+    <value>Heures supplémentaires minimales (heures)</value>
+  </data>
+  <data name="Overtime" xml:space="preserve">
+    <value>Heures supplémentaires</value>
+  </data>
+  <data name="OvertimeAmount" xml:space="preserve">
+    <value>Pourcentage d'admissibilité%</value>
+  </data>
+  <data name="PaymentValue" xml:space="preserve">
+    <value>Valeur du paiement</value>
+  </data>
+  <data name="PaymentValueP" xml:space="preserve">
+    <value>Valeur du paiement%</value>
+  </data>
+  <data name="PercentageOf" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PFromBasicSalary" xml:space="preserve">
+    <value>Pourcentage du salaire de base</value>
+  </data>
+  <data name="PFromLoan" xml:space="preserve">
+    <value>Pourcentage du prêt</value>
+  </data>
+  <data name="PFromNetSalary" xml:space="preserve">
+    <value>Pourcentage du salaire net</value>
+  </data>
+  <data name="AttendanceSettings" xml:space="preserve">
+    <value>Paramètres de présence</value>
+  </data>
+  <data name="EmployeesDefaults" xml:space="preserve">
+    <value>Employé</value>
+  </data>
+  <data name="GeneralsDefaults" xml:space="preserve">
+    <value>Défauts généraux</value>
+  </data>
+  <data name="PayrollSettings" xml:space="preserve">
+    <value>Paramètres de paie</value>
+  </data>
+  <data name="SecuritySettings" xml:space="preserve">
+    <value>Les paramètres de sécurité</value>
+  </data>
+  <data name="absence" xml:space="preserve">
+    <value>Absence</value>
+  </data>
+  <data name="disappearance" xml:space="preserve">
+    <value>Disparition</value>
+  </data>
+  <data name="missedPunch" xml:space="preserve">
+    <value>Punch raté</value>
+  </data>
+  <data name="SocialSecuritySchedule" xml:space="preserve">
+    <value>Calendrier de sécurité sociale</value>
+  </data>
+  <data name="MinEPLocalRate" xml:space="preserve">
+    <value>Tarif Mini Locaux</value>
+  </data>
+  <data name="FieldEntitlement" xml:space="preserve">
+    <value>Droit</value>
+  </data>
+  <data name="payrollIndemnityEntitlement" xml:space="preserve">
+    <value>Droit à l'indemnité salariale</value>
+  </data>
+  <data name="PYFSLeaveBalEDId" xml:space="preserve">
+    <value>Droit au solde du solde de règlement final</value>
+  </data>
+  <data name="IndemnitySchedules" xml:space="preserve">
+    <value>Horaires d'indemnisation</value>
+  </data>
+  <data name="PYISfemale" xml:space="preserve">
+    <value>Horaires d'indemnisation par défaut pour les femmes</value>
+  </data>
+  <data name="PYISmale" xml:space="preserve">
+    <value>Horaires d'indemnisation par défaut pour les hommes</value>
+  </data>
+  <data name="exemptDeliveryTRId" xml:space="preserve">
+    <value>Raison de la résiliation de la livraison exonérée</value>
+  </data>
+  <data name="exemptMarriageTRId" xml:space="preserve">
+    <value>Raison de la résiliation du mariage exempté</value>
+  </data>
+  <data name="TerminationReason" xml:space="preserve">
+    <value>Motif de la résiliation</value>
+  </data>
+  <data name="ReferenceFirstNameMiddleNameFamilyName" xml:space="preserve">
+    <value>Référence, prénom, deuxième prénom, nom de famille</value>
+  </data>
+  <data name="FieldLanguageId" xml:space="preserve">
+    <value>langue</value>
+  </data>
+  <data name="FirstNameMiddleNameFamilyNameLastName" xml:space="preserve">
+    <value>Prénom, deuxième prénom, nom de famille, nom de famille</value>
+  </data>
+  <data name="FieldCalendar" xml:space="preserve">
+    <value>Calendrier</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>département</value>
+  </data>
+  <data name="FieldIndustry" xml:space="preserve">
+    <value>Industrie</value>
+  </data>
+  <data name="SourceAttendanceSchedule" xml:space="preserve">
+    <value>Calendrier de présence à la source</value>
+  </data>
+  <data name="yearDays" xml:space="preserve">
+    <value>Année Jours</value>
+  </data>
+  <data name="SourceWorkingCalender" xml:space="preserve">
+    <value>Calendrier source</value>
+  </data>
+  <data name="retirementAge" xml:space="preserve">
+    <value>L'âge de la retraite</value>
+  </data>
+  <data name="employeeRefSize" xml:space="preserve">
+    <value>Taille de référence de l'employé</value>
+  </data>
+  <data name="minPunchInterval" xml:space="preserve">
+    <value>Intervalle de poinçon min.</value>
+  </data>
+  <data name="monthWorkDays" xml:space="preserve">
+    <value>Mois Jours de travail</value>
+  </data>
+  <data name="benefitSchedule" xml:space="preserve">
+    <value>Calendrier des prestations</value>
+  </data>
+  <data name="basicSalaryPayCode" xml:space="preserve">
+    <value>Code de salaire de base</value>
+  </data>
+  <data name="FSWDEDId" xml:space="preserve">
+    <value>Jours de règlement définitifs</value>
+  </data>
+  <data name="MaxLoanDeduction" xml:space="preserve">
+    <value>Déduction Max.</value>
+  </data>
+  <data name="pyaaDays" xml:space="preserve">
+    <value>Pénalité Absence accumulée sans excuse en jours</value>
+  </data>
+  <data name="pyalDays" xml:space="preserve">
+    <value>Pénalité retard accumulé en jours</value>
+  </data>
+  <data name="pylvDays" xml:space="preserve">
+    <value>Pénalité Violation de la loi accumulée en jours</value>
+  </data>
+  <data name="dailySchedule_15" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="dailySchedule_30" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="dailySchedule_60" xml:space="preserve">
+    <value>60</value>
+  </data>
+  <data name="FieldDailySchedule" xml:space="preserve">
+    <value>Horaire quotidien</value>
+  </data>
+  <data name="employeeReference" xml:space="preserve">
+    <value>Référence de l'employé</value>
+  </data>
+  <data name="punchSource" xml:space="preserve">
+    <value>Punch Source</value>
+  </data>
+  <data name="timeAttendance" xml:space="preserve">
+    <value>Temps de référence de référence</value>
+  </data>
+  <data name="backofficeEmail" xml:space="preserve">
+    <value>Email du back-office</value>
+  </data>
+  <data name="access" xml:space="preserve">
+    <value>Accès</value>
+  </data>
+  <data name="BiometricSettings" xml:space="preserve">
+    <value>Paramètres biométriques</value>
+  </data>
+  <data name="clearOnSuccess" xml:space="preserve">
+    <value>Clair sur le succès</value>
+  </data>
+  <data name="csvFile" xml:space="preserve">
+    <value>Fichier CSV</value>
+  </data>
+  <data name="debugMode" xml:space="preserve">
+    <value>Mode débogage</value>
+  </data>
+  <data name="pendingPunchesFolder" xml:space="preserve">
+    <value>Dossier perforé en attente</value>
+  </data>
+  <data name="pull" xml:space="preserve">
+    <value>tirer</value>
+  </data>
+  <data name="punchInterface" xml:space="preserve">
+    <value>Interface PunchI</value>
+  </data>
+  <data name="push" xml:space="preserve">
+    <value>Pousser</value>
+  </data>
+  <data name="serialNo" xml:space="preserve">
+    <value>Numéro de série</value>
+  </data>
+  <data name="shiftData" xml:space="preserve">
+    <value>Données de décalage</value>
+  </data>
+  <data name="sleepTime" xml:space="preserve">
+    <value>Temps de sommeil</value>
+  </data>
+  <data name="sqlServer" xml:space="preserve">
+    <value>Serveur SQL</value>
+  </data>
+  <data name="storeConnection" xml:space="preserve">
+    <value>Connexion magasin</value>
+  </data>
+  <data name="storeType" xml:space="preserve">
+    <value>Type de magasin</value>
+  </data>
+</root>

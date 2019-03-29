@@ -67,6 +67,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
+        /// Error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden Error;
+        
+        /// <summary>
         /// rtl control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,24 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden format;
+        
+        /// <summary>
+        /// periodError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden periodError;
+        
+        /// <summary>
+        /// fillPeriod control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden fillPeriod;
         
         /// <summary>
         /// Viewport1 control.
@@ -128,6 +155,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox salaryType;
+        
+        /// <summary>
+        /// salaryTypeStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store salaryTypeStore;
         
         /// <summary>
         /// fiscalYear control.

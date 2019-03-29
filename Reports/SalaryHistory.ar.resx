@@ -132,6 +132,15 @@
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>طريقة حساب الراتب</value>
   </data>
+  <data name="xrLabel22.Text" xml:space="preserve">
+    <value>الاستحقاقات</value>
+  </data>
+  <data name="xrLabel23.Text" xml:space="preserve">
+    <value>الخصومات</value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>المجموع</value>
+  </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>تاريخ بدء الراتب</value>
   </data>

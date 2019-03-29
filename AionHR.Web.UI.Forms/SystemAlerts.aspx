@@ -41,6 +41,7 @@
         <ext:Hidden ID="alert8Title" runat="server" Text="<%$ Resources: Alert8Title %>" />
         <ext:Hidden ID="alert9Title" runat="server" Text="<%$ Resources: Alert9Title %>" />
         <ext:Hidden ID="alert10Title" runat="server" Text="<%$ Resources: Alert10Title %>" />
+         <ext:Hidden ID="alert11Title" runat="server" Text="<%$ Resources: Alert11Title %>" />
          
 
       <%--  <ext:Hidden ID="alert101Description" runat="server" Text="<%$ Resources: Alert101Description %>" />
@@ -80,7 +81,8 @@
                         <ext:ModelField Name="sendTo" />
                         <ext:ModelField Name="days" />
                         <ext:ModelField Name="predefined" />
-
+                         <ext:ModelField Name="name" />
+                        
                     </Fields>
                 </ext:Model>
             </Model>
@@ -114,7 +116,7 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="alertId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Visible="false" ID="Column2" MenuDisabled="true" runat="server" DataIndex="predefined" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Visible="false" ID="Column2" MenuDisabled="true" runat="server" DataIndex="name" Hideable="false" Width="75" Align="Center" />
                     
                             <ext:WidgetColumn ID="Column1" MenuDisabled="true"  runat="server" Text="<%$ Resources: FieldActive %>" DataIndex="isActive" Hideable="false" Width="75" Align="Center">
                                 <Widget>
@@ -130,8 +132,8 @@
                                 </Widget>
                               
                             </ext:WidgetColumn>
-                                <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName %>" DataIndex="alertId" Hideable="false" Flex="1">
-                                <Renderer Handler=" return GetAlertName(record.data['alertId']); " />
+                                <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName %>" DataIndex="name" Hideable="false" Flex="1">
+                              
                             </ext:Column>
                          <%--   <ext:WidgetColumn ID="WidgetColumn1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSendTo %>" DataIndex="sendTo" Hideable="false" Width="150" Align="Center">
                                 <Widget>

@@ -61,6 +61,60 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Industry.
+        /// </summary>
+        internal static string Class10101 {
+            get {
+                return ResourceManager.GetString("Class10101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Size.
+        /// </summary>
+        internal static string Class10102 {
+            get {
+                return ResourceManager.GetString("Class10102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Levels.
+        /// </summary>
+        internal static string Class10103 {
+            get {
+                return ResourceManager.GetString("Class10103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Citizenship.
+        /// </summary>
+        internal static string Class10104 {
+            get {
+                return ResourceManager.GetString("Class10104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Point Aquisition.
+        /// </summary>
+        internal static string Class10105 {
+            get {
+                return ResourceManager.GetString("Class10105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level Aquisition.
+        /// </summary>
+        internal static string Class10106 {
+            get {
+                return ResourceManager.GetString("Class10106", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folders.
         /// </summary>
         internal static string Class20000 {
@@ -70,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dashboard.
+        ///   Looks up a localized string similar to Background Job.
         /// </summary>
         internal static string Class20001 {
             get {
@@ -142,6 +196,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Government Organisation.
+        /// </summary>
+        internal static string Class20041 {
+            get {
+                return ResourceManager.GetString("Class20041", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attachments.
         /// </summary>
         internal static string Class20050 {
@@ -205,6 +268,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data Import.
+        /// </summary>
+        internal static string Class20100 {
+            get {
+                return ResourceManager.GetString("Class20100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Divisions.
         /// </summary>
         internal static string Class21010 {
@@ -223,6 +295,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Branches Legal.
+        /// </summary>
+        internal static string Class21021 {
+            get {
+                return ResourceManager.GetString("Class21021", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Positions.
         /// </summary>
         internal static string Class21030 {
@@ -237,6 +318,24 @@ namespace Resources {
         internal static string Class21040 {
             get {
                 return ResourceManager.GetString("Class21040", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approvals.
+        /// </summary>
+        internal static string Class21050 {
+            get {
+                return ResourceManager.GetString("Class21050", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approvals Departments.
+        /// </summary>
+        internal static string Class21051 {
+            get {
+                return ResourceManager.GetString("Class21051", resourceCulture);
             }
         }
         
@@ -291,6 +390,42 @@ namespace Resources {
         internal static string Class24010 {
             get {
                 return ResourceManager.GetString("Class24010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benefits.
+        /// </summary>
+        internal static string Class25011 {
+            get {
+                return ResourceManager.GetString("Class25011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benefit Schedule.
+        /// </summary>
+        internal static string Class25012 {
+            get {
+                return ResourceManager.GetString("Class25012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule Benefit.
+        /// </summary>
+        internal static string Class25013 {
+            get {
+                return ResourceManager.GetString("Class25013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benefit Acquisition.
+        /// </summary>
+        internal static string Class25101 {
+            get {
+                return ResourceManager.GetString("Class25101", resourceCulture);
             }
         }
         
@@ -610,6 +745,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dependents.
+        /// </summary>
+        internal static string Class31160 {
+            get {
+                return ResourceManager.GetString("Class31160", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Penalty.
+        /// </summary>
+        internal static string Class31170 {
+            get {
+                return ResourceManager.GetString("Class31170", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Penalty Approvals.
+        /// </summary>
+        internal static string Class31171 {
+            get {
+                return ResourceManager.GetString("Class31171", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Task Type.
         /// </summary>
         internal static string Class32000 {
@@ -736,7 +898,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Absense.
+        ///   Looks up a localized string similar to Over time.
         /// </summary>
         internal static string Class41063 {
             get {
@@ -745,7 +907,34 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Header.
+        ///   Looks up a localized string similar to Flat Schedule.
+        /// </summary>
+        internal static string Class41064 {
+            get {
+                return ResourceManager.GetString("Class41064", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Approval.
+        /// </summary>
+        internal static string Class41065 {
+            get {
+                return ResourceManager.GetString("Class41065", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Variation.
+        /// </summary>
+        internal static string Class41066 {
+            get {
+                return ResourceManager.GetString("Class41066", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calendars.
         /// </summary>
         internal static string Class41070 {
             get {
@@ -826,6 +1015,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leave Schedule.
+        /// </summary>
+        internal static string Class42013 {
+            get {
+                return ResourceManager.GetString("Class42013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave Schedule Period.
+        /// </summary>
+        internal static string Class42014 {
+            get {
+                return ResourceManager.GetString("Class42014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leave.
         /// </summary>
         internal static string Class42020 {
@@ -855,9 +1062,9 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Import Leaves.
         /// </summary>
-        internal static string Class42099 {
+        internal static string Class42090 {
             get {
-                return ResourceManager.GetString("Class42099", resourceCulture);
+                return ResourceManager.GetString("Class42090", resourceCulture);
             }
         }
         
@@ -898,7 +1105,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loan Overrides.
+        ///   Looks up a localized string similar to Employee Loan setup.
         /// </summary>
         internal static string Class45010 {
             get {
@@ -916,7 +1123,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loan Requests.
+        ///   Looks up a localized string similar to Loan .
         /// </summary>
         internal static string Class45050 {
             get {
@@ -925,11 +1132,38 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import Loans.
+        ///   Looks up a localized string similar to Loan Comments.
         /// </summary>
-        internal static string Class45099 {
+        internal static string Class45051 {
             get {
-                return ResourceManager.GetString("Class45099", resourceCulture);
+                return ResourceManager.GetString("Class45051", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deductions.
+        /// </summary>
+        internal static string Class45052 {
+            get {
+                return ResourceManager.GetString("Class45052", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approvals.
+        /// </summary>
+        internal static string Class45053 {
+            get {
+                return ResourceManager.GetString("Class45053", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Loan Details.
+        /// </summary>
+        internal static string Class45090 {
+            get {
+                return ResourceManager.GetString("Class45090", resourceCulture);
             }
         }
         
@@ -997,6 +1231,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Indemnity Schedule .
+        /// </summary>
+        internal static string Class51017 {
+            get {
+                return ResourceManager.GetString("Class51017", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indemnity Details.
+        /// </summary>
+        internal static string Class51018 {
+            get {
+                return ResourceManager.GetString("Class51018", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indemnity Resignation.
+        /// </summary>
+        internal static string Class51019 {
+            get {
+                return ResourceManager.GetString("Class51019", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payroll Header.
         /// </summary>
         internal static string Class51020 {
@@ -1051,6 +1312,78 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Penalty Type.
+        /// </summary>
+        internal static string Class51040 {
+            get {
+                return ResourceManager.GetString("Class51040", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Penalty Type Details.
+        /// </summary>
+        internal static string Class51041 {
+            get {
+                return ResourceManager.GetString("Class51041", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Banks.
+        /// </summary>
+        internal static string Class51050 {
+            get {
+                return ResourceManager.GetString("Class51050", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payroll.
+        /// </summary>
+        internal static string Class51120 {
+            get {
+                return ResourceManager.GetString("Class51120", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payroll  Employee.
+        /// </summary>
+        internal static string Class51121 {
+            get {
+                return ResourceManager.GetString("Class51121", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payroll Employee Entitlements and Eeductions.
+        /// </summary>
+        internal static string Class51122 {
+            get {
+                return ResourceManager.GetString("Class51122", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payroll Employee Social Security.
+        /// </summary>
+        internal static string Class51123 {
+            get {
+                return ResourceManager.GetString("Class51123", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave Payment.
+        /// </summary>
+        internal static string Class51130 {
+            get {
+                return ResourceManager.GetString("Class51130", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My Info.
         /// </summary>
         internal static string Class60101 {
@@ -1069,7 +1402,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loan Requests.
+        ///   Looks up a localized string similar to Loan .
         /// </summary>
         internal static string Class60105 {
             get {
@@ -1096,11 +1429,137 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Asset Allowance.
+        ///   Looks up a localized string similar to Time variations.
         /// </summary>
         internal static string Class60108 {
             get {
                 return ResourceManager.GetString("Class60108", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Daily schedule.
+        /// </summary>
+        internal static string Class60109 {
+            get {
+                return ResourceManager.GetString("Class60109", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payroll .
+        /// </summary>
+        internal static string Class60111 {
+            get {
+                return ResourceManager.GetString("Class60111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Password.
+        /// </summary>
+        internal static string Class60113 {
+            get {
+                return ResourceManager.GetString("Class60113", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template.
+        /// </summary>
+        internal static string Class70100 {
+            get {
+                return ResourceManager.GetString("Class70100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template body.
+        /// </summary>
+        internal static string Class70101 {
+            get {
+                return ResourceManager.GetString("Class70101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template metadata.
+        /// </summary>
+        internal static string Class70102 {
+            get {
+                return ResourceManager.GetString("Class70102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process notification.
+        /// </summary>
+        internal static string Class70103 {
+            get {
+                return ResourceManager.GetString("Class70103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Partner Category.
+        /// </summary>
+        internal static string Class70200 {
+            get {
+                return ResourceManager.GetString("Class70200", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Partner.
+        /// </summary>
+        internal static string Class70201 {
+            get {
+                return ResourceManager.GetString("Class70201", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document Category.
+        /// </summary>
+        internal static string Class70300 {
+            get {
+                return ResourceManager.GetString("Class70300", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document .
+        /// </summary>
+        internal static string Class70301 {
+            get {
+                return ResourceManager.GetString("Class70301", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document Dues.
+        /// </summary>
+        internal static string Class70302 {
+            get {
+                return ResourceManager.GetString("Class70302", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document note.
+        /// </summary>
+        internal static string Class70304 {
+            get {
+                return ResourceManager.GetString("Class70304", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Card.
+        /// </summary>
+        internal static string Class80100 {
+            get {
+                return ResourceManager.GetString("Class80100", resourceCulture);
             }
         }
         
@@ -1168,6 +1627,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee Details.
+        /// </summary>
+        internal static string Class80108 {
+            get {
+                return ResourceManager.GetString("Class80108", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Right To Work.
         /// </summary>
         internal static string Class80109 {
@@ -1177,7 +1645,52 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current Salaries.
+        ///   Looks up a localized string similar to Head Count by Dimension.
+        /// </summary>
+        internal static string Class80110 {
+            get {
+                return ResourceManager.GetString("Class80110", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank Accounts.
+        /// </summary>
+        internal static string Class80111 {
+            get {
+                return ResourceManager.GetString("Class80111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Notes.
+        /// </summary>
+        internal static string Class80112 {
+            get {
+                return ResourceManager.GetString("Class80112", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch Workforce.
+        /// </summary>
+        internal static string Class80113 {
+            get {
+                return ResourceManager.GetString("Class80113", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skills.
+        /// </summary>
+        internal static string Class80114 {
+            get {
+                return ResourceManager.GetString("Class80114", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current payroll.
         /// </summary>
         internal static string Class80200 {
             get {
@@ -1222,11 +1735,56 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Daily Attendance.
+        ///   Looks up a localized string similar to Period Summary.
         /// </summary>
         internal static string Class80302 {
             get {
                 return ResourceManager.GetString("Class80302", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detailed Attendance.
+        /// </summary>
+        internal static string Class80303 {
+            get {
+                return ResourceManager.GetString("Class80303", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department Availability.
+        /// </summary>
+        internal static string Class80304 {
+            get {
+                return ResourceManager.GetString("Class80304", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Variations.
+        /// </summary>
+        internal static string Class80305 {
+            get {
+                return ResourceManager.GetString("Class80305", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Approvals.
+        /// </summary>
+        internal static string Class80306 {
+            get {
+                return ResourceManager.GetString("Class80306", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approver Performance.
+        /// </summary>
+        internal static string Class80307 {
+            get {
+                return ResourceManager.GetString("Class80307", resourceCulture);
             }
         }
         
@@ -1236,6 +1794,15 @@ namespace Resources {
         internal static string Class80401 {
             get {
                 return ResourceManager.GetString("Class80401", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statement Of Loan.
+        /// </summary>
+        internal static string Class80402 {
+            get {
+                return ResourceManager.GetString("Class80402", resourceCulture);
             }
         }
         
@@ -1254,6 +1821,24 @@ namespace Resources {
         internal static string Class80502 {
             get {
                 return ResourceManager.GetString("Class80502", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Job info.
+        /// </summary>
+        internal static string Class80503 {
+            get {
+                return ResourceManager.GetString("Class80503", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank Transfer.
+        /// </summary>
+        internal static string Class80504 {
+            get {
+                return ResourceManager.GetString("Class80504", resourceCulture);
             }
         }
         
@@ -1294,11 +1879,65 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        internal static string Class80803 {
+            get {
+                return ResourceManager.GetString("Class80803", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Access.
+        /// </summary>
+        internal static string Class80804 {
+            get {
+                return ResourceManager.GetString("Class80804", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        internal static string Class81000 {
+            get {
+                return ResourceManager.GetString("Class81000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dashboard.
         /// </summary>
         internal static string Class81100 {
             get {
                 return ResourceManager.GetString("Class81100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Retirement Soon.
+        /// </summary>
+        internal static string Class81110 {
+            get {
+                return ResourceManager.GetString("Class81110", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Term end soon.
+        /// </summary>
+        internal static string Class81111 {
+            get {
+                return ResourceManager.GetString("Class81111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave start  soon.
+        /// </summary>
+        internal static string Class81112 {
+            get {
+                return ResourceManager.GetString("Class81112", resourceCulture);
             }
         }
         
@@ -1335,6 +1974,24 @@ namespace Resources {
         internal static string Class90104 {
             get {
                 return ResourceManager.GetString("Class90104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Access.
+        /// </summary>
+        internal static string Class90105 {
+            get {
+                return ResourceManager.GetString("Class90105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User / data access.
+        /// </summary>
+        internal static string Class90106 {
+            get {
+                return ResourceManager.GetString("Class90106", resourceCulture);
             }
         }
     }

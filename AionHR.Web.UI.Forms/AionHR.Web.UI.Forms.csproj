@@ -46,94 +46,118 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DayPilot">
-      <HintPath>D:\AionHR\dlls\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\DevExpress.Charts.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Charts.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.CodeParser.v16.2">
-      <HintPath>D:\AionHR\dlls\DevExpress.CodeParser.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.CodeParser.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.CodeParser.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\DevExpress.Data.v16.2.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Data.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <HintPath>D:\AionHR\dlls\DevExpress.DataAccess.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.DataAccess.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\DevExpress.Office.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Office.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\DevExpress.Pdf.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Pdf.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\DevExpress.Printing.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Printing.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Web.Resources.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\DevExpress.Web.Resources.v16.2.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Web.Resources.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <HintPath>D:\AionHR\dlls\DevExpress.Web.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Web.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <HintPath>D:\AionHR\dlls\DevExpress.Xpo.v16.2.dll</HintPath>
+    <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.Xpo.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraCharts.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\DevExpress.XtraCharts.v16.2.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.XtraCharts.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraGauges.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\DevExpress.XtraGauges.v16.2.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.XtraGauges.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\DevExpress.XtraReports.v16.2.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.XtraReports.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
     </Reference>
     <Reference Include="Ext.Net">
-      <HintPath>D:\AionHR\dlls\Ext.Net.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Ext.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Ext.Net.Utilities, Version=2.5.0.0, Culture=neutral, PublicKeyToken=2c34ac34702a3c23, processorArchitecture=MSIL">
-      <HintPath>D:\AionHR\dlls\Ext.Net.Utilities.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Ext.Net.Utilities">
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Ext.Net.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Softmachine\Newtonsoft.Json.dll</HintPath>
+      <HintPath>D:\Softmachine\UI\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Reports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\Reports.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StructureMap.4.4.2\lib\net45\StructureMap.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\StructureMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="system" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -144,17 +168,61 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Transformer.NET">
-      <HintPath>D:\AionHR\dlls\Transformer.NET.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bin\bin\Transformer.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\..\..\..\..\..\..\AION Dlls\WebActivatorEx.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminDepts.aspx" />
+    <Content Include="AdminDocNav.aspx" />
+    <Content Include="AdminDocuments.aspx" />
+    <Content Include="AssetLoans.aspx" />
+    <Content Include="AssetManagementAssets.aspx" />
+    <Content Include="AssetManagementCategories.aspx" />
+    <Content Include="AssetManagementLoans.aspx" />
+    <Content Include="AssetManagementOnboardings.aspx" />
+    <Content Include="AssetManagementPurchaseOrders.aspx" />
+    <Content Include="AssetManagementSuppliers.aspx" />
+    <Content Include="AssetPropertyExplorer.aspx" />
+    <Content Include="BlankPage.aspx" />
+    <Content Include="BonusTypes.aspx" />
+    <Content Include="BusinessPartnerCategories.aspx" />
+    <Content Include="BusinessPartneres.aspx" />
+    <Content Include="CertificateLevels.aspx" />
+    <Content Include="CheckTypes.aspx" />
+    <Content Include="DELogin.aspx" />
+    <Content Include="DocumentCategories.aspx" />
+    <Content Include="FRLogin.aspx" />
+    <Content Include="PayrollGenerationSelfServices.aspx" />
+    <Content Include="ProcessNotifications.aspx" />
+    <Content Include="Reports\Controls\AssetFilter.ascx" />
+    <Content Include="Reports\Controls\CurrencyFilter.ascx" />
+    <Content Include="Reports\Controls\ApprovalStatus.ascx" />
+    <Content Include="Reports\Controls\EmploymentStatusFilter.ascx" />
+    <Content Include="Reports\Controls\AssetCategoryFilter.ascx" />
+    <Content Include="Reports\Controls\SupplierFilter.ascx" />
+    <Content Include="Reports\RT113.aspx" />
+    <Content Include="Reports\RT114.aspx" />
+    <Content Include="Reports\RT115.aspx" />
     <Content Include="Reports\RT303.aspx" />
+    <Content Include="Reports\RT307.aspx" />
+    <Content Include="Reports\RT506.aspx" />
+    <Content Include="Reports\RT507.aspx" />
+    <Content Include="Reports\RT804.aspx" />
+    <Content Include="Reports\RT803.aspx" />
+    <Content Include="Reports\RT508.aspx" />
+    <Content Include="Scripts\AdminTemplates.js" />
+    <Content Include="Scripts\SystemDefaults.js" />
+    <Content Include="SelfServiceResetPasswords.aspx" />
+    <Content Include="SSTransfers.aspx" />
+    <Content Include="TimeApprovalsSelfServices.aspx" />
     <Content Include="TimeAttendanceApprovals.aspx" />
     <Content Include="TimeAttendanceViewSelfServices.aspx" />
     <Content Include="TimeVariationSelfServices.aspx" />
     <Content Include="Absent.aspx" />
     <Content Include="AdminTemplates.aspx" />
-    <Content Include="AllowanceTypes.aspx" />
     <Content Include="Approvals.aspx" />
     <Content Include="App_LocalResources\ARForgotPassword.aspx.resx" />
     <Content Include="App_Readme\Ext.NET.Utilities\BREAKING_CHANGES.txt" />
@@ -162,22 +230,14 @@
     <Content Include="App_Readme\Ext.NET.Utilities\README.txt" />
     <Content Include="ARForgotPassword.aspx" />
     <Content Include="ARresetPW.aspx" />
-    <Content Include="AssetAllowances.aspx" />
-    <Content Include="AssetAllowanceSelfServices.aspx" />
-    <Content Include="AssetCategories.aspx" />
     <Content Include="Banks.aspx" />
     <Content Include="BenefitAcquisitions.aspx" />
     <Content Include="Benefits.aspx" />
     <Content Include="BenefitsSchedules.aspx" />
     <Content Include="BiometricDevices.aspx" />
-    <Content Include="BonusTypes.aspx" />
     <Content Include="Branches.aspx" />
-    <Content Include="Cases.aspx" />
-    <Content Include="CertificateLevels.aspx" />
-    <Content Include="CheckTypes.aspx" />
     <Content Include="CompanyDocumentTypes.aspx" />
     <Content Include="CompanyFiles.aspx" />
-    <Content Include="CompanyNews.aspx" />
     <Content Include="CompanyRightToWorks.aspx" />
     <Content Include="Controls\LeaveRequestControl.ascx" />
     <Content Include="CSS\cal.css" />
@@ -208,13 +268,10 @@
     <Content Include="DaysAvailability.aspx" />
     <Content Include="DayTypes.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="DeleteBranchAttendance.aspx" />
     <Content Include="Departments.aspx" />
     <Content Include="Divisions.aspx" />
     <Content Include="DocumentTypes.aspx" />
     <Content Include="EmployeeCals.aspx" />
-    <Content Include="EmployeeComplaints.aspx" />
-    <Content Include="EmployeeComplaintSelfServices.aspx" />
     <Content Include="EmployeePages\Contacts.aspx" />
     <Content Include="EmployeePages\Dependants.aspx" />
     <Content Include="EmployeePages\Documents.aspx" />
@@ -234,10 +291,8 @@
     <Content Include="FinalSettlements.aspx" />
     <Content Include="FiscalYears.aspx" />
     <Content Include="Folders.aspx" />
-    <Content Include="ForgotAccount.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="GenerateAttendanceDays.aspx" />
-    <Content Include="GenerateAttendanceShifts.aspx" />
     <Content Include="Geofences.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Controls\HijriGregDatePicker.ascx" />
@@ -292,26 +347,20 @@
     <Content Include="Letters.aspx" />
     <Content Include="LettersSelfServices.aspx" />
     <Content Include="LetterTemplates.aspx" />
-    <Content Include="LoanOverrides.aspx" />
     <Content Include="LoanRequests.aspx" />
     <Content Include="LoanSelfServices.aspx" />
     <Content Include="LoanTypes.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MainDashboard.aspx" />
-    <Content Include="MediaCategories.aspx" />
-    <Content Include="MediaItems.aspx" />
     <Content Include="MyInfos.aspx" />
     <Content Include="Nationalities.aspx" />
     <Content Include="NationalQuotas.aspx" />
     <Content Include="NoticePeriods.aspx" />
     <Content Include="OrganizationChart.aspx" />
-    <Content Include="OvertimeSettings.aspx" />
     <Content Include="packages.config" />
     <Content Include="PayCodes.aspx" />
-    <Content Include="PayrollDefaults.aspx" />
     <Content Include="PayrollGeneration.aspx" />
     <Content Include="PayrollIndemnities.aspx" />
-    <Content Include="PayrollTimeSchedule.aspx" />
     <Content Include="PenaltyTypes.aspx" />
     <Content Include="RelationshipTypes.aspx" />
     <Content Include="Reports\App_LocalResources\Hirings.cs.resx" />
@@ -356,7 +405,7 @@
     <Content Include="Reports\RT104.aspx" />
     <Content Include="Reports\RT105.aspx" />
     <Content Include="Reports\RT106.aspx" />
-    <Content Include="Reports\RT107.aspx" />
+    <Content Include="RT107.aspx" />
     <Content Include="Reports\RT108.aspx" />
     <Content Include="Reports\RT109.aspx" />
     <Content Include="Reports\RT111.aspx" />
@@ -371,8 +420,8 @@
     <Content Include="Reports\RT303A.aspx" />
     <Content Include="Reports\RT304.aspx" />
     <Content Include="Reports\RT305.aspx" />
+    <Content Include="Reports\RT306Old.aspx" />
     <Content Include="Reports\RT306.aspx" />
-    <Content Include="Reports\RT307.aspx" />
     <Content Include="Reports\RT401.aspx" />
     <Content Include="Reports\RT402.aspx" />
     <Content Include="Reports\RT501.aspx" />
@@ -524,7 +573,6 @@
     <Content Include="SynchronizeAttendanceDays.aspx" />
     <Content Include="SystemAlerts.aspx" />
     <Content Include="SystemDefaults.aspx" />
-    <Content Include="Tasks.aspx" />
     <Content Include="TaskTypes.aspx" />
     <Content Include="TerminationReasons.aspx" />
     <Content Include="Test.aspx" />
@@ -535,6 +583,7 @@
     <Content Include="Utilities\letters_meta_tags.txt" />
     <Content Include="Utilities\modules.txt" />
     <Content Include="DailySchedule.aspx" />
+    <Content Include="LeaveSchedules.aspx" />
     <Content Include="WorkingCalendars.aspx" />
     <Content Include="SystemAttachmentsUploader.ashx" />
     <Content Include="EmployeePhotoUploaderHandler.ashx" />
@@ -576,12 +625,324 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminDepts.aspx.cs">
+      <DependentUpon>AdminDepts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminDepts.aspx.designer.cs">
+      <DependentUpon>AdminDepts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminDocNav.aspx.cs">
+      <DependentUpon>AdminDocNav.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminDocNav.aspx.designer.cs">
+      <DependentUpon>AdminDocNav.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminDocuments.aspx.cs">
+      <DependentUpon>AdminDocuments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminDocuments.aspx.designer.cs">
+      <DependentUpon>AdminDocuments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Common.de-DE.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.de-DE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Common.fr.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Errors.fr.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Errors.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\ModuleIDs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModuleIDs.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\OldCommon.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldCommon.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\StaticComboBox.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaticComboBox.resx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetLoans.aspx.cs">
+      <DependentUpon>AssetLoans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetLoans.aspx.designer.cs">
+      <DependentUpon>AssetLoans.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagementAssets.aspx.cs">
+      <DependentUpon>AssetManagementAssets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetManagementAssets.aspx.designer.cs">
+      <DependentUpon>AssetManagementAssets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagementCategories.aspx.cs">
+      <DependentUpon>AssetManagementCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetManagementCategories.aspx.designer.cs">
+      <DependentUpon>AssetManagementCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagementLoans.aspx.cs">
+      <DependentUpon>AssetManagementLoans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetManagementLoans.aspx.designer.cs">
+      <DependentUpon>AssetManagementLoans.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagementOnboardings.aspx.cs">
+      <DependentUpon>AssetManagementOnboardings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetManagementOnboardings.aspx.designer.cs">
+      <DependentUpon>AssetManagementOnboardings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagementPurchaseOrders.aspx.cs">
+      <DependentUpon>AssetManagementPurchaseOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetManagementPurchaseOrders.aspx.designer.cs">
+      <DependentUpon>AssetManagementPurchaseOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagementSuppliers.aspx.cs">
+      <DependentUpon>AssetManagementSuppliers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetManagementSuppliers.aspx.designer.cs">
+      <DependentUpon>AssetManagementSuppliers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetPropertyExplorer.aspx.cs">
+      <DependentUpon>AssetPropertyExplorer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetPropertyExplorer.aspx.designer.cs">
+      <DependentUpon>AssetPropertyExplorer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BlankPage.aspx.cs">
+      <DependentUpon>BlankPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlankPage.aspx.designer.cs">
+      <DependentUpon>BlankPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BonusTypes.aspx.cs">
+      <DependentUpon>BonusTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BonusTypes.aspx.designer.cs">
+      <DependentUpon>BonusTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessPartnerCategories.aspx.cs">
+      <DependentUpon>BusinessPartnerCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BusinessPartnerCategories.aspx.designer.cs">
+      <DependentUpon>BusinessPartnerCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessPartneres.aspx.cs">
+      <DependentUpon>BusinessPartneres.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BusinessPartneres.aspx.designer.cs">
+      <DependentUpon>BusinessPartneres.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CertificateLevels.aspx.cs">
+      <DependentUpon>CertificateLevels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CertificateLevels.aspx.designer.cs">
+      <DependentUpon>CertificateLevels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckTypes.aspx.cs">
+      <DependentUpon>CheckTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckTypes.aspx.designer.cs">
+      <DependentUpon>CheckTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConstClasse\Common.cs" />
+    <Compile Include="ConstClasse\ConstClasses.cs" />
+    <Compile Include="DELogin.aspx.cs">
+      <DependentUpon>DELogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DELogin.aspx.designer.cs">
+      <DependentUpon>DELogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentCategories.aspx.cs">
+      <DependentUpon>DocumentCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DocumentCategories.aspx.designer.cs">
+      <DependentUpon>DocumentCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FRLogin.aspx.cs">
+      <DependentUpon>FRLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FRLogin.aspx.designer.cs">
+      <DependentUpon>FRLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayrollGenerationSelfServices.aspx.cs">
+      <DependentUpon>PayrollGenerationSelfServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayrollGenerationSelfServices.aspx.designer.cs">
+      <DependentUpon>PayrollGenerationSelfServices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessNotifications.aspx.cs">
+      <DependentUpon>ProcessNotifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProcessNotifications.aspx.designer.cs">
+      <DependentUpon>ProcessNotifications.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\AssetFilter.ascx.cs">
+      <DependentUpon>AssetFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\AssetFilter.ascx.designer.cs">
+      <DependentUpon>AssetFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\CurrencyFilter.ascx.cs">
+      <DependentUpon>CurrencyFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\CurrencyFilter.ascx.designer.cs">
+      <DependentUpon>CurrencyFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\ApprovalStatus.ascx.cs">
+      <DependentUpon>ApprovalStatus.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\ApprovalStatus.ascx.designer.cs">
+      <DependentUpon>ApprovalStatus.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\EmploymentStatusFilter.ascx.cs">
+      <DependentUpon>EmploymentStatusFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\EmploymentStatusFilter.ascx.designer.cs">
+      <DependentUpon>EmploymentStatusFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\AssetCategoryFilter.ascx.cs">
+      <DependentUpon>AssetCategoryFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\AssetCategoryFilter.ascx.designer.cs">
+      <DependentUpon>AssetCategoryFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\SupplierFilter.ascx.cs">
+      <DependentUpon>SupplierFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\SupplierFilter.ascx.designer.cs">
+      <DependentUpon>SupplierFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT113.aspx.cs">
+      <DependentUpon>RT113.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT113.aspx.designer.cs">
+      <DependentUpon>RT113.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT114.aspx.cs">
+      <DependentUpon>RT114.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT114.aspx.designer.cs">
+      <DependentUpon>RT114.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT115.aspx.cs">
+      <DependentUpon>RT115.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT115.aspx.designer.cs">
+      <DependentUpon>RT115.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RT303.aspx.cs">
       <DependentUpon>RT303.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Reports\RT303.aspx.designer.cs">
       <DependentUpon>RT303.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT307.aspx.cs">
+      <DependentUpon>RT307.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT307.aspx.designer.cs">
+      <DependentUpon>RT307.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT506.aspx.cs">
+      <DependentUpon>RT506.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT506.aspx.designer.cs">
+      <DependentUpon>RT506.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT507.aspx.cs">
+      <DependentUpon>RT507.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT507.aspx.designer.cs">
+      <DependentUpon>RT507.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT804.aspx.cs">
+      <DependentUpon>RT804.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT804.aspx.designer.cs">
+      <DependentUpon>RT804.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT803.aspx.cs">
+      <DependentUpon>RT803.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT803.aspx.designer.cs">
+      <DependentUpon>RT803.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT508.aspx.cs">
+      <DependentUpon>RT508.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT508.aspx.designer.cs">
+      <DependentUpon>RT508.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SelfServiceResetPasswords.aspx.cs">
+      <DependentUpon>SelfServiceResetPasswords.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SelfServiceResetPasswords.aspx.designer.cs">
+      <DependentUpon>SelfServiceResetPasswords.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SSTransfers.aspx.cs">
+      <DependentUpon>SSTransfers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SSTransfers.aspx.designer.cs">
+      <DependentUpon>SSTransfers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TimeApprovalsSelfServices.aspx.cs">
+      <DependentUpon>TimeApprovalsSelfServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeApprovalsSelfServices.aspx.designer.cs">
+      <DependentUpon>TimeApprovalsSelfServices.aspx</DependentUpon>
     </Compile>
     <Compile Include="TimeAttendanceApprovals.aspx.cs">
       <DependentUpon>TimeAttendanceApprovals.aspx</DependentUpon>
@@ -650,13 +1011,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reports.resx</DependentUpon>
     </Compile>
-    <Compile Include="AssetAllowanceSelfServices.aspx.cs">
-      <DependentUpon>AssetAllowanceSelfServices.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AssetAllowanceSelfServices.aspx.designer.cs">
-      <DependentUpon>AssetAllowanceSelfServices.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Banks.aspx.cs">
       <DependentUpon>Banks.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -685,8 +1039,8 @@
     <Compile Include="BenefitsSchedules.aspx.designer.cs">
       <DependentUpon>BenefitsSchedules.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ConstClasses\ConstDashboardItem.cs" />
-    <Compile Include="ConstClasses\ConstTimeVariationType.cs" />
+    <Compile Include="ConstClasse\ConstDashboardItem.cs" />
+    <Compile Include="ConstClasse\ConstTimeVariationType.cs" />
     <Compile Include="DailyScheduleSelfServices.aspx.cs">
       <DependentUpon>DailyScheduleSelfServices.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -701,26 +1055,12 @@
     <Compile Include="DaysAvailability.aspx.designer.cs">
       <DependentUpon>DaysAvailability.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DeleteBranchAttendance.aspx.cs">
-      <DependentUpon>DeleteBranchAttendance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DeleteBranchAttendance.aspx.designer.cs">
-      <DependentUpon>DeleteBranchAttendance.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EmployeeCals.aspx.cs">
       <DependentUpon>EmployeeCals.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EmployeeCals.aspx.designer.cs">
       <DependentUpon>EmployeeCals.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeeComplaintSelfServices.aspx.cs">
-      <DependentUpon>EmployeeComplaintSelfServices.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EmployeeComplaintSelfServices.aspx.designer.cs">
-      <DependentUpon>EmployeeComplaintSelfServices.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeePages\EmployeeCalendars.aspx.cs">
       <DependentUpon>EmployeeCalendars.aspx</DependentUpon>
@@ -749,13 +1089,6 @@
     </Compile>
     <Compile Include="GenerateAttendanceDays.aspx.designer.cs">
       <DependentUpon>GenerateAttendanceDays.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GenerateAttendanceShifts.aspx.cs">
-      <DependentUpon>GenerateAttendanceShifts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GenerateAttendanceShifts.aspx.designer.cs">
-      <DependentUpon>GenerateAttendanceShifts.aspx</DependentUpon>
     </Compile>
     <Compile Include="GovernmentOrganisations.aspx.cs">
       <DependentUpon>GovernmentOrganisations.aspx</DependentUpon>
@@ -897,13 +1230,6 @@
     <Compile Include="NoticePeriods.aspx.designer.cs">
       <DependentUpon>NoticePeriods.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OvertimeSettings.aspx.cs">
-      <DependentUpon>OvertimeSettings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OvertimeSettings.aspx.designer.cs">
-      <DependentUpon>OvertimeSettings.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PayCodes.aspx.cs">
       <DependentUpon>PayCodes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -917,13 +1243,6 @@
     </Compile>
     <Compile Include="PayrollIndemnities.aspx.designer.cs">
       <DependentUpon>PayrollIndemnities.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PayrollTimeSchedule.aspx.cs">
-      <DependentUpon>PayrollTimeSchedule.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PayrollTimeSchedule.aspx.designer.cs">
-      <DependentUpon>PayrollTimeSchedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="PenaltyTypes.aspx.cs">
       <DependentUpon>PenaltyTypes.aspx</DependentUpon>
@@ -1016,19 +1335,19 @@
     <Compile Include="Reports\RT305.aspx.designer.cs">
       <DependentUpon>RT305.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RT306Old.aspx.cs">
+      <DependentUpon>RT306Old.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT306Old.aspx.designer.cs">
+      <DependentUpon>RT306Old.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RT306.aspx.cs">
       <DependentUpon>RT306.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Reports\RT306.aspx.designer.cs">
       <DependentUpon>RT306.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\RT307.aspx.cs">
-      <DependentUpon>RT307.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\RT307.aspx.designer.cs">
-      <DependentUpon>RT307.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT402.aspx.cs">
       <DependentUpon>RT402.aspx</DependentUpon>
@@ -1094,13 +1413,6 @@
       <DependentUpon>TimeCodes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AccessControlApplier.cs" />
-    <Compile Include="AllowanceTypes.aspx.cs">
-      <DependentUpon>AllowanceTypes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AllowanceTypes.aspx.designer.cs">
-      <DependentUpon>AllowanceTypes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_GlobalResources\AccessControl.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1150,33 +1462,12 @@
     <Compile Include="ARresetPW.aspx.designer.cs">
       <DependentUpon>ARresetPW.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AssetAllowances.aspx.cs">
-      <DependentUpon>AssetAllowances.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AssetAllowances.aspx.designer.cs">
-      <DependentUpon>AssetAllowances.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AssetCategories.aspx.cs">
-      <DependentUpon>AssetCategories.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AssetCategories.aspx.designer.cs">
-      <DependentUpon>AssetCategories.aspx</DependentUpon>
-    </Compile>
     <Compile Include="BiometricDevices.aspx.cs">
       <DependentUpon>BiometricDevices.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BiometricDevices.aspx.designer.cs">
       <DependentUpon>BiometricDevices.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BonusTypes.aspx.cs">
-      <DependentUpon>BonusTypes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BonusTypes.aspx.designer.cs">
-      <DependentUpon>BonusTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="BootStrapper.cs" />
     <Compile Include="Branches.aspx.cs">
@@ -1199,13 +1490,6 @@
     </Compile>
     <Compile Include="CompanyFiles.aspx.designer.cs">
       <DependentUpon>CompanyFiles.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CompanyNews.aspx.cs">
-      <DependentUpon>CompanyNews.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CompanyNews.aspx.designer.cs">
-      <DependentUpon>CompanyNews.aspx</DependentUpon>
     </Compile>
     <Compile Include="CompanyRightToWorks.aspx.cs">
       <DependentUpon>CompanyRightToWorks.aspx</DependentUpon>
@@ -1294,13 +1578,6 @@
     <Compile Include="ImportLoans.aspx.designer.cs">
       <DependentUpon>ImportLoans.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LoanOverrides.aspx.cs">
-      <DependentUpon>LoanOverrides.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LoanOverrides.aspx.designer.cs">
-      <DependentUpon>LoanOverrides.aspx</DependentUpon>
-    </Compile>
     <Compile Include="LoanRequests.aspx.cs">
       <DependentUpon>LoanRequests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1321,20 +1598,6 @@
     </Compile>
     <Compile Include="MainDashboard.aspx.designer.cs">
       <DependentUpon>MainDashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MediaItems.aspx.cs">
-      <DependentUpon>MediaItems.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MediaItems.aspx.designer.cs">
-      <DependentUpon>MediaItems.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PayrollDefaults.aspx.cs">
-      <DependentUpon>PayrollDefaults.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PayrollDefaults.aspx.designer.cs">
-      <DependentUpon>PayrollDefaults.aspx</DependentUpon>
     </Compile>
     <Compile Include="PayrollGeneration.aspx.cs">
       <DependentUpon>PayrollGeneration.aspx</DependentUpon>
@@ -1490,11 +1753,11 @@
     <Compile Include="Reports\RT106.aspx.designer.cs">
       <DependentUpon>RT106.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\RT107.aspx.cs">
+    <Compile Include="RT107.aspx.cs">
       <DependentUpon>RT107.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reports\RT107.aspx.designer.cs">
+    <Compile Include="RT107.aspx.designer.cs">
       <DependentUpon>RT107.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT201.aspx.cs">
@@ -1617,27 +1880,6 @@
     <Compile Include="SystemAttachmentsUploader.ashx.cs">
       <DependentUpon>SystemAttachmentsUploader.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Cases.aspx.cs">
-      <DependentUpon>Cases.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Cases.aspx.designer.cs">
-      <DependentUpon>Cases.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CertificateLevels.aspx.cs">
-      <DependentUpon>CertificateLevels.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CertificateLevels.aspx.designer.cs">
-      <DependentUpon>CertificateLevels.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CheckTypes.aspx.cs">
-      <DependentUpon>CheckTypes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CheckTypes.aspx.designer.cs">
-      <DependentUpon>CheckTypes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Currencies.aspx.cs">
       <DependentUpon>Currencies.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1693,13 +1935,6 @@
     </Compile>
     <Compile Include="DocumentTypes.aspx.designer.cs">
       <DependentUpon>DocumentTypes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeeComplaints.aspx.cs">
-      <DependentUpon>EmployeeComplaints.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EmployeeComplaints.aspx.designer.cs">
-      <DependentUpon>EmployeeComplaints.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeePages\Contacts.aspx.cs">
       <DependentUpon>Contacts.aspx</DependentUpon>
@@ -1778,13 +2013,6 @@
     <Compile Include="EntitlementDeductions.aspx.designer.cs">
       <DependentUpon>EntitlementDeductions.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ForgotAccount.aspx.cs">
-      <DependentUpon>ForgotAccount.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ForgotAccount.aspx.designer.cs">
-      <DependentUpon>ForgotAccount.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1843,13 +2071,6 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MediaCategories.aspx.cs">
-      <DependentUpon>MediaCategories.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MediaCategories.aspx.designer.cs">
-      <DependentUpon>MediaCategories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Nationalities.aspx.cs">
       <DependentUpon>Nationalities.aspx</DependentUpon>
@@ -1923,13 +2144,6 @@
     <Compile Include="SystemDefaults.aspx.designer.cs">
       <DependentUpon>SystemDefaults.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tasks.aspx.cs">
-      <DependentUpon>Tasks.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Tasks.aspx.designer.cs">
-      <DependentUpon>Tasks.aspx</DependentUpon>
-    </Compile>
     <Compile Include="TaskTypes.aspx.cs">
       <DependentUpon>TaskTypes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1969,9 +2183,17 @@
     <Compile Include="Utilities\DashboardAccessDenied.cs" />
     <Compile Include="Utilities\LocalisationManager.cs" />
     <Compile Include="Utilities\ModulesFileWrapper.cs" />
+    <Compile Include="Utilities\PageLookup.cs" />
     <Compile Include="Utilities\TagGroup.cs" />
     <Compile Include="Utilities\TimeSlot.cs" />
     <Compile Include="Utilities\TreeBuilder.cs" />
+    <Compile Include="LeaveSchedules.aspx.cs">
+      <DependentUpon>LeaveSchedules.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveSchedules.aspx.designer.cs">
+      <DependentUpon>LeaveSchedules.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VacationSchedules.aspx.cs">
       <DependentUpon>VacationSchedules.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1993,28 +2215,6 @@
     <Compile Include="WorkingCalendars.aspx.designer.cs">
       <DependentUpon>WorkingCalendars.aspx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
-      <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
-      <Name>AionHR.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AionHR.Model\AionHR.Model.csproj">
-      <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
-      <Name>AionHR.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AionHR.Repository.WebService\AionHR.Repository.WebService.csproj">
-      <Project>{9b6559d9-0fdf-4f9b-8ce0-0df9860e4057}</Project>
-      <Name>AionHR.Repository.WebService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
-      <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
-      <Name>AionHR.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Reports\Reports.csproj">
-      <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
-      <Name>Reports</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\ARLogin.aspx.resx" />
@@ -2114,12 +2314,6 @@
     <Content Include="App_LocalResources\Divisions.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\AllowanceTypes.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\CertificateLevels.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_LocalResources\TrainingTypes.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
@@ -2130,12 +2324,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\DocumentTypes.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\AssetCategories.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\BonusTypes.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\SalaryChangeReasons.aspx.resx" />
@@ -2158,9 +2346,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\LeaveCalendar.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\Cases.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="EmployeePages\App_LocalResources\Notes.aspx.resx">
@@ -2194,21 +2379,10 @@
     <Content Include="EmployeePages\App_LocalResources\Legals.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\CheckTypes.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\AssetAllowances.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_LocalResources\EmployeesOrgChart.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="EmployeePages\App_LocalResources\Contacts.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\EmployeeComplaints.aspx.resx">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\resetPw.aspx.resx" />
@@ -2229,9 +2403,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\Folders.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\CompanyNews.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\LoanTypes.aspx.resx" />
@@ -2258,19 +2429,14 @@
     </Content>
     <Content Include="App_LocalResources\CompanyDocumentTypes.aspx.resx" />
     <Content Include="App_LocalResources\CompanyRightToWorks.aspx.resx" />
-    <Content Include="App_LocalResources\Tasks.aspx.resx" />
     <Content Include="App_LocalResources\TaskTypes.aspx.resx" />
     <Content Include="App_LocalResources\CompanyRightToWorks.aspx.ar.resx" />
     <Content Include="App_LocalResources\SystemDefaults.aspx.ar.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_LocalResources\PayrollDefaults.aspx.resx" />
-    <Content Include="App_LocalResources\PayrollDefaults.aspx.ar.resx" />
     <Content Include="App_LocalResources\FiscalYears.aspx.resx" />
     <Content Include="App_LocalResources\PayrollGeneration.aspx.resx" />
-    <Content Include="App_LocalResources\LoanOverrides.aspx.resx" />
     <Content Include="App_LocalResources\States.aspx.resx" />
-    <Content Include="App_LocalResources\LoanOverrides.aspx.ar.resx" />
     <Content Include="App_LocalResources\FiscalYears.aspx.ar.resx" />
     <Content Include="App_LocalResources\Branches.aspx.ar.resx" />
     <Content Include="App_LocalResources\States.aspx.ar.resx" />
@@ -2300,7 +2466,6 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>AccessControl.designer.cs</LastGenOutput>
     </Content>
-    <Content Include="App_LocalResources\Tasks.aspx.ar.resx" />
     <Content Include="App_GlobalResources\AccessControl.ar.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>AccessControl.ar.designer.cs</LastGenOutput>
@@ -2314,9 +2479,6 @@
     <Content Include="App_LocalResources\LoanRequests.aspx.ar.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_LocalResources\Cases.aspx.ar.resx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="App_LocalResources\LeaveRequests.aspx.ar.resx" />
     <Content Include="App_LocalResources\WorkingCalendars.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportEmployees.aspx.resx" />
@@ -2326,6 +2488,7 @@
     <Content Include="App_GlobalResources\Errors.ar.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Errors.ar.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="App_GlobalResources\Reports.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
@@ -2341,16 +2504,12 @@
     </Content>
     <Content Include="App_LocalResources\LeaveTypes.aspx.ar.resx" />
     <Content Include="App_LocalResources\LoanTypes.aspx.ar.resx" />
-    <Content Include="App_LocalResources\OvertimeSettings.aspx.resx" />
-    <Content Include="App_LocalResources\OvertimeSettings.aspx.ar.resx" />
     <Content Include="App_LocalResources\Absent.aspx.resx" />
     <Content Include="App_LocalResources\Absent.aspx.ar.resx" />
     <Content Include="App_LocalResources\Employees.aspx.ar.resx" />
     <Content Include="App_LocalResources\TimeAttendanceView.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportOvertimeSettings.aspx.resx" />
     <Content Include="App_LocalResources\ImportOvertimeSettings.aspx.ar.resx" />
-    <Content Include="App_LocalResources\PayrollTimeSchedule.aspx.resx" />
-    <Content Include="App_LocalResources\PayrollTimeSchedule.aspx.ar.resx" />
     <Content Include="App_LocalResources\Positions.aspx.ar.resx" />
     <Content Include="EmployeePages\App_LocalResources\Hire.aspx.ar.resx" />
     <Content Include="EmployeePages\App_LocalResources\EmployeeCalendars.aspx.ar.resx" />
@@ -2358,7 +2517,6 @@
     <Content Include="App_LocalResources\EntitlementDeductions.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportSalaries.aspx.resx" />
     <Content Include="App_LocalResources\ImportSalaries.aspx.ar.resx" />
-    <Content Include="App_LocalResources\BonusTypes.aspx.ar.resx" />
     <Content Include="App_LocalResources\SocialSecuritySchedules.aspx.resx" />
     <Content Include="App_LocalResources\SocialSecuritySchedules.aspx.ar.resx" />
     <Content Include="App_LocalResources\Nationalities.aspx.ar.resx" />
@@ -2422,8 +2580,8 @@
     <Content Include="Reports\App_LocalResources\RT601.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT601.aspx.ar.resx" />
     <Content Include="Reports\Controls\App_LocalResources\LeaveStatusFilter.ascx.resx" />
-    <Content Include="Reports\App_LocalResources\RT107.aspx.resx" />
-    <Content Include="Reports\App_LocalResources\RT107.aspx.ar.resx" />
+    <Content Include="App_LocalResources\RT107.aspx.resx" />
+    <Content Include="App_LocalResources\RT107.aspx.ar.resx" />
     <Content Include="Reports\Controls\App_LocalResources\WeekPicker.ascx.ar.resx" />
     <Content Include="Reports\Controls\App_LocalResources\WeekPicker.ascx.resx" />
     <Content Include="Reports\App_LocalResources\RT303.aspx.resx" />
@@ -2455,18 +2613,10 @@
     <Content Include="App_LocalResources\DocumentTypes.aspx.ar.resx" />
     <Content Include="App_LocalResources\EmployeeCals.aspx.resx" />
     <Content Include="App_LocalResources\EmployeeCals.aspx.ar.resx" />
-    <Content Include="Reports\App_LocalResources\RT306.aspx.ar.resx" />
-    <Content Include="Reports\App_LocalResources\RT306.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT306Old.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT306Old.aspx.resx" />
     <Content Include="App_LocalResources\NationalQuotas.aspx.resx" />
     <Content Include="App_LocalResources\NationalQuotas.aspx.ar.resx" />
-    <Content Include="App_LocalResources\AssetAllowanceSelfServices.aspx.resx" />
-    <Content Include="App_LocalResources\AssetAllowanceSelfServices.aspx.ar.resx" />
-    <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.ar.resx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="App_LocalResources\DailySchedule.aspx.ar.resx" />
     <Content Include="App_LocalResources\DailySchedule.aspx.resx" />
     <Content Include="App_LocalResources\SynchronizeAttendanceDays.aspx.resx" />
@@ -2478,8 +2628,6 @@
     <Content Include="App_LocalResources\ImportEmploymentStatus.aspx.resx" />
     <Content Include="App_LocalResources\ImportPunches.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportPunches.aspx.resx" />
-    <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.ar.resx" />
-    <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.resx" />
     <Content Include="App_LocalResources\Folders.aspx.ar.resx" />
     <Content Include="App_LocalResources\Benefits.aspx.resx" />
     <Content Include="App_LocalResources\Benefits.aspx.ar.resx" />
@@ -2502,18 +2650,22 @@
     <Content Include="App_LocalResources\ImportPayCodes.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportPayCodes.aspx.resx" />
     <Content Include="App_LocalResources\BiometricDevices.aspx.ar.resx" />
-    <Content Include="App_LocalResources\DeleteBranchAttendance.aspx.ar.resx" />
-    <Content Include="App_LocalResources\DeleteBranchAttendance.aspx.resx" />
     <Content Include="App_LocalResources\PenaltyTypes.aspx.ar.resx" />
     <Content Include="App_LocalResources\PenaltyTypes.aspx.resx" />
     <Content Include="App_LocalResources\TimeCodes.aspx.ar.resx" />
     <Content Include="App_LocalResources\TimeCodes.aspx.resx" />
     <Content Include="App_LocalResources\Departments.aspx.ar.resx" />
-    <Content Include="App_LocalResources\EmployeePenalties.aspx.resx" />
-    <Content Include="App_LocalResources\EmployeePenalties.aspx.ar.resx" />
-    <Content Include="Reports\App_LocalResources\RT307.aspx.ar.resx" />
-    <Content Include="Reports\App_LocalResources\RT307.aspx.resx" />
-    <Content Include="App_LocalResources\AdminTemplates.aspx.ar.resx" />
+    <Content Include="App_LocalResources\EmployeePenalties.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\EmployeePenalties.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Reports\App_LocalResources\RT306.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT306.aspx.resx" />
+    <Content Include="App_LocalResources\AdminTemplates.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_LocalResources\AdminTemplates.aspx.resx" />
     <Content Include="App_LocalResources\DailyScheduleSelfServices.aspx.ar.resx" />
     <Content Include="App_LocalResources\DailyScheduleSelfServices.aspx.resx" />
@@ -2524,11 +2676,243 @@
     <Content Include="App_LocalResources\TimeAttendanceApprovals.aspx.ar.resx" />
     <Content Include="App_LocalResources\TimeAttendanceApprovals.aspx.resx" />
     <Content Include="App_LocalResources\Currencies.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BusinessPartnerCategories.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BusinessPartnerCategories.aspx.resx" />
+    <Content Include="App_LocalResources\BusinessPartneres.aspx.resx" />
+    <Content Include="App_LocalResources\BusinessPartneres.aspx.ar.resx" />
+    <Content Include="App_LocalResources\DocumentCategories.aspx.resx" />
+    <Content Include="App_LocalResources\DocumentCategories.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AdminDocuments.aspx.resx" />
+    <Content Include="App_LocalResources\AdminDocuments.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT307.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT307.aspx.ar.resx" />
+    <Content Include="App_LocalResources\PayrollGenerationSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\PayrollGenerationSelfServices.aspx.resx" />
+    <Content Include="App_GlobalResources\ModuleIDs.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ModuleIDs.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_LocalResources\ProcessNotifications.aspx.resx" />
+    <Content Include="App_LocalResources\ProcessNotifications.aspx.ar.resx" />
+    <Content Include="App_LocalResources\LeaveSchedules.aspx.ar.resx" />
+    <Content Include="App_LocalResources\LeaveSchedules.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\SelfServiceResetPasswords.aspx.ar.resx" />
+    <Content Include="App_LocalResources\SelfServiceResetPasswords.aspx.resx" />
+    <Content Include="App_LocalResources\TimeApprovalsSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TimeApprovalsSelfServices.aspx.resx" />
+    <Content Include="App_LocalResources\AssetManagementSuppliers.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AssetManagementSuppliers.aspx.resx" />
+    <Content Include="App_LocalResources\AssetManagementCategories.aspx.resx" />
+    <Content Include="App_LocalResources\AssetManagementCategories.aspx.ar.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\SupplierFilter.ascx.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\SupplierFilter.ascx.ar.resx" />
+    <Content Include="App_LocalResources\AssetManagementAssets.aspx.resx" />
+    <Content Include="App_LocalResources\AssetManagementAssets.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AssetManagementPurchaseOrders.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AssetManagementPurchaseOrders.aspx.resx" />
+    <Content Include="App_LocalResources\AssetManagementOnboardings.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AssetManagementOnboardings.aspx.resx" />
+    <Content Include="App_LocalResources\FRLogin.aspx.fr.resx" />
+    <Content Include="App_LocalResources\FRLogin.aspx.resx" />
+    <Content Include="App_GlobalResources\Errors.fr.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Errors.fr.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_LocalResources\Absent.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AdminDocuments.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AdminTemplates.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Approvals.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetManagementAssets.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetManagementCategories.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetManagementOnboardings.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetManagementPurchaseOrders.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetManagementSuppliers.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Banks.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BenefitAcquisitions.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Benefits.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BenefitsSchedules.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BiometricDevices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Branches.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BusinessPartnerCategories.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BusinessPartneres.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CompanyDocumentTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CompanyFiles.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CompanyRightToWorks.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Currencies.aspx.fr.resx" />
+    <Content Include="App_LocalResources\DailySchedule.aspx.fr.resx" />
+    <Content Include="App_LocalResources\DailyScheduleSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Dashboard.aspx.fr.resx" />
+    <Content Include="App_LocalResources\DaysAvailability.aspx.fr.resx" />
+    <Content Include="App_LocalResources\DayTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Departments.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Divisions.aspx.fr.resx" />
+    <Content Include="App_LocalResources\DocumentCategories.aspx.fr.resx" />
+    <Content Include="App_LocalResources\DocumentTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\EmployeeCals.aspx.fr.resx" />
+    <Content Include="App_LocalResources\EmployeePenalties.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Employees.aspx.fr.resx" />
+    <Content Include="App_LocalResources\EmployeesOrgChart.aspx.fr.resx" />
+    <Content Include="App_LocalResources\EntitlementDeductions.aspx.fr.resx" />
+    <Content Include="App_LocalResources\FinalSettlements.aspx.fr.resx" />
+    <Content Include="App_LocalResources\FiscalYears.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Folders.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ForgotPassword.aspx.fr.resx" />
+    <Content Include="App_LocalResources\GenerateAttendanceDays.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Geofences.aspx.fr.resx" />
+    <Content Include="App_LocalResources\GovernmentOrganisations.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportAttendance.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportDepartments.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportEmployeeNotes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportEmployees.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportEmploymentStatus.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportJobInfo.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportLeaves.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportLoans.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportOvertimeSettings.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportPayCodes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportPunches.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportRTW.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportSalaries.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LeaveCalendar.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LeavePayments.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LeaveRequests.aspx.fr.resx" />
+    <Content Include="App_LocalResources\leaveRequestsSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LeaveSchedules.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LeaveTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Letters.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LettersSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LetterTemplates.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LoanRequests.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LoanSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LoanTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\MainDashboard.aspx.fr.resx" />
+    <Content Include="App_LocalResources\MediaCategories.aspx.fr.resx" />
+    <Content Include="App_LocalResources\MediaItems.aspx.fr.resx" />
+    <Content Include="App_LocalResources\MyInfo.aspx.fr.resx" />
+    <Content Include="App_LocalResources\MyInfos.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Nationalities.aspx.fr.resx" />
+    <Content Include="App_LocalResources\NationalQuotas.aspx.fr.resx" />
+    <Content Include="App_LocalResources\NoticePeriods.aspx.fr.resx" />
+    <Content Include="App_LocalResources\OrganizationChart.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Overtime_Lateness.aspx.fr.resx" />
+    <Content Include="App_LocalResources\PayCodes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\PayrollGeneration.aspx.fr.resx" />
+    <Content Include="App_LocalResources\PayrollGenerationSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\PayrollIndemnities.aspx.fr.resx" />
+    <Content Include="App_LocalResources\PenaltyTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Positions.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ProcessNotifications.aspx.fr.resx" />
+    <Content Include="App_LocalResources\RelationshipTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\resetPw.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Routers.aspx.fr.resx" />
+    <Content Include="App_LocalResources\RT107.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SalaryChangeReasons.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Schedules.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SecurityGroups.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SelfServiceResetPasswords.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SocialSecuritySchedules.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Sponsors.aspx.fr.resx" />
+    <Content Include="App_LocalResources\States.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Status.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SynchronizeAttendanceDays.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SystemAlerts.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SystemDefaults.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TerminationReasons.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Test.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TimeApprovalsSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceApprovals.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceView.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceViewSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TimeCodes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TimeVariationSelfServices.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TrainingTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\Users.aspx.fr.resx" />
+    <Content Include="App_LocalResources\VacationSchedules.aspx.fr.resx" />
+    <Content Include="App_LocalResources\WorkingCalendars.aspx.fr.resx" />
+    <Content Include="App_GlobalResources\Common.fr.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Common.fr.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_LocalResources\AssetManagementLoans.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AssetManagementLoans.aspx.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\ActiveStatusFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\BranchFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\DateFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\DateRangeFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\DepartmentBranchFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\EmployeeFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\JobInfoFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\LeaveStatusFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\LeaveTypeFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\LoanStatusFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\PaymentMethodFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\PayRefFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\SalaryChangeReasonFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\SupplierFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\UserComboFilter.ascx.fr.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\WeekPicker.ascx.fr.resx" />
+    <Content Include="App_LocalResources\AdminDocNav.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AdminDocNav.aspx.resx" />
+    <Content Include="App_LocalResources\AdminDocNav.aspx.fr.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Documents.aspx.fr.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Legals.aspx.fr.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Hire.aspx.fr.resx" />
+    <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.fr.resx" />
+    <Content Include="App_GlobalResources\StaticComboBox.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>StaticComboBox.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Common.de-DE.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Common.de-DE.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_LocalResources\DELogin.aspx.de-DE.resx" />
+    <Content Include="App_LocalResources\DELogin.aspx.resx" />
+    <Content Include="App_LocalResources\ARLogin.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AssetLoans.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AssetLoans.aspx.resx" />
+    <Content Include="App_LocalResources\AssetLoans.aspx.ar.resx" />
+    <Content Include="App_GlobalResources\OldCommon.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>OldCommon.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_LocalResources\AdminDepts.aspx.resx" />
+    <Content Include="App_LocalResources\AdminDepts.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AdminDepts.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BonusTypes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BonusTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BonusTypes.aspx.resx" />
+    <Content Include="App_LocalResources\CertificateLevels.aspx.ar.resx" />
+    <Content Include="App_LocalResources\CertificateLevels.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CertificateLevels.aspx.resx" />
+    <Content Include="App_LocalResources\CheckTypes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\CheckTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CheckTypes.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RT201.aspx1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
+      <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
+      <Name>AionHR.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AionHR.Model\AionHR.Model.csproj">
+      <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
+      <Name>AionHR.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AionHR.Repository.WebService\AionHR.Repository.WebService.csproj">
+      <Project>{9b6559d9-0fdf-4f9b-8ce0-0df9860e4057}</Project>
+      <Name>AionHR.Repository.WebService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
+      <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
+      <Name>AionHR.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

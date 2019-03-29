@@ -27,7 +27,8 @@ using System.Threading;
 using Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
-
+using AionHR.Model.Payroll;
+using Reports.GroupedPayRollCross;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -39,23 +40,48 @@ namespace AionHR.Web.UI.Forms.Reports
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -82,6 +108,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         Viewport1.Hidden = true;
                         return;
                     }
+                    fillPayId();
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
 
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
@@ -166,11 +193,11 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = new ReportCompositeRequest();
 
             req.Size = "1000";
-            req.StartAt = "1";
+            req.StartAt = "0";
 
             req.Add(paymentMethodCombo.GetPaymentMethod());
             req.Add(jobInfo1.GetJobInfo());
-            req.Add(GetPayRef());
+            req.Add(GetPayId());
 
 
 
@@ -195,7 +222,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.IncludeIsInactive = 2;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -213,85 +240,103 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ListResponse<AionHR.Model.Reports.RT503> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT503>(req);
             if (!resp.Success)
-            {
-            
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
-                    return;
-                
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+            //resp.Items is the list of RT501 objects  that you can used it as data source for reprot  
 
-            var d = resp.Items.GroupBy(x => x.departmentName);
-            DepartmentPayrollLineCollection lines = new DepartmentPayrollLineCollection();
-            HashSet<DepartmentEntitlementDeduction> ens = new HashSet<DepartmentEntitlementDeduction>(new DepartmentEntitlementDeductionComparer());
-            HashSet<DepartmentEntitlementDeduction> des = new HashSet<DepartmentEntitlementDeduction>(new DepartmentEntitlementDeductionComparer());
-            resp.Items.ForEach(x =>
-            {
-                DepartmentEntitlementDeduction DE = new DepartmentEntitlementDeduction();
 
-                if (x.edType == 1)
-                {
+            //Filters parameters as string 
 
-                    try
-                    {
-                        DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd();
-                        DE.amount = 0; DE.isTaxable = x.isTaxable;
-                    }
-                    catch { DE.name = x.edName; DE.amount = 0; DE.isTaxable = x.isTaxable; }
-                    ens.Add(DE);
-                }
-                else
-                {
 
-                    try
-                    {
-                        DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd();
-                        DE.amount = 0;
-                    }
-                    catch { DE.name = x.edName; DE.amount = 0; }
-                    des.Add(DE);
-                }
-            });
-
-            foreach (var item in d)
-            {
-
-                var list = item.ToList();
-                list.ForEach(y =>
-                {
-                    try
-                    {
-                        y.edName = GetLocalResourceObject(y.edName.Trim()).ToString().TrimEnd();
-
-                    }
-                    catch { y.edName = y.edName; }
-                });
-                DepartmentPayrollLine line = new DepartmentPayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("net").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString(), _systemService.SessionHelper.GetDateformat(), GetLocalResourceObject("netSalaryString").ToString());
-                lines.Add(line);
-            }
-
-            DepartmentPayrollCollection s = new DepartmentPayrollCollection();
-            if (lines.Count > 0)
-            {
-
-                DepartmentPayrollSet p = new DepartmentPayrollSet(GetLocalResourceObject("Entitlements").ToString(), GetLocalResourceObject("Taxable").ToString(), GetLocalResourceObject("Deductions").ToString());
-                //p.PayPeriodString = resp.Items[0].startDate.ToString(_systemService.SessionHelper.GetDateformat()) + " - " + resp.Items[0].endDate.ToString(_systemService.SessionHelper.GetDateformat());
-                //p.PayDate = GetLocalResourceObject("PaidAt") + " " + resp.Items[0].payDate.ToString(_systemService.SessionHelper.GetDateformat());
-                p.Names = (lines[0] as DepartmentPayrollLine).Entitlements;
-                p.DIndex = ens.Count;
-                p.taxableIndex = ens.Count(x => x.isTaxable);
-                p.Payrolls = lines;
-                s.Add(p);
-            }
-
-            DepartmentPayroll1 h = new DepartmentPayroll1();
-
-            h.DataSource = s;
-            h.Parameters["columnCount"].Value = ens.Count + des.Count;
-            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             string user = _systemService.SessionHelper.GetCurrentUser();
-            h.Parameters["User"].Value = user;
+            string paymentMethod = paymentMethodCombo.GetPaymentMethodString();
+            string payRef = payId.SelectedItem.Text.ToString();
+            string department = jobInfo1.GetDepartment();
+            string position = jobInfo1.GetPosition();
+            // this variable for check if the user request arabic report or english   true mean arabic reprot
+            bool isArabic = _systemService.SessionHelper.CheckIfArabicSession();
+            //those two lines code for fill the viewer with your report 
+            //ASPxWebDocumentViewer1.DataBind();
+            //ASPxWebDocumentViewer1.OpenReport();
+
+
+
+            //Old work
+            //var d = resp.Items.GroupBy(x => x.departmentName);
+            //DepartmentPayrollLineCollection lines = new DepartmentPayrollLineCollection();
+            //HashSet<DepartmentEntitlementDeduction> ens = new HashSet<DepartmentEntitlementDeduction>(new DepartmentEntitlementDeductionComparer());
+            //HashSet<DepartmentEntitlementDeduction> des = new HashSet<DepartmentEntitlementDeduction>(new DepartmentEntitlementDeductionComparer());
+            //resp.Items.ForEach(x =>
+            //{
+            //    DepartmentEntitlementDeduction DE = new DepartmentEntitlementDeduction();
+
+            //    if (x.edType == 1)
+            //    {
+
+            //        try
+            //        {
+            //            DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd();
+            //            DE.amount = 0; DE.isTaxable = x.isTaxable;
+            //        }
+            //        catch { DE.name = x.edName; DE.amount = 0; DE.isTaxable = x.isTaxable; }
+            //        ens.Add(DE);
+            //    }
+            //    else
+            //    {
+
+            //        try
+            //        {
+            //            DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd();
+            //            DE.amount = 0;
+            //        }
+            //        catch { DE.name = x.edName; DE.amount = 0; }
+            //        des.Add(DE);
+            //    }
+            //});
+
+            //foreach (var item in d)
+            //{
+
+            //    var list = item.ToList();
+            //    list.ForEach(y =>
+            //    {
+            //        try
+            //        {
+            //            y.edName = GetLocalResourceObject(y.edName.Trim()).ToString().TrimEnd();
+
+            //        }
+            //        catch { y.edName = y.edName; }
+            //    });
+            //    DepartmentPayrollLine line = new DepartmentPayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("net").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString(), _systemService.SessionHelper.GetDateformat(), GetLocalResourceObject("netSalaryString").ToString());
+            //    lines.Add(line);
+            //}
+
+            //DepartmentPayrollCollection s = new DepartmentPayrollCollection();
+            //if (lines.Count > 0)
+            //{
+
+            //    DepartmentPayrollSet p = new DepartmentPayrollSet(GetLocalResourceObject("Entitlements").ToString(), GetLocalResourceObject("Taxable").ToString(), GetLocalResourceObject("Deductions").ToString());
+            //    //p.PayPeriodString = resp.Items[0].startDate.ToString(_systemService.SessionHelper.GetDateformat()) + " - " + resp.Items[0].endDate.ToString(_systemService.SessionHelper.GetDateformat());
+            //    //p.PayDate = GetLocalResourceObject("PaidAt") + " " + resp.Items[0].payDate.ToString(_systemService.SessionHelper.GetDateformat());
+            //    p.Names = (lines[0] as DepartmentPayrollLine).Entitlements;
+            //    p.DIndex = ens.Count;
+            //    p.taxableIndex = ens.Count(x => x.isTaxable);
+            //    p.Payrolls = lines;
+            //    s.Add(p);
+            //}
+            int groupById = 1;//Change GroupType According to groupby lookup
+            var grpBy = Convert.ToInt32((groupBy.Value == null || groupBy.Value.ToString().Length == 0) ? "0" : groupBy.Value.ToString());
+            if (grpBy != 0)
+            {
+                groupById = Convert.ToInt32(grpBy);
+            }
+            GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic, (GroupedPayrollCrossReport.GroupType)groupById);
+            h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
+            //h.DataSource = s;
+            //h.Parameters["columnCount"].Value = ens.Count + des.Count;
+            //h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            //h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            //string user = _systemService.SessionHelper.GetCurrentUser();
+            //h.Parameters["User"].Value = user;
             if (resp.Items.Count > 0)
             {
 
@@ -306,11 +351,11 @@ namespace AionHR.Web.UI.Forms.Reports
                 else
                     h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
 
-                if (req.Parameters["_payRef"] != "0")
-                    h.Parameters["Ref"].Value = req.Parameters["_payRef"];
+                if (req.Parameters["_payId"] != "0")
+                    h.Parameters["Ref"].Value = payRef;
                 else
                     h.Parameters["Ref"].Value = GetGlobalResourceObject("Common", "All");
-
+                h.Parameters["User"].Value = user;
             }
 
             h.CreateDocument();
@@ -347,24 +392,47 @@ namespace AionHR.Web.UI.Forms.Reports
             //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport(true);
         }
-        private PayRefParameterSet GetPayRef()
+        private PayIdParameterSet GetPayId()
         {
-            PayRefParameterSet p = new PayRefParameterSet();
+            PayIdParameterSet p = new PayIdParameterSet();
 
 
-            if (!string.IsNullOrEmpty(payRef.Text) && payRef.Value.ToString() != "0")
+            if (!string.IsNullOrEmpty(payId.Value.ToString()))
             {
-                p.payRef = payRef.Value.ToString(); ;
+                p.payId = payId.Value.ToString(); ;
 
 
 
             }
             else
             {
-                p.payRef = "0";
+                p.payId = "0";
 
             }
             return p;
+        }
+        private void fillPayId()
+        {
+            PayrollListRequest req = new PayrollListRequest();
+            req.Year = "0";
+            req.PeriodType = "5";
+            req.Status = "0";
+            req.Size = "30";
+            req.StartAt = "0";
+            req.Filter = "";
+
+            ListResponse<GenerationHeader> resp = _payrollService.ChildGetAll<GenerationHeader>(req);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            string dateFormat = _systemService.SessionHelper.GetDateformat();
+            resp.Items.ForEach(x => x.payRefWithDateRange = x.payRef + " ( " + x.startDate.ToString(dateFormat) + " - " + x.endDate.ToString(dateFormat) + " )");
+            payIdStore.DataSource = resp.Items;
+            payIdStore.DataBind();
+
+
         }
 
 

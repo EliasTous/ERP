@@ -272,12 +272,12 @@
                             </ext:Column>
 
                             <ext:Column ID="ColCheckIn" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCheckIn%>" DataIndex="checkIn" Flex="2" Hideable="false">
-                                <Renderer Handler=" var olA = ''; if(record.data['OL_A']==null) return record.data['checkIn'];if(record.data['OL_A']=='00:00') olA=''; else olA= record.data['OL_A']; var cssClass='';if(record.data['OL_A'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkIn'] + '<br/>' + olA + '</div>'; return result;" />
+                                <Renderer Handler=" var olA = '';var checkIn=record.data['checkIn']==null?'':record.data['checkIn']; if(record.data['OL_A']==null) return checkIn;if(record.data['OL_A']=='00:00'){ olA='';} else olA= record.data['OL_A']; var cssClass='';if(record.data['OL_A'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + checkIn + '<br/>' + olA + '</div>'; return result;" />
                                 <SummaryRenderer Handler="return '<hr/>';" />
                             </ext:Column>
 
                             <ext:Column ID="ColCheckOut" Sortable="true" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCheckOut%>" DataIndex="checkOut" Flex="2" Hideable="false">
-                                <Renderer Handler="var olD = '';if(record.data['OL_D']==null) return record.data['checkOut'] ; if(record.data['OL_D']=='00:00') olD=''; else olD= record.data['OL_D']; var cssClass='';if(record.data['OL_D'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkOut'] + '<br/>' + olD + '</div>'; return result;" />
+                                <Renderer Handler="var olD = '';var checkOut=record.data['checkOut']==null?'':record.data['checkOut'];if(record.data['OL_D']==null) return checkOut ; if(record.data['OL_D']=='00:00') olD=''; else olD= record.data['OL_D']; var cssClass='';if(record.data['OL_D'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + checkOut + '<br/>' + olD + '</div>'; return result;" />
                                 <SummaryRenderer Handler="return '<hr/>';" />
                             </ext:Column>
                            <%--  <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDuration%>" DataIndex="duration" Flex="1" Hideable="false" />--%>

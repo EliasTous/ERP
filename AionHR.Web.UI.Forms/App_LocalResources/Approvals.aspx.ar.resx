@@ -144,9 +144,6 @@
   <data name="FieldName" xml:space="preserve">
     <value>الاسم</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>الرقم</value>
-  </data>
   <data name="FieldReference" xml:space="preserve">
     <value>الرمز</value>
   </data>
@@ -185,9 +182,6 @@
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>أنواع الإجازات</value>
-  </data>
-  <data name="ApprovelDepartments" xml:space="preserve">
-    <value>الاقسام </value>
   </data>
   <data name="ApprovelDepartmentsWindowTitle" xml:space="preserve">
     <value>الاقسام</value>

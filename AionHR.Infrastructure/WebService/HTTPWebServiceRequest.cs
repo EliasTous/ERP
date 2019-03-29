@@ -105,11 +105,12 @@ namespace AionHR.Infrastructure.WebService
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public T GetAsync<T>()
-
+                
         {
             try
             {
-                WebRequest req = HttpWebRequest.Create(RequestUrl);
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(RequestUrl);
+                req.AllowAutoRedirect = false;
                 req.Method = MethodType;
 
 
@@ -194,7 +195,8 @@ namespace AionHR.Infrastructure.WebService
 
                 //Defining the unique boundary
                 string boundary = "----WebKitFormBoundary" + DateTime.Now.Ticks.ToString("x");
-                WebRequest req = HttpWebRequest.Create(RequestUrl);
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(RequestUrl);
+                req.AllowAutoRedirect = false;
                 if (Headers.Count > 0)
                     BuildHeaders(req);
                 req.Method = MethodType;//Post
@@ -269,7 +271,8 @@ namespace AionHR.Infrastructure.WebService
 
                 //Defining the unique boundary
                 string boundary = "----WebKitFormBoundary" + DateTime.Now.Ticks.ToString("x");
-                WebRequest req = HttpWebRequest.Create(RequestUrl);
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(RequestUrl);
+                req.AllowAutoRedirect = false;
                 if (Headers.Count > 0)
                     BuildHeaders(req);
                 req.Method = MethodType;//Post
@@ -368,14 +371,15 @@ namespace AionHR.Infrastructure.WebService
 
                 //Defining the unique boundary
                 string boundary = "----WebKitFormBoundary" + DateTime.Now.Ticks.ToString("x");
-                WebRequest req = HttpWebRequest.Create(RequestUrl);
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(RequestUrl);
+                req.AllowAutoRedirect = false;
+
                 if (Headers.Count > 0)
                     BuildHeaders(req);
                 req.Method = MethodType;//Post
                 req.ContentType = "multipart/form-data; boundary=" + boundary;
                 Stream stream = req.GetRequestStream();
-
-
+            
                 //Body need to be extended for each part of the request 
                 // Add header for JSON part
 
@@ -428,12 +432,14 @@ namespace AionHR.Infrastructure.WebService
                 stream.Write(trailer, 0, trailer.Length);
                 stream.Close();
 
-
+                HttpWebResponse resp = (HttpWebResponse)req.GetResponse(); // *** [2] ***
+                stream = resp.GetResponseStream();
+                resp.Close();
                 // Do the post and get the response.
 
-                var r = req.GetResponse();
-                Stream s = r.GetResponseStream();
-                StreamReader reader = new StreamReader(s, true);
+                //var r = req.GetResponse();
+                //Stream s = r.GetResponseStream();
+                StreamReader reader = new StreamReader(stream, true);
                 string x = reader.ReadToEnd();
 
                 if (Resolver != null)

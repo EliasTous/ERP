@@ -72,6 +72,12 @@
                                                 <uc:employeeCombo runat="server" ID="employeeCombo1" />
                                             </Content>
                                         </ext:Container>
+                                   <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                           
+                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableBranch="true" />
+                                            </Content>
+                                        </ext:Container>
                               
                                 
                                 <ext:Container runat="server" Layout="FitLayout">

@@ -41,6 +41,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(LetterTemplate), "setLT");
             ChildAddOrUpdateLookup.Add(typeof(Letter), "setLE");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeSelfService), "setSS");
+            ChildAddOrUpdateLookup.Add(typeof(ResetPassword), "resetPW");
 
 
 
@@ -57,6 +58,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(GovernmentOrganisation), "getGO");
             ChildGetLookup.Add(typeof(LetterTemplate), "getLT");
             ChildGetLookup.Add(typeof(Letter), "getLE");
+
+            ChildGetLookup.Add(typeof(Attachement), "getAT");
+            ChildGetLookup.Add(typeof(KeyId), "getAK");
             ChildGetLookup.Add(typeof(ApplyLetter), "applyLE");
         
             ChildGetLookup.Add(typeof(UserInfoByEmployeeId), "getUS3");
@@ -112,6 +116,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(AttendancePeriod), "qryAP");
             ChildGetAllLookup.Add(typeof(RetirementAge), "qryRE");
             ChildGetAllLookup.Add(typeof(TermEndDate), "qryTE");
+            ChildGetAllLookup.Add(typeof(XMLDictionary), "qryXML");
 
 
             ChildAddOrUpdateLookup.Add(typeof(KeyValuePair<string, string>), "setDE");
@@ -178,6 +183,20 @@ namespace AionHR.Repository.WebService.Repositories
             return request.PostAsyncWithMultipleAttachments<Attachement>(at, fileNames, filesData);
         }
 
-
+        public PostWebServiceResponse UploadCompanyLogo(Attachement at, string fileName, byte[] fileData, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null)
+        {
+            var request = new HTTPWebServiceRequest();
+            request.MethodType = "POST";
+            request.URL = ServiceURL + "setAT";
+            if (Headers != null)
+                request.Headers = Headers;
+            if (QueryStringParams != null)
+                request.QueryStringParams = QueryStringParams;
+            List<string> filenames = new List<string>();
+            filenames.Add(fileName);
+            List<byte[]> filesData = new List<byte[]>();
+            filesData.Add(fileData);
+            return request.PostAsyncWithMultipleAttachments<Attachement>(at, filenames, filesData);
+        }
     }
 }

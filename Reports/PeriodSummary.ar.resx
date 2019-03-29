@@ -117,23 +117,59 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Branch.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="DateFrom.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="DateTo.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="Department.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="Employee.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="User.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>xrLabel1</value>
+  </data>
   <data name="xrLabel10.Text" xml:space="preserve">
-    <value>غير مدفوع</value>
+    <value>مغادرة خلال ساعات العمل</value>
+  </data>
+  <data name="xrLabel10.Text1" xml:space="preserve">
+    <value>Shift Leave Without Excuse</value>
+  </data>
+  <data name="xrLabel11.Text" xml:space="preserve">
+    <value>xrLabel11</value>
+  </data>
+  <data name="xrLabel12.Text" xml:space="preserve">
+    <value>xrLabel12</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
-    <value>العدد</value>
+    <value>لم يتم البصم</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
-    <value>ساعات</value>
+    <value>حضور متأخر</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
-    <value>ساعات</value>
+    <value>مغادرة خلال ساعات العمل</value>
   </data>
   <data name="xrLabel16.Text" xml:space="preserve">
-    <value>العدد</value>
+    <value>خروج مبكر</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
-    <value>ساعات العمل الإضافي</value>
+    <value>حضور مبكر</value>
+  </data>
+  <data name="xrLabel18.Text" xml:space="preserve">
+    <value>xrLabel18</value>
+  </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>xrLabel19</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>الفرع</value>
@@ -145,10 +181,25 @@
     <value>تقرير ملخص لحضور وانصراف الموظفين</value>
   </data>
   <data name="xrLabel22.Text" xml:space="preserve">
-    <value>ساعات العمل المفترضة</value>
+    <value>عمل إضافي</value>
   </data>
   <data name="xrLabel23.Text" xml:space="preserve">
     <value>القسم</value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>xrLabel24</value>
+  </data>
+  <data name="xrLabel25.Text" xml:space="preserve">
+    <value>xrLabel25</value>
+  </data>
+  <data name="xrLabel26.Text" xml:space="preserve">
+    <value>xrLabel26</value>
+  </data>
+  <data name="xrLabel27.Text" xml:space="preserve">
+    <value>xrLabel27</value>
+  </data>
+  <data name="xrLabel28.Text" xml:space="preserve">
+    <value>xrLabel28</value>
   </data>
   <data name="xrLabel29.Text" xml:space="preserve">
     <value>القسم</value>
@@ -162,6 +213,12 @@
   <data name="xrLabel31.Text" xml:space="preserve">
     <value>الفرع</value>
   </data>
+  <data name="xrLabel32.Text" xml:space="preserve">
+    <value>من قبل :</value>
+  </data>
+  <data name="xrLabel33.Text" xml:space="preserve">
+    <value>xrLabel33</value>
+  </data>
   <data name="xrLabel34.Text" xml:space="preserve">
     <value>دخول متأخر</value>
   </data>
@@ -169,7 +226,7 @@
     <value>أيام العمل والغياب</value>
   </data>
   <data name="xrLabel36.Text" xml:space="preserve">
-    <value>غياب بإذن</value>
+    <value>ساعات العمل المفترضة</value>
   </data>
   <data name="xrLabel37.Text" xml:space="preserve">
     <value>إجمالي التأخير</value>
@@ -183,31 +240,55 @@
   <data name="xrLabel4.Text" xml:space="preserve">
     <value>مستقطع غياب بإذن</value>
   </data>
+  <data name="xrLabel4.Text1" xml:space="preserve">
+    <value>xrLabel4</value>
+  </data>
+  <data name="xrLabel40.Text" xml:space="preserve">
+    <value>xrLabel40</value>
+  </data>
+  <data name="xrLabel41.Text" xml:space="preserve">
+    <value>xrLabel41</value>
+  </data>
   <data name="xrLabel42.Text" xml:space="preserve">
-    <value>غياب بدون إذن</value>
+    <value>ساعات العمل الفعلية</value>
   </data>
   <data name="xrLabel43.Text" xml:space="preserve">
     <value>ساعات العمل والتأخير</value>
   </data>
+  <data name="xrLabel44.Text" xml:space="preserve">
+    <value>xrLabel44</value>
+  </data>
+  <data name="xrLabel45.Text" xml:space="preserve">
+    <value>xrLabel45</value>
+  </data>
+  <data name="xrLabel47.Text" xml:space="preserve">
+    <value>xrLabel47</value>
+  </data>
   <data name="xrLabel48.Text" xml:space="preserve">
     <value>الرقم</value>
   </data>
+  <data name="xrLabel49.Text" xml:space="preserve">
+    <value>xrLabel49</value>
+  </data>
   <data name="xrLabel5.Text" xml:space="preserve">
-    <value>ساعات خارج الدوام</value>
+    <value>إجازات غير مدفوعة</value>
   </data>
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>أيام العمل الفعلية</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
-    <value>ساعات العمل الفعلية</value>
+    <value>إجازات مدفوعة</value>
   </data>
   <data name="xrLabel8.Text" xml:space="preserve">
     <value>غياب بدون اذن</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>مدفوع</value>
+    <value>مغادرة خلال يوم العمل</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>
+  </data>
+  <data name="xrRichText4.SerializableRtfString" xml:space="preserve">
+    <value>ewBcAHIAdABmADEAXABkAGUAZgBmADAAewBcAGYAbwBuAHQAdABiAGwAewBcAGYAMAAgAEMAYQBsAGkAYgByAGkAOwB9AHsAXABmADEAIABUAGkAbQBlAHMAIABOAGUAdwAgAFIAbwBtAGEAbgA7AH0AfQB7AFwAYwBvAGwAbwByAHQAYgBsACAAOwBcAHIAZQBkADAAXABnAHIAZQBlAG4AMABcAGIAbAB1AGUAMAAgADsAXAByAGUAZAAwAFwAZwByAGUAZQBuADAAXABiAGwAdQBlADIANQA1ACAAOwB9AHsAXAAqAFwAZABlAGYAYwBoAHAAIABcAGYAMQBcAGYAcwAyADQAfQB7AFwAcwB0AHkAbABlAHMAaABlAGUAdAAgAHsAXABxAGwAXABmADEAXABmAHMAMgA0ACAATgBvAHIAbQBhAGwAOwB9AHsAXAAqAFwAYwBzADEAXABmADEAXABmAHMAMgA0AFwAYwBmADEAIABEAGUAZgBhAHUAbAB0ACAAUABhAHIAYQBnAHIAYQBwAGgAIABGAG8AbgB0ADsAfQB7AFwAKgBcAGMAcwAyAFwAcwBiAGEAcwBlAGQAbwBuADEAXABmADEAXABmAHMAMgA0AFwAYwBmADEAIABMAGkAbgBlACAATgB1AG0AYgBlAHIAOwB9AHsAXAAqAFwAYwBzADMAXAB1AGwAXABmADEAXABmAHMAMgA0AFwAYwBmADIAIABIAHkAcABlAHIAbABpAG4AawA7AH0AewBcACoAXAB0AHMANABcAHQAcwByAG8AdwBkAFwAZgAxAFwAZgBzADIANABcAHEAbABcAHQAcwBjAGUAbABsAHAAYQBkAGQAZgBsADMAXAB0AHMAYwBlAGwAbABwAGEAZABkAGwAMQAwADgAXAB0AHMAYwBlAGwAbABwAGEAZABkAGYAYgAzAFwAdABzAGMAZQBsAGwAcABhAGQAZABmAHIAMwBcAHQAcwBjAGUAbABsAHAAYQBkAGQAcgAxADAAOABcAHQAcwBjAGUAbABsAHAAYQBkAGQAZgB0ADMAXAB0AHMAdgBlAHIAdABhAGwAdABcAGMAbAB0AHgAbAByAHQAYgAgAE4AbwByAG0AYQBsACAAVABhAGIAbABlADsAfQB7AFwAKgBcAHQAcwA1AFwAdABzAHIAbwB3AGQAXABzAGIAYQBzAGUAZABvAG4ANABcAGYAMQBcAGYAcwAyADQAXABxAGwAXAB0AHIAYgByAGQAcgB0AFwAYgByAGQAcgBzAFwAYgByAGQAcgB3ADEAMABcAHQAcgBiAHIAZAByAGwAXABiAHIAZAByAHMAXABiAHIAZAByAHcAMQAwAFwAdAByAGIAcgBkAHIAYgBcAGIAcgBkAHIAcwBcAGIAcgBkAHIAdwAxADAAXAB0AHIAYgByAGQAcgByAFwAYgByAGQAcgBzAFwAYgByAGQAcgB3ADEAMABcAHQAcgBiAHIAZAByAGgAXABiAHIAZAByAHMAXABiAHIAZAByAHcAMQAwAFwAdAByAGIAcgBkAHIAdgBcAGIAcgBkAHIAcwBcAGIAcgBkAHIAdwAxADAAXAB0AHMAYwBlAGwAbABwAGEAZABkAGYAbAAzAFwAdABzAGMAZQBsAGwAcABhAGQAZABsADEAMAA4AFwAdABzAGMAZQBsAGwAcABhAGQAZABmAHIAMwBcAHQAcwBjAGUAbABsAHAAYQBkAGQAcgAxADAAOABcAHQAcwB2AGUAcgB0AGEAbAB0AFwAYwBsAHQAeABsAHIAdABiACAAVABhAGIAbABlACAAUwBpAG0AcABsAGUAIAAxADsAfQB9AHsAXAAqAFwAbABpAHMAdABvAHYAZQByAHIAaQBkAGUAdABhAGIAbABlAH0AXABuAG8AdQBpAGMAbwBtAHAAYQB0AFwAcwBwAGwAeQB0AHcAbgBpAG4AZQBcAGgAdABtAGEAdQB0AHMAcABcAHAAYQByAGQAXABwAGwAYQBpAG4AXABxAGwAewBcAGYAMQBcAGYAcwAyADQAXABjAGYAMQAgAFsAUABhAHIAYQBtAGUAdABlAHIAcwAuAH0AewBcAGwAYQBuAGcAMQAwADMAMwBcAGwAYQBuAGcAZgBlADEAMAAzADMAXABmADEAXABmAHMAMgA0AFwAYwBmADEAIABEAGEAdABlAH0AewBcAGYAMQBcAGYAcwAyADQAXABjAGYAMQAgAEYAcgBvAG0AXQAgAC0AIABbAFAAYQByAGEAbQBlAHQAZQByAHMALgB9AHsAXABsAGEAbgBnADEAMAAzADMAXABsAGEAbgBnAGYAZQAxADAAMwAzAFwAZgAxAFwAZgBzADIANABcAGMAZgAxACAARABhAHQAZQB9AHsAXABmADEAXABmAHMAMgA0AFwAYwBmADEAIABUAG8AXQB9AFwAZgAxAFwAZgBzADIANABcAGMAZgAxAFwAcABhAHIAfQA=</value>
   </data>
 </root>

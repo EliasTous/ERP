@@ -22,7 +22,9 @@ namespace AionHR.Model.Reports
         public String endDateString { get; set; }
         public DateTime? returnDate { get; set; }
         public String returnDateString { get; set; }
-        public int leavePeriod { get; set; }
+        public double leaveDays { get; set; }
+
+        public double leaveHours { get; set; }
         public string justification { get; set; }
 
         public int status { get; set; }

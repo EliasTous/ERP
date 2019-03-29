@@ -62,10 +62,12 @@ var ColorifySchedule = function (listIds) {
 
     for (var i in listIds) {
         try {
-      
-            document.getElementById(listIds[i]).style.background = "green";
+         
+            if (document.getElementById(listIds[i]) !== null) {
+                document.getElementById(listIds[i]).style.background = "green";
+            }
         }
-        catch (e) { alert(e); }
+        catch (e) { return; }
       
     }
 };
@@ -85,7 +87,7 @@ var filldaytotal = function (listIds,list2) {
 var Init = function () {
     // App.pnlTools.show();
     App.btnClear.setDisabled(false);
-    App.btnSave.setDisabled(false);
+    
     $('.day').each(function () {
         $(this).click(function () {
             if( $(this).data("isselected") == true)
@@ -93,22 +95,61 @@ var Init = function () {
                 $(this).css("background-color", "#fff");
                 $(this).removeData("isselected");
                 App.dayId.setValue("");
-                App.btnSave.setDisabled(false);
-                App.btnDeleteDay.setDisabled(true);
+              
+               
+                 
+                    App.btnDeleteDay.setDisabled(true);
+              
+               
             }
             else
             {
             clearDayClick();
         $(this).css("background-color", "orange");
         $(this).data("isselected",true);
-            App.dayId.setValue($(this)["0"].id);
-            App.btnSave.setDisabled(false);
-            App.btnDeleteDay.setDisabled(false);
+                App.dayId.setValue($(this)["0"].id);
+
+
+                var today = new Date();
+               
+            
+                var cMonth = today.getMonth()+1;
+             
+                var cYear = today.getFullYear();
+             
+                var cDay = today.getDate().toString();
+             
+                if (cMonth.toString().length < 2)
+                    cMonth = "0" + today.getMonth().toString();
+          
+                if (cDay.toString().length < 2)
+                    cDay = "0" + today.getDay().toString();
+              
+            
+                if (parseInt($(this)["0"].id) >= parseInt(cYear.toString() + cMonth.toString() + cDay.toString()))
+                {
+                   
+                    App.btnSave.setDisabled(false);
+                    App.btnDeleteDay.setDisabled(false);
+                }
+                else
+                {
+                   
+                    App.btnSave.setDisabled(true);
+                    App.btnDeleteDay.setDisabled(true);
+                }
+
+          
             }
         });
     });
 
    // $('#tbCalendar').fixedHeaderTable();
+}
+
+var DisableEdit = function () {
+    App.btnSave.setDisabled(true);
+    App.btnDeleteDay.setDisabled(true);
 }
 
 var DisableTools = function () {

@@ -140,7 +140,7 @@
                         <Columns>
                                        
                           
-                              <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
+                              <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
                               <ext:Column  Visible="false"  CellCls="cellLink" ID="letterRef" MenuDisabled="true" runat="server" Text="<%$ Resources: reference%>" DataIndex="letterRef" Flex="1" Hideable="false"/>
                              <ext:Column   CellCls="cellLink" ID="ltName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="ltName" Flex="1" Hideable="false"/>
                             <ext:Column   CellCls="cellLink" ID="addressedTo" MenuDisabled="true" runat="server" Text="<%$ Resources: addressedTo%>" DataIndex="addressedTo" Flex="1" Hideable="false"/>
@@ -292,7 +292,7 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
                                 <ext:TextField Hidden="true" ID="letterRefTF" runat="server" FieldLabel="<%$ Resources:reference%>" Name="letterRef" AllowBlank="true"  />
                             <%--     <ext:TextField ID="ltNameTF" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="ltName" AllowBlank="false"  />--%>
 

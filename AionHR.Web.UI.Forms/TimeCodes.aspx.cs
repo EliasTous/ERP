@@ -38,25 +38,47 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -153,16 +175,17 @@ namespace AionHR.Web.UI.Forms
                         if (!response.Success)
                         {
                             X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                            Common.errorMessage(response);
                             return;
                         }
                         FillApprovalStory();
                         FillensStore();
-                       
 
+                        this.BasicInfoTab.Reset();
                         //Step 2 : call setvalues with the retrieved object
                         this.BasicInfoTab.SetValues(response.result);
-
+                      if (!String.IsNullOrEmpty(timeCodeP))
+                        timecode.Select(timeCodeP);
                         this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                         this.EditRecordWindow.Show();
                         break;
@@ -221,7 +244,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                   Common.errorMessage(r);;
                     return;
                 }
                 else
@@ -348,28 +371,48 @@ namespace AionHR.Web.UI.Forms
             string filter = string.Empty;
             int totalCount = 1;
 
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<TimeCode> response = _payrollService.ChildGetAll<TimeCode>(request);
+            if (!response.Success)
+            {
+                Common.errorMessage(response);
+                return;
+
+            }
+            response.Items.ForEach(x => x.edTypeString = FillEdType(x.edType));
+
+            Store1.DataSource = response.Items;
+            e.Total = response.Items.Count;
+            Store1.DataBind();
+
+            //List<TimeCode> routers = new List<TimeCode>();
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.Day_Bonus });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.DAY_LEAVE_WITHOUT_EXCUSE });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.DURING_SHIFT_LEAVE });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.EARLY_CHECKIN });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.EARLY_LEAVE });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.LATE_CHECKIN });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.MISSED_PUNCH });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.OVERTIME });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.PAID_LEAVE });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.SHIFT_LEAVE_WITHOUT_EXCUSE });
+            //routers.Add(new TimeCode { timeCode = ConstTimeVariationType.UNPAID_LEAVE });
 
 
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            ListRequest request = new ListRequest();
+            //ListRequest request = new ListRequest();
 
-            ListResponse<TimeCode> routers = _payrollService.ChildGetAll<TimeCode>(request);
-            if (!routers.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
-                return;
-            }
-            routers.Items.ForEach(x =>
-            {
-                x.timeCodeString = FillTimeCode(x.timeCode);
-                x.edTypeString = FillEdType(x.edType);
-            });
-            this.Store1.DataSource = routers.Items;
-            e.Total = routers.Items.Count; ;
-
-            this.Store1.DataBind();
+            //ListResponse<TimeCode> routers = _payrollService.ChildGetAll<TimeCode>(request);
+            //if (!routers.Success)
+            //{
+            //     Common.errorMessage(routers);
+            //    return;
+            //}
+            
         }
 
 
@@ -384,7 +427,8 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             TimeCode b = JsonConvert.DeserializeObject<TimeCode>(obj);
-
+            //if (!string.IsNullOrEmpty(timeCodeCombo.Value.ToString()))
+            //    b.timeCode = Convert.ToInt16(timeCodeCombo.Value.ToString());
 
             // Define the object to add or edit as null
             try
@@ -403,7 +447,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                   Common.errorMessage(r);;
                     return;
                 }
                 else
@@ -453,7 +497,7 @@ namespace AionHR.Web.UI.Forms
         //        if (!r.Success)//it maybe another check
         //        {
         //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+        //           Common.errorMessage(r);;
         //            return;
         //        }
         //        else
@@ -563,7 +607,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return null;
             }
             DocumentTypesReport p = new DocumentTypesReport();
@@ -586,7 +630,7 @@ namespace AionHR.Web.UI.Forms
             if (!string.IsNullOrEmpty(currentEDtype.Text))
                 entsStore.DataSource = eds.Items.Where(s => s.type == Convert.ToInt16(currentEDtype.Text)).ToList();
             else
-                entsStore.DataSource = new List<EntitlementDeduction>();
+                entsStore.DataSource = eds.Items;
             entsStore.DataBind();
 
         }
@@ -608,78 +652,13 @@ namespace AionHR.Web.UI.Forms
             ListResponse<Approval> routers = _companyStructureService.ChildGetAll<Approval>(request);
 
             if (!routers.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
+                 Common.errorMessage(routers);
             this.ApprovalStore.DataSource = routers.Items;
           
 
             this.ApprovalStore.DataBind();
         }
-        private string FillTimeCode(int? timeCode)
-        {
-            string R = "";
-
-
-            // Retrieve the value of the string resource named "welcome".
-            // The resource manager will retrieve the value of the  
-            // localized resource using the caller's current culture setting.
-
-
-            try
-            {
-
-                switch (timeCode)
-                {
-                    case ConstTimeVariationType.UNPAID_LEAVE:
-                        R = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
-                        break;
-                    case ConstTimeVariationType.PAID_LEAVE:
-                        R = GetGlobalResourceObject("Common", "PaidLeaves").ToString();
-                        break;
-
-
-                    case ConstTimeVariationType.SHIFT_LEAVE_WITHOUT_EXCUSE:
-                        R = GetGlobalResourceObject("Common", "SHIFT_LEAVE_WITHOUT_EXCUSE").ToString();
-                        break;
-                    case ConstTimeVariationType.DAY_LEAVE_WITHOUT_EXCUSE:
-                        R = GetGlobalResourceObject("Common", "DAY_LEAVE_WITHOUT_EXCUSE").ToString();
-                        break;
-
-
-                    case ConstTimeVariationType.LATE_CHECKIN:
-                        R = GetGlobalResourceObject("Common", "LATE_CHECKIN").ToString();
-                        break;
-                    case ConstTimeVariationType.DURING_SHIFT_LEAVE:
-                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
-                        break;
-                    case ConstTimeVariationType.EARLY_LEAVE:
-                        R = GetGlobalResourceObject("Common", "EARLY_LEAVE").ToString();
-                        break;
-
-
-
-                    case ConstTimeVariationType.MISSED_PUNCH:
-                        R = GetGlobalResourceObject("Common", "MISSED_PUNCH").ToString();
-                        break;
-
-                    case ConstTimeVariationType.EARLY_CHECKIN:
-                        R = GetGlobalResourceObject("Common", "EARLY_CHECKIN").ToString();
-                        break;
-                    case ConstTimeVariationType.OVERTIME:
-                        R = GetGlobalResourceObject("Common", "OVERTIME").ToString();
-                        break;
-
-                    case ConstTimeVariationType.COUNT:
-                        R = GetGlobalResourceObject("Common", "COUNT").ToString();
-                        break;
-
-
-                }
-
-                return R;
-            }
-            catch { return string.Empty; }
-
-        }
+      
         private string FillEdType(int? edType)
         {
             string R = "";

@@ -208,7 +208,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel9.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>180.041687, 62.25001</value>
+    <value>250.097168, 62.25001</value>
   </data>
   <data name="xrLabel9.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>233.333328, 23.0000038</value>
@@ -220,7 +220,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel7.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>143.999954, 62.25001</value>
+    <value>214.055435, 62.25001</value>
   </data>
   <data name="xrLabel7.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>36.0417328, 23.0000038</value>
@@ -232,13 +232,13 @@
     <value>100</value>
   </data>
   <data name="xrPageInfo1.Format" xml:space="preserve">
-    <value>{0:MM/dd/yyyy - h:mm tt}</value>
+    <value>{0:dddd, d MMMM, yyyy H:mm}</value>
   </data>
   <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>5.99997854, 62.25001</value>
+    <value>5.99998474, 62.25001</value>
   </data>
   <data name="xrPageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>137.999969, 23.0000038</value>
+    <value>208.05545, 23.0000038</value>
   </data>
   <data name="xrPageInfo2.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -403,7 +403,7 @@
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
   <data name="xrSummary4.FormatString" xml:space="preserve">
-    <value>{0:0%}</value>
+    <value>{0:0.00%}</value>
   </data>
   <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
     <value>1.49591850190613</value>
@@ -494,7 +494,7 @@
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
   <data name="xrSummary7.FormatString" xml:space="preserve">
-    <value>{0:0%}</value>
+    <value>{0:0.00%}</value>
   </data>
   <data name="xrTableCell12.Weight" type="System.Double, mscorlib">
     <value>1.12193787412692</value>

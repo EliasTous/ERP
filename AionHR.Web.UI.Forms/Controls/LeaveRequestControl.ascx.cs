@@ -33,12 +33,14 @@ using AionHR.Model.Attributes;
 using Reports;
 using AionHR.Services.Messaging.Reports;
 using AionHR.Model.Dashboard;
+using AionHR.Services.Messaging.DashBoard;
+using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms.Controls
 {
     public partial class LeaveRequestControl : System.Web.UI.UserControl
     {
-
+        public int fromSelfService { get; set; }
 
         public void FillLeaveType()
         {
@@ -48,7 +50,7 @@ namespace AionHR.Web.UI.Forms.Controls
             ListResponse<LeaveType> response = _leaveManagementService.ChildGetAll<LeaveType>(req);
             if (!response.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+               Common.errorMessage(response);
                 return;
             }
             ltStore.DataSource = response.Items;
@@ -82,21 +84,24 @@ namespace AionHR.Web.UI.Forms.Controls
                 startDate.Format = endDate.Format = _systemService.SessionHelper.GetDateformat();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveRequest), BasicInfoTab, null, null, SaveButton);
-                    ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
-                    classReq.ClassId = (typeof(LeaveRequest).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-                    classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
-                    RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
-                    if (modClass != null && modClass.result != null && modClass.result.accessLevel < 2)
+                    if (fromSelfService != 1)
                     {
-                        ViewOnly.Text = "1";
-                    }
-                    if (returnNotes.InputType == InputType.Password)
-                    {
-                        returnNotes.Visible = false;
-                        notesField.Visible = true;
-                        textField1.Visible = false;
-                        textField2.Visible = true;
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveRequest), BasicInfoTab, null, null, SaveButton);
+                        ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+                        classReq.ClassId = (typeof(LeaveRequest).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+                        classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+                        RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+                        if (modClass != null && modClass.result != null && modClass.result.accessLevel < 2)
+                        {
+                            ViewOnly.Text = "1";
+                        }
+                        if (returnNotes.InputType == InputType.Password)
+                        {
+                            returnNotes.Visible = false;
+                            notesField.Visible = true;
+                            textField1.Visible = false;
+                            textField2.Visible = true;
+                        }
                     }
 
                 }
@@ -128,7 +133,7 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             ReportCompositeRequest request = new ReportCompositeRequest();
             request.Size = "1000";
-            request.StartAt = "1";
+            request.StartAt = "0";
 
 
 
@@ -172,7 +177,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 if (!response.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                    Common.errorMessage(response);
                     return;
                 }
                 //Step 2 : call setvalues with the retrieved object
@@ -206,7 +211,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
                 if (!resp.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(resp);
                 }
 
                 leaveDaysStore.DataSource = resp.Items;
@@ -385,7 +390,7 @@ namespace AionHR.Web.UI.Forms.Controls
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return;
             }
 
@@ -468,7 +473,7 @@ namespace AionHR.Web.UI.Forms.Controls
                         {
                             //Show an error saving...
                             X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                           Common.errorMessage(r);;
                             return;
                         }
                         else
@@ -548,7 +553,7 @@ namespace AionHR.Web.UI.Forms.Controls
                             //PostResponse<LeaveRequest> resp = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(postReq);
                             //if (!resp.Success)
                             //{
-                            //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+                            //   Common.errorMessage(resp);
                             //    return;
                             //}
                             //Notification.Show(new NotificationConfig
@@ -583,7 +588,7 @@ namespace AionHR.Web.UI.Forms.Controls
                         if (!r.Success)//it maybe another check
                         {
                             X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                           Common.errorMessage(r);;
                             return;
                         }
 
@@ -591,13 +596,13 @@ namespace AionHR.Web.UI.Forms.Controls
                         {
                             //LeaveRequestNotification(b);
                             CurrentLeave.Text = b.recordId;
-                            var deleteDesponse = _leaveManagementService.DeleteLeaveDays(Convert.ToInt32(b.recordId));
-                            if (!deleteDesponse.Success)//it maybe another check
-                            {
-                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                                X.Msg.Alert(Resources.Common.Error, deleteDesponse.Summary).Show();
-                                return;
-                            }
+                            //var deleteDesponse = _leaveManagementService.DeleteLeaveDays(Convert.ToInt32(b.recordId));
+                            //if (!deleteDesponse.Success)//it maybe another check
+                            //{
+                            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            //    X.Msg.Alert(Resources.Common.Error, deleteDesponse.Summary).Show();
+                            //    return;
+                            //}
                             days.ForEach(d =>
                             {
                                 d.leaveId = Convert.ToInt32(b.recordId);
@@ -669,10 +674,11 @@ namespace AionHR.Web.UI.Forms.Controls
                 PostRequest<LeaveDay> request = new PostRequest<LeaveDay>();
                 request.entity = lD;
                 PostResponse<LeaveDay> r = _leaveManagementService.ChildAddOrUpdate<LeaveDay>(request);
+
                 if (!r.Success)//it maybe another check
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                   Common.errorMessage(r);;
                     return;
                 }
 
@@ -796,7 +802,7 @@ namespace AionHR.Web.UI.Forms.Controls
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+               Common.errorMessage(response);
                 return;
             }
 
@@ -816,14 +822,14 @@ namespace AionHR.Web.UI.Forms.Controls
             RecordResponse<Employee> resp = _employeeService.Get<Employee>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return 0;
             }
             if (!resp.result.caId.HasValue)
             {
                 if (_systemService.SessionHelper.GetCalendarId() == 0)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+                   Common.errorMessage(resp);
                     return 0;
                 }
                 return _systemService.SessionHelper.GetCalendarId();
@@ -1008,7 +1014,7 @@ namespace AionHR.Web.UI.Forms.Controls
             PostResponse<LeaveDay[]> resp = _leaveManagementService.ChildAddOrUpdate<LeaveDay[]>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return false;
             }
             return true;
@@ -1039,14 +1045,14 @@ namespace AionHR.Web.UI.Forms.Controls
             }
             req.BranchId = req.DepartmentId = 0;
             req.status = 0;
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "1";
             req.SortBy = "endDate";
 
             ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return;
             }
             if (resp.Items.Count == 0)
@@ -1086,7 +1092,7 @@ namespace AionHR.Web.UI.Forms.Controls
             PostResponse<LeaveRequest> resp = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return;
             }
             Notification.Show(new NotificationConfig
@@ -1124,46 +1130,61 @@ namespace AionHR.Web.UI.Forms.Controls
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-
-            string dateFormat = _systemService.SessionHelper.GetDateformat();
-            LeaveRequestReport y = new LeaveRequestReport();
-            RecordRequest r = new RecordRequest();
-            r.RecordID = CurrentLeave.Text;
-
-            RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
-            if (response.result == null)
-                return;
-
-            EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
-            req.RecordID = response.result.employeeId;
-            req.asOfDate = DateTime.Now;
-            RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-                return;
-            }
             try
             {
-                leaveBalance.Text = resp.result.leaveBalance.ToString();
-                yearsInService.Text = resp.result.serviceDuration;
-                LeaveRequest request = response.result;
+            string dateFormat = _systemService.SessionHelper.GetDateformat();
+            LeaveRequestReport y = new LeaveRequestReport();
+
+                ReportCompositeRequest req = new ReportCompositeRequest();
+                LeaveIdParameter LIP = new LeaveIdParameter();
+                LIP.leaveId = CurrentLeave.Text;
+                req.Add(LIP);
+
+                ListResponse<AionHR.Model.Reports.PT501> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.PT501>(req);
+                if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                Common.errorMessage(resp);
+                return;
+            }
+                y.DataSource = resp.Items;
+              
+            //RecordRequest r = new RecordRequest();
+            //r.RecordID = CurrentLeave.Text;
+
+            //RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
+            //if (response.result == null)
+            //    return;
+
+            //EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
+            //req.RecordID = response.result.employeeId;
+            //req.asOfDate = DateTime.Now;
+            //RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+            //if (!resp.Success)
+            //{
+            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+            //   Common.errorMessage(resp);
+            //    return;
+            //}
+           
+                //leaveBalance.Text = resp.result.leaveBalance.ToString();
+                //yearsInService.Text = resp.result.serviceDuration;
+                //LeaveRequest request = response.result;
                 y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-
-                y.Parameters["Employee"].Value = request.employeeName.fullName;
-                y.Parameters["Ref"].Value = request.leaveRef;
-                y.Parameters["From"].Value = request.startDate.ToString(dateFormat);
-                y.Parameters["To"].Value = request.endDate.ToString(dateFormat);
-                y.Parameters["Days"].Value = calDays.Text;
-                y.Parameters["Hours"].Value = request.leavePeriod;
-                y.Parameters["Justification"].Value = request.justification;
-                y.Parameters["Destination"].Value = request.destination;
-                y.Parameters["LeaveType"].Value = request.ltName;
-                y.Parameters["LeaveBalance"].Value = resp.result.leaveBalance;
-                y.Parameters["YearsInService"].Value = resp.result.serviceDuration;
-                y.Parameters["IsPaid"].Value = request.isPaid.HasValue && request.isPaid.Value ? "Yes" : "No";
+                y.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+                //y.Parameters["Employee"].Value = request.employeeName.fullName;
+                //y.Parameters["Ref"].Value = request.leaveRef;
+                //y.Parameters["From"].Value = request.startDate.ToString(dateFormat);
+                //y.Parameters["To"].Value = request.endDate.ToString(dateFormat);
+                //y.Parameters["Days"].Value = calDays.Text;
+                //y.Parameters["Hours"].Value = request.leavePeriod;
+                //y.Parameters["Justification"].Value = request.justification;
+                //y.Parameters["Destination"].Value = request.destination;
+                //y.Parameters["LeaveType"].Value = request.ltName;
+                //y.Parameters["LeaveBalance"].Value = resp.result.leaveBalance;
+                //y.Parameters["YearsInService"].Value = resp.result.serviceDuration;
+                //y.Parameters["IsPaid"].Value = request.isPaid.HasValue && request.isPaid.Value ? "Yes" : "No";
                 string format = "Pdf";
                 string fileName = String.Format("Report.{0}", format);
                 string user = _systemService.SessionHelper.GetCurrentUser();
@@ -1292,12 +1313,19 @@ namespace AionHR.Web.UI.Forms.Controls
         }
         public void FillApprovals(string Id)
         {
-            LeaveDayListRequest req = new LeaveDayListRequest();
-            req.LeaveId = Id;
+            LeaveApprovalListRequest req = new LeaveApprovalListRequest();
+            req.leaveId = Id;
+            req.approverId = "0";
+            req.status = 0;
+            req.DivisionId = 0;
+            req.PositionId = 0;
+            req.DepartmentId = 0;
+            req.BranchId = 0;
+            req.EsId = 0;
             ListResponse<AionHR.Model.LeaveManagement.Approvals> response = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
             if (!response.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+               Common.errorMessage(response);
                 return;
             }
             response.Items.ForEach(x =>
@@ -1338,7 +1366,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 if (!response.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                   Common.errorMessage(response);
                     return;
                 }
                 //if (!response.result.requireApproval)
@@ -1401,7 +1429,7 @@ namespace AionHR.Web.UI.Forms.Controls
             ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return; 
             }
             resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);

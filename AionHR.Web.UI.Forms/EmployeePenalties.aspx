@@ -74,9 +74,10 @@
                         <ext:ModelField Name="penaltyName" />
                         <ext:ModelField Name="employeeId" />
                         <ext:ModelField Name="penaltyId" />
-                        <ext:ModelField Name="Date" />
+                        <ext:ModelField Name="date" />
                         <ext:ModelField Name="apStatus" />
                         <ext:ModelField Name="notes" />
+                        <ext:ModelField Name="amount" />
 
 
 
@@ -188,8 +189,8 @@
                             <ext:Column ID="ColEmployeeName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployeeName%>" DataIndex="employeeName"  Flex="2" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="ColPenaltyName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPenaltyName%>" DataIndex="penaltyName" Flex="2" Hideable="false"/>
                             
-                            <ext:DateColumn  ID="ColDate" MenuDisabled="true" runat="server" DataIndex="Date" Text="<%$ Resources: FieldDate%>" Flex="1" Hideable="false" />
-                          
+                            <ext:DateColumn  ID="ColDate" MenuDisabled="true" runat="server" DataIndex="date" Text="<%$ Resources: FieldDate%>" Flex="1" Hideable="false" />
+                             <ext:Column CellCls="cellLink" ID="ColAmount" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount%>" DataIndex="amount"  Hideable="false"/>
                                   <ext:Column CellCls="cellLink" ID="ColNotes" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNotes%>" DataIndex="notes" Flex="2" Hideable="false"/>
 
 
@@ -326,7 +327,7 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" DataIndex="recordId" />
+                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" DataIndex="recordId" />
                                 <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" DataIndex="date" Name="date"  />
                              
 
@@ -362,7 +363,7 @@
 
                                     </Store>
                                 </ext:ComboBox>
-
+                                    <ext:NumberField ID="amount"  runat="server" FieldLabel="<%$ Resources:FieldAmount%>"  DataIndex="amount" DecimalPrecision="2"/>
                                  <ext:TextArea ID="notes"  runat="server" FieldLabel="<%$ Resources:FieldNotes%>"  DataIndex="notes"  />
 
 

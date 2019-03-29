@@ -35,8 +35,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(DashBoardTimeVariation), "qryTV");
             ChildGetAllLookup.Add(typeof(AttendancePeriod), "qryAP");
             ChildGetAllLookup.Add(typeof(DashboardItem), "dashBoard");
-
-
+            ChildGetAllLookup.Add(typeof(DashboardAlertItem), "qryAA");
+            ChildGetAllLookup.Add(typeof(DashboardBranchAvailability), "qryBA");
+            
 
             ChildGetAllLookup.Add(typeof(CompanyRTW), "qryCR");
             ChildGetAllLookup.Add(typeof(EmpRTW), "qryER");
@@ -44,8 +45,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(ProbationEnd), "qryPR");
             ChildGetAllLookup.Add(typeof(WorkAnniversary), "qryWA");
             ChildGetAllLookup.Add(typeof(EmployeeBirthday), "qryBD");
-            ChildGetAllLookup.Add(typeof(RetirementAge), "qryRE");
+            ChildGetAllLookup.Add(typeof(RetirementAge), "qryRS");
             ChildGetAllLookup.Add(typeof(TermEndDate), "qryTE");
+            ChildGetAllLookup.Add(typeof(LeavingSoon), "qryLS");
+            ChildGetAllLookup.Add(typeof(EmploymentReview), "qryRE");
 
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");

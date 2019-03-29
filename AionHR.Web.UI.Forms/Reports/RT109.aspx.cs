@@ -37,25 +37,48 @@ namespace AionHR.Web.UI.Forms.Reports
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -87,6 +110,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     FillRWDocumentType();
+                    FillStatus();
                     //FillReport(false, false);
                 }
                 catch { }
@@ -169,11 +193,12 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = new ReportCompositeRequest();
 
             req.Size = "1000";
-            req.StartAt = "1";
+            req.StartAt = "0";
 
 
             // req.Add(dateRange1.GetRange());
             //  req.Add(employeeCombo1.GetEmployee());
+            
             req.Add(jobInfo1.GetJobInfo());
             req.Add(getStatus());
            
@@ -202,7 +227,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.IncludeIsInactive = 2;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -220,16 +245,16 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = GetRequest();
 
             ListResponse<AionHR.Model.Reports.RT109> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT109>(req);
-            if (!resp.Success)
-            {
-              
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-                    return;
-                
-            }
+            //if (!resp.Success)
+            //{
 
-           
+            //    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
+
+            //}
+            if (!resp.Success)
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+
+
             resp.Items.ForEach(s =>
             {
            
@@ -333,6 +358,11 @@ namespace AionHR.Web.UI.Forms.Reports
                 r.dtId = "0";
             else
                 r.dtId = dtId.SelectedItem.Value;
+            if (esId.SelectedItem.Value == null)
+                r.esId = "0";
+            else
+                r.esId = esId.SelectedItem.Value;
+
 
             return r;
         }
@@ -341,11 +371,20 @@ namespace AionHR.Web.UI.Forms.Reports
             ListRequest RWDocumentType = new ListRequest();
             ListResponse<DocumentType> resp = _employeeService.ChildGetAll<DocumentType>(RWDocumentType);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             RWDocumentTypeStore.DataSource = resp.Items;
             RWDocumentTypeStore.DataBind();
 
         }
-      
+        private void FillStatus()
+        {
+            ListRequest statusReq = new ListRequest();
+            ListResponse<EmploymentStatus> resp = _employeeService.ChildGetAll<EmploymentStatus>(statusReq);
+            statusStore.DataSource = resp.Items;
+            statusStore.DataBind();
+        }
+
+       
+
     }
 }

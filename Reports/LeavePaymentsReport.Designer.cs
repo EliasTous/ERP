@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LeavePaymentsReport));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
             this.lastLeaveEndDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel39 = new DevExpress.XtraReports.UI.XRLabel();
@@ -93,9 +96,6 @@
             this.DataField = new DevExpress.XtraReports.UI.XRControlStyle();
             this.leaveBalance = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -146,6 +146,27 @@
             resources.ApplyResources(this.Detail, "Detail");
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            // 
+            // xrLabel25
+            // 
+            resources.ApplyResources(this.xrLabel25, "xrLabel25");
+            this.xrLabel25.Name = "xrLabel25";
+            this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel25.StylePriority.UseTextAlignment = false;
+            // 
+            // xrLabel20
+            // 
+            resources.ApplyResources(this.xrLabel20, "xrLabel20");
+            this.xrLabel20.Name = "xrLabel20";
+            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel20.StylePriority.UseTextAlignment = false;
+            // 
+            // xrLabel11
+            // 
+            resources.ApplyResources(this.xrLabel11, "xrLabel11");
+            this.xrLabel11.Name = "xrLabel11";
+            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel11.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel26
             // 
@@ -620,27 +641,6 @@
             // 
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Payroll.LeavePayment);
             this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // xrLabel11
-            // 
-            resources.ApplyResources(this.xrLabel11, "xrLabel11");
-            this.xrLabel11.Name = "xrLabel11";
-            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel11.StylePriority.UseTextAlignment = false;
-            // 
-            // xrLabel20
-            // 
-            resources.ApplyResources(this.xrLabel20, "xrLabel20");
-            this.xrLabel20.Name = "xrLabel20";
-            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel20.StylePriority.UseTextAlignment = false;
-            // 
-            // xrLabel25
-            // 
-            resources.ApplyResources(this.xrLabel25, "xrLabel25");
-            this.xrLabel25.Name = "xrLabel25";
-            this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel25.StylePriority.UseTextAlignment = false;
             // 
             // LeavePaymentsReport
             // 

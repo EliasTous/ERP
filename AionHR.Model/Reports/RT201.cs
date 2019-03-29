@@ -57,5 +57,8 @@ namespace AionHR.Model.Reports
         }
 
         public String EffectiveDateString { get; set; }
+        public double eAmount { get; set; }
+        public double dAmount { get; set; }
+        public double finalAmount { get; set; }
     }
 }

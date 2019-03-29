@@ -35,9 +35,7 @@ namespace Reports
         private XRTableCell xrTableCell1;
         private XRTableCell xrTableCell2;
         private XRTableCell xrTableCell5;
-        private XRRichText xrRichText2;
         private XRLabel xrLabel13;
-        private XRRichText xrRichText1;
         private GroupHeaderBand GroupHeader1;
         private XRLabel xrLabel2;
         private GroupHeaderBand GroupHeader2;
@@ -61,6 +59,12 @@ namespace Reports
         private DevExpress.XtraReports.Parameters.Parameter Department;
         private XRLabel xrLabel6;
         private XRLine xrLine2;
+        private XRTableCell xrTableCell3;
+        private XRTableCell xrTableCell4;
+        private XRTableCell xrTableCell6;
+        private XRTableCell xrTableCell7;
+        private XRTableCell xrTableCell8;
+        private XRTableCell xrTableCell9;
 
         /// <summary>
         /// Required designer variable.
@@ -99,9 +103,7 @@ namespace Reports
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalaryChanges));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -129,7 +131,6 @@ namespace Reports
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.GroupHeader2 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
@@ -147,8 +148,13 @@ namespace Reports
             this.Branch = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.Status = new DevExpress.XtraReports.Parameters.Parameter();
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -156,21 +162,13 @@ namespace Reports
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrRichText2,
             this.xrLabel13,
-            this.xrRichText1,
             this.xrTable1});
             resources.ApplyResources(this.Detail, "Detail");
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.StyleName = "DataField";
             this.Detail.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.GroupHeader1_BeforePrint);
-            // 
-            // xrRichText2
-            // 
-            resources.ApplyResources(this.xrRichText2, "xrRichText2");
-            this.xrRichText2.Name = "xrRichText2";
-            this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
             // 
             // xrLabel13
             // 
@@ -179,12 +177,6 @@ namespace Reports
             resources.ApplyResources(this.xrLabel13, "xrLabel13");
             this.xrLabel13.Name = "xrLabel13";
             this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrRichText1
-            // 
-            resources.ApplyResources(this.xrRichText1, "xrRichText1");
-            this.xrRichText1.Name = "xrRichText1";
-            this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
             // 
             // xrTable1
             // 
@@ -198,7 +190,13 @@ namespace Reports
             this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell1,
             this.xrTableCell2,
-            this.xrTableCell5});
+            this.xrTableCell5,
+            this.xrTableCell3,
+            this.xrTableCell4,
+            this.xrTableCell6,
+            this.xrTableCell7,
+            this.xrTableCell8,
+            this.xrTableCell9});
             resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             this.xrTableRow1.Name = "xrTableRow1";
             // 
@@ -412,11 +410,6 @@ namespace Reports
             this.xrLabel2.StylePriority.UseFont = false;
             this.xrLabel2.StylePriority.UseTextAlignment = false;
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT202);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // GroupHeader2
             // 
             this.GroupHeader2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -539,6 +532,55 @@ namespace Reports
             this.Status.Name = "Status";
             this.Status.Visible = false;
             // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT202);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // xrTableCell3
+            // 
+            this.xrTableCell3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "prevCurrencyRef")});
+            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
+            this.xrTableCell3.Name = "xrTableCell3";
+            // 
+            // xrTableCell4
+            // 
+            this.xrTableCell4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "prevBasicAmount")});
+            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
+            this.xrTableCell4.Name = "xrTableCell4";
+            this.xrTableCell4.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell4_PrintOnPage);
+            // 
+            // xrTableCell6
+            // 
+            this.xrTableCell6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PrevSalaryTypeString")});
+            resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
+            this.xrTableCell6.Name = "xrTableCell6";
+            // 
+            // xrTableCell7
+            // 
+            this.xrTableCell7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "currencyRef")});
+            resources.ApplyResources(this.xrTableCell7, "xrTableCell7");
+            this.xrTableCell7.Name = "xrTableCell7";
+            // 
+            // xrTableCell8
+            // 
+            this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "basicAmount")});
+            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
+            this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell4_PrintOnPage);
+            // 
+            // xrTableCell9
+            // 
+            this.xrTableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "SalaryTypeString")});
+            resources.ApplyResources(this.xrTableCell9, "xrTableCell9");
+            this.xrTableCell9.Name = "xrTableCell9";
+            // 
             // SalaryChanges
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -567,8 +609,6 @@ namespace Reports
             this.PageInfo,
             this.DataField});
             this.Version = "16.2";
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -592,6 +632,55 @@ namespace Reports
         private void PageHeader_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             e.Cancel = RowCount == 0;
+        }
+
+        private void xrRichText2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+           
+        }
+
+        private void xrLabel20_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            if ((sender as XRLabel).Text == "  / ")
+            {
+                e.Cancel = true;
+                return;
+                    }
+            if (!string.IsNullOrEmpty((sender as XRLabel).Text))
+            {
+
+                (sender as XRLabel).Text = Convert.ToDouble((sender as XRLabel).Text).ToString("N2");
+
+
+            }
+
+        }
+
+        private void xrRichText1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            if (!string.IsNullOrEmpty((sender as XRRichText).Text))
+            {
+
+                (sender as XRRichText).Text = Convert.ToDouble((sender as XRRichText).Text).ToString("N2");
+
+
+            }
+        }
+
+        private void xrLabel20_PrintOnPage(object sender, PrintOnPageEventArgs e)
+        {
+
+        }
+
+        private void xrTableCell4_PrintOnPage(object sender, PrintOnPageEventArgs e)
+        {
+            if (!string.IsNullOrEmpty((sender as XRTableCell).Text))
+            {
+
+                (sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N0");
+
+
+            }
         }
     }
 }

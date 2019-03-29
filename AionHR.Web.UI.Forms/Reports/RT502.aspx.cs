@@ -28,6 +28,7 @@ using Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -39,25 +40,48 @@ namespace AionHR.Web.UI.Forms.Reports
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -89,6 +113,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     fiscalyearStore.DataSource = GetYears();
                     fiscalyearStore.DataBind();
+                    fillSalaryType();
                 }
                 catch { }
             }
@@ -169,7 +194,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = new ReportCompositeRequest();
 
             req.Size = "1000";
-            req.StartAt = "1";
+            req.StartAt = "0";
 
             req.Add(jobInfo1.GetJobInfo());
             req.Add(employeeCombo1.GetEmployee());
@@ -197,13 +222,15 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ListResponse<AionHR.Model.Reports.RT502> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT502>(req);
             if (!resp.Success)
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+            resp.Items.ForEach(x =>
             {
-               
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-                    return;
-                
-            }
+                x.cvOvertime = Math.Round(x.cvOvertime, 2);
+                x.cvLateness = Math.Round(x.cvLateness, 2);
+                x.cvAbsence = Math.Round(x.cvAbsence, 2);
+                x.cvDisappearance = Math.Round(x.cvDisappearance, 2);
+                x.cvMissedPunches = Math.Round(x.cvMissedPunches, 2);
+            });
 
           
 
@@ -212,12 +239,12 @@ namespace AionHR.Web.UI.Forms.Reports
 
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            //string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            //string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-
+            string d = periodId.SelectedItem.Text.ToString().Split('(')[1].Split(')')[0];
+            
+            
             string user = _systemService.SessionHelper.GetCurrentUser();
-            //h.Parameters["From"].Value = from;
-            //h.Parameters["To"].Value = to;
+            h.Parameters["From"].Value = d.Split('-')[0].ToString().Trim();
+            h.Parameters["To"].Value = d.Split('-')[1].Trim();
             h.Parameters["User"].Value = user;
             if (resp.Items.Count > 0)
             {
@@ -274,14 +301,14 @@ namespace AionHR.Web.UI.Forms.Reports
 
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
-            //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport(true);
         }
 
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+           StoreRequestParameters prms = new StoreRequestParameters(extraParams);
             List<Employee> data = GetEmployeesFiltered(prms.Query);
             data.ForEach(s => { s.fullName = s.name.fullName; });
             //  return new
@@ -298,9 +325,10 @@ namespace AionHR.Web.UI.Forms.Reports
             req.IncludeIsInactive = 2;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
+            req.filterField = "0";
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             return response.Items;
@@ -318,7 +346,18 @@ namespace AionHR.Web.UI.Forms.Reports
             try
             {
                 req.Year = fiscalYear.Value.ToString();
-                req.PeriodType = (SalaryType)Convert.ToInt32( salaryType.Value);
+                if (!string.IsNullOrEmpty(salaryType.Value.ToString()))
+                req.PeriodType = Convert.ToInt32(salaryType.Value.ToString());
+                else
+                {
+                    return;
+                }
+                if (string.IsNullOrEmpty(req.Year))
+                {
+                //    X.Call("FiscalYearError", Resources.Errors.);
+                    return;
+
+                }
                 req.Status = "3";
 
                 ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
@@ -344,10 +383,24 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                 return new List<FiscalYear>();
             }
             return resp.Items;
+        }
+        private void fillSalaryType()
+        {
+            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+
+            request.database = "2";
+            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            salaryTypeStore.DataSource = resp.Items;
+            salaryTypeStore.DataBind();
         }
     }
 }

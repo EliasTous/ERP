@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure.Domain;
 using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +74,13 @@ namespace AionHR.Model.System
 
         public int userType { get; set; }
         public string userTypeString  { get; set; }
+        public string branchName { get; set; }
+        public string departmentName { get; set; }
+        public string positionName { get; set; }
+        public string userTypeName { get; set; }
+        public EmployeeName employeeName { get; set; }
+
+
 
     }
 }

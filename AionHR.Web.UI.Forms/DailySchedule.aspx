@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css?id=3" />
     <link rel="stylesheet" href="CSS/DailySchedule.css?id=100" />
   <%--  <link rel="stylesheet" href="CSS/defaultTheme.css?id=11" />--%>
-    <script type="text/javascript" src="Scripts/DailySchedule.js?id=250"></script>
+    <script type="text/javascript" src="Scripts/DailySchedule.js?id=5"></script>
     <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
  
     <script type="text/javascript" src="Scripts/jquery-new.js?id=30"></script>
@@ -32,14 +32,14 @@
         function SwapRTL() {
             if (document.getElementById("isRTL").value == '1') {
 
-                $(".x-form-itemselector-add").css('background-image', 'url(/Site/ux/resources/images/itemselector/left-gif/ext.axd)');
-                $(".x-form-itemselector-remove").css('background-image', 'url(/Site/ux/resources/images/itemselector/right-gif/ext.axd)');
+                $(".x-form-itemselector-add").css('background-image', 'url(ux/resources/images/itemselector/left-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(ux/resources/images/itemselector/right-gif/ext.axd)');
 
             }
             else {
 
-                $(".x-form-itemselector-add").css('background-image', 'url(/Site//ux/resources/images/itemselector/right-gif/ext.axd)');
-                $(".x-form-itemselector-remove").css('background-image', 'url(/Site//ux/resources/images/itemselector/left-gif/ext.axd)');
+                $(".x-form-itemselector-add").css('background-image', 'url(ux/resources/images/itemselector/right-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(ux/resources/images/itemselector/left-gif/ext.axd)');
 
             }
         }
@@ -155,11 +155,14 @@
                                     <%--  <Listeners>
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
                                     </Listeners>--%>
+                                  
                                 </ext:DateField>
                                 <ext:DateField runat="server" ID="dateTo" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: To %>" Editable="false">
                                     <%--  <Listeners>
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
                                     </Listeners>--%>
+                                   
+
                                 </ext:DateField>
                                 <ext:ToolbarSeparator />
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="cmbEmployeeImport" Width="260" LabelAlign="Left" FieldLabel="<%$ Resources: ImportFrom %>"
@@ -199,11 +202,19 @@
                                         </Click>
                                         
                                     </DirectEvents>
+
                                        <Listeners>
                                            <Click Handler="App.userSelector.toField.getStore().removeAll();"></Click>
                                        </Listeners>
                                 </ext:Button>
-
+                                 <ext:Button runat="server" Text="<%$ Resources: NotifyEmployee %>">
+                                    <DirectEvents>
+                                        <Click OnEvent="NotifyEmployee_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                        
+                                    </DirectEvents>
+                                     </ext:Button>
 
                             </Items>
                         </ext:Toolbar>

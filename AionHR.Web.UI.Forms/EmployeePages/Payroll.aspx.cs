@@ -26,6 +26,8 @@ using AionHR.Infrastructure.JSON;
 using AionHR.Model.Attributes;
 using AionHR.Model.Access_Control;
 using AionHR.Model.Payroll;
+using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -36,25 +38,48 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -221,7 +246,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         protected void PoPuPSA(object sender, DirectEventArgs e)
         {
 
-
+            fillSalaryType();
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             currentGrossSalary.Text = e.ExtraParams["grossSalary"];
@@ -247,7 +272,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     FillBank();
                     dedsStore.Reload();
                     entsStore.Reload();
-
+                    basicAmount.Text=response3.result.basicAmount.ToString("N");
+                    finalAmount.Text = response3.result.finalAmount.ToString("N");
+                    eAmount.Text= response3.result.eAmount.ToString("N2");
+                    dAmount.Text = response3.result.dAmount.ToString("N2");
                     CurrentSalary.Text = r3.RecordID;
                     CurrentSalaryCurrency.Text = response3.result.currencyRef;
                     currencyId.Select(response3.result.currencyId.ToString());
@@ -257,8 +285,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         scrId.Select(response3.result.scrId.Value.ToString());
 
                     X.Call("TogglePaymentMethod", response3.result.paymentMethod);
-                    eAmount.Text = response3.result.eAmount.ToString();
-                    dAmount.Text = response3.result.dAmount.ToString();
+                   
                     FillEntitlements();
                     FillDeductions();
                     this.EditSAWindow.Title = Resources.Common.EditWindowsTitle;
@@ -388,6 +415,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         enFixedAmount.Disabled = false;
 
                     }
+                    enFixedAmount.Text = detail.fixedAmount.ToString("N2");
                     EditENWindow.Show();
                     break;
                 case "imgDelete":
@@ -467,6 +495,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         pctOf.Disabled = true;
                         deIsPCT.Checked = false;
                     }
+                    deFixedAmount.Text = dedDetail.fixedAmount.ToString("N2");
                     EditDEWindow.Show();
                     break;
                 case "imgDelete":
@@ -697,6 +726,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         protected void ADDNewSA(object sender, DirectEventArgs e)
         {
+            fillSalaryType();
             CurrentSalary.Text = "";
             entitlementsForm.Disabled = true;
             DeductionForm.Disabled = true; 
@@ -769,7 +799,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             request.Filter = "";
 
             request.Size = "50";
-            request.StartAt = "1";
+            request.StartAt = "0";
             
             ListResponse<EmployeeSalary> currencies = _employeeService.ChildGetAll<EmployeeSalary>(request);
             if (!currencies.Success)
@@ -790,7 +820,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             request.Filter = "";
 
             request.Size = "50";
-            request.StartAt = "1";
+            request.StartAt = "0";
             ListResponse<Bonus> currencies = _employeeService.ChildGetAll<Bonus>(request);
             if (!currencies.Success)
             {
@@ -811,9 +841,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         protected void SaveSA(object sender, DirectEventArgs e)
         {
 
-            
+            try
+            { 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string id = e.ExtraParams["id"];
+            string basicAmount = e.ExtraParams["basicAmount"];
+            string finalAmount = e.ExtraParams["finalAmount"];
+            //string eAmount = e.ExtraParams["eAmount"].Replace(",", string.Empty).ToString();
+            //string dAmount = e.ExtraParams["dAmount"].Replace(",", string.Empty).ToString();
 
             string obj = e.ExtraParams["values"];
             string ents = e.ExtraParams["entitlements"];
@@ -821,6 +856,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             List<SalaryDetail> entitlements = null;
             List<SalaryDetail> deductions = null;
             EmployeeSalary b = JsonConvert.DeserializeObject<EmployeeSalary>(obj);
+            b.basicAmount = Convert.ToDouble(basicAmount);
+            b.finalAmount = Convert.ToDouble(finalAmount);
+            
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
            
             b.recordId = id;
@@ -850,163 +888,168 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 b.isTaxable = 0;
             }
             catch { }
-            // Define the object to add or edit as null
+                // Define the object to add or edit as null
 
 
-            if (string.IsNullOrEmpty(id))
-            {
-
-                try
+                if (string.IsNullOrEmpty(id))
                 {
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<EmployeeSalary> request = new PostRequest<EmployeeSalary>();
-                    request.entity = b;
-                    request.entity.recordId = CurrentSalary.Text;
-                    PostResponse<EmployeeSalary> r = _employeeService.ChildAddOrUpdate<EmployeeSalary>(request);
-                    if (!r.Success)//it maybe be another condition
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
-                        return;
-                    }
-                    if(!string.IsNullOrEmpty(CurrentSalary.Text))
-                    {
-                        this.EditSAWindow.Close();
-                        RowSelectionModel sm = this.SalaryGrid.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
-                       
-                    }
-                    entitlementsForm.Disabled = false;
-                    DeductionForm.Disabled = false;
-                    b.recordId = r.recordId;
-                    CurrentSalary.Text = b.recordId;
-                    entitlements = JsonConvert.DeserializeObject<List<SalaryDetail>>(ents);
-                    //JsonSerializerSettings settings = new JsonSerializerSettings();
-                    //CustomResolver resolver = new CustomResolver();
-                    //resolver.AddRule("deductionId", "edId");
-                    //settings.ContractResolver = resolver;
-                    deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds);
 
-                    PostResponse<SalaryDetail[]> result = AddSalaryEntitlementsDeductions(b.recordId, entitlements, deductions);
-
-                  
-                    if (!result.Success)
+                    try
                     {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", result.ErrorCode) != null ? GetGlobalResourceObject("Errors", result.ErrorCode).ToString() : result.Summary).Show();
-                        return;
-                    }
-                    //check if the insert failed
-
-                    else
-                    {
-
-                        //Add this record to the store 
-                        //this.SAStore.Insert(0, b);
-                        this.SAStore.Reload();
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
+                        //New Mode
+                        //Step 1 : Fill The object and insert in the store 
+                        PostRequest<EmployeeSalary> request = new PostRequest<EmployeeSalary>();
+                        request.entity = b;
+                        request.entity.recordId = CurrentSalary.Text;
+                        PostResponse<EmployeeSalary> r = _employeeService.ChildAddOrUpdate<EmployeeSalary>(request);
+                        if (!r.Success)//it maybe be another condition
                         {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
-
-                       
-
-
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-                }
-
-
-            }
-            else
-            {
-                //Update Mode
-
-                try
-                {
-                    int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<EmployeeSalary> request = new PostRequest<EmployeeSalary>();
-                    request.entity = b;
-                    PostResponse<EmployeeSalary> r = _employeeService.ChildAddOrUpdate<EmployeeSalary>(request);
-                    if (!r.Success)//it maybe another check
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
-                        return;
-                    }//Step 1 Selecting the object or building up the object for update purpose
-                    var deleteDesponse = _employeeService.DeleteSalaryDetails(Convert.ToInt32(b.recordId));
-                    if (!deleteDesponse.Success)//it maybe another check
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, deleteDesponse.Summary).Show();
-                        return;
-                    }
-                    entitlements = JsonConvert.DeserializeObject<List<SalaryDetail>>(ents);
-                    JsonSerializerSettings settings = new JsonSerializerSettings();
-                    //CustomResolver resolver = new CustomResolver();
-                    //resolver.AddRule("deductionId", "edId");
-                    //settings.ContractResolver = resolver;
-                    deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds);
-                    PostResponse<SalaryDetail[]> result = AddSalaryEntitlementsDeductions(b.recordId, entitlements, deductions);
-
-
-                    if (!result.Success)
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", result.ErrorCode) != null ? GetGlobalResourceObject("Errors", result.ErrorCode).ToString() : result.Summary).Show();
-                        return;
-                    }
-
-                    else
-                    {
-
-
-                        ModelProxy record = this.SAStore.GetById(index);
-                        EditSAForm.UpdateRecord(record);
-                        record.Set("currencyRef", b.currencyRef);
-                        record.Set("scrName", b.scrName);
-                        record.Set("effectiveDate", b.effectiveDate.ToShortDateString());
-                        record.Commit();
-                        Notification.Show(new NotificationConfig
+                            //Show an error saving...
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            Common.errorMessage(r);
+                            return;
+                        }
+                        if (!string.IsNullOrEmpty(CurrentSalary.Text))
                         {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                        });
-                        this.EditSAWindow.Close();
+                            this.EditSAWindow.Close();
+                            RowSelectionModel sm = this.SalaryGrid.GetSelectionModel() as RowSelectionModel;
+                            sm.DeselectAll();
+                            sm.Select(b.recordId.ToString());
+
+                        }
+                        entitlementsForm.Disabled = false;
+                        DeductionForm.Disabled = false;
+                        b.recordId = r.recordId;
+                        CurrentSalary.Text = b.recordId;
+                        entitlements = JsonConvert.DeserializeObject<List<SalaryDetail>>(ents);
+
+                        deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds);
+
+                        PostResponse<SalaryDetail[]> result = AddSalaryEntitlementsDeductions(b.recordId, entitlements, deductions);
 
 
+                        if (!result.Success)
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", result.ErrorCode) != null ? GetGlobalResourceObject("Errors", result.ErrorCode).ToString() : result.Summary).Show();
+                            return;
+                        }
+                        //check if the insert failed
+
+                        else
+                        {
+
+                            //Add this record to the store 
+                            //this.SAStore.Insert(0, b);
+                            this.SAStore.Reload();
+                            //Display successful notification
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordSavingSucc
+                            });
+
+
+
+
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //Error exception displaying a messsage box
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
                     }
 
+
                 }
-                catch (Exception ex)
+                else
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                    //Update Mode
+
+                    try
+                    {
+                        int index = Convert.ToInt32(id);//getting the id of the record
+                        PostRequest<EmployeeSalary> request = new PostRequest<EmployeeSalary>();
+                        request.entity = b;
+                        PostResponse<EmployeeSalary> r = _employeeService.ChildAddOrUpdate<EmployeeSalary>(request);
+                        if (!r.Success)//it maybe another check
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            Common.errorMessage(r);
+                            return;
+                        }//Step 1 Selecting the object or building up the object for update purpose
+                        var deleteDesponse = _employeeService.DeleteSalaryDetails(Convert.ToInt32(b.recordId));
+                        if (!deleteDesponse.Success)//it maybe another check
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, deleteDesponse.Summary).Show();
+                            return;
+                        }
+                        entitlements = JsonConvert.DeserializeObject<List<SalaryDetail>>(ents);
+                        JsonSerializerSettings settings = new JsonSerializerSettings();
+                        //CustomResolver resolver = new CustomResolver();
+                        //resolver.AddRule("deductionId", "edId");
+                        //settings.ContractResolver = resolver;
+                        deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds);
+                        PostResponse<SalaryDetail[]> result = AddSalaryEntitlementsDeductions(b.recordId, entitlements, deductions);
+
+
+                        if (!result.Success)
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", result.ErrorCode) != null ? GetGlobalResourceObject("Errors", result.ErrorCode).ToString() : result.Summary).Show();
+                            return;
+                        }
+
+                        else
+                        {
+
+
+                            ModelProxy record = this.SAStore.GetById(index);
+                            //EditSAForm.UpdateRecord(record);
+                            record.Set("currencyRef", b.currencyRef);
+                            //record.Set("scrName", b.scrName);
+                            record.Set("effectiveDate", b.effectiveDate);
+                            record.Set("basicAmount", b.basicAmount);
+                            record.Set("finalAmount", b.finalAmount);
+                            record.Commit();
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordUpdatedSucc
+                            });
+                            this.EditSAWindow.Close();
+
+
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                    }
                 }
-            }
+            } catch (Exception ex)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                    }
         }
 
         protected void SaveEN(object sender, DirectEventArgs e)
         {
             string id = e.ExtraParams["id"];
-
+            string FixedAmount = e.ExtraParams["FixedAmount"];
             string obj = e.ExtraParams["values"];
             string oldAmount = e.ExtraParams["oldAmount"];
             double amount = 0;
             SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj);
+            b.fixedAmount = Convert.ToDouble(FixedAmount);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.seqNo = Convert.ToInt16(ENSeq.Text);
             if (!b.includeInTotal.HasValue)
@@ -1168,8 +1211,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         protected void SaveDE(object sender, DirectEventArgs e)
         {
+            
             string id = e.ExtraParams["id"];
-
+            string FixedAmount = e.ExtraParams["FixedAmount"];
             string obj = e.ExtraParams["values"];
             string oldAmount = e.ExtraParams["oldAmount"];
 
@@ -1178,6 +1222,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             res.AddRule("DEedId", "edId");
             settings.ContractResolver = res;
             SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj, settings);
+            b.fixedAmount = Convert.ToDouble(FixedAmount);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             double amount = 0;
             b.seqNo = Convert.ToInt16(DESeq.Text);
@@ -1320,7 +1365,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -1372,7 +1417,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -1422,7 +1467,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Currency> resp = _systemService.ChildGetAll<Currency>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             currencyStore.DataSource = resp.Items;
             currencyStore.DataBind();
         }
@@ -1431,7 +1476,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest bank = new ListRequest();
             ListResponse<Bank> resp = _payrollService.ChildGetAll<Bank>(bank);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             bankStore.DataSource = resp.Items;
             bankStore.DataBind();
         }
@@ -1441,7 +1486,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Currency> resp = _systemService.ChildGetAll<Currency>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             BOCurrencyStore.DataSource = resp.Items;
             BOCurrencyStore.DataBind();
         }
@@ -1450,7 +1495,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest branchesRequest = new ListRequest();
             ListResponse<SalaryChangeReason> resp = _employeeService.ChildGetAll<SalaryChangeReason>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             scrStore.DataSource = resp.Items;
             scrStore.DataBind();
         }
@@ -1460,7 +1505,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest branchesRequest = new ListRequest();
             ListResponse<BonusType> resp = _employeeService.ChildGetAll<BonusType>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             BTStore.DataSource = resp.Items;
             BTStore.DataBind();
         }
@@ -1521,7 +1566,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1544,7 +1589,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1568,7 +1613,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1592,7 +1637,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1721,7 +1766,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1747,12 +1792,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
         }
+        private void  fillSalaryType()
+        {
+            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
+            request.database = "2";
+            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            if(!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return; 
+            }
+            salaryTypeStore.DataSource = resp.Items;
+            salaryTypeStore.DataBind();
+        }
 
     }
 }

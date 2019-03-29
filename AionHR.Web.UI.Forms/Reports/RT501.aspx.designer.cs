@@ -103,6 +103,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden format;
         
         /// <summary>
+        /// Error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden Error;
+        
+        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,24 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Panel Center;
+        
+        /// <summary>
+        /// payId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox payId;
+        
+        /// <summary>
+        /// payIdStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store payIdStore;
         
         /// <summary>
         /// jobInfo1 control.
@@ -146,6 +173,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeFilter;
+        
+        /// <summary>
+        /// dateRange1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter dateRange1;
         
         /// <summary>
         /// payRef control.

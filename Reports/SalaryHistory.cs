@@ -32,5 +32,23 @@ namespace Reports
         {
             e.Cancel = this.RowCount == 0;
         }
+
+        private void xrLabel28_PrintOnPage(object sender, PrintOnPageEventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty((sender as XRLabel).Text))
+                {
+
+                    (sender as XRLabel).Text = Convert.ToDouble((sender as XRLabel).Text).ToString("N2");
+
+
+                }
+            }
+            catch
+            {
+
+            }
+        }
     }
 }

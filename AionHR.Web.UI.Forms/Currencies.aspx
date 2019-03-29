@@ -119,7 +119,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
 
-                              <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
+                              <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
                             <ext:Column   ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference %>" DataIndex="reference" Hideable="false" width="150" Align="Center"/> 
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                         
@@ -234,7 +234,7 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField  ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" MaxLength="3" />
                                   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="profileId" runat="server" FieldLabel="<%$ Resources:FieldProfile%>" Name="profileId" IDMode="Static" SubmitValue="true" ForceSelection="true">

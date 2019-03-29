@@ -210,9 +210,6 @@
   <data name="All" xml:space="preserve">
     <value>All</value>
   </data>
-  <data name="multiImport" xml:space="preserve">
-    <value>multiImport</value>
-  </data>
   <data name="Selected" xml:space="preserve">
     <value>Selected</value>
   </data>
@@ -230,5 +227,14 @@
   </data>
   <data name="total" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="NotifyEmployee" xml:space="preserve">
+    <value>Notify Employee</value>
+  </data>
+  <data name="disableEdit" xml:space="preserve">
+    <value>you cannot edit schedule in this duration</value>
+  </data>
+  <data name="updateError" xml:space="preserve">
+    <value>You cannot update or save schedule at  specific  day range</value>
   </data>
 </root>

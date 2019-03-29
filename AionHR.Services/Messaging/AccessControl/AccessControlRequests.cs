@@ -29,6 +29,8 @@ public class GroupUsersListRequest : ListRequest
 public class AccessControlListRequest : ListRequest
 {
     public string GroupId { get; set; }
+    public string ModuleId { get; set; }
+
 
     private Dictionary<string, string> parameters;
 
@@ -38,6 +40,7 @@ public class AccessControlListRequest : ListRequest
         {
             parameters = new Dictionary<string, string>();
             parameters.Add("_sgId", GroupId);
+            parameters.Add("_moduleId", ModuleId);
             return parameters;
         }
     }

@@ -13,6 +13,6 @@ namespace AionHR.Services.Interfaces
     {
         PostResponse<VacationSchedulePeriod> DeleteVacationSchedulePeriods(int vacationScheduleId);
 
-        PostResponse<LeaveDay> DeleteLeaveDays(int leaveId);
+        //PostResponse<LeaveDay> DeleteLeaveDays(int leaveId);
     }
 }

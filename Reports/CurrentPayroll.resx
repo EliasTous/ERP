@@ -365,7 +365,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel26.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>201.041672, 6.00001</value>
+    <value>244.291687, 6.00001</value>
   </data>
   <data name="xrLabel26.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>193.749985, 23</value>
@@ -377,7 +377,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel23.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>156.749985, 6.00001</value>
+    <value>200, 6.00001</value>
   </data>
   <data name="xrLabel23.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>44.291687, 23</value>
@@ -388,11 +388,14 @@
   <data name="xrPageInfo1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="xrPageInfo1.Format" xml:space="preserve">
+    <value>{0:dddd, d MMMM, yyyy H:mm}</value>
+  </data>
   <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
     <value>0, 6.00001</value>
   </data>
   <data name="xrPageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>156.749969, 23</value>
+    <value>200, 23</value>
   </data>
   <data name="xrPageInfo2.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -470,7 +473,7 @@
     <value>409.291718, 0</value>
   </data>
   <data name="xrLabel7.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>60, 45.875042</value>
+    <value>60, 74.00004</value>
   </data>
   <data name="xrLabel7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleLeft</value>
@@ -479,7 +482,7 @@
     <value>100</value>
   </data>
   <data name="Detail1.HeightF" type="System.Single, mscorlib">
-    <value>45.875042</value>
+    <value>74.00004</value>
   </data>
   <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -834,42 +837,6 @@
   </data>
   <data name="DetailReport4.Dpi" type="System.Single, mscorlib">
     <value>100</value>
-  </data>
-  <data name="xrCrossBandBox4.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrCrossBandBox4.EndPointFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>21.1249981, 77.0833359</value>
-  </data>
-  <data name="xrCrossBandBox4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>21.1249981, 0</value>
-  </data>
-  <data name="xrCrossBandBox4.StartPointFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>21.1249981, 0</value>
-  </data>
-  <data name="xrCrossBandLine14.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrCrossBandLine14.EndPointFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>23.2083321, 39.5</value>
-  </data>
-  <data name="xrCrossBandLine14.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>23.2083321, 37.5</value>
-  </data>
-  <data name="xrCrossBandLine14.StartPointFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>23.2083321, 37.5</value>
-  </data>
-  <data name="xrCrossBandLine15.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrCrossBandLine15.EndPointFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>469.041656, 76.0416641</value>
-  </data>
-  <data name="xrCrossBandLine15.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>469.041656, 2.08333325</value>
-  </data>
-  <data name="xrCrossBandLine15.StartPointFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>469.041656, 2.08333325</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

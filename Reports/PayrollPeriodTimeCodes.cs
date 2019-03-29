@@ -324,6 +324,8 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cvLateness")});
             resources.ApplyResources(this.xrTableCell10, "xrTableCell10");
             this.xrTableCell10.Name = "xrTableCell10";
+            this.xrTableCell10.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell10_BeforePrint);
+            this.xrTableCell10.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell10_PrintOnPage);
             // 
             // xrTableCell11
             // 
@@ -341,6 +343,7 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cvOvertime")});
             resources.ApplyResources(this.xrTableCell12, "xrTableCell12");
             this.xrTableCell12.Name = "xrTableCell12";
+            this.xrTableCell12.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell10_PrintOnPage);
             // 
             // xrTableCell13
             // 
@@ -357,6 +360,7 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cvAbsence")});
             resources.ApplyResources(this.xrTableCell14, "xrTableCell14");
             this.xrTableCell14.Name = "xrTableCell14";
+            this.xrTableCell14.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell10_PrintOnPage);
             // 
             // xrTableCell15
             // 
@@ -373,6 +377,7 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cvMissedPunches")});
             resources.ApplyResources(this.xrTableCell16, "xrTableCell16");
             this.xrTableCell16.Name = "xrTableCell16";
+            this.xrTableCell16.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell10_PrintOnPage);
             // 
             // xrTableCell17
             // 
@@ -389,6 +394,7 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cvDisappearance")});
             resources.ApplyResources(this.xrTableCell18, "xrTableCell18");
             this.xrTableCell18.Name = "xrTableCell18";
+            this.xrTableCell18.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell10_PrintOnPage);
             // 
             // TopMargin
             // 
@@ -1075,6 +1081,7 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel36.StylePriority.UseTextAlignment = false;
             xrSummary9.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel36.Summary = xrSummary9;
+            this.xrLabel36.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrLabel36_PrintOnPage);
             // 
             // xrLabel35
             // 
@@ -1184,5 +1191,61 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
     private void xrLabel35_SummaryGetResult(object sender, SummaryGetResultEventArgs e)
     {
      
+    }
+
+    private void xrTableCell10_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty((sender as XRTableCell).Text))
+            {
+
+                //(sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N0");
+                //(sender as XRTableCell).Text = Convert.ToDecimal((sender as XRTableCell).Text).ToString();
+
+
+            }
+        }
+        catch
+        {
+
+        }
+    }
+
+    private void xrTableCell10_PrintOnPage(object sender, PrintOnPageEventArgs e)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty((sender as XRTableCell).Text))
+            {
+
+                //(sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N0");
+                //(sender as XRTableCell).Text = Convert.ToDecimal((sender as XRTableCell).Text).ToString();
+
+
+            }
+        }
+        catch
+        {
+
+        }
+    }
+
+    private void xrLabel36_PrintOnPage(object sender, PrintOnPageEventArgs e)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty((sender as XRLabel).Text))
+            {
+
+                //(sender as XRLabel).Text = Convert.ToDouble((sender as XRLabel).Text).ToString("N0");
+
+
+            }
+        }
+        catch
+        {
+
+        }
     }
 }

@@ -346,13 +346,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox edType;
         
         /// <summary>
-        /// timeCode control.
+        /// timecode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox timeCode;
+        protected global::Ext.Net.ComboBox timecode;
         
         /// <summary>
         /// entEdId control.

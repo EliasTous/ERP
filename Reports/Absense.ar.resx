@@ -153,8 +153,17 @@
   <data name="xrLabel26.Text" xml:space="preserve">
     <value>الضرر</value>
   </data>
+  <data name="xrLabel27.Text" xml:space="preserve">
+    <value>التسلسل</value>
+  </data>
+  <data name="xrLabel28.Text" xml:space="preserve">
+    <value>المبلغ</value>
+  </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>القسم</value>
+  </data>
+  <data name="xrLabel30.Text" xml:space="preserve">
+    <value>المجموع</value>
   </data>
   <data name="xrLabel4.Text" xml:space="preserve">
     <value>الى </value>

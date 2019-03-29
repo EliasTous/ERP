@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Infrastructure;
+using AionHR.Model.Employees.Profile;
 using AionHR.Model.MasterModule;
 using AionHR.Services.Implementations;
 using AionHR.Services.Interfaces;
@@ -31,6 +32,7 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
+        
 
             base.InitializeCulture();
             //User came to english login so set the language to english           
@@ -41,6 +43,23 @@ namespace AionHR.Web.UI.Forms
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!X.IsAjaxRequest)
+            {
+                ResourceManager1.RegisterIcon(Icon.Tick);
+                ResourceManager1.RegisterIcon(Icon.Error);
+
+                Store store = this.languageId.GetStore();
+                store.DataSource = new object[]
+                {
+                new object[] { "1", "English" },
+                new object[] { "2", "عربي" },
+                new object[] { "3", "Français" },
+                new object[] { "4", "Deutsch" }
+                };
+            }
+            languageId.HideBaseTrigger = true;
+            this.languageId.Call("getTrigger(0).hide");
+            languageId.Select(0);
             //ResourceManager1.RegisterIcon(Icon.Tick);
             //ResourceManager1.RegisterIcon(Icon.Error);
             if (Request.QueryString["timeout"] != null && Request.QueryString["timeout"].ToString() == "yes")
@@ -70,11 +89,7 @@ namespace AionHR.Web.UI.Forms
                 rememberMeCheck.Checked = true;
             }
 
-            if (!X.IsAjaxRequest)
-            {
-                ResourceManager1.RegisterIcon(Icon.Tick);
-                ResourceManager1.RegisterIcon(Icon.Error);
-            }
+           
         }
 
         [DirectMethod]
@@ -86,8 +101,8 @@ namespace AionHR.Web.UI.Forms
             Response<Account> getACResponse = _masterService.GetAccount(GetACrequest);
             if(!getACResponse.Success)
             {
-               
-                lblError.Text = GetGlobalResourceObject("Errors", getACResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", getACResponse.ErrorCode).ToString() : getACResponse.Message;
+
+                lblError.Text = getACResponse.Error;
                 return "error";//Error in authentication
             }
 
@@ -95,10 +110,26 @@ namespace AionHR.Web.UI.Forms
             AuthenticateRequest request = new AuthenticateRequest();
 
             request.UserName = tbUsername.Text;
-            request.Password = tbPassword.Text;
+            request.Password = EncryptionHelper.encrypt(tbPassword.Text);
             AuthenticateResponse response = _systemService.Authenticate(request);
+            if (response.User==null)
+            {
+                if (string.IsNullOrEmpty(response.Error))
+                    lblError.Text = GetGlobalResourceObject("Errors", "authenticationError").ToString();
+                else
+                    lblError.Text = response.Error;
+             
+                return "error";
+            }
+            if (response.User.isInactive)
+            {
+                lblError.Text = GetGlobalResourceObject("Errors", "inactiveUser").ToString();
+                return "error";
+            }
             if (response.Success)
             {
+               
+             
                 //Redirecting..
                 Response.Cookies.Add(new HttpCookie("accountName", accountName) { Expires = DateTime.Now.AddDays(30) });
                 if (rememberMeCheck.Checked)
@@ -112,10 +143,21 @@ namespace AionHR.Web.UI.Forms
                     RemoveCookies();
                     
                 }
-                if (response.User.languageId == 2)
-                    _systemService.SessionHelper.SetLanguage("ar");
-                else
-                    _systemService.SessionHelper.SetLanguage("en");
+                //switch (response.User.languageId)
+                //{
+                //    case 1: _systemService.SessionHelper.SetLanguage("en");
+                //        break;
+                //    case 2:
+                //        _systemService.SessionHelper.SetLanguage("ar");
+                //        break;
+                //    case 3: _systemService.SessionHelper.SetLanguage("fr");
+                //        break;
+                //    default: _systemService.SessionHelper.SetLanguage("en");
+                //        break; 
+
+                //}
+
+                _systemService.SessionHelper.SetLanguage("en");
 
                 _systemService.SessionHelper.Set("CompanyName", getACResponse.result.companyName);
 
@@ -130,7 +172,7 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                lblError.Text = GetGlobalResourceObject("Errors",  response.ErrorCode) !=null? GetGlobalResourceObject("Errors", response.ErrorCode).ToString():response.Summary;
+                lblError.Text = response.Error;
                 return "error";//Error in authentication
 
             }
@@ -206,7 +248,7 @@ namespace AionHR.Web.UI.Forms
             {
                 EmployeeListRequest request = new EmployeeListRequest();
                 request.BranchId = request.DepartmentId = request.PositionId = "0";
-                request.StartAt = "1";
+                request.StartAt = "0";
                 request.SortBy = "hireDate";
                 request.Size = "1";
                 request.IncludeIsInactive = 2;
@@ -345,6 +387,45 @@ namespace AionHR.Web.UI.Forms
         protected void forgotpw_Event(object sender, EventArgs e)
         {
             Response.Redirect("~/ForgotPassword.aspx");
+
+        }
+
+        protected void Change_language(object sender, DirectEventArgs e)
+        {
+        string language=e.ExtraParams["value"];
+           
+            if (string.IsNullOrEmpty(language))
+            {
+                language = "1";
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+
+           
+            switch (language)
+            {
+                case "1":
+                    {
+                        Response.Redirect("~/Login.aspx");
+                    }
+                    break;
+                case "2":
+                    Response.Redirect("~/ARLogin.aspx");
+                    break;
+                case "3":
+                    Response.Redirect("~/FRLogin.aspx");
+                    break;
+                case "4":
+                    Response.Redirect("~/DELogin.aspx");
+                    break;
+                default:
+                    Response.Redirect("~/Login.aspx");
+                    break;
+
+
+            }
+
+
 
         }
     }

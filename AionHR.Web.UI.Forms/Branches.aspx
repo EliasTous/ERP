@@ -186,7 +186,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
 
-                              <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
+                              <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
                             <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="branchRef" width="150" Hideable="false" Visible="false"/>
                             <ext:Column   CellCls="cellLink" ID="ColManger" MenuDisabled="true" runat="server" Text="<%$ Resources: manager%>" DataIndex="managerName" Flex="2" >
                                 <Renderer Handler=" return record.data['managerName'].fullName ;"></Renderer>
@@ -338,7 +338,7 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
                                      <ext:TextField ID="branchRef" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="branchRef"  />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                            
@@ -372,7 +372,7 @@
                                         <ext:ListItem Text="+12 UTC" Value="12" />
                                     </Items>
                                 </ext:ComboBox>--%>
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="scId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="scId" FieldLabel="<%$ Resources:FieldSchedule%>" SimpleSubmit="true">
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="scId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="scId" FieldLabel="<%$ Resources:FieldSchedule%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="scheduleStore">
                                             <Model>
@@ -384,7 +384,9 @@
                                                 </ext:Model>
                                             </Model>
                                         </ext:Store>
+                                       
                                     </Store>
+                                      
 
                                 </ext:ComboBox>
                                  <ext:ComboBox   AnyMatch="true"  CaseSensitive="false"  runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="caId" Name="caId" FieldLabel="<%$ Resources:FieldWorkingCalendar%>" >
@@ -559,6 +561,7 @@
                                                 <ext:ModelField Name="goName" />
                                                 <ext:ModelField Name="reference" />
                                                 <ext:ModelField Name="releaseDate" />
+                                                  <ext:ModelField Name="expiryDate" />
 
 
 
@@ -605,6 +608,7 @@
                                     <ext:Column ID="goName" MenuDisabled="true" runat="server" Text="<%$ Resources:goName%>" DataIndex="goName" Hideable="false" Flex="1" Align="Center" />
                                     <ext:Column ID="referenceCol" MenuDisabled="true" runat="server" Text="<%$ Resources:FieldReference%> " DataIndex="reference" Hideable="false" Flex="1" Align="Center" />
                                     <ext:DateColumn ID="releaseDate" MenuDisabled="true" runat="server" Text=" <%$ Resources:releaseDate%> " DataIndex="releaseDate" Hideable="false" Flex="1" Align="Center" />
+                                       <ext:DateColumn ID="expiryDate" MenuDisabled="true" runat="server" Text=" <%$ Resources:expiryDate %> " DataIndex="expiryDate" Hideable="false" Flex="1" Align="Center" />
 
 
 
@@ -646,7 +650,7 @@
                                         MenuDisabled="true"
                                         Resizable="false">
 
-                                        <Renderer Handler="return editRender(); " />
+                                        <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                                     </ext:Column>
 
@@ -749,11 +753,12 @@
                             BodyPadding="5">
                             <Items>
 
-                                  <ext:TextField ID="goIdd" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="goId" />
-                              <ext:TextField ID="branchIdd" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="goId" />
+                                  <ext:TextField ID="goIdd" Hidden="true" runat="server"  Disabled="true" Name="goId" />
+                              <ext:TextField ID="branchIdd" Hidden="true" runat="server"  Disabled="true" Name="goId" />
                                 <ext:TextField  ID="goNameTF" runat="server" ReadOnly="true" FieldLabel="<%$ Resources:goName %>"  Name="goName" />
                                  <ext:TextField   ID="referenceTF"  runat="server" FieldLabel="<%$ Resources:FieldReference %>" Name="reference" />
                                 <ext:DateField   ID="releaseDateDF" AllowBlank="false"   runat="server" FieldLabel="<%$ Resources:releaseDate %>" Name="releaseDate" />
+                                 <ext:DateField   ID="expiryDateDF" AllowBlank="false"   runat="server" FieldLabel="<%$ Resources:expiryDate %>" Name="expiryDate" />
                          
                                  
                                

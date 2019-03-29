@@ -41,25 +41,47 @@ namespace AionHR.Web.UI.Forms
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IDashBoardService _dashBoardService = ServiceLocator.Current.GetInstance<IDashBoardService>();
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -234,24 +256,29 @@ namespace AionHR.Web.UI.Forms
                     else
                         r.approverId = Convert.ToInt32(approverId.Value.ToString());
                     r.shiftId = "0";
-                    r.Parameters.Add("_sortBy", "dayId");
-
+                   
+                r.Size = "1000";
+                r.StartAt = "0";
                     ListResponse<Time> resp = _timeAttendanceService.ChildGetAll<Time>(r);
                     if (!resp.Success)
                     {
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                        Common.errorMessage(resp);
                         return;
                     }
                     bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-                    resp.Items.ForEach(
+                List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
+                int currentTimeCode;
+                resp.Items.ForEach(
                          x =>
                          {
                              if (!string.IsNullOrEmpty(x.clockDuration))
                                  x.clockDuration = time(Convert.ToInt32(x.clockDuration), true);
                              if (!string.IsNullOrEmpty(x.duration))
                                  x.duration = time(Convert.ToInt32(x.duration), true);
-                             if (!string.IsNullOrEmpty(x.timeCode))
-                                 x.timeCodeString = FillTimeCode(Convert.ToInt32(x.timeCode));
+                             if (Int32.TryParse(x.timeCode, out currentTimeCode))
+                             {
+                                 x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+                             }
                              x.statusString = FillApprovalStatus(x.status);
                              if (!string.IsNullOrEmpty(x.damageLevel))
                                  x.damageLevel = FillDamageLevelString(Convert.ToInt16(x.damageLevel));
@@ -324,7 +351,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 0;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -333,7 +360,7 @@ namespace AionHR.Web.UI.Forms
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                Common.errorMessage(response);
             return response.Items;
         }
         //private ActiveAttendanceRequest GetActiveAttendanceRequest()
@@ -415,73 +442,7 @@ namespace AionHR.Web.UI.Forms
         //}
 
        
-        private string FillTimeCode(int timeCode)
-        {
-            string R = "";
-
-
-            // Retrieve the value of the string resource named "welcome".
-            // The resource manager will retrieve the value of the  
-            // localized resource using the caller's current culture setting.
-
-
-            try
-            {
-
-                switch (timeCode)
-                {
-                    case ConstTimeVariationType.UNPAID_LEAVE:
-                        R = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
-                        break;
-                    case ConstTimeVariationType.PAID_LEAVE:
-                        R = GetGlobalResourceObject("Common", "PaidLeaves").ToString();
-                        break;
-
-
-                    case ConstTimeVariationType.SHIFT_LEAVE_WITHOUT_EXCUSE:
-                        R = GetGlobalResourceObject("Common", "SHIFT_LEAVE_WITHOUT_EXCUSE").ToString();
-                        break;
-                    case ConstTimeVariationType.DAY_LEAVE_WITHOUT_EXCUSE:
-                        R = GetGlobalResourceObject("Common", "DAY_LEAVE_WITHOUT_EXCUSE").ToString();
-                        break;
-
-
-                    case ConstTimeVariationType.LATE_CHECKIN:
-                        R = GetGlobalResourceObject("Common", "LATE_CHECKIN").ToString();
-                        break;
-                    case ConstTimeVariationType.DURING_SHIFT_LEAVE:
-                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
-                        break;
-                    case ConstTimeVariationType.EARLY_LEAVE:
-                        R = GetGlobalResourceObject("Common", "EARLY_LEAVE").ToString();
-                        break;
-
-
-
-                    case ConstTimeVariationType.MISSED_PUNCH:
-                        R = GetGlobalResourceObject("Common", "MISSED_PUNCH").ToString();
-                        break;
-
-                    case ConstTimeVariationType.EARLY_CHECKIN:
-                        R = GetGlobalResourceObject("Common", "EARLY_CHECKIN").ToString();
-                        break;
-                    case ConstTimeVariationType.OVERTIME:
-                        R = GetGlobalResourceObject("Common", "OVERTIME").ToString();
-                        break;
-
-                    case ConstTimeVariationType.COUNT:
-                        R = GetGlobalResourceObject("Common", "COUNT").ToString();
-                        break;
-                    case ConstTimeVariationType.Day_Bonus:
-                        R = GetGlobalResourceObject("Common", "Day_Bonus").ToString();
-                        break;
-
-                }
-
-                return R;
-            }
-            catch { return string.Empty; }
-        }
+      
 
         private string FillApprovalStatus(short? apStatus)
         {
@@ -635,7 +596,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)//it maybe another check
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + r.LogId : r.Summary).Show();
+                   Common.errorMessage(r);;
                     return;
                 }
                 else
@@ -653,7 +614,7 @@ namespace AionHR.Web.UI.Forms
                         if (!response.Success)//it maybe another check
                         {
                             X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                            Common.errorMessage(response);
                             return;
                         }
                     }
@@ -706,18 +667,24 @@ namespace AionHR.Web.UI.Forms
                 r.approverId = 0;
                 r.timeCode = timeCode;
                 r.shiftId = shiftId;
-
-
+                r.StartAt = "0";
+                r.Size = "1000";
+                
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", Times.ErrorCode) != null ? GetGlobalResourceObject("Errors", Times.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + Times.LogId : Times.Summary).Show();
+                    Common.errorMessage(Times);
                     return;
                 }
+                List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
+                int currentTimeCode;
                 Times.Items.ForEach(x =>
                 {
-                    x.timeCodeString = FillTimeCode(Convert.ToInt32(x.timeCode));
+                    if (Int32.TryParse(x.timeCode, out currentTimeCode))
+                    {
+                        x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+                    }
 
                     x.statusString = FillApprovalStatus(x.status);
                 });

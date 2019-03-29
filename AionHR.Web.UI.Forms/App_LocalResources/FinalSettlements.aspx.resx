@@ -123,26 +123,14 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Final settlement</value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle1" xml:space="preserve">
-    <value>Currency Info</value>
-  </data>
   <data name="BOGridTitle" xml:space="preserve">
     <value>Bonus</value>
-  </data>
-  <data name="DateFrom" xml:space="preserve">
-    <value>From</value>
-  </data>
-  <data name="DateTo" xml:space="preserve">
-    <value>To</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>Day</value>
   </data>
   <data name="Deductions" xml:space="preserve">
     <value>Deductions</value>
-  </data>
-  <data name="DeductionsEntitlements" xml:space="preserve">
-    <value>DeductionsEntitlements</value>
   </data>
   <data name="EditBOWindowTitle" xml:space="preserve">
     <value>Bonus</value>
@@ -155,9 +143,6 @@
   </data>
   <data name="Entitlements" xml:space="preserve">
     <value>Entitlements</value>
-  </data>
-  <data name="ErrorWithPCTOf" xml:space="preserve">
-    <value>PCTOF value is invalid, the PCTOF will be set to Percentage of basic salary</value>
   </data>
   <data name="FieldAccountNumber" xml:space="preserve">
     <value>Account Number</value>
@@ -213,12 +198,6 @@
   <data name="FieldName" xml:space="preserve">
     <value>Employee</value>
   </data>
-  <data name="FieldName1" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="FieldOvertimeEntitlement" xml:space="preserve">
-    <value>Overtime Entitlement</value>
-  </data>
   <data name="FieldPaymentFrequency" xml:space="preserve">
     <value>Payment Frequency</value>
   </data>
@@ -230,9 +209,6 @@
   </data>
   <data name="FieldPctOf" xml:space="preserve">
     <value>Pct Of</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
@@ -253,9 +229,6 @@
     <value>Maximum Overtime</value>
   </data>
   <data name="MinimumOvertime" xml:space="preserve">
-    <value>Minimum Overtime</value>
-  </data>
-  <data name="MinimumOvertime1" xml:space="preserve">
     <value>Minimum Overtime</value>
   </data>
   <data name="Overtime" xml:space="preserve">
@@ -324,9 +297,6 @@
   <data name="deductionGrid" xml:space="preserve">
     <value>Deductions</value>
   </data>
-  <data name="DeductionName" xml:space="preserve">
-    <value>Deduction</value>
-  </data>
   <data name="EntitlementEditWindow" xml:space="preserve">
     <value>Edit Entitlement</value>
   </data>
@@ -366,9 +336,6 @@
   <data name="paidLeavesYTDTitle" xml:space="preserve">
     <value>Paid Leaves:</value>
   </data>
-  <data name="paidLeavesYTDTitle1" xml:space="preserve">
-    <value>Paid Leaves:</value>
-  </data>
   <data name="FieldBranch" xml:space="preserve">
     <value>Branch :</value>
   </data>
@@ -398,9 +365,6 @@
   </data>
   <data name="lastLeaveEndDateTitle" xml:space="preserve">
     <value>Last Leave End Date</value>
-  </data>
-  <data name="lastLeaveStartDateTitle1" xml:space="preserve">
-    <value>Last Leave:</value>
   </data>
   <data name="loanBalance" xml:space="preserve">
     <value>Loan Balance</value>

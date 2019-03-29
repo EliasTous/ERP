@@ -25,33 +25,59 @@ using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 using System.Net;
 using AionHR.Infrastructure.Domain;
+using AionHR.Web.UI.Forms.ConstClasses;
+using System.Drawing;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
     public partial class Documents : System.Web.UI.Page
     {
+        private Bitmap bitmap;
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -182,9 +208,22 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     break;
 
                 case "imgAttach":
-                    DownloadFile(path);
+                   
+                   
+                        DownloadFile(path);
 
                     //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                case "preAttach":
+                    ImageUrl.Text = path;
+                    var values = path.Split('.');
+                    if (values[values.Length - 1].ToString().ToLower() == "jpg" || values[values.Length - 1].ToString().ToLower() == "png" || values[values.Length - 1].ToString().ToLower() == "jpg")
+                    {
+                        imgControl.Src = path;
+                        Window1.Show();
+                    }
+                    else
+                        X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), GetLocalResourceObject("previewImage").ToString()).Show();
                     break;
                 default:
                     break;
@@ -192,6 +231,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
 
         }
+       
+
         [DirectMethod]
         public void DownloadFile(string url)
         {
@@ -212,7 +253,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 //Create a WebRequest to get the file
                 HttpWebRequest fileReq = (HttpWebRequest)HttpWebRequest.Create(url);
 
-                //Create a response for this request
                 HttpWebResponse fileResp = (HttpWebResponse)fileReq.GetResponse();
 
                 if (fileReq.ContentLength > 0)
@@ -302,7 +342,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Notification.Show(new NotificationConfig
                     {
                         Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
+                        Icon = Ext.Net.Icon.Information,
                         Html = Resources.Common.RecordDeletedSucc
 
                     });
@@ -431,7 +471,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                     Common.errorMessage(r);
                     return;
                 }
                 else
@@ -448,7 +488,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Notification.Show(new NotificationConfig
                     {
                         Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
+                        Icon = Ext.Net.Icon.Information,
                         Html = Resources.Common.RecordUpdatedSucc
                     });
                     this.EditDocumentWindow.Close();
@@ -485,7 +525,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListResponse<DocumentType> resp = _employeeService.ChildGetAll<DocumentType>(documentTypes);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return;
             }
             dtStore.DataSource = resp.Items;
@@ -511,7 +551,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -525,12 +565,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (!response.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return null;
             }
             return response.result;
         }
+     
 
 
     }
+  
 }

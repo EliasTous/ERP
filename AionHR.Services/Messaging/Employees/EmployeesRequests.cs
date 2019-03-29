@@ -31,9 +31,17 @@ public class EmployeeListRequest:ListRequest
     /// </summary>
     public override Dictionary<string, string> Parameters
     {
-
+      
         get
         {
+            if (string.IsNullOrEmpty(DepartmentId))
+                DepartmentId = "0";
+            if (string.IsNullOrEmpty(BranchId))
+                BranchId = "0";
+            if (string.IsNullOrEmpty(DivisionId))
+                DivisionId = "0";
+            if (string.IsNullOrEmpty(PositionId))
+                PositionId = "0";
             parameters = base.Parameters;
            
             parameters.Add("_departmentId", DepartmentId);

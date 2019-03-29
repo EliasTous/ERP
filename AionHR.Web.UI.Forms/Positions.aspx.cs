@@ -33,25 +33,47 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -137,7 +159,7 @@ namespace AionHR.Web.UI.Forms
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                         Common.errorMessage(response);
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
@@ -210,7 +232,7 @@ namespace AionHR.Web.UI.Forms
                 if (!resp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(resp);
                     return;
 
                 }
@@ -253,7 +275,7 @@ namespace AionHR.Web.UI.Forms
 
             ListResponse<Model.Company.Structure.Position> response = _branchService.ChildGetAll<Model.Company.Structure.Position>(req);
             if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
             data = response.Items;
             return new
             {
@@ -262,29 +284,29 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        [DirectMethod]
-        public object FillTS(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+        //[DirectMethod]
+        //public object FillTS(string action, Dictionary<string, object> extraParams)
+        //{
+        //    StoreRequestParameters prms = new StoreRequestParameters(extraParams);
 
 
 
-            List<TimeSchedule> data;
-            ListRequest req = new ListRequest();
+        //    List<TimeSchedule> data;
+        //    ListRequest req = new ListRequest();
 
-            ListResponse<TimeSchedule> response = _payrollService.ChildGetAll<TimeSchedule>(req);
-            if (!response.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
-                return new List<TimeSchedule>();
-            }
-            data = response.Items;
-            return new
-            {
-                data
-            };
+        //    ListResponse<TimeSchedule> response = _payrollService.ChildGetAll<TimeSchedule>(req);
+        //    if (!response.Success)
+        //    {
+        //         Common.errorMessage(response);
+        //        return new List<TimeSchedule>();
+        //    }
+        //    data = response.Items;
+        //    return new
+        //    {
+        //        data
+        //    };
 
-        }
+        //}
         [DirectMethod]
         public object FillSupervisor(string action, Dictionary<string, object> extraParams)
         {
@@ -300,7 +322,7 @@ namespace AionHR.Web.UI.Forms
             req.IncludeIsInactive = 2;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = prms.Query;
 
@@ -308,7 +330,7 @@ namespace AionHR.Web.UI.Forms
             req.Filter = prms.Query;
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
             data = response.Items;
             return new
             {
@@ -445,8 +467,8 @@ namespace AionHR.Web.UI.Forms
             Model.Company.Structure.Position b = JsonConvert.DeserializeObject<Model.Company.Structure.Position>(obj);
             if (referToPositionId.SelectedItem != null)
                 b.referToPositionName = referToPositionId.SelectedItem.Text;
-            if (tsId.SelectedItem != null)
-                b.tsName = tsId.SelectedItem.Text;
+            //if (tsId.SelectedItem != null)
+            //    b.tsName = tsId.SelectedItem.Text;
             b.recordId = id;
             // Define the object to add or edit as null
 
@@ -467,7 +489,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -588,7 +610,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -663,7 +685,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return null;
             }
             JobPositions p = new JobPositions();
@@ -760,7 +782,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             JobPositions p = new JobPositions();

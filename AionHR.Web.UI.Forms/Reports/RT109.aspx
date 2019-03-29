@@ -26,7 +26,7 @@
     <script type="text/javascript">
         function alertNow(s, e) {
 
-            Ext.MessageBox.alert('Error', e.message);
+            Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
     </script>
@@ -40,7 +40,7 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
          <ext:Hidden ID="dtIdValue" runat="server" Text="" />
-
+               <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
         
 
         <ext:Hidden ID="rtl" runat="server" />
@@ -91,6 +91,26 @@
                                   
                                    
                                 </ext:ComboBox>
+
+                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
+                                    <Store>
+                                        <ext:Store runat="server" ID="statusStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+
+                                    <Items>
+                                        <ext:ListItem Text="<%$Resources:Common,All %>" Value="0" />
+                                    </Items>
+                                </ext:ComboBox>
+
                                                                     
                                <%-- <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>

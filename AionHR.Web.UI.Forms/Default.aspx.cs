@@ -1,4 +1,6 @@
-﻿using AionHR.Model.Access_Control;
+﻿using AionHR.Infrastructure;
+using AionHR.Model.Access_Control;
+using AionHR.Model.Employees.Profile;
 using AionHR.Model.MasterModule;
 using AionHR.Model.Payroll;
 using AionHR.Model.System;
@@ -29,29 +31,107 @@ namespace AionHR.Web.UI.Forms
         IMasterService _masterService = ServiceLocator.Current.GetInstance<IMasterService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         /// <summary>
         /// Could be added in a base page, but we keep it here in order to control the page UI. This method should be copied to each page
         /// </summary>
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default: 
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
+        }
+        private bool HandleExternalUrl()
+        {
+            string decrypted = EncryptionHelper.decrypt(Request.QueryString["param"], null);
+            var parsed = HttpUtility.ParseQueryString(decrypted);
+            if (string.IsNullOrEmpty(parsed["_a"]) || string.IsNullOrEmpty(parsed["_e"]) || string.IsNullOrEmpty(parsed["_p"]) || string.IsNullOrEmpty(parsed["_c"]))
+                return false;
+
+
+            UrlKeyRequest reqkey = new UrlKeyRequest();
+            reqkey.keyId = Server.UrlEncode(Request.QueryString["param"]);
+            _systemService.SessionHelper.Set("AccountId", parsed["_a"]);
+
+
+
+            AuthenticateRequest req = new AuthenticateRequest();
+            req.UserName = parsed["_e"];
+            req.Password = parsed["_p"];
+            _systemService.SessionHelper.Set("AccountId", parsed["_a"]);
+            AuthenticateResponse resp = _systemService.Authenticate(req);
+
+            if (!resp.Success)
             {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
+                return false;
             }
+            if (resp.User.languageId == 2)
+                _systemService.SessionHelper.SetLanguage("ar");
+            else
+                _systemService.SessionHelper.SetLanguage("en");
+            RecordResponse<KeyId> keyresp = _systemService.ChildGetRecord<KeyId>(reqkey);
+            if (!keyresp.Success)
+            {
+                return false;
+            }
+            _systemService.SessionHelper.Set("CompanyName", " ");
 
+            _systemService.SessionHelper.SetUserType(resp.User.userType);
+            _systemService.SessionHelper.SetEmployeeId(resp.User.employeeId);
+            _systemService.SessionHelper.Set("CurrentUserName", parsed["_e"]);
+
+            _systemService.SessionHelper.Set("IsAdmin", resp.User.isAdmin);
+            StoreSystemDefaults();
+            string url = PageLookup.GetPageUrlByClassId(Convert.ToInt32(parsed["_c"])) + "?" +parsed["_k"].Replace('#', '&');
+            X.Call("openNewTab", parsed["_c"], url, GetGlobalResourceObject("Classes", "Class" + parsed["_c"]), "icon-Employees");
+            //Response.Redirect("Default.aspx");
+            return true;
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (!IsPostBack && !X.IsAjaxRequest&&!string.IsNullOrEmpty(Request.QueryString["param"]))
+            {
+                bool success = HandleExternalUrl();
+                if (!success)
+                    Response.Redirect("Login.aspx?timeout=yes", true);
+
+
+            }
             try
             {
                 if (CheckSession() == "0")
@@ -63,10 +143,27 @@ namespace AionHR.Web.UI.Forms
             }
             if (!_systemService.SessionHelper.CheckUserLoggedIn())
             {
-                if (_systemService.SessionHelper.CheckIfArabicSession())
-                    Response.Redirect("ARLogin.aspx?timeout=yes", true);
-                else
-                    Response.Redirect("Login.aspx?timeout=yes", true);
+                switch (_systemService.SessionHelper.getLangauge())
+                {
+                    case "1":
+                        Response.Redirect("Login.aspx?timeout=yes", true);
+                        break;
+                    case "2":
+                        Response.Redirect("ARLogin.aspx?timeout=yes", true);
+                        break;
+                    case "3":
+                        Response.Redirect("FRLogin.aspx?timeout=yes", true);
+                        break;
+                    case "4":
+                        Response.Redirect("DELogin.aspx?timeout=yes", true);
+                        break;
+                    default: Response.Redirect("Login.aspx?timeout=yes", true);
+                        break;
+                }
+
+
+             
+                  
             }
 
             //if (!X.IsAjaxRequest)
@@ -76,6 +173,36 @@ namespace AionHR.Web.UI.Forms
             //this.ResourceManager1.DirectEventUrl = this.ResourceManager1.DirectEventUrl.Replace("http", "https");
             if (!IsPostBack && !X.IsAjaxRequest)
             {
+                if (!X.IsAjaxRequest)
+                {
+                    ResourceManager1.RegisterIcon(Icon.Tick);
+                    ResourceManager1.RegisterIcon(Icon.Error);
+
+                    Store store = this.languageId.GetStore();
+                    store.DataSource = new object[]
+                    {
+                new object[] { "1", "English" },
+                new object[] { "2", "عربي" },
+                new object[] { "3", "Français" },
+                 new object[] { "4", "Deutsch" }
+                    };
+                }
+                languageId.HideBaseTrigger = true;
+                this.languageId.Call("getTrigger(0).hide");
+                switch (_systemService.SessionHelper.getLangauge())
+                {
+                    case "en":languageId.Select(0);
+                        break; 
+                    case "ar":languageId.Select(1);
+                        break;
+                    case "fr":
+                        languageId.Select(2);
+                        break;
+                    case "de":
+                        languageId.Select(3);
+                        break;
+                    
+                }
                 SetExtLanguage();
                 SetHeaderStyle();
                 CompanyNameLiteral.Text = "" + _systemService.SessionHelper.Get("CompanyName").ToString();
@@ -87,17 +214,19 @@ namespace AionHR.Web.UI.Forms
                 if (string.IsNullOrEmpty(activeModule.Text))
                     activeModule.Text = "7";
                 //TryRegister();
+        
                 if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
                     btnSelfService.Disabled = true;
                 if (_systemService.SessionHelper.GetUserType() == 4)
                 {
                     b1.Hidden = true;
-                    btnCompany.Hidden = btnEmployeeFiles.Hidden = btnPayroll.Hidden = btnReport.Hidden = btnScheduler.Hidden = true;
+                  btnAdminAffairs.Hidden=  btnCompany.Hidden = btnEmployeeFiles.Hidden = btnPayroll.Hidden = btnReport.Hidden = btnScheduler.Hidden = true;
                     sep1.Hidden = sep2.Hidden = sep3.Hidden = sep4.Hidden = true;
                     BuildTree(7);
                 }
                 else
                 {
+                  
                     BuildTree(1);
                 }
 
@@ -188,9 +317,9 @@ namespace AionHR.Web.UI.Forms
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             HtmlLink css = new HtmlLink();
             if (rtl)
-                css.Href = "CSS/HeaderInsideAR.css";
+                css.Href = "CSS/HeaderInsideAR.css?id=10";
             else
-                css.Href = "CSS/HeaderInside.css";
+                css.Href = "CSS/HeaderInside.css?id=20";
 
             css.Attributes["rel"] = "stylesheet";
             css.Attributes["type"] = "text/css";
@@ -232,7 +361,7 @@ namespace AionHR.Web.UI.Forms
 
                 case 3:
                     nodes = TreeBuilder.Instance.BuildCompanyStructureTree(commonTree.Root);
-                    tabHome.Loader.Url = "OrganizationChart.aspx";
+                    tabHome.Loader.Url = "Dashboard.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 case 4:
@@ -252,17 +381,20 @@ namespace AionHR.Web.UI.Forms
                     return nodes.ToJson();
                 case 7:
                     nodes = TreeBuilder.Instance.BuildSelftService(commonTree.Root);
-                    tabHome.Loader.Url = "MyInfos.aspx";
+                    if (_systemService.SessionHelper.GetUserType() != 4)
+                        tabHome.Loader.Url = "Dashboard.aspx";
+                    else
+                        tabHome.Loader.Url = "BlankPage.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 case 8:
                     nodes = TreeBuilder.Instance.BuildAdminTemplates(commonTree.Root);
-                    tabHome.Loader.Url = "MyInfos.aspx";
+                    tabHome.Loader.Url = "Dashboard.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 case 9:
                     nodes = TreeBuilder.Instance.BuildAdminTemplates(commonTree.Root);
-                    tabHome.Loader.Url = "AdminTemplates.aspx";
+                    tabHome.Loader.Url = "Dashboard.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 default:
@@ -395,7 +527,7 @@ namespace AionHR.Web.UI.Forms
             { //Show an error saving...
 
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return;
 
             }
@@ -404,7 +536,162 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert("", GetGlobalResourceObject("Common", "LoanSyncSucc").ToString()).Show();
             }
         }
+        private void StoreSystemDefaults()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
+            if (!defaults.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
+                return;
+            }
+            try
+            {
+                _systemService.SessionHelper.SetDateformat(defaults.Items.Where(s => s.Key == "dateFormat").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetDateformat("MMM, dd, yyyy");
+            }
+            try
+            {
+                _systemService.SessionHelper.SetNameFormat(defaults.Items.Where(s => s.Key == "nameFormat").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetNameFormat("{firstName}{lastName} ");
+            }
+            try
+            {
+                _systemService.SessionHelper.SetCurrencyId(defaults.Items.Where(s => s.Key == "currencyId").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetCurrencyId("0");
+            }
+            try
+            {
+                _systemService.SessionHelper.SetHijriSupport(Convert.ToBoolean(defaults.Items.Where(s => s.Key == "enableHijri").First().Value));
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetHijriSupport(false);
+            }
+            try
+            {
+                _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(defaults.Items.Where(s => s.Key == "timeZone").First().Value));
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetDefaultTimeZone(0);
+            }
+            try
+            {
+                _systemService.SessionHelper.SetCalendarId(defaults.Items.Where(s => s.Key == "caId").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetCalendarId("0");
+            }
+            try
+            {
+                _systemService.SessionHelper.SetVacationScheduleId(defaults.Items.Where(s => s.Key == "vsId").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetVacationScheduleId("0");
+            }
+            try
+            {
+                EmployeeListRequest request = new EmployeeListRequest();
+                request.BranchId = request.DepartmentId = request.PositionId = "0";
+                request.StartAt = "0";
+                request.SortBy = "hireDate";
+                request.Size = "1";
+                request.IncludeIsInactive = 2;
+                var resp = _employeeService.GetAll<Employee>(request);
 
+                _systemService.SessionHelper.SetStartDate(resp.Items[0].hireDate.Value);
+            }
+            catch (Exception exp)
+            {
+                _systemService.SessionHelper.SetStartDate(DateTime.Now);
+            }
+
+
+
+        }
+        private object GetDateFormat()
+        {
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "dateFormat";
+            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!response.Success)
+            {
+
+            }
+            return response.result.Value;
+        }
+        private string GetNameFormat()
+        {
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "nameFormat";
+            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!response.Success)
+            {
+
+            }
+            string paranthized = response.result.Value;
+            paranthized = paranthized.Replace('{', ' ');
+            paranthized = paranthized.Replace('}', ',');
+            paranthized = paranthized.Substring(0, paranthized.Length - 1);
+            paranthized = paranthized.Replace(" ", string.Empty);
+            return paranthized;
+
+        }
+        [DirectMethod]
+        public void Change_language(string language )
+        {
+            
+
+            if (string.IsNullOrEmpty(language))
+            {
+                language = "1";
+                _systemService.SessionHelper.SetLanguage("en");
+                return;
+            }
+
+
+            switch (language)
+            {
+                case "1":
+                    {
+                        _systemService.SessionHelper.SetLanguage("en");
+                    }
+                    break;
+                case "2":
+                  
+                    _systemService.SessionHelper.SetLanguage("ar");
+                    SetHeaderStyle();
+                    break;
+                case "3":
+                    _systemService.SessionHelper.SetLanguage("fr");
+                    break;
+                case "4":
+                    _systemService.SessionHelper.SetLanguage("de");
+                    break;
+                default:
+                    _systemService.SessionHelper.SetLanguage("en");
+                  
+                    break;
+                  
+
+            }
+
+            Response.Redirect("~/Default.aspx");
+
+        }
 
     }
 }

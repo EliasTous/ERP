@@ -26,7 +26,7 @@
     <script type="text/javascript">
         function alertNow(s, e) {
 
-            Ext.MessageBox.alert('Error', e.message);
+            Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
         var prev = '';
@@ -37,6 +37,9 @@
             //bd.document.getElementById(grid.view.el.id).style.height = "auto";
             //bd.document.getElementById(grid.view.scroller.id).style.height = "auto";
 
+        }
+        function searchNarrowDown() {
+            Ext.MessageBox.alert(App.Error.getValue(), App.FilterSelection.getValue());
         }
     </script>
 </head>
@@ -51,8 +54,8 @@
 
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
-
-
+               <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
+          <ext:Hidden ID="FilterSelection" runat="server" Text="<%$ Resources:Common , FilterSelection %>" />
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
@@ -82,7 +85,7 @@
                                 </ext:Container>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:moduleCombo runat="server" ID="moduleCombo1" EnableViewState="true" />
+                                        <uc:moduleCombo runat="server" ID="moduleCombo1" EnableViewState="true" FromReport="True" />
                                     </Content>
                                 </ext:Container>
                                 <ext:Container runat="server" Layout="FitLayout">

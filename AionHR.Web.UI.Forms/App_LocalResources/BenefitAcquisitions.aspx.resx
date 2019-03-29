@@ -144,9 +144,6 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Final settlement</value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle1" xml:space="preserve">
-    <value>Currency Info</value>
-  </data>
   <data name="benefitId" xml:space="preserve">
     <value>Benefit</value>
   </data>
@@ -183,14 +180,8 @@
   <data name="deductionGrid" xml:space="preserve">
     <value>Deductions</value>
   </data>
-  <data name="DeductionName" xml:space="preserve">
-    <value>Deduction</value>
-  </data>
   <data name="Deductions" xml:space="preserve">
     <value>Deductions</value>
-  </data>
-  <data name="DeductionsEntitlements" xml:space="preserve">
-    <value>DeductionsEntitlements</value>
   </data>
   <data name="departmentName" xml:space="preserve">
     <value>Department :</value>
@@ -212,9 +203,6 @@
   </data>
   <data name="eosBalanceTitle" xml:space="preserve">
     <value>Balance:</value>
-  </data>
-  <data name="ErrorWithPCTOf" xml:space="preserve">
-    <value>PCTOF value is invalid, the PCTOF will be set to Percentage of basic salary</value>
   </data>
   <data name="esName" xml:space="preserve">
     <value>Employee Status:</value>
@@ -282,12 +270,6 @@
   <data name="FieldName" xml:space="preserve">
     <value>Employee</value>
   </data>
-  <data name="FieldName1" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="FieldOvertimeEntitlement" xml:space="preserve">
-    <value>Overtime Entitlement</value>
-  </data>
   <data name="FieldPaymentFrequency" xml:space="preserve">
     <value>Payment Frequency</value>
   </data>
@@ -302,9 +284,6 @@
   </data>
   <data name="FieldPosition" xml:space="preserve">
     <value>Position:</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
@@ -336,9 +315,6 @@
   <data name="lastLeaveStartDateTitle" xml:space="preserve">
     <value>Last Leave:</value>
   </data>
-  <data name="lastLeaveStartDateTitle1" xml:space="preserve">
-    <value>Last Leave:</value>
-  </data>
   <data name="Lateness" xml:space="preserve">
     <value>Lateness</value>
   </data>
@@ -354,9 +330,6 @@
   <data name="MinimumOvertime" xml:space="preserve">
     <value>Minimum Overtime</value>
   </data>
-  <data name="MinimumOvertime1" xml:space="preserve">
-    <value>Minimum Overtime</value>
-  </data>
   <data name="nationality" xml:space="preserve">
     <value>Nationality</value>
   </data>
@@ -367,9 +340,6 @@
     <value>Overtime</value>
   </data>
   <data name="paidLeavesYTDTitle" xml:space="preserve">
-    <value>Paid Leaves:</value>
-  </data>
-  <data name="paidLeavesYTDTitle1" xml:space="preserve">
     <value>Paid Leaves:</value>
   </data>
   <data name="PaymentMethodBank" xml:space="preserve">

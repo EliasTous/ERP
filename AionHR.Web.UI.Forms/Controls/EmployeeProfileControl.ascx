@@ -251,9 +251,11 @@
         App.employeeControl1_employeesTabPanel.setActiveTab(tab);
     }
     function dump(obj) {
-        var out = '';
+        alert(obj);
         for (var i in obj) {
+
             out += i + ": " + obj[i] + "\n";
+            alert(out);
 
 
         }
@@ -406,52 +408,68 @@
     }
     var theBlob;
     function GetCroppedImage() {
-        var croppedCanvas;
-        var roundedCanvas;
+
+        try {
+            var croppedCanvas;
+            var roundedCanvas;
 
 
 
-        // Crop
-        croppedCanvas = $('#image').cropper('getCroppedCanvas');
+            // Crop
+            croppedCanvas = $('#image').cropper('getCroppedCanvas');
 
-        // Round
-        roundedCanvas = getRoundedCanvas(croppedCanvas);
+            // Round
+            roundedCanvas = getRoundedCanvas(croppedCanvas);
+           
+          
 
+            var dataURL = roundedCanvas.toDataURL("image/png");
+            var head = 'data:image/png;base64,';
+            var imgFileSize = Math.round((dataURL.length - head.length) * 3 / 4);
+            if (imgFileSize > 1580796)
+            {
+                Ext.MessageBox.alert(' ', App.employeeControl1_uploadImageError.getValue());
+                return;
+            }
+            var b;
+            roundedCanvas.toBlob(function (blob) {
 
-        var dataURL = roundedCanvas.toDataURL("image/png");
-        var b;
-        roundedCanvas.toBlob(function (blob) {
+                App.employeeControl1_imageData.value = blob; var fd = new FormData();
+                fd.append('fname', App.employeeControl1_FileUploadField1.value);
+                fd.append('id', null);
 
-            App.employeeControl1_imageData.value = blob; var fd = new FormData();
-            fd.append('fname', App.employeeControl1_FileUploadField1.value);
-            fd.append('id', null);
+                Ext.net.Mask.show({ msg: App.employeeControl1_lblLoading.getValue(), el: App.employeeControl1_imageSelectionWindow.id });
+                var fileName = App.employeeControl1_FileUploadField1.value;
+                if (fileName == '')
+                    fileName = App.employeeControl1_FileName.value;
 
-            Ext.net.Mask.show({ msg: App.employeeControl1_lblLoading.getValue(), el: App.employeeControl1_imageSelectionWindow.id });
-            var fileName = App.employeeControl1_FileUploadField1.value;
-            if (fileName == '')
-                fileName = App.employeeControl1_FileName.value;
+                fd.append('data', App.employeeControl1_imageData.value, fileName);
 
-            fd.append('data', App.employeeControl1_imageData.value, fileName);
-            if (App.employeeControl1_FileUploadField1.value == '')
-                fd.append('oldUrl', App.employeeControl1_CurrentEmployeePhotoName.value);
-            $.ajax({
-                type: 'POST',
-                url: 'EmployeePhotoUploaderHandler.ashx?classId=31000&recordId=' + App.employeeControl1_CurrentEmployee.value,
-                data: fd,
-                processData: false,
-                contentType: false,
-                error: function (s) { Ext.net.Mask.hide(); alert(dump(s)); }
-            }).done(function (data) {
-                App.direct.employeeControl1.FillLeftPanelDirect();
-                Ext.net.Mask.hide();
-                App.employeeControl1_imageSelectionWindow.hide();
+                if (App.employeeControl1_FileUploadField1.value == '')
+                    fd.append('oldUrl', App.employeeControl1_CurrentEmployeePhotoName.value);
 
-            });
+                $.ajax({
+                    type: 'POST',
+                    url: 'EmployeePhotoUploaderHandler.ashx?classId=31201&recordId=' + App.employeeControl1_CurrentEmployee.value,
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+                    error: function (s) { Ext.net.Mask.hide(); Ext.MessageBox.alert(' ', App.employeeControl1_uploadImageError.getValue()); }
+                }).done(function (data) {
+                    App.direct.employeeControl1.FillLeftPanelDirect();
+                    Ext.net.Mask.hide();
+                    App.employeeControl1_imageSelectionWindow.hide();
+
+                    });
+
+                  return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+
+            }
+                
+            );
         }
-
-        );
-
-        return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+        catch{  }
+      
     }
     var handleInputRender = function () {
         jQuery(function () {
@@ -538,6 +556,7 @@
 <ext:Hidden runat="server" ID="workEmailHF" />
 <ext:Hidden runat="server" ID="CurrentEmployeeFullName" />
 <ext:Hidden runat="server" ID="bdHijriCal" />
+<ext:Hidden runat="server" ID="uploadImageError" Text="<%$Resources: uploadImageError %>" />
 
 
 
@@ -640,7 +659,7 @@
                         <ext:Image runat="server" ID="imgControl" Width="100" Height="100" Align="Middle" MarginSpec="15 0 0 20 ">
                             <Listeners>
                                 <%--<Click Handler="triggierImageClick(App.employeeControl1_picturePath.fileInputEl.id); " />--%>
-                                <Click Handler="if(App.employeeControl1_terminated.value=='0'&& App.employeeControl1_photoReadOnly.value=='False'){InitCropper(App.employeeControl1_CurrentEmployeePhotoName.value); App.employeeControl1_imageSelectionWindow.show()}" />
+                                <Click Handler="if(App.employeeControl1_terminated.value=='0'&& App.employeeControl1_photoReadOnly.value=='False'){InitCropper(App.employeeControl1_CurrentEmployeePhotoName.value+'?x='+new Date().getTime()); App.employeeControl1_imageSelectionWindow.show()}" />
                             </Listeners>
 
                         </ext:Image>
@@ -809,8 +828,9 @@
                     <Items>
                         <ext:Panel runat="server" MarginSpec="0 20 0 0" ID="left">
                             <Items>
-                                <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Name="recordId" />
+                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Name="recordId" />
                                 <ext:TextField ID="reference" ValidateBlank="false" MsgTarget="None" ValidateOnChange="false" ValidateOnBlur="true" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference"  >
+                                       <Validator Handler="return !isNaN(this.value);" />
                                    <%-- <Listeners>
                                        <FocusLeave Handler="if(#{CurrentEmployee}.value!='') return; App.direct.employeeControl1.CheckReference(this.value,{
                 success: function (result) {
@@ -1516,34 +1536,14 @@
 
                         <ext:Button runat="server" Icon="PictureAdd" Text="<%$ Resources:BrowsePicture %>">
                             <Listeners>
-                                <Click Handler="triggierImageClick(App.employeeControl1_FileUploadField1.fileInputEl.id); "></Click>
+                                <Click Handler=" triggierImageClick(App.employeeControl1_FileUploadField1.fileInputEl.id); "></Click>
                             </Listeners>
                         </ext:Button>
                         <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text="<%$ Resources:UploadPicture %>">
                             <Listeners>
 
-                                <Click Handler="CheckSession();   if (!#{imageUploadForm}.getForm().isValid() ) {  return false;} if(#{CurrentEmployee}.value==''){#{imageSelectionWindow}.hide(); $('#' + $('#imgControl')[0].firstChild.id).attr('src', getRoundedCanvas($('#image').cropper('getCroppedCanvas')).toDataURL());   return false;  }  GetCroppedImage(); return; #{imageData}.value = theBlob; alert(theBlob); GetCroppedImage();  var fd = new FormData();
-        fd.append('fname', #{FileUploadField1}.value);
-                                   fd.append('id',null);          
-                                            alert(#{imageData}.value);
-                                            Ext.net.Mask.show({msg:App.employeeControl1_lblLoading.getValue(),el:#{imageSelectionWindow}.id});  
-                                            if(#{FileUploadField1}.value!='')
-        fd.append('data', #{imageData}.value,#{FileUploadField1}.value);
-                                            else
-                                            fd.append('oldUrl',#{CurrentEmployeePhotoName}.value );
-                                             $.ajax({
-            type: 'POST',
-            url: 'EmployeePhotoUploaderHandler.ashx?classId=31000&recordId='+#{CurrentEmployee}.value,
-            data: fd,
-            processData: false,
-            contentType: false,
-                                            error:function(s){Ext.net.Mask.hide(); alert(dump(s));}
-        }).done(function(data) {
-            App.direct.employeeControl1.FillLeftPanelDirect();
-                                            Ext.net.Mask.hide();
-            App.employeeControl1_imageSelectionWindow.hide();
-                                            
-    }); " />
+                                <Click Handler="CheckSession();  if (!#{imageUploadForm}.getForm().isValid() ) {  return false;} if(#{CurrentEmployee}.value==''){#{imageSelectionWindow}.hide(); $('#' + $('#imgControl')[0].firstChild.id).attr('src', getRoundedCanvas($('#image').cropper('getCroppedCanvas')).toDataURL());   return false;  }  GetCroppedImage();  " /> 
+     
 
                             </Listeners>
                             <%--      <DirectEvents>
@@ -1561,6 +1561,13 @@
                             <Listeners>
                                 <Click Handler="ClearImage2(); InitCropper('Images/empPhoto.jpg'); App.employeeControl1_uploadPhotoButton.setDisabled(false); " />
                             </Listeners>
+                            <DirectEvents >
+                                <Click OnEvent="RemoveEmployeePicture"  Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                      <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{imageSelectionWindow}.body}" />
+                                           
+                                    </Click>
+
+                            </DirectEvents>
                         </ext:Button>
                         <ext:FileUploadField ID="FileUploadField1" runat="server" ButtonOnly="true" Hidden="true">
                             <Listeners>

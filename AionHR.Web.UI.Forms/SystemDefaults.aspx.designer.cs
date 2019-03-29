@@ -85,6 +85,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden paymentValueP;
         
         /// <summary>
+        /// CurrentEmployeePhotoName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentEmployeePhotoName;
+        
+        /// <summary>
+        /// imageData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden imageData;
+        
+        /// <summary>
+        /// lblLoading control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden lblLoading;
+        
+        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -200,6 +227,42 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store NQINidStore;
+        
+        /// <summary>
+        /// backofficeEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField backofficeEmail;
+        
+        /// <summary>
+        /// noImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Image noImage;
+        
+        /// <summary>
+        /// imgControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Image imgControl;
+        
+        /// <summary>
+        /// picturePath control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FileUploadField picturePath;
         
         /// <summary>
         /// enableHijri control.
@@ -452,6 +515,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox dailySchedule;
+        
+        /// <summary>
+        /// punchSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox punchSource;
         
         /// <summary>
         /// enableCameraCheck control.
@@ -787,24 +859,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.NumberField yearDays;
         
         /// <summary>
-        /// tsId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox tsId;
-        
-        /// <summary>
-        /// tsStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store tsStore;
-        
-        /// <summary>
         /// monthWorkDays control.
         /// </summary>
         /// <remarks>
@@ -931,6 +985,123 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button SaveSecuritySettingsBtn;
         
         /// <summary>
+        /// BiometricSettings control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel BiometricSettings;
+        
+        /// <summary>
+        /// pp_storeType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox pp_storeType;
+        
+        /// <summary>
+        /// pp_storeConnection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextArea pp_storeConnection;
+        
+        /// <summary>
+        /// pp_pull control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox pp_pull;
+        
+        /// <summary>
+        /// pp_push control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox pp_push;
+        
+        /// <summary>
+        /// pp_clearOnSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox pp_clearOnSuccess;
+        
+        /// <summary>
+        /// pp_sleepTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField pp_sleepTime;
+        
+        /// <summary>
+        /// pp_serialNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField pp_serialNo;
+        
+        /// <summary>
+        /// pp_debugMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox pp_debugMode;
+        
+        /// <summary>
+        /// pp_shiftData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox pp_shiftData;
+        
+        /// <summary>
+        /// pp_pendingDataFolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField pp_pendingDataFolder;
+        
+        /// <summary>
+        /// pp_punchInterface control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextArea pp_punchInterface;
+        
+        /// <summary>
+        /// SaveBiometricSettingsBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button SaveBiometricSettingsBtn;
+        
+        /// <summary>
         /// Button11 control.
         /// </summary>
         /// <remarks>
@@ -938,5 +1109,50 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button Button11;
+        
+        /// <summary>
+        /// imageSelectionWindow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window imageSelectionWindow;
+        
+        /// <summary>
+        /// imageUploadForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel imageUploadForm;
+        
+        /// <summary>
+        /// employeePhoto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Image employeePhoto;
+        
+        /// <summary>
+        /// uploadPhotoButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button uploadPhotoButton;
+        
+        /// <summary>
+        /// FileUploadField1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FileUploadField FileUploadField1;
     }
 }

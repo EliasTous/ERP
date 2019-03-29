@@ -228,4 +228,79 @@
   <data name="SelectEmpWindow" xml:space="preserve">
     <value>اختر موظفاً</value>
   </data>
+  <data name="pay_basicSalary" xml:space="preserve">
+    <value>الراتب الأساسي</value>
+  </data>
+  <data name="pay_companySS" xml:space="preserve">
+    <value>تأمينات اجتماعية للشركة</value>
+  </data>
+  <data name="pay_deductions" xml:space="preserve">
+    <value>الخصومات</value>
+  </data>
+  <data name="pay_employeeSS" xml:space="preserve">
+    <value>تأمينات اجتماعية للموظف</value>
+  </data>
+  <data name="pay_entitlements" xml:space="preserve">
+    <value>الاستحقاقات</value>
+  </data>
+  <data name="pay_fromDate" xml:space="preserve">
+    <value>دفع من</value>
+  </data>
+  <data name="pay_netSalary" xml:space="preserve">
+    <value>الراتب نهائي</value>
+  </data>
+  <data name="pay_toDate" xml:space="preserve">
+    <value>دفع إلى</value>
+  </data>
+  <data name="pay_url" xml:space="preserve">
+    <value>الرابط</value>
+  </data>
+  <data name="leave_endDate" xml:space="preserve">
+    <value>تاريخ النهاية</value>
+  </data>
+  <data name="leave_startDate" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="leave_url" xml:space="preserve">
+    <value>الرابط</value>
+  </data>
+  <data name="loan_amount" xml:space="preserve">
+    <value>المبلغ</value>
+  </data>
+  <data name="loan_date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="loan_url" xml:space="preserve">
+    <value>الرابط</value>
+  </data>
+  <data name="ta_sched_endDate" xml:space="preserve">
+    <value>نهاية الجدول</value>
+  </data>
+  <data name="ta_sched_startDate" xml:space="preserve">
+    <value>بداية جدول</value>
+  </data>
+  <data name="ta_sched_url" xml:space="preserve">
+    <value>الرابط</value>
+  </data>
+  <data name="penalty_amount" xml:space="preserve">
+    <value>قيمة العقوبة</value>
+  </data>
+  <data name="penalty_date" xml:space="preserve">
+    <value>تاريخ العقوبة</value>
+  </data>
+  <data name="penalty_url" xml:space="preserve">
+    <value>رابط العقوبة</value>
+  </data>
+  <data name="tv_date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="tv_duration" xml:space="preserve">
+    <value>المدة</value>
+  </data>
+  <data name="tv_timeCode" xml:space="preserve">
+    <value>Time Code</value>
+  </data>
+  <data name="tv_url" xml:space="preserve">
+    <value>الرابط</value>
+  </data>
 </root>

@@ -7,11 +7,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
-    <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Nationalities.js"></script>
-    <script type="text/javascript" src="Scripts/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=11" />
+<script src="Scripts.js" type="text/javascript"></script>
+
+
+
+
+
+
+   
+    <link rel="stylesheet" href="CSS/LiveSearch.css?id=10" />
+    <link rel="stylesheet" type="text/css" href="CSS/cropper.css?id=101" />
+    <script type="text/javascript" src="Scripts/Nationalities.js?id=121"></script>
+    <script type="text/javascript" src="Scripts/common.js?id=122"></script>
+    <script type="text/javascript" src="Scripts/jquery-new.js?id=125"></script>
+  
+    <script type="text/javascript" src="Scripts/cropper.js?id=126"></script>
+      <script type="text/javascript" src="Scripts/SystemDefaults.js?id=150"></script>
+
+
+
+     
+
     <script type="text/javascript">
+          
         var checkExtension = function (file) {
           
         try {
@@ -51,6 +71,7 @@
                 field.setMaxValue(1000000);
             }
         }
+       
     </script>
 
 </head>
@@ -64,8 +85,9 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
          <ext:Hidden ID="paymentValue" runat="server" Text="<%$ Resources:PaymentValue %>" />
         <ext:Hidden ID="paymentValueP" runat="server" Text="<%$ Resources:PaymentValueP %>" />
-
-
+        <ext:Hidden ID="CurrentEmployeePhotoName" runat="server" EnableViewState="true"  />
+        <ext:Hidden runat="server" ID="imageData" />
+        <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
@@ -81,6 +103,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
+                                
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" LabelWidth="150" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldCountry %>" Name="countryId" runat="server" DisplayField="name" ValueField="recordId" ID="countryIdCombo">
                                     <Store>
                                         <ext:Store runat="server" ID="NationalityStore">
@@ -186,7 +209,7 @@
                                     <Items>
                                         <ext:ListItem Text="<%$Resources:Common,EnglishLanguage %>" Value="1" />
                                         <ext:ListItem Text="<%$Resources:Common,ArabicLanguage %>" Value="2" />
-
+                                         <ext:ListItem Text="<%$Resources:Common,FrenchLanguage %>" Value="3" />
                                     </Items>
                                 </ext:ComboBox>
                                  <ext:ComboBox AllowBlank="true"   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" LabelWidth="150" DisplayField="name" ID="NQINid" Name="NQINid"  FieldLabel="<%$ Resources:FieldIndustry%>">
@@ -203,15 +226,30 @@
                                                 </ext:Store>
                                             </Store>
                                             </ext:ComboBox>
-                               
-                                <%--   <ext:FileUploadField ID="FileUploadField1" runat="server" FieldLabel="uploadImage" IconCls="upload-icon" >
-                                      <Validator Handler="return checkExtension(App.FileUploadField1.getValue());" />
-                                      <Listeners>
-                                     
-                              
-                                      </Listeners>
-                                       </ext:FileUploadField>
-                                 <ext:Image runat="server" ID="companyLogoImg" MaxWidth="200" Height="100" Align="Middle"  ImageUrl="~/Images/empPhoto.jpg" Title="dads" />--%>
+
+                                   <ext:TextField runat="server" Name="backofficeEmail" ID="backofficeEmail" FieldLabel="<%$Resources:backofficeEmail %>" Vtype="email" LabelWidth="150">
+                                           
+
+                                        </ext:TextField>
+
+                                 <ext:Image runat="server" ID="noImage" Hidden="true"  Width="100" Height="100" />
+                        <ext:Image runat="server" ID="imgControl" MaxWidth="150" MaxHeight="150">
+                            <Listeners>
+                                <%--<Click Handler="triggierImageClick(App.employeeControl1_picturePath.fileInputEl.id); " />--%>
+                                <Click Handler="InitCropper(App.CurrentEmployeePhotoName.value+'?x='+ new Date().getTime()); App.imageSelectionWindow.show();" />
+                            </Listeners>
+
+                        </ext:Image>
+
+
+                        <ext:FileUploadField ID="picturePath" runat="server" ButtonOnly="true" Hidden="true">
+
+                            <Listeners>
+                                <Change Handler="showImagePreview(App.picturePath.fileInputEl.id);" />
+                            </Listeners>
+                            <DirectEvents>
+                            </DirectEvents>
+                        </ext:FileUploadField>
                                  <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableHijri %>" LabelWidth="150" runat="server" InputValue="True" Name="enableHijri" ID="enableHijri" />
                                   
        
@@ -231,7 +269,7 @@
                                         <Click OnEvent="SaveGeneralSettings" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                             <EventMask ShowMask="true"  />
                                             <ExtraParams>
-
+                                            
                                                 <ext:Parameter Name="values" Value="#{GeneralSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
                                             </ExtraParams>
                                         </Click>
@@ -282,7 +320,7 @@
                                 </ext:ComboBox>
                                
 
-                                <ext:ComboBox AllowBlank="false" AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldNameFormat %>" Name="nameFormat" runat="server" ID="nameFormatCombo">
+                                <ext:ComboBox AllowBlank="true" AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldNameFormat %>" Name="nameFormat" runat="server" ID="nameFormatCombo">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:FirstNameLastName %>" Value="{firstName} {lastName}" />
                                           <ext:ListItem Text="<%$ Resources:FirstNameMiddleNameFamilyNameLastName %>" Value="{firstName} {middleName} {familyName} {lastName}" />
@@ -300,6 +338,15 @@
 
 
                                     </Items>
+                                    <DirectEvents>
+                                           <Select OnEvent="NameFormatChanged">
+                                              
+                                                <ExtraParams>
+
+                                                <ext:Parameter Name="nameFormat" Value="this.value" Mode="Raw" Encode="true" />
+                                               </ExtraParams>
+                                                </Select>
+                                    </DirectEvents>
                                 </ext:ComboBox>
                          
 
@@ -366,7 +413,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
                                 <ext:NumberField  runat="server" LabelWidth="150" ID="retirementAge" Name="retirementAge" FieldLabel="<%$ Resources: retirementAge %>" MinValue="0"  MaxValue="100"/>
-                                  <ext:NumberField  runat="server" LabelWidth="150" ID="employeeRefSize" Name="employeeRefSize" FieldLabel="<%$ Resources: employeeRefSize %>" MinValue="0"  MaxValue="10">
+                                  <ext:NumberField  runat="server" AllowBlank="false" LabelWidth="150" ID="employeeRefSize" Name="employeeRefSize" FieldLabel="<%$ Resources: employeeRefSize %>" MinValue="0"  MaxValue="10">
                                       <Validator Handler="if(this.value==1 ||this.value==2 ) return false; else return true;"></Validator>
                                       </ext:NumberField>
                          
@@ -490,6 +537,14 @@
                                         <ext:ListItem Text="<%$ Resources: dailySchedule_15 %>" Value="<%$ Resources:ComboBoxValues, dailySchedule_15 %>" />
                                         <ext:ListItem Text="<%$ Resources: dailySchedule_30 %>" Value="<%$ Resources:ComboBoxValues, dailySchedule_30 %>" />
                                         <ext:ListItem Text="<%$ Resources: dailySchedule_60 %>" Value="<%$ Resources:ComboBoxValues, dailySchedule_60 %>" />
+                                       
+                                    </Items>
+                                </ext:ComboBox>
+                                  <ext:ComboBox AnyMatch="true"  CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: punchSource %>" Name="punchSource" runat="server" ID="punchSource">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: employeeReference %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: timeAttendance %>" Value="2" />
+                                     
                                        
                                     </Items>
                                 </ext:ComboBox>
@@ -956,21 +1011,7 @@
                                         </Items>
                                         </ext:FieldSet>
                          
-                                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldTSId %>" Name="tsId" DisplayField="name" ValueField="recordId" runat="server" ID="tsId">
-                                    <Store>
-                                        <ext:Store runat="server" ID="tsStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-
-                                </ext:ComboBox>  
+                              
                                <ext:NumberField Width="400" runat="server" LabelWidth="150" ID="monthWorkDays" Name="monthWorkDays" FieldLabel="<%$ Resources: monthWorkDays  %>" MinValue="20" MaxValue="30" />
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="true" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="bsId" Name="bsId" FieldLabel="<%$ Resources: benefitSchedule%>" LabelWidth="150">
                                                     <Store>
@@ -1074,13 +1115,62 @@
                             </Buttons>
                         </ext:FormPanel>
 
+                           <ext:FormPanel DefaultButton="SaveBiometricSettingsBtn"
+                            ID="BiometricSettings"
+                            runat="server"
+                            Title="<%$ Resources: BiometricSettings %>"
+                            Icon="ApplicationSideList" AutoScroll="true"
+                            DefaultAnchor="100%"
+                            BodyPadding="5">
+                            <Items>
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="pp_storeType" LabelWidth="150"  runat="server" FieldLabel="<%$ Resources: storeType %>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                    <Items>
 
+                                        <ext:ListItem Text="<%$ Resources: sqlServer %>" Value="1"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: access%>" Value="2"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: csvFile%>" Value="3"></ext:ListItem>
+
+                                    </Items>
+                                
+                                </ext:ComboBox>  
+                                  <ext:TextArea FieldLabel="<%$ Resources: storeConnection %>" LabelWidth="150" runat="server" Name="pp_storeConnection" ID="pp_storeConnection" MaxLength="100" />
+                                <ext:Checkbox FieldLabel="<%$ Resources: pull %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_pull" ID="pp_pull" />
+                                <ext:Checkbox FieldLabel="<%$ Resources: push %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_push" ID="pp_push" />
+                                <ext:Checkbox FieldLabel="<%$ Resources: clearOnSuccess %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_clearOnSuccess" ID="pp_clearOnSuccess" />
+                                <ext:NumberField FieldLabel="<%$ Resources: sleepTime %>" AllowBlank="true" LabelWidth="150" runat="server"  Name="pp_sleepTime" ID="pp_sleepTime" MinValue="0" ></ext:NumberField>
+                                    <ext:TextField runat="server" Name="pp_serialNo" AllowBlank="true" ID="pp_serialNo" FieldLabel="<%$ Resources:serialNo%>" LabelWidth="150" >
+                                      <Validator Handler="return !isNaN(this.value);" />
+                                     </ext:TextField>
+                                 <ext:Checkbox FieldLabel="<%$ Resources: debugMode %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_debugMode" ID="pp_debugMode" />
+                                 <ext:Checkbox FieldLabel="<%$ Resources: shiftData %>" LabelWidth="150" runat="server" InputValue="True" Name="pp_shiftData" ID="pp_shiftData" />
+                                <ext:TextField FieldLabel="<%$ Resources: pendingPunchesFolder %>" LabelWidth="150" runat="server" Name="pp_pendingDataFolder" ID="pp_pendingDataFolder" MaxLength="100" />
+                              <ext:TextArea FieldLabel="<%$ Resources: punchInterface %>" LabelWidth="150" runat="server" Name="pp_punchInterface" ID="pp_punchInterface" MaxLength="255" />
+                                    
+                            </Items>
+                            <Buttons>
+                                <ext:Button Hidden="true"  ID="SaveBiometricSettingsBtn" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); if (!#{BiometricSettings}.getForm().isValid()) {return false;}  " />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="SaveBiometricSettings" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                            <EventMask ShowMask="true"  />
+                                            <ExtraParams>
+
+                                                <ext:Parameter Name="values" Value="#{BiometricSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                            </ExtraParams>
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                            </Buttons>
+                        </ext:FormPanel>
                     </Items>
                        <Buttons>
                                 <ext:Button ID="Button11" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                                     <Listeners>
-                                        <Click Handler="CheckSession(); if (!#{GeneralSettings}.getForm().isValid()||!#{EmployeeSettings}.getForm().isValid()||!#{AttendanceSettings}.getForm().isValid()||!#{PayrollSettings}.getForm().isValid()||!#{SecuritySettings}.getForm().isValid()) {return false;}  " />
+                                        <Click Handler="CheckSession(); if (!#{GeneralSettings}.getForm().isValid()||!#{EmployeeSettings}.getForm().isValid()||!#{AttendanceSettings}.getForm().isValid()||!#{PayrollSettings}.getForm().isValid()||!#{SecuritySettings}.getForm().isValid()||!#{BiometricSettings}.getForm().isValid()) {return false;}  " />
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="SaveAll" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
@@ -1092,6 +1182,8 @@
                                                 <ext:Parameter Name="ta" Value="#{AttendanceSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
                                                 <ext:Parameter Name="py" Value="#{PayrollSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
                                                 <ext:Parameter Name="sec" Value="#{SecuritySettings}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                                <ext:Parameter Name="bio" Value="#{BiometricSettings}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                              
                                             </ExtraParams>
                                         </Click>
                                     </DirectEvents>
@@ -1107,7 +1199,116 @@
 
 
 
+        <ext:Window
+    ID="imageSelectionWindow"
+    runat="server"
+    Icon="PageEdit"
+ 
+    Width="400"
+    Height="400"
+    AutoShow="false"
+    Modal="true"
+    Hidden="true"
+    Resizable="false"
+    Maximizable="false"
+    Layout="Fit">
 
+    <Items>
+
+        <ext:FormPanel
+            ID="imageUploadForm"
+            runat="server" DefaultButton="SaveButton"
+     
+            Icon="ApplicationSideList"
+            Header="false"
+            DefaultAnchor="100%"
+            BodyPadding="5">
+            <Content>
+                <%--    <div class="imageBox" style="width: 290px; height: 270px;display:none;">
+                            <div class="spinner" style="display: none"></div>
+                            <div class="thumbBox" style="width: 290px; height: 270px; border: 3px solid black;display:none;" onclick="App.employeeControl1_uploadPhotoButton.setDisabled(false);"></div>
+                            <input type="button" id="btnZoomIn" value="+" style="float: right;display:none;">
+                            <input type="button" id="btnZoomOut" value="-" style="float: right;display:none;">
+                        </div>--%>
+                <div>
+                    <img width="200" height="300" src="" id="image"  crossorigin="Anonymous" />
+                    <input type="button" id="button" value="press me" style="display: none;" />
+
+                </div>
+            </Content>
+            <Items>
+                <ext:Image runat="server" Width="150" Height="300" ID="employeePhoto" Hidden="true" Visible="false">
+                </ext:Image>
+                <%--<ext:Hidden runat="server" ID="imageData" Name="imageData" Visible="false" />--%>
+            </Items>
+            <BottomBar>
+                <ext:Toolbar runat="server">
+                    <Items>
+
+                        <ext:ToolbarFill runat="server" />
+
+                        <ext:Button runat="server" Icon="PictureAdd" Text="BrowsePicture">
+                            <Listeners>
+                                <Click Handler="triggierImageClick(App.FileUploadField1.fileInputEl.id); "></Click>
+                            </Listeners>
+                        </ext:Button>
+                        <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text=" UploadPicture">
+                            <Listeners>
+
+                                <Click Handler="CheckSession();   if (!#{imageUploadForm}.getForm().isValid() ) {  return false;}  GetCroppedImage(); "  ></Click>                        
+   
+
+                            </Listeners>
+                            <%--      <DirectEvents>
+                                        <Click OnEvent="UploadImage" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                            
+                                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{imageSelectionWindow}.body}" />
+                                            <ExtraParams>
+                                                <ext:Parameter Name="values" Value="#{imageUploadForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                                                
+                                            </ExtraParams>
+                                        </Click>
+                                    </DirectEvents>--%>
+                        </ext:Button>
+                        <ext:Button runat="server" Icon="Cancel" Text="RemovePicture ">
+                            <Listeners>
+                                <Click Handler=" InitCropper('Images/empPhoto.jpg'); App.uploadPhotoButton.setDisabled(false); " />
+                            </Listeners>
+                            <DirectEvents>
+                                <Click OnEvent="RemovePicture"></Click>
+                            </DirectEvents>
+                        </ext:Button>
+                        <ext:FileUploadField ID="FileUploadField1" runat="server" ButtonOnly="true" Hidden="true">
+                            <Listeners>
+                                <Change Handler="showImagePreview(App.FileUploadField1.fileInputEl.id); showImagePreview2(App.FileUploadField1.fileInputEl.id); " />
+                            </Listeners>
+
+                        </ext:FileUploadField>
+                        <ext:ToolbarFill runat="server" />
+                    </Items>
+
+                </ext:Toolbar>
+
+            </BottomBar>
+
+
+
+            <Listeners>
+
+                <AfterLayout Handler="CheckSession();" />
+                   
+                           
+            </Listeners>
+            <DirectEvents>
+                <AfterLayout OnEvent="DisplayImage">
+                </AfterLayout>
+            </DirectEvents>
+        </ext:FormPanel>
+
+
+    </Items>
+
+</ext:Window>
 
 
     </form>

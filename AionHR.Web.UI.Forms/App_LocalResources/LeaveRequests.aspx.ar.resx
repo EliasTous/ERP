@@ -120,17 +120,8 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>معلومات طلب الإجازة</value>
   </data>
-  <data name="ButtonClear" xml:space="preserve">
-    <value>جديد</value>
-  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل طلب الإجازة</value>
-  </data>
-  <data name="ErrorSelectDate" xml:space="preserve">
-    <value>الرجاء اختيار وقت الإجازة بشكل صحيح</value>
-  </data>
-  <data name="ErrorSelectEmployee" xml:space="preserve">
-    <value>الرجاء اختيار موظف</value>
   </data>
   <data name="FieldAll" xml:space="preserve">
     <value>الكل</value>
@@ -168,9 +159,6 @@
   <data name="FieldPending" xml:space="preserve">
     <value>قيد المعالجة</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>الرقم</value>
-  </data>
   <data name="FieldRefused" xml:space="preserve">
     <value>مرفوضة</value>
   </data>
@@ -189,29 +177,14 @@
   <data name="FieldWorkingHours" xml:space="preserve">
     <value>ساعات العمل</value>
   </data>
-  <data name="FilterBranch" xml:space="preserve">
-    <value>اختر فرع</value>
-  </data>
-  <data name="FilterDepartment" xml:space="preserve">
-    <value>اختر قسم</value>
-  </data>
-  <data name="FilterDivision" xml:space="preserve">
-    <value>اختر ادارة عليا</value>
-  </data>
   <data name="FilterEmployee" xml:space="preserve">
     <value>اختر موظف</value>
-  </data>
-  <data name="FilterOpen" xml:space="preserve">
-    <value>Show Open Requests</value>
   </data>
   <data name="FilterStatus" xml:space="preserve">
     <value>اختر وضع الإجازة</value>
   </data>
   <data name="LeaveDaysWindowTitle" xml:space="preserve">
     <value>أيام الإجازة</value>
-  </data>
-  <data name="LeaveInfo" xml:space="preserve">
-    <value>معلومات الإجازة</value>
   </data>
   <data name="ReturnInfo" xml:space="preserve">
     <value>معلومات نهاية الإجازة</value>
@@ -220,16 +193,10 @@
     <value>المجموع</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>طلبات الخروج</value>
-  </data>
-  <data name="LeaveEndWindowTitle" xml:space="preserve">
-    <value>العودة من الإجازة</value>
+    <value>طلبات الإجازات </value>
   </data>
   <data name="FieldUsed" xml:space="preserve">
     <value>مستخدمة</value>
-  </data>
-  <data name="ErrorNoCalendar" xml:space="preserve">
-    <value>لايمكن إنشاء إجازة قبل إضافة تقويم واحد على الأقل</value>
   </data>
   <data name="CalDays" xml:space="preserve">
     <value>الايام</value>

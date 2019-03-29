@@ -38,25 +38,48 @@ namespace AionHR.Web.UI.Forms.Reports
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -169,7 +192,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = new ReportCompositeRequest();
 
             req.Size = "1000";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.SortBy = "eventDt";
 
 
@@ -198,8 +221,15 @@ namespace AionHR.Web.UI.Forms.Reports
         private List<UserInfo> GetUsersFiltered(string query)
         {
             UsersListRequest req = new UsersListRequest();
+            req.Size = "100";
+            req.StartAt = "0";
+         
+
+
             req.DepartmentId = "0";
             req.PositionId = "0";
+            req.BranchId = "0";
+            req.SortBy = "fullName";
             req.Filter = query;
 
             ListResponse<UserInfo> users = _systemService.ChildGetAll<UserInfo>(req);
@@ -208,16 +238,46 @@ namespace AionHR.Web.UI.Forms.Reports
 
         private void FillReport(bool throwException = true)
         {
+            int count = 0; 
             ReportCompositeRequest req = GetRequest();
+
+
+            foreach (KeyValuePair<string, string> entry in req.Parameters)
+            {
+                if (entry.Key == "_fromDate" || entry.Key == "_toDate" || entry.Key == "_size" || entry.Key == "_startAt"|| entry.Key == "_sortBy" || entry.Key == "_filter")
+                {
+                    continue;
+                }
+                if (entry.Key == "_masterRef" && !string.IsNullOrEmpty(entry.Value))
+                {
+                    count++;
+                    continue;
+                }
+                if (entry.Key == "_data" && !string.IsNullOrEmpty(entry.Value))
+                {
+                    count++;
+                    continue;
+                }
+                if (entry.Key == "_data" && string.IsNullOrEmpty(entry.Value))
+                {
+                   continue;
+                }
+                if (entry.Value != "0"   && entry.Key != "_masterRef")
+                    count++;
+               
+            }
+
+
+
+            if (dateRange1.DifferenceBetweenDates()!=null && dateRange1.DifferenceBetweenDates()>30&& count<2)
+            {
+                throw new Exception(FilterSelection.Value.ToString());
+              
+            }
+
             ListResponse<AionHR.Model.Reports.RT802> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT802>(req);
             if (!resp.Success)
-            {
-              
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-                    return;
-                
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
             resp.Items.ForEach(x => { x.TypeString = GetGlobalResourceObject("Common", "TrType" + x.type.ToString()).ToString(); x.ClassIdString = GetGlobalResourceObject("Classes", "Class" + x.classId.ToString())!=null? GetGlobalResourceObject("Classes", "Class" + x.classId.ToString()).ToString():"NA"; x.DateString = x.eventDt.ToString(_systemService.SessionHelper.GetDateformat()+ " HH:mm", new CultureInfo("en")); });
             AuditTrail h = new AuditTrail();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
@@ -289,7 +349,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 

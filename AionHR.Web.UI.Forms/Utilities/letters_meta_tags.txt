@@ -17,5 +17,73 @@
 'emp_employmentStatus',
 'emp_salary',
 'emp_salary_text']
+},{
+    
+    "type": "admin_affair",
+    "tags": [
+"pay_fromDate",
+"pay_toDate",
+"pay_basicSalary",
+"pay_entitlements",
+"pay_deductions",
+"pay_netSalary",
+"pay_companySS",
+"pay_employeeSS",
+"pay_url",
+]
+},
+{
+    
+    "type": "leave",
+    "tags": [
+"leave_startDate",
+"leave_endDate",
+"leave_url",
+
+]
+},
+{
+    
+    "type": "loan",
+    "tags": [
+"loan_date",
+"loan_amount",
+"loan_url",
+
+]
+}
+,
+{
+    
+    "type": "schedule",
+    "tags": [
+"ta_sched_startDate",
+"ta_sched_endDate",
+"ta_sched_url",
+
+]
+}
+,
+{
+    
+    "type": "penalty",
+    "tags": [
+"penalty_date",
+"penalty_amount",
+"penalty_url",
+
+]
+}
+,
+{
+    
+    "type": "time_variations",
+    "tags": [
+"tv_timeCode",
+"tv_date",
+"tv_duration",
+"tv_url"
+
+]
 }
 ]

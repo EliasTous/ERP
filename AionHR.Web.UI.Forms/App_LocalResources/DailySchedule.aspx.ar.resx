@@ -228,9 +228,6 @@
   <data name="workingHours" xml:space="preserve">
     <value>ساعات العمل</value>
   </data>
-  <data name="multiImport" xml:space="preserve">
-    <value>multiImport</value>
-  </data>
   <data name="All" xml:space="preserve">
     <value>الكل </value>
   </data>
@@ -251,5 +248,14 @@
   </data>
   <data name="total" xml:space="preserve">
     <value>المجموع</value>
+  </data>
+  <data name="NotifyEmployee" xml:space="preserve">
+    <value>اشعار الموظف</value>
+  </data>
+  <data name="disableEdit" xml:space="preserve">
+    <value>لايمكنك تعديل جدول الدوام اليومي ضمن هذه الفترة </value>
+  </data>
+  <data name="updateError" xml:space="preserve">
+    <value>لاتستطيع حفظ او تعديل جدول الدوام ضمن التاريخ المحدد </value>
   </data>
 </root>

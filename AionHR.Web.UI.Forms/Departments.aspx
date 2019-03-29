@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Departments.js?id=2"></script>
-    <script type="text/javascript" src="Scripts/common.js"></script>
+    <script type="text/javascript" src="Scripts/common.js?id=40"></script>
 
      <script  type="text/javascript">
        
@@ -167,7 +167,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="true">
                         <Columns>
 
-                            <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column ID="ColReference" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="departmentRef" width="150" Hideable="false" Visible="true"/>
                            
                             <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
@@ -314,7 +314,7 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" DataIndex="recordId" />
+                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" DataIndex="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="departmentRef" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="departmentRef" />
 
@@ -417,7 +417,7 @@
 
                                     </Store>
                                 </ext:ComboBox>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="type"  Name="type" runat="server" FieldLabel="<%$ Resources:type%>"  ForceSelection="true" >
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="type"  Name="type" runat="server" FieldLabel="<%$ Resources:type%>"  ForceSelection="true" AllowBlank="false" >
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: administrationType%>" Value="<%$ Resources:ComboBoxValues,  CSDETypeAdministration%>"></ext:ListItem>
@@ -428,7 +428,7 @@
                                 </ext:ComboBox>
                                <ext:Panel runat="server" Layout="HBoxLayout" ><Items>
                                 <%--   <ext:Checkbox ID="isLeaveAuth" runat="server" LabelWidth="130" FieldLabel="<%$ Resources: isLeaveAuth%>" DataIndex="isLeaveAuth" Name="isLeaveAuth" InputValue="true"  />--%>
-                                 <ext:Checkbox ID="isInactiveCheck" runat="server" LabelWidth="75"  FieldLabel="<%$ Resources: FieldIsInactive%>" DataIndex="isInactive" Name="isInactive" InputValue="true"  MarginSpec="0 5 0 50" />
+                                 <ext:Checkbox ID="isInactiveCheck" runat="server"  FieldLabel="<%$ Resources: FieldIsInactive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
                                 </Items></ext:Panel>
                             </Items>
 

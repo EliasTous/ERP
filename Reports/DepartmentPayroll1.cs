@@ -788,7 +788,7 @@ public class DepartmentPayroll1 : DevExpress.XtraReports.UI.XtraReport
             this.xrCrossBandLine3.StartBand = this.pageHeaderBand1;
             this.xrCrossBandLine3.WidthF = 1137.5F;
             // 
-            // DepartmentPayroll
+            // DepartmentPayroll1
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,

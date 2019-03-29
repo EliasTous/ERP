@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllowedLateness" xml:space="preserve">
+    <value>Retard permis</value>
+  </data>
+  <data name="allowedLeaveYtdTitle" xml:space="preserve">
+    <value>Congés autorisés:</value>
+  </data>
+  <data name="amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="amountDue" xml:space="preserve">
+    <value>Montant dû</value>
+  </data>
+  <data name="aqAmount" xml:space="preserve">
+    <value>Montant de l'acquisition</value>
+  </data>
+  <data name="aqDate" xml:space="preserve">
+    <value>Date d'achat</value>
+  </data>
+  <data name="aqRatio" xml:space="preserve">
+    <value>Ratio d'acquisition</value>
+  </data>
+  <data name="aqType" xml:space="preserve">
+    <value>Type d'acquisition</value>
+  </data>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Règlement final</value>
+  </data>
+  <data name="benefitId" xml:space="preserve">
+    <value>avantage</value>
+  </data>
+  <data name="benefitName" xml:space="preserve">
+    <value>avantage</value>
+  </data>
+  <data name="BOGridTitle" xml:space="preserve">
+    <value>Prime</value>
+  </data>
+  <data name="branchName" xml:space="preserve">
+    <value>Branche :</value>
+  </data>
+  <data name="bsId" xml:space="preserve">
+    <value>Calendrier des prestations</value>
+  </data>
+  <data name="bsName" xml:space="preserve">
+    <value>Calendrier des prestations</value>
+  </data>
+  <data name="DateFrom" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="DateTo" xml:space="preserve">
+    <value>À</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>journée</value>
+  </data>
+  <data name="period" xml:space="preserve">
+    <value>Periode</value>
+  </data>
+  <data name="DeductionEditWindow" xml:space="preserve">
+    <value>Modifier la déduction</value>
+  </data>
+  <data name="deductionGrid" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="Deductions" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="departmentName" xml:space="preserve">
+    <value>Department :</value>
+  </data>
+  <data name="EditBOWindowTitle" xml:space="preserve">
+    <value>Prime</value>
+  </data>
+  <data name="EditSAWindowTitle" xml:space="preserve">
+    <value>Modifier le salaire</value>
+  </data>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Modifier l'acquisition de prestations</value>
+  </data>
+  <data name="EntitlementEditWindow" xml:space="preserve">
+    <value>Modifier le droit</value>
+  </data>
+  <data name="Entitlements" xml:space="preserve">
+    <value>Droits</value>
+  </data>
+  <data name="eosBalanceTitle" xml:space="preserve">
+    <value>Balance:</value>
+  </data>
+  <data name="esName" xml:space="preserve">
+    <value>Employe Statut:</value>
+  </data>
+  <data name="FieldAccountNumber" xml:space="preserve">
+    <value>Numéro de compte</value>
+  </data>
+  <data name="FieldAmount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="FieldBankName" xml:space="preserve">
+    <value>Banque</value>
+  </data>
+  <data name="FieldBasicAmount" xml:space="preserve">
+    <value>Montant de base</value>
+  </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branche:</value>
+  </data>
+  <data name="FieldBTName" xml:space="preserve">
+    <value>Type de prime</value>
+  </data>
+  <data name="FieldComment" xml:space="preserve">
+    <value>Commentaire</value>
+  </data>
+  <data name="FieldComments" xml:space="preserve">
+    <value>Commentaires</value>
+  </data>
+  <data name="FieldDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FieldDeduction" xml:space="preserve">
+    <value>Deduction</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Department :</value>
+  </data>
+  <data name="FieldDivision" xml:space="preserve">
+    <value>Division</value>
+  </data>
+  <data name="FieldEffectiveDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FieldEntitlement" xml:space="preserve">
+    <value>Droit</value>
+  </data>
+  <data name="FieldFinalAmount" xml:space="preserve">
+    <value>Le montant final</value>
+  </data>
+  <data name="FieldFixedAmount" xml:space="preserve">
+    <value>montant</value>
+  </data>
+  <data name="FieldIncludeInTotal" xml:space="preserve">
+    <value>Inclure au total</value>
+  </data>
+  <data name="FieldIsPercentage" xml:space="preserve">
+    <value>Est le pourcentage</value>
+  </data>
+  <data name="FieldIsTaxable" xml:space="preserve">
+    <value>IsTaxable</value>
+  </data>
+  <data name="FieldLatenessDeduction" xml:space="preserve">
+    <value>Déduction de retard</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>Employe</value>
+  </data>
+  <data name="FieldPaymentFrequency" xml:space="preserve">
+    <value>Fréquence de paiement</value>
+  </data>
+  <data name="FieldPaymentMethod" xml:space="preserve">
+    <value>Mode de paiement</value>
+  </data>
+  <data name="FieldPCT" xml:space="preserve">
+    <value>Pourcentage</value>
+  </data>
+  <data name="FieldPctOf" xml:space="preserve">
+    <value>Pct Of</value>
+  </data>
+  <data name="FieldPosition" xml:space="preserve">
+    <value>Position:</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="FieldReportsTo" xml:space="preserve">
+    <value>Directeur</value>
+  </data>
+  <data name="FieldSACurrencyName" xml:space="preserve">
+    <value>Monnai</value>
+  </data>
+  <data name="FieldSalaryType" xml:space="preserve">
+    <value>type de salaire</value>
+  </data>
+  <data name="FieldScrName" xml:space="preserve">
+    <value>raison de changement</value>
+  </data>
+  <data name="hireDate" xml:space="preserve">
+    <value>date d'emploi</value>
+  </data>
+  <data name="lastLeaveEndDate" xml:space="preserve">
+    <value>Date de fin du dernier congé:</value>
+  </data>
+  <data name="lastLeaveEndDateTitle" xml:space="preserve">
+    <value>Date de début du dernier congé:</value>
+  </data>
+  <data name="lastLeaveStartDate" xml:space="preserve">
+    <value>Last Leave Start Date:</value>
+  </data>
+  <data name="lastLeaveStartDateTitle" xml:space="preserve">
+    <value>Dernier congé:</value>
+  </data>
+  <data name="Lateness" xml:space="preserve">
+    <value>Retard</value>
+  </data>
+  <data name="leavesBalanceTitle" xml:space="preserve">
+    <value> Balance de conges:</value>
+  </data>
+  <data name="loanBalance" xml:space="preserve">
+    <value>balance de prets</value>
+  </data>
+  <data name="MaximumOvertime" xml:space="preserve">
+    <value>Heures supplémentaires maximales</value>
+  </data>
+  <data name="MinimumOvertime" xml:space="preserve">
+    <value>Minimum Overtime</value>
+  </data>
+  <data name="nationality" xml:space="preserve">
+    <value>Nationalite</value>
+  </data>
+  <data name="notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Overtime" xml:space="preserve">
+    <value>Heures supplémentaires</value>
+  </data>
+  <data name="paidLeavesYTDTitle" xml:space="preserve">
+    <value>Congés payés:</value>
+  </data>
+  <data name="PaymentMethodBank" xml:space="preserve">
+    <value>Banque</value>
+  </data>
+  <data name="PaymentMethodCash" xml:space="preserve">
+    <value>argent</value>
+  </data>
+  <data name="PaymentTypeDaily" xml:space="preserve">
+    <value>quotidien</value>
+  </data>
+  <data name="PaymentTypeMonthly" xml:space="preserve">
+    <value>Mensuel</value>
+  </data>
+  <data name="PaymentTypeWeekly" xml:space="preserve">
+    <value>Hebdomadaire</value>
+  </data>
+  <data name="pctof1" xml:space="preserve">
+    <value>Salaire de base</value>
+  </data>
+  <data name="pctof2" xml:space="preserve">
+    <value>Salaire de base + Tous droits</value>
+  </data>
+  <data name="positionName" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="SAGridTitle" xml:space="preserve">
+    <value>Salaire</value>
+  </data>
+  <data name="SalaryBank" xml:space="preserve">
+    <value>Banque</value>
+  </data>
+  <data name="SalaryBiWeekly" xml:space="preserve">
+    <value>Bihebdomadaire</value>
+  </data>
+  <data name="SalaryCash" xml:space="preserve">
+    <value>argent</value>
+  </data>
+  <data name="SalaryDaily" xml:space="preserve">
+    <value>quotidien</value>
+  </data>
+  <data name="SalaryFourWeekly" xml:space="preserve">
+    <value>Quatre hebdomadaires</value>
+  </data>
+  <data name="SalaryMonthly" xml:space="preserve">
+    <value>Mensuel</value>
+  </data>
+  <data name="SalaryWeekly" xml:space="preserve">
+    <value>Hebdomadaire</value>
+  </data>
+  <data name="seqNo" xml:space="preserve">
+    <value>seqNo</value>
+  </data>
+  <data name="serviceDuration" xml:space="preserve">
+    <value>Durée du service:</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="TotalDeductions" xml:space="preserve">
+    <value>Total des Deductions</value>
+  </data>
+  <data name="TotalEntitlements" xml:space="preserve">
+    <value>Total des droits</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Acquisition de bénéfices</value>
+  </data>
+  <data name="Progressive" xml:space="preserve">
+    <value>Progressive</value>
+  </data>
+  <data name="Unbound" xml:space="preserve">
+    <value>Non lié</value>
+  </data>
+  <data name="isChecked" xml:space="preserve">
+    <value>est vérifié</value>
+  </data>
+  <data name="cash" xml:space="preserve">
+    <value>argent</value>
+  </data>
+  <data name="deliveryType" xml:space="preserve">
+    <value>type de livraison</value>
+  </data>
+  <data name="service" xml:space="preserve">
+    <value>Service</value>
+  </data>
+</root>

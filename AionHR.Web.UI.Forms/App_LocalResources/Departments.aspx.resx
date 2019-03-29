@@ -129,23 +129,14 @@
   <data name="FieldIsInactive" xml:space="preserve">
     <value>Is Inactive?</value>
   </data>
-  <data name="FieldIsSegmentedHead" xml:space="preserve">
-    <value>Is Inactive?</value>
-  </data>
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="FieldParentName" xml:space="preserve">
     <value>Parent</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
-  </data>
-  <data name="FieldSegmentCode" xml:space="preserve">
-    <value>Segment</value>
   </data>
   <data name="FieldSvFullName" xml:space="preserve">
     <value>Department Manager</value>

@@ -661,6 +661,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Button Button6;
         
         /// <summary>
+        /// TextField3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField TextField3;
+        
+        /// <summary>
         /// TextField1 control.
         /// </summary>
         /// <remarks>
@@ -677,15 +686,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField TextField2;
-        
-        /// <summary>
-        /// TextField3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField TextField3;
         
         /// <summary>
         /// TextField4 control.

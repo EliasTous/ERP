@@ -138,6 +138,9 @@
   <data name="FieldYear" xml:space="preserve">
     <value>السنة</value>
   </data>
+  <data name="fiscalPeriodWindowTitle" xml:space="preserve">
+    <value>المدة المالية </value>
+  </data>
   <data name="SalaryBiWeekly" xml:space="preserve">
     <value>كل أسبوعين</value>
   </data>

@@ -26,9 +26,11 @@
     <script type="text/javascript">
         function alertNow(s, e) {
 
-            Ext.MessageBox.alert('Error', e.message);
+            Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
+
+      
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -43,7 +45,7 @@
           <ext:Hidden ID="EmptyPayRef" runat="server" Text="<%$ Resources:Common , EmptyPayRef %>" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
-
+               <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
@@ -56,15 +58,38 @@
                     Layout="FitLayout" AutoScroll="true"
                     Margins="0 0 0 0"
                     Region="Center">
-                    <TopBar>
-                        <ext:Toolbar runat="server" Height="60">
+                    <DockedItems>
+                          <ext:Toolbar runat="server" Height="50" Dock="Top">
 
                             <Items>
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  EmptyText="<%$Resources:Common , PayRef %>"  Name="payId" runat="server" DisplayField="payRefWithDateRange" ValueField="recordId" ID="payId" Width="100">
+                                    <Store>
+                                        <ext:Store runat="server" ID="payIdStore">
+                                            <Model>
+                                                <ext:Model runat="server" IDProperty="recordId">
+                                                    <Fields>
+
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="payRefWithDateRange" />
+                                                           
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                  <DirectEvents>
+                                      <Select OnEvent="setDateRange" >
+                                          <ExtraParams>
+                                               <ext:Parameter Name="id" Value="this.value" Mode="Raw" />
+                                          </ExtraParams>
+                                          </Select>
+                                  </DirectEvents>
+                                </ext:ComboBox>
                              
                                         <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                                 <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDepartment="true" EnablePosition="false" EnableDivision="false" />
+                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDepartment="true" EnablePosition="true" EnableDivision="true"  />
                                             </Content>
                                         </ext:Container>
                                    <ext:Container runat="server"  Layout="FitLayout">
@@ -73,11 +98,7 @@
                                                 <uc:paymentMethodCombo runat="server" ID="paymentMethodCombo" />
                                             </Content>
                                         </ext:Container>
-                                <ext:Container runat="server"  Layout="FitLayout">
-                                    <Content>
-                                        <uc:
-                                        </Content>
-                                    </ext:Container>
+                              
 
                                   <%--  <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
@@ -91,13 +112,25 @@
                                  <uc:employeeCombo runat="server" ID="employeeFilter" />
                                     </Content>
                                 </ext:Container>
-                                 <ext:TextField Width="120" runat="server" ID="payRef" EmptyText="<%$Resources:Common , PayRef %>" />
-
+                                
+                                </items>
+                              </ext:Toolbar>
+                         <ext:Toolbar runat="server" Dock="Top">
+                             <Items>
+                                   <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:dateRange runat="server" ID="dateRange1" />
+                              
+                                    </Content>
+                                </ext:Container>
+                                 <ext:TextField Visible="false" Width="80" runat="server" ID="payRef" EmptyText="<%$Resources:Common , PayRef %>" />
+                                  
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
-                                                <Click Handler="if(App.payRef.getValue()=='')  {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}  callbackPanel.PerformCallback('1');" />
+                                              <%--  <Click Handler="if(App.payId.getValue()==null)   {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}  callbackPanel.PerformCallback('1');" />--%>
+                                                   <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
                                     </Content>
@@ -108,7 +141,7 @@
                             </Items>
                         </ext:Toolbar>
 
-                    </TopBar>
+              </DockedItems>
                     <Content>
 
                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"  ClientSideEvents-CallbackError="alertNow"

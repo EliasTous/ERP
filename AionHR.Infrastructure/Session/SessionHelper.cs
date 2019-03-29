@@ -29,7 +29,7 @@ namespace AionHR.Infrastructure.Session
         /// <returns></returns>
         public bool CheckUserLoggedIn()
         {
-            if (Get("key") == null || Get("AccountId") == null || Get("UserId") == null)
+            if (Get("AccountId") == null || Get("UserId") == null)
                 return false;
             else return true;
         }
@@ -44,6 +44,14 @@ namespace AionHR.Infrastructure.Session
                 if (Get("Language").ToString() == "ar")
                     return true;
             return false;
+        }
+        public string getLangauge()
+        {
+            if (Get("Language") != null)
+            {
+                return Get("Language").ToString();
+            }
+            return "en";
         }
 
         /// <summary>
@@ -65,9 +73,11 @@ namespace AionHR.Infrastructure.Session
         }
         public void SetNameFormat(string format)
         {
-            string commad = format.Replace('}', ',');
-            string removedBrace = commad.Replace('{', Char.MinValue);
-            string lastLetterRemoved = removedBrace.Substring(0, removedBrace.Length - 1);
+            string commad= format.Replace(" ", string.Empty);
+            commad = format.Replace("}", string.Empty);
+            string removedBrace = commad.Replace('{', ',');
+            removedBrace = removedBrace.Replace(" ", string.Empty);
+            string lastLetterRemoved = removedBrace.Substring(1, removedBrace.Length - 1);
             Set("nameFormat", lastLetterRemoved);
         }
         public void SetCurrencyId(string value)
@@ -221,6 +231,15 @@ namespace AionHR.Infrastructure.Session
             headers.Add("Authorization", "Basic " + Get("key"));
             headers.Add("AccountId", "" + Get("AccountId"));
             headers.Add("UserId", Get("UserId").ToString());
+            
+            switch(Get("Language").ToString())
+            {
+                case "en": headers.Add("LanguageId", "1"); break;
+                case "ar": headers.Add("LanguageId", "2"); break;
+                case "fr": headers.Add("LanguageId", "3"); break;
+                case "de": headers.Add("LanguageId", "4"); break;
+            }
+            
             return headers;
         }
 

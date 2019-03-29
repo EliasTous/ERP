@@ -31,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>G:\AionASP\AionHR.Model\bin\Debug\Newtonsoft.Json.dll</HintPath>
+      <HintPath>D:\Softmachine\UI\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,11 +46,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Access Control\IAccessControlRepository.cs" />
+    <Compile Include="AdminTemplates\AdminDocTransfer.cs" />
+    <Compile Include="AdminTemplates\AdminDocument.cs" />
+    <Compile Include="AdminTemplates\AdminDocumentDue.cs" />
+    <Compile Include="AdminTemplates\AdminDocumentDX.cs" />
+    <Compile Include="AdminTemplates\AdminDocumentNote.cs" />
     <Compile Include="AdminTemplates\AdTemplate.cs" />
+    <Compile Include="AdminTemplates\BusinessPartner.cs" />
+    <Compile Include="AdminTemplates\BusinessPartnerCategory.cs" />
+    <Compile Include="AdminTemplates\Department.cs" />
+    <Compile Include="AdminTemplates\DocumentCategory.cs" />
     <Compile Include="AdminTemplates\EmployeeTemplatePreview.cs" />
+    <Compile Include="AdminTemplates\GenerateAdminDocumentDue.cs" />
     <Compile Include="AdminTemplates\IAdministrationRepository.cs" />
+    <Compile Include="AdminTemplates\ModuleId.cs" />
+    <Compile Include="AdminTemplates\ProcessNotification.cs" />
+    <Compile Include="AdminTemplates\ProcessNotificationTypes.cs" />
     <Compile Include="AdminTemplates\TemplateBody.cs" />
     <Compile Include="AdminTemplates\TemplateTag.cs" />
+    <Compile Include="AssetManagement\AssetManagementAsset.cs" />
+    <Compile Include="AssetManagement\AssetManagementCategory.cs" />
+    <Compile Include="AssetManagement\AssetManagementLoan.cs" />
+    <Compile Include="AssetManagement\AssetManagementOnBoarding.cs" />
+    <Compile Include="AssetManagement\AssetManagementPurchaseOrder.cs" />
+    <Compile Include="AssetManagement\AssetManagementPurchaseOrderApproval.cs" />
+    <Compile Include="AssetManagement\AssetManagementSupplier.cs" />
+    <Compile Include="AssetManagement\AssetManagementCategoryProperty.cs" />
+    <Compile Include="AssetManagement\AssetPOReception.cs" />
+    <Compile Include="AssetManagement\AssetPropertyValue.cs" />
+    <Compile Include="AssetManagement\IAssetManagementRepository.cs" />
     <Compile Include="Attributes\PropertyID.cs" />
     <Compile Include="Benefits\Benefit.cs" />
     <Compile Include="Benefits\BenefitAcquisition.cs" />
@@ -69,6 +93,8 @@
     <Compile Include="Company\Structure\LegalReference.cs" />
     <Compile Include="Dashboard\CompanyRTW.cs" />
     <Compile Include="Dashboard\Dashboard.cs" />
+    <Compile Include="Dashboard\DashboardAlertItem.cs" />
+    <Compile Include="Dashboard\DashboardBranchAvailability.cs" />
     <Compile Include="Dashboard\DashBoardCH.cs" />
     <Compile Include="Dashboard\DashBoardDO.cs" />
     <Compile Include="Dashboard\DashBoardLE.cs" />
@@ -81,8 +107,10 @@
     <Compile Include="Dashboard\DashBoardUL.cs" />
     <Compile Include="Dashboard\DepartmentActivity.cs" />
     <Compile Include="Dashboard\EmployeeBirthday.cs" />
+    <Compile Include="Dashboard\EmploymentReview.cs" />
     <Compile Include="Dashboard\EmpRTW.cs" />
     <Compile Include="Dashboard\IDashBoardRepository.cs" />
+    <Compile Include="Dashboard\LeavingSoon.cs" />
     <Compile Include="Dashboard\LocalsRate.cs" />
     <Compile Include="Dashboard\ProbationEnd.cs" />
     <Compile Include="Dashboard\RetirementAge.cs" />
@@ -94,6 +122,7 @@
     <Compile Include="Employees\EmployeePenalty.cs" />
     <Compile Include="Employees\EmployeePenaltyApproval.cs" />
     <Compile Include="Employees\EmploymentStatusByReferance.cs" />
+    <Compile Include="Employees\ImportEmploymentStatus.cs" />
     <Compile Include="Employees\Profile\AssetAllowance.cs" />
     <Compile Include="Employees\Profile\AssetCategory.cs" />
     <Compile Include="Employees\Profile\BatchEM.cs" />
@@ -123,8 +152,26 @@
     <Compile Include="Employees\Profile\SalaryTree.cs" />
     <Compile Include="Employees\Profile\TeamMember.cs" />
     <Compile Include="Employees\Profile\TerminationReason.cs" />
+    <Compile Include="Employees\SyncFullName.cs" />
     <Compile Include="HelpFunction\BenefitAcquisitionAcquisitionRate.cs" />
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
+    <Compile Include="Reports\PT501.cs" />
+    <Compile Include="Reports\RT115.cs" />
+    <Compile Include="Reports\RT506.cs" />
+    <Compile Include="Reports\RT507.cs" />
+    <Compile Include="Reports\RT508.cs" />
+    <Compile Include="Reports\RT803.cs" />
+    <Compile Include="Reports\RT804.cs" />
+    <Compile Include="SelfService\AssetLoan.cs" />
+    <Compile Include="SelfService\EmployeePayrollSelfService.cs" />
+    <Compile Include="SelfService\FlatScheduleSelfService.cs" />
+    <Compile Include="SelfService\SelfServiceResetPassword.cs" />
+    <Compile Include="SelfService\TimeSelfService.cs" />
+    <Compile Include="SelfService\TimeVariationSelfService.cs" />
+    <Compile Include="SelfService\UserInfoSelfService.cs" />
+    <Compile Include="System\ResetPassword.cs" />
+    <Compile Include="System\XMLDictionary.cs" />
+    <Compile Include="TimeAttendance\MailFlatShedule.cs" />
     <Compile Include="HelpFunction\PayrollExport.cs" />
     <Compile Include="HelpFunction\SynchronizeAttendanceDay.cs" />
     <Compile Include="LeaveManagement\Approvals.cs" />
@@ -132,6 +179,7 @@
     <Compile Include="LeaveManagement\ImportLeaves.cs" />
     <Compile Include="LeaveManagement\LeaveDay.cs" />
     <Compile Include="LeaveManagement\LeaveRequest.cs" />
+    <Compile Include="LeaveManagement\LeaveSchedule.cs" />
     <Compile Include="LoadTracking\ILoanTrackingRepository.cs" />
     <Compile Include="LoadTracking\ImportLoans.cs" />
     <Compile Include="LoadTracking\Loan.cs" />
@@ -152,6 +200,7 @@
     <Compile Include="NationalQuota\LevelAcquisition.cs" />
     <Compile Include="NationalQuota\PointAcquisition.cs" />
     <Compile Include="Payroll\Bank.cs" />
+    <Compile Include="Payroll\DeletePayroll.cs" />
     <Compile Include="Payroll\EmployeePayroll.cs" />
     <Compile Include="Payroll\FinalEntitlementsDeductions.cs" />
     <Compile Include="Payroll\FinalSettlement.cs" />
@@ -162,6 +211,7 @@
     <Compile Include="Payroll\ImportPayCode.cs" />
     <Compile Include="Payroll\IPayrollRepository.cs" />
     <Compile Include="Payroll\LeavePayment.cs" />
+    <Compile Include="Payroll\MailEmployee.cs" />
     <Compile Include="Payroll\PayCode.cs" />
     <Compile Include="Payroll\PayrollEntitlementDeduction.cs" />
     <Compile Include="Payroll\PayrollIndemnity.cs" />
@@ -193,6 +243,8 @@
     <Compile Include="Reports\RT110.cs" />
     <Compile Include="Reports\RT111.cs" />
     <Compile Include="Reports\RT112.cs" />
+    <Compile Include="Reports\RT113.cs" />
+    <Compile Include="Reports\RT114.cs" />
     <Compile Include="Reports\RT200.cs" />
     <Compile Include="Reports\RT201.cs" />
     <Compile Include="Reports\RT202.cs" />
@@ -202,7 +254,9 @@
     <Compile Include="Reports\RT303.cs" />
     <Compile Include="Reports\RT303A.cs" />
     <Compile Include="Reports\RT304.cs" />
+    <Compile Include="Reports\RT305.cs" />
     <Compile Include="Reports\RT306.cs" />
+    <Compile Include="Reports\RT307.cs" />
     <Compile Include="Reports\RT401.cs" />
     <Compile Include="Reports\RT402.cs" />
     <Compile Include="Reports\RT501.cs" />
@@ -233,6 +287,7 @@
     <Compile Include="System\Dashboard.cs" />
     <Compile Include="System\EmployeeSelfService.cs" />
     <Compile Include="System\GovernmentOrganisation.cs" />
+    <Compile Include="System\KeyId.cs" />
     <Compile Include="System\Letter.cs" />
     <Compile Include="System\LetterTemplate.cs" />
     <Compile Include="System\OrgCharts.cs" />

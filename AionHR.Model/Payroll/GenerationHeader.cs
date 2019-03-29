@@ -8,36 +8,37 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Payroll
 {
-    [ClassIdentifier("51020", "51")]
+    [ClassIdentifier("51120", "51")]
     public class GenerationHeader:ModelBase
     {
-        [PropertyID("51020_01")]
+        [PropertyID("51120_01")]
         [ApplySecurity]
         public string payRef { get; set; }
-        [PropertyID("51020_02")]
+        [PropertyID("51120_02")]
         [ApplySecurity]
         public string fiscalYear { get; set; }
-        [PropertyID("51020_03")]
+        [PropertyID("51120_03")]
         [ApplySecurity]
         public string salaryType { get; set; }
-        [PropertyID("51020_04")]
+        [PropertyID("51120_04")]
         [ApplySecurity]
         public string periodId { get; set; }
-        [PropertyID("51020_05")]
+        [PropertyID("51120_05")]
         [ApplySecurity]
         public string payDate { get; set; }
-        [PropertyID("51020_06")]
+        [PropertyID("51120_06")]
         [ApplySecurity]
         public string status { get; set; }
-        [PropertyID("51020_07")]
+        [PropertyID("51120_07")]
         [ApplySecurity]
         public string notes { get; set; }
-        [PropertyID("51020_08")]
+        [PropertyID("51120_08")]
         [ApplySecurity]
         public DateTime startDate { get; set; }
-        [PropertyID("51020_09")]
+        [PropertyID("51120_09")]
         [ApplySecurity]
         public DateTime endDate { get; set; }
+        public string payRefWithDateRange { get; set;  }
        
     }
 }

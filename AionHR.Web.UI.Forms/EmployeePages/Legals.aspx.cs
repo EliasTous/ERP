@@ -25,6 +25,8 @@ using AionHR.Model.Employees.Profile;
 using System.Net;
 using AionHR.Services.Messaging.System;
 using AionHR.Infrastructure.Domain;
+using AionHR.Web.UI.Forms.ConstClasses;
+using System.Text.RegularExpressions;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -34,25 +36,48 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
 
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -193,7 +218,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                         Common.errorMessage(response);
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
@@ -532,10 +557,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             request.EmployeeId = CurrentEmployee.Text;
 
-            ListResponse<EmployeeRightToWork> currencies = _employeeService.ChildGetAll<EmployeeRightToWork>(request);
-            if (!currencies.Success)
-                X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
-            this.rightToWorkStore.DataSource = currencies.Items;
+            ListResponse<EmployeeRightToWork> resp = _employeeService.ChildGetAll<EmployeeRightToWork>(request);
+           if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            this.rightToWorkStore.DataSource = resp.Items;
 
 
             this.rightToWorkStore.DataBind();
@@ -555,10 +583,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             request.EmployeeId = CurrentEmployee.Text;
 
-            ListResponse<EmployeeBackgroundCheck> currencies = _employeeService.ChildGetAll<EmployeeBackgroundCheck>(request);
-            if (!currencies.Success)
-                X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
-            this.BCStore.DataSource = currencies.Items;
+            ListResponse<EmployeeBackgroundCheck> resp = _employeeService.ChildGetAll<EmployeeBackgroundCheck>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+            }
+            this.BCStore.DataSource = resp.Items;
 
 
             this.BCStore.DataBind();
@@ -588,6 +618,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             settings.NullValueHandling = NullValueHandling.Ignore;
 
             EmployeeRightToWork b = JsonConvert.DeserializeObject<EmployeeRightToWork>(obj, settings);
+            b.fileUrl = Regex.Replace(b.fileUrl, @"[^0-9a-zA-Z.]+", "");
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             bool hijriSupported = _systemService.SessionHelper.GetHijriSupport();
@@ -681,7 +712,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -689,15 +720,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         if (fileData != null)
                         {
                             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
-                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPRW, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = null };
-                            req.FileNames.Add(rwFile.PostedFile.FileName);
+                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPRW, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = 0 };
+                            req.FileNames.Add(Regex.Replace(rwFile.PostedFile.FileName, @"[^0-9a-zA-Z.]+", ""));
                             req.FilesData.Add(fileData);
                             PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
                             if (!resp.Success)//it maybe be another condition
                             {
                                 //Show an error saving...
                                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                                 Common.errorMessage(r);
                                 return;
                             }
                         }
@@ -763,7 +794,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -772,14 +803,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         {
                             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
                             req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPRW, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = 0 };
-                            req.FileNames.Add(rwFile.PostedFile.FileName);
+                            req.FileNames.Add(Regex.Replace(rwFile.PostedFile.FileName, @"[^0-9a-zA-Z.]+", ""));
                             req.FilesData.Add(fileData);
                             PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
                             if (!resp.Success)//it maybe be another condition
                             {
                                 //Show an error saving...
                                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                                 Common.errorMessage(r);
                                 return;
                             }
                         }
@@ -822,7 +853,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
+            string bcFileURl = e.ExtraParams["BcFile"];
             EmployeeBackgroundCheck b = JsonConvert.DeserializeObject<EmployeeBackgroundCheck>(obj);
+            b.fileUrl = bcFileURl; 
+            if (!string.IsNullOrEmpty(b.fileUrl))
+            b.fileUrl = Regex.Replace(b.fileUrl, @"[^0-9a-zA-Z.]+", "");
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             b.date = new DateTime(b.date.Year, b.date.Month, b.date.Day, 14, 0, 0);
@@ -864,7 +899,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -874,7 +909,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         if (fileData != null)
                         {
                             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
-                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPBC, recordId = Convert.ToInt32(b.recordId), fileName = bcFile.PostedFile.FileName, seqNo = null };
+                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPBC, recordId = Convert.ToInt32(b.recordId), fileName = bcFile.PostedFile.FileName, seqNo = 0 };
                             req.FileNames.Add(bcFile.PostedFile.FileName);
                             req.FilesData.Add(fileData);
                             PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
@@ -882,7 +917,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                             {
                                 //Show an error saving...
                                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                                 Common.errorMessage(r);
                                 return;
                             }
                         }
@@ -945,7 +980,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -954,14 +989,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         {
                             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
                             req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPBC, recordId = Convert.ToInt32(b.recordId), fileName = bcFile.PostedFile.FileName, seqNo = 0 };
-                            req.FileNames.Add(bcFile.PostedFile.FileName);
+                            req.FileNames.Add(Regex.Replace(bcFile.PostedFile.FileName, @"[^0-9a-zA-Z.]+", "") );
                             req.FilesData.Add(fileData);
                             PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
                             if (!resp.Success)//it maybe be another condition
                             {
                                 //Show an error saving...
                                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                                 Common.errorMessage(r);
                                 return;
                             }
                         }
@@ -1019,7 +1054,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest RWDocumentType = new ListRequest();
             ListResponse<DocumentType> resp = _employeeService.ChildGetAll<DocumentType>(RWDocumentType);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             RWDocumentTypeStore.DataSource = resp.Items;
             RWDocumentTypeStore.DataBind();
 
@@ -1030,7 +1065,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest BCCheckType = new ListRequest();
             ListResponse<CheckType> resp = _employeeService.ChildGetAll<CheckType>(BCCheckType);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             checkTypeStore.DataSource = resp.Items;
             checkTypeStore.DataBind();
 
@@ -1054,7 +1089,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1079,7 +1114,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1162,31 +1197,40 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
         public void DeleteFile(string url,int id)
         {
-            Attachement a = new Attachement();
-            a.recordId = id;
-
-            string[] line = url.Split('/');
-            a.classId = Convert.ToInt32(line[4]);
-            a.fileName = line[6];
-            string[] seq = line[6].Split('.');
-            string[] seq1=seq[0].Split('-');
-            a.seqNo = Convert.ToInt16(seq1[1]);
-
-
-            PostRequest<Attachement> request = new PostRequest<Attachement>();
-
-            request.entity = a;
-            PostResponse<Attachement> r = _systemService.ChildDelete<Attachement>(request);
-
-            if (!r.Success)//it maybe be another condition
+            try
             {
-                //Show an error saving...
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+GetGlobalResourceObject("Errors","ErrorLogId") + r.LogId : r.Summary).Show();
-                return;
-            }
+                Attachement a = new Attachement();
+                a.recordId = id;
 
-           
+                string[] line = url.Split('/');
+                if (line.Length >= 7)
+                {
+                    a.classId = ClassId.EPRW;
+                    a.fileName = line[6];
+                    string[] seq = line[6].Split('.');
+                    
+                    string[] seq1 = seq[0].Split('-');
+                    if(seq1.Length>=2)
+                    a.seqNo = Convert.ToInt16(seq1[1]);
+                }
+
+                PostRequest<Attachement> request = new PostRequest<Attachement>();
+
+                request.entity = a;
+                PostResponse<Attachement> r = _systemService.ChildDelete<Attachement>(request);
+
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(r);
+                    return;
+                }
+
+            }catch (Exception exp)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message);
+            }
 
 
         }

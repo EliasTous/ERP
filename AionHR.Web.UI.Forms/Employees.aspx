@@ -220,10 +220,12 @@
                                 <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
                                     <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="filterField" Editable="false" EmptyText="<%$ Resources: filterField %>">
                                     <Items>
+                                           <ext:ListItem Text="<%$ Resources: FieldAny %>" Value="0" />
                                         <ext:ListItem Text="<%$ Resources: FieldRef %>" Value="1" />
                                         <ext:ListItem Text="<%$ Resources: FieldIdRef %>" Value="2" />
                                          <ext:ListItem Text="<%$ Resources: FieldMobile %>" Value="3" />
                                          <ext:ListItem Text="<%$ Resources: FieldName %>" Value="4" />
+                                         <ext:ListItem Text="<%$ Resources: FieldTimeAttendance  %>" Value="5" />
                                     </Items>
                                  
                                 </ext:ComboBox>
@@ -248,7 +250,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false">
                         <Columns>
 
-                            <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
 
                             <ext:ComponentColumn runat="server" DataIndex="pictureUrl" Sortable="false">
                                 <Component>

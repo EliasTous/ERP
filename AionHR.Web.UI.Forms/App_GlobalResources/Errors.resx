@@ -120,6 +120,9 @@
   <data name="AssignToEmployee" xml:space="preserve">
     <value>user did not assign to employee</value>
   </data>
+  <data name="authenticationError" xml:space="preserve">
+    <value>Incorrect user name or password</value>
+  </data>
   <data name="EmptyBranch" xml:space="preserve">
     <value>Please adjust the  branch for employee   and retry generate again</value>
   </data>
@@ -151,49 +154,52 @@
     <value>AUTHENTICATION_COMPUTE_HASH_ERROR</value>
   </data>
   <data name="Error_10101" xml:space="preserve">
-    <value>INVALID USER ID</value>
+    <value>INVALID USER ID %d</value>
   </data>
   <data name="Error_10102" xml:space="preserve">
-    <value>INVALID EMPLOYEE ID</value>
+    <value>INVALID EMPLOYEE ID %d</value>
   </data>
   <data name="Error_10103" xml:space="preserve">
-    <value>INVALID LETTER TEMPLATE ID</value>
+    <value>INVALID LETTER TEMPLATE ID %d</value>
   </data>
   <data name="Error_10104" xml:space="preserve">
-    <value>INVALID INDEMNITY SCHEDULE ID</value>
+    <value>INVALID INDEMNITY SCHEDULE ID %d</value>
   </data>
   <data name="Error_10105" xml:space="preserve">
-    <value>INVALID BENEFIT SCHEDULE ID</value>
+    <value>INVALID BENEFIT SCHEDULE ID %d</value>
   </data>
   <data name="Error_10106" xml:space="preserve">
-    <value>INVALID VACATION SCHEDULE SEQNO</value>
+    <value>INVALID VACATION SCHEDULE SEQNO %d</value>
   </data>
   <data name="Error_10107" xml:space="preserve">
-    <value>INVALID_FISCAL_YEAR_PERIOD_SALARY_TYPE</value>
+    <value>INVALID FISCAL YEAR PERIOD SALARY TYPE %d</value>
   </data>
   <data name="Error_10108" xml:space="preserve">
-    <value>INVALID_EMPLOYEE_REFERENCE</value>
+    <value>INVALID EMPLOYEE REFERENCE %s</value>
   </data>
   <data name="Error_10109" xml:space="preserve">
-    <value>INVALID_BIOMETRIC_DEVICE_REFERENCE</value>
+    <value>INVALID BIOMETRIC DEVICE REFERENCE %s</value>
   </data>
   <data name="Error_10110" xml:space="preserve">
-    <value>INVALID_PAYROLL_ID</value>
+    <value>INVALID PAYROLL ID %d</value>
   </data>
   <data name="Error_10111" xml:space="preserve">
-    <value>EMPLOYEE_STATUS_NOT_TERMINATED</value>
+    <value>EMPLOYEE %s STATUS NOT TERMINATED</value>
   </data>
   <data name="Error_10112" xml:space="preserve">
-    <value>INACTIVE_ALERT_ID</value>
+    <value>INACTIVE ALERT ID %d</value>
   </data>
   <data name="Error_10113" xml:space="preserve">
-    <value>RENEWAL_DATE_ERROR</value>
+    <value>RENEWAL DATE ERROR</value>
   </data>
   <data name="Error_10114" xml:space="preserve">
-    <value>INVALID_TIME_VARIATION_RECORD</value>
+    <value>INVALID TIME VARIATION RECORD</value>
   </data>
   <data name="Error_10115" xml:space="preserve">
-    <value>INVALID_DAY_ID</value>
+    <value>INVALID DAY ID %s</value>
+  </data>
+  <data name="Error_10116" xml:space="preserve">
+    <value>invalid template body %d</value>
   </data>
   <data name="Error_102" xml:space="preserve">
     <value>Sql Expression Syntax error</value>
@@ -208,40 +214,31 @@
     <value>SQL OBJECT NOT SET</value>
   </data>
   <data name="Error_11003" xml:space="preserve">
-    <value>SQL OBJECT MISSING COLUMN</value>
+    <value>SQL OBJECT MISSING COLUMN %s</value>
   </data>
   <data name="Error_11004" xml:space="preserve">
     <value>UNHANDLED EXCEPTION</value>
   </data>
   <data name="Error_11005" xml:space="preserve">
-    <value>LOAD TEMPLATE ERROR</value>
+    <value>LOAD TEMPLATE ERROR %s</value>
   </data>
   <data name="Error_11006" xml:space="preserve">
-    <value>PUNCH_AUTHENTICATE MODE VALUE OUT OF RANGE ERROR</value>
+    <value>PUNCH AUTHENTICATE MODE %d VALUE OUT OF RANGE ERROR</value>
   </data>
   <data name="Error_11007" xml:space="preserve">
-    <value>SQL_ERROR_CANNOT_CLOSE_CONNECTION</value>
-  </data>
-  <data name="Error_11101" xml:space="preserve">
-    <value>CACHE_FILE_LOAD_ERROR</value>
-  </data>
-  <data name="Error_11102" xml:space="preserve">
-    <value>CACHE_FILE_FORMAT_ERROR</value>
-  </data>
-  <data name="Error_11103" xml:space="preserve">
-    <value>CACHE_FILE_UNKNOWN_ERROR_ID</value>
+    <value>Cannot Close Sql Connection</value>
   </data>
   <data name="Error_12101" xml:space="preserve">
-    <value>ERROR CONVERTING DAY ID TO INTEGER</value>
+    <value>ERROR CONVERTING DAY ID %s TO INTEGER</value>
   </data>
   <data name="Error_12102" xml:space="preserve">
-    <value>ERROR CONVERTING DAY ID TO DATE</value>
+    <value>ERROR CONVERTING DAY ID %s TO DATE</value>
   </data>
   <data name="Error_12103" xml:space="preserve">
-    <value>ERROR CONVERTING CHECKIN TO TIME</value>
+    <value>ERROR CONVERTING CHECKIN %s TO TIME</value>
   </data>
   <data name="Error_12104" xml:space="preserve">
-    <value>ERROR CONVERTING CHECKOUT TO TIME</value>
+    <value>ERROR CONVERTING CHECKOUT %s TO TIME</value>
   </data>
   <data name="Error_12105" xml:space="preserve">
     <value>ERROR CASTING IDNAME OBJECT</value>
@@ -285,6 +282,9 @@
   <data name="Error_12205" xml:space="preserve">
     <value>JSON READER EXCEPTION</value>
   </data>
+  <data name="Error_12400" xml:space="preserve">
+    <value>sql connection failed</value>
+  </data>
   <data name="Error_12401" xml:space="preserve">
     <value>INPUT FORM MISSING TAG</value>
   </data>
@@ -296,6 +296,18 @@
   </data>
   <data name="Error_12404" xml:space="preserve">
     <value>SQL ERROR READING SYSTEM DEFAULT</value>
+  </data>
+  <data name="Error_12405" xml:space="preserve">
+    <value>input form missing tag %s</value>
+  </data>
+  <data name="Error_12406" xml:space="preserve">
+    <value>input form empty mandatory tag %s</value>
+  </data>
+  <data name="Error_12407" xml:space="preserve">
+    <value>input form type mismatch tag %s</value>
+  </data>
+  <data name="Error_12408" xml:space="preserve">
+    <value>sql error reading system default %s</value>
   </data>
   <data name="Error_12501" xml:space="preserve">
     <value>File Creation Error</value>
@@ -313,10 +325,10 @@
     <value>SQL BATCH RUN ERROR</value>
   </data>
   <data name="Error_19001" xml:space="preserve">
-    <value>Maintainance Mode</value>
+    <value>Sytem is in Maintainance Mode</value>
   </data>
   <data name="Error_19002" xml:space="preserve">
-    <value>INVALID ADMIN EMAIL</value>
+    <value>INVALID ADMIN EMAIL %s</value>
   </data>
   <data name="Error_19003" xml:space="preserve">
     <value>AUTHENTICATION ERROR</value>
@@ -343,7 +355,7 @@
     <value>TIME_PENALTY_CANNOT_EXCEED_THE_CLOCK_DURATION</value>
   </data>
   <data name="Error_19011" xml:space="preserve">
-    <value>INVALID_DATE_RANGE</value>
+    <value>INVALID DATE RANGE %s</value>
   </data>
   <data name="Error_19012" xml:space="preserve">
     <value>MISSING_DATA_EMPLOYEE_HIRE_DATE</value>
@@ -378,6 +390,21 @@
   <data name="Error_19022" xml:space="preserve">
     <value>department %s has %d active children</value>
   </data>
+  <data name="Error_19023" xml:space="preserve">
+    <value>Employee reference is not set</value>
+  </data>
+  <data name="Error_19024" xml:space="preserve">
+    <value>pending employee %s time variations</value>
+  </data>
+  <data name="Error_19025" xml:space="preserve">
+    <value>invalid job information for employee %s0 on %s1</value>
+  </data>
+  <data name="Error_19026" xml:space="preserve">
+    <value>team leader %s cannot be deleted</value>
+  </data>
+  <data name="Error_19027" xml:space="preserve">
+    <value>time approver %s cannot be deleted</value>
+  </data>
   <data name="Error_19100" xml:space="preserve">
     <value>SECURITY_ERROR</value>
   </data>
@@ -395,6 +422,9 @@
   </data>
   <data name="Error_19201" xml:space="preserve">
     <value>SMTP SEND ERROR</value>
+  </data>
+  <data name="Error_2" xml:space="preserve">
+    <value>Unknown Error :</value>
   </data>
   <data name="Error_201" xml:space="preserve">
     <value>Procedure or function expects a parameter which was not supplied.</value>
@@ -507,7 +537,16 @@
   <data name="Error_Empty_IndemnityDetails_IndemnityResignation" xml:space="preserve">
     <value>you must enter at lest  one Indemnity Details role  and one Indemnity Resignation rule </value>
   </data>
+  <data name="FillFiscalYear" xml:space="preserve">
+    <value>Fill Fiscal Year</value>
+  </data>
   <data name="FinalSettlementForEmployeeHaveLoans" xml:space="preserve">
     <value>Employee has loans </value>
+  </data>
+  <data name="inactiveUser" xml:space="preserve">
+    <value>User is inactive</value>
+  </data>
+  <data name="emptyLdMethod" xml:space="preserve">
+    <value>Please contact with system administrator for set default loan coverage value</value>
   </data>
 </root>

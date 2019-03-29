@@ -23,6 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Benefits;
+using AionHR.Web.UI.Forms.ConstClasses;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -32,129 +33,160 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IBenefitsService _benefitsService = ServiceLocator.Current.GetInstance<IBenefitsService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
 
             if (!X.IsAjaxRequest && !IsPostBack)
             {
-              
-                SetExtLanguage();
-                HideShowButtons();
-             
-                if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
-                CurrentEmployee.Text = Request.QueryString["employeeId"];
-                FillNoticePeriod();
-                FillBranchField();
-                FillSponseCombo();
-                FillPrevRecordIdField();
-                FillBenefitSchedules();
-
-
-                HireInfoRecordRequest req = new HireInfoRecordRequest();
-                req.EmployeeId = Request.QueryString["employeeId"];
-                RecordResponse<HireInfo> resp = _employeeService.ChildGetRecord<HireInfo>(req);
-                if(!resp.Success)
-                {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-                    return;
-                }
-              
-                probationPeriod.SuspendEvent("Change");
-                if (resp.result != null)
-                {
-                    hireInfoForm.SetValues(resp.result);
-                    npId.Select(resp.result.npId.ToString());
-                    recBranchId.Select(resp.result.recBranchId.ToString());
-                    sponsorId.Select(resp.result.sponsorId.ToString());
-                    prevRecordId.Select(resp.result.prevRecordId.ToString());
-                  
-
-                    pyActiveDate.Value = resp.result.pyActiveDate;
-                    probationPeriod.Value = resp.result.probationPeriod;
-                    //if(resp.result.probationEndDate!=null)
-                    //    probationEndDateHidden.Value = resp.result.probationEndDate;
-                    //else
-                    //    probationEndDateHidden.Value = resp.result.hireDate;
-                    hireDate.Text = resp.result.hireDate.Value.ToShortDateString();
-                    probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
-                    bsId.Select(resp.result.bsId.ToString());
-               
-
-                }
-                else
-                {
-                    RecordRequest r = new RecordRequest();
-                    r.RecordID = Request.QueryString["employeeId"];
-                    RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
-
-                    probationEndDateHidden.Value = response.result.hireDate;
-                    hireDate.Text = response.result.hireDate.Value.ToShortDateString();
-                    probationEndDate.Value= response.result.hireDate;
-                    probationEndDate.MinDate = Convert.ToDateTime(response.result.hireDate);
-                    pyActiveDate.Value = response.result.hireDate;
-                }
-              
-                probationEndDate.Format = nextReviewDate.Format = termEndDate.Format = pyActiveDate.Format= _systemService.SessionHelper.GetDateformat();
-
-                EmployeeTerminated.Text = Request.QueryString["terminated"];
-
-                bool disabled = EmployeeTerminated.Text == "1";
-
-                saveButton.Disabled = disabled;
-                probationPeriod.Value = 0;
-
-                probationPeriod.ResumeEvent("Change");
-
-
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(HireInfo), left, null, null, saveButton);
-                    
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport11.Hidden = true;
-                    return;
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(HireInfo), rightPanel, null, null, saveButton);
 
+                    SetExtLanguage();
+                    HideShowButtons();
+
+                    if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
+                    CurrentEmployee.Text = Request.QueryString["employeeId"];
+                    FillNoticePeriod();
+                    FillBranchField();
+                    FillSponseCombo();
+                    FillPrevRecordIdField();
+                    FillBenefitSchedules();
+
+
+                    HireInfoRecordRequest req = new HireInfoRecordRequest();
+                    req.EmployeeId = Request.QueryString["employeeId"];
+                    RecordResponse<HireInfo> resp = _employeeService.ChildGetRecord<HireInfo>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        return;
+                    }
+
+                    probationPeriod.SuspendEvent("Change");
+                    if (resp.result != null)
+                    {
+                        hireInfoForm.SetValues(resp.result);
+                        npId.Select(resp.result.npId.ToString());
+                        recBranchId.Select(resp.result.recBranchId.ToString());
+                        sponsorId.Select(resp.result.sponsorId.ToString());
+                        prevRecordId.Select(resp.result.prevRecordId.ToString());
+
+
+                        pyActiveDate.Value = resp.result.pyActiveDate;
+                        probationPeriod.Value = resp.result.probationPeriod;
+                        //if(resp.result.probationEndDate!=null)
+                        //    probationEndDateHidden.Value = resp.result.probationEndDate;
+                        //else
+                        //    probationEndDateHidden.Value = resp.result.hireDate;
+                        hireDate.Text = resp.result.hireDate.Value.ToShortDateString();
+                        probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
+                        bsId.Select(resp.result.bsId.ToString());
+
+
+                    }
+                    else
+                    {
+                        RecordRequest r = new RecordRequest();
+                        r.RecordID = Request.QueryString["employeeId"];
+                        RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
+
+                        probationEndDateHidden.Value = response.result.hireDate;
+                        hireDate.Text = response.result.hireDate.Value.ToShortDateString();
+                        probationEndDate.Value = response.result.hireDate;
+                        probationEndDate.MinDate = Convert.ToDateTime(response.result.hireDate);
+                        pyActiveDate.Value = response.result.hireDate;
+                    }
+
+                    probationEndDate.Format = nextReviewDate.Format = termEndDate.Format = pyActiveDate.Format = _systemService.SessionHelper.GetDateformat();
+
+                    EmployeeTerminated.Text = Request.QueryString["terminated"];
+
+                    bool disabled = EmployeeTerminated.Text == "1";
+
+                    saveButton.Disabled = disabled;
+                    probationPeriod.Value = 0;
+
+                    probationPeriod.ResumeEvent("Change");
+
+
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(HireInfo), left, null, null, saveButton);
+
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport11.Hidden = true;
+                        return;
+                    }
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(HireInfo), rightPanel, null, null, saveButton);
+
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport11.Hidden = true;
+                        return;
+                    }
+                    if (recruitmentInfo.InputType == InputType.Password)
+                    {
+                        recruitmentInfo.Visible = false;
+                        infoField.Visible = true;
+                    }
                 }
-                catch (AccessDeniedException exp)
+                catch(Exception exp)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport11.Hidden = true;
-                    return;
-                }
-                if (recruitmentInfo.InputType == InputType.Password)
-                {
-                    recruitmentInfo.Visible = false;
-                    infoField.Visible = true;
+                    X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
                 }
                
             }
@@ -210,7 +242,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             PostResponse<HireInfo> resp = _employeeService.ChildAddOrUpdate<HireInfo>(req);
             if(!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return;
             }
 
@@ -245,7 +277,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest departmentsRequest = new ListRequest();
             ListResponse<NoticePeriod> resp = _employeeService.ChildGetAll<NoticePeriod>(departmentsRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
             npStore.DataSource = resp.Items;
             npStore.DataBind();
         }
@@ -266,7 +298,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -289,7 +321,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -301,7 +333,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListResponse<Sponsor> resp = _employeeService.ChildGetAll<Sponsor>(sponserRequest);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return;
             }
             sponsorStore.DataSource = resp.Items;
@@ -313,7 +345,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return;
             }
             branchStore.DataSource = resp.Items;
@@ -334,7 +366,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             req.IncludeIsInactive = 1;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = "";
 

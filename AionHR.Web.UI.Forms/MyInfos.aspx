@@ -71,8 +71,8 @@
 
                     <Items>
                         
-                                <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Name="recordId" />
-                                <ext:TextField ID="reference" MsgTarget="None"  runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" ReadOnly="true" >
+                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Name="recordId" />
+                                <ext:TextField ID="reference" MsgTarget="None"  runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" ReadOnly="true" LabelWidth="120" >
                                    <%-- <Listeners>
                                        <FocusLeave Handler="if(#{CurrentEmployee}.value!='') return; App.direct.employeeControl1.CheckReference(this.value,{
                                         success: function (result) {
@@ -82,11 +82,11 @@
                                   
                                    --%>
                                     </ext:TextField>
-                                <ext:TextField ID="firstName"  runat="server" FieldLabel="<%$ Resources:FieldFirstName%>" Name="firstName" AllowBlank="true" BlankText="<%$ Resources:Common, MandatoryField%>" ReadOnly="true">
+                                <ext:TextField ID="firstName"  runat="server" FieldLabel="<%$ Resources:FieldFirstName%>" Name="firstName" AllowBlank="true" BlankText="<%$ Resources:Common, MandatoryField%>" ReadOnly="true" LabelWidth="120">
                                 
                                 </ext:TextField>
                                 <ext:TextField ID="middleName" LabelWidth="120" runat="server" FieldLabel="<%$ Resources:FieldMiddleName%>" Name="middleName" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField ID="lastName"  AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldLastName%>" Name="lastName" BlankText="<%$ Resources:Common, MandatoryField%>" ReadOnly="true" />
+                                <ext:TextField ID="lastName"  AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldLastName%>" Name="lastName" BlankText="<%$ Resources:Common, MandatoryField%>" ReadOnly="true" LabelWidth="120" />
                                 <ext:TextField ID="familyName" LabelWidth="120" runat="server" FieldLabel="<%$ Resources:FieldFamilyName%>" Name="familyName" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="idRef" Hidden="true" runat="server" AllowBlank="true" FieldLabel="<%$ Resources:FieldIdRef%>" Name="idRef" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="homeEmail" LabelWidth="120" runat="server" FieldLabel="<%$ Resources:FieldHomeEmail%>" Name="homeMail" Vtype="email" BlankText="<%$ Resources:Common, MandatoryField%>" />
@@ -404,7 +404,7 @@
 
                 </ext:FormPanel>
                 <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: ContactsTab %>" ID="Panel6" DefaultAnchor="100%">
-                    <Loader runat="server" Url="EmployeePages/Contacts.aspx?terminated=0" Mode="Frame" ID="Loader6" TriggerEvent="show"
+                    <Loader runat="server" Url="EmployeePages/Contacts.aspx?terminated=0&fromSelfService=true" Mode="Frame" ID="Loader6" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true">
                       <Params>
@@ -415,7 +415,7 @@
 
                 </ext:Panel>
                 <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: Dependants %>" ID="Panel8" DefaultAnchor="100%">
-                    <Loader runat="server" Url="EmployeePages/Dependants.aspx?terminated=0" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                    <Loader runat="server" Url="EmployeePages/Dependants.aspx?terminated=0&fromSelfService=true" Mode="Frame" ID="Loader8" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true">
                         <Params>

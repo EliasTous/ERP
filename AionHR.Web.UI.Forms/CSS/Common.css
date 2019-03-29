@@ -116,3 +116,12 @@
 #tabPanel .x-tab-bar-default {
     padding-top: 3px;
 }
+#block_container
+{
+    text-align:center;
+}
+#bloc1, #bloc2
+{
+    float:right;
+    display:inline;
+}

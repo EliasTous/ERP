@@ -45,6 +45,7 @@
     <Compile Include="Repositories\AccessControlRepository.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\AdministrationRepository.cs" />
+    <Compile Include="Repositories\AssetManagementRepository.cs" />
     <Compile Include="Repositories\BenefitsRepository.cs" />
     <Compile Include="Repositories\CasesRepository.cs" />
     <Compile Include="Repositories\CompanyNewsRepository.cs" />

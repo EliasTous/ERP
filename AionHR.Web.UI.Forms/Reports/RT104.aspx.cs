@@ -34,25 +34,48 @@ namespace AionHR.Web.UI.Forms.Reports
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -164,17 +187,18 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             ReportCompositeRequest req = GetRequest();
             ListResponse<AionHR.Model.Reports.RT104> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT104>(req);
+            //if (resp == null || string.IsNullOrEmpty(resp.Error))
+            //{
+            //    throw new Exception(GetGlobalResourceObject("Errors", "Error_1").ToString());
+            //}
+            //if (!resp.Success)
+            //{
+            //    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
+
+            //}
+           
             if (!resp.Success)
-            {
-                if (throwException)
-                    throw new Exception(resp.Summary);
-                else
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-                    return;
-                }
-            }
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
             YearsInService y = new YearsInService();
             y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
@@ -215,7 +239,7 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             ReportCompositeRequest request = new ReportCompositeRequest();
             request.Size = "1000";
-            request.StartAt = "1";
+            request.StartAt = "0";
             request.SortBy = "yearsInService";
             request.Add(jobInfoFilter1.GetJobInfo());
             return request;
@@ -237,7 +261,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
-            //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport();
         }
     }

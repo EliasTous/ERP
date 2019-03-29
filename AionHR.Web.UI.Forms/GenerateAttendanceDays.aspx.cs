@@ -32,23 +32,47 @@ namespace AionHR.Web.UI.Forms
         SessionHelper h;
         
         TimeAttendanceService _time;
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -68,6 +92,18 @@ namespace AionHR.Web.UI.Forms
                 // endingDate.MinDate = startingDate.SelectedDate;
                 endingDate.Value = DateTime.Now;
 
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(FlatSchedule), null, null, null, null);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+
 
             }
            
@@ -77,7 +113,7 @@ namespace AionHR.Web.UI.Forms
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Branch> resp = _branchService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
             BranchStore.DataSource = resp.Items;
             BranchStore.DataBind();
         }
@@ -130,7 +166,10 @@ namespace AionHR.Web.UI.Forms
             GD.employeeId = Convert.ToInt32(employeeFilter.Value); 
             GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
             GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
-            GD.branchId= Convert.ToInt32(branchId.Value);
+            if (string.IsNullOrEmpty(branchId.Value.ToString()))
+                GD.branchId = 0;
+            else
+               GD.branchId =Convert.ToInt32(branchId.Value);
             request.entity = GD;
 
 
@@ -139,7 +178,7 @@ namespace AionHR.Web.UI.Forms
             { //Show an error saving...
 
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
 
             }
@@ -176,10 +215,10 @@ namespace AionHR.Web.UI.Forms
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
             req.BranchId = "0";
-            req.IncludeIsInactive = 2;
+            req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -242,17 +281,28 @@ namespace AionHR.Web.UI.Forms
                 GD.employeeId = Convert.ToInt32(employeeFilter.Value);
                 GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
                 GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
-                GD.branchId= Convert.ToInt32(branchId.Value);
+                if (string.IsNullOrEmpty(branchId.Value.ToString()))
+                    GD.branchId = 0;
+                else
+                    GD.branchId = Convert.ToInt32(branchId.Value);
+
                 request.entity = GD;
 
 
                 PostResponse<GenerateAttendanceDay> resp = _time.ChildAddOrUpdate<GenerateAttendanceDay>(request);
                 if (!resp.Success)
                 { //Show an error saving...
-
-                    HttpRuntime.Cache.Insert("ErrorMsgGenAD", resp.Message);
-                    HttpRuntime.Cache.Insert("ErrorLogIdGenAD", resp.LogId);
-                    HttpRuntime.Cache.Insert("ErrorErrorCodeGenAD", resp.ErrorCode);
+                    if (resp.ErrorCode == "Error_1")
+                    {
+                        HttpRuntime.Cache.Insert("ErrorMsgGenAD", Resources.Errors.Error_1);
+                        HttpRuntime.Cache.Insert("ErrorLogIdGenAD", " ");
+                    }
+                    else
+                    {
+                        HttpRuntime.Cache.Insert("ErrorMsgGenAD", resp.Error);
+                        HttpRuntime.Cache.Insert("ErrorLogIdGenAD", resp.LogId);
+                    }
+              //      HttpRuntime.Cache.Insert("ErrorErrorCodeGenAD", resp.ErrorCode);
 
                 }
                 else
@@ -299,14 +349,16 @@ namespace AionHR.Web.UI.Forms
 
 
                 double progress = 0;
-                if (
-                HttpRuntime.Cache.Get("ErrorMsgGenAD")!=null|| 
-                HttpRuntime.Cache.Get("ErrorLogIdGenAD" ) != null ||
-                HttpRuntime.Cache.Get("ErrorErrorCodeGenAD") != null )
+                if (HttpRuntime.Cache.Get("ErrorMsgGenAD")!=null||  HttpRuntime.Cache.Get("ErrorLogIdGenAD" ) != null)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "Error_" + HttpRuntime.Cache.Get("ErrorErrorCodeGenAD").ToString()) != null ? GetGlobalResourceObject("Errors", "Error_" + HttpRuntime.Cache.Get("ErrorErrorCodeGenAD").ToString()).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + HttpRuntime.Cache.Get("ErrorLogIdGenAD").ToString() : HttpRuntime.Cache.Get("ErrorErrorCodeGenAD")).Show();
-                    HttpRuntime.Cache.Remove("genFS_RecordId");
+                    X.Msg.Alert(Resources.Common.Error,HttpRuntime.Cache.Get("ErrorMsgGenAD").ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + HttpRuntime.Cache.Get("ErrorLogIdGenAD").ToString()).Show();
+                   
+
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                    HttpRuntime.Cache.Remove("genFS_RecordId");
+                    HttpRuntime.Cache.Remove("ErrorMsgGenAD");
+                    HttpRuntime.Cache.Remove("ErrorLogIdGenAD");
+
                 }
                 RecordRequest req = new RecordRequest();
                 if (HttpRuntime.Cache["genFS_RecordId"] != null)
@@ -316,9 +368,35 @@ namespace AionHR.Web.UI.Forms
                 RecordResponse<BackgroundJob> resp = _systemService.ChildGetRecord<BackgroundJob>(req);
                 if (resp.result == null || resp.result.errorId != null)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId) != null ? GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId).ToString().Replace("%s", resp.result.argStr).Replace("%d", resp.result.argInt).ToString() + " < br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                    HttpRuntime.Cache.Remove("genFS_RecordId");
+                    //string[] values;
+                    //var infolist = resp.result.infoList.Split(',');
+                    //string ErrorMessage;
+                    //if (GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId) != null)
+
+                    //    values = GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId).ToString().Split(new string[] { "%s" }, StringSplitOptions.None);
+                    //    for (int i = 0; i < infolist.Length; i++)
+                    //    {
+
+                    //        values[0] += infolist[i] + "  ";
+                    //    }
+                    //    if (values.Length == 2)
+                    //        ErrorMessage = values[0] + " " + values[1];
+                    //    else
+                    //        ErrorMessage = values[0];
+                    //}
+                    //else
+                    //    ErrorMessage = GetGlobalResourceObject("Errors", "Error_2").ToString() + resp.ErrorCode;
+
+
+                    //X.Msg.Alert(Resources.Common.Error, ErrorMessage).Show();
+                    Common.errorMessage(resp);
+                      
+
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                    HttpRuntime.Cache.Remove("genFS_RecordId");
+                    HttpRuntime.Cache.Remove("ErrorMsgGenAD");
+                    HttpRuntime.Cache.Remove("ErrorLogIdGenAD");
+
                 }
                 else
                 {

@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
     <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="../Scripts/Documents.js?id=23"></script>
+    <script type="text/javascript" src="../Scripts/Documents.js?id=27"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
@@ -28,6 +28,10 @@
 
     <script type="text/javascript" src="../Scripts/locales/ar.js?id=7"></script>
     <script type="text/javascript">
+        function openInNewTab() {
+            window.document.forms[0].target = '_blank';
+
+        }
         var types = [];
         var curIndex = 0;
         var passed = 'no';
@@ -128,7 +132,10 @@
 
             });
         }
-
+        function  closewindow()
+        {
+            App.Window1.hide();
+        }
 
     </script>
 </head>
@@ -279,7 +286,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?editRender()+'&nbsp;&nbsp;' +deleteRender():' '; return attachRender()+'&nbsp;&nbsp;' +d;" />
+                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?editRender()+'&nbsp;&nbsp;' +deleteRender():' '; return attachRender()+'&nbsp;&nbsp;'+previewRender()+'&nbsp;&nbsp;' +d;" />
 
                             </ext:Column>
 
@@ -402,7 +409,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditDocumentWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{seqNo}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="fileName" Value="#{fileName}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="fileName" Value="#{fileName}.getValue().replace(/[^0-9a-z%.]/gi, '')" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{EditDocumentForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
@@ -421,7 +428,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditDocumentWindowTitle %>"
             Width="600"
-            Height="350"
+            Height="550"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -447,6 +454,41 @@
             </Items>
         </ext:Window>
 
+        
+        <ext:Window ID="Window1"
+            runat="server"
+            Icon="PageEdit"
+         
+            Width="600"
+            Height="350"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Maximizable="true"
+            Resizable="true"
+            Draggable="true"
+            Layout="AutoLayout" Scrollable="Both" >
+            <Items>
+          <ext:FormPanel runat="server">
+              <Items>
+                  <ext:TextField runat="server" Hidden="true" ID="ImageUrl" Name="ImageUrl" />
+                    <ext:Image runat="server" ID="imgControl"   >
+                          
+
+                        </ext:Image>
+                  </Items>
+              </ext:FormPanel>
+
+            </Items>
+             <Buttons>
+              
+                <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
 
 
     </form>

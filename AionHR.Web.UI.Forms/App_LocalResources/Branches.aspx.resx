@@ -132,9 +132,6 @@
   <data name="FieldCCity" xml:space="preserve">
     <value>City</value>
   </data>
-  <data name="FieldCCountryId" xml:space="preserve">
-    <value>Country Id</value>
-  </data>
   <data name="FieldCCountryName" xml:space="preserve">
     <value>Country Name</value>
   </data>
@@ -147,14 +144,8 @@
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
-  </data>
-  <data name="FieldSegmentCode" xml:space="preserve">
-    <value>Segment</value>
   </data>
   <data name="FieldState" xml:space="preserve">
     <value>State</value>
@@ -194,5 +185,8 @@
   </data>
   <data name="manager" xml:space="preserve">
     <value>Manager</value>
+  </data>
+  <data name="expiryDate" xml:space="preserve">
+    <value>Expiry Date</value>
   </data>
 </root>

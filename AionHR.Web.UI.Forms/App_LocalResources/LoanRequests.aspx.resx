@@ -123,9 +123,6 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Loan Info</value>
   </data>
-  <data name="ButtonClear" xml:space="preserve">
-    <value>Clear</value>
-  </data>
   <data name="CaseCommentsTabTitle" xml:space="preserve">
     <value>Comments</value>
   </data>
@@ -144,12 +141,6 @@
   <data name="FieldBranch" xml:space="preserve">
     <value>Branch</value>
   </data>
-  <data name="FieldCurrencyId" xml:space="preserve">
-    <value>Currency ID</value>
-  </data>
-  <data name="FieldCurrencyRef" xml:space="preserve">
-    <value>Currency Ref</value>
-  </data>
   <data name="FieldDate" xml:space="preserve">
     <value>Date</value>
   </data>
@@ -164,9 +155,6 @@
   </data>
   <data name="FieldEffectiveDate" xml:space="preserve">
     <value>Effective Date</value>
-  </data>
-  <data name="FieldEmployeeId" xml:space="preserve">
-    <value>Employee ID</value>
   </data>
   <data name="FieldEmployeeName" xml:space="preserve">
     <value>Employee Name</value>
@@ -186,9 +174,6 @@
   <data name="FieldPurpose" xml:space="preserve">
     <value>Purpose</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Ref</value>
   </data>
@@ -200,15 +185,6 @@
   </data>
   <data name="FieldStatus" xml:space="preserve">
     <value>Status</value>
-  </data>
-  <data name="FilterBranch" xml:space="preserve">
-    <value>Select a Branch</value>
-  </data>
-  <data name="FilterDepartment" xml:space="preserve">
-    <value>Select a Department</value>
-  </data>
-  <data name="FilterDivision" xml:space="preserve">
-    <value>Select a Division</value>
   </data>
   <data name="FilterStatus" xml:space="preserve">
     <value>Select a Status</value>
@@ -236,9 +212,6 @@
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Loans</value>
-  </data>
-  <data name="DeductionTabEditWindowTitle" xml:space="preserve">
-    <value>Deduction Info</value>
   </data>
   <data name="deductionTab" xml:space="preserve">
     <value>Deduction</value>

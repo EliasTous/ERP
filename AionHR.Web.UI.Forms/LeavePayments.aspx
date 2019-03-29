@@ -30,6 +30,37 @@
 
     <script type="text/javascript" src="Scripts/locales/ar.js?id=7"></script>
     <script type="text/javascript">
+        String.prototype.replaceAll = function (search, replacement) {
+            var target = this;
+            return target.replace(new RegExp(search, 'g'), replacement);
+        };
+
+      
+        function thousandSeparator(num) {
+            
+           var nf = new Intl.NumberFormat();
+
+            if (num != null)
+                num = num.toString().replaceAll(",", "");
+            else
+                return num;
+          
+          
+          
+            return  nf.format(num);
+        } 
+       function removethousandSeparator() {
+         
+          //    App.ldValue.setValue(App.ldValue.getValue().replace(/\D/g, ''))
+           App.salary.setValue(App.salary.getValue().replace(/\D/g, ''))
+          // App.amount.setValue(App.amount.getValue().replaceAll("[^\\d.]", ""))
+          
+         
+          
+          
+          
+           
+        }
         function openInNewTab() {
             window.document.forms[0].target = '_blank';
 
@@ -222,8 +253,9 @@
                           
                             <ext:DateColumn ID="Column6" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
                               <ext:DateColumn ID="DateColumn1" DataIndex="effectiveDate" Text="<%$ Resources: FieldEffectiveDate%>" runat="server" Width="100" />
-                          <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSalary %>" DataIndex="salary" Hideable="false" Width="140"/>
-                          
+                          <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSalary %>" DataIndex="salary" Hideable="false" Width="140">
+                           <Renderer Handler="return record.data['salary'].toLocaleString() ; "></Renderer>
+                              </ext:Column>
 
 
                             <ext:Column ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEarnedLeaves %>" DataIndex="earnedLeaves" Hideable="false" Width="140"/>
@@ -454,10 +486,16 @@
                                    <ext:NumberField runat="server" ReadOnly="true" ID="usedLeaves" Name="usedLeaves" FieldLabel="<%$ Resources: FieldUsedLeaves %>" />
                                    <ext:NumberField runat="server" ReadOnly="true" ID="paidLeaves" Name="paidLeaves" FieldLabel="<%$ Resources: FieldPaidLeaves %>" />
                                    <ext:NumberField runat="server" ReadOnly="true" ID="leaveBalance" Name="leaveBalance" FieldLabel="<%$ Resources: FieldBalanceLeaves %>" />
-                                 <ext:NumberField runat="server" ReadOnly="true" ID="salary" Name="salary" FieldLabel="<%$ Resources: FieldSalary %>"  />
+                                 <ext:TextField runat="server" ReadOnly="true" ID="salary" Name="salary" FieldLabel="<%$ Resources: FieldSalary %>"  >
+                                        <Listeners> 
+                                         <Change Handler="if (this.value!=null) this.setRawValue(thousandSeparator(this.value));" />
+                                                                                 
+                                    </Listeners>
+
+                                     </ext:TextField>
                                   <ext:TextField runat="server" ID="days" Name="days" FieldLabel="<%$ Resources: FieldDays %>"  MsgTarget="None">
                                       <Listeners  >
-                                         <Change Handler=" this.next().setValue((this.prev().value/30)*this.value);"   ></Change>
+                                         <Change Handler=" this.next().setValue((this.prev().getValue().replace(/\D/g,'')/30)*this.value);"   ></Change>
                                       </Listeners>
                                        <Validator Handler=" if(!isNaN(this.value)&&this.value>0 && this.value<= #{leaveBalance}.getValue()) return true;">
                                            
@@ -465,9 +503,13 @@
                               
                                       </ext:TextField>
                                 
-                                 <ext:NumberField runat="server" ReadOnly="true" ID="amount" Name="amount" FieldLabel="<%$ Resources: FieldAmount %>" AllowDecimals="false" >
-                                   
-                                     </ext:NumberField>
+                                 <ext:TextField runat="server" ReadOnly="true" ID="amount" Name="amount" FieldLabel="<%$ Resources: FieldAmount %>"  AllowBlank="false" >
+                                     <%--<Listeners> 
+                                         <Change Handler="if (this.value!=null) this.setRawValue(thousandSeparator(this.value));" />
+                                                                                 
+                                    </Listeners>--%>
+                                     </ext:TextField>
+                                
                               
                               
 
@@ -538,7 +580,7 @@
                                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                                     <Listeners>
-                                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                                        <Click Handler="CheckSession(); removethousandSeparator(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">

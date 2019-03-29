@@ -26,6 +26,7 @@ using AionHR.Model.System;
 using AionHR.Services.Messaging.System;
 using AionHR.Infrastructure.Domain;
 using AionHR.Model.Access_Control;
+using AionHR.Infrastructure;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -35,25 +36,47 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -152,8 +175,9 @@ namespace AionHR.Web.UI.Forms
         }
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-
+            panelRecordDetails.ActiveIndex = 0;
             DeactivatePassword(true);
+            userGroups.Disabled = false;
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             CurrentUser.Text = id.ToString();
@@ -168,7 +192,7 @@ namespace AionHR.Web.UI.Forms
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                         Common.errorMessage(response);
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
@@ -298,7 +322,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                     Common.errorMessage(r);
                     return;
                 }
                 else
@@ -342,7 +366,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                     Common.errorMessage(r);
                     return;
                 }
                 else
@@ -380,7 +404,16 @@ namespace AionHR.Web.UI.Forms
 
 
             List<UserInfo> data;
-            ListRequest req = new ListRequest();
+            UsersListRequest req = new UsersListRequest();
+            req.Size = "1000";
+            req.StartAt = "0";
+            req.Filter = "";
+
+
+            req.DepartmentId = "0";
+            req.PositionId = "0";
+            req.BranchId = "0";
+            req.SortBy = "fullName";
 
             ListResponse<UserInfo> response = _systemService.ChildGetAll<UserInfo>(req);
             data = response.Items;
@@ -435,10 +468,10 @@ namespace AionHR.Web.UI.Forms
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
             req.BranchId = "0";
-            req.IncludeIsInactive = 2;
+            req.IncludeIsInactive = 0;
             req.SortBy = "firstName";
 
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Size = "20";
             req.Filter = query;
 
@@ -446,7 +479,7 @@ namespace AionHR.Web.UI.Forms
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
             return response.Items;
         }
 
@@ -527,7 +560,8 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-
+            CurrentUser.Text = "";
+            panelRecordDetails.ActiveIndex = 0;
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             fullName.Disabled = false;
@@ -535,9 +569,26 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             DeactivatePassword(false);
             this.EditRecordWindow.Show();
+            userGroups.Disabled = true;
             pro.Hidden = false;
         }
+        
+              protected void userTypeStore_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
 
+            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+
+            request.database = "7";
+            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            userTypeStore.DataSource = resp.Items;
+            userTypeStore.DataBind();
+        
+        }
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
@@ -552,37 +603,30 @@ namespace AionHR.Web.UI.Forms
             //in this test will take a list of News
             ListRequest request = new ListRequest();
             request.Filter = "";
+            request.StartAt = e.Start.ToString();
+            request.Size = "30";
             var s = jobInfo1.GetJobInfo();
             UsersListRequest req = new UsersListRequest();
             req.Filter = searchTrigger.Text;
+            req.StartAt = e.Start.ToString();
+            req.Size = "30";
             req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.Value.ToString() : "0";
             req.PositionId = s.PositionId.HasValue ? s.PositionId.Value.ToString() : "0";
+            req.BranchId = s.BranchId.HasValue ? s.BranchId.Value.ToString() : "0";
+
+            req.SortBy = "employeeId";
             ListResponse<UserInfo> branches = _systemService.ChildGetAll<UserInfo>(req);
             if (!branches.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +branches.LogId: branches.Summary).Show();
                 return;
             }
-            branches.Items.ForEach(x =>
-            {
-                switch (x.userType)
-                {
-                    case 1:x.userTypeString = GetLocalResourceObject("FieldSuperUser").ToString();
-                        break;
-                    case 2:x.userTypeString = GetLocalResourceObject("FieldAdministrator").ToString();
-                        break;
-                    case 3:x.userTypeString = GetLocalResourceObject("FieldOperator").ToString();
-                        break;
-                    case 4:x.userTypeString = GetLocalResourceObject("FieldSelfService").ToString();
-                        break;
-                    default:
-                        break;
+            //branches.Items.ForEach(x =>
+            //{
+            //    x.userTypeString = userTypeStore.GetById(x.userType).ToString();
+            //}
 
-
-                }
-            }
-
-            );
+            
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 
@@ -609,8 +653,8 @@ namespace AionHR.Web.UI.Forms
                 b.employeeId = employeeId.SelectedItem.Value;
                 b.fullName = employeeId.SelectedItem.Text;
             }
-
-            if (string.IsNullOrEmpty(id))
+           
+            if (string.IsNullOrEmpty(CurrentUser.Text))
             {
 
                 try
@@ -618,7 +662,7 @@ namespace AionHR.Web.UI.Forms
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
                     PostRequest<UserInfo> request = new PostRequest<UserInfo>();
-
+                    b.password = EncryptionHelper.encrypt(b.password);
                     request.entity = b;
                     PostResponse<UserInfo> r = _systemService.ChildAddOrUpdate<UserInfo>(request);
                    
@@ -627,27 +671,29 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     b.recordId = r.recordId;
+                    //elias
                     AccountRecoveryRequest req = new AccountRecoveryRequest();
                     req.Email = b.email;
-                    PasswordRecoveryResponse response = _systemService.RequestPasswordRecovery(req);
-                    if (!response.Success)
-                    //check if the insert failed
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
-                        return;
-                    }
-                    else
-                    {
+                    //PasswordRecoveryResponse response = _systemService.RequestPasswordRecovery(req);
+                    //if (!response.Success)
+                  
+                    //{
+                    //    //Show an error saving...
+                    //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    //     Common.errorMessage(response);
+                    //    return;
+                    //}
+                    //else
+                    //{
 
                         //Add this record to the store 
                         Store1.Reload();
-
+                        CurrentUser.Text = r.recordId;
+                        userGroups.Disabled = false;
                         //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
@@ -656,14 +702,14 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditRecordWindow.Close();
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
+                        //this.EditRecordWindow.Close();
+                        //RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                        //sm.DeselectAll();
+                        //sm.Select(b.recordId.ToString());
 
 
 
-                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -694,7 +740,7 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>"+ GetGlobalResourceObject("Errors", "ErrorLogId")+r.LogId : r.Summary).Show();
+                         Common.errorMessage(r);
                         return;
                     }
                     else
@@ -748,7 +794,7 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest groupsReq = new ListRequest();
             groupsReq.Size = "100";
-            groupsReq.StartAt = "1";
+            groupsReq.StartAt = "0";
             groupsReq.Filter = "";
 
             //Fetching the corresponding list
@@ -797,7 +843,7 @@ namespace AionHR.Web.UI.Forms
             PostResponse<SecurityGroupUser> resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(user);
             if(!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
 
@@ -817,7 +863,7 @@ namespace AionHR.Web.UI.Forms
 
             GroupUsersListRequest req = new GroupUsersListRequest();
             req.Size = "100";
-            req.StartAt = "1";
+            req.StartAt = "0";
             req.Filter = "";
             req.UserId = CurrentUser.Text;
 
@@ -843,47 +889,71 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveGroupUsers(object sender, DirectEventArgs e)
         {
-
-
-            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string id = e.ExtraParams["id"];
-
-            List<SecurityGroupUser> selectedUsers = new List<SecurityGroupUser>();
-            foreach (var item in  userSelector.SelectedItems)
+            try
             {
-                selectedUsers.Add(new SecurityGroupUser() { userId = CurrentUser.Text, sgName = item.Text, sgId = item.Value });
-            }
 
-            PostRequest<SecurityGroupUser> req = new PostRequest<SecurityGroupUser>();
-            PostResponse<SecurityGroupUser> resp = new PostResponse<SecurityGroupUser>();
-            req.entity = new SecurityGroupUser() { sgId = "0", userId = CurrentUser.Text };
-            resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
-            if (!resp.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                return;
-            }
-            foreach (var item in selectedUsers)
-            {
-                req.entity = item;
-                req.entity.userId = CurrentUser.Text;
-                resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(req);
-                if (!resp.Success)
+                //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+                string id = e.ExtraParams["id"];
+                string selected = e.ExtraParams["selectedGroups"];
+                List<SecurityGroupUser> selectedUsers = JsonConvert.DeserializeObject<List<SecurityGroupUser>>(selected);
+
+                selectedUsers.ForEach(x => x.userId = CurrentUser.Text);
+
+
+
+                GroupUsersListRequest request = new GroupUsersListRequest();
+                request.UserId = CurrentUser.Text;
+                ListResponse<SecurityGroupUser> userGroups = _accessControlService.ChildGetAll<SecurityGroupUser>(request);
+                if (!userGroups.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(userGroups);
                     return;
                 }
 
-            }
-            Notification.Show(new NotificationConfig
-            {
-                Title = Resources.Common.Notification,
-                Icon = Icon.Information,
-                Html = Resources.Common.RecordSavingSucc
-            });
-            groupUsersWindow.Close();
-            UserGroupsStore.Reload();
+                PostRequest<SecurityGroupUser> req = new PostRequest<SecurityGroupUser>();
+                PostResponse<SecurityGroupUser> resp = new PostResponse<SecurityGroupUser>();
+                userGroups.Items.ForEach(x =>
+                {
+                    req.entity = x;
+                    resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        throw new Exception();
+                    }
 
+                });
+
+
+                //req.entity = new SecurityGroupUser() { sgId = "0", userId = CurrentUser.Text };
+                //resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
+              
+              
+                foreach (var item in selectedUsers)
+                {
+                    req.entity = item;
+                    req.entity.userId = CurrentUser.Text;
+                    resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        throw new Exception();
+                    }
+
+                }
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
+                groupUsersWindow.Close();
+                UserGroupsStore.Reload();
+            }
+            catch(Exception exp)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message);
+            }
 
         }
 
@@ -898,12 +968,33 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", userGroups.ErrorCode) != null ? GetGlobalResourceObject("Errors", userGroups.ErrorCode).ToString()+ "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +userGroups.LogId : userGroups.Summary).Show();
                 return;
             }
+
             List<SecurityGroupUser> list = new List<SecurityGroupUser>();
             userGroups.Items.ForEach(x => { list.Add(new SecurityGroupUser() { sgName = x.name, sgId = x.recordId, userId = CurrentUser.Text }); });
             groupSelectorGroup.DataSource = list;
             groupSelectorGroup.DataBind();
+            GroupUsersListRequest req = new GroupUsersListRequest();
+            req.Size = "100";
+            req.StartAt = "0";
+            req.Filter = "";
+            req.UserId = CurrentUser.Text;
+
+            ListResponse<SecurityGroupUser> groups = _accessControlService.ChildGetAll<SecurityGroupUser>(req);
+            if (!groups.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
+                return;
+            }
+            this.userSelector.SelectedItems.Clear();
+            groups.Items.ForEach(x =>
+            {
+                this.userSelector.SelectedItems.Add(new Ext.Net.ListItem() { Value = x.userId });
+            });
+
+
+            this.userSelector.UpdateSelectedItems();
             this.groupUsersWindow.Show();
-            X.Call("show");
+           
         }
     }
 }

@@ -27,6 +27,9 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
 using AionHR.Model.NationalQuota;
 using AionHR.Model.Benefits;
+using AionHR.Services.Messaging.System;
+using AionHR.Infrastructure.Domain;
+using AionHR.Model.Employees;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -42,101 +45,128 @@ namespace AionHR.Web.UI.Forms
         IBenefitsService _benefitsService = ServiceLocator.Current.GetInstance<IBenefitsService>();
 
 
-        
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-            if (!X.IsAjaxRequest && !IsPostBack)
+            try
             {
 
-                SetExtLanguage();
-                HideShowButtons();
-                HideShowColumns();
-                try
+                if (!X.IsAjaxRequest && !IsPostBack)
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), EmployeeSettings, null, null, SaveButton);
+
+                    SetExtLanguage();
+                    HideShowButtons();
+                    HideShowColumns();
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), EmployeeSettings, null, null, SaveButton);
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport1.Hidden = true;
+                        return;
+                    }
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), GeneralSettings, null, null, SaveButton);
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport1.Hidden = true;
+                        return;
+                    }
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), PayrollSettings, null, null, SaveButton);
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport1.Hidden = true;
+                        return;
+                    }
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), AttendanceSettings, null, null, SaveButton);
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport1.Hidden = true;
+                        return;
+                    }
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), SecuritySettings, null, null, SaveButton);
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport1.Hidden = true;
+                        return;
+                    }
+                    ListRequest req = new ListRequest();
+                    ListResponse<KeyValuePair<string, string>> resp = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        return;
+                    }
+                    FillCombos();
+                    FillDefaults(resp.Items);
                 }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), GeneralSettings, null, null, SaveButton);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), PayrollSettings, null, null, SaveButton);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), AttendanceSettings, null, null, SaveButton);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), SecuritySettings, null, null, SaveButton);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                ListRequest req = new ListRequest();
-                ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
-                if (!defaults.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
-                    return;
-                }
-                FillCombos();
-                FillDefaults(defaults.Items);
+            }catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
 
         }
@@ -150,7 +180,7 @@ namespace AionHR.Web.UI.Forms
             FillIDs();
             FillPassports();
             FillSchedules();
-            FillTsId();
+            //FillTsId();
             FillSsid();
             FillIndustry();
             FillBsid();
@@ -191,27 +221,85 @@ namespace AionHR.Web.UI.Forms
             //exemptDeliveryTR_Store.DataBind();
 
         }
-
-        private void FillTsId()
+        protected void NameFormatChanged(object sender, DirectEventArgs e)
         {
-            ListRequest vsRequest = new ListRequest();
-            ListResponse<TimeSchedule> resp = _payrollService.ChildGetAll<TimeSchedule>(vsRequest);
-            if (!resp.Success)
+            string nameFormat = e.ExtraParams["nameFormat"];
+
+            X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.SaveRecord, new MessageBoxButtonsConfig
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")+ resp.LogId : resp.Summary).Show();
-                return;
-            }
-            tsStore.DataSource = resp.Items;
-            tsStore.DataBind();
+                Yes = new MessageBoxButtonConfig
+                {
+                    //We are call a direct request metho for deleting a record
+                    Handler = String.Format("App.direct.saveNameFormat({0})", nameFormat),
+                    Text = Resources.Common.Yes
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Text = Resources.Common.No
+                }
+
+            }).Show();
+            
+         
+
         }
-   
+        [DirectMethod]
+        public void saveNameFormat(string nameFormat)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                PostRequest<KeyValuePair<string, string>> req = new PostRequest<KeyValuePair<string, string>>();
+                req.entity = new KeyValuePair<string, string>("nameFormat", nameFormat);
+                PostResponse<KeyValuePair<string, string>> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>>(req);
+                if (resp.Success)
+                {
+
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordUpdatedSucc
+                    });
+                    PostRequest<SyncFullName> request = new PostRequest<SyncFullName>();
+                    request.entity = new SyncFullName();
+                    request.entity.recordId = "1";
+                    PostResponse<SyncFullName> response = _employeeService.ChildAddOrUpdate<SyncFullName>(request);
+                    if (!response.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        Common.errorMessage(response);
+                        return;
+                    }
+                }
+                else
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(resp);
+                    return;
+                }
+              
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+
+
+
         private void FillSchedules()
         {
             ListRequest vsRequest = new ListRequest();
             ListResponse<AttendanceSchedule> resp = _timeAttendanceService.ChildGetAll<AttendanceSchedule>(vsRequest);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             scheduleStore.DataSource = resp.Items;
@@ -240,7 +328,47 @@ namespace AionHR.Web.UI.Forms
             passportStore.DataSource = GetRTW();
             passportStore.DataBind();
         }
+        [DirectMethod]
+        public void FillCompanyLogo()
+        {
+            try
+            {
+                AttachementRecordRequest req = new AttachementRecordRequest();
+                req.RecordID = "1";
+                req.seqNo = "0";
+                req.classId = ClassId.SYDE.ToString();
 
+                RecordResponse<Attachement> resp = _systemService.ChildGetRecord<Attachement>(req);
+
+                if (!resp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(resp);
+                    imgControl.ImageUrl = "Images/empPhoto.jpg";
+                    CurrentEmployeePhotoName.Text = "Images/empPhoto.jpg";
+                    return;
+                }
+                if (resp.result != null)
+                {
+                    imgControl.ImageUrl = resp.result.url;
+                    CurrentEmployeePhotoName.Text = resp.result.url;
+                }
+              if (string.IsNullOrEmpty(imgControl.ImageUrl))
+                {
+                    imgControl.ImageUrl = "Images/empPhoto.jpg";
+                    CurrentEmployeePhotoName.Text = "Images/empPhoto.jpg";
+                  
+                }
+            }
+
+            catch (Exception exp )
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                
+            }
+
+        }
         private void FillDefaults(List<KeyValuePair<string, string>> items)
         {
             try
@@ -345,9 +473,9 @@ namespace AionHR.Web.UI.Forms
             try { vsId.Select(items.Where(s => s.Key == "vsId").First().Value); }
 
             catch { }
-            try { tsId.Select(items.Where(s => s.Key == "tsId").First().Value); }
+            //try { tsId.Select(items.Where(s => s.Key == "tsId").First().Value); }
 
-            catch { }
+            //catch { }
             try
 
             {
@@ -384,6 +512,7 @@ namespace AionHR.Web.UI.Forms
                 localServerIP.Text = items.Where(s => s.Key == "localServerIP").First().Value.Split('/')[0];
             }
             catch { }
+
             //try
 
             //{
@@ -456,7 +585,10 @@ namespace AionHR.Web.UI.Forms
 
             catch { }
             try
-            {
+            { 
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "minPunchInterval").First().Value.ToString()))
+                minPunchInterval.Text = "60";
+                else
                 minPunchInterval.Text = (items.Where(s => s.Key == "minPunchInterval").First().Value);
               
             }
@@ -500,6 +632,8 @@ namespace AionHR.Web.UI.Forms
 
             try
             {
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "MaxLoanDeduction").First().Value.ToString()))
+                    MaxLoanDeduction.Text = "30";
                 MaxLoanDeduction.Text = (items.Where(s => s.Key == "MaxLoanDeduction").First().Value);
 
             }
@@ -530,7 +664,92 @@ namespace AionHR.Web.UI.Forms
             try { dailySchedule.Select(items.Where(s => s.Key == "dailySchedule").First().Value); }
 
             catch { }
+            try
+            {
+                punchSource.Select(items.Where(s => s.Key == "punchSource").First().Value);
+            }
+            catch { }
+            try
 
+            {
+                backofficeEmail.Text = items.Where(s => s.Key == "backofficeEmail").First().Value;
+            }
+            catch { }
+
+
+
+            try { pp_storeType.Select(items.Where(s => s.Key == "pp_storeType").First().Value); }
+
+            catch { }
+            try
+
+            {
+                pp_storeConnection.Text = items.Where(s => s.Key == "pp_storeConnection").First().Value;
+            }
+            catch { }
+            try
+
+            {
+                pp_pull.Checked = items.Where(s => s.Key == "pp_pull").First().Value == "true";
+            }
+            catch { }
+            try
+
+            {
+                pp_push.Checked = items.Where(s => s.Key == "pp_push").First().Value == "true";
+            }
+            catch { }
+            try
+
+            {
+                pp_clearOnSuccess.Checked = items.Where(s => s.Key == "pp_clearOnSuccess").First().Value == "true";
+            }
+            catch { }
+
+            try
+
+            {
+                pp_sleepTime.Text = items.Where(s => s.Key == "pp_sleepTime").First().Value;
+            }
+            catch { }
+            try
+
+            {
+                pp_serialNo.Text = items.Where(s => s.Key == "pp_serialNo").First().Value;
+            }
+            catch {
+               
+
+
+            }
+            try
+
+            {
+                pp_debugMode.Checked = items.Where(s => s.Key == "pp_debugMode").First().Value == "true";
+            }
+            catch { }
+            try
+
+            {
+                pp_shiftData.Checked = items.Where(s => s.Key == "pp_shiftData").First().Value == "true";
+            }
+            catch { }
+            try
+
+            {
+                pp_pendingDataFolder.Text = items.Where(s => s.Key == "pp_pendingDataFolder").First().Value;
+            }
+            catch { }
+            try
+
+            {
+                pp_punchInterface.Text = items.Where(s => s.Key == "pp_punchInterface").First().Value;
+            }
+            catch { }
+            
+
+
+            FillCompanyLogo(); 
 
 
         }
@@ -618,7 +837,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             else
@@ -664,12 +883,15 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("NQINid", values.NQINid.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("NQINid",""));
-
+            if (!string.IsNullOrEmpty(values.backofficeEmail.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("backofficeEmail", values.backofficeEmail.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("backofficeEmail", ""));
 
             submittedValues.Add(new KeyValuePair<string, string>("enableHijri", values.enableHijri == null ? "false" : "true"));
             return submittedValues;
         }
-        private void SaveGeneralSettings(dynamic values)
+        private void SaveGeneralSettings(dynamic values )
         {
             List<KeyValuePair<string, string>> submittedValues = GetGeneralSettings(values);
             KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
@@ -679,7 +901,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             else
@@ -736,7 +958,7 @@ namespace AionHR.Web.UI.Forms
             if (!string.IsNullOrEmpty(values.minPunchInterval.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("minPunchInterval", values.minPunchInterval.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("minPunchInterval", ""));
+                submittedValues.Add(new KeyValuePair<string, string>("minPunchInterval", "60"));
 
             if (!string.IsNullOrEmpty(values.dailySchedule.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("dailySchedule", values.dailySchedule.ToString()));
@@ -744,6 +966,11 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("dailySchedule", GetGlobalResourceObject("ComboBoxValues", "dailySchedule_15").ToString()));
 
             submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
+
+            if (!string.IsNullOrEmpty(values.punchSource.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("punchSource", values.punchSource.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("punchSource", values.punchSource.ToString()));
 
             return submittedValues;
         }
@@ -758,7 +985,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             else
@@ -861,10 +1088,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("yearDays", values.yearDays.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("yearDays", "365"));
-            if (!string.IsNullOrEmpty(values.tsId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("tsId", values.tsId.ToString()));
-            else
-                submittedValues.Add(new KeyValuePair<string, string>("tsId", ""));
+            //if (!string.IsNullOrEmpty(values.tsId.ToString()))
+            //    submittedValues.Add(new KeyValuePair<string, string>("tsId", values.tsId.ToString()));
+            //else
+            //    submittedValues.Add(new KeyValuePair<string, string>("tsId", ""));
             if (!string.IsNullOrEmpty(values.bsId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("bsId", values.bsId.ToString()));
             else
@@ -881,7 +1108,7 @@ namespace AionHR.Web.UI.Forms
             if (!string.IsNullOrEmpty(values.MaxLoanDeduction.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", values.MaxLoanDeduction.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", string.Empty));
+                submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", "30"));
 
 
 
@@ -911,7 +1138,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             else
@@ -964,6 +1191,74 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        private List<KeyValuePair<string, string>> GetBiometricSettings(dynamic values)
+        {
+            List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
+            if (!string.IsNullOrEmpty(values.pp_storeType.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pp_storeType", values.pp_storeType.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("pp_storeType", ""));
+
+            if (!string.IsNullOrEmpty(values.pp_storeConnection.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pp_storeConnection", values.pp_storeConnection.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("pp_storeConnection", ""));
+
+            submittedValues.Add(new KeyValuePair<string, string>("pp_pull", values.pp_pull == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("pp_push", values.pp_push == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("pp_clearOnSuccess", values.pp_clearOnSuccess == null ? "false" : "true"));
+
+            submittedValues.Add(new KeyValuePair<string, string>("pp_debugMode", values.pp_debugMode == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("pp_shiftData", values.pp_shiftData == null ? "false" : "true"));
+
+            if (!string.IsNullOrEmpty(values.pp_sleepTime.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pp_sleepTime", values.pp_sleepTime.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("pp_sleepTime", "0"));
+            if (!string.IsNullOrEmpty(values.pp_serialNo.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pp_serialNo", values.pp_serialNo.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("pp_serialNo", ""));
+            if (!string.IsNullOrEmpty(values.pp_pendingDataFolder.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pp_pendingDataFolder", values.pp_pendingDataFolder.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("pp_pendingDataFolder", ""));
+            if (!string.IsNullOrEmpty(values.pp_punchInterface.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pp_punchInterface", values.pp_punchInterface.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("pp_punchInterface", ""));
+
+            return submittedValues;
+        }
+        private void SaveBiometricSettings(dynamic values)
+        {
+            List<KeyValuePair<string, string>> submittedValues = GetBiometricSettings(values);
+            KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
+            PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
+            req.entity = valArr;
+            PostResponse<KeyValuePair<string, string>[]> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>[]>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                return;
+            }
+            else
+            {
+                FillDefaults(submittedValues);
+
+
+
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+            }
+        }
+
+
         protected void SaveEmployeeSettings(object sender, DirectEventArgs e)
         {
             List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
@@ -975,6 +1270,7 @@ namespace AionHR.Web.UI.Forms
         {
             
             dynamic values = JsonConvert.DeserializeObject(e.ExtraParams["values"]);
+            string backofficeEmail = e.ExtraParams["backofficeEmail"];
             SaveGeneralSettings(values);
           
         }
@@ -1003,54 +1299,71 @@ namespace AionHR.Web.UI.Forms
             SaveSecuritySettings(values);
             
         }
+        protected void SaveBiometricSettings(object sender, DirectEventArgs e)
+        {
+
+            dynamic values = JsonConvert.DeserializeObject(e.ExtraParams["values"]);
+            SaveBiometricSettings(values);
+
+        }
 
         protected void SaveAll(object sender, DirectEventArgs e)
         {
-            List<KeyValuePair<string, string>> allValues = new List<KeyValuePair<string, string>>();
-            dynamic empValues = JsonConvert.DeserializeObject(e.ExtraParams["emp"]);
-            allValues.AddRange(GetEmployeeSettings(empValues));
+            try {
 
-            dynamic taValues = JsonConvert.DeserializeObject(e.ExtraParams["ta"]);
-            allValues.AddRange(GetAttendanceSettings(taValues));
-            dynamic pyValues = JsonConvert.DeserializeObject(e.ExtraParams["py"]);
-            allValues.AddRange(GetPayrollSettings(pyValues));
-            dynamic genValues = JsonConvert.DeserializeObject(e.ExtraParams["gen"]);
-            allValues.AddRange(GetGeneralSettings(genValues));
-            dynamic secValues = JsonConvert.DeserializeObject(e.ExtraParams["sec"]);
+                List<KeyValuePair<string, string>> allValues = new List<KeyValuePair<string, string>>();
 
-            allValues.AddRange(GetSecuritySettings(secValues));
-            
-            KeyValuePair<string, string>[] valArr = allValues.ToArray();
-            PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
-            req.entity = valArr;
-            PostResponse<KeyValuePair<string, string>[]> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>[]>(req);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
-                return;
-            }
-            else
-            {
-                FillDefaults(allValues);
-                if (!string.IsNullOrEmpty(genValues.dateFormat.ToString()))
-                    _systemService.SessionHelper.SetDateformat(genValues.dateFormat.ToString());
 
-                if (!string.IsNullOrEmpty(genValues.countryId.ToString()))
-                    _systemService.SessionHelper.SetDefaultCountry(genValues.countryId.ToString());
-                if (!string.IsNullOrEmpty(genValues.timeZone.ToString()))
-                    _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(genValues.timeZone.ToString()));
-                _systemService.SessionHelper.SetHijriSupport(empValues.enableHijri == null ? false : true);
+                dynamic empValues = JsonConvert.DeserializeObject(e.ExtraParams["emp"]);
+                allValues.AddRange(GetEmployeeSettings(empValues));
 
-                Notification.Show(new NotificationConfig
+                dynamic taValues = JsonConvert.DeserializeObject(e.ExtraParams["ta"]);
+                allValues.AddRange(GetAttendanceSettings(taValues));
+                dynamic pyValues = JsonConvert.DeserializeObject(e.ExtraParams["py"]);
+                allValues.AddRange(GetPayrollSettings(pyValues));
+                dynamic genValues = JsonConvert.DeserializeObject(e.ExtraParams["gen"]);
+                allValues.AddRange(GetGeneralSettings(genValues));
+                dynamic secValues = JsonConvert.DeserializeObject(e.ExtraParams["sec"]);
+
+                allValues.AddRange(GetSecuritySettings(secValues));
+                dynamic bioValues = JsonConvert.DeserializeObject(e.ExtraParams["bio"]);
+                allValues.AddRange(GetBiometricSettings(bioValues));
+
+                KeyValuePair<string, string>[] valArr = allValues.ToArray();
+                PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
+                req.entity = valArr;
+                PostResponse<KeyValuePair<string, string>[]> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>[]>(req);
+                if (!resp.Success)
                 {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.RecordUpdatedSucc
-                });
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(resp);
+                    return;
+                }
+                else
+                {
+                    FillDefaults(allValues);
+                    if (!string.IsNullOrEmpty(genValues.dateFormat.ToString()))
+                        _systemService.SessionHelper.SetDateformat(genValues.dateFormat.ToString());
 
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Hint, GetGlobalResourceObject("Common", "systemDefaultAlert")).Show();
+                    if (!string.IsNullOrEmpty(genValues.countryId.ToString()))
+                        _systemService.SessionHelper.SetDefaultCountry(genValues.countryId.ToString());
+                    if (!string.IsNullOrEmpty(genValues.timeZone.ToString()))
+                        _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(genValues.timeZone.ToString()));
+                    _systemService.SessionHelper.SetHijriSupport(empValues.enableHijri == null ? false : true);
+
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordUpdatedSucc
+                    });
+
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Hint, GetGlobalResourceObject("Common", "systemDefaultAlert")).Show();
+                }
+            }catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
 
@@ -1091,7 +1404,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1142,7 +1455,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1167,7 +1480,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1193,7 +1506,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1220,7 +1533,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1247,7 +1560,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1275,7 +1588,7 @@ namespace AionHR.Web.UI.Forms
         //    else
         //    {
         //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+        //         Common.errorMessage(response);
         //        return;
         //    }
 
@@ -1300,7 +1613,7 @@ namespace AionHR.Web.UI.Forms
         //    else
         //    {
         //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+        //         Common.errorMessage(response);
         //        return;
         //    }
 
@@ -1325,7 +1638,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1364,7 +1677,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1391,7 +1704,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1417,7 +1730,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1443,7 +1756,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1469,7 +1782,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
                 return;
             }
 
@@ -1482,7 +1795,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<SocialSecuritySchedule> routers = _payrollService.ChildGetAll<SocialSecuritySchedule>(request);
             if (!routers.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
+                 Common.errorMessage(routers);
                 return;
             }
             this.ssIdstore.DataSource = routers.Items;
@@ -1494,15 +1807,33 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest req = new ListRequest();
             ListResponse<PayrollIndemnity> eds = _payrollService.ChildGetAll<PayrollIndemnity>(req);
-            return eds.Items.ToList();
+            if (!eds.Success)
+            {
+                Common.errorMessage(eds);
+
+                return new List<PayrollIndemnity>(); 
+
+            }
+            if (eds.Items != null)
+                return eds.Items.ToList();
+            else
+                return new List<PayrollIndemnity>();
         }
         private List<TerminationReason> GetTerminationReasons()
         {
             ListRequest caRequest = new ListRequest();
             ListResponse<TerminationReason> resp = _employeeService.ChildGetAll<TerminationReason>(caRequest);
-          
-            return resp.Items.ToList(); 
-           
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+
+                return new List<TerminationReason>();
+
+            }
+            if (resp.Items != null)
+                return resp.Items.ToList();
+            else
+                return new List<TerminationReason>();
 
         }
         private void FillIndustry()
@@ -1521,7 +1852,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<Industry> routers = _nationalQuotaService.ChildGetAll<Industry>(request);
             if (!routers.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
+                 Common.errorMessage(routers);
                 return;
             }
             this.NQINidStore.DataSource = routers.Items;
@@ -1540,7 +1871,7 @@ namespace AionHR.Web.UI.Forms
 
             if (!routers.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
+                 Common.errorMessage(routers);
                 return;
             }
             this.bsIdStore.DataSource = routers.Items;
@@ -1560,7 +1891,7 @@ namespace AionHR.Web.UI.Forms
 
             if (!routers.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
+                 Common.errorMessage(routers);
                 return;
             }
             this.basicSalaryPayCodeStore.DataSource = routers.Items;
@@ -1577,7 +1908,7 @@ namespace AionHR.Web.UI.Forms
                 ListResponse<EntitlementDeduction> routers = _employeeService.ChildGetAll<EntitlementDeduction>(req);
                 if (!routers.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();
+                     Common.errorMessage(routers);
                     return;
                 }
                 this.FSWDEDIdStore.DataSource = routers.Items;
@@ -1590,9 +1921,47 @@ namespace AionHR.Web.UI.Forms
 
 
         }
+        protected void DisplayImage(object sender, DirectEventArgs e)
+        {
 
+          
+                employeePhoto.ImageUrl = "Images/empPhoto.jpg";
+                return;
+          
+         
+        }
 
+        protected void RemovePicture(object sender, DirectEventArgs e)
+        {
+            Attachement at = new Attachement();
+            at.classId = ClassId.SYDE;
+            at.recordId = 1;
+            at.seqNo = 0;
+            at.fileName = "companyLogo"; 
 
+            PostRequest<Attachement> req = new PostRequest<Attachement>();
+            req.entity = at;
+            PostResponse<Attachement> resp = _systemService.ChildDelete<Attachement>(req);
 
+            if (!resp.Success)
+            {
+               
+                    Common.errorMessage(resp);
+                    return;
+                
+            }
+            else
+            {
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+                FillCompanyLogo();
+                imageSelectionWindow.Close();
+            }
+
+        }
     }
 }

@@ -190,7 +190,7 @@
     <value>Employee Hire Date</value>
   </data>
   <data name="emp_idRef" xml:space="preserve">
-    <value>Employee Id ref</value>
+    <value>Employee Reference</value>
   </data>
   <data name="emp_lastName" xml:space="preserve">
     <value>Employee Last Name</value>
@@ -227,5 +227,80 @@
   </data>
   <data name="SelectEmpWindow" xml:space="preserve">
     <value>Select Employee</value>
+  </data>
+  <data name="pay_basicSalary" xml:space="preserve">
+    <value>Basic Salary</value>
+  </data>
+  <data name="pay_companySS" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="pay_deductions" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="pay_employeeSS" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="pay_entitlements" xml:space="preserve">
+    <value>Entitlements</value>
+  </data>
+  <data name="pay_fromDate" xml:space="preserve">
+    <value>Pay From</value>
+  </data>
+  <data name="pay_netSalary" xml:space="preserve">
+    <value>Net Salary</value>
+  </data>
+  <data name="pay_toDate" xml:space="preserve">
+    <value>Pay To</value>
+  </data>
+  <data name="pay_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="leave_endDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="leave_startDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="leave_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="loan_amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="loan_date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="loan_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="ta_sched_endDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="ta_sched_startDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="ta_sched_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="penalty_amount" xml:space="preserve">
+    <value>Penalty Amount</value>
+  </data>
+  <data name="penalty_date" xml:space="preserve">
+    <value>Penalty Date</value>
+  </data>
+  <data name="penalty_url" xml:space="preserve">
+    <value>Penalty Url</value>
+  </data>
+  <data name="tv_date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="tv_duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="tv_timeCode" xml:space="preserve">
+    <value>Time Code</value>
+  </data>
+  <data name="tv_url" xml:space="preserve">
+    <value>Url</value>
   </data>
 </root>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.TimeAttendance
 {
-    [ClassIdentifier("41080","41")]
+    [ClassIdentifier("41063", "41")]
    public class OvertimeSetting
     {
         [PropertyID("4108001")]

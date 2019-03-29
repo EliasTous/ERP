@@ -319,7 +319,7 @@
                                                 </ext:PageProxy>
                                             </Proxy>
                                             <Model>
-                                             <ext:Model ID="Model3" runat="server" >
+                                             <ext:Model ID="Model3" runat="server" IDProperty="payCode" >
                                                 <Fields>                                                                                                
                                                             <ext:ModelField Name="name" />
                                                             <ext:ModelField Name="payCode" />
@@ -330,7 +330,22 @@
                                              
                                                  </ext:Store>
                                            </Store>
-                                 
+                                  <RightButtons>
+                                                <ext:Button ID="Button8" runat="server" Icon="Add" Hidden="true">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();  " />
+                                                    </Listeners>
+                                                    <DirectEvents>
+                                                        <Click OnEvent="addED">
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                            </RightButtons>
+                                            <Listeners>
+                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                      
                                        </ext:ComboBox>
                                <%-- <ext:TextField ID="paycodeRef" runat="server" FieldLabel="<%$ Resources:paycodeRef%>" Name="paycodeRef"   AllowBlank="false"/>--%>
                                  <ext:Checkbox FieldLabel="<%$ Resources: isTaxable %>" runat="server" InputValue="True" Name="isTaxable" ID="isTaxable" />

@@ -17,7 +17,35 @@
 
 
     <script  type="text/javascript">
-       
+         String.prototype.replaceAll = function(search, replacement) {
+            var target = this;
+            return target.replace(new RegExp(search, 'g'), replacement);
+        };
+      
+        function thousandSeparator(num) {
+
+           var nf = new Intl.NumberFormat();
+
+            if (num != null)
+                num = num.toString().replaceAll(",", "");
+            else
+                return num;
+          
+          
+          
+            return  nf.format(num);
+        } 
+       function removethousandSeparator() {
+         
+          //    App.ldValue.setValue(App.ldValue.getValue().replace(/\D/g, ''))
+              App.amount.setValue(App.amount.getValue().replace(/\D/g,''))
+          
+         
+          
+          
+          
+           
+        }
         function openInNewTab() {
             window.document.forms[0].target = '_blank';
 
@@ -398,7 +426,7 @@
                                     
                                 </ext:TextField>
                                 <ext:TextField ReadOnly="true" Disabled="true" ID="loanBalance" runat="server" FieldLabel="<%$ Resources:loanBalance%>" Name="loanBalance" AllowBlank="true">
-                                    
+                                  
                                 </ext:TextField>
                                               </Items>
                                    </ext:Panel>
@@ -411,7 +439,9 @@
                                     
                                 </ext:TextField>
                                   <ext:TextField ReadOnly="true" Disabled="true" ID="eosBalance" runat="server" FieldLabel="<%$ Resources:eosBalanceTitle%>" Name="eosBalance" AllowBlank="true">
-                                    
+                                     <Listeners> 
+                                         <Change Handler="this.setRawValue(thousandSeparator(this.value));" />                                                                                
+                                    </Listeners>
                                 </ext:TextField>
                                   <ext:DateField  ReadOnly="true" Disabled="true"  ID="lastLeaveStartDate" runat="server" FieldLabel="<%$ Resources:lastLeaveStartDateTitle%>" Name="lastLeaveStartDateTitle" AllowBlank="true">
                                     
@@ -501,7 +531,9 @@
                                          
                                          <ext:Column CellCls="cellLink" ID="nameCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName1%>" DataIndex="edName" Width="150" Hideable="false" Visible="true" Flex="2"/>
                                          <ext:Column CellCls="cellLink" ID="seqNoCol" MenuDisabled="true" runat="server" Text="<%$ Resources: seqNo%>" DataIndex="seqNo" Width="150" Hideable="false" Visible="false"/>
-                                         <ext:Column CellCls="cellLink" ID="enAmountCol" MenuDisabled="true" runat="server" Text="<%$ Resources: amount%>" DataIndex="amount" Width="150" Hideable="false" Visible="true"  Flex="1"/>
+                                         <ext:Column CellCls="cellLink" ID="enAmountCol" MenuDisabled="true" runat="server" Text="<%$ Resources: amount%>" DataIndex="amount" Width="150" Hideable="false" Visible="true"  Flex="1">
+                                             <Renderer Handler="return record.data['amount'].toLocaleString() ; "></Renderer>
+                                             </ext:Column>
                                          <ext:Column CellCls="cellLink" ID="edIdCol" MenuDisabled="true" runat="server" Text="edId" DataIndex="edId" Width="150" Hideable="false" Visible="false"/>
                                                  
                                             <ext:Column CellCls="cellLink" ID="typeCol" MenuDisabled="true" runat="server" Text="type" DataIndex="type" Width="150" Hideable="false" Visible="false"/>
@@ -621,10 +653,12 @@
 
                                          <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName1%>" DataIndex="edName" Width="150" Hideable="false" Visible="true" Flex="2"/>
                                          <ext:Column CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="" DataIndex="seqNo" Width="150" Hideable="false" Visible="false"/>
-                                         <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: amount%>" DataIndex="amount" Width="150" Hideable="false" Visible="true" Flex="1"/>
+                                         <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: amount%>" DataIndex="amount" Width="150" Hideable="false" Visible="true" Flex="1">
+                                             <Renderer Handler="return record.data['amount'].toLocaleString(); "></Renderer>
+                                             </ext:Column>
                                          <ext:Column CellCls="cellLink" ID="Column4" MenuDisabled="true" runat="server" Text="edId" DataIndex="edId" Width="150" Hideable="false" Visible="false" />                                                             
-                                            <ext:Column CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server" Text="type" DataIndex="type" Width="150" Hideable="false" Visible="false"/>
-                                                <ext:Column runat="server" ID="Column8" Visible="false" Text="<%$ Resources: Common , Delete %>" Width="100" Align="Center" Fixed="true"  Filterable="false"  Hideable="false"
+                                         <ext:Column CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server" Text="type" DataIndex="type" Width="150" Hideable="false" Visible="false"/>
+                                        <ext:Column runat="server" ID="Column8" Visible="false" Text="<%$ Resources: Common , Delete %>" Width="100" Align="Center" Fixed="true"  Filterable="false"  Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
                                 <Renderer Fn="deleteRender" />

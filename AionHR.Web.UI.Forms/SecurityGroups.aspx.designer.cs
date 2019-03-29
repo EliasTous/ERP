@@ -220,6 +220,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store classAccessLevelsStore;
         
         /// <summary>
+        /// modulesStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store modulesStore;
+        
+        /// <summary>
+        /// Model3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Model Model3;
+        
+        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -535,13 +553,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.FormPanel AccessLevelsForm;
         
         /// <summary>
-        /// modulesCombo control.
+        /// modulesCombo1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox modulesCombo;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.MoudleFilter modulesCombo1;
         
         /// <summary>
         /// openModuleLevelForm control.

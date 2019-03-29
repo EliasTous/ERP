@@ -26,7 +26,7 @@
     <script type="text/javascript">
         function alertNow(s, e) {
 
-            Ext.MessageBox.alert('Error', e.message);
+            Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
     </script>
@@ -39,7 +39,7 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-
+               <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
 
@@ -55,57 +55,75 @@
                     Layout="FitLayout" AutoScroll="true"
                     Margins="0 0 0 0"
                     Region="Center">
-                    <TopBar>
-                        <ext:Toolbar runat="server" Height="60">
+                 <DockedItems>
+                        <ext:Toolbar runat="server" Height="50" Dock="Top">
 
+                   
                             <Items>
                              
                                        <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                                
-                                                <uc:dateRange runat="server" ID="dateRange1" IsDayIdFormat="true"  />
+                                               <uc:dateRange runat="server" ID="date2" />
                                             </Content>
                                         </ext:Container>
+                                   <ext:ToolbarSeparator runat="server" />
                                 <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                                 <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:employeeCombo runat="server" ID="employeeCombo1" />
+                                                <uc:employeeCombo runat="server" ID="employeeCombo1"  />
                                             </Content>
                                         </ext:Container>
-                                 <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" EnableBranch="false" />
+                                   <ext:ToolbarSeparator runat="server" />
+                                      <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="approverId" Name="approverId"
+                                    DisplayField="fullName"
+                                    ValueField="recordId"
+                                    TypeAhead="false"
+                                    EmptyText="<%$ Resources: FieldApproverName%>"
+                                    HideTrigger="true" SubmitValue="true"
+                                    MinChars="3" 
+                                    TriggerAction="Query" ForceSelection="true">
+                                    <Store>
 
+                                        <ext:Store runat="server" ID="ApproverStore" AutoLoad="false">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="fullName" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillApprover"></ext:PageProxy>
+                                            </Proxy>
+
+                                        </ext:Store>
+
+                                    </Store>
+                                </ext:ComboBox>
+                                   <ext:ToolbarSeparator runat="server" />
+                              <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                <uc:TimeVariationTypeControl runat="server" ID="timeVariationType"  />
                                     </Content>
 
                                 </ext:Container>
+                              
+                                
+                               <ext:ToolbarSeparator runat="server" />
+                                  <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
+                                    EmptyText="<%$ Resources: FieldApprovalStatus %>">
+                                    <Items>
 
-                                  <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  runat="server" ID="dayStatus"  Editable="false" EmptyText="<%$ Resources: FieldDayStatus %>" ForceSelection="true" Width="150">
-                                            <Items>
-                                                 <ext:ListItem Text="<%$ Resources: All %>" Value="0" />
-                                                <ext:ListItem Text="<%$ Resources:  status1 %>" Value="1" />
-                                                <ext:ListItem Text="<%$ Resources:  status2 %>" Value="2" />
-                                                  <ext:ListItem Text="<%$ Resources:  status3 %>" Value="3" />
-                                                  <ext:ListItem Text="<%$ Resources:  status4 %>" Value="4" />
-                                                  <ext:ListItem Text="<%$ Resources:  status5 %>" Value="5" />
-                                                                                      
-                                      
+                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
+                                    </Items>
 
-
-                                         
-                                           
-                                            </Items>
-
-                                        </ext:ComboBox>
-                                  <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  runat="server" ID="punchStatus"  Editable="false" EmptyText="<%$ Resources: FieldPunchStatus %>" ForceSelection="true" Width="120">
-                                            <Items>
-                                                 <ext:ListItem Text="<%$ Resources: All %>" Value="0" />
-                                                <ext:ListItem Text="<%$ Resources: lateness %>" Value="1" />
-                                                <ext:ListItem Text="<%$ Resources: overtime %>" Value="2" />
-                                     
-                                            </Items>
-
-                                        </ext:ComboBox>
+                                </ext:ComboBox>
+                                    <ext:ToolbarSeparator runat="server" />
                               
                                 
                                 <ext:Container runat="server" Layout="FitLayout">
@@ -122,8 +140,35 @@
 
                             </Items>
                         </ext:Toolbar>
+                       <ext:Toolbar runat="server" Dock="Top">
+                            <Items>
+                                 <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnableBranch="true" EnableDivision="true" EnablePosition="true" EnableDepartment="true" />
+                                    </Content>
+                                </ext:Container>
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
+                                    <Store>
+                                        <ext:Store runat="server" ID="statusStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
 
-                    </TopBar>
+                                    <Items>
+                                        <ext:ListItem Text="<%$Resources:All %>" Value="0" />
+                                    </Items>
+                                </ext:ComboBox>
+                                </Items>
+                           </ext:Toolbar>
+
+                 </DockedItems>
                     <Content>
 
                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server"  ClientSideEvents-CallbackError="alertNow" ClientInstanceName="callbackPanel"

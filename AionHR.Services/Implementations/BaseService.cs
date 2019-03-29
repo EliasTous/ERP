@@ -33,7 +33,7 @@ namespace AionHR.Services.Implementations
                 response.Success = false;
                 response.Message = "Unknown Error!";
                 response.ErrorCode = "Error_1";
-              
+                response.errorName = "Error in the returned  structure from web service";
                 response.LogId = "0";
 
 
@@ -42,16 +42,17 @@ namespace AionHR.Services.Implementations
             {
                 response.Success = webResponse.statusId == "1";
                 response.Error = webResponse.error;
-                response.LogId = webResponse.logId; 
+                response.LogId = webResponse.logId;
+                response.errorName = webResponse.errorName;
                 
-
                 response.Summary = webResponse.Details;
                 response.ErrorCode = "Error_"+webResponse.statusId.Substring(1);
-               if(webResponse.statusId.Substring(1) == null)
+               if(webResponse.statusId.Substring(1) == null || webResponse.statusId=="0")
                 {
                     response.ErrorCode = "Error_1";
                     response.Summary = "Unknown Error!";
                     response.LogId = "0";
+                    response.errorName = "Error in the returned  structure from web service";
                 }
             }
 

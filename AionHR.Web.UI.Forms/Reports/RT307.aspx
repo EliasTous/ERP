@@ -26,7 +26,7 @@
     <script type="text/javascript">
         function alertNow(s, e) {
 
-            Ext.MessageBox.alert('Error', e.message);
+            Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
     </script>
@@ -39,7 +39,7 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-
+               <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
 
@@ -66,13 +66,7 @@
                                                <uc:dateRange runat="server" ID="date2" />
                                             </Content>
                                         </ext:Container>
-                                   <ext:ToolbarSeparator runat="server" />
-                                <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:employeeCombo runat="server" ID="employeeCombo1"  />
-                                            </Content>
-                                        </ext:Container>
+                                  
                                    <ext:ToolbarSeparator runat="server" />
                                       <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="approverId" Name="approverId"
                                     DisplayField="fullName"
@@ -101,28 +95,10 @@
 
                                     </Store>
                                 </ext:ComboBox>
-                                   <ext:ToolbarSeparator runat="server" />
-                              <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                <uc:TimeVariationTypeControl runat="server" ID="timeVariationType"  />
-                                    </Content>
-
-                                </ext:Container>
-                              
+                                 
                                 
-                               <ext:ToolbarSeparator runat="server" />
-                                  <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
-                                    EmptyText="<%$ Resources: FieldApprovalStatus %>">
-                                    <Items>
-
-                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
-                                    </Items>
-
-                                </ext:ComboBox>
-                                    <ext:ToolbarSeparator runat="server" />
+                              
+                                 
                               
                                 
                                 <ext:Container runat="server" Layout="FitLayout">

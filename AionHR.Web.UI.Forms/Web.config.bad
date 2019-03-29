@@ -1,0 +1,161 @@
+﻿<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <configSections>
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,log4net" />
+    <section name="extnet" type="Ext.Net.GlobalConfig" requirePermission="false" />
+    <sectionGroup name="devExpress">
+      <section name="themes" type="DevExpress.Web.ThemesConfigurationSection, DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+      <section name="compression" type="DevExpress.Web.CompressionConfigurationSection, DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+      <section name="settings" type="DevExpress.Web.SettingsConfigurationSection, DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+      <section name="errors" type="DevExpress.Web.ErrorsConfigurationSection, DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+      <section name="resources" type="DevExpress.Web.ResourcesConfigurationSection, DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false" />
+    </sectionGroup>
+  </configSections>
+  <appSettings>
+    <add key="BaseURL" value="http://bridge.aionhr.net/" />
+    <add key="LoggerName" value="AionHRLogger" />
+  </appSettings>
+  <log4net>
+    <logger name="AionHRLogger">
+      <level value="INFO" />
+      <appender-ref ref="RollingLogFileAppender" />
+    </logger>
+    <appender name="RollingLogFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file value="C:/logs/AionHRLog.txt" />
+      <appendToFile value="true" />
+      <rollingStyle value="Size" />
+      <maxSizeRollBackups value="10" />
+      <maximumFileSize value="10MB" />
+      <staticLogFileName value="true" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%-5p %d %5rms %-22.22c{1} %-18.18M - %m%n" />
+      </layout>
+    </appender>
+  </log4net>
+  <!--
+    For a description of web.config changes see http://go.microsoft.com/fwlink/?LinkId=235367.
+    The following attributes can be set on the <httpRuntime> tag.
+      <system.Web>
+        <httpRuntime targetFramework="4.6.2" />
+      </system.Web>
+  -->
+  <extnet theme="Crisp" licenseKey="Myw0LDIwMjItMDMtMjU=" initScriptMode="Linked" />
+  <system.web>
+    <customErrors mode="Off" />
+    <sessionState timeout="60" />
+    <!-- This httpHandlers config only required if using IIS6 (or lower) -->
+    <httpHandlers>
+      <add path="*/ext.axd" verb="*" type="Ext.Net.ResourceHandler" validate="false" />
+      <add verb="*" path="SystemAttachmentsUploader.ashx" type="SystemAttachmentsUploader" />
+      <add verb="*" path="EmployeePhotoUploaderHandler.ashx" type="EmployeePhotoUploaderHandler" />
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET" path="DX.ashx" validate="false" />
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET" path="DX.ashx" validate="false" />
+      <add type="DevExpress.Web.ASPxUploadProgressHttpHandler, DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" path="ASPxUploadProgressHandlerPage.ashx" validate="false" />
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" path="DXXRDV.axd" validate="false" />
+    </httpHandlers>
+    <!--This httpModules config only required if using IIS6 (or lower)-->
+    <httpModules>
+      <add name="DirectRequestModule" type="Ext.Net.DirectRequestModule, Ext.Net" />
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule" />
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule" />
+    </httpModules>
+    <pages>
+      <controls>
+        <add tagPrefix="uc" tagName="jobInfo" src="~/Reports/Controls/JobInfoFilter.ascx" />
+        <add tagPrefix="uc" tagName="dateRange" src="~/Reports/Controls/DateRangeFilter.ascx" />
+        <add tagPrefix="uc" tagName="activeStatus" src="~/Reports/Controls/ActiveStatusFilter.ascx" />
+        <add tagPrefix="uc" tagName="date" src="~/Reports/Controls/DateFilter.ascx" />
+        <add tagPrefix="uc" tagName="usersCombo" src="~/Reports/Controls/UserComboFilter.ascx" />
+        <add tagPrefix="uc" tagName="transactionCombo" src="~/Reports/Controls/TransactionTypeFilter.ascx" />
+        <add tagPrefix="uc" tagName="moduleCombo" src="~/Reports/Controls/MoudleFilter.ascx" />
+        <add tagPrefix="uc" tagName="monthCombo" src="~/Reports/Controls/MonthSelector.ascx" />
+        <add tagPrefix="uc" tagName="employeeCombo" src="~/Reports/Controls/EmployeeFilter.ascx" />
+        <add tagPrefix="uc" tagName="loanStatusCombo" src="~/Reports/Controls/LoanStatusFilter.ascx" />
+        <add tagPrefix="uc" tagName="scrCombo" src="~/Reports/Controls/SalaryChangeReasonFilter.ascx" />
+        <add tagPrefix="uc" tagName="paymentMethodCombo" src="~/Reports/Controls/PaymentMethodFilter.ascx" />
+        <add tagPrefix="uc" tagName="payRefCombo" src="~/Reports/Controls/PayRefFilter.ascx" />
+        <add tagPrefix="uc" tagName="leaveTypeCombo" src="~/Reports/Controls/LeaveTypeFilter.ascx" />
+        <add tagPrefix="uc" tagName="leaveStatusCombo" src="~/Reports/Controls/LeaveStatusFilter.ascx" />
+        <add tagPrefix="uc" tagName="employeeControl" src="~/Controls/EmployeeProfileControl.ascx" />
+        <add tagPrefix="uc" tagName="leaveControl" src="~/Controls/LeaveRequestControl.ascx" />
+        <add tagPrefix="uc" tagName="weekControl" src="~/Reports/Controls/WeekPicker.ascx" />
+        <add tagPrefix="uc" tagName="salaryTypeControl" src="~/Reports/Controls/SalaryTypeFilter.ascx" />
+        <add tagPrefix="uc" tagName="TimeVariationTypeControl" src="~/Reports/Controls/TimeVariationTypeFilter.ascx" />
+        <add assembly="Ext.Net" namespace="Ext.Net" tagPrefix="ext" />
+      </controls>
+      <namespaces>
+        <add namespace="Ext.Net" />
+        <!--<add namespace="Ext.Net.MVC"/>-->
+      </namespaces>
+    </pages>
+    <globalization uiCulture="auto" culture="auto" enableClientBasedCulture="true" />
+    <compilation debug="true" targetFramework="4.6">
+      <assemblies>
+        <add assembly="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+        <add assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+        <add assembly="DevExpress.Web.Resources.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A" />
+        <add assembly="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
+        <add assembly="DevExpress.Web.ASPxThemes.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+      </assemblies>
+    </compilation>
+    <httpRuntime targetFramework="4.5.2" maxRequestLength="5120" />
+  </system.web>
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+    <modules>
+      <add name="DirectRequestModule" preCondition="managedHandler" type="Ext.Net.DirectRequestModule, Ext.Net" />
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule" />
+    </modules>
+    <handlers accessPolicy="Read, Execute, Script">
+      <remove name="WebDAV" />
+      <add name="DirectRequestHandler" verb="*" path="*/ext.axd" preCondition="integratedMode" type="Ext.Net.ResourceHandler" />
+      <add name="WebDAV" path="*" verb="PROPFIND,PROPPATCH,MKCOL,PUT,COPY,DELETE,MOVE,LOCK,UNLOCK" modules="WebDAVModule" resourceType="Unspecified" requireAccess="Execute" />
+      <add name="Client exe" path="*.exe" verb="*" modules="StaticFileModule" resourceType="File" />
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET" path="DX.ashx" name="ASPxHttpHandlerModule" preCondition="integratedMode" />
+      <add type="DevExpress.Web.ASPxUploadProgressHttpHandler, DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" path="ASPxUploadProgressHandlerPage.ashx" name="ASPxUploadProgressHandler" preCondition="integratedMode" />
+      <add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" path="DXXRDV.axd" name="ASPxWebDocumentViewerHandlerModule" preCondition="integratedMode" />
+    </handlers>
+    <security>
+      <requestFiltering>
+        <fileExtensions>
+          <add fileExtension=".properties" allowed="true" />
+          <add fileExtension=".exe" allowed="true" />
+        </fileExtensions>
+      </requestFiltering>
+    </security>
+    <staticContent>
+      <mimeMap fileExtension=".properties" mimeType="application/l10n" />
+    </staticContent>
+    <httpProtocol>
+      <customHeaders>
+        <add name="Access-Control-Allow-Origin" value="*" />
+        <add name="Access-Control-Allow-Methods" value="OPTIONS,POST,GET,PUT" />
+        <add name="Access-Control-Allow-Headers" value="x-requested-with" />
+        <add name="Access-Control-Allow-Credentials" value="true" />
+      </customHeaders>
+    </httpProtocol>
+  </system.webServer>
+  <system.codedom>
+    <compilers>
+      <compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CSharp.CSharpCodeProvider, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" warningLevel="4" compilerOptions="/langversion:Default /nowarn:1659;1699;1701">
+        <providerOption name="CompilerVersion" value="v4.0" />
+      </compiler>
+      <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" type="Microsoft.VisualBasic.VBCodeProvider, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" warningLevel="4" compilerOptions="/langversion:14 /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+">
+        <providerOption name="CompilerVersion" value="v4.0" />
+      </compiler>
+    </compilers>
+  </system.codedom>
+  <devExpress>
+    <resources>
+      <add type="ThirdParty" />
+      <add type="DevExtreme" />
+    </resources>
+    <themes enableThemesAssembly="true" styleSheetTheme="" theme="" customThemeAssemblies="" baseColor="" font="" />
+    <compression enableHtmlCompression="false" enableCallbackCompression="true" enableResourceCompression="true" enableResourceMerging="true" />
+    <settings accessibilityCompliant="false" doctypeMode="Html5" rightToLeft="false" checkReferencesToExternalScripts="false" protectControlState="true" ieCompatibilityVersion="edge" />
+    <errors callbackErrorRedirectUrl="" />
+  </devExpress>
+</configuration>

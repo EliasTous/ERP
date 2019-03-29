@@ -334,7 +334,7 @@
                                             </ext:ComboBox>
                                         <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="true" >
                                         
-                                         <validator Handler="if (#{ldMethod}.getValue()==null) return true; if(#{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else{  return false; } } else {if (this.value<=0  ){return false;} else return true;}">
+                                         <validator Handler="if (#{ldMethod}.getValue()==null) return true;  if(#{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else{  return false; } } else {if (this.value<0  ){return false;} else return true;}">
                                              
                                          </validator>
                                            

@@ -27,25 +27,48 @@ namespace AionHR.Web.UI.Forms
     public partial class SystemAlerts : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -162,35 +185,35 @@ namespace AionHR.Web.UI.Forms
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            string s = File.ReadAllText(MapPath("~/Utilities/alerts.txt"));
-            List<SystemAlert> preDefined = JsonConvert.DeserializeObject<List<SystemAlert>>(s);
+            //string s = File.ReadAllText(MapPath("~/Utilities/alerts.txt"));
+            //List<SystemAlert> preDefined = JsonConvert.DeserializeObject<List<SystemAlert>>(s);
 
             ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<SystemAlert> stored = _systemService.ChildGetAll<SystemAlert>(request);
-            if (!stored.Success)
+            ListResponse<SystemAlert> resp = _systemService.ChildGetAll<SystemAlert>(request);
+            if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, stored.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
-            List<SystemAlert> union = new List<SystemAlert>();
+            //List<SystemAlert> union = new List<SystemAlert>();
 
-            foreach (var item in preDefined)
-            {
-                if (stored.Items.Where(f => f.alertId == item.alertId).Count() > 0)
-                {
+            //foreach (var item in preDefined)
+            //{
+            //    if (stored.Items.Where(f => f.alertId == item.alertId).Count() > 0)
+            //    {
 
-                    SystemAlert added = stored.Items.Where(f => f.alertId == item.alertId).First();
-                    added.predefined = true;
-                    union.Add(added);
-                    item.predefined = true;
-                }
-                else
-                    union.Add(item);
-            }
-            this.Store1.DataSource = union;
-            e.Total = union.Count;
+            //        SystemAlert added = stored.Items.Where(f => f.alertId == item.alertId).First();
+            //        added.predefined = true;
+            //        union.Add(added);
+            //        item.predefined = true;
+            //    }
+            //    else
+            //        union.Add(item);
+            //}
+            this.Store1.DataSource = resp.Items;
+            e.Total = resp.Items.Count;
 
             this.Store1.DataBind();
         }
@@ -223,7 +246,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
 
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+               Common.errorMessage(resp);
                 return;
             }
             Notification.Show(new NotificationConfig

@@ -5,6 +5,7 @@ using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
@@ -16,6 +17,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
             BootStrapper.ConfigureStructureMap();
 
             //Building up the factories 
@@ -33,7 +35,12 @@ namespace AionHR.Web.UI.Forms
 
         protected void Application_BeginRequest(object sender, EventArgs e)
            {
-            
+          
+            ServicePointManager.SecurityProtocol &= ~SecurityProtocolType.Ssl3;
+            ServicePointManager.SecurityProtocol &= ~SecurityProtocolType.Tls;
+            ServicePointManager.SecurityProtocol &= ~SecurityProtocolType.Tls11;
+            // Add TLS 1.2
+            ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)

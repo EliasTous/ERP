@@ -60,8 +60,8 @@
                         <ext:ModelField Name="description" />
                         <ext:ModelField Name="referToPositionId" />
                         <ext:ModelField Name="referToPositionName" />
-                        <ext:ModelField Name="tsId" />
-                        <ext:ModelField Name="tsName" />
+                      <%--  <ext:ModelField Name="tsId" />
+                        <ext:ModelField Name="tsName" />--%>
 
 
 
@@ -167,14 +167,14 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
-                            <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="positionRef"  Width="150" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                             </ext:Column>
                             <ext:Column Visible="false" ID="ColrefererId" MenuDisabled="true" runat="server" DataIndex="referToPositionId" Flex="1" Hideable="false" />
                             <ext:Column Visible="true" ID="ColrefererName" MenuDisabled="true" runat="server" DataIndex="referToPositionName" Text="<%$ Resources: FieldReferer %>" Flex="1" Hideable="false" />
                             <ext:Column ID="ColDescription" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDescription %>" Flex="1" DataIndex="description" Hideable="false" />
-                            <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeSchedule %>" Flex="1" DataIndex="tsName" Hideable="false" />
+                          <%--  <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeSchedule %>" Flex="1" DataIndex="tsName" Hideable="false" />--%>
 
 
 
@@ -313,7 +313,7 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" DataIndex="recordId" />
+                                <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" DataIndex="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="positionRef" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="positionRef" />
                                 <ext:TextField ID="description" runat="server" FieldLabel="<%$ Resources: FieldDescription %>" DataIndex="description" AllowBlank="true" />
@@ -354,7 +354,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="tsId" Name="tsId" FieldLabel="<%$ Resources:FieldTimeSchedule%>" SimpleSubmit="true">
+                           <%--     <ext:ComboBox AnyMatch="true" CaseSensitive="false" Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="tsId" Name="tsId" FieldLabel="<%$ Resources:FieldTimeSchedule%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="tsStore">
                                             <Model>
@@ -372,7 +372,7 @@
                                     </Store>
                                    
                                   
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
 
 
                             </Items>

@@ -217,13 +217,13 @@
     <value />
   </data>
   <data name="EPEMRehireNo" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="EPEMRehireNotYetKnown" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="EPEMRehireYes" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="EPEMReligionBudha" xml:space="preserve">
     <value>3</value>
@@ -446,5 +446,8 @@
   </data>
   <data name="dailySchedule_60" xml:space="preserve">
     <value>60</value>
+  </data>
+  <data name="SYTATATimeStatusNew" xml:space="preserve">
+    <value>1</value>
   </data>
 </root>

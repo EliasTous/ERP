@@ -7,10 +7,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
-    <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Payroll.js?id=87"></script>
-    <script type="text/javascript" src="../Scripts/common.js?id=97"></script>
+    <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=2" />
+    <link rel="stylesheet" href="../CSS/LiveSearch.css?id=123" />
+    <script type="text/javascript" src="../Scripts/Payroll.js?id=123"></script>
+    <script type="text/javascript" src="../Scripts/common.js?id=12"></script>
+    <script type="text/javascript">
+         function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+        String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+        };
+      
+       function thousandSeparator(num) {
+           var nf = new Intl.NumberFormat();
+         
+          
+          num= num.toString().replaceAll(",", "");
+         
+          
+          
+          
+            return  nf.format(num);
+        } 
+       
+          
+
+             
+        
+
+
+
+    </script>
 
 
 </head>
@@ -110,7 +139,7 @@
                                         <ext:ModelField Name="currencyRef" />
                                         <ext:ModelField Name="scrId" />
                                         <ext:ModelField Name="scrName" />
-                                        <ext:ModelField Name="effectiveDate" ServerMapping="effectiveDate.ToShortDateString()" />
+                                        <ext:ModelField Name="effectiveDate"  />
                                         <ext:ModelField Name="salaryType" />
                                         <ext:ModelField Name="paymentFrequency" />
                                         <ext:ModelField Name="paymentMethod" />
@@ -166,7 +195,7 @@
                     <ColumnModel ID="ColumnModel3" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
-                            <ext:Column Visible="false" ID="recID" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Visible="false" ID="recID" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                            
                             <ext:DateColumn   ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="100" Align="Center">
                             </ext:DateColumn>
@@ -181,12 +210,12 @@
                             </ext:Column>
                     
                             <ext:Column  ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBasicAmount %>" DataIndex="basicAmount" Hideable="false" Flex="1" Width="75" Align="Center" >
-                                <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['basicAmount']  ;">
+                                <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+numberWithCommas(record.data['basicAmount'].toFixed(2))  ;">
 
                                 </Renderer>
                                 </ext:Column>
                             <ext:Column  ID="Column21" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFinalAmount %>" DataIndex="finalAmount" Hideable="false" Flex="1" Width="75" Align="Center" >
-                                   <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['finalAmount']  ;">
+                                   <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+numberWithCommas(record.data['finalAmount'].toFixed(2))  ;">
 
                                 </Renderer>
                                 </ext:Column>
@@ -312,7 +341,7 @@
                                         <ext:ModelField Name="currencyRef" />
                                         <ext:ModelField Name="btId" />
                                         <ext:ModelField Name="btName" />
-                                        <ext:ModelField Name="date" ServerMapping="date.ToShortDateString()" />
+                                        <ext:ModelField Name="date"  />
                                         <ext:ModelField Name="comment" />
                                         <ext:ModelField Name="amount" />
 
@@ -361,7 +390,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
-                            <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column  ID="ColBOName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBTName %>" DataIndex="btName" Hideable="false" Flex="1" Align="Center"/>
                             
                             <ext:DateColumn   ID="ccc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="date" Hideable="false" Width="100" Align="Center">
@@ -486,7 +515,7 @@
                             <Items>
                                 <ext:Panel runat="server" ID="firstPanel">
                                     <Items>
-                                        <ext:TextField ID="SAId" Hidden="true" runat="server" LabelWidth="130" Width="275" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                        <ext:TextField ID="SAId" Hidden="true" runat="server" LabelWidth="130" Width="275"  Disabled="true" Name="recordId" />
 
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" LabelWidth="130" Width="275" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
 
@@ -552,15 +581,22 @@
                                         </ext:ComboBox>
                                         <ext:DateField AllowBlank="false" runat="server" LabelWidth="130" Width="275" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" />
 
-                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false" ID="salaryType" LabelWidth="130" Width="275" runat="server" FieldLabel="<%$ Resources:FieldSalaryType%>" Name="salaryType" IDMode="Static" SubmitValue="true">
-                                            <Items>
-                                               <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeDaily %>"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeWeekly %>"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryBiWeekly%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeBiWeekly %>"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryFourWeekly%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeFourWeekly %>"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="<%$ Resources:ComboBoxValues , PYEMsalaryTypeMonthly %>"></ext:ListItem>
-                                            </Items>
-                                        </ext:ComboBox>
+                                     
+                                         <ext:ComboBox  AllowBlank="false"  AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" Width="275" LabelWidth="130" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="salaryType"  FieldLabel="<%$ Resources:FieldSalaryType%>" SubmitValue="true"  Name="salaryType" >
+                                              <Store>
+                                              <ext:Store runat="server" ID="salaryTypeStore" >
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="key" />
+                                                                        <ext:ModelField Name="value" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                            </Store>
+        
+                                              </ext:ComboBox>
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false" ID="paymentFrequency" LabelWidth="130" Width="275" runat="server" FieldLabel="<%$ Resources:FieldPaymentFrequency%>" Name="paymentFrequency" IDMode="Static" SubmitValue="true">
                                             <Items>
                                                    <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="<%$ Resources:ComboBoxValues , PYEMPaymentFrequencyDaily %>"></ext:ListItem>
@@ -597,10 +633,7 @@
                                                 </ext:Store>
                                             </Store>
                                          
-                                            <Listeners>
-                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                            </Listeners>
+                                           
                                         </ext:ComboBox>
                                     </Items>
                                 </ext:Panel>
@@ -611,14 +644,22 @@
                                         <%-- <ext:TextField LabelWidth="130" Width="350" Disabled="true"  ID="swiftCode" runat="server" FieldLabel="<%$ Resources:FieldswiftCode%>" Name="swiftCode" AllowBlank="false" />--%>
                                         <ext:TextField LabelWidth="130" Width="350" Disabled="true"  ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" AllowBlank="false" />
                                         <ext:TextField LabelWidth="130" Width="350" ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
-                                        <ext:TextField LabelWidth="130" Width="350" ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount">
+                                        <ext:TextField LabelWidth="130" Width="350" ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount" EnableKeyEvents="true">
                                             <Listeners>
-                                                <Change Handler="document.getElementById('BasicSalary').value=this.getValue(); this.next().setValue(this.value); ChangeEntitlementsAmount(0); ChangeDeductionsAmount();" />
+                                                 <Change Handler="App.BasicSalary.setValue(this.getValue()); this.next().setValue(this.value); ChangeEntitlementsAmount(0); ChangeDeductionsAmount();" />
+                                           
+                                               
                                             </Listeners>
                                         </ext:TextField>
-                                        <ext:TextField LabelWidth="130" Width="350" ID="finalAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
-                                        <ext:TextField LabelWidth="130" Width="350" ID="eAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:TotalEntitlements%>" Name="eAmount" />
-                                        <ext:TextField LabelWidth="130" Width="350" ID="dAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:TotalDeductions%>" Name="dAmount" />
+                                        <ext:TextField LabelWidth="130" Width="350" ID="finalAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" >
+                                            
+                                            </ext:TextField>
+                                        <ext:TextField LabelWidth="130" Width="350" ID="eAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:TotalEntitlements%>" Name="eAmount" >
+                                            
+                                            </ext:TextField>
+                                        <ext:TextField LabelWidth="130" Width="350" ID="dAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:TotalDeductions%>" Name="dAmount" >
+                                         
+                                            </ext:TextField>
                                         
                                     </Items>
                                 </ext:Panel>
@@ -766,7 +807,7 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
-                                                <Renderer Handler=" return App.currencyId.getRawValue()+ '&nbsp;' +record.data['fixedAmount']  ;"/>
+                                                <Renderer Handler=" return App.currencyId.getRawValue()+ '&nbsp;' +numberWithCommas(record.data['fixedAmount'].toFixed(2));"/>
                                             </ext:NumberColumn>
                                             <ext:Column
                                                 runat="server" 
@@ -956,7 +997,7 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
-                                                <Renderer Handler="return App.currencyId.getRawValue()+ '&nbsp;'+record.data['fixedAmount']  ;">
+                                                <Renderer Handler="return App.currencyId.getRawValue()+ '&nbsp;'+numberWithCommas(record.data['fixedAmount'].toFixed(2));">
 
                                 </Renderer>
                                
@@ -1023,6 +1064,8 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditSAWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{SAId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="basicAmount" Value="#{basicAmount}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="finalAmount" Value="#{finalAmount}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{EditSAForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                                 <ext:Parameter Name="entitlements" Value="Ext.encode(#{entitlementsGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />
                                 <ext:Parameter Name="deductions" Value="Ext.encode(#{deductionGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />
@@ -1069,7 +1112,7 @@
                             BodyPadding="5">
                             <Items>
 
-                                <ext:TextField ID="BOId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:TextField ID="BOId" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
 
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="CurrencyCombo" DataIndex="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
 
@@ -1199,17 +1242,14 @@
                             BodyPadding="5">
                             <Items>
 
-                                <ext:TextField ID="ENId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
-                                <ext:TextField ID="oldEntValue" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:TextField ID="ENId" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
+                                <ext:TextField ID="oldEntValue" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
                                 <ext:Checkbox ID="oldENIncludeInFinal" Hidden="true" runat="server" disabled="true" />
                               
                               <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="entEdId" Name="edId" FieldLabel="<%$ Resources:FieldEntitlement%>" SimpleSubmit="true" StoreID="entsStore">
                                             
                                         
-                                            <Listeners>
-                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                            </Listeners>
+                                            
                                         </ext:ComboBox>
                               <ext:Checkbox ID="EnIncludeInTotal" FieldLabel="<%$ Resources: FieldIncludeInTotal %>" runat="server" DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />
                                 <ext:Checkbox ID="enIsPct" FieldLabel="<%$ Resources:FieldIsPercentage%>" runat="server">
@@ -1230,17 +1270,19 @@
                                     <Validator Handler="return !isNaN(this.value) && this.value>0 && this.value<100;" />
                                 </ext:TextField>
 
-                                <ext:TextField
+                                <ext:NumberField
                                     runat="server" Name="fixedAmount"
                                     AllowBlank="false"
                                     MinValue="0"
                                     ID="enFixedAmount"
-                                    FieldLabel="<%$ Resources:FieldFixedAmount%>">
-                                    <%--<Listeners>
-                                        <Change Handler="if(this.prev().prev().value==false) this.prev().setValue(CalculatePct(this.value));" />
-                                    </Listeners>--%>
-                                    <Validator Handler="return !isNaN(this.value) && this.value>0 ;" />
-                                </ext:TextField>
+                                    FieldLabel="<%$ Resources:FieldFixedAmount%>" AllowDecimals="true" DecimalPrecision="2">
+                                   <Listeners>
+                                                 
+                                           
+                                               
+                                            </Listeners>
+                                    <Validator Handler="return this.value >0 ;" />
+                                </ext:NumberField>
                                 <ext:TextArea runat="server" ID="enComment" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:TextField runat="server" InputType="Password" Visible="false" ID="enCommentField" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:Checkbox ID="isTaxable" FieldLabel="<%$ Resources: FieldIsTaxable %>" runat="server" DataIndex="isTaxable" Name="isTaxable" InputValue="true" />
@@ -1262,6 +1304,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditENWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{ENId}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="FixedAmount" Value="#{enFixedAmount}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="oldAmount" Value="#{oldEntValue}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="oldInclude" Value="#{oldENIncludeInFinal}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{ENForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
@@ -1307,16 +1350,14 @@
                             DefaultAnchor="100%" Layout="AutoLayout"
                             BodyPadding="5">
                             <Items>
-                                 <ext:TextField ID="DEoldValue" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
-                                <ext:TextField ID="DEId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                 <ext:TextField ID="DEoldValue" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
+                                <ext:TextField ID="DEId" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
                                 <ext:Checkbox ID="oldDEIncludeInFinal" Hidden="true" runat="server" disabled="true" />
                                 
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="dedEdId" Name="DEedId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true" StoreID="dedsStore">
                                     
-                                    <Listeners>
-                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                    </Listeners>
+                                   
+
                                 </ext:ComboBox>
                                 <ext:Checkbox ID="Checkbox1" FieldLabel="<%$ Resources: FieldIncludeInTotal %>" runat="server" DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />
                                 
@@ -1349,17 +1390,15 @@
                                   <Validator Handler="return !isNaN(this.value) && this.value>0 && this.value<100;" />
                                 </ext:TextField>
 
-                                <ext:TextField
+                                <ext:NumberField
                                     runat="server" Name="fixedAmount"
                                     AllowBlank="false"
                                     MinValue="0"
                                     ID="deFixedAmount"
-                                    FieldLabel="<%$ Resources:FieldFixedAmount%>">
-                                    <Listeners>
-                                        <%--<Change Handler="if(this.prev().prev().value==false) this.prev().setValue(CalculatePct(this.value));" />--%>
-                                    </Listeners>
-                                    <Validator Handler="return !isNaN(this.value) && this.value>0;" />
-                                </ext:TextField>
+                                    FieldLabel="<%$ Resources:FieldFixedAmount%>" DecimalPrecision="2" AllowDecimals="true" >
+                                  
+                                  <Validator Handler="return this.value>0;" />
+                                </ext:NumberField>
                                 <ext:TextArea runat="server" Name="comment" DataIndex="comment" ID="deComment" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:TextField InputType="Password" Visible="false" runat="server" Name="comment" DataIndex="comment" ID="deCommentField" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:Checkbox ID="deIsTaxable" FieldLabel="<%$ Resources: FieldIsTaxable %>" runat="server" DataIndex="isTaxable" Name="isTaxable" InputValue="true" />
@@ -1381,6 +1420,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditDEWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{DEId}.getValue()" Mode="Raw" />
+                                   <ext:Parameter Name="FixedAmount" Value="#{deFixedAmount}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="oldAmount" Value="#{DEoldValue}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="oldInclude" Value="#{oldDEIncludeInFinal}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{DEForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />

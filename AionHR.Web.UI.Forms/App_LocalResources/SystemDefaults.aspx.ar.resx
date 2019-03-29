@@ -388,7 +388,7 @@
     <value>القسم</value>
   </data>
   <data name="FieldIndustry" xml:space="preserve">
-    <value>نشاط منشأة</value>
+    <value>نشاط </value>
   </data>
   <data name="SourceAttendanceSchedule" xml:space="preserve">
     <value>مصدر جدول الدوام</value>
@@ -424,7 +424,7 @@
     <value>نهاية خدمة ايام عمل</value>
   </data>
   <data name="MaxLoanDeduction" xml:space="preserve">
-    <value>الحد الاعظمي لاقتطاع السلفة</value>
+    <value>الحد الأقصى لاستقطاع السلفة</value>
   </data>
   <data name="pyaaDays" xml:space="preserve">
     <value>عقوبة غياب متراكمة بدون عذر في أيام</value>
@@ -437,5 +437,17 @@
   </data>
   <data name="FieldDailySchedule" xml:space="preserve">
     <value>جدول الدوام اليومي </value>
+  </data>
+  <data name="employeeReference" xml:space="preserve">
+    <value>رمز الموظف</value>
+  </data>
+  <data name="punchSource" xml:space="preserve">
+    <value>مصدر البصمات </value>
+  </data>
+  <data name="timeAttendance" xml:space="preserve">
+    <value>رمز الدوام</value>
+  </data>
+  <data name="backofficeEmail" xml:space="preserve">
+    <value>بريد الشركة</value>
   </data>
 </root>

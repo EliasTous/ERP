@@ -36,9 +36,21 @@
     </style>
     <script type="text/javascript">
         var empTags = null;
-        function InitEmpTags(tags) {
-            console.log(tags);
-            empTags = tags;
+        var adminAffairsTags = null;
+        var leaveTags = null;
+        var loanTags = null;
+        var scheduleTags = null;
+        var penaltyTags = null;
+        var tvarTags = null;
+        function InitTags(emp,admin,leave,loan,schedule,penalty,tv) {
+            
+            empTags = emp;
+            adminAffairsTags = admin;
+            leaveTags = leave;
+            loanTags = loan;
+            scheduleTags = schedule;
+            penaltyTags = penalty;
+            tvarTags = tv;
         }
         function escapeHtml(unsafe) {
             return unsafe
@@ -72,19 +84,140 @@
 
             return buttongroup.render();   // return button as jquery object
         }
-        var companyParams = function (context) {
+        var adminAffairParams = function (context) {
             var ui = $.summernote.ui;
 
             // create button
             var buttongroup = ui.buttonGroup([ui.button({
-                contents: '<i class="fa fa-child"/> Company Parameters',
-                tooltip: 'hello',
+                contents: '<i class="material-icons">business</i>',
+
                 data: {
                     toggle: 'dropdown'
                 }
             }), ui.dropdown({
-                items: ['companyname (company  name)', 'lastname (employee last name)', 'email (employee email)'],
-                tooltip: 'hello',
+                className: 'tags-dropdown',
+                items: adminAffairsTags,
+
+                click: function (d) {
+                    console.log(d);
+
+                    // invoke insertText method with 'hello' on editor module.
+                    context.invoke('editor.insertText', "#" + d.target.innerText.split('(')[0].trim() + "#");
+                }
+            })]);
+
+            return buttongroup.render();   // return button as jquery object
+        }
+        var leaveParams = function (context) {
+            var ui = $.summernote.ui;
+
+            // create button
+            var buttongroup = ui.buttonGroup([ui.button({
+                contents: '<i class="material-icons">flight</i>',
+
+                data: {
+                    toggle: 'dropdown'
+                }
+            }), ui.dropdown({
+                className: 'tags-dropdown',
+                items: leaveTags,
+
+                click: function (d) {
+                    console.log(d);
+
+                    // invoke insertText method with 'hello' on editor module.
+                    context.invoke('editor.insertText', "#" + d.target.innerText.split('(')[0].trim() + "#");
+                }
+            })]);
+
+            return buttongroup.render();   // return button as jquery object
+        }
+        var loanParams = function (context) {
+            var ui = $.summernote.ui;
+
+            // create button
+            var buttongroup = ui.buttonGroup([ui.button({
+                contents: '<i class="material-icons">money</i>',
+
+                data: {
+                    toggle: 'dropdown'
+                }
+            }), ui.dropdown({
+                className: 'tags-dropdown',
+                items: loanTags,
+
+                click: function (d) {
+                    console.log(d);
+
+                    // invoke insertText method with 'hello' on editor module.
+                    context.invoke('editor.insertText', "#" + d.target.innerText.split('(')[0].trim() + "#");
+                }
+            })]);
+
+            return buttongroup.render();   // return button as jquery object
+        }
+        var scheduleParams = function (context) {
+            var ui = $.summernote.ui;
+
+            // create button
+            var buttongroup = ui.buttonGroup([ui.button({
+                contents: '<i class="material-icons">schedule</i>',
+
+                data: {
+                    toggle: 'dropdown'
+                }
+            }), ui.dropdown({
+                className: 'tags-dropdown',
+                items: scheduleTags,
+
+                click: function (d) {
+                    console.log(d);
+
+                    // invoke insertText method with 'hello' on editor module.
+                    context.invoke('editor.insertText', "#" + d.target.innerText.split('(')[0].trim() + "#");
+                }
+            })]);
+
+            return buttongroup.render();   // return button as jquery object
+        }
+         var penaltyParams = function (context) {
+            var ui = $.summernote.ui;
+
+            // create button
+            var buttongroup = ui.buttonGroup([ui.button({
+                contents: '<i class="material-icons">sentiment_very_dissatisfied</i>',
+
+                data: {
+                    toggle: 'dropdown'
+                }
+            }), ui.dropdown({
+                className: 'tags-dropdown',
+                items: penaltyTags,
+
+                click: function (d) {
+                    console.log(d);
+
+                    // invoke insertText method with 'hello' on editor module.
+                    context.invoke('editor.insertText', "#" + d.target.innerText.split('(')[0].trim() + "#");
+                }
+            })]);
+
+            return buttongroup.render();   // return button as jquery object
+        }
+        var tvParams = function (context) {
+            var ui = $.summernote.ui;
+
+            // create button
+            var buttongroup = ui.buttonGroup([ui.button({
+                contents: '<i class="material-icons">timelapse</i>',
+
+                data: {
+                    toggle: 'dropdown'
+                }
+            }), ui.dropdown({
+                    className: 'tags-dropdown',
+                    items: tvarTags,
+
                 click: function (d) {
                     console.log(d);
 
@@ -539,6 +672,7 @@
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:English%>" Value="1"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Arabic%>" Value="2"></ext:ListItem>
+                                         <ext:ListItem Text="<%$Resources:Common,FrenchLanguage %>" Value="3" />
 
                                     </Items>
                                 </ext:ComboBox>
@@ -561,7 +695,7 @@
                                         <AfterLayout Handler=" $('#summernote').summernote('reset'); setWidth(); var s = unescape( #{bodyText}.getValue()); document.getElementById('summernote').style.direction = 'ltr'; $('#summernote').summernote('code',s);" />
                                         <AfterRender Handler=" App.TemplateBodyWindow.setMaxHeight(0.92*window.innerHeight);$('#summernote').summernote({
                                                 height: 270,
-                                              toolbar: [['mybutton', ['hello']],
+                                              toolbar: [['mybutton', ['hello','admin','leave','loan','schedule','penalty','tv']],
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],
             ['fontname', ['fontname']],
@@ -575,7 +709,7 @@
   ],
 
   buttons: {
-    hello: employeeParams,other:companyParams
+    hello: employeeParams,admin:adminAffairParams,leave:leaveParams,loan:loanParams,schedule:scheduleParams,penalty:penaltyParams,tv:tvParams
                                           
   }
                                                 }); " />

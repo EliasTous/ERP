@@ -67,6 +67,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
+        /// Error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden Error;
+        
+        /// <summary>
         /// rtl control.
         /// </summary>
         /// <remarks>
@@ -103,13 +112,13 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Panel Center;
         
         /// <summary>
-        /// dateRange1 control.
+        /// date2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter dateRange1;
+        protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter date2;
         
         /// <summary>
         /// employeeCombo1 control.
@@ -121,6 +130,42 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeCombo1;
         
         /// <summary>
+        /// approverId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox approverId;
+        
+        /// <summary>
+        /// ApproverStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store ApproverStore;
+        
+        /// <summary>
+        /// timeVariationType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.TimeVariationTypeFilter timeVariationType;
+        
+        /// <summary>
+        /// apStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox apStatus;
+        
+        /// <summary>
         /// jobInfo1 control.
         /// </summary>
         /// <remarks>
@@ -130,22 +175,22 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
         
         /// <summary>
-        /// dayStatus control.
+        /// esId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox dayStatus;
+        protected global::Ext.Net.ComboBox esId;
         
         /// <summary>
-        /// punchStatus control.
+        /// statusStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox punchStatus;
+        protected global::Ext.Net.Store statusStore;
         
         /// <summary>
         /// ASPxCallbackPanel1 control.

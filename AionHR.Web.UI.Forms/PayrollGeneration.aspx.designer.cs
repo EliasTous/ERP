@@ -211,6 +211,42 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden CurrentPayRef;
         
         /// <summary>
+        /// GenerateCurrentPayroll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden GenerateCurrentPayroll;
+        
+        /// <summary>
+        /// selectedEmployeeId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden selectedEmployeeId;
+        
+        /// <summary>
+        /// paySlipsStartAt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden paySlipsStartAt;
+        
+        /// <summary>
+        /// isSelected control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden isSelected;
+        
+        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -256,13 +292,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store yearStore;
         
         /// <summary>
-        /// salaryTypeFilter control.
+        /// salaryTypeId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox salaryTypeFilter;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.SalaryTypeFilter salaryTypeId;
         
         /// <summary>
         /// status control.
@@ -409,13 +445,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store fiscalyearStore;
         
         /// <summary>
-        /// salaryType control.
+        /// SalaryType2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox salaryType;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.SalaryTypeFilter SalaryType2;
         
         /// <summary>
         /// periodId control.
@@ -526,6 +562,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeCombo1;
         
         /// <summary>
+        /// DeleteAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button DeleteAll;
+        
+        /// <summary>
         /// employeePayrolls control.
         /// </summary>
         /// <remarks>
@@ -560,6 +605,33 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column1;
+        
+        /// <summary>
+        /// Toolbar2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Toolbar Toolbar2;
+        
+        /// <summary>
+        /// StatusBar1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.StatusBar StatusBar1;
+        
+        /// <summary>
+        /// PagingToolbar1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.PagingToolbar PagingToolbar1;
         
         /// <summary>
         /// GridView2 control.
@@ -1208,6 +1280,33 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button Button8;
+        
+        /// <summary>
+        /// payListWidow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window payListWidow;
+        
+        /// <summary>
+        /// payListForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel payListForm;
+        
+        /// <summary>
+        /// payListProgressBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ProgressBar payListProgressBar;
         
         /// <summary>
         /// TaskManager1 control.

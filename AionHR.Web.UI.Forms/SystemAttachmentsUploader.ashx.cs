@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.SessionState;
 
@@ -44,7 +45,15 @@ namespace AionHR.Web.UI.Forms
 
             }
             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
-            req.entity = new Model.System.Attachement() { date=DateTime.Now, classId = Convert.ToInt32(context.Request.QueryString["classId"]), recordId = Convert.ToInt32(context.Request.QueryString["recordId"]), fileName = context.Request.Files[0].FileName, seqNo = null };
+            if (ClassId.EPDO== Convert.ToInt32(context.Request.QueryString["classId"]))
+            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = Convert.ToInt32(context.Request.QueryString["classId"]), recordId = Convert.ToInt32(context.Request.QueryString["recordId"]), fileName = Regex.Replace(context.Request.Files[0].FileName, @"[^0-9a-zA-Z.]+", ""), seqNo = null };
+            else
+            {
+                if (context.Request.Files.Count==1)
+                    req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = Convert.ToInt32(context.Request.QueryString["classId"]), recordId = Convert.ToInt32(context.Request.QueryString["recordId"]), fileName = Regex.Replace(context.Request.Files[0].FileName, @"[^0-9a-zA-Z.]+", ""), seqNo = 0 };
+                else
+                    req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = Convert.ToInt32(context.Request.QueryString["classId"]), recordId = Convert.ToInt32(context.Request.QueryString["recordId"]), fileName = Regex.Replace(context.Request.Files[0].FileName, @"[^0-9a-zA-Z.]+", ""), seqNo = null };
+            }
             //write your handler implementation here.
             int bulk;
             if (int.TryParse(context.Request.Form["id"], out bulk))
@@ -65,7 +74,7 @@ namespace AionHR.Web.UI.Forms
                 f.InputStream.Close();
 
                 req.FilesData.Add((byte[])fileData.Clone());
-                req.FileNames.Add(f.FileName);
+                req.FileNames.Add(Regex.Replace(f.FileName, @"[^0-9a-zA-Z.]+", ""));
 
 
             }

@@ -55,14 +55,14 @@
                 <ext:Model ID="Model1" runat="server" >
                     <Fields>
 
-                        <ext:ModelField Name="edType" />                       
+                        <ext:ModelField Name="edType" />   
+                         <ext:ModelField Name="edTypeString" />                         
                         <ext:ModelField Name="timeCode" />
-                          <ext:ModelField Name="timeCodeString" />
+                          <ext:ModelField Name="name" />
                           <ext:ModelField Name="edId" />
                           <ext:ModelField Name="apId" />
                            <ext:ModelField Name="edName" />
                            <ext:ModelField Name="apName" />
-                           <ext:ModelField Name="edTypeString" />
                           <ext:ModelField Name="gracePeriod" />
 
 
@@ -97,7 +97,7 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
+                                <ext:Button ID="btnAdd" Visible="false" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
                                      <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>                           
@@ -165,10 +165,10 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                              <ext:Column    CellCls="cellLink" ID="ColEdType" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldType%>" DataIndex="edTypeString" Flex="1" Visible="false">
+                              <ext:Column    CellCls="cellLink" ID="ColEdType" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldType%>" DataIndex="edtype" Flex="1" Visible="false">
                     
                                 </ext:Column>
-                            <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeCode%>" DataIndex="timeCodeString" Flex="2" Hideable="false">
+                            <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeCode%>" DataIndex="name" Flex="2" Hideable="false">
                     
                                 </ext:Column>
                                
@@ -335,13 +335,14 @@
                                       
                                     </Items>
                                 <Listeners>
-                                    <Select Handler="#{currentEDtype}.setValue(this.value);" />
+                                    <Select Handler="#{currentEDtype}.setValue(this.value);App.entEdId.select();" />
                                 </Listeners>
                                  <DirectEvents>
                                      <Select OnEvent="Unnamed_Event" />
                                  </DirectEvents>
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timeCode" runat="server" FieldLabel="<%$ Resources:FieldTimeVariationType%>" Name="timeCode" IDMode="Static" SubmitValue="true" AllowBlank="false" >
+                            
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="timecode" runat="server" FieldLabel="<%$ Resources:FieldTimeVariationType%>" Name="timecode" IDMode="Static" SubmitValue="true" SimpleSubmit="true" ReadOnly="true"  >
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:Common ,  UnpaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_UNPAID_LEAVE %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  PaidLeaves %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_PAID_LEAVE %>"></ext:ListItem>
@@ -353,7 +354,7 @@
                                         <ext:ListItem Text="<%$ Resources:Common ,  EARLY_CHECKIN %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_EARLY_CHECKIN %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  OVERTIME %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_OVERTIME %>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common ,  MISSED_PUNCH %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_MISSED_PUNCH %>"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: Common , COUNT %>" Value="<%$ Resources: ComboBoxValues , TimeVariationType_COUNT %>"></ext:ListItem>
+                                      <ext:ListItem Text="<%$ Resources:Common ,  Day_Bonus %>" Value="<%$ Resources:ComboBoxValues ,  TimeVariationType_Day_Bonus %>"></ext:ListItem>
                                       
                                     </Items>
                                 </ext:ComboBox>

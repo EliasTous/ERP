@@ -41,6 +41,8 @@ using System.Threading;
 using AionHR.Infrastructure.Tokens;
 using AionHR.Services.Implementations;
 using AionHR.Repository.WebService.Repositories;
+using Reports.EmployeePayRoll;
+using Newtonsoft.Json.Linq;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -56,25 +58,48 @@ namespace AionHR.Web.UI.Forms
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         IHelpFunctionService _helpFunctionService= ServiceLocator.Current.GetInstance<IHelpFunctionService>();
         SessionHelper h;
+
+
         protected override void InitializeCulture()
         {
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-            }
+                case "ar":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetArabicLocalisation();
+                    }
+                    break;
+                case "en":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
 
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-            }
+                case "fr":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetFrenchLocalisation();
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
 
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+            }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -91,8 +116,11 @@ namespace AionHR.Web.UI.Forms
                 Viewport1.ActiveIndex = 0;
                 yearStore.DataSource = GetYears();
                 yearStore.DataBind();
-                salaryTypeFilter.Select("5");
+                salaryTypeId.setSalaryType("5");
+                salaryTypeId.ADDHandler("select", "App.payrollsStore.reload();");
+               
                 status.Select("0");
+                payrollsStore.Reload();
 
                 if (_systemService.SessionHelper.CheckIfIsAdmin())
                     return;
@@ -166,7 +194,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")  + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return new List<FiscalYear>();
             }
             return resp.Items;
@@ -205,8 +233,8 @@ namespace AionHR.Web.UI.Forms
 
 
             req.PayId = CurrentPayId.Text;
-            req.Size = "30";
-            req.StartAt = "1";
+            req.Size = "50";
+           
             req.Filter = "";
             
 
@@ -257,7 +285,7 @@ namespace AionHR.Web.UI.Forms
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() +"<br>"+GetGlobalResourceObject("Errors", "ErrorLogId") + response.LogId : response.Summary).Show();
+                 Common.errorMessage(response);
             return response.Items;
         }
 
@@ -310,18 +338,20 @@ namespace AionHR.Web.UI.Forms
             h.status = "1";
             PostRequest<GenerationHeader> req = new PostRequest<GenerationHeader>();
             req.entity = h;
+            req.entity.salaryType = SalaryType2.GetSalaryTypeId();
 
             PostResponse<GenerationHeader> resp = _payrollService.ChildAddOrUpdate<GenerationHeader>(req);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")  + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             CurrentPayId.Text = resp.recordId;
             Viewport1.ActiveIndex = 0;
 
             Store1.Reload();
+            payrollsStore.Reload();
             RecordRequest r = new RecordRequest();
 
             r.RecordID = resp.recordId;
@@ -348,7 +378,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
 
                 return;
             }
@@ -377,7 +407,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")  + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             ModelProxy record = this.Store1.GetById(id);
@@ -402,9 +432,14 @@ namespace AionHR.Web.UI.Forms
             string payRef = e.ExtraParams["payRef"];
             string salaryType = e.ExtraParams["salaryType"];
             string fiscalYear = e.ExtraParams["fiscalYear"];
+            if (status == "1")
+                DeleteAll.Disabled = false;
+            else
+                DeleteAll.Disabled = true;
             CurrentPayId.Text = id;
             salaryTypeHidden.Text = salaryType;
             fiscalYearHidden.Text = fiscalYear;
+
             payRefHidden.Text = payRef;
             IsPayrollPosted.Text = status;
             AddEDButton.Disabled = AddENButton.Disabled = /*SaveEDButton.Disabled*/  status == "2";
@@ -426,7 +461,7 @@ namespace AionHR.Web.UI.Forms
                     if (!resp.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                        Common.errorMessage(resp);
                         return;
                     }
                     statusCombo.Select(resp.result.status);
@@ -455,13 +490,21 @@ namespace AionHR.Web.UI.Forms
 
                     break;
                 case "imgGenerate":
-                    CurrentPayId1.Text = id;
+                    GenerateCurrentPayroll.Text = "true";
+                    double progress = 0;
+                    string prog = (float.Parse(progress.ToString()) * 100).ToString();
+                    string message = GetGlobalResourceObject("Common", "working").ToString();
+                    this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+
+                    CurrentPayId.Text = id;
                     //Step 1 : get the object from the Web Service 
                     EditGenerateForm.Reset();
                     FillDepartment();
                     FillBranch();
                     generatePayRef.Text = payRef;
-
+                    GenerateButton.Text = Resources.Common.Generate;
+                    GenerateButton.ID = "ApplicationGo";
+                    this.Progress1.Reset();
                     EditGenerateWindow.Show();
 
                     // Store1.Reload();
@@ -485,7 +528,7 @@ namespace AionHR.Web.UI.Forms
             if (!res.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+                Common.errorMessage(res);
                 return;
             }
             Notification.Show(new NotificationConfig
@@ -713,7 +756,7 @@ namespace AionHR.Web.UI.Forms
                 if (!resp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(resp);
                     return;
                 }
                 Notification.Show(new NotificationConfig
@@ -738,7 +781,7 @@ namespace AionHR.Web.UI.Forms
             {
                 //In case of error, showing a message box to the user
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+                X.Msg.Alert(Resources.Common.Error, ex.Message).Show();
 
             }
         }
@@ -757,7 +800,7 @@ namespace AionHR.Web.UI.Forms
                 if (!res.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+                    Common.errorMessage(res);
                     return;
                 }
                 Notification.Show(new NotificationConfig
@@ -798,7 +841,7 @@ namespace AionHR.Web.UI.Forms
         //            if (!resp.Success)
         //            {
         //                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+        //                Common.errorMessage(resp);
         //                return;
         //            }
         //            Notification.Show(new NotificationConfig
@@ -832,14 +875,21 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 req.Year = fiscalYear.Value.ToString();
-                req.PeriodType = (SalaryType)Convert.ToInt32(salaryType.Value.ToString());
+                if (string.IsNullOrEmpty(req.Year))
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Errors.FillFiscalYear).Show();
+                    Viewport1.ActiveIndex = 0;
+                    return;
+                }
+                req.PeriodType = Convert.ToInt32(SalaryType2.GetSalaryTypeId());
                 req.Status = "1";
 
                 ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
                 if (!resp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(resp);
                     return;
                 }
                 List<object> obs = new List<Object>();
@@ -851,10 +901,23 @@ namespace AionHR.Web.UI.Forms
             }
             catch { }
         }
-
+      
         public void UpdateStartEndDate(object sender, DirectEventArgs e)
         {
+            
             string s = e.ExtraParams["period"];
+            try
+            {
+                string d = s.Split('(')[1].Split(')')[0];
+                X.Call("setStartEnd", d.Split('-')[0], d.Split('-')[1]);
+            }
+            catch { }
+        }
+        [DirectMethod]
+        public void UpdateStartEndDateFromController()
+        {
+            fiscalPeriodsStore.Reload();
+            string s = periodId.Value.ToString();
             try
             {
                 string d = s.Split('(')[1].Split(')')[0];
@@ -865,13 +928,15 @@ namespace AionHR.Web.UI.Forms
 
         protected void Store1_ReadData(object sender, StoreReadDataEventArgs e)
         {
+            paySlipsStartAt.Text = "0";
             EmployeePayrollListRequest req = GetEmployeePayrollRequest();
+            req.StartAt = e.Start.ToString();
             ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
             if (!resp.Success)
             {
 
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")  + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             Store1.DataSource = resp.Items;
@@ -893,9 +958,9 @@ namespace AionHR.Web.UI.Forms
                 req.Year = "0";
             }
 
-            if (!string.IsNullOrEmpty(salaryTypeFilter.Text) && !string.IsNullOrEmpty(salaryTypeFilter.Value.ToString()))
+            if (!string.IsNullOrEmpty(salaryTypeId.GetSalaryTypeId()) )
             {
-                req.PeriodType = salaryTypeFilter.Value.ToString();
+                req.PeriodType = salaryTypeId.GetSalaryTypeId();
 
             }
             else
@@ -932,7 +997,7 @@ namespace AionHR.Web.UI.Forms
             if (!headers.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, headers.Summary).Show();
+                Common.errorMessage(headers);
                 return;
             }
             payrollsStore.DataSource = headers.Items;
@@ -941,6 +1006,9 @@ namespace AionHR.Web.UI.Forms
         public void AddPayroll()
         {
             BasicInfoTab.Reset();
+           
+            SalaryType2.setSalaryType("5");
+            SalaryType2.ADDHandler("select", "App.direct.UpdateStartEndDateFromController()");
             fiscalyearStore.DataSource = GetYears();
             fiscalyearStore.DataBind();
             Viewport1.ActiveIndex = 1;
@@ -952,7 +1020,8 @@ namespace AionHR.Web.UI.Forms
 
             yearStore.DataSource = GetYears();
             yearStore.DataBind();
-            salaryTypeFilter.Select("5");
+            salaryTypeId.setSalaryType("5");
+          
             status.Select("0");
             Viewport1.ActiveIndex = 0;
         }
@@ -1054,7 +1123,7 @@ namespace AionHR.Web.UI.Forms
                     if (!resp.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                        Common.errorMessage(resp);
                         return;
 
                     }
@@ -1106,7 +1175,7 @@ namespace AionHR.Web.UI.Forms
                     if (!resp.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                        Common.errorMessage(resp);
                         return;
 
                     }
@@ -1192,7 +1261,7 @@ namespace AionHR.Web.UI.Forms
                 if (!resp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                    Common.errorMessage(resp);
                     return;
 
                 }
@@ -1232,7 +1301,7 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return new List<PayrollEntitlementDeduction>();
             }
             return resp.Items;
@@ -1254,18 +1323,100 @@ namespace AionHR.Web.UI.Forms
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return new List<PayrollSocialSecurity>();
             }
             return resp.Items;
         }
 
 
-        public void printBtn_Click(object sender, EventArgs e)
+        //public void printBtn_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        MonthlyPayroll p = GetReport(payRefHidden.Text);
+
+        //        string format = "Pdf";
+        //        string fileName = String.Format("Report.{0}", format);
+
+        //        MemoryStream ms = new MemoryStream();
+        //        p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+        //        Response.Clear();
+        //        Response.Write("<script>");
+        //        Response.Write("window.document.forms[0].target = '_blank';");
+        //        Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
+        //        Response.Write("</script>");
+        //        Response.ContentType = "application/pdf";
+        //        Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+        //        Response.BinaryWrite(ms.ToArray());
+        //        Response.Flush();
+        //        Response.Close();
+        //    }
+        //    catch(Exception exp)
+        //    {
+        //        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+        //    }
+        //}
+        //protected void ExportPdfBtn_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        MonthlyPayroll p = GetReport(payRefHidden.Text);
+        //        string format = "Pdf";
+        //        string fileName = String.Format("Report.{0}", format);
+
+        //        MemoryStream ms = new MemoryStream();
+        //        p.ExportToPdf(ms);
+        //        Response.Clear();
+
+        //        Response.ContentType = "application/pdf";
+        //        Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+        //        Response.BinaryWrite(ms.ToArray());
+        //        Response.Flush();
+        //        Response.Close();
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+        //    }
+        //    //Response.Redirect("Reports/RT301.aspx");
+        //}
+
+        //protected void ExportXLSBtn_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        MonthlyPayroll p = GetReport(payRefHidden.Text);
+        //        string format = "xls";
+        //        string fileName = String.Format("Report.{0}", format);
+
+        //        MemoryStream ms = new MemoryStream();
+        //        p.ExportToXls(ms);
+
+        //        Response.Clear();
+
+        //        Response.ContentType = "application/vnd.ms-excel";
+        //        Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+        //        Response.BinaryWrite(ms.ToArray());
+        //        Response.Flush();
+        //        Response.Close();
+
+
+
+
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+        //    }
+
+        //}
+        protected void printPaySlip_Click(object sender, EventArgs e)
+      
         {
             try
             {
-                MonthlyPayroll p = GetReport(payRefHidden.Text);
+               EmployeesPaySlip p = GetReport(CurrentPayId.Text);
 
                 string format = "Pdf";
                 string fileName = String.Format("Report.{0}", format);
@@ -1283,16 +1434,16 @@ namespace AionHR.Web.UI.Forms
                 Response.Flush();
                 Response.Close();
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
-        protected void ExportPdfBtn_Click(object sender, EventArgs e)
+        protected void ExportPdfPaySlip_Click(object sender, EventArgs e)
         {
             try
             {
-                MonthlyPayroll p = GetReport(payRefHidden.Text);
+                EmployeesPaySlip p = GetReport(CurrentPayId.Text);
                 string format = "Pdf";
                 string fileName = String.Format("Report.{0}", format);
 
@@ -1313,164 +1464,132 @@ namespace AionHR.Web.UI.Forms
             //Response.Redirect("Reports/RT301.aspx");
         }
 
-        protected void ExportXLSBtn_Click(object sender, EventArgs e)
+        //protected void ExportXLSPaySlip_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        MonthlyPayroll p = GetReport(payRefHidden.Text);
+        //        string format = "xls";
+        //        string fileName = String.Format("Report.{0}", format);
+
+        //        MemoryStream ms = new MemoryStream();
+        //        p.ExportToXls(ms);
+
+        //        Response.Clear();
+
+        //        Response.ContentType = "application/vnd.ms-excel";
+        //        Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+        //        Response.BinaryWrite(ms.ToArray());
+        //        Response.Flush();
+        //        Response.Close();
+
+
+
+
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+        //    }
+
+        //}
+        private EmployeesPaySlip GetReport(string payId)
         {
             try
             {
-                MonthlyPayroll p = GetReport(payRefHidden.Text);
-                string format = "xls";
-                string fileName = String.Format("Report.{0}", format);
 
-                MemoryStream ms = new MemoryStream();
-                p.ExportToXls(ms);
-
-                Response.Clear();
-
-                Response.ContentType = "application/vnd.ms-excel";
-                Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
-                Response.BinaryWrite(ms.ToArray());
-                Response.Flush();
-                Response.Close();
-
-
-
-
-            }
-            catch (Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
-
-        }
-        private MonthlyPayroll GetReport(string payRef)
-        {
-            try
-            {
-
-                ReportCompositeRequest req = GetRequest(payRef);
+                ReportCompositeRequest req = GetRequest(payId);
 
                 ListResponse<AionHR.Model.Reports.RT501> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT501>(req);
                 if (!resp.Success)
                 {
 
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                    return new MonthlyPayroll();
+                    Common.errorMessage(resp);
+                    return new EmployeesPaySlip(new List<RT501>(), _systemService.SessionHelper.CheckIfArabicSession());
 
                 }
 
-                var d = resp.Items.GroupBy(x => x.employeeName.fullName);
-                PayrollLineCollection lines = new PayrollLineCollection();
-                HashSet<Model.Reports.EntitlementDeduction> ens = new HashSet<Model.Reports.EntitlementDeduction>(new EntitlementDeductionComparer());
-                HashSet<Model.Reports.EntitlementDeduction> des = new HashSet<Model.Reports.EntitlementDeduction>(new EntitlementDeductionComparer());
-                resp.Items.ForEach(x =>
-                {
-                    Model.Reports.EntitlementDeduction DE = new Model.Reports.EntitlementDeduction();
+                //var d = resp.Items.GroupBy(x => x.employeeName.fullName);
+                //PayrollLineCollection lines = new PayrollLineCollection();
+                //HashSet<Model.Reports.EntitlementDeduction> ens = new HashSet<Model.Reports.EntitlementDeduction>(new EntitlementDeductionComparer());
+                //HashSet<Model.Reports.EntitlementDeduction> des = new HashSet<Model.Reports.EntitlementDeduction>(new EntitlementDeductionComparer());
+                //resp.Items.ForEach(x =>
+                //{
+                //    Model.Reports.EntitlementDeduction DE = new Model.Reports.EntitlementDeduction();
 
-                    if (x.edType == 1)
-                    {
+                //    if (x.edType == 1)
+                //    {
 
-                        try
-                        {
-                            DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd();
-                            DE.amount = 0; DE.isTaxable = x.isTaxable;
-                        }
-                        catch { DE.name = x.edName; DE.amount = 0; DE.isTaxable = x.isTaxable; }
-                        ens.Add(DE);
-                    }
-                    else
-                    {
+                //        try
+                //        {
+                //            DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd();
+                //            DE.amount = 0; DE.isTaxable = x.isTaxable;
+                //        }
+                //        catch { DE.name = x.edName; DE.amount = 0; DE.isTaxable = x.isTaxable; }
+                //        ens.Add(DE);
+                //    }
+                //    else
+                //    {
 
-                        try
-                        {
-                            DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd();
-                            DE.amount = 0;
-                        }
-                        catch { DE.name = x.edName; DE.amount = 0; }
-                        des.Add(DE);
-                    }
-                });
-                foreach (var item in d)
-                {
-                    var list = item.ToList();
-                    list.ForEach(y =>
-                    {
-                        try
-                        {
-                            y.edName = GetLocalResourceObject(y.edName.Trim()).ToString().TrimEnd();
+                //        try
+                //        {
+                //            DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd();
+                //            DE.amount = 0;
+                //        }
+                //        catch { DE.name = x.edName; DE.amount = 0; }
+                //        des.Add(DE);
+                //    }
+                //});
+                //foreach (var item in d)
+                //{
+                //    var list = item.ToList();
+                //    list.ForEach(y =>
+                //    {
+                //        try
+                //        {
+                //            y.edName = GetLocalResourceObject(y.edName.Trim()).ToString().TrimEnd();
 
-                        }
-                        catch { y.edName = y.edName; }
-                    });
-                    PayrollLine line = new PayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString(), _systemService.SessionHelper.GetDateformat(), GetLocalResourceObject("netSalaryString").ToString());
-                    lines.Add(line);
-                }
+                //        }
+                //        catch { y.edName = y.edName; }
+                //    });
+                //    PayrollLine line = new PayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString(), _systemService.SessionHelper.GetDateformat(), GetLocalResourceObject("netSalaryString").ToString());
+                //    lines.Add(line);
+                //}
 
-                MonthlyPayrollCollection s = new MonthlyPayrollCollection();
+                //MonthlyPayrollCollection s = new MonthlyPayrollCollection();
+
+                EmployeesPaySlip h = new EmployeesPaySlip(resp.Items, _systemService.SessionHelper.CheckIfArabicSession());
 
 
-                if (lines.Count > 0)
-                {
-                    MonthlyPayrollSet p = new MonthlyPayrollSet(GetLocalResourceObject("Entitlements").ToString(), GetLocalResourceObject("Taxable").ToString(), GetLocalResourceObject("Deductions").ToString());
-                    p.PayPeriodString = resp.Items[0].startDate.ToString(_systemService.SessionHelper.GetDateformat()) + " - " + resp.Items[0].endDate.ToString(_systemService.SessionHelper.GetDateformat());
-                    p.PayDate = GetLocalResourceObject("PaidAt") + " " + resp.Items[0].payDate.ToString(_systemService.SessionHelper.GetDateformat());
-                    p.Names = (lines[0] as PayrollLine).Entitlements;
-                    p.DIndex = ens.Count;
-                    p.taxableIndex = ens.Count(x => x.isTaxable);
-                    p.Payrolls = lines;
-                    s.Add(p);
-                }
-
-                MonthlyPayroll h = new MonthlyPayroll();
-                h.DataSource = s;
+              
 
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
                 string user = _systemService.SessionHelper.GetCurrentUser();
-                h.Parameters["User"].Value = user;
-                if (resp.Items.Count > 0)
-                {
-
-
-
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-
-
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-
-
-                    h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
-
-                    if (req.Parameters["_payRef"] != "0")
-                        h.Parameters["Ref"].Value = req.Parameters["_payRef"];
-                    else
-                        h.Parameters["Ref"].Value = GetGlobalResourceObject("Common", "All");
-
-                }
-
+                //h.Parameters["User"].Value = user;
+              
 
                 return h;
             }
             catch (Exception exp)
             {
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-                return new MonthlyPayroll(); 
+                return new EmployeesPaySlip(new List<RT501>(), _systemService.SessionHelper.CheckIfArabicSession());
 
             }
 
 
 
         }
-        private ReportCompositeRequest GetRequest(string payRef)
+        private ReportCompositeRequest GetRequest(string payId)
         {
             ReportCompositeRequest req = new ReportCompositeRequest();
 
-            req.Size = "1000";
-            req.StartAt = "1";
-            PayRefParameterSet p = new PayRefParameterSet();
-            p.payRef = payRef;
+            req.Size = "50";
+            req.StartAt = paySlipsStartAt.Text;
+            PayIdParameterSet p = new PayIdParameterSet();
+            p.payId = payId;
             PaymentMethodParameterSet Pm = new PaymentMethodParameterSet();
             Pm.paymentMethod = 0;
             //JobInfoParameterSet jp = new JobInfoParameterSet();
@@ -1478,8 +1597,16 @@ namespace AionHR.Web.UI.Forms
             //jp.DepartmentId = 0;
             req.Add(p);
             req.Add(Pm);
-          req.Add(jobInfo1.GetJobInfo());
-            req.Add(employeeCombo1.GetEmployee());
+            JobInfoParameterSet j = jobInfo1.GetJobInfo();
+            j.DivisionId = 0;
+             req.Add(j);
+            DateRangeParameterSet dateRange = new DateRangeParameterSet();
+            dateRange.DateFrom = DateTime.Parse("1970-01-01");
+            dateRange.DateTo = DateTime.Parse("2050-01-01");
+            req.Add(dateRange);
+            EmployeeParameterSet s = new EmployeeParameterSet();
+            s.employeeId =string.IsNullOrEmpty(selectedEmployeeId.Text)?0: Convert.ToInt32(selectedEmployeeId.Text);
+            req.Add(s);
 
             return req;
         }
@@ -1494,7 +1621,7 @@ namespace AionHR.Web.UI.Forms
             
             ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(req);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
             departmentStore.DataSource = resp.Items;
             departmentStore.DataBind();
          
@@ -1505,7 +1632,7 @@ namespace AionHR.Web.UI.Forms
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
             if (_systemService.SessionHelper.CheckIfIsAdmin())
@@ -1564,58 +1691,113 @@ namespace AionHR.Web.UI.Forms
 
         protected void deleteAllEmployeePayrolls(object sender, DirectEventArgs e)
         {
+            double  progress = 0;
+            string prog = (float.Parse(progress.ToString()) * 100).ToString();
+            string message = GetGlobalResourceObject("Common", "working").ToString();
+            this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+
+
+            GenerateCurrentPayroll.Text="false";
+                generatePayRef.Text = payRefHidden.Text; 
+                GenerateButton.Text = Resources.Common.DeleteAll;
+            this.Progress1.Reset();
+            EditGenerateWindow.Show();
+                //    EmployeePayrollListRequest req = GetEmployeePayrollRequest();
+                //    ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
+                //    if (!resp.Success)
+                //    {
+
+                //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+                //        return;
+                //    }
+                //    resp.Items.ForEach(x =>
+                //    {
+
+
+                //        PostRequest<EmployeePayroll> delReq = new PostRequest<EmployeePayroll>();
+                //        delReq.entity = x;
+                //        PostResponse<EmployeePayroll> res = _payrollService.ChildDelete<EmployeePayroll>(delReq);
+                //        if (!res.Success)
+                //        {
+
+                //            throw new Exception(res.Message,new Exception(res.ErrorCode, new Exception (res.LogId)));
+                //        }
+
+
+                //    });
+
+
+                //    Notification.Show(new NotificationConfig
+                //    {
+                //        Title = Resources.Common.Notification,
+                //        Icon = Icon.Information,
+                //        Html = Resources.Common.RecordUpdatedSucc
+                //    });
+
+                //    Store1.Reload();
+                //}
+                //catch(Exception exp)
+                //{
+                //    if (exp.InnerException!=null)
+                //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", exp.InnerException.Message) != null ? GetGlobalResourceObject("Errors", exp.InnerException.Message).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + exp.InnerException.InnerException.Message: exp.Message).Show();
+                //    else
+                //    X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                //}
+
+            }
+     
+        protected void StartPayList(object sender, DirectEventArgs e)
+        {
             try
             {
+               
 
 
-                EmployeePayrollListRequest req = GetEmployeePayrollRequest();
-                ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
-                if (!resp.Success)
-                {
+               
+                this.payListProgressBar.Reset();
+                double progress = 0;
+                string prog = (float.Parse(progress.ToString()) * 100).ToString();
+                string message = GetGlobalResourceObject("Common", "working").ToString();
+                this.payListProgressBar.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+                payListWidow.Show();
 
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                    return;
-                }
-                resp.Items.ForEach(x =>
-                {
+             
 
 
-                    PostRequest<EmployeePayroll> delReq = new PostRequest<EmployeePayroll>();
-                    delReq.entity = x;
-                    PostResponse<EmployeePayroll> res = _payrollService.ChildDelete<EmployeePayroll>(delReq);
-                    if (!res.Success)
-                    {
-                       
-                        throw new Exception(res.Message,new Exception(res.ErrorCode, new Exception (res.LogId)));
-                    }
+
+                DictionarySessionStorage storage = new DictionarySessionStorage();
+                storage.Save("AccountId", _systemService.SessionHelper.Get("AccountId"));
+                storage.Save("UserId", _systemService.SessionHelper.Get("UserId"));
+                storage.Save("key", _systemService.SessionHelper.Get("Key"));
+                h = new SessionHelper(storage, new APIKeyBasedTokenGenerator());
+
+                //HttpRuntime.Cache.Insert("TotalRecords", 0);
+                //HttpRuntime.Cache.Insert("LongActionProgress", 0);
+                //HttpRuntime.Cache.Insert("finished", "0");
+
+                ThreadPool.QueueUserWorkItem(GeneratPayList, new object[] { h });
 
 
-                });
+
+                this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", TaskManager1.ClientID);
 
 
-                Notification.Show(new NotificationConfig
-                {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.RecordUpdatedSucc
-                });
 
-                Store1.Reload();
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
-                if (exp.InnerException!=null)
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", exp.InnerException.Message) != null ? GetGlobalResourceObject("Errors", exp.InnerException.Message).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + exp.InnerException.InnerException.Message: exp.Message).Show();
+                if (exp.InnerException != null)
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", exp.InnerException.Message) != null ? GetGlobalResourceObject("Errors", exp.InnerException.Message).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + exp.InnerException.InnerException.Message : exp.Message).Show();
                 else
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                    X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
 
-            }
+        }
 
         protected void StartLongAction(object sender, DirectEventArgs e)
         {
-            string id = CurrentPayId1.Text;
+            string id = CurrentPayId.Text;
             string departmentId = e.ExtraParams["departmentId"];
             string branchId = e.ExtraParams["branchId"];
             string employeeId = e.ExtraParams["employeeId"];
@@ -1639,6 +1821,7 @@ namespace AionHR.Web.UI.Forms
             storage.Save("AccountId", _systemService.SessionHelper.Get("AccountId"));
             storage.Save("UserId", _systemService.SessionHelper.Get("UserId"));
             storage.Save("key", _systemService.SessionHelper.Get("Key"));
+            storage.Save("LanguageId", _systemService.SessionHelper.Get("Language").ToString() == "en" ? "1" : "2");
             h = new SessionHelper(storage, new APIKeyBasedTokenGenerator());
 
             //HttpRuntime.Cache.Insert("TotalRecords", 0);
@@ -1672,7 +1855,16 @@ namespace AionHR.Web.UI.Forms
                     HttpRuntime.Cache.Remove("genEM_RecordId");
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                     EditGenerateWindow.Close();
+                    payListWidow.Close();
                     Viewport1.ActiveIndex = 0;
+                  if  ( HttpRuntime.Cache.Get("ErrorErrorCodeGenEM") != null)
+                        HttpRuntime.Cache.Remove("ErrorErrorCodeGenEM");
+                    if (HttpRuntime.Cache.Get("ErrorLogIdGenEM") != null)
+                        HttpRuntime.Cache.Remove("ErrorLogIdGenEM");
+                    if (HttpRuntime.Cache.Get("ErrorErrorCodeGenEM") != null)
+                        HttpRuntime.Cache.Remove("ErrorErrorCodeGenEM");
+
+
 
                 }
             
@@ -1682,15 +1874,31 @@ namespace AionHR.Web.UI.Forms
                 if (HttpRuntime.Cache["genEM_RecordId"] != null)
                     req.RecordID = HttpRuntime.Cache["genEM_RecordId"].ToString();
                 else
-                    return;
-                RecordResponse<BackgroundJob> resp = _systemService.ChildGetRecord<BackgroundJob>(req);
-                if (resp.result == null || resp.result.errorId != null)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId) != null ? GetGlobalResourceObject("Errors", "Error_" + resp.result.errorId).ToString().Replace("%s", resp.result.argStr).Replace("%d", resp.result.argInt).ToString() + " < br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +resp.LogId : resp.Summary).Show();
+                   // this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                    return;
+                }
+                RecordResponse<BackgroundJob> resp = _systemService.ChildGetRecord<BackgroundJob>(req);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
                     HttpRuntime.Cache.Remove("genEM_RecordId");
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                     EditGenerateWindow.Close();
                     Viewport1.ActiveIndex = 0;
+                    payListWidow.Close();
+                    return; 
+                }
+                if ( resp.result.errorId != null)
+                {
+                
+
+                    X.Msg.Alert(Resources.Common.Error,resp.result.errorName ).Show();
+                    HttpRuntime.Cache.Remove("genEM_RecordId");
+                    this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                    EditGenerateWindow.Close();
+                    Viewport1.ActiveIndex = 0;
+                    payListWidow.Close();
                 }
                 else
                 {
@@ -1703,7 +1911,8 @@ namespace AionHR.Web.UI.Forms
                         EditGenerateWindow.Close();
                         Store1.Reload();
                         Viewport1.ActiveIndex = 2;
-                        X.Msg.Alert("", GetGlobalResourceObject("Common", "GenerateAttendanceDaySucc").ToString()).Show();
+                        payListWidow.Close();
+                        X.Msg.Alert("",GenerateCurrentPayroll.Text=="true"?Resources.Common.GenerateAttendanceDaySucc : Resources.Common.deleteAttendanceDaySucc).Show();
                     }
                     else
                     {
@@ -1711,6 +1920,8 @@ namespace AionHR.Web.UI.Forms
                         string prog = (float.Parse(progress.ToString()) * 100).ToString();
                         string message = GetGlobalResourceObject("Common", "working").ToString();
                         this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+                        this.payListProgressBar.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+                        
                     }
 
 
@@ -1721,7 +1932,8 @@ namespace AionHR.Web.UI.Forms
                         EditGenerateWindow.Close();
                         Store1.Reload();
                         Viewport1.ActiveIndex = 2;
-                        X.Msg.Alert("", GetGlobalResourceObject("Common", "GenerateAttendanceDaySucc").ToString()).Show();
+                        payListWidow.Close();
+                        X.Msg.Alert("",Resources.Common.operationCompleted ).Show();
 
                     }
                 }
@@ -1752,25 +1964,50 @@ namespace AionHR.Web.UI.Forms
 
                 PayrollService   payrollService = new PayrollService(new PayrollRepository(),h);
                 GeneratePayroll G = (GeneratePayroll)array[1];
+                if (GenerateCurrentPayroll.Text == "true")
+                {
+                    PostRequest<GeneratePayroll> req = new PostRequest<GeneratePayroll>();
+                    req.entity = G;
 
-                PostRequest<GeneratePayroll> req = new PostRequest<GeneratePayroll>();
-                req.entity = G;
 
-                PostResponse<GeneratePayroll> resp = payrollService.ChildAddOrUpdate<GeneratePayroll>(req);
-               
+                    PostResponse<GeneratePayroll> resp = payrollService.ChildAddOrUpdate<GeneratePayroll>(req);
+                    if (!resp.Success)
+                    { //Show an error saving...
 
-                if (!resp.Success)
-                { //Show an error saving...
+                        HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
+                        HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
+                        HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
 
-                    HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
-                    HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
-                    HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
-
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(resp.recordId))
+                            HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
+                    }
                 }
                 else
                 {
-                    HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
+                    PostRequest<DeletePayroll> req = new PostRequest<DeletePayroll>();
+                    req.entity = new DeletePayroll { branchId = G.branchId, departmentId = G.departmentId, employeeId = G.employeeId, payId = G.payId ,positionId=0};
+
+
+                    PostResponse<DeletePayroll> resp = payrollService.ChildAddOrUpdate<DeletePayroll>(req);
+                      if (!resp.Success)
+                    { //Show an error saving...
+
+                        HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
+                        HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
+                        HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
+
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(resp.recordId))
+                            HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
+                    }
                 }
+
+              
 
             }
             catch (Exception exp)
@@ -1779,6 +2016,50 @@ namespace AionHR.Web.UI.Forms
               
             }
         }
+        protected void GeneratPayList(object state)
+        {
+            try
+            {
+                object[] array = state as object[];
+                SessionHelper h = (SessionHelper)array[0];
 
+                PayrollService payrollService = new PayrollService(new PayrollRepository(), h);
+
+                PostRequest<MailEmployee> req = new PostRequest<MailEmployee>();
+                req.entity = new MailEmployee { recordId = CurrentPayId.Text };
+                PostResponse<MailEmployee> resp = payrollService.ChildAddOrUpdate<MailEmployee>(req);
+              
+                if (!resp.Success)
+                    { //Show an error saving...
+
+                    HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
+                    HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
+                    HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
+
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(resp.recordId))
+                        HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
+                }
+
+
+
+
+
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+
+            }
+        }
+
+        protected void fiscalYearSelected(object sender, DirectEventArgs e)
+        {
+            salaryTypeId.setSalaryType("5");
+            payrollsStore.Reload();
+
+        }
     }
 }

@@ -168,4 +168,16 @@
   <data name="netSalaryString" xml:space="preserve">
     <value>الصافي</value>
   </data>
+  <data name="branch" xml:space="preserve">
+    <value>الفرع </value>
+  </data>
+  <data name="department" xml:space="preserve">
+    <value>القسم </value>
+  </data>
+  <data name="FieldGroupBy" xml:space="preserve">
+    <value>التصنيف</value>
+  </data>
+  <data name="position" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
 </root>

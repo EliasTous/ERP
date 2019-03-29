@@ -47,6 +47,7 @@
     <Compile Include="Enumerations\SystemErrors.cs" />
     <Compile Include="Implementations\AccessControlService.cs" />
     <Compile Include="Implementations\AdministrationService.cs" />
+    <Compile Include="Implementations\AssetManagementService.cs" />
     <Compile Include="Implementations\AttendanceBatchRunner.cs" />
     <Compile Include="Implementations\AttendanceImportingService.cs" />
     <Compile Include="Implementations\BaseService.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Implementations\TimeAttendanceService.cs" />
     <Compile Include="Interfaces\IAccessControlService.cs" />
     <Compile Include="Interfaces\IAdministrationService.cs" />
+    <Compile Include="Interfaces\IAssetManagementService.cs" />
     <Compile Include="Interfaces\IBenefitsService.cs" />
     <Compile Include="Interfaces\ICompanyNewsService.cs" />
     <Compile Include="Interfaces\IComplaintsService.cs" />
@@ -122,6 +124,16 @@
     <Compile Include="Interfaces\ITimeAttendanceService.cs" />
     <Compile Include="Messaging\AccessControl\AccessControlRequests.cs" />
     <Compile Include="Messaging\AdministrativeAffairs\AdministrativeAffairsRequests.cs" />
+    <Compile Include="Messaging\AdministrativeAffairs\DocumentDueRecordRequest.cs" />
+    <Compile Include="Messaging\AdministrativeAffairs\DocumentNoteListRequest.cs" />
+    <Compile Include="Messaging\AdministrativeAffairs\DocumentNoteRecordRequest.cs" />
+    <Compile Include="Messaging\Asset Management\AssetManagementAssetListRequest.cs" />
+    <Compile Include="Messaging\Asset Management\AssetManagementCategoryPropertyListRequest.cs" />
+    <Compile Include="Messaging\Asset Management\AssetManagementCategoryPropertyRecordRequest.cs" />
+    <Compile Include="Messaging\Asset Management\AssetManagementLoanListRequest.cs" />
+    <Compile Include="Messaging\Asset Management\AssetManagementOnBoardingListRequest.cs" />
+    <Compile Include="Messaging\Asset Management\AssetManagementPurchaseOrderApprovalListRequest.cs" />
+    <Compile Include="Messaging\Asset Management\AssetManagementPurchaseOrdersListRequest.cs" />
     <Compile Include="Messaging\Benefits\BenefitAcquisitionsListRequest.cs" />
     <Compile Include="Messaging\Benefits\PeriodOfTheDateRangeRequest .cs" />
     <Compile Include="Messaging\Benefits\ScheduleBenefitsListRequest.cs" />
@@ -130,9 +142,22 @@
     <Compile Include="Messaging\CompanyStructure\ApprovelDepartmentListRequest.cs" />
     <Compile Include="Messaging\CompanyStructure\CompanyStructureRequests.cs" />
     <Compile Include="Messaging\CompanyStructure\PositionListRequest.cs" />
+    <Compile Include="Messaging\DashBoard\CompanyRightToWorkListRequest.cs" />
+    <Compile Include="Messaging\DashBoard\LeaveApprovalListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeePenaltyApprovalListRequest.cs" />
+    <Compile Include="Messaging\Reports\BalanceStatusParameterSet.cs" />
+    <Compile Include="Messaging\Reports\BranchWorkforceParameterSet.cs" />
+    <Compile Include="Messaging\Reports\EmploymentStatusParameterSet.cs" />
+    <Compile Include="Messaging\Reports\LeaveIdParameter.cs" />
+    <Compile Include="Messaging\Reports\SkillsParameterSet.cs" />
     <Compile Include="Messaging\Reports\TimeCodeRecordRequest.cs" />
+    <Compile Include="Messaging\SelfService\AssetLoanListRequest.cs" />
+    <Compile Include="Messaging\SelfService\SelfServiceRequests.cs" />
+    <Compile Include="Messaging\System\AttachementRecordRequest.cs" />
     <Compile Include="Messaging\System\BackgroundJobRecordRequest.cs" />
+    <Compile Include="Messaging\System\CompanyUploadLogoRequest.cs" />
+    <Compile Include="Messaging\System\UrlKeyRequest.cs" />
+    <Compile Include="Messaging\System\XMLDictionaryListRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeApprovalRecordRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeVariationListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeesRequests.cs" />
@@ -215,9 +240,7 @@
       <Name>AionHR.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Messaging\DashBoard\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

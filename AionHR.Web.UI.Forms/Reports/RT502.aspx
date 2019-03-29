@@ -26,29 +26,40 @@
     <script type="text/javascript">
         function alertNow(s, e) {
 
-            Ext.MessageBox.alert('Error', e.message);
+            Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
+        }
+
+          function FiscalYearError(e) {
+           
+
+              Ext.MessageBox.alert('Error', e);
+               e.handled = true;
+           
         }
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
-        <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
+        <ext:ResourceManager ID="ResourceManager1" runat="server" DisableViewState="false" Theme="Neptune" AjaxTimeout="1200000" />
 
         <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-
+               <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
+         <ext:Hidden ID="periodError" runat="server" Text="<%$ Resources: periodError %>" />
+         <ext:Hidden ID="fillPeriod" runat="server" Text="<%$ Resources : fillPeriod %>" />
+        
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
             <Items>
 
-                <ext:Panel
+                <ext:Panel 
                     ID="Center"
                     runat="server"
                     Border="false"
@@ -79,14 +90,21 @@
                                                      <uc:employeeCombo runat="server" ID="employeeCombo1" />
                                             </Content>
                                         </ext:Container>
-                               <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   ID="salaryType" LabelWidth="130" Width="150" runat="server" EmptyText="<%$ Resources:FieldSalaryType%>" Name="salaryType" IDMode="Static" SubmitValue="true">
-                                            <Items>
-                                               <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="1"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryBiWeekly%>" Value="3"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryFourWeekly%>" Value="4"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="5"></ext:ListItem>
-                                            </Items>
+                              
+                                           <ext:ComboBox    AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" LabelWidth="130" Width="150"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="salaryType"   EmptyText="<%$ Resources:FieldSalaryType%>" SubmitValue="true"  Name="salaryType" >
+                                              <Store>
+                                              <ext:Store runat="server" ID="salaryTypeStore" >
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="key" />
+                                                                        <ext:ModelField Name="value" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                            </Store>
+        
                                      <Listeners>
                                         <Select Handler="App.fiscalPeriodsStore.reload(); ">
                                         </Select>
@@ -139,12 +157,15 @@
                                             </ExtraParams>
                                         </Select>
                                     </DirectEvents>--%>
+                                    <Listeners>
+                                        <Focus Handler="if (#{salaryType}.getValue()==null || #{fiscalYear}.getValue() ==null){Ext.Msg.alert('Error',#{periodError}.getValue()); #{salaryType}.focus();}" />
+                                    </Listeners>
                                 </ext:ComboBox>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
-                                                <Click Handler="callbackPanel.PerformCallback('1');" />
+                                                <Click Handler="if (#{periodId}.getValue() ==null){Ext.Msg.alert('Error',#{fillPeriod}.getValue());return;} callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
                                     </Content>

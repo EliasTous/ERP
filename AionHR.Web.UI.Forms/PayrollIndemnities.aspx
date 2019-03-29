@@ -461,7 +461,7 @@
                                     <TopBar>
                                         <ext:Toolbar runat="server">
                                             <Items>
-                                                <ext:Button runat="server" Text="<%$ Resources: BtnAddPeriod %>" Icon="UserAdd" ID="btnAddResignation">
+                                                <ext:Button runat="server" Text="<%$ Resources:addPenalty %>" Icon="UserAdd" ID="btnAddResignation">
                                                     <Listeners>
                                                         <Click Fn="addResignation" />
                                                     </Listeners>

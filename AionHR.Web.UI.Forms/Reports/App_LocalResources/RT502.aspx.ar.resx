@@ -126,8 +126,14 @@
   <data name="FieldYear" xml:space="preserve">
     <value>السنة</value>
   </data>
+  <data name="fillPeriod" xml:space="preserve">
+    <value>يرجى اختيار المدة</value>
+  </data>
   <data name="Month" xml:space="preserve">
     <value>الشهر</value>
+  </data>
+  <data name="periodError" xml:space="preserve">
+    <value>يرجى اختيار نوع الراتب والسنة المالية</value>
   </data>
   <data name="SalaryBiWeekly" xml:space="preserve">
     <value>كل أسبوعين</value>
