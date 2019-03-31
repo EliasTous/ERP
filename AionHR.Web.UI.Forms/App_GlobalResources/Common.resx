@@ -1311,4 +1311,13 @@
   <data name="ApprovalReason" xml:space="preserve">
     <value>Approval Reason</value>
   </data>
+  <data name="DataImport" xml:space="preserve">
+    <value>Data Import</value>
+  </data>
+  <data name="DeutschLanguage" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="RT309" xml:space="preserve">
+    <value>Shift Log</value>
+  </data>
 </root>

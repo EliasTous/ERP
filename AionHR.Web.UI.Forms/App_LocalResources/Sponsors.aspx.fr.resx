@@ -139,13 +139,13 @@
     <value>Ref</value>
   </data>
   <data name="FieldMobile" xml:space="preserve">
-    <value>Mobile</value>
+    <value>Téléphone portable</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>Nom</value>
   </data>
   <data name="FieldPhone" xml:space="preserve">
-    <value>Phone</value>
+    <value>Téléphone</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>ID d'enregistrement</value>

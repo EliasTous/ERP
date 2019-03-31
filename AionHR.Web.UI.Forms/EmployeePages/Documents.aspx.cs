@@ -152,16 +152,36 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         private void SetExtLanguage()
         {
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            if (rtl)
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                this.ResourceManager1.RTL = true;
-                this.Viewport11.RTL = true;
-                CurrentLanguage.Text = "ar";
-            }
-            else
-            {
-                CurrentLanguage.Text = "en";
+                case "ar":
+                    {
+                        CurrentLanguage.Text = "ar";
+                    }
+                    break;
+                case "en":
+                    {
+                        CurrentLanguage.Text = "en";
+                    }
+                    break;
+
+                case "fr":
+                    {
+                        CurrentLanguage.Text = "fr";
+                    }
+                    break;
+                case "de":
+                    {
+                        CurrentLanguage.Text = "de";
+                    }
+                    break;
+                default:
+                    {
+
+                        CurrentLanguage.Text = "en";
+
+                    }
+                    break;
             }
         }
 

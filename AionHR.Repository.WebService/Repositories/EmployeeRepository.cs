@@ -145,7 +145,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(EmployeePenalty), "setPE");
             ChildAddOrUpdateLookup.Add(typeof(EmployeePenaltyApproval), "setPA");
             ChildAddOrUpdateLookup.Add(typeof(SyncFullName), "syncFullName");
-
+            ChildAddOrUpdateLookup.Add(typeof(ShareAttachment), "share");
 
 
 

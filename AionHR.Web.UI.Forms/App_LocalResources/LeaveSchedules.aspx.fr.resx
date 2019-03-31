@@ -139,7 +139,7 @@
     <value>À partir de mois</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>Nom</value>
   </data>
   <data name="FieldTo" xml:space="preserve">
     <value>prénom</value>
@@ -151,7 +151,7 @@
     <value>Le mois est un champ obligatoire et doit être compris entre 0 et 1000</value>
   </data>
   <data name="pct" xml:space="preserve">
-    <value>Pct</value>
+    <value>journées</value>
   </data>
   <data name="Periods" xml:space="preserve">
     <value>Périodes</value>

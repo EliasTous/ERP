@@ -1314,4 +1314,7 @@
   <data name="ApprovalReason" xml:space="preserve">
     <value>Zulassungsgründe</value>
   </data>
+  <data name="RT309" xml:space="preserve">
+    <value>Schichtprotokoll</value>
+  </data>
 </root>

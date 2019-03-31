@@ -22,7 +22,7 @@ namespace AionHR.Repository.WebService.Repositories
         {
             base.ServiceURL = ApplicationSettingsFactory.GetApplicationSettings().BaseURL + serviceName;
 
-            ChildGetAllLookup.Add(typeof(LocalsRate), "NQ01");
+           
             ChildGetAllLookup.Add(typeof(LeaveCalendarDay), "TA02");
             ChildGetAllLookup.Add(typeof(BranchSchedule), "CS01");
             ChildGetAllLookup.Add(typeof(FlatScheduleBranchAvailability), "TA01");
@@ -39,7 +39,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(BranchSchedule), "CS01");
             ChildGetLookup.Add(typeof(BenefitAcquisitionAcquisitionRate), "BE01");
             ChildGetLookup.Add(typeof(PeriodOfTheDate), "SY01");
-
+            ChildGetLookup.Add(typeof(LocalsRate), "NQ01");
 
 
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");

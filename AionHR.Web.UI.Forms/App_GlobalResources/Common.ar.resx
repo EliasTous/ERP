@@ -1383,4 +1383,10 @@
   <data name="ApprovalReason" xml:space="preserve">
     <value>سبب التعميد</value>
   </data>
+  <data name="DataImport" xml:space="preserve">
+    <value>استيراد البيانات</value>
+  </data>
+  <data name="RT309" xml:space="preserve">
+    <value>سجل الدوام</value>
+  </data>
 </root>

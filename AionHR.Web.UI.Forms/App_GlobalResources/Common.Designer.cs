@@ -691,6 +691,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data Import.
+        /// </summary>
+        internal static string DataImport {
+            get {
+                return ResourceManager.GetString("DataImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  Day.
         /// </summary>
         internal static string Day {
@@ -822,6 +831,15 @@ namespace Resources {
         internal static string Departments {
             get {
                 return ResourceManager.GetString("Departments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deutsch.
+        /// </summary>
+        internal static string DeutschLanguage {
+            get {
+                return ResourceManager.GetString("DeutschLanguage", resourceCulture);
             }
         }
         
@@ -2856,6 +2874,15 @@ namespace Resources {
         internal static string RT307 {
             get {
                 return ResourceManager.GetString("RT307", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shift Log.
+        /// </summary>
+        internal static string RT309 {
+            get {
+                return ResourceManager.GetString("RT309", resourceCulture);
             }
         }
         

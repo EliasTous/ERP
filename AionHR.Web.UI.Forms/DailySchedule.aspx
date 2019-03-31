@@ -207,14 +207,8 @@
                                            <Click Handler="App.userSelector.toField.getStore().removeAll();"></Click>
                                        </Listeners>
                                 </ext:Button>
-                                 <ext:Button runat="server" Text="<%$ Resources: NotifyEmployee %>">
-                                    <DirectEvents>
-                                        <Click OnEvent="NotifyEmployee_Click">
-                                            <EventMask ShowMask="true" />
-                                        </Click>
-                                        
-                                    </DirectEvents>
-                                     </ext:Button>
+                                
+                                
 
                             </Items>
                         </ext:Toolbar>
@@ -250,8 +244,24 @@
 
                                 </ext:ComboBox>
                                 <ext:TextField ID="workingHours" Width="150" runat="server" FieldLabel="<%$ Resources:workingHours%>" DataIndex="workingHours" AllowBlank="true" ReadOnly="true" ></ext:TextField>
-                                
-                                <ext:Button MarginSpec="0 0 0 450" runat="server" Text="<%$ Resources: Load %>">
+                                  <ext:ComboBox AnyMatch="true" Width="150" LabelWidth="30" CaseSensitive="false" runat="server" ID="Share" AllowBlank="true" Name="Share"
+                                    SubmitValue="true"
+                                    TypeAhead="false"
+                                    FieldLabel="<%$ Resources: Share%>" Icon="Share">
+                                    <Items>
+                                      <%--  <ext:ListItem Text="<%$Resources:Common,EnglishLanguage %>" Value="1" />
+                                        <ext:ListItem Text="<%$Resources:Common,ArabicLanguage %>" Value="2" />
+                                        <ext:ListItem Text="<%$Resources:Common,FrenchLanguage %>" Value="3" />--%>
+
+                                    </Items>
+                                        <DirectEvents>
+                                        <Select OnEvent="Share_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Select>
+                                        
+                                    </DirectEvents>
+                                </ext:ComboBox>
+                                <ext:Button MarginSpec="0 0 0 440" runat="server" Text="<%$ Resources: Load %>">
                                     <DirectEvents>
                                         <Click OnEvent="Load_Click">
                                             <EventMask ShowMask="true" />

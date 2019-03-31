@@ -62,7 +62,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(Attachement), "getAT");
             ChildGetLookup.Add(typeof(KeyId), "getAK");
             ChildGetLookup.Add(typeof(ApplyLetter), "applyLE");
-        
+            ChildGetLookup.Add(typeof(ShareAttachment), "shareAT");
+            
             ChildGetLookup.Add(typeof(UserInfoByEmployeeId), "getUS3");
             ChildGetLookup.Add(typeof(CurrencyByRef), "getCU2");
             ChildGetLookup.Add(typeof(BackgroundJob), "getBJ");

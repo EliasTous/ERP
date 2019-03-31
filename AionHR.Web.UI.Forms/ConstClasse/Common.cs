@@ -33,7 +33,7 @@ namespace AionHR.Web.UI.Forms
                     if (string.IsNullOrEmpty(resp.LogId)|| resp.LogId=="0")
                         X.Msg.Alert(Resources.Common.Error, resp.Error ).Show();
                     else
-                    X.Msg.Alert(Resources.Common.Error, resp.Error + "<br>" + Resources.Errors.ErrorLogId + resp.LogId).Show();
+                    X.Msg.Alert(Resources.Common.Error, resp.Error + "<br>" + Resources.Errors.ErrorLogId + resp.LogId + "<br>").Show();
                 }
             }
             else

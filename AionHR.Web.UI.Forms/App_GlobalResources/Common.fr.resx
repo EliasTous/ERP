@@ -139,7 +139,7 @@
     <value>Associé</value>
   </data>
   <data name="AdminDepts" xml:space="preserve">
-    <value>Admin Departments</value>
+    <value>Départements</value>
   </data>
   <data name="AdministrationAffairs" xml:space="preserve">
     <value>Affaires administratives</value>
@@ -631,7 +631,7 @@
     <value>Geofences</value>
   </data>
   <data name="Go" xml:space="preserve">
-    <value>Go</value>
+    <value>Aller</value>
   </data>
   <data name="Gold" xml:space="preserve">
     <value>Gold</value>
@@ -688,7 +688,7 @@
     <value>Importer Paramètres des heures supplémentaires</value>
   </data>
   <data name="importPayCodes" xml:space="preserve">
-    <value>Importer Pay Codes</value>
+    <value>Importer paie codes</value>
   </data>
   <data name="ImportPunches" xml:space="preserve">
     <value>Importer Punches</value>
@@ -886,7 +886,7 @@
     <value>Embarquement</value>
   </data>
   <data name="OpenDocuments" xml:space="preserve">
-    <value>Open Documents</value>
+    <value>Documents ouverts</value>
   </data>
   <data name="operationCompleted" xml:space="preserve">
     <value>l'opération est terminée avec succès</value>
@@ -910,7 +910,7 @@
     <value>Motif appliqué avec succès</value>
   </data>
   <data name="PayCodes" xml:space="preserve">
-    <value>Codes de paye</value>
+    <value>codes de paie</value>
   </data>
   <data name="PayRef" xml:space="preserve">
     <value>Pay Ref</value>
@@ -1012,13 +1012,13 @@
     <value>Routers</value>
   </data>
   <data name="RT01" xml:space="preserve">
-    <value>Ages Breakdown</value>
+    <value>Répartition par âge</value>
   </data>
   <data name="RT102" xml:space="preserve">
-    <value>Hirings </value>
+    <value>Embauches</value>
   </data>
   <data name="RT102B" xml:space="preserve">
-    <value>Terminations</value>
+    <value>Terminaisons</value>
   </data>
   <data name="RT103" xml:space="preserve">
     <value>Nombre d'employés</value>
@@ -1027,7 +1027,7 @@
     <value>Années de service</value>
   </data>
   <data name="RT105" xml:space="preserve">
-    <value>Job History</value>
+    <value>Historique du travail</value>
   </data>
   <data name="RT106" xml:space="preserve">
     <value>Taux de roulement</value>
@@ -1117,10 +1117,10 @@
     <value>Bulletins de paie</value>
   </data>
   <data name="RT601" xml:space="preserve">
-    <value>Leave List</value>
+    <value>Liste de congés</value>
   </data>
   <data name="RT602" xml:space="preserve">
-    <value>Leave Balance</value>
+    <value>Balance de congés</value>
   </data>
   <data name="RT801" xml:space="preserve">
     <value>Sign-in Trail</value>
@@ -1382,5 +1382,14 @@
   </data>
   <data name="ApprovalReason" xml:space="preserve">
     <value>Motifs d'approbation</value>
+  </data>
+  <data name="DataImport" xml:space="preserve">
+    <value>Importation de données</value>
+  </data>
+  <data name="PendingTransfers" xml:space="preserve">
+    <value>Transferts de documents</value>
+  </data>
+  <data name="RT309" xml:space="preserve">
+    <value>Journal de travail</value>
   </data>
 </root>
