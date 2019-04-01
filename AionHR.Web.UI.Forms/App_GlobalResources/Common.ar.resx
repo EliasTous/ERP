@@ -1377,4 +1377,16 @@
   <data name="Yes" xml:space="preserve">
     <value>نعم</value>
   </data>
+  <data name="CFACurrency" xml:space="preserve">
+    <value>فرنك غرب أفريقي</value>
+  </data>
+  <data name="ApprovalReason" xml:space="preserve">
+    <value>سبب التعميد</value>
+  </data>
+  <data name="DataImport" xml:space="preserve">
+    <value>استيراد البيانات</value>
+  </data>
+  <data name="RT309" xml:space="preserve">
+    <value>سجل الدوام</value>
+  </data>
 </root>

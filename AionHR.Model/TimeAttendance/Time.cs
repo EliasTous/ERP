@@ -49,6 +49,8 @@ namespace AionHR.Model.TimeAttendance
         public string damageLevel { get; set; }
         public string shiftStart { get; set; }
         public string shiftEnd { get; set; }
+        public string apId { get; set; }
+        public string apName { get; set; }
 
 
 

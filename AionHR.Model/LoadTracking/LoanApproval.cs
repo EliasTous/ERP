@@ -24,5 +24,8 @@ namespace AionHR.Model.LoadTracking
         public string notes { get; set; }
         public string statusString { get; set; }
         public short status { get; set; }
+        public string apId { get; set; }
+        public string apName { get; set; }
+        public string arId { get; set; }
     }
 }

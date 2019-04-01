@@ -354,11 +354,14 @@ namespace AionHR.Web.UI.Forms
             ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<CertificateLevel> routers = _employeeService.ChildGetAll<CertificateLevel>(request);
-            if (!routers.Success)
+            ListResponse<CertificateLevel> resp = _employeeService.ChildGetAll<CertificateLevel>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
                 return;
-            this.Store1.DataSource = routers.Items;
-            e.Total = routers.Items.Count; ;
+            }
+            this.Store1.DataSource = resp.Items;
+            e.Total = resp.Items.Count; ;
 
             this.Store1.DataBind();
         }

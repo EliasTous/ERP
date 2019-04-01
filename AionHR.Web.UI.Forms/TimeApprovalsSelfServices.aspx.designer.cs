@@ -211,6 +211,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column Column26;
         
         /// <summary>
+        /// Column1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column1;
+        
+        /// <summary>
         /// Column28 control.
         /// </summary>
         /// <remarks>

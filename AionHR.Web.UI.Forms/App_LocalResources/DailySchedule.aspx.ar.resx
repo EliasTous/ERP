@@ -258,4 +258,7 @@
   <data name="updateError" xml:space="preserve">
     <value>لاتستطيع حفظ او تعديل جدول الدوام ضمن التاريخ المحدد </value>
   </data>
+  <data name="Share" xml:space="preserve">
+    <value>مشاركة</value>
+  </data>
 </root>

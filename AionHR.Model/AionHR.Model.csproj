@@ -85,6 +85,7 @@
     <Compile Include="Company\Cases\ICasesRepository.cs" />
     <Compile Include="Company\News\ICompanyNewsRepository.cs" />
     <Compile Include="Company\Structure\Approval.cs" />
+    <Compile Include="Company\Structure\ApprovalReason.cs" />
     <Compile Include="Company\Structure\ApprovelDepartment.cs" />
     <Compile Include="Company\Structure\Division.cs" />
     <Compile Include="Company\Structure\ICompanyStructureRepository.cs" />
@@ -157,11 +158,13 @@
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
     <Compile Include="Reports\PT501.cs" />
     <Compile Include="Reports\RT115.cs" />
+    <Compile Include="Reports\RT309.cs" />
     <Compile Include="Reports\RT506.cs" />
     <Compile Include="Reports\RT507.cs" />
     <Compile Include="Reports\RT508.cs" />
     <Compile Include="Reports\RT803.cs" />
     <Compile Include="Reports\RT804.cs" />
+    <Compile Include="Reports\ShiftLog.cs" />
     <Compile Include="SelfService\AssetLoan.cs" />
     <Compile Include="SelfService\EmployeePayrollSelfService.cs" />
     <Compile Include="SelfService\FlatScheduleSelfService.cs" />
@@ -170,6 +173,7 @@
     <Compile Include="SelfService\TimeVariationSelfService.cs" />
     <Compile Include="SelfService\UserInfoSelfService.cs" />
     <Compile Include="System\ResetPassword.cs" />
+    <Compile Include="System\ShareAttachment.cs" />
     <Compile Include="System\XMLDictionary.cs" />
     <Compile Include="TimeAttendance\MailFlatShedule.cs" />
     <Compile Include="HelpFunction\PayrollExport.cs" />

@@ -778,6 +778,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.DateColumn DateColumn2;
         
         /// <summary>
+        /// Column65 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column65;
+        
+        /// <summary>
         /// Column8 control.
         /// </summary>
         /// <remarks>
@@ -1147,6 +1156,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column colStatus;
         
         /// <summary>
+        /// Column58 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column58;
+        
+        /// <summary>
         /// Column37 control.
         /// </summary>
         /// <remarks>
@@ -1388,6 +1406,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column7;
+        
+        /// <summary>
+        /// Column56 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column56;
         
         /// <summary>
         /// PAComments control.
@@ -2731,6 +2758,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox status;
         
         /// <summary>
+        /// LeaveApprovalReasonControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AionHR.Web.UI.Forms.Reports.ApprovalReasonFilter LeaveApprovalReasonControl;
+        
+        /// <summary>
         /// returnNotes control.
         /// </summary>
         /// <remarks>
@@ -3055,6 +3091,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox TimeStatus;
         
         /// <summary>
+        /// TimeApprovalReasonControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AionHR.Web.UI.Forms.Reports.ApprovalReasonFilter TimeApprovalReasonControl;
+        
+        /// <summary>
         /// TimeNotes control.
         /// </summary>
         /// <remarks>
@@ -3143,6 +3188,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column44;
+        
+        /// <summary>
+        /// Column66 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column66;
         
         /// <summary>
         /// Column45 control.
@@ -3289,6 +3343,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox ApprovalLoanStatus;
         
         /// <summary>
+        /// LoanApprovalReasonControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AionHR.Web.UI.Forms.Reports.ApprovalReasonFilter LoanApprovalReasonControl;
+        
+        /// <summary>
         /// effectiveDate control.
         /// </summary>
         /// <remarks>
@@ -3386,6 +3449,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column51;
+        
+        /// <summary>
+        /// Column59 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column59;
         
         /// <summary>
         /// Column52 control.
@@ -4061,6 +4133,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox PAstatus;
+        
+        /// <summary>
+        /// PurchasApprovalReasonControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AionHR.Web.UI.Forms.Reports.ApprovalReasonFilter PurchasApprovalReasonControl;
         
         /// <summary>
         /// qty control.

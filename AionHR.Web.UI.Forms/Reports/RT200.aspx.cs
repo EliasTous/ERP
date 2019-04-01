@@ -240,18 +240,21 @@ namespace AionHR.Web.UI.Forms.Reports
             //}
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
-
+            
             var d = resp.Items.GroupBy(x =>  x.employeeName.reference );
             CurrentPayrollLineCollection lines = new CurrentPayrollLineCollection();
             HashSet<CurrentEntitlementDeduction> ens = new HashSet<CurrentEntitlementDeduction>(new CurrentEntitlementDeductionComparer());
             HashSet<CurrentEntitlementDeduction> des = new HashSet<CurrentEntitlementDeduction>(new CurrentEntitlementDeductionComparer());
-            resp.Items.ForEach(x =>
+            foreach (AionHR.Model.Reports.RT200 r in resp.Items)
             {
-                if (x.edType == 1)
-                    ens.Add(new CurrentEntitlementDeduction() { name = x.edName, amount = 0 , isTaxable = x.isTaxable});
-                else
-                    des.Add(new CurrentEntitlementDeduction() { name = x.edName, amount = 0 });
-            });
+                if (string.IsNullOrEmpty(r.edName))
+                    continue;
+
+                    if (r.edType == 1)
+                        ens.Add(new CurrentEntitlementDeduction() { name = r.edName, amount = 0, isTaxable = r.isTaxable });
+                    else
+                        des.Add(new CurrentEntitlementDeduction() { name = r.edName, amount = 0 });
+            }
             foreach (var item in d)
             {
                 var list = item.ToList();

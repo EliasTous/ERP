@@ -40,6 +40,7 @@ using AionHR.Model.Employees;
 using AionHR.Services.Messaging.DashBoard;
 using AionHR.Services.Messaging.Asset_Management;
 using AionHR.Model.AssetManagement;
+using AionHR.Services.Messaging.HelpFunction;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -926,7 +927,7 @@ namespace AionHR.Web.UI.Forms
 
                 if (req != null)
                 {
-                    ListResponse<AionHR.Model.LeaveManagement.Approvals> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
+                     ListResponse<AionHR.Model.LeaveManagement.Approvals> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
 
                     if (!resp.Success)
                     {
@@ -1376,25 +1377,32 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-                ActiveAttendanceRequest req = GetActiveAttendanceRequest();
-                ListResponse<LocalsRate> resp = _helpFunctionService.ChildGetAll<LocalsRate>(req);
+                ActiveAttendanceRequest req1 = GetActiveAttendanceRequest();
+                ActiveAttendanceRecordRequest req = new ActiveAttendanceRecordRequest();
+                req.BranchId = req1.BranchId;
+                req.DayStatus = req1.DayStatus;
+                req.DepartmentId = req1.DepartmentId;
+                req.DivisionId = req1.DivisionId;
+                req.PositionId = req1.PositionId;
+                req.StatusId = req1.StatusId; 
+                RecordResponse <LocalsRate> resp = _helpFunctionService.ChildGetRecord<LocalsRate>(req);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
                     return;
                 }
-                inName.Text = resp.Items[0].inName;
-                bsName.Text = resp.Items[0].bsName;
-                leName.Text = resp.Items[0].leName;
+                inName.Text = resp.result.inName;
+                bsName.Text = resp.result.bsName;
+                leName.Text = resp.result.leName;
                 List<object> RateObjs = new List<object>();
-                RateObjs.Add(new { category = GetLocalResourceObject("netRate").ToString(), number = resp.Items[0].netRate });
-                RateObjs.Add(new { category = GetLocalResourceObject("rate").ToString(), number = resp.Items[0].rate });
-                RateObjs.Add(new { category = GetLocalResourceObject("minLERate").ToString(), number = resp.Items[0].minLERate });
-                RateObjs.Add(new { category = GetLocalResourceObject("minNextLERate").ToString(), number = resp.Items[0].minNextLERate });
+                RateObjs.Add(new { category = GetLocalResourceObject("netRate").ToString(), number = resp.result.netRate });
+                RateObjs.Add(new { category = GetLocalResourceObject("rate").ToString(), number = resp.result.rate });
+                RateObjs.Add(new { category = GetLocalResourceObject("minLERate").ToString(), number = resp.result.minLERate });
+                RateObjs.Add(new { category = GetLocalResourceObject("minNextLERate").ToString(), number = resp.result.minNextLERate });
 
 
                 List<string> listCategories = new List<string>() { GetLocalResourceObject("rate").ToString(), GetLocalResourceObject("minLERate").ToString(), GetLocalResourceObject("netRate").ToString(), GetLocalResourceObject("minNextLERate").ToString() };
-                List<double> listValues = new List<double>() { resp.Items[0].rate, resp.Items[0].minLERate, resp.Items[0].netRate, resp.Items[0].minNextLERate };
+                List<double> listValues = new List<double>() { resp.result.rate, resp.result.minLERate, resp.result.netRate, resp.result.minNextLERate };
 
                 X.Call("drawMinLocalRateCountHightChartColumn", JSON.JavaScriptSerialize(listValues), JSON.JavaScriptSerialize(listCategories), rtl ? true : false);
 
@@ -1402,13 +1410,13 @@ namespace AionHR.Web.UI.Forms
 
 
                 List<object> CountObjs = new List<object>();
-                CountObjs.Add(new { category = GetLocalResourceObject("employeeCount").ToString(), number = resp.Items[0].employeeCount });//here 
-                CountObjs.Add(new { category = GetLocalResourceObject("nationalCount").ToString(), number = resp.Items[0].nationalCount });//here
-                CountObjs.Add(new { category = GetLocalResourceObject("netNationalCount").ToString(), number = resp.Items[0].netNationalCount });
+                CountObjs.Add(new { category = GetLocalResourceObject("employeeCount").ToString(), number = resp.result.employeeCount });//here 
+                CountObjs.Add(new { category = GetLocalResourceObject("nationalCount").ToString(), number = resp.result.nationalCount });//here
+                CountObjs.Add(new { category = GetLocalResourceObject("netNationalCount").ToString(), number = resp.result.netNationalCount });
 
 
                 List<string> listCount = new List<string>() { GetLocalResourceObject("employeeCount").ToString(), GetLocalResourceObject("nationalCount").ToString(), GetLocalResourceObject("netNationalCount").ToString() };
-                List<double> listempValues = new List<double>() { resp.Items[0].employeeCount, resp.Items[0].nationalCount, resp.Items[0].netNationalCount };
+                List<double> listempValues = new List<double>() { resp.result.employeeCount, resp.result.nationalCount, resp.result.netNationalCount };
 
                 X.Call("drawLocalCountHightChartColumn", JSON.JavaScriptSerialize(listempValues), JSON.JavaScriptSerialize(listCount), rtl ? true : false);
 
@@ -1485,8 +1493,9 @@ namespace AionHR.Web.UI.Forms
             string branch = e.ExtraParams["branchName"];
             string category = e.ExtraParams["categoryName"];
             string commentsParameter = e.ExtraParams["comments"];
+            string arIdParameter = e.ExtraParams["arId"];
             PAstatus.Select(statusParameter);
-
+            PurchasApprovalReasonControl.setApprovalReason(arIdParameter);
 
 
             //TimeApprovalRecordRequest r = new TimeApprovalRecordRequest();
@@ -1533,6 +1542,7 @@ namespace AionHR.Web.UI.Forms
             {
                 string id = e.ExtraParams["id"];
                 string employeeId = e.ExtraParams["employeeId"];
+                string arId = e.ExtraParams["arId"];
 
                 //SetTabPanelEnable(true);
 
@@ -1564,7 +1574,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 2 : call setvalues with the retrieved object
                 this.ApprovalLoanForm.SetValues(response.result);
                 ApprovalLoanStatus.Select("1");
-
+                LoanApprovalReasonControl.setApprovalReason(arId);
 
                 ApprovalLoanEmployeeName.Text = response.result.employeeName.fullName.ToString();
 
@@ -1656,7 +1666,7 @@ namespace AionHR.Web.UI.Forms
         {
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-
+            string arId= e.ExtraParams["arId"];
             switch (type)
             {
 
@@ -1680,7 +1690,7 @@ namespace AionHR.Web.UI.Forms
 
                     this.LeaveRecordForm.SetValues(response.result);
                     employeeName.Text = response.result.employeeName.fullName;
-
+                    LeaveApprovalReasonControl.setApprovalReason(arId);
                     this.LeaveRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.LeaveRecordWindow.Show();
                     break;
@@ -1736,7 +1746,7 @@ namespace AionHR.Web.UI.Forms
                 LA.notes = notes;
                 LA.loanId = id;
                 LA.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
-
+                LA.arId = LoanApprovalReasonControl.getApprovalReason() == "0" ? null : LoanApprovalReasonControl.getApprovalReason();
                 PostRequest<LoanApproval> request = new PostRequest<LoanApproval>();
                 request.entity = LA;
 
@@ -1786,7 +1796,7 @@ namespace AionHR.Web.UI.Forms
 
             PA.status = string.IsNullOrEmpty(status) ? (Int16?)null : Convert.ToInt16(status);
             PA.poId = string.IsNullOrEmpty(poId) ? (Int32?)null : Convert.ToInt32(poId);
-        
+            PA.arId = PurchasApprovalReasonControl.getApprovalReason() == "0" ? null : PurchasApprovalReasonControl.getApprovalReason();
             PA.approverId = _systemService.SessionHelper.GetEmployeeId();
             try
             {
@@ -1852,7 +1862,7 @@ namespace AionHR.Web.UI.Forms
                 else
                     request.entity.notes = " ";
 
-
+                request.entity.arId = LeaveApprovalReasonControl.getApprovalReason() == "0" ? null : LeaveApprovalReasonControl.getApprovalReason();
                 PostResponse<DashboardLeave> r = _leaveManagementService.ChildAddOrUpdate<DashboardLeave>(request);
 
 

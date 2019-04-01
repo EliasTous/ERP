@@ -500,6 +500,7 @@
                                                  <ext:ModelField Name="approverId"  />
                                               
                                                  <ext:ModelField Name="status" />
+                                                   <ext:ModelField Name="arName" />
                                                    <ext:ModelField Name="comments" />
                                                  
                                                 
@@ -526,7 +527,7 @@
                                      <ext:Column ID="Column2" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1"/>
                                      <ext:Column ID="Column3" DataIndex="categoryName" Text="<%$ Resources: FieldCategoryName%>" runat="server" Flex="1"/>
                                      <ext:Column ID="Column4" DataIndex="qty" Text="<%$ Resources: FieldQty%>" runat="server" Flex="1"/>
-                                    
+                                     <ext:Column ID="Column6" DataIndex="arName" Text="<%$ Resources: Common,ApprovalReason%>" runat="server" Flex="1"/>
                                       
                                     <ext:Column ID="PAComments" DataIndex="comments" Text="<%$ Resources: FieldComments%>" runat="server" Flex="2">
                                        

@@ -246,6 +246,8 @@
                                         <ext:ListItem Text="<%$ Resources:Common, Gold %>" Value="4"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common, Lebanon %>" Value="5"></ext:ListItem>
                                        <ext:ListItem Text="<%$ Resources:Common, USDollar %>" Value="6"></ext:ListItem>
+                                         <ext:ListItem Text="<%$ Resources:Common, CFACurrency %>" Value="7"></ext:ListItem>
+                                        
                                       
                                     </Items>
                                 </ext:ComboBox>

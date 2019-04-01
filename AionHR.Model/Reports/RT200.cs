@@ -170,6 +170,8 @@ namespace AionHR.Model.Reports
             }
             foreach (var item in details)
             {
+                if (string.IsNullOrEmpty(item.edName))
+                    continue;
                 if (item.edType == 1)
                     AddEn(new CurrentEntitlementDeduction() { amount = item.edAmount, name = item.edName, isTaxable=item.isTaxable });
                 else

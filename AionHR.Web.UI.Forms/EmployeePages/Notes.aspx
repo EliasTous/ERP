@@ -35,7 +35,7 @@
 
 
         <Items>
-             <ext:Button Region="East" ID="btnAdd" Disabled="true" Height="30" Width="40" MaxWidth="40"  runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+             <ext:Button Region="East" ID="btnAdd" Disabled="true"  runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                   <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>                           

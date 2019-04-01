@@ -19,11 +19,13 @@ namespace AionHR.Model.AssetManagement
         public short? status { get; set; }
         public string statusString { get; set; }
         public string Comments { get; set; }
-      
-       
-       
-     
-      
-       
+        public string arId { get; set; }
+        public string arName { get; set; }
+
+
+
+
+
+
     }
 }

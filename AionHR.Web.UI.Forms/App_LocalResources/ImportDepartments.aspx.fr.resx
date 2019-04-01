@@ -220,7 +220,7 @@
     <value>Import</value>
   </data>
   <data name="Pick" xml:space="preserve">
-    <value>Pick a file to import</value>
+    <value>Choisissez un fichier à importer</value>
   </data>
   <data name="preprocessing" xml:space="preserve">
     <value>Preprocessing</value>

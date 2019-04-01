@@ -174,7 +174,7 @@
             //alert('specify start date');
             return;
         }
-        App.leaveRequest1_calDays.setValue(parseInt(moment(App.leaveRequest1_endDate.getValue()).diff(moment(App.leaveRequest1_startDate.getValue()), 'days')) + 1);
+        App.leaveRequest1_calDays.setValue(parseInt(moment(App.leaveRequest1_endDate.getValue()).diff(moment(App.leaveRequest1_startDate.getValue()), 'days')+1));
     }
     function onHourFocusLeave(context)
     {
@@ -232,6 +232,7 @@
                                                 <ext:ModelField Name="stringStatus" />
                                                 <ext:ModelField Name="notes" />
                                                  <ext:ModelField Name="leaveId" />
+                                                   <ext:ModelField Name="arName" />
                                                 
                                                 
                                             </Fields>
@@ -707,6 +708,8 @@
                                          </ext:Column>
                                     <ext:Column ID="departmentName" DataIndex="departmentName" Text="<%$ Resources: Department%>" runat="server" Flex="1"/>
                                     <ext:Column ID="stringStatus" Visible="true" DataIndex="stringStatus" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
+                                    </ext:Column>
+                                     <ext:Column ID="Column3" Visible="true" DataIndex="arName" runat="server" Width="100" text="<%$ Resources: Common,ApprovalReason%> " >
                                     </ext:Column>
                                       
                                     <ext:Column ID="notes" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">

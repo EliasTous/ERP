@@ -151,7 +151,7 @@
     <value>Nom complet</value>
   </data>
   <data name="FieldGender" xml:space="preserve">
-    <value>Gendre</value>
+    <value>Genre</value>
   </data>
   <data name="FieldIsCitizen" xml:space="preserve">
     <value>Est citoyen</value>

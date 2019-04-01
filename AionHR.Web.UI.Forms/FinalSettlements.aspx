@@ -529,7 +529,7 @@
                                                                                   
                                            
                                          
-                                         <ext:Column CellCls="cellLink" ID="nameCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName1%>" DataIndex="edName" Width="150" Hideable="false" Visible="true" Flex="2"/>
+                                         <ext:Column CellCls="cellLink" ID="nameCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="edName" Width="150" Hideable="false" Visible="true" Flex="2"/>
                                          <ext:Column CellCls="cellLink" ID="seqNoCol" MenuDisabled="true" runat="server" Text="<%$ Resources: seqNo%>" DataIndex="seqNo" Width="150" Hideable="false" Visible="false"/>
                                          <ext:Column CellCls="cellLink" ID="enAmountCol" MenuDisabled="true" runat="server" Text="<%$ Resources: amount%>" DataIndex="amount" Width="150" Hideable="false" Visible="true"  Flex="1">
                                              <Renderer Handler="return record.data['amount'].toLocaleString() ; "></Renderer>
@@ -651,7 +651,7 @@
                                     <ColumnModel>
                                         <Columns>
 
-                                         <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName1%>" DataIndex="edName" Width="150" Hideable="false" Visible="true" Flex="2"/>
+                                         <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="edName" Width="150" Hideable="false" Visible="true" Flex="2"/>
                                          <ext:Column CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="" DataIndex="seqNo" Width="150" Hideable="false" Visible="false"/>
                                          <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: amount%>" DataIndex="amount" Width="150" Hideable="false" Visible="true" Flex="1">
                                              <Renderer Handler="return record.data['amount'].toLocaleString(); "></Renderer>

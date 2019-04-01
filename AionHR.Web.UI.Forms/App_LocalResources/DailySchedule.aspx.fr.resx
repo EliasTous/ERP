@@ -237,4 +237,7 @@
   <data name="updateError" xml:space="preserve">
     <value>Vous ne pouvez pas mettre à jour ou sauvegarder l'horaire d'un jour spécifique</value>
   </data>
+  <data name="Share" xml:space="preserve">
+    <value>Partager</value>
+  </data>
 </root>

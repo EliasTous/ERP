@@ -178,6 +178,7 @@
     <Content Include="AdminDepts.aspx" />
     <Content Include="AdminDocNav.aspx" />
     <Content Include="AdminDocuments.aspx" />
+    <Content Include="ApprovalReasons.aspx" />
     <Content Include="AssetLoans.aspx" />
     <Content Include="AssetManagementAssets.aspx" />
     <Content Include="AssetManagementCategories.aspx" />
@@ -198,6 +199,7 @@
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
     <Content Include="Reports\Controls\AssetFilter.ascx" />
+    <Content Include="Reports\Controls\ApprovalReasonFilter.ascx" />
     <Content Include="Reports\Controls\CurrencyFilter.ascx" />
     <Content Include="Reports\Controls\ApprovalStatus.ascx" />
     <Content Include="Reports\Controls\EmploymentStatusFilter.ascx" />
@@ -208,6 +210,7 @@
     <Content Include="Reports\RT115.aspx" />
     <Content Include="Reports\RT303.aspx" />
     <Content Include="Reports\RT307.aspx" />
+    <Content Include="Reports\RT309.aspx" />
     <Content Include="Reports\RT506.aspx" />
     <Content Include="Reports\RT507.aspx" />
     <Content Include="Reports\RT804.aspx" />
@@ -646,6 +649,13 @@
     <Compile Include="AdminDocuments.aspx.designer.cs">
       <DependentUpon>AdminDocuments.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApprovalReasons.aspx.cs">
+      <DependentUpon>ApprovalReasons.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovalReasons.aspx.designer.cs">
+      <DependentUpon>ApprovalReasons.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\Common.de-DE.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -818,6 +828,13 @@
     <Compile Include="Reports\Controls\AssetFilter.ascx.designer.cs">
       <DependentUpon>AssetFilter.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Controls\ApprovalReasonFilter.ascx.cs">
+      <DependentUpon>ApprovalReasonFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\ApprovalReasonFilter.ascx.designer.cs">
+      <DependentUpon>ApprovalReasonFilter.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Controls\CurrencyFilter.ascx.cs">
       <DependentUpon>CurrencyFilter.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -887,6 +904,13 @@
     </Compile>
     <Compile Include="Reports\RT307.aspx.designer.cs">
       <DependentUpon>RT307.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT309.aspx.cs">
+      <DependentUpon>RT309.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT309.aspx.designer.cs">
+      <DependentUpon>RT309.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT506.aspx.cs">
       <DependentUpon>RT506.aspx</DependentUpon>
@@ -2890,6 +2914,15 @@
     <Content Include="App_LocalResources\CheckTypes.aspx.ar.resx" />
     <Content Include="App_LocalResources\CheckTypes.aspx.fr.resx" />
     <Content Include="App_LocalResources\CheckTypes.aspx.resx" />
+    <Content Include="App_LocalResources\ApprovalReasons.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ApprovalReasons.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ApprovalReasons.aspx.resx" />
+    <Content Include="App_LocalResources\SSTransfers.aspx.ar.resx" />
+    <Content Include="App_LocalResources\SSTransfers.aspx.fr.resx" />
+    <Content Include="App_LocalResources\SSTransfers.aspx.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Notes.aspx.ar.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Notes.aspx.fr.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Dependants.aspx.fr.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

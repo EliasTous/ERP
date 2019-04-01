@@ -154,7 +154,7 @@
     <value>عدد الأشهر حقل الزامي، ويجب أن يكون بين ال0 وال 1000</value>
   </data>
   <data name="pct" xml:space="preserve">
-    <value>النسبة</value>
+    <value>ايام</value>
   </data>
   <data name="Periods" xml:space="preserve">
     <value>فترات جدول الإجازات</value>

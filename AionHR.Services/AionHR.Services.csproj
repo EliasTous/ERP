@@ -145,6 +145,7 @@
     <Compile Include="Messaging\DashBoard\CompanyRightToWorkListRequest.cs" />
     <Compile Include="Messaging\DashBoard\LeaveApprovalListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeePenaltyApprovalListRequest.cs" />
+    <Compile Include="Messaging\HelpFunction\ActiveAttendanceRecordRequest.cs" />
     <Compile Include="Messaging\Reports\BalanceStatusParameterSet.cs" />
     <Compile Include="Messaging\Reports\BranchWorkforceParameterSet.cs" />
     <Compile Include="Messaging\Reports\EmploymentStatusParameterSet.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Messaging\System\AttachementRecordRequest.cs" />
     <Compile Include="Messaging\System\BackgroundJobRecordRequest.cs" />
     <Compile Include="Messaging\System\CompanyUploadLogoRequest.cs" />
+    <Compile Include="Messaging\System\ShareAttachmentRecordRequest.cs" />
     <Compile Include="Messaging\System\UrlKeyRequest.cs" />
     <Compile Include="Messaging\System\XMLDictionaryListRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeApprovalRecordRequest.cs" />

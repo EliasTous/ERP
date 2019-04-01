@@ -237,4 +237,7 @@
   <data name="updateError" xml:space="preserve">
     <value>You cannot update or save schedule at  specific  day range</value>
   </data>
+  <data name="Share" xml:space="preserve">
+    <value>Share</value>
+  </data>
 </root>

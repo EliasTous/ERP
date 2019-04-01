@@ -13,6 +13,8 @@ namespace AionHR.Model.Dashboard
         public int approverId { get; set; }
         public short status { get; set; }
         public string notes { get; set; }
+        public string arId { get; set; }
+        public string arName { get; set; }
 
     }
 }
