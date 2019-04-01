@@ -580,7 +580,7 @@ namespace AionHR.Web.UI.Forms
                             Store1.Reload();
                             Panel8.Disabled = false;
                             currentAsset.Text = r.recordId;
-
+                            X.Call("setUrlAfterNewAsset");
                         }
                     }
                     catch (Exception ex)

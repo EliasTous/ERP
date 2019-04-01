@@ -15,6 +15,9 @@
         function hideWindow() {
             App.EditRecordWindow.close();
         }
+        function setUrlAfterNewAsset() {
+            App.Panel8.loader.url = 'AssetPropertyExplorer.aspx?_assetId='+App.currentAsset.value+'&_catId='+App.categoryId.value;
+        }
 
     </script>
 </head>

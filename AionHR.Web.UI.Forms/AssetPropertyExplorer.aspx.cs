@@ -91,21 +91,28 @@ namespace AionHR.Web.UI.Forms
                 ListResponse<AssetPropertyValue> valResp = _assetManagementService.ChildGetAll<AssetPropertyValue>(valReq);
                 if (!valResp.Success)
                     Common.errorMessage(valResp);
-                propResp.Items.ForEach(x =>
+                try
                 {
-                    if (x.mask.HasValue)
+                    propResp.Items.ForEach(x =>
                     {
-                        AssetPropertyValue corrVal = valResp.Items.Where(d => d.propertyId == x.propertyId).ToList().Count > 0 ? valResp.Items.Where(d => d.propertyId == x.propertyId).ToList()[0] : null;
-                        switch (x.mask)
+                        if (x.mask.HasValue)
                         {
-                            case 1: propertiesForm.Items.Add(new TextField() { Text = corrVal != null && !string.IsNullOrEmpty(corrVal.value) ? corrVal.value : "", FieldLabel = x.caption, Name = x.propertyId }); break; //text
-                            case 2: propertiesForm.Items.Add(new NumberField() { Value = corrVal != null&&!string.IsNullOrEmpty(corrVal.value) ? corrVal.GetValueDouble() : 0, FieldLabel = x.caption, Name = x.propertyId }); break; //number
-                            case 3: propertiesForm.Items.Add(new DateField() { SelectedDate = corrVal != null && !string.IsNullOrEmpty(corrVal.value) ? corrVal.GetValueDateTime() : DateTime.Now, Name = x.propertyId,FieldLabel=x.caption }); break;//datetime
+                            AssetPropertyValue corrVal = valResp.Items.Where(d => d.propertyId == x.propertyId).ToList().Count > 0 ? valResp.Items.Where(d => d.propertyId == x.propertyId).ToList()[0] : null;
+                            switch (x.mask)
+                            {
+                                case 1: propertiesForm.Items.Add(new TextField() { Text = corrVal != null && !string.IsNullOrEmpty(corrVal.value) ? corrVal.value : "", FieldLabel = x.caption, Name = x.propertyId }); break; //text
+                            case 2: propertiesForm.Items.Add(new NumberField() { Value = corrVal != null && !string.IsNullOrEmpty(corrVal.value) ? corrVal.GetValueDouble() : 0, FieldLabel = x.caption, Name = x.propertyId }); break; //number
+                            case 3: propertiesForm.Items.Add(new DateField() { SelectedDate = corrVal != null && !string.IsNullOrEmpty(corrVal.value) ? corrVal.GetValueDateTime() : DateTime.Now, Name = x.propertyId, FieldLabel = x.caption }); break;//datetime
 
                             case 5: propertiesForm.Items.Add(new Checkbox() { Checked = corrVal != null && !string.IsNullOrEmpty(corrVal.value) ? corrVal.GetValueBool() : false, FieldLabel = x.caption, Name = x.propertyId, InputValue = "true" }); break;//checkbox
                         }
-                    }
-                });
+                        }
+                    });
+                }
+                catch(Exception exp)
+                {
+                    X.Msg.Alert("Error", exp.Message);
+                }
 
 
 
