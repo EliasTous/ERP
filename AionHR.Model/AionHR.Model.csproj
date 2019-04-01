@@ -159,6 +159,7 @@
     <Compile Include="Reports\PT501.cs" />
     <Compile Include="Reports\RT115.cs" />
     <Compile Include="Reports\RT309.cs" />
+    <Compile Include="Reports\RT310.cs" />
     <Compile Include="Reports\RT506.cs" />
     <Compile Include="Reports\RT507.cs" />
     <Compile Include="Reports\RT508.cs" />

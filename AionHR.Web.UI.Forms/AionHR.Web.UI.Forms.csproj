@@ -143,10 +143,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\Softmachine\UI\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Reports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Softmachine\Reports.dll</HintPath>
-    </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\Desktop\bin\bin\StructureMap.dll</HintPath>
       <Private>True</Private>
@@ -211,6 +207,7 @@
     <Content Include="Reports\RT303.aspx" />
     <Content Include="Reports\RT307.aspx" />
     <Content Include="Reports\RT309.aspx" />
+    <Content Include="Reports\RT310.aspx" />
     <Content Include="Reports\RT506.aspx" />
     <Content Include="Reports\RT507.aspx" />
     <Content Include="Reports\RT804.aspx" />
@@ -911,6 +908,13 @@
     </Compile>
     <Compile Include="Reports\RT309.aspx.designer.cs">
       <DependentUpon>RT309.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT310.aspx.cs">
+      <DependentUpon>RT310.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT310.aspx.designer.cs">
+      <DependentUpon>RT310.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT506.aspx.cs">
       <DependentUpon>RT506.aspx</DependentUpon>
@@ -2945,6 +2949,10 @@
     <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
       <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
       <Name>AionHR.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reports\Reports.csproj">
+      <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
+      <Name>Reports</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

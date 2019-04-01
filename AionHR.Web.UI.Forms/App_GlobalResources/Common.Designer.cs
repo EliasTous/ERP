@@ -2887,6 +2887,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attendance Schedule .
+        /// </summary>
+        internal static string RT310 {
+            get {
+                return ResourceManager.GetString("RT310", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loans History.
         /// </summary>
         internal static string RT401 {

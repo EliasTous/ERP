@@ -1320,4 +1320,7 @@
   <data name="RT309" xml:space="preserve">
     <value>Shift Log</value>
   </data>
+  <data name="RT310" xml:space="preserve">
+    <value>Attendance Schedule </value>
+  </data>
 </root>
