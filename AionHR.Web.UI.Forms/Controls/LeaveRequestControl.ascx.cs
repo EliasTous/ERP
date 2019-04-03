@@ -35,6 +35,7 @@ using AionHR.Services.Messaging.Reports;
 using AionHR.Model.Dashboard;
 using AionHR.Services.Messaging.DashBoard;
 using AionHR.Web.UI.Forms.ConstClasses;
+using DevExpress.XtraReports.UI;
 
 namespace AionHR.Web.UI.Forms.Controls
 {
@@ -1191,6 +1192,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
                 MemoryStream ms = new MemoryStream();
                 y.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+             
                 Response.Clear();
                 Response.ContentType = "application/pdf";
                 Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
@@ -1442,6 +1444,6 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             FillApprovals(CurrentLeave.Text);
         }
-
+     
     }
 }

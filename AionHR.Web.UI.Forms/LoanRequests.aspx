@@ -1131,7 +1131,7 @@
                                     <ext:Column ID="lAstatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
                                        
                                     </ext:Column>
-                                      <ext:Column ID="Column9" Visible="true" DataIndex="arName" runat="server" Flex="1" text="<%$ Resources: ApprovalReason%> " > 
+                                      <ext:Column ID="Column9" Visible="true" DataIndex="arName" runat="server" Flex="1" text="<%$ Resources: ApprovalReason%>"  /> 
                                     <ext:Column ID="LAnotes" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
                                        
                                     </ext:Column>

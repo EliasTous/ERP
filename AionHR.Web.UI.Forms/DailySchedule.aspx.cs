@@ -599,14 +599,14 @@ namespace AionHR.Web.UI.Forms
             //    fsToTime = fsToTime.AddDays(1);
             //}
 
-            if ((fsfromTime.ToString("tt") == "AM" && "AM" == fsToTime.ToString("tt")) || ((fsfromTime.ToString("tt") == "PM" && "PM" == fsToTime.ToString("tt"))))
-            {
-                if (fsfromTime >= fsToTime)
-                {
-                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValideFromToTime")).Show();
-                    return;
-                }
-            }
+            //if ((fsfromTime.ToString("tt") == "AM" && "AM" == fsToTime.ToString("tt")) || ((fsfromTime.ToString("tt") == "PM" && "PM" == fsToTime.ToString("tt"))))
+            //{
+            //    if (fsfromTime >= fsToTime)
+            //    {
+            //        X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValideFromToTime")).Show();
+            //        return;
+            //    }
+            //}
 
             //if ((fsfromTime > fsToTime) && (fsfromTime.ToString("tt") == "PM" && "AM" == fsToTime.ToString("tt")))
             //{
@@ -682,6 +682,8 @@ namespace AionHR.Web.UI.Forms
                             if (fsToDate.Minute == 0 && fsToDate.Hour == 00)
                             {
                                 fsToDate = fsToDate.AddDays(1);
+                                fsToDate = fsToDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                                listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
                                 do
                                 {
 

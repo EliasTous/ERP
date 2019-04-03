@@ -338,11 +338,7 @@
                                                             <Menu>
                                                                 <ext:Menu runat="server">
                                                                     <Items>
-                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ApprovalReason%>">
-                                                                            <Listeners>
-                                                                                <Click Handler="openNewTab('ApprovalReasons', 'ApprovalReasons.aspx', #{arTitle}.value, 'icon-Employees')" />
-                                                                            </Listeners>
-                                                                        </ext:MenuItem>
+                                                                       
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , Departments%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('departments', 'Departments.aspx', #{deTitle}.value, 'icon-Employees')" />
@@ -367,8 +363,13 @@
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('Approvals', 'Approvals.aspx', #{apTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
+
                                                                         </ext:MenuItem>
-                                                                      
+                                                                       <ext:MenuItem runat="server" Text="<%$Resources: Common , ApprovalReason%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('ApprovalReasons', 'ApprovalReasons.aspx', #{arTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
                                                                          
                                                                     </Items>
                                                                 </ext:Menu>
