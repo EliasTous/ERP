@@ -224,6 +224,20 @@
     <Compile Include="SecurityGroupsReport.Designer.cs">
       <DependentUpon>SecurityGroupsReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShiftLogs\ShiftLogsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShiftLogs\ShiftLogsReport.Designer.cs">
+      <DependentUpon>ShiftLogsReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShiftLogs\ShiftLogsDS.cs">
+      <DependentUpon>ShiftLogsDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ShiftLogs\ShiftLogsDS.Designer.cs">
+      <DependentUpon>ShiftLogsDS.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Skills\Skills.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -555,6 +569,17 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SecurityGroupsReport.resx">
       <DependentUpon>SecurityGroupsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShiftLogs\ShiftLogsReport.ar.resx">
+      <DependentUpon>ShiftLogsReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShiftLogs\ShiftLogsReport.en-US.resx">
+      <DependentUpon>ShiftLogsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShiftLogs\ShiftLogsReport.resx">
+      <DependentUpon>ShiftLogsReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Skills\Skills.ar.resx">
       <DependentUpon>Skills.cs</DependentUpon>
@@ -960,6 +985,17 @@
     </None>
     <None Include="GroupedPayRollCross\dsSalaries.xss">
       <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </None>
+    <None Include="ShiftLogs\ShiftLogsDS.xsc">
+      <DependentUpon>ShiftLogsDS.xsd</DependentUpon>
+    </None>
+    <None Include="ShiftLogs\ShiftLogsDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ShiftLogsDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ShiftLogs\ShiftLogsDS.xss">
+      <DependentUpon>ShiftLogsDS.xsd</DependentUpon>
     </None>
     <None Include="Skills\SkillsDataSet.xsc">
       <DependentUpon>SkillsDataSet.xsd</DependentUpon>

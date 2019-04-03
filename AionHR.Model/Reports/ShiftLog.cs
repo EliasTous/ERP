@@ -10,5 +10,6 @@ namespace AionHR.Model.Reports
     {
         public string start { get; set; }
         public string end { get; set; }
+       
     }
 }

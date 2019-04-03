@@ -30,7 +30,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Services.Messaging.TimeAttendance;
 using AionHR.Model.TimeAttendance;
 using AionHR.Web.UI.Forms.ConstClasses;
-
+using Reports.ShiftLogs;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -204,54 +204,83 @@ namespace AionHR.Web.UI.Forms.Reports
                 ListResponse<AionHR.Model.Reports.RT309> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT309>(req);
                 if (!resp.Success)
                     Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
-              
+                int counter = 1;
+                List<AionHR.Model.Reports.RT309> newShiftLogsList = new List<AionHR.Model.Reports.RT309>();
+                AionHR.Model.Reports.RT309 record = new AionHR.Model.Reports.RT309();
+                DateTime parsed = DateTime.Now;
 
-                ApproverPerformance h = new ApproverPerformance();
+
+
+                foreach (var e in resp.Items.GroupBy(x=>x.employeeName))
+                {
+
+                   
+                    e.ToList().ForEach(y =>
+                    {
+                        counter = 1;
+                        if (DateTime.TryParseExact(y.dayId, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
+                            {
+
+                            //y.dayIdDateTime = parsed;
+                            //record = new Model.Reports.RT309();
+                            //record.employeeName = y.employeeName;
+                            //record.dayIdDateTime = y.dayIdDateTime;
+                            //record.shiftLog = y.shiftLog;
+
+                            //record.shiftId = String.Format("{0} {1}", "Shift", counter);
+                            //counter++;
+                            //newShiftLogsList.Add(record);
+                            y.shiftLog.ForEach(z =>
+                            {
+                                y.dayIdDateTime = parsed;
+                                record = new Model.Reports.RT309();
+                                record.employeeName = y.employeeName;
+                                record.dayIdDateTime = y.dayIdDateTime;
+                                record.shiftLog = new List<ShiftLog>();
+                                record.shiftLog.Add(new ShiftLog { start = z.start, end = z.end });
+
+                                record.shiftId = String.Format("{0} {1}", "Shift", counter);
+                                counter++;
+                                newShiftLogsList.Add(record);
+
+
+                            }
+                            );
+                        }
+
+                    });
+                  
+                  
+                }
+                ShiftLogsReport h = new ShiftLogsReport(newShiftLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat());
+                h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-              
 
-                //string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-                //string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-                string user = _systemService.SessionHelper.GetCurrentUser();
 
-                //h.Parameters["FromParameter"].Value = from;
-                //h.Parameters["ToParameter"].Value = to;
-                //h.Parameters["User"].Value = user;
-                //if (req.Parameters["_dayStatus"] != "0")
-                //    h.Parameters["dayStatusParameter"].Value = dayStatus.SelectedItem.Text;
-                //else
-                //    h.Parameters["dayStatusParameter"].Value = GetGlobalResourceObject("Common", "All");
-                //if (req.Parameters["_punchStatus"] != "0")
-                //    h.Parameters["punchStatus"].Value = punchStatus.SelectedItem.Text;
-                //else
-                //    h.Parameters["punchStatus"].Value = GetGlobalResourceObject("Common", "All");
-                //if (req.Parameters["_departmentId"] != "0")
-                //    h.Parameters["DepartmentName"].Value = jobInfo1.GetDepartment();
-                //else
-                //    h.Parameters["DepartmentName"].Value = GetGlobalResourceObject("Common", "All");
+                string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                h.Parameters["User"].Value = string.IsNullOrEmpty(_systemService.SessionHelper.GetCurrentUser()) ? " " : _systemService.SessionHelper.GetCurrentUser();
+
+                h.Parameters["From"].Value = from;
+                h.Parameters["To"].Value = to;
+
+                if (req.Parameters["_branchId"] != "0")
+                    h.Parameters["Branch"].Value = jobInfo1.GetDepartment();
+                else
+                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
 
 
 
-                //ListRequest def = new ListRequest();
-                //int lateness = 0;
-                //ListResponse<KeyValuePair<string, string>> items = _systemService.ChildGetAll<KeyValuePair<string, string>>(def);
-                //try
-                //{
-                //    lateness = Convert.ToInt32(items.Items.Where(s => s.Key == "allowedLateness").First().Value);
-                //}
-                //catch
-                //{
 
-                //}
-                //h.Parameters["AllowedLatenessParameter"].Value = lateness;
 
 
                 h.CreateDocument();
 
 
                 ASPxWebDocumentViewer1.OpenReport(h);
+
 
             }
             catch (Exception exp)

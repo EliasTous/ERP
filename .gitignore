@@ -255,3 +255,5 @@ ModelManifest.xml
 /AionHR.Web.UI.Forms/App_GlobalResources/ASP_Errors.resx
 /AionHR.Web.UI.Forms/App_GlobalResources/ASP_Errors.designer.cs
 /AionHR.Model/Reports/RT303cs
+/Reports/AttendanceSchedule/AttendanceScheduleReport.Designer.cs
+/Reports/AttendanceSchedule/EmployeePayrollCrossReport.resx.bak
