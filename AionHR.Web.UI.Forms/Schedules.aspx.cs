@@ -1100,10 +1100,12 @@ namespace AionHR.Web.UI.Forms
             dayBreaksForm.Reset();
             isBatch.Text = "1";
             fieldScId.Text = CurrentSchedule.Text;
-
+           
             List<DayType> dayTypes = LoadDayTypes();
             dayTypesStore.DataSource = dayTypes;
             dayTypesStore.DataBind();
+            periodsGrid.Store[0].DataSource = new List<AttendanceBreak>();
+            periodsGrid.Store[0].DataBind();
             this.EditDayBreaks.Title = Resources.Common.AddNewRecord;
 
             this.EditDayBreaks.Show();

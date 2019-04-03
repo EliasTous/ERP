@@ -246,4 +246,7 @@
   <data name="Approvals" xml:space="preserve">
     <value>Approvals</value>
   </data>
+  <data name="ApprovalReason" xml:space="preserve">
+    <value>Approval Reason</value>
+  </data>
 </root>

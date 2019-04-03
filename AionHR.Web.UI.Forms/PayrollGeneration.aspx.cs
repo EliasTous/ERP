@@ -43,6 +43,7 @@ using AionHR.Services.Implementations;
 using AionHR.Repository.WebService.Repositories;
 using Reports.EmployeePayRoll;
 using Newtonsoft.Json.Linq;
+using DevExpress.XtraReports.UI;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -2060,6 +2061,14 @@ namespace AionHR.Web.UI.Forms
             salaryTypeId.setSalaryType("5");
             payrollsStore.Reload();
 
+        }
+        public byte[] GetBuffer(XtraReport report)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                report.ExportToImage(stream, new DevExpress.XtraPrinting.ImageExportOptions(System.Drawing.Imaging.ImageFormat.Jpeg));
+                return stream.ToArray();
+            }
         }
     }
 }

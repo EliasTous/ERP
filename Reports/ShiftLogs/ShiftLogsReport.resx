@@ -124,6 +124,9 @@
   <data name="xrPivotGrid1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="fieldemployeeName1.Caption" xml:space="preserve">
+    <value>Employee</value>
+  </data>
   <data name="fieldemployeeName1.RowValueLineCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>

@@ -118,42 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Account" xml:space="preserve">
-    <value>Account Name  de</value>
+    <value>Kontoname</value>
   </data>
   <data name="AccountValid" xml:space="preserve">
-    <value>Account is valid.</value>
+    <value>Konto ist gültig</value>
   </data>
   <data name="EnterYourAccount" xml:space="preserve">
-    <value>Enter Your Account</value>
+    <value>Geben Sie Ihr Konto ein</value>
   </data>
   <data name="EnterYourID" xml:space="preserve">
-    <value>Enter Your ID</value>
+    <value>Geben Sie Ihr ID ein</value>
   </data>
   <data name="EnterYourPassword" xml:space="preserve">
-    <value>Enter Your Password</value>
+    <value>Geben Sie Ihr Passwort ein</value>
   </data>
   <data name="InvalidAccount" xml:space="preserve">
-    <value>Invalid Account Name.</value>
+    <value>Ungültiger Kontoname</value>
   </data>
   <data name="InvalidCredentials" xml:space="preserve">
-    <value>Invalid Username or Password</value>
+    <value>Ungültiger Nutzername oder Passwort</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Login</value>
+    <value>Einloggen</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Passwort</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
-    <value>Remember Me</value>
+    <value>Erinnere dich an mich</value>
   </data>
   <data name="RequestError" xml:space="preserve">
-    <value>Error in request, Try Again Later.</value>
+    <value>Fehler in der Anfrage, später erneut versuchen.</value>
   </data>
   <data name="UserID" xml:space="preserve">
-    <value>Username | Email</value>
+    <value>Nutzername | Email</value>
   </data>
   <data name="ValidAccount" xml:space="preserve">
-    <value>Valid Account Name</value>
+    <value>Gültiger Kontoname</value>
   </data>
 </root>

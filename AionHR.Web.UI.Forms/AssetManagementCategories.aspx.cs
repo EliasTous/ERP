@@ -792,6 +792,32 @@ namespace AionHR.Web.UI.Forms
 
             if (!routers.Success)
                 Common.errorMessage(routers);
+           
+                           routers.Items.ForEach(x =>
+            {
+                switch (x.mask)
+                {
+                    case 1 : x.maskString = GetLocalResourceObject("TEXT").ToString();
+                        break;
+                    case 2:
+                        x.maskString = GetLocalResourceObject("NUMERIC").ToString();
+                        break;
+                    case 3:
+                        x.maskString = GetLocalResourceObject("DATE").ToString();
+                        break;
+                    case 4:
+                        x.maskString = GetLocalResourceObject("DATE_TIME").ToString();
+                        break;
+                    case 5:
+                        x.maskString = GetLocalResourceObject("CHECKBOX").ToString();
+                        break;
+                    default: x.maskString = "";
+                        break;
+
+
+
+                }
+            });
             this.PropertiesStore.DataSource = routers.Items;
             e.Total = routers.Items.Count; ;
 

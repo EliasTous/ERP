@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Vorlageninfo</value>
+  </data>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Vorlage Bearbeiten</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Datensatz-ID</value>
+  </data>
+  <data name="FieldSwiftCode" xml:space="preserve">
+    <value>IBAN</value>
+  </data>
+  <data name="intName" xml:space="preserve">
+    <value>Int Name</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Bänke</value>
+  </data>
+  <data name="Arabic" xml:space="preserve">
+    <value>Arabisch</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>Englisch</value>
+  </data>
+  <data name="FieldLanguage" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="FieldUsage" xml:space="preserve">
+    <value>Verwendungszweck</value>
+  </data>
+  <data name="TemplateBodyWindow" xml:space="preserve">
+    <value>Vorlage Body</value>
+  </data>
+  <data name="UsageCompany" xml:space="preserve">
+    <value>Firma</value>
+  </data>
+  <data name="UsageEmployee" xml:space="preserve">
+    <value>Mitarbeiter</value>
+  </data>
+  <data name="UsageThirdParty" xml:space="preserve">
+    <value>Dritte Person</value>
+  </data>
+  <data name="SaveTemplateFirst" xml:space="preserve">
+    <value>Bitte speichern Sie die Vorlage, bevor Sie Sprachvarianten hinzufügen</value>
+  </data>
+  <data name="TemplateBodies" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="emp_birthDate" xml:space="preserve">
+    <value>Mitarbeiter Geburtsdatum</value>
+  </data>
+  <data name="emp_branch" xml:space="preserve">
+    <value>Mitarbeiter Branch</value>
+  </data>
+  <data name="emp_department" xml:space="preserve">
+    <value>Mitarbeiter Abteiung</value>
+  </data>
+  <data name="emp_employmentStatus" xml:space="preserve">
+    <value>Mitarbeiter Beschäftigungsstatus</value>
+  </data>
+  <data name="emp_firstName" xml:space="preserve">
+    <value>Mitarbeiter Vorname</value>
+  </data>
+  <data name="emp_fullName" xml:space="preserve">
+    <value>Mitarbeiter Vollname</value>
+  </data>
+  <data name="emp_hireDate" xml:space="preserve">
+    <value>Mitarbeiter Anstellungsdatum</value>
+  </data>
+  <data name="emp_idRef" xml:space="preserve">
+    <value>Mitarbeiter Referenz</value>
+  </data>
+  <data name="emp_lastName" xml:space="preserve">
+    <value>Mitarbeiter Nachname</value>
+  </data>
+  <data name="emp_mobile" xml:space="preserve">
+    <value>Mitarbeiter Mobil</value>
+  </data>
+  <data name="emp_nationality" xml:space="preserve">
+    <value>Mitarbeiter Nationalität</value>
+  </data>
+  <data name="emp_position" xml:space="preserve">
+    <value>Mitarbeiter Position</value>
+  </data>
+  <data name="emp_salary" xml:space="preserve">
+    <value>Mitarbeiter Gehalt</value>
+  </data>
+  <data name="emp_salary_text" xml:space="preserve">
+    <value>Mitarbeiter Gehalt wörtlich</value>
+  </data>
+  <data name="emp_workMail" xml:space="preserve">
+    <value>Mitarbeiter Arbeits Email</value>
+  </data>
+  <data name="SaveAndPreview" xml:space="preserve">
+    <value>Speichern und Vorschau</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zurück zu Vorlage</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Mitarbeiter</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Vorschau</value>
+  </data>
+  <data name="SelectEmpWindow" xml:space="preserve">
+    <value>Wählen Sie einen Mitarbeiter aus!</value>
+  </data>
+  <data name="pay_basicSalary" xml:space="preserve">
+    <value>Grundgehalt</value>
+  </data>
+  <data name="pay_companySS" xml:space="preserve">
+    <value>Firma</value>
+  </data>
+  <data name="pay_deductions" xml:space="preserve">
+    <value>Abzüge</value>
+  </data>
+  <data name="pay_employeeSS" xml:space="preserve">
+    <value>Mitarbeiter</value>
+  </data>
+  <data name="pay_entitlements" xml:space="preserve">
+    <value>Ansprüche</value>
+  </data>
+  <data name="pay_fromDate" xml:space="preserve">
+    <value>Zahlungsart</value>
+  </data>
+  <data name="pay_netSalary" xml:space="preserve">
+    <value>Netto Gehalt</value>
+  </data>
+  <data name="pay_toDate" xml:space="preserve">
+    <value>Zahlen zu</value>
+  </data>
+  <data name="pay_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="leave_endDate" xml:space="preserve">
+    <value>Enddatum</value>
+  </data>
+  <data name="leave_startDate" xml:space="preserve">
+    <value>Anfangsdatum</value>
+  </data>
+  <data name="leave_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="loan_amount" xml:space="preserve">
+    <value>Menge</value>
+    <comment>Betrag</comment>
+  </data>
+  <data name="loan_date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="loan_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="ta_sched_endDate" xml:space="preserve">
+    <value>Enddatum</value>
+  </data>
+  <data name="ta_sched_startDate" xml:space="preserve">
+    <value>Anfangsdatum</value>
+  </data>
+  <data name="ta_sched_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="penalty_amount" xml:space="preserve">
+    <value>Strafbetrag</value>
+  </data>
+  <data name="penalty_date" xml:space="preserve">
+    <value>Strafedatum</value>
+  </data>
+  <data name="penalty_url" xml:space="preserve">
+    <value>Strafe Url</value>
+  </data>
+  <data name="tv_date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="tv_duration" xml:space="preserve">
+    <value>Dauer</value>
+  </data>
+  <data name="tv_timeCode" xml:space="preserve">
+    <value>Zeitcode</value>
+  </data>
+  <data name="tv_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+</root>

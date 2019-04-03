@@ -293,7 +293,7 @@ namespace AionHR.Web.UI.Forms
             //sponsorId.Select(result.sponsorId);
             vsId.Select(result.vsId);
             //caId.Select(result.caId);
-            //scId.Select(result.scId.ToString());
+            scId.Select(result.scId.ToString());
             divisionId.Select(result.divisionId);
             nqciId.Select(result.nqciId.ToString());
             if (string.IsNullOrEmpty(result.civilStatus.ToString()))

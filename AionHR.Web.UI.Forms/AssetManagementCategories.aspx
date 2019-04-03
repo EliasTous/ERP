@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Nationalities.js?id=1" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
-   
+  
  
 </head>
 <body style="background: url(Images/bg.png) repeat;" ">
@@ -23,7 +23,12 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
          <ext:Hidden ID="currentCategory" runat="server"  />
+
+
+         
         
+     
+       
         <ext:Store
             ID="Store1"
             runat="server"
@@ -316,6 +321,7 @@
                                                 <ext:ModelField Name="propertyId" />
                                                  <ext:ModelField Name="caption" />
                                                 <ext:ModelField Name="mask" />
+                                                  <ext:ModelField Name="maskString" />
                                               
                                                 
                                                 
@@ -333,6 +339,7 @@
                                      <ext:Column ID="ColMask" Visible="false" DataIndex="mask" runat="server" />
                                  
                                     <ext:Column ID="Colcaption" DataIndex="caption" Text="<%$ Resources: FieldCaption%>" runat="server" Flex="1"/>
+                                      <ext:Column ID="ColMaskName" DataIndex="maskString" Text="<%$ Resources: FieldMask%>" runat="server" Flex="1"/>
                                    
                                    
                                     
