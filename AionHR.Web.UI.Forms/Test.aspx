@@ -22,6 +22,7 @@
     <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic-ar.js"></script>
     <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.lang.js"></script>
       <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker-ar.js"></script>
+    <script type="text/javascript" ></script>
     <style>
         .tlb-BackGround {
             background: #fff;
