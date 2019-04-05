@@ -2878,6 +2878,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Punch  Log.
+        /// </summary>
+        internal static string RT308 {
+            get {
+                return ResourceManager.GetString("RT308", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shift Log.
         /// </summary>
         internal static string RT309 {

@@ -1389,4 +1389,7 @@
   <data name="RT309" xml:space="preserve">
     <value>سجل الدوام</value>
   </data>
+  <data name="RT308" xml:space="preserve">
+    <value>سجل البصمات</value>
+  </data>
 </root>

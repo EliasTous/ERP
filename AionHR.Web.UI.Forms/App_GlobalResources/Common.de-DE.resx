@@ -1317,4 +1317,7 @@
   <data name="RT309" xml:space="preserve">
     <value>Schichtprotokoll</value>
   </data>
+  <data name="RT308" xml:space="preserve">
+    <value>Log schieben</value>
+  </data>
 </root>
