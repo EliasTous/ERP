@@ -252,4 +252,7 @@
   <data name="deductionType_percentage" xml:space="preserve">
     <value>نسبة من الراتب</value>
   </data>
+  <data name="FieldDeductionType" xml:space="preserve">
+    <value>نوع الخصم</value>
+  </data>
 </root>

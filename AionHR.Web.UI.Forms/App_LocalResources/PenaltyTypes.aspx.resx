@@ -255,4 +255,7 @@
   <data name="deductionType_percentage" xml:space="preserve">
     <value>Percentage of daily salary</value>
   </data>
+  <data name="FieldDeductionType" xml:space="preserve">
+    <value>Deduction Type</value>
+  </data>
 </root>
