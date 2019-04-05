@@ -689,7 +689,7 @@ namespace AionHR.Web.UI.Forms
                 List<object> deduction = new List<object>();
                 deduction.Add(new { name = GetLocalResourceObject("deductionType_percentage").ToString(), recordId = 1});
                 deduction.Add(new { name = GetLocalResourceObject("deductionType_fixedAmount").ToString(), recordId =2 });
-                deductionTypeStore.DataSource = action;
+                deductionTypeStore.DataSource = deduction;
                 deductionTypeStore.DataBind();
             }
             catch (Exception exp)
