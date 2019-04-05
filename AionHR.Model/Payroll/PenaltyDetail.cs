@@ -17,6 +17,7 @@ namespace AionHR.Model.Payroll
         public int? pct { get; set; }
         public bool includeTV { get; set; }
 
+        public short? deductionType { get; set; }
         
 
 

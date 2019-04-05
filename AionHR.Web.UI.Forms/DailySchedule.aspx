@@ -261,7 +261,7 @@
                                         
                                     </DirectEvents>
                                 </ext:ComboBox>
-                                <ext:Button MarginSpec="0 0 0 440" runat="server" Text="<%$ Resources: Load %>">
+                                <ext:Button MarginSpec="0 0 0 350" runat="server" Text="<%$ Resources: Load %>">
                                     <DirectEvents>
                                         <Click OnEvent="Load_Click">
                                             <EventMask ShowMask="true" />

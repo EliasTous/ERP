@@ -686,8 +686,11 @@ namespace AionHR.Web.UI.Forms
 
                 actionStore.DataSource = action;
                 actionStore.DataBind();
-
-
+                List<object> deduction = new List<object>();
+                deduction.Add(new { name = GetLocalResourceObject("deductionType_percentage").ToString(), recordId = 1});
+                deduction.Add(new { name = GetLocalResourceObject("deductionType_fixedAmount").ToString(), recordId =2 });
+                deductionTypeStore.DataSource = action;
+                deductionTypeStore.DataBind();
             }
             catch (Exception exp)
             {

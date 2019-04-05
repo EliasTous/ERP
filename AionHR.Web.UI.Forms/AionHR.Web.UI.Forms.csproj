@@ -192,6 +192,7 @@
     <Content Include="DELogin.aspx" />
     <Content Include="DocumentCategories.aspx" />
     <Content Include="FRLogin.aspx" />
+    <Content Include="ImportFlatSchedule.aspx" />
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
     <Content Include="Reports\Controls\AssetFilter.ascx" />
@@ -803,6 +804,13 @@
     </Compile>
     <Compile Include="FRLogin.aspx.designer.cs">
       <DependentUpon>FRLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportFlatSchedule.aspx.cs">
+      <DependentUpon>ImportFlatSchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportFlatSchedule.aspx.designer.cs">
+      <DependentUpon>ImportFlatSchedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="PayrollGenerationSelfServices.aspx.cs">
       <DependentUpon>PayrollGenerationSelfServices.aspx</DependentUpon>
@@ -3001,6 +3009,10 @@
     <Content Include="App_LocalResources\LeaveCalendar.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\LeavePayments.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\LeaveRequests.aspx.de-DE.resx" />
+    <Content Include="App_LocalResources\ImportFlatSchedule.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportFlatSchedule.aspx.de-DE.resx" />
+    <Content Include="App_LocalResources\ImportFlatSchedule.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ImportFlatSchedule.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

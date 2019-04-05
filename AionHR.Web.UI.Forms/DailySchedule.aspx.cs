@@ -675,32 +675,56 @@ namespace AionHR.Web.UI.Forms
                         List<string> listIds = new List<string>();
                         foreach (FlatSchedule fss in response.Items)
                         {
+                          
                             DateTime activeDate = DateTime.ParseExact(fss.dayId, "yyyyMMdd", new CultureInfo("en"));
 
                             DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.from.Split(':')[0]), Convert.ToInt32(fss.from.Split(':')[1]), 0);
                             DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.to.Split(':')[0]), Convert.ToInt32(fss.to.Split(':')[1]), 0);
-                            if (fsToDate.Minute == 0 && fsToDate.Hour == 00)
+                          
+                            if (fsfromDate > fsToDate)
                             {
+                                //temp = fsfromDate;
+                                //fsfromDate = fsToDate;
+                                //fsToDate = temp.AddDays(1);
                                 fsToDate = fsToDate.AddDays(1);
-                                fsToDate = fsToDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
-                                listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
-                                do
-                                {
-
-
-                                    fsToDate = fsToDate.AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
-                                    listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
-                                } while (fsToDate != fsfromDate);
+                               
                             }
-                            else
+                            do
                             {
-                                do
-                                {
+                                if (fsfromDate.Day >= fsToDate.Day)
+                                    listIds.Add(fsfromDate.AddDays(-1).ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                                else
                                     listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                                    fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
-                                } while (fsToDate >= fsfromDate);
-                            }
 
+                                fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+
+                            } while (fsToDate >= fsfromDate);
+                            //else
+                            //{
+                            //    if (fsToDate.Minute == 0 && fsToDate.Hour == 00)
+                            //    {
+                            //        listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
+                            //        fsToDate = fsToDate.AddDays(1);
+                            //        //  fsToDate = fsToDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+
+                            //        do
+                            //        {
+
+
+                            //            fsToDate = fsToDate.AddMinutes(-Convert.ToInt32(SystemDefaultResponse.result.Value));
+                            //            listIds.Add(fsToDate.ToString("yyyyMMdd") + "_" + fsToDate.ToString("HH:mm"));
+                            //        } while (fsToDate != fsfromDate);
+                            //    }
+                            //    else
+                            //    {
+                            //        do
+                            //        {
+                            //            listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                            //            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                            //        } while (fsToDate >= fsfromDate);
+                            //    }
+
+                            //}
                         }
                         var d = response.Items.GroupBy(x => x.dayId);
                         List<string> totaldayId = new List<string>();
