@@ -302,9 +302,6 @@
   <data name="xrTableCell18.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell18.Text" xml:space="preserve">
-    <value>xrTableCell18</value>
-  </data>
   <data name="xrTableCell18.Weight" type="System.Double, mscorlib">
     <value>1.4458119387107147</value>
   </data>
@@ -322,7 +319,7 @@
     <value>100</value>
   </data>
   <data name="Detail.HeightF" type="System.Single, mscorlib">
-    <value>23</value>
+    <value>22.99999</value>
   </data>
   <data name="Detail.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>TopLeft</value>

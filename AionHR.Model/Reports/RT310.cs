@@ -15,5 +15,6 @@ namespace AionHR.Model.Reports
         public DateTime dayIdDateTime { get; set; }
 
         public List<ShiftLog> shiftLog { get; set; }
-}
+      
+    }
 }

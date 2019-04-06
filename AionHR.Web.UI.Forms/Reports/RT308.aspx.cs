@@ -239,7 +239,11 @@ namespace AionHR.Web.UI.Forms.Reports
                                 record.employeeName = y.employeeName;
                                 record.dayIdDateTime = y.dayIdDateTime;
                                 record.punchString = y.punchLog[i];
-                                record.punchId = "Punch " + (i + 1);
+                                if (_systemService.SessionHelper.CheckIfArabicSession())
+                                    record.punchId = String.Format("{0} {1}", "البصمة ", (i + 1));
+                                else
+                                    record.punchId = String.Format("{0} {1}", "Punch ", (i + 1));
+                              
                                 counter++;
                                 newPunchLogsList.Add(record);
                             }

@@ -184,7 +184,7 @@
     <value>xrTableCell22</value>
   </data>
   <data name="xrTableCell23.Text" xml:space="preserve">
-    <value>رقم الإقامة </value>
+    <value>الهوية</value>
   </data>
   <data name="xrTableCell24.Text" xml:space="preserve">
     <value>المبلغ </value>
@@ -196,7 +196,7 @@
     <value>استحقاق خاضع </value>
   </data>
   <data name="xrTableCell27.Text" xml:space="preserve">
-    <value>رمز البنك</value>
+    <value>رقم الحساب</value>
   </data>
   <data name="xrTableCell28.Text" xml:space="preserve">
     <value>اسم الموظف</value>

@@ -130,6 +130,9 @@
   <data name="fieldemployeeName1.RowValueLineCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
+  <data name="fielddayId1.Caption" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="fieldShift1.Width" type="System.Int32, mscorlib">
     <value>70</value>
   </data>

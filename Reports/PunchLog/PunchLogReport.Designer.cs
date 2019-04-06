@@ -113,10 +113,8 @@
             // 
             // fieldemployeeName1
             // 
-            this.fieldemployeeName1.Appearance.FieldHeader.BackColor = System.Drawing.Color.Coral;
             this.fieldemployeeName1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.fieldemployeeName1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldemployeeName1.Appearance.FieldValue.BackColor = System.Drawing.Color.Maroon;
             this.fieldemployeeName1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.fieldemployeeName1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldemployeeName1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
@@ -127,11 +125,15 @@
             // 
             // fielddayId1
             // 
+            this.fielddayId1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fielddayId1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fielddayId1.Appearance.FieldHeader.WordWrap = true;
             this.fielddayId1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.fielddayId1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fielddayId1.Appearance.FieldValue.WordWrap = true;
             this.fielddayId1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.fielddayId1.AreaIndex = 1;
+            resources.ApplyResources(this.fielddayId1, "fielddayId1");
             this.fielddayId1.FieldName = "dayId";
             this.fielddayId1.Name = "fielddayId1";
             this.fielddayId1.Options.AllowExpand = DevExpress.Utils.DefaultBoolean.True;
@@ -139,6 +141,10 @@
             // 
             // fieldPunch1
             // 
+            this.fieldPunch1.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldPunch1.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldPunch1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldPunch1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldPunch1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.fieldPunch1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldPunch1.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;

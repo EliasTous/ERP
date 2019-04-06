@@ -121,6 +121,8 @@
             // 
             // fieldemployeeName1
             // 
+            this.fieldemployeeName1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldemployeeName1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldemployeeName1.Appearance.FieldValue.BackColor = System.Drawing.Color.BlanchedAlmond;
             this.fieldemployeeName1.Appearance.FieldValue.BorderColor = System.Drawing.Color.Azure;
             this.fieldemployeeName1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -133,11 +135,14 @@
             // 
             // fielddayId1
             // 
+            this.fielddayId1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fielddayId1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fielddayId1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.fielddayId1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fielddayId1.Appearance.FieldValue.WordWrap = true;
-            this.fielddayId1.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
-            this.fielddayId1.AreaIndex = 0;
+            this.fielddayId1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fielddayId1.AreaIndex = 1;
+            resources.ApplyResources(this.fielddayId1, "fielddayId1");
             this.fielddayId1.FieldName = "dayId";
             this.fielddayId1.Name = "fielddayId1";
             // 
@@ -165,7 +170,7 @@
             this.fieldShiftId1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldShiftId1.Appearance.FieldValue.WordWrap = true;
             this.fieldShiftId1.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
-            this.fieldShiftId1.AreaIndex = 1;
+            this.fieldShiftId1.AreaIndex = 0;
             this.fieldShiftId1.FieldName = "ShiftId";
             this.fieldShiftId1.Name = "fieldShiftId1";
             // 

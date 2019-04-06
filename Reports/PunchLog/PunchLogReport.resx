@@ -127,6 +127,9 @@
   <data name="fieldemployeeName1.Caption" xml:space="preserve">
     <value>Employee</value>
   </data>
+  <data name="fielddayId1.Caption" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <assembly alias="DevExpress.Data.v16.2" name="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="xrPivotGrid1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
     <value>10.00001, 0</value>
