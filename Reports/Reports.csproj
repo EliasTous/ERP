@@ -212,6 +212,20 @@
     <Compile Include="PayrollPeriodSummary.Designer.cs">
       <DependentUpon>PayrollPeriodSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="PunchLog\PunchLogReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PunchLog\PunchLogReport.Designer.cs">
+      <DependentUpon>PunchLogReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PunchLog\dsSalaries.cs">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PunchLog\dsSalaries.Designer.cs">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Receipts.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -561,6 +575,17 @@
       <DependentUpon>PayrollPeriodSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="PunchLog\PunchLogReport.ar.resx">
+      <DependentUpon>PunchLogReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PunchLog\PunchLogReport.en-US.resx">
+      <DependentUpon>PunchLogReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PunchLog\PunchLogReport.resx">
+      <DependentUpon>PunchLogReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Receipts.resx">
       <DependentUpon>Receipts.cs</DependentUpon>
     </EmbeddedResource>
@@ -984,6 +1009,17 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="GroupedPayRollCross\dsSalaries.xss">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </None>
+    <None Include="PunchLog\dsSalaries.xsc">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </None>
+    <None Include="PunchLog\dsSalaries.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSalaries.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PunchLog\dsSalaries.xss">
       <DependentUpon>dsSalaries.xsd</DependentUpon>
     </None>
     <None Include="ShiftLogs\ShiftLogsDS.xsc">

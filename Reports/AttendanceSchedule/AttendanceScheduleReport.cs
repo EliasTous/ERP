@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using AionHR.Model.Reports;
 using DevExpress.XtraPivotGrid;
+using System.Globalization;
+using System.Threading;
 
 namespace Reports.AttendanceSchedule
 {
@@ -14,16 +16,27 @@ namespace Reports.AttendanceSchedule
     {
         public AttendanceScheduleReport(List<RT310> items, bool isArabic,string DateFormat)
         {
+            if (isArabic)
+            {
+                CultureInfo culture = new CultureInfo("ar-LB");
+                culture.DateTimeFormat.ShortDatePattern = "dddd" + Environment.NewLine + DateFormat;
+                culture.DateTimeFormat.LongTimePattern = "dddd" + Environment.NewLine + DateFormat;
+                Thread.CurrentThread.CurrentCulture = culture;
+                Thread.CurrentThread.CurrentUICulture = culture;
+            }
             InitializeComponent();
           
             fielddayId.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            fielddayId.ValueFormat.FormatString = DateFormat;
+            fielddayId.ValueFormat.FormatString = "dddd"+ Environment.NewLine + DateFormat ;
             if (isArabic)
             {
+
                 fieldemployeeName.Caption = "الموظف";
                 this.RightToLeft = RightToLeft.Yes;
                 this.RightToLeftLayout = RightToLeftLayout.Yes;
-                xrPivotGrid1.RightToLeft = RightToLeft.Yes; ;
+                xrPivotGrid1.RightToLeft = RightToLeft.Yes;
+                
+
 
             }
             dsSalaries1.DataTable1.AddDataTable1Row("ad");

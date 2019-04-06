@@ -21,6 +21,7 @@ namespace Reports.ShiftLogs
             if (isArabic)
             {
                 fieldemployeeName1.Caption = "الموظف";
+                fielddayId1.Caption = "التاريخ";
                 this.RightToLeft = RightToLeft.Yes;
                 this.RightToLeftLayout = RightToLeftLayout.Yes;
                 xrPivotGrid1.RightToLeft = RightToLeft.Yes; ;

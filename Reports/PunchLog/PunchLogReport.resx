@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="shiftLogsDS1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="dsSalaries1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -127,14 +127,8 @@
   <data name="fieldemployeeName1.Caption" xml:space="preserve">
     <value>Employee</value>
   </data>
-  <data name="fieldemployeeName1.RowValueLineCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
   <data name="fielddayId1.Caption" xml:space="preserve">
     <value>Date</value>
-  </data>
-  <data name="fieldShift1.Width" type="System.Int32, mscorlib">
-    <value>70</value>
   </data>
   <assembly alias="DevExpress.Data.v16.2" name="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="xrPivotGrid1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
@@ -283,7 +277,7 @@
     <value>831, 36.5416679</value>
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>Shift Log </value>
+    <value>Punch Log</value>
   </data>
   <data name="xrLabel1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>

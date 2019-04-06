@@ -239,8 +239,11 @@ namespace AionHR.Web.UI.Forms.Reports
                                 record.shiftLog = new List<ShiftLog>();
                                 record.shiftLog.Add(new ShiftLog { start = z.start, end = z.end });
 
-                                record.shiftId = String.Format("{0} {1}", "Shift", counter);
-                                counter++;
+                                if (_systemService.SessionHelper.CheckIfArabicSession())
+                                    record.shiftId = String.Format("{0} {1}", "الفترة ",counter);
+                                else
+                                    record.shiftId = String.Format("{0} {1}", "Shift ", counter);
+                                        counter++;
                                 newShiftLogsList.Add(record);
 
 

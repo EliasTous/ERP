@@ -124,6 +124,9 @@
   <data name="xrPivotGrid1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="fielddayId.ColumnValueLineCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
   <data name="fielddayId.RowValueLineCount" type="System.Int32, mscorlib">
     <value>3</value>
   </data>

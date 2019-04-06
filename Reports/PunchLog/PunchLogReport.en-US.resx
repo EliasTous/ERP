@@ -117,34 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="DevExpress.Data.v16.2" name="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="xrPivotGrid1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>0, 0</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="xrPivotGrid1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>186.000168, 115</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Detail.HeightF" type="System.Single, mscorlib">
-    <value>156.666672</value>
-  </data>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>جدول الدوام</value>
-  </data>
   <data name="xrLabel10.Text" xml:space="preserve">
-    <value>الى </value>
-  </data>
-  <data name="xrLabel11.Text" xml:space="preserve">
-    <value>من قبل : </value>
-  </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>الفرع </value>
+    <value>To</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>من</value>
+    <value>From</value>
   </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>صفحة {0} من {1}</value>
+  <assembly alias="DevExpress.Data.v16.2" name="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="xrLabel7.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
+    <value>23.3750019, 82.33332</value>
+  </data>
+  <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
+    <value>123.375, 82.33332</value>
+  </data>
+  <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
+    <value>1.27156572E-05, 10</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>1151, 36.5416679</value>
+  </data>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>Attendance Schedule</value>
+  </data>
+  <data name="xrLabel11.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
+    <value>235.874985, 0</value>
+  </data>
+  <data name="xrLabel11.Text" xml:space="preserve">
+    <value>By :</value>
+  </data>
+  <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
+    <value>335.875, 0</value>
+  </data>
+  <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>232.916687, 20.2083359</value>
   </data>
 </root>

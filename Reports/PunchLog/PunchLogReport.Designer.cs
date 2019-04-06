@@ -1,6 +1,6 @@
-﻿namespace Reports.ShiftLogs
+﻿namespace Reports.PunchLog
 {
-    partial class ShiftLogsReport
+    partial class PunchLogReport
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShiftLogsReport));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PunchLogReport));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrPivotGrid1 = new DevExpress.XtraReports.UI.XRPivotGrid();
-            this.shiftLogsDS1 = new Reports.ShiftLogs.ShiftLogsDS();
-            this.fieldemployeeId1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.dsSalaries1 = new Reports.PunchLog.dsSalaries();
             this.fieldemployeeName1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fielddayId1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldShift1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldShiftId1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldPunch1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldpunchId = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
@@ -57,7 +56,7 @@
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.User = new DevExpress.XtraReports.Parameters.Parameter();
             this.Employee = new DevExpress.XtraReports.Parameters.Parameter();
-            ((System.ComponentModel.ISupportInitialize)(this.shiftLogsDS1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsSalaries1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -84,15 +83,14 @@
             this.xrPivotGrid1.Appearance.Lines.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.xrPivotGrid1.Appearance.TotalCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.xrPivotGrid1.Appearance.TotalCell.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.xrPivotGrid1.DataMember = "ShiftItems";
-            this.xrPivotGrid1.DataSource = this.shiftLogsDS1;
+            this.xrPivotGrid1.DataMember = "SalariesItems";
+            this.xrPivotGrid1.DataSource = this.dsSalaries1;
             resources.ApplyResources(this.xrPivotGrid1, "xrPivotGrid1");
             this.xrPivotGrid1.Fields.AddRange(new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField[] {
-            this.fieldemployeeId1,
             this.fieldemployeeName1,
             this.fielddayId1,
-            this.fieldShift1,
-            this.fieldShiftId1});
+            this.fieldPunch1,
+            this.fieldpunchId});
             this.xrPivotGrid1.Name = "xrPivotGrid1";
             this.xrPivotGrid1.OptionsChartDataSource.ProvideColumnTotals = true;
             this.xrPivotGrid1.OptionsPrint.FilterSeparatorBarPadding = 3;
@@ -108,23 +106,15 @@
             this.xrPivotGrid1.OptionsView.ShowRowTotals = false;
             this.xrPivotGrid1.CustomFieldSort += new System.EventHandler<DevExpress.XtraReports.UI.PivotGrid.PivotGridCustomFieldSortEventArgs>(this.grdAccountLedger_CustomFieldSort);
             // 
-            // shiftLogsDS1
+            // dsSalaries1
             // 
-            this.shiftLogsDS1.DataSetName = "shiftLogsDS";
-            this.shiftLogsDS1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // fieldemployeeId1
-            // 
-            this.fieldemployeeId1.AreaIndex = 0;
-            this.fieldemployeeId1.FieldName = "employeeId";
-            this.fieldemployeeId1.Name = "fieldemployeeId1";
+            this.dsSalaries1.DataSetName = "dsSalaries";
+            this.dsSalaries1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // fieldemployeeName1
             // 
             this.fieldemployeeName1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.fieldemployeeName1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldemployeeName1.Appearance.FieldValue.BackColor = System.Drawing.Color.BlanchedAlmond;
-            this.fieldemployeeName1.Appearance.FieldValue.BorderColor = System.Drawing.Color.Azure;
             this.fieldemployeeName1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.fieldemployeeName1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldemployeeName1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
@@ -137,6 +127,7 @@
             // 
             this.fielddayId1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.fielddayId1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fielddayId1.Appearance.FieldHeader.WordWrap = true;
             this.fielddayId1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.fielddayId1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fielddayId1.Appearance.FieldValue.WordWrap = true;
@@ -145,34 +136,33 @@
             resources.ApplyResources(this.fielddayId1, "fielddayId1");
             this.fielddayId1.FieldName = "dayId";
             this.fielddayId1.Name = "fielddayId1";
+            this.fielddayId1.Options.AllowExpand = DevExpress.Utils.DefaultBoolean.True;
+            this.fielddayId1.Options.GroupFilterMode = DevExpress.XtraPivotGrid.PivotGroupFilterMode.Tree;
             // 
-            // fieldShift1
+            // fieldPunch1
             // 
-            this.fieldShift1.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldShift1.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldShift1.Appearance.Cell.WordWrap = true;
-            this.fieldShift1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldShift1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldShift1.Appearance.FieldValue.WordWrap = true;
-            this.fieldShift1.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.fieldShift1.AreaIndex = 0;
-            this.fieldShift1.FieldName = "Shift";
-            this.fieldShift1.Name = "fieldShift1";
-            this.fieldShift1.Options.AllowExpand = DevExpress.Utils.DefaultBoolean.True;
-            this.fieldShift1.Options.ShowTotals = false;
-            this.fieldShift1.SummaryType = DevExpress.Data.PivotGrid.PivotSummaryType.Min;
-            this.fieldShift1.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
-            resources.ApplyResources(this.fieldShift1, "fieldShift1");
+            this.fieldPunch1.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldPunch1.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldPunch1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldPunch1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldPunch1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldPunch1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldPunch1.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
+            this.fieldPunch1.AreaIndex = 0;
+            this.fieldPunch1.FieldName = "Punch";
+            this.fieldPunch1.Name = "fieldPunch1";
+            this.fieldPunch1.SummaryType = DevExpress.Data.PivotGrid.PivotSummaryType.Min;
             // 
-            // fieldShiftId1
+            // fieldpunchId
             // 
-            this.fieldShiftId1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldShiftId1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldShiftId1.Appearance.FieldValue.WordWrap = true;
-            this.fieldShiftId1.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
-            this.fieldShiftId1.AreaIndex = 0;
-            this.fieldShiftId1.FieldName = "ShiftId";
-            this.fieldShiftId1.Name = "fieldShiftId1";
+            this.fieldpunchId.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldpunchId.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldpunchId.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldpunchId.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldpunchId.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
+            this.fieldpunchId.AreaIndex = 0;
+            this.fieldpunchId.FieldName = "punchId";
+            this.fieldpunchId.Name = "fieldpunchId";
             // 
             // TopMargin
             // 
@@ -351,7 +341,7 @@
             this.Employee.Name = "Employee";
             this.Employee.Visible = false;
             // 
-            // ShiftLogsReport
+            // PunchLogReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
@@ -360,7 +350,7 @@
             this.ReportHeader,
             this.PageFooter});
             this.DataMember = "DataTable1";
-            this.DataSource = this.shiftLogsDS1;
+            this.DataSource = this.dsSalaries1;
             this.DefaultPrinterSettingsUsing.UseLandscape = true;
             this.DefaultPrinterSettingsUsing.UsePaperKind = true;
             resources.ApplyResources(this, "$this");
@@ -371,7 +361,7 @@
             this.To,
             this.Employee});
             this.Version = "16.2";
-            ((System.ComponentModel.ISupportInitialize)(this.shiftLogsDS1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsSalaries1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -381,7 +371,7 @@
         private DevExpress.XtraReports.UI.DetailBand Detail;
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
-        private ShiftLogsDS shiftLogsDS1;
+        private dsSalaries dsSalaries1;
         private DevExpress.XtraReports.UI.XRPivotGrid xrPivotGrid1;
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
         private DevExpress.XtraReports.UI.XRLabel xrLabel10;
@@ -401,10 +391,9 @@
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel4;
         private DevExpress.XtraReports.UI.XRLabel xrLabel5;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldemployeeId1;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldemployeeName1;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fielddayId1;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldShift1;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldShiftId1;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldPunch1;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldpunchId;
     }
 }

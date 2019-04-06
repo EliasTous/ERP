@@ -1389,8 +1389,11 @@
   <data name="RT309" xml:space="preserve">
     <value>سجل الدوام</value>
   </data>
+  <data name="RT308" xml:space="preserve">
+    <value>سجل البصمات</value>
+  </data>
   <data name="RT310" xml:space="preserve">
-    <value>جدول الدوام</value>
+    <value>جدول الحضور </value>
   </data>
   <data name="ImportFlatSchedule" xml:space="preserve">
     <value>استيراد جدول الدوام</value>
