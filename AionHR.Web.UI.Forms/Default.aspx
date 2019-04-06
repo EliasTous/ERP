@@ -103,6 +103,8 @@
     <ext:Hidden runat="server" ID="loansync" Text="<%$Resources:Common , LoanSync %>" />
     <ext:Hidden runat="server" ID="otTitle" Text="<%$Resources:Common , OvertimeSettings %>" />
     <ext:Hidden runat="server" ID="importAt" Text="<%$Resources:Common , ImportAttendance %>" />
+      <ext:Hidden runat="server" ID="importFS" Text="<%$Resources:Common , ImportFlatSchedule %>" />
+    
     <ext:Hidden runat="server" ID="importDE" Text="<%$Resources:Common , ImportDepartments %>" />
      <ext:Hidden runat="server" ID="importEH" Text="<%$Resources:Common , ImportEmploymentStatus %>" />
     <ext:Hidden runat="server" ID="importLoansTitle" Text="<%$Resources:Common , ImportLoans %>" />
@@ -762,6 +764,11 @@
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportAttendance%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('Import', 'ImportAttendance.aspx',#{importAt}.value , 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportFlatSchedule%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('Import', 'ImportFlatSchedule.aspx',#{importFS}.value , 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportOvertimeSettings%>">

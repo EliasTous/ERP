@@ -249,4 +249,13 @@
   <data name="ActionRAISE_SUSPENSION" xml:space="preserve">
     <value>Raise Suspension</value>
   </data>
+  <data name="deductionType_fixedAmount" xml:space="preserve">
+    <value>Montant fixé</value>
+  </data>
+  <data name="deductionType_percentage" xml:space="preserve">
+    <value>Pourcentage du salaire journalier</value>
+  </data>
+  <data name="FieldDeductionType" xml:space="preserve">
+    <value>Type de déduction</value>
+  </data>
 </root>

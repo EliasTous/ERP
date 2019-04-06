@@ -34,6 +34,13 @@
                 return value;
             }
         }
+        function deductionTypeRenderer(value) {
+            if (App.deductionTypeStore.getById(value) != null) {
+                return App.deductionTypeStore.getById(value).data.name;
+            } else {
+                return value;
+            }
+        }
 
        function fromToCheck(reason, value)
         {
@@ -148,6 +155,24 @@
            
             <Model>
                 <ext:Model ID="Model3" runat="server" IDProperty="recordId">
+                    <Fields>
+
+                        <ext:ModelField Name="recordId" />
+                        <ext:ModelField Name="name" />
+                        <%--<ext:ModelField Name="intName" />--%>
+                    </Fields>
+                </ext:Model>
+            </Model>
+            <Sorters>
+                <ext:DataSorter Property="recordId" Direction="ASC" />
+            </Sorters>
+        </ext:Store>
+            <ext:Store
+            ID="deductionTypeStore"
+            runat="server">
+           
+            <Model>
+                <ext:Model ID="Model4" runat="server" IDProperty="recordId">
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
@@ -525,6 +550,31 @@
                                                 <Listeners>
 
                                                     <Select Handler="var rec = this.getWidgetRecord(); rec.set('action',this.value); ">
+                                                    </Select>
+                                                </Listeners>
+                                               </ext:ComboBox>
+                                  
+                </Editor>
+                                             
+                                           </ext:Column>
+                                     <ext:Column ID="CodeductionType" Visible="true" DataIndex="deductionType" runat="server" Text="<%$ Resources: FieldDeductionType  %>" Flex="2" >
+                                           <Renderer Handler="deductionTypeRenderer" />
+                               <Editor>
+                                           <ext:ComboBox 
+                                                            runat="server" 
+                                                            Shadow="false" 
+                                                            Mode="Local" 
+                                                            TriggerAction="All" 
+                                                            ForceSelection="true"
+                                                            StoreID="deductionTypeStore" 
+                                                            DisplayField="name" 
+                                                            ValueField="recordId"
+                                                            Name="deductionType"
+                                                            AllowBlank="true"
+                                                            >
+                                                <Listeners>
+
+                                                    <Select Handler="var rec = this.getWidgetRecord(); rec.set('deductionType',this.value); ">
                                                     </Select>
                                                 </Listeners>
                                                </ext:ComboBox>

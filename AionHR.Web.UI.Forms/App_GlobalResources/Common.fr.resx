@@ -1392,6 +1392,9 @@
   <data name="RT309" xml:space="preserve">
     <value>Journal de travail</value>
   </data>
+  <data name="ImportFlatSchedule" xml:space="preserve">
+    <value>Importer un horaire fixe</value>
+  </data>
   <data name="RT308" xml:space="preserve">
     <value>Journal de poinçon</value>
   </data>

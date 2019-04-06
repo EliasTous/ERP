@@ -1323,7 +1323,10 @@
   <data name="RT310" xml:space="preserve">
     <value>Attendance Schedule </value>
   </data>
+  <data name="ImportFlatSchedule" xml:space="preserve">
+    <value>Import Flat Schedule</value>
+  </data>
   <data name="RT308" xml:space="preserve">
-    <value>Punch  Log</value>
+    <value>Punch Log</value>
   </data>
 </root>

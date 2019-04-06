@@ -1627,6 +1627,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Flat Schedule.
+        /// </summary>
+        internal static string ImportFlatSchedule {
+            get {
+                return ResourceManager.GetString("ImportFlatSchedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Job Info.
         /// </summary>
         internal static string ImportJobInfo {
@@ -2878,7 +2887,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Punch  Log.
+        ///   Looks up a localized string similar to Punch Log.
         /// </summary>
         internal static string RT308 {
             get {

@@ -48,7 +48,9 @@
     <Compile Include="Implementations\AccessControlService.cs" />
     <Compile Include="Implementations\AdministrationService.cs" />
     <Compile Include="Implementations\AssetManagementService.cs" />
+    <Compile Include="Implementations\FlatScheduleBatchRunner.cs" />
     <Compile Include="Implementations\AttendanceBatchRunner.cs" />
+    <Compile Include="Implementations\FlatScheduleImportingService.cs" />
     <Compile Include="Implementations\AttendanceImportingService.cs" />
     <Compile Include="Implementations\BaseService.cs" />
     <Compile Include="Implementations\BenefitsService.cs" />
@@ -157,7 +159,6 @@
     <Compile Include="Messaging\System\AttachementRecordRequest.cs" />
     <Compile Include="Messaging\System\BackgroundJobRecordRequest.cs" />
     <Compile Include="Messaging\System\CompanyUploadLogoRequest.cs" />
-    <Compile Include="Messaging\System\ShareAttachmentRecordRequest.cs" />
     <Compile Include="Messaging\System\UrlKeyRequest.cs" />
     <Compile Include="Messaging\System\XMLDictionaryListRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeApprovalRecordRequest.cs" />
