@@ -235,7 +235,7 @@
     <value>Include leave salary</value>
   </data>
   <data name="FieldPct" xml:space="preserve">
-    <value>Deduction percent</value>
+    <value>Deduction Amount</value>
   </data>
   <data name="FieldSeq" xml:space="preserve">
     <value>Sequence</value>

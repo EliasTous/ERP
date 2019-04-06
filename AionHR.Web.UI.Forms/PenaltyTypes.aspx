@@ -486,7 +486,7 @@
                                                 <ext:ModelField Name="damage" />
                                                 <ext:ModelField Name="sequence" />
                                                 <ext:ModelField Name="action" />
-                                                <ext:ModelField Name="pct" />
+                                                <ext:ModelField Name="amount" />
                                                 <ext:ModelField Name="includeTV" />
                                               
 
@@ -584,12 +584,12 @@
                                            </ext:Column>
                                      
 
-                                        <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="pct" runat="server" Text="<%$ Resources: FieldPct  %>" Flex ="1" >
+                                        <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="amount" runat="server" Text="<%$ Resources: FieldPct  %>" Flex ="1" >
                                         <Widget>
-                                            <ext:NumberField AllowBlank="true" runat="server" Name="pct" MinValue="0" >
+                                            <ext:NumberField AllowBlank="true" runat="server" Name="amount" MinValue="0" AllowDecimals="true" >
                                                  <Listeners>
 
-                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('pct',this.value); ">
+                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('amount',this.value); ">
                                                     </Change>
                                                      
                                                 </Listeners>
