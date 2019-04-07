@@ -934,6 +934,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string email {
+            get {
+                return ResourceManager.GetString("email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find a vaild email to send the reset password link.
         /// </summary>
         internal static string EmailNotFound {
@@ -3112,6 +3121,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to share daily schedule ?.
+        /// </summary>
+        internal static string sendDailySchedule {
+            get {
+                return ResourceManager.GetString("sendDailySchedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to September.
         /// </summary>
         internal static string September {
@@ -3657,6 +3675,15 @@ namespace Resources {
         internal static string Week {
             get {
                 return ResourceManager.GetString("Week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WhatsApp.
+        /// </summary>
+        internal static string whatsApp {
+            get {
+                return ResourceManager.GetString("whatsApp", resourceCulture);
             }
         }
         

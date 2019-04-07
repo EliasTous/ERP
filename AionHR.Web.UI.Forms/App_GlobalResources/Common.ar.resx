@@ -1398,4 +1398,7 @@
   <data name="ImportFlatSchedule" xml:space="preserve">
     <value>استيراد جدول الدوام</value>
   </data>
+  <data name="sendDailySchedule" xml:space="preserve">
+    <value>هل انت متأكد انك تريد مشاركة جدول الدوام اليومي ؟</value>
+  </data>
 </root>

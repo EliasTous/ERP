@@ -17,5 +17,6 @@ namespace AionHR.Model.Employees
     {
 
         PostWebServiceResponse UploadEmployeePhoto(Attachement at, string fileName, byte[] fileData, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
-      }
+        PostWebServiceResponse ShareEmployeeAttachments(ShareAttachment at, List<string> fileNames, List<byte[]> filesData, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
+    }
 }

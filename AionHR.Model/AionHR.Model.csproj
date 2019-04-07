@@ -175,7 +175,7 @@
     <Compile Include="SelfService\TimeVariationSelfService.cs" />
     <Compile Include="SelfService\UserInfoSelfService.cs" />
     <Compile Include="System\ResetPassword.cs" />
-    <Compile Include="System\ShareAttachment.cs" />
+    <Compile Include="Employees\ShareAttachment.cs" />
     <Compile Include="System\XMLDictionary.cs" />
     <Compile Include="TimeAttendance\MailFlatShedule.cs" />
     <Compile Include="HelpFunction\PayrollExport.cs" />
@@ -360,7 +360,6 @@
     <Compile Include="MasterModule\CrashLog.cs" />
     <Compile Include="MasterModule\DbSetup.cs" />
     <Compile Include="MasterModule\Dump.cs" />
-    <Compile Include="MasterModule\Registration.cs" />
     <Compile Include="MediaGallery\MediaCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\Attachement.cs" />

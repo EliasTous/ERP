@@ -12,7 +12,7 @@ namespace AionHR.Model.MasterModule
     public class Account : IEntity
     {
         public int? accountId { get; set; }
-        public int registrationId { get; set; }
+     //   public int registrationId { get; set; }
         public string accountName { get; set; }
         public short languageId { get; set; }
         public short timeZone { get; set; }

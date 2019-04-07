@@ -11,6 +11,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Infrastructure.Domain;
 using AionHR.Infrastructure.WebService;
 using AionHR.Model.System;
+using AionHR.Services.Messaging.Employees;
 
 namespace AionHR.Services.Implementations
 {
@@ -65,7 +66,16 @@ namespace AionHR.Services.Implementations
                 response.recordId = webResponse.recordId;
             return response;
         }
-
+        public PostResponse<ShareAttachment> ShareEmployeeAttachments(ShareAttachmentPostRequest request)
+        {
+            PostResponse<ShareAttachment> response;
+            var headers = SessionHelper.GetAuthorizationHeadersForUser();
+            PostWebServiceResponse webResponse = _employeeRepository.ShareEmployeeAttachments(request.entity, request.FileNames, request.FilesData, headers);
+            response = CreateServiceResponse<PostResponse<ShareAttachment>>(webResponse);
+            if (webResponse != null)
+                response.recordId = webResponse.recordId;
+            return response;
+        }
         protected override dynamic GetRepository()
         {
             return _employeeRepository;

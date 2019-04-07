@@ -151,7 +151,7 @@
                                     </Store>
                                 </ext:ComboBox>
                                 <ext:ToolbarSeparator />
-                                <ext:DateField runat="server" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: From %>" Editable="false">
+                                <ext:DateField runat="server" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: From %>" Editable="false" >
                                     <%--  <Listeners>
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
                                     </Listeners>--%>
@@ -244,14 +244,14 @@
 
                                 </ext:ComboBox>
                                 <ext:TextField ID="workingHours" Width="150" runat="server" FieldLabel="<%$ Resources:workingHours%>" DataIndex="workingHours" AllowBlank="true" ReadOnly="true" ></ext:TextField>
-                                  <ext:ComboBox AnyMatch="true" Width="150" LabelWidth="30" CaseSensitive="false" runat="server" ID="Share" AllowBlank="true" Name="Share"
+                                  <ext:ComboBox AnyMatch="true" Width="150" LabelWidth="30" CaseSensitive="false" runat="server" ID="device" AllowBlank="true" Name="device"
                                     SubmitValue="true"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: Share%>" Icon="Share">
                                     <Items>
-                                      <%--  <ext:ListItem Text="<%$Resources:Common,EnglishLanguage %>" Value="1" />
-                                        <ext:ListItem Text="<%$Resources:Common,ArabicLanguage %>" Value="2" />
-                                        <ext:ListItem Text="<%$Resources:Common,FrenchLanguage %>" Value="3" />--%>
+                                        <ext:ListItem Text="<%$Resources:Common,email %>" Value="1" />
+                                        <ext:ListItem Text="<%$Resources:Common,whatsApp %>" Value="2" />
+                                      
 
                                     </Items>
                                         <DirectEvents>

@@ -14,10 +14,10 @@ namespace AionHR.Model.Payroll
         public short damage  { get; set; }
         public int sequence { get; set; }
         public short action { get; set; }
-        public double? amount { get; set; }
+        public double amount { get; set; }
         public bool includeTV { get; set; }
 
-        public short? deductionType { get; set; }
+        public short deductionType { get; set; }
         
 
 

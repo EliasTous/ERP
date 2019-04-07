@@ -35,7 +35,9 @@
             }
         }
         function deductionTypeRenderer(value) {
+            
             if (App.deductionTypeStore.getById(value) != null) {
+               
                 return App.deductionTypeStore.getById(value).data.name;
             } else {
                 return value;
@@ -488,6 +490,8 @@
                                                 <ext:ModelField Name="action" />
                                                 <ext:ModelField Name="amount" />
                                                 <ext:ModelField Name="includeTV" />
+                                                <ext:ModelField Name="deductionType" />
+                                                
                                               
 
                                             </Fields>
@@ -557,6 +561,7 @@
                 </Editor>
                                              
                                            </ext:Column>
+
                                      <ext:Column ID="CodeductionType" Visible="true" DataIndex="deductionType" runat="server" Text="<%$ Resources: FieldDeductionType  %>" Flex="2" >
                                            <Renderer Handler="deductionTypeRenderer" />
                                <Editor>
@@ -570,7 +575,7 @@
                                                             DisplayField="name" 
                                                             ValueField="recordId"
                                                             Name="deductionType"
-                                                            AllowBlank="true"
+                                                            AllowBlank="false"
                                                             >
                                                 <Listeners>
 
@@ -586,7 +591,7 @@
 
                                         <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="amount" runat="server" Text="<%$ Resources: FieldPct  %>" Flex ="1" >
                                         <Widget>
-                                            <ext:NumberField AllowBlank="true" runat="server" Name="amount" MinValue="0" AllowDecimals="true" >
+                                            <ext:NumberField AllowBlank="false" runat="server" Name="amount" MinValue="0" AllowDecimals="true" >
                                                  <Listeners>
 
                                                     <Change Handler="var rec = this.getWidgetRecord(); rec.set('amount',this.value); ">

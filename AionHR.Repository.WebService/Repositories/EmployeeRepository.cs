@@ -199,7 +199,17 @@ namespace AionHR.Repository.WebService.Repositories
             filesData.Add(fileData);
             return request.PostAsyncWithMultipleAttachments<Attachement>(at, filenames, filesData);
         }
-
+        public PostWebServiceResponse ShareEmployeeAttachments(ShareAttachment at, List<string> fileNames, List<byte[]> filesData, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null)
+        {
+            var request = new HTTPWebServiceRequest();
+            request.MethodType = "POST";
+            request.URL = ServiceURL + "share";
+            if (Headers != null)
+                request.Headers = Headers;
+            if (QueryStringParams != null)
+                request.QueryStringParams = QueryStringParams;
+            return request.PostAsyncWithMultipleAttachments<ShareAttachment>(at, fileNames, filesData);
+        }
 
 
     }

@@ -1320,4 +1320,7 @@
   <data name="RT308" xml:space="preserve">
     <value>Log schieben</value>
   </data>
+  <data name="sendDailySchedule" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie den Tagesplan mit anderen teilen möchten?</value>
+  </data>
 </root>

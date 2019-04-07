@@ -18,7 +18,7 @@ namespace AionHR.Services.Interfaces
 
         PostResponse<Account> AddAccount(Account r);
 
-        PostResponse<Registration> AddRegistration(Registration r);
+      //  PostResponse<Registration> AddRegistration(Registration r);
 
         Dictionary<string, Type> ClassLookup
         {

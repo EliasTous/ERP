@@ -28,6 +28,13 @@ using AionHR.Services.Messaging.System;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Model.HelpFunction;
 using AionHR.Model.System;
+using System.Text.RegularExpressions;
+using AionHR.Infrastructure.Domain;
+using DevExpress.XtraReports.UI;
+using AionHR.Model.Employees;
+using AionHR.Services.Messaging.Employees;
+using AionHR.Services.Messaging.Reports;
+using Reports.AttendanceSchedule;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -38,7 +45,7 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
-
+        IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
 
         protected override void InitializeCulture()
         {
@@ -1377,15 +1384,59 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-
-        public void Share_Click(object sender, DirectEventArgs e)
+        [DirectMethod]
+        public void sendAttachment()
         {
-            if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
+            XtraReport report = SetAttendanceScheduleReport();
+
+            if (string.IsNullOrEmpty(device.Value.ToString()))
+                return;
+        
+            ShareAttachment sh = new ShareAttachment();
+            sh.employeeId = string.IsNullOrEmpty(employeeId.Value.ToString()) ? "0" : employeeId.Value.ToString();
+            sh.branchId = string.IsNullOrEmpty(branchId.Value.ToString()) ? "0" : branchId.Value.ToString();
+            sh.device = device.Value.ToString();
+            byte[] fileData = GetReportAsBuffer(report);
+            ShareAttachmentPostRequest req = new ShareAttachmentPostRequest();
+            req.entity = sh;
+            req.FilesData.Add(fileData);
+            req.FileNames.Add("Attachment 1");
+            PostResponse<ShareAttachment> resp = _employeeService.ShareEmployeeAttachments(req);
+            if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
+                Common.errorMessage(resp);
                 return;
             }
-            if (dateFrom.SelectedDate == DateTime.MinValue || dateTo.SelectedDate == DateTime.MinValue)
+
+           
+           
+           
+                X.Msg.Alert("", (string)GetGlobalResourceObject("Common", "operationCompleted")).Show();
+
+            if (fileData != null)
+            {
+              
+                if (!resp.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(resp);
+                    return;
+                }
+            }
+
+
+
+
+        }
+        public void Share_Click(object sender, DirectEventArgs e)
+        {
+            //if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
+            //{
+            //    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
+            //    return;
+            //}
+            if (dateFrom.SelectedDate.Year <2015 || dateTo.SelectedDate.Year < 2015)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
                 return;
@@ -1395,23 +1446,21 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
                 return;
             }
-            ShareAttachment sh = new ShareAttachment();
-            sh.employeeId = employeeId.Value.ToString();
-            sh.branchId = string.IsNullOrEmpty(branchId.Value.ToString()) ? "0" : branchId.Value.ToString();
-            PostRequest <ShareAttachment> req = new PostRequest<ShareAttachment>();
-            req.entity = sh;
-            PostResponse<ShareAttachment> resp = _employeeService.ChildAddOrUpdate<ShareAttachment>(req); 
-            if (!resp.Success)
+            X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.sendDailySchedule, new MessageBoxButtonsConfig
             {
-                Common.errorMessage(resp);
-                return; 
-            }
-            else
-            {
-                X.Msg.Alert("", (string)GetGlobalResourceObject("Common", "operationCompleted")).Show();
-                return;
-            }
+                Yes = new MessageBoxButtonConfig
+                {
+                    //We are call a direct request metho for deleting a record
+                    Handler = String.Format("App.direct.sendAttachment()"),
+                    Text = Resources.Common.Yes
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Text = Resources.Common.No
+                }
 
+            }).Show();
+         
 
 
 
@@ -1502,10 +1551,108 @@ namespace AionHR.Web.UI.Forms
                 this.cmbEmployeeImport.Value = string.Empty;
                 groupUsersWindow.Close();
         }
+        private byte[] GetReportAsBuffer(XtraReport report)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                report.ExportToImage(stream, new DevExpress.XtraPrinting.ImageExportOptions(System.Drawing.Imaging.ImageFormat.Jpeg));
+                return stream.ToArray();
+            }
+        }
 
-     
-        
+        private XtraReport SetAttendanceScheduleReport()
+        {
+            ReportCompositeRequest req = GetRequest();
 
+
+
+
+            ListResponse<AionHR.Model.Reports.RT310> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT310>(req);
+            if (!resp.Success)
+            {
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+            }
+            for (int i = resp.Items.Count - 1; i >= 0; i--)
+            {
+                DateTime parsed = DateTime.Now;
+                if (DateTime.TryParseExact(resp.Items[i].dayId, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
+                {
+                    resp.Items[i].dayIdDateTime = parsed;
+                    //x.dayIdString = parsed.ToString(_systemService.SessionHelper.GetDateformat());
+                    // Use reformatted
+                }
+                else
+
+                    resp.Items.RemoveAt(i);
+            }
+
+            AttendanceScheduleReport h = new AttendanceScheduleReport(resp.Items, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat());
+            h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
+            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+
+
+            string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            h.Parameters["User"].Value = string.IsNullOrEmpty(_systemService.SessionHelper.GetCurrentUser()) ? " " : _systemService.SessionHelper.GetCurrentUser();
+
+            h.Parameters["From"].Value = from;
+            h.Parameters["To"].Value = to;
+
+            if (req.Parameters["_branchId"] != "0")
+                h.Parameters["Branch"].Value = branchId.SelectedItem != null ? branchId.SelectedItem.Text : "";
+
+
+            else
+                h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
+
+
+
+
+
+
+
+            h.CreateDocument();
+            return h;
+        }
+        private ReportCompositeRequest GetRequest()
+        {
+            ReportCompositeRequest req = new ReportCompositeRequest();
+            DateRangeParameterSet DateSet = new DateRangeParameterSet();
+            JobInfoParameterSet jobInfoSet = new JobInfoParameterSet();
+            EmployeeParameterSet EmployeeSet = new EmployeeParameterSet();
+            DateSet.IsDayId = true;
+            DateSet.DateFrom = dateFrom.SelectedDate;
+            DateSet.DateTo = dateTo.SelectedDate;
+            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
+            {
+                jobInfoSet.BranchId = Convert.ToInt32(branchId.Value);
+
+
+
+            }
+            else
+            {
+                jobInfoSet.BranchId = 0;
+
+            }
+            int bulk;
+            if (employeeId.Value == null || !int.TryParse(employeeId.Value.ToString(), out bulk))
+
+                EmployeeSet.employeeId = 0;
+            else
+                EmployeeSet.employeeId = bulk;
+
+            req.Size = "1000";
+            req.StartAt = "0";
+
+            req.Add(DateSet);
+            req.Add(jobInfoSet);
+            req.Add(EmployeeSet);
+
+
+            return req;
+        }
     }
 
     internal class Availability
@@ -1513,6 +1660,7 @@ namespace AionHR.Web.UI.Forms
         public string Count { get; set; }
         public string Id { get; set; }
     }
+   
 
 
 }

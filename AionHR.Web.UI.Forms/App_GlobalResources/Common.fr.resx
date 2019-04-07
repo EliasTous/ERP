@@ -1398,4 +1398,7 @@
   <data name="RT308" xml:space="preserve">
     <value>Journal de poinçon</value>
   </data>
+  <data name="sendDailySchedule" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir partager votre horaire quotidien?</value>
+  </data>
 </root>

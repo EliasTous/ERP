@@ -359,6 +359,7 @@ namespace AionHR.Web.UI.Forms
                 int APPROVAL_LEAVE = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LEAVE).First().count : 0;
                 int APPROVAL_LOAN = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LOAN).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LOAN).First().count : 0;
                 int APPROVAL_PENALTY = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PENALTY).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PENALTY).First().count : 0;
+                int APPROVAL_PURCHASE_ORDER = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PURCHASE_ORDER).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PURCHASE_ORDER).First().count : 0;
                 //List<DashboardItem> alert = new List<DashboardItem>();
                 //alert.Add(new DashboardItem() { itemString=GetLocalResourceObject("Anneversaries").ToString(),count=annev,itemId= ConstDashboardItem.WORK_ANNIVERSARY });
                 //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("Birthdays").ToString(), count = birth, itemId = ConstDashboardItem.BIRTHDAY });
@@ -389,6 +390,8 @@ namespace AionHR.Web.UI.Forms
                 ApprovalLoanGrid.Title = GetLocalResourceObject("ApprovalLoan").ToString() + " " + (APPROVAL_LOAN != 0 ? APPROVAL_LOAN.ToString() : "");
                 TimeGridPanel.Title = GetLocalResourceObject("Time").ToString() + " " + (APPROVAL_TIME != 0 ? APPROVAL_TIME.ToString() : "");
                 EmployeePenaltyApprovalGrid.Title = GetLocalResourceObject("EmployeePenaltyApproval").ToString() + " " + (APPROVAL_PENALTY != 0 ? APPROVAL_PENALTY.ToString() : "");
+                PurchasesGrid.Title= GetLocalResourceObject("PurchasesApproval").ToString() + " " + (APPROVAL_PURCHASE_ORDER != 0 ? APPROVAL_PURCHASE_ORDER.ToString() : "");
+                
                 return dashoard;
             }
             catch (Exception exp)
@@ -1374,6 +1377,10 @@ namespace AionHR.Web.UI.Forms
 
         protected void LocalRateStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
+            int employeeCount = 0, nationalCount = 0, netNationalCount = 0;
+            string inNameValue="", bsNameValue="", leNameValue="";
+        double rate = 0, netRate = 0, minLERate = 0, minNextLERate = 0;
+
             try
             {
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
@@ -1391,18 +1398,34 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(resp);
                     return;
                 }
-                inName.Text = resp.result.inName;
-                bsName.Text = resp.result.bsName;
-                leName.Text = resp.result.leName;
+                if (resp.result != null)
+                {
+                    inNameValue = resp.result.inName;
+                    bsNameValue = resp.result.bsName;
+                    leNameValue = resp.result.leName;
+                    netRate = resp.result.netRate;
+                    rate = resp.result.rate;
+                    minLERate = resp.result.minLERate;
+                    minNextLERate = resp.result.minNextLERate;
+                    employeeCount = resp.result.employeeCount;
+                    nationalCount = resp.result.nationalCount;
+                    netNationalCount = resp.result.netNationalCount;
+                }
+
+
+                inName.Text = inNameValue;
+                bsName.Text = bsNameValue;
+                leName.Text = leNameValue;
+
                 List<object> RateObjs = new List<object>();
-                RateObjs.Add(new { category = GetLocalResourceObject("netRate").ToString(), number = resp.result.netRate });
-                RateObjs.Add(new { category = GetLocalResourceObject("rate").ToString(), number = resp.result.rate });
-                RateObjs.Add(new { category = GetLocalResourceObject("minLERate").ToString(), number = resp.result.minLERate });
-                RateObjs.Add(new { category = GetLocalResourceObject("minNextLERate").ToString(), number = resp.result.minNextLERate });
+                RateObjs.Add(new { category = GetLocalResourceObject("netRate").ToString(), number =netRate  });
+                RateObjs.Add(new { category = GetLocalResourceObject("rate").ToString(), number = rate});
+                RateObjs.Add(new { category = GetLocalResourceObject("minLERate").ToString(), number =minLERate });
+                RateObjs.Add(new { category = GetLocalResourceObject("minNextLERate").ToString(), number =minNextLERate  });
 
 
                 List<string> listCategories = new List<string>() { GetLocalResourceObject("rate").ToString(), GetLocalResourceObject("minLERate").ToString(), GetLocalResourceObject("netRate").ToString(), GetLocalResourceObject("minNextLERate").ToString() };
-                List<double> listValues = new List<double>() { resp.result.rate, resp.result.minLERate, resp.result.netRate, resp.result.minNextLERate };
+                List<double> listValues = new List<double>() { rate, minLERate, netRate, minNextLERate };
 
                 X.Call("drawMinLocalRateCountHightChartColumn", JSON.JavaScriptSerialize(listValues), JSON.JavaScriptSerialize(listCategories), rtl ? true : false);
 
@@ -1410,13 +1433,13 @@ namespace AionHR.Web.UI.Forms
 
 
                 List<object> CountObjs = new List<object>();
-                CountObjs.Add(new { category = GetLocalResourceObject("employeeCount").ToString(), number = resp.result.employeeCount });//here 
-                CountObjs.Add(new { category = GetLocalResourceObject("nationalCount").ToString(), number = resp.result.nationalCount });//here
-                CountObjs.Add(new { category = GetLocalResourceObject("netNationalCount").ToString(), number = resp.result.netNationalCount });
+                CountObjs.Add(new { category = GetLocalResourceObject("employeeCount").ToString(), number = employeeCount });//here 
+                CountObjs.Add(new { category = GetLocalResourceObject("nationalCount").ToString(), number = nationalCount });//here
+                CountObjs.Add(new { category = GetLocalResourceObject("netNationalCount").ToString(), number = netNationalCount });
 
 
                 List<string> listCount = new List<string>() { GetLocalResourceObject("employeeCount").ToString(), GetLocalResourceObject("nationalCount").ToString(), GetLocalResourceObject("netNationalCount").ToString() };
-                List<double> listempValues = new List<double>() { resp.result.employeeCount, resp.result.nationalCount, resp.result.netNationalCount };
+                List<double> listempValues = new List<double>() { employeeCount, nationalCount, netNationalCount };
 
                 X.Call("drawLocalCountHightChartColumn", JSON.JavaScriptSerialize(listempValues), JSON.JavaScriptSerialize(listCount), rtl ? true : false);
 

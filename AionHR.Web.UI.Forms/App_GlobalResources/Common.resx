@@ -1329,4 +1329,13 @@
   <data name="RT308" xml:space="preserve">
     <value>Punch Log</value>
   </data>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="whatsApp" xml:space="preserve">
+    <value>WhatsApp</value>
+  </data>
+  <data name="sendDailySchedule" xml:space="preserve">
+    <value>Are you sure that you want to share daily schedule ?</value>
+  </data>
 </root>

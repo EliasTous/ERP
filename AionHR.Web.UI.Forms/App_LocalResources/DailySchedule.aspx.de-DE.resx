@@ -237,4 +237,7 @@
   <data name="updateError" xml:space="preserve">
     <value>Sie können den Zeitplan nicht für einen bestimmten Tagesbereich aktualisieren oder speichern</value>
   </data>
+  <data name="Share" xml:space="preserve">
+    <value>Aktie</value>
+  </data>
 </root>

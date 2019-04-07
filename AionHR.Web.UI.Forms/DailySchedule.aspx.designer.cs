@@ -247,13 +247,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField workingHours;
         
         /// <summary>
-        /// Share control.
+        /// device control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox Share;
+        protected global::Ext.Net.ComboBox device;
         
         /// <summary>
         /// btnDelete control.

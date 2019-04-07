@@ -22,12 +22,12 @@ namespace AionHR.Repository.WebService.Repositories
         {
             base.ServiceURL = ApplicationSettingsFactory.GetApplicationSettings().BaseURL + serviceName;
             base.GetRecordMethodName = "getAC";
-            ChildAddOrUpdateLookup.Add(typeof(Registration), "setRE");
+          //  ChildAddOrUpdateLookup.Add(typeof(Registration), "setRE");
             ChildAddOrUpdateLookup.Add(typeof(Account), "setAC");
             ChildAddOrUpdateLookup.Add(typeof(DbSetup), "setDB");
 
 
-            ChildDeleteLookup.Add(typeof(Registration), "delRE");
+           // ChildDeleteLookup.Add(typeof(Registration), "delRE");
             ChildDeleteLookup.Add(typeof(Account), "delAC");
 
         }

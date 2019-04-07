@@ -650,7 +650,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         PostRequest<PenaltyDetail> PD = new PostRequest<PenaltyDetail>();
 
-                        PD.entity = new PenaltyDetail { sequence = i, ptId = currentPenaltyType.Text,damage=Convert.ToInt16( damage.Value.ToString()), action = 2 };
+                        PD.entity = new PenaltyDetail { sequence = i, ptId = currentPenaltyType.Text,damage=Convert.ToInt16( damage.Value.ToString()), action = 2 ,deductionType=1,amount=0};
                         PostResponse<PenaltyDetail> codesResp = _PayrollService.ChildAddOrUpdate<PenaltyDetail>(PD);
                         if (!codesResp.Success)
                         {
@@ -687,8 +687,8 @@ namespace AionHR.Web.UI.Forms
                 actionStore.DataSource = action;
                 actionStore.DataBind();
                 List<object> deduction = new List<object>();
-                deduction.Add(new { name = GetLocalResourceObject("deductionType_percentage").ToString(), recordId = 1});
-                deduction.Add(new { name = GetLocalResourceObject("deductionType_fixedAmount").ToString(), recordId =2 });
+                deduction.Add(new { name = GetLocalResourceObject("deductionType_percentage").ToString(), recordId = "1"});
+                deduction.Add(new { name = GetLocalResourceObject("deductionType_fixedAmount").ToString(), recordId ="2" });
                 deductionTypeStore.DataSource = deduction;
                 deductionTypeStore.DataBind();
             }
