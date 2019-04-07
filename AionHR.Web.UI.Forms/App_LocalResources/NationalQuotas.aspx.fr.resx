@@ -118,102 +118,102 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Document Type Info</value>
+    <value>Type de document Info</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Document Type</value>
+    <value>Modifier le type de document</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>prénom</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>ID d'enregistrement</value>
   </data>
   <data name="intName" xml:space="preserve">
-    <value>Int Name</value>
+    <value>Nom Int</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Document Types</value>
+    <value>Types de documents</value>
   </data>
   <data name="EditIndustryWindowsTitle" xml:space="preserve">
-    <value>Edit Industry</value>
+    <value>Editer l'industrie</value>
   </data>
   <data name="IndustryInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Industry Info</value>
+    <value>Informations sur l'industrie</value>
   </data>
   <data name="IndustryName" xml:space="preserve">
-    <value>Industry</value>
+    <value>Industrie</value>
   </data>
   <data name="IndustryWindowTitle" xml:space="preserve">
-    <value>Industry</value>
+    <value>Industrie</value>
   </data>
   <data name="BusinessWindowTitle" xml:space="preserve">
-    <value>Business Size</value>
+    <value>Taille de l'entreprise</value>
   </data>
   <data name="ceiling" xml:space="preserve">
-    <value>Ceiling</value>
+    <value>Plafond</value>
   </data>
   <data name="citizenshipTitle" xml:space="preserve">
-    <value>Citizenship</value>
+    <value>citoyenneté titre</value>
   </data>
   <data name="EditBusinessWindowsTitle" xml:space="preserve">
-    <value>Edit Business Size</value>
+    <value>Modifier la taille de l'entreprise</value>
   </data>
   <data name="EditLevelWindowsTitle" xml:space="preserve">
-    <value>Edit Level</value>
+    <value>Niveau d'édition</value>
   </data>
   <data name="FieldmaxEmployees" xml:space="preserve">
-    <value>Max Employees</value>
+    <value>Max employés</value>
   </data>
   <data name="FieldminEmployees" xml:space="preserve">
-    <value>Min Employees</value>
+    <value>Min employés</value>
   </data>
   <data name="levelInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Level Info</value>
+    <value>Niveau Info</value>
   </data>
   <data name="levelWindowTitle" xml:space="preserve">
-    <value>Levels</value>
+    <value>Niveaux</value>
   </data>
   <data name="points" xml:space="preserve">
     <value>Points</value>
   </data>
   <data name="FieldDays" xml:space="preserve">
-    <value>Days</value>
+    <value>Journées</value>
   </data>
   <data name="hiredPct" xml:space="preserve">
-    <value>hired Percentage</value>
+    <value>embauché pourcentage</value>
   </data>
   <data name="LevelAcquisitionTitle" xml:space="preserve">
-    <value>Level Acquisition </value>
+    <value>Niveau d'acquisition</value>
   </data>
   <data name="PointAcquisitionTitle" xml:space="preserve">
-    <value>Point Acquisition</value>
+    <value>Acquisition de points</value>
   </data>
   <data name="terminatedPct" xml:space="preserve">
-    <value>terminated Percentage</value>
+    <value>pourcentage terminé</value>
   </data>
   <data name="CitizenshipEditWindowTitle" xml:space="preserve">
-    <value />
+    <value>Titre de la fenêtre d'édition de citoyenneté</value>
   </data>
   <data name="CitizenshipWindowTitle" xml:space="preserve">
-    <value>CitizenShip</value>
+    <value>Citoyenneté</value>
   </data>
   <data name="EditCitizenshipWindowsTitle" xml:space="preserve">
-    <value>Edit Citizenship info</value>
+    <value>Modifier les informations sur la citoyenneté</value>
   </data>
   <data name="FieldBusinessSize" xml:space="preserve">
-    <value>Business Size</value>
+    <value>Taille de l'entreprise</value>
   </data>
   <data name="FieldIndustry" xml:space="preserve">
-    <value>Industry</value>
+    <value>Industrie</value>
   </data>
   <data name="FieldlevelName" xml:space="preserve">
-    <value>Level</value>
+    <value>Niveau</value>
   </data>
   <data name="pct" xml:space="preserve">
-    <value>Percentage</value>
+    <value>Pourcentage</value>
   </data>
   <data name="EmployeeCount" xml:space="preserve">
-    <value>Employee Count</value>
+    <value>Nombre d'employés</value>
   </data>
 </root>

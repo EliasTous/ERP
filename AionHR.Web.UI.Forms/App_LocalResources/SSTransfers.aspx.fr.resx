@@ -118,36 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="All" xml:space="preserve">
-    <value>Toute</value>
+    <value>Tout</value>
   </data>
   <data name="Approved" xml:space="preserve">
-    <value>Approved</value>
+    <value>Approuvé</value>
   </data>
   <data name="Department" xml:space="preserve">
-    <value>Department</value>
+    <value>Département</value>
   </data>
   <data name="DocumentsTransfers" xml:space="preserve">
-    <value>Transfers</value>
+    <value>Transferts</value>
   </data>
   <data name="DocumentTransferWindow" xml:space="preserve">
-    <value>Document Transfer</value>
+    <value>Transfert de document</value>
   </data>
   <data name="Employee" xml:space="preserve">
-    <value>Employee</value>
+    <value>Employé</value>
   </data>
-  <data name="FieldDate" xml:space="preserve">
-    <value>Date</value>
+  <data name="Field Date" xml:space="preserve">
+    <value>Date du champ</value>
   </data>
   <data name="FieldNotes" xml:space="preserve">
-    <value>Notes</value>
+    <value>Remarques</value>
   </data>
   <data name="FieldStatus" xml:space="preserve">
-    <value>Status</value>
+    <value>Statut</value>
   </data>
   <data name="New" xml:space="preserve">
-    <value>New</value>
+    <value>Nouveau</value>
   </data>
   <data name="Refused" xml:space="preserve">
-    <value>Refused</value>
+    <value>Refusé</value>
   </data>
 </root>

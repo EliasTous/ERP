@@ -121,58 +121,58 @@
     <value>binNo</value>
   </data>
   <data name="DAILY" xml:space="preserve">
-    <value>Daily</value>
+    <value>Quotidien</value>
   </data>
   <data name="Department" xml:space="preserve">
-    <value>Department</value>
+    <value>Département</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
   <data name="DocumentTransferWindow" xml:space="preserve">
-    <value>Document Transfer</value>
+    <value>Transfert de document</value>
   </data>
   <data name="DragErrorMessage" xml:space="preserve">
-    <value>You can't move this document because it was not assigned to you</value>
+    <value>Vous ne pouvez pas déplacer ce document car il ne vous a pas été attribué</value>
   </data>
   <data name="Employee" xml:space="preserve">
-    <value>Employee</value>
+    <value>Employé</value>
   </data>
   <data name="FieldBusinessPartner" xml:space="preserve">
-    <value>Business Partner</value>
+    <value>Associé</value>
   </data>
   <data name="FieldDate" xml:space="preserve">
     <value>Date</value>
   </data>
   <data name="FieldDocumentCategory" xml:space="preserve">
-    <value>Document Category</value>
+    <value>Catégorie de document</value>
   </data>
   <data name="FieldExpiryDate" xml:space="preserve">
-    <value>Expiry Date</value>
+    <value>Date d'expiration</value>
   </data>
   <data name="FieldIssueDate" xml:space="preserve">
-    <value>Issue Date</value>
+    <value>Date d'émission</value>
   </data>
   <data name="Fieldlanguage" xml:space="preserve">
-    <value>language</value>
+    <value>langage</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>prénom</value>
   </data>
   <data name="FieldNotes" xml:space="preserve">
-    <value>Notes</value>
+    <value>Remarques</value>
   </data>
   <data name="FieldRef" xml:space="preserve">
-    <value>Ref</value>
+    <value>Référence</value>
   </data>
   <data name="FieldStartingDate" xml:space="preserve">
-    <value>Starting Date</value>
+    <value>Date de début</value>
   </data>
   <data name="FieldStatus" xml:space="preserve">
-    <value>Status</value>
+    <value>Statut</value>
   </data>
   <data name="intName" xml:space="preserve">
-    <value>Int Name</value>
+    <value>Nom Int</value>
   </data>
   <data name="oDocRef" xml:space="preserve">
     <value>oDocRef</value>

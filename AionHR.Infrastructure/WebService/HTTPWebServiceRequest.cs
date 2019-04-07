@@ -434,7 +434,7 @@ namespace AionHR.Infrastructure.WebService
 
                 HttpWebResponse resp = (HttpWebResponse)req.GetResponse(); // *** [2] ***
                 stream = resp.GetResponseStream();
-                resp.Close();
+               // resp.Close();
                 // Do the post and get the response.
 
                 //var r = req.GetResponse();

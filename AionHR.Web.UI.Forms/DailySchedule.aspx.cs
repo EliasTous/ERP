@@ -682,30 +682,45 @@ namespace AionHR.Web.UI.Forms
                         List<string> listIds = new List<string>();
                         foreach (FlatSchedule fss in response.Items)
                         {
-                          
+                            //bool flag = false;
+
                             DateTime activeDate = DateTime.ParseExact(fss.dayId, "yyyyMMdd", new CultureInfo("en"));
 
                             DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.from.Split(':')[0]), Convert.ToInt32(fss.from.Split(':')[1]), 0);
                             DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.to.Split(':')[0]), Convert.ToInt32(fss.to.Split(':')[1]), 0);
-                          
+
+                            DateTime temp = fsfromDate;
                             if (fsfromDate > fsToDate)
                             {
                                 //temp = fsfromDate;
                                 //fsfromDate = fsToDate;
                                 //fsToDate = temp.AddDays(1);
                                 fsToDate = fsToDate.AddDays(1);
+                                //flag = true;
                                
                             }
-                            do
+                           
+                            while (fsToDate >= fsfromDate) 
                             {
-                                if (fsfromDate.Day >= fsToDate.Day)
-                                    listIds.Add(fsfromDate.AddDays(-1).ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                                else
-                                    listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-
+                                //if (fsToDate.Day >= fsfromDate.Day && flag)
+                                //{
+                                //    listIds.Add(fsfromDate.AddDays(-1).ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                                //    fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                                //    continue;
+                                //}
+                                //if(fsToDate.Hour==12 && fsToDate.Minute==0)
+                                //{
+                                //    listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                                //    break;
+                                //}
+                                //if (fsfromDate.Day > fsToDate.Day)
+                                //    listIds.Add(fsfromDate.AddDays(-1).ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                                //else
+                                //    listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                                listIds.Add(temp.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
                                 fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
 
-                            } while (fsToDate >= fsfromDate);
+                            } 
                             //else
                             //{
                             //    if (fsToDate.Minute == 0 && fsToDate.Hour == 00)
@@ -1387,45 +1402,51 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public void sendAttachment()
         {
-            XtraReport report = SetAttendanceScheduleReport();
+            try {
+                XtraReport report = SetAttendanceScheduleReport();
 
-            if (string.IsNullOrEmpty(device.Value.ToString()))
-                return;
-        
-            ShareAttachment sh = new ShareAttachment();
-            sh.employeeId = string.IsNullOrEmpty(employeeId.Value.ToString()) ? "0" : employeeId.Value.ToString();
-            sh.branchId = string.IsNullOrEmpty(branchId.Value.ToString()) ? "0" : branchId.Value.ToString();
-            sh.device = device.Value.ToString();
-            byte[] fileData = GetReportAsBuffer(report);
-            ShareAttachmentPostRequest req = new ShareAttachmentPostRequest();
-            req.entity = sh;
-            req.FilesData.Add(fileData);
-            req.FileNames.Add("Attachment 1");
-            PostResponse<ShareAttachment> resp = _employeeService.ShareEmployeeAttachments(req);
-            if (!resp.Success)
-            {
-                Common.errorMessage(resp);
-                return;
-            }
+                if (string.IsNullOrEmpty(device.Value.ToString()))
+                    return;
 
-           
-           
-           
-                X.Msg.Alert("", (string)GetGlobalResourceObject("Common", "operationCompleted")).Show();
-
-            if (fileData != null)
-            {
-              
-                if (!resp.Success)//it maybe be another condition
+                ShareAttachment sh = new ShareAttachment();
+                sh.employeeId = string.IsNullOrEmpty(employeeId.Value.ToString()) ? "0" : employeeId.Value.ToString();
+                sh.branchId = string.IsNullOrEmpty(branchId.Value.ToString()) ? "0" : branchId.Value.ToString();
+                sh.device = device.Value.ToString();
+                byte[] fileData = GetReportAsBuffer(report);
+                ShareAttachmentPostRequest req = new ShareAttachmentPostRequest();
+                req.entity = sh;
+                req.FilesData.Add(fileData);
+                req.FileNames.Add("Attachment.Jpeg");
+                PostResponse<ShareAttachment> resp = _employeeService.ShareEmployeeAttachments(req);
+                if (!resp.Success)
                 {
-                    //Show an error saving...
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     Common.errorMessage(resp);
                     return;
                 }
+
+
+
+
+                X.Msg.Alert("", (string)GetGlobalResourceObject("Common", "operationCompleted")).Show();
+                device.Select("");
+                //if (fileData != null)
+                //{
+
+                //    if (!resp.Success)//it maybe be another condition
+                //    {
+                //        //Show an error saving...
+                //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //        Common.errorMessage(resp);
+                //        return;
+                //    }
+                //}
+
             }
-
-
+            catch(Exception exp)
+            {
+                X.MessageBox.Alert(Resources.Common.Error, exp.Message);
+                device.Select("");
+            }
 
 
         }
@@ -1587,7 +1608,7 @@ namespace AionHR.Web.UI.Forms
             }
 
             AttendanceScheduleReport h = new AttendanceScheduleReport(resp.Items, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat());
-            h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
+            //h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 

@@ -3103,6 +3103,11 @@
     <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.de-DE.resx" />
     <Content Include="Controls\App_LocalResources\LeaveRequestControl.ascx.de-DE.resx" />
     <Content Include="Controls\App_LocalResources\LeaveRequestControl.ascx.fr.resx" />
+    <Content Include="App_LocalResources\AllowanceTypes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AssetAllowances.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AssetCategories.aspx.ar.resx" />
+    <Content Include="App_LocalResources\DayTypes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Divisions.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
