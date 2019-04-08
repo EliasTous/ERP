@@ -27,13 +27,13 @@ namespace AionHR.Model.Reports
 
         public string resRef { get; set; }
 
-        public string resExpiryDate { get; set; }
+        public DateTime? resExpiryDate { get; set; }
 
         public string idExpiryString { get; set; }
 
         public string passportRef { get; set; }
 
-        public string passportExpiryDate { get; set; }
+        public DateTime? passportExpiryDate { get; set; }
 
         public string passportExpiryString { get; set; }
 
@@ -45,6 +45,7 @@ namespace AionHR.Model.Reports
         public string divisionName { get; set; }
         public string ehStatus { get; set; }
         public DateTime? hireDate { get; set; }
+
         public string hireDateString { get; set; }
         public DateTime? lastLeaveReturnDate { get; set; }
         public string lastLeaveReturnString { get; set; }
