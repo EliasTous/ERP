@@ -19,10 +19,10 @@ namespace AionHR.Web.UI.Forms.Reports
 {
     public partial class JobInfoFilter : System.Web.UI.UserControl
     {
-        string defaultDepartmentId, defaultBranchId, defaultDivisiontId; 
+        string defaultDepartmentId, defaultBranchId, defaultDivisiontId;
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
-        IEmployeeService _employeeService= ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,7 +31,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 X.Call("setStatus", EnableDepartment, EnableBranch, EnablePosition, EnableDivision);
                 X.Call("setWidth", FieldWidth);
                 FillJobInfo();
-             
+
             }
 
         }
@@ -59,7 +59,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 FillPosition();
                 FillBranch();
                 FillDivision();
-            }catch(Exception exp)
+            }
+            catch (Exception exp)
             {
                 X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message);
             }
@@ -140,6 +141,71 @@ namespace AionHR.Web.UI.Forms.Reports
             }
             return p;
         }
+        public string GetJobInfoString()
+        {
+            string p = "";
+            if (EnableBranch)
+
+            {
+                if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
+                {
+                    p += "branchId=" + branchId.Value.ToString() + "&";
+
+
+
+                }
+                else
+                {
+                    p += "branchId=0&";
+
+                }
+            }
+            if (EnableDepartment)
+
+            {
+                if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
+                {
+                    p += "departmentId" + departmentId.Value.ToString() + "&";
+
+
+                }
+                else
+                {
+                    p += "departmentId=0&";
+
+                }
+            }
+            if (EnablePosition)
+            {
+                if (!string.IsNullOrEmpty(positionId.Text) && positionId.Value.ToString() != "0")
+                {
+                    p += "positionId" + positionId.Value.ToString() + "&";
+
+
+                }
+                else
+                {
+                    p += "positionId=0&";
+
+                }
+            }
+            if (EnableDivision)
+            
+            {
+                if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0")
+                {
+                    p += "divisionId" + divisionId.Value.ToString() ;
+
+
+                }
+                else
+                {
+                    p += "divisionId=0";
+
+                }
+            }
+            return p.TrimEnd('&');
+        }
         private void FillDepartment()
         {
             if (!EnableDepartment)
@@ -150,7 +216,7 @@ namespace AionHR.Web.UI.Forms.Reports
             departmentsRequest.type = 0;
             ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
             if (!resp.Success)
-               Common.errorMessage(resp);
+                Common.errorMessage(resp);
             departmentStore.DataSource = resp.Items;
             departmentStore.DataBind();
             if (_systemService.SessionHelper.CheckIfIsAdmin())
@@ -168,7 +234,8 @@ namespace AionHR.Web.UI.Forms.Reports
                     departmentId.Select(0);
 
                     departmentId.SetValue(resp.Items.Count != 0 ? resp.Items[0].recordId : null);
-                }else
+                }
+                else
                 {
                     departmentId.Select(defaultDepartmentId);
 
@@ -184,7 +251,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
-               Common.errorMessage(resp);
+                Common.errorMessage(resp);
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
             if (_systemService.SessionHelper.CheckIfIsAdmin())
@@ -211,7 +278,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 X.Call("setBranchAllowBlank", true);
             }
         }
-        
+
         private void FillDivision()
         {
             if (!EnableDivision)
@@ -219,7 +286,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
             if (!resp.Success)
-               Common.errorMessage(resp);
+                Common.errorMessage(resp);
             divisionStore.DataSource = resp.Items;
             divisionStore.DataBind();
             if (_systemService.SessionHelper.CheckIfIsAdmin())
@@ -257,7 +324,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ListResponse<Model.Company.Structure.Position> resp = _companyStructureService.ChildGetAll<Model.Company.Structure.Position>(branchesRequest);
             if (!resp.Success)
-               Common.errorMessage(resp);
+                Common.errorMessage(resp);
             positionStore.DataSource = resp.Items;
             positionStore.DataBind();
         }
@@ -359,6 +426,11 @@ namespace AionHR.Web.UI.Forms.Reports
                 return positionId.SelectedItem.Text;
             else
                 return "";
+        }
+
+        public string GetValue()
+        {
+            return GetJobInfoString();
         }
     }
 }

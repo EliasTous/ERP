@@ -44,4 +44,18 @@ namespace AionHR.Services.Messaging.Reports
 
      
     }
+    public class ReportParametersListRequest:ListRequest
+    {
+        public string ReportName { get; set; }
+        private Dictionary<string, string> parameters;
+        public override Dictionary<string, string> Parameters
+        {
+            get
+            {
+                parameters = new Dictionary<string, string>();
+                parameters.Add("_reportName", ReportName);
+                return parameters;
+            }
+        }
+    }
 }

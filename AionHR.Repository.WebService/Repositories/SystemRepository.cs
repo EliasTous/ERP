@@ -11,6 +11,7 @@ using AionHR.Model.MasterModule;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Dashboard;
 using AionHR.Model.TimeAttendance;
+using AionHR.Model.Reports;
 
 namespace AionHR.Repository.WebService.Repositories
 {
@@ -68,8 +69,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(CurrencyByRef), "getCU2");
             ChildGetLookup.Add(typeof(BackgroundJob), "getBJ");
 
+            ChildGetAllLookup.Add(typeof(ReportParameter), "qryRP");
 
-            
+
 
 
 

@@ -29,6 +29,9 @@
             Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
+        function ShowParamSelection(pms) {
+            alert(pms);
+        }
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -139,6 +142,11 @@
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
+                                         <ext:Button runat="server" Text="More"> 
+                                       <Listeners>
+                                           <Click Handler="App.Panel8.loader.url = '../ReportParameterBrowser.aspx?_reportName=RT108'; App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
                                     </Content>
                                 </ext:Container>
                                 
@@ -166,10 +174,34 @@
 
 
             </Items>
+            
         </ext:Viewport>
 
 
-
+        <ext:Window runat="server"  Icon="PageEdit"
+            ID="reportsParams"
+            Width="600"
+            Height="500"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="FitLayout" Resizable="true">
+            <Listeners>
+                <Show Handler="App.Panel8.loader.load();"></Show>
+            </Listeners>
+            <Items>
+                <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
+                    <Loader runat="server" Url="AssetPropertyExplorer.aspx" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+            
+                </Items>
+        </ext:Window>
 
 
 

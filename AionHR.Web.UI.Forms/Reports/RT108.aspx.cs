@@ -26,6 +26,7 @@ using AionHR.Services.Messaging.Reports;
 using Reports;
 using System.Threading;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.Reports;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -429,5 +430,7 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
+
+        
     }
 }

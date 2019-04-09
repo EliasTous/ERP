@@ -143,6 +143,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\Softmachine\UI\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Reports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Softmachine\Reports.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\Desktop\bin\bin\StructureMap.dll</HintPath>
       <Private>True</Private>
@@ -195,12 +199,18 @@
     <Content Include="ImportFlatSchedule.aspx" />
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
+    <Content Include="ReportParameterBrowser.aspx" />
     <Content Include="Reports\Controls\AssetFilter.ascx" />
     <Content Include="Reports\Controls\ApprovalReasonFilter.ascx" />
+    <Content Include="Reports\Controls\BranchFilter.ascx" />
     <Content Include="Reports\Controls\CurrencyFilter.ascx" />
     <Content Include="Reports\Controls\ApprovalStatus.ascx" />
+    <Content Include="Reports\Controls\DepartmentFilter.ascx" />
+    <Content Include="Reports\Controls\DivisionFilter.ascx" />
     <Content Include="Reports\Controls\EmploymentStatusFilter.ascx" />
     <Content Include="Reports\Controls\AssetCategoryFilter.ascx" />
+    <Content Include="Reports\Controls\PositionFilter.ascx" />
+    <Content Include="Reports\Controls\ScheduleFilter.ascx" />
     <Content Include="Reports\Controls\SupplierFilter.ascx" />
     <Content Include="Reports\RT113.aspx" />
     <Content Include="Reports\RT114.aspx" />
@@ -832,6 +842,13 @@
     <Compile Include="ProcessNotifications.aspx.designer.cs">
       <DependentUpon>ProcessNotifications.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ReportParameterBrowser.aspx.cs">
+      <DependentUpon>ReportParameterBrowser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportParameterBrowser.aspx.designer.cs">
+      <DependentUpon>ReportParameterBrowser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Controls\AssetFilter.ascx.cs">
       <DependentUpon>AssetFilter.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -845,6 +862,13 @@
     </Compile>
     <Compile Include="Reports\Controls\ApprovalReasonFilter.ascx.designer.cs">
       <DependentUpon>ApprovalReasonFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\BranchFilter.ascx.cs">
+      <DependentUpon>BranchFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\BranchFilter.ascx.designer.cs">
+      <DependentUpon>BranchFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\CurrencyFilter.ascx.cs">
       <DependentUpon>CurrencyFilter.ascx</DependentUpon>
@@ -860,6 +884,20 @@
     <Compile Include="Reports\Controls\ApprovalStatus.ascx.designer.cs">
       <DependentUpon>ApprovalStatus.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Controls\DepartmentFilter.ascx.cs">
+      <DependentUpon>DepartmentFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\DepartmentFilter.ascx.designer.cs">
+      <DependentUpon>DepartmentFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\DivisionFilter.ascx.cs">
+      <DependentUpon>DivisionFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\DivisionFilter.ascx.designer.cs">
+      <DependentUpon>DivisionFilter.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Controls\EmploymentStatusFilter.ascx.cs">
       <DependentUpon>EmploymentStatusFilter.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -873,6 +911,20 @@
     </Compile>
     <Compile Include="Reports\Controls\AssetCategoryFilter.ascx.designer.cs">
       <DependentUpon>AssetCategoryFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\PositionFilter.ascx.cs">
+      <DependentUpon>PositionFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\PositionFilter.ascx.designer.cs">
+      <DependentUpon>PositionFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\ScheduleFilter.ascx.cs">
+      <DependentUpon>ScheduleFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\ScheduleFilter.ascx.designer.cs">
+      <DependentUpon>ScheduleFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\SupplierFilter.ascx.cs">
       <DependentUpon>SupplierFilter.ascx</DependentUpon>
@@ -3130,10 +3182,6 @@
     <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
       <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
       <Name>AionHR.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Reports\Reports.csproj">
-      <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
-      <Name>Reports</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
