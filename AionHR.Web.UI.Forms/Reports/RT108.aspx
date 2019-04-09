@@ -70,7 +70,7 @@
                                 
                                 <ext:Container runat="server"  Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnableDepartment="false" EnableDivision="false" EnablePosition="false" />
                                     </Content>
                                 </ext:Container>
                                   <ext:Container runat="server"  Layout="FitLayout">
@@ -182,6 +182,7 @@
             ID="reportsParams"
             Width="600"
             Height="500"
+            Title="<%$Resources:Common,ReportParameters %>"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -191,7 +192,7 @@
             </Listeners>
             <Items>
                 <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
-                    <Loader runat="server" Url="AssetPropertyExplorer.aspx" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                    <Loader runat="server" Url="ReportParameterBrowser.aspx" Mode="Frame" ID="Loader8" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true">
                         <Listeners>

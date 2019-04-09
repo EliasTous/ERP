@@ -103,8 +103,7 @@ namespace AionHR.Web.UI.Forms
                 foreach (var item in parameters.Items)
                 {
                     i += 1;
-                    if (i == 2)
-                        continue;
+                    
                     switch (item.controlType)
                     {
                         

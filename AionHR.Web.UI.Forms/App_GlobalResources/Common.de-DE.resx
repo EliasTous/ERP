@@ -1323,4 +1323,7 @@
   <data name="sendDailySchedule" xml:space="preserve">
     <value>Sind Sie sicher, dass Sie den Tagesplan mit anderen teilen möchten?</value>
   </data>
+  <data name="ReportParameters" xml:space="preserve">
+    <value>ReportParameters</value>
+  </data>
 </root>

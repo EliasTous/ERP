@@ -1401,4 +1401,7 @@
   <data name="sendDailySchedule" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir partager votre horaire quotidien?</value>
   </data>
+  <data name="ReportParameters" xml:space="preserve">
+    <value>ReportParameters</value>
+  </data>
 </root>
