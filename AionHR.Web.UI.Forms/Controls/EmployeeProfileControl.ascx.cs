@@ -710,8 +710,15 @@ namespace AionHR.Web.UI.Forms
             //}
 
             //b.hireDate = new DateTime(b.hireDate.Value.Year, b.hireDate.Value.Month, b.hireDate.Value.Day, 14, 0, 0);
+           // b.reference = string.IsNullOrEmpty(b.reference) ? null : b.reference; 
+            b.mobile= string.IsNullOrEmpty(b.mobile) ? null : b.mobile;
+            b.middleName = string.IsNullOrEmpty(b.middleName) ? null : b.middleName;
+            b.workMail = string.IsNullOrEmpty(b.workMail) ? null : b.workMail;
+            b.idRef = string.IsNullOrEmpty(b.idRef) ? null : b.idRef;
+            //if (b.name!=null)
+            //    b.name.middleName = string.IsNullOrEmpty(b.name.middleName) ? null : b.reference;
 
-                if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
                 {
 
                     try
@@ -737,7 +744,7 @@ namespace AionHR.Web.UI.Forms
 
 
                     request.entity.reference = request.entity.reference.Replace(" ", "");
-                        PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
+                    PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
                         CurrentEmployeeFullName.Text = b.name.fullName;
                         b.recordId = r.recordId;
 

@@ -13,9 +13,35 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript" src="Scripts/Schedules.js?id=32"></script>
-    <script type="text/javascript" src="Scripts/common.js"></script>
+     <script type="text/javascript" src="Scripts/common.js?id=32"></script>
+   
+   
+   
+  
 
     <script type="text/javascript">
+       
+        function openEmployeesPage(scId) {
+        var url = 'Employees.aspx?scId='.concat(scId);
+            parent.App.tabPanel.add({
+                id: "rootParent_Employee_Leaf",
+                title: App.EmployeeLeafTitle.getValue(),
+                iconCls: "icon-Employees",
+                closable: true,
+                loader: {
+                    url: url,
+                    renderer: "frame",
+                    loadMask: {
+                        showMask: true,
+                        msg: "test"
+                    }
+                }
+            });
+
+            var tab = parent.App.tabPanel.getComponent("rootParent_Employee_Leaf");
+            parent.App.tabPanel.setActiveTab(tab);
+            }
+            
         function setReadOnly(attr, state) {
 
 
@@ -53,6 +79,10 @@
         <ext:Hidden ID="IsWorkingDay" runat="server" />
         <ext:Hidden ID="editDisabled" runat="server" />
         <ext:Hidden ID="deleteDisabled" runat="server" />
+          <ext:Hidden ID="CurrentScId" runat="server" />
+           <ext:Hidden ID="EmployeeLeafTitle" runat="server" Text="<%$ Resources:Common , EmployeeLeaf %>" />
+      
+
         <ext:Store
             ID="Store1"
             runat="server"
@@ -121,6 +151,24 @@
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="ADDNewRecord">
+                                            <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+
+                                <ext:Button ID="Button5" runat="server" Text="<%$ Resources:Common , Employee %>" >
+                                     <Listeners>
+                                                        <Click Handler=" if (App.GridPanel1.getSelectionModel().hasSelection()) {
+                                                               var row = App.GridPanel1.getSelectionModel().getSelection()[0];
+                                                                App.CurrentScId.setValue(row.get('recordId'));
+                                                            }
+                                                            else
+                                                            App.CurrentScId.setValue('0');
+                                                          
+                                                            " />
+                                                                          </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="ShowEmployees">
                                             <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
                                         </Click>
                                     </DirectEvents>
@@ -375,6 +423,203 @@
                             </ext:Column>
                         </Columns>
                     </ColumnModel>
+                </ext:GridPanel>
+                 <ext:GridPanel
+                    ID="EmployeesGrid"
+                    runat="server"
+                   
+                    PaddingSpec="0 0 1 0"
+                    Header="false"
+                    Title="<%$ Resources: EmployeesGrid %>"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"
+                    Icon="User"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                         <Store>
+                        <ext:Store
+                            ID="EmployeesStore"
+                            runat="server"
+                            RemoteSort="True"
+                            RemoteFilter="true" >
+                    
+                        
+                            <Model>
+                                <ext:Model ID="Model2" runat="server" IDProperty="recordId">
+                                    <Fields>
+
+                                        <ext:ModelField Name="recordId" />
+                                        <ext:ModelField Name="pictureUrl" />
+                                        <ext:ModelField Name="name" IsComplex="true" />
+                                        <ext:ModelField Name="reference" />
+                                        <ext:ModelField Name="departmentName" />
+                                        <ext:ModelField Name="positionName" />
+                                        <ext:ModelField Name="branchName" />
+                                        <ext:ModelField Name="divisionName" />
+                                        <ext:ModelField Name="hireDate" />
+
+
+
+
+
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+                            <Sorters>
+                                <ext:DataSorter Property="recordId" Direction="ASC" />
+                            </Sorters>
+                        </ext:Store>
+                    </Store>
+
+                   <TopBar>
+                        <ext:Toolbar ID="Toolbar4" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                                <ext:Button ID="Button6" runat="server" Text="<%$ Resources:Common , Back %>" Icon="PageWhiteGo">
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="Prev_Click">
+                                            <ExtraParams>
+                                                <ext:Parameter Name="index" Value="#{viewport1}.items.indexOf(#{viewport1}.layout.activeItem)" Mode="Raw" />
+                                            </ExtraParams>
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                               
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
+
+                    <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="true">
+                        <Columns>
+
+                            
+
+                            <ext:Column ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name" Flex="3" Hideable="false">
+                                <Renderer Handler=" return  record.data['name'].fullName ">
+                                </Renderer>
+                            </ext:Column>
+                            <ext:Column ID="ColDepartmentName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="2" Hideable="false">
+                            </ext:Column>
+                            <ext:Column ID="ColPositionName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="2" Hideable="false" />
+                            <ext:Column ID="ColBranchName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="2" Hideable="false" />
+
+
+                          <%--  <ext:Column runat="server"
+                                ID="Column12" Visible="false"
+                                Text="<%$ Resources:Common, Edit %>"
+                                Width="60"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer Fn="editRender" />
+
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                ID="Column13" Flex="1" Visible="false"
+                                Text="<%$ Resources: Common , Delete %>"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="deleteRender" />
+
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                ID="Column14"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                ID="Column15"
+                                Text="<%$ Resources:EditDaysButton %>"
+                                Hideable="false"
+                                Width="120"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;'+attachRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                            </ext:Column>--%>
+
+
+                        </Columns>
+                    </ColumnModel>
+                    <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar5" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar2" runat="server" />
+                                <ext:ToolbarFill />
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                    <BottomBar>
+
+                        <ext:PagingToolbar ID="PagingToolbar2"
+                            runat="server"
+                            FirstText="<%$ Resources:Common , FirstText %>"
+                            NextText="<%$ Resources:Common , NextText %>"
+                            PrevText="<%$ Resources:Common , PrevText %>"
+                            LastText="<%$ Resources:Common , LastText %>"
+                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
+                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
+                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
+                            DisplayInfo="true"
+                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
+                            Border="true"
+                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
+                            <Items>
+                            </Items>
+                            <Listeners>
+                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                            </Listeners>
+                        </ext:PagingToolbar>
+
+                    </BottomBar>
+                 <%--   <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
+                    <DirectEvents>
+                        <CellClick OnEvent="PoPuP">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="ScheduleNamePar" Value="record.data['name']" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>--%>
+                    <View>
+                        <ext:GridView ID="GridView2" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
                 </ext:GridPanel>
             </Items>
         </ext:Viewport>

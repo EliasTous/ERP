@@ -166,6 +166,9 @@ namespace AionHR.Web.UI.Forms.Controls
         {
         
             try {
+                employeeId.SuspendEvent("select");
+                startDate.SuspendEvent("change");
+                endDate.SuspendEvent("change");
                 leaveDaysField.SetHidden(true);
                 leaveHours.SetHidden(true);
                 workingHours.SetHidden(true);
@@ -205,7 +208,7 @@ namespace AionHR.Web.UI.Forms.Controls
                     employeeId.SetValue(response.result.employeeId);
 
                 }
-                LoadQuickViewInfo(response.result.employeeId);
+                LoadQuickViewInfo(response.result.employeeId,response.result.startDate);
 
                 LeaveDayListRequest req = new LeaveDayListRequest();
                 req.LeaveId = CurrentLeave.Text;
@@ -240,6 +243,9 @@ namespace AionHR.Web.UI.Forms.Controls
                 RefreshSecurityForControls();
                 this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                 this.EditRecordWindow.Show();
+                employeeId.ResumeEvent("select");
+                startDate.ResumeEvent("change");
+                endDate.ResumeEvent("change");
                 X.Call("calcDays");
             }
             catch(Exception exp)
@@ -382,11 +388,13 @@ namespace AionHR.Web.UI.Forms.Controls
 
 
 
-        private void LoadQuickViewInfo(string employeeId)
+        private void LoadQuickViewInfo(string employeeId,DateTime? startDate=null)
         {
             EmployeeQuickViewRecordRequest r = new EmployeeQuickViewRecordRequest();
             r.RecordID = employeeId;
-            r.asOfDate = DateTime.Now;
+           
+                r.asOfDate = startDate == null  ? DateTime.Now : (DateTime)startDate;
+
             RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(r);
             if (!resp.Success)
             {

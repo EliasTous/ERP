@@ -118,174 +118,181 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Attendance Schedule Info</value>
+    <value>Währung Info</value>
   </data>
-  <data name="BtnAddPeriod" xml:space="preserve">
-    <value>Add Break</value>
+  <data name="BOGridTitle" xml:space="preserve">
+    <value>Bonus</value>
+    <comment>Zugabe</comment>
   </data>
-  <data name="BtnRemovePeriod" xml:space="preserve">
-    <value>Remove Break</value>
+  <data name="EditBOWindowTitle" xml:space="preserve">
+    <value>Bonus</value>
   </data>
-  <data name="BtnUpdate" xml:space="preserve">
-    <value>Save</value>
+  <data name="EditSAWindowTitle" xml:space="preserve">
+    <value>Basis Info</value>
   </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Attendance Schedule</value>
+  <data name="FieldAccountNumber" xml:space="preserve">
+    <value>Kontonummer</value>
   </data>
-  <data name="FieldDays" xml:space="preserve">
-    <value>Vacation Days</value>
+  <data name="FieldAmount" xml:space="preserve">
+    <value>Betrag</value>
   </data>
-  <data name="Fieldfci_max_lt" xml:space="preserve">
-    <value>First Check In Maximum Lateness (mins)</value>
+  <data name="FieldBankName" xml:space="preserve">
+    <value>Bank</value>
   </data>
-  <data name="Fieldfci_min_ot" xml:space="preserve">
-    <value>First Check In Minimum Over Time (mins)</value>
+  <data name="FieldBasicAmount" xml:space="preserve">
+    <value>Grundbetrag</value>
   </data>
-  <data name="FieldFrom" xml:space="preserve">
-    <value>From Time</value>
+  <data name="FieldBTName" xml:space="preserve">
+    <value>Bonus Typ</value>
   </data>
-  <data name="FieldIsBenifit" xml:space="preserve">
-    <value>Is Benifit of Over Time</value>
+  <data name="FieldComment" xml:space="preserve">
+    <value>Kommentar</value>
   </data>
-  <data name="Fieldlco_max_el" xml:space="preserve">
-    <value>Last Check Out Maximum Early Leave (mins)</value>
+  <data name="FieldComments" xml:space="preserve">
+    <value>Kommentare</value>
   </data>
-  <data name="Fieldlco_max_ot" xml:space="preserve">
-    <value>Last Check Out Maximum Over Time (mins)</value>
+  <data name="FieldDate" xml:space="preserve">
+    <value>Datum</value>
   </data>
-  <data name="Fieldlco_min_ot" xml:space="preserve">
-    <value>Last Check Out Minimum Over Time(mins)</value>
+  <data name="FieldEffectiveDate" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="FieldFinalAmount" xml:space="preserve">
+    <value>Endbetrag</value>
+  </data>
+  <data name="FieldIsTaxable" xml:space="preserve">
+    <value>Ist steuerpflichtig</value>
   </data>
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="FieldTo" xml:space="preserve">
-    <value>To Time</value>
+  <data name="FieldPaymentFrequency" xml:space="preserve">
+    <value>Bezahlungshäufigkeit</value>
   </data>
-  <data name="Periods" xml:space="preserve">
-    <value>Periods</value>
+  <data name="FieldPaymentMethod" xml:space="preserve">
+    <value>Zahlungsmethode</value>
   </data>
-  <data name="PeriodsTab" xml:space="preserve">
-    <value>Periods Tab</value>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Datensatz ID</value>
   </data>
-  <data name="SundayTab" xml:space="preserve">
-    <value>Sunday</value>
+  <data name="FieldReference" xml:space="preserve">
+    <value>Referenz</value>
+  </data>
+  <data name="FieldSACurrencyName" xml:space="preserve">
+    <value>Währung</value>
+  </data>
+  <data name="FieldSalaryType" xml:space="preserve">
+    <value>Gehaltsart</value>
+  </data>
+  <data name="FieldScrName" xml:space="preserve">
+    <value>Änderungsgrund</value>
+  </data>
+  <data name="PaymentMethodBank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="PaymentMethodCash" xml:space="preserve">
+    <value>Bar</value>
+  </data>
+  <data name="PaymentTypeDaily" xml:space="preserve">
+    <value>Täglich</value>
+  </data>
+  <data name="PaymentTypeMonthly" xml:space="preserve">
+    <value>Monatlich</value>
+  </data>
+  <data name="PaymentTypeWeekly" xml:space="preserve">
+    <value>Wöchentlich</value>
+  </data>
+  <data name="SAGridTitle" xml:space="preserve">
+    <value>Gehalt</value>
+  </data>
+  <data name="SalaryBank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="SalaryCash" xml:space="preserve">
+    <value>Bar</value>
+  </data>
+  <data name="SalaryDaily" xml:space="preserve">
+    <value>Täglich</value>
+  </data>
+  <data name="SalaryMonthly" xml:space="preserve">
+    <value>Monatlich</value>
+  </data>
+  <data name="SalaryWeekly" xml:space="preserve">
+    <value>Wöchentlich</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Attendance Schedules</value>
+    <value>Währungen</value>
   </data>
-  <data name="FieldFirstIn" xml:space="preserve">
-    <value>First In</value>
+  <data name="Deductions" xml:space="preserve">
+    <value>Abzüge</value>
   </data>
-  <data name="FieldLastOut" xml:space="preserve">
-    <value>Last Out</value>
+  <data name="DeductionsEntitlements" xml:space="preserve">
+    <value>Abzüge Berechtigungen</value>
   </data>
-  <data name="MondayTab" xml:space="preserve">
-    <value>Monday</value>
+  <data name="Entitlements" xml:space="preserve">
+    <value>Ansprüche</value>
   </data>
-  <data name="DayBreaksForm" xml:space="preserve">
-    <value>Breaks of Day</value>
+  <data name="FieldEntitlement" xml:space="preserve">
+    <value>Anspruch</value>
   </data>
-  <data name="FieldDow" xml:space="preserve">
-    <value>Day Of Week</value>
+  <data name="FieldFixedAmount" xml:space="preserve">
+    <value>Betrag</value>
   </data>
-  <data name="Break" xml:space="preserve">
-    <value>Break</value>
+  <data name="FieldIncludeInTotal" xml:space="preserve">
+    <value>Insgesamt einschließen</value>
   </data>
-  <data name="EditDaysButton" xml:space="preserve">
-    <value>Edit Days</value>
+  <data name="FieldPCT" xml:space="preserve">
+    <value>Prozentsatz</value>
   </data>
-  <data name="DayType" xml:space="preserve">
-    <value>Day Type</value>
+  <data name="FieldDeduction" xml:space="preserve">
+    <value>Abzug</value>
   </data>
-  <data name="ApplyPattern" xml:space="preserve">
-    <value>Apply Pattern</value>
+  <data name="FieldIsPercentage" xml:space="preserve">
+    <value>Ist Prozentsatz</value>
   </data>
-  <data name="BreakTimeFrom" xml:space="preserve">
-    <value>Break Start</value>
+  <data name="SalaryBiWeekly" xml:space="preserve">
+    <value>Zweiwöchentlich</value>
   </data>
-  <data name="BreakTimeTo" xml:space="preserve">
-    <value>Break End</value>
+  <data name="SalaryFourWeekly" xml:space="preserve">
+    <value>Vier wöchentlich</value>
   </data>
-  <data name="FieldFirstDayOfWeek" xml:space="preserve">
-    <value>First Working Day of week</value>
+  <data name="FieldPctOf" xml:space="preserve">
+    <value>Prozentsatz von</value>
   </data>
-  <data name="FieldworkingDays" xml:space="preserve">
-    <value>Working Days</value>
+  <data name="pctof1" xml:space="preserve">
+    <value>Grundgehalt</value>
   </data>
-  <data name="PatternWindowTitle" xml:space="preserve">
-    <value>Pattern Selection</value>
+  <data name="pctof2" xml:space="preserve">
+    <value>Grundgehalt + Ansprüche</value>
   </data>
-  <data name="WeekendDayType" xml:space="preserve">
-    <value>Weekend-Day Type</value>
+  <data name="ErrorWithPCTOf" xml:space="preserve">
+    <value>Der Prozentwert ist ungültig, der Prozentwert  wird auf Prozentsatz des Grundgehalts gesetzt</value>
   </data>
-  <data name="WorkingDayType" xml:space="preserve">
-    <value>Working-Day Type</value>
+  <data name="AllowedLateness" xml:space="preserve">
+    <value>Erlaubte Verspätung</value>
   </data>
-  <data name="WorkingTimeFrom" xml:space="preserve">
-    <value>Work Start</value>
+  <data name="FieldLatenessDeduction" xml:space="preserve">
+    <value>Verspätung Abzug</value>
   </data>
-  <data name="WorkingTimeTo" xml:space="preserve">
-    <value>Work End</value>
-  </data>
-  <data name="FieldDuration" xml:space="preserve">
-    <value>Duration</value>
-  </data>
-  <data name="SetDefault" xml:space="preserve">
-    <value>Set Default Schedule</value>
-  </data>
-  <data name="DefaultSetSucc" xml:space="preserve">
-    <value>Default schedule set successfully</value>
-  </data>
-  <data name="EnableAOT" xml:space="preserve">
-    <value>Enable Arrival Overtime</value>
-  </data>
-  <data name="EnableBOT" xml:space="preserve">
-    <value>Enable Break Overtime</value>
-  </data>
-  <data name="EnableDOT" xml:space="preserve">
-    <value>Enable Departure Overtime</value>
-  </data>
-  <data name="ArrivalOvertime" xml:space="preserve">
-    <value>Arrival Overtime</value>
-  </data>
-  <data name="DepartureOvertime" xml:space="preserve">
-    <value>Departure Overtime</value>
+  <data name="FieldOvertimeEntitlement" xml:space="preserve">
+    <value>Überstundenanspruch</value>
   </data>
   <data name="Lateness" xml:space="preserve">
-    <value>Lateness</value>
+    <value>Verspätung</value>
   </data>
-  <data name="EnableEntryDayOverTime" xml:space="preserve">
-    <value>Enable Entry Day Over Time</value>
+  <data name="MinimumOvertime" xml:space="preserve">
+    <value>Minimale Überstunden</value>
   </data>
-  <data name="EntryDayOverTime" xml:space="preserve">
-    <value>Entry Day Over Time</value>
+  <data name="Overtime" xml:space="preserve">
+    <value>Überstunden</value>
   </data>
-  <data name="FieldEd_max_ot" xml:space="preserve">
-    <value>Entry Day Maximum Over Time (mins)</value>
+  <data name="TotalDeductions" xml:space="preserve">
+    <value>Gesamtabzüge</value>
   </data>
-  <data name="FieldEd_min_ot" xml:space="preserve">
-    <value>Entry Day Minimum Over Time (mins)</value>
+  <data name="TotalEntitlements" xml:space="preserve">
+    <value>Gesamtzahl der Ansprüche</value>
   </data>
-  <data name="Batch" xml:space="preserve">
-    <value>Batch</value>
-  </data>
-  <data name="SelectSchedule" xml:space="preserve">
-    <value>Please select schedule before click</value>
-  </data>
-  <data name="EmployeesGrid" xml:space="preserve">
-    <value>Employees</value>
-  </data>
-  <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
-  </data>
-  <data name="FieldDepartment" xml:space="preserve">
-    <value>Department</value>
-  </data>
-  <data name="FieldFullName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="FieldPosition" xml:space="preserve">
-    <value>Position</value>
+  <data name="FieldswiftCode" xml:space="preserve">
+    <value>SWIFT-Code</value>
   </data>
 </root>
