@@ -270,4 +270,22 @@
   <data name="Batch" xml:space="preserve">
     <value>Lot</value>
   </data>
+  <data name="SelectSchedule" xml:space="preserve">
+    <value>Veuillez sélectionner un horaire avant de cliquer</value>
+  </data>
+  <data name="EmployeesGrid" xml:space="preserve">
+    <value>Employées</value>
+  </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branche</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Departement</value>
+  </data>
+  <data name="FieldFullName" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="FieldPosition" xml:space="preserve">
+    <value>Position</value>
+  </data>
 </root>

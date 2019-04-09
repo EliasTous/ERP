@@ -26,6 +26,7 @@ using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
 using AionHR.Model.Attributes;
 using AionHR.Model.Access_Control;
+using AionHR.Services.Messaging.Employees;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -529,6 +530,30 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+
+        
+ protected void ShowEmployees(object sender, DirectEventArgs e)
+        {
+            if (CurrentScId.Text=="0")
+            {
+                X.MessageBox.Alert(Resources.Common.Error, GetLocalResourceObject("SelectSchedule")).Show();
+                return; 
+            }
+            ParamsListRequest req = new ParamsListRequest();
+            req.param = "scId=" + CurrentScId.Text;
+            ListResponse<EmployeeParam> resp = _employeeService.ChildGetAll<EmployeeParam>(req); 
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            EmployeesStore.DataSource = resp.Items;
+            EmployeesStore.DataBind();
+            Viewport1.ActiveIndex = 2;
+          
+
+
+        }
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
 

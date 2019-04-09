@@ -271,4 +271,22 @@
   <data name="Batch" xml:space="preserve">
     <value>Stapel</value>
   </data>
+  <data name="SelectSchedule" xml:space="preserve">
+    <value>Bitte wählen Sie einen Zeitplan vor dem Klick</value>
+  </data>
+  <data name="EmployeesGrid" xml:space="preserve">
+    <value>Angestellte</value>
+  </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Abteilung</value>
+  </data>
+  <data name="FieldFullName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FieldPosition" xml:space="preserve">
+    <value>Position</value>
+  </data>
 </root>

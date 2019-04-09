@@ -201,12 +201,12 @@ namespace AionHR.Web.UI.Forms
 
             string startAt, closeAt = string.Empty;
             GetBranchSchedule(out startAt, out closeAt);
-            if(startAt=="00:00"&& closeAt=="00:00")
-              
-                {
-                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("branchClosed")).Show();
-                    return;
-                }
+            //if(startAt=="00:00"&& closeAt=="00:00")
+
+            //    {
+            //        X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("branchClosed")).Show();
+            //        return;
+            //    }
 
             if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
             {
@@ -216,7 +216,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
 
-          
+
             TimeSpan tsStart = TimeSpan.Parse(startAt);
             //timeFrom.MinTime = tsStart;
             //timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
@@ -243,8 +243,8 @@ namespace AionHR.Web.UI.Forms
             //Filling The Times Slot
             List<TimeSlot> timesList = new List<TimeSlot>();
             DateTime dtStart, dtEnd;
-            dtStart = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month,1, tsStart.Hours, tsStart.Minutes, 0);
-            dtEnd = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month,1, tsClose.Hours, tsClose.Minutes, 0);
+            dtStart = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, 1, tsStart.Hours, tsStart.Minutes, 0);
+            dtEnd = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, 1, tsClose.Hours, tsClose.Minutes, 0);
             if (dtStart >= dtEnd)
             {
                 dtEnd = dtEnd.AddDays(1);
@@ -258,7 +258,7 @@ namespace AionHR.Web.UI.Forms
                 ts.ID = dtStart.ToString("HH:mm");
                 ts.Time = dtStart.ToString("HH:mm");
                 timesList.Add(ts);
-                dtStart = dtStart.AddMinutes(Convert.ToInt32( SystemDefaultResponse.result.Value));
+                dtStart = dtStart.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
             } while (dtStart <= dtEnd);
 
             //filling the Day slots
@@ -267,13 +267,13 @@ namespace AionHR.Web.UI.Forms
             html = FillFirstRow(html, timesList);
 
             html = FillOtherRow(html, timesList, items);
-       
+
 
             //Preparing the ids to get colorified
             List<string> listIds = new List<string>();
             List<string> listDn = new List<string>();
             List<string> listDS = new List<string>();
-          
+
             Dictionary<string, int> dic = new Dictionary<string, int>();
             if (items.Count != 0 && items != null)
             {
@@ -326,8 +326,14 @@ namespace AionHR.Web.UI.Forms
                 }
                 do
                 {
-                    listDS.ForEach(departmentID => dic.Add(departmentID + "-" + fsfromDate.ToString("HH:mm"), listDn.Where(stringToCheck => stringToCheck.Contains(departmentID + "_" + fsfromDate.ToString("HH:mm"))).Count()));
+                    listDS.ForEach(departmentID =>
+                   {
+                       if (!dic.ContainsKey(departmentID + "-" + fsfromDate.ToString("HH:mm")))
+                           dic.Add(departmentID + "-" + fsfromDate.ToString("HH:mm"), listDn.Where(stringToCheck => stringToCheck.Contains(departmentID + "_" + fsfromDate.ToString("HH:mm"))).Count());
+                   });
                     fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+              
+                
                 } while (fsToDate >= fsfromDate);
 
 

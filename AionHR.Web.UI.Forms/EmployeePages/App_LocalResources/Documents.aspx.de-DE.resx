@@ -117,175 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Attendance Schedule Info</value>
+  <data name="DownloadImage" xml:space="preserve">
+    <value>Bild herunterladen</value>
   </data>
-  <data name="BtnAddPeriod" xml:space="preserve">
-    <value>Add Break</value>
+  <data name="EditDocumentWindowTitle" xml:space="preserve">
+    <value>Dokument</value>
   </data>
-  <data name="BtnRemovePeriod" xml:space="preserve">
-    <value>Remove Break</value>
+  <data name="FieldDate" xml:space="preserve">
+    <value>Datum</value>
   </data>
-  <data name="BtnUpdate" xml:space="preserve">
-    <value>Save</value>
+  <data name="FieldDocumentRef" xml:space="preserve">
+    <value>Referenz</value>
   </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Attendance Schedule</value>
+  <data name="FieldDocumentType" xml:space="preserve">
+    <value>Typ</value>
   </data>
-  <data name="FieldDays" xml:space="preserve">
-    <value>Vacation Days</value>
+  <data name="FieldExpiryDate" xml:space="preserve">
+    <value>Verfallsdatum</value>
   </data>
-  <data name="Fieldfci_max_lt" xml:space="preserve">
-    <value>First Check In Maximum Lateness (mins)</value>
+  <data name="FieldFile" xml:space="preserve">
+    <value>Datei</value>
   </data>
-  <data name="Fieldfci_min_ot" xml:space="preserve">
-    <value>First Check In Minimum Over Time (mins)</value>
+  <data name="FieldFolderName" xml:space="preserve">
+    <value>Ordner</value>
   </data>
-  <data name="FieldFrom" xml:space="preserve">
-    <value>From Time</value>
+  <data name="FieldRemarks" xml:space="preserve">
+    <value>Bemerkungen</value>
   </data>
-  <data name="FieldIsBenifit" xml:space="preserve">
-    <value>Is Benifit of Over Time</value>
-  </data>
-  <data name="Fieldlco_max_el" xml:space="preserve">
-    <value>Last Check Out Maximum Early Leave (mins)</value>
-  </data>
-  <data name="Fieldlco_max_ot" xml:space="preserve">
-    <value>Last Check Out Maximum Over Time (mins)</value>
-  </data>
-  <data name="Fieldlco_min_ot" xml:space="preserve">
-    <value>Last Check Out Minimum Over Time(mins)</value>
-  </data>
-  <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="FieldTo" xml:space="preserve">
-    <value>To Time</value>
-  </data>
-  <data name="Periods" xml:space="preserve">
-    <value>Periods</value>
-  </data>
-  <data name="PeriodsTab" xml:space="preserve">
-    <value>Periods Tab</value>
-  </data>
-  <data name="SundayTab" xml:space="preserve">
-    <value>Sunday</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>Attendance Schedules</value>
-  </data>
-  <data name="FieldFirstIn" xml:space="preserve">
-    <value>First In</value>
-  </data>
-  <data name="FieldLastOut" xml:space="preserve">
-    <value>Last Out</value>
-  </data>
-  <data name="MondayTab" xml:space="preserve">
-    <value>Monday</value>
-  </data>
-  <data name="DayBreaksForm" xml:space="preserve">
-    <value>Breaks of Day</value>
-  </data>
-  <data name="FieldDow" xml:space="preserve">
-    <value>Day Of Week</value>
-  </data>
-  <data name="Break" xml:space="preserve">
-    <value>Break</value>
-  </data>
-  <data name="EditDaysButton" xml:space="preserve">
-    <value>Edit Days</value>
-  </data>
-  <data name="DayType" xml:space="preserve">
-    <value>Day Type</value>
-  </data>
-  <data name="ApplyPattern" xml:space="preserve">
-    <value>Apply Pattern</value>
-  </data>
-  <data name="BreakTimeFrom" xml:space="preserve">
-    <value>Break Start</value>
-  </data>
-  <data name="BreakTimeTo" xml:space="preserve">
-    <value>Break End</value>
-  </data>
-  <data name="FieldFirstDayOfWeek" xml:space="preserve">
-    <value>First Working Day of week</value>
-  </data>
-  <data name="FieldworkingDays" xml:space="preserve">
-    <value>Working Days</value>
-  </data>
-  <data name="PatternWindowTitle" xml:space="preserve">
-    <value>Pattern Selection</value>
-  </data>
-  <data name="WeekendDayType" xml:space="preserve">
-    <value>Weekend-Day Type</value>
-  </data>
-  <data name="WorkingDayType" xml:space="preserve">
-    <value>Working-Day Type</value>
-  </data>
-  <data name="WorkingTimeFrom" xml:space="preserve">
-    <value>Work Start</value>
-  </data>
-  <data name="WorkingTimeTo" xml:space="preserve">
-    <value>Work End</value>
-  </data>
-  <data name="FieldDuration" xml:space="preserve">
-    <value>Duration</value>
-  </data>
-  <data name="SetDefault" xml:space="preserve">
-    <value>Set Default Schedule</value>
-  </data>
-  <data name="DefaultSetSucc" xml:space="preserve">
-    <value>Default schedule set successfully</value>
-  </data>
-  <data name="EnableAOT" xml:space="preserve">
-    <value>Enable Arrival Overtime</value>
-  </data>
-  <data name="EnableBOT" xml:space="preserve">
-    <value>Enable Break Overtime</value>
-  </data>
-  <data name="EnableDOT" xml:space="preserve">
-    <value>Enable Departure Overtime</value>
-  </data>
-  <data name="ArrivalOvertime" xml:space="preserve">
-    <value>Arrival Overtime</value>
-  </data>
-  <data name="DepartureOvertime" xml:space="preserve">
-    <value>Departure Overtime</value>
-  </data>
-  <data name="Lateness" xml:space="preserve">
-    <value>Lateness</value>
-  </data>
-  <data name="EnableEntryDayOverTime" xml:space="preserve">
-    <value>Enable Entry Day Over Time</value>
-  </data>
-  <data name="EntryDayOverTime" xml:space="preserve">
-    <value>Entry Day Over Time</value>
-  </data>
-  <data name="FieldEd_max_ot" xml:space="preserve">
-    <value>Entry Day Maximum Over Time (mins)</value>
-  </data>
-  <data name="FieldEd_min_ot" xml:space="preserve">
-    <value>Entry Day Minimum Over Time (mins)</value>
-  </data>
-  <data name="Batch" xml:space="preserve">
-    <value>Batch</value>
-  </data>
-  <data name="SelectSchedule" xml:space="preserve">
-    <value>Please select schedule before click</value>
-  </data>
-  <data name="EmployeesGrid" xml:space="preserve">
-    <value>Employees</value>
-  </data>
-  <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
-  </data>
-  <data name="FieldDepartment" xml:space="preserve">
-    <value>Department</value>
-  </data>
-  <data name="FieldFullName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="FieldPosition" xml:space="preserve">
-    <value>Position</value>
+  <data name="previewImage" xml:space="preserve">
+    <value>Sie können nur eine Bildvorschau anzeigen</value>
   </data>
 </root>

@@ -716,16 +716,17 @@
                                             <Menu>
                                                 <ext:Menu runat="server">
                                                     <Items>
+                                                             <ext:MenuItem runat="server" Text="<%$ Resources:Common , EmployeeFiles %>" > 
+
+                                                                          <Menu>
+                                                                              <ext:Menu runat="server" >
+                                                                                  <Items>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportLoans %>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('importLoans', 'ImportLoans.aspx', #{importLoansTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportLeaves%>">
-                                                            <Listeners>
-                                                                <Click Handler="openNewTab('importLeaves', 'ImportLeaves.aspx', #{importLeavesTitle}.value, 'icon-Employees')" />
-                                                            </Listeners>
-                                                        </ext:MenuItem>
+                                                       
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportNotes%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('importNotes', 'ImportEmployeeNotes.aspx', #{importNotesTitle}.value, 'icon-Employees')" />
@@ -756,11 +757,20 @@
                                                                                 <Click Handler="openNewTab('import-EmploymentHistory', 'ImportEmploymentStatus.aspx', #{importEH}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>  
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportDepartments%>">
-                                                                            <Listeners>
-                                                                                <Click Handler="openNewTab('import-departments', 'ImportDepartments.aspx', #{importDE}.value, 'icon-Employees')" />
-                                                                            </Listeners>
-                                                                        </ext:MenuItem>                                          
+                                                                                      </Items>
+                                                                                      </ext:Menu>
+                                                                                  </Menu>
+                                                             </ext:MenuItem>
+                                                             <ext:MenuItem runat="server" Text="<%$ Resources:Common , Scheduler%>">
+
+                                                    <Menu>
+                                                <ext:Menu runat="server">
+                                                    <Items>  
+                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportLeaves%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('importLeaves', 'ImportLeaves.aspx', #{importLeavesTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>                                    
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportAttendance%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('Import', 'ImportAttendance.aspx',#{importAt}.value , 'icon-Employees')" />
@@ -781,12 +791,38 @@
                                                                                 <Click Handler="openNewTab('Import', 'ImportPunches.aspx',#{importPUTitle}.value , 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , importPayCodes%>">
+                                                        </Items>
+                                                                                      </ext:Menu>
+                                                                                  </Menu>
+                                                             </ext:MenuItem>
+
+                                                             <ext:MenuItem runat="server" Text="<%$ Resources:Common , Payroll %>">
+                                            <Menu>
+                                                <ext:Menu runat="server">
+                                                    <Items>
+                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , importPayCodes%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('ImportPayCodes', 'ImportPayCodes.aspx', #{pypc}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
+                                                        </Items>
+                                                    </ext:Menu>
+                                                </Menu>
+                                                        </ext:MenuItem>
+                                                             <ext:MenuItem runat="server" Text="<%$ Resources:Common , Company %>">
 
+                                            <Menu>
+                                                <ext:Menu runat="server">
+                                                    <Items>
+                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportDepartments%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('import-departments', 'ImportDepartments.aspx', #{importDE}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>   
+                                                       </Items>
+                                                    </ext:Menu>
+                                                </Menu>
+                                                        </ext:MenuItem>
 
                                                     </Items>
                                                 </ext:Menu>

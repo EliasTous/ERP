@@ -498,7 +498,7 @@
                                         </ext:Model>
                                     </Model>
                                     <Sorters>
-                                        <ext:DataSorter Property="recordId" Direction="ASC" />
+                                        <ext:DataSorter Property="sequence" Direction="ASC" />
                                     </Sorters>
                                 </ext:Store>
 

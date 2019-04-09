@@ -139,6 +139,7 @@
     <Compile Include="Employees\Profile\EmployeeCount.cs" />
     <Compile Include="Employees\Profile\EmployeeEmergencyContact.cs" />
     <Compile Include="Employees\Profile\EmployeeNote.cs" />
+    <Compile Include="Employees\Profile\EmployeeParam.cs" />
     <Compile Include="Employees\Profile\EmployeeRightToWork.cs" />
     <Compile Include="Employees\Profile\EmployeeTermination.cs" />
     <Compile Include="Employees\Profile\EmploymentHistory.cs" />
