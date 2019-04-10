@@ -179,7 +179,7 @@ namespace AionHR.Web.UI.Forms
                                         new
                                         {
                                             recordId = response.result.employeeId,
-                                            fullName =response.result.employeeName.fullName
+                                            fullName =response.result.employeeName
 
                                         }
                          });
@@ -448,6 +448,7 @@ namespace AionHR.Web.UI.Forms
                         int index = Convert.ToInt32(id);//getting the id of the record
                         PostRequest<AssetManagementLoan> request = new PostRequest<AssetManagementLoan>();
                         request.entity = b;
+                        request.entity.recordId = index.ToString();
                         PostResponse<AssetManagementLoan> r = _assetManagementService.ChildAddOrUpdate<AssetManagementLoan>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                         //Step 2 : saving to store
@@ -463,9 +464,7 @@ namespace AionHR.Web.UI.Forms
                         {
 
 
-                            ModelProxy record = this.Store1.GetById(index);
-                            BasicInfoTab.UpdateRecord(record);
-                            record.Commit();
+                            Store1.Reload();
                             Notification.Show(new NotificationConfig
                             {
                                 Title = Resources.Common.Notification,

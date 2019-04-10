@@ -499,7 +499,7 @@
     <value>Datum</value>
   </data>
   <data name="FieldDetails" xml:space="preserve">
-    <value>Details</value>
+    <value>Einzelheiten</value>
   </data>
   <data name="FieldEHStatus" xml:space="preserve">
     <value>Arbeitsverhältnis</value>
@@ -1325,5 +1325,8 @@
   </data>
   <data name="ReportParameters" xml:space="preserve">
     <value>ReportParameters</value>
+  </data>
+  <data name="RT310" xml:space="preserve">
+    <value>Anwesenheitsplan</value>
   </data>
 </root>

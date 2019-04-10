@@ -418,6 +418,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox damage;
         
         /// <summary>
+        /// justification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextArea justification;
+        
+        /// <summary>
         /// SaveButton control.
         /// </summary>
         /// <remarks>

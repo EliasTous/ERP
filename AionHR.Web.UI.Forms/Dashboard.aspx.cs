@@ -1463,7 +1463,7 @@ namespace AionHR.Web.UI.Forms
             string timeCodeString = e.ExtraParams["timeCodeString"];
             string status = e.ExtraParams["status"];
             string shiftId = e.ExtraParams["shiftId"];
-
+            string justificationParam = e.ExtraParams["justification"];
 
             string notes = e.ExtraParams["notes"];
 
@@ -1939,6 +1939,7 @@ namespace AionHR.Web.UI.Forms
                 request.entity.status = TI.status;
                 request.entity.notes = TI.notes;
                 request.entity.shiftId = TI.shiftId;
+             
 
                 PostResponse<Time> r = _timeAttendanceService.ChildAddOrUpdate<Time>(request);
 

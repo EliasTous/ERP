@@ -402,4 +402,7 @@
   <data name="toDuration" xml:space="preserve">
     <value>À la durée</value>
   </data>
+  <data name="FieldJustification" xml:space="preserve">
+    <value>Justification</value>
+  </data>
 </root>

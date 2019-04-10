@@ -43,7 +43,7 @@
 
                         <ext:ModelField Name="recordId" />
                       
-                        <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="employeeName" />
                          <ext:ModelField Name="status" />
                         <ext:ModelField Name="departmentName" />
                          <ext:ModelField Name="positionName" />

@@ -2279,7 +2279,7 @@
                                                                                 <ext:ModelField Name="dayId" />
                                                                                 <ext:ModelField Name="dayIdDate"  />
                                                                                   <ext:ModelField Name="fullName"  />
-                                                                           
+                                                                            <ext:ModelField Name="justification" />
                                                                                 <ext:ModelField Name="timeCode" />
                                                                                   <ext:ModelField Name="shiftId" />
                                                                                 <ext:ModelField Name="timeCodeString" />
@@ -2353,6 +2353,7 @@
                                                                            <ext:Parameter Name="Notes" Value="record.data['notes']" Mode="Raw" />
                                                                            <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
                                                                              <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
+                                                                          <ext:Parameter Name="justification" Value="record.data['justification']" Mode="Raw" />
                                                                     
                                                                       
                                                                         
@@ -4556,14 +4557,14 @@
             Icon="PageEdit"
             Title="<%$ Resources:Time%>"
             Width="450"
-            Height="500"
+            Height="600"
             AutoShow="false"
             Modal="true"
             Hidden="true"
             Resizable="false"
             Maximizable="false"
             Draggable="false"
-            Layout="Fit">
+            Layout="Fit" >
 
             <Items>
                 <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
@@ -4623,10 +4624,11 @@
                                             </Content>
                                         </ext:Container>  
 
-
+                                  <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification"   AllowBlank="true" ReadOnly="true" />
 
                                 <ext:TextArea runat="server" FieldLabel="<%$Resources: FieldNotes %>" ID="TimeNotes" Name="notes" MaxHeight="5" />
 
+                                 
 
                             </Items>
 

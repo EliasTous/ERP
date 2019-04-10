@@ -136,6 +136,7 @@
                    
                             <ext:ModelField Name="dayId" />
                         <ext:ModelField Name="dayIdString" />
+                           <ext:ModelField Name="justification" />
                       
                                          
                         
@@ -439,6 +440,7 @@
                                    <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
                                   <ext:Parameter Name="timeCode" Value="record.data['timeCode']" Mode="Raw" />
                                  <ext:Parameter Name="apStatus" Value="record.data['apStatus']" Mode="Raw" />
+                                <ext:Parameter Name="justification" Value="record.data['justification']" Mode="Raw" />
                                 
 
                                   <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
@@ -491,6 +493,7 @@
                                     </Items>
                                     
                                 </ext:ComboBox>
+                                <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification"   AllowBlank="true" />
                              
                                  
                                 <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>

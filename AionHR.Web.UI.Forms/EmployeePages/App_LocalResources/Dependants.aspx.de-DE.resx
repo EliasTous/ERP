@@ -127,7 +127,7 @@
     <value>Lebenspartner</value>
   </data>
   <data name="EditContactWindowTitle" xml:space="preserve">
-    <value>Verwandtschaft قرابة</value>
+    <value>Verwandtschaft </value>
     <comment>Verwandte أقرباء</comment>
   </data>
   <data name="ErrorAddressMissing" xml:space="preserve">
