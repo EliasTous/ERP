@@ -645,7 +645,7 @@ namespace AionHR.Web.UI.Forms
                         request.entity.damageLevel = Convert.ToInt16(damage.Value);
                         request.entity.duration = Convert.ToInt16(duration.Text);
                         request.entity.justification = b.justification;
-                        request.entity.recordId = null;
+                      //  request.entity.recordId = null;
                         PostResponse<DashBoardTimeVariation> response = _timeAttendanceService.ChildAddOrUpdate<DashBoardTimeVariation>(request);
                         if (!response.Success)//it maybe another check
                         {
