@@ -209,8 +209,10 @@
     <Content Include="Reports\Controls\DivisionFilter.ascx" />
     <Content Include="Reports\Controls\EmploymentStatusFilter.ascx" />
     <Content Include="Reports\Controls\AssetCategoryFilter.ascx" />
+    <Content Include="Reports\Controls\NationalityFilter.ascx" />
     <Content Include="Reports\Controls\PositionFilter.ascx" />
     <Content Include="Reports\Controls\ScheduleFilter.ascx" />
+    <Content Include="Reports\Controls\SponsorFilter.ascx" />
     <Content Include="Reports\Controls\SupplierFilter.ascx" />
     <Content Include="Reports\RT113.aspx" />
     <Content Include="Reports\RT114.aspx" />
@@ -912,6 +914,13 @@
     <Compile Include="Reports\Controls\AssetCategoryFilter.ascx.designer.cs">
       <DependentUpon>AssetCategoryFilter.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Controls\NationalityFilter.ascx.cs">
+      <DependentUpon>NationalityFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\NationalityFilter.ascx.designer.cs">
+      <DependentUpon>NationalityFilter.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Controls\PositionFilter.ascx.cs">
       <DependentUpon>PositionFilter.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -925,6 +934,13 @@
     </Compile>
     <Compile Include="Reports\Controls\ScheduleFilter.ascx.designer.cs">
       <DependentUpon>ScheduleFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\SponsorFilter.ascx.cs">
+      <DependentUpon>SponsorFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\SponsorFilter.ascx.designer.cs">
+      <DependentUpon>SponsorFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\SupplierFilter.ascx.cs">
       <DependentUpon>SupplierFilter.ascx</DependentUpon>

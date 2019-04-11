@@ -1,8 +1,8 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ScheduleFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.ScheduleFilter" %>
- <ext:ComboBox   AnyMatch="true" CaseSensitive="false" SimpleSubmit="true"  runat="server"   ForceSelection="true" QueryMode="Local" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="scheduleId" FieldLabel="<%$ Resources:Common,AttendanceSchedule%>"  >
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SponsorFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.SponsorFilter" %>
+<ext:ComboBox     AnyMatch="true" CaseSensitive="false"  runat="server"   ForceSelection="true" QueryMode="Local" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="sponsorId" FieldLabel="<%$ Resources:Common,Sponsors%>"  >
 
                                             <Store>
-                                                <ext:Store runat="server" ID="scheduleStore">
+                                                <ext:Store runat="server" ID="sponsorsStore">
                                                     <Model>
                                                         <ext:Model runat="server">
                                                             <Fields>
@@ -13,10 +13,11 @@
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
-<Triggers>
+                                         <Triggers>
                 <ext:FieldTrigger Icon="Clear" />
             </Triggers>
             <Listeners>
                 <TriggerClick Handler="
                                        this.clearValue();" />
-            </Listeners>                                        </ext:ComboBox>
+            </Listeners>
+                                        </ext:ComboBox>

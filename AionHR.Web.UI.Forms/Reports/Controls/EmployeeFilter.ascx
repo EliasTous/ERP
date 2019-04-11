@@ -1,11 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmployeeFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter" %>
-<ext:Panel runat="server" Layout="HBoxLayout" Width="130">
-    <Items>
-        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeFilter" Width="120" LabelAlign="Top"
+
+        <ext:ComboBox   AnyMatch="true"   CaseSensitive="false"  runat="server" ID="employeeFilter"  LabelAlign="Left"
             DisplayField="fullName"
             ValueField="recordId" AllowBlank="true"
             TypeAhead="false"
-            HideTrigger="true" SubmitValue="true"
+            HideTrigger="true" 
             MinChars="3" EmptyText="<%$ Resources: FilterEmployee%>"
             TriggerAction="Query" ForceSelection="true">
             <Store>
@@ -24,7 +23,6 @@
                 </ext:Store>
             </Store>
          
-
+            
         </ext:ComboBox>
-    </Items>
-</ext:Panel>
+

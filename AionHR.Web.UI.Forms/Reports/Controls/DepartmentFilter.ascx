@@ -1,8 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DepartmentFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.DepartmentFilter" %>
-<ext:Panel runat="server" Layout="HBoxLayout" Width="130">
-    <Items>
-       
-        <ext:ComboBox runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>">
+
+        <ext:ComboBox runat="server" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId"  FieldLabel="<%$ Resources:Common,Departments%>">
             <Store>
                 <ext:Store runat="server" ID="departmentStore">
                     <Model>
@@ -15,9 +13,13 @@
                     </Model>
                 </ext:Store>
             </Store>
-
+            <Triggers>
+                <ext:FieldTrigger Icon="Clear" />
+            </Triggers>
+            <Listeners>
+                <TriggerClick Handler="
+                                       this.clearValue();" />
+            </Listeners>
 
         </ext:ComboBox>
      
-    </Items>
-</ext:Panel>

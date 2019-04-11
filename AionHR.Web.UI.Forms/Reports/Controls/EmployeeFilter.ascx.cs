@@ -21,7 +21,10 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
 
         }
-
+        public ComboBox EmployeeComboBox { get
+            {
+                return employeeFilter;
+            } }
         public EmployeeParameterSet GetEmployee()
         {
             EmployeeParameterSet s = new EmployeeParameterSet();

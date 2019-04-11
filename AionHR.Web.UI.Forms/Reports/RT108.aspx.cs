@@ -104,9 +104,8 @@ namespace AionHR.Web.UI.Forms.Reports
                         Viewport1.Hidden = true;
                         return;
                     }
-                    FillSponseCombo();
-                    FillCountry();
-                    GenderCombo.Select(0);
+                    
+                    //GenderCombo.Select(0);
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     //FillReport(false);
@@ -117,18 +116,7 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private void FillSponseCombo()
-        {
-            ListRequest sponserRequest = new ListRequest();
-            ListResponse<Sponsor> resp = _employeeService.ChildGetAll<Sponsor>(sponserRequest);
-            if (!resp.Success)
-            {
-               Common.errorMessage(resp);
-                return;
-            }
-            sponsorStore.DataSource = resp.Items;
-            sponsorStore.DataBind();
-        }
+       
         private void ActivateFirstFilterSet()
         {
 
@@ -196,12 +184,29 @@ namespace AionHR.Web.UI.Forms.Reports
             else return "1";
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
 
-
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
         private void FillReport(bool throwException = true)
         {
-           ReportCompositeRequest req = GetRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
+           
             ListResponse<AionHR.Model.Reports.RT108> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT108>(req);
             //if (resp == null || string.IsNullOrEmpty(resp.Error))
             //{

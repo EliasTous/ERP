@@ -51,14 +51,7 @@
                                 </Click>
                             </DirectEvents>
                         </ext:Button>
-                        <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
-                            <Listeners>
-                                <Click Handler="parent.hideWindow()" />
-                            </Listeners>
-                      <%--      <DirectEvents>
-                                <Click OnEvent="CancelClicked" />
-                            </DirectEvents>--%>
-                        </ext:Button>
+                        
                     </Buttons>
                 </ext:FormPanel>
             </Items>

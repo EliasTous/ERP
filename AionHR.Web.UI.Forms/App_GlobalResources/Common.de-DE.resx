@@ -1326,4 +1326,7 @@
   <data name="ReportParameters" xml:space="preserve">
     <value>ReportParameters</value>
   </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
 </root>

@@ -8,11 +8,11 @@ namespace AionHR.Model.Reports
 {
    public class ReportParameter
     {
-        public string key { get; set; }
+        public string id { get; set; }
         public string caption { get; set; }
 
         public int dataType { get; set; }
-
+        public string data { get; set; }
         public int controlType { get; set; }
         public int classId { get; set; }
            

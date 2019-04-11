@@ -2329,6 +2329,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parameters.
+        /// </summary>
+        internal static string Parameters {
+            get {
+                return ResourceManager.GetString("Parameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pattern Applied Successfully.
         /// </summary>
         internal static string PatternAppliedSucc {

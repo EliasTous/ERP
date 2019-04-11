@@ -24,13 +24,29 @@
     <script type="text/javascript" src="../Scripts/moment.js"></script>
     <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
     <script type="text/javascript">
+        
         function alertNow(s, e) {
 
             Ext.MessageBox.alert(App.Error.getValue(), e.message);
+            
             e.handled = true;
         }
-        function ShowParamSelection(pms) {
-            alert(pms);
+        function setVals(pms) {
+            //alert('vals are ' + pms);
+            App.direct.SetVals(pms);
+            
+            
+        }
+        function setTexts(pms) {
+            //alert('texts are ' + pms);
+            App.direct.SetTexts(pms);
+            App.reportsParams.hide();
+            
+        }
+        function setLabels(labels) {
+            //alert('captions are'+labels);
+            App.direct.SetLabels(labels);
+            
         }
     </script>
 </head>
@@ -45,8 +61,9 @@
                <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
-
-
+        <ext:Hidden ID="vals" runat="server" />
+        <ext:Hidden ID="texts" runat="server" />
+        <ext:Hidden ID="labels" runat="server" />
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
             <Items>
@@ -62,7 +79,9 @@
                         <ext:Toolbar runat="server" Height="60">
 
                             <Items>
-                                  <ext:Container runat="server"  Layout="FitLayout">
+                                <ext:Container runat="server" Hidden="true">
+                                    <Content>
+                                        <ext:Container runat="server"  Layout="FitLayout">
                                     <Content>
                                         <uc:employeeCombo runat="server" ID="employeeFilter" />
                                     </Content>
@@ -134,6 +153,11 @@
                                             </Items>
 
                                         </ext:ComboBox>
+                                    </Content>
+                                </ext:Container>
+
+
+                                  
                                              <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                         
@@ -142,7 +166,7 @@
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
-                                         <ext:Button runat="server" Text="More"> 
+                                         <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
                                        <Listeners>
                                            <Click Handler="App.Panel8.loader.url = '../ReportParameterBrowser.aspx?_reportName=RT108'; App.reportsParams.show();" />
                                        </Listeners>
@@ -182,7 +206,7 @@
             ID="reportsParams"
             Width="600"
             Height="500"
-            Title="<%$Resources:Common,ReportParameters %>"
+            Title="<%$Resources:Common,Parameters %>"
             AutoShow="false"
             Modal="true"
             Hidden="true"
