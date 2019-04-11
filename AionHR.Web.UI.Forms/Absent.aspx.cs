@@ -534,7 +534,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             try {
-
+                BasicInfoTab.Reset();
                 string id = e.ExtraParams["id"];
                 int dayId =Convert.ToInt32( e.ExtraParams["dayId"]);
                 int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
@@ -544,7 +544,8 @@ namespace AionHR.Web.UI.Forms
                 string shiftId = e.ExtraParams["shiftId"];
                 string apStatus = e.ExtraParams["apStatus"];
                 string type = e.ExtraParams["type"];
-
+                string justificationParam = e.ExtraParams["justification"];
+                
 
                 switch (type)
                 {
@@ -556,7 +557,7 @@ namespace AionHR.Web.UI.Forms
                         damage.Select(damageLavel);
                         duration.Text = durationValue;
                         recordId.Text = id;
-
+                        justification.Text = justificationParam;
                         this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                         this.EditRecordWindow.Show();
                         break;
@@ -643,6 +644,8 @@ namespace AionHR.Web.UI.Forms
                         request.entity = r.Items.Where(x => x.recordId == id).First();
                         request.entity.damageLevel = Convert.ToInt16(damage.Value);
                         request.entity.duration = Convert.ToInt16(duration.Text);
+                        request.entity.justification = b.justification;
+                      //  request.entity.recordId = null;
                         PostResponse<DashBoardTimeVariation> response = _timeAttendanceService.ChildAddOrUpdate<DashBoardTimeVariation>(request);
                         if (!response.Success)//it maybe another check
                         {

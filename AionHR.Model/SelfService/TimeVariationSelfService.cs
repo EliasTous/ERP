@@ -11,6 +11,7 @@ namespace AionHR.Model.SelfService
     [ClassIdentifier("60108", "60")]
     public  class TimeVariationSelfService
     {
+        public string recordId { get { return employeeId.ToString() + dayId.ToString() + shiftId.ToString() + timeCode.ToString(); } }
         public int employeeId { get; set; }
         public string dayId { get; set; }
         public DateTime dayIdDate { get; set; }
@@ -30,5 +31,6 @@ namespace AionHR.Model.SelfService
         public string positionName { get; set; }
         public short? damageLevel { get; set; }
         public string damageLevelString { get; set; }
+        public string justification { get; set; }
     }
 }

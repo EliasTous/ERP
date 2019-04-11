@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace AionHR.Model.Dashboard
 {
     [ClassIdentifier("41066", "41")]
-    public  class DashBoardTimeVariation:ModelBase
+    public  class DashBoardTimeVariation
     {
-       
+        public string recordId { get { return employeeId.ToString() + dayId.ToString() + shiftId.ToString() + timeCode.ToString(); } }
         public int employeeId { get; set; }
         public string dayId { get; set; }
         public DateTime dayIdDate { get; set; }
@@ -31,7 +31,7 @@ namespace AionHR.Model.Dashboard
         public string positionName { get; set; }
         public short? damageLevel { get; set; }
         public string damageLevelString { get; set; }
-
+        public string justification { get; set; }
 
 
     }

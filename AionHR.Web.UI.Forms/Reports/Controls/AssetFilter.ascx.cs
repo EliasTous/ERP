@@ -3,6 +3,7 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
+using AionHR.Services.Messaging.Asset_Management;
 using AionHR.Services.Messaging.Reports;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
@@ -57,8 +58,17 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
         private void FillAssets()
         {
-            ListRequest req = new ListRequest();
-            ListResponse<AssetManagementCategory> resp = _assetManagementService.ChildGetAll<AssetManagementCategory>(req);
+            AssetManagementAssetListRequest request1 = new AssetManagementAssetListRequest();
+
+            request1.branchId = "0";
+            request1.departmentId = "0";
+            request1.positionId = "0";
+            request1.categoryId = "0";
+            request1.employeeId = "0";
+            request1.supplierId = "0";
+            request1.PurchaseOrderId = "0";
+            request1.Filter = "";
+            ListResponse<AssetManagementAsset> resp = _assetManagementService.ChildGetAll<AssetManagementAsset>(request1);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

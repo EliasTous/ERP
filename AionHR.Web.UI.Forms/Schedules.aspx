@@ -477,15 +477,15 @@
                             <Items>
                                 <ext:Button ID="Button6" runat="server" Text="<%$ Resources:Common , Back %>" Icon="PageWhiteGo">
                                     <Listeners>
-                                        <Click Handler="CheckSession();" />
+                                        <Click Handler="CheckSession(); #{Viewport1}.layout.setActiveItem(0);" />
                                     </Listeners>
-                                    <DirectEvents>
+                                  <%--  <DirectEvents>
                                         <Click OnEvent="Prev_Click">
                                             <ExtraParams>
-                                                <ext:Parameter Name="index" Value="#{viewport1}.items.indexOf(#{viewport1}.layout.activeItem)" Mode="Raw" />
+                                                <ext:Parameter Name="index" Value="#{viewport1}.layout.activeItem.setValue(0)" Mode="Raw" />
                                             </ExtraParams>
                                         </Click>
-                                    </DirectEvents>
+                                    </DirectEvents>--%>
                                 </ext:Button>
                                
                             </Items>

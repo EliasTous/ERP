@@ -9,7 +9,7 @@ namespace AionHR.Model.AssetManagement
 {
   public  class AssetManagementLoan :ModelBase
     {
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public short? status { get; set; }
         public string departmentName { get; set; }
         public string positionName { get; set; }

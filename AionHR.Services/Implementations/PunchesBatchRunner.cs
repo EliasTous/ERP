@@ -20,7 +20,7 @@ namespace AionHR.Services.Implementations
     {
         ITimeAttendanceService timeAttendance;
         IEmployeeService employee; 
-        Dictionary<string, int> udId;
+        Dictionary<string, int> udId=new Dictionary<string, int>();
         string UnknownError;
 
 
@@ -104,11 +104,21 @@ namespace AionHR.Services.Implementations
         }
         private void FillUdId()
         {
-            ListRequest request = new ListRequest();
+            try
+            {
+                ListRequest request = new ListRequest();
 
-            request.Filter = "";
-            ListResponse<BiometricDevice> BdResponse = timeAttendance.ChildGetAll<BiometricDevice>(request);
-            BdResponse.Items.ForEach(x => this.udId.Add(x.reference, Convert.ToInt32(x.recordId)));
+                request.Filter = "";
+                ListResponse<BiometricDevice> BdResponse = timeAttendance.ChildGetAll<BiometricDevice>(request);
+                BdResponse.Items.ForEach(x =>
+                {
+                    if (!this.udId.ContainsKey(x.reference))
+
+
+                        this.udId.Add(x.reference, Convert.ToInt32(x.recordId));
+                });
+            }
+            catch { }
         }
         //private void FillEmployeeId()
         //{

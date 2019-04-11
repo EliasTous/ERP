@@ -345,4 +345,7 @@
   <data name="toDuration" xml:space="preserve">
     <value>الى (الفترة)</value>
   </data>
+  <data name="FieldJustification" xml:space="preserve">
+    <value>التبرير</value>
+  </data>
 </root>

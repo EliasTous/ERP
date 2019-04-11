@@ -563,7 +563,7 @@ namespace AionHR.Web.UI.Forms
                 string durationValue = e.ExtraParams["duration"];
                 string timeCode = e.ExtraParams["timeCode"];
                 string shiftId = e.ExtraParams["shiftId"];
-
+                string justificationParam = e.ExtraParams["justification"];
                 string type = e.ExtraParams["type"];
 
 
@@ -577,6 +577,7 @@ namespace AionHR.Web.UI.Forms
                         damage.Select(damageLavel);
                         duration.Text = durationValue;
                         recordId.Text = id;
+                        justification.Text = justificationParam;
 
                         this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                         this.EditRecordWindow.Show();
@@ -664,6 +665,8 @@ namespace AionHR.Web.UI.Forms
                         request.entity = r.Items.Where(x => x.recordId == id).First();
                         request.entity.damageLevel = Convert.ToInt16(damage.Value);
                         request.entity.duration = Convert.ToInt16(duration.Text);
+                        request.entity.justification = b.justification;
+                       // request.entity.recordId = null;
                         PostResponse<DashBoardTimeVariation> response = _timeAttendanceService.ChildAddOrUpdate<DashBoardTimeVariation>(request);
                         if (!response.Success)//it maybe another check
                         {

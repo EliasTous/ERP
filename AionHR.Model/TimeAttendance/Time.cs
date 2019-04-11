@@ -51,8 +51,9 @@ namespace AionHR.Model.TimeAttendance
         public string shiftEnd { get; set; }
         public string apId { get; set; }
         public string apName { get; set; }
+        public string justification { get; set; }
 
-
+        
 
 
     }

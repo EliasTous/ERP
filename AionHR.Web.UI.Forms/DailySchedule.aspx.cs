@@ -35,6 +35,7 @@ using AionHR.Model.Employees;
 using AionHR.Services.Messaging.Employees;
 using AionHR.Services.Messaging.Reports;
 using Reports.AttendanceSchedule;
+using System.Threading;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -924,7 +925,11 @@ namespace AionHR.Web.UI.Forms
                 //filling the Day slots
                 int totalDays = Convert.ToInt32(Math.Ceiling((dateTo.SelectedDate - dateFrom.SelectedDate).TotalDays));
                 timesList = timesList.Distinct(new TimeSlotComparer()).ToList<TimeSlot>();
-
+                if (_systemService.SessionHelper.getLangauge().ToString() == "de")
+                {
+                    CultureInfo culture = new CultureInfo("de-DE");
+                    Thread.CurrentThread.CurrentCulture = culture;
+                }
                 html = FillFirstRow(html, timesList);
 
                 html = FillOtherRow(html, timesList, totalDays);
@@ -1109,7 +1114,7 @@ namespace AionHR.Web.UI.Forms
         private string FillOtherRow(string html, List<TimeSlot> timesList, int totalDays)
         {
             DateTime firstDate = dateFrom.SelectedDate;
-
+           
             for (int count = 0; count <= totalDays; count++)
             {
                 html += "<tr>";

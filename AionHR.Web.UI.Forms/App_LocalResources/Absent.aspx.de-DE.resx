@@ -235,11 +235,11 @@
     <value>Pause</value>
   </data>
   <data name="FieldCheckIn" xml:space="preserve">
-    <value>Check In</value>
+    <value>einchecken</value>
     <comment>Einchecken</comment>
   </data>
   <data name="FieldCheckOut" xml:space="preserve">
-    <value>Check Out</value>
+    <value>auschecken</value>
     <comment>Auschecken</comment>
   </data>
   <data name="FieldDate" xml:space="preserve">
@@ -351,5 +351,8 @@
   </data>
   <data name="toDuration" xml:space="preserve">
     <value>ZU (Dauer) </value>
+  </data>
+  <data name="FieldJustification" xml:space="preserve">
+    <value>Rechtfertigung</value>
   </data>
 </root>

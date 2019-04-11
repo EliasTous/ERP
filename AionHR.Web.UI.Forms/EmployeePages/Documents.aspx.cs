@@ -60,12 +60,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetFrenchLocalisation();
+                        System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
                     }
                     break;
                 case "de":
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetGermanyLocalisation();
+                        System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
                     }
                     break;
                 default:

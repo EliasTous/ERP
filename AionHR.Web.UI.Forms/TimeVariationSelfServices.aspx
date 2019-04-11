@@ -132,7 +132,8 @@
                            <ext:ModelField Name="damageLevel" />
                          <ext:ModelField Name="recordId" />
                            <ext:ModelField Name="damageLevelString" />
-                   
+                         <ext:ModelField Name="apStatus" />
+                     <ext:ModelField Name="justification" />
                             <ext:ModelField Name="dayId" />
                         <ext:ModelField Name="dayIdString" />
                       
@@ -370,7 +371,7 @@
                                 <SummaryRenderer Handler="return '&nbsp;';" />
                             </ext:Column>
                               <ext:Column runat="server"
-                                ID="Column2"  Visible="false"
+                                ID="Column2"  Visible="true"
                                 Text=""
                                 Width="100"
                                 Hideable="false"
@@ -380,7 +381,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return editRender();" />
+                                <Renderer handler="return record.data['apStatus']==1?editRender():'&nbsp;';" />
 
                                   </ext:Column>
 
@@ -435,7 +436,8 @@
                                    <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
                                    <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
                                   <ext:Parameter Name="timeCode" Value="record.data['timeCode']" Mode="Raw" />
-
+                                    <ext:Parameter Name="justification" Value="record.data['justification']" Mode="Raw" />
+                                 
                                   <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
@@ -477,8 +479,8 @@
                             BodyPadding="5">
                             <Items>
                               <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
-                              <ext:NumberField ID="duration" runat="server" FieldLabel="<%$ Resources:FieldDuration%>" Name="duration"   AllowBlank="true"/>
-                                   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="damage" runat="server" FieldLabel="<%$ Resources: FieldDamageLevel%>" Name="damage" IDMode="Static" SubmitValue="true" ForceSelection="true">
+                              <ext:NumberField ID="duration" runat="server" FieldLabel="<%$ Resources:FieldDuration%>" Name="duration"   AllowBlank="true" ReadOnly="true"/>
+                                   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="damage" runat="server" FieldLabel="<%$ Resources: FieldDamageLevel%>" Name="damage" IDMode="Static" SubmitValue="true" ForceSelection="true" ReadOnly="true">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: DamageWITH_DAMAGE%>" Value="<%$ Resources:ComboBoxValues, Damage_WITH_DAMAGE%>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources: DamageWITHOUT_DAMAGE%>" Value="<%$ Resources:ComboBoxValues, Damage_WITHOUT_DAMAGE%>" ></ext:ListItem>
@@ -487,7 +489,7 @@
                                     
                                 </ext:ComboBox>
                              
-                                 
+                                    <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification"   AllowBlank="true" />
                                 <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
                             </Items>
 
