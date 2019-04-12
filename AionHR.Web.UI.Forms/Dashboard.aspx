@@ -4557,7 +4557,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:Time%>"
             Width="450"
-            Height="600"
+            Height="500"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -4582,19 +4582,23 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="TimeemployeeIdTF" runat="server" Name="employeeId"  ReadOnly="true"  Hidden="true"/>
-                                  <ext:TextField ID="shiftIdTF" runat="server" Name="shiftId" FieldLabel="<%$ Resources: FieldShift%>"   ReadOnly="true" />
-                                 <ext:TextField ID="TimedayIdTF" runat="server" Name="dayId"  ReadOnly="true" Hidden="true" />
-                                  <ext:TextField ID="TimeTimeCodeTF" runat="server" Name="timeCode"  ReadOnly="true" Hidden="true" />
+                                <ext:TextField ID="shiftIdTF" runat="server" Name="shiftId" FieldLabel="<%$ Resources: FieldShift%>"   ReadOnly="true" />
+                                <ext:TextField ID="TimedayIdTF" runat="server" Name="dayId"  ReadOnly="true" Hidden="true" />
+                                <ext:TextField ID="TimeTimeCodeTF" runat="server" Name="timeCode"  ReadOnly="true" Hidden="true" />
                                <ext:TextField ID="TimeEmployeeName" runat="server" FieldLabel="<%$ Resources:FieldName%>" ReadOnly="true" />
                                 <ext:DateField ID="TimedayIdDate" runat="server" Name="dayIdDate"  FieldLabel="<%$ Resources:FieldDate%>"  ReadOnly="true" />
                                 <ext:TextField ID="TimeTimeCodeString" runat="server" Name="timeCodeString" FieldLabel="<%$ Resources: FieldTimeCode%>"   ReadOnly="true" />
 
+                                <ext:Panel runat="server" Layout="HBoxLayout">
 
+                              <Items>
                                 <ext:TextField ID="clockDuration" runat="server" Name="clockDuration" FieldLabel="<%$ Resources: FieldClockDuration%>"   ReadOnly="true" />
-                                  <ext:TextField ID="duration" runat="server" Name="duration" FieldLabel="<%$ Resources: FieldDuration%>" ReadOnly="true" />
+                                  <ext:TextField ID="duration"  runat="server" Name="duration"  ReadOnly="true" />
+                                  </Items>
+                                      </ext:Panel>
                                   <ext:TextField ID="damageLevel" runat="server" Name="damageLevel" FieldLabel="<%$ Resources: FielddamageLevel%>" ReadOnly="true" />
-                                  <ext:TextField ID="shiftStart" runat="server" Name="shiftStart" FieldLabel="<%$ Resources: FieldshiftStart%>" ReadOnly="true" />
-                                  <ext:TextField ID="shiftEnd" runat="server" Name="shiftEnd" FieldLabel="<%$ Resources: FieldshiftEnd%>" ReadOnly="true" />
+                                  <ext:TextField ID="shiftStart" runat="server" Name="shiftStart" FieldLabel="<%$ Resources: FieldShift%>" ReadOnly="true" />
+                                <%--  <ext:TextField ID="shiftEnd" runat="server" Name="shiftEnd" FieldLabel="<%$ Resources: FieldshiftEnd%>" ReadOnly="true" />--%>
                                 
                                
                               
