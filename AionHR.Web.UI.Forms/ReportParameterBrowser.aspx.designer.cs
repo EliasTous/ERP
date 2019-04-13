@@ -67,22 +67,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden Hidden4;
         
         /// <summary>
-        /// Hidden5 control.
+        /// labels control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden Hidden5;
+        protected global::Ext.Net.Hidden labels;
         
         /// <summary>
-        /// Hidden6 control.
+        /// texts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden Hidden6;
+        protected global::Ext.Net.Hidden texts;
         
         /// <summary>
         /// Viewport2 control.

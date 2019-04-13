@@ -210,6 +210,7 @@
     <Content Include="Reports\Controls\EmploymentStatusFilter.ascx" />
     <Content Include="Reports\Controls\AssetCategoryFilter.ascx" />
     <Content Include="Reports\Controls\NationalityFilter.ascx" />
+    <Content Include="Reports\Controls\PayIdFilter.ascx" />
     <Content Include="Reports\Controls\PositionFilter.ascx" />
     <Content Include="Reports\Controls\ScheduleFilter.ascx" />
     <Content Include="Reports\Controls\SponsorFilter.ascx" />
@@ -920,6 +921,13 @@
     </Compile>
     <Compile Include="Reports\Controls\NationalityFilter.ascx.designer.cs">
       <DependentUpon>NationalityFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\PayIdFilter.ascx.cs">
+      <DependentUpon>PayIdFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\PayIdFilter.ascx.designer.cs">
+      <DependentUpon>PayIdFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\PositionFilter.ascx.cs">
       <DependentUpon>PositionFilter.ascx</DependentUpon>

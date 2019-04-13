@@ -88,7 +88,9 @@ namespace AionHR.Web.UI.Forms
                 case 20105: return "NationalityFilter.ascx";
                 case 31201: return "EmployeeFilter.ascx";
                 case 31108: return "SponsorFilter.ascx";
-                
+                case 51201: return "PayIdFilter.ascx";
+
+
                 default: X.Msg.Alert("Error","unknown control"); return "";
 
             }   
@@ -171,6 +173,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 labels.TrimEnd('^');
                 X.Call("parent.setLabels", labels);
+                this.labels.Text = labels;
             }
         }
 
@@ -182,6 +185,7 @@ namespace AionHR.Web.UI.Forms
             string vals = "";
             string texts = "";
             string text_id = "";
+            string[] allCaptions = labels.Text.Split('^');
             string[] values = e.ExtraParams["values"].Replace("[", "")
                 .Replace("]", "").Replace("\"", "").Replace("{", ",").
                 Replace("}", ",").Replace("\\", "").Split(',');
@@ -207,7 +211,7 @@ namespace AionHR.Web.UI.Forms
 
                     if (pair[0] == "text")
                     {
-                        texts += text_id+"|"+pair[1] + "^";
+                        texts += "["+allCaptions[Convert.ToInt32(text_id)-1]+":"+pair[1] + "]";
                         
                     }
                     if (pair[0].StartsWith("date_") && !string.IsNullOrEmpty(pair[1]))
@@ -220,7 +224,10 @@ namespace AionHR.Web.UI.Forms
             vals = vals.TrimEnd('^');
             texts = texts.TrimEnd('^');
             X.Call("parent.setVals", vals);
+            
+
             X.Call("parent.setTexts", texts);
+            
         }
 
         [DirectMethod]

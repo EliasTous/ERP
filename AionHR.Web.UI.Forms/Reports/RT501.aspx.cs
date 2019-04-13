@@ -111,7 +111,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         return;
                     }
                     payIdList = new List<GenerationHeader>();
-                    fillPayId();
+                   
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     //FillReport(false, false);
@@ -177,7 +177,23 @@ namespace AionHR.Web.UI.Forms.Reports
             }
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
         [DirectMethod]
         public string CheckSession()
@@ -190,45 +206,14 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-
-            req.Add(paymentMethodCombo.GetPaymentMethod());
-            req.Add(GetPayId());
-            req.Add(jobInfo1.GetJobInfo());
-            req.Add(employeeFilter.GetEmployee());
-            req.Add(dateRange1.GetRange());
-            
-            return req;
-        }
-        private PayIdParameterSet GetPayId()
-        {
-            PayIdParameterSet p = new PayIdParameterSet();
-
-
-            if (!string.IsNullOrEmpty(payId.Value.ToString()))
-            {
-                p.payId = payId.Value.ToString(); ;
-
-
-
-            }
-            else
-            {
-                p.payId = "0";
-
-            }
-            return p;
-        }
+        
 
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
-            ReportCompositeRequest req = GetRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
 
             ListResponse<AionHR.Model.Reports.RT501> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT501>(req);
             if (!resp.Success)
@@ -245,11 +230,11 @@ namespace AionHR.Web.UI.Forms.Reports
             });
 
             string user = _systemService.SessionHelper.GetCurrentUser();
-            string paymentMethod = paymentMethodCombo.GetPaymentMethodString();
-            string payRef = payId.SelectedItem.Text;
-            string department = jobInfo1.GetDepartment();
-            string position = jobInfo1.GetPosition();
-            string employee = employeeFilter.GetEmployeeName();
+            //string paymentMethod = paymentMethodCombo.GetPaymentMethodString();
+            //string payRef = payId.SelectedItem.Text;
+            //string department = jobInfo1.GetDepartment();
+            //string position = jobInfo1.GetPosition();
+            //string employee = employeeFilter.GetEmployeeName();
         
             // this variable for check if the user request arabic report or english   true mean arabic reprot
             bool isArabic = _systemService.SessionHelper.CheckIfArabicSession();
@@ -338,22 +323,22 @@ namespace AionHR.Web.UI.Forms.Reports
             if (resp.Items.Count > 0)
             {
 
-                if (req.Parameters["_departmentId"] != "0")
-                    h.Parameters["Department"].Value = jobInfo1.GetDepartment();
-                else
-                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["Branch"].Value = jobInfo1.GetBranch();
-                else
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
+                //if (req.Parameters["_departmentId"] != "0")
+                //    h.Parameters["Department"].Value = jobInfo1.GetDepartment();
+                //else
+                //    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
+                //if (req.Parameters["_branchId"] != "0")
+                //    h.Parameters["Branch"].Value = jobInfo1.GetBranch();
+                //else
+                //    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
-                if (req.Parameters["_paymentMethod"] != "0")
-                    h.Parameters["Payment"].Value = paymentMethodCombo.GetPaymentMethodString();
-                else
-                    h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
+                //if (req.Parameters["_paymentMethod"] != "0")
+                //    h.Parameters["Payment"].Value = paymentMethodCombo.GetPaymentMethodString();
+                //else
+                //    h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
 
 
-                h.Parameters["Ref"].Value = payRef;
+                //h.Parameters["Ref"].Value = payRef;
                
 
             }
@@ -390,25 +375,7 @@ namespace AionHR.Web.UI.Forms.Reports
             //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport(true);
         }
-        private PayRefParameterSet GetPayRef()
-        {
-            PayRefParameterSet p = new PayRefParameterSet();
-
-
-            if (!string.IsNullOrEmpty(payRef.Text) && payRef.Value.ToString() != "0")
-            {
-                p.payRef = payRef.Value.ToString(); ;
-
-
-
-            }
-            else
-            {
-                p.payRef = "0";
-
-            }
-            return p;
-        }
+        
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
@@ -442,63 +409,8 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
-        private void fillPayId()
-        {
-            PayrollListRequest req = new PayrollListRequest();
-            req.Year = "0";
-            req.PeriodType = "5";
-            req.Status = "0";
-            req.Size = "30";
-            req.StartAt = "0";
-            req.Filter = "";
+        
 
-            ListResponse<GenerationHeader> resp = _payrollService.ChildGetAll<GenerationHeader>(req);
-            if (!resp.Success)
-            {
-                Common.errorMessage(resp);
-                return;
-            }
-            payIdList.AddRange(resp.Items);
-            string dateFormat = _systemService.SessionHelper.GetDateformat();
-            if (_systemService.SessionHelper.CheckIfArabicSession())
-            resp.Items.ForEach(x => x.payRefWithDateRange = x.payRef + " ( " + x.startDate.ToString(dateFormat,new CultureInfo("ar-AE")) + " - " + x.endDate.ToString(dateFormat, new CultureInfo("ar-AE")) + " )");
-            else
-                resp.Items.ForEach(x => x.payRefWithDateRange = x.payRef + " ( " + x.startDate.ToString(dateFormat, new CultureInfo("en")) + " - " + x.endDate.ToString(dateFormat, new CultureInfo("en")) + " )");
-            payIdStore.DataSource = resp.Items;
-            payIdStore.DataBind();
-
-
-        }
-
-        protected void setDateRange(object sender, DirectEventArgs e)
-        {
-            DateTime? startDate;
-            DateTime? endDate;
-            if (payIdList == null)
-                return;
-            try
-            {
-                string id = e.ExtraParams["id"];
-                if (payIdList.Where(x => x.recordId == id).Count() != 0)
-                {
-                    startDate = payIdList.Where(x => x.recordId == id).First().startDate;
-                    endDate = payIdList.Where(x => x.recordId == id).First().endDate;
-
-                    dateRange1.setDateRange(startDate, endDate);
-                }
-                else
-                {
-                    startDate = null;
-                    endDate = null;
-                }
-             
-
-            }
-            catch (Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
-
-        }
+       
     }
 }

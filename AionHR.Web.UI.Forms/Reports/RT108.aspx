@@ -46,8 +46,11 @@
         function setLabels(labels) {
             //alert('captions are'+labels);
             App.direct.SetLabels(labels);
+            var s = labels.split('^');
             
+            App.reportsParams.setHeight((150 + (s.length*20)));
         }
+        
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -160,17 +163,17 @@
                                   
                                              <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        
+                                          <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                       <Listeners>
+                                           <Click Handler="App.Panel8.loader.url = '../ReportParameterBrowser.aspx?_reportName=RT108'; App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>"> 
                                             <Listeners>
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
-                                         <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
-                                       <Listeners>
-                                           <Click Handler="App.Panel8.loader.url = '../ReportParameterBrowser.aspx?_reportName=RT108'; App.reportsParams.show();" />
-                                       </Listeners>
-                                        </ext:Button>
+                                       
                                     </Content>
                                 </ext:Container>
                                 

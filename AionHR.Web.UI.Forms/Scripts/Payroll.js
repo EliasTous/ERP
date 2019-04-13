@@ -246,8 +246,8 @@ function ReCalculateFinal()
     
     var x = parseFloat(App.eAmount.getValue().replace(/,/g, '')) - parseFloat(App.dAmount.getValue().replace(/,/g, '')) + parseFloat(App.BasicSalary.getValue().replace(/,/g, ''));
    //alert("final is" + x);
-    
-    App.finalAmount.setValue(numberWithCommas(parseFloat(x).toFixed(2)));
+    var fin = numberWithCommas(parseFloat(x).toFixed(2));
+    App.finalAmount.setValue(isNaN(fin)?0:fin);
    
 }
 function ChangeEntitlementsAmount(amountOffset) {

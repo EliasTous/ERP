@@ -23,8 +23,8 @@
         <ext:Hidden ID="Hidden2" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="Hidden3" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="Hidden4" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        <ext:Hidden runat="server" ID="Hidden5" />
-        <ext:Hidden runat="server" ID="Hidden6" />
+        <ext:Hidden runat="server" ID="labels" />
+        <ext:Hidden runat="server" ID="texts" />
         <ext:Viewport ID="Viewport2" runat="server" Layout="Fit">
             <Items>
                 <ext:FormPanel
