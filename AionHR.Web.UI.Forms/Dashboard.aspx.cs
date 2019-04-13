@@ -1487,7 +1487,8 @@ namespace AionHR.Web.UI.Forms
                 response.result.damageLevel = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
 
             TimeFormPanel.SetValues(response.result);
-
+            shiftStart.Text = response.result.shiftStart + " " + response.result.shiftEnd;
+           // clockDuration.Text = response.result.clockDuration + " " + response.result.duration;
 
             TimeEmployeeName.Text = employeeName;
             TimedayIdDate.Text = dayIdDate;

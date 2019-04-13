@@ -427,18 +427,18 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditDocumentWindowTitle %>"
-            Width="600"
-            Height="550"
+            Width="700"
+            Height="400"
             AutoShow="false"
             Modal="true"
             Hidden="true"
             Maximizable="false"
             Resizable="false"
             Draggable="false"
-            Layout="Fit">
+            Layout="FitLayout" Scrollable="Both">
             <Items>
                 <ext:Panel runat="server" AutoScroll="true">
-                    <Content>
+                    <Content >
                         <input id="input-ke-1" name="inputKE1[]" type="file" multiple class="file-loading">
 
                         <br>

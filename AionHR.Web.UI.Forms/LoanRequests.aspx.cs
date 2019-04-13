@@ -940,7 +940,7 @@ namespace AionHR.Web.UI.Forms
                 caseCommentStore.DataSource = new List<CaseComment>();
                 caseCommentStore.DataBind();
                 //Reset all values of the relative object
-
+                status.Select(0);
                 this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
                 date.SelectedDate = DateTime.Now;
                 //effectiveDate.SelectedDate= DateTime.Now;
