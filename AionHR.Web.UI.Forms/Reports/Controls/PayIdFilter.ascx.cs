@@ -54,9 +54,9 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                 
                 string dateFormat = systemService.SessionHelper.GetDateformat();
                 if (systemService.SessionHelper.CheckIfArabicSession())
-                    resp.Items.ForEach(x => x.payRefWithDateRange = x.payRef + " ( " + x.startDate.ToString(dateFormat, new CultureInfo("ar-AE")) + " - " + x.endDate.ToString(dateFormat, new CultureInfo("ar-AE")) + " )");
+                    resp.Items.ForEach(x => x.payRefWithDateRange = x.payRef + " ( " + x.startDate.ToString("dd/MM/yyyy", new CultureInfo("ar-AE")) + " - " + x.endDate.ToString("dd/MM/yyyy", new CultureInfo("ar-AE")) + " )");
                 else
-                    resp.Items.ForEach(x => x.payRefWithDateRange = x.payRef + " ( " + x.startDate.ToString(dateFormat, new CultureInfo("en")) + " - " + x.endDate.ToString(dateFormat, new CultureInfo("en")) + " )");
+                    resp.Items.ForEach(x => x.payRefWithDateRange = x.payRef + " ( " + x.startDate.ToString("dd/MM/yyyy", new CultureInfo("en")) + " - " + x.endDate.ToString("dd/MM/yyyy", new CultureInfo("en")) + " )");
                 payIdStore.DataSource = resp.Items;
                 payIdStore.DataBind();
             }

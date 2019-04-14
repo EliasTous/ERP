@@ -10,7 +10,7 @@
             <Store>
                 <ext:Store runat="server" ID="Store2" AutoLoad="false">
                     <Model>
-                        <ext:Model runat="server">
+                        <ext:Model runat="server" IDProperty="recordId">
                             <Fields>
                                 <ext:ModelField Name="recordId" />
                                 <ext:ModelField Name="fullName" />

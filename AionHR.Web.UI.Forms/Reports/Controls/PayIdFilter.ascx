@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PayIdFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.PayIdFilter" %>
-<ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$Resources:Common , PayRef %>" Name="payId" runat="server" DisplayField="payRefWithDateRange" ValueField="recordId" ID="payId" Width="100">
+<ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$Resources:Common , PayRef %>"  runat="server" DisplayField="payRefWithDateRange" ValueField="recordId" ID="payId" Width="100">
     <Store>
         <ext:Store runat="server" ID="payIdStore">
             <Model>

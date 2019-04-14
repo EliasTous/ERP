@@ -52,7 +52,18 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
         public void Select(object id)
         {
-            employeeFilter.Select(id);
+            RecordRequest req = new RecordRequest();
+            req.RecordID = id.ToString();
+
+            RecordResponse < Employee > response= _employeeService.Get<Employee>(req);
+            List<Employee> onlyone = new List<Employee>();
+            response.result.fullName = response.result.name.fullName;
+            onlyone.Add(response.result);
+            Store2.DataSource = onlyone;
+            Store2.DataBind();
+            
+            employeeFilter.Select(response.result.recordId);
+            
         }
     }
 }
