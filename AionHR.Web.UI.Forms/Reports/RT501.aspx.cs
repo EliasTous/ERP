@@ -320,6 +320,7 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
             h.Parameters["User"].Value = user;
+            h.Parameters["Filters"].Value = texts.Text;
             if (resp.Items.Count > 0)
             {
 
