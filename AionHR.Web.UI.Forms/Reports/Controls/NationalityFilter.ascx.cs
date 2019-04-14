@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-    public partial class NationalityFilter : System.Web.UI.UserControl
+    public partial class NationalityFilter : System.Web.UI.UserControl,IComboControl
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         protected void Page_Load(object sender, EventArgs e)
@@ -73,6 +73,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
             }
 
+        }
+
+        public void Select(object id)
+        {
+            nationalityId.Select(id);
         }
     }
 }

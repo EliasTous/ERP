@@ -17,11 +17,17 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-    public partial class DivisionFilter : System.Web.UI.UserControl
+    public partial class DivisionFilter : System.Web.UI.UserControl,IComboControl
     {
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
 
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+
+        public void Select(object id)
+        {
+            divisionId.Select(id);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

@@ -15,10 +15,16 @@ using System.Globalization;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-    public partial class PayIdFilter : System.Web.UI.UserControl
+    public partial class PayIdFilter : System.Web.UI.UserControl,IComboControl
     {
         IPayrollService payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         ISystemService systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+
+        public void Select(object id)
+        {
+            payId.Select(id);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

@@ -14,6 +14,7 @@ using Microsoft.Practices.ServiceLocation;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -105,6 +106,19 @@ namespace AionHR.Web.UI.Forms
                 {
                     X.Msg.Alert("Error", "Error");
                 }
+                bool fillValues = false;
+                Dictionary<string, string> valuesDict = null;
+                if(!string.IsNullOrEmpty(Request.QueryString["values"]))
+                {
+                    fillValues = true;
+                    valuesDict = new Dictionary<string, string>();
+                    string[] valsPairs = Request.QueryString["values"].Split('^');
+                    foreach(var item in valsPairs)
+                    {
+                        string[] pair = item.Split('|');
+                        valuesDict.Add(pair[0], pair[1]);
+                    }
+                }
                 ReportParametersListRequest req = new ReportParametersListRequest();
                 req.ReportName = Request.QueryString["_reportName"];
                 ListResponse<ReportParameter> parameters = _systemService.ChildGetAll<ReportParameter>(req);
@@ -123,13 +137,17 @@ namespace AionHR.Web.UI.Forms
                     {
                         
                         case 1: TextField tf = new TextField() { ID = "control_" + item.id , FieldLabel=item.caption };
-                            FormPanel1.Items.Add(tf); break;
+                            FormPanel1.Items.Add(tf);
+                            if (valuesDict != null && valuesDict.ContainsKey(item.id)) tf.Text = valuesDict[item.id]; break;
                         case 3:
                         case 2:NumberField nf = new NumberField() { ID = "control_" + item.id, FieldLabel = item.caption };
-                            FormPanel1.Items.Add(nf);break;
+                            if (valuesDict != null && valuesDict.ContainsKey(item.id))
+                                nf.Value = Convert.ToDouble(valuesDict[item.id]);
+                                FormPanel1.Items.Add(nf);break;
                         case 4: DateField d = new DateField() { ID = "date_" + item.id, FieldLabel = item.caption }; FormPanel1.Items.Add(d);
-                           
-                            break;
+                            if (valuesDict != null && valuesDict.ContainsKey(item.id))
+                                d.SelectedDate = DateTime.ParseExact(valuesDict[item.id],"yyyyMMdd",new CultureInfo("en"));
+                                break;
                         
                         case 5:
                             if(item.classId==0)
@@ -149,6 +167,8 @@ namespace AionHR.Web.UI.Forms
                                 box.Editable = false;
                                 
                                 box.FieldLabel = item.caption;
+                                if (valuesDict != null && valuesDict.ContainsKey(item.id))
+                                    box.Select(valuesDict[item.id]);
                                 FormPanel1.Items.Add(box);
 
 
@@ -161,11 +181,20 @@ namespace AionHR.Web.UI.Forms
                                 ((EmployeeFilter)cont).EmployeeComboBox.EmptyText = "";
                             }
                             cont.ID= "control_" + item.id;
+                            
+                            if(valuesDict!=null && valuesDict.ContainsKey(item.id))
+                            {
+                                IComboControl contAsCombo = cont as IComboControl;
+                                if (contAsCombo != null)
+                                    contAsCombo.Select(valuesDict[item.id]);
+                            }
+                             
                             Container c = new Container() { Layout = "FitLayout" };
                             c.ContentControls.Add(cont);
                             FormPanel1.Items.Add(c);
                             break;
-                        case 6: Checkbox cb = new Checkbox() { ID = "control_" + item.id, FieldLabel = item.caption }; cb.InputValue = "true"; break;
+                        case 6: Checkbox cb = new Checkbox() { ID = "control_" + item.id, FieldLabel = item.caption }; cb.InputValue = "true"; if (valuesDict != null && valuesDict.ContainsKey(item.id)) cb.Checked
+                                    = valuesDict[item.id] == "true"; break;
                         default: X.Msg.Alert("Error", "unknown control"); break;
                     }
                     labels += item.caption+"^";

@@ -13,7 +13,7 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-    public partial class ScheduleFilter : System.Web.UI.UserControl
+    public partial class ScheduleFilter : System.Web.UI.UserControl,IComboControl
     {
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         protected void Page_Load(object sender, EventArgs e)
@@ -79,6 +79,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         public string GetValue()
         {
             return "scheduleId=" + getSchedule();
+        }
+
+        public void Select(object id)
+        {
+            scheduleId.Select(id);
         }
     }
 }

@@ -12,9 +12,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-    public partial class SponsorFilter : System.Web.UI.UserControl
+    public partial class SponsorFilter : System.Web.UI.UserControl,IComboControl
     {
         IEmployeeService employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+
+        public void Select(object id)
+        {
+            sponsorId.Select(id);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

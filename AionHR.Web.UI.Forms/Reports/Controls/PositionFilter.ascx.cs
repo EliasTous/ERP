@@ -17,9 +17,15 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-    public partial class PositionFilter : System.Web.UI.UserControl
+    public partial class PositionFilter : System.Web.UI.UserControl,IComboControl
     {
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+
+        public void Select(object id)
+        {
+            positionId.Select(id);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

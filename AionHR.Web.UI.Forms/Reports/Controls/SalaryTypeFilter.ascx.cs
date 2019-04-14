@@ -13,7 +13,7 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-    public partial class SalaryTypeFilter : System.Web.UI.UserControl
+    public partial class SalaryTypeFilter : System.Web.UI.UserControl,IComboControl
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         public List<XMLDictionary> salaryTypeList = new List<XMLDictionary>();
@@ -118,6 +118,10 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             this.salaryTypeId.Select(value);
             this.salaryTypeId.SetValue(value);
         }
-       
+
+        public void Select(object id)
+        {
+            salaryTypeId.Select(id);
+        }
     }
 }

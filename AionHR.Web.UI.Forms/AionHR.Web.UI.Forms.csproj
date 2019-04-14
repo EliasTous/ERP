@@ -915,6 +915,7 @@
     <Compile Include="Reports\Controls\AssetCategoryFilter.ascx.designer.cs">
       <DependentUpon>AssetCategoryFilter.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Controls\IComboControl.cs" />
     <Compile Include="Reports\Controls\NationalityFilter.ascx.cs">
       <DependentUpon>NationalityFilter.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

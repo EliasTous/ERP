@@ -13,7 +13,7 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-    public partial class EmployeeFilter : System.Web.UI.UserControl
+    public partial class EmployeeFilter : System.Web.UI.UserControl,IComboControl
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
@@ -50,8 +50,9 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
         }
 
-
-
-
+        public void Select(object id)
+        {
+            employeeFilter.Select(id);
+        }
     }
 }

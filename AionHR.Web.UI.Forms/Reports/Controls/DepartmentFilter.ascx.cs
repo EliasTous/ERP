@@ -15,7 +15,7 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-    public partial class DepartmentFilter : System.Web.UI.UserControl
+    public partial class DepartmentFilter : System.Web.UI.UserControl,IComboControl
     {
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         protected void Page_Load(object sender, EventArgs e)
@@ -63,6 +63,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
 
             return p;
+        }
+
+        public void Select(object id)
+        {
+            departmentId.Select(id);
         }
     }
 }

@@ -32,7 +32,7 @@
         function setVals(pms) {
             //alert('vals are ' + pms);
             App.direct.SetVals(pms);
-            
+             App.Panel8.loader.url = '../ReportParameterBrowser.aspx?_reportName=RT501&values=' + pms;
             
         }
         function setTexts(pms) {
@@ -88,7 +88,7 @@
                                     <Content>
                                             <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
                                        <Listeners>
-                                           <Click Handler="App.Panel8.loader.url = '../ReportParameterBrowser.aspx?_reportName=RT501'; App.reportsParams.show();" />
+                                           <Click Handler=" App.reportsParams.show();" />
                                        </Listeners>
                                         </ext:Button>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
@@ -143,7 +143,7 @@
             </Listeners>
             <Items>
                 <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
-                    <Loader runat="server" Url="ReportParameterBrowser.aspx" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                    <Loader runat="server" Url="../ReportParameterBrowser.aspx?_reportName=RT501" Mode="Frame" ID="Loader8" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true">
                         <Listeners>
