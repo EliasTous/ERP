@@ -336,6 +336,8 @@ namespace Reports.EmployeePayRollCross {
             
             private global::System.Data.DataColumn columnEntitlementsvDeduction;
             
+            private global::System.Data.DataColumn columnBranch;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SalariesItemsDataTable() {
@@ -459,6 +461,14 @@ namespace Reports.EmployeePayRollCross {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn BranchColumn {
+                get {
+                    return this.columnBranch;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -494,7 +504,7 @@ namespace Reports.EmployeePayRollCross {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SalariesItemsRow AddSalariesItemsRow(string EmployeeName, System.DateTime SalaryDate, int ColumneOrder, string ItemName, double ItemValue, string TaxableNoTaxable, int GroupOrder, double BasicSalary, double CSS, double ESS, string EntitlementsvDeduction) {
+            public SalariesItemsRow AddSalariesItemsRow(string EmployeeName, System.DateTime SalaryDate, int ColumneOrder, string ItemName, double ItemValue, string TaxableNoTaxable, int GroupOrder, double BasicSalary, double CSS, double ESS, string EntitlementsvDeduction, string Branch) {
                 SalariesItemsRow rowSalariesItemsRow = ((SalariesItemsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         EmployeeName,
@@ -507,7 +517,8 @@ namespace Reports.EmployeePayRollCross {
                         BasicSalary,
                         CSS,
                         ESS,
-                        EntitlementsvDeduction};
+                        EntitlementsvDeduction,
+                        Branch};
                 rowSalariesItemsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSalariesItemsRow);
                 return rowSalariesItemsRow;
@@ -541,6 +552,7 @@ namespace Reports.EmployeePayRollCross {
                 this.columnCSS = base.Columns["CSS"];
                 this.columnESS = base.Columns["ESS"];
                 this.columnEntitlementsvDeduction = base.Columns["EntitlementsvDeduction"];
+                this.columnBranch = base.Columns["Branch"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -568,6 +580,8 @@ namespace Reports.EmployeePayRollCross {
                 base.Columns.Add(this.columnESS);
                 this.columnEntitlementsvDeduction = new global::System.Data.DataColumn("EntitlementsvDeduction", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEntitlementsvDeduction);
+                this.columnBranch = new global::System.Data.DataColumn("Branch", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBranch);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1134,6 +1148,22 @@ namespace Reports.EmployeePayRollCross {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Branch {
+                get {
+                    try {
+                        return ((string)(this[this.tableSalariesItems.BranchColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Branch\' in table \'SalariesItems\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSalariesItems.BranchColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsEmployeeNameNull() {
                 return this.IsNull(this.tableSalariesItems.EmployeeNameColumn);
             }
@@ -1262,6 +1292,18 @@ namespace Reports.EmployeePayRollCross {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetEntitlementsvDeductionNull() {
                 this[this.tableSalariesItems.EntitlementsvDeductionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsBranchNull() {
+                return this.IsNull(this.tableSalariesItems.BranchColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetBranchNull() {
+                this[this.tableSalariesItems.BranchColumn] = global::System.Convert.DBNull;
             }
         }
         

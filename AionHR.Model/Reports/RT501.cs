@@ -221,6 +221,7 @@ namespace AionHR.Model.Reports
         public EmployeeName employeeName { get; set; }
 
         public string departmentName { get; set; }
+        public string branchName { get; set; }
 
         public string positionName { get; set; }
 

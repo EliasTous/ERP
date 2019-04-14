@@ -13,13 +13,21 @@ namespace Reports.EmployeePayRollCross
     {
         public EmployeePayrollCrossReport(List<RT501> items, bool isArabic)
         {
+            
             InitializeComponent();
+          
             if (isArabic)
             {
                 fieldSalaryDate.Caption = "التاريخ";
+                fieldBranch.Caption = "الفرع";
                 this.RightToLeft = RightToLeft.Yes;
                 this.RightToLeftLayout = RightToLeftLayout.Yes;
+                fieldItemValue.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
+                fieldBasicSalary.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
+                fieldCSS.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
+                fieldESS.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             }
+          
             dsSalaries1.DataTable1.AddDataTable1Row("ad");
             var salaryDate = new DateTime();
             if (items.Count!=0)
@@ -34,7 +42,7 @@ namespace Reports.EmployeePayRollCross
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName.fullName,
                         salaryDate, order, salary.edName, salary.edAmount,
                         isArabic ? "ضريبي" : "Taxable", 1, salary.basicAmount, salary.cssAmount,
-                        salary.essAmount, isArabic ? "الاستحقاقات" : "Entitlements"
+                        salary.essAmount, isArabic ? "الاستحقاقات" : "Entitlements",salary.branchName
                         );
                     order++;
                 }
@@ -44,7 +52,7 @@ namespace Reports.EmployeePayRollCross
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName.fullName,
                         salaryDate, order, salary.edName, salary.edAmount,
                        isArabic ? "غير ضريبي" : "Non Taxable", 1, salary.basicAmount, salary.cssAmount,
-                        salary.essAmount, isArabic ? "الاستحقاقات" : "Entitlements"
+                        salary.essAmount, isArabic ? "الاستحقاقات" : "Entitlements", salary.branchName
                         );
                     order++;
                 }
@@ -54,7 +62,7 @@ namespace Reports.EmployeePayRollCross
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName.fullName,
                         salaryDate, order, salary.edName, salary.edAmount,
                         isArabic ? "ضريبي" : "Taxable", 1, salary.basicAmount, salary.cssAmount,
-                        salary.essAmount, isArabic ? "استقطاعات" : "Deductions"
+                        salary.essAmount, isArabic ? "استقطاعات" : "Deductions", salary.branchName
                         );
                     order++;
                 }
@@ -64,15 +72,15 @@ namespace Reports.EmployeePayRollCross
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName.fullName,
                         salaryDate, order, salary.edName, salary.edAmount,
                        isArabic ? "غير ضريبي" : "Non Taxable", 1, salary.basicAmount, salary.cssAmount,
-                        salary.essAmount, isArabic ? "استقطاعات" : "Deductions"
+                        salary.essAmount, isArabic ? "استقطاعات" : "Deductions", salary.branchName
                         );
                     order++;
                 }
 
                 dsSalaries1.SalariesItems.AddSalariesItemsRow(defaultSal.employeeName.fullName,
-                         salaryDate, order, "", defaultSal.basicAmount + employee.Where(u => u.edType == 1).Sum(u => u.edAmount) - employee.Where(u => u.edType == 2).Sum(u => u.edAmount) - defaultSal.essAmount,
-                        isArabic ? "صافي الراتب" : "Net Salary", 1, defaultSal.basicAmount, defaultSal.cssAmount,
-                         defaultSal.essAmount, "    "
+                         salaryDate, order, "", defaultSal.netSalary,
+                        isArabic ? "صافي الراتب" : "Net Salary", 1, defaultSal.basicAmount, defaultSal.cssAmount, 
+                         defaultSal.essAmount, "    ", defaultSal.branchName
                          );
             }
 

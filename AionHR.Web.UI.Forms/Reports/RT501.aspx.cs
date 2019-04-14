@@ -311,16 +311,18 @@ namespace AionHR.Web.UI.Forms.Reports
             //}
 
             EmployeePayrollCrossReport h = new EmployeePayrollCrossReport(resp.Items, isArabic);
+            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
+           
             //h.DataSource = s;
             //h.objectDataSource2.DataSource = resp.Items.Where(x => x.edType == 2).ToList();
 
 
-            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+
 
             h.Parameters["User"].Value = user;
-            h.Parameters["Filters"].Value = texts.Text;
+          //  h.Parameters["Filters"].Value = texts.Text;
             if (resp.Items.Count > 0)
             {
 
@@ -347,7 +349,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             h.CreateDocument();
 
-
+           
             ASPxWebDocumentViewer1.DataBind();
             ASPxWebDocumentViewer1.OpenReport(h);
         }

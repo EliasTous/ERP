@@ -41,8 +41,12 @@
             this.fieldBasicSalary = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldTaxableNoTaxable = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldEntitlementsvDeduction = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldBranch = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.User = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrPageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
+            this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
@@ -57,10 +61,6 @@
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.Branch = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
-            this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.User = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.dsSalaries1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -100,7 +100,8 @@
             this.fieldESS,
             this.fieldBasicSalary,
             this.fieldTaxableNoTaxable,
-            this.fieldEntitlementsvDeduction});
+            this.fieldEntitlementsvDeduction,
+            this.fieldBranch});
             this.xrPivotGrid1.Name = "xrPivotGrid1";
             this.xrPivotGrid1.OptionsChartDataSource.ProvideColumnTotals = true;
             this.xrPivotGrid1.OptionsPrint.FilterSeparatorBarPadding = 3;
@@ -110,7 +111,6 @@
             this.xrPivotGrid1.OptionsView.ShowColumnHeaders = false;
             this.xrPivotGrid1.OptionsView.ShowDataHeaders = false;
             this.xrPivotGrid1.OptionsView.ShowFilterHeaders = false;
-            this.xrPivotGrid1.OptionsView.ShowRowTotals = false;
             this.xrPivotGrid1.CustomFieldSort += new System.EventHandler<DevExpress.XtraReports.UI.PivotGrid.PivotGridCustomFieldSortEventArgs>(this.grdAccountLedger_CustomFieldSort);
             // 
             // dsSalaries1
@@ -130,16 +130,19 @@
             // 
             // fieldItemValue
             // 
-            this.fieldItemValue.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldItemValue.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.fieldItemValue.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldItemValue.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.fieldItemValue.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldItemValue.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.fieldItemValue.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
             this.fieldItemValue.AreaIndex = 0;
             resources.ApplyResources(this.fieldItemValue, "fieldItemValue");
-            this.fieldItemValue.CellFormat.FormatString = "N1";
+            this.fieldItemValue.CellFormat.FormatString = "N2";
             this.fieldItemValue.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.fieldItemValue.FieldName = "ItemValue";
             this.fieldItemValue.Name = "fieldItemValue";
-            this.fieldItemValue.ValueFormat.FormatString = "N1";
+            this.fieldItemValue.ValueFormat.FormatString = "N2";
             this.fieldItemValue.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             // 
             // fieldSalaryDate
@@ -155,35 +158,53 @@
             // 
             // fieldCSS
             // 
+            this.fieldCSS.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.fieldCSS.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.fieldCSS.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldCSS.AreaIndex = 2;
+            this.fieldCSS.AreaIndex = 3;
             resources.ApplyResources(this.fieldCSS, "fieldCSS");
+            this.fieldCSS.CellFormat.FormatString = "N2";
+            this.fieldCSS.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.fieldCSS.FieldName = "CSS";
             this.fieldCSS.Name = "fieldCSS";
+            this.fieldCSS.ValueFormat.FormatString = "N2";
+            this.fieldCSS.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             // 
             // fieldEmployeeName
             // 
             this.fieldEmployeeName.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldEmployeeName.AreaIndex = 0;
+            this.fieldEmployeeName.AreaIndex = 1;
             resources.ApplyResources(this.fieldEmployeeName, "fieldEmployeeName");
             this.fieldEmployeeName.FieldName = "EmployeeName";
             this.fieldEmployeeName.Name = "fieldEmployeeName";
             // 
             // fieldESS
             // 
+            this.fieldESS.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.fieldESS.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.fieldESS.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.fieldESS.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldESS.AreaIndex = 3;
+            this.fieldESS.AreaIndex = 4;
             resources.ApplyResources(this.fieldESS, "fieldESS");
+            this.fieldESS.CellFormat.FormatString = "N2";
+            this.fieldESS.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.fieldESS.FieldName = "ESS";
             this.fieldESS.Name = "fieldESS";
+            this.fieldESS.ValueFormat.FormatString = "N2";
+            this.fieldESS.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             // 
             // fieldBasicSalary
             // 
+            this.fieldBasicSalary.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.fieldBasicSalary.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldBasicSalary.AreaIndex = 1;
+            this.fieldBasicSalary.AreaIndex = 2;
             resources.ApplyResources(this.fieldBasicSalary, "fieldBasicSalary");
+            this.fieldBasicSalary.CellFormat.FormatString = "N2";
+            this.fieldBasicSalary.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.fieldBasicSalary.FieldName = "BasicSalary";
             this.fieldBasicSalary.Name = "fieldBasicSalary";
+            this.fieldBasicSalary.ValueFormat.FormatString = "N2";
+            this.fieldBasicSalary.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             // 
             // fieldTaxableNoTaxable
             // 
@@ -206,6 +227,22 @@
             this.fieldEntitlementsvDeduction.Name = "fieldEntitlementsvDeduction";
             this.fieldEntitlementsvDeduction.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
             // 
+            // fieldBranch
+            // 
+            this.fieldBranch.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldBranch.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldBranch.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldBranch.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldBranch.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldBranch.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldBranch.Appearance.TotalCell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldBranch.Appearance.TotalCell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldBranch.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldBranch.AreaIndex = 0;
+            resources.ApplyResources(this.fieldBranch, "fieldBranch");
+            this.fieldBranch.FieldName = "Branch";
+            this.fieldBranch.Name = "fieldBranch";
+            // 
             // TopMargin
             // 
             resources.ApplyResources(this.TopMargin, "TopMargin");
@@ -214,9 +251,36 @@
             // 
             // BottomMargin
             // 
+            this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrPageInfo2,
+            this.xrPageInfo1});
             resources.ApplyResources(this.BottomMargin, "BottomMargin");
+            this.BottomMargin.LockedInUserDesigner = true;
             this.BottomMargin.Name = "BottomMargin";
-            this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 10, 100F);
+            this.BottomMargin.StylePriority.UsePadding = false;
+            // 
+            // User
+            // 
+            resources.ApplyResources(this.User, "User");
+            this.User.Name = "User";
+            this.User.Visible = false;
+            // 
+            // xrPageInfo2
+            // 
+            resources.ApplyResources(this.xrPageInfo2, "xrPageInfo2");
+            this.xrPageInfo2.Name = "xrPageInfo2";
+            this.xrPageInfo2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrPageInfo2.PageInfo = DevExpress.XtraPrinting.PageInfo.DateTime;
+            this.xrPageInfo2.StylePriority.UseTextAlignment = false;
+            // 
+            // xrPageInfo1
+            // 
+            resources.ApplyResources(this.xrPageInfo1, "xrPageInfo1");
+            this.xrPageInfo1.Name = "xrPageInfo1";
+            this.xrPageInfo1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrPageInfo1.StylePriority.UsePadding = false;
+            this.xrPageInfo1.StylePriority.UseTextAlignment = false;
             // 
             // ReportHeader
             // 
@@ -345,45 +409,13 @@
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
             // 
-            // PageFooter
-            // 
-            this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel11,
-            this.xrLabel2});
-            resources.ApplyResources(this.PageFooter, "PageFooter");
-            this.PageFooter.Name = "PageFooter";
-            // 
-            // xrLabel11
-            // 
-            resources.ApplyResources(this.xrLabel11, "xrLabel11");
-            this.xrLabel11.Name = "xrLabel11";
-            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel11.StylePriority.UseBackColor = false;
-            this.xrLabel11.StylePriority.UseBorders = false;
-            this.xrLabel11.StylePriority.UseTextAlignment = false;
-            // 
-            // xrLabel2
-            // 
-            this.xrLabel2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.User, "Text", "")});
-            resources.ApplyResources(this.xrLabel2, "xrLabel2");
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // User
-            // 
-            resources.ApplyResources(this.User, "User");
-            this.User.Name = "User";
-            this.User.Visible = false;
-            // 
             // EmployeePayrollCrossReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
             this.TopMargin,
             this.BottomMargin,
-            this.ReportHeader,
-            this.PageFooter});
+            this.ReportHeader});
             this.DataMember = "DataTable1";
             this.DataSource = this.dsSalaries1;
             resources.ApplyResources(this, "$this");
@@ -429,9 +461,9 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         private DevExpress.XtraReports.Parameters.Parameter Branch;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
-        private DevExpress.XtraReports.UI.PageFooterBand PageFooter;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel11;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.Parameters.Parameter User;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldBranch;
+        private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
+        private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo2;
     }
 }
