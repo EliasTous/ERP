@@ -124,77 +124,26 @@
   <data name="xrPivotGrid1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="fieldItemName.ColumnValueLineCount" type="System.Int32, mscorlib">
+  <data name="fieldItemValue1.ColumnValueLineCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="fieldItemName.RowValueLineCount" type="System.Int32, mscorlib">
+  <data name="fieldItemValue1.RowValueLineCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="fieldItemName.Width" type="System.Int32, mscorlib">
-    <value>70</value>
-  </data>
-  <data name="fieldItemValue.ColumnValueLineCount" type="System.Int32, mscorlib">
+  <data name="fieldBasicSalary1.RowValueLineCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="fieldItemValue.EmptyCellText" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="fieldItemValue.EmptyValueText" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="fieldItemValue.RowValueLineCount" type="System.Int32, mscorlib">
+  <data name="fieldCSS1.RowValueLineCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="fieldSalaryDate.ColumnValueLineCount" type="System.Int32, mscorlib">
+  <data name="fieldESS1.RowValueLineCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="fieldSalaryDate.RowValueLineCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="fieldSalaryDate.Width" type="System.Int32, mscorlib">
+  <data name="fieldBranch1.MinWidth" type="System.Int32, mscorlib">
     <value>80</value>
   </data>
-  <data name="fieldCSS.ColumnValueLineCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="fieldCSS.RowValueLineCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="fieldCSS.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="fieldEmployeeName.Caption" xml:space="preserve">
-    <value>Branch</value>
-  </data>
-  <data name="fieldEmployeeName.ColumnValueLineCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="fieldEmployeeName.RowValueLineCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="fieldEmployeeName.Width" type="System.Int32, mscorlib">
-    <value>130</value>
-  </data>
-  <data name="fieldESS.ColumnValueLineCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="fieldESS.RowValueLineCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="fieldESS.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="fieldBasicSalary.Caption" xml:space="preserve">
-    <value>Basic</value>
-  </data>
-  <data name="fieldBasicSalary.ColumnValueLineCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="fieldBasicSalary.RowValueLineCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="fieldBasicSalary.Width" type="System.Int32, mscorlib">
-    <value>50</value>
+  <data name="fieldBranch1.RowValueLineCount" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <assembly alias="DevExpress.Data.v16.2" name="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="xrPivotGrid1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">

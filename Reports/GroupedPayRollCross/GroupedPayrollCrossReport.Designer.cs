@@ -32,15 +32,14 @@
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrPivotGrid1 = new DevExpress.XtraReports.UI.XRPivotGrid();
             this.dsSalaries1 = new Reports.GroupedPayRollCross.dsSalaries();
-            this.fieldItemName = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldItemValue = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldSalaryDate = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldCSS = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldEmployeeName = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldESS = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldBasicSalary = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldTaxableNoTaxable = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldEntitlementsvDeduction = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldItemName1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldItemValue1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldTaxableNoTaxable1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldBasicSalary1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldCSS1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldESS1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldEntitlementsvDeduction1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldBranch1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
@@ -91,15 +90,14 @@
             this.xrPivotGrid1.DataSource = this.dsSalaries1;
             resources.ApplyResources(this.xrPivotGrid1, "xrPivotGrid1");
             this.xrPivotGrid1.Fields.AddRange(new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField[] {
-            this.fieldItemName,
-            this.fieldItemValue,
-            this.fieldSalaryDate,
-            this.fieldCSS,
-            this.fieldEmployeeName,
-            this.fieldESS,
-            this.fieldBasicSalary,
-            this.fieldTaxableNoTaxable,
-            this.fieldEntitlementsvDeduction});
+            this.fieldItemName1,
+            this.fieldItemValue1,
+            this.fieldTaxableNoTaxable1,
+            this.fieldBasicSalary1,
+            this.fieldCSS1,
+            this.fieldESS1,
+            this.fieldEntitlementsvDeduction1,
+            this.fieldBranch1});
             this.xrPivotGrid1.Name = "xrPivotGrid1";
             this.xrPivotGrid1.OptionsChartDataSource.ProvideColumnTotals = true;
             this.xrPivotGrid1.OptionsDataField.ColumnValueLineCount = 2;
@@ -118,131 +116,108 @@
             this.dsSalaries1.DataSetName = "dsSalaries";
             this.dsSalaries1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // fieldItemName
+            // fieldItemName1
             // 
-            this.fieldItemName.Appearance.Cell.WordWrap = true;
-            this.fieldItemName.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldItemName.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldItemName.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldItemName.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldItemName.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
-            this.fieldItemName.AreaIndex = 2;
-            resources.ApplyResources(this.fieldItemName, "fieldItemName");
-            this.fieldItemName.FieldName = "ItemName";
-            this.fieldItemName.Name = "fieldItemName";
-            this.fieldItemName.SortMode = DevExpress.XtraPivotGrid.PivotSortMode.Custom;
+            this.fieldItemName1.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldItemName1.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldItemName1.Appearance.Cell.WordWrap = true;
+            this.fieldItemName1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldItemName1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldItemName1.Appearance.FieldValue.WordWrap = true;
+            this.fieldItemName1.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
+            this.fieldItemName1.AreaIndex = 2;
+            this.fieldItemName1.FieldName = "ItemName";
+            this.fieldItemName1.Name = "fieldItemName1";
+            this.fieldItemName1.SortMode = DevExpress.XtraPivotGrid.PivotSortMode.Value;
             // 
-            // fieldItemValue
+            // fieldItemValue1
             // 
-            this.fieldItemValue.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldItemValue.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldItemValue.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldItemValue.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldItemValue.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldItemValue.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldItemValue.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.fieldItemValue.AreaIndex = 0;
-            this.fieldItemValue.CellFormat.FormatString = "N1";
-            this.fieldItemValue.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            resources.ApplyResources(this.fieldItemValue, "fieldItemValue");
-            this.fieldItemValue.FieldName = "ItemValue";
-            this.fieldItemValue.Name = "fieldItemValue";
-            this.fieldItemValue.ValueFormat.FormatString = "N1";
-            this.fieldItemValue.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.fieldItemValue1.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.fieldItemValue1.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldItemValue1.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
+            this.fieldItemValue1.AreaIndex = 0;
+            this.fieldItemValue1.CellFormat.FormatString = "N2";
+            this.fieldItemValue1.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            resources.ApplyResources(this.fieldItemValue1, "fieldItemValue1");
+            this.fieldItemValue1.FieldName = "ItemValue";
+            this.fieldItemValue1.Name = "fieldItemValue1";
+            this.fieldItemValue1.ValueFormat.FormatString = "N2";
+            this.fieldItemValue1.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             // 
-            // fieldSalaryDate
+            // fieldTaxableNoTaxable1
             // 
-            this.fieldSalaryDate.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldSalaryDate.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldSalaryDate.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldSalaryDate.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldSalaryDate.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldSalaryDate.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldSalaryDate.AreaIndex = 0;
-            resources.ApplyResources(this.fieldSalaryDate, "fieldSalaryDate");
-            this.fieldSalaryDate.FieldName = "SalaryDate";
-            this.fieldSalaryDate.Name = "fieldSalaryDate";
-            this.fieldSalaryDate.ValueFormat.FormatString = "dd/MM/yyyy";
-            this.fieldSalaryDate.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.fieldTaxableNoTaxable1.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
+            this.fieldTaxableNoTaxable1.AreaIndex = 1;
+            this.fieldTaxableNoTaxable1.FieldName = "TaxableNoTaxable";
+            this.fieldTaxableNoTaxable1.Name = "fieldTaxableNoTaxable1";
             // 
-            // fieldCSS
+            // fieldBasicSalary1
             // 
-            this.fieldCSS.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldCSS.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldCSS.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldCSS.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldCSS.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldCSS.AreaIndex = 2;
-            resources.ApplyResources(this.fieldCSS, "fieldCSS");
-            this.fieldCSS.FieldName = "CSS";
-            this.fieldCSS.Name = "fieldCSS";
+            this.fieldBasicSalary1.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.fieldBasicSalary1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldBasicSalary1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldBasicSalary1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.fieldBasicSalary1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldBasicSalary1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldBasicSalary1.AreaIndex = 1;
+            this.fieldBasicSalary1.FieldName = "BasicSalary";
+            this.fieldBasicSalary1.Name = "fieldBasicSalary1";
+            resources.ApplyResources(this.fieldBasicSalary1, "fieldBasicSalary1");
+            this.fieldBasicSalary1.ValueFormat.FormatString = "N2";
+            this.fieldBasicSalary1.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             // 
-            // fieldEmployeeName
+            // fieldCSS1
             // 
-            this.fieldEmployeeName.Appearance.Cell.WordWrap = true;
-            this.fieldEmployeeName.Appearance.CustomTotalCell.WordWrap = true;
-            this.fieldEmployeeName.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldEmployeeName.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldEmployeeName.Appearance.FieldHeader.WordWrap = true;
-            this.fieldEmployeeName.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldEmployeeName.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldEmployeeName.Appearance.FieldValue.WordWrap = true;
-            this.fieldEmployeeName.Appearance.FieldValueGrandTotal.WordWrap = true;
-            this.fieldEmployeeName.Appearance.FieldValueTotal.WordWrap = true;
-            this.fieldEmployeeName.Appearance.GrandTotalCell.WordWrap = true;
-            this.fieldEmployeeName.Appearance.TotalCell.WordWrap = true;
-            this.fieldEmployeeName.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldEmployeeName.AreaIndex = 0;
-            resources.ApplyResources(this.fieldEmployeeName, "fieldEmployeeName");
-            this.fieldEmployeeName.FieldName = "EmployeeName";
-            this.fieldEmployeeName.Name = "fieldEmployeeName";
+            this.fieldCSS1.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.fieldCSS1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldCSS1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldCSS1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.fieldCSS1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldCSS1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldCSS1.AreaIndex = 2;
+            this.fieldCSS1.FieldName = "CSS";
+            this.fieldCSS1.Name = "fieldCSS1";
+            resources.ApplyResources(this.fieldCSS1, "fieldCSS1");
+            this.fieldCSS1.ValueFormat.FormatString = "N2";
+            this.fieldCSS1.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             // 
-            // fieldESS
+            // fieldESS1
             // 
-            this.fieldESS.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldESS.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldESS.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldESS.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldESS.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldESS.AreaIndex = 3;
-            resources.ApplyResources(this.fieldESS, "fieldESS");
-            this.fieldESS.FieldName = "ESS";
-            this.fieldESS.Name = "fieldESS";
+            this.fieldESS1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldESS1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldESS1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.fieldESS1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldESS1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldESS1.AreaIndex = 3;
+            this.fieldESS1.FieldName = "ESS";
+            this.fieldESS1.Name = "fieldESS1";
+            resources.ApplyResources(this.fieldESS1, "fieldESS1");
+            this.fieldESS1.ValueFormat.FormatString = "N2";
+            this.fieldESS1.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             // 
-            // fieldBasicSalary
+            // fieldEntitlementsvDeduction1
             // 
-            this.fieldBasicSalary.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldBasicSalary.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldBasicSalary.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldBasicSalary.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldBasicSalary.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldBasicSalary.AreaIndex = 1;
-            resources.ApplyResources(this.fieldBasicSalary, "fieldBasicSalary");
-            this.fieldBasicSalary.FieldName = "BasicSalary";
-            this.fieldBasicSalary.Name = "fieldBasicSalary";
+            this.fieldEntitlementsvDeduction1.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
+            this.fieldEntitlementsvDeduction1.AreaIndex = 0;
+            this.fieldEntitlementsvDeduction1.FieldName = "EntitlementsvDeduction";
+            this.fieldEntitlementsvDeduction1.Name = "fieldEntitlementsvDeduction1";
+            this.fieldEntitlementsvDeduction1.SortMode = DevExpress.XtraPivotGrid.PivotSortMode.Value;
+            this.fieldEntitlementsvDeduction1.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
             // 
-            // fieldTaxableNoTaxable
+            // fieldBranch1
             // 
-            this.fieldTaxableNoTaxable.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldTaxableNoTaxable.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldTaxableNoTaxable.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldTaxableNoTaxable.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldTaxableNoTaxable.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
-            this.fieldTaxableNoTaxable.AreaIndex = 1;
-            this.fieldTaxableNoTaxable.FieldName = "TaxableNoTaxable";
-            this.fieldTaxableNoTaxable.Name = "fieldTaxableNoTaxable";
-            // 
-            // fieldEntitlementsvDeduction
-            // 
-            this.fieldEntitlementsvDeduction.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldEntitlementsvDeduction.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldEntitlementsvDeduction.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldEntitlementsvDeduction.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldEntitlementsvDeduction.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
-            this.fieldEntitlementsvDeduction.AreaIndex = 0;
-            this.fieldEntitlementsvDeduction.FieldName = "EntitlementsvDeduction";
-            this.fieldEntitlementsvDeduction.Name = "fieldEntitlementsvDeduction";
-            this.fieldEntitlementsvDeduction.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            this.fieldBranch1.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldBranch1.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldBranch1.Appearance.Cell.WordWrap = true;
+            this.fieldBranch1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.fieldBranch1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldBranch1.Appearance.FieldValue.WordWrap = true;
+            this.fieldBranch1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldBranch1.AreaIndex = 0;
+            this.fieldBranch1.FieldName = "Branch";
+            resources.ApplyResources(this.fieldBranch1, "fieldBranch1");
+            this.fieldBranch1.Name = "fieldBranch1";
+            this.fieldBranch1.Options.AllowExpand = DevExpress.Utils.DefaultBoolean.True;
             // 
             // TopMargin
             // 
@@ -447,15 +422,6 @@
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private dsSalaries dsSalaries1;
         private DevExpress.XtraReports.UI.XRPivotGrid xrPivotGrid1;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldItemName;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldItemValue;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldSalaryDate;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldCSS;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldEmployeeName;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldESS;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldBasicSalary;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldTaxableNoTaxable;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldEntitlementsvDeduction;
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
         private DevExpress.XtraReports.UI.XRLabel xrLabel10;
         private DevExpress.XtraReports.UI.XRLabel xrLabel9;
@@ -474,5 +440,13 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.Parameters.Parameter User;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldItemName1;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldItemValue1;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldTaxableNoTaxable1;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldBasicSalary1;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldCSS1;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldESS1;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldEntitlementsvDeduction1;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldBranch1;
     }
 }

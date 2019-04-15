@@ -249,6 +249,7 @@ namespace AionHR.Model.Reports
         public double basicAmount { get; set; }
         public double cssAmount { get; set; }
         public double essAmount { get; set; }
+        public double netSalary { get; set; }
         public string edName { get; set; }
         public int edType { get; set; }
         public bool isTaxable { get; set; }
