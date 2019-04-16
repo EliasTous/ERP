@@ -155,23 +155,69 @@ namespace AionHR.Web.UI.Forms.Reports
         private void SetExtLanguage()
         {
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            if (rtl)
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                this.ResourceManager1.RTL = true;
-                this.Viewport1.RTL = true;
-                this.rtl.Text = rtl.ToString();
-                Culture = "ar";
-                UICulture = "ar-AE";
-                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
+                case "ar":
+                    {
+                        this.ResourceManager1.RTL = true;
+                        this.Viewport1.RTL = true;
+                        this.rtl.Text = rtl.ToString();
+                        Culture = "ar";
+                        UICulture = "ar-AE";
+                        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
+                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
+                    }
+                    break;
+                case "en":
+                    {
+                        Culture = "en";
+                        UICulture = "en-US";
+                        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+                    }
+                    break;
+
+                case "fr":
+                    {
+                        Culture = "fr";
+                        UICulture = "fr-FR";
+                        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fr");
+                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-FR");
+                    }
+                    break;
+                case "de":
+                    {
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetGermanyLocalisation();
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
             }
-            else
-            {
-                Culture = "en";
-                UICulture = "en-US";
-                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
-            }
+          
+            //if (rtl)
+            //{
+            //    this.ResourceManager1.RTL = true;
+            //    this.Viewport1.RTL = true;
+            //    this.rtl.Text = rtl.ToString();
+            //    Culture = "ar";
+            //    UICulture = "ar-AE";
+            //    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
+            //    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
+            //}
+            //else
+            //{
+            //    Culture = "en";
+            //    UICulture = "en-US";
+            //    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+            //    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+            //}
         }
 
 

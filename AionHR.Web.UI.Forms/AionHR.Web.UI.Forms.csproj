@@ -188,7 +188,6 @@
     <Content Include="BusinessPartnerCategories.aspx" />
     <Content Include="BusinessPartneres.aspx" />
     <Content Include="CertificateLevels.aspx" />
-    <Content Include="CheckTypes.aspx" />
     <Content Include="DELogin.aspx" />
     <Content Include="DocumentCategories.aspx" />
     <Content Include="FRLogin.aspx" />
@@ -304,7 +303,6 @@
     <Content Include="Folders.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="GenerateAttendanceDays.aspx" />
-    <Content Include="Geofences.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Controls\HijriGregDatePicker.ascx" />
     <Content Include="GovernmentOrganisations.aspx" />
@@ -431,7 +429,6 @@
     <Content Include="Reports\RT303A.aspx" />
     <Content Include="Reports\RT304.aspx" />
     <Content Include="Reports\RT305.aspx" />
-    <Content Include="Reports\RT306Old.aspx" />
     <Content Include="Reports\RT306.aspx" />
     <Content Include="Reports\RT401.aspx" />
     <Content Include="Reports\RT402.aspx" />
@@ -444,7 +441,6 @@
     <Content Include="Reports\RT801.aspx" />
     <Content Include="Reports\RT802.aspx" />
     <Content Include="ReportTest.aspx" />
-    <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
     <Content Include="Scripts\AssetAllowances.js" />
     <Content Include="Scripts\cal.js" />
@@ -495,7 +491,6 @@
     <Content Include="Scripts\strength.js" />
     <Content Include="Scripts\SystemAlerts.js" />
     <Content Include="Scripts\RelationshipTypes.js" />
-    <Content Include="Scripts\Routers.js" />
     <Content Include="Scripts\Positions.js" />
     <Content Include="Scripts\BiometricDevices.js" />
     <Content Include="Scripts\AllowanceTypes.js" />
@@ -505,12 +500,10 @@
     <Content Include="Scripts\Calendars.js" />
     <Content Include="Scripts\Cases.js" />
     <Content Include="Scripts\CertificateLevels.js" />
-    <Content Include="Scripts\CheckTypes.js" />
     <Content Include="Scripts\Documents.js" />
     <Content Include="Scripts\DocumentTypes.js" />
     <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\fileinput.min.js" />
-    <Content Include="Scripts\Geofences.js" />
     <Content Include="Scripts\Legals.js" />
     <Content Include="Scripts\locales\ar.js" />
     <Content Include="Scripts\locales\bg.js" />
@@ -572,7 +565,6 @@
     <Content Include="Scripts\Skills.js" />
     <Content Include="Scripts\Sponsors.js" />
     <Content Include="Scripts\tableHeadFixer.js" />
-    <Content Include="Scripts\TaskTypes.js" />
     <Content Include="Scripts\TrainingTypes.js" />
     <Content Include="Scripts\weekPicker.js" />
     <Content Include="Scripts\weekPicker.min.js" />
@@ -584,7 +576,6 @@
     <Content Include="SynchronizeAttendanceDays.aspx" />
     <Content Include="SystemAlerts.aspx" />
     <Content Include="SystemDefaults.aspx" />
-    <Content Include="TaskTypes.aspx" />
     <Content Include="TerminationReasons.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="TimeAttendanceView.aspx" />
@@ -683,11 +674,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModuleIDs.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\OldCommon.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OldCommon.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Reports.de-DE.designer.cs">
       <AutoGen>True</AutoGen>
@@ -789,13 +775,6 @@
     </Compile>
     <Compile Include="CertificateLevels.aspx.designer.cs">
       <DependentUpon>CertificateLevels.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CheckTypes.aspx.cs">
-      <DependentUpon>CheckTypes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CheckTypes.aspx.designer.cs">
-      <DependentUpon>CheckTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="ConstClasse\Common.cs" />
     <Compile Include="ConstClasse\ConstClasses.cs" />
@@ -1456,13 +1435,6 @@
     </Compile>
     <Compile Include="Reports\RT305.aspx.designer.cs">
       <DependentUpon>RT305.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\RT306Old.aspx.cs">
-      <DependentUpon>RT306Old.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\RT306Old.aspx.designer.cs">
-      <DependentUpon>RT306Old.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT306.aspx.cs">
       <DependentUpon>RT306.aspx</DependentUpon>
@@ -2142,13 +2114,6 @@
     <Compile Include="ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Geofences.aspx.cs">
-      <DependentUpon>Geofences.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Geofences.aspx.designer.cs">
-      <DependentUpon>Geofences.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2230,13 +2195,6 @@
     <Compile Include="resetPw.aspx.designer.cs">
       <DependentUpon>resetPw.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Routers.aspx.cs">
-      <DependentUpon>Routers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Routers.aspx.designer.cs">
-      <DependentUpon>Routers.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SalaryChangeReasons.aspx.cs">
       <DependentUpon>SalaryChangeReasons.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2265,13 +2223,6 @@
     </Compile>
     <Compile Include="SystemDefaults.aspx.designer.cs">
       <DependentUpon>SystemDefaults.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TaskTypes.aspx.cs">
-      <DependentUpon>TaskTypes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TaskTypes.aspx.designer.cs">
-      <DependentUpon>TaskTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
@@ -2422,9 +2373,6 @@
     <Content Include="App_LocalResources\Dashboard.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\Routers.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_LocalResources\LeaveTypes.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
@@ -2488,9 +2436,6 @@
     <Content Include="EmployeePages\App_LocalResources\Skills.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\Geofences.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_LocalResources\MediaCategories.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
@@ -2551,7 +2496,6 @@
     </Content>
     <Content Include="App_LocalResources\CompanyDocumentTypes.aspx.resx" />
     <Content Include="App_LocalResources\CompanyRightToWorks.aspx.resx" />
-    <Content Include="App_LocalResources\TaskTypes.aspx.resx" />
     <Content Include="App_LocalResources\CompanyRightToWorks.aspx.ar.resx" />
     <Content Include="App_LocalResources\SystemDefaults.aspx.ar.resx">
       <SubType>Designer</SubType>
@@ -2882,7 +2826,6 @@
     <Content Include="App_LocalResources\Folders.aspx.fr.resx" />
     <Content Include="App_LocalResources\ForgotPassword.aspx.fr.resx" />
     <Content Include="App_LocalResources\GenerateAttendanceDays.aspx.fr.resx" />
-    <Content Include="App_LocalResources\Geofences.aspx.fr.resx" />
     <Content Include="App_LocalResources\GovernmentOrganisations.aspx.fr.resx" />
     <Content Include="App_LocalResources\ImportAttendance.aspx.fr.resx" />
     <Content Include="App_LocalResources\ImportDepartments.aspx.fr.resx" />
@@ -2928,7 +2871,6 @@
     <Content Include="App_LocalResources\ProcessNotifications.aspx.fr.resx" />
     <Content Include="App_LocalResources\RelationshipTypes.aspx.fr.resx" />
     <Content Include="App_LocalResources\resetPw.aspx.fr.resx" />
-    <Content Include="App_LocalResources\Routers.aspx.fr.resx" />
     <Content Include="App_LocalResources\RT107.aspx.fr.resx" />
     <Content Include="App_LocalResources\SalaryChangeReasons.aspx.fr.resx" />
     <Content Include="App_LocalResources\Schedules.aspx.fr.resx" />
@@ -2996,10 +2938,6 @@
     <Content Include="App_LocalResources\AssetLoans.aspx.fr.resx" />
     <Content Include="App_LocalResources\AssetLoans.aspx.resx" />
     <Content Include="App_LocalResources\AssetLoans.aspx.ar.resx" />
-    <Content Include="App_GlobalResources\OldCommon.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>OldCommon.designer.cs</LastGenOutput>
-    </Content>
     <Content Include="App_LocalResources\AdminDepts.aspx.resx" />
     <Content Include="App_LocalResources\AdminDepts.aspx.fr.resx" />
     <Content Include="App_LocalResources\AdminDepts.aspx.ar.resx" />
@@ -3009,9 +2947,6 @@
     <Content Include="App_LocalResources\CertificateLevels.aspx.ar.resx" />
     <Content Include="App_LocalResources\CertificateLevels.aspx.fr.resx" />
     <Content Include="App_LocalResources\CertificateLevels.aspx.resx" />
-    <Content Include="App_LocalResources\CheckTypes.aspx.ar.resx" />
-    <Content Include="App_LocalResources\CheckTypes.aspx.fr.resx" />
-    <Content Include="App_LocalResources\CheckTypes.aspx.resx" />
     <Content Include="App_LocalResources\ApprovalReasons.aspx.ar.resx" />
     <Content Include="App_LocalResources\ApprovalReasons.aspx.fr.resx" />
     <Content Include="App_LocalResources\ApprovalReasons.aspx.resx" />
@@ -3050,7 +2985,6 @@
     <Content Include="App_LocalResources\BusinessPartnerCategories.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\BusinessPartneres.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\CertificateLevels.aspx.de-DE.resx" />
-    <Content Include="App_LocalResources\CheckTypes.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\CompanyDocumentTypes.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\CompanyFiles.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\CompanyNews.aspx.de-DE.resx" />
@@ -3077,7 +3011,6 @@
     <Content Include="App_LocalResources\Folders.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\ForgotPassword.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\GenerateAttendanceDays.aspx.de-DE.resx" />
-    <Content Include="App_LocalResources\Geofences.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\GovernmentOrganisations.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\ImportAttendance.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\ImportDepartments.aspx.de-DE.resx" />
@@ -3126,7 +3059,6 @@
     <Content Include="App_LocalResources\ProcessNotifications.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\RelationshipTypes.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\resetPw.aspx.de-DE.resx" />
-    <Content Include="App_LocalResources\Routers.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\RT107.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\SalaryChangeReasons.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\Schedules.aspx.de-DE.resx" />
@@ -3140,7 +3072,6 @@
     <Content Include="App_LocalResources\SynchronizeAttendanceDays.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\SystemAlerts.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\SystemDefaults.aspx.de-DE.resx" />
-    <Content Include="App_LocalResources\TaskTypes.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\TerminationReasons.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\Test.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\TimeApprovalsSelfServices.aspx.de-DE.resx" />

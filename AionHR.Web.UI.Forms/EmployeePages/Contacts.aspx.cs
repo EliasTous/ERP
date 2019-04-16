@@ -705,7 +705,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
 
                         //Add this record to the store 
-                        this.emergencyContactStore.Insert(0, b);
+                        emergencyContactStore.Reload();
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -717,10 +717,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         });
 
                         this.EditEmergencyContactWindow.Close();
-                        RowSelectionModel sm = this.emergencyContactsGrid.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
-
+                      
 
 
                     }

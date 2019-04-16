@@ -19,7 +19,7 @@ namespace Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option or rebuild the Visual Studio project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "14.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Common {
@@ -1501,15 +1501,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geofences.
-        /// </summary>
-        internal static string Geofences {
-            get {
-                return ResourceManager.GetString("Geofences", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Go.
         /// </summary>
         internal static string Go {
@@ -2662,15 +2653,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Routers.
-        /// </summary>
-        internal static string Routers {
-            get {
-                return ResourceManager.GetString("Routers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Ages Breakdown.
         /// </summary>
         internal static string RT01 {
@@ -3369,15 +3351,6 @@ namespace Resources {
         internal static string Tasks {
             get {
                 return ResourceManager.GetString("Tasks", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Task Types.
-        /// </summary>
-        internal static string TaskTypes {
-            get {
-                return ResourceManager.GetString("TaskTypes", resourceCulture);
             }
         }
         

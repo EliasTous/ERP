@@ -947,7 +947,7 @@
                 ////Not Chained
                 App.alertStore.reload();
                 //App.activeStore.reload();
-                App.LocalRateStore.reload();
+              //  App.LocalRateStore.reload();
                 //// App.Store1.reload();
 
                 //App.LeaveRequestsStore.reload();
@@ -1817,6 +1817,9 @@
                                                             <Defaults>
                                                                 <ext:Parameter Name="margin" Value="0 5 0 0" Mode="Value" />
                                                             </Defaults>
+                                                              <Listeners>
+                                                                  <Activate Handler=" App.LocalRateStore.reload();" />
+                                                              </Listeners>
                                                             <LayoutConfig>
                                                                 <ext:HBoxLayoutConfig Align="Stretch" />
                                                             </LayoutConfig>

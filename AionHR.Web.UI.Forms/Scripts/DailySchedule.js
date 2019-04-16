@@ -109,7 +109,8 @@ var Init = function () {
         $(this).data("isselected",true);
                 App.dayId.setValue($(this)["0"].id);
 
-
+                App.btnSave.setDisabled(false);
+                App.btnDeleteDay.setDisabled(false);
                 var today = new Date();
                
             
@@ -126,18 +127,18 @@ var Init = function () {
                     cDay = "0" + today.getDay().toString();
               
             
-                if (parseInt($(this)["0"].id) >= parseInt(cYear.toString() + cMonth.toString() + cDay.toString()))
-                {
+                //if (parseInt($(this)["0"].id) >= parseInt(cYear.toString() + cMonth.toString() + cDay.toString()))
+                //{
                    
-                    App.btnSave.setDisabled(false);
-                    App.btnDeleteDay.setDisabled(false);
-                }
-                else
-                {
+                //    App.btnSave.setDisabled(false);
+                //    App.btnDeleteDay.setDisabled(false);
+                //}
+                //else
+                //{
                    
-                    App.btnSave.setDisabled(true);
-                    App.btnDeleteDay.setDisabled(true);
-                }
+                //    App.btnSave.setDisabled(true);
+                //    App.btnDeleteDay.setDisabled(true);
+                //}
 
           
             }

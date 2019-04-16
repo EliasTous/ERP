@@ -724,7 +724,10 @@ namespace AionHR.Web.UI.Forms
                 r.shiftId = shiftId;
                 r.StartAt = "0";
                 r.Size = "1000";
-               
+                r.apStatus = "0";
+                r.fromDayId = dayId.ToString();
+                r.toDayId = dayId.ToString();
+
 
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
