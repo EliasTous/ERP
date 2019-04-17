@@ -3,6 +3,7 @@ using AionHR.Model.System;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.Reports;
+using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
@@ -89,6 +90,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         public void SetLabel(string newLabel)
         {
             scheduleId.FieldLabel = newLabel;
+        }
+
+        public ComboBox GetComboBox()
+        {
+            return scheduleId;
         }
     }
 }

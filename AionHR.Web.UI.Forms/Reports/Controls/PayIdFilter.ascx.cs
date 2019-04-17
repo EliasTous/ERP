@@ -12,6 +12,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using AionHR.Model.Payroll;
 using System.Globalization;
+using Ext.Net;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
@@ -19,6 +20,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
     {
         IPayrollService payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         ISystemService systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+
+        public ComboBox GetComboBox()
+        {
+            return payId;
+        }
 
         public void Select(object id)
         {

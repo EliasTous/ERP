@@ -3,6 +3,7 @@ using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.Reports;
 using AionHR.Services.Messaging.System;
+using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
@@ -127,6 +128,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         public void SetLabel(string newLabel)
         {
             salaryTypeId.FieldLabel = newLabel;
+        }
+
+        public ComboBox GetComboBox()
+        {
+            return salaryTypeId;
         }
     }
 }

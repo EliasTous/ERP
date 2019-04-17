@@ -70,5 +70,10 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
             employeeFilter.FieldLabel = newLabel;
         }
+
+        public ComboBox GetComboBox()
+        {
+            return employeeFilter;
+        }
     }
 }
