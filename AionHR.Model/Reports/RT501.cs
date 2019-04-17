@@ -218,6 +218,7 @@ namespace AionHR.Model.Reports
     [ClassIdentifier("80501", "80")]
     public class RT501
     {
+        public string primaryKey { get; set; }
         public EmployeeName employeeName { get; set; }
 
         public string departmentName { get; set; }
