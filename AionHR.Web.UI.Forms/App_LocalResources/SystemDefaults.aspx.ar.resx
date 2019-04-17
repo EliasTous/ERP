@@ -450,4 +450,7 @@
   <data name="backofficeEmail" xml:space="preserve">
     <value>بريد الشركة</value>
   </data>
+  <data name="lawViolationApproval" xml:space="preserve">
+    <value>تعميد تجاوز القانون</value>
+  </data>
 </root>

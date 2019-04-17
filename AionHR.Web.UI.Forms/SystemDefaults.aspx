@@ -416,6 +416,14 @@
                                   <ext:NumberField  runat="server" AllowBlank="false" LabelWidth="150" ID="employeeRefSize" Name="employeeRefSize" FieldLabel="<%$ Resources: employeeRefSize %>" MinValue="0"  MaxValue="10">
                                       <Validator Handler="if(this.value==1 ||this.value==2 ) return false; else return true;"></Validator>
                                       </ext:NumberField>
+
+                                  <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+
+                                        <uc:ApprovalsControl runat="server" ID="lvApId"  LabelWidth="150" FieldLabel="<%$ Resources: lawViolationApproval %>" />
+
+                                    </Content>
+                                </ext:Container>
                          
 
                             </Items>

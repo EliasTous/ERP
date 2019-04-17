@@ -195,6 +195,7 @@
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
     <Content Include="ReportParameterBrowser.aspx" />
+    <Content Include="Reports\Controls\ApprovalsFilter.ascx" />
     <Content Include="Reports\Controls\AssetFilter.ascx" />
     <Content Include="Reports\Controls\ApprovalReasonFilter.ascx" />
     <Content Include="Reports\Controls\BranchFilter.ascx" />
@@ -826,6 +827,13 @@
     </Compile>
     <Compile Include="ReportParameterBrowser.aspx.designer.cs">
       <DependentUpon>ReportParameterBrowser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\ApprovalsFilter.ascx.cs">
+      <DependentUpon>ApprovalsFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\ApprovalsFilter.ascx.designer.cs">
+      <DependentUpon>ApprovalsFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\AssetFilter.ascx.cs">
       <DependentUpon>AssetFilter.ascx</DependentUpon>

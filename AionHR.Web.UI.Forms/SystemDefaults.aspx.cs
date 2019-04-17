@@ -186,7 +186,7 @@ namespace AionHR.Web.UI.Forms
             FillBsid();
             FillbasicSalaryPayCodeStore();
             fillFSWDEDId();
-
+           
 
           absenceStore.DataSource= GetDeductions();
             absenceStore.DataBind();
@@ -746,7 +746,13 @@ namespace AionHR.Web.UI.Forms
                 pp_punchInterface.Text = items.Where(s => s.Key == "pp_punchInterface").First().Value;
             }
             catch { }
-            
+
+            try
+
+            {
+                lvApId.setApproval(items.Where(s => s.Key == "lvApId").First().Value);
+            }
+            catch { }
 
 
             FillCompanyLogo(); 
@@ -820,7 +826,10 @@ namespace AionHR.Web.UI.Forms
             else
                 submittedValues.Add(new KeyValuePair<string, string>("employeeRefSize", ""));
 
-
+            if (lvApId.getApproval() != null && lvApId.getApproval() != "0")
+                submittedValues.Add(new KeyValuePair<string, string>("lvApId", lvApId.getApproval()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("lvApId", ""));
 
 
 

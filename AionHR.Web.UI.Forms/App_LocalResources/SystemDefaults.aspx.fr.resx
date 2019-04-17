@@ -504,4 +504,7 @@
   <data name="storeType" xml:space="preserve">
     <value>Type de magasin</value>
   </data>
+  <data name="lawViolationApproval" xml:space="preserve">
+    <value>Approbation de violation de la loi</value>
+  </data>
 </root>

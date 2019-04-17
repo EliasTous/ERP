@@ -506,4 +506,7 @@
   <data name="storeType" xml:space="preserve">
     <value>Artdes Speichern</value>
   </data>
+  <data name="lawViolationApproval" xml:space="preserve">
+    <value>Zustimmung zu Gesetzesverstößen</value>
+  </data>
 </root>
