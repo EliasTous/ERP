@@ -65,5 +65,10 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             employeeFilter.Select(response.result.recordId);
             
         }
+
+        public void SetLabel(string newLabel)
+        {
+            employeeFilter.FieldLabel = newLabel;
+        }
     }
 }

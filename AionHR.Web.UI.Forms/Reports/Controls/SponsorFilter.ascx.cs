@@ -21,6 +21,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             sponsorId.Select(id);
         }
 
+        public void SetLabel(string newLabel)
+        {
+            sponsorId.FieldLabel = newLabel;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

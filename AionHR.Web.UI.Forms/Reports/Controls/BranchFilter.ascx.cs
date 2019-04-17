@@ -28,6 +28,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             branchId.Select(id);
         }
 
+        public void SetLabel(string newLabel)
+        {
+            branchId.FieldLabel = newLabel;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

@@ -175,6 +175,9 @@ namespace AionHR.Web.UI.Forms
                                 break;
                             }
                             Control cont = LoadControl("Reports/Controls/" + GetControlNameByClassId(item.classId));
+                            IComboControl contAsCombo = cont as IComboControl;
+                            if (contAsCombo != null)
+                                contAsCombo.SetLabel(item.caption);
                             if(item.classId== 31201)
                             {
                                 ((EmployeeFilter)cont).EmployeeComboBox.FieldLabel = item.caption;
@@ -189,7 +192,7 @@ namespace AionHR.Web.UI.Forms
                             
                             if(valuesDict!=null && valuesDict.ContainsKey(item.id))
                             {
-                                IComboControl contAsCombo = cont as IComboControl;
+                               
                                 if (contAsCombo != null)
                                     contAsCombo.Select(valuesDict[item.id]);
                             }

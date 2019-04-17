@@ -25,6 +25,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             payId.Select(id);
         }
 
+        public void SetLabel(string newLabel)
+        {
+            payId.FieldLabel = newLabel;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
