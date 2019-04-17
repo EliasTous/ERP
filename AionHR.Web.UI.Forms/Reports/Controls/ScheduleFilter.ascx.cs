@@ -85,5 +85,10 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
             scheduleId.Select(id);
         }
+
+        public void SetLabel(string newLabel)
+        {
+            scheduleId.FieldLabel = newLabel;
+        }
     }
 }

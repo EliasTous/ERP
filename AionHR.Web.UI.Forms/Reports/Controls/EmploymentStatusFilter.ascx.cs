@@ -39,7 +39,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             return s;
         }
 
-
+        public Ext.Net.ComboBox Filter { get { return this.esId; } }
         private void FillStatus()
         {
             ListRequest statusReq = new ListRequest();

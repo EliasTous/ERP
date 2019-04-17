@@ -69,5 +69,10 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
             departmentId.Select(id);
         }
+
+        public void SetLabel(string newLabel)
+        {
+            departmentId.FieldLabel = newLabel;
+        }
     }
 }

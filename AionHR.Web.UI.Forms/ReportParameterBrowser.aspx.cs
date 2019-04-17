@@ -90,7 +90,7 @@ namespace AionHR.Web.UI.Forms
                 case 31201: return "EmployeeFilter.ascx";
                 case 31108: return "SponsorFilter.ascx";
                 case 51201: return "PayIdFilter.ascx";
-
+                case 31107: return "EmploymentStatusFilter.ascx";
 
                 default: X.Msg.Alert("Error","unknown control"); return "";
 
@@ -175,16 +175,24 @@ namespace AionHR.Web.UI.Forms
                                 break;
                             }
                             Control cont = LoadControl("Reports/Controls/" + GetControlNameByClassId(item.classId));
+                            IComboControl contAsCombo = cont as IComboControl;
+                            if (contAsCombo != null)
+                                contAsCombo.SetLabel(item.caption);
                             if(item.classId== 31201)
                             {
-                                ((EmployeeFilter)cont).EmployeeComboBox.FieldLabel = ((EmployeeFilter)cont).EmployeeComboBox.EmptyText;
+                                ((EmployeeFilter)cont).EmployeeComboBox.FieldLabel = item.caption;
                                 ((EmployeeFilter)cont).EmployeeComboBox.EmptyText = "";
+                            }
+                            if (item.classId == 31107)
+                            {
+                                ((EmploymentStatusFilter)cont).Filter.FieldLabel = ((EmploymentStatusFilter)cont).Filter.EmptyText;
+                                ((EmploymentStatusFilter)cont).Filter.EmptyText = "";
                             }
                             cont.ID= "control_" + item.id;
                             
                             if(valuesDict!=null && valuesDict.ContainsKey(item.id))
                             {
-                                IComboControl contAsCombo = cont as IComboControl;
+                               
                                 if (contAsCombo != null)
                                     contAsCombo.Select(valuesDict[item.id]);
                             }

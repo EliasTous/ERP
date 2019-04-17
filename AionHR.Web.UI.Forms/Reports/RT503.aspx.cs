@@ -108,7 +108,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         Viewport1.Hidden = true;
                         return;
                     }
-                    fillPayId();
+                    
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
 
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
@@ -188,20 +188,22 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
+        [DirectMethod]
+        public void SetLabels(string labels)
         {
-            ReportCompositeRequest req = new ReportCompositeRequest();
+            this.labels.Text = labels;
+        }
 
-            req.Size = "1000";
-            req.StartAt = "0";
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
 
-            req.Add(paymentMethodCombo.GetPaymentMethod());
-            req.Add(jobInfo1.GetJobInfo());
-            req.Add(GetPayId());
-
-
-
-            return req;
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
         }
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
@@ -236,7 +238,9 @@ namespace AionHR.Web.UI.Forms.Reports
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
-            ReportCompositeRequest req = GetRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
 
             ListResponse<AionHR.Model.Reports.RT503> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT503>(req);
             if (!resp.Success)
@@ -248,10 +252,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
             string user = _systemService.SessionHelper.GetCurrentUser();
-            string paymentMethod = paymentMethodCombo.GetPaymentMethodString();
-            string payRef = payId.SelectedItem.Text.ToString();
-            string department = jobInfo1.GetDepartment();
-            string position = jobInfo1.GetPosition();
+            
             // this variable for check if the user request arabic report or english   true mean arabic reprot
             bool isArabic = _systemService.SessionHelper.CheckIfArabicSession();
             //those two lines code for fill the viewer with your report 
@@ -323,40 +324,21 @@ namespace AionHR.Web.UI.Forms.Reports
             //    p.Payrolls = lines;
             //    s.Add(p);
             //}
-            int groupById = 1;//Change GroupType According to groupby lookup
-            var grpBy = Convert.ToInt32((groupBy.Value == null || groupBy.Value.ToString().Length == 0) ? "0" : groupBy.Value.ToString());
-            if (grpBy != 0)
-            {
-                groupById = Convert.ToInt32(grpBy);
-            }
-            GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic, (GroupedPayrollCrossReport.GroupType)groupById);
+            //int groupById = 1;//Change GroupType According to groupby lookup
+            //var grpBy = Convert.ToInt32((groupBy.Value == null || groupBy.Value.ToString().Length == 0) ? "0" : groupBy.Value.ToString());
+            //if (grpBy != 0)
+            //{
+            //    groupById = Convert.ToInt32(grpBy);
+            //}
+            GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic, 0);
             h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
-            //h.DataSource = s;
+            h.DataSource = resp.Items;
             //h.Parameters["columnCount"].Value = ens.Count + des.Count;
-            //h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            //h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            //string user = _systemService.SessionHelper.GetCurrentUser();
-            //h.Parameters["User"].Value = user;
-            if (resp.Items.Count > 0)
-            {
-
-
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["Branch"].Value = jobInfo1.GetBranch();
-                else
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_paymentMethod"] != "0")
-                    h.Parameters["Payment"].Value = paymentMethodCombo.GetPaymentMethodString();
-                else
-                    h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_payId"] != "0")
-                    h.Parameters["Ref"].Value = payRef;
-                else
-                    h.Parameters["Ref"].Value = GetGlobalResourceObject("Common", "All");
-                h.Parameters["User"].Value = user;
-            }
+            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            
+            h.Parameters["User"].Value = user;
+            h.Parameters["Filter"].Value = texts.Text;
 
             h.CreateDocument();
 
@@ -392,48 +374,7 @@ namespace AionHR.Web.UI.Forms.Reports
             //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport(true);
         }
-        private PayIdParameterSet GetPayId()
-        {
-            PayIdParameterSet p = new PayIdParameterSet();
-
-
-            if (!string.IsNullOrEmpty(payId.Value.ToString()))
-            {
-                p.payId = payId.Value.ToString(); ;
-
-
-
-            }
-            else
-            {
-                p.payId = "0";
-
-            }
-            return p;
-        }
-        private void fillPayId()
-        {
-            PayrollListRequest req = new PayrollListRequest();
-            req.Year = "0";
-            req.PeriodType = "5";
-            req.Status = "0";
-            req.Size = "30";
-            req.StartAt = "0";
-            req.Filter = "";
-
-            ListResponse<GenerationHeader> resp = _payrollService.ChildGetAll<GenerationHeader>(req);
-            if (!resp.Success)
-            {
-                Common.errorMessage(resp);
-                return;
-            }
-            string dateFormat = _systemService.SessionHelper.GetDateformat();
-            resp.Items.ForEach(x => x.payRefWithDateRange = x.payRef + " ( " + x.startDate.ToString(dateFormat) + " - " + x.endDate.ToString(dateFormat) + " )");
-            payIdStore.DataSource = resp.Items;
-            payIdStore.DataBind();
-
-
-        }
+        
 
 
     }

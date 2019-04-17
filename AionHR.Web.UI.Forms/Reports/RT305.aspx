@@ -29,6 +29,27 @@
             Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
+        function setVals(pms) {
+            //alert('vals are ' + pms);
+            App.direct.SetVals(pms);
+             App.Panel8.loader.url = '../ReportParameterBrowser.aspx?_reportName=RT305&values=' + pms;
+            
+        }
+        function setTexts(pms) {
+            //alert('texts are ' + pms);
+            App.direct.SetTexts(pms);
+            App.reportsParams.hide();
+            
+        }
+        function setLabels(labels) {
+            //alert('captions are'+labels);
+           
+            App.direct.SetLabels(labels);
+            var s = labels.split('^');
+            
+            App.reportsParams.setHeight((150 + (s.length*25)));
+        }
+      
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -41,6 +62,9 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
                <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
         <ext:Hidden ID="rtl" runat="server" />
+        <ext:Hidden ID="vals" runat="server" />
+        <ext:Hidden ID="texts" runat="server" />
+        <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="format" runat="server" />
 
 
@@ -60,30 +84,15 @@
 
                             <Items>
                              
-                                        <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:dateRange runat="server" ID="dateRange1"  />
-                                            </Content>
-                                        </ext:Container>
-                                <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:employeeCombo runat="server" ID="employeeCombo1" />
-                                            </Content>
-                                        </ext:Container>
-
-                                    <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" />
-
-                                    </Content>
-
-                                </ext:Container>
-                              
+                             
                                 
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
+                                          <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                       <Listeners>
+                                           <Click Handler=" App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
@@ -96,45 +105,7 @@
 
                             </Items>
                         </ext:Toolbar>
-                            <ext:Toolbar runat="server" Dock="Top">
-                            <Items> 
-                                    <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                <uc:TimeVariationTypeControl runat="server" ID="timeVariationType1"  />
-                                    </Content>
-
-                                </ext:Container>
-                                   <ext:ToolbarSeparator runat="server" />
-                                
-                                   <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
-                                    EmptyText="<%$ Resources: FieldApprovalStatus %>">
-                                    <Items>
-
-                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
-                                    </Items>
-
-                                </ext:ComboBox>
-                                  <ext:NumberField ID="fromDuration" runat="server" FieldLabel="<%$ Resources:fromDuration%>" Name="fromDuration" MinValue="0"   >
-                                      <Listeners>
-                                          <FocusLeave Handler="this.value<0 ? this.setValue(0) : this.value"></FocusLeave>
-                                      </Listeners>
-                                      </ext:NumberField>
-                                   <ext:ToolbarSeparator runat="server" />
-                                  
-                                  <ext:NumberField ID="toDuration" runat="server" FieldLabel="<%$ Resources:toDuration%>" Name="toDuration"  MinValue="0" >
-                                      <Listeners>
-                                          <FocusLeave Handler="this.value<0 ? this.setValue(0) : this.value"></FocusLeave>
-                                      </Listeners>
-                                      </ext:NumberField>
-                                      
-                                <ext:ToolbarSeparator runat="server" />
-
-
-                            </Items>
-                        </ext:Toolbar>
+                           
 
                   </DockedItems>
                     <Content>
@@ -157,7 +128,31 @@
 
             </Items>
         </ext:Viewport>
-
+         <ext:Window runat="server"  Icon="PageEdit"
+            ID="reportsParams"
+            Width="600"
+            Height="500"
+            Title="<%$Resources:Common,Parameters %>"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="FitLayout" Resizable="true">
+            <Listeners>
+                <Show Handler="App.Panel8.loader.load();"></Show>
+            </Listeners>
+            <Items>
+                <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
+                    <Loader runat="server" Url="../ReportParameterBrowser.aspx?_reportName=RT305" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+            
+                </Items>
+        </ext:Window>
 
 
 

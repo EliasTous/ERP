@@ -123,5 +123,10 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
             salaryTypeId.Select(id);
         }
+
+        public void SetLabel(string newLabel)
+        {
+            salaryTypeId.FieldLabel = newLabel;
+        }
     }
 }

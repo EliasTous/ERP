@@ -79,5 +79,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
             nationalityId.Select(id);
         }
+
+        public void SetLabel(string newLabel)
+        {
+            nationalityId.FieldLabel = newLabel;
+
+        }
     }
 }

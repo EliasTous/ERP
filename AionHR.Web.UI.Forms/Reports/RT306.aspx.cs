@@ -111,7 +111,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                    FillStatus();
+                   
                 }
                 catch { }
             }
@@ -203,7 +203,23 @@ namespace AionHR.Web.UI.Forms.Reports
 
         //    return req;
         //}
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
@@ -335,107 +351,32 @@ namespace AionHR.Web.UI.Forms.Reports
 
             try
             {
-                DashboardRequest req = GetDashboardRequest();
-                DashboardTimeListRequest r = new DashboardTimeListRequest();
-               
-               
-                r.fromDayId=date2.GetRange().DateFrom.ToString("yyyyMMdd");
-                r.toDayId= date2.GetRange().DateTo.ToString("yyyyMMdd");
-                r.employeeId = employeeCombo1.GetEmployee().employeeId;
-
-                r.timeCode = timeVariationType.GetTimeCode(); 
-                if (string.IsNullOrEmpty(approverId.Value.ToString()))
-                    r.approverId = 0;
-                else
-                    r.approverId = Convert.ToInt32(approverId.Value.ToString());
-                r.shiftId = "0";
-               
-                r.apStatus = string.IsNullOrEmpty(apStatus.Value.ToString()) ? "0" : apStatus.Value.ToString();
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
 
 
-                r.BranchId = req.BranchId;
-                r.PositionId = req.PositionId;
-                r.DivisionId = req.DivisionId;
-                r.DepartmentId = req.DepartmentId;
-                r.EsId = req.EsId;
-                r.StartAt = "0";
-                r.Size = "1000";
-              
-                ListResponse <Time> resp = _timeAttendanceService.ChildGetAll<Time>(r);
+                ListResponse<Model.Reports.RT306> resp = _reportsService.ChildGetAll<Model.Reports.RT306>(req);
                 if (!resp.Success)
+                {
                     Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
-                bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-                List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
-                int currentTimeCode;
-                resp.Items.ForEach(
-                     x =>
-                     {
-                         if (!string.IsNullOrEmpty(x.clockDuration))
-                         x.clockDurationString = time(Convert.ToInt32( x.clockDuration), true);
-                         if (!string.IsNullOrEmpty(x.duration))
-                             x.durationString = time(Convert.ToInt32(x.duration), true);
-
-                         if (Int32.TryParse(x.timeCode, out currentTimeCode))
-                         {
-                             x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
-                         }
-                         x.statusString = FillApprovalStatus(x.status);
-                         if (!string.IsNullOrEmpty(x.damageLevel))
-                             x.damageLevel = FillDamageLevelString(Convert.ToInt16(x.damageLevel));
-                         if (rtl)
-                             x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
-                         else
-                             x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("ddd, dd MMM yyyy ", new System.Globalization.CultureInfo("en-US"));
-
-
-                     }
-                     );
-
-
+                    return;
+                }
 
 
                 TimeApproval h = new TimeApproval();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = resp.Items;
-
-            //string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            //string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+               
             string user = _systemService.SessionHelper.GetCurrentUser();
-                h.Parameters["TotalClockDuration"].Value = time(resp.Items.Sum(x => Convert.ToInt32(x.clockDuration)), true);
-                h.Parameters["TotalDuration"].Value = time(resp.Items.Sum(x => Convert.ToInt32(x.duration)), true);
+               
                 //h.Parameters["FromParameter"].Value = from;
                 //h.Parameters["ToParameter"].Value = to;
-                h.Parameters["UserParameter"].Value = user;
-            //if (req.Parameters["_dayStatus"] != "0")
-            //    h.Parameters["dayStatusParameter"].Value = dayStatus.SelectedItem.Text;
-            //else
-            //    h.Parameters["dayStatusParameter"].Value = GetGlobalResourceObject("Common", "All");
-            //if (req.Parameters["_punchStatus"] != "0")
-            //    h.Parameters["punchStatus"].Value = punchStatus.SelectedItem.Text;
-            //else
-            //    h.Parameters["punchStatus"].Value = GetGlobalResourceObject("Common", "All");
-            //if (req.Parameters["_departmentId"] != "0")
-            //    h.Parameters["DepartmentName"].Value = jobInfo1.GetDepartment();
-            //else
-            //    h.Parameters["DepartmentName"].Value = GetGlobalResourceObject("Common", "All");
+                h.Parameters["User"].Value = user;
+                h.Parameters["Filters"].Value = texts.Text;
 
-
-
-
-            //ListRequest def = new ListRequest();
-            //int lateness = 0;
-            //ListResponse<KeyValuePair<string, string>> items = _systemService.ChildGetAll<KeyValuePair<string, string>>(def);
-            //try
-            //{
-            //    lateness = Convert.ToInt32(items.Items.Where(s => s.Key == "allowedLateness").First().Value);
-            //}
-            //catch
-            //{
-
-            //}
-            //h.Parameters["AllowedLatenessParameter"].Value = lateness;
-
+           
            
             h.CreateDocument();
 
@@ -449,102 +390,7 @@ namespace AionHR.Web.UI.Forms.Reports
             }
 
         }
-        private DashboardRequest GetDashboardRequest()
-        {
-
-            DashboardRequest req = new DashboardRequest();
-
-            int intResult;
-
-            var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
-            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
-            if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0")
-            {
-                req.EsId = Convert.ToInt32(esId.Value);
-
-
-
-            }
-            else
-            {
-                req.EsId = 0;
-
-            }
-
-
-
-
-
-            return req;
-        }
-        private string FillDamageLevelString(short? DamageLevel)
-        {
-            string R;
-            switch (DamageLevel)
-            {
-                case 1:
-                    R = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
-                    break;
-                case 2:
-                    R = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
-                    break;
-                default:
-                    R = string.Empty;
-                    break;
-
-            }
-            return R;
-        }
       
-        private string FillApprovalStatus(short? apStatus)
-        {
-            string R;
-            switch (apStatus)
-            {
-                case 1:
-                    R = GetLocalResourceObject("FieldNew").ToString();
-                    break;
-                case 2:
-                    R = GetLocalResourceObject("FieldApproved").ToString();
-                    break;
-                case -1:
-                    R = GetLocalResourceObject("FieldRejected").ToString();
-                    break;
-                default:
-                    R = string.Empty;
-                    break;
-
-
-            }
-            return R;
-        }
-        public static string time(int _minutes, bool _signed)
-        {
-            if (_minutes == 0)
-                return "00:00";
-
-            bool isNegative = _minutes < 0 ? true : false;
-
-            _minutes = Math.Abs(_minutes);
-
-            string hours = (_minutes / 60).ToString(), minutes = (_minutes % 60).ToString(), formattedTime;
-
-            if (hours.Length == 1)
-                hours = "0" + hours;
-
-            if (minutes.Length == 1)
-                minutes = "0" + minutes;
-
-            formattedTime = hours + ':' + minutes;
-
-            if (isNegative && _signed)
-                formattedTime = "-" + formattedTime;
-
-            return formattedTime;
-        }
 
       
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
@@ -594,23 +440,6 @@ namespace AionHR.Web.UI.Forms.Reports
         //    }
         //    return p;
         //}
-        [DirectMethod]
-        public object FillApprover(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
-        private void FillStatus()
-        {
-            ListRequest statusReq = new ListRequest();
-            ListResponse<EmploymentStatus> resp = _employeeService.ChildGetAll<EmploymentStatus>(statusReq);
-            statusStore.DataSource = resp.Items;
-            statusStore.DataBind();
-        }
-
+       
     }
 }

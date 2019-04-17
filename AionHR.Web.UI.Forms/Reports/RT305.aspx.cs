@@ -110,7 +110,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                    dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+                   
                     
                 }
                 catch { }
@@ -186,35 +186,24 @@ namespace AionHR.Web.UI.Forms.Reports
             else return "1";
         }
 
-
-        private ReportCompositeRequest GetRequest()
+        [DirectMethod]
+        public void SetLabels(string labels)
         {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-            ReportParameterSet TVrequest = new ReportParameterSet();
-            if (string.IsNullOrEmpty(apStatus.Value.ToString()))
-                TVrequest.Parameters.Add("_apStatus", "0");
-            else
-                TVrequest.Parameters.Add("_apStatus", apStatus.Value.ToString());
-
-            TVrequest.Parameters.Add("_fromDuration", fromDuration.Text);
-            TVrequest.Parameters.Add("_toDuration", toDuration.Text);
-
-            TVrequest.Parameters.Add("_esId", "0");
-            TVrequest.Parameters.Add("_fromDayId", dateRange1.GetRange().DateFrom.ToString(("yyyyMMdd")));
-            TVrequest.Parameters.Add("_toDayId", dateRange1.GetRange().DateTo.ToString(("yyyyMMdd")));
-           
-
-            req.Size = "1000";
-            req.StartAt = "0";
-
-            
-            
-            req.Add(employeeCombo1.GetEmployee());
-            req.Add(jobInfo1.GetJobInfo());
-            req.Add(TVrequest);
-
-            return req;
+            this.labels.Text = labels;
         }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
+
 
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
@@ -252,8 +241,10 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             try
             {
-
-                TimeVariationListRequest req = GetAbsentRequest();
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+                
 
                 ListResponse<Model.Reports.RT305> resp = _reportsService.ChildGetAll<Model.Reports.RT305>(req);
                 if (!resp.Success)
@@ -277,70 +268,20 @@ namespace AionHR.Web.UI.Forms.Reports
                 // }
 
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-                List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
-
-                resp.Items.ForEach(
-                    x =>
-                    {
-                        x.edAmount = Math.Round(x.edAmount, 2);
-                        x.clockDurationString = ConstTimeVariationType.time(x.clockDuration, true);
-                        x.durationString = ConstTimeVariationType.time(x.duration, true);
-
-                        x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
-
-                        x.apStatusString = FillApprovalStatus(x.apStatus);
-                        x.damageLevelString = FillDamageLevelString(x.damageLevel);
-                        if (rtl)
-                            x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
-                        else
-                            x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
-
-
-                    }
-                    );
+                
 
                 Absense h = new Absense();
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
                 h.DataSource = resp.Items;
 
-                string from = req.fromDayId.ToString(_systemService.SessionHelper.GetDateformat());
-                string to = req.toDayId.ToString(_systemService.SessionHelper.GetDateformat());
+                
                 string user = _systemService.SessionHelper.GetCurrentUser();
 
-                h.Parameters["From"].Value = from;
-                h.Parameters["To"].Value = to;
+                h.Parameters["Filters"].Value = texts.Text;
                 h.Parameters["User"].Value = user;
 
-
-                if (resp.Items.Count > 0)
-                {
-                    //if (req.Parameters["_departmentId"] != "0")
-                    //    h.Parameters["Department"].Value = resp.Items[0].departmentName;
-                    //else
-                    //    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-
-                    if (req.Parameters["_branchId"] != "0")
-                        h.Parameters["Branch"].Value = resp.Items[0].branchName;
-                    else
-                        h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-                    if (req.Parameters["_positionId"] != "0")
-                        h.Parameters["Position"].Value = jobInfo1.GetPosition();
-                    else
-                        h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
-
-                    if (req.Parameters["_divisionId"] != "0")
-                        h.Parameters["Division"].Value = jobInfo1.GetDivision();
-                    else
-                        h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
-
-                    if (req.Parameters["_employeeId"] != "0")
-                        h.Parameters["Employee"].Value = resp.Items[0].employeeName.fullName;
-                    else
-                        h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
-                }
-
+                
 
 
 
@@ -386,87 +327,8 @@ namespace AionHR.Web.UI.Forms.Reports
             //FillReport(true);
         }
 
-        private TimeVariationListRequest GetAbsentRequest()
-        {
+      
 
-            TimeVariationListRequest reqTV = new TimeVariationListRequest();
-            reqTV.BranchId = jobInfo1.GetJobInfo().BranchId == null ? reqTV.BranchId = 0 : jobInfo1.GetJobInfo().BranchId;
-            reqTV.DepartmentId = jobInfo1.GetJobInfo().DepartmentId == null ? reqTV.DepartmentId = 0 : jobInfo1.GetJobInfo().DepartmentId;
-            reqTV.DivisionId = jobInfo1.GetJobInfo().DivisionId == null ? reqTV.DivisionId = 0 : jobInfo1.GetJobInfo().DivisionId;
-            reqTV.PositionId = jobInfo1.GetJobInfo().PositionId == null ? reqTV.PositionId = 0 : jobInfo1.GetJobInfo().PositionId;
-            reqTV.EsId = 0;
-            reqTV.fromDayId = dateRange1.GetRange().DateFrom;
-            reqTV.toDayId = dateRange1.GetRange().DateTo;
-            reqTV.employeeId = employeeCombo1.GetEmployee().employeeId.ToString();
-            if (string.IsNullOrEmpty(apStatus.Value.ToString()))
-            {
-
-                reqTV.apStatus = "0";
-            }
-            else
-                reqTV.apStatus = apStatus.Value.ToString();
-            if (string.IsNullOrEmpty(fromDuration.Text))
-            {
-
-                reqTV.fromDuration = "0";
-            }
-            else
-                reqTV.fromDuration = fromDuration.Text;
-            if (string.IsNullOrEmpty(toDuration.Text))
-            {
-
-                reqTV.toDuration = "0";
-            }
-            else
-                reqTV.toDuration = toDuration.Text;
-
-            reqTV.timeCode = timeVariationType1.GetTimeCode();
-
-
-            return reqTV;
-        }
-
-     
-        private string FillApprovalStatus(short? apStatus)
-        {
-            string R;
-            switch (apStatus)
-            {
-                case 1:
-                    R = GetLocalResourceObject("FieldNew").ToString();
-                    break;
-                case 2:
-                    R = GetLocalResourceObject("FieldApproved").ToString();
-                    break;
-                case -1:
-                    R = GetLocalResourceObject("FieldRejected").ToString();
-                    break;
-                default:
-                    R = string.Empty;
-                    break;
-
-
-            }
-            return R;
-        }
-
-        private string FillDamageLevelString(short? DamageLevel)
-        {
-            string R;
-            switch (DamageLevel)
-            {
-                case 1:
-                    R = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
-                    break;
-                case 2:
-                    R = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
-                    break;
-                default:
-                    R = string.Empty;
-                    break;
-
-            }
-            return R;
-        }
+  
     }
 }
