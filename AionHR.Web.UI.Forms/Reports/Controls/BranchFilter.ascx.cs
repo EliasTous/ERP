@@ -23,6 +23,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
 
+        public ComboBox GetComboBox()
+        {
+            return branchId;
+        }
+
         public void Select(object id)
         {
             branchId.Select(id);

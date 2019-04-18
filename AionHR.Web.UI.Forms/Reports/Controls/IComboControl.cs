@@ -4,5 +4,6 @@
     {
         void Select(object id);
         void SetLabel(string newLabel);
+        Ext.Net.ComboBox GetComboBox();
     }
 }

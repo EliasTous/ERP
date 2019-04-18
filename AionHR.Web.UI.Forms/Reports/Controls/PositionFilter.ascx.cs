@@ -21,6 +21,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
     {
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
 
+        public ComboBox GetComboBox()
+        {
+            return positionId;
+        }
+
         public void Select(object id)
         {
             positionId.Select(id);

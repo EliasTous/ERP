@@ -74,5 +74,10 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
             departmentId.FieldLabel = newLabel;
         }
+
+        public ComboBox GetComboBox()
+        {
+            return departmentId;
+        }
     }
 }
