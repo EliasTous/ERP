@@ -78,7 +78,7 @@
                     Margins="0 0 0 0"
                     Region="Center">
                  <DockedItems>
-                        <ext:Toolbar runat="server" Height="50" Dock="Top">
+                        <ext:Toolbar runat="server" Height="30" Dock="Top">
 
                    
                             <Items>
@@ -98,7 +98,7 @@
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
-                                        <ext:Label runat="server" ID="selectedFilters" />
+                                        
                                     </Content>
                                 </ext:Container>
                                        
@@ -106,7 +106,13 @@
 
                             </Items>
                         </ext:Toolbar>
-                      
+                       <ext:Toolbar runat="server" Height="30" Dock="Top">
+
+                   
+                            <Items>
+                               <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                             </ext:Toolbar>
 
                  </DockedItems>
                     <Content>

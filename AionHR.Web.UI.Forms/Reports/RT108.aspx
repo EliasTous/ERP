@@ -79,8 +79,8 @@
                     AutoScroll="true"
                     Margins="0 0 0 0"
                     Region="Center">
-                    <TopBar>
-                        <ext:Toolbar runat="server" Height="60">
+                    <DockedItems>
+                        <ext:Toolbar runat="server" Height="30" Dock="Top">
 
                             <Items>
                                 <ext:Container runat="server" Hidden="true">
@@ -174,7 +174,7 @@
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
-                                       <ext:Label runat="server" ID="selectedFilters" />
+                                    
                                     </Content>
                                 </ext:Container>
                                 
@@ -183,8 +183,13 @@
                                 
                             </Items>
                         </ext:Toolbar>
+                            <ext:Toolbar runat="server" Height="30" Dock="Top">
 
-                    </TopBar>
+                            <Items>
+                                   <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                                </ext:Toolbar>
+                    </DockedItems>
                     <Content>
 
                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"

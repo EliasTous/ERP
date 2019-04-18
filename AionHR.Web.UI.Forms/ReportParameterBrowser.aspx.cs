@@ -273,7 +273,7 @@ namespace AionHR.Web.UI.Forms
                     if (pair[0].StartsWith("date_") && !string.IsNullOrEmpty(pair[1]))
                     {
                         vals += pair[0].Split('_')[1] + "|" + DateTime.Parse(pair[1]).ToString("yyyyMMdd") + "^";
-                        
+                        texts+= "[" + allCaptions[Convert.ToInt32(pair[0].Split('_')[1]) - 1] + ":" + DateTime.Parse(pair[1]).ToString(_systemService.SessionHelper.GetDateformat()) + "]";
                     }
                 }
             }
