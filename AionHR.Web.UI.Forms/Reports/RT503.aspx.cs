@@ -29,6 +29,7 @@ using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
 using Reports.GroupedPayRollCross;
+using System.Text.RegularExpressions;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -330,7 +331,7 @@ namespace AionHR.Web.UI.Forms.Reports
             //{
             //    groupById = Convert.ToInt32(grpBy);
             //}
-            GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic, 0);
+            GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic, GroupedPayrollCrossReport.GroupType.Department);
             h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
             h.DataSource = resp.Items;
             //h.Parameters["columnCount"].Value = ens.Count + des.Count;
@@ -338,8 +339,56 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             
             h.Parameters["User"].Value = user;
-            h.Parameters["Filter"].Value = texts.Text;
+            //h.Parameters["Filter"].Value = texts.Text;
+            var values = texts.Text.Split(']');
+            string[] filter = new string[values.Length - 1];
 
+            for (int i = 0; i < values.Length - 1; i++)
+            {
+                filter[i] = values[i];
+                filter[i] = Regex.Replace(filter[i], @"\[", "");
+                string[] parametrs = filter[i].Split(':');
+
+                for (int x = 0; x <= parametrs.Length - 1; x = +2)
+                {
+                    if (parametrs[x] == "pay id")
+                    {
+                        h.Parameters["Ref"].Value = parametrs[x + 1];
+                        break;
+                    }
+                   
+                    if (parametrs[x] == "branch")
+                    {
+                        h.Parameters["Branch"].Value = parametrs[x + 1];
+                        break;
+                    }
+                    if (parametrs[x] == "position")
+                    {
+                        h.Parameters["Position"].Value = parametrs[x + 1];
+                        break;
+                    }
+                    if (parametrs[x] == "division")
+                    {
+                        h.Parameters["Division"].Value = parametrs[x + 1];
+                        break;
+                    }
+                  
+                }
+
+
+
+                }
+
+            if (string.IsNullOrEmpty(h.Parameters["Branch"].Value.ToString()))
+                h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
+            if (string.IsNullOrEmpty(h.Parameters["Ref"].Value.ToString()))
+                h.Parameters["Ref"].Value = GetGlobalResourceObject("Common", "All");
+            if (string.IsNullOrEmpty(h.Parameters["Position"].Value.ToString()))
+                h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
+
+            if (string.IsNullOrEmpty(h.Parameters["Division"].Value.ToString()))
+                h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
+           
             h.CreateDocument();
 
 

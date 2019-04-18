@@ -15,7 +15,7 @@ namespace Reports.EmployeePayRollCross
         {
             
             InitializeComponent();
-          
+           
             if (isArabic)
             {
                 fieldSalaryDate.Caption = "التاريخ";
@@ -106,6 +106,18 @@ namespace Reports.EmployeePayRollCross
             //    e.Result = Comparer.Default.Compare(orderValue1, orderValue2);
             //    e.Handled = true;
             //}
+        }
+
+        private void EmployeePayrollCrossReport_AfterPrint(object sender, EventArgs e)
+        {
+            this.xrLabel4.LocationF = new PointF((float)23.38, (float)82.38);
+
+        }
+
+        private void xrLabel4_LocationChanged(object sender, ChangeEventArgs e)
+        {
+
+           
         }
     }
 

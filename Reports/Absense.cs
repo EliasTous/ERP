@@ -36,24 +36,22 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel15;
     private XRLabel xrLabel14;
     private XRLabel xrLabel13;
-    private XRLabel xrLabel12;
     private XRLabel xrLabel10;
     private XRLabel xrLabel9;
     private XRLabel xrLabel8;
-    private XRLabel xrLabel7;
     private XRLabel xrLabel6;
     private XRLabel xrLabel5;
     private XRLabel xrLabel4;
     private XRLabel xrLabel3;
     private XRLabel xrLabel2;
     private XRLabel xrLabel1;
-    private DevExpress.XtraReports.Parameters.Parameter From;
-    private DevExpress.XtraReports.Parameters.Parameter To;
+    private DevExpress.XtraReports.Parameters.Parameter TimeCode;
+    private DevExpress.XtraReports.Parameters.Parameter ApprovalStatus;
     private DevExpress.XtraReports.Parameters.Parameter Department;
     private DevExpress.XtraReports.Parameters.Parameter Branch;
     private DevExpress.XtraReports.Parameters.Parameter Position;
     private DevExpress.XtraReports.Parameters.Parameter Division;
-    private DevExpress.XtraReports.Parameters.Parameter Employee;
+    private DevExpress.XtraReports.Parameters.Parameter EmploymentStatus;
     private XRLabel xrLabel23;
     private PageHeaderBand PageHeader;
     private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
@@ -77,6 +75,11 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel30;
     private GroupHeaderBand GroupHeader1;
     private XRLabel xrLabel31;
+    private XRLabel xrLabel7;
+    private XRLabel xrLabel12;
+    private XRLabel xrLabel32;
+    private XRLabel xrLabel33;
+    private DevExpress.XtraReports.Parameters.Parameter Employee;
 
     /// <summary>
     /// Required designer variable.
@@ -161,22 +164,22 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
-            this.From = new DevExpress.XtraReports.Parameters.Parameter();
+            this.TimeCode = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             this.Branch = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.Department = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
-            this.Employee = new DevExpress.XtraReports.Parameters.Parameter();
+            this.EmploymentStatus = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
-            this.To = new DevExpress.XtraReports.Parameters.Parameter();
+            this.ApprovalStatus = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.Position = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
             this.Division = new DevExpress.XtraReports.Parameters.Parameter();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.GroupFooter2 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.xrLabel31 = new DevExpress.XtraReports.UI.XRLabel();
@@ -184,6 +187,9 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel29 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
+            this.xrLabel32 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel33 = new DevExpress.XtraReports.UI.XRLabel();
+            this.Employee = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -598,27 +604,20 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel6.StylePriority.UseFont = false;
             // 
-            // xrLabel7
-            // 
-            resources.ApplyResources(this.xrLabel7, "xrLabel7");
-            this.xrLabel7.Name = "xrLabel7";
-            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel7.StylePriority.UseFont = false;
-            // 
             // xrLabel8
             // 
             this.xrLabel8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.From, "Text", "")});
+            new DevExpress.XtraReports.UI.XRBinding(this.TimeCode, "Text", "")});
             resources.ApplyResources(this.xrLabel8, "xrLabel8");
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel8.StylePriority.UseFont = false;
             // 
-            // From
+            // TimeCode
             // 
-            resources.ApplyResources(this.From, "From");
-            this.From.Name = "From";
-            this.From.Visible = false;
+            resources.ApplyResources(this.TimeCode, "TimeCode");
+            this.TimeCode.Name = "TimeCode";
+            this.TimeCode.Visible = false;
             // 
             // xrLabel9
             // 
@@ -650,36 +649,27 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.Department.Name = "Department";
             this.Department.Visible = false;
             // 
-            // xrLabel12
+            // EmploymentStatus
             // 
-            this.xrLabel12.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Employee, "Text", "")});
-            resources.ApplyResources(this.xrLabel12, "xrLabel12");
-            this.xrLabel12.Name = "xrLabel12";
-            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel12.StylePriority.UseFont = false;
-            // 
-            // Employee
-            // 
-            resources.ApplyResources(this.Employee, "Employee");
-            this.Employee.Name = "Employee";
-            this.Employee.ValueInfo = " ";
-            this.Employee.Visible = false;
+            resources.ApplyResources(this.EmploymentStatus, "EmploymentStatus");
+            this.EmploymentStatus.Name = "EmploymentStatus";
+            this.EmploymentStatus.ValueInfo = " ";
+            this.EmploymentStatus.Visible = false;
             // 
             // xrLabel13
             // 
             this.xrLabel13.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.To, "Text", "")});
+            new DevExpress.XtraReports.UI.XRBinding(this.ApprovalStatus, "Text", "")});
             resources.ApplyResources(this.xrLabel13, "xrLabel13");
             this.xrLabel13.Name = "xrLabel13";
             this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel13.StylePriority.UseFont = false;
             // 
-            // To
+            // ApprovalStatus
             // 
-            resources.ApplyResources(this.To, "To");
-            this.To.Name = "To";
-            this.To.Visible = false;
+            resources.ApplyResources(this.ApprovalStatus, "ApprovalStatus");
+            this.ApprovalStatus.Name = "ApprovalStatus";
+            this.ApprovalStatus.Visible = false;
             // 
             // xrLabel14
             // 
@@ -714,6 +704,8 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             // PageHeader
             // 
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel32,
+            this.xrLabel33,
             this.xrLabel15,
             this.xrLabel14,
             this.xrLabel13,
@@ -731,6 +723,22 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.PageHeader, "PageHeader");
             this.PageHeader.Name = "PageHeader";
             this.PageHeader.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.groupHeaderBand1_BeforePrint);
+            // 
+            // xrLabel12
+            // 
+            this.xrLabel12.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.EmploymentStatus, "Text", "")});
+            resources.ApplyResources(this.xrLabel12, "xrLabel12");
+            this.xrLabel12.Name = "xrLabel12";
+            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel12.StylePriority.UseFont = false;
+            // 
+            // xrLabel7
+            // 
+            resources.ApplyResources(this.xrLabel7, "xrLabel7");
+            this.xrLabel7.Name = "xrLabel7";
+            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel7.StylePriority.UseFont = false;
             // 
             // GroupFooter1
             // 
@@ -805,6 +813,27 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.GroupHeader1.Level = 1;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
+            // xrLabel32
+            // 
+            resources.ApplyResources(this.xrLabel32, "xrLabel32");
+            this.xrLabel32.Name = "xrLabel32";
+            this.xrLabel32.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel32.StylePriority.UseFont = false;
+            // 
+            // xrLabel33
+            // 
+            this.xrLabel33.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.Employee, "Text", "")});
+            resources.ApplyResources(this.xrLabel33, "xrLabel33");
+            this.xrLabel33.Name = "xrLabel33";
+            this.xrLabel33.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel33.StylePriority.UseFont = false;
+            // 
+            // Employee
+            // 
+            this.Employee.Name = "Employee";
+            this.Employee.Visible = false;
+            // 
             // Absense
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -823,13 +852,14 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.DataSource = this.objectDataSource1;
             resources.ApplyResources(this, "$this");
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
-            this.From,
-            this.To,
+            this.TimeCode,
+            this.ApprovalStatus,
             this.Department,
             this.Branch,
             this.Position,
             this.Division,
             this.User,
+            this.EmploymentStatus,
             this.Employee});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,

@@ -97,7 +97,8 @@
                                         </ext:Button>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
-                                                  <Click Handler=" if(App.payId.getValue()==null)  {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}   callbackPanel.PerformCallback('1');" />
+                                                 <%-- <Click Handler=" if(App.payId.getValue()==null)  {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}   callbackPanel.PerformCallback('1');" />--%>
+                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
                                         <ext:Label runat="server" ID="selectedFilters" />
