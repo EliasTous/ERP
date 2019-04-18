@@ -33,7 +33,7 @@
             //alert('vals are ' + pms);
             App.direct.SetVals(pms);
              App.Panel8.loader.url = '../ReportParameterBrowser.aspx?_reportName=RT306&values=' + pms;
-            alert(pms);
+            
         }
         function setTexts(pms) {
             //alert('texts are ' + pms);
