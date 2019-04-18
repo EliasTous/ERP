@@ -11,6 +11,7 @@ using System.Linq;
 using System.Resources;
 using System.Web;
 using AionHR.Web.UI.Forms.App_GlobalResources;
+using System.Text.RegularExpressions;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -70,5 +71,29 @@ namespace AionHR.Web.UI.Forms
             }
             return resp.Items;
         }
+         public static Dictionary<string, string> FetchReportParameters(string text)
+        {
+            var values = text.Split(']');
+            string[] filter = new string[values.Length - 1];
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+            for (int i = 0; i < values.Length - 1; i++)
+            {
+                filter[i] = values[i];
+                filter[i] = Regex.Replace(filter[i], @"\[", "");
+
+                string[] parametrs = filter[i].Split(':');
+                for (int x = 0; x <= parametrs.Length - 1; x = +2)
+                {
+
+                    parameters.Add(parametrs[x], parametrs[x + 1]);
+
+
+                }
+            }
+            return parameters;
+       
+
+}
     }
 }

@@ -310,8 +310,8 @@ namespace AionHR.Web.UI.Forms.Reports
             //    p.Payrolls = lines;
             //    s.Add(p);
             //}
-
-            EmployeePayrollCrossReport h = new EmployeePayrollCrossReport(resp.Items, isArabic);
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            EmployeePayrollCrossReport h = new EmployeePayrollCrossReport(resp.Items, isArabic, parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
