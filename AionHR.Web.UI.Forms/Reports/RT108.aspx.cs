@@ -27,6 +27,7 @@ using Reports;
 using System.Threading;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Reports;
+using System.Text.RegularExpressions;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -265,6 +266,36 @@ namespace AionHR.Web.UI.Forms.Reports
             y.DataSource = resp.Items;
             string user = _systemService.SessionHelper.GetCurrentUser();
             y.Parameters["User"].Value = user;
+            var values = texts.Text.Split(']');
+            string[] filter = new string[values.Length - 1];
+
+            for (int i = 0; i < values.Length - 1; i++)
+            {
+                filter[i] = values[i];
+                filter[i] = Regex.Replace(filter[i], @"\[", "");
+                string[] parametrs = filter[i].Split(':');
+                for (int x = 0; x <= parametrs.Length - 1; x = +2)
+                {
+                    if (parametrs[x] == "pay id")
+                    {
+                        y.Parameters["Ref"].Value = parametrs[x + 1];
+                        break;
+                    }
+                    if (parametrs[x] == "payment method")
+                    {
+                        y.Parameters["Payment"].Value = parametrs[x + 1];
+                        break;
+                    }
+                    if (parametrs[x] == "branch")
+                    {
+                        y.Parameters["Branch"].Value = parametrs[x + 1];
+                        break;
+                    }
+
+
+                }
+
+            }
             if (resp.Items.Count > 0)
             {
                 if (req.Parameters["_departmentId"] != "0")

@@ -315,13 +315,13 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
-           
+
             //h.DataSource = s;
             //h.objectDataSource2.DataSource = resp.Items.Where(x => x.edType == 2).ToList();
 
 
 
-
+            string test = texts.Text;
             h.Parameters["User"].Value = user;
             var values = texts.Text.Split(']');
             string[] filter = new string[values.Length-1];
@@ -348,6 +348,22 @@ namespace AionHR.Web.UI.Forms.Reports
                         h.Parameters["Branch"].Value = parametrs[x + 1];
                         break;
                     }
+                    if (parametrs[x] == "position")
+                    {
+                        h.Parameters["Position"].Value = parametrs[x + 1];
+                        break;
+                    }
+                    if (parametrs[x] == "division")
+                    {
+                        h.Parameters["Division"].Value = parametrs[x + 1];
+                        break;
+                    }
+                    if (parametrs[x] == "employee")
+                    {
+                        h.Parameters["Employee"].Value = parametrs[x + 1];
+                        break;
+                    }
+                   
 
 
                 }
@@ -359,6 +375,13 @@ namespace AionHR.Web.UI.Forms.Reports
                 h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
             if (string.IsNullOrEmpty( h.Parameters["Ref"].Value.ToString()))
                 h.Parameters["Ref"].Value = GetGlobalResourceObject("Common", "All");
+
+            if (string.IsNullOrEmpty(h.Parameters["Position"].Value.ToString()))
+                h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
+            if (string.IsNullOrEmpty(h.Parameters["Division"].Value.ToString()))
+                h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
+            if (string.IsNullOrEmpty(h.Parameters["Employee"].Value.ToString()))
+                h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
 
 
             //string filter = 

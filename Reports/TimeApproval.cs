@@ -36,7 +36,7 @@ public class TimeApproval : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel38;
     private XRLabel xrLabel31;
     private XRLabel xrLabel30;
-    private DevExpress.XtraReports.Parameters.Parameter UserParameter;
+    private DevExpress.XtraReports.Parameters.Parameter User;
     private XRLabel xrLabel1;
     private DevExpress.XtraReports.Parameters.Parameter TotalClockDuration;
     private DevExpress.XtraReports.Parameters.Parameter TotalDuration;
@@ -57,6 +57,34 @@ public class TimeApproval : DevExpress.XtraReports.UI.XtraReport
     private XRTableCell xrTableCell9;
     private XRTableCell xrTableCell11;
     private XRTableCell xrTableCell12;
+    private DevExpress.XtraReports.Parameters.Parameter timeCode;
+    private DevExpress.XtraReports.Parameters.Parameter employmentStatus;
+    private DevExpress.XtraReports.Parameters.Parameter approver;
+    private DevExpress.XtraReports.Parameters.Parameter employee;
+    private DevExpress.XtraReports.Parameters.Parameter position;
+    private DevExpress.XtraReports.Parameters.Parameter division;
+    private DevExpress.XtraReports.Parameters.Parameter branch;
+    private DevExpress.XtraReports.Parameters.Parameter department;
+    private DevExpress.XtraReports.Parameters.Parameter approvalStatus;
+    private PageHeaderBand PageHeader;
+    private XRLabel xrLabel35;
+    private XRLabel xrLabel34;
+    private XRLabel xrLabel33;
+    private XRLabel xrLabel32;
+    private XRLabel xrLabel29;
+    private XRLabel xrLabel27;
+    private XRLabel xrLabel18;
+    private XRLabel xrLabel16;
+    private XRLabel xrLabel15;
+    private XRLabel xrLabel8;
+    private XRLabel xrLabel9;
+    private XRLabel xrLabel14;
+    private XRLabel xrLabel5;
+    private XRLabel xrLabel6;
+    private XRLabel xrLabel7;
+    private XRLabel xrLabel4;
+    private XRLabel xrLabel3;
+    private XRLabel xrLabel2;
 
     /// <summary>
     /// Required designer variable.
@@ -124,13 +152,22 @@ public class TimeApproval : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
             this.pageFooterBand1 = new DevExpress.XtraReports.UI.PageFooterBand();
             this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
-            this.UserParameter = new DevExpress.XtraReports.Parameters.Parameter();
+            this.User = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrPageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.TotalClockDuration = new DevExpress.XtraReports.Parameters.Parameter();
             this.TotalDuration = new DevExpress.XtraReports.Parameters.Parameter();
             this.reportHeaderBand1 = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.timeCode = new DevExpress.XtraReports.Parameters.Parameter();
+            this.employmentStatus = new DevExpress.XtraReports.Parameters.Parameter();
+            this.approver = new DevExpress.XtraReports.Parameters.Parameter();
+            this.employee = new DevExpress.XtraReports.Parameters.Parameter();
+            this.position = new DevExpress.XtraReports.Parameters.Parameter();
+            this.division = new DevExpress.XtraReports.Parameters.Parameter();
+            this.branch = new DevExpress.XtraReports.Parameters.Parameter();
+            this.department = new DevExpress.XtraReports.Parameters.Parameter();
+            this.approvalStatus = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel23 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.Title = new DevExpress.XtraReports.UI.XRControlStyle();
@@ -142,6 +179,25 @@ public class TimeApproval : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
+            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel29 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel32 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel33 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel34 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel35 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -439,16 +495,16 @@ public class TimeApproval : DevExpress.XtraReports.UI.XtraReport
             // xrLabel22
             // 
             this.xrLabel22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.UserParameter, "Text", "")});
+            new DevExpress.XtraReports.UI.XRBinding(this.User, "Text", "")});
             resources.ApplyResources(this.xrLabel22, "xrLabel22");
             this.xrLabel22.Name = "xrLabel22";
             this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
-            // UserParameter
+            // User
             // 
-            resources.ApplyResources(this.UserParameter, "UserParameter");
-            this.UserParameter.Name = "UserParameter";
-            this.UserParameter.Visible = false;
+            resources.ApplyResources(this.User, "User");
+            this.User.Name = "User";
+            this.User.Visible = false;
             // 
             // xrLabel21
             // 
@@ -488,6 +544,42 @@ public class TimeApproval : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel11});
             resources.ApplyResources(this.reportHeaderBand1, "reportHeaderBand1");
             this.reportHeaderBand1.Name = "reportHeaderBand1";
+            // 
+            // timeCode
+            // 
+            this.timeCode.Name = "timeCode";
+            // 
+            // employmentStatus
+            // 
+            this.employmentStatus.Name = "employmentStatus";
+            // 
+            // approver
+            // 
+            this.approver.Name = "approver";
+            // 
+            // employee
+            // 
+            this.employee.Name = "employee";
+            // 
+            // position
+            // 
+            this.position.Name = "position";
+            // 
+            // division
+            // 
+            this.division.Name = "division";
+            // 
+            // branch
+            // 
+            this.branch.Name = "branch";
+            // 
+            // department
+            // 
+            this.department.Name = "department";
+            // 
+            // approvalStatus
+            // 
+            this.approvalStatus.Name = "approvalStatus";
             // 
             // xrLabel23
             // 
@@ -601,6 +693,156 @@ public class TimeApproval : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel10.StylePriority.UseTextAlignment = false;
             this.xrLabel10.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrLabel10_PrintOnPage);
             // 
+            // PageHeader
+            // 
+            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel2,
+            this.xrLabel3,
+            this.xrLabel4,
+            this.xrLabel7,
+            this.xrLabel6,
+            this.xrLabel5,
+            this.xrLabel14,
+            this.xrLabel9,
+            this.xrLabel8,
+            this.xrLabel15,
+            this.xrLabel16,
+            this.xrLabel18,
+            this.xrLabel27,
+            this.xrLabel29,
+            this.xrLabel32,
+            this.xrLabel33,
+            this.xrLabel34,
+            this.xrLabel35});
+            resources.ApplyResources(this.PageHeader, "PageHeader");
+            this.PageHeader.Name = "PageHeader";
+            // 
+            // xrLabel2
+            // 
+            resources.ApplyResources(this.xrLabel2, "xrLabel2");
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel3
+            // 
+            resources.ApplyResources(this.xrLabel3, "xrLabel3");
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel4
+            // 
+            resources.ApplyResources(this.xrLabel4, "xrLabel4");
+            this.xrLabel4.Name = "xrLabel4";
+            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel7
+            // 
+            resources.ApplyResources(this.xrLabel7, "xrLabel7");
+            this.xrLabel7.Name = "xrLabel7";
+            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel6
+            // 
+            resources.ApplyResources(this.xrLabel6, "xrLabel6");
+            this.xrLabel6.Name = "xrLabel6";
+            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel5
+            // 
+            resources.ApplyResources(this.xrLabel5, "xrLabel5");
+            this.xrLabel5.Name = "xrLabel5";
+            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel14
+            // 
+            resources.ApplyResources(this.xrLabel14, "xrLabel14");
+            this.xrLabel14.Name = "xrLabel14";
+            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel9
+            // 
+            resources.ApplyResources(this.xrLabel9, "xrLabel9");
+            this.xrLabel9.Name = "xrLabel9";
+            this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel8
+            // 
+            resources.ApplyResources(this.xrLabel8, "xrLabel8");
+            this.xrLabel8.Name = "xrLabel8";
+            this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel15
+            // 
+            this.xrLabel15.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.approvalStatus, "Text", "")});
+            resources.ApplyResources(this.xrLabel15, "xrLabel15");
+            this.xrLabel15.Name = "xrLabel15";
+            this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel16
+            // 
+            this.xrLabel16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.department, "Text", "")});
+            resources.ApplyResources(this.xrLabel16, "xrLabel16");
+            this.xrLabel16.Name = "xrLabel16";
+            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel18
+            // 
+            this.xrLabel18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.branch, "Text", "")});
+            resources.ApplyResources(this.xrLabel18, "xrLabel18");
+            this.xrLabel18.Name = "xrLabel18";
+            this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel27
+            // 
+            this.xrLabel27.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.division, "Text", "")});
+            resources.ApplyResources(this.xrLabel27, "xrLabel27");
+            this.xrLabel27.Name = "xrLabel27";
+            this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel29
+            // 
+            this.xrLabel29.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.position, "Text", "")});
+            resources.ApplyResources(this.xrLabel29, "xrLabel29");
+            this.xrLabel29.Name = "xrLabel29";
+            this.xrLabel29.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel32
+            // 
+            this.xrLabel32.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.employee, "Text", "")});
+            resources.ApplyResources(this.xrLabel32, "xrLabel32");
+            this.xrLabel32.Name = "xrLabel32";
+            this.xrLabel32.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel33
+            // 
+            this.xrLabel33.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.approver, "Text", "")});
+            resources.ApplyResources(this.xrLabel33, "xrLabel33");
+            this.xrLabel33.Name = "xrLabel33";
+            this.xrLabel33.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel34
+            // 
+            this.xrLabel34.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.employmentStatus, "Text", "")});
+            resources.ApplyResources(this.xrLabel34, "xrLabel34");
+            this.xrLabel34.Name = "xrLabel34";
+            this.xrLabel34.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel35
+            // 
+            this.xrLabel35.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.timeCode, "Text", "")});
+            resources.ApplyResources(this.xrLabel35, "xrLabel35");
+            this.xrLabel35.Name = "xrLabel35";
+            this.xrLabel35.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
             // TimeApproval
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -610,15 +852,25 @@ public class TimeApproval : DevExpress.XtraReports.UI.XtraReport
             this.groupHeaderBand1,
             this.pageFooterBand1,
             this.reportHeaderBand1,
-            this.GroupFooter1});
+            this.GroupFooter1,
+            this.PageHeader});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
             resources.ApplyResources(this, "$this");
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
-            this.UserParameter,
+            this.User,
             this.TotalClockDuration,
-            this.TotalDuration});
+            this.TotalDuration,
+            this.department,
+            this.branch,
+            this.division,
+            this.position,
+            this.employee,
+            this.approver,
+            this.employmentStatus,
+            this.timeCode,
+            this.approvalStatus});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.FieldCaption,

@@ -50,9 +50,9 @@
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.Ref = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
-            this.Payment = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Division = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.Department = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Position = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.Branch = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
@@ -311,32 +311,32 @@
             // xrLabel5
             // 
             this.xrLabel5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Payment, "Text", "")});
+            new DevExpress.XtraReports.UI.XRBinding(this.Division, "Text", "")});
             resources.ApplyResources(this.xrLabel5, "xrLabel5");
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel5.StylePriority.UseTextAlignment = false;
             // 
-            // Payment
+            // Division
             // 
-            resources.ApplyResources(this.Payment, "Payment");
-            this.Payment.Name = "Payment";
-            this.Payment.Visible = false;
+            resources.ApplyResources(this.Division, "Division");
+            this.Division.Name = "Division";
+            this.Division.Visible = false;
             // 
             // xrLabel4
             // 
             this.xrLabel4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Department, "Text", "")});
+            new DevExpress.XtraReports.UI.XRBinding(this.Position, "Text", "")});
             resources.ApplyResources(this.xrLabel4, "xrLabel4");
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.StylePriority.UseTextAlignment = false;
             // 
-            // Department
+            // Position
             // 
-            resources.ApplyResources(this.Department, "Department");
-            this.Department.Name = "Department";
-            this.Department.Visible = false;
+            resources.ApplyResources(this.Position, "Position");
+            this.Position.Name = "Position";
+            this.Position.Visible = false;
             // 
             // xrLabel3
             // 
@@ -404,10 +404,10 @@
             this.DataSource = this.dsSalaries1;
             resources.ApplyResources(this, "$this");
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
-            this.Department,
+            this.Position,
             this.User,
             this.Branch,
-            this.Payment,
+            this.Division,
             this.Ref});
             this.Version = "16.2";
             ((System.ComponentModel.ISupportInitialize)(this.dsSalaries1)).EndInit();
@@ -430,9 +430,9 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel6;
         private DevExpress.XtraReports.Parameters.Parameter Ref;
         private DevExpress.XtraReports.UI.XRLabel xrLabel5;
-        private DevExpress.XtraReports.Parameters.Parameter Payment;
+        private DevExpress.XtraReports.Parameters.Parameter Division;
         private DevExpress.XtraReports.UI.XRLabel xrLabel4;
-        private DevExpress.XtraReports.Parameters.Parameter Department;
+        private DevExpress.XtraReports.Parameters.Parameter Position;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         private DevExpress.XtraReports.Parameters.Parameter Branch;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
