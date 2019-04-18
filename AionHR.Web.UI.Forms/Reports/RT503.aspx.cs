@@ -331,7 +331,7 @@ namespace AionHR.Web.UI.Forms.Reports
             //{
             //    groupById = Convert.ToInt32(grpBy);
             //}
-            GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic, 0);
+            GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic, GroupedPayrollCrossReport.GroupType.Department);
             h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
             h.DataSource = resp.Items;
             //h.Parameters["columnCount"].Value = ens.Count + des.Count;

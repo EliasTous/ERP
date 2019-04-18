@@ -358,11 +358,11 @@ namespace AionHR.Web.UI.Forms.Reports
                         h.Parameters["Division"].Value = parametrs[x + 1];
                         break;
                     }
-                    if (parametrs[x] == "employee")
-                    {
-                        h.Parameters["Employee"].Value = parametrs[x + 1];
-                        break;
-                    }
+                    //if (parametrs[x] == "employee")
+                    //{
+                    //    h.Parameters["Employee"].Value = parametrs[x + 1];
+                    //    break;
+                    //}
                    
 
 
@@ -380,8 +380,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
             if (string.IsNullOrEmpty(h.Parameters["Division"].Value.ToString()))
                 h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
-            if (string.IsNullOrEmpty(h.Parameters["Employee"].Value.ToString()))
-                h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
+            //if (string.IsNullOrEmpty(h.Parameters["Employee"].Value.ToString()))
+            //    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
 
 
             //string filter = 
