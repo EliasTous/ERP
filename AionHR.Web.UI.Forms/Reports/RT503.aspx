@@ -41,6 +41,7 @@
             //alert('texts are ' + pms);
             App.direct.SetTexts(pms);
             App.reportsParams.hide();
+            App.selectedFilters.setText(pms);
             
         }
         function setLabels(labels) {
@@ -99,6 +100,7 @@
                                                   <Click Handler=" if(App.payId.getValue()==null)  {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}   callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
+                                        <ext:Label runat="server" ID="selectedFilters" />
                                     </Content>
                                 </ext:Container>
                                        

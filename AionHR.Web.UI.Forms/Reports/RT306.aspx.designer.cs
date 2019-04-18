@@ -139,6 +139,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Panel Center;
         
         /// <summary>
+        /// selectedFilters control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label selectedFilters;
+        
+        /// <summary>
         /// ASPxCallbackPanel1 control.
         /// </summary>
         /// <remarks>

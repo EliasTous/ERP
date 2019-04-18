@@ -39,7 +39,7 @@
             //alert('texts are ' + pms);
             App.direct.SetTexts(pms);
             App.reportsParams.hide();
-            alert(pms);
+            App.selectedFilters.setText(pms);
         }
         function setLabels(labels) {
             //alert('captions are'+labels);
@@ -98,6 +98,7 @@
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
+                                        <ext:Label runat="server" ID="selectedFilters" />
                                     </Content>
                                 </ext:Container>
                                        
