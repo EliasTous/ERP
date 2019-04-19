@@ -371,6 +371,7 @@
             this.To,
             this.Employee});
             this.Version = "16.2";
+            this.AfterPrint += new System.EventHandler(this.ShiftLogsReport_AfterPrint);
             ((System.ComponentModel.ISupportInitialize)(this.shiftLogsDS1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 

@@ -59,8 +59,16 @@ namespace Reports.PunchLog
             //    e.Handled = true;
             //}
         }
-      
-      
+
+        private void TopMargin_AfterPrint(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PunchLogReport_AfterPrint(object sender, EventArgs e)
+        {
+           
+        }
     }
 
 }

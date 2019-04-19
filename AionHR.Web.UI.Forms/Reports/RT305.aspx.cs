@@ -251,23 +251,31 @@ namespace AionHR.Web.UI.Forms.Reports
                     Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
 
-                // var edAmountList = resp.Items.GroupBy(x => new { x.employeeId, x.timeCode });
-                //// List<Model.Reports.RT305> RT305 = new List<Model.Reports.RT305>();
-                // foreach (var item in edAmountList)
-                // {
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+            List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
+
+            resp.Items.ForEach(
+                x =>
+                {
+                    x.edAmount = Math.Round(x.edAmount, 2);
+                    x.clockDurationString = ConstTimeVariationType.time(x.clockDuration, true);
+                    x.durationString = ConstTimeVariationType.time(x.duration, true);
+
+                    x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+
+                    x.apStatusString = FillApprovalStatus(x.apStatus);
+                    x.damageLevelString = FillDamageLevelString(x.damageLevel);
+                    if (rtl)
+                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                    else
+                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
 
 
-                //     var sums = item.ToList().GroupBy(x => new {x.employeeId , x.timeCode })
-                //                      .Select(group => group.Sum(x => x.edAmount)).First();
-
-                //         resp.Items.Where(x => x.employeeId == item.ToList().First().employeeId && x.timeCode == item.ToList().First().timeCode).ToList().ForEach(y => y.edAmount = Math.Round(sums, 3));
-                //     //item.ToList().First().edAmount = Convert.ToDouble(sums);
-                //     //RT305.Add(item.First());
+                }
+                );
 
 
-                // }
-
-                bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+           
 
                 Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
                 Absense h = new Absense(parameters);
@@ -294,6 +302,46 @@ namespace AionHR.Web.UI.Forms.Reports
             
            
 
+        }
+        private string FillApprovalStatus(short? apStatus)
+        {
+            string R;
+            switch (apStatus)
+            {
+                case 1:
+                    R = GetLocalResourceObject("FieldNew").ToString();
+                    break;
+                case 2:
+                    R = GetLocalResourceObject("FieldApproved").ToString();
+                    break;
+                case -1:
+                    R = GetLocalResourceObject("FieldRejected").ToString();
+                    break;
+                default:
+                    R = string.Empty;
+                    break;
+
+
+            }
+            return R;
+        }
+        private string FillDamageLevelString(short? DamageLevel)
+        {
+            string R;
+            switch (DamageLevel)
+            {
+                case 1:
+                    R = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
+                    break;
+                case 2:
+                    R = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
+                    break;
+                default:
+                    R = string.Empty;
+                    break;
+
+            }
+            return R;
         }
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)

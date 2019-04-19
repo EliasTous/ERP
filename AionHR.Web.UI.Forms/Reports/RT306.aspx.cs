@@ -347,6 +347,106 @@ namespace AionHR.Web.UI.Forms.Reports
         //    ASPxWebDocumentViewer1.OpenReport(h);
 
         //}
+        private string FillTimeCode(int timeCode)
+        {
+            string R = "";
+
+
+            // Retrieve the value of the string resource named "welcome".
+            // The resource manager will retrieve the value of the  
+            // localized resource using the caller's current culture setting.
+
+
+            try
+            {
+
+                switch (timeCode)
+                {
+                    case ConstTimeVariationType.UNPAID_LEAVE:
+                        R = GetGlobalResourceObject("Common", "UnpaidLeaves").ToString();
+                        break;
+                    case ConstTimeVariationType.PAID_LEAVE:
+                        R = GetGlobalResourceObject("Common", "PaidLeaves").ToString();
+                        break;
+                    case ConstTimeVariationType.DAY_LEAVE_WITHOUT_EXCUSE:
+                        R = GetGlobalResourceObject("Common", "DAY_LEAVE_WITHOUT_EXCUSE").ToString();
+                        break;
+                    case ConstTimeVariationType.SHIFT_LEAVE_WITHOUT_EXCUSE:
+                        R = GetGlobalResourceObject("Common", "SHIFT_LEAVE_WITHOUT_EXCUSE").ToString();
+                        break;
+                    case ConstTimeVariationType.LATE_CHECKIN:
+                        R = GetGlobalResourceObject("Common", "LATE_CHECKIN").ToString();
+                        break;
+                    case ConstTimeVariationType.DURING_SHIFT_LEAVE:
+                        R = GetGlobalResourceObject("Common", "DURING_SHIFT_LEAVE").ToString();
+                        break;
+                    case ConstTimeVariationType.EARLY_LEAVE:
+                        R = GetGlobalResourceObject("Common", "EARLY_LEAVE").ToString();
+                        break;
+                    case ConstTimeVariationType.MISSED_PUNCH:
+                        R = GetGlobalResourceObject("Common", "MISSED_PUNCH").ToString();
+                        break;
+                    case ConstTimeVariationType.EARLY_CHECKIN:
+                        R = GetGlobalResourceObject("Common", "EARLY_CHECKIN").ToString();
+                        break;
+
+                    case ConstTimeVariationType.OVERTIME:
+                        R = GetGlobalResourceObject("Common", "OVERTIME").ToString();
+                        break;
+
+                    case ConstTimeVariationType.COUNT:
+                        R = GetGlobalResourceObject("Common", "COUNT").ToString();
+                        break;
+                    case ConstTimeVariationType.Day_Bonus:
+                        R = GetGlobalResourceObject("Common", "Day_Bonus").ToString();
+                        break;
+
+                }
+
+                return R;
+            }
+            catch { return string.Empty; }
+        }
+        private string FillApprovalStatus(short? apStatus)
+        {
+            string R;
+            switch (apStatus)
+            {
+                case 1:
+                    R = GetLocalResourceObject("FieldNew").ToString();
+                    break;
+                case 2:
+                    R = GetLocalResourceObject("FieldApproved").ToString();
+                    break;
+                case -1:
+                    R = GetLocalResourceObject("FieldRejected").ToString();
+                    break;
+                default:
+                    R = string.Empty;
+                    break;
+
+
+            }
+            return R;
+        }
+        private string FillDamageLevelString(short? DamageLevel)
+        {
+            string R;
+            switch (DamageLevel)
+            {
+                case 1:
+                    R = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
+                    break;
+                case 2:
+                    R = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
+                    break;
+                default:
+                    R = string.Empty;
+                    break;
+
+            }
+            return R;
+        }
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
@@ -362,8 +462,35 @@ namespace AionHR.Web.UI.Forms.Reports
                     Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
                     return;
                 }
+           
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+            List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
+          
+            resp.Items.ForEach(
+                       x =>
+                       {
+                           if (!string.IsNullOrEmpty(x.clockDuration))
+                               x.clockDurationString = time(Convert.ToInt32(x.clockDuration), true);
+                           if (!string.IsNullOrEmpty(x.duration))
+                               x.durationString = time(Convert.ToInt32(x.duration), true);
+                           if (!string.IsNullOrEmpty(x.timeCode))
+                               x.timeCodeString = FillTimeCode(Convert.ToInt32(x.timeCode));
+                           x.statusString = FillApprovalStatus(x.status);
+                           if (!string.IsNullOrEmpty(x.damageLevel))
+                               x.damageLevel = FillDamageLevelString(Convert.ToInt16(x.damageLevel));
+                           if (rtl)
+                               x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                           else
+                               x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
 
-                Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+
+                       }
+  );
+
+
+
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+
 
                 TimeApproval h = new TimeApproval(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
@@ -388,9 +515,32 @@ namespace AionHR.Web.UI.Forms.Reports
 
            
         }
-      
 
-      
+
+        public static string time(int _minutes, bool _signed)
+        {
+            if (_minutes == 0)
+                return "00:00";
+
+            bool isNegative = _minutes < 0 ? true : false;
+
+            _minutes = Math.Abs(_minutes);
+
+            string hours = (_minutes / 60).ToString(), minutes = (_minutes % 60).ToString(), formattedTime;
+
+            if (hours.Length == 1)
+                hours = "0" + hours;
+
+            if (minutes.Length == 1)
+                minutes = "0" + minutes;
+
+            formattedTime = hours + ':' + minutes;
+
+            if (isNegative && _signed)
+                formattedTime = "-" + formattedTime;
+
+            return formattedTime;
+        }
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
             string[] parameters = e.Parameter.Split('|');

@@ -195,8 +195,7 @@ namespace AionHR.Web.UI.Forms.Reports
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
-            try
-            {
+            
                 ReportCompositeRequest req = GetRequest();
 
 
@@ -231,7 +230,7 @@ namespace AionHR.Web.UI.Forms.Reports
                             //record.shiftId = String.Format("{0} {1}", "Shift", counter);
                             //counter++;
                             //newShiftLogsList.Add(record);
-                            for (int i = 0; i < y.punchLog.Count() - 1; i++)
+                            for (int i = 0; i < y.punchLog.Count() ; i++)
                             {
 
                                 y.dayIdDateTime = parsed;
@@ -257,7 +256,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 }
                 PunchLogReport h = new PunchLogReport(newPunchLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat());
-                h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
+            h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
@@ -286,11 +285,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 ASPxWebDocumentViewer1.OpenReport(h);
 
 
-            }
-            catch (Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
+            
+         
 
         }
         private ReportCompositeRequest GetRequest()

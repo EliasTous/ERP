@@ -321,98 +321,18 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-            string test = texts.Text;
+          
             h.Parameters["User"].Value = user;
-            var values = texts.Text.Split(']');
-            string[] filter = new string[values.Length-1];
-            
-            for (int i = 0; i < values.Length-1; i++)
-            {
-                filter[i] = values[i];
-                filter[i]= Regex.Replace(filter[i], @"\[", "");
-               string[] parametrs= filter[i].Split(':');
-                for (int x = 0; x <= parametrs.Length - 1; x=+2)
-                {
-                    if (parametrs[x] == "pay id")
-                    {
-                        h.Parameters["Ref"].Value = parametrs[x + 1];
-                        break;
-                    }
-                    if (parametrs[x] == "payment method")
-                    {
-                        h.Parameters["Payment"].Value = parametrs[x + 1];
-                        break;
-                    }
-                    if (parametrs[x] == "branch")
-                    {
-                        h.Parameters["Branch"].Value = parametrs[x + 1];
-                        break;
-                    }
-                    if (parametrs[x] == "position")
-                    {
-                        h.Parameters["Position"].Value = parametrs[x + 1];
-                        break;
-                    }
-                    if (parametrs[x] == "division")
-                    {
-                        h.Parameters["Division"].Value = parametrs[x + 1];
-                        break;
-                    }
-                    //if (parametrs[x] == "employee")
-                    //{
-                    //    h.Parameters["Employee"].Value = parametrs[x + 1];
-                    //    break;
-                    //}
-                   
+          
 
 
-                }
-
-            }
-            if (string.IsNullOrEmpty(h.Parameters["Branch"].Value.ToString()))
-                h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-            if ( string.IsNullOrEmpty( h.Parameters["Payment"].Value.ToString()) )
-                h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
-            if (string.IsNullOrEmpty( h.Parameters["Ref"].Value.ToString()))
-                h.Parameters["Ref"].Value = GetGlobalResourceObject("Common", "All");
-
-            if (string.IsNullOrEmpty(h.Parameters["Position"].Value.ToString()))
-                h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
-            if (string.IsNullOrEmpty(h.Parameters["Division"].Value.ToString()))
-                h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
-            //if (string.IsNullOrEmpty(h.Parameters["Employee"].Value.ToString()))
-            //    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
-
-
-            //string filter = 
-            //    string[] splited = filter.Split(']');
-            //    for(int i=0;i<splited.Count()-1;i++)
-            //    {
-            //        splited[i].ToString().Replace('[',string.Empty);
-            //    }
-
-            if (resp.Items.Count > 0)
-            {
-
-                //if (req.Parameters["_departmentId"] != "0")
-                //    h.Parameters["Department"].Value = jobInfo1.GetDepartment();
-                //else
-                //    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-                //if (req.Parameters["_branchId"] != "0")
-                //    h.Parameters["Branch"].Value = jobInfo1.GetBranch();
-                //else
-                //    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-                //if (req.Parameters["_paymentMethod"] != "0")
-                //    h.Parameters["Payment"].Value = paymentMethodCombo.GetPaymentMethodString();
-                //else
-                //    h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
-
-
-                //h.Parameters["Ref"].Value = payRef;
                
+          
 
-            }
+
+         
+
+           
 
 
             h.CreateDocument();

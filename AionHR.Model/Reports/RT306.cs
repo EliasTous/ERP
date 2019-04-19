@@ -1,5 +1,6 @@
 ﻿using AionHR.Model.Attributes;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.TimeAttendance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,9 @@ using System.Threading.Tasks;
 namespace AionHR.Model.Reports
 {
     [ClassIdentifier("80306", "80")]
-    public class RT306
+    public class RT306 :Time
     {
-        public string dayId { get; set; }
-
-        public int dow { get; set; }
-
-        public string dowString { get; set; }
-
-        public string dateString { get; set; }
-
-        public bool isWorkingDay { get; set; }
+      
 
 
 

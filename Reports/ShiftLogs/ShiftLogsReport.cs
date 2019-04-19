@@ -15,7 +15,7 @@ namespace Reports.ShiftLogs
         public ShiftLogsReport(List<RT309> items, bool isArabic,string DateFormat)
         {
             InitializeComponent();
-          
+           
             fielddayId1.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             fielddayId1.ValueFormat.FormatString = DateFormat;
             if (isArabic)
@@ -119,7 +119,11 @@ namespace Reports.ShiftLogs
             }
             catch { return ""; }
         }
-      
+
+        private void ShiftLogsReport_AfterPrint(object sender, EventArgs e)
+        {
+        
+        }
     }
 
 }

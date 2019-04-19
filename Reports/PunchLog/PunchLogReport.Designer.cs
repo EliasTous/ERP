@@ -169,6 +169,7 @@
             resources.ApplyResources(this.TopMargin, "TopMargin");
             this.TopMargin.Name = "TopMargin";
             this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.TopMargin.AfterPrint += new System.EventHandler(this.TopMargin_AfterPrint);
             // 
             // BottomMargin
             // 
@@ -361,6 +362,7 @@
             this.To,
             this.Employee});
             this.Version = "16.2";
+            this.AfterPrint += new System.EventHandler(this.PunchLogReport_AfterPrint);
             ((System.ComponentModel.ISupportInitialize)(this.dsSalaries1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
