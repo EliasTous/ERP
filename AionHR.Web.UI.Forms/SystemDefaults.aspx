@@ -424,6 +424,13 @@
 
                                     </Content>
                                 </ext:Container>
+                                    <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+
+                                        <uc:EntitlementDeductionControl runat="server" ID="lvEdId"  LabelWidth="150" FieldLabel="<%$ Resources: lawViolationEntitlementDeduction %>" Filter="2" />
+
+                                    </Content>
+                                </ext:Container>
                          
 
                             </Items>
@@ -844,20 +851,20 @@
                                
                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:Common, Loans %>">
                                     <Items>
-                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldLoan %>" Name="loanDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="loanDeductionId">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldLoan %>" Name="loanDeductionId" runat="server" DisplayField="value" ValueField="key" ID="loanDeductionId">
                                             <Store>
                                                 <ext:Store runat="server" ID="loanDeductionStore">
                                                     <Model>
                                                         <ext:Model runat="server">
                                                             <Fields>
-                                                                <ext:ModelField Name="recordId" />
-                                                                <ext:ModelField Name="name" />
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
                                                             </Fields>
                                                         </ext:Model>
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
-                                            <RightButtons>
+                                        <%--    <RightButtons>
                                                 <ext:Button ID="Button10" runat="server" Icon="Add" Hidden="true">
                                                     <Listeners>
                                                         <Click Handler="CheckSession();  " />
@@ -868,7 +875,7 @@
                                                         </Click>
                                                     </DirectEvents>
                                                 </ext:Button>
-                                            </RightButtons>
+                                            </RightButtons>--%>
                                             <Listeners>
                                                 <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />

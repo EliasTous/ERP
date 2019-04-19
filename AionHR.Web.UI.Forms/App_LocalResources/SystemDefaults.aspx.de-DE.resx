@@ -509,4 +509,7 @@
   <data name="lawViolationApproval" xml:space="preserve">
     <value>Zustimmung zu Gesetzesverstößen</value>
   </data>
+  <data name="lawViolationEntitlementDeduction" xml:space="preserve">
+    <value>Gesetzesübertretung Abzug</value>
+  </data>
 </root>

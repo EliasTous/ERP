@@ -1567,7 +1567,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
 
-                int entitlementSubTotal = 0, deductionSubTotal = 0;
+                double entitlementSubTotal = 0, deductionSubTotal = 0;
 
                 if (string.IsNullOrEmpty(finalSetlemntRecordId.Text))
                 {

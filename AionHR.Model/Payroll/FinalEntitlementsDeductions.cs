@@ -16,7 +16,7 @@ namespace AionHR.Model.Payroll
         public int edId { get; set; }
         [PropertyID("51031_01")]
         [ApplySecurity]
-        public int amount { get; set; }
+        public double amount { get; set; }
         [PropertyID("51031_02")]
         [ApplySecurity]
         public string edName { get; set; }

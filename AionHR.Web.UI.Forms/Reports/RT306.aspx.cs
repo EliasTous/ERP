@@ -350,8 +350,7 @@ namespace AionHR.Web.UI.Forms.Reports
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
-            try
-            {
+            
                 string rep_params = vals.Text;
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
@@ -364,8 +363,9 @@ namespace AionHR.Web.UI.Forms.Reports
                     return;
                 }
 
+                Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
 
-                TimeApproval h = new TimeApproval();
+                TimeApproval h = new TimeApproval(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = resp.Items;
@@ -377,91 +377,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 h.Parameters["User"].Value = user;
               //  h.Parameters["Filters"].Value = texts.Text;
 
-                var values = texts.Text.Split(']');
-                string[] filter = new string[values.Length - 1];
-
-                for (int i = 0; i < values.Length - 1; i++)
-                {
-                    filter[i] = values[i];
-                    filter[i] = Regex.Replace(filter[i], @"\[", "");
-                    string[] parametrs = filter[i].Split(':');
-                    for (int x = 0; x <= parametrs.Length - 1; x = +2)
-                    {
-                        if (parametrs[x] == "department")
-                        {
-                            h.Parameters["department"].Value = parametrs[x + 1];
-                            break;
-                        }
-                        if (parametrs[x] == "branch")
-                        {
-                            h.Parameters["branch"].Value = parametrs[x + 1];
-                            break;
-                        }
-                        if (parametrs[x] == "division")
-                        {
-                            h.Parameters["division"].Value = parametrs[x + 1];
-                            break;
-                        }
-                        if (parametrs[x] == "position")
-                        {
-                            h.Parameters["position"].Value = parametrs[x + 1];
-                            break;
-                        }
-                        if (parametrs[x] == "employment status")
-                        {
-                            h.Parameters["employmentStatus"].Value = parametrs[x + 1];
-                            break;
-                        }
-                        if (parametrs[x] == "time code")
-                        {
-                            h.Parameters["timeCode"].Value = parametrs[x + 1];
-                            break;
-                        }
-                        if (parametrs[x] == "approval status")
-                        {
-                            h.Parameters["approvalStatus"].Value = parametrs[x + 1];
-                            break;
-                        }
-                        if (parametrs[x] == "approver")
-                        {
-                            h.Parameters["approver"].Value = parametrs[x + 1];
-                            break;
-                        }
-                        if (parametrs[x] == "employee")
-                        {
-                            h.Parameters["employee"].Value = parametrs[x + 1];
-                            break;
-                        }
-
-
-
-
-
-
-
-                    }
-
-                }
-                if (string.IsNullOrEmpty(h.Parameters["Department"].Value.ToString()))
-                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-                if (string.IsNullOrEmpty(h.Parameters["Branch"].Value.ToString()))
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-                if (string.IsNullOrEmpty(h.Parameters["Division"].Value.ToString()))
-                    h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (string.IsNullOrEmpty(h.Parameters["Position"].Value.ToString()))
-                    h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
-                if (string.IsNullOrEmpty(h.Parameters["EmploymentStatus"].Value.ToString()))
-                    h.Parameters["EmploymentStatus"].Value = GetGlobalResourceObject("Common", "All");
-                if (string.IsNullOrEmpty(h.Parameters["TimeCode"].Value.ToString()))
-                    h.Parameters["TimeCode"].Value = GetGlobalResourceObject("Common", "All");
-                if (string.IsNullOrEmpty(h.Parameters["ApprovalStatus"].Value.ToString()))
-                    h.Parameters["ApprovalStatus"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (string.IsNullOrEmpty(h.Parameters["approver"].Value.ToString()))
-                    h.Parameters["approver"].Value = GetGlobalResourceObject("Common", "All");
-                if (string.IsNullOrEmpty(h.Parameters["employee"].Value.ToString()))
-                    h.Parameters["employee"].Value = GetGlobalResourceObject("Common", "All");
+           
+               
 
 
                 h.CreateDocument();
@@ -469,12 +386,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ASPxWebDocumentViewer1.OpenReport(h);
 
-            }
-            catch (Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
-
+           
         }
       
 

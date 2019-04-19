@@ -143,10 +143,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\Softmachine\UI\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Reports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Softmachine\Reports.dll</HintPath>
-    </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\Users\Elias\Desktop\bin\StructureMap.dll</HintPath>
       <Private>True</Private>
@@ -199,6 +195,7 @@
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
     <Content Include="ReportParameterBrowser.aspx" />
+    <Content Include="Reports\Controls\EntitlementDeductionFilter.ascx" />
     <Content Include="Reports\Controls\ApprovalsFilter.ascx" />
     <Content Include="Reports\Controls\AssetFilter.ascx" />
     <Content Include="Reports\Controls\ApprovalReasonFilter.ascx" />
@@ -831,6 +828,13 @@
     </Compile>
     <Compile Include="ReportParameterBrowser.aspx.designer.cs">
       <DependentUpon>ReportParameterBrowser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\EntitlementDeductionFilter.ascx.cs">
+      <DependentUpon>EntitlementDeductionFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\EntitlementDeductionFilter.ascx.designer.cs">
+      <DependentUpon>EntitlementDeductionFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\ApprovalsFilter.ascx.cs">
       <DependentUpon>ApprovalsFilter.ascx</DependentUpon>
@@ -3180,6 +3184,10 @@
     <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
       <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
       <Name>AionHR.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reports\Reports.csproj">
+      <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
+      <Name>Reports</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

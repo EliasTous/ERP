@@ -453,4 +453,7 @@
   <data name="lawViolationApproval" xml:space="preserve">
     <value>تعميد تجاوز القانون</value>
   </data>
+  <data name="lawViolationEntitlementDeduction" xml:space="preserve">
+    <value>خصم تجاوز القانون</value>
+  </data>
 </root>

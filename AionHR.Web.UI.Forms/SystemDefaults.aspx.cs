@@ -199,13 +199,13 @@ namespace AionHR.Web.UI.Forms
             latenessStore.DataSource = GetDeductions();
             latenessStore.DataBind();
 
-           // ssDeductionStore.DataSource = GetDeductions();
+            // ssDeductionStore.DataSource = GetDeductions();
             //ssDeductionStore.DataBind();
 
             //peDeductionStore.DataSource = GetDeductions();
             //peDeductionStore.DataBind();
 
-            loanDeductionStore.DataSource = GetDeductions();
+            loanDeductionStore.DataSource = Common.XMLDictionaryList(_systemService, "17");
             loanDeductionStore.DataBind();
             PYFSLeaveBalEDId_Store.DataSource = GetEntitlements();
             PYFSLeaveBalEDId_Store.DataBind();
@@ -753,6 +753,12 @@ namespace AionHR.Web.UI.Forms
                 lvApId.setApproval(items.Where(s => s.Key == "lvApId").First().Value);
             }
             catch { }
+            try
+
+            {
+                lvEdId.setEntitlementDeduction(items.Where(s => s.Key == "lvEdId").First().Value);
+            }
+            catch { }
 
 
             FillCompanyLogo(); 
@@ -830,6 +836,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("lvApId", lvApId.getApproval()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("lvApId", ""));
+            if (lvEdId.getEntitlementDeduction() != null && lvEdId.getEntitlementDeduction() != "0")
+                submittedValues.Add(new KeyValuePair<string, string>("lvEdId", lvEdId.getEntitlementDeduction()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("lvEdId", ""));
 
 
 

@@ -219,8 +219,8 @@ namespace AionHR.Web.UI.Forms.Reports
             //}
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
-
-            EmployeeDetails y = new EmployeeDetails();
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            EmployeeDetails y = new EmployeeDetails(parameters);
             y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             string format = _systemService.SessionHelper.GetDateformat();
@@ -266,62 +266,10 @@ namespace AionHR.Web.UI.Forms.Reports
             y.DataSource = resp.Items;
             string user = _systemService.SessionHelper.GetCurrentUser();
             y.Parameters["User"].Value = user;
-            var values = texts.Text.Split(']');
-            string[] filter = new string[values.Length - 1];
+           
 
-            for (int i = 0; i < values.Length - 1; i++)
-            {
-                filter[i] = values[i];
-                filter[i] = Regex.Replace(filter[i], @"\[", "");
-                string[] parametrs = filter[i].Split(':');
-                for (int x = 0; x <= parametrs.Length - 1; x = +2)
-                {
-                    if (parametrs[x] == "pay id")
-                    {
-                        y.Parameters["Ref"].Value = parametrs[x + 1];
-                        break;
-                    }
-                    if (parametrs[x] == "payment method")
-                    {
-                        y.Parameters["Payment"].Value = parametrs[x + 1];
-                        break;
-                    }
-                    if (parametrs[x] == "branch")
-                    {
-                        y.Parameters["Branch"].Value = parametrs[x + 1];
-                        break;
-                    }
-
-
-                }
-
-            }
-            if (resp.Items.Count > 0)
-            {
-                if (req.Parameters["_departmentId"] != "0")
-                    y.Parameters["Department"].Value = jobInfo1.GetDepartment();
-                else
-                    y.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_branchId"] != "0")
-                    y.Parameters["Branch"].Value = jobInfo1.GetBranch();
-                else
-                    y.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_positionId"] != "0")
-                    y.Parameters["Position"].Value = jobInfo1.GetPosition();
-                else
-                    y.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_divisionId"] != "0")
-                    y.Parameters["Division"].Value = jobInfo1.GetDivision();
-                else
-                    y.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
-                if (req.Parameters["_sponsorId"] != "0")
-                    y.Parameters["Sponsor"].Value = sponsorId.SelectedItem.Text;
-                else
-                    y.Parameters["Sponsor"].Value = GetGlobalResourceObject("Common", "All");
-            }
+          
+           
             ASPxWebDocumentViewer1.DataBind();
             ASPxWebDocumentViewer1.OpenReport(y);
         }
