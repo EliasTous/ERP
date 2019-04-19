@@ -358,7 +358,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     return;
 
                 }
-                req.Status = "3";
+                req.Status = "0";
 
                 ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
                 if (!resp.Success)

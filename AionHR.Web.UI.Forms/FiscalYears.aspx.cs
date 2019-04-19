@@ -764,7 +764,7 @@ namespace AionHR.Web.UI.Forms
             FiscalPeriodsListRequest req = new FiscalPeriodsListRequest();
             req.Year = CurrentYear.Text;
             req.PeriodType = Convert.ToInt32(periodType.Value.ToString());
-            req.Status = "3";
+            req.Status = "0";
             ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
             if (!resp.Success)
             {

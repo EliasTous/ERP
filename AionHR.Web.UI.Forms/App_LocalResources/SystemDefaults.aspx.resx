@@ -507,4 +507,7 @@
   <data name="lawViolationApproval" xml:space="preserve">
     <value>Law Violation Approval</value>
   </data>
+  <data name="lawViolationEntitlementDeduction" xml:space="preserve">
+    <value>Law Violation Deduction</value>
+  </data>
 </root>

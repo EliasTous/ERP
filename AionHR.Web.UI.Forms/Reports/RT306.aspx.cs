@@ -350,8 +350,7 @@ namespace AionHR.Web.UI.Forms.Reports
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
-            try
-            {
+            
                 string rep_params = vals.Text;
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
@@ -387,12 +386,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ASPxWebDocumentViewer1.OpenReport(h);
 
-            }
-            catch (Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
-
+           
         }
       
 
