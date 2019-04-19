@@ -14,9 +14,7 @@
                                         </ext:Store>
                                     </Store>
 
-                                    <Items>
-                                        <ext:ListItem Text="<%$Resources:Common ,All %>" Value="0" />
-                                    </Items>
+                                  
       <Triggers>
                 <ext:FieldTrigger Icon="Clear" />
             </Triggers>
