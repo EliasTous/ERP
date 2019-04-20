@@ -25,34 +25,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../Scripts/moment.js"></script>
     <script type="text/javascript" src="../Scripts/RT200.js?id=18"></script>
-    <script type="text/javascript">
-        function alertNow(s, e) {
-
-            Ext.MessageBox.alert(App.Error.getValue(), e.message);
-            e.handled = true;
-        }
-         function setVals(pms) {
-            //alert('vals are ' + pms);
-            App.direct.SetVals(pms);
-             App.Panel8.loader.url = '../ReportParameterBrowser.aspx?_reportName=RT503&values=' + pms;
-            
-        }
-        function setTexts(pms) {
-            //alert('texts are ' + pms);
-            App.direct.SetTexts(pms);
-            App.reportsParams.hide();
-            App.selectedFilters.setText(pms);
-            
-        }
-        function setLabels(labels) {
-            //alert('captions are'+labels);
-           
-            App.direct.SetLabels(labels);
-            var s = labels.split('^');
-            
-            App.reportsParams.setHeight((150 + (s.length*25)));
-        }
-    </script>
+    <script type="text/javascript" src="../Scripts/ReportsCommon.js"></script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
@@ -68,6 +41,7 @@
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
          <ext:Hidden ID="vals" runat="server" />
+         <ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=RT503&values="/>
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
 
@@ -109,7 +83,7 @@
 
                             </Items>
                         </ext:Toolbar>
-                        <ext:Toolbar runat="server" Height="30" Dock="Top">
+                        <ext:Toolbar ID="labelbar"  runat="server" Height="0" Dock="Top">
 
                             <Items>
                                  <ext:Label runat="server" ID="selectedFilters" />

@@ -137,11 +137,11 @@ namespace AionHR.Web.UI.Forms
                     switch (item.controlType)
                     {
                         
-                        case 1: TextField tf = new TextField() { ID = "control_" + item.id , FieldLabel=item.caption };
+                        case 1: TextField tf = new TextField() { ID = "tb_" + item.id , FieldLabel=item.caption };
                             FormPanel1.Items.Add(tf);
                             if (valuesDict != null && valuesDict.ContainsKey(item.id)) tf.Text = valuesDict[item.id]; break;
                         case 3:
-                        case 2:NumberField nf = new NumberField() { ID = "control_" + item.id, FieldLabel = item.caption };
+                        case 2:NumberField nf = new NumberField() { ID = "nb_" + item.id, FieldLabel = item.caption };
                             if (valuesDict != null && valuesDict.ContainsKey(item.id))
                                 nf.Value = Convert.ToDouble(valuesDict[item.id]);
                                 FormPanel1.Items.Add(nf);break;
@@ -226,6 +226,7 @@ namespace AionHR.Web.UI.Forms
             string vals = "";
             string texts = "";
             string text_id = "";
+            string friendlyText = "";
             string[] allCaptions = labels.Text.Split('^');
             string[] values = e.ExtraParams["values"].Replace("[", "")
                 .Replace("]", "").Replace("\"", "").Replace("{", ",").
@@ -249,7 +250,13 @@ namespace AionHR.Web.UI.Forms
 
 
                     }
+                    if (((pair[0].Split('_')[0] == "tb")|| (pair[0].Split('_')[0] == "nb")) && !string.IsNullOrEmpty(pair[1]))
+                    {
+                        vals += pair[0].Split('_')[1] + "|" + pair[1] + "^";
+                        texts+= "["+allCaptions[Convert.ToInt32(pair[0].Split('_')[1])-1]+":"+pair[1]+"]";
+                        
 
+                    }
                     if (pair[0] == "text")
                     {
                         string cont = pair[1];
@@ -280,7 +287,7 @@ namespace AionHR.Web.UI.Forms
             vals = vals.TrimEnd('^');
             texts = texts.TrimEnd('^');
             X.Call("parent.setVals", vals);
-            
+            X.Call("parent.showFriendlyText",texts.Replace("][","$").Replace('[',' ').Replace(']',' '));
 
             X.Call("parent.setTexts", texts);
             
