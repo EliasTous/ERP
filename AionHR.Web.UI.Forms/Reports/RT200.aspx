@@ -31,6 +31,26 @@
             Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
+         function setVals(pms) {
+            //alert('vals are ' + pms);
+            App.direct.SetVals(pms);
+            
+            App.Panel8.loader.url = '../ReportParameterBrowser.aspx?_reportName=RT200&values=' + pms;
+            
+        }
+        function setTexts(pms) {
+            //alert('texts are ' + pms);
+            App.direct.SetTexts(pms);
+            App.reportsParams.hide();
+            App.selectedFilters.setText(pms);
+        }
+        function setLabels(labels) {
+            //alert('captions are'+labels);
+            App.direct.SetLabels(labels);
+            var s = labels.split('^');
+            
+            App.reportsParams.setHeight((150 + (s.length*20)));
+        }
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -44,7 +64,9 @@
                <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
-
+          <ext:Hidden ID="vals" runat="server" />
+        <ext:Hidden ID="texts" runat="server" />
+        <ext:Hidden ID="labels" runat="server" />
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
@@ -57,47 +79,26 @@
                     Layout="FitLayout" AutoScroll="true"
                     Margins="0 0 0 0"
                     Region="Center">
-                    <TopBar>
-                        <ext:Toolbar runat="server" Height="60">
+                    <DockedItems>
+                        <ext:Toolbar runat="server" Height="30" Dock="Top">
 
                             <Items>
-                             <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                               
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                  <uc:employeeCombo runat="server" ID="employeeFilter" />
-                                            </Content>
-                                        </ext:Container>
-
-                               
-                                        <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                               
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" />
-                                            </Content>
-                                        </ext:Container>
-                                   <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:paymentMethodCombo runat="server" ID="paymentMethodCombo" />
-                                            </Content>
-                                        </ext:Container>
-                                  <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:activeStatus runat="server" ID="inactivePref" />
-                                            </Content>
-                                        </ext:Container>
-
-                                   
+                             
+                             
+                                
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
+                                          <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                       <Listeners>
+                                           <Click Handler=" App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
+                                       
                                     </Content>
                                 </ext:Container>
                                        
@@ -105,8 +106,14 @@
 
                             </Items>
                         </ext:Toolbar>
+                           
+                        <ext:Toolbar runat="server" Height="30" Dock="Top">
 
-                    </TopBar>
+                            <Items>
+                                 <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                            </ext:Toolbar>
+                  </DockedItems>
                     <Content>
 
                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"  ClientSideEvents-CallbackError="alertNow"
@@ -129,7 +136,31 @@
             </Items>
         </ext:Viewport>
 
-
+          <ext:Window runat="server"  Icon="PageEdit"
+            ID="reportsParams"
+            Width="600"
+            Height="500"
+            Title="<%$Resources:Common,Parameters %>"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="FitLayout" Resizable="true">
+            <Listeners>
+                <Show Handler="App.Panel8.loader.load();"></Show>
+            </Listeners>
+            <Items>
+                <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
+                    <Loader runat="server" Url="../ReportParameterBrowser.aspx?_reportName=RT200" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+            
+                </Items>
+        </ext:Window>
 
 
 
