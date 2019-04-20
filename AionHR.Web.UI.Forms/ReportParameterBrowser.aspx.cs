@@ -75,21 +75,13 @@ namespace AionHR.Web.UI.Forms
             if (rtl)
             {
                 this.ResourceManager2.RTL = true;
+
                 this.Viewport2.RTL = true;
-                
-                Culture = "ar";
-                UICulture = "ar-AE";
-                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
-            }
-            else
-            {
-                Culture = "en";
-                UICulture = "en-US";
-                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+
+
             }
         }
+        
         private List<UserControl> activeControls;
         private string GetControlNameByClassId(int classId)
         {
@@ -158,7 +150,7 @@ namespace AionHR.Web.UI.Forms
                             if (valuesDict != null && valuesDict.ContainsKey(item.id))
                                 nf.Value = Convert.ToDouble(valuesDict[item.id]);
                                 FormPanel1.Items.Add(nf);break;
-                        case 4: DateField d = new DateField() { ID = "date_" + item.id, FieldLabel = item.caption }; FormPanel1.Items.Add(d);
+                        case 4: DateField d = new DateField() {  ID = "date_" + item.id, FieldLabel = item.caption }; FormPanel1.Items.Add(d);
                             if (valuesDict != null && valuesDict.ContainsKey(item.id))
                                 d.SelectedDate = DateTime.ParseExact(valuesDict[item.id],"yyyyMMdd",new CultureInfo("en"));
                                 break;
