@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -73,8 +74,20 @@ namespace AionHR.Web.UI.Forms
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             if (rtl)
             {
+                this.ResourceManager2.RTL = true;
+                this.Viewport2.RTL = true;
                 
-
+                Culture = "ar";
+                UICulture = "ar-AE";
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
+            }
+            else
+            {
+                Culture = "en";
+                UICulture = "en-US";
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             }
         }
         private List<UserControl> activeControls;

@@ -31,7 +31,7 @@ function showFriendlyText(txt) {
             App.labelbar.setHeight(App.labelbar.height + 30);
         }
 
-        newHtml += "[&nbsp&nbsp<b>" + pair[0] + ":</b>" + pair[1] + "&nbsp&nbsp]&nbsp&nbsp";
+        newHtml += "[&nbsp&nbsp<b>" + pair[0] + ":&nbsp</b>" + pair[1] + "&nbsp&nbsp]&nbsp&nbsp";
 
     }
 
