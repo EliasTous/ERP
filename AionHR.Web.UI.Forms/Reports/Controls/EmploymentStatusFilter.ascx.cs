@@ -22,7 +22,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             if (!IsPostBack)
             {
                 FillStatus();
-                esId.Select("0");
+                
             }
         }
 
