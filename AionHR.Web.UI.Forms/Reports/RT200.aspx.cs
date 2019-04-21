@@ -250,10 +250,10 @@ namespace AionHR.Web.UI.Forms.Reports
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
                 return;
             }
-            
-           
 
-            CurrentPayroll h = new CurrentPayroll();
+
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            CurrentPayroll h = new CurrentPayroll(parameters);
             //CurrentPayrollV1 h = new CurrentPayrollV1();
             h.DataSource = resp.Items;
            
