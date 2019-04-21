@@ -12,7 +12,7 @@ namespace AionHR.Model.Dashboard
     public class ProbationEnd
     {
 
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
 
         public string npName { get; set; }
 

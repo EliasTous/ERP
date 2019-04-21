@@ -12,7 +12,7 @@ namespace AionHR.Model.Dashboard
     public  class EmpRTW
     {
 
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public string dtName { get; set; }
 
         public string documentRef { get; set; }

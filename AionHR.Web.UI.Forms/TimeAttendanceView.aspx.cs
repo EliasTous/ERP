@@ -28,6 +28,9 @@ using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
 using AionHR.Model.HelpFunction;
 using AionHR.Services.Messaging.TimeAttendance;
+using AionHR.Model.Dashboard;
+using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -135,7 +138,107 @@ namespace AionHR.Web.UI.Forms
             //this.OtherInfoTab.Visible = false;
         }
 
+        private TimeVariationListRequest GetAbsentRequest(DateTime day,int employeeId)
+        {
 
+            TimeVariationListRequest reqTV = new TimeVariationListRequest();
+            reqTV.BranchId = 0;
+            reqTV.DepartmentId = 0;
+            reqTV.DivisionId = 0;
+            reqTV.PositionId = 0;
+            reqTV.EsId = 0;
+            reqTV.fromDayId = day;
+            reqTV.toDayId = day;
+            reqTV.employeeId = employeeId.ToString();
+            reqTV.apStatus = "0";              
+            reqTV.fromDuration = "0";
+            reqTV.toDuration = "0";
+            reqTV.timeCode = "0";          
+
+
+            return reqTV;
+        }
+        private string FillApprovalStatus(short? apStatus)
+        {
+            string R;
+            switch (apStatus)
+            {
+                case 1:
+                    R = GetGlobalResourceObject("Common","FieldNew").ToString();
+                    break;
+                case 2:
+                    R = GetGlobalResourceObject("Common", "FieldApproved").ToString();
+                    break;
+                case -1:
+                    R = GetGlobalResourceObject("Common", "FieldRejected").ToString();
+                    break;
+                default:
+                    R = string.Empty;
+                    break;
+
+
+            }
+            return R;
+        }
+        private string FillDamageLevelString(short? DamageLevel)
+        {
+            string R;
+            switch (DamageLevel)
+            {
+                case 1:
+                    R = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
+                    break;
+                case 2:
+                    R = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
+                    break;
+                default:
+                    R = string.Empty;
+                    break;
+
+            }
+            return R;
+        }
+        private void FillEmployeeFlatSchedule(string dayId,int employeeId)
+        {
+            BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+            reqFS.EmployeeId = employeeId;
+            reqFS.FromDayId = dayId;
+            reqFS.ToDayId = dayId;
+            reqFS.BranchId = 0;
+            ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
+            flatScheduleStore.DataSource = response.Items;
+            flatScheduleStore.DataBind();
+        }
+       
+        private void FillEmployeeTimeVariation(string dayId, int employeeId)
+        {
+            TimeVariationListRequest req = GetAbsentRequest(DateTime.ParseExact(dayId, "yyyyMMdd", new CultureInfo("en")), employeeId);
+
+            ListResponse<DashBoardTimeVariation> daysResponse = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);
+            List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+            daysResponse.Items.ForEach(
+                x =>
+                {
+                    x.clockDurationString = time(x.clockDuration, true);
+                    x.durationString = time(x.duration, true);
+                    x.timeCodeString = timeCode.Where(y => y.key == Convert.ToInt16(x.timeCode)).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+
+                    x.apStatusString = FillApprovalStatus(x.apStatus);
+                    x.damageLevelString = FillDamageLevelString(x.damageLevel);
+                    if (rtl)
+                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                    else
+                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
+
+
+                }
+                );
+
+            Store2.DataSource = daysResponse.Items;
+            Store2.DataBind(); 
+
+        }
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
@@ -159,12 +262,15 @@ namespace AionHR.Web.UI.Forms
                     {
                         attendanceShiftStore.DataSource = shifts.Items;
                         attendanceShiftStore.DataBind();
+                        FillEmployeeFlatSchedule(dayId.ToString(),employeeId);
+                        FillEmployeeTimeVariation(dayId.ToString(), employeeId);
+                        FillTimeApproval(dayId, employeeId);
                         AttendanceShiftWindow.Show();
                     }
 
                     break;
                 case "LinkRender":
-                    FillTimeApproval(dayId, employeeId);
+                   
                     TimeApprovalWindow.Show(); 
 
                     break;
@@ -879,7 +985,12 @@ namespace AionHR.Web.UI.Forms
                 r.approverId = 0;
                 r.StartAt = "0";
                 r.Size = "1000";
-               
+                r.shiftId = "0";
+                r.timeCode = "0";
+                r.apStatus = "0";
+                r.fromDayId = dayId.ToString() ;
+                r.toDayId = dayId.ToString();
+
                 
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
@@ -890,25 +1001,25 @@ namespace AionHR.Web.UI.Forms
                 }
                 Times.Items.ForEach(x =>
                 {
-                    x.timeCodeString = GetLocalResourceObject(x.timeCode + "text").ToString();
+                   
                     switch (x.status)
                     {
                         case 1:
-                            x.statusString = pendingHF.Text;
+                            x.statusString = GetLocalResourceObject("FieldPending").ToString();
                             break;
                         case 2:
-                            x.statusString = approvedHF.Text;
+                            x.statusString = GetLocalResourceObject("FieldApptoved").ToString(); 
                             break;
 
                     }
                 });
 
-                TimeStore.DataSource = Times.Items;
+                Store3.DataSource = Times.Items;
                 ////List<ActiveLeave> leaves = new List<ActiveLeave>();
                 //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
 
-                TimeStore.DataBind();
+                Store3.DataBind();
             }
             catch (Exception exp)
             {

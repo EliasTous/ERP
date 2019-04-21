@@ -315,4 +315,40 @@
   <data name="FieldWorkingTime" xml:space="preserve">
     <value>وقت العمل</value>
   </data>
+  <data name="DamageWITHOUT_DAMAGE" xml:space="preserve">
+    <value>بدون ضرر</value>
+  </data>
+  <data name="DamageWITH_DAMAGE" xml:space="preserve">
+    <value>تسبب ضرر</value>
+  </data>
+  <data name="AttendanceShifts" xml:space="preserve">
+    <value>الحضور</value>
+  </data>
+  <data name="FieldApprovalStatus" xml:space="preserve">
+    <value>حالة التعميد</value>
+  </data>
+  <data name="FieldClockDuration" xml:space="preserve">
+    <value>فرق التوقيت عن جهاز البصمة</value>
+  </data>
+  <data name="FieldDamageLevel" xml:space="preserve">
+    <value>مستوى الضرر</value>
+  </data>
+  <data name="FieldltimeCode" xml:space="preserve">
+    <value>نوع التأخير</value>
+  </data>
+  <data name="FlatSchedule" xml:space="preserve">
+    <value>جدول الدوام </value>
+  </data>
+  <data name="from" xml:space="preserve">
+    <value>من </value>
+  </data>
+  <data name="shiftId" xml:space="preserve">
+    <value>Shift</value>
+  </data>
+  <data name="TimeVariations" xml:space="preserve">
+    <value>فروقات الدوام </value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>الى </value>
+  </data>
 </root>

@@ -1630,7 +1630,7 @@ namespace AionHR.Web.UI.Forms
              [DirectMethod]
         protected void alertPoPUP(object sender, DirectEventArgs e)
         {
-         
+      
                 string id = e.ExtraParams["id"];
                 switch (id)
                 {

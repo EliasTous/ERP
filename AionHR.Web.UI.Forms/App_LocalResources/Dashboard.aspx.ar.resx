@@ -672,4 +672,7 @@
   <data name="FieldQty" xml:space="preserve">
     <value>الكمية</value>
   </data>
+  <data name="PurchasesApproval" xml:space="preserve">
+    <value>طلبات الشراء </value>
+  </data>
 </root>

@@ -11,7 +11,7 @@ namespace AionHR.Model.Dashboard
     [ClassIdentifier("81111", "81")]
     public  class TermEndDate
     {
-        public EmployeeName employeeName { get; set; }
+        public string   employeeName { get; set; }
 
         public DateTime probationEndDate
         {

@@ -11,7 +11,7 @@ namespace AionHR.Model.Dashboard
     [ClassIdentifier("81102", "81")]
     public class SalaryChange
     {
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
 
         public DateTime effectiveDate { get; set; }
 

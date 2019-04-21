@@ -893,14 +893,14 @@
             return str;
         }
         function displaySCR(s) {
-            var str = "<div style=" + getStyle() + ">" + s.name;
+            var str = "<div style=" + getStyle() + ">" + s.employeeName;
             str += '<br/>';
             str += getDateFormatted(s.effectiveDate) + ', ' + s.currencyRef + s.finalAmount;
             str += '</div>';
             return str;
         }
         function displayProbation(s) {
-            var str = "<div style=" + getStyle() + ">" + s.name;
+            var str = "<div style=" + getStyle() + ">" + s.employeeName;
             str += '<br/>';
             str += getDateFormatted(s.probationEndDate);
             str += '</div>';
@@ -3054,7 +3054,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name" ServerMapping="name.fullName" />
                                         <ext:ModelField Name="birthDate" />
                                         <ext:ModelField Name="days" />
 
@@ -3130,7 +3130,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name" ServerMapping="name.fullName" />
                                         <ext:ModelField Name="hireDate" />
                                         <ext:ModelField Name="days" />
 
@@ -3281,7 +3281,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="documentRef" />
                                         <ext:ModelField Name="expiryDate" />
                                         <ext:ModelField Name="days" />
@@ -3301,7 +3301,7 @@
                     <ColumnModel ID="ColumnModel13" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
                             <ext:Column Visible="false" ID="Column21" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" />
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                               <ext:DateColumn ID="DateColumn12" MenuDisabled="true" runat="server" Text="<%$ Resources: expiryDate %>" DataIndex="expiryDate" Hideable="false" Width="100">
                             </ext:DateColumn>
 
@@ -3435,7 +3435,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="effectiveDate" />
                                         <ext:ModelField Name="finalAmount" />
                                         <ext:ModelField Name="currencyRef" />
@@ -3452,7 +3452,7 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="Column15" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" />
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" Width="75">
                                 <Renderer Handler=" return displaySCR(record.data);  ">
                                 </Renderer>
                             </ext:Column>
@@ -3513,7 +3513,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="probationEndDate" />
                                         <ext:ModelField Name="days" />
 
@@ -3529,7 +3529,7 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="Column17" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" />
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" Width="75">
                                 <Renderer Handler=" return displayProbation(record.data);  ">
                                 </Renderer>
                             </ext:Column>
@@ -4422,7 +4422,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name" ServerMapping="name.fullName"  />
                                         <ext:ModelField Name="hireDate" />
                                         <ext:ModelField Name="days" />
 
@@ -4498,7 +4498,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                      
                                         <ext:ModelField Name="probationEndDate" />
                                          <ext:ModelField Name="days" />
@@ -4517,7 +4517,7 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="Column25" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" />
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" Width="75">
                               <%--  <Renderer Handler=" return displayAnniversary(record.data);  ">
                                 </Renderer>--%>
                             </ext:Column>
@@ -5594,7 +5594,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                      
                                         <ext:ModelField Name="probationEndDate" />
                                          <ext:ModelField Name="days" />

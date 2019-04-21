@@ -11,7 +11,9 @@ namespace AionHR.Model.Dashboard
     [ClassIdentifier("81110", "81")]
     public   class EmploymentReview
     {
-        public EmployeeName employeeName { get; set; }
+        public EmployeeName name { get; set; }
+        public string employeeName { get; set; }
+        
         public DateTime probationEndDate { get; set; }
         public int days { get; set; }
         public DateTime nextReviewDate { get; set; }
