@@ -695,7 +695,7 @@
                 <ext:GridPanel MarginSpec="0 0 0 0"
                                                             ID="timeApprovalGrid"
                                                             runat="server"
-                                                          
+                                                            Icon="User"
                                                            
                                                             Title="<%$ Resources:EditWindowsTimeApproval %>"
                                                             Layout="FitLayout"

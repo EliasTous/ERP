@@ -43,7 +43,7 @@ namespace AionHR.Web.UI.Forms
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
-
+        List<XMLDictionary> timeCode = new List<XMLDictionary>();
 
         protected override void InitializeCulture()
         {
@@ -122,6 +122,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+                List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
 
             }
 
@@ -215,7 +216,7 @@ namespace AionHR.Web.UI.Forms
             TimeVariationListRequest req = GetAbsentRequest(DateTime.ParseExact(dayId, "yyyyMMdd", new CultureInfo("en")), employeeId);
 
             ListResponse<DashBoardTimeVariation> daysResponse = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);
-            List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
+           timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             daysResponse.Items.ForEach(
                 x =>
@@ -241,42 +242,48 @@ namespace AionHR.Web.UI.Forms
         }
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-
-
-            int dayId = Convert.ToInt32(e.ExtraParams["dayId"]);
-            int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
-            CurrentDay.Text = dayId.ToString();
-            CurrentEmployee.Text = employeeId.ToString();
-            CurrentCA.Text = e.ExtraParams["ca"];
-            CurrentSC.Text = e.ExtraParams["sc"];
-            string type = e.ExtraParams["type"];
-            switch (type)
+            try
             {
-                case "imgEdit":
-                    //Step 1 : get the object from the Web Service 
-                    AttendanceShiftListRequest request = new AttendanceShiftListRequest();
-                    request.EmployeeId = employeeId;
-                    request.DayId = dayId;
-                    ListResponse<AttendanceShift> shifts = _timeAttendanceService.ChildGetAll<AttendanceShift>(request);
-                    if(shifts.Success)
-                    {
-                        attendanceShiftStore.DataSource = shifts.Items;
-                        attendanceShiftStore.DataBind();
-                        FillEmployeeFlatSchedule(dayId.ToString(),employeeId);
-                        FillEmployeeTimeVariation(dayId.ToString(), employeeId);
-                        FillTimeApproval(dayId, employeeId);
-                        AttendanceShiftWindow.Show();
-                    }
 
-                    break;
-                case "LinkRender":
-                   
-                    TimeApprovalWindow.Show(); 
+                int dayId = Convert.ToInt32(e.ExtraParams["dayId"]);
+                int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
+                CurrentDay.Text = dayId.ToString();
+                CurrentEmployee.Text = employeeId.ToString();
+                CurrentCA.Text = e.ExtraParams["ca"];
+                CurrentSC.Text = e.ExtraParams["sc"];
+                string type = e.ExtraParams["type"];
+                switch (type)
+                {
+                    case "imgEdit":
+                        //Step 1 : get the object from the Web Service 
+                        AttendanceShiftListRequest request = new AttendanceShiftListRequest();
+                        request.EmployeeId = employeeId;
+                        request.DayId = dayId;
+                        ListResponse<AttendanceShift> shifts = _timeAttendanceService.ChildGetAll<AttendanceShift>(request);
+                        if (shifts.Success)
+                        {
+                            attendanceShiftStore.DataSource = shifts.Items;
+                            attendanceShiftStore.DataBind();
+                            FillEmployeeFlatSchedule(dayId.ToString(), employeeId);
+                            FillEmployeeTimeVariation(dayId.ToString(), employeeId);
+                            FillTimeApproval(dayId, employeeId);
+                            AttendanceShiftWindow.Show();
+                        }
 
-                    break;
+                        break;
+                    case "LinkRender":
 
-                default:
-                    break;
+                        TimeApprovalWindow.Show();
+
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            catch(Exception exp)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message);
             }
 
 
@@ -994,6 +1001,7 @@ namespace AionHR.Web.UI.Forms
                 
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
+               timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
                 if (!Times.Success)
                 {
                     Common.errorMessage(Times);
@@ -1001,17 +1009,10 @@ namespace AionHR.Web.UI.Forms
                 }
                 Times.Items.ForEach(x =>
                 {
-                   
-                    switch (x.status)
-                    {
-                        case 1:
-                            x.statusString = GetLocalResourceObject("FieldPending").ToString();
-                            break;
-                        case 2:
-                            x.statusString = GetLocalResourceObject("FieldApptoved").ToString(); 
-                            break;
 
-                    }
+                    x.timeCodeString = timeCode.Where(y => y.key == Convert.ToInt16(x.timeCode)).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+
+                    x.statusString = FillApprovalStatus(x.status);
                 });
 
                 Store3.DataSource = Times.Items;
