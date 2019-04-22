@@ -14,6 +14,8 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31062_01")]
         [ApplySecurity]
         public int currencyId { get; set; }
+
+        public int? currencyProfileId { get; set; }
         [PropertyID("31062_02")]
         [ApplySecurity]
 
@@ -56,7 +58,7 @@ namespace AionHR.Model.Employees.Profile
         public double dAmount { get; set; }
         public int employeeId { get; set; }
 
-        public String employeeName { get; set; }
+        public string employeeName { get; set; }
         [PropertyID("31062_02")]
         [ApplySecurity]
         public string scrName { get; set; }

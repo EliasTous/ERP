@@ -168,6 +168,7 @@ namespace AionHR.Web.UI.Forms
                                     
                                 }
                                 box.ID = "control_" + item.id;
+                                box.Name = "control_" + item.id;
                                 box.AnyMatch = true;
                                 box.CaseSensitive = false;
                                 box.Editable = false;
