@@ -1078,7 +1078,7 @@
     <value>Résumé de période</value>
   </data>
   <data name="RT303" xml:space="preserve">
-    <value>Detailed Attendance</value>
+    <value>Présence détaillée</value>
   </data>
   <data name="RT304" xml:space="preserve">
     <value>Departments Activity</value>
@@ -1258,7 +1258,7 @@
     <value>Gestion des horaires</value>
   </data>
   <data name="TimeCode" xml:space="preserve">
-    <value>Code Temps</value>
+    <value>Code de Temps</value>
   </data>
   <data name="TimeFieldError" xml:space="preserve">
     <value>La valeur est requise et doit être de forme hh: mm</value>
@@ -1406,5 +1406,8 @@
   </data>
   <data name="Parameters" xml:space="preserve">
     <value>Parameters</value>
+  </data>
+  <data name="RT310" xml:space="preserve">
+    <value>Calendrier de présence</value>
   </data>
 </root>

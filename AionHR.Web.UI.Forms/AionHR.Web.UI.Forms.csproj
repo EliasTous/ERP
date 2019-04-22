@@ -187,11 +187,16 @@
     <Content Include="BonusTypes.aspx" />
     <Content Include="BusinessPartnerCategories.aspx" />
     <Content Include="BusinessPartneres.aspx" />
+    <Content Include="Cases.aspx" />
     <Content Include="CertificateLevels.aspx" />
+    <Content Include="CheckTypes.aspx" />
     <Content Include="DELogin.aspx" />
     <Content Include="DocumentCategories.aspx" />
     <Content Include="FRLogin.aspx" />
+    <Content Include="Geofences.aspx" />
     <Content Include="ImportFlatSchedule.aspx" />
+    <Content Include="MediaCategories.aspx" />
+    <Content Include="MediaItems.aspx" />
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
     <Content Include="ReportParameterBrowser.aspx" />
@@ -225,11 +230,13 @@
     <Content Include="Reports\RT804.aspx" />
     <Content Include="Reports\RT803.aspx" />
     <Content Include="Reports\RT508.aspx" />
+    <Content Include="Routers.aspx" />
     <Content Include="Scripts\AdminTemplates.js" />
     <Content Include="Scripts\ReportsCommon.js" />
     <Content Include="Scripts\SystemDefaults.js" />
     <Content Include="SelfServiceResetPasswords.aspx" />
     <Content Include="SSTransfers.aspx" />
+    <Content Include="TaskTypes.aspx" />
     <Content Include="TimeApprovalsSelfServices.aspx" />
     <Content Include="TimeAttendanceApprovals.aspx" />
     <Content Include="TimeAttendanceViewSelfServices.aspx" />
@@ -598,6 +605,12 @@
       <LastGenOutput>ComboBoxValues.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UsersReport.ar.resx">
+      <DependentUpon>UsersReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersReport.resx">
+      <DependentUpon>UsersReport.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <Content Include="Scripts\jquery-min-1.4.2.js" />
     <None Include="Web.Debug.config">
@@ -688,6 +701,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StaticComboBox.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_LocalResources\EmployeeCals.aspx.Designer.cs" />
     <Compile Include="AssetLoans.aspx.cs">
       <DependentUpon>AssetLoans.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -772,12 +786,26 @@
     <Compile Include="BusinessPartneres.aspx.designer.cs">
       <DependentUpon>BusinessPartneres.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cases.aspx.cs">
+      <DependentUpon>Cases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cases.aspx.designer.cs">
+      <DependentUpon>Cases.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CertificateLevels.aspx.cs">
       <DependentUpon>CertificateLevels.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CertificateLevels.aspx.designer.cs">
       <DependentUpon>CertificateLevels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckTypes.aspx.cs">
+      <DependentUpon>CheckTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckTypes.aspx.designer.cs">
+      <DependentUpon>CheckTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="ConstClasse\Common.cs" />
     <Compile Include="ConstClasse\ConstClasses.cs" />
@@ -802,12 +830,33 @@
     <Compile Include="FRLogin.aspx.designer.cs">
       <DependentUpon>FRLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Geofences.aspx.cs">
+      <DependentUpon>Geofences.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Geofences.aspx.designer.cs">
+      <DependentUpon>Geofences.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ImportFlatSchedule.aspx.cs">
       <DependentUpon>ImportFlatSchedule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ImportFlatSchedule.aspx.designer.cs">
       <DependentUpon>ImportFlatSchedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MediaCategories.aspx.cs">
+      <DependentUpon>MediaCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MediaCategories.aspx.designer.cs">
+      <DependentUpon>MediaCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MediaItems.aspx.cs">
+      <DependentUpon>MediaItems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MediaItems.aspx.designer.cs">
+      <DependentUpon>MediaItems.aspx</DependentUpon>
     </Compile>
     <Compile Include="PayrollGenerationSelfServices.aspx.cs">
       <DependentUpon>PayrollGenerationSelfServices.aspx</DependentUpon>
@@ -1041,6 +1090,13 @@
     <Compile Include="Reports\RT508.aspx.designer.cs">
       <DependentUpon>RT508.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Routers.aspx.cs">
+      <DependentUpon>Routers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Routers.aspx.designer.cs">
+      <DependentUpon>Routers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SelfServiceResetPasswords.aspx.cs">
       <DependentUpon>SelfServiceResetPasswords.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1054,6 +1110,13 @@
     </Compile>
     <Compile Include="SSTransfers.aspx.designer.cs">
       <DependentUpon>SSTransfers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TaskTypes.aspx.cs">
+      <DependentUpon>TaskTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TaskTypes.aspx.designer.cs">
+      <DependentUpon>TaskTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="TimeApprovalsSelfServices.aspx.cs">
       <DependentUpon>TimeApprovalsSelfServices.aspx</DependentUpon>
@@ -1522,6 +1585,12 @@
     </Compile>
     <Compile Include="TimeCodes.aspx.designer.cs">
       <DependentUpon>TimeCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsersReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UsersReport.Designer.cs">
+      <DependentUpon>UsersReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AccessControlApplier.cs" />
     <Compile Include="App_GlobalResources\AccessControl.designer.cs">
@@ -3163,6 +3232,23 @@
     <Content Include="Reports\App_LocalResources\RT502.aspx.de-DE.resx" />
     <Content Include="Reports\App_LocalResources\RT503.aspx.de-DE.resx" />
     <Content Include="Reports\App_LocalResources\RT601.aspx.de-DE.resx" />
+    <Content Include="App_LocalResources\CheckTypes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\CheckTypes.aspx.de-DE.resx" />
+    <Content Include="App_LocalResources\CheckTypes.aspx.fr.resx" />
+    <Content Include="App_LocalResources\CheckTypes.aspx.resx" />
+    <Content Include="App_LocalResources\CompanyFiles.aspx.ar.resx" />
+    <Content Include="App_LocalResources\CompanyNews.aspx.ar.resx" />
+    <Content Include="App_LocalResources\EmployeesOrgChart.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ForgotPassword.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportRTW.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportRTW.aspx.resx" />
+    <Content Include="App_LocalResources\LeaveCalendar.aspx.ar.resx" />
+    <Content Include="App_LocalResources\MainDashboard.aspx.ar.resx" />
+    <Content Include="App_LocalResources\MediaItems.aspx.ar.resx" />
+    <Content Include="App_LocalResources\RelationshipTypes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\SalaryChangeReasons.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Sponsors.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TrainingTypes.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

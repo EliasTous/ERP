@@ -792,22 +792,32 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         protected void SAStore_Refresh(object sender, StoreReadDataEventArgs e)
         {
-            EmployeeSalaryListRequest request = new EmployeeSalaryListRequest();
-            request.Filter = "";
-            request.EmployeeId = CurrentEmployee.Text;
+            try
+            {
+                EmployeeSalaryListRequest request = new EmployeeSalaryListRequest();
+                request.Filter = "";
+                request.EmployeeId = CurrentEmployee.Text;
 
-            request.Filter = "";
+                request.Filter = "";
 
-            request.Size = "50";
-            request.StartAt = "0";
-            
-            ListResponse<EmployeeSalary> currencies = _employeeService.ChildGetAll<EmployeeSalary>(request);
-            if (!currencies.Success)
-                X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
-            this.SAStore.DataSource = currencies.Items;
-            e.Total = currencies.count;
+                request.Size = "50";
+                request.StartAt = "0";
 
-            this.SAStore.DataBind();
+                ListResponse<EmployeeSalary> currencies = _employeeService.ChildGetAll<EmployeeSalary>(request);
+                if (!currencies.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
+                    return;
+                }
+                this.SAStore.DataSource = currencies.Items;
+                e.Total = currencies.count;
+
+                this.SAStore.DataBind();
+            }
+            catch(Exception exp)
+            {
+                X.MessageBox.Alert(Resources.Common.Error, exp.Message);
+            }
         }
 
         protected void BOStore_Refresh(object sender, StoreReadDataEventArgs e)

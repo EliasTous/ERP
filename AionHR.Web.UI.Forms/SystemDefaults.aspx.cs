@@ -204,8 +204,9 @@ namespace AionHR.Web.UI.Forms
 
             //peDeductionStore.DataSource = GetDeductions();
             //peDeductionStore.DataBind();
-
-            loanDeductionStore.DataSource = Common.XMLDictionaryList(_systemService, "17");
+            ldMethodStore.DataSource = Common.XMLDictionaryList(_systemService, "17");
+            ldMethodStore.DataBind();
+            loanDeductionStore.DataSource = GetDeductions();
             loanDeductionStore.DataBind();
             PYFSLeaveBalEDId_Store.DataSource = GetEntitlements();
             PYFSLeaveBalEDId_Store.DataBind();

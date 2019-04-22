@@ -139,7 +139,7 @@
     <value>الشريك التجاري</value>
   </data>
   <data name="AdminDepts" xml:space="preserve">
-    <value>Admin Departments</value>
+    <value>الاقسام المسؤولة</value>
   </data>
   <data name="AdministrationAffairs" xml:space="preserve">
     <value>الشؤون الإدارية</value>
@@ -931,7 +931,7 @@
     <value>جدول المخالفات والجزاءات</value>
   </data>
   <data name="PendingTransfers" xml:space="preserve">
-    <value>Documents Transfers</value>
+    <value>نقل المستندات</value>
   </data>
   <data name="periodError" xml:space="preserve">
     <value>يرجى اختيار نوع الراتب والسنة المالية</value>
@@ -1406,5 +1406,8 @@
   </data>
   <data name="Parameters" xml:space="preserve">
     <value>تصفية</value>
+  </data>
+  <data name="Onboarding" xml:space="preserve">
+    <value>عند الوصول</value>
   </data>
 </root>

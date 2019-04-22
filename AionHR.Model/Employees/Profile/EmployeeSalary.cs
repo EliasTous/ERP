@@ -56,7 +56,7 @@ namespace AionHR.Model.Employees.Profile
         public double dAmount { get; set; }
         public int employeeId { get; set; }
 
-        public EmployeeName employeeName { get; set; }
+        public String employeeName { get; set; }
         [PropertyID("31062_02")]
         [ApplySecurity]
         public string scrName { get; set; }

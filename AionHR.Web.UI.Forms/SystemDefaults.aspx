@@ -851,20 +851,20 @@
                                
                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:Common, Loans %>">
                                     <Items>
-                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldLoan %>" Name="loanDeductionId" runat="server" DisplayField="value" ValueField="key" ID="loanDeductionId">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldLoan %>" Name="loanDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="loanDeductionId">
                                             <Store>
                                                 <ext:Store runat="server" ID="loanDeductionStore">
                                                     <Model>
                                                         <ext:Model runat="server">
                                                             <Fields>
-                                                                <ext:ModelField Name="value" />
-                                                                <ext:ModelField Name="key" />
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
                                                             </Fields>
                                                         </ext:Model>
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
-                                        <%--    <RightButtons>
+                                            <RightButtons>
                                                 <ext:Button ID="Button10" runat="server" Icon="Add" Hidden="true">
                                                     <Listeners>
                                                         <Click Handler="CheckSession();  " />
@@ -875,21 +875,25 @@
                                                         </Click>
                                                     </DirectEvents>
                                                 </ext:Button>
-                                            </RightButtons>--%>
+                                            </RightButtons>
                                             <Listeners>
                                                 <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
-                                        </ext:ComboBox>
-                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Width="400" QueryMode="Local" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: LoanCoverageType %>" Name="ldMethod" runat="server" ID="ldMethod">
-                                            <Items>
-                                                <ext:ListItem Text="<%$ Resources: PFromNetSalary %>" Value="1" />
-                                                <ext:ListItem Text="<%$ Resources: PFromBasicSalary %>" Value="2" />
-                                                <ext:ListItem Text="<%$ Resources: PFromLoan %>" Value="3" />
-                                                <ext:ListItem Text="<%$ Resources: FixedAmount %>" Value="4" />
-                                                <ext:ListItem Text="<%$ Resources: FixedPayment %>" Value="5" />
-
-                                            </Items>
+</ext:ComboBox>
+                                        <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: LoanCoverageType %>"  runat="server" DisplayField="value" ValueField="key"   Name="ldMethod" ID="ldMethod" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="ldMethodStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
                                             <Listeners>
                                                 <Change Handler="handlePayment(this.value,this.next());"></Change>
                                             </Listeners>
