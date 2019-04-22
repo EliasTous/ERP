@@ -4,13 +4,13 @@
             DisplayField="fullName"
             ValueField="recordId" AllowBlank="true"
             TypeAhead="false"
-            HideTrigger="true" 
+            HideTrigger="true"  SubmitValue="true"
             MinChars="3" EmptyText="<%$ Resources: FilterEmployee%>"
             TriggerAction="Query" ForceSelection="true">
             <Store>
                 <ext:Store runat="server" ID="Store2" AutoLoad="false">
                     <Model>
-                        <ext:Model runat="server" IDProperty="recordId">
+                        <ext:Model runat="server">
                             <Fields>
                                 <ext:ModelField Name="recordId" />
                                 <ext:ModelField Name="fullName" />

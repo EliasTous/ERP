@@ -58,12 +58,17 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             RecordResponse < Employee > response= _employeeService.Get<Employee>(req);
             List<Employee> onlyone = new List<Employee>();
             response.result.fullName = response.result.name.fullName;
-            onlyone.Add(response.result);
-            Store2.DataSource = onlyone;
-            Store2.DataBind();
-            
-            employeeFilter.Select(response.result.recordId);
-            
+            employeeFilter.GetStore().Add(new object[]
+                           {
+                                new
+                                {
+                                    recordId = response.result.recordId,
+                                    fullName =response.result.name.fullName
+                                }
+                           });
+            employeeFilter.SetValue(response.result.recordId);
+            employeeFilter.SetText(response.result.name.fullName);
+
         }
 
         public void SetLabel(string newLabel)
