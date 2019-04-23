@@ -1501,7 +1501,7 @@ namespace AionHR.Web.UI.Forms
 
                 ReportCompositeRequest req = GetRequest(payId);
 
-                ListResponse<AionHR.Model.Reports.RT501> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT501>(req);
+                ListResponse<AionHR.Model.Reports.RT507> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT507>(req);
                 if (!resp.Success)
                 {
 
@@ -1510,57 +1510,16 @@ namespace AionHR.Web.UI.Forms
                     return new EmployeesPaySlip(new List<RT501>(), _systemService.SessionHelper.CheckIfArabicSession());
 
                 }
+                List<RT501> newlist = new List<RT501>();
+                resp.Items.ForEach(x =>
+                {
+                    newlist.Add(x);
 
-                //var d = resp.Items.GroupBy(x => x.employeeName.fullName);
-                //PayrollLineCollection lines = new PayrollLineCollection();
-                //HashSet<Model.Reports.EntitlementDeduction> ens = new HashSet<Model.Reports.EntitlementDeduction>(new EntitlementDeductionComparer());
-                //HashSet<Model.Reports.EntitlementDeduction> des = new HashSet<Model.Reports.EntitlementDeduction>(new EntitlementDeductionComparer());
-                //resp.Items.ForEach(x =>
-                //{
-                //    Model.Reports.EntitlementDeduction DE = new Model.Reports.EntitlementDeduction();
+                });
 
-                //    if (x.edType == 1)
-                //    {
+               
 
-                //        try
-                //        {
-                //            DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd();
-                //            DE.amount = 0; DE.isTaxable = x.isTaxable;
-                //        }
-                //        catch { DE.name = x.edName; DE.amount = 0; DE.isTaxable = x.isTaxable; }
-                //        ens.Add(DE);
-                //    }
-                //    else
-                //    {
-
-                //        try
-                //        {
-                //            DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd();
-                //            DE.amount = 0;
-                //        }
-                //        catch { DE.name = x.edName; DE.amount = 0; }
-                //        des.Add(DE);
-                //    }
-                //});
-                //foreach (var item in d)
-                //{
-                //    var list = item.ToList();
-                //    list.ForEach(y =>
-                //    {
-                //        try
-                //        {
-                //            y.edName = GetLocalResourceObject(y.edName.Trim()).ToString().TrimEnd();
-
-                //        }
-                //        catch { y.edName = y.edName; }
-                //    });
-                //    PayrollLine line = new PayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString(), _systemService.SessionHelper.GetDateformat(), GetLocalResourceObject("netSalaryString").ToString());
-                //    lines.Add(line);
-                //}
-
-                //MonthlyPayrollCollection s = new MonthlyPayrollCollection();
-
-                EmployeesPaySlip h = new EmployeesPaySlip(resp.Items, _systemService.SessionHelper.CheckIfArabicSession());
+                EmployeesPaySlip h = new EmployeesPaySlip(newlist, _systemService.SessionHelper.CheckIfArabicSession());
 
 
               
@@ -1568,7 +1527,7 @@ namespace AionHR.Web.UI.Forms
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
                 string user = _systemService.SessionHelper.GetCurrentUser();
-                //h.Parameters["User"].Value = user;
+              
               
 
                 return h;

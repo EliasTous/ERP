@@ -262,8 +262,19 @@ namespace AionHR.Web.UI.Forms
                         ListResponse<AttendanceShift> shifts = _timeAttendanceService.ChildGetAll<AttendanceShift>(request);
                         if (shifts.Success)
                         {
+                            shifts.Items.ForEach(x =>
+                            {
+                                int i = 0;
+                                if (Int32.TryParse(x.duration, out i))
+                                {
+                                    x.duration = time(i, true);
+                                }
+                              
+
+                                });
                             attendanceShiftStore.DataSource = shifts.Items;
                             attendanceShiftStore.DataBind();
+                            
                             FillEmployeeFlatSchedule(dayId.ToString(), employeeId);
                             FillEmployeeTimeVariation(dayId.ToString(), employeeId);
                             FillTimeApproval(dayId, employeeId);
@@ -681,6 +692,7 @@ namespace AionHR.Web.UI.Forms
                 //GEtting the filter from the page
 
                 AttendnanceDayListRequest req = GetAttendanceDayRequest();
+
                 req.StartAt = e.Start.ToString();
                 ListResponse<AttendanceDay> daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
                 if (!daysResponse.Success)
@@ -862,6 +874,7 @@ namespace AionHR.Web.UI.Forms
             b.recordId = id;
             b.dayId = day;
             b.employeeId = emp;
+            
             // Define the object to add or edit as null
 
             if (string.IsNullOrEmpty(id))
@@ -888,6 +901,12 @@ namespace AionHR.Web.UI.Forms
                     {
 
                         //Add this record to the store 
+                        int i = 0;
+                        if (Int32.TryParse(b.duration, out i))
+                        {
+                            b.duration = time(i, true);
+                        }
+                      
                         this.attendanceShiftStore.Insert(0, b);
 
                         //Display successful notification
