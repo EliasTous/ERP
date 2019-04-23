@@ -332,7 +332,7 @@
                              
 
 
-                                <ext:ComboBox StoreID="PenaltyStore" AnyMatch="true" CaseSensitive="false" Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="penaltyId" Name="penaltyId" FieldLabel="<%$ Resources:FieldPenaltyName%>" SimpleSubmit="true">
+                                <ext:ComboBox StoreID="PenaltyStore" AnyMatch="true" CaseSensitive="false" Enabled="false" ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="penaltyId" Name="penaltyId" FieldLabel="<%$ Resources:FieldPenaltyName%>" SimpleSubmit="true" >
                                    
                                    
                                 </ext:ComboBox>
@@ -363,7 +363,7 @@
 
                                     </Store>
                                 </ext:ComboBox>
-                                    <ext:NumberField ID="amount"  runat="server" FieldLabel="<%$ Resources:FieldAmount%>"  DataIndex="amount" DecimalPrecision="2"/>
+                                    <ext:NumberField ID="amount"  runat="server" FieldLabel="<%$ Resources:FieldAmount%>"  DataIndex="amount" DecimalPrecision="2" MinValue="0" AllowBlank="false"/>
                                  <ext:TextArea ID="notes"  runat="server" FieldLabel="<%$ Resources:FieldNotes%>"  DataIndex="notes"  />
 
 

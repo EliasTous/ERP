@@ -651,14 +651,31 @@ namespace AionHR.Web.UI.Forms
                         List<string> listIds = new List<string>();
                         foreach (FlatSchedule fss in response.Items)
                         {
-                          
 
+                      
                             DateTime activeDate = DateTime.ParseExact(fss.dayId, "yyyyMMdd", new CultureInfo("en"));
+                        DateTime fsfromDate=new DateTime();
+                        DateTime fsToDate=new DateTime();
+                             int i = 0;
+                        if (!Int32.TryParse(fss.from.Split(':')[0], out i))
+                        {
+                            if (i >= 24)
+                                fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i%24, Convert.ToInt32(fss.from.Split(':')[1]), 0);
+                            else
+                                fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.from.Split(':')[0]), Convert.ToInt32(fss.from.Split(':')[1]), 0);
+                        }
+                        if (!Int32.TryParse(fss.to.Split(':')[0], out i))
+                        {
+                            if (i >= 24)
+                                fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i % 24, Convert.ToInt32(fss.from.Split(':')[1]), 0);
+                            else
+                                fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.to.Split(':')[0]), Convert.ToInt32(fss.to.Split(':')[1]), 0);
 
-                            DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.from.Split(':')[0]), Convert.ToInt32(fss.from.Split(':')[1]), 0);
-                            DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.to.Split(':')[0]), Convert.ToInt32(fss.to.Split(':')[1]), 0);
-
-                            DateTime temp = fsfromDate;
+                        }
+                       
+                     
+                        
+                            DateTime temp = activeDate;
                             if (fsfromDate > fsToDate)
                             {
                                
@@ -866,8 +883,27 @@ namespace AionHR.Web.UI.Forms
                 foreach (FlatSchedule fs in items)
                 {
                     DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
-                    DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
-                    DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
+                    
+                    DateTime fsfromDate = new DateTime();
+                    DateTime fsToDate = new DateTime();
+                    int i = 0;
+                    if (Int32.TryParse(fs.from.Split(':')[0], out i))
+                    {
+                        if (i >= 24)
+                            fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i % 24, Convert.ToInt32(fs.from.Split(':')[1]), 0);
+                        else
+                            fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
+                    }
+                    if (Int32.TryParse(fs.to.Split(':')[0], out i))
+                    {
+                        if (i >= 24)
+                            fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i % 24, Convert.ToInt32(fs.from.Split(':')[1]), 0);
+                        else
+                            fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
+
+                    }
+
+                  
                     DateTime temp = fsfromDate;
 
 

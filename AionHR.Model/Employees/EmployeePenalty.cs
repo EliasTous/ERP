@@ -11,8 +11,8 @@ namespace AionHR.Model.Employees
     [ClassIdentifier("31170", "31")]
     public  class EmployeePenalty:ModelBase
     {
-        public EmployeeName name { get; set; }
-        public string employeeName { get; set; }
+        public EmployeeName employeeName { get; set; }
+       // public string employeeName { get; set; }
         public string penaltyName { get; set; }
         public string employeeId { get; set; }
         public string penaltyId { get; set; }

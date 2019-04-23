@@ -179,7 +179,7 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = response.result.employeeId,
-                                    fullName =response.result.name.fullName
+                                    fullName =response.result.employeeName.fullName
                                 }
                    });
                     employeeId.SetValue(response.result.employeeId);
