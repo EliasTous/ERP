@@ -2588,7 +2588,7 @@
                                                 <ext:ModelField Name="status" />
                                                  <ext:ModelField Name="statusString" />
                                                  <ext:ModelField Name="notes" />
-                                                 <ext:ModelField Name="Date" />
+                                                 <ext:ModelField Name="date" />
                                                
                                                 
                                                 
@@ -2609,7 +2609,7 @@
                                            
                                          </ext:Column>
                                      <ext:Column CellCls="cellLink" ID="ColPenaltyName" MenuDisabled="true" runat="server" Text="<%$ Resources:Common, FieldPenaltyName%>" DataIndex="penaltyName" />
-                                    <ext:DateColumn  ID="ColDate" MenuDisabled="true" runat="server" DataIndex="Date" Text="<%$ Resources: FieldDate%>" Flex="1" Hideable="false" />
+                                    <ext:DateColumn  ID="ColDate" MenuDisabled="true" runat="server" DataIndex="date" Text="<%$ Resources: FieldDate%>" Flex="1" Hideable="false" />
                                     <ext:Column ID="lAstatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
                                        
                                     </ext:Column>
