@@ -44,7 +44,7 @@
          <ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=RT503&values="/>
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
-
+        
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
             <Items>
@@ -60,7 +60,16 @@
                         <ext:Toolbar runat="server" Height="30" Dock="Top">
 
                             <Items>
-                       
+                       <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="filterBy" Editable="false" EmptyText="<%$ Resources: FieldGroupBy %>" Width="120"  >
+                                    <Items>
+                                        
+                                        <ext:ListItem Text="<%$ Resources: department %>" Value="1" />
+                                      
+                                        <ext:ListItem Text="<%$ Resources: branch %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: position %>" Value="3" />
+                                    </Items>
+                                  
+                                </ext:ComboBox>
                                    
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
@@ -69,6 +78,7 @@
                                            <Click Handler=" App.reportsParams.show();" />
                                        </Listeners>
                                         </ext:Button>
+                                          
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
                                                  <%-- <Click Handler=" if(App.payId.getValue()==null)  {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}   callbackPanel.PerformCallback('1');" />--%>

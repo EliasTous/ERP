@@ -23,7 +23,6 @@ namespace AionHR.Model.Employees
         public string statusString { get; set; }
         public string arId { get; set; }
         public string arName { get; set; }
-        public string penaltyName { get; set; }
-        public DateTime date { get; set; }
+        
     }
 }

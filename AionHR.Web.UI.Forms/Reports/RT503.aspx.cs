@@ -260,9 +260,11 @@ namespace AionHR.Web.UI.Forms.Reports
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic, GroupedPayrollCrossReport.GroupType.Department, parameters);
            h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
-           
-           
-          
+
+            int bulk;
+            if (filterBy.Value != null && int.TryParse(filterBy.Value.ToString(), out bulk))
+                h.Parameters["FilterBy"].Value = bulk;
+
             h.Parameters["User"].Value = user;        
             h.CreateDocument();
 
