@@ -13,10 +13,7 @@ namespace AionHR.Model.Reports
     {
         public string expiryDateStringFormat { get; set; }
 
-        public EmployeeName employeeName
-        {
-            get; set;
-        }
+        public string employeeName{get; set;}
        
         public DateTime expiryDate
         {

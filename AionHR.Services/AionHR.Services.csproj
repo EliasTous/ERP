@@ -147,6 +147,7 @@
     <Compile Include="Messaging\DashBoard\CompanyRightToWorkListRequest.cs" />
     <Compile Include="Messaging\DashBoard\LeaveApprovalListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeePenaltyApprovalListRequest.cs" />
+    <Compile Include="Messaging\Employees\EmployeePenaltyApprovalRecordRequest.cs" />
     <Compile Include="Messaging\Employees\ParamsListRequest.cs" />
     <Compile Include="Messaging\Employees\ShareAttachmentPostRequest.cs" />
     <Compile Include="Messaging\HelpFunction\ActiveAttendanceRecordRequest.cs" />

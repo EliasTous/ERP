@@ -50,11 +50,9 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel3;
     private XRLabel xrLabel2;
     private XRLabel xrLabel4;
-    private XRLabel xrLabel14;
     private XRLabel xrLabel13;
     private XRLabel xrLabel12;
     private XRLabel xrLabel11;
-    private XRLabel xrLabel10;
     private XRLabel xrLabel9;
     private XRLabel xrLabel8;
     private XRLabel xrLabel7;
@@ -148,7 +146,6 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrPageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.reportHeaderBand1 = new DevExpress.XtraReports.UI.ReportHeaderBand();
-            this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.Status = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.PositionName = new DevExpress.XtraReports.Parameters.Parameter();
@@ -156,7 +153,6 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
             this.DepartmentName = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.BranchName = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
@@ -578,27 +574,15 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
             // reportHeaderBand1
             // 
             this.reportHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel14,
             this.xrLabel13,
             this.xrLabel12,
             this.xrLabel11,
-            this.xrLabel10,
             this.xrLabel9,
             this.xrLabel8,
             this.xrLabel7,
             this.xrLabel1});
             resources.ApplyResources(this.reportHeaderBand1, "reportHeaderBand1");
             this.reportHeaderBand1.Name = "reportHeaderBand1";
-            // 
-            // xrLabel14
-            // 
-            this.xrLabel14.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Status, "Text", "")});
-            resources.ApplyResources(this.xrLabel14, "xrLabel14");
-            this.xrLabel14.Name = "xrLabel14";
-            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel14.StylePriority.UseTextAlignment = false;
-            this.xrLabel14.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel14_BeforePrint);
             // 
             // Status
             // 
@@ -647,13 +631,6 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
             // 
             this.BranchName.Name = "BranchName";
             this.BranchName.Visible = false;
-            // 
-            // xrLabel10
-            // 
-            resources.ApplyResources(this.xrLabel10, "xrLabel10");
-            this.xrLabel10.Name = "xrLabel10";
-            this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel10.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel9
             // 

@@ -121,15 +121,6 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Panel Center;
         
         /// <summary>
-        /// statusCombo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox statusCombo;
-        
-        /// <summary>
         /// dtId control.
         /// </summary>
         /// <remarks>
@@ -173,6 +164,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
+        
+        /// <summary>
+        /// dateRange1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter dateRange1;
         
         /// <summary>
         /// ASPxCallbackPanel1 control.

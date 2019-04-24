@@ -63,7 +63,7 @@
 
                             <Items>
                                   
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false"   QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1"   runat="server" ID="statusCombo" EmptyText="<%$Resources:Common, status %>">
+                                 <%-- <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false"   QueryMode="Local" LabelWidth="50" ForceSelection="true" TypeAhead="true" MinChars="1"   runat="server" ID="statusCombo" EmptyText="<%$Resources:Common, status %>">
                                             <Items>
                                                 <ext:ListItem Text="<%$Resources:Common, All %>"  Value="0" />
                                                 <ext:ListItem Text="<%$Resources:Common, Renew %>" Value="1" />
@@ -71,11 +71,11 @@
                                             </Items>
                                            
 
-                                        </ext:ComboBox>
+                                        </ext:ComboBox>--%>
                               
                                                                      
                                                                      
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="dtId" Name="dtId" EmptyText="<%$ Resources:FieldRWDocumentType%>" >
+                                <ext:ComboBox  Width="125"  AnyMatch="true" CaseSensitive="false"  ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="dtId" Name="dtId" EmptyText="<%$ Resources:FieldRWDocumentType%>" >
                                     <Store>
                                         <ext:Store runat="server" ID="RWDocumentTypeStore">
                                             <Model>
@@ -92,7 +92,7 @@
                                    
                                 </ext:ComboBox>
 
-                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
+                                   <ext:ComboBox AnyMatch="true" Width="125" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
                                     <Store>
                                         <ext:Store runat="server" ID="statusStore">
                                             <Model>
@@ -123,6 +123,11 @@
                                                 <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
                                                 <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="true" EnableBranch="true" EnableDepartment="true" EnablePosition="true"  />
                                             </Content>
+                                        </ext:Container>
+                                <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                                <uc:dateRange runat="server" ID="dateRange1" />
+                                             </Content>
                                         </ext:Container>
                                 
                                 

@@ -8,9 +8,11 @@ namespace AionHR.Services.Messaging.Reports
 {
     public class RightToworkReportParameter : ReportParameterSet
     {
-        public string status { get; set; }
+      
         public string dtId { get; set; }
         public string esId { get; set; }
+        public DateTime expiryAfter { get; set; }
+        public DateTime expiryBefore { get; set; }
 
         protected Dictionary<string, string> parameters;
 
@@ -19,9 +21,11 @@ namespace AionHR.Services.Messaging.Reports
             get
             {
                 parameters = new Dictionary<string, string>();
-                parameters.Add("_status", status.ToString());
+            
                 parameters.Add("_dtId", dtId.ToString());
                 parameters.Add("_esId", esId.ToString());
+                parameters.Add("_expiryAfter", expiryAfter.ToString());
+                parameters.Add("_expiryBefore",expiryBefore.ToString());
                 return parameters;
             }
         }

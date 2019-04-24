@@ -534,24 +534,6 @@
   <data name="pageFooterBand1.HeightF" type="System.Single, mscorlib">
     <value>41.4999657</value>
   </data>
-  <data name="Status.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="xrLabel14.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel14.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>618.3879, 86.2153</value>
-  </data>
-  <data name="xrLabel14.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>127.770767, 23</value>
-  </data>
-  <data name="xrLabel14.Text" xml:space="preserve">
-    <value>xrLabel14</value>
-  </data>
-  <data name="xrLabel14.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
   <data name="xrLabel13.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -595,21 +577,6 @@
     <value>xrLabel11</value>
   </data>
   <data name="xrLabel11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrLabel10.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel10.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>542.3462, 86.2153</value>
-  </data>
-  <data name="xrLabel10.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>76.041626, 22.9999924</value>
-  </data>
-  <data name="xrLabel10.Text" xml:space="preserve">
-    <value>Status :</value>
-  </data>
-  <data name="xrLabel10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
   </data>
   <data name="xrLabel9.Dpi" type="System.Single, mscorlib">
@@ -677,6 +644,9 @@
   </data>
   <data name="reportHeaderBand1.HeightF" type="System.Single, mscorlib">
     <value>120.534706</value>
+  </data>
+  <data name="Status.Description" xml:space="preserve">
+    <value>Parameter1</value>
   </data>
   <data name="xrLabel17.Dpi" type="System.Single, mscorlib">
     <value>100</value>

@@ -105,6 +105,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(EmploymentStatus), "getST");
             ChildGetLookup.Add(typeof(EmploymentStatusByReferance), "getST2");
             ChildGetLookup.Add(typeof(EmployeePenalty), "getPE");
+            ChildGetLookup.Add(typeof(EmployeePenaltyApproval), "getPA");
 
 
 
