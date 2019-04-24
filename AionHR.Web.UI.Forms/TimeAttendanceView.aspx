@@ -482,7 +482,7 @@
                 <ext:GridPanel runat="server"
                          Title="<%$ Resources: AttendanceShifts %>"
                     ID="attendanceShiftGrid"
-                    PaddingSpec="0 0 1 0"
+                    PaddingSpec="0 0 0 0"
                     Header="false"
                     Flex="1"
                     Layout="FitLayout"
@@ -490,22 +490,7 @@
                     Border="false"
                     Icon="User"
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
-                    <TopBar>
-                        <ext:Toolbar runat="server">
-                            <Items>
-                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
-                                    <Listeners>
-                                        <Click Handler="CheckSession();" />
-                                    </Listeners>
-                                    <DirectEvents>
-                                        <Click OnEvent="AddShift">
-                                            <EventMask ShowMask="true" CustomTarget="={#{attendanceShiftGrid}.body}" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
-                            </Items>
-                        </ext:Toolbar>
-                    </TopBar>
+                   
                     <Store>
                         <ext:Store runat="server" ID="attendanceShiftStore">
 

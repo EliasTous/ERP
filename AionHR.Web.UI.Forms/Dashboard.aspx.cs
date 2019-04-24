@@ -164,7 +164,7 @@ namespace AionHR.Web.UI.Forms
                         //missingPunchesStore.Reload();
                         //checkMontierStore.Reload();
                         format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                        DateColumn12.Format= DateColumn10.Format=DateColumn11.Format = DateColumn9.Format  =  ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
+                        PADate.Format= ColDate.Format= DateColumn12.Format= DateColumn10.Format=DateColumn11.Format = DateColumn9.Format  =  ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
                         periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         CountDateTo.SelectedDate = DateTime.Now;
@@ -2727,6 +2727,113 @@ namespace AionHR.Web.UI.Forms
             TimeStore.Reload();
             BindAlerts();
         }
-      
+        [DirectMethod]
+        protected void EmployeePenaltyApprovalPoPUP(object sender, DirectEventArgs e)
+        {
+            TabPanel5.ActiveIndex = 0;
+            string penaltyId = e.ExtraParams["penaltyId"];
+            EmployeePenaltyApprovalRecordRequest r = new EmployeePenaltyApprovalRecordRequest();
+            r.penaltyId = penaltyId;
+            r.approverId = _systemService.SessionHelper.GetEmployeeId();
+            RecordResponse<EmployeePenaltyApproval> resp = _employeeService.ChildGetRecord<EmployeePenaltyApproval>(r);
+            if (!resp.Success)
+            {
+               
+                Common.errorMessage(resp);
+                return;
+            }
+            PADate.Value = resp.result.date;
+            penaltyName.Text = resp.result.penaltyName;
+            PAEmployeeName.Text = resp.result.employeeName.firstName;
+            penaltyStatus.Select(resp.result.status.ToString());
+            notes.Text = resp.result.notes;
+
+            PERecordId.Text = penaltyId;
+
+
+
+            this.employeePenaltyApprovalWindow.Title = Resources.Common.EditWindowsTitle;
+            this.employeePenaltyApprovalWindow.Show();
+
+        }
+
+
+        
+        protected void saveEmployeePenalty(object sender, DirectEventArgs e)
+        {
+           
+          
+
+
+            try
+            {
+                string penaltyId = e.ExtraParams["penaltyId"];
+                string penaltyStatusValue = e.ExtraParams["penaltyStatus"];
+                
+                EmployeePenaltyApprovalRecordRequest r = new EmployeePenaltyApprovalRecordRequest();
+                r.penaltyId = penaltyId;
+                r.approverId = _systemService.SessionHelper.GetEmployeeId();
+                RecordResponse<EmployeePenaltyApproval> resp = _employeeService.ChildGetRecord<EmployeePenaltyApproval>(r);
+                if (!resp.Success)
+                {
+
+                    Common.errorMessage(resp);
+                    return;
+                }
+                //New Mode
+                //Step 1 : Fill The object and insert in the store 
+                EmployeePenaltyApproval PA = resp.result;
+                short number = 0;
+                if (!Int16.TryParse(penaltyStatusValue, out number))
+                    return;
+
+
+                PA.status = number;
+
+
+
+
+
+
+                PostRequest<EmployeePenaltyApproval> request = new PostRequest<EmployeePenaltyApproval>();
+                request.entity = PA;
+
+
+                PostResponse<EmployeePenaltyApproval> resp1 = _employeeService.ChildAddOrUpdate<EmployeePenaltyApproval>(request);
+
+
+                //check if the insert failed
+                if (!resp1.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(resp1); ;
+                    return;
+                }
+                else
+                {
+
+                    EmployeePenaltyApprovalStore.Reload();
+                    BindAlerts();
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordSavingSucc
+                    });
+                   
+                    this.employeePenaltyApprovalWindow.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
+
+        }
+
     }
 }

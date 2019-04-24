@@ -113,7 +113,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceShift), EditShiftForm, attendanceShiftGrid, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceShift), EditShiftForm, attendanceShiftGrid, null, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {

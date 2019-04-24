@@ -85,8 +85,7 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!X.IsAjaxRequest && !IsPostBack)
             {
 
-                statusCombo.Select(0);
-
+             
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
@@ -278,7 +277,7 @@ namespace AionHR.Web.UI.Forms.Reports
             h.Parameters["PositionName"].Value = jobInfo1.GetPosition();
             h.Parameters["User"].Value = user;
             h.Parameters["DepartmentName"].Value = jobInfo1.GetDepartment();
-            h.Parameters["Status"].Value = statusCombo.SelectedItem.Text;
+          
 
 
 
@@ -350,10 +349,12 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             
             RightToworkReportParameter r = new RightToworkReportParameter();
-            if (statusCombo.SelectedItem.Value == null)
-                r.status = "0";
-            else
-            r.status = statusCombo.SelectedItem.Value;
+            //if (statusCombo.SelectedItem.Value == null)
+            //    r.status = "0";
+            //else
+            //r.status = statusCombo.SelectedItem.Value;
+            r.expiryAfter = dateRange1.GetRange().DateFrom;
+            r.expiryBefore = dateRange1.GetRange().DateTo;
             if (dtId.SelectedItem.Value == null)
                 r.dtId = "0";
             else

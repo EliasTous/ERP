@@ -238,7 +238,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.paramString = rep_params;
 
 
-            ListResponse<Model.Reports.RT305> resp = _reportsService.ChildGetAll<Model.Reports.RT305>(req);
+            ListResponse<Model.Reports.RT200> resp = _reportsService.ChildGetAll<Model.Reports.RT200>(req);
             //if (!resp.Success)
             //{
 

@@ -2588,7 +2588,7 @@
                                                 <ext:ModelField Name="status" />
                                                  <ext:ModelField Name="statusString" />
                                                  <ext:ModelField Name="notes" />
-                                                 <ext:ModelField Name="Date" />
+                                                 <ext:ModelField Name="date" />
                                                
                                                 
                                                 
@@ -2609,7 +2609,7 @@
                                            
                                          </ext:Column>
                                      <ext:Column CellCls="cellLink" ID="ColPenaltyName" MenuDisabled="true" runat="server" Text="<%$ Resources:Common, FieldPenaltyName%>" DataIndex="penaltyName" />
-                                    <ext:DateColumn  ID="ColDate" MenuDisabled="true" runat="server" DataIndex="Date" Text="<%$ Resources: FieldDate%>" Flex="1" Hideable="false" />
+                                    <ext:DateColumn  ID="ColDate" MenuDisabled="true" runat="server" DataIndex="date" Text="<%$ Resources: FieldDate%>" Flex="1" Hideable="false" />
                                     <ext:Column ID="lAstatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
                                        
                                     </ext:Column>
@@ -2637,14 +2637,14 @@
                                                                 <Render Handler="this.on('cellclick', cellClick);" />
                                                             </Listeners>
                                                             <DirectEvents>
-                                                               <%-- <CellClick OnEvent="EmployeePenaltyApprovalPoPUP">
+                                                                <CellClick OnEvent="EmployeePenaltyApprovalPoPUP">
                                                                     <EventMask ShowMask="true" />
                                                                     <ExtraParams>
-                                                                        <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                                        <ext:Parameter Name="penaltyId" Value="record.data['penaltyId']" Mode="Raw" />
                                                                         <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                                                     </ExtraParams>
 
-                                                                </CellClick>--%>
+                                                                </CellClick>
                                                             </DirectEvents>
 
 
@@ -5837,6 +5837,165 @@
             </Items>
 
         </ext:Window>
+           <ext:Window
+            ID="employeePenaltyApprovalWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:EmployeePenaltyApproval %>"
+            Width="450"
+            Height="330"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+                <ext:TabPanel ID="TabPanel5" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                    <Items>
+                        <ext:FormPanel
+                            ID="employeePenaltyForm"
+                            runat="server" DefaultButton="SavePEButton"
+                            Title="<%$ Resources: EmployeePenaltyApproval %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" 
+                            BodyPadding="5">
+                            <Items>
+                                 <ext:TextField ID="PERecordId" runat="server"  Hidden="true" DataIndex="PERecordId"  />
+                           
+                                <ext:DateField ID="PADate" runat="server" FieldLabel="<%$ Resources:FieldDate%>" DataIndex="date" Name="date" ReadOnly="true" />
+                             
+                                 <ext:TextField ID="penaltyName" runat="server"   DataIndex="penaltyName" FieldLabel="<%$ Resources:Common, FieldPenaltyName%>" ReadOnly="true" />
+                                 <ext:TextField ID="PAEmployeeName"  runat="server"   FieldLabel="<%$ Resources: FieldEmployee %>" ReadOnly="true"  />
+
+                               
+                                  <%--  <ext:NumberField ID="NumberField1"  runat="server" FieldLabel="<%$ Resources:FieldAmount%>"  DataIndex="amount" DecimalPrecision="2" MinValue="0" AllowBlank="false"/>--%>
+                                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="penaltyStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status"
+                                    FieldLabel="<%$ Resources: FieldStatus %>">
+                                    <Items>
+
+                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusNew %>"  />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusApproved %>" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusRefused %>" />
+                                    </Items>
+
+                                </ext:ComboBox>
+                                 <ext:TextArea ID="notes"  runat="server" FieldLabel="<%$ Resources:FieldNotes%>"  DataIndex="notes"  />
+
+
+                            </Items>
+
+                        </ext:FormPanel>
+                          <%--  <ext:GridPanel
+                            ID="ApprovalsGridPanel"
+                            runat="server"
+                            PaddingSpec="0 0 1 0"
+                            Header="false"
+                            MaxHeight="350"
+                            Layout="FitLayout"
+                            Scroll="Vertical"
+                            Border="false"
+                             Title="<%$ Resources: Approvals %>"
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True" >
+                            
+                            <Store>
+                                <ext:Store runat="server" ID="ApprovalStore" OnReadData="ApprovalsStore_ReadData">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="approverName" IsComplex="true" />
+                                                <ext:ModelField Name="departmentName" />
+                                                 <ext:ModelField Name="penaltyId" />
+                                                <ext:ModelField Name="approverId" />
+                                                <ext:ModelField Name="status" />
+                                                 <ext:ModelField Name="statusString" />
+                                                 <ext:ModelField Name="notes" />
+                                                
+                                                
+                                                
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+
+
+                            <ColumnModel ID="ColumnModel5" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                <Columns>
+                                          <ext:Column ID="Column67" Visible="false" DataIndex="approverId" runat="server" />
+                                 
+                                        <ext:Column ID="Column68" DataIndex="approverName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
+                                           <Renderer Handler=" return record.data['approverName'].fullName; ">
+                                           </Renderer>
+                                         </ext:Column>
+                                    <ext:Column ID="Column69" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1"/>
+                                    <ext:Column ID="Column70" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
+                                       
+                                    </ext:Column>
+                                      
+                                    <ext:Column ID="Column71" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
+                                       
+                                    </ext:Column>
+                                   
+
+
+
+                                </Columns>
+                            </ColumnModel>
+
+                            <%--  alert(last.dayId);
+                                                        if(App.leaveRequest1_shouldDisableLastDay.value=='1')
+                                                             if(last.dayId==rec.data['dayId'])  
+                                                                        this.setDisabled(false);
+                                                            else this.setDisabled(true); 
+                                                        else
+                                                            this.setDisabled(true); 
+                            
+                           <Listeners>
+                               <Activate Handler="#{ApprovalStore}.reload();" />
+                           </Listeners>
+
+                            <View>
+                                <ext:GridView ID="GridView5" runat="server" />
+                            </View>
+
+
+                            <SelectionModel>
+                                <ext:RowSelectionModel ID="rowSelectionModel4" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />
+                            </SelectionModel>
+                         
+                     </ext:GridPanel>--%>
+
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="SavePEButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{employeePenaltyForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="saveEmployeePenalty" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="penaltyId" Value="#{PERecordId}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="penaltyStatus" Value="App.penaltyStatus.getValue()" Mode="Raw" />
+
+                                
+                                <ext:Parameter Name="values" Value="#{employeePenaltyForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button8" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+
         <uc:leaveControl runat="server" ID="leaveRequest1" />
       
       
