@@ -121,13 +121,13 @@
     <value>إجمالي الرواتب</value>
   </data>
   <data name="xrTableCell11.Text" xml:space="preserve">
-    <value>الخصومات</value>
+    <value>الراتب الأساسي</value>
   </data>
   <data name="xrTableCell13.Text" xml:space="preserve">
     <value>الإستحقاقات</value>
   </data>
   <data name="xrTableCell15.Text" xml:space="preserve">
-    <value>نهاية المدة</value>
+    <value>الخصومات</value>
   </data>
   <data name="xrTableCell17.Text" xml:space="preserve">
     <value>ضمان الإجتماعي على الموظف</value>
@@ -136,12 +136,12 @@
     <value>صافي الراتب</value>
   </data>
   <data name="xrTableCell21.Text" xml:space="preserve">
-    <value>بداية المدة</value>
+    <value>ضمان الإجتماعي على الشركة</value>
   </data>
   <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>الراتب الأساسي</value>
+    <value>بداية المدة</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>ضمان الإجتماعي على الشركة</value>
+    <value>نهاية المدة</value>
   </data>
 </root>
