@@ -495,7 +495,9 @@
                                      </ext:TextField>
                                   <ext:TextField runat="server" ID="days" Name="days" FieldLabel="<%$ Resources: FieldDays %>"  MsgTarget="None">
                                       <Listeners  >
-                                         <Change Handler=" this.next().setValue((this.prev().getValue().replace(/\D/g,'')/30)*this.value);"   ></Change>
+                                         <Change Handler="var num = this.prev().getValue().replace(/\D/g,'')/30 *this.value;
+                                                          
+                                             this.next().setValue(num.toFixed(2));"></Change>
                                       </Listeners>
                                        <Validator Handler=" if(!isNaN(this.value)&&this.value>0 && this.value<= #{leaveBalance}.getValue()) return true;">
                                            
@@ -580,7 +582,7 @@
                                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                                     <Listeners>
-                                        <Click Handler="CheckSession(); removethousandSeparator(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                                        <Click Handler=" #{amount}.setValue(parseInt(#{amount}.getValue()));  CheckSession(); removethousandSeparator(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">

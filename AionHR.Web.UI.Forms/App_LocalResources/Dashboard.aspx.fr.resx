@@ -672,4 +672,7 @@
   <data name="PurchasesApproval" xml:space="preserve">
     <value>bon de commande</value>
   </data>
+  <data name="RemainingDays" xml:space="preserve">
+    <value>Jours restants</value>
+  </data>
 </root>

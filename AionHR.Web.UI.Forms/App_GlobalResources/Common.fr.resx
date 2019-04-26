@@ -1410,4 +1410,7 @@
   <data name="RT310" xml:space="preserve">
     <value>Calendrier de présence</value>
   </data>
+  <data name="Hourly" xml:space="preserve">
+    <value>Toutes les heures</value>
+  </data>
 </root>

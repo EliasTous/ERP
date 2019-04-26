@@ -5541,7 +5541,7 @@
                           <%--   <ext:Column  ID="npName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNpName %>" DataIndex="npName" Hideable="false"  />--%>
 
 
-                               <ext:Column Flex="1"   MenuDisabled="true" runat="server" Text="<%$ Resources: leaveDays %>" DataIndex="leaveDays" Hideable="false"  />
+                               <ext:Column Flex="1"   MenuDisabled="true" runat="server" Text="<%$ Resources: RemainingDays %>" DataIndex="leaveDays" Hideable="false"  />
                                <ext:Column  Flex="1"  MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDestination %>" DataIndex="destination" Hideable="false"  />
                                <ext:Column Flex="1"  MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJustification %>" DataIndex="justification" Hideable="false"  />
                              <ext:Column Flex="1"  MenuDisabled="true" runat="server" Text="<%$ Resources: ReturnNotes %>" DataIndex="returnNotes" Hideable="false"  />

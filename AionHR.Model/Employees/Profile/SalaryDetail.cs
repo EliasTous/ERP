@@ -19,7 +19,8 @@ namespace AionHR.Model.Employees.Profile
         Week = 2,
         BiWeek = 3,
         FourWeek = 4,
-        Month = 5
+        Month = 5,
+        Hourly=6
 
     }
 
@@ -29,7 +30,8 @@ namespace AionHR.Model.Employees.Profile
         Week = 2,
         BiWeek = 3,
         FourWeek = 4,
-        Month = 5
+        Month = 5,
+        Hourly = 6
 
     }
     [ClassIdentifier("31063", "31")]

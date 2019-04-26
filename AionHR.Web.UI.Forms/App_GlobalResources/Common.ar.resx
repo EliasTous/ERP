@@ -1410,4 +1410,7 @@
   <data name="Onboarding" xml:space="preserve">
     <value>عند الوصول</value>
   </data>
+  <data name="Hourly" xml:space="preserve">
+    <value>ساعات</value>
+  </data>
 </root>

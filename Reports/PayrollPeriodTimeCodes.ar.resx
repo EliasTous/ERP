@@ -130,7 +130,7 @@
     <value>الأيام</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
-    <value>غياب</value>
+    <value>في اجازة</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
     <value>القيمة</value>
@@ -148,7 +148,7 @@
     <value>الأيام</value>
   </data>
   <data name="xrLabel19.Text" xml:space="preserve">
-    <value>غياب بدون إذن</value>
+    <value>غياب يوم دون عذر</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>الاسم</value>

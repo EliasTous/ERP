@@ -1329,4 +1329,7 @@
   <data name="RT310" xml:space="preserve">
     <value>Anwesenheitsplan</value>
   </data>
+  <data name="Hourly" xml:space="preserve">
+    <value>Stündlich</value>
+  </data>
 </root>

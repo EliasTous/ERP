@@ -1344,4 +1344,7 @@
   <data name="Parameters" xml:space="preserve">
     <value>Parameters</value>
   </data>
+  <data name="Hourly" xml:space="preserve">
+    <value>Hourly</value>
+  </data>
 </root>

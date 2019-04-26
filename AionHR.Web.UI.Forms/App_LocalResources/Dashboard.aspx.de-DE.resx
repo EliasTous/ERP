@@ -676,4 +676,7 @@
   <data name="FieldQty" xml:space="preserve">
     <value>Qty</value>
   </data>
+  <data name="RemainingDays" xml:space="preserve">
+    <value>Verbleibende Tage</value>
+  </data>
 </root>

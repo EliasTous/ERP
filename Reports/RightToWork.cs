@@ -146,7 +146,6 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrPageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.reportHeaderBand1 = new DevExpress.XtraReports.UI.ReportHeaderBand();
-            this.Status = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.PositionName = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
@@ -157,6 +156,7 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.Status = new DevExpress.XtraReports.Parameters.Parameter();
             this.Title = new DevExpress.XtraReports.UI.XRControlStyle();
             this.FieldCaption = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
@@ -185,7 +185,7 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel6.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName.fullName")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName")});
             resources.ApplyResources(this.xrLabel6, "xrLabel6");
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -584,12 +584,6 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.reportHeaderBand1, "reportHeaderBand1");
             this.reportHeaderBand1.Name = "reportHeaderBand1";
             // 
-            // Status
-            // 
-            resources.ApplyResources(this.Status, "Status");
-            this.Status.Name = "Status";
-            this.Status.Visible = false;
-            // 
             // xrLabel13
             // 
             this.xrLabel13.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -660,6 +654,12 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.StyleName = "Title";
             this.xrLabel1.StylePriority.UseTextAlignment = false;
+            // 
+            // Status
+            // 
+            resources.ApplyResources(this.Status, "Status");
+            this.Status.Name = "Status";
+            this.Status.Visible = false;
             // 
             // Title
             // 

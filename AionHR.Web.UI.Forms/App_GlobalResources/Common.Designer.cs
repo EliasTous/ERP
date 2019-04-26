@@ -1582,6 +1582,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hourly.
+        /// </summary>
+        internal static string Hourly {
+            get {
+                return ResourceManager.GetString("Hourly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import.
         /// </summary>
         internal static string Import {

@@ -60,7 +60,7 @@
                         <ext:Toolbar runat="server" Height="30" Dock="Top">
 
                             <Items>
-                       <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="filterBy" Editable="false" EmptyText="<%$ Resources: FieldGroupBy %>" Width="120"  >
+                       <ext:ComboBox  ForceSelection="true"  AnyMatch="true" CaseSensitive="false"  runat="server" ID="filterBy" Editable="false" EmptyText="<%$ Resources: FieldGroupBy %>" Width="120"  >
                                     <Items>
                                         
                                         <ext:ListItem Text="<%$ Resources: department %>" Value="1" />

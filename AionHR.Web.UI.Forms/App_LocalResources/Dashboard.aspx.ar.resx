@@ -675,4 +675,7 @@
   <data name="PurchasesApproval" xml:space="preserve">
     <value>طلبات الشراء </value>
   </data>
+  <data name="RemainingDays" xml:space="preserve">
+    <value>الايام المتبقية</value>
+  </data>
 </root>

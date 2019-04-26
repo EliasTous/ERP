@@ -239,7 +239,7 @@ namespace AionHR.Model.Reports
     [ClassIdentifier("80503", "80")]
     public class RT503
     {
-        public string primaryKey { get { return departmentId.ToString() + positionId.ToString() + branchId.ToString(); } }
+        public string primaryKey { get { return branchId.ToString() + departmentId.ToString() + positionId.ToString(); } }
         public int departmentId { get; set; }
         public int branchId { get; set; }
         public int positionId { get; set; }
