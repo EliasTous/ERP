@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -243,11 +246,10 @@
       <Name>AionHR.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\AionHR.Model\AionHR.Model.csproj">
-      <Project>{ECB87836-818F-45F5-AB7F-F46CDE3C447F}</Project>
+      <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
       <Name>AionHR.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

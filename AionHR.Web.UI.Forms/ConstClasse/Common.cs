@@ -12,6 +12,9 @@ using System.Resources;
 using System.Web;
 using AionHR.Web.UI.Forms.App_GlobalResources;
 using System.Text.RegularExpressions;
+using DevExpress.XtraReports.UI;
+using System.Drawing.Printing;
+using System.Drawing;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -95,5 +98,77 @@ namespace AionHR.Web.UI.Forms
        
 
 }
+        public static DevExpress.XtraReports.UI.XtraReport ReportWithParameters( DevExpress.XtraReports.UI.XtraReport report, Dictionary<string, string> parameters)
+        {
+
+            if (parameters.Count == 0)
+                return new XtraReport();
+            PageHeaderBand header = new PageHeaderBand();
+            report.Bands.Add(header);
+
+            XRTable table = new XRTable();
+            table.BeginInit();
+
+
+            table.LocationF = new PointF(0, 0);
+            int count = 0;
+            XRTableRow row = new XRTableRow();
+
+            foreach (KeyValuePair<string, string> item in parameters)
+            {
+
+                XRTableCell cell = new XRTableCell();
+
+                cell.Text = item.Key;
+
+                cell.BackColor = Color.Gray;
+                cell.ForeColor = Color.White;
+
+                XRTableCell valueCell = new XRTableCell();
+
+                valueCell.Text = item.Value;
+
+                row.Cells.Add(cell);
+                row.Cells.Add(valueCell);
+
+                count++;
+                if (count % 4 == 0)
+                {
+                    table.Rows.Add(row);
+                    row = new XRTableRow();
+                }
+
+
+
+
+
+            }
+            if (count % 4 != 0)
+            {
+                for (int i = 0; i < (4 - (count % 4)) * 2; i++)
+                {
+                    XRTableCell cell = new XRTableCell();
+
+
+
+                    row.Cells.Add(cell);
+                }
+                table.Rows.Add(row);
+            }
+            table.LocationF = new DevExpress.Utils.PointFloat(0F, 0F);
+            table.WidthF = report.PageWidth - report.Margins.Left - report.Margins.Right;
+
+            table.AdjustSize();
+            table.EndInit();
+
+
+
+            header.Controls.Add(table);
+
+
+            return report;
+       
+        }
+        
     }
 }
