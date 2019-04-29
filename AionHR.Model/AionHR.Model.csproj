@@ -372,6 +372,7 @@
     <Compile Include="TimeAttendance\RT305.cs" />
     <Compile Include="TimeAttendance\SchedulePattern.cs" />
     <Compile Include="TimeAttendance\Time.cs" />
+    <Compile Include="TimeAttendance\TimeAttendanceCompositeObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">

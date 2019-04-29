@@ -31,6 +31,7 @@ using AionHR.Services.Messaging.TimeAttendance;
 using AionHR.Model.Dashboard;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Services.Messaging.System;
+using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -98,8 +99,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
              
                 format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-               startDayId.SelectedDate = DateTime.Today;
-                endDayId.SelectedDate = DateTime.Today;
+              
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceDay), null, GridPanel1, null, null);
@@ -111,17 +111,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceShift), EditShiftForm, attendanceShiftGrid, null, SaveButton);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
+                
                 List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
 
             }
@@ -199,47 +189,9 @@ namespace AionHR.Web.UI.Forms
             }
             return R;
         }
-        private void FillEmployeeFlatSchedule(string dayId,int employeeId)
-        {
-            BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
-            reqFS.EmployeeId = employeeId;
-            reqFS.FromDayId = dayId;
-            reqFS.ToDayId = dayId;
-            reqFS.BranchId = 0;
-            ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
-            flatScheduleStore.DataSource = response.Items;
-            flatScheduleStore.DataBind();
-        }
+      
        
-        private void FillEmployeeTimeVariation(string dayId, int employeeId)
-        {
-            TimeVariationListRequest req = GetAbsentRequest(DateTime.ParseExact(dayId, "yyyyMMdd", new CultureInfo("en")), employeeId);
-
-            ListResponse<DashBoardTimeVariation> daysResponse = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);
-           timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            daysResponse.Items.ForEach(
-                x =>
-                {
-                    x.clockDurationString = time(x.clockDuration, true);
-                    x.durationString = time(x.duration, true);
-                    x.timeCodeString = timeCode.Where(y => y.key == Convert.ToInt16(x.timeCode)).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
-
-                    x.apStatusString = FillApprovalStatus(x.apStatus);
-                    x.damageLevelString = FillDamageLevelString(x.damageLevel);
-                    if (rtl)
-                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
-                    else
-                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
-
-
-                }
-                );
-
-            Store2.DataSource = daysResponse.Items;
-            Store2.DataBind(); 
-
-        }
+   
         protected void PoPuP(object sender, DirectEventArgs e)
         {
             try
@@ -255,31 +207,8 @@ namespace AionHR.Web.UI.Forms
                 switch (type)
                 {
                     case "imgEdit":
-                        //Step 1 : get the object from the Web Service 
-                        AttendanceShiftListRequest request = new AttendanceShiftListRequest();
-                        request.EmployeeId = employeeId;
-                        request.DayId = dayId;
-                        ListResponse<AttendanceShift> shifts = _timeAttendanceService.ChildGetAll<AttendanceShift>(request);
-                        if (shifts.Success)
-                        {
-                            shifts.Items.ForEach(x =>
-                            {
-                                int i = 0;
-                                if (Int32.TryParse(x.duration, out i))
-                                {
-                                    x.duration = time(i, true);
-                                }
-                              
-
-                                });
-                            attendanceShiftStore.DataSource = shifts.Items;
-                            attendanceShiftStore.DataBind();
-                            
-                            FillEmployeeFlatSchedule(dayId.ToString(), employeeId);
-                            FillEmployeeTimeVariation(dayId.ToString(), employeeId);
-                            FillTimeApproval(dayId, employeeId);
-                            AttendanceShiftWindow.Show();
-                        }
+                       
+                        
 
                         break;
                     case "LinkRender":
@@ -325,123 +254,7 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        protected void PoPuPShift(object sender, DirectEventArgs e)
-        {
-
-
-         
-            string type = e.ExtraParams["type"];
-            string cIn = e.ExtraParams["checkedIn"];
-            string cOut = e.ExtraParams["checkedOut"];
-            string day = CurrentDay.Text;
-            string emp = CurrentEmployee.Text;
-            string id = e.ExtraParams["shiftId"];
-            switch (type)
-            {
-                case "imgEdit":
-                    //Step 1 : get the object from the Web Service 
-                    recordId.Text = id;
-                    shiftDayId.Text = day;
-                    shiftEmpId.Text = emp;
-                    checkIn.Text = cIn;
-                    checkOut.Text = cOut;
-                    ca.Text = CurrentCA.Text;
-                    sc.Text = CurrentSC.Text;
-                    EditShiftWindow.Show();
-
-
-                    break;
-                case "imgDelete":
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                    {
-                        Yes = new MessageBoxButtonConfig
-                        {
-                            //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteShift({0})", id),
-                            Text = Resources.Common.Yes
-                        },
-                        No = new MessageBoxButtonConfig
-                        {
-                            Text = Resources.Common.No
-                        }
-
-                    }).Show();
-                    break;
-                default:
-                    break;
-            }
-
-
-        }
-
-
-        /// <summary>
-        /// This direct method will be called after confirming the delete
-        /// </summary>
-        /// <param name="index">the ID of the object to delete</param>
-        [DirectMethod]
-        public void DeleteShift(string index)
-        {
-            try
-            {
-                //Step 1 Code to delete the object from the database 
-                AttendanceShift s = new AttendanceShift();
-                s.recordId = index;
-                s.dayId = CurrentDay.Text;
-                s.employeeId = CurrentEmployee.Text;
-                s.checkIn = "00:00";
-                s.checkOut = "00:00";
-                PostRequest<AttendanceShift> req = new PostRequest<AttendanceShift>();
-                req.entity = s;
-                PostResponse<AttendanceShift> resp = _timeAttendanceService.ChildDelete<AttendanceShift>(req);
-                if (!resp.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    Common.errorMessage(resp);
-                    return;
-                }
-                SynchronizeAttendanceDay GD = new SynchronizeAttendanceDay();
-                PostRequest<SynchronizeAttendanceDay> request = new PostRequest<SynchronizeAttendanceDay>();
-                GD.employeeId =Convert.ToInt32( CurrentEmployee.Text);
-                GD.fromDayId = CurrentDay.Text;
-                GD.toDayId = CurrentDay.Text;
-                request.entity = GD;
-
-
-                PostResponse<SynchronizeAttendanceDay> resp1 = _helpFunctionService.ChildAddOrUpdate<SynchronizeAttendanceDay>(request);
-                //Step 2 :  remove the object from the store
-             
-                if (!resp1.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp1.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp1.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +resp1.LogId : resp1.Summary).Show();
-                    return;
-                }
-                attendanceShiftStore.Remove(index);
-                //Step 3 : Showing a notification for the user 
-                Notification.Show(new NotificationConfig
-                {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.RecordDeletedSucc
-                });
-
-                Store1.Reload();
-            }
-            catch (Exception ex)
-            {
-                //In case of error, showing a message box to the user
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
-
-            }
-
-        }
-
-
-
-
-
+      
         /// <summary>
         /// Deleting all selected record
         /// </summary>
@@ -514,43 +327,7 @@ namespace AionHR.Web.UI.Forms
         public void deleteBranchAttendances()
         {
             BranchAttendance BA = new BranchAttendance();
-            var d = jobInfo1.GetJobInfo();
-            if (d.BranchId.HasValue)
-            {
-                BA.branchId =Convert.ToInt32( d.BranchId.Value.ToString());
-              
-
-
-            }
-            else
-            {
-                BA.branchId = 0;
-              
-            }
-            
-
-            if (startDayId.SelectedDate != DateTime.MinValue)
-
-            {
-                BA.fromDayId= startDayId.SelectedDate.ToString("yyyyMMdd");
-
-
-            }
-            else
-            {
-                BA.fromDayId = "";
-            }
-            if (endDayId.SelectedDate != DateTime.MinValue)
-
-            {
-                BA.toDayId = endDayId.SelectedDate.ToString("yyyyMMdd");
-
-
-            }
-            else
-            {
-                BA.toDayId = "";
-            }
+           
            
             try
             {
@@ -597,102 +374,33 @@ namespace AionHR.Web.UI.Forms
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        private AttendnanceDayListRequest GetAttendanceDayRequest()
+
+        [DirectMethod]
+        public void SetLabels(string labels)
         {
-            AttendnanceDayListRequest req = new AttendnanceDayListRequest();
-
-            var d = jobInfo1.GetJobInfo();
-            if (d.BranchId.HasValue)
-            {
-                req.BranchId = d.BranchId.Value.ToString();
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColBranchName").First().SetHidden(true);
-
-
-            }
-            else
-            {
-                req.BranchId = "0";
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColBranchName").First().SetHidden(false);
-            }
-            if (d.DivisionId.HasValue)
-            {
-                req.DivisionId = d.DivisionId.Value.ToString();
-
-
-            }
-            else
-            {
-                req.DivisionId = "0";
-            }
-            if (d.DepartmentId.HasValue)
-            {
-                req.DepartmentId = d.DepartmentId.Value.ToString();
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColDepartmentName").First().SetHidden(true);
-
-            }
-            else
-            {
-                req.DepartmentId = "0";
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColDepartmentName").First().SetHidden(false);
-            }
-
-            if (startDayId.SelectedDate != DateTime.MinValue)
-
-            {
-                req.StartDayId = startDayId.SelectedDate.ToString("yyyyMMdd");
-
-
-            }
-            else
-            {
-                req.StartDayId = "";
-            }
-            if (endDayId.SelectedDate != DateTime.MinValue)
-
-            {
-                req.EndDayId = endDayId.SelectedDate.ToString("yyyyMMdd");
-
-
-            }
-            else
-            {
-                req.EndDayId = "";
-            }
-            if (!string.IsNullOrEmpty(employeeId.Text) && employeeId.Value.ToString() != "0")
-            {
-                req.EmployeeId = employeeId.Value.ToString();
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColName").First().SetHidden(true);
-
-
-            }
-            else
-            {
-                req.EmployeeId = "0";
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColName").First().SetHidden(false);
-
-            }
-
-            req.Month = "0";
-            req.Year = "0";
-            req.Size = "30";
-            req.StartAt = "0";
-            req.Filter = "";
-            req.SortBy = "dayId,checkIn";
-          
-         //  req.apStatus = 0;
-         
-
-            return req;
+            this.labels.Text = labels;
         }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
             try
             {
                 //GEtting the filter from the page
 
-                AttendnanceDayListRequest req = GetAttendanceDayRequest();
-
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
                 req.StartAt = e.Start.ToString();
                 ListResponse<AttendanceDay> daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
                 if (!daysResponse.Success)
@@ -701,71 +409,29 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-
-                daysResponse.Items.ForEach(x =>
-
-                            {
-                                x.netOLString = time(x.netOL, true);
-                                if (rtl)
-                                    x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
-                                else
-                                    x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
-                                switch (x.apStatus)
-                                {
-                                    case 1:
-                                        x.apStatusString = pendingHF.Text;
-                                        break;
-                                    case 2:
-                                        x.apStatusString = approvedHF.Text;
-                                        break;
-
-                                }
-                            });
-
-
-
-
-                int total = daysResponse.Items.Sum(x => x.netOL);
-                string totalWorked, totalBreaks;
-                int hoursWorked = 0, minsWorked = 0, hoursBreak, minsBrea = 0;
-                daysResponse.Items.ForEach(x =>
-                {
-                    if (!string.IsNullOrEmpty(x.workingTime))
+                List<TimeAttendanceCompositeObject> objs = new List<TimeAttendanceCompositeObject>();
+                daysResponse.Items.ForEach(x => {
+                    x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                    ReportGenericRequest r = new ReportGenericRequest();
+                    r.paramString = "3|" + x.dayId + "^4|" + x.employeeId;
+                    ListResponse<FlatSchedule> fsresponse = _timeAttendanceService.ChildGetAll<FlatSchedule>(r);
+                    string fsstring = "";
+                    fsresponse.Items.ForEach(fs => { fsstring += fs.from + " - " + fs.to + "|"; fsstring = fsstring.Substring(0, fsstring.Length - 1); });
+                    objs.Add(new TimeAttendanceCompositeObject()
                     {
-                        hoursWorked += Convert.ToInt32(x.workingTime.Substring(0, 2));
-                        minsWorked += Convert.ToInt32(x.workingTime.Substring(3, 2));
-                    }
-                    if (!string.IsNullOrEmpty(x.breaks))
-                    {
-                        if (x.breaks[0] == '-')
-                        {
-                            minsBrea -= Convert.ToInt32(x.breaks.Substring(1, 2)) * 60;
-                            minsBrea -= Convert.ToInt32(x.breaks.Substring(4, 2));
-                        }
-                        else
-
-                        {
-                            minsBrea += Convert.ToInt32(x.breaks.Substring(0, 2)) * 60;
-                            minsBrea += Convert.ToInt32(x.breaks.Substring(3, 2));
-
-                        }
-                    }
+                        FSString = fsstring,
+                        dayId = x.dayId,
+                        branchName = x.branchName,
+                        departmentName = x.departmentName,
+                        employeeName = x.employeeName,
+                        employeeId = x.employeeId.ToString(),
+                        dayIdString = x.dayIdString,
+                        positionName = x.positionName
+                    });
                 });
-                hoursWorked += minsWorked / 60;
-                minsWorked = minsWorked % 60;
 
-                hoursBreak = minsBrea / 60;
-                minsBrea = minsBrea % 60;
-                totalWorked = hoursWorked.ToString() + ":" + minsWorked.ToString();
-                totalBreaks = hoursBreak.ToString() + ":" + minsBrea.ToString();
-                X.Call("setTotal", totalWorked, totalBreaks);
-                this.total.Text = total.ToString();
-                var data = daysResponse.Items;
-                if (daysResponse.Items != null)
-                {
-                    this.Store1.DataSource = daysResponse.Items;
-                    this.Store1.DataBind();
-                }
+                Store1.DataSource = objs;
+                Store1.DataBind();
                 e.Total = daysResponse.count;
             }
             catch(Exception exp)
@@ -852,155 +518,8 @@ namespace AionHR.Web.UI.Forms
                  Common.errorMessage(response);
             return response.Items;
         }
-
-        protected void attendanceShiftStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-
-        }
-
-        protected void SaveShift(object sender, DirectEventArgs e)
-        {
-
-
-            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string id = e.ExtraParams["recordId"];
-            string day = e.ExtraParams["dayId"];
-            string emp = e.ExtraParams["EmployeeId"];
-            
-
-            string obj = e.ExtraParams["values"];
-            AttendanceShift b = JsonConvert.DeserializeObject<AttendanceShift>(obj);
-
-            b.recordId = id;
-            b.dayId = day;
-            b.employeeId = emp;
-            
-            // Define the object to add or edit as null
-
-            if (string.IsNullOrEmpty(id))
-            {
-
-                try
-                {
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<AttendanceShift> request = new PostRequest<AttendanceShift>();
-                    request.entity = b;
-                    PostResponse<AttendanceShift> r = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(request);
-                    b.recordId = r.recordId;
-
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                         Common.errorMessage(r);
-                        return;
-                    }
-                    else
-                    {
-
-                        //Add this record to the store 
-                        int i = 0;
-                        if (Int32.TryParse(b.duration, out i))
-                        {
-                            b.duration = time(i, true);
-                        }
-                      
-                        this.attendanceShiftStore.Insert(0, b);
-
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
-
-                        this.EditShiftWindow.Close();
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
-
-
-                        Store1.Reload();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-                }
-
-
-            }
-            else
-            {
-                //Update Mode
-
-                try
-                {
-                    int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<AttendanceShift> request = new PostRequest<AttendanceShift>();
-                    request.entity = b;
-                    PostResponse<AttendanceShift> r = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(request);                      //Step 1 Selecting the object or building up the object for update purpose
-
-                    //Step 2 : saving to store
-
-                    //Step 3 :  Check if request fails
-                    if (!r.Success)//it maybe another check
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                       Common.errorMessage(r);;
-                        return;
-                    }
-                    else
-                    {
-
-
-                        ModelProxy record = this.attendanceShiftStore.GetById(index);
-                        
-                        EditShiftForm.UpdateRecord(record);
-                        record.Commit();
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                        });
-                        this.EditShiftWindow.Close();
-
-
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                }
-
-                Store1.Reload();
-            }
-        }
-
-
-        protected void AddShift(object sender, DirectEventArgs e)
-        {
-
-            //Reset all values of the relative object
-
-            EditShiftForm.Reset();
-            ca.Text = CurrentCA.Text;
-            sc.Text = CurrentSC.Text;
-            shiftDayId.Text = CurrentDay.Text;
-            shiftEmpId.Text = CurrentEmployee.Text;
-            this.EditShiftWindow.Title = Resources.Common.AddNewRecord;
-          
-            this.EditShiftWindow.Show();
-        }
-
+        
+        
         protected void FillTimeApproval(int dayId, int employeeId)
         {
             try

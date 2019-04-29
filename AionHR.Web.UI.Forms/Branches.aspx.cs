@@ -224,7 +224,7 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = response.result.managerId,
-                                    fullName =response.result.managerName.fullName
+                                    fullName =response.result.managerName
                                 }
                            });
                         managerId.SetValue(response.result.managerId);

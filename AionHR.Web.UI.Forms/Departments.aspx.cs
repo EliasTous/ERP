@@ -182,7 +182,7 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = response.result.supervisorId,
-                                    fullName =response.result.supervisorName.fullName
+                                    fullName =response.result.supervisorName
                                 }
                            });
                         supervisorId.SetValue(response.result.supervisorId);
@@ -510,12 +510,12 @@ namespace AionHR.Web.UI.Forms
             Department b = JsonConvert.DeserializeObject<Department>(obj);
             b.scName = scId.SelectedItem.Text;
             b.recordId = id;
-            b.supervisorName = new EmployeeName();
+            
             b.caName=caId.SelectedItem.Text;
             // Define the object to add or edit as null
             if (supervisorId.SelectedItem.Text != null)
 
-                b.supervisorName.fullName = supervisorId.SelectedItem.Text;
+                b.supervisorName = supervisorId.SelectedItem.Text;
             if (parentId.SelectedItem != null)
                 b.parentName = parentId.SelectedItem.Text;
             if (!b.isInactive.HasValue)

@@ -36,7 +36,7 @@ namespace AionHR.Model.Company.Structure
         public int? caId { get; set; }
         public string caName { get; set; }
         public string managerId { get; set; }
-        public EmployeeName managerName { get; set; }
+        public string managerName { get; set; }
 
 
     }

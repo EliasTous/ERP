@@ -158,7 +158,7 @@ public class DepartmentListRequest : ListRequest
             parameters.Add("_type", type.ToString());
             if (isInactive == null)
                 isInactive = 0; 
-            parameters.Add("_isInactive", isInactive.ToString()  );
+            parameters.Add("_activeStatus", isInactive.ToString()  );
 
 
             return parameters;

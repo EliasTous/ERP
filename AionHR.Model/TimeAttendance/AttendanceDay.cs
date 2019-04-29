@@ -11,9 +11,11 @@ namespace AionHR.Model.Attendance
     [ClassIdentifier("41062", "41")]
     public class AttendanceDay
     {
+        public string positionName;
+
         [PropertyID("41062_01")]
         [ApplySecurity]
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         [PropertyID("41062_02")]
         [ApplySecurity]
         public int branchId { get; set; }
