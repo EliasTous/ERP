@@ -62,7 +62,22 @@ public class EmployeeListRequest:ListRequest
 
    
 }
+public class EmployeeSnapshotListRequest:ListRequest
+{
+    public string BranchId { get; set; }
+   
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_branchId", BranchId);
+            parameters.Add("_filter", Filter);
+            return parameters;
 
+        }
+    }
+}
 public class EmployeeAddOrUpdateRequest
 {
     public Employee empData { get; set; }

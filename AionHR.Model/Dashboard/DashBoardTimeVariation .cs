@@ -11,6 +11,8 @@ namespace AionHR.Model.Dashboard
     [ClassIdentifier("41066", "41")]
     public  class DashBoardTimeVariation
     {
+        public string timeName;
+
         public string recordId { get { return employeeId.ToString() + dayId.ToString() + shiftId.ToString() + timeCode.ToString(); } }
         public int employeeId { get; set; }
         public string dayId { get; set; }

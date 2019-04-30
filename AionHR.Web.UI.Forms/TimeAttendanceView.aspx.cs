@@ -450,7 +450,19 @@ namespace AionHR.Web.UI.Forms
                         Common.errorMessage(tvResp);
                         return;
                     }
-                    tvResp.Items.ForEach(tv => {tvstring+="<b>"+tv.duration.ToString()+"</b>"+"|"; });
+                    tvResp.Items.ForEach(tv => {
+                        string color = "black";
+                        if(tv.apStatus.HasValue)
+                        switch(tv.apStatus.Value)
+                        {
+                            case 0: color = "black"; break;
+                            case 1: color = "green"; break;
+                            case 2: color = "red"; break;
+
+                                   
+                        }
+                        string scriptCode = "alert(\"the chosen link was" + tv.shiftId + " ok\");";
+                        tvstring += "<span style='cursor:pointer;font-weight: bold;color:" + color+"' onclick='"+ scriptCode+"'>"+tv.timeName +" : "+tv.duration.ToString()+" "+ minutesText.Text+"</span>"+"|"; });
                     if (tvstring.Length > 1)
                         tvstring = tvstring.Substring(0, tvstring.Length - 1);
                     objs.Add(new TimeAttendanceCompositeObject()
@@ -527,41 +539,14 @@ namespace AionHR.Web.UI.Forms
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-
-            data.ForEach(s => s.fullName = s.name.fullName);
-            //  return new
-            // {
-            return data;
-            //};
+            return Common.GetEmployeesFiltered(prms.Query);
 
         }
 
-        private List<Employee> GetEmployeesFiltered(string query)
+        [DirectMethod]
+        public void DisplayApprovals(string dayId, string employeeId, string shiftId, string timeCode)
         {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = "firstName";
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if (!response.Success)
-                Common.errorMessage(response);
-            return response.Items;
         }
-
 
         protected void FillTimeApproval(int dayId, int employeeId)
         {

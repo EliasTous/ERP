@@ -12,6 +12,8 @@ using System.Resources;
 using System.Web;
 using AionHR.Web.UI.Forms.App_GlobalResources;
 using System.Text.RegularExpressions;
+using AionHR.Model.Employees.Profile;
+using Microsoft.Practices.ServiceLocation;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -115,6 +117,31 @@ namespace AionHR.Web.UI.Forms
             TValue value = dic[fromKey];
             dic.Remove(fromKey);
             dic[toKey] = value;
+        }
+
+        public static List<EmployeeSnapShot> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeSnapshotListRequest req = new EmployeeSnapshotListRequest();
+
+            req.BranchId = "0";
+
+
+            req.StartAt = "0";
+            req.Size = "20";
+            req.Filter = query;
+
+
+
+
+            ListResponse<EmployeeSnapShot> response = ServiceLocator.Current.GetInstance<IEmployeeService>().ChildGetAll<EmployeeSnapShot>(req);
+            if (!response.Success)
+            {
+                Common.errorMessage(response);
+                return new List<EmployeeSnapShot>();
+            }
+            response.Items.ForEach(s => s.fullName = s.name.fullName);
+            return response.Items;
         }
 
     }

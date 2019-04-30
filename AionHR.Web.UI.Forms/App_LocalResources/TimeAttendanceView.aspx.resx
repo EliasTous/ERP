@@ -319,7 +319,7 @@
     <value>Working Time</value>
   </data>
   <data name="AttendanceShifts" xml:space="preserve">
-    <value>Attendance Shifts</value>
+    <value>Attendance</value>
   </data>
   <data name="DamageWITHOUT_DAMAGE" xml:space="preserve">
     <value>Without Damage</value>
@@ -353,5 +353,11 @@
   </data>
   <data name="to" xml:space="preserve">
     <value>To</value>
+  </data>
+  <data name="EarlyCheckIn" xml:space="preserve">
+    <value>Early Check In</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>Minutes</value>
   </data>
 </root>

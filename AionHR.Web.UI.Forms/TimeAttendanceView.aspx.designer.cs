@@ -94,6 +94,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden TotalBreaksText;
         
         /// <summary>
+        /// overtimeText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden overtimeText;
+        
+        /// <summary>
+        /// earlyCheckInText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden earlyCheckInText;
+        
+        /// <summary>
+        /// minutesText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden minutesText;
+        
+        /// <summary>
         /// CurrentEmployee control.
         /// </summary>
         /// <remarks>
@@ -290,15 +317,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column5;
-        
-        /// <summary>
-        /// Column4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column4;
         
         /// <summary>
         /// colEdit control.
