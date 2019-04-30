@@ -51,6 +51,7 @@ public class EmployeeListRequest:ListRequest
             parameters.Add("_sortBy", SortBy);
             parameters.Add("_divisionId", DivisionId);
             parameters.Add("_filterField", (string.IsNullOrEmpty(filterField)?"0":filterField));
+            parameters.Add("_params", ""); 
 
 
           

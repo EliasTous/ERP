@@ -148,7 +148,7 @@ namespace AionHR.Web.UI.Forms
         {
 
 
-            int dayId = Convert.ToInt32(e.ExtraParams["dayId"]);
+            string dayId = e.ExtraParams["dayId"];
             int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
             CurrentDay.Text = dayId.ToString();
             CurrentEmployee.Text = employeeId.ToString();
@@ -161,7 +161,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
                     AttendanceShiftListRequest request = new AttendanceShiftListRequest();
                     request.EmployeeId = employeeId;
-                    request.DayId = dayId;
+                    request.DayId = dayId ;
                     ListResponse<AttendanceShift> shifts = _timeAttendanceService.ChildGetAll<AttendanceShift>(request);
                     if(shifts.Success)
                     {
@@ -843,12 +843,12 @@ namespace AionHR.Web.UI.Forms
             this.EditShiftWindow.Show();
         }
 
-        protected void FillTimeApproval(int dayId, int employeeId)
+        protected void FillTimeApproval(string dayId, int employeeId)
         {
             try
             {
                 DashboardTimeListRequest r = new DashboardTimeListRequest();
-                r.dayId = dayId.ToString();
+                r.dayId = dayId;
                 r.employeeId = employeeId;
                 r.approverId = 0;
                 r.StartAt = "0";

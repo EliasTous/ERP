@@ -194,14 +194,21 @@
 
                             
                             <ext:Column ID="Column1" MenuDisabled="true" Align="Center" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">
-                                <Renderer Handler="return '<em>'+record.data['employeeName']+'</em><br />'+record.data['dayIdString'];+'<br/>'+record.data['departmentName'];+'<br/>'+record.data['positionName']+'<br/>'+record.data['branchName'];" />
+                                <Renderer Handler="return '<b>'+record.data['employeeName']+'</b><br />'+record.data['dayIdString'];+'<br/>'+record.data['departmentName'];+'<br/>'+record.data['positionName']+'<br/>'+record.data['branchName'];" />
                                 
                             </ext:Column>
                             <ext:Column ID="Column2" MenuDisabled="true" Align="Center" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">
-                                <Renderer Handler="var fin_str = ''; var parts = record.data['FSString'].split('|'); for(var i=0;i<parts.length;i++)fin_str =parts[i]+'<br/>'; return '<em>'+fin_str+'</em>'; " />
+                                <Renderer Handler="var fin_str = ''; var parts = record.data['FSString'].split('|'); for(var i=0;i<parts.length;i++)fin_str =parts[i]+'<br/>'; return '<b>'+fin_str+'</b>'; " />
                                 
                             </ext:Column>
-                           
+                            <ext:Column ID="Column3" MenuDisabled="true" Align="Center" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">
+                                <Renderer Handler="var fin_str = ''; var parts = record.data['ASString'].split('|'); for(var i=0;i<parts.length;i++)fin_str =parts[i]+'<br/>'; return '<b>'+fin_str+'</b>'; " />
+                                
+                            </ext:Column>
+                             <ext:Column ID="Column5" MenuDisabled="true" Align="Center" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">
+                                <Renderer Handler="var fin_str = ''; var parts = record.data['TVString'].split('|'); for(var i=0;i<parts.length;i++)fin_str =parts[i]+'<br/>'; return fin_str; " />
+                                
+                            </ext:Column>
 
                            <%-- <ext:Column ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBreaks%>" DataIndex="breaks" Flex="2" Hideable="false">
                                 <Renderer Handler="var olB = ''; if(record.data['OL_B']=='00:00') olB=''; else olB= record.data['OL_B'];var cssClass='';if(record.data['OL_B'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['breaks'] + '<br/>' + olB + '</div>'; return result;" />

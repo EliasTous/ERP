@@ -235,7 +235,7 @@ namespace AionHR.Web.UI.Forms
                     html += @"</table></div>";
                     this.pnlSchedule.Html = html;
                     X.Call("DisableTools");
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName.reference).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName).Show();
                     return;
                 }
             });
@@ -449,7 +449,7 @@ namespace AionHR.Web.UI.Forms
                     //    break;
                     
                     html += "<tr>";
-                    html += "<td id=" +e.ToList()[0].employeeId + " class='Employee'>" + e.ToList()[0].employeeName.fullName + "</td><td id=" + e.ToList()[0].employeeId + "_Total></td>";
+                    html += "<td id=" +e.ToList()[0].employeeId + " class='Employee'>" + e.ToList()[0].employeeName + "</td><td id=" + e.ToList()[0].employeeId + "_Total></td>";
                     //if (!_systemService.SessionHelper.CheckIfArabicSession())
                     //{
 
