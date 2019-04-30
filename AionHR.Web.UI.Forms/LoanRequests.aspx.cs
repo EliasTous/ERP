@@ -1032,9 +1032,9 @@ namespace AionHR.Web.UI.Forms
         {
             LoanManagementListRequest req = new LoanManagementListRequest();
             var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
+            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value.ToString() : "0";
 
             if (!string.IsNullOrEmpty(employeeFilter.Text) && employeeFilter.Value.ToString() != "0")
             {
@@ -1485,15 +1485,15 @@ namespace AionHR.Web.UI.Forms
                 ApprovalStore.DataBind();
             }
             req.approverId = 0;
-            req.BranchId = 0;
-            req.DepartmentId = 0;
-            req.DivisionId = 0;
+            req.BranchId = "0";
+            req.DepartmentId = "0";
+            req.DivisionId = "0";
             req.EmployeeId = 0;
             req.Status = 0;
             req.Filter = "";
-            req.PositionId = 0;
-            req.EsId = 0;
-            
+            req.PositionId = "0";
+            req.EsId = "0";
+
             req.SortBy = "recordId";
 
 

@@ -749,9 +749,9 @@ namespace AionHR.Web.UI.Forms
             //in this test will take a list of News
             //ListRequest request = new ListRequest();
             LoanManagementListRequest request = new LoanManagementListRequest();
-            request.BranchId = 0;
-            request.DepartmentId = 0;
-            request.DivisionId = 0;
+            request.BranchId = "0"; 
+            request.DepartmentId = "0";
+            request.DivisionId = "0";
             request.EmployeeId =Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId());
             request.Status = 0;
             request.Filter = "";

@@ -579,12 +579,12 @@ namespace AionHR.Web.UI.Forms
             req.apStatus = "0";
             req.penaltyId = CurrentpenaltyId.Text;
             req.approverId = "0";
-            req.PositionId = 0;
-            req.DepartmentId = 0;
-            req.DivisionId = 0;
-            req.BranchId = 0;
-            req.EsId = 0;
-          
+            req.PositionId = "0";
+            req.DepartmentId = "0";
+            req.DivisionId = "0";
+            req.BranchId = "0";
+            req.EsId = "0";
+
             if (string.IsNullOrEmpty(req.penaltyId))
             {
                 ApprovalStore.DataSource = new List<EmployeePenaltyApproval>();

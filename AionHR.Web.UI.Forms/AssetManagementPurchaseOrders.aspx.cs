@@ -763,9 +763,9 @@ namespace AionHR.Web.UI.Forms
                 ApprovalStore.DataBind();
             }
             req.approverId = 0;
-            req.BranchId = 0;
-            req.DepartmentId = 0;
-         
+            req.BranchId = "0";
+            req.DepartmentId = "0";
+
             req.Status = 0;
             req.Filter = "";
           

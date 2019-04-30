@@ -10,8 +10,8 @@ namespace AionHR.Services.Messaging.Asset_Management
     {
        
         
-        public int? BranchId { get; set; }
-        public int? DepartmentId { get; set; }
+        public string BranchId { get; set; }
+        public string DepartmentId { get; set; }
         public int? Status { get; set; }
         
         public int? approverId { get; set; }
@@ -28,9 +28,9 @@ namespace AionHR.Services.Messaging.Asset_Management
             {
                 
                 if (BranchId == null)
-                    BranchId = 0;
+                    BranchId = "0";
                 if (DepartmentId == null)
-                    DepartmentId = 0;
+                    DepartmentId = "0";
 
 
 

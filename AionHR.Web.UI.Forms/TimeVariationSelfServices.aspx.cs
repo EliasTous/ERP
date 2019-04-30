@@ -254,11 +254,11 @@ namespace AionHR.Web.UI.Forms
         {
           
             TimeVariationListRequest reqTV = new TimeVariationListRequest();
-            reqTV.BranchId = 0;
-            reqTV.DepartmentId = 0;
-            reqTV.DivisionId = 0;
-            reqTV.PositionId = 0;
-            reqTV.EsId = 0;
+            reqTV.BranchId = "0";
+            reqTV.DepartmentId = "0";
+            reqTV.DivisionId = "0";
+            reqTV.PositionId = "0";
+            reqTV.EsId = "0";
             reqTV.fromDayId = dateRange1.GetRange().DateFrom;
             reqTV.toDayId = dateRange1.GetRange().DateTo;
             reqTV.employeeId = _systemService.SessionHelper.GetEmployeeId();

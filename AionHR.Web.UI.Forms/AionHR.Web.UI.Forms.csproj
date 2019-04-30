@@ -194,6 +194,7 @@
     <Content Include="Cases.aspx" />
     <Content Include="CertificateLevels.aspx" />
     <Content Include="CheckTypes.aspx" />
+    <Content Include="DailySchedule.aspx" />
     <Content Include="DELogin.aspx" />
     <Content Include="DocumentCategories.aspx" />
     <Content Include="FRLogin.aspx" />
@@ -598,7 +599,6 @@
     <Content Include="Utilities\alerts.txt" />
     <Content Include="Utilities\letters_meta_tags.txt" />
     <Content Include="Utilities\modules.txt" />
-    <Content Include="DailySchedule.aspx" />
     <Content Include="LeaveSchedules.aspx" />
     <Content Include="WorkingCalendars.aspx" />
     <Content Include="SystemAttachmentsUploader.ashx" />
@@ -609,6 +609,8 @@
       <LastGenOutput>ComboBoxValues.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Content Include="EmployeePages\App_LocalResources\JobInformation.aspx.fr.resx" />
+    <Content Include="EmployeePages\App_LocalResources\JobInformation.aspx.ar.resx" />
     <EmbeddedResource Include="UsersReport.ar.resx">
       <DependentUpon>UsersReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -813,6 +815,13 @@
     </Compile>
     <Compile Include="ConstClasse\Common.cs" />
     <Compile Include="ConstClasse\ConstClasses.cs" />
+    <Compile Include="DailySchedule.aspx.cs">
+      <DependentUpon>DailySchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DailySchedule.aspx.designer.cs">
+      <DependentUpon>DailySchedule.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DELogin.aspx.cs">
       <DependentUpon>DELogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2363,13 +2372,6 @@
     </Compile>
     <Compile Include="VacationSchedules.aspx.designer.cs">
       <DependentUpon>VacationSchedules.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DailySchedule.aspx.cs">
-      <DependentUpon>DailySchedule.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DailySchedule.aspx.designer.cs">
-      <DependentUpon>DailySchedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="WorkingCalendars.aspx.cs">
       <DependentUpon>WorkingCalendars.aspx</DependentUpon>

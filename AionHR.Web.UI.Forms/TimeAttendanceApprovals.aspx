@@ -12,6 +12,7 @@
     <script type="text/javascript" src="Scripts/AttendanceDayView.js?id=5"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
+        <script type="text/javascript" src="Scripts/ReportsCommon.js?id=10"></script>
     <script type="text/javascript">
   
         var LinkRender = function (val, metaData, record, rowIndex, colIndex, store, apstatusString) {
@@ -89,7 +90,10 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        
+           <ext:Hidden ID="vals" runat="server" />
+        <ext:Hidden ID="texts" runat="server" />
+        <ext:Hidden ID="labels" runat="server" />
+        <ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=RT306&values="/>
         <ext:Hidden ID="CurrentEmployee" runat="server"  />
         <ext:Hidden ID="format" runat="server"  />
         <ext:Hidden ID="CurrentDay" runat="server"  />
@@ -188,67 +192,41 @@
                   
             
                      
-                                     <TopBar>
-                        <ext:Toolbar runat="server" >
+                                     <DockedItems>
+                        <ext:Toolbar runat="server" Height="30" Dock="Top">
 
                             <Items>
                              
-                                       <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                               
-                                               <uc:dateRange runat="server" ID="date2" />
-                                            </Content>
-                                        </ext:Container>
-                                <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:employeeCombo runat="server" ID="employeeCombo1"  />
-                                            </Content>
-                                        </ext:Container>
-
-                                      <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="approverId" Name="approverId"
-                                    DisplayField="fullName"
-                                    ValueField="recordId"
-                                    TypeAhead="false"
-                                    EmptyText="<%$ Resources: FieldApproverName%>"
-                                    HideTrigger="true" SubmitValue="true"
-                                    MinChars="3" 
-                                          StoreID="ApproverStore"
-                                    TriggerAction="Query" ForceSelection="true">
-                                   
-                                </ext:ComboBox>
-                                  
-                                  <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                <uc:TimeVariationTypeControl runat="server" ID="timeVariationType"  />
-                                    </Content>
-
-                                </ext:Container>
-                              
+                             
                                 
-                               <ext:ToolbarSeparator runat="server" />
-                                  <ext:ComboBox AnyMatch="true" Width="80" CaseSensitive="false" runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="apStatus"
-                                    EmptyText="<%$ Resources: FieldApprovalStatus %>">
-                                    <Items>
-
-                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
-                                    </Items>
-
-                                </ext:ComboBox>
-                                    <ext:ToolbarSeparator runat="server" />
-                                <ext:Button runat="server" Text="<%$Resources:Go %>">
-                                    <Listeners>
-                                        <Click Handler="App.Store1.reload();" />
-                                    </Listeners>
-                                </ext:Button>
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                          <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                       <Listeners>
+                                           <Click Handler=" App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
+                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
+                                            <Listeners>
+                                                <Click Handler="App.Store1.reload();" />
+                                            </Listeners>
+                                        </ext:Button>
+                                       
+                                    </Content>
+                                </ext:Container>
+                                       
+                        
 
                             </Items>
                         </ext:Toolbar>
+                           
+                        <ext:Toolbar ID="labelbar" runat="server" Height="0" Dock="Top">
 
-                    </TopBar>
+                            <Items>
+                                 <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                            </ext:Toolbar>
+                  </DockedItems>
                 
 
 
@@ -611,6 +589,31 @@
                 </ext:Button>
             </Buttons>
      </ext:Window>
+           <ext:Window runat="server"  Icon="PageEdit"
+            ID="reportsParams"
+            Width="600"
+            Height="500"
+            Title="<%$Resources:Common,Parameters %>"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="FitLayout" Resizable="true">
+            <Listeners>
+                <Show Handler="App.Panel8.loader.load();"></Show>
+            </Listeners>
+            <Items>
+                <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
+                    <Loader runat="server" Url="../ReportParameterBrowser.aspx?_reportName=RT306" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+            
+                </Items>
+        </ext:Window>
 
     </form>
 </body>

@@ -32,9 +32,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
 
             }
-            departmentStore.DataSource = resp.Items;
-            departmentStore.DataBind();
-
+            if (resp.Items != null)
+            {
+                departmentStore.DataSource = resp.Items;
+                departmentStore.DataBind();
+            }
         }
         public JobInfoParameterSet GetJobInfo()
         {
