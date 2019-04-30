@@ -397,9 +397,9 @@ namespace AionHR.Web.UI.Forms
         {
             LoanManagementListRequest req = new LoanManagementListRequest();
 
-            req.BranchId = 0;
-            req.DepartmentId = 0;
-            req.DivisionId = 0;
+            req.BranchId = "0";
+            req.DepartmentId = "0";
+            req.DivisionId = "0";
             req.EmployeeId = Convert.ToInt32(employeeId);
             req.Status = 2;
             

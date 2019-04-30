@@ -95,5 +95,27 @@ namespace AionHR.Web.UI.Forms
        
 
 }
+        public static Dictionary<string, string> FetchParametersAsDictionary(string text)
+        {
+            var values = text.Split('^');
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            foreach( var item in values)
+            {
+                if (item.ToString().Length==3)
+                parameters.Add(item.ToString().Substring(0, 1), item.ToString().Substring(2, 1));
+
+            }
+            return parameters;
+
+
+        }
+        public static void ChangeKey <TKey, TValue>(this IDictionary<TKey, TValue> dic,
+                                     TKey fromKey, TKey toKey)
+        {
+            TValue value = dic[fromKey];
+            dic.Remove(fromKey);
+            dic[toKey] = value;
+        }
+
     }
 }

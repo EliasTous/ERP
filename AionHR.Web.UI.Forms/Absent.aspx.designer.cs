@@ -94,6 +94,42 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden CurrentDay;
         
         /// <summary>
+        /// vals control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden vals;
+        
+        /// <summary>
+        /// texts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden texts;
+        
+        /// <summary>
+        /// labels control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden labels;
+        
+        /// <summary>
+        /// loaderUrl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden loaderUrl;
+        
+        /// <summary>
         /// Store1 control.
         /// </summary>
         /// <remarks>
@@ -130,85 +166,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.GridPanel GridPanel1;
         
         /// <summary>
-        /// dateRange1 control.
+        /// labelbar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter dateRange1;
+        protected global::Ext.Net.Toolbar labelbar;
         
         /// <summary>
-        /// employeeCombo1 control.
+        /// selectedFilters control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeCombo1;
-        
-        /// <summary>
-        /// jobInfo1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
-        
-        /// <summary>
-        /// timeVariationType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.TimeVariationTypeFilter timeVariationType;
-        
-        /// <summary>
-        /// esId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox esId;
-        
-        /// <summary>
-        /// statusStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store statusStore;
-        
-        /// <summary>
-        /// apStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox apStatus;
-        
-        /// <summary>
-        /// fromDuration control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField fromDuration;
-        
-        /// <summary>
-        /// toDuration control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField toDuration;
+        protected global::Ext.Net.Label selectedFilters;
         
         /// <summary>
         /// ColRecordId control.
@@ -587,5 +560,23 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button Button2;
+        
+        /// <summary>
+        /// reportsParams control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window reportsParams;
+        
+        /// <summary>
+        /// Panel8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel8;
     }
 }

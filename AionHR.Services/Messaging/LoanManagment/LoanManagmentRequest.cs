@@ -29,29 +29,29 @@ namespace AionHR.Services.Messaging.LoanManagment
     {
 
         public int EmployeeId { get; set; }
-        public int? DepartmentId { get; set; }
-        public int? BranchId { get; set; }
+        public string DepartmentId { get; set; }
+        public string BranchId { get; set; }
         public int Status { get; set; }
-        public int? DivisionId { get; set; }
+        public string DivisionId { get; set; }
         public int? approverId { get; set; }
         public string LoanId { get; set; }
-        public int? EsId { get; set; }
+        public string EsId { get; set; }
 
-        public int? PositionId { get; set; }
+        public string PositionId { get; set; }
         public override Dictionary<string, string> Parameters
         {
             get
             {
                 if (DepartmentId == null)
-                    DepartmentId = 0;
+                    DepartmentId = "0";
                 if (BranchId == null)
-                    BranchId = 0;
+                    BranchId = "0";
                 if (PositionId == null)
-                    PositionId = 0;
+                    PositionId = "0";
                 if (DivisionId == null)
-                    DivisionId = 0;
+                    DivisionId = "0";
                 if (EsId == null)
-                    EsId = 0;
+                    EsId = "0";
                 parameters = base.Parameters;
                 if (approverId!=null)
                     parameters.Add("_approverId", approverId.ToString());

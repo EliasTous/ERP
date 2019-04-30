@@ -11,11 +11,11 @@ namespace AionHR.Services.Messaging.DashBoard
         public short status { get; set; }
         public string approverId { get; set; }
         public string leaveId { get; set; }
-        public int? DepartmentId { get; set; }
-        public int? DivisionId { get; set; }
-        public int? PositionId { get; set; }
-        public int? BranchId { get; set; }
-        public int EsId { get; set; }
+        public string DepartmentId { get; set; }
+        public string DivisionId { get; set; }
+        public string PositionId { get; set; }
+        public string BranchId { get; set; }
+        public string EsId { get; set; }
 
 
         private Dictionary<string, string> parameters;
@@ -24,15 +24,15 @@ namespace AionHR.Services.Messaging.DashBoard
             get
             {
                 if (DepartmentId == null)
-                    DepartmentId = 0;
+                    DepartmentId = "0";
                 if (DivisionId == null)
-                    DivisionId = 0;
+                    DivisionId = "0";
                 if (BranchId == null)
-                    BranchId = 0;
+                    BranchId = "0";
                 if (PositionId == null)
-                    PositionId = 0;
+                    PositionId = "0";
                 if (EsId == null)
-                    EsId = 0;
+                    EsId = "0";
                 parameters = new Dictionary<string, string>();
                 parameters.Add("_status", status.ToString());
                 parameters.Add("_approverId", approverId);

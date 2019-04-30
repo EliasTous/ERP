@@ -676,20 +676,20 @@ namespace AionHR.Web.UI.Forms
             int intResult;
 
             var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
-            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
+            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0"; 
+            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value.ToString() : "0";
             if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0")
             {
-                req.EsId = Convert.ToInt32(esId.Value);
+                req.EsId = esId.Value.ToString();
 
 
 
             }
             else
             {
-                req.EsId = 0;
+                req.EsId = "0";
 
             }
 

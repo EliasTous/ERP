@@ -120,9 +120,24 @@ namespace AionHR.Web.UI.Forms
 
 
 
-        /// <summary>
-        /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
-        /// </summary>
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
+
         private void HideShowTabs()
         {
             //this.OtherInfoTab.Visible = false;
@@ -244,22 +259,10 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
-                    DashboardTimeListRequest r = new DashboardTimeListRequest();
-
-                    r.fromDayId = date2.GetRange().DateFrom.ToString("yyyyMMdd");
-                r.toDayId= date2.GetRange().DateTo.ToString("yyyyMMdd");
-                r.employeeId = employeeCombo1.GetEmployee().employeeId;
-                r.apStatus = string.IsNullOrEmpty(apStatus.Value.ToString()) ? "0" : apStatus.Value.ToString(); 
-                    r.timeCode = timeVariationType.GetTimeCode();
-                    if (string.IsNullOrEmpty(approverId.Value.ToString()))
-                        r.approverId = 0;
-                    else
-                        r.approverId = Convert.ToInt32(approverId.Value.ToString());
-                    r.shiftId = "0";
-                   
-                r.Size = "1000";
-                r.StartAt = "0";
-                    ListResponse<Time> resp = _timeAttendanceService.ChildGetAll<Time>(r);
+                string rep_params = vals.Text;
+                ReportGenericRequest r = new ReportGenericRequest();
+                r.paramString = rep_params;
+                ListResponse<Time> resp = _timeAttendanceService.ChildGetAll<Time>(r);
                     if (!resp.Success)
                     {
                         Common.errorMessage(resp);

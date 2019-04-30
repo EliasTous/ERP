@@ -509,11 +509,11 @@ public class StatusByReference : RecordRequest
 
 public class EmployeeCountRequest:RecordRequest
 {
-    public int DepartmentId { get; set; }
+    public string DepartmentId { get; set; }
 
-    public int BranchId { get; set; }
+    public string   BranchId { get; set; }
 
-    public int PositionId { get; set; }
+    public string PositionId { get; set; }
 
     public override Dictionary<string, string> Parameters
     {
@@ -529,8 +529,8 @@ public class EmployeeCountRequest:RecordRequest
         }
     }
 
-    public int StatusId { get; set; }
-    public int DivisionId { get; set; }
+    public string StatusId { get; set; }
+    public string DivisionId { get; set; }
 
 }
 public class EmployeeCalendarRequest : ListRequest

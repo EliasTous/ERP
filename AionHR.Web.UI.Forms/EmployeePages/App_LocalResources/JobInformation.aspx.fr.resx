@@ -246,4 +246,7 @@
   <data name="FieldReportsTo" xml:space="preserve">
     <value>Rapports à</value>
   </data>
+  <data name="FieldNotes" xml:space="preserve">
+    <value>Remarques</value>
+  </data>
 </root>

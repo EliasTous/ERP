@@ -94,7 +94,7 @@ namespace AionHR.Web.UI.Forms
             }
             try
             {
-                AccessControlApplier.ApplyAccessControlOnPage(typeof(DailySchedule), null, null, null, null);
+                //AccessControlApplier.ApplyAccessControlOnPage(typeof(DailySchedule), null, null, null, null);
             }
             catch (AccessDeniedException exp)
             {

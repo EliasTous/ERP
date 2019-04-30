@@ -8,11 +8,11 @@ namespace AionHR.Services.Messaging.System
 {
     public class DashboardRequest:ListRequest
     {
-        public int? DepartmentId { get; set; }
-        public int? DivisionId { get; set; }
-        public int? PositionId { get; set; }
-        public int? BranchId { get; set; }
-        public int EsId { get; set; }
+        public string DepartmentId { get; set; }
+        public string DivisionId { get; set; }
+        public string PositionId { get; set; }
+        public string BranchId { get; set; }
+        public string EsId { get; set; }
 
         
 

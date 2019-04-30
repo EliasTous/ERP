@@ -19,7 +19,7 @@
     <script type="text/javascript" src="Scripts/jquery-new.js?id=4"></script>
     <script type="text/javascript" src="Scripts/plugins/highcharts.js?id=5"></script>
     <script type="text/javascript" src="Scripts/Dashboard.js?id=178"></script>
-
+    <script type="text/javascript" src="Scripts/ReportsCommon.js?id=12"></script>
 
 
 
@@ -1177,7 +1177,12 @@
          <ext:Hidden ID="PresentChart" runat="server" Text="<%$ Resources: present %>" />
          <ext:Hidden ID="AbsentChart" runat="server" Text="<%$ Resources: Absent %>" />
          <ext:Hidden ID="InChart" runat="server" Text="<%$ Resources: In %>" />
-        <ext:Store PageSize="30"
+          <ext:Hidden ID="vals" runat="server" />
+        <ext:Hidden ID="texts" runat="server" />
+        <ext:Hidden ID="labels" runat="server" />
+        <ext:Hidden ID="Hidden1" runat="server" />
+        <ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=Dashboard&values="/>
+      <%--  <ext:Store PageSize="30"
             ID="OverDueStore"
             runat="server" OnReadData="OverDueStore_ReadData"
             RemoteSort="false"
@@ -1202,7 +1207,7 @@
                 </ext:Model>
             </Model>
 
-        </ext:Store>
+        </ext:Store>--%>
         <ext:Store
             ID="activeStore"
             runat="server" OnReadData="activeStore_refresh"
@@ -1352,48 +1357,47 @@
             <Items>
 
                 <ext:Panel runat="server" Layout="FitLayout" ID="root" PaddingSpec="5 5 5 5">
-                    <TopBar>
-                        <ext:Toolbar runat="server">
+                    <DockedItems>
+                          <ext:Toolbar runat="server" Height="30" Dock="Top">
+
                             <Items>
+                             
+                             
+                                
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" />
-                                    </Content>
-                                </ext:Container>
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
-                                    <Store>
-                                        <ext:Store runat="server" ID="statusStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-
-                                    <Items>
-                                        <ext:ListItem Text="<%$Resources:All %>" Value="0" />
-                                    </Items>
-                                </ext:ComboBox>
-
-
-                                <ext:ToolbarSeparator runat="server" />
-
-                                <ext:Button runat="server" Text="<%$Resources:Go %>">
-                                     <DirectEvents>
-                                     <Click OnEvent="RefreshAllGrid" ></Click>
-                                   </DirectEvents>
+                                          <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                       <Listeners>
+                                           <Click Handler=" App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
+                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
+                                             <DirectEvents>
+                                           <Click OnEvent="RefreshAllGrid" ></Click>
+                                         </DirectEvents>
                                     <Listeners>
                                         <Click Handler="RefreshAllGrids();App.LeaveRequestsStore.reload();" />
                                     </Listeners>
-                                </ext:Button>
+                                        </ext:Button>
+                                       
+                                    </Content>
+                                </ext:Container>
+                                       
+                        
 
                             </Items>
                         </ext:Toolbar>
-                    </TopBar>
+                           
+                        <ext:Toolbar ID="labelbar" runat="server" Height="0" Dock="Top">
+
+                            <Items>
+                                 <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                            </ext:Toolbar>
+
+                               
+                         
+                   </DockedItems>
                     <Items>
                         <ext:Panel
                             ID="Center" AnchorVertical="true"
@@ -3562,7 +3566,7 @@
             </Items>
         </ext:Window>
 
-        <ext:Window runat="server" Modal="true" Title="<%$Resources:OverDue %>" Layout="FitLayout"
+       <%-- <ext:Window runat="server" Modal="true" Title="<%$Resources:OverDue %>" Layout="FitLayout"
             Hidden="true" AutoShow="false" ID="overDueWindow" Width="400" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -3608,7 +3612,7 @@
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
-        </ext:Window>
+        </ext:Window>--%>
 
         <ext:Window runat="server" Modal="true" Title="<%$ Resources: LatenessGridTitle %>" Layout="FitLayout"
             Hidden="true" AutoShow="false" ID="lateWindow" Width="650" Height="300">
@@ -5995,7 +5999,31 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
-
+          <ext:Window runat="server"  Icon="PageEdit"
+            ID="reportsParams"
+            Width="600"
+            Height="500"
+            Title="<%$Resources:Common,Parameters %>"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="FitLayout" Resizable="true">
+            <Listeners>
+                <Show Handler="App.Panel8.loader.load();"></Show>
+            </Listeners>
+            <Items>
+                <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
+                    <Loader runat="server" Url="../ReportParameterBrowser.aspx?_reportName=Dashboard" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+            
+                </Items>
+        </ext:Window>
         <uc:leaveControl runat="server" ID="leaveRequest1" />
       
       
