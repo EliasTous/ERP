@@ -539,17 +539,26 @@ namespace AionHR.Web.UI.Forms
         }
 
         [DirectMethod]
-        public void DisplayApprovals(string dayId, string employeeId, string shiftId, string timeCode)
+        public void DisplayApprovals(string dayId, string employeeId, string shiftId, string code)
         {
             ReportGenericRequest req = new ReportGenericRequest();
-            req.paramString = "1|" + employeeId + "^2|" + dayId + "^3|" + dayId + "^4|" + shiftId + "^5|" + timeCode;
+            req.paramString = "1|" + employeeId + "^2|" + dayId + "^3|" + dayId + "^4|" + shiftId + "^5|" + code;
             ListResponse<Time> resp = _timeAttendanceService.ChildGetAll<Time>(req);
-            if(!resp.Success)
+            
+            if (!resp.Success)
             {
                 Common.errorMessage(resp);
                 return;
 
             }
+            timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
+            resp.Items.ForEach(x =>
+            {
+
+                x.timeCodeString = timeCode.Where(y => y.key == Convert.ToInt16(x.timeCode)).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+
+                x.statusString = FillApprovalStatus(x.status);
+            });
             Store3.DataSource = resp.Items;
             Store3.DataBind();
             TimeApprovalWindow.Show();

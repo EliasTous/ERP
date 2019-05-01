@@ -21,6 +21,9 @@
         .time-variation-link:hover {
     text-decoration: underline;
 }
+        .x-grid-cell{
+            vertical-align:middle;
+        }
     </style>
     <script type="text/javascript">
         function setTotal(t, b) {
@@ -37,7 +40,7 @@
         function startRefresh() {
 
 
-            setInterval(RefreshAllGrids, 60000);
+            //setInterval(RefreshAllGrids, 60000);
 
         }
         function RefreshAllGrids() {
@@ -303,7 +306,7 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources: EditWindowsTimeApproval %>"
-            Width="600"
+            Width="800"
             Height="200"
             AutoShow="false"
             Modal="true"
@@ -368,19 +371,19 @@
                                                                    <ext:Column ID="Column10" DataIndex="employeeId"  runat="server" Visible="false" />
                                                                    <ext:Column ID="Column11" DataIndex="timeCode"  runat="server" Visible="false" />
 
-                                                                     <ext:Column ID="Column12" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
+                                                                     <ext:Column ID="Column12" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="1">
                                                                     
                                                                     </ext:Column>
                                                                 
-                                                                    <ext:Column Visible="false" ID="Column13" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
+                                                                    <ext:Column Visible="false" ID="Column13" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
                                                                     
                                                                     </ext:Column>
                                                                 
                                                                    
                           
 
-                                                                     <ext:Column ID="Column14"  DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="1" />
-                                                                     <ext:Column ID="Column15" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
+                                                                     <ext:Column ID="Column14"  DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="1"/>
+                                                                     <ext:Column ID="Column15" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Width="100" runat="server" >
                                                                       
                                                                     </ext:Column>
                                                                         <ext:Column ID="Column16" DataIndex="arName" Text="<%$ Resources: Common,ApprovalReason %>" Flex="1" runat="server" />
