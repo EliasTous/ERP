@@ -135,6 +135,23 @@ namespace AionHR.Web.UI.Forms.Reports
             //this.OtherInfoTab.Visible = false;
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
 
         private void HideShowButtons()
@@ -233,33 +250,16 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-            req.SortBy = _systemService.SessionHelper.GetNameformat();
-
-
-            // req.Add(dateRange1.GetRange());
-            //  req.Add(employeeCombo1.GetEmployee());
-            req.Add(jobInfo1.GetJobInfo());
-
-
-
-
-            return req;
-        }
-
+      
        
        
       
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
-            ReportCompositeRequest req = GetRequest();
-
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<AionHR.Model.Reports.RT111> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT111>(req);
 
 
@@ -269,7 +269,9 @@ namespace AionHR.Web.UI.Forms.Reports
             //    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
             //}
             if (!resp.Success)
-                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+            { Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+                return;
+            }
 
 
 
@@ -283,10 +285,10 @@ namespace AionHR.Web.UI.Forms.Reports
             string user = _systemService.SessionHelper.GetCurrentUser();
 
 
-            h.Parameters["BranchName"].Value = jobInfo1.GetBranch();
+          
             //h.Parameters["PositionName"].Value = jobInfo1.GetPosition();
             h.Parameters["User"].Value = user;
-            h.Parameters["DepartmentName"].Value = jobInfo1.GetDepartment();
+            h.Parameters["Fitlers"].Value = texts.Text;
             //h.Parameters["Status"].Value = statusCombo.SelectedItem.Text;
 
 
@@ -294,35 +296,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-            if (resp.Items.Count > 0)
-            {
-                if (req.Parameters["_departmentId"] != "0")
-                    h.Parameters["DepartmentName"].Value = resp.Items[0].departmentName;
-                else
-                    h.Parameters["DepartmentName"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["BranchName"].Value = resp.Items[0].branchName;
-                else
-                    h.Parameters["BranchName"].Value = GetGlobalResourceObject("Common", "All");
-
-                //if (req.Parameters["_positionId"] != "0")
-                //    h.Parameters["PositionName"].Value = resp.Items[0].positionName;
-                //else
-                //    h.Parameters["PositionName"].Value = GetGlobalResourceObject("Common", "All");
-
-
-                //if (req.Parameters["_status"] != "0")
-                //    h.Parameters["Status"].Value = resp.Items[0];
-                //else
-                //    h.Parameters["Status"].Value = GetGlobalResourceObject("Common", "All");
-
-
-                //if (req.Parameters["_employeeId"] != "0")
-                //    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
-                //else
-                //    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
-            }
+           
 
             h.CreateDocument();
 

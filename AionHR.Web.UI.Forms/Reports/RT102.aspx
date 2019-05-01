@@ -23,6 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../Scripts/moment.js"></script>
     <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
+    <script type="text/javascript" src="../Scripts/ReportsCommon.js" ></script>
     <script type="text/javascript">
         function alertNow(s, e) {
 
@@ -55,8 +56,11 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
        <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
         <ext:Hidden ID="rtl" runat="server" />
+        <ext:Hidden ID="vals" runat="server" />
+        <ext:Hidden ID="texts" runat="server" />
+        <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="format" runat="server" />
-
+        <ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=RT102&values="/>
         
       
 
@@ -67,40 +71,41 @@
                     Layout="FitLayout" AutoScroll="true"
                     Margins="0 0 0 0"
                     Region="Center">
-                    <TopBar>
-                        <ext:Toolbar runat="server" Height="60">
+                   <DockedItems>
+                        <ext:Toolbar runat="server" Height="30" Dock="Top">
 
                             <Items>
-                           
+                             
+                             
+                                
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:dateRange runat="server" ID="dateRange1" />
-                                    </Content>
-                                </ext:Container>
-                                   <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false" EnablePosition="false" />
-                                    </Content>
-                                </ext:Container>
-
-
-
-                                <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
+                                          <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                       <Listeners>
+                                           <Click Handler=" App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
+                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
+                                       
                                     </Content>
                                 </ext:Container>
-
-
+                                       
+                        
 
                             </Items>
                         </ext:Toolbar>
+                           
+                        <ext:Toolbar ID="labelbar" runat="server" Height="0" Dock="Top">
 
-                    </TopBar>
+                            <Items>
+                                 <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                            </ext:Toolbar>
+                  </DockedItems>
                     <Content>
                         
                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"
@@ -122,7 +127,31 @@
 
             </Items>
         </ext:Viewport>
-
+           <ext:Window runat="server"  Icon="PageEdit"
+            ID="reportsParams"
+            Width="600"
+            Height="500"
+            Title="<%$Resources:Common,Parameters %>"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="FitLayout" Resizable="true">
+            <Listeners>
+                <Show Handler="App.Panel8.loader.load();"></Show>
+            </Listeners>
+            <Items>
+                <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
+                    <Loader runat="server" Url="../ReportParameterBrowser.aspx?_reportName=RT102" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+            
+                </Items>
+        </ext:Window>
 
 
 

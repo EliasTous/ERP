@@ -176,6 +176,23 @@ namespace AionHR.Web.UI.Forms.Reports
             }
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
 
         [DirectMethod]
@@ -189,36 +206,15 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-
-
-
-            // req.Add(dateRange1.GetRange());
-            //  req.Add(employeeCombo1.GetEmployee());
-            req.Add(activeStatus1.GetActiveStatus());
-            req.Add(jobInfo1.GetJobInfo());
-            req.Add(asOfDate.GetDate());
-
-
-
-
-
-            return req;
-        }
-
-
+       
 
 
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
-            ReportCompositeRequest req = GetRequest();
-
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<AionHR.Model.Reports.RT115> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT115>(req);
 
 
@@ -238,7 +234,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
           
             h.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
-
+            h.Parameters["Filters"].Value = texts.Text;
             h.DataSource = resp.Items; 
           
             h.CreateDocument();
@@ -267,10 +263,7 @@ namespace AionHR.Web.UI.Forms.Reports
             // ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             // FillReport(true);
         }
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
+        
       
 
 

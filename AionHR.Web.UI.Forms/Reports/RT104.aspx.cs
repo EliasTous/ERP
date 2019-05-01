@@ -181,11 +181,30 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        
-   
+
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
+
         private void FillReport(bool throwException=true)
         {
-            ReportCompositeRequest req = GetRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<AionHR.Model.Reports.RT104> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT104>(req);
             //if (resp == null || string.IsNullOrEmpty(resp.Error))
             //{
@@ -210,41 +229,11 @@ namespace AionHR.Web.UI.Forms.Reports
             y.DataSource = reordered;
             string user = _systemService.SessionHelper.GetCurrentUser();
             y.Parameters["User"].Value = user;
-            if (resp.Items.Count > 0)
-            {
-                if (req.Parameters["_departmentId"] != "0")
-                    y.Parameters["Department"].Value = jobInfoFilter1.GetDepartment();
-                else
-                    y.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_branchId"] != "0")
-                    y.Parameters["Branch"].Value = jobInfoFilter1.GetBranch();
-                else
-                    y.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_positionId"] != "0")
-                    y.Parameters["Position"].Value = jobInfoFilter1.GetPosition();
-                else
-                    y.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_divisionId"] != "0")
-                    y.Parameters["Division"].Value = jobInfoFilter1.GetDivision();
-                else
-                    y.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
-            }
+            y.Parameters["Filters"].Value = texts.Text;
             ASPxWebDocumentViewer1.DataBind();
             ASPxWebDocumentViewer1.OpenReport(y);
         }
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest request = new ReportCompositeRequest();
-            request.Size = "1000";
-            request.StartAt = "0";
-            request.SortBy = "yearsInService";
-            request.Add(jobInfoFilter1.GetJobInfo());
-            return request;
-           
-        }
+        
 
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)

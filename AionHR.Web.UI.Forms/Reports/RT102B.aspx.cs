@@ -180,19 +180,7 @@ namespace AionHR.Web.UI.Forms.Reports
             else return "1";
         }
 
-
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-            req.SortBy = "departmentName";
-
-            req.Add(dateRange1.GetRange());
-            req.Add(jobInfo1.GetJobInfo());
-            return req;
-        }
+        
 
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
@@ -221,7 +209,10 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-            ReportCompositeRequest req = GetRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
+
             ListResponse<AionHR.Model.Reports.RT102B> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102B>(req);
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
@@ -237,8 +228,8 @@ namespace AionHR.Web.UI.Forms.Reports
             Terminations t = new Terminations();
             t.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             t.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            t.Parameters["From"].Value = from;
-            t.Parameters["To"].Value = to;
+            
+            t.Parameters["Filters"].Value = texts.Text;
             t.Parameters["User"].Value = user;
             //t.Parameters["BranchName"].Value = jobInfo1.GetBranch();
 
@@ -290,6 +281,23 @@ namespace AionHR.Web.UI.Forms.Reports
             //FillReport(true);
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
     }
 }
