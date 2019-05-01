@@ -95,8 +95,7 @@ namespace AionHR.Web.UI.Forms
             {
 
                 SetExtLanguage();
-                HideShowButtons();
-                HideShowColumns();
+
 
                 format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
 
@@ -228,19 +227,12 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-        private void HideShowButtons()
-        {
-
-        }
-
+ 
 
         /// <summary>
         /// hiding uncessary column in the grid. 
         /// </summary>
-        private void HideShowColumns()
-        {
-            this.colAttach.Visible = false;
-        }
+        
 
 
         private void SetExtLanguage()
@@ -419,7 +411,7 @@ namespace AionHR.Web.UI.Forms
                     max++;
                     x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
                     ReportGenericRequest r = new ReportGenericRequest();
-                    r.paramString = "2|" + x.dayId + "^1|" + x.employeeId;
+                    r.paramString = "1| " + x.employeeId + "^2|" + x.dayId + "^3|" + x.dayId;
                     ListResponse<FlatSchedule> fsresponse = _timeAttendanceService.ChildGetAll<FlatSchedule>(r);
                     if (!fsresponse.Success)
                     {
@@ -428,7 +420,10 @@ namespace AionHR.Web.UI.Forms
                     }
                     fsresponse.Items.ForEach(fs => { fsstring += fs.from + " - " + fs.to + "|"; });
                     if (fsstring.Length > 1)
+                    {
                         fsstring = fsstring.Substring(0, fsstring.Length - 1);
+                        fsstring = "<span style='vertical-align:middle!important;'>" + fsstring + "</span>";
+                    }
                     AttendanceShiftListRequest asReq = new AttendanceShiftListRequest();
                     asReq.EmployeeId = Convert.ToInt32(x.employeeId);
                     asReq.DayId = x.dayId;
@@ -443,7 +438,7 @@ namespace AionHR.Web.UI.Forms
                     if (asstring.Length > 1)
                         asstring = asstring.Substring(0, asstring.Length - 1);
                     ReportGenericRequest tvReq = new ReportGenericRequest();
-                    tvReq.paramString = "1|" + x.dayId + "^2|" + x.dayId + "^9|" + x.employeeId;
+                    tvReq.paramString = "1|" + x.employeeId + "^2|" + x.dayId + "^3|" + x.dayId;
                     ListResponse<DashBoardTimeVariation> tvResp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(tvReq);
                     if(!tvResp.Success)
                     {
@@ -455,14 +450,14 @@ namespace AionHR.Web.UI.Forms
                         if(tv.apStatus.HasValue)
                         switch(tv.apStatus.Value)
                         {
-                            case 0: color = "black"; break;
-                            case 1: color = "green"; break;
-                            case 2: color = "red"; break;
+                            case 1: color = "black"; break;
+                            case 2: color = "green"; break;
+                            case -1: color = "red"; break;
 
                                    
                         }
-                        string scriptCode = "alert(\"the chosen link was" + tv.shiftId + " ok\");";
-                        tvstring += "<span style='cursor:pointer;font-weight: bold;color:" + color+"' onclick='"+ scriptCode+"'>"+tv.timeName +" : "+tv.duration.ToString()+" "+ minutesText.Text+"</span>"+"|"; });
+                        string scriptCode = "App.direct.DisplayApprovals(\""+x.dayId+"\",\""+x.employeeId+"\",\""+tv.shiftId+"\",\""+tv.timeCode+"\");";
+                        tvstring += "<span class='time-variation-link' style='color:" + color+"' onclick='"+ scriptCode+"'>"+tv.timeName +" : "+tv.duration.ToString()+" "+ minutesText.Text+"</span>"+"|"; });
                     if (tvstring.Length > 1)
                         tvstring = tvstring.Substring(0, tvstring.Length - 1);
                     objs.Add(new TimeAttendanceCompositeObject()
@@ -546,6 +541,18 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public void DisplayApprovals(string dayId, string employeeId, string shiftId, string timeCode)
         {
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = "1|" + employeeId + "^2|" + dayId + "^3|" + dayId + "^4|" + shiftId + "^5|" + timeCode;
+            ListResponse<Time> resp = _timeAttendanceService.ChildGetAll<Time>(req);
+            if(!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+
+            }
+            Store3.DataSource = resp.Items;
+            Store3.DataBind();
+            TimeApprovalWindow.Show();
         }
 
         protected void FillTimeApproval(int dayId, int employeeId)

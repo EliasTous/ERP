@@ -1373,7 +1373,7 @@ namespace AionHR.Web.UI.Forms
                 int currentTimeCode;
                 Times.Items.ForEach(x =>
                 {
-                    x.fullName = x.employeeName.fullName;
+                    x.fullName = x.employeeName;
                     x.statusString = FillApprovalStatus(x.status);
 
                     if (Int32.TryParse(x.timeCode, out currentTimeCode))

@@ -13,6 +13,15 @@
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript" src="Scripts/ReportsCommon.js"></script>
+    <style type="text/css">
+        .time-variation-link {
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .time-variation-link:hover {
+    text-decoration: underline;
+}
+    </style>
     <script type="text/javascript">
         function setTotal(t, b) {
             // alert(t);
@@ -196,8 +205,8 @@
                         <Columns>
 
                             
-                            <ext:Column ID="Column1" MenuDisabled="true" Align="Center" runat="server" Text="<%$ Resources: FieldEmployeeName%>" DataIndex="employeeName" Flex="3" Hideable="false">
-                                <Renderer Handler="return '<b>'+record.data['employeeName']+'</b><br />'+record.data['dayIdString'];+'<br/>'+record.data['departmentName'];+'<br/>'+record.data['positionName']+'<br/>'+record.data['branchName'];" />
+                            <ext:Column  ID="Column1" MenuDisabled="true" Align="Center" runat="server"  Text="<%$ Resources: FieldEmployeeName%>" DataIndex="employeeName" Flex="3" Hideable="false">
+                                <Renderer Handler="return '<b>'+record.data['employeeName']+'</b><br />'+record.data['dayIdString']+'<br/>'+record.data['departmentName']+'<br/>'+record.data['positionName']+'<br/>'+record.data['branchName'];" />
                                 
                             </ext:Column>
                             <ext:Column ID="Column2" MenuDisabled="true" Align="Center" runat="server" Text="<%$ Resources: SC%>" DataIndex="employeeName" Flex="3" Hideable="false">
@@ -208,62 +217,17 @@
                                 <Renderer Handler="var fin_str = '';  var parts = record.data['ASString'].split('|'); for(var i=0;i<parts.length;i++)fin_str +=parts[i]+'<br/>'; return '<b>'+fin_str+'</b>'; " />
                                 
                             </ext:Column>
-                             <ext:Column ID="Column5" MenuDisabled="true" Align="Center" runat="server" Text="<%$ Resources: TimeVariations%>" DataIndex="employeeName" Flex="3" Hideable="false">
+                             <ext:Column ID="Column5" MenuDisabled="true" Align="Center"  runat="server" Text="<%$ Resources: TimeVariations%>" DataIndex="employeeName" Flex="3" Hideable="false">
                                 <Renderer Handler="if(record.data['TVString']=='') return '';var fin_str = ''; var parts = record.data['TVString'].split('|'); for(var i=0;i<parts.length;i++)fin_str +=parts[i]+'<br/>'; return fin_str; " />
                                 
                             </ext:Column>
 
-                           <%-- <ext:Column ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBreaks%>" DataIndex="breaks" Flex="2" Hideable="false">
-                                <Renderer Handler="var olB = ''; if(record.data['OL_B']=='00:00') olB=''; else olB= record.data['OL_B'];var cssClass='';if(record.data['OL_B'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['breaks'] + '<br/>' + olB + '</div>'; return result;" />
-                                <SummaryRenderer Handler="return document.getElementById('totalBreaks').innerHTML+ ' ' + #{TotalBreaksText}.value;" />
-                            </ext:Column>--%>
-
-                             <%-- <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldStatus%>" DataIndex="apStatusString" Flex="1" Hideable="false">
-                               
-                            <Renderer Handler="return LinkRender(value, metadata, record, rowIndex,  colIndex, store,record.data['apStatusString']);" />
-                            </ext:Column>--%>
+                      
                              
 
-                            <ext:Column runat="server"
-                                ID="colEdit" Visible="true"
-                                Text="<%$ Resources:Common, FieldDetails %>"
-                                Width="80"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer Fn="editRender" />
-                                <SummaryRenderer Handler="return '&nbsp;';" />
-                            </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="false"
-                                Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                Hideable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="deleteRender" />
-                                <SummaryRenderer Handler="return '&nbsp;';" />
-                            </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colAttach"
-                                Text="<%$ Resources:Common, Attach %>"
-                                Hideable="false"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="attachRender" />
-                                <SummaryRenderer Handler="return '&nbsp;';" />
-                            </ext:Column>
+                            
+                            
+                            
 
 
 
@@ -303,14 +267,11 @@
 
 
                     </View>
-                    <Features>
-
-                        <ext:Summary ID="Summary1" runat="server" DefaultValueMode="Ignore" />
-                    </Features>
-                    <Listeners>
+                   
+                  <%--  <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
-                    </Listeners>
-                    <DirectEvents>
+                    </Listeners>--%>
+         <%--           <DirectEvents>
                         <CellClick OnEvent="PoPuP">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
@@ -322,7 +283,7 @@
                             </ExtraParams>
 
                         </CellClick>
-                    </DirectEvents>
+                    </DirectEvents>--%>
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel" runat="server" Mode="Single" StopIDModeInheritance="true" />
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
@@ -346,10 +307,11 @@
             Height="200"
             AutoShow="false"
             Modal="true"
+     
             Hidden="true"
             Draggable="True"
             Maximizable="false"
-            Resizable="false" Header="true"
+            Resizable="false" Header="false"
             Layout="Fit">
 
             <Items>
@@ -379,10 +341,10 @@
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="employeeName"  />
                                                                                 <ext:ModelField Name="dayId" />
                                                                                 <ext:ModelField Name="dayIdDate"  />
-                                                                               <ext:ModelField Name="approverName" IsComplex="true" />
+                                                                               <ext:ModelField Name="approverName" />
                                                                                 <ext:ModelField Name="timeCode" />
                                                                                 <ext:ModelField Name="timeCodeString" />
                                                                                 <ext:ModelField Name="approverId" />
@@ -407,11 +369,11 @@
                                                                    <ext:Column ID="Column11" DataIndex="timeCode"  runat="server" Visible="false" />
 
                                                                      <ext:Column ID="Column12" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
-                                                                    <Renderer Handler=" return record.data['approverName'].fullName;" />
+                                                                    
                                                                     </ext:Column>
                                                                 
                                                                     <ext:Column Visible="false" ID="Column13" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
-                                                                    <Renderer Handler=" return record.data['employeeName'].fullName;" />
+                                                                    
                                                                     </ext:Column>
                                                                 
                                                                    
