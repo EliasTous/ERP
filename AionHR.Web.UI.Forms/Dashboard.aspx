@@ -2282,7 +2282,7 @@
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                                                                                <ext:ModelField Name="employeeName" />
                                                                                 <ext:ModelField Name="dayId" />
                                                                                 <ext:ModelField Name="dayIdDate"  />
                                                                                   <ext:ModelField Name="fullName"  />
@@ -5066,7 +5066,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="dayStart" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
@@ -5085,7 +5085,7 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                           <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dayStart" Flex="3" Hideable="false" />

@@ -450,7 +450,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 // Define the object to add or edit as null
                 if (!b.isPaid.HasValue)
                     b.isPaid = false;
-                b.employeeName = new EmployeeName();
+            
                 if (employeeId.SelectedItem != null)
 
                     b.employeeName.fullName = employeeId.SelectedItem.Text;

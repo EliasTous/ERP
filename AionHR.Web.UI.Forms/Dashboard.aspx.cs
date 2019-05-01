@@ -1338,31 +1338,72 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest req = GetDashboardRequest();
-                DashboardTimeListRequest r = new DashboardTimeListRequest();
-                r.dayId = "";
-                r.employeeId = 0;
-                if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-                    r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
 
-                else
-                {
-                    TimeStore.DataSource = new List<Time>();
-                    TimeStore.DataBind();
+
+                if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
                     return;
-                }
-                r.timeCode = timeVariationType.GetTimeCode(); 
-                r.shiftId = "0";
-                r.apStatus = "1";
-                r.BranchId = req.BranchId;
-                r.DivisionId = req.DivisionId;
-                r.PositionId = req.PositionId;
-                r.DepartmentId = req.DepartmentId;
-                r.EsId = req.EsId;
-                r.Size = "50";
-                r.StartAt = "0";
-               
 
+                string rep_params = "";
+                Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                if (parameters.ContainsKey("2"))
+                    parameters.ChangeKey("2", "8");
+                if (parameters.ContainsKey("3"))
+                    parameters.ChangeKey("3", "9");
+                if (parameters.ContainsKey("5"))
+                    parameters.ChangeKey("5", "10");
+                if (parameters.ContainsKey("1"))
+                    parameters.Remove("1");
+                if (parameters.ContainsKey("4"))
+                    parameters.Remove("4");
+
+
+                parameters.Add("1", "0");
+
+                parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
+                parameters.Add("5", timeVariationType.GetTimeCode());
+                parameters.Add("4", "0");
+                parameters.Add("7", "1");
+
+
+
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
+
+
+
+                //DashboardRequest req = GetDashboardRequest();
+                //DashboardTimeListRequest r = new DashboardTimeListRequest();
+                //r.dayId = "";
+                //r.employeeId = 0;
+                //if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                //    r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+
+                //else
+                //{
+                //    TimeStore.DataSource = new List<Time>();
+                //    TimeStore.DataBind();
+                //    return;
+                //}
+                //r.timeCode = timeVariationType.GetTimeCode(); 
+                //r.shiftId = "0";
+                //r.apStatus = "1";
+                //r.BranchId = req.BranchId;
+                //r.DivisionId = req.DivisionId;
+                //r.PositionId = req.PositionId;
+                //r.DepartmentId = req.DepartmentId;
+                //r.EsId = req.EsId;
+                //r.Size = "50";
+                //r.StartAt = "0";
+
+                ReportGenericRequest r = new ReportGenericRequest();
+                r.paramString = rep_params;
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)
                 {
@@ -2015,19 +2056,43 @@ namespace AionHR.Web.UI.Forms
         private void BindCompanyHeadCount(bool normalSized = true)
         {
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            ReportCompositeRequest req = new ReportCompositeRequest();
-            DateRangeParameterSet range = new DateRangeParameterSet();
-            range.DateFrom = new DateTime(1991, 1, 1);
-            try
-            {
-                range.DateTo = CountDateTo.SelectedDate;
-            }
-            catch (Exception)
-            {
 
-                range.DateTo = DateTime.Now;
+            string rep_params = "";
+            ReportGenericRequest req = new ReportGenericRequest();
+          
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("1", new DateTime(1991, 1, 1).ToString("yyyyMMdd"));
+            parameters.Add("2", CountDateTo.SelectedDate.ToString("yyyyMMdd"));
+
+
+
+
+
+            foreach (KeyValuePair<string, string> entry in parameters)
+            {
+                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
             }
-            req.Add(range);
+            if (rep_params.Length > 0)
+            {
+                if (rep_params[rep_params.Length - 1] == '^')
+                    rep_params = rep_params.Remove(rep_params.Length - 1);
+            }
+
+            //ReportCompositeRequest req = new ReportCompositeRequest();
+            //DateRangeParameterSet range = new DateRangeParameterSet();
+            //range.DateFrom = new DateTime(1991, 1, 1);
+            //try
+            //{
+            //    range.DateTo = CountDateTo.SelectedDate;
+            //}
+            //catch (Exception)
+            //{
+
+            //    range.DateTo = DateTime.Now;
+            //}
+            //req.Add(range);
+            req.paramString = rep_params;
             ListResponse<RT103> resp = _reportsService.ChildGetAll<RT103>(req);
             if (!resp.Success)
             {
@@ -2424,23 +2489,67 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest request = GetDashboardRequest();
-                EmployeePenaltyApprovalListRequest req = new EmployeePenaltyApprovalListRequest();
-
-                req.apStatus = "1";
-                req.penaltyId = "0";
-                req.approverId = _systemService.SessionHelper.GetEmployeeId() != null ? _systemService.SessionHelper.GetEmployeeId().ToString() : null;
-                req.BranchId = request.BranchId;
-                req.PositionId = request.PositionId;
-                req.DivisionId = request.DivisionId;
-                req.DepartmentId = request.DepartmentId;
-                req.EsId = request.EsId;
-                if (string.IsNullOrEmpty(req.penaltyId) || string.IsNullOrEmpty(req.approverId))
-                {
-                    EmployeePenaltyApprovalStore.DataSource = new List<EmployeePenaltyApproval>();
-                    EmployeePenaltyApprovalStore.DataBind();
+                if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
                     return;
+
+                string rep_params = "";
+                Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                if (parameters.ContainsKey("5"))
+                    parameters.ChangeKey("5", "7");
+                if (parameters.ContainsKey("4"))
+                    parameters.ChangeKey("4", "6");
+                if (parameters.ContainsKey("2"))
+                    parameters.ChangeKey("2", "5");
+                if (parameters.ContainsKey("1"))
+                    parameters.ChangeKey("1", "4");
+
+
+
+                parameters.Add("1", "1");
+                parameters.Add("2", _systemService.SessionHelper.GetEmployeeId());
+
+                parameters.Add("8", "0");
+
+
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
                 }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
+
+
+
+
+
+
+
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+
+
+
+
+                //DashboardRequest request = GetDashboardRequest();
+                //EmployeePenaltyApprovalListRequest req = new EmployeePenaltyApprovalListRequest();
+
+                //req.apStatus = "1";
+                //req.penaltyId = "0";
+                //req.approverId = _systemService.SessionHelper.GetEmployeeId() != null ? _systemService.SessionHelper.GetEmployeeId().ToString() : null;
+                //req.BranchId = request.BranchId;
+                //req.PositionId = request.PositionId;
+                //req.DivisionId = request.DivisionId;
+                //req.DepartmentId = request.DepartmentId;
+                //req.EsId = request.EsId;
+                //if (string.IsNullOrEmpty(req.penaltyId) || string.IsNullOrEmpty(req.approverId))
+                //{
+                //    EmployeePenaltyApprovalStore.DataSource = new List<EmployeePenaltyApproval>();
+                //    EmployeePenaltyApprovalStore.DataBind();
+                //    return;
+                //}
                 ListResponse<EmployeePenaltyApproval> response = _employeeService.ChildGetAll<EmployeePenaltyApproval>(req);
 
                 if (!response.Success)

@@ -11,8 +11,8 @@ namespace AionHR.Model.LoadTracking
     [ClassIdentifier("45053", "45")]
     public class LoanApproval 
     {
-        public EmployeeName approverName { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string approverName { get; set; }
+        public string employeeName { get; set; }
         public double amount { get; set; }
         public string currencyRef { get; set; }
 
