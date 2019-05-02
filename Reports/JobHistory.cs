@@ -4,6 +4,8 @@ using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraPrinting;
+using System.Collections.Generic;
+using System.Drawing.Printing;
 
 /// <summary>
 /// Summary description for JobHistory
@@ -48,37 +50,99 @@ namespace Reports
         private XRControlStyle DataField;
         private GroupHeaderBand GroupHeader1;
         private XRLabel xrLabel9;
-        private PageHeaderBand PageHeader;
-        private XRLabel xrLabel18;
         private DevExpress.XtraReports.Parameters.Parameter Division;
-        private XRLabel xrLabel16;
         private DevExpress.XtraReports.Parameters.Parameter Branch;
-        private XRLabel xrLabel15;
         private DevExpress.XtraReports.Parameters.Parameter Position;
-        private XRLabel xrLabel14;
         private DevExpress.XtraReports.Parameters.Parameter Department;
-        private XRLabel xrLabel13;
-        private XRLabel xrLabel12;
-        private XRLabel xrLabel11;
-        private XRLabel xrLabel10;
-        private XRLine xrLine3;
         private XRLabel xrLabel20;
         private DevExpress.XtraReports.Parameters.Parameter User;
         private XRLabel xrLabel19;
+        private PageHeaderBand PageHeader;
 
         /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        public JobHistory()
+        public JobHistory(Dictionary<string, string> parameters)
         {
             InitializeComponent();
             //
             // TODO: Add constructor logic here
             //
-        }
+            printHeader(parameters);
 
+        }
+        private void printHeader(Dictionary<string, string> parameters)
+        {
+            if (parameters.Count == 0)
+                return;
+
+
+            XRTable table = new XRTable();
+            table.BeginInit();
+
+
+            table.LocationF = new PointF(0, 0);
+            int count = 0;
+            XRTableRow row = new XRTableRow();
+
+            foreach (KeyValuePair<string, string> item in parameters)
+            {
+
+                XRTableCell cell = new XRTableCell();
+
+                cell.Text = item.Key;
+
+                cell.BackColor = Color.Gray;
+                cell.ForeColor = Color.White;
+
+                XRTableCell valueCell = new XRTableCell();
+
+                valueCell.Text = item.Value;
+
+                row.Cells.Add(cell);
+                row.Cells.Add(valueCell);
+
+                count++;
+                if (count % 4 == 0)
+                {
+                    table.Rows.Add(row);
+                    row = new XRTableRow();
+                }
+
+
+
+
+
+            }
+            if (count % 4 != 0)
+            {
+                for (int i = 0; i < (4 - (count % 4)) * 2; i++)
+                {
+                    XRTableCell cell = new XRTableCell();
+
+
+
+                    row.Cells.Add(cell);
+                }
+                table.Rows.Add(row);
+            }
+            table.BeforePrint += new PrintEventHandler(table_BeforePrint);
+            table.AdjustSize();
+            table.EndInit();
+
+
+
+            this.PageHeader.Controls.Add(table);
+
+        }
+        private void table_BeforePrint(object sender, PrintEventArgs e)
+        {
+            XRTable table = ((XRTable)sender);
+            table.LocationF = new DevExpress.Utils.PointFloat(0F, 0F);
+            table.WidthF = this.PageWidth - this.Margins.Left - this.Margins.Right;
+        }
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
@@ -145,20 +209,11 @@ namespace Reports
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
-            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
-            this.xrLine3 = new DevExpress.XtraReports.UI.XRLine();
-            this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
             this.Division = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
             this.Branch = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
             this.Position = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.Department = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
+            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -462,49 +517,12 @@ namespace Reports
             this.xrLabel9.Name = "xrLabel9";
             this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
-            // PageHeader
-            // 
-            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLine3,
-            this.xrLabel18,
-            this.xrLabel16,
-            this.xrLabel15,
-            this.xrLabel14,
-            this.xrLabel13,
-            this.xrLabel12,
-            this.xrLabel11,
-            this.xrLabel10});
-            resources.ApplyResources(this.PageHeader, "PageHeader");
-            this.PageHeader.Name = "PageHeader";
-            this.PageHeader.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.PageHeader_BeforePrint);
-            // 
-            // xrLine3
-            // 
-            resources.ApplyResources(this.xrLine3, "xrLine3");
-            this.xrLine3.Name = "xrLine3";
-            // 
-            // xrLabel18
-            // 
-            this.xrLabel18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Division, "Text", "")});
-            resources.ApplyResources(this.xrLabel18, "xrLabel18");
-            this.xrLabel18.Name = "xrLabel18";
-            this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
             // Division
             // 
             resources.ApplyResources(this.Division, "Division");
             this.Division.Name = "Division";
             this.Division.ValueInfo = "All";
             this.Division.Visible = false;
-            // 
-            // xrLabel16
-            // 
-            this.xrLabel16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Branch, "Text", "")});
-            resources.ApplyResources(this.xrLabel16, "xrLabel16");
-            this.xrLabel16.Name = "xrLabel16";
-            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
             // Branch
             // 
@@ -513,28 +531,12 @@ namespace Reports
             this.Branch.ValueInfo = "All";
             this.Branch.Visible = false;
             // 
-            // xrLabel15
-            // 
-            this.xrLabel15.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Position, "Text", "")});
-            resources.ApplyResources(this.xrLabel15, "xrLabel15");
-            this.xrLabel15.Name = "xrLabel15";
-            this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
             // Position
             // 
             resources.ApplyResources(this.Position, "Position");
             this.Position.Name = "Position";
             this.Position.ValueInfo = "All";
             this.Position.Visible = false;
-            // 
-            // xrLabel14
-            // 
-            this.xrLabel14.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Department, "Text", "")});
-            resources.ApplyResources(this.xrLabel14, "xrLabel14");
-            this.xrLabel14.Name = "xrLabel14";
-            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
             // Department
             // 
@@ -543,29 +545,10 @@ namespace Reports
             this.Department.ValueInfo = "All";
             this.Department.Visible = false;
             // 
-            // xrLabel13
+            // PageHeader
             // 
-            resources.ApplyResources(this.xrLabel13, "xrLabel13");
-            this.xrLabel13.Name = "xrLabel13";
-            this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLabel12
-            // 
-            resources.ApplyResources(this.xrLabel12, "xrLabel12");
-            this.xrLabel12.Name = "xrLabel12";
-            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLabel11
-            // 
-            resources.ApplyResources(this.xrLabel11, "xrLabel11");
-            this.xrLabel11.Name = "xrLabel11";
-            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLabel10
-            // 
-            resources.ApplyResources(this.xrLabel10, "xrLabel10");
-            this.xrLabel10.Name = "xrLabel10";
-            this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            resources.ApplyResources(this.PageHeader, "PageHeader");
+            this.PageHeader.Name = "PageHeader";
             // 
             // JobHistory
             // 

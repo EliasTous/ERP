@@ -235,7 +235,10 @@ namespace AionHR.Web.UI.Forms.Reports
               
             }
             );
-            RightToWork h = new RightToWork();
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+
+           
+            RightToWork h = new RightToWork(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = resp.Items;
@@ -245,7 +248,7 @@ namespace AionHR.Web.UI.Forms.Reports
             string user = _systemService.SessionHelper.GetCurrentUser();
 
 
-            h.Parameters["Filters"].Value = texts.Text;
+          
             h.Parameters["User"].Value = user;
            
             h.CreateDocument();

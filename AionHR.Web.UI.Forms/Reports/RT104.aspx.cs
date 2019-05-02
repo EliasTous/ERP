@@ -218,8 +218,8 @@ namespace AionHR.Web.UI.Forms.Reports
            
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
-
-            YearsInService y = new YearsInService();
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            YearsInService y = new YearsInService(parameters);
             y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
@@ -229,7 +229,7 @@ namespace AionHR.Web.UI.Forms.Reports
             y.DataSource = reordered;
             string user = _systemService.SessionHelper.GetCurrentUser();
             y.Parameters["User"].Value = user;
-            y.Parameters["Filters"].Value = texts.Text;
+           
             ASPxWebDocumentViewer1.DataBind();
             ASPxWebDocumentViewer1.OpenReport(y);
         }

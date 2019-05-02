@@ -219,7 +219,9 @@ namespace AionHR.Web.UI.Forms.Reports
             //    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
             //}
             resp.Items.ForEach(x => x.DateString = x.date.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en")));
-            Hirings h = new Hirings();
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+
+            Hirings h = new Hirings(parameters);
 
 
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
@@ -241,7 +243,7 @@ namespace AionHR.Web.UI.Forms.Reports
        
            
             string user = _systemService.SessionHelper.GetCurrentUser();
-            h.Parameters["Filters"].Value = texts.Text;
+          
            
             h.Parameters["User"].Value = user;
             //h.Parameters["BranchName"].Value = jobInfo1.GetBranch();

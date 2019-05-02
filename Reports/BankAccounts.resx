@@ -277,7 +277,7 @@
     <value>100</value>
   </data>
   <data name="xrTable1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>0, 6.00001</value>
+    <value>2.54313145E-05, 0</value>
   </data>
   <data name="xrTableCell26.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -398,12 +398,6 @@
   </data>
   <data name="xrTable1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>TopCenter</value>
-  </data>
-  <data name="pageHeaderBand1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="pageHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>42.0000076</value>
   </data>
   <data name="xrTableCell1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -549,26 +543,17 @@
   <data name="reportHeaderBand1.HeightF" type="System.Single, mscorlib">
     <value>53</value>
   </data>
-  <data name="xrLabel3.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>313.407867, 10.0000067</value>
-  </data>
-  <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>129.213, 23</value>
-  </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>No Results Found</value>
-  </data>
-  <data name="xrLabel3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>TopCenter</value>
-  </data>
   <data name="GroupHeader1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
-    <value>43.75</value>
+    <value>50.4166679</value>
+  </data>
+  <data name="PageHeader.Dpi" type="System.Single, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="PageHeader.HeightF" type="System.Single, mscorlib">
+    <value>7.5</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

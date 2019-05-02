@@ -274,8 +274,11 @@ namespace AionHR.Web.UI.Forms.Reports
             }
 
 
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
 
-            BankAccounts h = new BankAccounts();
+
+          
+            BankAccounts h = new BankAccounts(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = resp.Items;
@@ -288,7 +291,7 @@ namespace AionHR.Web.UI.Forms.Reports
           
             //h.Parameters["PositionName"].Value = jobInfo1.GetPosition();
             h.Parameters["User"].Value = user;
-            h.Parameters["Fitlers"].Value = texts.Text;
+         
             //h.Parameters["Status"].Value = statusCombo.SelectedItem.Text;
 
 

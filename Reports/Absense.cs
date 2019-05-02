@@ -76,6 +76,7 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
     {
         InitializeComponent();
         printHeader(parameters);
+       this.ExportOptions.PrintPreview.DefaultFileName = "Time Variation";
         //
         // TODO: Add constructor logic here
         //
@@ -744,6 +745,7 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
+            this.ExportOptions.PrintPreview.DefaultFileName = "Time Variation";
             resources.ApplyResources(this, "$this");
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.TimeCode,
@@ -761,6 +763,7 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.PageInfo,
             this.DataField});
             this.Version = "16.2";
+            this.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.Absense_BeforePrint);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -839,5 +842,10 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
 
         }
 
+    }
+
+    private void Absense_BeforePrint(object sender, PrintEventArgs e)
+    {
+      
     }
 }
