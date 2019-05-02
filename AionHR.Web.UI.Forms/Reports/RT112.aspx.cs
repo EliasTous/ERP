@@ -221,12 +221,17 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
 
-            EmployeesNotes h = new EmployeesNotes();
+
+
+         
+         
+            EmployeesNotes h = new EmployeesNotes(parameters);
             List<AionHR.Model.Reports.RT112> EN = new List<AionHR.Model.Reports.RT112>();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            var d= resp.Items.GroupBy(x => x.employeeName.fullName);
+            var d= resp.Items.GroupBy(x => x.employeeName);
             
 
             d.ToList().ForEach(x =>
@@ -238,7 +243,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 EN.Add(x.ToList()[0]);
                 foreach (var e in x.Skip(1))
                 {
-                    e.employeeName.fullName = "";
+                    e.employeeName = "";
                     e.dateString = e.date.ToString(_systemService.SessionHelper.GetDateformat() + " HH:MM");
                     EN.Add(e);
                 }
@@ -258,7 +263,7 @@ namespace AionHR.Web.UI.Forms.Reports
             string user = _systemService.SessionHelper.GetCurrentUser();
 
 
-            h.Parameters["Filters"].Value = texts.Text;
+           
             //h.Parameters["PositionName"].Value = jobInfo1.GetPosition();
             h.Parameters["User"].Value = user;
           

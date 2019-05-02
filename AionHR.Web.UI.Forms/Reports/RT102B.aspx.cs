@@ -221,15 +221,15 @@ namespace AionHR.Web.UI.Forms.Reports
             string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             string user = _systemService.SessionHelper.GetCurrentUser();
+
+
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
           
-
-
-           
-            Terminations t = new Terminations();
+            Terminations t = new Terminations(parameters);
             t.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             t.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             
-            t.Parameters["Filters"].Value = texts.Text;
+         
             t.Parameters["User"].Value = user;
             //t.Parameters["BranchName"].Value = jobInfo1.GetBranch();
 
