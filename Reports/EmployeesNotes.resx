@@ -226,8 +226,7 @@
     <value>100</value>
   </data>
   <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>Date
-</value>
+    <value>Date/Time</value>
   </data>
   <data name="xrTableCell7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
@@ -471,7 +470,7 @@
     <value>100</value>
   </data>
   <data name="reportHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>105</value>
+    <value>104.999985</value>
   </data>
   <data name="xrLabel8.Dpi" type="System.Single, mscorlib">
     <value>100</value>
