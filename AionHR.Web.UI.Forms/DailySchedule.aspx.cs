@@ -89,6 +89,55 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+
+           
+
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+            Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(labels);
+            DateTime from = new DateTime();
+            DateTime to = new DateTime();
+
+            if (parameters.ContainsKey("1"))
+            {
+            
+                if (DateTime.TryParseExact(parameters["1"], "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out from))
+                    dateFrom.SelectedDate = from;
+            }
+            if (parameters.ContainsKey("2"))
+            {
+                if (DateTime.TryParseExact(parameters["2"], "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out to))
+                    dateTo.SelectedDate = to;
+            }
+            if (parameters.ContainsKey("3"))
+            {
+                employeeId.Select(parameters["3"]);
+                employeeId.SetValue(parameters["3"]);
+            }
+
+            if (parameters.ContainsKey("4"))
+            {
+                branchId.Select(parameters["4"]);
+                branchId.SetValue(parameters["4"]);
+            }
+
+
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 

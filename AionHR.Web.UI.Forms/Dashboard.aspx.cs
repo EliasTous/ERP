@@ -815,13 +815,13 @@ namespace AionHR.Web.UI.Forms
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             DashboardRequest req = new DashboardRequest();
 
-            int intResult;
-
-            req.BranchId = parameters.ContainsKey("branchId") ? parameters["branchId"].ToString() : "0";
-            req.DepartmentId = parameters.ContainsKey("departmentId") ? parameters["branchId"].ToString() : "0";
-            req.DivisionId = parameters.ContainsKey("divisionId") ? parameters["branchId"].ToString() : "0";
-            req.PositionId = parameters.ContainsKey("positionId") ? parameters["branchId"].ToString() : "0";
-            req.EsId = parameters.ContainsKey("esId") ? parameters["esId"].ToString() : "0";
+            
+          
+            req.BranchId = parameters.ContainsKey("2") ? parameters["2"] : "0";
+            req.DepartmentId = parameters.ContainsKey("3") ? parameters["3"] : "0";
+            req.DivisionId = parameters.ContainsKey("4") ? parameters["4"] : "0";
+            req.PositionId = parameters.ContainsKey("1") ? parameters["1"] : "0";
+            req.EsId = parameters.ContainsKey("5") ? parameters["5"] : "0";
 
 
 
@@ -880,7 +880,7 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-
+                
                 if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
                     return;
 
@@ -1134,7 +1134,18 @@ namespace AionHR.Web.UI.Forms
             {
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
                 string rep_params = vals.Text;
-                ReportGenericRequest req = new ReportGenericRequest();
+                TimeBoundedActiveAttendanceRequest req = new TimeBoundedActiveAttendanceRequest();
+                try
+                {
+                    req.startingDayId = periodToDate.SelectedDate.ToString("yyyyMMdd");
+                }
+                catch
+                {
+                    req.startingDayId = DateTime.Now.ToString("yyyyMMdd");
+
+
+                }
+                
                 req.paramString = rep_params;
 
                 ListResponse<AttendancePeriod> resp = _dashBoardService.ChildGetAll<AttendancePeriod>(req);
@@ -1173,28 +1184,28 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        private TimeBoundedActiveAttendanceRequest GetTimeBoundedActiveAttendanceRequest()
-        {
-            ActiveAttendanceRequest re = GetActiveAttendanceRequest();
-            TimeBoundedActiveAttendanceRequest b = new TimeBoundedActiveAttendanceRequest();
-            b.DepartmentId = re.DepartmentId;
-            b.BranchId = re.BranchId;
-            b.DayStatus = re.DayStatus;
-            b.DivisionId = re.DivisionId;
-            b.PositionId = re.PositionId;
+        //private TimeBoundedActiveAttendanceRequest GetTimeBoundedActiveAttendanceRequest()
+        //{
+        //    ActiveAttendanceRequest re = GetActiveAttendanceRequest();
+        //    TimeBoundedActiveAttendanceRequest b = new TimeBoundedActiveAttendanceRequest();
+        //    b.DepartmentId = re.DepartmentId;
+        //    b.BranchId = re.BranchId;
+        //    b.DayStatus = re.DayStatus;
+        //    b.DivisionId = re.DivisionId;
+        //    b.PositionId = re.PositionId;
 
-            try
-            {
-                b.startingDayId = periodToDate.SelectedDate.ToString("yyyyMMdd");
-            }
-            catch
-            {
-                b.startingDayId = DateTime.Now.ToString("yyyyMMdd");
+        //    try
+        //    {
+        //        b.startingDayId = periodToDate.SelectedDate.ToString("yyyyMMdd");
+        //    }
+        //    catch
+        //    {
+        //        b.startingDayId = DateTime.Now.ToString("yyyyMMdd");
 
 
-            }
-            return b;
-        }
+        //    }
+        //    return b;
+        //}
 
         protected void CompletedLoansStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
@@ -1448,14 +1459,14 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-                ActiveAttendanceRequest req1 = GetActiveAttendanceRequest();
+                DashboardRequest req1 = GetDashboardRequest();
                 ActiveAttendanceRecordRequest req = new ActiveAttendanceRecordRequest();
                 req.BranchId = req1.BranchId;
-                req.DayStatus = req1.DayStatus;
+              
                 req.DepartmentId = req1.DepartmentId;
                 req.DivisionId = req1.DivisionId;
                 req.PositionId = req1.PositionId;
-                req.StatusId = req1.StatusId; 
+                req.StatusId = req1.EsId; 
                 RecordResponse <LocalsRate> resp = _helpFunctionService.ChildGetRecord<LocalsRate>(req);
                 if (!resp.Success)
                 {
@@ -2390,25 +2401,52 @@ namespace AionHR.Web.UI.Forms
 
         protected void TimeVariationStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
+            //elias
+            string rep_params = "";
             try
             {
-                DashboardRequest req = GetDashboardRequest();
-                TimeVariationListRequest TVReq = new TimeVariationListRequest();
-                TVReq.BranchId = req.BranchId;
-                TVReq.DepartmentId = req.DepartmentId;
-                TVReq.DivisionId = req.DivisionId;
-                TVReq.EsId = req.EsId;
-                TVReq.timeCode = CurrentTimeVariationType.Text;
-                TVReq.fromDayId = DateTime.Now;
-                TVReq.toDayId = DateTime.Now;
-                TVReq.PositionId = req.PositionId;
-                TVReq.employeeId = "0";
-                TVReq.apStatus = "0";
-                TVReq.fromDuration = "0";
-                TVReq.toDuration = "0";
+                Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                if (parameters.ContainsKey("2"))
+                    parameters.ChangeKey("2", "7");
+                if (parameters.ContainsKey("3"))
+                    parameters.ChangeKey("3", "8");
+                if (parameters.ContainsKey("5"))
+                    parameters.ChangeKey("5", "9");
+                if (parameters.ContainsKey("1"))
+                    parameters.Remove("1");
+                if (parameters.ContainsKey("4"))
+                    parameters.Remove("4");
 
 
 
+
+
+                parameters.Add("1", "0");
+                parameters.Add("2", DateTime.Now.ToString("yyyyMMdd"));
+                parameters.Add("3", DateTime.Now.ToString("yyyyMMdd"));
+                parameters.Add("5", CurrentTimeVariationType.Text);
+                parameters.Add("6", "0");
+
+             
+             
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
+
+
+
+
+
+
+
+                ReportGenericRequest TVReq = new ReportGenericRequest();
+                TVReq.paramString = rep_params;
                 ListResponse<DashBoardTimeVariation> resp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(TVReq);
                 if (!resp.Success)
                 {
@@ -2648,26 +2686,63 @@ namespace AionHR.Web.UI.Forms
         }
         private void FillTimeApproval(int dayId, int employeeId, string timeCode, string shiftId, string apstatus)
         {
-            try
-            {
-                DashboardRequest req = GetDashboardRequest();
-                DashboardTimeListRequest r = new DashboardTimeListRequest();
-                r.fromDayId = dayId.ToString();
-                r.toDayId = dayId.ToString();
-                r.employeeId = employeeId;
-                r.approverId = 0;
-                r.timeCode = timeCode;
-                r.shiftId = shiftId;
-                // r.apStatus = apstatus.ToString();
-                r.apStatus = "0";
-                r.PositionId = req.PositionId;
-                r.DepartmentId = req.DepartmentId;
-                r.DivisionId = req.DivisionId;
-                r.BranchId = req.BranchId;
-                r.EsId = req.EsId;
-                r.StartAt = "0";
-                r.Size = "1000";
-               
+
+         
+           
+                string rep_params = "";
+                try
+                {
+                    Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                    if (parameters.ContainsKey("2"))
+                        parameters.ChangeKey("2", "8");
+                    if (parameters.ContainsKey("3"))
+                        parameters.ChangeKey("3", "9");
+                    if (parameters.ContainsKey("5"))
+                        parameters.ChangeKey("5", "10");
+                    if (parameters.ContainsKey("1"))
+                        parameters.Remove("1");
+                    if (parameters.ContainsKey("4"))
+                        parameters.Remove("4");
+
+
+
+
+
+
+
+
+                    parameters.Add("1", employeeId.ToString());
+                    parameters.Add("2", dayId.ToString());
+                    parameters.Add("3", dayId.ToString());
+                    parameters.Add("4", shiftId);
+
+                    parameters.Add("5", timeCode);
+                    parameters.Add("6", "0");
+                    parameters.Add("7", "0");
+
+
+
+                    foreach (KeyValuePair<string, string> entry in parameters)
+                    {
+                        rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                    }
+                    if (rep_params.Length > 0)
+                    {
+                        if (rep_params[rep_params.Length - 1] == '^')
+                            rep_params = rep_params.Remove(rep_params.Length - 1);
+                    }
+
+
+
+
+
+
+
+                    ReportGenericRequest r = new ReportGenericRequest();
+                    r.paramString = rep_params;
+
+
+              
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)
@@ -2890,28 +2965,37 @@ namespace AionHR.Web.UI.Forms
         {
             TabPanel5.ActiveIndex = 0;
             string penaltyId = e.ExtraParams["penaltyId"];
+
+            try { 
+
             EmployeePenaltyApprovalRecordRequest r = new EmployeePenaltyApprovalRecordRequest();
             r.penaltyId = penaltyId;
             r.approverId = _systemService.SessionHelper.GetEmployeeId();
             RecordResponse<EmployeePenaltyApproval> resp = _employeeService.ChildGetRecord<EmployeePenaltyApproval>(r);
-            if (!resp.Success)
+                if (!resp.Success)
+                {
+
+                    Common.errorMessage(resp);
+                    return;
+                }
+                PADate.Value = resp.result.date;
+                penaltyName.Text = resp.result.penaltyName;
+                PAEmployeeName.Text = resp.result.employeeName.firstName;
+                penaltyStatus.Select(resp.result.status.ToString());
+                notes.Text = resp.result.notes;
+
+                PERecordId.Text = penaltyId;
+
+
+
+                this.employeePenaltyApprovalWindow.Title = Resources.Common.EditWindowsTitle;
+                this.employeePenaltyApprovalWindow.Show();
+
+
+            }catch(Exception exp)
             {
-               
-                Common.errorMessage(resp);
-                return;
+                X.MessageBox.Alert(Resources.Common.Error, exp.Message);
             }
-            PADate.Value = resp.result.date;
-            penaltyName.Text = resp.result.penaltyName;
-            PAEmployeeName.Text = resp.result.employeeName.firstName;
-            penaltyStatus.Select(resp.result.status.ToString());
-            notes.Text = resp.result.notes;
-
-            PERecordId.Text = penaltyId;
-
-
-
-            this.employeePenaltyApprovalWindow.Title = Resources.Common.EditWindowsTitle;
-            this.employeePenaltyApprovalWindow.Show();
 
         }
 

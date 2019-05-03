@@ -380,17 +380,17 @@ public class ActiveAttendanceRequest : ListRequest
 
    
 }
-public class TimeBoundedActiveAttendanceRequest : ActiveAttendanceRequest
+public class TimeBoundedActiveAttendanceRequest :ListRequest
 {
 
-
+    public string paramString { get; set; }
     public string startingDayId { get; set; }
     public override Dictionary<string, string> Parameters
     {
         get
         {
             parameters = base.Parameters;
-           
+            parameters.Add("_params", paramString);
             parameters.Add("_startingDayId", startingDayId);
             return parameters;
         }

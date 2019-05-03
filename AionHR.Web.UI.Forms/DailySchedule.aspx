@@ -20,7 +20,7 @@
   <%--  <link rel="stylesheet" href="CSS/defaultTheme.css?id=11" />--%>
     <script type="text/javascript" src="Scripts/DailySchedule.js?id=5"></script>
     <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
- 
+    <script type="text/javascript" src="Scripts/ReportsCommon.js"></script>
     <script type="text/javascript" src="Scripts/jquery-new.js?id=30"></script>
     <script type="text/javascript" src="Scripts/tableHeadFixer.js?id=2"></script>
 
@@ -101,7 +101,11 @@
         <ext:Hidden ID="CurrentCalenderLabel" runat="server" />
          <ext:Hidden ID="isRTL" runat="server" />
 
-
+          <ext:Hidden ID="vals" runat="server" />
+        <ext:Hidden ID="texts" runat="server" />
+        <ext:Hidden ID="labels" runat="server" />
+        <ext:Hidden ID="format" runat="server" />
+        <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=RT310&values="/>
 
 
 
@@ -111,7 +115,15 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" EmptyText="<%$ Resources: Branch %>">
+
+                                   <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                       <Listeners>
+                                           <Click Handler=" App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
+                                       
+
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Hidden="true" EmptyText="<%$ Resources: Branch %>">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -127,7 +139,8 @@
                                 </ext:ComboBox>
 
                                 <ext:ToolbarSeparator />
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Width="160" LabelAlign="Top"
+                                   
+                                <ext:ComboBox AnyMatch="true" Visible="false" CaseSensitive="false" runat="server" ID="employeeId" Width="160" LabelAlign="Top"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
                                     TypeAhead="false"
@@ -150,14 +163,15 @@
                                         </ext:Store>
                                     </Store>
                                 </ext:ComboBox>
-                                <ext:ToolbarSeparator />
-                                <ext:DateField runat="server" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: From %>" Editable="false" >
+                    
+                              
+                                <ext:DateField runat="server" Hidden="true" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: From %>" Editable="false" >
                                     <%--  <Listeners>
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
                                     </Listeners>--%>
                                   
                                 </ext:DateField>
-                                <ext:DateField runat="server" ID="dateTo" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: To %>" Editable="false">
+                                <ext:DateField runat="server" Hidden="true" ID="dateTo" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: To %>" Editable="false">
                                     <%--  <Listeners>
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
                                     </Listeners>--%>
@@ -207,6 +221,7 @@
                                            <Click Handler="App.userSelector.toField.getStore().removeAll();"></Click>
                                        </Listeners>
                                 </ext:Button>
+                               
                                 
                                 
 
@@ -261,6 +276,8 @@
                                         
                                     </DirectEvents>
                                 </ext:ComboBox>
+                                
+
                                 <ext:Button MarginSpec="0 0 0 350" runat="server" Text="<%$ Resources: Load %>">
                                     <DirectEvents>
                                         <Click OnEvent="Load_Click">
@@ -287,6 +304,12 @@
 
                             </Items>
                         </ext:Toolbar>
+                            <ext:Toolbar ID="labelbar" runat="server" Height="0" Dock="Top">
+
+                            <Items>
+                                 <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                            </ext:Toolbar>
 
 
                     </DockedItems>
@@ -555,6 +578,32 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+          <ext:Window runat="server"  Icon="PageEdit"
+            ID="reportsParams"
+            Width="600"
+            Height="500"
+            Title="<%$Resources:Common,Parameters %>"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="FitLayout" Resizable="true">
+            <Listeners>
+                <Show Handler="App.Panel8.loader.load();"></Show>
+            </Listeners>
+            <Items>
+                <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
+                    <Loader runat="server" Url="ReportParameterBrowser.aspx?_reportName=RT310" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+            
+                </Items>
+        </ext:Window>
+
 
     </form>
 </body>

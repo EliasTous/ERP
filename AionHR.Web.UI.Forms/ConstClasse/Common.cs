@@ -103,8 +103,10 @@ namespace AionHR.Web.UI.Forms
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             foreach( var item in values)
             {
-                if (item.ToString().Length==3)
-                parameters.Add(item.ToString().Substring(0, 1), item.ToString().Substring(2, 1));
+              var value=  item.Split('|');
+                if (value.Length == 2)
+                    parameters.Add(value[0], value[1]);
+                   
 
             }
             return parameters;
