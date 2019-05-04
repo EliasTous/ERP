@@ -1323,15 +1323,35 @@ namespace AionHR.Web.UI.Forms.Controls
         }
         public void FillApprovals(string Id)
         {
-            LeaveApprovalListRequest req = new LeaveApprovalListRequest();
-            req.leaveId = Id;
-            req.approverId = "0";
-            req.status = 0;
-            req.DivisionId = "0";
-            req.PositionId = "0";
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.EsId = "0";
+
+
+            string rep_params = "";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("1", "0");
+            parameters.Add("2", "0");
+            parameters.Add("3", "0");
+            parameters.Add("4", "0");
+            parameters.Add("5", "0");
+            parameters.Add("6", "0");
+            parameters.Add("7", "0");
+            parameters.Add("8", Id);
+            foreach (KeyValuePair<string, string> entry in parameters)
+            {
+                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+            }
+            if (rep_params.Length > 0)
+            {
+                if (rep_params[rep_params.Length - 1] == '^')
+                    rep_params = rep_params.Remove(rep_params.Length - 1);
+            }
+
+
+
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
+
+           
+          
             ListResponse<AionHR.Model.LeaveManagement.Approvals> response = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
             if (!response.Success)
             {

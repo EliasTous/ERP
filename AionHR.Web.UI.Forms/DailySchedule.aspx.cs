@@ -106,31 +106,36 @@ namespace AionHR.Web.UI.Forms
             Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(labels);
             DateTime from = new DateTime();
             DateTime to = new DateTime();
+            String datefrom = "", dateTo = "";
 
             if (parameters.ContainsKey("1"))
             {
-            
+
                 if (DateTime.TryParseExact(parameters["1"], "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out from))
-                    dateFrom.SelectedDate = from;
+                    datefrom = from.ToString();
+                else
+                    datefrom = null;
             }
             if (parameters.ContainsKey("2"))
             {
                 if (DateTime.TryParseExact(parameters["2"], "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out to))
-                    dateTo.SelectedDate = to;
+                    dateTo = to.ToString();
+                else
+                    dateTo = null;
             }
-            if (parameters.ContainsKey("3"))
-            {
-                employeeId.Select(parameters["3"]);
-                employeeId.SetValue(parameters["3"]);
-            }
+            //if (parameters.ContainsKey("3"))
+            //{
+            //    employeeId.Select(parameters["3"]);
+            //    employeeId.SetValue(parameters["3"]);
+            //}
 
-            if (parameters.ContainsKey("4"))
-            {
-                branchId.Select(parameters["4"]);
-                branchId.SetValue(parameters["4"]);
-            }
+            //if (parameters.ContainsKey("4"))
+            //{
+            //    branchId.Select(parameters["4"]);
+            //    branchId.SetValue(parameters["4"]);
+            //}
 
-
+            X.Call("setComboValues", parameters.ContainsKey("3") ? parameters["3"] : null, parameters.ContainsKey("4") ? parameters["4"] : null, datefrom, dateTo);
         }
 
         [DirectMethod]
@@ -561,20 +566,15 @@ namespace AionHR.Web.UI.Forms
         protected void Load_Click(object sender, DirectEventArgs e)
         {
             X.Call("EnableTools");
-            //if (dateFrom.SelectedDate <DateTime.Today || dateTo.SelectedDate < DateTime.Today)
-            //{
+            string branchID = string.Empty;
+            if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectBranch")).Show();
+                return;
+            }
+            else
+                branchID = branchId.Value.ToString();
 
-
-            //    this.btnSave.Disabled = true;
-
-            //}
-            //else
-            //{
-               
-            //    X.Call("EnableTools");
-                
-
-            //}
             if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();

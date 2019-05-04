@@ -28,6 +28,7 @@ using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
 using AionHR.Model.HelpFunction;
 using AionHR.Services.Messaging.TimeAttendance;
+using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -542,6 +543,8 @@ namespace AionHR.Web.UI.Forms
                 //GEtting the filter from the page
 
                 AttendnanceDayListRequest req = GetAttendanceDayRequest();
+
+
                 req.StartAt = e.Start.ToString();
                 ListResponse<AttendanceDay> daysResponse = _selfServiceService.ChildGetAll<AttendanceDay>(req);
                 if (!daysResponse.Success)
@@ -847,15 +850,36 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardTimeListRequest r = new DashboardTimeListRequest();
-                r.dayId = dayId;
-                r.employeeId = employeeId;
-                r.approverId = 0;
-                r.StartAt = "0";
-                r.Size = "1000";
-              
+                
+                string rep_params = "";
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Add("1", employeeId.ToString());
+                parameters.Add("2", dayId.ToString());
+                parameters.Add("3", dayId.ToString());
+                parameters.Add("4", "0");
+                parameters.Add("5", "0");
+                parameters.Add("6", "0");
+                parameters.Add("7", "0");
+                parameters.Add("8", "0");
+                parameters.Add("9", "0");
+                parameters.Add("10", "0");
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
 
-                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
+
+
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+
+
+                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(req);
                 if (!Times.Success)
                 {
                     Common.errorMessage(Times);

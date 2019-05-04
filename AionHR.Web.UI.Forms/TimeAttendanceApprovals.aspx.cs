@@ -664,17 +664,36 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardTimeListRequest r = new DashboardTimeListRequest();
-                r.dayId = dayId.ToString();
-                r.employeeId = employeeId;
-                r.approverId = 0;
-                r.timeCode = timeCode;
-                r.shiftId = shiftId;
-                r.StartAt = "0";
-                r.Size = "1000";
-                
+                string rep_params = "";
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Add("1", employeeId.ToString());
+                parameters.Add("2", dayId.ToString());
+                parameters.Add("3", dayId.ToString());
+                parameters.Add("4", shiftId);
+                parameters.Add("5", timeCode);
+                parameters.Add("6", "0");
+                parameters.Add("7", "0");
+                parameters.Add("8", "0");
+                parameters.Add("9", "0");
+                parameters.Add("10", "0");
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
 
-                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
+
+
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+
+
+
+                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(req);
                 if (!Times.Success)
                 {
                     Common.errorMessage(Times);

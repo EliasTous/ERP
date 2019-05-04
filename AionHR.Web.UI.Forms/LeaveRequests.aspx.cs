@@ -143,7 +143,7 @@ namespace AionHR.Web.UI.Forms
         
                 includeOpen.Select("1");
                
-                DateColumn3.Format= Column2.Format = Column1.Format = _systemService.SessionHelper.GetDateformat();
+              Column2.Format = Column1.Format = _systemService.SessionHelper.GetDateformat();
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveRequest), null, GridPanel1, btnAdd, null);

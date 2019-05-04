@@ -82,6 +82,36 @@
 
 
         }
+        function setComboValues(employeeId,branchId,from,to) {
+          
+                App.branchId.setValue(branchId);
+            if (employeeId != null)
+            {
+                App.employeeId.insertRecord(1, { fullName: 'Text1', recordId: employeeId });
+                App.employeeId.setValue(employeeId);
+            }
+                else
+                App.employeeId.setValue(null);
+            if (from )
+            {
+                App.dateFrom.setValue(new Date(from));
+            }
+            else
+                App.dateFrom.setValue(null);
+            if (to)
+            {
+                App.dateTo.setValue(new Date(to));
+            }
+            else
+                App.dateTo.setValue(null);
+
+
+            
+         
+
+
+        }
+
     
     </script>
 
@@ -140,7 +170,7 @@
 
                                 <ext:ToolbarSeparator />
                                    
-                                <ext:ComboBox AnyMatch="true" Visible="false" CaseSensitive="false" runat="server" ID="employeeId" Width="160" LabelAlign="Top"
+                                <ext:ComboBox AnyMatch="true" Hidden="true" CaseSensitive="false" runat="server" ID="employeeId" Width="160" LabelAlign="Top"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
                                     TypeAhead="false"

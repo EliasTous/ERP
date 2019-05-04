@@ -27,6 +27,7 @@ using AionHR.Model.TimeAttendance;
 using AionHR.Services.Messaging.System;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Model.SelfService;
+using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -603,11 +604,40 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     //reloading the day only
-                    BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
-                    reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                    reqFS.FromDayId = dayId.Value.ToString();
-                    reqFS.ToDayId = dayId.Value.ToString();
-                    reqFS.BranchId = 0;
+                    string rep_params="";
+                    Dictionary<string, string> parameters = new Dictionary<string, string>();
+               
+
+
+
+                    if(!string.IsNullOrEmpty(dayId.Value.ToString()))
+                    parameters.Add("1", dayId.Value.ToString());
+                    if (!string.IsNullOrEmpty(dayId.Value.ToString()))
+                        parameters.Add("2", dayId.Value.ToString());
+                    if (!string.IsNullOrEmpty(employeeId.Value.ToString()))
+                        parameters.Add("3", employeeId.Value.ToString());
+                    parameters.Add("4", "0");
+
+                    foreach (KeyValuePair<string, string> entry in parameters)
+                    {
+                        rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                    }
+                    if (rep_params.Length > 0)
+                    {
+                        if (rep_params[rep_params.Length - 1] == '^')
+                            rep_params = rep_params.Remove(rep_params.Length - 1);
+                    }
+
+                                      
+
+                    //BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+                    //reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
+                    //reqFS.FromDayId = dayId.Value.ToString();
+                    //reqFS.ToDayId = dayId.Value.ToString();
+                    //reqFS.BranchId = 0;
+                    ReportGenericRequest reqFS = new ReportGenericRequest();
+                    reqFS.paramString = rep_params;
+
                     ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
                     if (!response.Success)
                     {

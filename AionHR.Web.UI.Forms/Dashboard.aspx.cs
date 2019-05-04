@@ -2911,29 +2911,52 @@ namespace AionHR.Web.UI.Forms
         {
             string approve = e.ExtraParams["approve"];
             DashboardRequest req = GetDashboardRequest();
-            DashboardTimeListRequest r = new DashboardTimeListRequest();
-            r.dayId = "";
-            r.employeeId = 0;
-            if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-                r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+          //  DashboardTimeListRequest r = new DashboardTimeListRequest();
+            //r.dayId = "";
+            //r.employeeId = 0;
+            if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
 
-            else
-            {
+
+            { 
                 TimeStore.DataSource = new List<Time>();
                 TimeStore.DataBind();
                 return;
             }
-            r.timeCode = timeVariationType.GetTimeCode();
-            r.shiftId = "0";
-            r.apStatus = "1";
-            r.BranchId = req.BranchId;
-            r.DivisionId = req.DivisionId;
-            r.PositionId = req.PositionId;
-            r.DepartmentId = req.DepartmentId;
-            r.EsId = req.EsId;
-            r.StartAt = "0";
-            r.Size = "50";
-            
+            //r.timeCode = timeVariationType.GetTimeCode();
+            //r.shiftId = "0";
+            //r.apStatus = "1";
+            //r.BranchId = req.BranchId;
+            //r.DivisionId = req.DivisionId;
+            //r.PositionId = req.PositionId;
+            //r.DepartmentId = req.DepartmentId;
+            //r.EsId = req.EsId;
+            //r.StartAt = "0";
+            //r.Size = "50";
+
+            string rep_params = "";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("5", timeVariationType.GetTimeCode());
+            parameters.Add("7", "1");
+            parameters.Add("8",req.BranchId );
+            parameters.Add("9", req.DepartmentId);
+            parameters.Add("10", req.EsId);
+            parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
+
+            foreach (KeyValuePair<string, string> entry in parameters)
+            {
+                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+            }
+            if (rep_params.Length > 0)
+            {
+                if (rep_params[rep_params.Length - 1] == '^')
+                    rep_params = rep_params.Remove(rep_params.Length - 1);
+            }
+
+
+
+            ReportGenericRequest r = new ReportGenericRequest();
+            r.paramString = rep_params;
+
             ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
             if (!Times.Success)
             {
