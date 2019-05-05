@@ -11,7 +11,7 @@ namespace AionHR.Model.Dashboard
     [ClassIdentifier("81103", "81")]
     public class WorkAnniversary
     {
-        public string name { get; set; }
+        public EmployeeName name { get; set; }
 
         public DateTime hireDate
         {

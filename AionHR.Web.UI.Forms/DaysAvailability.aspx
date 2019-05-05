@@ -274,7 +274,7 @@
                                 <ext:Model ID="Model1" runat="server" IDProperty="recordId">
                                     <Fields>
                                         <ext:ModelField Name="employeeId" />
-                                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                                        <ext:ModelField Name="employeeName"  />
                                     </Fields>
                                 </ext:Model>
                             </Model>

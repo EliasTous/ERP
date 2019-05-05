@@ -387,7 +387,7 @@
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
-                                                <ext:ModelField Name="approverName" IsComplex="true" />
+                                                <ext:ModelField Name="approverName"  />
                                                 <ext:ModelField Name="departmentName" />
                                                  <ext:ModelField Name="penaltyId" />
                                                 <ext:ModelField Name="approverId" />

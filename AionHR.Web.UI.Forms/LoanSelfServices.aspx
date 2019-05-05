@@ -92,7 +92,7 @@
                         <ext:ModelField Name="deductedAmount" />
                          <ext:ModelField Name="ldMethod" />
                          <ext:ModelField Name="ldValue" />
-                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                        <ext:ModelField Name="employeeName"  />
                     </Fields>
                 </ext:Model>
             </Model>

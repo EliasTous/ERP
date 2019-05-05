@@ -104,7 +104,7 @@
                         <ext:ModelField Name="employeeId" />
                         <ext:ModelField Name="departmentId" />
                         <ext:ModelField Name="departmentName" />
-                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                        <ext:ModelField Name="employeeName"  />
 
                     </Fields>
                 </ext:Model>
@@ -155,7 +155,7 @@
                                                 <ext:ModelField Name="employeeId" />
                                                 <ext:ModelField Name="departmentId" />
                                                 <ext:ModelField Name="departmentName" />
-                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                <ext:ModelField Name="employeeName"  />
 
                                             </Fields>
                                         </ext:Model>
@@ -301,7 +301,7 @@
                                                 <ext:ModelField Name="employeeId" />
                                                 <ext:ModelField Name="departmentId" />
                                                 <ext:ModelField Name="departmentName" />
-                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                <ext:ModelField Name="employeeName"  />
 
                                             </Fields>
                                         </ext:Model>
@@ -447,7 +447,7 @@
                                                 <ext:ModelField Name="employeeId" />
                                                 <ext:ModelField Name="departmentId" />
                                                 <ext:ModelField Name="departmentName" />
-                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                <ext:ModelField Name="employeeName"  />
 
                                             </Fields>
                                         </ext:Model>
@@ -588,7 +588,7 @@
                                                 <ext:ModelField Name="employeeId" />
                                                 <ext:ModelField Name="departmentId" />
                                                 <ext:ModelField Name="departmentName" />
-                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                <ext:ModelField Name="employeeName"  />
 
                                             </Fields>
                                         </ext:Model>
@@ -729,7 +729,7 @@
                                                 <ext:ModelField Name="employeeId" />
                                                 <ext:ModelField Name="departmentId" />
                                                 <ext:ModelField Name="departmentName" />
-                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                <ext:ModelField Name="employeeName"  />
 
                                             </Fields>
                                         </ext:Model>
@@ -870,7 +870,7 @@
                                                 <ext:ModelField Name="employeeId" />
                                                 <ext:ModelField Name="departmentId" />
                                                 <ext:ModelField Name="departmentName" />
-                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                <ext:ModelField Name="employeeName"  />
 
                                             </Fields>
                                         </ext:Model>

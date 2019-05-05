@@ -828,7 +828,7 @@
 
 
                                                 <ext:ModelField Name="departmentName" />
-                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                <ext:ModelField Name="employeeName"  />
                                                 <ext:ModelField Name="date" />
                                                 <ext:ModelField Name="seqNo" />
                                                 <ext:ModelField Name="statusName" />

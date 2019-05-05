@@ -179,7 +179,7 @@
                         <ext:ModelField Name="deductedAmount" />
                          <ext:ModelField Name="ldMethod" />
                          <ext:ModelField Name="ldValue" />
-                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                        <ext:ModelField Name="employeeName"  />
                     </Fields>
                 </ext:Model>
             </Model>
@@ -1100,7 +1100,7 @@
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
-                                                <ext:ModelField Name="approverName" IsComplex="true" />
+                                                <ext:ModelField Name="approverName"  />
                                                 <ext:ModelField Name="departmentName" />
                                                  <ext:ModelField Name="loanId" />
                                                 <ext:ModelField Name="approverId" />

@@ -121,7 +121,7 @@
                         <ext:ModelField Name="effectiveDate" />
                           <ext:ModelField Name="paymentRef" />
                           <ext:ModelField Name="amount" />
-                         <ext:ModelField Name="employeeName" IsComplex="true" />
+                         <ext:ModelField Name="employeeName"  />
 
                           <ext:ModelField Name="salary" />
                           <ext:ModelField Name="days" />

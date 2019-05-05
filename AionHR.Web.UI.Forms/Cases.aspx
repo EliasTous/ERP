@@ -188,7 +188,7 @@
                          <ext:ModelField Name="details" />
                          <ext:ModelField Name="status" />
                          <ext:ModelField Name="closedDate" />
-                         <ext:ModelField Name="employeeName" IsComplex="true" />
+                         <ext:ModelField Name="employeeName"  />
                     </Fields>
                 </ext:Model>
             </Model>

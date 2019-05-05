@@ -12,7 +12,7 @@ namespace AionHR.Model.Dashboard
     public class EmployeeBirthday
     {
 
-        public string name { get; set; }
+        public EmployeeName name { get; set; }
 
         public DateTime birthDate
         {

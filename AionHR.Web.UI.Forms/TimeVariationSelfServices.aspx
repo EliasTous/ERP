@@ -565,10 +565,10 @@
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="employeeName"  />
                                                                                 <ext:ModelField Name="dayId" />
                                                                                 <ext:ModelField Name="dayIdDate"  />
-                                                                               <ext:ModelField Name="approverName" IsComplex="true" />
+                                                                               <ext:ModelField Name="approverName"  />
                                                                                 <ext:ModelField Name="timeCode" />
                                                                                 <ext:ModelField Name="timeCodeString" />
                                                                                 <ext:ModelField Name="approverId" />
@@ -592,11 +592,11 @@
                                                                    <ext:Column ID="ColtimeCode" DataIndex="timeCode"  runat="server" Visible="false" />
 
                                                                      <ext:Column ID="Column5" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
-                                                                    <Renderer Handler=" return record.data['approverName'].fullName;" />
+                                                                  
                                                                     </ext:Column>
                                                                 
                                                                     <ext:Column Visible="false" ID="Column27" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
-                                                                    <Renderer Handler=" return record.data['employeeName'].fullName;" />
+                                                                  
                                                                     </ext:Column>
                                                                 
                                                                     <ext:DateColumn Visible="false" ID="DateColumn5" MenuDisabled="true" runat="server" Text="<%$ Resources: Date %>" DataIndex="dayIdDate" Hideable="false" Width="100" />

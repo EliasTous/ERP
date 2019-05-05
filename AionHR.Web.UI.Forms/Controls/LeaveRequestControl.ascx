@@ -226,8 +226,8 @@
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
-                                                <ext:ModelField Name="employeeName" IsComplex="true" />
-                                                   <ext:ModelField Name="approverName" IsComplex="true" />
+                                                <ext:ModelField Name="employeeName"  />
+                                                   <ext:ModelField Name="approverName"  />
                                                 <ext:ModelField Name="departmentName" />
                                                 <ext:ModelField Name="stringStatus" />
                                                 <ext:ModelField Name="notes" />

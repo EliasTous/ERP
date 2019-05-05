@@ -131,7 +131,7 @@
 
                         
                        <ext:ModelField Name="employeeId" />
-                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                        <ext:ModelField Name="employeeName"  />
                         <ext:ModelField Name="dayId" />
                         <ext:ModelField Name="branchName"  />
                         <ext:ModelField Name="positionName" />

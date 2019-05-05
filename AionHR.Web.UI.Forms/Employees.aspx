@@ -678,7 +678,7 @@
             </Listeners>
             <Items>
                 <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
-                    <Loader runat="server" Url="/ReportParameterBrowser.aspx?_reportName=RT108" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                    <Loader runat="server" Url="ReportParameterBrowser.aspx?_reportName=RT108" Mode="Frame" ID="Loader8" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true">
                         <Listeners>

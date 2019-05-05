@@ -2053,7 +2053,7 @@
                                                                                 <ext:ModelField Name="amount" />
                                                                                 <ext:ModelField Name="ltName" />
                                                                                 <ext:ModelField Name="currencyRef" />
-                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="employeeName"  />
 
                                                                             </Fields>
                                                                         </ext:Model>
@@ -2406,7 +2406,7 @@
                                                                         <ext:ModelField Name="deductedAmount" />
                                                                          <ext:ModelField Name="ldMethod" />
                                                                          <ext:ModelField Name="ldValue" />
-                                                                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                        <ext:ModelField Name="employeeName"  />
                                                                          <ext:ModelField Name="loanId" />
                                                                                   <ext:ModelField Name="departmentName" />
                                                                                     <ext:ModelField Name="arName" />
@@ -4643,10 +4643,10 @@
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="employeeName"  />
                                                                                 <ext:ModelField Name="dayId" />
                                                                                 <ext:ModelField Name="dayIdDate"  />
-                                                                               <ext:ModelField Name="approverName" IsComplex="true" />
+                                                                               <ext:ModelField Name="approverName"  />
                                                                                 <ext:ModelField Name="timeCode" />
                                                                                 <ext:ModelField Name="timeCodeString" />
                                                                                 <ext:ModelField Name="approverId" />
@@ -4671,7 +4671,7 @@
                                                                    <ext:Column ID="Column40" DataIndex="timeCode"  runat="server" Visible="false" />
 
                                                                      <ext:Column ID="Column41" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
-                                                                    <Renderer Handler=" return record.data['approverName'].fullName;" />
+                                                                  
                                                                     </ext:Column>
                                                                                                                               
                                                                                                                                 
@@ -4873,9 +4873,9 @@
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="employeeName"  />
                                                                                
-                                                                               <ext:ModelField Name="approverName" IsComplex="true" />
+                                                                               <ext:ModelField Name="approverName"  />
                                                                                
                                                                                 <ext:ModelField Name="approverId" />
                                                                                 <ext:ModelField Name="status" />
@@ -4900,7 +4900,7 @@
                                                                  
 
                                                                      <ext:Column ID="Column49" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
-                                                                    <Renderer Handler=" return record.data['approverName'].fullName;" />
+                                                                  
                                                                     </ext:Column>
                                                                                                                               
                                                                                                                                 
@@ -5748,9 +5748,9 @@
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="employeeName"  />
                                                                                
-                                                                               <ext:ModelField Name="approverName" IsComplex="true" />
+                                                                               <ext:ModelField Name="approverName"  />
                                                                                
                                                                                 <ext:ModelField Name="approverId" />
                                                                                 <ext:ModelField Name="status" />
@@ -5773,7 +5773,7 @@
                                                                  
 
                                                                      <ext:Column ID="Column66" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
-                                                                    <Renderer Handler=" return record.data['approverName'].fullName;" />
+                                                                  
                                                                     </ext:Column>
                                                                                                                               
                                                                                                                                 
@@ -5882,7 +5882,7 @@
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
-                                                <ext:ModelField Name="approverName" IsComplex="true" />
+                                                <ext:ModelField Name="approverName"  />
                                                 <ext:ModelField Name="departmentName" />
                                                  <ext:ModelField Name="penaltyId" />
                                                 <ext:ModelField Name="approverId" />
