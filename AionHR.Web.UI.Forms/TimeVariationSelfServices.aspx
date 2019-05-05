@@ -116,7 +116,7 @@
 
                         <ext:ModelField Name="recordId" />
                        
-                        <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="employeeName"  />
                         <ext:ModelField Name="branchName" />
                            <ext:ModelField Name="positionName" />
                         <ext:ModelField Name="dayStatusString" />

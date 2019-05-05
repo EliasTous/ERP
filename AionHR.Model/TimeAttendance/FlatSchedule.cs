@@ -69,7 +69,7 @@ namespace AionHR.Model.TimeAttendance
     {
         public int employeeId { get; set; }
 
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
 
 
 

@@ -14,7 +14,7 @@ namespace AionHR.Model.Reports
         public DateTime? startDate { get; set; }
         public DateTime? endDate { get; set; }
         public double? leaveDays { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public string countryName { get; set; }
         public DateTime? hireDate { get; set; }
         public string positionName { get; set; }

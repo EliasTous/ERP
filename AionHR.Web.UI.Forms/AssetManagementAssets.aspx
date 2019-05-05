@@ -53,7 +53,7 @@
                         <ext:ModelField Name="name" />
                         <ext:ModelField Name="categoryName" />
                         <ext:ModelField Name="supplierName" />
-                        <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="employeeName"  />
                         <ext:ModelField Name="departmentName" />
                         <ext:ModelField Name="serialNo" />
                         <ext:ModelField Name="statusName" />

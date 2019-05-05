@@ -821,7 +821,7 @@ namespace AionHR.Web.UI.Forms
                     PostRequest<loanSelfService> request = new PostRequest<loanSelfService>();
                     request.entity = b;
                     request.entity.employeeId = _systemService.SessionHelper.GetEmployeeId();
-                    request.entity.employeeName = new EmployeeName() { fullName="" };
+                  //  request.entity.employeeName = new EmployeeName() { fullName="" };
                     request.entity.date = DateTime.Now;
                     //request.entity.ltName = "";
                     //request.entity.currencyRef = "";

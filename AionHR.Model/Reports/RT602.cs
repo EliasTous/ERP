@@ -16,7 +16,7 @@ namespace AionHR.Model.Reports
         public string hireDateString { get; set; }
         public DateTime? lastReturnDate { get; set; }
         public string lastReturnDateString { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public double salary { get; set; }
        
 

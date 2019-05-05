@@ -23,7 +23,7 @@ namespace AionHR.Model.Employees.Profile
         public string divisionName { get; set; }
         public string branchName { get; set; }
 
-        public EmployeeName reportToName { get; set; }
+        public string reportToName { get; set; }
         public int? indemnity { get; set; }
         public DateTime? lastLeaveStartDate { get; set; }
         public DateTime? lastLeaveEndDate { get; set; }

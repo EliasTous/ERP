@@ -54,7 +54,7 @@ namespace AionHR.Model.SelfService
 
         public string employeeRef { get; set; }
        
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
        
         public string ltName { get; set; }
 
@@ -66,7 +66,7 @@ namespace AionHR.Model.SelfService
         //public int? workingHours { get; set; }
     //    public int? leaveHours { get; set; }
 
-        public EmployeeName replacementName { get; set; }
+        public string replacementName { get; set; }
         public string replacementId { get; set; }
     }
 }

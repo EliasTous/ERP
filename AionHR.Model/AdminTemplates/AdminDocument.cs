@@ -26,7 +26,7 @@ namespace AionHR.Model.AdminTemplates
         public string oDocRef { get; set; }
         public int? languageId { get; set; }
 
-        public EmployeeName employeeName { get; set;}
+        public string employeeName { get; set;}
 
         public string departmentId { get; set; }
         public string employeeId { get; set; }

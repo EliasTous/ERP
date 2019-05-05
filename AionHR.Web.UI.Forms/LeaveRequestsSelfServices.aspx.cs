@@ -363,7 +363,7 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = response.result.replacementId,
-                                    fullName =response.result.replacementName.fullName
+                                    fullName =response.result.replacementName
                                 }
                    });
                 replacementId.SetValue(response.result.employeeId);
@@ -862,7 +862,7 @@ namespace AionHR.Web.UI.Forms
                 y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
-                y.Parameters["Employee"].Value = request.employeeName.fullName;
+                y.Parameters["Employee"].Value = request.employeeName;
                 y.Parameters["Ref"].Value = request.leaveRef;
                 y.Parameters["From"].Value = request.startDate.ToString(dateFormat);
                 y.Parameters["To"].Value = request.endDate.ToString(dateFormat);
@@ -1023,7 +1023,7 @@ namespace AionHR.Web.UI.Forms
             // Define the object to add or edit as null
             if (!b.isPaid.HasValue)
                 b.isPaid = false;
-            b.employeeName = new EmployeeName();
+           // b.employeeName = new EmployeeName();
             //if (employeeId.SelectedItem != null)
 
             //    b.employeeName.fullName = employeeId.SelectedItem.Text;

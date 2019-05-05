@@ -13,7 +13,7 @@ namespace AionHR.Model.Reports
     {
         
 
-        public EmployeeName name { get; set; }
+        public string name { get; set; }
 
         public int religion { get; set; }
 

@@ -391,15 +391,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden loaderUrl;
         
         /// <summary>
-        /// Model8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Model Model8;
-        
-        /// <summary>
         /// activeStore control.
         /// </summary>
         /// <remarks>

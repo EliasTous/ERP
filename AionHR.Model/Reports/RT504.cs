@@ -11,7 +11,7 @@ namespace AionHR.Model.Reports
     [ClassIdentifier("80504", "80")]
     public  class RT504
     {
-        public EmployeeName name { get; set; }
+        public string name { get; set; }
         public double basicAmount { get; set; }
         public double eAmountTaxable { get; set; }
         public double eAmountNonTaxable { get; set; }

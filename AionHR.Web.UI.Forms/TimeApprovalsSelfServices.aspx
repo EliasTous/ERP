@@ -151,7 +151,7 @@
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                                                                                <ext:ModelField Name="employeeName"  />
                                                                                 <ext:ModelField Name="dayId" />
                                                                                 <ext:ModelField Name="dayIdDate"  />
                                                                                   <ext:ModelField Name="fullName"  />

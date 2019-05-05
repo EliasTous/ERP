@@ -30,6 +30,6 @@ namespace AionHR.Model.SelfService
         public short? status { get; set; }
 
      
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
     }
 }

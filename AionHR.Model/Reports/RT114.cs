@@ -12,7 +12,7 @@ namespace AionHR.Model.Reports
       [ClassIdentifier("80114", "80")]
     public class RT114 : ModelBase
     {
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public string clName { get; set; }
         public int employeeId { get; set; }
         public int clId { get; set; }

@@ -202,7 +202,7 @@ namespace AionHR.Web.UI.Forms.Controls
                                 new
                                 {
                                     recordId = response.result.employeeId,
-                                    fullName =response.result.employeeName.fullName
+                                    fullName =response.result.employeeName
                                 }
                        });
                     employeeId.SetValue(response.result.employeeId);
@@ -453,7 +453,7 @@ namespace AionHR.Web.UI.Forms.Controls
             
                 if (employeeId.SelectedItem != null)
 
-                    b.employeeName.fullName = employeeId.SelectedItem.Text;
+                    b.employeeName = employeeId.SelectedItem.Text;
                 if (ltId.SelectedItem != null)
 
                     b.ltName = ltId.SelectedItem.Text;

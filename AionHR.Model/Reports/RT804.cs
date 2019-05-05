@@ -9,7 +9,7 @@ namespace AionHR.Model.Reports
 {
  public  class RT803
     {
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public string branchName { get; set; }
         public string departmentName { get; set; }
         public string positionName { get; set; }

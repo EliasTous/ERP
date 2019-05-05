@@ -468,7 +468,7 @@ namespace AionHR.Web.UI.Forms
                                         new
                                         {
                                             recordId =_systemService.SessionHelper.GetEmployeeId(),
-                                            fullName =resp.result.name.fullName
+                                            fullName =resp.result.name
 
                                         }
                       });

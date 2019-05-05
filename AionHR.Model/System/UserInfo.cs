@@ -78,7 +78,7 @@ namespace AionHR.Model.System
         public string departmentName { get; set; }
         public string positionName { get; set; }
         public string userTypeName { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
 
 
 

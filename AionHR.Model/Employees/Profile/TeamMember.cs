@@ -10,7 +10,7 @@ namespace AionHR.Model.Employees.Profile
     {
         public string pictureUrl { get; set; }
 
-        public EmployeeName name { get; set; }
+        public string name { get; set; }
 
         public int positionId { get; set; }
 

@@ -70,7 +70,7 @@
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
-                        <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="employeeName"  />
                         <ext:ModelField Name="penaltyName" />
                         <ext:ModelField Name="employeeId" />
                         <ext:ModelField Name="penaltyId" />

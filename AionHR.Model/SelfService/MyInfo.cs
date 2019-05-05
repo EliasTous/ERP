@@ -109,7 +109,7 @@ namespace AionHR.Model.SelfService
 
         public string fullName { get; set; }
        
-        public EmployeeName reportToName { get; set; }
+        public string reportToName { get; set; }
     }
 
   

@@ -137,14 +137,14 @@ namespace AionHR.Model.Reports
                 if (details.Count > 0)
                 {
                     basicAmount = details[0].basicAmount;
-                    name = details[0].employeeName.fullName;
+                    name = details[0].employeeName;
                     days = details[0].days;
                     currencyRef = details[0].currencyRef;
                     calendarDays = details[0].calendarDays;
 
 
 
-                    name = details[0].employeeName.fullName;
+                    name = details[0].employeeName;
                     currencyRef = details[0].currencyRef;
                     essAmount = details[0].essAmount;
                     cssAmount = details[0].cssAmount;
@@ -219,7 +219,7 @@ namespace AionHR.Model.Reports
     public class RT501
     {
         public string primaryKey { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
 
         public string departmentName { get; set; }
         public string branchName { get; set; }

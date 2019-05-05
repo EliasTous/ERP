@@ -136,7 +136,7 @@ namespace AionHR.Model.Employees.Profile
         public string fullName { get; set; }
         [PropertyID("31000_22")]
         [ApplySecurity]
-        public EmployeeName reportToName { get; set; }
+        public string reportToName { get; set; }
 
         public bool bdHijriCal { get; set; }
         public string hijCalBirthDate

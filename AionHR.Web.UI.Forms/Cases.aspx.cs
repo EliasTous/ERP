@@ -297,7 +297,7 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = response.result.employeeId,
-                                    fullName =response.result.employeeName.fullName
+                                    fullName =response.result.employeeName
                                 }
                        });
                     employeeId.SetValue(response.result.employeeId);
@@ -397,7 +397,7 @@ namespace AionHR.Web.UI.Forms
                 Case s = new Case();
                 s.recordId = index;
                 s.employeeId = 0;
-                s.employeeName = new EmployeeName();
+              //  s.employeeName = new EmployeeName();
                 s.details = "";
                 s.date = DateTime.Now;
                 s.closedDate = DateTime.Now;
@@ -699,10 +699,10 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
 
-            b.employeeName = new EmployeeName();
+            //b.employeeName = new EmployeeName();
             if (employeeId.SelectedItem != null)
 
-                b.employeeName.fullName = employeeId.SelectedItem.Text;
+                b.employeeName = employeeId.SelectedItem.Text;
 
             if (closedDate.ReadOnly)
                 b.closedDate = null;

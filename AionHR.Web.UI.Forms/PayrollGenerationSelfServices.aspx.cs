@@ -1370,7 +1370,7 @@ namespace AionHR.Web.UI.Forms
 
                 }
 
-                var d = resp.Items.GroupBy(x => x.employeeName.fullName);
+                var d = resp.Items.GroupBy(x => x.employeeName);
                 PayrollLineCollection lines = new PayrollLineCollection();
                 HashSet<Model.Reports.EntitlementDeduction> ens = new HashSet<Model.Reports.EntitlementDeduction>(new EntitlementDeductionComparer());
                 HashSet<Model.Reports.EntitlementDeduction> des = new HashSet<Model.Reports.EntitlementDeduction>(new EntitlementDeductionComparer());

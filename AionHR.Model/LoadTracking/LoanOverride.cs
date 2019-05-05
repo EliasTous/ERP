@@ -12,7 +12,7 @@ namespace AionHR.Model.LoadTracking
     public class LoanOverride
     {
         [PropertyID("45010_01")]
-        public EmployeeName name { get; set; }
+        public string name { get; set; }
 
         [PropertyID("45010_01")]
         public string employeeId { get; set; }

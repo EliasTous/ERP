@@ -107,7 +107,7 @@ namespace AionHR.Web.UI.Forms
             List<object> result = new List<object>();
             foreach (var item in emps)
             {
-                result.Add(new {id=item.recordId,reportToId=item.reportToId, name = item.name.fullName, parent = item.reportToName==null?"": item.reportToName.fullName, position=item.positionName,picture=item.pictureUrl, tooltip = "''" });
+                result.Add(new {id=item.recordId,reportToId=item.reportToId, name = item.name.fullName, parent = item.reportToName==null?"": item.reportToName, position=item.positionName,picture=item.pictureUrl, tooltip = "''" });
 
             }
             return result;

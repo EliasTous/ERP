@@ -20,7 +20,7 @@ namespace AionHR.Model
         public string departmentName { get; set; }
         public string departmentId { get; set; }
         public string employeeId { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public string apStatus { get; set; }
         public string statusName { get; set; }
 

@@ -292,7 +292,7 @@ namespace AionHR.Web.UI.Forms.Reports
             {
 
                 if (req.Parameters["_employeeId"] != "0")
-                    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
+                    h.Parameters["Employee"].Value = resp.Items[0].name;
                 else
                     h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
             }

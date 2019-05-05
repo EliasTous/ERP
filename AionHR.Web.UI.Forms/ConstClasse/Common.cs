@@ -142,7 +142,7 @@ namespace AionHR.Web.UI.Forms
                 Common.errorMessage(response);
                 return new List<EmployeeSnapShot>();
             }
-            response.Items.ForEach(s => s.fullName = s.name.fullName);
+            response.Items.ForEach(s => s.fullName = s.name);
             return response.Items;
         }
 

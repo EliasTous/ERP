@@ -1174,7 +1174,7 @@ namespace AionHR.Web.UI.Forms
                 TerminationDateLbl.Hidden = true;
             }
 
-            string reportToFullName= forSummary.reportToName!=null? forSummary.reportToName.fullName:"";
+            string reportToFullName= forSummary.reportToName!=null? forSummary.reportToName:"";
 
 
             X.Call("FillLeftPanel",
@@ -1527,7 +1527,7 @@ namespace AionHR.Web.UI.Forms
             }
             return new
             {
-                reportsTo = qv.result.reportToName!=null?qv.result.reportToName.fullName:"",
+                reportsTo = qv.result.reportToName!=null?qv.result.reportToName:"",
                 eosBalance = qv.result.indemnity,
                 paidLeavesYTD = qv.result.usedLeavesLeg,
                 leavesBalance = qv.result.leaveBalance,

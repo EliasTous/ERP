@@ -9,7 +9,7 @@ namespace AionHR.Model.Employees
 {
    public class EmployeeCal
     {
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public string caName { get; set; }
         public string scName { get; set; }
         public int? employeeId { get; set; }

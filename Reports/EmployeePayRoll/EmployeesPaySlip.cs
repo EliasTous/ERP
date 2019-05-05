@@ -21,7 +21,7 @@ namespace Reports.EmployeePayRoll
 
             employeePayrollDataSet1.ReportHeader.AddReportHeaderRow(details.FirstOrDefault().startDate, details.FirstOrDefault().endDate);
 
-            foreach (var employee in details.GroupBy(g => g.employeeName.reference))
+            foreach (var employee in details.GroupBy(g => g.employeeName))
             {
                 var benifits = employee.Where(u => u.edType == 1).ToList();
 
@@ -29,7 +29,7 @@ namespace Reports.EmployeePayRoll
 
                 var parentRow = employeePayrollDataSet1.Employee.AddEmployeeRow(
                     employee.Key,
-                    employee.FirstOrDefault().employeeName.fullName,
+                    employee.FirstOrDefault().employeeName,
                     employee.FirstOrDefault().idRef, employee.FirstOrDefault().netSalary
                  /*  Convert.ToDecimal(employee.FirstOrDefault().basicAmount + benifits.Sum(u => u.edAmount) - deductions.Sum(u => u.edAmount))*/,
                     employee.FirstOrDefault().workingDays,

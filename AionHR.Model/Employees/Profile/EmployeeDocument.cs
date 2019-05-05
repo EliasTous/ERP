@@ -12,7 +12,7 @@ namespace AionHR.Model.Employees.Profile
     public class EmployeeDocument:ModelBase
     {
         public int employeeId { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public int? dtId { get; set; }
 
         public string fileUrl { get; set; }

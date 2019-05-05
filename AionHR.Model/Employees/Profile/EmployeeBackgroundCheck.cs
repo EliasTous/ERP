@@ -11,7 +11,7 @@ namespace AionHR.Model.Employees.Profile
     public class EmployeeBackgroundCheck:ModelBase
     {
         
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         [PropertyID("31020_01")]
         [ApplySecurity]
         public int ctId { get; set; }

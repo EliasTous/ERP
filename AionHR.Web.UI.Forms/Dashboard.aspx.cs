@@ -1675,7 +1675,7 @@ namespace AionHR.Web.UI.Forms
                 ApprovalLoanStatus.Select("1");
                 LoanApprovalReasonControl.setApprovalReason(arId);
 
-                ApprovalLoanEmployeeName.Text = response.result.employeeName.fullName.ToString();
+                ApprovalLoanEmployeeName.Text = response.result.employeeName.ToString();
 
 
 
@@ -1788,7 +1788,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
 
                     this.LeaveRecordForm.SetValues(response.result);
-                    employeeName.Text = response.result.employeeName.fullName;
+                    employeeName.Text = response.result.employeeName;
                     LeaveApprovalReasonControl.setApprovalReason(arId);
                     this.LeaveRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.LeaveRecordWindow.Show();
@@ -3003,7 +3003,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 PADate.Value = resp.result.date;
                 penaltyName.Text = resp.result.penaltyName;
-                PAEmployeeName.Text = resp.result.employeeName.firstName;
+                PAEmployeeName.Text = resp.result.employeeName;
                 penaltyStatus.Select(resp.result.status.ToString());
                 notes.Text = resp.result.notes;
 

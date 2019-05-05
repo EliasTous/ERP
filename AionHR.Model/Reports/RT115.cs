@@ -9,7 +9,7 @@ namespace AionHR.Model.Reports
 {
   public  class RT115
     {
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public DateTime? hireDate { get; set; }
         public DateTime? terminationDate { get; set; }
         public string serviceDuration { get; set; }

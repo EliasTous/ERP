@@ -34,7 +34,7 @@ namespace AionHR.Model.Employees.Profile
         [ApplySecurity]
         public string fileUrl { get; set; }
         public int employeeId { get; set; }
-        public EmployeeName name { get; set; }
+        public string name { get; set; }
         public string employeeName { get; set; }
 
         public string employeeRef { get; set; }

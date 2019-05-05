@@ -135,6 +135,7 @@
         var clickActiveHightChartPieSeries = function (val) {
 
             switch (val) {
+               
                 case 0: App.PendingWindow.show(); App.PendingStore.reload(); break;
                 case 1: App.NoShowUpWindow.show(); App.NoShowUpStore.reload(); break;
                 case 2: App.CheckedWindow.show(); App.CheckedStore.reload(); break;
@@ -1182,32 +1183,7 @@
         <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="Hidden1" runat="server" />
         <ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=Dashboard&values="/>
-      <%--  <ext:Store PageSize="30"
-            ID="OverDueStore"
-            runat="server" OnReadData="OverDueStore_ReadData"
-            RemoteSort="false"
-            RemoteFilter="false">
-          <%--  <Proxy>
-                <ext:PageProxy>
-                    <Listeners>
-                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                    </Listeners>
-                </ext:PageProxy>
-            </Proxy>--%>
-            <Model>
-                <ext:Model ID="Model8" runat="server" IDProperty="recordId">
-                    <Fields>
-
-                        <ext:ModelField Name="recordId" />
-                        <ext:ModelField Name="assignToName" ServerMapping="assignToName.fullName" />
-                        <ext:ModelField Name="dueDate" />
-                        <ext:ModelField Name="name" />
-
-                    </Fields>
-                </ext:Model>
-            </Model>
-
-        </ext:Store>--%>
+    
         <ext:Store
             ID="activeStore"
             runat="server" OnReadData="activeStore_refresh"
@@ -1219,7 +1195,7 @@
                     <Fields>
 
                         <ext:ModelField Name="employeeId" />
-                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="name"  />
                         <ext:ModelField Name="time" />
                         <ext:ModelField Name="checkStatus" />
                         <ext:ModelField Name="positionName" />
@@ -1242,7 +1218,7 @@
                     <Fields>
 
                         <ext:ModelField Name="employeeId" />
-                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="name"  />
                         <ext:ModelField Name="time" />
                         <ext:ModelField Name="checkStatus" />
                         <ext:ModelField Name="positionName" />
@@ -1265,7 +1241,7 @@
                     <Fields>
 
                         <ext:ModelField Name="employeeId" />
-                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="name"  />
                         <ext:ModelField Name="time" />
                         <ext:ModelField Name="checkStatus" />
                         <ext:ModelField Name="positionName" />
@@ -1458,7 +1434,7 @@
 
 
 
-                                                                <%--   <%--           <ext:Panel runat="server" Layout="BorderLayout" Flex="1">
+                                                               <%--           <ext:Panel runat="server" Layout="BorderLayout" Flex="1">
                                                                     <LayoutConfig>
                                                                     </LayoutConfig>
                                                                     <Items>
@@ -1495,9 +1471,9 @@
                                                                         </ext:Panel>
 
                                                                     </Items>
-                                                                </ext:Panel>--%>
+                                                                </ext:Panel>
 
-                                                                <%--                                                                <ext:Panel runat="server" Layout="BorderLayout" ID="leavesHighChart" Flex="1">
+                                                                                                                             <ext:Panel runat="server" Layout="BorderLayout" ID="leavesHighChart" Flex="1">
                                                                     <LayoutConfig>
                                                                     </LayoutConfig>
                                                                     <Items>
@@ -1567,10 +1543,10 @@
                                                                             </Items>
                                                                         </ext:Panel>
                                                                     </Items>
-                                                                </ext:Panel>--%>
+                                                                </ext:Panel>
 
 
-                                                                <%--                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="1" Hidden="true">
+                                                                                                                             <ext:Panel runat="server" Layout="BorderLayout" Flex="1" Hidden="true">
                                                                     <Items>
                                                                         <ext:PolarChart Region="Center"
                                                                             ID="PolarChart6"
@@ -1879,7 +1855,7 @@
                                                                             <Fields>
 
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                                                                <ext:ModelField Name="name"  />
                                                                                 <ext:ModelField Name="dayId" />
                                                                                 <ext:ModelField Name="missedIn" />
                                                                                 <ext:ModelField Name="missedOut" />
@@ -1964,7 +1940,7 @@
 
                                                                                 <ext:ModelField Name="employeeId" />
                                                                                 <ext:ModelField Name="recordId" />
-                                                                                <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                                                                <ext:ModelField Name="name"  />
                                                                                 <ext:ModelField Name="destination" />
                                                                                 <ext:ModelField Name="ltName" />
                                                                                 <ext:ModelField Name="startDate" />
@@ -2584,7 +2560,7 @@
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
-                                                <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                                                <ext:ModelField Name="employeeName"  />
                                                 <ext:ModelField Name="departmentName" />
                                                  <ext:ModelField Name="penaltyId" />
                                                 <ext:ModelField Name="penaltyName" />
@@ -3646,7 +3622,7 @@
                                     <Fields>
 
                                         <ext:ModelField Name="employeeId" />
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
                                         <ext:ModelField Name="time" />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="departmentName" />
@@ -3719,7 +3695,7 @@
                                     <Fields>
 
                                         <ext:ModelField Name="employeeId" />
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
                                         <ext:ModelField Name="time" />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="departmentName" />
@@ -3785,7 +3761,7 @@
                                     <Fields>
 
                                         <ext:ModelField Name="employeeId" />
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="departmentName" />
                                         <ext:ModelField Name="branchName" />
@@ -3855,7 +3831,7 @@
                                     <Fields>
 
                                         <ext:ModelField Name="employeeId" />
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
 
                                         <ext:ModelField Name="destination" />
                                         <ext:ModelField Name="ltName" />
@@ -3923,7 +3899,7 @@
                                     <Fields>
 
                                         <ext:ModelField Name="employeeId" />
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
 
                                         <ext:ModelField Name="destination" />
                                         <ext:ModelField Name="ltName" />
@@ -4038,7 +4014,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
                                         <ext:ModelField Name="amount" />
                                         <ext:ModelField Name="date" />
                                         <ext:ModelField Name="currencyRef" />
@@ -4119,7 +4095,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
                                         <ext:ModelField Name="amount" />
                                         <ext:ModelField Name="date" />
                                         <ext:ModelField Name="currencyRef" />
@@ -4998,7 +4974,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="firstPunch" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
@@ -5016,7 +4992,7 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFirstPunch%>" DataIndex="firstPunch" Width="55" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                            <%-- <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />--%>
@@ -5137,7 +5113,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="dayStart" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
@@ -5156,7 +5132,7 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                           <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dayStart" Flex="3" Hideable="false" />
@@ -5208,7 +5184,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="dayStart" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
@@ -5227,7 +5203,7 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                           <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dayStart" Flex="3" Hideable="false" />
@@ -5279,7 +5255,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="from" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
@@ -5298,7 +5274,7 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                           <ext:DateColumn MenuDisabled="true" ID="LWFromField" runat="server" Text="<%$ Resources: FieldFrom%>" DataIndex="from" Flex="3" Hideable="false" />
@@ -5350,7 +5326,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="dayStart" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
@@ -5369,7 +5345,7 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                           <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dayStart" Flex="3" Hideable="false" />
@@ -5421,7 +5397,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                       
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
@@ -5447,7 +5423,7 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                          
@@ -5502,7 +5478,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="replacementName" ServerMapping="replacementName.fullName" />
                                      
                                         <ext:ModelField Name="ltName" />

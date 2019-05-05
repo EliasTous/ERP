@@ -13,7 +13,7 @@ namespace AionHR.Model.TimeAttendance
     {
         [PropertyID("4106301")]
         [ApplySecurity]
-        public EmployeeName name { get; set; }
+        public string name { get; set; }
 
         [PropertyID("4106302")]
         [ApplySecurity]

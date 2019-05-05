@@ -34,13 +34,13 @@ namespace Reports.EmployeePayRollCross
             if (items.Count!=0)
              salaryDate = items.FirstOrDefault().payDate;
 
-            foreach (var employee in items.GroupBy(u => u.employeeName.reference))
+            foreach (var employee in items.GroupBy(u => u.employeeName))
             {
                 var defaultSal = employee.First();
                 int order = 0;
                 foreach (var salary in employee.Where(u => u.isTaxable && u.edType == 1))
                 {
-                    dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName.fullName,
+                    dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName,
                         salaryDate, order, salary.edName, salary.edAmount,
                         isArabic ? "ضريبي" : "Taxable", 1, salary.basicAmount, salary.cssAmount,
                         salary.essAmount, isArabic ? "الاستحقاقات" : "Entitlements",salary.branchName
@@ -50,7 +50,7 @@ namespace Reports.EmployeePayRollCross
 
                 foreach (var salary in employee.Where(u => !u.isTaxable && u.edType == 1))
                 {
-                    dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName.fullName,
+                    dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName,
                         salaryDate, order, salary.edName, salary.edAmount,
                        isArabic ? "غير ضريبي" : "Non Taxable", 1, salary.basicAmount, salary.cssAmount,
                         salary.essAmount, isArabic ? "الاستحقاقات" : "Entitlements", salary.branchName
@@ -60,7 +60,7 @@ namespace Reports.EmployeePayRollCross
 
                 foreach (var salary in employee.Where(u => u.isTaxable && u.edType == 2))
                 {
-                    dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName.fullName,
+                    dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName,
                         salaryDate, order, salary.edName, salary.edAmount,
                         isArabic ? "ضريبي" : "Taxable", 1, salary.basicAmount, salary.cssAmount,
                         salary.essAmount, isArabic ? "استقطاعات" : "Deductions", salary.branchName
@@ -70,7 +70,7 @@ namespace Reports.EmployeePayRollCross
 
                 foreach (var salary in employee.Where(u => !u.isTaxable && u.edType == 2))
                 {
-                    dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName.fullName,
+                    dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName,
                         salaryDate, order, salary.edName, salary.edAmount,
                        isArabic ? "غير ضريبي" : "Non Taxable", 1, salary.basicAmount, salary.cssAmount,
                         salary.essAmount, isArabic ? "استقطاعات" : "Deductions", salary.branchName
@@ -78,7 +78,7 @@ namespace Reports.EmployeePayRollCross
                     order++;
                 }
 
-                dsSalaries1.SalariesItems.AddSalariesItemsRow(defaultSal.employeeName.fullName,
+                dsSalaries1.SalariesItems.AddSalariesItemsRow(defaultSal.employeeName,
                          salaryDate, order, "", defaultSal.netSalary,
                         isArabic ? "صافي الراتب" : "Net Salary", 1, defaultSal.basicAmount, defaultSal.cssAmount, 
                          defaultSal.essAmount, "    ", defaultSal.branchName

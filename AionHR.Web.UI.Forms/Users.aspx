@@ -268,7 +268,7 @@
                          <ext:ModelField Name="departmentName" />
                          <ext:ModelField Name="positionName" />
                          <ext:ModelField Name="userTypeName" />
-                         <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                         <ext:ModelField Name="employeeName"  />
                       
 
 

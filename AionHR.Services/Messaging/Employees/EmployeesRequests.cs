@@ -9,6 +9,7 @@ using System.Globalization;
 
 public class EmployeeListRequest:ListRequest
 {
+    public string paramString { get; set; }
     public string DepartmentId { get; set; }
     public string BranchId { get; set; }
 
@@ -42,6 +43,8 @@ public class EmployeeListRequest:ListRequest
                 DivisionId = "0";
             if (string.IsNullOrEmpty(PositionId))
                 PositionId = "0";
+            if (string.IsNullOrEmpty(paramString))
+                paramString = "";
             parameters = base.Parameters;
            
             parameters.Add("_departmentId", DepartmentId);
@@ -51,7 +54,7 @@ public class EmployeeListRequest:ListRequest
             parameters.Add("_sortBy", SortBy);
             parameters.Add("_divisionId", DivisionId);
             parameters.Add("_filterField", (string.IsNullOrEmpty(filterField)?"0":filterField));
-            parameters.Add("_params", ""); 
+            parameters.Add("_params", paramString); 
 
 
           

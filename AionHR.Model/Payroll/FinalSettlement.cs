@@ -13,7 +13,7 @@ namespace AionHR.Model.Payroll
     {
         [PropertyID("51030_07")]
         [ApplySecurity]
-        public EmployeeName name { get; set; }
+        public string name { get; set; }
         [PropertyID("51030_08")]
         [ApplySecurity]
         public string fsRef { get; set; }

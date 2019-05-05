@@ -11,7 +11,7 @@ namespace AionHR.Model.Reports
     [ClassIdentifier("80401", "80")]
     public class RT401:ModelBase
     {
-        public EmployeeName name { get; set; }
+        public string name { get; set; }
 
         public string currencyRef { get; set; }
 

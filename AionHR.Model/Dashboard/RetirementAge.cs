@@ -12,7 +12,7 @@ namespace AionHR.Model.Dashboard
     public class RetirementAge
     {
          
-        public EmployeeName name { get; set; }
+        public string name { get; set; }
 
         public DateTime hireDate
         {

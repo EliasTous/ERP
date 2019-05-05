@@ -237,7 +237,7 @@ namespace AionHR.Web.UI.Forms
                   //  status.Select( XMLStatus.Where(x => x.key == response.result.status).Count() != 0 ? XMLStatus.Where(x => x.key == response.result.status).First().value.ToString() : string.Empty);
                     supplierId.setSupplier(response.result.supplierId);
                    
-                    employeeFullName.Text = response.result.employeeName.fullName;
+                    employeeFullName.Text = response.result.employeeName;
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;

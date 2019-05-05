@@ -31,6 +31,7 @@ using AionHR.Model.Attributes;
 using AionHR.Model.Access_Control;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Services.Messaging.CompanyStructure;
+using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -106,9 +107,9 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 ColHireDate.Format = _systemService.SessionHelper.GetDateformat();
 
-                inactivePref.Select("0");
+                //inactivePref.Select("0");
                 CurrentClassId.Text = ClassId.EPEM.ToString();
-               
+
                 BuildQuickViewTemplate();
                 try
                 {
@@ -121,7 +122,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-               
+
                 if (GridPanel1.ColumnModel.Columns[1].Renderer != null && !string.IsNullOrEmpty(GridPanel1.ColumnModel.Columns[1].Renderer.Handler))
                     imageVisible.Text = "False";
                 else
@@ -129,6 +130,24 @@ namespace AionHR.Web.UI.Forms
             }
 
 
+        }
+
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
         }
 
         private void BuildQuickViewTemplate()                         
@@ -426,50 +445,50 @@ namespace AionHR.Web.UI.Forms
             employeeControl1.Add();
         }
 
-        private EmployeeListRequest GetListRequest(StoreReadDataEventArgs e)
-        {
-            previousStartAt.Text= e.Start.ToString();
-            EmployeeListRequest empRequest = new EmployeeListRequest();
-            if (!string.IsNullOrEmpty(inactivePref.Text) && inactivePref.Value.ToString() != "")
-            {
-                empRequest.IncludeIsInactive = Convert.ToInt32(inactivePref.Value);
-            }
-            else
-            {
-                empRequest.IncludeIsInactive = 2;
-            }
+        //private EmployeeListRequest GetListRequest(StoreReadDataEventArgs e)
+        //{
+        //    previousStartAt.Text= e.Start.ToString();
+        //    EmployeeListRequest empRequest = new EmployeeListRequest();
+        //    if (!string.IsNullOrEmpty(inactivePref.Text) && inactivePref.Value.ToString() != "")
+        //    {
+        //        empRequest.IncludeIsInactive = Convert.ToInt32(inactivePref.Value);
+        //    }
+        //    else
+        //    {
+        //        empRequest.IncludeIsInactive = 2;
+        //    }
 
-            var d = jobInfo1.GetJobInfo();
-            empRequest.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
-            empRequest.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
-            empRequest.filterField =  !string.IsNullOrEmpty(filterField.Text) ? filterField.Value.ToString() : "0";
-            //empRequest.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
-            //empRequest.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value.ToString() : "0";
+        //    var d = jobInfo1.GetJobInfo();
+        //    empRequest.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
+        //    empRequest.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
+        //    empRequest.filterField =  !string.IsNullOrEmpty(filterField.Text) ? filterField.Value.ToString() : "0";
+        //    //empRequest.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
+        //    //empRequest.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value.ToString() : "0";
 
 
-            if (e.Sort[0].Property == "name")
-                empRequest.SortBy = GetNameFormat();
-            else if (e.Sort[0].Property == "reference")
-                empRequest.SortBy = "reference";
-            else
-                empRequest.SortBy = e.Sort[0].Property;
-            if (storeSize.Text == "unlimited")
-            {
-                empRequest.Size = "1000";
-                empRequest.StartAt = "0";
-                storeSize.Text = "limited";
-            }
-            else
-            {
-                empRequest.Size = e.Limit.ToString();
-                empRequest.StartAt = e.Start.ToString();
-            }
-            if (string.IsNullOrEmpty(searchTrigger.Text))
-                empRequest.StartAt = previousStartAt.Text;
-            empRequest.Filter = searchTrigger.Text;
+        //    if (e.Sort[0].Property == "name")
+        //        empRequest.SortBy = GetNameFormat();
+        //    else if (e.Sort[0].Property == "reference")
+        //        empRequest.SortBy = "reference";
+        //    else
+        //        empRequest.SortBy = e.Sort[0].Property;
+        //    if (storeSize.Text == "unlimited")
+        //    {
+        //        empRequest.Size = "1000";
+        //        empRequest.StartAt = "0";
+        //        storeSize.Text = "limited";
+        //    }
+        //    else
+        //    {
+        //        empRequest.Size = e.Limit.ToString();
+        //        empRequest.StartAt = e.Start.ToString();
+        //    }
+        //    if (string.IsNullOrEmpty(searchTrigger.Text))
+        //        empRequest.StartAt = previousStartAt.Text;
+        //    empRequest.Filter = searchTrigger.Text;
 
-            return empRequest;
-        }
+        //    return empRequest;
+        //}
         private string GetNameFormat()
         {
             return _systemService.SessionHelper.Get("nameFormat").ToString();
@@ -480,7 +499,17 @@ namespace AionHR.Web.UI.Forms
             try {
                 //GEtting the filter from the page
 
-                EmployeeListRequest empRequest = GetListRequest(e);
+                //EmployeeListRequest empRequest = GetListRequest(e);
+
+
+                string rep_params = vals.Text;
+                EmployeeListRequest empRequest = new EmployeeListRequest();
+                // ReportGenericRequest req = new ReportGenericRequest();
+                empRequest.paramString= vals.Text;
+                empRequest.StartAt = e.Start.ToString();
+                empRequest.SortBy = "recordId";
+                empRequest.Size = "30";
+
 
 
 
@@ -488,7 +517,7 @@ namespace AionHR.Web.UI.Forms
                 ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
                 if (!emps.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", emps.ErrorCode) != null ? GetGlobalResourceObject("Errors", emps.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + emps.LogId : emps.Summary).Show();
+                    Common.errorMessage(emps);
                     return;
                 }
                 e.Total = emps.count;
@@ -571,7 +600,7 @@ namespace AionHR.Web.UI.Forms
 
 
                    
-                    reportsTo = qv.result.reportToName!=null? qv.result.reportToName.fullName:"",
+                    reportsTo = qv.result.reportToName!=null? qv.result.reportToName:"",
                     indemnity = qv.result.indemnity,
                     salary = qv.result.salary,
                     leavesBalance = qv.result.leaveBalance,

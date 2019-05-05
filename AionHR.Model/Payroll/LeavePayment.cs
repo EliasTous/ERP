@@ -11,7 +11,7 @@ namespace AionHR.Model.Payroll
     [ClassIdentifier("51130", "51")]
     public class LeavePayment:ModelBase
     {
-        public EmployeeName employeeName { set; get; }
+        public string employeeName { set; get; }
         public DateTime date { get; set; }
 
         public int employeeId { get; set;  }

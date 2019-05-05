@@ -246,7 +246,7 @@ namespace AionHR.Web.UI.Forms.Reports
             List<AionHR.Model.Reports.DailyAttendance> atts = new List<AionHR.Model.Reports.DailyAttendance>();
             resp.Items.ForEach(x => atts.Add(new AionHR.Model.Reports.DailyAttendance()
             {
-                name = x.name.fullName,
+                name = x.name,
                 branchName = x.branchName,
                 departmentName = x.departmentName,
                 Date = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")),
@@ -273,7 +273,7 @@ namespace AionHR.Web.UI.Forms.Reports
             {
 
                 if (req.Parameters["_employeeId"] != "0")
-                    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
+                    h.Parameters["Employee"].Value = resp.Items[0].name;
                 else
                     h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
             }

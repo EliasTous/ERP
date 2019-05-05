@@ -240,7 +240,7 @@ namespace AionHR.Web.UI.Forms
                     else
                     {
                         employeeNameTB.Hidden = false;
-                        employeeNameTB.Text = response.result.employeeName.fullName;
+                        employeeNameTB.Text = response.result.employeeName;
                     }
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -972,7 +972,7 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = resp.result.employeeId,
-                                    fullName =resp.result.employeeName.fullName
+                                    fullName =resp.result.employeeName
                                 }
                            });
                     employeeId.SetValue(resp.result.employeeId);

@@ -303,7 +303,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                                 new
                                 {
                                     recordId = response2.result.reportToId,
-                                    fullName =response2.result.reportToName.fullName
+                                    fullName =response2.result.reportToName
                                 }
                            });
                         reportToId.SetValue(response2.result.reportToId);
@@ -718,9 +718,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (divisionId.SelectedItem != null)
                     b.divisionName = divisionId.SelectedItem.Text;
 
-                b.reportToName = new EmployeeName();
+               // b.reportToName = new EmployeeName();
                 if (reportToId.SelectedItem != null)
-                    b.reportToName.fullName = reportToId.SelectedItem.Text;
+                    b.reportToName = reportToId.SelectedItem.Text;
                 // Define the object to add or edit as null
                 if (b.reportToId == 0)
                     b.reportToId = null;

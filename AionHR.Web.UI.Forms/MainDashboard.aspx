@@ -473,7 +473,7 @@
                                                     <Fields>
 
                                                         <ext:ModelField Name="employeeId" />
-                                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                                        <ext:ModelField Name="name"  />
                                                         <ext:ModelField Name="time" />
                                                         <ext:ModelField Name="positionName" />
                                                         <ext:ModelField Name="departmentName" />

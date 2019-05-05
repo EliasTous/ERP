@@ -26,6 +26,6 @@ namespace AionHR.Model.SelfService
         public string fromDayId { get; set; }
         public string toDayId { get; set; }
         public string duration { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
     }
 }

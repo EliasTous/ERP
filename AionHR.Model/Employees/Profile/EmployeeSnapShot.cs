@@ -11,7 +11,7 @@ namespace AionHR.Model.Employees.Profile
     {
         public string reference { get; set; }
         public string fullName { get; set; }
-        public EmployeeName name { get; set; }
+        public string name { get; set; }
         public string departmentName { get; set; }
         public string positionName { get; set; }
         public string branchName { get; set; }

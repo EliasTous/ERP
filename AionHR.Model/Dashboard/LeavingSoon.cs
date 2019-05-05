@@ -9,8 +9,8 @@ namespace AionHR.Model.Dashboard
 {
    public class LeavingSoon : ModelBase
     {
-        public EmployeeName employeeName { get; set; }
-        public EmployeeName replacementName { get; set; }
+        public string employeeName { get; set; }
+        public string replacementName { get; set; }
         public int apId { get; set; }
         public string ltName { get; set; }
         public string departmentName { get; set; }

@@ -638,7 +638,7 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = r.result.employeeId,
-                                    fullName =r.result.employeeName.fullName
+                                    fullName =r.result.employeeName
                                 }
                          });
 
@@ -898,7 +898,7 @@ namespace AionHR.Web.UI.Forms
             hireDateDf.Value = routers.result.hireDate;
             nationalityTx.Text = routers.result.countryName;
             divisionName.Text = routers.result.divisionName;
-            reportToName.Text = routers.result.reportToName!=null? routers.result.reportToName.fullName:"";
+            reportToName.Text = routers.result.reportToName!=null? routers.result.reportToName:"";
             eosBalance.Text = routers.result.indemnity.ToString();
             lastLeaveStartDate.Value = routers.result.lastLeaveStartDate;
             lastLeaveEndDate.Value = routers.result.lastLeaveEndDate;
@@ -1744,7 +1744,7 @@ namespace AionHR.Web.UI.Forms
             p.Parameters["positionName"].Value = routers.result.positionName;
             p.Parameters["branchName"].Value = routers.result.branchName;
             p.Parameters["divisionName"].Value = routers.result.divisionName;
-            p.Parameters["reportToName"].Value = routers.result.reportToName!=null?routers.result.reportToName.fullName:"";
+            p.Parameters["reportToName"].Value = routers.result.reportToName!=null?routers.result.reportToName:"";
 
 
 

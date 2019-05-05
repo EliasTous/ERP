@@ -12,7 +12,7 @@ namespace AionHR.Model.Employees.Profile
     {
         [PropertyID("31011_01")]
         [ApplySecurity]
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         [PropertyID("31011_02")]
         [ApplySecurity]
         public int acId { get; set; }

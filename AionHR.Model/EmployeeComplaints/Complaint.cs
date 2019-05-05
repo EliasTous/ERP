@@ -33,6 +33,6 @@ namespace AionHR.Model.Employees
 
         [PropertyID("44000_01")]
         [ApplySecurity]
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
     }
 }

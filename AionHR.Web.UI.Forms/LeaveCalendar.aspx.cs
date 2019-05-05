@@ -115,7 +115,7 @@ namespace AionHR.Web.UI.Forms
 
                 if (!employeeid.Contains(item.employeeId))
                 {
-                    DayPilotScheduler1.Resources.Add(new DayPilot.Web.Ui.Resource(item.employeeName.fullName, item.employeeId.ToString()));
+                    DayPilotScheduler1.Resources.Add(new DayPilot.Web.Ui.Resource(item.employeeName, item.employeeId.ToString()));
                     employeeid.Add(item.employeeId);
                 }
            
@@ -123,7 +123,7 @@ namespace AionHR.Web.UI.Forms
                 dr["id"] = item.recordId;
                 dr["start"] = item.startDate;
                 dr["end"] = item.endDate.AddDays(1);
-                dr["name"] = item.employeeName.fullName;
+                dr["name"] = item.employeeName;
                 dr["resource"] = item.employeeId;
                 switch (item.status)
                 {

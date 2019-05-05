@@ -12,7 +12,7 @@ namespace AionHR.Model.HelpFunction
     public class PayrollExport
     {
         public string payRef { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public string currencyRef { get; set; }
         public int unitAmount { get; set; }
         public double oAmount { get; set; }

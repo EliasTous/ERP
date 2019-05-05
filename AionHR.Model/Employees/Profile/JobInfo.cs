@@ -32,7 +32,7 @@ namespace AionHR.Model.Employees.Profile
         [ApplySecurity]
         public string notes { get; set; }
         // qry
-        public EmployeeName employeeName;
+        public string employeeName;
         [PropertyID("31080_02")]
         [ApplySecurity]
         public string departmentName { get; set; }
@@ -46,7 +46,7 @@ namespace AionHR.Model.Employees.Profile
         [ApplySecurity]
         public string divisionName { get; set; }
 
-        public EmployeeName reportToName { get; set; }
+        public string reportToName { get; set; }
         public int employeeId { get; set; }
 
         public string employeeRef { get; set; }
