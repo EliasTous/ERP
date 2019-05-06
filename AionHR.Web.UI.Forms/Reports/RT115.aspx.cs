@@ -225,8 +225,8 @@ namespace AionHR.Web.UI.Forms.Reports
             //}
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
-
-            IndemnityReport h = new IndemnityReport(); 
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            IndemnityReport h = new IndemnityReport(parameters); 
 
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
@@ -234,7 +234,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
           
             h.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
-            h.Parameters["Filters"].Value = texts.Text;
+         //   h.Parameters["Filters"].Value = texts.Text;
             h.DataSource = resp.Items; 
           
             h.CreateDocument();

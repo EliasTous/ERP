@@ -503,7 +503,7 @@ Employee  count</value>
     <value>100</value>
   </data>
   <data name="xrLabel23.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>120.655769, 0</value>
+    <value>120.655746, 0</value>
   </data>
   <data name="xrLabel23.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>219.838745, 54.1666679</value>
@@ -533,7 +533,7 @@ Employee  count</value>
     <value>100</value>
   </data>
   <data name="xrLabel21.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>340.494476, 54.1666679</value>
+    <value>340.494446, 54.1666679</value>
   </data>
   <data name="xrLabel21.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>113.478577, 23.0000038</value>
@@ -578,7 +578,7 @@ Employee  count</value>
     <value>100</value>
   </data>
   <data name="xrLabel18.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>340.4943, 31.958313</value>
+    <value>340.494263, 31.958313</value>
   </data>
   <data name="xrLabel18.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>234.984192, 22.2083588</value>
@@ -593,7 +593,7 @@ Employee  count</value>
     <value>100</value>
   </data>
   <data name="xrLabel17.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>340.494476, 0</value>
+    <value>340.494446, 0</value>
   </data>
   <data name="xrLabel17.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>832.742737, 31.9583263</value>
@@ -608,7 +608,7 @@ Employee  count</value>
     <value>100</value>
   </data>
   <data name="xrLabel15.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>889.0871, 77.16667</value>
+    <value>889.0871, 77.16665</value>
   </data>
   <data name="xrLabel15.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>51.828125, 23</value>
@@ -683,7 +683,7 @@ Employee  count</value>
     <value>100</value>
   </data>
   <data name="xrLabel13.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>732.451965, 77.16667</value>
+    <value>732.451965, 77.16665</value>
   </data>
   <data name="xrLabel13.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>46.48932, 23</value>
@@ -698,7 +698,7 @@ Employee  count</value>
     <value>100</value>
   </data>
   <data name="xrLabel14.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>683.1241, 77.16667</value>
+    <value>683.1241, 77.16665</value>
   </data>
   <data name="xrLabel14.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>49.32794, 23</value>
@@ -713,7 +713,7 @@ Employee  count</value>
     <value>100</value>
   </data>
   <data name="xrLabel6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>394.645142, 77.1666946</value>
+    <value>394.6451, 77.1666946</value>
   </data>
   <data name="xrLabel6.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>59.32794, 23</value>
@@ -728,7 +728,7 @@ Employee  count</value>
     <value>100</value>
   </data>
   <data name="xrLabel7.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>453.973022, 77.16667</value>
+    <value>453.973022, 77.16665</value>
   </data>
   <data name="xrLabel7.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>54.6774, 23</value>
@@ -773,7 +773,7 @@ Employee  count</value>
     <value>100</value>
   </data>
   <data name="xrLabel5.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>340.494476, 77.1666946</value>
+    <value>340.494446, 77.1666946</value>
   </data>
   <data name="xrLabel5.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>54.1506348, 23</value>
@@ -788,7 +788,7 @@ Employee  count</value>
     <value>100</value>
   </data>
   <data name="xrLabel4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>227.583344, 54.16669</value>
+    <value>227.583344, 54.1666679</value>
   </data>
   <data name="xrLabel4.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>112.911133, 46.0000038</value>
@@ -803,7 +803,7 @@ Employee  count</value>
     <value>100</value>
   </data>
   <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>120.655769, 54.1666679</value>
+    <value>120.655746, 54.1666679</value>
   </data>
   <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>106.927574, 46.0000343</value>
@@ -818,7 +818,7 @@ Employee  count</value>
     <value>100</value>
   </data>
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>4.999987, 0</value>
+    <value>4.999981, 0</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>115.655777, 100.1667</value>
@@ -828,15 +828,6 @@ Employee  count</value>
   </data>
   <data name="xrLabel2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
-  </data>
-  <data name="pageHeaderBand1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="pageHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>100.1667</value>
-  </data>
-  <data name="pageHeaderBand1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>TopLeft</value>
   </data>
   <data name="xrTableCell1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -956,7 +947,7 @@ Employee  count</value>
     <value>Page {0} of {1}</value>
   </data>
   <data name="xrPageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>1124.555, 0</value>
+    <value>1100.73743, 0</value>
   </data>
   <data name="xrPageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>72.49994, 23</value>
@@ -991,12 +982,24 @@ Employee  count</value>
   <data name="reportHeaderBand1.HeightF" type="System.Single, mscorlib">
     <value>50</value>
   </data>
-  <data name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <data name="GroupHeader1.Dpi" type="System.Single, mscorlib">
+    <value>100</value>
   </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
+    <value>100.1667</value>
+  </data>
+  <data name="PageHeader.Dpi" type="System.Single, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="PageHeader.HeightF" type="System.Single, mscorlib">
+    <value>20</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
   <data name="$this.Landscape" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
