@@ -147,4 +147,5 @@ namespace AionHR.Web.UI.Forms
         }
 
     }
+    public enum ActiveStatus { ACTIVE = 1, INACTIVE = -1 }
 }

@@ -261,7 +261,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         break; 
 
                 }
-                x.isInactiveString = x.isInactive?GetGlobalResourceObject("Common", "Inactive").ToString():GetGlobalResourceObject("Common", "Active").ToString();
+                x.isInactiveString =(ActiveStatus) x.activeStatus==ActiveStatus.INACTIVE?GetGlobalResourceObject("Common", "Inactive").ToString():GetGlobalResourceObject("Common", "Active").ToString();
             });
             y.DataSource = resp.Items;
             string user = _systemService.SessionHelper.GetCurrentUser();

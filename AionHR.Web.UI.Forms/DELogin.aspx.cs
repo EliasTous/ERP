@@ -119,7 +119,7 @@ namespace AionHR.Web.UI.Forms
 
                 return "error";
             }
-            if (response.User.isInactive)
+            if ((ActiveStatus) response.User.activeStatus==ActiveStatus.INACTIVE)
             {
                 lblError.Text = GetGlobalResourceObject("Errors", "inactiveUser").ToString();
                 return "error";

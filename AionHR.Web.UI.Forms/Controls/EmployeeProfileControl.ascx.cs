@@ -426,8 +426,10 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void SetActivated(bool active)
+        private void SetActivated(ActiveStatus activeStatus)
+
         {
+            bool active = activeStatus == ActiveStatus.ACTIVE ? true : false;
             SaveButton.Disabled = !active;
             //SetTabPanelActivated(active);
 
@@ -949,7 +951,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             string userId="";
-            bool isInactive; 
+            //bool isInactive; 
             string obj = e.ExtraParams["values"];
             UserByEmailRequest req = new UserByEmailRequest();
             req.Email = workEmailHF.Text;
@@ -963,22 +965,22 @@ namespace AionHR.Web.UI.Forms
             }
 
 
-                if (enableSS.Checked)
-                   isInactive = true;
-                else
-                isInactive = false;
+                //if (enableSS.Checked)
+                //   isInactive = true;
+                //else
+                //isInactive = false;
 
             if (response.result == null)
             {
 
 
-                response.result = new UserInfo { employeeId = CurrentEmployee.Text, email = workEmailHF.Text, isInactive = isInactive, userType = 4, languageId = 1, password = "1", fullName = CurrentEmployeeFullName.Text };
+                response.result = new UserInfo { employeeId = CurrentEmployee.Text, email = workEmailHF.Text, activeStatus = enableSS.Checked ? Convert.ToInt16(ActiveStatus.INACTIVE) : Convert.ToInt16(ActiveStatus.ACTIVE), userType = 4, languageId = 1, password = "1", fullName = CurrentEmployeeFullName.Text };
             }
             PostRequest<UserInfo> request = new PostRequest<UserInfo>();
 
             request.entity = response.result;
             request.entity.userType = 4;
-            request.entity.isInactive = isInactive;
+            request.entity.activeStatus = enableSS.Checked?Convert.ToInt16( ActiveStatus.INACTIVE): Convert.ToInt16(ActiveStatus.ACTIVE);
             PostResponse<UserInfo> r = _systemService.ChildAddOrUpdate<UserInfo>(request);
             if (!r.Success)
             {
@@ -1114,11 +1116,11 @@ namespace AionHR.Web.UI.Forms
 
                 InitCombos(false);
                 SelectCombos(response.result);
-                SetActivated(!response.result.isInactive);
-                setTerminationWindow(response.result.isInactive);
+                SetActivated((ActiveStatus) response.result.activeStatus);
+                setTerminationWindow((ActiveStatus)response.result.activeStatus);
 
 
-                FixLoaderUrls(r.RecordID, response.result.hireDate.HasValue ? response.result.hireDate.Value.ToString("yyyy/MM/dd") : "", response.result.isInactive);
+                FixLoaderUrls(r.RecordID, response.result.hireDate.HasValue ? response.result.hireDate.Value.ToString("yyyy/MM/dd") : "", (ActiveStatus)response.result.activeStatus==ActiveStatus.INACTIVE?true:false);
             }
             catch(Exception exp)
             {
@@ -1126,8 +1128,9 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-        private void setTerminationWindow (bool isInactive)
+        private void setTerminationWindow (ActiveStatus isInactiveStatus)
         {
+          bool  isInactive = isInactiveStatus==ActiveStatus.INACTIVE ? true : false;
             if (isInactive)
                 saveTerminationButton.Text = GetLocalResourceObject("undoTermination").ToString();
             else
@@ -1459,7 +1462,7 @@ namespace AionHR.Web.UI.Forms
             FillSecurityGroup();
             if (response.result != null)
             {
-                if (response.result.isInactive == true)
+                if ((ActiveStatus) response.result.activeStatus == ActiveStatus.INACTIVE)
                 {
                     enableSS.Checked = true;
                 }
@@ -1628,7 +1631,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 date.Value = DateTime.Now;
-                setTerminationWindow(false);
+                setTerminationWindow(ActiveStatus.ACTIVE);
             }
 
         }

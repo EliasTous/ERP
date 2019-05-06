@@ -100,7 +100,7 @@ namespace AionHR.Model.SelfService
         public string vsName { get; set; }
        
         public string caName { get; set; }
-        public bool isInactive { get; set; }
+        public short activeStatus { get; set; }
       
         public string pictureUrl { get; set; }
 

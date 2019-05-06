@@ -59,7 +59,7 @@ namespace AionHR.Model.Reports
         public double unTaxableSalary { get; set; }
 
         public double finalSalary { get; set; }
-        public bool isInactive { get; set; }
+        public short activeStatus { get; set; }
 
         public string isInactiveString { get; set; }
         public DateTime? terminationDate { get; set; }

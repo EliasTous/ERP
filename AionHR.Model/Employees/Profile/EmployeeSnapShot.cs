@@ -16,7 +16,7 @@ namespace AionHR.Model.Employees.Profile
         public string positionName { get; set; }
         public string branchName { get; set; }
         public DateTime hireDate { get; set; }
-        public bool isInactive { get; set; }
+        public short activeStatus { get; set; }
         public DateTime? lastTACheck { get; set; }
         public short lastTACheckStatus { get; set; }
     }

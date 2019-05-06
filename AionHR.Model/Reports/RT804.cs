@@ -16,7 +16,7 @@ namespace AionHR.Model.Reports
         public string userTypeName { get; set; }
         public string email { get; set; }
         public string fullName { get; set; }
-        public bool isInactive { get; set; }
+        public short activeStatus { get; set; }
         
 
     }

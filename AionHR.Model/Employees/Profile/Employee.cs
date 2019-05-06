@@ -124,7 +124,7 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31000_15")]
         [ApplySecurity]
         public string caName { get; set; }
-        public bool isInactive { get; set; }
+        public short activeStatus { get; set; }
         [PropertyID("31000_23")]
         [ApplySecurity]
         public string pictureUrl { get; set; }

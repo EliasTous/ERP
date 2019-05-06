@@ -29,7 +29,7 @@ namespace AionHR.Model.System
         public string email { get; set; }
         [PropertyID("20010_03")]
         [ApplySecurity]
-        public bool isInactive { get; set; }
+        public short activeStatus { get; set; }
 
         [PropertyID("20010_04")]
         [ApplySecurity]

@@ -209,7 +209,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 Code to delete the object from the database 
                 Router s = new Router();
                 s.recordId = index;
-                s.isInactive = false;
+                s.activeStatus =Convert.ToInt16( ActiveStatus.INACTIVE);
                 s.branchId = 0;
                 PostRequest<Router> req = new PostRequest<Router>();
                 req.entity = s;
