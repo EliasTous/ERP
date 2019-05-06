@@ -220,8 +220,8 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
-
-            Skills h = new Skills(resp.Items);
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            Skills h = new Skills(resp.Items, parameters);
 
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
@@ -235,7 +235,7 @@ namespace AionHR.Web.UI.Forms.Reports
             //h.Parameters["BranchName"].Value = jobInfo1.GetBranch();
             ////h.Parameters["PositionName"].Value = jobInfo1.GetPosition();
 
-            h.Parameters["Filters"].Value = texts.Text;
+            //h.Parameters["Filters"].Value = texts.Text;
             h.Parameters["User"].Value = user;
 
             

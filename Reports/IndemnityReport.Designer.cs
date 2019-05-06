@@ -43,7 +43,6 @@
             this.xrTableCell24 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.pageHeaderBand1 = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -80,6 +79,7 @@
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -220,11 +220,6 @@
             resources.ApplyResources(this.BottomMargin, "BottomMargin");
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            // 
-            // pageHeaderBand1
-            // 
-            resources.ApplyResources(this.pageHeaderBand1, "pageHeaderBand1");
-            this.pageHeaderBand1.Name = "pageHeaderBand1";
             // 
             // xrTable1
             // 
@@ -539,17 +534,22 @@
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT115);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // PageHeader
+            // 
+            resources.ApplyResources(this.PageHeader, "PageHeader");
+            this.PageHeader.Name = "PageHeader";
+            // 
             // IndemnityReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
             this.TopMargin,
             this.BottomMargin,
-            this.pageHeaderBand1,
             this.pageFooterBand1,
             this.reportHeaderBand1,
             this.GroupHeader1,
-            this.GroupFooter1});
+            this.GroupFooter1,
+            this.PageHeader});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
@@ -584,7 +584,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell22;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell24;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
-        private DevExpress.XtraReports.UI.PageHeaderBand pageHeaderBand1;
         private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow3;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
@@ -620,5 +619,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel7;
         private DevExpress.XtraReports.UI.XRLabel xrLabel6;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
+        private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
     }
 }

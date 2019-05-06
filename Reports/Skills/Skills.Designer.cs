@@ -61,6 +61,8 @@
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.user = new DevExpress.XtraReports.Parameters.Parameter();
             this.skillsDataSet1 = new Reports.Skills.SkillsDataSet();
+            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.skillsDataSet1)).BeginInit();
@@ -200,8 +202,7 @@
             // GroupHeader1
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrTable1,
-            this.xrLabel1});
+            this.xrTable1});
             resources.ApplyResources(this.GroupHeader1, "GroupHeader1");
             this.GroupHeader1.Name = "GroupHeader1";
             this.GroupHeader1.RepeatEveryPage = true;
@@ -391,6 +392,18 @@
             this.skillsDataSet1.DataSetName = "SkillsDataSet";
             this.skillsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // PageHeader
+            // 
+            resources.ApplyResources(this.PageHeader, "PageHeader");
+            this.PageHeader.Name = "PageHeader";
+            // 
+            // ReportHeader
+            // 
+            this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel1});
+            resources.ApplyResources(this.ReportHeader, "ReportHeader");
+            this.ReportHeader.Name = "ReportHeader";
+            // 
             // Skills
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -398,13 +411,15 @@
             this.TopMargin,
             this.BottomMargin,
             this.GroupHeader1,
-            this.PageFooter});
+            this.PageFooter,
+            this.PageHeader,
+            this.ReportHeader});
             this.DataMember = "Skills";
             this.DataSource = this.skillsDataSet1;
             resources.ApplyResources(this, "$this");
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.user});
-            this.Version = "16.1";
+            this.Version = "16.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.skillsDataSet1)).EndInit();
@@ -446,5 +461,7 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel6;
         private DevExpress.XtraReports.Parameters.Parameter user;
         private SkillsDataSet skillsDataSet1;
+        private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
+        private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
     }
 }
