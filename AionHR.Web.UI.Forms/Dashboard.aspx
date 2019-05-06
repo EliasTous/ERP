@@ -4267,7 +4267,7 @@
                             <Items>
                                 <ext:TextField ID="TextField1" runat="server" Name="recordId" Hidden="true" />
                                 <ext:TextField ID="leaveRef" runat="server" Name="leaveRef" FieldLabel="<%$ Resources:FieldLeaveRef%>" ReadOnly="true" />
-                                <ext:TextField ID="employeeName" runat="server" Name="employeeName.fullName" FieldLabel="<%$ Resources:FieldEmployeeName%>" ReadOnly="true" />
+                                <ext:TextField ID="employeeName" runat="server" Name="employeeName" FieldLabel="<%$ Resources:FieldEmployeeName%>" ReadOnly="true" />
 
 
                                 <%--   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" AllowBlank="false"
