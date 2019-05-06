@@ -132,7 +132,23 @@ namespace AionHR.Web.UI.Forms.Reports
             //this.OtherInfoTab.Visible = false;
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
         private void HideShowButtons()
         {
@@ -184,55 +200,15 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
+     
 
-            req.Size = "1000";
-            req.StartAt = "0";
-
-
-            req.Add(dateRange1.GetRange());
-            req.Add(employeeCombo1.GetEmployee());
-            return req;
-        }
-
-        [DirectMethod]
-        public object FillEmployee(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
+      
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
-            ReportCompositeRequest req = GetRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
 
             ListResponse<AionHR.Model.Reports.RT301> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT301>(req);
             //if (!resp.Success)
@@ -286,16 +262,7 @@ namespace AionHR.Web.UI.Forms.Reports
             string user = _systemService.SessionHelper.GetCurrentUser();
             DateTime date = DateTime.Parse(req.Parameters["_fromDate"]);
             h.Parameters["User"].Value = user;
-            h.Parameters["Month"].Value = date.ToString("MMM/yyyy");
-
-            if (resp.Items.Count > 0)
-            {
-
-                if (req.Parameters["_employeeId"] != "0")
-                    h.Parameters["Employee"].Value = resp.Items[0].name;
-                else
-                    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
-            }
+            h.Parameters["Fitlers"].Value = texts.Text;
             h.CreateDocument();
 
 

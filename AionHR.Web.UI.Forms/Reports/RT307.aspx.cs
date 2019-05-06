@@ -135,7 +135,23 @@ namespace AionHR.Web.UI.Forms.Reports
             //this.OtherInfoTab.Visible = false;
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
         private void HideShowButtons()
         {
@@ -204,38 +220,7 @@ namespace AionHR.Web.UI.Forms.Reports
         //    return req;
         //}
 
-        [DirectMethod]
-        public object FillEmployee(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
+      
         //private void FillReport(bool isInitial = false, bool throwException = true)
         //{
 
@@ -335,16 +320,9 @@ namespace AionHR.Web.UI.Forms.Reports
 
             try
             {
-                DashboardTimeListRequest req = new DashboardTimeListRequest();
-
-
-                req.fromDayId = date2.GetRange().DateFrom.ToString("yyyyMMdd");
-                req.toDayId = date2.GetRange().DateTo.ToString("yyyyMMdd");
-             
-                if (string.IsNullOrEmpty(approverId.Value.ToString()))
-                    req.approverId = 0;
-                else
-                    req.approverId = Convert.ToInt32(approverId.Value.ToString());
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
 
 
                 ListResponse<AionHR.Model.Reports.RT307> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT307> (req);
@@ -387,6 +365,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 //h.Parameters["FromParameter"].Value = from;
                 //h.Parameters["ToParameter"].Value = to;
                 h.Parameters["User"].Value = user;
+
+                h.Parameters["Fitlers"].Value = texts.Text;
                 //if (req.Parameters["_dayStatus"] != "0")
                 //    h.Parameters["dayStatusParameter"].Value = dayStatus.SelectedItem.Text;
                 //else
@@ -543,16 +523,7 @@ namespace AionHR.Web.UI.Forms.Reports
         //    }
         //    return p;
         //}
-        [DirectMethod]
-        public object FillApprover(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
+       
 
 
     }

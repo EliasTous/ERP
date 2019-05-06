@@ -108,7 +108,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                    dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+                   
                 }
                 catch { }
             }
@@ -171,7 +171,23 @@ namespace AionHR.Web.UI.Forms.Reports
             }
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
         [DirectMethod]
         public string CheckSession()
@@ -184,56 +200,14 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-
-
-            req.Add(dateRange1.GetRange());
-            req.Add(employeeCombo1.GetEmployee());
-
-            return req;
-        }
-
-        [DirectMethod]
-        public object FillEmployee(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
+      
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
-            ReportCompositeRequest req = GetRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
+
             if (req.Parameters["_employeeId"] == "0")
                 return;
             ListResponse<AionHR.Model.Reports.RT303A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT303A>(req);
@@ -277,8 +251,7 @@ namespace AionHR.Web.UI.Forms.Reports
             string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
             string user = _systemService.SessionHelper.GetCurrentUser();
 
-            h.Parameters["From"].Value = from;
-            h.Parameters["To"].Value = to;
+          
             h.Parameters["User"].Value = user;
 
 
@@ -286,28 +259,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-            if (req.Parameters["_employeeId"] != "0")
-            {
-                RecordRequest empReq = new RecordRequest();
-                empReq.RecordID = req.Parameters["_employeeId"];
-                Employee emp = _employeeService.Get<Employee>(empReq).result;
-                h.Parameters["Employee"].Value = emp.name.fullName;
-                h.Parameters["Branch"].Value = emp.branchName;
-                h.Parameters["Division"].Value = emp.divisionName;
-
-            }
-            //ListRequest def = new ListRequest();
-            //int lateness = 0;
-            //ListResponse<KeyValuePair<string, string>> items = _systemService.ChildGetAll<KeyValuePair<string, string>>(def);
-            //try
-            //{
-            //    lateness = Convert.ToInt32(items.Items.Where(s => s.Key == "allowedLateness").First().Value);
-            //}
-            //catch
-            //{
-
-            //}
-            //h.Parameters["AllowedLateness"].Value = lateness;
+            h.Parameters["Fitlers"].Value = texts.Text;
 
             h.PrintingSystem.Document.ScaleFactor = 4;
             h.CreateDocument();

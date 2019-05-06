@@ -23,6 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../Scripts/moment.js"></script>
     <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
+    <script type="text/javascript" src="../Scripts/ReportsCommon.js"></script>
     <script type="text/javascript">
 
         function alertNow(s, e) {

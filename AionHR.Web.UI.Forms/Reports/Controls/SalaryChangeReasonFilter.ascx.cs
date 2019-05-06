@@ -13,7 +13,7 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-    public partial class SalaryChangeReasonFilter : System.Web.UI.UserControl
+    public partial class SalaryChangeReasonFilter : System.Web.UI.UserControl,IComboControl
     {
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected void Page_Load(object sender, EventArgs e)
@@ -61,6 +61,21 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             if (scrId.SelectedItem == null)
                 return "";
             else return scrId.SelectedItem.Text;
+        }
+
+        public void Select(object id)
+        {
+            scrId.Select(id);
+        }
+
+        public void SetLabel(string newLabel)
+        {
+            scrId.FieldLabel = newLabel;
+        }
+
+        public ComboBox GetComboBox()
+        {
+            return scrId;
         }
     }
 }

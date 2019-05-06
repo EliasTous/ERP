@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SalaryChangeReasonFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.SalaryChangeReasonFilter" %>
-<ext:Panel runat="server" Layout="HBoxLayout" Width="150">
-    <Items>
+
+  
        
-        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" Width="140" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="scrId" Name="scrId" EmptyText="<%$ Resources:FieldSCR%>">
+        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" Width="140" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="scrId">
             <Store>
                 <ext:Store runat="server" ID="scrStore">
                     <Model>
@@ -15,9 +15,14 @@
                     </Model>
                 </ext:Store>
             </Store>
-
+            <Triggers>
+                <ext:FieldTrigger Icon="Clear" />
+            </Triggers>
+            <Listeners>
+                <TriggerClick Handler="
+                                       this.clearValue();" />
+            </Listeners>                              
 
         </ext:ComboBox>
      
-    </Items>
-</ext:Panel>
+
