@@ -1347,4 +1347,7 @@
   <data name="Hourly" xml:space="preserve">
     <value>Hourly</value>
   </data>
+  <data name="FourWeek" xml:space="preserve">
+    <value>Four Week</value>
+  </data>
 </root>

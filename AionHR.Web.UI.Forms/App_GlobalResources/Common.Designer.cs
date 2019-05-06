@@ -1429,6 +1429,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Four Week.
+        /// </summary>
+        internal static string FourWeek {
+            get {
+                return ResourceManager.GetString("FourWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to French.
         /// </summary>
         internal static string FrenchLanguage {

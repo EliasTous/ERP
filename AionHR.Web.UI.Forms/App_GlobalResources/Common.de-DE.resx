@@ -1332,4 +1332,7 @@
   <data name="Hourly" xml:space="preserve">
     <value>Stündlich</value>
   </data>
+  <data name="FourWeek" xml:space="preserve">
+    <value>Vier Wochen</value>
+  </data>
 </root>
