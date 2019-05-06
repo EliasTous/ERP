@@ -199,7 +199,10 @@ namespace AionHR.Web.UI.Forms
 
                     PasswordConfirmation.Text = response.result.password;
                     this.BasicInfoTab.SetValues(response.result);
-
+                    if (response.result.activeStatus == Convert.ToInt16(ActiveStatus.INACTIVE))
+                        isInactiveCheck.Checked = true;
+                    else
+                        isInactiveCheck.Checked = false;
 
 
                     if (!String.IsNullOrEmpty(response.result.employeeId))
@@ -565,6 +568,7 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             fullName.Disabled = false;
+            isInactiveCheck.Checked = false;
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             DeactivatePassword(false);
@@ -626,7 +630,7 @@ namespace AionHR.Web.UI.Forms
             //    x.userTypeString = userTypeStore.GetById(x.userType).ToString();
             //}
 
-            
+        
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 
@@ -645,6 +649,7 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             UserInfo b = JsonConvert.DeserializeObject<UserInfo>(obj);
+            b.activeStatus = isInactiveCheck.Checked ?Convert.ToInt16( ActiveStatus.INACTIVE) : Convert.ToInt16(ActiveStatus.ACTIVE);
 
             b.recordId = id;
             // Define the object to add or edit as null
