@@ -23,6 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../Scripts/moment.js"></script>
     <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
+    <script type="text/javascript" src="../Scripts/ReportsCommon.js"></script>
     <script type="text/javascript">
         function alertNow(s, e) {
 
@@ -42,7 +43,12 @@
            <ext:Hidden ID="hint" runat="server" Text="<%$ Resources:Common , hint %>" />
           <ext:Hidden ID="EmptyPayRef" runat="server" Text="<%$ Resources:Common , EmptyPayRef %>" />
         <ext:Hidden ID="rtl" runat="server" />
+         <ext:Hidden ID="Hidden1" runat="server" />
+        <ext:Hidden ID="vals" runat="server" />
+        <ext:Hidden ID="texts" runat="server" />
+        <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="format" runat="server" />
+<ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=RT507&values="/>
                <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
@@ -56,75 +62,26 @@
                     Layout="FitLayout" AutoScroll="true"
                     Margins="0 0 0 0"
                     Region="Center">
-                    <DockedItems>
-                          <ext:Toolbar runat="server" Height="50" Dock="Top">
+                  	<DockedItems>
+                        <ext:Toolbar runat="server" Height="30" Dock="Top">
 
                             <Items>
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  EmptyText="<%$Resources:Common , PayRef %>"  Name="payId" runat="server" DisplayField="payRefWithDateRange" ValueField="recordId" ID="payId" Width="180">
-                                    <Store>
-                                        <ext:Store runat="server" ID="payIdStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="payRefWithDateRange" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                     <DirectEvents>
-                                      <Select OnEvent="setDateRange" >
-                                          <ExtraParams>
-                                               <ext:Parameter Name="id" Value="this.value" Mode="Raw" />
-                                          </ExtraParams>
-                                          </Select>
-                                  </DirectEvents>
-                                 
-                                </ext:ComboBox>
                              
-                                        <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDepartment="true" EnablePosition="true" EnableDivision="true"  />
-                                            </Content>
-                                        </ext:Container>
-                                   <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:paymentMethodCombo runat="server" ID="paymentMethodCombo" />
-                                            </Content>
-                                        </ext:Container>
-                              
-
-                                   <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                 <uc:employeeCombo runat="server" ID="employeeFilter" />
-                                    </Content>
-                                </ext:Container>
+                             
                                 
-                                 </Items>
-                              </ext:Toolbar>
-                         <ext:Toolbar runat="server" Dock="Top">
-                             <Items>
-                                   <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <uc:dateRange runat="server" ID="dateRange1" />
-                              
-                                    </Content>
-                                </ext:Container>
-                                 <ext:TextField Visible="false" Width="80" runat="server" ID="payRef" EmptyText="<%$Resources:Common , PayRef %>" />
-                                  
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
+                                          <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                       <Listeners>
+                                           <Click Handler=" App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
-                                              <%--  <Click Handler="if(App.payId.getValue()==null)   {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}  callbackPanel.PerformCallback('1');" />--%>
-                                                   <Click Handler="callbackPanel.PerformCallback('1');" />
+                                                <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
+                                       
                                     </Content>
                                 </ext:Container>
                                        
@@ -132,9 +89,14 @@
 
                             </Items>
                         </ext:Toolbar>
+                           
+                        <ext:Toolbar ID="labelbar" runat="server" Height="0" Dock="Top">
 
-              </DockedItems>
-                    <Content>
+                            <Items>
+                                 <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                            </ext:Toolbar>
+                  </DockedItems>  <Content>
 
                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"  ClientSideEvents-CallbackError="alertNow"
 
@@ -156,7 +118,31 @@
             </Items>
         </ext:Viewport>
 
-
+           <ext:Window runat="server"  Icon="PageEdit"
+            ID="reportsParams"
+            Width="600"
+            Height="500"
+            Title="<%$Resources:Common,Parameters %>"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="FitLayout" Resizable="true">
+            <Listeners>
+                <Show Handler="App.Panel8.loader.load();"></Show>
+            </Listeners>
+            <Items>
+                <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
+                    <Loader runat="server" Url="../ReportParameterBrowser.aspx?_reportName=RT507" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+            
+                </Items>
+        </ext:Window>
 
 
 

@@ -14,7 +14,7 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-    public partial class LeaveTypeFilter : System.Web.UI.UserControl
+    public partial class LeaveTypeFilter : System.Web.UI.UserControl, IComboControl
     {
         ILeaveManagementService _employeeService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         protected void Page_Load(object sender, EventArgs e)
@@ -55,6 +55,21 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
             }
             return p;
+        }
+
+        public void Select(object id)
+        {
+            ltId.Select(id);
+        }
+
+        public void SetLabel(string newLabel)
+        {
+            ltId.FieldLabel = newLabel;
+        }
+
+        public ComboBox GetComboBox()
+        {
+            return ltId;
         }
     }
 }

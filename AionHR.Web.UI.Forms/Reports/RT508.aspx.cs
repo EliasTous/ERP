@@ -133,7 +133,23 @@ namespace AionHR.Web.UI.Forms
             //this.OtherInfoTab.Visible = false;
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
         private void HideShowButtons()
         {
@@ -185,26 +201,11 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-
-
-            req.Add(dateRange1.GetRange());
-            req.Add(employeeFilter.GetEmployee());
-         
-            req.Add(jobInfo1.GetJobInfo());
-            
-            return req;
-        }
-
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
-
-            ReportCompositeRequest req = GetRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
 
             ListResponse<AionHR.Model.Reports.RT508> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT508>(req);
 
@@ -217,27 +218,15 @@ namespace AionHR.Web.UI.Forms
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = resp.Items;
-                       
-            
+            h.Parameters["Fitlers"].Value = texts.Text;
+
             h.CreateDocument();
 
 
             ASPxWebDocumentViewer1.DataBind();
             ASPxWebDocumentViewer1.OpenReport(h);
         }
-        private LeavePaymentsListRequest GetLeavePaymentRequest()
-        {
-            LeavePaymentsListRequest req = new LeavePaymentsListRequest();
-
-         
-           
-            req.EmployeeId = employeeFilter.GetEmployee().employeeId;
-            req.Size = "2000";
-            req.StartAt = "0";
-            req.Filter = "";
-            return req;
-        }
-
+     
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
             string[] parameters = e.Parameter.Split('|');
@@ -258,39 +247,5 @@ namespace AionHR.Web.UI.Forms
             //    FillReport(true);
         }
 
-
-        [DirectMethod]
-        public object FillEmployee(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-
-
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
-    }
+   }
 }
