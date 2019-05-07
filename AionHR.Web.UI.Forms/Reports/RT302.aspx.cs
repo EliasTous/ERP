@@ -203,8 +203,7 @@ namespace AionHR.Web.UI.Forms.Reports
      
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
-            try
-            {
+           
                 string rep_params = vals.Text;
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
@@ -219,14 +218,14 @@ namespace AionHR.Web.UI.Forms.Reports
                     Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
 
-
-                PeriodSummary h = new PeriodSummary();
+                Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+                PeriodSummary h = new PeriodSummary(parameters);
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
                 h.DataSource = resp.Items;
 
-                string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-                string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                //string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                //string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
                 string user = _systemService.SessionHelper.GetCurrentUser();
 
                 
@@ -234,7 +233,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-                h.Parameters["Fitlers"].Value = texts.Text;
+                //h.Parameters["Fitlers"].Value = texts.Text;
 
                 h.CreateDocument();
 
@@ -242,13 +241,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 ASPxWebDocumentViewer1.DataBind();
                 ASPxWebDocumentViewer1.OpenReport(h);
             }
-            catch(Exception exp)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-                
-            }
-        }
+         
+        
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {

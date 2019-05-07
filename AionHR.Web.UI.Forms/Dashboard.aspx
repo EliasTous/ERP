@@ -1182,7 +1182,7 @@
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="Hidden1" runat="server" />
-        <ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=Dashboard&values="/>
+        <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=Dashboard&values="/>
     
         <ext:Store
             ID="activeStore"
@@ -2067,8 +2067,8 @@
 
                                                                     <ext:Column Visible="false" ID="Column10" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" />
                                                                     <ext:Column ID="Column11" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
-                                                                        <Renderer Handler=" return record.data['employeeName'].fullName; ">
-                                                                        </Renderer>
+                                                                    
+                                                                     
                                                                     </ext:Column>
                                                                     <ext:Column ID="Column14" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
 
@@ -2428,8 +2428,8 @@
                                                                        <ext:Column ID="Column42" Visible="false" DataIndex="loanId" runat="server" />
                                                  <ext:Column ID="Column32" DataIndex="loanRef" Text="<%$ Resources: FieldReference%>" runat="server" Hidden="true" />
                                                 <ext:Column ID="Column33" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
-                                                    <Renderer Handler=" return record.data['employeeName'].fullName; ">
-                                                    </Renderer>
+                                                
+                                                
                                                 </ext:Column>
                            
                                                <%-- <ext:Column ID="Column7" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />--%>

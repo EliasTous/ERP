@@ -151,7 +151,7 @@
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                           <%--  <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
-                                <Renderer Handler=" return record.data['employeeName'].fullName; ">
+                            
                                 </Renderer>
                             </ext:Column>--%>
                           <%--  <ext:Column ID="Column5" DataIndex="loanRef" Text="<%$ Resources: FieldReference%>" runat="server" />--%>

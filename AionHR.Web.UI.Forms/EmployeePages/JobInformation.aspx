@@ -296,7 +296,7 @@
                             <ext:Column Flex="2" ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIPosition%>" DataIndex="positionName" Hideable="false"  Align="Center" />
                             <ext:Column Flex="2" Visible="false" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDivision%>" DataIndex="divisionName" Hideable="false" Align="Center" />
                             <ext:Column Flex="2" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReportsTo%>" DataIndex="reportToName" Hideable="false" Align="Center" >
-                                <Renderer Handler=" return record.data['reportToName'].fullName;" />
+                            
                                 </ext:Column>
                           
 
