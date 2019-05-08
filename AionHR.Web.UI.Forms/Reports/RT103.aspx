@@ -86,6 +86,9 @@
                     Layout="FitLayout" AutoScroll="true"
                     Margins="0 0 0 0"
                     Region="Center">
+                   <Tools>
+                       <ext:Tool Type="Print" Handler="window.print();" />
+                   </Tools>
                     <DockedItems>
                         <ext:Toolbar runat="server" Height="30" Dock="Top">
 

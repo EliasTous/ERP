@@ -123,7 +123,7 @@
   </data>
   <assembly alias="DevExpress.Data.v16.2" name="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="xrTable2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>0, 0</value>
+    <value>3.81469727E-05, 0</value>
   </data>
   <data name="xrTableCell10.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -159,7 +159,7 @@
     <value>xrTableCell14</value>
   </data>
   <data name="xrTableCell14.Weight" type="System.Double, mscorlib">
-    <value>72.201281007640347</value>
+    <value>72.20127277131418</value>
   </data>
   <data name="xrTableRow4.Dpi" type="System.Single, mscorlib">
     <value>100</value>

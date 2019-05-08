@@ -1507,7 +1507,8 @@ namespace AionHR.Web.UI.Forms
 
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     Common.errorMessage(resp);
-                    return new EmployeesPaySlip(new List<RT501>(), _systemService.SessionHelper.CheckIfArabicSession());
+                  
+                    return new EmployeesPaySlip(new List<RT501>(), _systemService.SessionHelper.CheckIfArabicSession(), new Dictionary<string, string>());
 
                 }
                 List<RT501> newlist = new List<RT501>();
@@ -1517,9 +1518,9 @@ namespace AionHR.Web.UI.Forms
 
                 });
 
-               
 
-                EmployeesPaySlip h = new EmployeesPaySlip(newlist, _systemService.SessionHelper.CheckIfArabicSession());
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                EmployeesPaySlip h = new EmployeesPaySlip(newlist, _systemService.SessionHelper.CheckIfArabicSession(), parameters);
 
 
               
@@ -1535,7 +1536,7 @@ namespace AionHR.Web.UI.Forms
             catch (Exception exp)
             {
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-                return new EmployeesPaySlip(new List<RT501>(), _systemService.SessionHelper.CheckIfArabicSession());
+                return new EmployeesPaySlip(new List<RT501>(), _systemService.SessionHelper.CheckIfArabicSession(),new Dictionary<string, string>());
 
             }
 
