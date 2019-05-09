@@ -222,8 +222,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
             List<AionHR.Model.Reports.RT501> Items = new List<AionHR.Model.Reports.RT501>();
             Items.AddRange(resp.Items);
-          
-            EmployeesPaySlip h = new EmployeesPaySlip(Items, _systemService.SessionHelper.CheckIfArabicSession());
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            EmployeesPaySlip h = new EmployeesPaySlip(Items, _systemService.SessionHelper.CheckIfArabicSession(),parameters);
 
 
 
@@ -231,8 +231,8 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             string user = _systemService.SessionHelper.GetCurrentUser();
-            h.Parameters["User"].Value = user;
-            h.Parameters["Fitlers"].Value = texts.Text;
+            //h.Parameters["User"].Value = user;
+          //  h.Parameters["Fitlers"].Value = texts.Text;
 
 
             h.CreateDocument();

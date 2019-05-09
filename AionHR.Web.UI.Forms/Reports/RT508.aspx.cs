@@ -213,12 +213,12 @@ namespace AionHR.Web.UI.Forms
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
 
-
-            PayrollLeavePaymentsReport h = new PayrollLeavePaymentsReport();
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            PayrollLeavePaymentsReport h = new PayrollLeavePaymentsReport(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = resp.Items;
-            h.Parameters["Fitlers"].Value = texts.Text;
+          //  h.Parameters["Fitlers"].Value = texts.Text;
 
             h.CreateDocument();
 

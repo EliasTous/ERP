@@ -48,10 +48,8 @@ namespace AionHR.Web.UI.Forms
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
+            List<EmployeeSnapShot> data = Common.GetEmployeesFiltered(prms.Query);
+           
             return data;
         }
 

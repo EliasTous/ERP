@@ -223,19 +223,20 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 s.leaveTypeString = GetLocalResourceObject("leaveType" + s.leaveType).ToString();
             });
-            LeaveList h = new LeaveList();
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            LeaveList h = new LeaveList(parameters);
             h.DataSource = resp.Items;
 
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
-            string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
-            string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            //string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            //string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             string user = _systemService.SessionHelper.GetCurrentUser();
 
          
             h.Parameters["User"].Value = user;
-            h.Parameters["Fitlers"].Value = texts.Text;
+          //  h.Parameters["Fitlers"].Value = texts.Text;
             h.CreateDocument();
 
 
