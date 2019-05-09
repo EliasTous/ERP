@@ -504,7 +504,11 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
+        
         [DirectMethod]
+
+
+
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
 
@@ -512,9 +516,9 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            List<EmployeeSnapShot> data = Common.GetEmployeesFiltered(prms.Query);
 
-            data.ForEach(s => s.fullName = s.name.fullName);
+
             //  return new
             // {
 

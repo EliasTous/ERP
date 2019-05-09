@@ -211,7 +211,7 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-
+        
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
@@ -219,16 +219,14 @@ namespace AionHR.Web.UI.Forms
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
             if (prms.Query == "All" || prms.Query == "الكل")
             {
-                List<Employee> data1 = new List<Employee>();
-                data1.Add(new Employee() { fullName = prms.Query, recordId = "0" });
+                List<EmployeeSnapShot> data1 = new List<EmployeeSnapShot>();
+                data1.Add(new EmployeeSnapShot() { fullName = prms.Query, recordId = "0" });
                 return data1;
             }
             else
             {
-                List<Employee> data = GetEmployeesFiltered(prms.Query);
-                data.ForEach(s => { s.fullName = s.name.fullName; });
 
-                return data;
+                return Common.GetEmployeesFiltered(prms.Query);
             }
         }
         private List<Employee> GetEmployeesFiltered(string query)

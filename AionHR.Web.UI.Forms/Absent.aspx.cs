@@ -378,39 +378,8 @@ namespace AionHR.Web.UI.Forms
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            return Common.GetEmployeesFiltered(prms.Query);
 
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-
-            data.ForEach(s => s.fullName = s.name.fullName);
-            //  return new
-            // {
-            return data;
-            //};
-
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = "firstName";
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-          
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if (!response.Success)
-                Common.errorMessage(response);
-            return response.Items;
         }
         //private ActiveAttendanceRequest GetActiveAttendanceRequest()
         //{
@@ -497,7 +466,7 @@ namespace AionHR.Web.UI.Forms
         //    statusStore.DataSource = resp.Items;
         //    statusStore.DataBind();
         //}
-       
+
 
         private string FillApprovalStatus(short? apStatus)
         {

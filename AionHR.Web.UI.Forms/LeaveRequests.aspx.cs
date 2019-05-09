@@ -36,40 +36,21 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public object FillReplacementEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
+            return Common.GetEmployeesFiltered(prms.Query);
+
         }
-      
+       
+       
+
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<EmployeeSnapShot> data = Common.GetEmployeesFiltered(prms.Query);
-           
-            return data;
-        }
+            return Common.GetEmployeesFiltered(prms.Query);
 
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = jobInfo1.GetDepartment();
-            req.BranchId = jobInfo1.GetBranch();
-            req.PositionId = jobInfo1.GetPosition();
-            req.DivisionId = jobInfo1.GetDivision();
-            req.IncludeIsInactive = 0;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
         }
 
 

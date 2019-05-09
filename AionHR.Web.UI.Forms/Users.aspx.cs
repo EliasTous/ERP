@@ -426,7 +426,13 @@ namespace AionHR.Web.UI.Forms
             };
 
         }
+      
+
+
+        
         [DirectMethod]
+      
+
         public object FillSupervisor(string action, Dictionary<string, object> extraParams)
         {
 
@@ -434,9 +440,9 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            List<EmployeeSnapShot> data = Common.GetEmployeesFiltered(prms.Query);
 
-            data.ForEach(s => s.fullName = s.name.fullName);
+
             //  return new
             // {
 
@@ -465,26 +471,7 @@ namespace AionHR.Web.UI.Forms
             emps.Add(emp.result);
             return emps;
         }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = "firstName";
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if (!response.Success)
-                 Common.errorMessage(response);
-            return response.Items;
-        }
+        
 
 
         /// <summary>
