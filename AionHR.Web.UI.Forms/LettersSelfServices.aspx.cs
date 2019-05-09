@@ -515,14 +515,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-
-            data.ForEach(s => s.fullName = s.name.fullName);
-            //  return new
-            // {
+            List<EmployeeSnapShot>data= Common.GetEmployeesFiltered(prms.Query);
 
             if (data.Count == 0)
             {
@@ -530,29 +523,10 @@ namespace AionHR.Web.UI.Forms
             }
 
             return data;
-            //};
 
         }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = "firstName";
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if (!response.Success)
-               Common.errorMessage(response);
-            return response.Items;
-        }
+      
+      
         public void SetFullName()
         {
             X.Call("SetNameEnabled", false, employeeId.SelectedItem.Text);
