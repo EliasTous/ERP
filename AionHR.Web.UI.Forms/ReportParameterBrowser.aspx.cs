@@ -96,7 +96,7 @@ namespace AionHR.Web.UI.Forms
                 case 31201: return "EmployeeFilter.ascx";
                 case 31108: return "SponsorFilter.ascx";
                 case 51201: return "PayIdFilter.ascx";
-                case 41201: return "LeaveTypeFilter.ascx";
+                case 42101: return "LeaveTypeFilter.ascx";
                 case 31102: return "CertificateLevelFilter.ascx";
                 case 31104: return "DocumentTypeFilter.ascx";
                 case 31105: return "SalaryChangeReasonFilter.ascx";
