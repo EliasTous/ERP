@@ -207,8 +207,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
 
-
-            bankTransfer h = new bankTransfer();
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            bankTransfer h = new bankTransfer(parameters);
             h.DataSource = resp.Items;
 
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
@@ -218,7 +218,7 @@ namespace AionHR.Web.UI.Forms.Reports
             string user = _systemService.SessionHelper.GetCurrentUser();
 
             h.Parameters["User"].Value = user;
-            h.Parameters["Fitlers"].Value = texts.Text;
+          //  h.Parameters["Fitlers"].Value = texts.Text;
 
             h.CreateDocument();
 

@@ -214,8 +214,8 @@ namespace AionHR.Web.UI.Forms.Reports
             //}
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
-
-            SalaryHistory h = new SalaryHistory();
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            SalaryHistory h = new SalaryHistory(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             resp.Items.ForEach(x => { x.PaymentFrequencyString = x.paymentFrequency.HasValue? GetGlobalResourceObject("Common", ((PaymentFrequency)x.paymentFrequency).ToString()).ToString():""; });
@@ -223,7 +223,7 @@ namespace AionHR.Web.UI.Forms.Reports
             h.DataSource = resp.Items;
             string user = _systemService.SessionHelper.GetCurrentUser();
             h.Parameters["User"].Value = user;
-            h.Parameters["Filters"].Value = texts.Text;
+          
 
             h.CreateDocument();
             //string format = "Pdf";

@@ -241,14 +241,15 @@ namespace AionHR.Web.UI.Forms.Reports
             }
             );
 
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
 
-            DetailedAttendance h = new DetailedAttendance();
+            DetailedAttendance h = new DetailedAttendance(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = resp.Items;
 
-            string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            //string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            //string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
             string user = _systemService.SessionHelper.GetCurrentUser();
 
           
@@ -259,7 +260,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-            h.Parameters["Fitlers"].Value = texts.Text;
+         //   h.Parameters["Fitlers"].Value = texts.Text;
 
             h.PrintingSystem.Document.ScaleFactor = 4;
             h.CreateDocument();

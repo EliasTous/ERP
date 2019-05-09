@@ -218,7 +218,9 @@ namespace AionHR.Web.UI.Forms.Reports
             //resp.Items.ForEach(x => { x.PaymentFrequencyString = GetGlobalResourceObject("Common", ((PaymentFrequency)x.paymentFrequency).ToString()).ToString(); });
             resp.Items.ForEach(x => { x.SalaryTypeString = x.salaryType.HasValue ? GetGlobalResourceObject("Common", ((SalaryType)x.salaryType).ToString()).ToString() : ""; });
             resp.Items.ForEach(x => { x.PrevSalaryTypeString = x.prevSalaryType.HasValue? GetGlobalResourceObject("Common", ((SalaryType)x.prevSalaryType).ToString()).ToString():""; x.DateString = x.effectiveDate.ToString(_systemService.SessionHelper.GetDateformat(),new CultureInfo("en")); });
-            SalaryChanges h = new SalaryChanges();
+
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            SalaryChanges h = new SalaryChanges(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
@@ -226,7 +228,7 @@ namespace AionHR.Web.UI.Forms.Reports
             string user = _systemService.SessionHelper.GetCurrentUser();
             h.Parameters["User"].Value = user;
 
-            h.Parameters["Fitlers"].Value = texts.Text;
+         
             h.CreateDocument();
             ASPxWebDocumentViewer1.OpenReport(h);
             ASPxWebDocumentViewer1.DataBind();
