@@ -567,46 +567,43 @@ namespace AionHR.Web.UI.Forms
 
 
 
-
-
         [DirectMethod]
         public object FillSupervisor(string action, Dictionary<string, object> extraParams)
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            if (data == null)
-                data = new List<Employee>();
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-            //};
+            return Common.GetEmployeesFiltered(prms.Query);
 
         }
-
-        private List<Employee> GetEmployeesFiltered(string query)
+        [DirectMethod]
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
 
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            return Common.GetEmployeesFiltered(prms.Query);
 
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
         }
+
+      
+        //private List<Employee> GetEmployeesFiltered(string query)
+        //{
+
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    req.DepartmentId = "0";
+        //    req.BranchId = "0";
+        //    req.IncludeIsInactive = 2;
+        //    req.SortBy = GetNameFormat();
+
+        //    req.StartAt = "0";
+        //    req.Size = "20";
+        //    req.Filter = query;
+
+
+
+
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    return response.Items;
+        //}
 
         #region combobox dynamic insert
 
@@ -678,16 +675,16 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-        [DirectMethod]
-        public object FillEmployee(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
+        //[DirectMethod]
+        //public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        //{
+        //    StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+        //    List<Employee> data = GetEmployeesFiltered(prms.Query);
+        //    data.ForEach(s => { s.fullName = s.name.fullName; });
+        //    //  return new
+        //    // {
+        //    return data;
+        //}
 
        
 

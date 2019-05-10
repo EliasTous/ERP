@@ -326,24 +326,16 @@ namespace AionHR.Web.UI.Forms
             };
 
         }
+       
         [DirectMethod]
         public object FillSupervisor(string action, Dictionary<string, object> extraParams)
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            if (data == null)
-                data = new List<Employee>();
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-            //};
+            return Common.GetEmployeesFiltered(prms.Query);
 
         }
+       
 
         private List<Employee> GetEmployeeByID(string id)
         {
@@ -358,28 +350,28 @@ namespace AionHR.Web.UI.Forms
             emps.Add(emp.result);
             return emps;
         }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
+        //private List<Employee> GetEmployeesFiltered(string query)
+        //{
 
-            EmployeeListRequest req = new EmployeeListRequest();
-            if (string.IsNullOrEmpty(CurrentDepartment.Text))
-              req.DepartmentId = "0";
-            else
-            req.DepartmentId = CurrentDepartment.Text;
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = GetNameFormat();
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    if (string.IsNullOrEmpty(CurrentDepartment.Text))
+        //      req.DepartmentId = "0";
+        //    else
+        //    req.DepartmentId = CurrentDepartment.Text;
+        //    req.BranchId = "0";
+        //    req.IncludeIsInactive = 0;
+        //    req.SortBy = GetNameFormat();
 
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
+        //    req.StartAt = "0";
+        //    req.Size = "20";
+        //    req.Filter = query;
 
 
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
+
+
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    return response.Items;
+        //}
 
 
         /// <summary>

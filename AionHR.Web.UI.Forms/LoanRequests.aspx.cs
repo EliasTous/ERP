@@ -42,53 +42,51 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-            //fill employee request 
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-
-        private string GetNameFormat()
-        {
-            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
-            req.Key = "nameFormat";
-            RecordResponse<KeyValuePair<string, string>> resp = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
-            if (!resp.Success )
-            {
-                Common.errorMessage(resp);
-                return "recordId";
-            }
-
-            string paranthized = resp.result.Value;
-            if (string.IsNullOrEmpty(paranthized))
-                return "recordId";
-            paranthized = paranthized.Replace('{', ' ');
-            paranthized = paranthized.Replace('}', ',');
-            paranthized = paranthized.Substring(0, paranthized.Length - 1);
-            paranthized = paranthized.Replace(" ", string.Empty);
-            return paranthized;
+            return Common.GetEmployeesFiltered(prms.Query);
 
         }
+
+        //private List<Employee> GetEmployeesFiltered(string query)
+        //{
+        //    //fill employee request 
+
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    req.DepartmentId = "0";
+        //    req.BranchId = "0";
+        //    req.IncludeIsInactive = 0;
+        //    req.SortBy = GetNameFormat();
+
+        //    req.StartAt = "0";
+        //    req.Size = "20";
+        //    req.Filter = query;
+
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    return response.Items;
+        //}
+
+        //private string GetNameFormat()
+        //{
+        //    SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+        //    req.Key = "nameFormat";
+        //    RecordResponse<KeyValuePair<string, string>> resp = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+        //    if (!resp.Success )
+        //    {
+        //        Common.errorMessage(resp);
+        //        return "recordId";
+        //    }
+
+        //    string paranthized = resp.result.Value;
+        //    if (string.IsNullOrEmpty(paranthized))
+        //        return "recordId";
+        //    paranthized = paranthized.Replace('{', ' ');
+        //    paranthized = paranthized.Replace('}', ',');
+        //    paranthized = paranthized.Substring(0, paranthized.Length - 1);
+        //    paranthized = paranthized.Replace(" ", string.Empty);
+        //    return paranthized;
+
+        //}
 
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
 

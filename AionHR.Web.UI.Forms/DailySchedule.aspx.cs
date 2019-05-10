@@ -191,7 +191,7 @@ namespace AionHR.Web.UI.Forms
             this.branchStore.DataSource = branches.Items;
             this.branchStore.DataBind();
         }
-
+        
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
@@ -207,9 +207,9 @@ namespace AionHR.Web.UI.Forms
 
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            List<EmployeeSnapShot> data = Common.GetEmployeesFiltered(prms.Query);
 
-            data.ForEach(s => s.fullName = s.name.fullName);
+           //data.ForEach(s => s.fullName = s.name.fullName);
             //  return new
             // {
 
@@ -318,10 +318,10 @@ namespace AionHR.Web.UI.Forms
 
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            List<EmployeeSnapShot> data = Common.GetEmployeesFiltered(prms.Query);
             string recordId = employeeId.Value.ToString();
             data = data.Where(a => a.recordId != recordId).ToList();
-            data.ForEach(s => s.fullName = s.name.fullName);
+          //  data.ForEach(s => s.fullName = s.name.fullName);
             //  return new
             // {
             return data;
@@ -1165,23 +1165,23 @@ namespace AionHR.Web.UI.Forms
             return html;
         }
 
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
+        //private List<Employee> GetEmployeesFiltered(string query)
+        //{
 
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = branchId.Value.ToString();
-            req.IncludeIsInactive = 0;
-            req.SortBy = "firstName";
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    req.DepartmentId = "0";
+        //    req.BranchId = branchId.Value.ToString();
+        //    req.IncludeIsInactive = 0;
+        //    req.SortBy = "firstName";
 
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if (!response.Success)
-               Common.errorMessage(response);
-            return response.Items;
-        }
+        //    req.StartAt = "0";
+        //    req.Size = "20";
+        //    req.Filter = query;
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    if (!response.Success)
+        //       Common.errorMessage(response);
+        //    return response.Items;
+        //}
 
         private void SetExtLanguage()
         {
@@ -1308,28 +1308,28 @@ namespace AionHR.Web.UI.Forms
         }
         protected void userSelectorStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            EmployeeListRequest req = new EmployeeListRequest();
+            EmployeeSnapshotListRequest req = new EmployeeSnapshotListRequest();
             if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
             {
                 req.BranchId = "0";
             }
             else
                 req.BranchId = branchId.Value.ToString();
-            if (departmentId.Value == null || departmentId.Value.ToString() == string.Empty)
-            {
-                req.DepartmentId = "0";
-            }
-            else
-                req.DepartmentId = departmentId.Value.ToString();
+            //if (departmentId.Value == null || departmentId.Value.ToString() == string.Empty)
+            //{
+            //    req.DepartmentId = "0";
+            //}
+            //else
+            //    req.DepartmentId = departmentId.Value.ToString();
            
           
-            req.IncludeIsInactive = 0;
-            req.SortBy = "firstName";
+           // req.IncludeIsInactive = 0;
+           // req.SortBy = "firstName";
 
             req.StartAt = "0";
             req.Size = "1000";
             req.Filter = "";
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            ListResponse<EmployeeSnapShot> response = _employeeService.GetAll<EmployeeSnapShot>(req);
             if (!response.Success)
                Common.errorMessage(response);
 

@@ -247,11 +247,11 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 EmployeeListRequest request = new EmployeeListRequest();
-                request.BranchId = request.DepartmentId = request.PositionId = "0";
+         //       request.BranchId = request.DepartmentId = request.PositionId = "0";
                 request.StartAt = "0";
                 request.SortBy = "hireDate";
                 request.Size = "1";
-                request.IncludeIsInactive = 2;
+          //      request.IncludeIsInactive = 2;
                 var resp = _employeeService.GetAll<Employee>(request);
                 
                 _systemService.SessionHelper.SetStartDate(resp.Items[0].hireDate.Value);

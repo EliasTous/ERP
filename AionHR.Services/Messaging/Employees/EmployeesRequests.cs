@@ -10,20 +10,20 @@ using System.Globalization;
 public class EmployeeListRequest:ListRequest
 {
     public string paramString { get; set; }
-    public string DepartmentId { get; set; }
-    public string BranchId { get; set; }
+    //public string DepartmentId { get; set; }
+    //public string BranchId { get; set; }
 
-    public int IncludeIsInactive { get; set; }
+    //public int IncludeIsInactive { get; set; }
 
     public string SortBy { get; set; }
-    public string PositionId { get; set; }
-    public string DivisionId { get; set; }
+    //public string PositionId { get; set; }
+    //public string DivisionId { get; set; }
    
-    public string filterField
-    {
-        get; set;
+    //public string filterField
+    //{
+    //    get; set;
 
-    }
+    //}
 
 
 
@@ -35,25 +35,25 @@ public class EmployeeListRequest:ListRequest
       
         get
         {
-            if (string.IsNullOrEmpty(DepartmentId))
-                DepartmentId = "0";
-            if (string.IsNullOrEmpty(BranchId))
-                BranchId = "0";
-            if (string.IsNullOrEmpty(DivisionId))
-                DivisionId = "0";
-            if (string.IsNullOrEmpty(PositionId))
-                PositionId = "0";
+            //if (string.IsNullOrEmpty(DepartmentId))
+            //    DepartmentId = "0";
+            //if (string.IsNullOrEmpty(BranchId))
+            //    BranchId = "0";
+            //if (string.IsNullOrEmpty(DivisionId))
+            //    DivisionId = "0";
+            //if (string.IsNullOrEmpty(PositionId))
+            //    PositionId = "0";
             if (string.IsNullOrEmpty(paramString))
                 paramString = "";
             parameters = base.Parameters;
            
-            parameters.Add("_departmentId", DepartmentId);
-            parameters.Add("_branchId", BranchId);
-            parameters.Add("_positionId", PositionId);
-            parameters.Add("_includeInactive", IncludeIsInactive.ToString());
+            //parameters.Add("_departmentId", DepartmentId);
+            //parameters.Add("_branchId", BranchId);
+            //parameters.Add("_positionId", PositionId);
+            //parameters.Add("_includeInactive", IncludeIsInactive.ToString());
             parameters.Add("_sortBy", SortBy);
-            parameters.Add("_divisionId", DivisionId);
-            parameters.Add("_filterField", (string.IsNullOrEmpty(filterField)?"0":filterField));
+            //parameters.Add("_divisionId", DivisionId);
+            //parameters.Add("_filterField", (string.IsNullOrEmpty(filterField)?"0":filterField));
             parameters.Add("_params", paramString); 
 
 

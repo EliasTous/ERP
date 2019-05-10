@@ -116,10 +116,10 @@ namespace AionHR.Web.UI.Forms
         {
 
             EmployeeListRequest empRequest = new EmployeeListRequest();
-            empRequest.BranchId = "0";
-            empRequest.DepartmentId = "0";
+            //empRequest.BranchId = "0";
+            //empRequest.DepartmentId = "0";
          
-            empRequest.IncludeIsInactive = 0;
+            //empRequest.IncludeIsInactive = 0;
             string sortby= GetNameFormat();
             empRequest.SortBy = "lastName";
 
