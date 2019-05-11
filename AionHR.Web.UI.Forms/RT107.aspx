@@ -698,9 +698,9 @@
                             <Items>
                                <ext:ComboBox runat="server" ID="inactivePref" Editable="false" FieldLabel="<%$ Resources: Status %>">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: All %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: ActiveOnly %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: InactiveOnly %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: All %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: ActiveOnly %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: InactiveOnly %>" Value="2" />
                                     </Items>
                                     <Listeners>
                                         <Change Handler="App.Store1.reload()" />

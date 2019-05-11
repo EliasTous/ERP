@@ -211,8 +211,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
 
-
-            PayrollPeriodSummary h = new PayrollPeriodSummary();
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            PayrollPeriodSummary h = new PayrollPeriodSummary(parameters);
             h.DataSource = resp.Items;
 
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
@@ -227,7 +227,7 @@ namespace AionHR.Web.UI.Forms.Reports
             //}
             h.Parameters["User"].Value = user;
 
-            h.Parameters["Fitlers"].Value = texts.Text;
+           // h.Parameters["Fitlers"].Value = texts.Text;
              h.CreateDocument();
 
 
