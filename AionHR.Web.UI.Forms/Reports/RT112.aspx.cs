@@ -228,35 +228,35 @@ namespace AionHR.Web.UI.Forms.Reports
          
          
             EmployeesNotes h = new EmployeesNotes(parameters);
-            List<AionHR.Model.Reports.RT112> EN = new List<AionHR.Model.Reports.RT112>();
+            //List<AionHR.Model.Reports.RT112> EN = new List<AionHR.Model.Reports.RT112>();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            var d= resp.Items.GroupBy(x => x.employeeName);
-            
+            //   var d= resp.Items.GroupBy(x => x.employeeName);
 
-            d.ToList().ForEach(x =>
-            {
+            resp.Items.ForEach(x => x.dateString = x.date.ToString(_systemService.SessionHelper.GetDateformat() + " HH:MM"));
+          //  d.ToList().ForEach(x =>
+          //  {
 
-                //EN.Add(x.ToList()[0]);
-                //x.ToList().RemoveAt(0);
-                x.ToList()[0].dateString = x.ToList()[0].date.ToString(_systemService.SessionHelper.GetDateformat() + " HH:MM");
-                EN.Add(x.ToList()[0]);
-                foreach (var e in x.Skip(1))
-                {
-                    e.employeeName = "";
-                    e.dateString = e.date.ToString(_systemService.SessionHelper.GetDateformat() + " HH:MM");
-                    EN.Add(e);
-                }
+          //      //EN.Add(x.ToList()[0]);
+          //      //x.ToList().RemoveAt(0);
+          //      x.ToList()[0].dateString = x.ToList()[0].date.ToString(_systemService.SessionHelper.GetDateformat() + " HH:MM");
+          //      EN.Add(x.ToList()[0]);
+          //      foreach (var e in x.Skip(1))
+          //      {
+          //          e.employeeName = "";
+          //          e.dateString = e.date.ToString(_systemService.SessionHelper.GetDateformat() + " HH:MM");
+          //          EN.Add(e);
+          //      }
                
               
 
-            }
+          //  }
 
-          );
+          //);
 
 
 
-            h.DataSource = EN;
+            h.DataSource = resp.Items;
 
             //  string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
             //  string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));

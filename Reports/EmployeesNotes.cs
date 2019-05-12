@@ -14,6 +14,7 @@ namespace Reports
         {
             InitializeComponent();
             printHeader(parameters);
+            xrTableCell14.CanGrow = true;
         }
        
         private void printHeader(Dictionary<string, string> parameters)
@@ -89,10 +90,10 @@ namespace Reports
         private void xrTableCell10_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
 
-            if (string.IsNullOrEmpty((sender as XRLabel).Text))
-                (sender as XRTableCell).Borders = DevExpress.XtraPrinting.BorderSide.Left;
-            else
-                (sender as XRTableCell).Borders = DevExpress.XtraPrinting.BorderSide.All;
+            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
+            //    (sender as XRTableCell).Borders = DevExpress.XtraPrinting.BorderSide.Left;
+            //else
+            //    (sender as XRTableCell).Borders = DevExpress.XtraPrinting.BorderSide.All;
         }
 
         private void GroupHeader1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
@@ -103,6 +104,12 @@ namespace Reports
         private void Detail_BeforePrint(object sender, PrintEventArgs e)
         {
             e.Cancel = RowCount == 0;
+        }
+       
+
+        private void xrTableCell14_BeforePrint(object sender, PrintEventArgs e)
+        {
+           
         }
     }
 }
