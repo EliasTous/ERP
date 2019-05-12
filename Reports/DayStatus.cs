@@ -544,8 +544,8 @@ public class DayStatus : XtraReport
             // 
             this.xrTableCell19.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "checkIn2")});
-            resources.ApplyResources(this.xrTableCell19, "xrTableCell19");
             this.xrTableCell19.Name = "xrTableCell19";
+            resources.ApplyResources(this.xrTableCell19, "xrTableCell19");
             // 
             // xrLabel53
             // 
@@ -575,8 +575,8 @@ public class DayStatus : XtraReport
             // 
             this.xrTableCell20.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "dateString")});
-            resources.ApplyResources(this.xrTableCell20, "xrTableCell20");
             this.xrTableCell20.Name = "xrTableCell20";
+            resources.ApplyResources(this.xrTableCell20, "xrTableCell20");
             // 
             // xrTable2
             // 
@@ -612,73 +612,73 @@ public class DayStatus : XtraReport
             this.xrTableCell28,
             this.xrTableCell22,
             this.xrTableCell29});
-            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             this.xrTableRow2.Name = "xrTableRow2";
+            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             // 
             // xrTableCell35
             // 
             this.xrTableCell35.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName.firstName")});
-            resources.ApplyResources(this.xrTableCell35, "xrTableCell35");
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName")});
             this.xrTableCell35.Name = "xrTableCell35";
+            resources.ApplyResources(this.xrTableCell35, "xrTableCell35");
             // 
             // xrTableCell31
             // 
             this.xrTableCell31.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "dowString")});
-            resources.ApplyResources(this.xrTableCell31, "xrTableCell31");
             this.xrTableCell31.Name = "xrTableCell31";
+            resources.ApplyResources(this.xrTableCell31, "xrTableCell31");
             // 
             // xrTableCell32
             // 
             this.xrTableCell32.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "checkIn1")});
-            resources.ApplyResources(this.xrTableCell32, "xrTableCell32");
             this.xrTableCell32.Name = "xrTableCell32";
+            resources.ApplyResources(this.xrTableCell32, "xrTableCell32");
             // 
             // xrTableCell30
             // 
             this.xrTableCell30.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "checkOut1")});
-            resources.ApplyResources(this.xrTableCell30, "xrTableCell30");
             this.xrTableCell30.Name = "xrTableCell30";
+            resources.ApplyResources(this.xrTableCell30, "xrTableCell30");
             // 
             // xrTableCell27
             // 
             this.xrTableCell27.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "checkOut2")});
-            resources.ApplyResources(this.xrTableCell27, "xrTableCell27");
             this.xrTableCell27.Name = "xrTableCell27";
+            resources.ApplyResources(this.xrTableCell27, "xrTableCell27");
             // 
             // xrTableCell25
             // 
             this.xrTableCell25.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "checkIn3")});
-            resources.ApplyResources(this.xrTableCell25, "xrTableCell25");
             this.xrTableCell25.Name = "xrTableCell25";
+            resources.ApplyResources(this.xrTableCell25, "xrTableCell25");
             // 
             // xrTableCell34
             // 
             this.xrTableCell34.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "checkOut3")});
-            resources.ApplyResources(this.xrTableCell34, "xrTableCell34");
             this.xrTableCell34.Name = "xrTableCell34";
+            resources.ApplyResources(this.xrTableCell34, "xrTableCell34");
             // 
             // xrTableCell23
             // 
             this.xrTableCell23.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "workingHours")});
-            resources.ApplyResources(this.xrTableCell23, "xrTableCell23");
             this.xrTableCell23.Name = "xrTableCell23";
             this.xrTableCell23.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell23, "xrTableCell23");
             // 
             // xrTableCell33
             // 
             this.xrTableCell33.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "scName")});
-            resources.ApplyResources(this.xrTableCell33, "xrTableCell33");
             this.xrTableCell33.Name = "xrTableCell33";
             this.xrTableCell33.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell33, "xrTableCell33");
             // 
             // xrTableCell36
             // 
@@ -687,10 +687,10 @@ public class DayStatus : XtraReport
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell36.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "jobTasks")});
-            resources.ApplyResources(this.xrTableCell36, "xrTableCell36");
             this.xrTableCell36.Name = "xrTableCell36";
             this.xrTableCell36.StylePriority.UseBorders = false;
             this.xrTableCell36.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell36, "xrTableCell36");
             // 
             // xrTableCell26
             // 
@@ -699,10 +699,10 @@ public class DayStatus : XtraReport
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell26.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "specialTasks")});
-            resources.ApplyResources(this.xrTableCell26, "xrTableCell26");
             this.xrTableCell26.Name = "xrTableCell26";
             this.xrTableCell26.StylePriority.UseBorders = false;
             this.xrTableCell26.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell26, "xrTableCell26");
             // 
             // xrTableCell24
             // 
@@ -711,10 +711,10 @@ public class DayStatus : XtraReport
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell24.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "lateness_A")});
-            resources.ApplyResources(this.xrTableCell24, "xrTableCell24");
             this.xrTableCell24.Name = "xrTableCell24";
             this.xrTableCell24.StylePriority.UseBorders = false;
             this.xrTableCell24.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell24, "xrTableCell24");
             // 
             // xrTableCell21
             // 
@@ -723,10 +723,10 @@ public class DayStatus : XtraReport
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell21.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "lateness_B")});
-            resources.ApplyResources(this.xrTableCell21, "xrTableCell21");
             this.xrTableCell21.Name = "xrTableCell21";
             this.xrTableCell21.StylePriority.UseBorders = false;
             this.xrTableCell21.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell21, "xrTableCell21");
             // 
             // xrTableCell28
             // 
@@ -735,26 +735,26 @@ public class DayStatus : XtraReport
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell28.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "lateness_D")});
-            resources.ApplyResources(this.xrTableCell28, "xrTableCell28");
             this.xrTableCell28.Name = "xrTableCell28";
             this.xrTableCell28.StylePriority.UseBorders = false;
             this.xrTableCell28.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell28, "xrTableCell28");
             // 
             // xrTableCell22
             // 
             this.xrTableCell22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "lateness")});
-            resources.ApplyResources(this.xrTableCell22, "xrTableCell22");
             this.xrTableCell22.Name = "xrTableCell22";
             this.xrTableCell22.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell22, "xrTableCell22");
             // 
             // xrTableCell29
             // 
             this.xrTableCell29.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "overtime")});
-            resources.ApplyResources(this.xrTableCell29, "xrTableCell29");
             this.xrTableCell29.Name = "xrTableCell29";
             this.xrTableCell29.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell29, "xrTableCell29");
             // 
             // xrLabel70
             // 
@@ -1266,7 +1266,6 @@ public class DayStatus : XtraReport
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel100});
-            resources.ApplyResources(this.GroupHeader1, "GroupHeader1");
             this.GroupHeader1.Level = 1;
             this.GroupHeader1.Name = "GroupHeader1";
             this.GroupHeader1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.GroupHeader1_BeforePrint);
@@ -1305,7 +1304,7 @@ public class DayStatus : XtraReport
             this.xrControlStyle2,
             this.xrControlStyle3,
             this.xrControlStyle4});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();

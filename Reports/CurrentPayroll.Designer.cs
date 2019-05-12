@@ -155,23 +155,23 @@
             this.xrTableCell1,
             this.xrTableCell2,
             this.xrTableCell3});
-            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             this.xrTableRow1.Name = "xrTableRow1";
+            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             // 
             // xrTableCell1
             // 
-            resources.ApplyResources(this.xrTableCell1, "xrTableCell1");
             this.xrTableCell1.Name = "xrTableCell1";
+            resources.ApplyResources(this.xrTableCell1, "xrTableCell1");
             // 
             // xrTableCell2
             // 
-            resources.ApplyResources(this.xrTableCell2, "xrTableCell2");
             this.xrTableCell2.Name = "xrTableCell2";
+            resources.ApplyResources(this.xrTableCell2, "xrTableCell2");
             // 
             // xrTableCell3
             // 
-            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             this.xrTableCell3.Name = "xrTableCell3";
+            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             // 
             // xrTableRow2
             // 
@@ -179,23 +179,23 @@
             this.xrTableCell4,
             this.xrTableCell5,
             this.xrTableCell6});
-            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             this.xrTableRow2.Name = "xrTableRow2";
+            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             // 
             // xrTableCell4
             // 
-            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             this.xrTableCell4.Name = "xrTableCell4";
+            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             // 
             // xrTableCell5
             // 
-            resources.ApplyResources(this.xrTableCell5, "xrTableCell5");
             this.xrTableCell5.Name = "xrTableCell5";
+            resources.ApplyResources(this.xrTableCell5, "xrTableCell5");
             // 
             // xrTableCell6
             // 
-            resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             this.xrTableCell6.Name = "xrTableCell6";
+            resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             // 
             // pageFooterBand1
             // 
@@ -324,7 +324,6 @@
             this.DetailReport.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.DetailReport.DataMember = "Headers";
             this.DetailReport.DataSource = this.objectDataSource1;
-            resources.ApplyResources(this.DetailReport, "DetailReport");
             this.DetailReport.Level = 0;
             this.DetailReport.Name = "DetailReport";
             // 
@@ -369,7 +368,6 @@
             this.Detail2});
             this.DetailReport1.DataMember = "Names";
             this.DetailReport1.DataSource = this.objectDataSource1;
-            resources.ApplyResources(this.DetailReport1, "DetailReport1");
             this.DetailReport1.Level = 1;
             this.DetailReport1.Name = "DetailReport1";
             this.DetailReport1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.DetailReport1_BeforePrint);
@@ -490,7 +488,6 @@
             this.DetailReport3});
             this.DetailReport2.DataMember = "Payrolls";
             this.DetailReport2.DataSource = this.objectDataSource1;
-            resources.ApplyResources(this.DetailReport2, "DetailReport2");
             this.DetailReport2.Level = 2;
             this.DetailReport2.Name = "DetailReport2";
             this.DetailReport2.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.DetailReport2_BeforePrint);
@@ -507,7 +504,6 @@
             this.DetailReport3.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.DetailReport3.DataMember = "Payrolls.Entitlements";
             this.DetailReport3.DataSource = this.objectDataSource1;
-            resources.ApplyResources(this.DetailReport3, "DetailReport3");
             this.DetailReport3.Level = 0;
             this.DetailReport3.Name = "DetailReport3";
             // 
@@ -638,7 +634,6 @@
             this.Detail5});
             this.DetailReport4.DataMember = "Totals";
             this.DetailReport4.DataSource = this.objectDataSource1;
-            resources.ApplyResources(this.DetailReport4, "DetailReport4");
             this.DetailReport4.Level = 3;
             this.DetailReport4.Name = "DetailReport4";
             this.DetailReport4.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.DetailReport4_BeforePrint);
@@ -739,7 +734,7 @@
             this.FieldCaption,
             this.PageInfo,
             this.DataField});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
