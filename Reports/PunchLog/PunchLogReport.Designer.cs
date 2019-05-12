@@ -112,6 +112,7 @@
             this.fieldemployeeName1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldemployeeName1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.fieldemployeeName1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldemployeeName1.Appearance.FieldValue.WordWrap = true;
             this.fieldemployeeName1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.fieldemployeeName1.AreaIndex = 0;
             resources.ApplyResources(this.fieldemployeeName1, "fieldemployeeName1");

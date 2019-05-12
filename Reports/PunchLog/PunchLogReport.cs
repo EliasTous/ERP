@@ -18,8 +18,8 @@ namespace Reports.PunchLog
             InitializeComponent();
             if (maxPunchCount > 0)
             {
-                fieldPunch1.Width = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / maxPunchCount;
-                fieldPunch1.MinWidth = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / maxPunchCount;
+                fieldpunchId.Width = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / maxPunchCount;
+                fieldpunchId.MinWidth = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / maxPunchCount;
             }
             this.PaperKind = PaperKind.A4;
             this.Landscape = false;

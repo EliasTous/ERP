@@ -275,7 +275,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 }
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             PunchLogReport h = new PunchLogReport(newPunchLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat(), parameters,maxPunchCount);
-          //  h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
+            h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 

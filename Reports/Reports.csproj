@@ -557,9 +557,6 @@
       <DependentUpon>PunchLogReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PunchLog\PunchLogReport.en-US.resx">
-      <DependentUpon>PunchLogReport.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PunchLog\PunchLogReport.resx">
       <DependentUpon>PunchLogReport.cs</DependentUpon>
       <SubType>Designer</SubType>

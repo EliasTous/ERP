@@ -123,6 +123,10 @@
   <data name="fieldemployeeName1.Caption" xml:space="preserve">
     <value>Employee</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="fieldemployeeName1.RowValueLineCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
   <data name="fielddayId1.Caption" xml:space="preserve">
     <value>Date</value>
   </data>
@@ -132,9 +136,8 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrPivotGrid1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>817, 115</value>
+    <value>794.5, 115</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Detail.HeightF" type="System.Single, mscorlib">
     <value>115</value>
   </data>
