@@ -221,7 +221,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 if (!resp.Success)
                     Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
                 int counter = 1;
-                List<AionHR.Model.Reports.RT308> newPunchLogsList = new List<AionHR.Model.Reports.RT308>();
+            int maxPunchCount = 0;
+            List<AionHR.Model.Reports.RT308> newPunchLogsList = new List<AionHR.Model.Reports.RT308>();
                 AionHR.Model.Reports.RT308 record = new AionHR.Model.Reports.RT308();
                 DateTime parsed = DateTime.Now;
 
@@ -258,7 +259,8 @@ namespace AionHR.Web.UI.Forms.Reports
                                     record.punchId = String.Format("{0} {1}", "البصمة ", (i + 1));
                                 else
                                     record.punchId = String.Format("{0} {1}", "Punch ", (i + 1));
-                              
+                                if (maxPunchCount < counter)
+                                    maxPunchCount = counter;
                                 counter++;
                                 newPunchLogsList.Add(record);
                             }
@@ -272,8 +274,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 }
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-            PunchLogReport h = new PunchLogReport(newPunchLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat(), parameters);
-            h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
+            PunchLogReport h = new PunchLogReport(newPunchLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat(), parameters,maxPunchCount);
+          //  h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 

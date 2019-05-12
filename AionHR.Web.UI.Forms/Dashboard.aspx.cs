@@ -331,7 +331,7 @@ namespace AionHR.Web.UI.Forms
                 string rep_params = vals.Text;
                 ReportGenericRequest req2 = new ReportGenericRequest();
                 req2.paramString = rep_params;
-                ListResponse<DashboardItem> dashoard = _dashBoardService.ChildGetAll<DashboardItem>(req2);
+               ListResponse<DashboardItem> dashoard = _dashBoardService.ChildGetAll<DashboardItem>(req2);
                 if (!dashoard.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", dashoard.ErrorCode) != null ? GetGlobalResourceObject("Errors", dashoard.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + dashoard.LogId : dashoard.Summary).Show();

@@ -13,9 +13,18 @@ namespace Reports.ShiftLogs
 {
     public partial class ShiftLogsReport : DevExpress.XtraReports.UI.XtraReport
     {
-        public ShiftLogsReport(List<RT309> items, bool isArabic,string DateFormat, Dictionary<string, string> parameters)
+        
+
+        public ShiftLogsReport(List<RT309> items, bool isArabic,string DateFormat, Dictionary<string, string> parameters,int maxShiftCount)
         {
+            this.PaperKind = PaperKind.A4;
+           // this.Landscape = true;
             InitializeComponent();
+            if (maxShiftCount > 0)
+            {
+                fieldShiftId1.Width = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / maxShiftCount ;
+                fieldShiftId1.MinWidth = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / maxShiftCount ;
+            }
            
             fielddayId1.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             fielddayId1.ValueFormat.FormatString = DateFormat;
@@ -197,6 +206,11 @@ namespace Reports.ShiftLogs
         private void ShiftLogsReport_AfterPrint(object sender, EventArgs e)
         {
         
+        }
+
+        private void xrPivotGrid1_CustomColumnWidth(object sender, DevExpress.XtraReports.UI.PivotGrid.PivotCustomColumnWidthEventArgs e)
+        {
+           
         }
     }
 

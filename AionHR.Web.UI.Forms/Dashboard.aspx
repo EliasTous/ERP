@@ -819,7 +819,7 @@
         }
         function displayLeaveFirstCell(d) {
 
-            var str = "<div style= " + getStyle() + ">" + d.name;
+            var str = "<div style= " + getStyle() + ">" + d.employeeName;
             str += "<br/>";
             if (d.branchName != null )
                 str += d.branchName
@@ -1950,6 +1950,7 @@
                                                                                 <ext:ModelField Name="leaveId" />
                                                                                  <ext:ModelField Name="arId" />
                                                                                    <ext:ModelField Name="arName" />
+                                                                                 <ext:ModelField Name="employeeName" />
 
                                                                                 
                                                                             

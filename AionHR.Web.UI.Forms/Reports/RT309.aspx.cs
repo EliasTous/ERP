@@ -220,16 +220,17 @@ namespace AionHR.Web.UI.Forms.Reports
                 if (!resp.Success)
                     Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
                 int counter = 1;
-                List<AionHR.Model.Reports.RT309> newShiftLogsList = new List<AionHR.Model.Reports.RT309>();
+            int maxShiftCount = 0;
+            List<AionHR.Model.Reports.RT309> newShiftLogsList = new List<AionHR.Model.Reports.RT309>();
                 AionHR.Model.Reports.RT309 record = new AionHR.Model.Reports.RT309();
                 DateTime parsed = DateTime.Now;
 
 
-
-                foreach (var e in resp.Items.GroupBy(x=>x.employeeName))
+         
+            foreach (var e in resp.Items.GroupBy(x=>x.employeeName))
                 {
 
-                   
+               
                     e.ToList().ForEach(y =>
                     {
                         counter = 1;
@@ -258,9 +259,12 @@ namespace AionHR.Web.UI.Forms.Reports
                                     record.shiftId = String.Format("{0} {1}", "الفترة ",counter);
                                 else
                                     record.shiftId = String.Format("{0} {1}", "Shift ", counter);
-                                        counter++;
+                                if (maxShiftCount < counter)
+                                    maxShiftCount = counter;
+                                
+                                counter++;
                                 newShiftLogsList.Add(record);
-
+                               
 
                             }
                             );
@@ -271,11 +275,11 @@ namespace AionHR.Web.UI.Forms.Reports
                   
                 }
                 Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-                ShiftLogsReport h = new ShiftLogsReport(newShiftLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat(), parameters);
-                
+                ShiftLogsReport h = new ShiftLogsReport(newShiftLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat(), parameters, maxShiftCount);
+               // BasicShiftLogReport h = new BasicShiftLogReport(newShiftLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat(), parameters, maxShiftCount);
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-                h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
+             //  h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
 
             //string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
             //string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));

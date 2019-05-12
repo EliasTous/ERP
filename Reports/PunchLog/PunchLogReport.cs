@@ -13,12 +13,19 @@ namespace Reports.PunchLog
 {
     public partial class PunchLogReport : DevExpress.XtraReports.UI.XtraReport
     {
-        public PunchLogReport(List<RT308> items, bool isArabic,string DateFormat, Dictionary<string, string> parameters)
+        public PunchLogReport(List<RT308> items, bool isArabic,string DateFormat, Dictionary<string, string> parameters,int maxPunchCount)
         {
             InitializeComponent();
-          
+            if (maxPunchCount > 0)
+            {
+                fieldPunch1.Width = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / maxPunchCount;
+                fieldPunch1.MinWidth = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / maxPunchCount;
+            }
+            this.PaperKind = PaperKind.A4;
+            this.Landscape = false;
             fielddayId1.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             fielddayId1.ValueFormat.FormatString = DateFormat;
+
             if (isArabic)
             {
                 fieldemployeeName1.Caption = "الموظف";

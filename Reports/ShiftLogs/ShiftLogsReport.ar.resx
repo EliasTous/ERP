@@ -147,4 +147,7 @@
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>
   </data>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>بواسطة :</value>
+  </data>
 </root>
