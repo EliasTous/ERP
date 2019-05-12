@@ -369,7 +369,7 @@ namespace AionHR.Web.UI.Forms
 
             request.Size = "50";
             request.StartAt = e.Start.ToString();
-            request.SortBy = "firstName";
+            request.SortBy = "recordId";
             
             request.Filter = "";
             ListResponse<LeaveRequest> routers = _leaveManagementService.ChildGetAll<LeaveRequest>(request);
