@@ -105,7 +105,7 @@
                                         </ext:Button>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
-                                                <Click Handler="callbackPanel.PerformCallback('1');" />
+                                                <Click Handler="App.firstStore.reload();" />
                                             </Listeners>
                                         </ext:Button>
                                        
