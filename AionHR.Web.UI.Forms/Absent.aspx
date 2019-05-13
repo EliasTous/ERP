@@ -13,7 +13,7 @@
      <script type="text/javascript" src="Scripts/ReportsCommon.js?id=10"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
-    <script type="text/javascript">
+     <script type="text/javascript">
   
         var LinkRender = function (val, metaData, record, rowIndex, colIndex, store, apstatusString) {
 
