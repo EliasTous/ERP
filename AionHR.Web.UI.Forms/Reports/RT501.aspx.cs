@@ -323,7 +323,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
           
             h.Parameters["User"].Value = user;
-          
+            h.Parameters["Filters"].Value = texts.Text;
 
 
                
