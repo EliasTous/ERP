@@ -23,7 +23,7 @@ namespace AionHR.Model.Company.Structure
         public bool? isInactive { get; set; }
         [PropertyID("21040_04")]
         [ApplySecurity]
-       
+        public short activeStatus { get; set; }
         public int? supervisorId { get; set; }
         [PropertyID("21040_04")]
         [ApplySecurity]
@@ -41,7 +41,7 @@ namespace AionHR.Model.Company.Structure
         public string parentRef { get; set; }
         [PropertyID("21040_04")]
         [ApplySecurity]
-        public string supervisorName { get; set; }
+        public string managerName { get; set; }
         [PropertyID("21040_06")]
         [ApplySecurity]
         public string scId { get; set; }

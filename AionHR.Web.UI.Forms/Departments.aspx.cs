@@ -182,21 +182,22 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = response.result.supervisorId,
-                                    fullName =response.result.supervisorName
+                                    fullName =response.result.managerName
                                 }
                            });
                         supervisorId.SetValue(response.result.supervisorId);
-                       
-
+                      
                     }
                     this.BasicInfoTab.SetValues(response.result);
+                    isInactiveCheck.SetValue(response.result.activeStatus == (Int16)ActiveStatus.ACTIVE ? false : true);
+                    isInactiveCheck.Checked = response.result.activeStatus == (Int16)ActiveStatus.ACTIVE ? false : true;
                     //if (!string.IsNullOrEmpty(response.result.scId))
                     //    scId.Select(response.result.scName);
                     //if (!string.IsNullOrEmpty(response.result.caId.ToString()))
                     //    caId.Select(response.result.caName);
                     //if (response.result.type != null)
                     //    type.Select(response.result.type); 
-                 
+
                     // InitCombos(response.result);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -474,8 +475,16 @@ namespace AionHR.Web.UI.Forms
             DepartmentListRequest request = new DepartmentListRequest();
             request.Filter = searchTrigger.Text;
             request.type = 0;
-            request.isInactive = 2; 
+            request.isInactive = 0; 
             ListResponse<Department> branches = _branchService.ChildGetAll<Department>(request);
+            branches.Items.ForEach(x =>
+            {
+                if (x.activeStatus == (Int16)ActiveStatus.ACTIVE)
+                    x.isInactive = false;
+                else
+                    x.isInactive = true;
+
+            });
             if (!branches.Success)
             {
                 Common.errorMessage(branches);
@@ -507,11 +516,16 @@ namespace AionHR.Web.UI.Forms
             // Define the object to add or edit as null
             if (supervisorId.SelectedItem.Text != null)
 
-                b.supervisorName = supervisorId.SelectedItem.Text;
+                b.managerName = supervisorId.SelectedItem.Text;
             if (parentId.SelectedItem != null)
                 b.parentName = parentId.SelectedItem.Text;
             if (!b.isInactive.HasValue)
+            {
                 b.isInactive = false;
+                b.activeStatus = (Int16)ActiveStatus.ACTIVE;
+            }
+            else
+                b.activeStatus = (Int16)ActiveStatus.INACTIVE;
             if (scId.SelectedItem != null)
                 b.scId = scId.SelectedItem.Value;
            
@@ -539,7 +553,7 @@ namespace AionHR.Web.UI.Forms
                     {
 
                         //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                        Store1.Reload();
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -574,6 +588,7 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     int index = Convert.ToInt32(id);//getting the id of the record
+
                     PostRequest<Department> request = new PostRequest<Department>();
                     request.entity = b;
                     PostResponse<Department> r = _branchService.ChildAddOrUpdate<Department>(request);                   //Step 1 Selecting the object or building up the object for update purpose
@@ -591,16 +606,17 @@ namespace AionHR.Web.UI.Forms
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(index);
-                        BasicInfoTab.UpdateRecord(record);
+                        //ModelProxy record = this.Store1.GetById(index);
+                        //BasicInfoTab.UpdateRecord(record);
 
-                        record.Set("supervisorName", b.supervisorName);
-                        record.Set("parentName", b.parentName);
-                        record.Set("caName", b.caName);
-                        record.Set("scName", b.scName);
+                        //record.Set("managerName", b.managerName);
+                        //record.Set("parentName", b.parentName);
+                        //record.Set("caName", b.caName);
+                        //record.Set("scName", b.scName);
 
 
-                        record.Commit();
+                        //record.Commit();
+                        Store1.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,

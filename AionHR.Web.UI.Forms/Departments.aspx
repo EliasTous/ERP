@@ -54,7 +54,7 @@
                         <ext:ModelField Name="name" />
                         <ext:ModelField Name="departmentRef" />
                         <ext:ModelField Name="supervisorId" />
-                        <ext:ModelField Name="supervisorName"  IsComplex="true" />
+                        <ext:ModelField Name="managerName" />
 
                         <ext:ModelField Name="parentName" />
                         <ext:ModelField Name="parentId" />
@@ -177,8 +177,8 @@
                             <ext:Column Visible="false" ID="ColparentId" MenuDisabled="true" runat="server" DataIndex="parentId" Flex="2" Hideable="false" />
                             <ext:Column Visible="false" ID="ColsupervisorId" MenuDisabled="true" runat="server" DataIndex="supervisorId" Flex="1" Hideable="false" />
                             <ext:Column ID="ColParentName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldParentName%>" DataIndex="parentName" Flex="1" Hideable="false" />
-                            <ext:Column ID="ColSvName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSvFullName%>" DataIndex="supervisorName" Flex="1" Hideable="false" >
-                                <Renderer Handler="return record.data['supervisorName'].fullName;" />
+                            <ext:Column ID="ColSvName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSvFullName%>" DataIndex="managerName" Flex="1" Hideable="false" >
+                              
                                 </ext:Column>
                              <ext:Column ID="scName" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldAttendanceSchedule%>" DataIndex="scName" width="150" Hideable="false" />
                              <ext:Column ID="colCaName" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldWorkingCalendar%>" DataIndex="caName" width="150" Hideable="false" Visible="false"/>
@@ -428,7 +428,7 @@
                                 </ext:ComboBox>
                                <ext:Panel runat="server" Layout="HBoxLayout" ><Items>
                                 <%--   <ext:Checkbox ID="isLeaveAuth" runat="server" LabelWidth="130" FieldLabel="<%$ Resources: isLeaveAuth%>" DataIndex="isLeaveAuth" Name="isLeaveAuth" InputValue="true"  />--%>
-                                 <ext:Checkbox ID="isInactiveCheck" runat="server"  FieldLabel="<%$ Resources: FieldIsInactive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
+                                 <ext:Checkbox ID="isInactiveCheck" runat="server"  FieldLabel="<%$ Resources: FieldIsInactive%>" DataIndex="isInactive" Name="isInactive" InputValue="true"  />
                                 </Items></ext:Panel>
                             </Items>
 

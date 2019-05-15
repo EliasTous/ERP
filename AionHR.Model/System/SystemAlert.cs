@@ -15,7 +15,7 @@ namespace AionHR.Model.System
         public bool isActive { get; set; }
         [PropertyID("20090_02")]
         public int alertId { get; set; }
-
+        public short activeStatus { get; set; }
 
         //[PropertyID("20090_03")]
         //public short sendTo { get; set; }
