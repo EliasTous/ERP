@@ -526,10 +526,10 @@ Hours
     <value>Parameter1</value>
   </data>
   <data name="xrLabel33.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>296.449127, 0</value>
+    <value>342.282471, 0</value>
   </data>
   <data name="xrLabel33.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>236.458313, 23</value>
+    <value>371.4583, 23</value>
   </data>
   <data name="xrLabel33.Text" xml:space="preserve">
     <value>xrLabel33</value>
@@ -538,10 +538,10 @@ Hours
     <value>264.157471, 0</value>
   </data>
   <data name="xrLabel32.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>32.29167, 23</value>
+    <value>78.125, 23</value>
   </data>
   <data name="xrLabel32.Text" xml:space="preserve">
-    <value>By</value>
+    <value>Printed by :</value>
   </data>
   <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>21.9907436, 0</value>

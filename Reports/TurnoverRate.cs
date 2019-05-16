@@ -185,38 +185,38 @@ namespace Reports
             this.xrTableCell2,
             this.xrTableCell3,
             this.xrTableCell4});
-            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             this.xrTableRow1.Name = "xrTableRow1";
+            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             // 
             // xrTableCell1
             // 
             this.xrTableCell1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "MonthString")});
-            resources.ApplyResources(this.xrTableCell1, "xrTableCell1");
             this.xrTableCell1.Name = "xrTableCell1";
+            resources.ApplyResources(this.xrTableCell1, "xrTableCell1");
             // 
             // xrTableCell2
             // 
             this.xrTableCell2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "terminated")});
-            resources.ApplyResources(this.xrTableCell2, "xrTableCell2");
             this.xrTableCell2.Name = "xrTableCell2";
+            resources.ApplyResources(this.xrTableCell2, "xrTableCell2");
             // 
             // xrTableCell3
             // 
             this.xrTableCell3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "avgHC")});
-            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             this.xrTableCell3.Name = "xrTableCell3";
             xrSummary1.Func = DevExpress.XtraReports.UI.SummaryFunc.Avg;
             this.xrTableCell3.Summary = xrSummary1;
+            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             // 
             // xrTableCell4
             // 
             this.xrTableCell4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "rate", "{0:0.00%}")});
-            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             this.xrTableCell4.Name = "xrTableCell4";
+            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             // 
             // TopMargin
             // 
@@ -232,18 +232,18 @@ namespace Reports
             // 
             // groupHeaderBand1
             // 
-            resources.ApplyResources(this.groupHeaderBand1, "groupHeaderBand1");
             this.groupHeaderBand1.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
             new DevExpress.XtraReports.UI.GroupField("year", DevExpress.XtraReports.UI.XRColumnSortOrder.Descending)});
+            resources.ApplyResources(this.groupHeaderBand1, "groupHeaderBand1");
             this.groupHeaderBand1.Level = 1;
             this.groupHeaderBand1.Name = "groupHeaderBand1";
             this.groupHeaderBand1.RepeatEveryPage = true;
             // 
             // groupHeaderBand2
             // 
-            resources.ApplyResources(this.groupHeaderBand2, "groupHeaderBand2");
             this.groupHeaderBand2.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
             new DevExpress.XtraReports.UI.GroupField("Quarter", DevExpress.XtraReports.UI.XRColumnSortOrder.Descending)});
+            resources.ApplyResources(this.groupHeaderBand2, "groupHeaderBand2");
             this.groupHeaderBand2.Name = "groupHeaderBand2";
             this.groupHeaderBand2.StyleName = "FieldCaption";
             // 
@@ -423,8 +423,8 @@ namespace Reports
             this.xrTableCell6,
             this.xrTableCell7,
             this.xrTableCell8});
-            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             this.xrTableRow2.Name = "xrTableRow2";
+            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             // 
             // xrTableCell6
             // 
@@ -508,8 +508,8 @@ namespace Reports
             this.xrTableCell10,
             this.xrTableCell11,
             this.xrTableCell12});
-            resources.ApplyResources(this.xrTableRow3, "xrTableRow3");
             this.xrTableRow3.Name = "xrTableRow3";
+            resources.ApplyResources(this.xrTableRow3, "xrTableRow3");
             // 
             // xrTableCell10
             // 
@@ -591,7 +591,7 @@ namespace Reports
             this.FieldCaption,
             this.PageInfo,
             this.DataField});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();

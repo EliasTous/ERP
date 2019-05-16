@@ -319,9 +319,9 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             // 
             // TopMargin
             // 
-            resources.ApplyResources(this.TopMargin, "TopMargin");
             this.TopMargin.Name = "TopMargin";
             this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            resources.ApplyResources(this.TopMargin, "TopMargin");
             // 
             // BottomMargin
             // 
@@ -331,9 +331,9 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             // 
             // groupHeaderBand1
             // 
-            resources.ApplyResources(this.groupHeaderBand1, "groupHeaderBand1");
             this.groupHeaderBand1.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
             new DevExpress.XtraReports.UI.GroupField("name", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
+            resources.ApplyResources(this.groupHeaderBand1, "groupHeaderBand1");
             this.groupHeaderBand1.Name = "groupHeaderBand1";
             this.groupHeaderBand1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.GroupHeader1_BeforePrint);
             // 
@@ -606,8 +606,8 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             // 
             // xrLine1
             // 
-            resources.ApplyResources(this.xrLine1, "xrLine1");
             this.xrLine1.LineStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            resources.ApplyResources(this.xrLine1, "xrLine1");
             this.xrLine1.Name = "xrLine1";
             // 
             // ReportFooter
@@ -852,7 +852,7 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             this.PageInfo,
             this.DataField,
             this.Numbers});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();

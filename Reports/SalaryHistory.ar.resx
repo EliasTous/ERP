@@ -132,6 +132,9 @@
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>طريقة حساب الراتب</value>
   </data>
+  <data name="xrLabel20.Text" xml:space="preserve">
+    <value>طبع بواسطة :</value>
+  </data>
   <data name="xrLabel22.Text" xml:space="preserve">
     <value>الاستحقاقات</value>
   </data>

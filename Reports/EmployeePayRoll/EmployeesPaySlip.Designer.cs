@@ -274,8 +274,8 @@
             this.xrTableCell6,
             this.xrTableCell7,
             this.xrTableCell8});
-            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             this.xrTableRow2.Name = "xrTableRow2";
+            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             // 
             // xrTableCell5
             // 
@@ -293,10 +293,10 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Employee.TotalBenifits", "{0:n2}")});
-            resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             this.xrTableCell6.Name = "xrTableCell6";
             this.xrTableCell6.StylePriority.UseBackColor = false;
             this.xrTableCell6.StylePriority.UseBorders = false;
+            resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             // 
             // xrTableCell7
             // 
@@ -316,10 +316,10 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Employee.TotalDeductions", "{0:n2}")});
-            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.StylePriority.UseBackColor = false;
             this.xrTableCell8.StylePriority.UseBorders = false;
+            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
             // 
             // xrSubBenifits
             // 
@@ -346,8 +346,8 @@
             this.xrTableCell2,
             this.xrTableCell4,
             this.xrTableCell3});
-            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             this.xrTableRow1.Name = "xrTableRow1";
+            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             // 
             // xrTableCell1
             // 
@@ -523,6 +523,7 @@
             // 
             this.xrLabel2.Borders = DevExpress.XtraPrinting.BorderSide.None;
             resources.ApplyResources(this.xrLabel2, "xrLabel2");
+            this.xrLabel2.Multiline = true;
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel2.StylePriority.UseBorders = false;
@@ -575,7 +576,7 @@
             resources.ApplyResources(this, "$this");
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.user});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeePayrollDataSet1)).EndInit();

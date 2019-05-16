@@ -256,13 +256,13 @@
     <value>xrLabel16</value>
   </data>
   <data name="xrLabel10.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>213.223572, 48.9582329</value>
+    <value>178.791626, 48.9582329</value>
   </data>
   <data name="xrLabel10.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>30.7764435, 23</value>
+    <value>65.20839, 23.0000038</value>
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
-    <value>By</value>
+    <value>Printed by :</value>
   </data>
   <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>5.99999762, 48.9582825</value>

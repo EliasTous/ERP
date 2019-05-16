@@ -211,13 +211,13 @@
     <value>1</value>
   </data>
   <data name="xrLabel9.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>235.833313, 5</value>
+    <value>196.666641, 5</value>
   </data>
   <data name="xrLabel9.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>46.02039, 23</value>
+    <value>85.18706, 22.9999981</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>By :</value>
+    <value>Printed by :</value>
   </data>
   <data name="xrLabel10.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt</value>

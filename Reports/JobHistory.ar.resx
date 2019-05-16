@@ -147,6 +147,9 @@
   <data name="xrLabel17.Text" xml:space="preserve">
     <value>تاريخ الوظيفة</value>
   </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>طبع بواسطة :</value>
+  </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>المنصب</value>
   </data>

@@ -148,4 +148,7 @@
   <data name="xrLabel1.Text" xml:space="preserve">
     <value>تقرير المؤهلات </value>
   </data>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>طبع بواسطة :</value>
+  </data>
 </root>

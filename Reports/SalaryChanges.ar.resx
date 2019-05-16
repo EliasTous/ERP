@@ -153,6 +153,9 @@
   <data name="xrLabel8.Text" xml:space="preserve">
     <value>التاريخ</value>
   </data>
+  <data name="xrLabel9.Text" xml:space="preserve">
+    <value>طبع بواسطة :</value>
+  </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>
   </data>

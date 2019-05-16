@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="xrLabel24.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <assembly alias="DevExpress.Data.v18.2" name="DevExpress.Data.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="xrLabel24.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>550.625, 23</value>
@@ -131,9 +127,6 @@
   </data>
   <data name="xrLabel25.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
-  </data>
-  <data name="xrLabel25.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrLabel25.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
@@ -153,9 +146,6 @@
   <data name="xrLabel22.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
   </data>
-  <data name="xrLabel22.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrLabel22.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
@@ -171,17 +161,11 @@
   <data name="xrLabel22.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrLabel23.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrLabel23.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>128.749969, 45.9999962</value>
   </data>
   <data name="xrLabel23.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>321.875031, 22.9999962</value>
-  </data>
-  <data name="xrLabel18.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrLabel18.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>533.228, 193.125</value>
@@ -198,9 +182,6 @@
   <data name="xrLabel19.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
   </data>
-  <data name="xrLabel19.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrLabel19.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
@@ -216,9 +197,6 @@
   <data name="xrLabel19.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrLabel20.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrLabel20.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>533.228, 170.125</value>
   </data>
@@ -233,9 +211,6 @@
   </data>
   <data name="xrLabel21.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
-  </data>
-  <data name="xrLabel21.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrLabel21.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
@@ -255,9 +230,6 @@
   <data name="xrLabel14.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
   </data>
-  <data name="xrLabel14.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrLabel14.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
@@ -272,9 +244,6 @@
   </data>
   <data name="xrLabel14.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
-  </data>
-  <data name="xrLabel15.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrLabel15.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>128.749939, 170.125</value>
@@ -291,9 +260,6 @@
   <data name="xrLabel16.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
   </data>
-  <data name="xrLabel16.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrLabel16.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
@@ -309,9 +275,6 @@
   <data name="xrLabel16.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrLabel17.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrLabel17.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>128.75, 193.125</value>
   </data>
@@ -324,17 +287,11 @@
   <data name="xrLabel17.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleLeft</value>
   </data>
-  <data name="xrTable2.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrTable2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>10.0000067, 123</value>
   </data>
   <data name="xrTableCell5.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
-  </data>
-  <data name="xrTableCell5.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrTableCell5.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
@@ -342,11 +299,9 @@
   <data name="xrTableCell5.Text" xml:space="preserve">
     <value>Total Benifits</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="xrTableCell5.Weight" type="System.Double, mscorlib">
     <value>1.6839609360459986</value>
-  </data>
-  <data name="xrTableCell6.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrTableCell6.Text" xml:space="preserve">
     <value>Amount</value>
@@ -357,9 +312,6 @@
   <data name="xrTableCell7.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
   </data>
-  <data name="xrTableCell7.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrTableCell7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
@@ -369,17 +321,11 @@
   <data name="xrTableCell7.Weight" type="System.Double, mscorlib">
     <value>1.6839609360459986</value>
   </data>
-  <data name="xrTableCell8.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrTableCell8.Text" xml:space="preserve">
     <value>Amount</value>
   </data>
   <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
     <value>1.6839609360459986</value>
-  </data>
-  <data name="xrTableRow2.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrTableRow2.Weight" type="System.Double, mscorlib">
     <value>1</value>
@@ -390,17 +336,11 @@
   <data name="xrTable2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrSubBenifits.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrSubBenifits.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>10.0000067, 100</value>
   </data>
   <data name="xrSubBenifits.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>404.478058, 23</value>
-  </data>
-  <data name="xrSubDeductions.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrSubDeductions.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>414.478, 100</value>
@@ -408,17 +348,11 @@
   <data name="xrSubDeductions.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>404.477936, 23</value>
   </data>
-  <data name="xrTable1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrTable1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>10.0000067, 75</value>
   </data>
   <data name="xrTableCell1.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
-  </data>
-  <data name="xrTableCell1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrTableCell1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
@@ -432,9 +366,6 @@
   <data name="xrTableCell2.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
   </data>
-  <data name="xrTableCell2.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrTableCell2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
@@ -446,9 +377,6 @@
   </data>
   <data name="xrTableCell4.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
-  </data>
-  <data name="xrTableCell4.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrTableCell4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
@@ -462,9 +390,6 @@
   <data name="xrTableCell3.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
   </data>
-  <data name="xrTableCell3.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrTableCell3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
@@ -473,9 +398,6 @@
   </data>
   <data name="xrTableCell3.Weight" type="System.Double, mscorlib">
     <value>1.6839609360459986</value>
-  </data>
-  <data name="xrTableRow1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrTableRow1.Weight" type="System.Double, mscorlib">
     <value>1</value>
@@ -488,9 +410,6 @@
   </data>
   <data name="xrLabel12.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
-  </data>
-  <data name="xrLabel12.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrLabel12.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
@@ -507,9 +426,6 @@
   <data name="xrLabel12.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrLabel9.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrLabel9.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>550.625, 0</value>
   </data>
@@ -521,9 +437,6 @@
   </data>
   <data name="xrLabel9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleLeft</value>
-  </data>
-  <data name="xrLabel10.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrLabel10.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>128.75, 23</value>
@@ -540,9 +453,6 @@
   <data name="xrLabel11.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
   </data>
-  <data name="xrLabel11.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrLabel11.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
@@ -557,9 +467,6 @@
   </data>
   <data name="xrLabel11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
-  </data>
-  <data name="xrLabel8.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrLabel8.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>128.749939, 0</value>
@@ -576,9 +483,6 @@
   <data name="xrLabel13.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
   </data>
-  <data name="xrLabel13.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrLabel13.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
@@ -594,17 +498,11 @@
   <data name="xrLabel13.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
-  <data name="Detail.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="Detail.HeightF" type="System.Single, mscorlib">
     <value>216.125</value>
   </data>
   <data name="Detail.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>TopLeft</value>
-  </data>
-  <data name="TopMargin.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="TopMargin.HeightF" type="System.Single, mscorlib">
     <value>6.79167128</value>
@@ -612,23 +510,14 @@
   <data name="TopMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>TopLeft</value>
   </data>
-  <data name="BottomMargin.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="BottomMargin.HeightF" type="System.Single, mscorlib">
     <value>9.375</value>
   </data>
   <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>TopLeft</value>
   </data>
-  <data name="PageHeader.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="PageHeader.HeightF" type="System.Single, mscorlib">
     <value>24.583334</value>
-  </data>
-  <data name="xrLabel7.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="xrLabel7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 12pt, style=Bold</value>
@@ -645,14 +534,8 @@
   <data name="xrLabel7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrPageInfo2.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>Page {0} of {1}</value>
-  </data>
   <data name="xrPageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>337.541656, 0</value>
+    <value>751.080933, 0</value>
   </data>
   <data name="xrPageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>67.875, 23</value>
@@ -660,11 +543,8 @@
   <data name="xrPageInfo2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrPageInfo1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrPageInfo1.Format" xml:space="preserve">
-    <value>{0:dddd, d MMMM, yyyy H:mm}</value>
+  <data name="xrPageInfo2.TextFormatString" xml:space="preserve">
+    <value>Page {0} of {1}</value>
   </data>
   <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>9.999998, 0</value>
@@ -675,35 +555,30 @@
   <data name="xrPageInfo1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrLabel2.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
+  <data name="xrPageInfo1.TextFormatString" xml:space="preserve">
+    <value>{0:dddd, d MMMM, yyyy H:mm}</value>
   </data>
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>496.294037, 0</value>
+    <value>212.238983, 0</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>62.95369, 23</value>
+    <value>85.3421, 23</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
-    <value>By </value>
+    <value>Printed by :
+</value>
   </data>
   <data name="xrLabel2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrLabel6.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrLabel6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>559.247742, 0</value>
+    <value>298.583282, 0</value>
   </data>
   <data name="xrLabel6.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>259.708252, 23</value>
+    <value>388.0416, 23</value>
   </data>
   <data name="xrLabel6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleLeft</value>
-  </data>
-  <data name="PageFooter.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="PageFooter.HeightF" type="System.Single, mscorlib">
     <value>37.5</value>
@@ -711,14 +586,8 @@
   <metadata name="employeePayrollDataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="GroupHeader1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
     <value>0</value>
-  </data>
-  <data name="ReportHeader.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
   </data>
   <data name="ReportHeader.HeightF" type="System.Single, mscorlib">
     <value>39.1666679</value>

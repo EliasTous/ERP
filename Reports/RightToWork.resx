@@ -283,13 +283,13 @@
     <value>MiddleLeft</value>
   </data>
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>287.125, 6.00001</value>
+    <value>255.458328, 6.00001</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>62.95369, 23</value>
+    <value>94.6203461, 23</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
-    <value>By </value>
+    <value>Printed by :</value>
   </data>
   <data name="xrLabel2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleLeft</value>

@@ -517,7 +517,7 @@
     <value>352.6203, 6.00001</value>
   </data>
   <data name="xrLabel12.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>271.524658, 23</value>
+    <value>305.691345, 23</value>
   </data>
   <data name="xrLabel12.Text" xml:space="preserve">
     <value>xrLabel3</value>
@@ -526,13 +526,13 @@
     <value>MiddleLeft</value>
   </data>
   <data name="xrLabel6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>289.6667, 6.00001</value>
+    <value>257.166656, 6.00001</value>
   </data>
   <data name="xrLabel6.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>62.95369, 23</value>
+    <value>95.4537354, 23</value>
   </data>
   <data name="xrLabel6.Text" xml:space="preserve">
-    <value>By :</value>
+    <value>Printed by :</value>
   </data>
   <data name="xrLabel6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleLeft</value>

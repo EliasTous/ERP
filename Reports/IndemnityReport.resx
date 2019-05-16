@@ -298,10 +298,10 @@
     <value>1</value>
   </data>
   <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>246.6667, 5</value>
+    <value>265.416626, 5</value>
   </data>
   <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>100, 23</value>
+    <value>403.750122, 22.9999981</value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>xrLabel3</value>
@@ -310,10 +310,10 @@
     <value>186.6667, 5</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>59.99998, 23</value>
+    <value>78.74992, 22.9999981</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
-    <value>By:</value>
+    <value>Printed by :</value>
   </data>
   <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>5, 5</value>

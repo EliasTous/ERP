@@ -367,25 +367,25 @@
     <value>278.2083, 66.83329</value>
   </data>
   <data name="xrLabel22.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>392.6251, 23</value>
+    <value>529.2917, 23</value>
   </data>
   <data name="xrLabel22.Text" xml:space="preserve">
     <value>xrLabel22</value>
   </data>
   <data name="xrLabel20.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>254.249985, 66.83329</value>
+    <value>197.208252, 66.83329</value>
   </data>
   <data name="xrLabel20.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>23.9583282, 23</value>
+    <value>81.00006, 23</value>
   </data>
   <data name="xrLabel20.Text" xml:space="preserve">
-    <value>By</value>
+    <value>Printed by :</value>
   </data>
   <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>10, 66.83329</value>
   </data>
   <data name="xrPageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>224.708252, 23</value>
+    <value>187.208252, 23</value>
   </data>
   <data name="xrPageInfo1.TextFormatString" xml:space="preserve">
     <value>{0:dddd, d MMMM, yyyy H:mm}</value>

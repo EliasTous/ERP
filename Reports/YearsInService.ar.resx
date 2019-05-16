@@ -126,6 +126,9 @@
   <data name="xrLabel10.Text" xml:space="preserve">
     <value>القسم</value>
   </data>
+  <data name="xrLabel11.Text" xml:space="preserve">
+    <value>طبع بواسطة :</value>
+  </data>
   <data name="xrLabel12.Text" xml:space="preserve">
     <value>الفرع</value>
   </data>

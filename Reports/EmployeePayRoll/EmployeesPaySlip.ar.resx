@@ -203,4 +203,7 @@
   <data name="xrLabel4.Text" xml:space="preserve">
     <value>من</value>
   </data>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>طبع بواسطة :</value>
+  </data>
 </root>

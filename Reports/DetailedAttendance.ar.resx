@@ -142,7 +142,7 @@
     <value>الفرع </value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>من قبل : </value>
+    <value>طبع بواسطة :</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>

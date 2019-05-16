@@ -231,7 +231,7 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             string user = _systemService.SessionHelper.GetCurrentUser();
-            //h.Parameters["User"].Value = user;
+            h.Parameters["user"].Value = user;
           //  h.Parameters["Fitlers"].Value = texts.Text;
 
 

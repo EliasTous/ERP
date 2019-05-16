@@ -350,10 +350,10 @@
     <value>1</value>
   </data>
   <data name="xrLabel6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>222.541626, 6.00001</value>
+    <value>339.2083, 5.99995947</value>
   </data>
   <data name="xrLabel6.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>340.208374, 23.0000019</value>
+    <value>364.644348, 23.0000019</value>
   </data>
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>xrLabel6</value>
@@ -362,13 +362,13 @@
     <value>MiddleLeft</value>
   </data>
   <data name="xrLabel7.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>179.8333, 6.00001</value>
+    <value>238.788727, 5.99995947</value>
   </data>
   <data name="xrLabel7.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>42.70833, 23.0000038</value>
+    <value>100.419586, 23.0000019</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
-    <value>By :</value>
+    <value>Printed by :</value>
   </data>
   <data name="xrLabel7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleLeft</value>
@@ -386,10 +386,10 @@
     <value>{0:dddd, d MMMM, yyyy H:mm}</value>
   </data>
   <data name="xrPageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>594.686, 6.00001</value>
+    <value>703.852661, 5.99995947</value>
   </data>
   <data name="xrPageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>202.313965, 23</value>
+    <value>93.14728, 22.9999981</value>
   </data>
   <data name="xrPageInfo2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>TopRight</value>

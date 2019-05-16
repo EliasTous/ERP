@@ -147,6 +147,9 @@
   <data name="xrLabel19.Text" xml:space="preserve">
     <value>الفرع :</value>
   </data>
+  <data name="xrLabel20.Text" xml:space="preserve">
+    <value>طبع بواسطة :</value>
+  </data>
   <data name="xrLabel21.Text" xml:space="preserve">
     <value>الحالة :</value>
   </data>

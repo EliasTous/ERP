@@ -136,7 +136,7 @@
                                     </Listeners>
                                 </ext:TextField>
 
-                                <ext:Button runat="server" Icon="Printer">
+                          <%--      <ext:Button runat="server" Icon="Printer">
                                     <Menu>
                                         <ext:Menu runat="server">
                                             <Items>
@@ -157,7 +157,7 @@
                                             </Items>
                                         </ext:Menu>
                                     </Menu>
-                                </ext:Button>
+                                </ext:Button>--%>
 
                             </Items>
                         </ext:Toolbar>

@@ -236,7 +236,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ////h.Parameters["PositionName"].Value = jobInfo1.GetPosition();
 
             //h.Parameters["Filters"].Value = texts.Text;
-            h.Parameters["User"].Value = user;
+            h.Parameters["user"].Value = user;
 
             
             h.CreateDocument();

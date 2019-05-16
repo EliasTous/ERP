@@ -848,6 +848,7 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
             // xrLabel37
             // 
             resources.ApplyResources(this.xrLabel37, "xrLabel37");
+            this.xrLabel37.Multiline = true;
             this.xrLabel37.Name = "xrLabel37";
             this.xrLabel37.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel37.StylePriority.UseTextAlignment = false;
