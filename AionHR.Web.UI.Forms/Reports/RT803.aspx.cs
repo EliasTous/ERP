@@ -134,7 +134,23 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             //this.OtherInfoTab.Visible = false;
         }
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
 
         private void HideShowButtons()
@@ -187,22 +203,8 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-            req.SortBy = "fullName";
-
-
-
-            req.Add(jobInfo1.GetJobInfo());
-
-            //req.Add();
-            return req;
-        }
-        [DirectMethod]
+        
+      
     
 
       
@@ -211,7 +213,9 @@ namespace AionHR.Web.UI.Forms.Reports
         {
 
 
-            ReportCompositeRequest req = GetRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<AionHR.Model.Reports.RT803> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT803>(req);
 
             if (!resp.Success)
@@ -231,6 +235,7 @@ namespace AionHR.Web.UI.Forms.Reports
             // h.Parameters["From"].Value = from;
             //  h.Parameters["To"].Value = to;
             h.Parameters["User"].Value = user;
+            h.Parameters["Filters"].Value = texts.Text;
             //if (resp.Items.Count > 0)
             //{
             //    //if (req.Parameters["_userId"] != "0")

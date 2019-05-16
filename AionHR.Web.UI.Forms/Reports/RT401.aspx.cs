@@ -132,7 +132,23 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
         private void HideShowButtons()
         {
 
@@ -183,31 +199,13 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-
-
-            req.Add(dateRange1.GetRange());
-            req.Add(employeeFilter.GetEmployee());
-            req.Add(loanStatusFilter.GetStatus());
-            req.Add(jobInfo1.GetJobInfo());
-            BalanceStatusParameterSet BS = new BalanceStatusParameterSet();
-            if (string.IsNullOrEmpty(balanceStatus.Value.ToString()))
-                BS.balanceStatus = "0";
-            else
-                BS.balanceStatus = balanceStatus.Value.ToString();
-            req.Add(BS);
-            return req;
-        }
-
+       
         private void FillReport(bool isInitial = false , bool throwException=true)
         {
 
-            ReportCompositeRequest req = GetRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
 
             ListResponse<AionHR.Model.Reports.RT401> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT401>(req);
             if (!resp.Success)
@@ -224,32 +222,9 @@ namespace AionHR.Web.UI.Forms.Reports
             string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             string user = _systemService.SessionHelper.GetCurrentUser();
 
-            h.Parameters["From"].Value = from;
-            h.Parameters["To"].Value = to;
+            
             h.Parameters["User"].Value = user;
-
-            if (resp.Items.Count > 0)
-            {
-                
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["Branch"].Value = resp.Items[0].branchName;
-                else
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_employeeId"] != "0")
-                    h.Parameters["Employee"].Value = resp.Items[0].name;
-                else
-                    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_status"] != "0")
-                    h.Parameters["Status"].Value = resp.Items[0].StatusString;
-                else
-                    h.Parameters["Status"].Value = GetGlobalResourceObject("Common", "All");
-
-            }
-
-
-
+            h.Parameters["Filters"].Value = texts.Text;
             h.CreateDocument();
 
 
@@ -282,13 +257,6 @@ namespace AionHR.Web.UI.Forms.Reports
         //    FillReport(true);
         }
 
-        [DirectMethod]
-        public object FillEmployee(string action, Dictionary<string, object> extraParams)
-        {
-
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            return Common.GetEmployeesFiltered(prms.Query);
-
-        }
+      
     }
 }

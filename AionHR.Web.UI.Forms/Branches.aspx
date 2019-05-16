@@ -85,7 +85,7 @@
                          <ext:ModelField Name="scName" />
                         <ext:ModelField Name="isInactive" Type="Boolean" DefaultValue="false"/>
                           <ext:ModelField Name="caName" />
-                         <ext:ModelField Name="managerName" IsComplex="true" />
+                         <ext:ModelField Name="managerName"  />
                        
 
 
@@ -189,7 +189,7 @@
                               <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
                             <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="branchRef" width="150" Hideable="false" Visible="false"/>
                             <ext:Column   CellCls="cellLink" ID="ColManger" MenuDisabled="true" runat="server" Text="<%$ Resources: manager%>" DataIndex="managerName" Flex="2" >
-                                <Renderer Handler=" return record.data['managerName'].fullName ;"></Renderer>
+                                
                                 </ext:Column>
                             <ext:Column   CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                         
