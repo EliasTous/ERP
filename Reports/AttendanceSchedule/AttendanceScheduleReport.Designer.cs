@@ -49,7 +49,6 @@
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.User = new DevExpress.XtraReports.Parameters.Parameter();
             this.Employee = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             ((System.ComponentModel.ISupportInitialize)(this.dsSalaries1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -257,11 +256,6 @@
             this.Employee.Name = "Employee";
             this.Employee.Visible = false;
             // 
-            // PageHeader
-            // 
-            resources.ApplyResources(this.PageHeader, "PageHeader");
-            this.PageHeader.Name = "PageHeader";
-            // 
             // AttendanceScheduleReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -269,8 +263,7 @@
             this.TopMargin,
             this.BottomMargin,
             this.ReportHeader,
-            this.PageFooter,
-            this.PageHeader});
+            this.PageFooter});
             this.DataMember = "DataTable1";
             this.DataSource = this.dsSalaries1;
             this.DefaultPrinterSettingsUsing.UseLandscape = true;
@@ -310,6 +303,5 @@
         private DevExpress.XtraReports.Parameters.Parameter Employee;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo2;
-        private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
     }
 }

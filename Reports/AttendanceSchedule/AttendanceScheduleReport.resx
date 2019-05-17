@@ -181,7 +181,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="ReportHeader.HeightF" type="System.Single, mscorlib">
-    <value>57.5416679</value>
+    <value>109.041656</value>
   </data>
   <data name="Branch.Description" xml:space="preserve">
     <value>Parameter1</value>
@@ -239,9 +239,6 @@
   </data>
   <data name="PageFooter.HeightF" type="System.Single, mscorlib">
     <value>23.0000019</value>
-  </data>
-  <data name="PageHeader.HeightF" type="System.Single, mscorlib">
-    <value>23.125</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

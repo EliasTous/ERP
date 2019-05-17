@@ -115,8 +115,10 @@ namespace Reports.AttendanceSchedule
             table.EndInit();
 
 
-
-            this.PageHeader.Controls.Add(table);
+           PageHeaderBand header=new PageHeaderBand();
+            header.Controls.Add(table);
+            this.Bands.Add(header);
+            //   this.PageHeader.Controls.Add(table);
 
         }
         private void table_BeforePrint(object sender, PrintEventArgs e)
@@ -186,7 +188,9 @@ namespace Reports.AttendanceSchedule
             }
             catch { return ""; }
         }
-      
+       
+
+
     }
 
 }
