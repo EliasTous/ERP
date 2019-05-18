@@ -1066,9 +1066,6 @@
     <EmbeddedResource Include="TurnoverRate.ar.resx">
       <DependentUpon>TurnoverRate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TurnoverRate.en.resx">
-      <DependentUpon>TurnoverRate.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="TurnoverRate.fr.resx">
       <DependentUpon>TurnoverRate.cs</DependentUpon>
     </EmbeddedResource>

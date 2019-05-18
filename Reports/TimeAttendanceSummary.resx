@@ -402,53 +402,8 @@
   <data name="Employee.Description" xml:space="preserve">
     <value>Parameter1</value>
   </data>
-  <data name="xrLabel25.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>483.333344, 0</value>
-  </data>
-  <data name="xrLabel25.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>258.3334, 23</value>
-  </data>
-  <data name="xrLabel25.Text" xml:space="preserve">
-    <value>xrLabel25</value>
-  </data>
-  <data name="xrLabel24.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>400.827454, 0</value>
-  </data>
-  <data name="xrLabel24.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>82.50589, 23</value>
-  </data>
-  <data name="xrLabel24.Text" xml:space="preserve">
-    <value>Employee</value>
-  </data>
-  <data name="xrLine2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>0.827407837, 22.9999866</value>
-  </data>
-  <data name="xrLine2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>3399.17261, 11.3799992</value>
-  </data>
   <data name="Month.Description" xml:space="preserve">
     <value>Parameter1</value>
-  </data>
-  <data name="xrLabel23.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>50.8274078, 0</value>
-  </data>
-  <data name="xrLabel23.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>263.5417, 23</value>
-  </data>
-  <data name="xrLabel23.Text" xml:space="preserve">
-    <value>xrLabel23</value>
-  </data>
-  <data name="xrLabel21.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>0.827407837, 0</value>
-  </data>
-  <data name="xrLabel21.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>50, 23</value>
-  </data>
-  <data name="xrLabel21.Text" xml:space="preserve">
-    <value>Month</value>
-  </data>
-  <data name="PageHeader.HeightF" type="System.Single, mscorlib">
-    <value>34.3799858</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

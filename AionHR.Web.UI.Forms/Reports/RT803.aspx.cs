@@ -220,8 +220,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
-
-            UsersReport h = new UsersReport();
+            Dictionary<string, string> parameters = Common.FetchReportParameters(texts.Text);
+          UsersReport h = new UsersReport(parameters);
 
             //  resp.Items.ForEach(x => x.DateString = x.eventDT.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"))); SignInTrail h = new SignInTrail();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
@@ -235,7 +235,7 @@ namespace AionHR.Web.UI.Forms.Reports
             // h.Parameters["From"].Value = from;
             //  h.Parameters["To"].Value = to;
             h.Parameters["User"].Value = user;
-            h.Parameters["Filters"].Value = texts.Text;
+           // h.Parameters["Filters"].Value = texts.Text;
             //if (resp.Items.Count > 0)
             //{
             //    //if (req.Parameters["_userId"] != "0")
