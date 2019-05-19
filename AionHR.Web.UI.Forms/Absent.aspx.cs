@@ -525,6 +525,7 @@ namespace AionHR.Web.UI.Forms
 
             try {
                 BasicInfoTab.Reset();
+                FillDamageStore();
                 string id = e.ExtraParams["id"];
                 int dayId =Convert.ToInt32( e.ExtraParams["dayId"]);
                 int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
@@ -763,6 +764,11 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
 
+        }
+        private void FillDamageStore()
+        {
+            damageStore.DataSource = Common.XMLDictionaryList(_systemService, "22");
+            damageStore.DataBind();
         }
     }
 

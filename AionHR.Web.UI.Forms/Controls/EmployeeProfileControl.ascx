@@ -909,7 +909,21 @@
                                             </LeftButtons>
                             
                            </ext:TextField>
-                                   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="religionCombo" runat="server" FieldLabel="<%$ Resources:FieldReligion%>" Name="religion" IDMode="Static" SubmitValue="true">
+                                   <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:FieldReligion%>"  runat="server" DisplayField="value" ValueField="key"   Name="religion" ID="religionCombo" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="religionStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       </ext:ComboBox>
+                                  <%-- <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="religionCombo" runat="server" FieldLabel="<%$ Resources:FieldReligion%>" Name="religion" IDMode="Static" SubmitValue="true">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:Common, Religion0%>" Value="<%$ Resources:ComboBoxValues, EPEMReligionChristian%>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common, Religion1%>" Value="<%$ Resources:ComboBoxValues, EPEMReligionMuslim%>"></ext:ListItem>
@@ -919,7 +933,7 @@
                                         <ext:ListItem Text="<%$ Resources:Common, Religion5%>" Value="<%$ Resources:ComboBoxValues, EPEMReligionHindu%>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common, Religion6%>" Value="<%$ Resources:ComboBoxValues, EPEMReligionOther%>"></ext:ListItem>
                                     </Items>
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                                       
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="true" DisplayField="name" ID="nationalityId" Name="nationalityId" FieldLabel="<%$ Resources:FieldNationality%>" >
                                     <Store>
@@ -1155,14 +1169,21 @@
                                     FieldLabel="<%$ Resources:FieldHireDate%>"
                                     MsgTarget="Side"
                                     AllowBlank="false" />
-                                <ext:ComboBox  ForceSelection="true" AnyMatch="true" CaseSensitive="false"  ID="civilStatus" runat="server" FieldLabel="<%$ Resources:FieldCivilStatus%>" Name="civilStatus" IDMode="Static" SubmitValue="true">
-                                    <Items>
-                                        <ext:ListItem Text="<%$ Resources:Common, unspecified%>" Value="0"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, single%>" Value="1"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Common, married%>" Value="2"></ext:ListItem>
-                                      
-                                    </Items>
-                                </ext:ComboBox>
+                                      <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:FieldCivilStatus%>"  runat="server" DisplayField="value" ValueField="key"   Name="civilStatus" ID="civilStatus" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="civilStatusStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       </ext:ComboBox>
+                             
 
                                  <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
                                     <Items>

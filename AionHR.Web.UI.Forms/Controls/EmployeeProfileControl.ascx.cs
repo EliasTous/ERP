@@ -307,6 +307,16 @@ namespace AionHR.Web.UI.Forms
             //    imgControl.ImageUrl = result.pictureUrl;
 
         }
+       private void FillCivilStatusStore()
+        {
+            civilStatusStore.DataSource = Common.XMLDictionaryList(_systemService, "19");
+            civilStatusStore.DataBind();
+        }
+        private void FillReligionStore()
+        {
+            religionStore.DataSource = Common.XMLDictionaryList(_systemService, "20");
+            religionStore.DataBind();
+        }
         private void InitCombos(bool isAdd)
         {
             // // FillBranch();
@@ -331,15 +341,15 @@ namespace AionHR.Web.UI.Forms
             gearButton.Hidden = isAdd;
 
             FillSponsor();
-
+            FillCivilStatusStore();
             img.Hidden = isAdd;
             FillVacationSchedule();
             FillSchedules();
             panelRecordDetails.Enabled = !isAdd;
             FillCitizenShip();
-
+            FillReligionStore();
             //FillWorkingCalendar();
-            
+
             SetTabPanelActivated(!isAdd);
 
 
@@ -638,6 +648,7 @@ namespace AionHR.Web.UI.Forms
             if (civilStatus.Value.ToString() == "0")
                 civilStatus.Value = string.Empty;
             Employee b = JsonConvert.DeserializeObject<Employee>(obj, settings);
+            b.activeStatus = Convert.ToInt16(ActiveStatus.ACTIVE);
             b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text, reference = reference.Text.ToString().Replace(" ","") };
 
             b.recordId = id;

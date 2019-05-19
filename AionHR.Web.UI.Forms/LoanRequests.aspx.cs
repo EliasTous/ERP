@@ -261,6 +261,18 @@ namespace AionHR.Web.UI.Forms
             ltStore.DataSource = resp.Items;
             ltStore.DataBind();
         }
+
+        private void FillTypeStore()
+        {
+            typeStore.DataSource = Common.XMLDictionaryList(_systemService, "21");
+            typeStore.DataBind();
+        }
+        private void FillLdMethodStore()
+        {
+            ldMethodStore.DataSource = Common.XMLDictionaryList(_systemService, "17");
+            ldMethodStore.DataBind();
+        }
+
         private void ApplyAccessControlOnLoanComments()
         {
             var properties = AccessControlApplier.GetPropertiesLevels(typeof(LoanComment));
@@ -413,14 +425,16 @@ namespace AionHR.Web.UI.Forms
                                 }
                        });
                     employeeId.SetValue(response.result.employeeId);
-                //    effectiveDate.Disabled = response.result.status != 3;
+                    //    effectiveDate.Disabled = response.result.status != 3;
                     //FillFilesStore(Convert.ToInt32(id));
 
                     //Step 2 : call setvalues with the retrieved object
+                    CurrentEmployee.Text = response.result.employeeId;
                     this.BasicInfoTab.SetValues(response.result);
                     FillCurrency();
                     FillBranchField();
                     FillLoanType();
+                    FillLdMethodStore();
                     ltId.Select(response.result.ltId.ToString());
                     CurrentAmountCurrency.Text = response.result.currencyRef;
                     currencyId.Select(response.result.currencyId.ToString());
@@ -543,12 +557,12 @@ namespace AionHR.Web.UI.Forms
                        Common.errorMessage(response);
                         return;
                     }
-                   
+
 
                     //Step 2 : call setvalues with the retrieved object
 
 
-                 
+                    FillTypeStore();
                     this.deductionInfoTab.SetValues(response.result);
                    
                     this.EditDeductionWindow.Title = Resources.Common.EditWindowsTitle;
@@ -918,7 +932,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 BasicInfoTab.Reset();
-
+                CurrentEmployee.Text = "";
                 effectiveDate.Disabled = false;
                 caseCommentsAddButton.Disabled = false;
                 addDeduction.Disabled = false;
@@ -950,6 +964,7 @@ namespace AionHR.Web.UI.Forms
                 FillLoanType();
                 FillBranchField();
                 FillCurrency();
+                FillLdMethodStore();
                if( defaults.Items.Where(s => s.Key == "currencyId").Count()!=0)
                 currencyId.Select(defaults.Items.Where(s => s.Key == "currencyId").First().Value.ToString());
                 //  effectiveDate.Disabled = true;
@@ -963,7 +978,7 @@ namespace AionHR.Web.UI.Forms
         protected void ADDNewDeductionRecord(object sender, DirectEventArgs e)
         {
             deductionInfoTab.Reset();
-          
+            FillTypeStore();
            
             //Reset all values of the relative object
 

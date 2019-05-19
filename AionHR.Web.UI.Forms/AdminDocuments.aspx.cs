@@ -140,20 +140,20 @@ namespace AionHR.Web.UI.Forms
             dcStore.DataSource = resp.Items;
             dcStore.DataBind();
         }
-        private void FilllanguageStore()
-        {
-            //TemplateBodyListReuqest req = new TemplateBodyListReuqest();
-            //req.TemplateId = Convert.ToInt32(recordId.Text);
-            //ListResponse<TemplateBody> bodies = _administrationService.ChildGetAll<TemplateBody>(req);
-            //if (!bodies.Success)
-            //{
-            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-            //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", bodies.ErrorCode) != null ? GetGlobalResourceObject("Errors", bodies.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + bodies.LogId : bodies.Summary).Show();
-            //    return;
-            //}
-            //languageStore.DataSource = bodies.Items;
-            //languageStore.DataBind();
-        }
+        //private void FilllanguageStore()
+        //{
+        //    //TemplateBodyListReuqest req = new TemplateBodyListReuqest();
+        //    //req.TemplateId = Convert.ToInt32(recordId.Text);
+        //    //ListResponse<TemplateBody> bodies = _administrationService.ChildGetAll<TemplateBody>(req);
+        //    //if (!bodies.Success)
+        //    //{
+        //    //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //    //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", bodies.ErrorCode) != null ? GetGlobalResourceObject("Errors", bodies.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + bodies.LogId : bodies.Summary).Show();
+        //    //    return;
+        //    //}
+        //    //languageStore.DataSource = bodies.Items;
+        //    //languageStore.DataBind();
+        //}
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
@@ -199,7 +199,7 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.ActiveIndex = 0;
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-            FilllanguageStore();
+            FillLanguageStore();
             FillBpId();
             FilldcStore();
             currentDocumentId.Text = id;
@@ -695,14 +695,21 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
 
         }
+        private void FillLanguageStore()
+        {
+            languageIdStore.DataSource = Common.XMLDictionaryList(_systemService, "23");
+            languageIdStore.DataBind();
+        }
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
+
             panelRecordDetails.ActiveIndex = 0;
             fdSet.Hidden = true;
             //Reset all values of the relative object
             BasicInfoTab1.Reset();
+          
             FillBpId();
-            FilllanguageStore();
+            FillLanguageStore();
             FilldcStore();
             documentNotesPanel.Disabled = true;
             DocumentDuesGrid.Disabled = true;

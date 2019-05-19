@@ -203,6 +203,7 @@ namespace AionHR.Web.UI.Forms
       
             BasicInfoTab.Reset();
             panelRecordDetails.ActiveIndex = 0;
+            ApprovalsGridPanel.Disabled = false;
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             currentPurchaseOrderId.Text = id.ToString();
           
@@ -414,8 +415,10 @@ namespace AionHR.Web.UI.Forms
         {
             
             panelRecordDetails.ActiveIndex = 0;
+            ApprovalsGridPanel.Disabled = true;
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+
             CurrencyControl.setCurrency(_systemService.SessionHelper.GetDefaultCurrency());
             FillBranch();
             FillDepartment();
