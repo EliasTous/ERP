@@ -195,7 +195,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
             req.Add(dateRange1.GetRange());
-            req.Add(userCombo1.GetUser());
+           
 
             //req.Add();
             return req;

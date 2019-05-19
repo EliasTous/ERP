@@ -87,9 +87,11 @@ namespace AionHR.Web.UI.Forms
         {
             switch (classId)
             {
+                case 20102: return "UserComboFilter.ascx";
                 case 21102: return "BranchFilter.ascx";
                 case 41105: return "ScheduleFilter.ascx";
                 case 21104: return "DepartmentFilter.ascx";
+                case 21106: return "GovernmentOrganizationFilter.ascx";
                 case 21103: return "PositionFilter.ascx";
                 case 21101: return "DivisionFilter.ascx";
                 case 20105: return "NationalityFilter.ascx";

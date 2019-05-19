@@ -14,59 +14,50 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-    public partial class UserComboFilter : System.Web.UI.UserControl
+    public partial class UserComboFilter : System.Web.UI.UserControl, IComboControl
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+                FillUsers();
         }
-
-
-
-        [DirectMethod]
-        public object FillUsers(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<UserInfo> data = GetUsersFiltered(prms.Query);
-
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<UserInfo> GetUsersFiltered(string query)
+        private void FillUsers()
         {
             UsersListRequest req = new UsersListRequest();
             req.Size = "100";
             req.StartAt = "0";
-            req.Filter = query;
-
             
-            req.DepartmentId =  "0";
+
+
+            req.DepartmentId = "0";
             req.PositionId = "0";
-            req.BranchId =  "0";
+            req.BranchId = "0";
             req.SortBy = "fullName";
             ListResponse<UserInfo> users = _systemService.ChildGetAll<UserInfo>(req);
-            return users.Items;
+            if(!users.Success)
+            {
+                Common.errorMessage(users);
+                return;
+            }
+            userStore.DataSource = users.Items;
+            userStore.DataBind();
+        }
+     
+
+        public void Select(object id)
+        {
+            userId.Select(id);
         }
 
-        public UserParameterSet GetUser()
+        public void SetLabel(string newLabel)
         {
-            UserParameterSet set = new UserParameterSet();
-            if (!string.IsNullOrEmpty(userId.Text) && userId.Value.ToString() != "0")
-            {
-                set.UserId = Convert.ToInt32(userId.Value);
+            userId.FieldLabel = newLabel;
+        }
 
-
-
-            }
-            else
-            {
-                set.UserId = 0;
-
-            }
-            return set;
+        public ComboBox GetComboBox()
+        {
+            return userId;
         }
     }
 }

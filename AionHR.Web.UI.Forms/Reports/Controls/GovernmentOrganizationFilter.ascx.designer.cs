@@ -10,24 +10,24 @@
 namespace AionHR.Web.UI.Forms.Reports.Controls {
     
     
-    public partial class UserComboFilter {
+    public partial class GovernmentOrganizationFilter {
         
         /// <summary>
-        /// userId control.
+        /// goId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox userId;
+        protected global::Ext.Net.ComboBox goId;
         
         /// <summary>
-        /// userStore control.
+        /// goStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store userStore;
+        protected global::Ext.Net.Store goStore;
     }
 }

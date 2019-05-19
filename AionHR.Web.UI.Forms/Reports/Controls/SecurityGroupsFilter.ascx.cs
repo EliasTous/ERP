@@ -41,6 +41,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             if (!IsPostBack)
                 FillGroups();
         }
+
         private void FillGroups()
         {
 

@@ -1,8 +1,8 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UserComboFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.UserComboFilter" %>
- 
-   <ext:ComboBox runat="server" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="userId"  >
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="GovernmentOrganizationFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.GovernmentOrganizationFilter" %>
+
+        <ext:ComboBox runat="server" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="goId"  >
             <Store>
-                <ext:Store runat="server" ID="userStore">
+                <ext:Store runat="server" ID="goStore">
                     <Model>
                         <ext:Model runat="server">
                             <Fields>
