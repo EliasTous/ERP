@@ -137,11 +137,23 @@
   <data name="xrTableCell7.Text" xml:space="preserve">
     <value>xrTableCell7</value>
   </data>
+  <data name="xrTableCell7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleRight</value>
+  </data>
+  <data name="xrTableCell7.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
+  </data>
   <data name="xrTableCell7.Weight" type="System.Double, mscorlib">
     <value>32.68635490228035</value>
   </data>
   <data name="xrTableCell8.Text" xml:space="preserve">
     <value>xrTableCell8</value>
+  </data>
+  <data name="xrTableCell8.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleRight</value>
+  </data>
+  <data name="xrTableCell8.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
     <value>39.146296916185612</value>
@@ -149,11 +161,23 @@
   <data name="xrTableCell9.Text" xml:space="preserve">
     <value>xrTableCell9</value>
   </data>
+  <data name="xrTableCell9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleRight</value>
+  </data>
+  <data name="xrTableCell9.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
+  </data>
   <data name="xrTableCell9.Weight" type="System.Double, mscorlib">
     <value>33.74441064889929</value>
   </data>
   <data name="xrTableCell17.Text" xml:space="preserve">
     <value>xrTableCell17</value>
+  </data>
+  <data name="xrTableCell17.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleRight</value>
+  </data>
+  <data name="xrTableCell17.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrTableCell17.Weight" type="System.Double, mscorlib">
     <value>33.74441064889929</value>
@@ -178,6 +202,9 @@
   </data>
   <data name="xrTableCell22.Text" xml:space="preserve">
     <value>xrTableCell22</value>
+  </data>
+  <data name="xrTableCell22.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrTableCell22.Weight" type="System.Double, mscorlib">
     <value>30.661540696964824</value>
@@ -302,7 +329,7 @@
     <value>1</value>
   </data>
   <data name="xrTable3.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>819.7309, 36</value>
+    <value>819.7309, 37.4166374</value>
   </data>
   <data name="xrTable3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -438,5 +465,8 @@
   </data>
   <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
     <value>A4</value>
+  </data>
+  <data name="$this.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
   </data>
 </root>

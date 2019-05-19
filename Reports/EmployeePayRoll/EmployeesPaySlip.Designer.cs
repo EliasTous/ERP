@@ -296,6 +296,7 @@
             this.xrTableCell6.Name = "xrTableCell6";
             this.xrTableCell6.StylePriority.UseBackColor = false;
             this.xrTableCell6.StylePriority.UseBorders = false;
+            this.xrTableCell6.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             // 
             // xrTableCell7
@@ -319,6 +320,7 @@
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.StylePriority.UseBackColor = false;
             this.xrTableCell8.StylePriority.UseBorders = false;
+            this.xrTableCell8.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
             // 
             // xrSubBenifits

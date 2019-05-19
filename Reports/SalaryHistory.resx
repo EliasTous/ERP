@@ -137,6 +137,12 @@
   <data name="xrLabel28.Text" xml:space="preserve">
     <value>Entitlement</value>
   </data>
+  <data name="xrLabel28.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrLabel28.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
+  </data>
   <data name="xrLabel25.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>897.3, 0</value>
   </data>
@@ -145,6 +151,12 @@
   </data>
   <data name="xrLabel25.Text" xml:space="preserve">
     <value>Final Amount</value>
+  </data>
+  <data name="xrLabel25.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrLabel25.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrLabel26.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>810.6667, 0</value>
@@ -155,6 +167,12 @@
   <data name="xrLabel26.Text" xml:space="preserve">
     <value>Deduction</value>
   </data>
+  <data name="xrLabel26.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrLabel26.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
+  </data>
   <data name="xrLabel27.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>723.1667, 0</value>
   </data>
@@ -163,6 +181,12 @@
   </data>
   <data name="xrLabel27.Text" xml:space="preserve">
     <value>Entitlement</value>
+  </data>
+  <data name="xrLabel27.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrLabel27.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrTable1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>6, 0</value>

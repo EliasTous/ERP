@@ -151,13 +151,19 @@
     <value>xrTableCell3</value>
   </data>
   <data name="xrTableCell3.Weight" type="System.Double, mscorlib">
-    <value>0.38313541038773691</value>
+    <value>0.38313509218168068</value>
   </data>
   <data name="xrTableCell4.Text" xml:space="preserve">
     <value>xrTableCell4</value>
   </data>
+  <data name="xrTableCell4.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrTableCell4.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
+  </data>
   <data name="xrTableCell4.Weight" type="System.Double, mscorlib">
-    <value>0.50532446452973478</value>
+    <value>0.50532478273579107</value>
   </data>
   <data name="xrTableCell6.Text" xml:space="preserve">
     <value>xrTableCell6</value>
@@ -169,13 +175,19 @@
     <value>xrTableCell7</value>
   </data>
   <data name="xrTableCell7.Weight" type="System.Double, mscorlib">
-    <value>0.37008236611536943</value>
+    <value>0.37008236637834147</value>
   </data>
   <data name="xrTableCell8.Text" xml:space="preserve">
     <value>xrTableCell8</value>
   </data>
+  <data name="xrTableCell8.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrTableCell8.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
+  </data>
   <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
-    <value>0.436831010921784</value>
+    <value>0.436831010658812</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
     <value>xrTableCell9</value>

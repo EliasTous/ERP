@@ -306,6 +306,9 @@
   <data name="xrTableCell6.Text" xml:space="preserve">
     <value>Amount</value>
   </data>
+  <data name="xrTableCell6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrTableCell6.Weight" type="System.Double, mscorlib">
     <value>1.6839609360459986</value>
   </data>
@@ -323,6 +326,9 @@
   </data>
   <data name="xrTableCell8.Text" xml:space="preserve">
     <value>Amount</value>
+  </data>
+  <data name="xrTableCell8.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
     <value>1.6839609360459986</value>

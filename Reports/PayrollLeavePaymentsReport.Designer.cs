@@ -147,12 +147,13 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel21.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "amount", "{0:#,#.00}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "amount")});
             resources.ApplyResources(this.xrLabel21, "xrLabel21");
             this.xrLabel21.Name = "xrLabel21";
             this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel21.StylePriority.UseBorders = false;
             this.xrLabel21.StylePriority.UseFont = false;
+            this.xrLabel21.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel20
             // 
@@ -179,6 +180,7 @@
             this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel19.StylePriority.UseBorders = false;
             this.xrLabel19.StylePriority.UseFont = false;
+            this.xrLabel19.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel18
             // 
@@ -523,7 +525,7 @@
             this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel22.StylePriority.UseBorders = false;
             this.xrLabel22.StylePriority.UseFont = false;
-            resources.ApplyResources(xrSummary1, "xrSummary1");
+            this.xrLabel22.StylePriority.UseTextAlignment = false;
             xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel22.Summary = xrSummary1;
             // 

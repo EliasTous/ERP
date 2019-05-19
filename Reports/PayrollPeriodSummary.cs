@@ -13,6 +13,12 @@ namespace Reports
         public PayrollPeriodSummary(Dictionary<string, string> parameters)
         {
             InitializeComponent();
+            xrLabel4.RightToLeft = RightToLeft.No;
+            xrLabel5.RightToLeft = RightToLeft.No;
+            xrLabel6.RightToLeft = RightToLeft.No;
+            xrLabel7.RightToLeft = RightToLeft.No;
+            xrLabel8.RightToLeft = RightToLeft.No;
+            xrLabel9.RightToLeft = RightToLeft.No;
             printHeader(parameters);
 
         }

@@ -121,8 +121,9 @@
   <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
     <value>A4</value>
   </data>
-  <data name="xrLabel7.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>100, 23.0000038</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="PageHeader.Dpi" type="System.Single, mscorlib">
+    <value>100</value>
   </data>
   <data name="xrLabel5.Text" xml:space="preserve">
     <value>xrLabel5</value>
@@ -134,7 +135,6 @@
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>123.375, 0</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="xrLabel12.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -209,6 +209,9 @@
   </data>
   <data name="xrLabel10.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
+  </data>
+  <data name="xrLabel1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrPageInfo3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>424.8333, 7.16664648</value>
@@ -321,9 +324,6 @@
   <data name="xrLabel4.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="PageHeader.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
   <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>409.833344, 10.0000067</value>
   </data>
@@ -378,8 +378,8 @@
   <data name="Department.Description" xml:space="preserve">
     <value>Parameter1</value>
   </data>
-  <data name="xrLabel1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
-    <value>MiddleCenter</value>
+  <data name="xrLabel7.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>100, 23.0000038</value>
   </data>
   <data name="xrLabel10.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>23.3750019, 128.333344</value>

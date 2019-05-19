@@ -129,7 +129,10 @@
     <value>Balance</value>
   </data>
   <data name="xrLabel28.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
-    <value>MiddleCenter</value>
+    <value>MiddleRight</value>
+  </data>
+  <data name="xrLabel28.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrLabel26.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>419.583282, 0</value>
@@ -141,7 +144,10 @@
     <value>xrLabel3</value>
   </data>
   <data name="xrLabel26.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
-    <value>MiddleCenter</value>
+    <value>MiddleRight</value>
+  </data>
+  <data name="xrLabel26.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrLabel25.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>306.916656, 0</value>

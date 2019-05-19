@@ -445,7 +445,10 @@
     <value>xrTableCell4</value>
   </data>
   <data name="xrTableCell4.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
-    <value>MiddleCenter</value>
+    <value>MiddleRight</value>
+  </data>
+  <data name="xrTableCell4.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrTableCell4.Weight" type="System.Double, mscorlib">
     <value>7.4215380964109743</value>
@@ -523,7 +526,10 @@
     <value>xrTableCell6</value>
   </data>
   <data name="xrTableCell6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
-    <value>MiddleCenter</value>
+    <value>MiddleRight</value>
+  </data>
+  <data name="xrTableCell6.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrTableCell6.Weight" type="System.Double, mscorlib">
     <value>7.4215389607335709</value>
@@ -563,6 +569,12 @@
   </data>
   <data name="xrLabel44.Text" xml:space="preserve">
     <value>xrLabel44</value>
+  </data>
+  <data name="xrLabel44.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrLabel44.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrLabel39.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 12pt, style=Bold</value>
@@ -661,6 +673,12 @@
   <data name="xrLabel42.Text" xml:space="preserve">
     <value>xrLabel42</value>
   </data>
+  <data name="xrLabel42.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrLabel42.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
+  </data>
   <data name="xrLabel37.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
@@ -687,6 +705,12 @@
   </data>
   <data name="xrLabel46.Text" xml:space="preserve">
     <value>xrLabel44</value>
+  </data>
+  <data name="xrLabel46.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrLabel46.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrLabel45.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
@@ -789,5 +813,8 @@
   </data>
   <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
     <value>A4</value>
+  </data>
+  <data name="$this.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopCenter</value>
   </data>
 </root>

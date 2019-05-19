@@ -13,6 +13,9 @@ namespace Reports
         public PayrollLeavePaymentsReport(Dictionary<string, string> parameters)
         {
             InitializeComponent();
+            xrLabel21.RightToLeft = RightToLeft.No;
+            xrLabel22.RightToLeft = RightToLeft.No;
+            xrLabel19.RightToLeft = RightToLeft.No;
             printHeader(parameters);
 
         }

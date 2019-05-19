@@ -64,6 +64,8 @@ public class LoanStatement : DevExpress.XtraReports.UI.XtraReport
     public LoanStatement()
     {
         InitializeComponent();
+        xrTableCell12.RightToLeft = RightToLeft.No;
+        xrTableCell8.RightToLeft = RightToLeft.No;
         //
         // TODO: Add constructor logic here
         //
@@ -647,7 +649,7 @@ public class LoanStatement : DevExpress.XtraReports.UI.XtraReport
             if (!string.IsNullOrEmpty((sender as XRTableCell).Text))
             {
 
-                (sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N0");
+                (sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N2");
 
 
             }

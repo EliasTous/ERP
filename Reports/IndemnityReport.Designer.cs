@@ -181,6 +181,7 @@
             this.xrTableCell20.Name = "xrTableCell20";
             this.xrTableCell20.StyleName = "DataField";
             this.xrTableCell20.StylePriority.UseBorders = false;
+            this.xrTableCell20.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell20, "xrTableCell20");
             // 
             // xrTableCell22
@@ -203,10 +204,11 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell24.CanGrow = false;
             this.xrTableCell24.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "indemnityAmount", "{0:#,#.00}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "indemnityAmount")});
             this.xrTableCell24.Name = "xrTableCell24";
             this.xrTableCell24.StyleName = "DataField";
             this.xrTableCell24.StylePriority.UseBorders = false;
+            this.xrTableCell24.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell24, "xrTableCell24");
             // 
             // TopMargin
@@ -515,7 +517,6 @@
             this.xrLabel7.Name = "xrLabel7";
             this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel7.StylePriority.UseBorders = false;
-            resources.ApplyResources(xrSummary1, "xrSummary1");
             xrSummary1.IgnoreNullValues = true;
             xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.xrLabel7.Summary = xrSummary1;

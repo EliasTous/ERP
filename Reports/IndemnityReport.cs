@@ -13,6 +13,9 @@ namespace Reports
         public IndemnityReport(Dictionary<string, string> parameters)
         {
             InitializeComponent();
+            xrTableCell20.RightToLeft = RightToLeft.No;
+            xrTableCell24.RightToLeft = RightToLeft.No;
+            xrLabel7.RightToLeft = RightToLeft.No;
             printHeader(parameters);
 
             //

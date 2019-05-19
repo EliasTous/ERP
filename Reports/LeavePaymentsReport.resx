@@ -407,6 +407,9 @@
   <data name="xrLabel15.Text" xml:space="preserve">
     <value>xrLabel15</value>
   </data>
+  <data name="xrLabel15.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
+  </data>
   <data name="xrLabel16.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>129.291687, 33.0000229</value>
   </data>
@@ -487,6 +490,12 @@
   </data>
   <data name="xrLabel27.Text" xml:space="preserve">
     <value>xrLabel27</value>
+  </data>
+  <data name="xrLabel27.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopLeft</value>
+  </data>
+  <data name="xrLabel27.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrLabel28.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>129.291687, 134.25</value>

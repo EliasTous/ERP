@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
-            this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.employeePayrollDataSet1 = new EmployeePayrollDataSet();
+            this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.employeePayrollDataSet1 = new Reports.EmployeePayRoll.EmployeePayrollDataSet();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeePayrollDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -44,31 +44,13 @@
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable1});
-            this.Detail.Dpi = 100F;
             this.Detail.HeightF = 25F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // TopMargin
-            // 
-            this.TopMargin.Dpi = 100F;
-            this.TopMargin.HeightF = 0F;
-            this.TopMargin.Name = "TopMargin";
-            this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // BottomMargin
-            // 
-            this.BottomMargin.Dpi = 100F;
-            this.BottomMargin.HeightF = 0F;
-            this.BottomMargin.Name = "BottomMargin";
-            this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
             // xrTable1
             // 
-            this.xrTable1.Dpi = 100F;
             this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -82,7 +64,6 @@
             this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell1,
             this.xrTableCell2});
-            this.xrTableRow1.Dpi = 100F;
             this.xrTableRow1.Name = "xrTableRow1";
             this.xrTableRow1.Weight = 1D;
             // 
@@ -92,11 +73,13 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "SalaryDetails.edName")});
-            this.xrTableCell1.Dpi = 100F;
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.StylePriority.UseBackColor = false;
             this.xrTableCell1.StylePriority.UseBorders = false;
+            this.xrTableCell1.StylePriority.UseTextAlignment = false;
             this.xrTableCell1.Text = "Benifits";
+            this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrTableCell1.TextFormatString = "{0:n2}";
             this.xrTableCell1.Weight = 1.6839609360459986D;
             // 
             // xrTableCell2
@@ -105,19 +88,34 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "SalaryDetails.edAmount", "{0:n2}")});
-            this.xrTableCell2.Dpi = 100F;
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.StylePriority.UseBackColor = false;
             this.xrTableCell2.StylePriority.UseBorders = false;
+            this.xrTableCell2.StylePriority.UseTextAlignment = false;
             this.xrTableCell2.Text = "Amount";
+            this.xrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             this.xrTableCell2.Weight = 1.6839609360459986D;
+            // 
+            // TopMargin
+            // 
+            this.TopMargin.HeightF = 0F;
+            this.TopMargin.Name = "TopMargin";
+            this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // BottomMargin
+            // 
+            this.BottomMargin.HeightF = 0F;
+            this.BottomMargin.Name = "BottomMargin";
+            this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // employeePayrollDataSet1
             // 
             this.employeePayrollDataSet1.DataSetName = "EmployeePayrollDataSet";
             this.employeePayrollDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // EmployeePayrollSub
+            // EmployeePaySlipSub
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
@@ -128,7 +126,8 @@
             this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0);
             this.PageWidth = 405;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
-            this.Version = "16.2";
+            this.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeePayrollDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();

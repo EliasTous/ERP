@@ -117,6 +117,7 @@
             this.xrLabel28.Name = "xrLabel28";
             this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel28.StylePriority.UseBorders = false;
+            this.xrLabel28.StylePriority.UseTextAlignment = false;
             this.xrLabel28.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrLabel28_PrintOnPage);
             // 
             // xrLabel25
@@ -128,6 +129,7 @@
             this.xrLabel25.Name = "xrLabel25";
             this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel25.StylePriority.UseBorders = false;
+            this.xrLabel25.StylePriority.UseTextAlignment = false;
             this.xrLabel25.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrLabel28_PrintOnPage);
             // 
             // xrLabel26
@@ -139,6 +141,7 @@
             this.xrLabel26.Name = "xrLabel26";
             this.xrLabel26.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel26.StylePriority.UseBorders = false;
+            this.xrLabel26.StylePriority.UseTextAlignment = false;
             this.xrLabel26.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrLabel28_PrintOnPage);
             // 
             // xrLabel27
@@ -150,6 +153,7 @@
             this.xrLabel27.Name = "xrLabel27";
             this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel27.StylePriority.UseBorders = false;
+            this.xrLabel27.StylePriority.UseTextAlignment = false;
             this.xrLabel27.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrLabel28_PrintOnPage);
             // 
             // xrTable1

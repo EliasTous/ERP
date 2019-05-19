@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
+using System.Collections.Generic;
+using System.Drawing.Printing;
 
 /// <summary>
 /// Summary description for LoansReport
@@ -49,15 +51,6 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
     private DevExpress.XtraReports.Parameters.Parameter From;
     private DevExpress.XtraReports.Parameters.Parameter To;
     private DevExpress.XtraReports.Parameters.Parameter Status;
-    private PageHeaderBand PageHeader;
-    private XRLine xrLine2;
-    private XRLabel xrLabel17;
-    private XRLabel xrLabel19;
-    private XRLabel xrLabel28;
-    private XRLabel xrLabel29;
-    private XRLabel xrLabel21;
-    private XRLabel xrLabel25;
-    private XRRichText xrRichText4;
     private XRLabel xrLabel22;
     private XRLabel xrLabel20;
     private XRLabel xrLabel30;
@@ -69,12 +62,86 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
-    public LoansReport()
+    public LoansReport(Dictionary<string, string> parameters)
     {
         InitializeComponent();
-        //
-        // TODO: Add constructor logic here
-        //
+        xrLabel26.RightToLeft = RightToLeft.No;
+        xrLabel24.RightToLeft = RightToLeft.No;
+        xrLabel30.RightToLeft = RightToLeft.No;
+        printHeader(parameters);
+    }
+
+    private void printHeader(Dictionary<string, string> parameters)
+    {
+        if (parameters.Count == 0)
+            return;
+
+
+        XRTable table = new XRTable();
+        table.BeginInit();
+
+
+        table.LocationF = new PointF(0, 0);
+        int count = 0;
+        XRTableRow row = new XRTableRow();
+
+        foreach (KeyValuePair<string, string> item in parameters)
+        {
+
+            XRTableCell cell = new XRTableCell();
+
+            cell.Text = item.Key;
+
+            cell.BackColor = Color.Gray;
+            cell.ForeColor = Color.White;
+
+            XRTableCell valueCell = new XRTableCell();
+
+            valueCell.Text = item.Value;
+
+            row.Cells.Add(cell);
+            row.Cells.Add(valueCell);
+
+            count++;
+            if (count % 4 == 0)
+            {
+                table.Rows.Add(row);
+                row = new XRTableRow();
+            }
+
+
+
+
+
+        }
+        if (count % 4 != 0)
+        {
+            for (int i = 0; i < (4 - (count % 4)) * 2; i++)
+            {
+                XRTableCell cell = new XRTableCell();
+
+
+
+                row.Cells.Add(cell);
+            }
+            table.Rows.Add(row);
+        }
+        table.BeforePrint += new PrintEventHandler(table_BeforePrint);
+        table.AdjustSize();
+        table.EndInit();
+
+
+        PageHeaderBand header = new PageHeaderBand();
+        header.Controls.Add(table);
+        this.Bands.Add(header);
+        //   this.PageHeader.Controls.Add(table);
+
+    }
+    private void table_BeforePrint(object sender, PrintEventArgs e)
+    {
+        XRTable table = ((XRTable)sender);
+        table.LocationF = new DevExpress.Utils.PointFloat(0F, 0F);
+        table.WidthF = this.PageWidth - this.Margins.Left - this.Margins.Right;
     }
 
     /// <summary> 
@@ -144,17 +211,7 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
             this.From = new DevExpress.XtraReports.Parameters.Parameter();
             this.To = new DevExpress.XtraReports.Parameters.Parameter();
             this.Status = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
-            this.xrRichText4 = new DevExpress.XtraReports.UI.XRRichText();
-            this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel29 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -589,80 +646,6 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
             this.Status.Name = "Status";
             this.Status.Visible = false;
             // 
-            // PageHeader
-            // 
-            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrRichText4,
-            this.xrLabel17,
-            this.xrLabel19,
-            this.xrLabel28,
-            this.xrLabel29,
-            this.xrLabel21,
-            this.xrLabel25,
-            this.xrLine2});
-            resources.ApplyResources(this.PageHeader, "PageHeader");
-            this.PageHeader.Name = "PageHeader";
-            this.PageHeader.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.PageHeader_BeforePrint);
-            // 
-            // xrRichText4
-            // 
-            resources.ApplyResources(this.xrRichText4, "xrRichText4");
-            this.xrRichText4.Name = "xrRichText4";
-            this.xrRichText4.SerializableRtfString = resources.GetString("xrRichText4.SerializableRtfString");
-            // 
-            // xrLabel17
-            // 
-            this.xrLabel17.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Branch, "Text", "")});
-            resources.ApplyResources(this.xrLabel17, "xrLabel17");
-            this.xrLabel17.Name = "xrLabel17";
-            this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel17.StylePriority.UseFont = false;
-            // 
-            // xrLabel19
-            // 
-            resources.ApplyResources(this.xrLabel19, "xrLabel19");
-            this.xrLabel19.Name = "xrLabel19";
-            this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel19.StylePriority.UseFont = false;
-            // 
-            // xrLabel28
-            // 
-            resources.ApplyResources(this.xrLabel28, "xrLabel28");
-            this.xrLabel28.Name = "xrLabel28";
-            this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel28.StylePriority.UseFont = false;
-            // 
-            // xrLabel29
-            // 
-            this.xrLabel29.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Employee, "Text", "")});
-            resources.ApplyResources(this.xrLabel29, "xrLabel29");
-            this.xrLabel29.Name = "xrLabel29";
-            this.xrLabel29.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel29.StylePriority.UseFont = false;
-            // 
-            // xrLabel21
-            // 
-            resources.ApplyResources(this.xrLabel21, "xrLabel21");
-            this.xrLabel21.Name = "xrLabel21";
-            this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel21.StylePriority.UseFont = false;
-            // 
-            // xrLabel25
-            // 
-            this.xrLabel25.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Status, "Text", "")});
-            resources.ApplyResources(this.xrLabel25, "xrLabel25");
-            this.xrLabel25.Name = "xrLabel25";
-            this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel25.StylePriority.UseFont = false;
-            // 
-            // xrLine2
-            // 
-            resources.ApplyResources(this.xrLine2, "xrLine2");
-            this.xrLine2.Name = "xrLine2";
-            // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT401);
@@ -678,8 +661,7 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
             this.groupHeaderBand2,
             this.pageFooterBand1,
             this.reportHeaderBand1,
-            this.GroupHeader1,
-            this.PageHeader});
+            this.GroupHeader1});
             this.CalculatedFields.AddRange(new DevExpress.XtraReports.UI.CalculatedField[] {
             this.net});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
@@ -700,7 +682,6 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
             this.PageInfo,
             this.DataField});
             this.Version = "18.2";
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -720,7 +701,7 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
 
     private void PageHeader_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        e.Cancel = RowCount == 0;
+        
     }
 
     private void xrLabel26_PrintOnPage(object sender, PrintOnPageEventArgs e)

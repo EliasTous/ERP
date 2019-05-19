@@ -69,6 +69,8 @@ public class LeaveBalance : DevExpress.XtraReports.UI.XtraReport
         //
 
         calculatedLeaveBalance.FieldType = FieldType.Decimal;
+        xrLabel26.RightToLeft = RightToLeft.No;
+        xrLabel28.RightToLeft = RightToLeft.No;
         printHeader(parameters);
 
     }
@@ -237,7 +239,7 @@ public class LeaveBalance : DevExpress.XtraReports.UI.XtraReport
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel28.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "calculatedLeaveBalance", "{0:#.00}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "calculatedLeaveBalance")});
             resources.ApplyResources(this.xrLabel28, "xrLabel28");
             this.xrLabel28.Name = "xrLabel28";
             this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);

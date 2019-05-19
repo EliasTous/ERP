@@ -75,6 +75,8 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
     public Absense(Dictionary<string, string> parameters)
     {
         InitializeComponent();
+        xrTableCell5.RightToLeft = RightToLeft.No;
+        xrLabel29.RightToLeft = RightToLeft.No;
         printHeader(parameters);
         //
         // TODO: Add constructor logic here

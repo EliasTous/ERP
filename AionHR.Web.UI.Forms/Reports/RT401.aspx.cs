@@ -212,19 +212,19 @@ namespace AionHR.Web.UI.Forms.Reports
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
             resp.Items.ForEach(x => x.StatusString = GetLocalResourceObject("Status" + x.status.ToString()).ToString());
-           
-            LoansReport h = new LoansReport();
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            LoansReport h = new LoansReport(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = resp.Items;
 
-            string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
-            string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            //string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            //string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             string user = _systemService.SessionHelper.GetCurrentUser();
 
             
             h.Parameters["User"].Value = user;
-            h.Parameters["Filters"].Value = texts.Text;
+        //    h.Parameters["Filters"].Value = texts.Text;
             h.CreateDocument();
 
 

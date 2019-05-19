@@ -288,6 +288,9 @@
   <data name="xrLabel25.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleLeft</value>
   </data>
+  <data name="xrLabel25.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
+  </data>
   <data name="xrLabel24.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>439.847137, 113.82637</value>
   </data>

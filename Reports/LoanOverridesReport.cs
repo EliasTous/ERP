@@ -58,6 +58,7 @@ public class LoanOverridesReport : DevExpress.XtraReports.UI.XtraReport
     public LoanOverridesReport()
     {
         InitializeComponent();
+        xrTableCell4.RightToLeft = RightToLeft.No;
         //
         // TODO: Add constructor logic here
         //

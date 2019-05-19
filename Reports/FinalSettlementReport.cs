@@ -11,6 +11,12 @@ namespace Reports
         public FinalSettlementReport()
         {
             InitializeComponent();
+            xrTableCell4.RightToLeft = RightToLeft.No;
+            xrLabel44.RightToLeft = RightToLeft.No;
+            xrTableCell6.RightToLeft = RightToLeft.No;
+
+            xrLabel46.RightToLeft = RightToLeft.No;
+            xrLabel42.RightToLeft = RightToLeft.No;
         }
 
     }

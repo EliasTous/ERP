@@ -49,13 +49,14 @@ namespace Reports
         private DevExpress.XtraReports.Parameters.Parameter Division;
         private DevExpress.XtraReports.Parameters.Parameter Date;
         private XRLabel xrLabel20;
-        private XRTableCell xrTableCell7;
         private XRTableCell xrTableCell6;
         private XRTableCell xrTableCell3;
         private XRTableCell xrTableCell5;
         private XRLabel xrLabel21;
         private XRLabel xrLabel19;
         private PageHeaderBand PageHeader;
+        private XRTableCell xrTableCell7;
+        private XRTableCell xrTableCell8;
 
         /// <summary>
         /// Required designer variable.
@@ -67,7 +68,10 @@ namespace Reports
             InitializeComponent();
             //
             // TODO: Add constructor logic here
-            //
+            xrTableCell5.RightToLeft = RightToLeft.No;
+            xrTableCell6.RightToLeft = RightToLeft.No;
+            xrTableCell8.RightToLeft = RightToLeft.No;
+            xrTableCell3.RightToLeft = RightToLeft.No;
             printHeader(parameters);
 
         }
@@ -170,7 +174,6 @@ namespace Reports
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -206,6 +209,8 @@ namespace Reports
             this.Date = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -235,6 +240,7 @@ namespace Reports
             this.xrTableCell2,
             this.xrTableCell4,
             this.xrTableCell7,
+            this.xrTableCell8,
             this.xrTableCell3,
             this.xrTableCell5,
             this.xrTableCell6});
@@ -276,16 +282,6 @@ namespace Reports
             this.xrTableCell4.StylePriority.UseBorders = false;
             this.xrTableCell4.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
-            // 
-            // xrTableCell7
-            // 
-            this.xrTableCell7.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell7.Name = "xrTableCell7";
-            this.xrTableCell7.StylePriority.UseBorders = false;
-            this.xrTableCell7.StylePriority.UseTextAlignment = false;
-            resources.ApplyResources(this.xrTableCell7, "xrTableCell7");
             // 
             // xrTableCell3
             // 
@@ -612,6 +608,30 @@ namespace Reports
             // 
             resources.ApplyResources(this.PageHeader, "PageHeader");
             this.PageHeader.Name = "PageHeader";
+            // 
+            // xrTableCell7
+            // 
+            this.xrTableCell7.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "currencyRef")});
+            this.xrTableCell7.Multiline = true;
+            this.xrTableCell7.Name = "xrTableCell7";
+            this.xrTableCell7.StylePriority.UseBorders = false;
+            this.xrTableCell7.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell7, "xrTableCell7");
+            // 
+            // xrTableCell8
+            // 
+            this.xrTableCell8.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "basicAmount")});
+            this.xrTableCell8.Multiline = true;
+            this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.StylePriority.UseBorders = false;
+            this.xrTableCell8.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
             // 
             // PointInTimeSalary
             // 

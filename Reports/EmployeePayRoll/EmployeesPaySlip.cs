@@ -16,6 +16,8 @@ namespace Reports.EmployeePayRoll
         public EmployeesPaySlip(List<RT501> details, bool isArabic, Dictionary<string, string> parameters)
         {
             InitializeComponent();
+            xrTableCell8.RightToLeft = RightToLeft.No;
+            xrTableCell6.RightToLeft = RightToLeft.No;
             printHeader(parameters);
             if (details.Count == 0)
             { return; }

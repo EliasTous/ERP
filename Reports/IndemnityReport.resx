@@ -149,6 +149,12 @@
   <data name="xrTableCell20.Text" xml:space="preserve">
     <value>xrTableCell20</value>
   </data>
+  <data name="xrTableCell20.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrTableCell20.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
+  </data>
   <data name="xrTableCell20.Weight" type="System.Double, mscorlib">
     <value>10.835307129428127</value>
   </data>
@@ -160,6 +166,12 @@
   </data>
   <data name="xrTableCell24.Text" xml:space="preserve">
     <value>xrTableCell24</value>
+  </data>
+  <data name="xrTableCell24.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrTableCell24.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrTableCell24.Weight" type="System.Double, mscorlib">
     <value>18.687270446282639</value>
@@ -378,8 +390,8 @@
   <data name="xrLabel7.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>106.765686, 23</value>
   </data>
-  <data name="xrSummary1.FormatString" xml:space="preserve">
-    <value>{0:#,#.00}</value>
+  <data name="xrLabel7.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrLabel6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>612.8135, 0</value>
@@ -404,5 +416,8 @@
   </metadata>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
     <value>16, 12, 100, 100</value>
+  </data>
+  <data name="$this.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
   </data>
 </root>

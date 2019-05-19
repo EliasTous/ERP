@@ -13,8 +13,11 @@ namespace Reports
         public BankAccounts(Dictionary<string, string> parameters)
         {
             InitializeComponent();
-        
-           printHeader(parameters);
+            xrTableCell13.RightToLeft = RightToLeft.No;
+           // xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+
+
+            printHeader(parameters);
 
     }
     private void printHeader(Dictionary<string, string> parameters)
@@ -100,20 +103,7 @@ namespace Reports
 
         private void xrTableCell18_PrintOnPage(object sender, PrintOnPageEventArgs e)
         {
-            try
-            {
-                if (!string.IsNullOrEmpty((sender as XRTableCell).Text))
-                {
-                 
-                    (sender as XRTableCell).Text = Convert.ToDouble((sender as XRTableCell).Text).ToString("N0");
-                   
-                   
-                }
-            }
-            catch
-            {
-             
-            }
+            
         }
     }
 }

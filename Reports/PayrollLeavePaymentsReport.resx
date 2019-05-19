@@ -167,6 +167,12 @@
   <data name="xrLabel21.Text" xml:space="preserve">
     <value>xrLabel21</value>
   </data>
+  <data name="xrLabel21.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrLabel21.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
+  </data>
   <data name="xrLabel20.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt</value>
   </data>
@@ -190,6 +196,12 @@
   </data>
   <data name="xrLabel19.Text" xml:space="preserve">
     <value>xrLabel19</value>
+  </data>
+  <data name="xrLabel19.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrLabel19.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrLabel18.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt</value>
@@ -489,8 +501,11 @@
   <data name="xrLabel22.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>96.666626, 23</value>
   </data>
-  <data name="xrSummary1.FormatString" xml:space="preserve">
-    <value>{0:#,#.00}</value>
+  <data name="xrLabel22.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="xrLabel22.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrLabel25.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 12pt, style=Bold</value>

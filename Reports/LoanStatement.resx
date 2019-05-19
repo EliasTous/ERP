@@ -153,7 +153,10 @@
     <value>xrTableCell12</value>
   </data>
   <data name="xrTableCell12.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
-    <value>MiddleCenter</value>
+    <value>MiddleRight</value>
+  </data>
+  <data name="xrTableCell12.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrTableCell12.Weight" type="System.Double, mscorlib">
     <value>0.243469480835727</value>
@@ -162,7 +165,10 @@
     <value>xrTableCell8</value>
   </data>
   <data name="xrTableCell8.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
-    <value>MiddleCenter</value>
+    <value>MiddleRight</value>
+  </data>
+  <data name="xrTableCell8.TextFormatString" xml:space="preserve">
+    <value>{0:n2}</value>
   </data>
   <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
     <value>0.13158015426737896</value>

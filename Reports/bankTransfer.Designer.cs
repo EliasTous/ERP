@@ -158,9 +158,10 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell7.CanGrow = false;
             this.xrTableCell7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "basicAmount", "{0:#,#}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "basicAmount")});
             this.xrTableCell7.Name = "xrTableCell7";
             this.xrTableCell7.StylePriority.UseBorders = false;
+            this.xrTableCell7.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell7, "xrTableCell7");
             // 
             // xrTableCell8
@@ -170,9 +171,10 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell8.CanGrow = false;
             this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "eAmountNonTaxable", "{0:#,#.00}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "eAmountNonTaxable")});
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.StylePriority.UseBorders = false;
+            this.xrTableCell8.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
             // 
             // xrTableCell9
@@ -182,9 +184,10 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell9.CanGrow = false;
             this.xrTableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "eAmountTaxable", "{0:#,#.00}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "eAmountTaxable")});
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.StylePriority.UseBorders = false;
+            this.xrTableCell9.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell9, "xrTableCell9");
             // 
             // xrTableCell17
@@ -194,9 +197,10 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell17.CanGrow = false;
             this.xrTableCell17.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "dAmount", "{0:#,#0.00}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "dAmount")});
             this.xrTableCell17.Name = "xrTableCell17";
             this.xrTableCell17.StylePriority.UseBorders = false;
+            this.xrTableCell17.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell17, "xrTableCell17");
             // 
             // xrTableCell10
@@ -242,7 +246,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell22.CanGrow = false;
             this.xrTableCell22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "netSalary", "{0:#,#}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "netSalary")});
             this.xrTableCell22.Name = "xrTableCell22";
             this.xrTableCell22.StyleName = "DataField";
             this.xrTableCell22.StylePriority.UseBorders = false;

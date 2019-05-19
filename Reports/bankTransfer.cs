@@ -12,7 +12,13 @@ namespace Reports
     {
         public bankTransfer(Dictionary<string, string> parameters)
         {
+            
             InitializeComponent();
+            xrTableCell7.RightToLeft = RightToLeft.No;
+            xrTableCell8.RightToLeft = RightToLeft.No;
+            xrTableCell9.RightToLeft = RightToLeft.No;
+            xrTableCell17.RightToLeft = RightToLeft.No;
+            xrTableCell22.RightToLeft = RightToLeft.No;
             printHeader(parameters);
 
         }

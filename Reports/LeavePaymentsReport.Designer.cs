@@ -503,6 +503,7 @@
             this.xrLabel27.Name = "xrLabel27";
             this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel27.StyleName = "DataField";
+            this.xrLabel27.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel28
             // 

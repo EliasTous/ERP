@@ -16,7 +16,10 @@ namespace Reports
         public SalaryHistory(Dictionary<string, string> parameters)
         {
             InitializeComponent();
-
+            xrLabel28.RightToLeft = RightToLeft.No;
+            xrLabel25.RightToLeft = RightToLeft.No;
+            xrLabel26.RightToLeft = RightToLeft.No;
+            xrLabel27.RightToLeft = RightToLeft.No;
 
             printHeader(parameters);
 

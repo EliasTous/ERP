@@ -160,7 +160,6 @@
             this.DetailReport.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail1});
             this.DetailReport.DataSource = this.objectDataSource1;
-            this.DetailReport.Expanded = false;
             this.DetailReport.Level = 0;
             this.DetailReport.Name = "DetailReport";
             // 
@@ -503,7 +502,6 @@
             this.Detail2,
             this.GroupHeader2});
             this.DetailReport1.DataSource = this.objectDataSource2;
-            this.DetailReport1.Expanded = false;
             this.DetailReport1.Level = 1;
             this.DetailReport1.Name = "DetailReport1";
             // 
@@ -701,6 +699,7 @@
             this.xrLabel44.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel44.StylePriority.UseBorders = false;
             this.xrLabel44.StylePriority.UseFont = false;
+            this.xrLabel44.StylePriority.UseTextAlignment = false;
             // 
             // TotalEntitlement
             // 
@@ -801,6 +800,7 @@
             this.xrLabel42.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel42.StylePriority.UseBorders = false;
             this.xrLabel42.StylePriority.UseFont = false;
+            this.xrLabel42.StylePriority.UseTextAlignment = false;
             // 
             // totalAmount
             // 
@@ -831,6 +831,7 @@
             this.xrLabel46.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel46.StylePriority.UseBorders = false;
             this.xrLabel46.StylePriority.UseFont = false;
+            this.xrLabel46.StylePriority.UseTextAlignment = false;
             // 
             // TotalDeduction
             // 
