@@ -228,8 +228,30 @@ namespace AionHR.Web.UI.Forms
 
             items.ForEach(x =>
             {
-                EmployeeTsStart = TimeSpan.Parse(x.from);
-                EmployeeTsEnd = TimeSpan.Parse(x.to);
+                string newFrom = "";
+                string newTo = "";
+                List<string> fromList = x.from.Split(':').ToList();
+                if (fromList.Count==2)
+                {
+                    newFrom = (Convert.ToInt32(fromList.First()) % 24).ToString();
+                    newFrom += ":" + fromList.ElementAt(1);
+                    EmployeeTsStart = TimeSpan.Parse(newFrom);
+                }
+                else
+                    EmployeeTsStart = TimeSpan.Parse(x.from);
+
+
+               
+                List<string> ToList = x.to.Split(':').ToList();
+                if (ToList.Count == 2)
+                {
+                    newTo = (Convert.ToInt32(ToList.First()) % 24).ToString();
+                    newTo += ":" + ToList.ElementAt(1);
+                    EmployeeTsEnd = TimeSpan.Parse(newTo);
+                }
+                else
+                    EmployeeTsEnd = TimeSpan.Parse(x.to); 
+
                 if (EmployeeTsStart < tsStart || EmployeeTsEnd > tsClose)
                 {
                     html += @"</table></div>";
@@ -284,12 +306,39 @@ namespace AionHR.Web.UI.Forms
                 foreach (FlatSchedule fs in items)
                 {
 
-                    fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
-                    fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
-                    if (fsfromDate >= fsToDate)
+                     activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
+
+                     fsfromDate = new DateTime();
+                     fsToDate = new DateTime();
+                    int i = 0;
+                    if (Int32.TryParse(fs.from.Split(':')[0], out i))
                     {
-                        fsToDate = fsToDate.AddDays(1);
+                        if (i >= 24)
+                            fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i % 24, Convert.ToInt32(fs.from.Split(':')[1]), 0);
+                        else
+                            fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
                     }
+                    if (Int32.TryParse(fs.to.Split(':')[0], out i))
+                    {
+                        if (i >= 24)
+                            fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i % 24, Convert.ToInt32(fs.from.Split(':')[1]), 0);
+                        else
+                            fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
+
+                    }
+
+
+                    DateTime temp = fsfromDate;
+
+
+                    if (fsfromDate > fsToDate)
+                    {
+
+                        fsToDate = fsToDate.AddDays(1);
+
+
+                    }
+
 
                     do
                     {

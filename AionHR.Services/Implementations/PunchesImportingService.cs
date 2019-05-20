@@ -45,7 +45,7 @@ namespace AionHR.Services.Implementations
 
 
 
-                exp.Source = row[0].ToString() + ";" + row[1].ToString() + ";" + row[3].ToString() + ";" + row[3].ToString() + exp.Message;
+                exp.Source = row[0].ToString() + ";" + row[1].ToString() + ";" + row[2].ToString() + ";" + row[3].ToString() +";" + exp.Message;
                 throw exp;
             }
        
