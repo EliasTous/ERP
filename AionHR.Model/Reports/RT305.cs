@@ -19,6 +19,7 @@ namespace AionHR.Model.Reports
             get { return employeeId * 100 + timeCode; }
             set { value = groupingKey; }
         }
+        
 
 
     }
