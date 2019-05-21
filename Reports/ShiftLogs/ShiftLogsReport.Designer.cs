@@ -95,14 +95,15 @@
             this.xrPivotGrid1.OptionsView.ShowColumnGrandTotalHeader = false;
             this.xrPivotGrid1.OptionsView.ShowColumnGrandTotals = false;
             this.xrPivotGrid1.OptionsView.ShowColumnHeaders = false;
-            this.xrPivotGrid1.OptionsView.ShowColumnTotals = false;
             this.xrPivotGrid1.OptionsView.ShowDataHeaders = false;
             this.xrPivotGrid1.OptionsView.ShowFilterHeaders = false;
             this.xrPivotGrid1.OptionsView.ShowRowGrandTotalHeader = false;
             this.xrPivotGrid1.OptionsView.ShowRowGrandTotals = false;
-            this.xrPivotGrid1.OptionsView.ShowRowTotals = false;
             this.xrPivotGrid1.CustomFieldSort += new System.EventHandler<DevExpress.XtraReports.UI.PivotGrid.PivotGridCustomFieldSortEventArgs>(this.grdAccountLedger_CustomFieldSort);
+            this.xrPivotGrid1.CustomCellDisplayText += new System.EventHandler<DevExpress.XtraReports.UI.PivotGrid.PivotCellDisplayTextEventArgs>(this.xrPivotGrid1_CustomCellDisplayText);
+            this.xrPivotGrid1.CustomCellValue += new System.EventHandler<DevExpress.XtraReports.UI.PivotGrid.PivotCellValueEventArgs>(this.xrPivotGrid1_CustomCellValue);
             this.xrPivotGrid1.CustomColumnWidth += new System.EventHandler<DevExpress.XtraReports.UI.PivotGrid.PivotCustomColumnWidthEventArgs>(this.xrPivotGrid1_CustomColumnWidth);
+            this.xrPivotGrid1.CustomSummary += new System.EventHandler<DevExpress.XtraReports.UI.PivotGrid.PivotGridCustomSummaryEventArgs>(this.ASPxPivotGrid1_CustomSummary);
             // 
             // shiftLogsDS1
             // 
@@ -128,6 +129,7 @@
             resources.ApplyResources(this.fieldemployeeName1, "fieldemployeeName1");
             this.fieldemployeeName1.FieldName = "employeeName";
             this.fieldemployeeName1.Name = "fieldemployeeName1";
+            this.fieldemployeeName1.SummaryType = DevExpress.Data.PivotGrid.PivotSummaryType.Custom;
             // 
             // fielddayId1
             // 
@@ -154,6 +156,8 @@
             this.fieldShift1.AreaIndex = 0;
             this.fieldShift1.FieldName = "Shift";
             this.fieldShift1.Name = "fieldShift1";
+            this.fieldShift1.Options.ShowCustomTotals = false;
+            this.fieldShift1.Options.ShowGrandTotal = false;
             this.fieldShift1.Options.ShowTotals = false;
             this.fieldShift1.SummaryType = DevExpress.Data.PivotGrid.PivotSummaryType.Min;
             this.fieldShift1.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
@@ -168,6 +172,7 @@
             this.fieldShiftId1.AreaIndex = 0;
             this.fieldShiftId1.FieldName = "ShiftId";
             this.fieldShiftId1.Name = "fieldShiftId1";
+            this.fieldShiftId1.SummaryType = DevExpress.Data.PivotGrid.PivotSummaryType.Custom;
             // 
             // TopMargin
             // 

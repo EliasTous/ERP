@@ -233,30 +233,26 @@ namespace AionHR.Web.UI.Forms.Reports
                
                     e.ToList().ForEach(y =>
                     {
+
                         counter = 1;
                         if (DateTime.TryParseExact(y.dayId, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
                             {
 
-                            //y.dayIdDateTime = parsed;
-                            //record = new Model.Reports.RT309();
-                            //record.employeeName = y.employeeName;
-                            //record.dayIdDateTime = y.dayIdDateTime;
-                            //record.shiftLog = y.shiftLog;
 
-                            //record.shiftId = String.Format("{0} {1}", "Shift", counter);
-                            //counter++;
-                            //newShiftLogsList.Add(record);
+                         
+
                             y.shiftLog.ForEach(z =>
                             {
                                 y.dayIdDateTime = parsed;
                                 record = new Model.Reports.RT309();
                                 record.employeeName = y.employeeName;
                                 record.dayIdDateTime = y.dayIdDateTime;
+                                record.duration = y.duration;
                                 record.shiftLog = new List<ShiftLog>();
                                 record.shiftLog.Add(new ShiftLog { start = z.start, end = z.end });
 
                                 if (_systemService.SessionHelper.CheckIfArabicSession())
-                                    record.shiftId = String.Format("{0} {1}", "الفترة ",counter);
+                                    record.shiftId = String.Format("{0} {1}", "فترة  ",counter);
                                 else
                                     record.shiftId = String.Format("{0} {1}", "Shift ", counter);
                                 if (maxShiftCount < counter)

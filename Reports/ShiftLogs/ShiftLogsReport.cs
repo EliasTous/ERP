@@ -8,22 +8,25 @@ using System.Linq;
 using AionHR.Model.Reports;
 using DevExpress.XtraPivotGrid;
 using System.Drawing.Printing;
+using DevExpress.XtraReports.UI.PivotGrid;
 
 namespace Reports.ShiftLogs
 {
     public partial class ShiftLogsReport : DevExpress.XtraReports.UI.XtraReport
     {
-        
 
+        List<RT309> items = new List<RT309>();
         public ShiftLogsReport(List<RT309> items, bool isArabic,string DateFormat, Dictionary<string, string> parameters,int maxShiftCount)
         {
+            this.items = items;
             this.PaperKind = PaperKind.A4;
            // this.Landscape = true;
             InitializeComponent();
+
             if (maxShiftCount > 0)
             {
-                fieldShiftId1.Width = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / maxShiftCount ;
-                fieldShiftId1.MinWidth = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / maxShiftCount ;
+                fieldShiftId1.Width = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / ++maxShiftCount ;
+                fieldShiftId1.MinWidth = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / ++maxShiftCount ;
             }
            
             fielddayId1.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -41,6 +44,7 @@ namespace Reports.ShiftLogs
 
             items.ForEach(x =>
             {
+                shiftLogsDS1.ShiftItems.AddShiftItemsRow(x.employeeId, x.employeeName, x.dayIdDateTime,time(x.duration,true) , isArabic?"المدة":"Duration");
                 shiftLogsDS1.ShiftItems.AddShiftItemsRow(x.employeeId,x.employeeName,x.dayIdDateTime,buildShiftValue(x.shiftLog),x.shiftId);
             });
 
@@ -211,6 +215,77 @@ namespace Reports.ShiftLogs
         private void xrPivotGrid1_CustomColumnWidth(object sender, DevExpress.XtraReports.UI.PivotGrid.PivotCustomColumnWidthEventArgs e)
         {
            
+        }
+        protected void ASPxPivotGrid1_CustomSummary(object sender,PivotGridCustomSummaryEventArgs e)
+        {
+           
+
+            // A variable which counts the number of orders whose sum exceeds $500. 
+            int order500Count = 0;
+
+            // Get the record set corresponding to the current cell. 
+            PivotDrillDownDataSource ds = e.CreateDrillDownDataSource();
+
+            // Iterate through the records and count the orders. 
+            for (int i = 0; i < ds.RowCount; i++)
+            {
+                PivotDrillDownDataRow row = ds[i];
+
+                // Get the order's total sum. 
+                //decimal orderSum = (decimal)row[fieldExtendedPrice];
+                //if (orderSum >= minSum) order500Count++;
+            }
+
+            // Calculate the percentage. 
+            if (ds.RowCount > 0)
+            {
+                e.CustomValue = 10;
+            }
+        }
+
+        public static string time(int _minutes, bool _signed)
+        {
+            if (_minutes == 0)
+                return "00:00";
+
+            bool isNegative = _minutes < 0 ? true : false;
+
+            _minutes = Math.Abs(_minutes);
+
+            string hours = (_minutes / 60).ToString(), minutes = (_minutes % 60).ToString(), formattedTime;
+
+            if (hours.Length == 1)
+                hours = "0" + hours;
+
+            if (minutes.Length == 1)
+                minutes = "0" + minutes;
+
+            formattedTime = hours + ':' + minutes;
+
+            if (isNegative && _signed)
+                formattedTime = "-" + formattedTime;
+
+            return formattedTime;
+        }
+
+        private void xrPivotGrid1_CustomCellDisplayText(object sender, PivotCellDisplayTextEventArgs e)
+        {
+            e.GetFieldValue(fieldemployeeName1);
+           if ( e.RowValueType == PivotGridValueType.Total && e.ColumnIndex==0)
+            {
+                e.DisplayText =time(items.Where(x => x.employeeName == e.GetFieldValue(fieldemployeeName1).ToString()).Sum(x => x.duration),true);
+                return;
+
+            }
+            if (e.RowValueType == PivotGridValueType.Total)
+                e.DisplayText = "";
+
+        }
+
+        private void xrPivotGrid1_CustomCellValue(object sender, PivotCellValueEventArgs e)
+        {
+            
+
         }
     }
 
