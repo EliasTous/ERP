@@ -278,7 +278,7 @@ namespace AionHR.Web.UI.Forms
 
             req.Size = "50";
             req.StartAt = "0";
-            req.SortBy = "firstName";
+            req.SortBy = "recordId";
 
             return req;
         }

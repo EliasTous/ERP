@@ -528,7 +528,7 @@ namespace AionHR.Web.UI.Forms
             req.Size = "30";
             req.StartAt = "0";
             req.Filter = "";
-            req.SortBy = "dayId,checkIn";
+            req.SortBy = "dayId";
           
          //  req.apStatus = 0;
          

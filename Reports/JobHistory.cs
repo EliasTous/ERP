@@ -251,7 +251,7 @@ namespace Reports
             // xrTableCell1
             // 
             this.xrTableCell1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "name")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName")});
             this.xrTableCell1.Name = "xrTableCell1";
             resources.ApplyResources(this.xrTableCell1, "xrTableCell1");
             // 
@@ -279,7 +279,7 @@ namespace Reports
             // xrTableCell6
             // 
             this.xrTableCell6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "reportToName.fullName")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "reportToName")});
             this.xrTableCell6.Name = "xrTableCell6";
             resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             // 

@@ -486,6 +486,9 @@
     <EmbeddedResource Include="AttendanceSchedule\AttendanceScheduleReport.en-US.resx">
       <DependentUpon>AttendanceScheduleReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceSchedule\AttendanceScheduleReport.fr.resx">
+      <DependentUpon>AttendanceScheduleReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuditTrail.fr.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
     </EmbeddedResource>
@@ -558,13 +561,22 @@
       <DependentUpon>EmployeePayrollCrossReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmployeePayRollCross\EmployeePayrollCrossReport.fr.resx">
+      <DependentUpon>EmployeePayrollCrossReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmployeePayRollCross\EmployeePayrollCrossReport.resx">
       <DependentUpon>EmployeePayrollCrossReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmployeePayRoll\EmployeePaySlipSub.fr.resx">
+      <DependentUpon>EmployeePaySlipSub.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmployeePayRoll\EmployeesPaySlip.ar.resx">
       <DependentUpon>EmployeesPaySlip.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeePayRoll\EmployeesPaySlip.fr.resx">
+      <DependentUpon>EmployeesPaySlip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeePayRoll\EmployeesPaySlip.resx">
       <DependentUpon>EmployeesPaySlip.cs</DependentUpon>
@@ -592,6 +604,9 @@
     <EmbeddedResource Include="GroupedPayRollCross\GroupedPayrollCrossReport.ar.resx">
       <DependentUpon>GroupedPayrollCrossReport.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupedPayRollCross\GroupedPayrollCrossReport.fr.resx">
+      <DependentUpon>GroupedPayrollCrossReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GroupedPayRollCross\GroupedPayrollCrossReport.resx">
       <DependentUpon>GroupedPayrollCrossReport.cs</DependentUpon>
@@ -680,6 +695,9 @@
       <DependentUpon>PunchLogReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="PunchLog\PunchLogReport.fr.resx">
+      <DependentUpon>PunchLogReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PunchLog\PunchLogReport.resx">
       <DependentUpon>PunchLogReport.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -721,6 +739,9 @@
       <DependentUpon>ShiftLogsReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ShiftLogs\ShiftLogsReport.fr.resx">
+      <DependentUpon>ShiftLogsReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ShiftLogs\ShiftLogsReport.resx">
       <DependentUpon>ShiftLogsReport.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -729,6 +750,9 @@
       <DependentUpon>SignInTrail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Skills\Skills.ar.resx">
+      <DependentUpon>Skills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skills\Skills.fr.resx">
       <DependentUpon>Skills.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Skills\Skills.resx">

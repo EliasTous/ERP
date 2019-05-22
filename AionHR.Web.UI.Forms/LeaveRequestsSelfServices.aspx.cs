@@ -465,7 +465,7 @@ namespace AionHR.Web.UI.Forms
             request.status = 0;
             request.Size = "50";
             request.StartAt = e.Start.ToString();
-            request.SortBy = "firstName";
+            request.SortBy = "recordId";
 
             request.Filter = "";
             ListResponse<leaveRequetsSelfservice> routers = _selfServiceService.ChildGetAll<leaveRequetsSelfservice>(request);

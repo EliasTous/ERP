@@ -212,6 +212,7 @@ namespace AionHR.Web.UI.Forms
                          Common.errorMessage(response);
                         return;
                     }
+                   
                     //Step 2 : call setvalues with the retrieved object
                     branchId.Text = response.result.recordId;
                     managerId.Disabled = false;
@@ -233,6 +234,7 @@ namespace AionHR.Web.UI.Forms
 
                     legalReferenceStore.Reload();
                     this.BasicInfoTab.SetValues(response.result);
+                    isInactive.Checked = response.result.activeStatus == Convert.ToInt16(ActiveStatus.INACTIVE);
                     if (response.result.managerId == "0")
                         managerId.Text = "";
                         //  timeZoneCombo.Select(response.result.timeZone.ToString());
@@ -488,6 +490,14 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString()+"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+ branches.LogId : branches.Summary).Show();
                 return;
             }
+            branches.Items.ForEach(x=>
+                {
+                    if (x.activeStatus == Convert.ToInt16(ActiveStatus.INACTIVE))
+                        x.isInactive = true; 
+                    else
+                        x.isInactive = false;
+
+                });
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 
@@ -511,6 +521,7 @@ namespace AionHR.Web.UI.Forms
             b.managerId = managerId.Value.ToString(); 
 
             b.isInactive = isInactive.Checked;
+            b.activeStatus = isInactive.Checked ? Convert.ToInt16(ActiveStatus.INACTIVE) : Convert.ToInt16(ActiveStatus.ACTIVE);
             b.recordId = id;
             // Define the object to add or edit as null
             CustomResolver res = new CustomResolver();
