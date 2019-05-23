@@ -304,4 +304,7 @@
   <data name="tv_url" xml:space="preserve">
     <value>Url</value>
   </data>
+  <data name="leave_employeeName" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
 </root>
