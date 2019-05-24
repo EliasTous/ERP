@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LEAVE_REQUEST_APPROVED" xml:space="preserve">
-    <value>Leave Request Approved</value>
+    <value>Leave Request Approved /Employee</value>
   </data>
   <data name="LEAVE_REQUEST_NEW" xml:space="preserve">
-    <value>Leave Request New</value>
+    <value>Leave Request New / Employee</value>
   </data>
   <data name="LEAVE_REQUEST_REJECTED" xml:space="preserve">
-    <value>Leave Request Rejected</value>
+    <value>Leave Request Rejected </value>
   </data>
   <data name="LOAN_REQUEST_APPROVED" xml:space="preserve">
     <value>Loan Request Approved</value>

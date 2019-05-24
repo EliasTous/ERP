@@ -434,3 +434,24 @@ public class AttendanceShiftListRequest : ListRequest
         }
     }
 }
+public class TimeAttendanceViewListRequest : ListRequest
+{
+    public string paramString { get; set; }
+    public string sortBy { get; set; }
+
+    
+
+
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_params", paramString);
+            parameters.Add("_sortBy", sortBy);
+
+            return parameters;
+        }
+    }
+}

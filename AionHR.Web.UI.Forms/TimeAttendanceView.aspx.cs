@@ -391,9 +391,13 @@ namespace AionHR.Web.UI.Forms
                 //GEtting the filter from the page
 
                 string rep_params = vals.Text;
-                ReportGenericRequest req = new ReportGenericRequest();
+                TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
                 req.paramString = rep_params;
                 req.StartAt = e.Start.ToString();
+                req.Size = "30";
+                req.sortBy = "dayId";
+
+
                 ListResponse<AttendanceDay> daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
                 if (!daysResponse.Success)
                 {
