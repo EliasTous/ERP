@@ -151,7 +151,7 @@
     <value>xrTableCell1</value>
   </data>
   <data name="xrTableCell10.Text" xml:space="preserve">
-    <value>xrTableCell10</value>
+    <value>ساعات محددة</value>
   </data>
   <data name="xrTableCell11.Text" xml:space="preserve">
     <value>نهاية اليوم</value>
@@ -265,6 +265,6 @@
     <value>xrTableCell8</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>بداية اليوم </value>
+    <value>ساعات التقويم</value>
   </data>
 </root>

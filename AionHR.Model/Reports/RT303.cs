@@ -33,5 +33,7 @@ namespace AionHR.Model.Reports
         public double? EARLY_LEAVE { get; set; }
         public double? EARLY_CHECKIN { get; set; }
         public double? OVERTIME { get; set; }
+        public double? scheduledHours { get; set; }
+        public double? workingHours { get; set; }
     }
 }
