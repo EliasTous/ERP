@@ -127,7 +127,7 @@
     <value>Urlaubsantrag abglehnt</value>
   </data>
   <data name="LOAN_REQUEST_APPROVED" xml:space="preserve">
-    <value>Urlaubsantrag genehmigt /Mitarbeiter</value>
+    <value>Urlaubsantrag genehmigt / Mitarbeiter</value>
   </data>
   <data name="LOAN_REQUEST_NEW" xml:space="preserve">
     <value>Darlehensantrag Neu</value>

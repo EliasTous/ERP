@@ -470,7 +470,7 @@
     <value>Arial, 10pt</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>Calendar Hours</value>
+    <value>Working Hours</value>
   </data>
   <data name="xrTableCell9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>

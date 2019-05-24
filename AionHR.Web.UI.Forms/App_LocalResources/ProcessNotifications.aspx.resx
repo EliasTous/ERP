@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LEAVE_REQUEST_APPROVED" xml:space="preserve">
-    <value>Leave Request Approved /Employee</value>
+    <value>Leave Request Approved / Employee</value>
   </data>
   <data name="LEAVE_REQUEST_NEW" xml:space="preserve">
     <value>Leave Request New / Employee</value>

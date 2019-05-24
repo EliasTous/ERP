@@ -127,7 +127,7 @@
     <value>Demande de congé rejetée</value>
   </data>
   <data name="LOAN_REQUEST_APPROVED" xml:space="preserve">
-    <value>Loan Request Approved /Employe</value>
+    <value>Loan Request Approved / Employe</value>
   </data>
   <data name="LOAN_REQUEST_NEW" xml:space="preserve">
     <value>Loan Request New</value>
