@@ -84,6 +84,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+                approvalTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "24");
 
                 try
                 {

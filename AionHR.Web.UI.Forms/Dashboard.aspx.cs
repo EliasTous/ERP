@@ -3034,7 +3034,8 @@ namespace AionHR.Web.UI.Forms
             {
                 string penaltyId = e.ExtraParams["penaltyId"];
                 string penaltyStatusValue = e.ExtraParams["penaltyStatus"];
-                
+                string notes = e.ExtraParams["notes"];
+
                 EmployeePenaltyApprovalRecordRequest r = new EmployeePenaltyApprovalRecordRequest();
                 r.penaltyId = penaltyId;
                 r.approverId = _systemService.SessionHelper.GetEmployeeId();
@@ -3054,7 +3055,7 @@ namespace AionHR.Web.UI.Forms
 
 
                 PA.status = number;
-
+                PA.notes = notes;
 
 
 

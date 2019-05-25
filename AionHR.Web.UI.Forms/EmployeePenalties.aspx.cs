@@ -160,6 +160,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             CurrentpenaltyId.Text = id.ToString();
             FillPenalty();
+            panelRecordDetails.ActiveIndex = 0;
             switch (type)
             {
                 case "imgEdit":
@@ -350,7 +351,8 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
             FillPenalty();
             CurrentpenaltyId.Text = "";
-            date.SelectedDate = DateTime.Now; 
+            date.SelectedDate = DateTime.Now;
+            panelRecordDetails.ActiveIndex = 0;
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
             this.EditRecordWindow.Show();
@@ -628,13 +630,10 @@ namespace AionHR.Web.UI.Forms
                         x.statusString = StatusNew.Text;
                         break;
                     case 2:
-                        x.statusString = StatusInProcess.Text;
-                        ;
-                        break;
-                    case 3:
                         x.statusString = StatusApproved.Text;
                         ;
                         break;
+                  
                     case -1:
                         x.statusString = StatusRejected.Text;
 

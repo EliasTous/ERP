@@ -5962,7 +5962,7 @@
                             <ExtraParams>
                                 <ext:Parameter Name="penaltyId" Value="#{PERecordId}.getValue()" Mode="Raw" />
                                  <ext:Parameter Name="penaltyStatus" Value="App.penaltyStatus.getValue()" Mode="Raw" />
-
+                                  <ext:Parameter Name="notes" Value="#{notes}.getValue()" Mode="Raw" />
                                 
                                 <ext:Parameter Name="values" Value="#{employeePenaltyForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
