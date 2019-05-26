@@ -306,4 +306,22 @@
   <data name="leave_employeeName" xml:space="preserve">
     <value>Employee Name</value>
   </data>
+  <data name="approve_url" xml:space="preserve">
+    <value>رابط الموافقة </value>
+  </data>
+  <data name="leave_destination" xml:space="preserve">
+    <value>الوجهة</value>
+  </data>
+  <data name="leave_justification" xml:space="preserve">
+    <value>التبرير</value>
+  </data>
+  <data name="leave_leavetype" xml:space="preserve">
+    <value>نوع المغادرة</value>
+  </data>
+  <data name="reject_url" xml:space="preserve">
+    <value>رابط الرفض</value>
+  </data>
+  <data name="replacement_employee" xml:space="preserve">
+    <value>الموظف البديل</value>
+  </data>
 </root>
