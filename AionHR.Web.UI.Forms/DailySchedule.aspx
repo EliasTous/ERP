@@ -611,7 +611,8 @@
           <ext:Window runat="server"  Icon="PageEdit"
             ID="reportsParams"
             Width="600"
-            Height="500"
+          
+              MinHeight="350"
             Title="<%$Resources:Common,Parameters %>"
             AutoShow="false"
             Modal="true"

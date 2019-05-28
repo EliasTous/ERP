@@ -477,7 +477,7 @@ namespace AionHR.Web.UI.Forms
                         dayIdString = x.dayIdString,
                         positionName = x.positionName
                     });
-                    if (max > 20)
+                    if (max > 30)
                         break;
                     fsstring = "";
                     asstring = "";
