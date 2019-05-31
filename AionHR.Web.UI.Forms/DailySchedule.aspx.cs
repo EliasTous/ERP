@@ -379,6 +379,8 @@ namespace AionHR.Web.UI.Forms
             fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
             fs.fromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
             fs.toDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            fs.dtTo = dateTo.SelectedDate;
+            fs.dtFrom = dateFrom.SelectedDate;
             PostRequest<FlatScheduleRange> request = new PostRequest<FlatScheduleRange>();
 
             request.entity = fs;
@@ -461,7 +463,7 @@ namespace AionHR.Web.UI.Forms
 
             FlatSchedule fs = new FlatSchedule();
             fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
-            fs.dayId = dayId.Value.ToString();
+          // fs.dayId = dayId.Value.ToString();
             fs.shiftId = 0;
             PostRequest<FlatSchedule> request = new PostRequest<FlatSchedule>();
 
@@ -662,10 +664,10 @@ namespace AionHR.Web.UI.Forms
                 }
                 
                 FlatSchedule fs = new FlatSchedule();
-                fs.from = fsfromTime.ToString("HH:mm");
-                fs.to = fsToTime.ToString("HH:mm");
+                fs.dtFrom = fsfromTime;
+                fs.dtTo = fsToTime;
                 fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
-                fs.dayId = dayId.Value.ToString();
+                //fs.dayId = dayId.Value.ToString();
               
                     PostRequest<FlatSchedule> request = new PostRequest<FlatSchedule>();
 
@@ -702,62 +704,56 @@ namespace AionHR.Web.UI.Forms
                         {
 
                       
-                            DateTime activeDate = DateTime.ParseExact(fss.dayId, "yyyyMMdd", new CultureInfo("en"));
-                        DateTime fsfromDate=new DateTime();
-                        DateTime fsToDate=new DateTime();
-                             int i = 0;
-                        if (!Int32.TryParse(fss.from.Split(':')[0], out i))
-                        {
-                            if (i >= 24)
-                                fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i%24, Convert.ToInt32(fss.from.Split(':')[1]), 0);
-                            else
-                                fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.from.Split(':')[0]), Convert.ToInt32(fss.from.Split(':')[1]), 0);
-                        }
-                        if (!Int32.TryParse(fss.to.Split(':')[0], out i))
-                        {
-                            if (i >= 24)
-                                fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i % 24, Convert.ToInt32(fss.from.Split(':')[1]), 0);
-                            else
-                                fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.to.Split(':')[0]), Convert.ToInt32(fss.to.Split(':')[1]), 0);
+                        //DateTime activeDate = DateTime.ParseExact(fss.dayId, "yyyyMMdd", new CultureInfo("en"));
+                        //DateTime fsfromDate=new DateTime();
+                        //DateTime fsToDate=new DateTime();
+                        //     int i = 0;
+                        //if (!Int32.TryParse(fss.from.Split(':')[0], out i))
+                        //{
+                        //    if (i >= 24)
+                        //        fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i%24, Convert.ToInt32(fss.from.Split(':')[1]), 0);
+                        //    else
+                        //        fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.from.Split(':')[0]), Convert.ToInt32(fss.from.Split(':')[1]), 0);
+                        //}
+                        //if (!Int32.TryParse(fss.to.Split(':')[0], out i))
+                        //{
+                        //    if (i >= 24)
+                        //        fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i % 24, Convert.ToInt32(fss.from.Split(':')[1]), 0);
+                        //    else
+                        //        fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.to.Split(':')[0]), Convert.ToInt32(fss.to.Split(':')[1]), 0);
 
-                        }
+                        //}
                        
                      
                         
-                            DateTime temp = activeDate;
-                            if (fsfromDate > fsToDate)
-                            {
+                        //    DateTime temp = activeDate;
+                        //    if (fsfromDate > fsToDate)
+                        //    {
                                
-                                fsToDate = fsToDate.AddDays(1);
+                        //        fsToDate = fsToDate.AddDays(1);
                                
                                
-                            }
+                        //    }
                            
-                            while (fsToDate >= fsfromDate) 
+                            while (fss.dtTo >= fss.dtFrom) 
                             {
                               
-                                listIds.Add(temp.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                                fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                                listIds.Add(fss.dtFrom.ToString("yyyyMMdd") + "_" + fss.dtFrom.ToString("HH:mm"));
+                            fss.dtFrom = fss.dtFrom.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
 
                             } 
                           
                         }
-                        var d = response.Items.GroupBy(x => x.dayId);
+                        var d = response.Items.GroupBy(x => x.dtFrom);
                         List<string> totaldayId = new List<string>();
                         List<string> totaldaySum = new List<string>();
-                        d.ToList().ForEach(x =>
-                        {
-                            totaldayId.Add(x.ToList()[0].dayId + "_Total");
-                            totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration) / 60).ToString());
-                        });
-
-                        //eliasList<string> listIds = new List<string>();
-                        //DateTime effectiveDate = fsfromTime;
-                        //do
+                        //d.ToList().ForEach(x =>
                         //{
-                        //    listIds.Add(effectiveDate.ToString("yyyyMMdd") + "_" + fsfromTime.ToString("HH:mm"));
-                        //    fsfromTime = fsfromTime.AddMinutes(30);
-                        //} while (fsToTime >= fsfromTime);
+                        //    totaldayId.Add(x.ToList()[0].dayId + "_Total");
+                        //    totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration) / 60).ToString());
+                        //});
+
+                      
 
                         X.Call("DeleteDaySchedule", dayId.Value.ToString());
                         X.Call("filldaytotal", totaldayId, totaldaySum);
@@ -931,49 +927,19 @@ namespace AionHR.Web.UI.Forms
                 List<string> listIds = new List<string>();
                 foreach (FlatSchedule fs in items)
                 {
-                    DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
-                    
-                    DateTime fsfromDate = new DateTime();
-                    DateTime fsToDate = new DateTime();
-                    int i = 0;
-                    if (Int32.TryParse(fs.from.Split(':')[0], out i))
-                    {
-                        if (i >= 24)
-                            fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i % 24, Convert.ToInt32(fs.from.Split(':')[1]), 0);
-                        else
-                            fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
-                    }
-                    if (Int32.TryParse(fs.to.Split(':')[0], out i))
-                    {
-                        if (i >= 24)
-                            fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i % 24, Convert.ToInt32(fs.from.Split(':')[1]), 0);
-                        else
-                            fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
+                    DateTime from = fs.dtFrom;
+                    DateTime to = fs.dtTo;
 
-                    }
-
-                  
-                    DateTime temp = fsfromDate;
-
-
-                    if (fsfromDate > fsToDate)
+                    while (to >= from)
                     {
 
-                        fsToDate = fsToDate.AddDays(1);
-
-
-                    }
-
-                    while (fsToDate >= fsfromDate)
-                    {
-
-                        listIds.Add(temp.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                        fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                        listIds.Add(from.ToString("yyyyMMdd") + "_" + from.ToString("HH:mm"));
+                        from = from.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
 
                     }
                 }
 
-                    var d = items.GroupBy(x => x.dayId);
+                var d = items.GroupBy(x => x.dtFrom);
                 List<string> totaldayId = new List<string>();
                 List<string> totaldaySum = new List<string>();
                 d.ToList().ForEach(x =>

@@ -662,26 +662,7 @@ namespace AionHR.Web.UI.Forms
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
             BasicInfoTab.Reset();
-            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
-            req.Key = "ldMethod";
-            RecordResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
-            if (!defaults.Success)
-            {
-                Common.errorMessage(defaults);
-                return;
-            }
           
-                ldMethod.Select(defaults.result.Value);
-          
-            req.Key = "ldValue";
-            RecordResponse<KeyValuePair<string, string>> ldValueResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
-            if (!ldValueResponse.Success)
-            {
-                Common.errorMessage(ldValueResponse);
-                return;
-            }
-           
-                ldValue.Text = ldValueResponse.result.Value;
 
             //Reset all values of the relative object
 
@@ -755,162 +736,207 @@ namespace AionHR.Web.UI.Forms
 
             this.Store1.DataBind();
         }
-        
+
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
 
-
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-
-
-            string obj = e.ExtraParams["values"];
-            loanSelfService b = JsonConvert.DeserializeObject<loanSelfService>(obj);
-             string   ldMethod= e.ExtraParams["ldMethod"];
-            string id = e.ExtraParams["id"];
-            if (b.ldMethod==null)
-            {
-                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString() , GetGlobalResourceObject("Errors", "emptyLdMethod").ToString()).Show();
-                return;
-            }
-
-            //if (string.IsNullOrEmpty(ldMethod)
-            //b.ldMethod =Convert.ToInt16( ldMethod);
-            // Define the object to add or edit as null
-
-         
-            //if (ldMethodCom.SelectedItem != null)
-            //    b.ldMethod = ldMethodCom.SelectedItem.Value; 
-           
-            if (date.ReadOnly)
-                b.date = DateTime.Now;
-            //b.effectiveDate = new DateTime(b.effectiveDate.Year, b.effectiveDate.Month, b.effectiveDate.Day, 14, 0, 0);
-          
-            if (branchId.SelectedItem != null)
-            {
-                b.branchName = branchId.SelectedItem.Text;
-            }
-           
-
-            if (string.IsNullOrEmpty(id))
+            try
             {
 
-                try
+                string obj = e.ExtraParams["values"];
+                string ldMethodParam = e.ExtraParams["ldMethod"];
+                string ldValueParam = e.ExtraParams["ldValue"];
+                loanSelfService b = JsonConvert.DeserializeObject<loanSelfService>(obj);
+
+                string id = e.ExtraParams["id"];
+                if (string.IsNullOrEmpty(id))
                 {
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<loanSelfService> request = new PostRequest<loanSelfService>();
-                    request.entity = b;
-                    request.entity.employeeId = _systemService.SessionHelper.GetEmployeeId();
-                  //  request.entity.employeeName = new EmployeeName() { fullName="" };
-                    request.entity.date = DateTime.Now;
-                    //request.entity.ltName = "";
-                    //request.entity.currencyRef = "";
-                  
-               
-                
-                    request.entity.status = 1; 
-                    PostResponse<loanSelfService> r = _selfServiceService.ChildAddOrUpdate<loanSelfService>(request);
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                         Common.errorMessage(r);
-                        return;
-                    }
+                    if (!string.IsNullOrEmpty(ldValueParam))
+                    b.ldValue = Convert.ToInt16(ldValueParam);
+                    if (!string.IsNullOrEmpty(ldMethodParam))
+                       b.ldMethod = Convert.ToInt16(ldMethodParam);
 
-                    else
+                    if (b.ldMethod == null)
                     {
-                        Store1.Reload();
-                        //b.recordId = r.recordId;
-                        
-                        ////Add this record to the store 
-                        //this.Store1.Insert(0, b);
-
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
+                        req.Key = "ldMethod";
+                        RecordResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+                        if (!defaults.Success)
                         {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
-                        recordId.Text = b.recordId;
-                        SetTabPanelEnable(true);
-                        currentCase.Text = b.recordId;
-
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
-
-                        this.EditRecordWindow.Close();
+                            Common.errorMessage(defaults);
+                            return;
+                        }
+                        if (!string.IsNullOrEmpty(defaults.result.Value))
+                        b.ldMethod = Convert.ToInt16(defaults.result.Value);
+                    }
+                    if (b.ldValue == null)
+                    {
+                        req.Key = "ldValue";
+                        RecordResponse<KeyValuePair<string, string>> ldValueResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+                        if (!ldValueResponse.Success)
+                        {
+                            Common.errorMessage(ldValueResponse);
+                            return;
+                        }
+                        if (!string.IsNullOrEmpty(ldValueResponse.result.Value))
+                            b.ldValue = Convert.ToInt16(ldValueResponse.result.Value);
 
                     }
+
                 }
-                catch (Exception ex)
+                if (b.ldMethod == null)
                 {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), GetGlobalResourceObject("Errors", "emptyLdMethod").ToString()).Show();
+                    return;
+                }
+             
+
+
+                //if (string.IsNullOrEmpty(ldMethod)
+                //b.ldMethod =Convert.ToInt16( ldMethod);
+                // Define the object to add or edit as null
+
+
+                //if (ldMethodCom.SelectedItem != null)
+                //    b.ldMethod = ldMethodCom.SelectedItem.Value; 
+
+                if (date.ReadOnly)
+                    b.date = DateTime.Now;
+                //b.effectiveDate = new DateTime(b.effectiveDate.Year, b.effectiveDate.Month, b.effectiveDate.Day, 14, 0, 0);
+
+                if (branchId.SelectedItem != null)
+                {
+                    b.branchName = branchId.SelectedItem.Text;
                 }
 
 
-            }
-            else
-            {
-                //Update Mode
-
-                try
+                if (string.IsNullOrEmpty(id))
                 {
-                    //getting the id of the record
-                    PostRequest<loanSelfService> request = new PostRequest<loanSelfService>();
-                    request.entity = b;
-                    request.entity.employeeId = _systemService.SessionHelper.GetEmployeeId();
-                 
-                   
-                   
-                    PostResponse<loanSelfService> r = _selfServiceService.ChildAddOrUpdate<loanSelfService>(request);                    //Step 1 Selecting the object or building up the object for update purpose
 
-                    //Step 2 : saving to store
+                    try
+                    {
+                        //New Mode
+                        //Step 1 : Fill The object and insert in the store 
+                        PostRequest<loanSelfService> request = new PostRequest<loanSelfService>();
+                        request.entity = b;
+                        request.entity.employeeId = _systemService.SessionHelper.GetEmployeeId();
+                        //  request.entity.employeeName = new EmployeeName() { fullName="" };
+                        request.entity.date = DateTime.Now;
+                        //request.entity.ltName = "";
+                        //request.entity.currencyRef = "";
 
-                    //Step 3 :  Check if request fails
-                    if (!r.Success)//it maybe another check
+
+
+                        request.entity.status = 1;
+                        PostResponse<loanSelfService> r = _selfServiceService.ChildAddOrUpdate<loanSelfService>(request);
+                        //check if the insert failed
+                        if (!r.Success)//it maybe be another condition
+                        {
+                            //Show an error saving...
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            Common.errorMessage(r);
+                            return;
+                        }
+
+                        else
+                        {
+                            Store1.Reload();
+                            //b.recordId = r.recordId;
+
+                            ////Add this record to the store 
+                            //this.Store1.Insert(0, b);
+
+                            //Display successful notification
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordSavingSucc
+                            });
+                            recordId.Text = b.recordId;
+                            SetTabPanelEnable(true);
+                            currentCase.Text = b.recordId;
+
+                            RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                            sm.DeselectAll();
+                            sm.Select(b.recordId.ToString());
+
+                            this.EditRecordWindow.Close();
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //Error exception displaying a messsage box
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    }
+
+
+                }
+                else
+                {
+                    //Update Mode
+
+                    try
+                    {
+                        //getting the id of the record
+                        PostRequest<loanSelfService> request = new PostRequest<loanSelfService>();
+                        request.entity = b;
+                        request.entity.employeeId = _systemService.SessionHelper.GetEmployeeId();
+
+
+
+                        PostResponse<loanSelfService> r = _selfServiceService.ChildAddOrUpdate<loanSelfService>(request);                    //Step 1 Selecting the object or building up the object for update purpose
+
+                        //Step 2 : saving to store
+
+                        //Step 3 :  Check if request fails
+                        if (!r.Success)//it maybe another check
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            Common.errorMessage(r);
+                            return;
+                        }
+                        else
+                        {
+                            Store1.Reload();
+
+                            // ModelProxy record = this.Store1.GetById(id);
+                            // BasicInfoTab.UpdateRecord(record);
+                            // record.Set("currencyRef", b.currencyRef);
+                            // if (date.ReadOnly)
+                            //     record.Set("date", null);
+
+                            // record.Set("employeeName", b.employeeName);
+
+                            //// record.Set("branchName", b.branchName);
+
+                            // record.Commit();
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordUpdatedSucc
+                            });
+                            this.EditRecordWindow.Close();
+
+
+                        }
+
+                    }
+                    catch (Exception ex)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                         Common.errorMessage(r);
-                        return;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                     }
-                    else
-                    {
-                        Store1.Reload();
-
-                       // ModelProxy record = this.Store1.GetById(id);
-                       // BasicInfoTab.UpdateRecord(record);
-                       // record.Set("currencyRef", b.currencyRef);
-                       // if (date.ReadOnly)
-                       //     record.Set("date", null);
-
-                       // record.Set("employeeName", b.employeeName);
-
-                       //// record.Set("branchName", b.branchName);
-
-                       // record.Commit();
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                        });
-                        this.EditRecordWindow.Close();
-
-
-                    }
-
                 }
-                catch (Exception ex)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                }
+            }
+            catch (Exception ex)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, ex.Message).Show();
             }
         }
 

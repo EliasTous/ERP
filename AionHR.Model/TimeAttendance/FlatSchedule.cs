@@ -12,7 +12,8 @@ namespace AionHR.Model.TimeAttendance
     public class FlatSchedule
     {
 
-        
+        public DateTime dtFrom { get; set; }
+        public DateTime dtTo { get; set; }
         public string dayId { get; set; }
 
         public int shiftId { get; set; }

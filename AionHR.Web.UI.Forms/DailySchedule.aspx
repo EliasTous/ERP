@@ -151,7 +151,13 @@
                                            <Click Handler=" App.reportsParams.show();" />
                                        </Listeners>
                                         </ext:Button>
-                                       
+                                         <ext:Button  runat="server" Text="<%$ Resources: Common, Go %>">
+                                    <DirectEvents>
+                                        <Click OnEvent="Load_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
 
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Hidden="true" EmptyText="<%$ Resources: Branch %>">
                                     <Store>
@@ -251,6 +257,20 @@
                                            <Click Handler="App.userSelector.toField.getStore().removeAll();"></Click>
                                        </Listeners>
                                 </ext:Button>
+                                    <ext:Button MarginSpec="0 0 0 10" runat="server" Text="<%$ Resources: Delete %>" ID="btnDelete">
+                                    <DirectEvents>
+                                        <Click OnEvent="Delete_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:Button MarginSpec="0 0 0 10" ID="btnClear" runat="server" Text="<%$ Resources: Clear %>">
+                                    <DirectEvents>
+                                        <Click OnEvent="Clear_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
                                
                                 
                                 
@@ -308,29 +328,10 @@
                                 </ext:ComboBox>
                                 
 
-                                <ext:Button MarginSpec="0 0 0 350" runat="server" Text="<%$ Resources: Load %>">
-                                    <DirectEvents>
-                                        <Click OnEvent="Load_Click">
-                                            <EventMask ShowMask="true" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
+                              
                                 <ext:Button runat="server" Text="Import" Visible="false">
                                 </ext:Button>
-                                <ext:Button MarginSpec="0 0 0 10" runat="server" Text="<%$ Resources: Delete %>" ID="btnDelete">
-                                    <DirectEvents>
-                                        <Click OnEvent="Delete_Click">
-                                            <EventMask ShowMask="true" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
-                                <ext:Button MarginSpec="0 0 0 10" ID="btnClear" runat="server" Text="<%$ Resources: Clear %>">
-                                    <DirectEvents>
-                                        <Click OnEvent="Clear_Click">
-                                            <EventMask ShowMask="true" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
+                            
 
                             </Items>
                         </ext:Toolbar>

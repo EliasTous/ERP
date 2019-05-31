@@ -417,7 +417,7 @@
 
                                     </Store>
                                 </ext:ComboBox>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="type"  Name="type" runat="server" FieldLabel="<%$ Resources:type%>"  ForceSelection="true" AllowBlank="false" >
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="type"  Name="type" runat="server" FieldLabel="<%$ Resources:type%>"  ForceSelection="true" AllowBlank="true" >
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: administrationType%>" Value="<%$ Resources:ComboBoxValues,  CSDETypeAdministration%>"></ext:ListItem>
