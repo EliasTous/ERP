@@ -760,32 +760,7 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
-            if (employeeId.SelectedItem != null && employeeId.SelectedItem.Value != null)
-            {
-                RecordRequest empReq = new RecordRequest();
-                empReq.RecordID = employeeId.SelectedItem.Value;
-                RecordResponse<Employee> empRes = _employeeService.Get<Employee>(empReq);
-                if (!empRes.Success)
-              
-                {
-                   
-                    Common.errorMessage(empRes);
-                    return;
-                }
-                PostRequest<Employee> request = new PostRequest<Employee>();
-                request.entity = empRes.result;
-                request.entity.workMail = b.email;
-                PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
-                if (!r.Success)
-
-                {
-
-                    Common.errorMessage(r);
-                    return;
-                }
-
-
-            }
+          
         }
 
         [DirectMethod]
@@ -806,6 +781,22 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public void SetFullName()
         {
+            if (employeeId.SelectedItem != null && employeeId.SelectedItem.Value != null)
+            {
+                RecordRequest empReq = new RecordRequest();
+                empReq.RecordID = employeeId.SelectedItem.Value;
+                RecordResponse<Employee> empRes = _employeeService.Get<Employee>(empReq);
+                if (!empRes.Success)
+
+                {
+
+                    Common.errorMessage(empRes);
+                    return;
+                }
+                email.Text = empRes.result.workMail;
+
+            }
+
             X.Call("SetNameEnabled", false, employeeId.SelectedItem.Text);
         }
 
