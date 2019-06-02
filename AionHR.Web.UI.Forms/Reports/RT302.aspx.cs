@@ -208,7 +208,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
 
-                ListResponse<AionHR.Model.Reports.RT302> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT302>(req);
+                  ListResponse<AionHR.Model.Reports.RT302> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT302>(req);
                 //if (!resp.Success)
                 //{
                 //    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
