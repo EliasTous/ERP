@@ -678,4 +678,7 @@
   <data name="RemainingDays" xml:space="preserve">
     <value>الايام المتبقية</value>
   </data>
+  <data name="PunchesGrid" xml:space="preserve">
+    <value>بصمات قيد الانتظار </value>
+  </data>
 </root>

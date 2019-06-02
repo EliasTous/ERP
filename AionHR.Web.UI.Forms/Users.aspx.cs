@@ -630,7 +630,7 @@ namespace AionHR.Web.UI.Forms
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
 
-
+         
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string id = e.ExtraParams["id"];
 
@@ -644,6 +644,8 @@ namespace AionHR.Web.UI.Forms
             {
                 b.employeeId = employeeId.SelectedItem.Value;
                 b.fullName = employeeId.SelectedItem.Text;
+               
+                
             }
            
             if (string.IsNullOrEmpty(CurrentUser.Text))
@@ -757,6 +759,32 @@ namespace AionHR.Web.UI.Forms
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
+            }
+            if (employeeId.SelectedItem != null && employeeId.SelectedItem.Value != null)
+            {
+                RecordRequest empReq = new RecordRequest();
+                empReq.RecordID = employeeId.SelectedItem.Value;
+                RecordResponse<Employee> empRes = _employeeService.Get<Employee>(empReq);
+                if (!empRes.Success)
+              
+                {
+                   
+                    Common.errorMessage(empRes);
+                    return;
+                }
+                PostRequest<Employee> request = new PostRequest<Employee>();
+                request.entity = empRes.result;
+                request.entity.workMail = b.email;
+                PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
+                if (!r.Success)
+
+                {
+
+                    Common.errorMessage(r);
+                    return;
+                }
+
+
             }
         }
 

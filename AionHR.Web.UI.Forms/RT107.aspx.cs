@@ -100,10 +100,16 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 SetExtLanguage();
                 HideShowButtons();
-              
+
+                List<Model.System.XMLDictionary> activeStatusList = Common.XMLDictionaryList(_systemService, "16");
+                activeStatusList.Add(new Model.System.XMLDictionary { key = 0, value = Resources.Common.All });
+                activeStatusStore.DataSource = activeStatusList;
+                activeStatusStore.DataBind();
+                inactivePref.Select("0");
+
 
                 Store1.Reload();
-                inactivePref.Select("2");
+               
             }
 
 

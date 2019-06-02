@@ -675,4 +675,7 @@
   <data name="RemainingDays" xml:space="preserve">
     <value>Jours restants</value>
   </data>
+  <data name="PunchesGrid" xml:space="preserve">
+    <value>Poinçons en attente</value>
+  </data>
 </root>

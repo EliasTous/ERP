@@ -57,6 +57,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(FlatSchedule), "qryFS");
             ChildGetAllLookup.Add(typeof(Time), "qryTA");
             ChildGetAllLookup.Add(typeof(DashBoardTimeVariation), "qryTV");
+            ChildGetAllLookup.Add(typeof(PendingPunch), "qryPP");
 
             ChildAddOrUpdateLookup.Add(typeof(DayType), "setDT");
             ChildAddOrUpdateLookup.Add(typeof(AttendanceSchedule), "setSC");
@@ -79,6 +80,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(GenerateAttendanceDay), "genFS");
             ChildAddOrUpdateLookup.Add(typeof(FlatSchedule), "setFS");
             ChildAddOrUpdateLookup.Add(typeof(Time), "setTA");
+            ChildAddOrUpdateLookup.Add(typeof(PendingPunch), "processPP");
             ChildAddOrUpdateLookup.Add(typeof(DashBoardTimeVariation), "setTV");
             ChildAddOrUpdateLookup.Add(typeof(MailFlatShedule), "mailFS");
 

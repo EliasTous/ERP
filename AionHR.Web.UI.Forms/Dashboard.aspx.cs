@@ -164,6 +164,7 @@ namespace AionHR.Web.UI.Forms
                         //missingPunchesStore.Reload();
                         //checkMontierStore.Reload();
                         format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
+                        DateColumn4.Format = _systemService.SessionHelper.GetDateformat() + " HH:mm:ss";
                         PADate.Format= ColDate.Format= DateColumn12.Format= DateColumn10.Format=DateColumn11.Format = DateColumn9.Format  =  ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format = DateColumn3.Format  = _systemService.SessionHelper.GetDateformat();
                         periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
@@ -356,6 +357,7 @@ namespace AionHR.Web.UI.Forms
                 int APPROVAL_LOAN = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LOAN).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LOAN).First().count : 0;
                 int APPROVAL_PENALTY = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PENALTY).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PENALTY).First().count : 0;
                 int APPROVAL_PURCHASE_ORDER = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PURCHASE_ORDER).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PURCHASE_ORDER).First().count : 0;
+                int PENDING_PUNCHES = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.PENDING_PUNCHES).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.PENDING_PUNCHES).First().count : 0;
                 //List<DashboardItem> alert = new List<DashboardItem>();
                 //alert.Add(new DashboardItem() { itemString=GetLocalResourceObject("Anneversaries").ToString(),count=annev,itemId= ConstDashboardItem.WORK_ANNIVERSARY });
                 //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("Birthdays").ToString(), count = birth, itemId = ConstDashboardItem.BIRTHDAY });
@@ -387,7 +389,7 @@ namespace AionHR.Web.UI.Forms
                 TimeGridPanel.Title = GetLocalResourceObject("Time").ToString() + " " + (APPROVAL_TIME != 0 ? APPROVAL_TIME.ToString() : "");
                 EmployeePenaltyApprovalGrid.Title = GetLocalResourceObject("EmployeePenaltyApproval").ToString() + " " + (APPROVAL_PENALTY != 0 ? APPROVAL_PENALTY.ToString() : "");
                 PurchasesGrid.Title= GetLocalResourceObject("PurchasesApproval").ToString() + " " + (APPROVAL_PURCHASE_ORDER != 0 ? APPROVAL_PURCHASE_ORDER.ToString() : "");
-                
+                PunchesGrid.Title = GetLocalResourceObject("PunchesGrid").ToString() + " " + (PENDING_PUNCHES != 0 ? PENDING_PUNCHES.ToString() : "");
                 return dashoard;
             }
             catch (Exception exp)
@@ -1345,6 +1347,73 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
+        
+              protected void punchesStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            try
+            {
+
+
+                //if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                //    return;
+
+                //string rep_params = "";
+                //Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                //if (parameters.ContainsKey("2"))
+                //    parameters.ChangeKey("2", "8");
+                //if (parameters.ContainsKey("3"))
+                //    parameters.ChangeKey("3", "9");
+                //if (parameters.ContainsKey("5"))
+                //    parameters.ChangeKey("5", "10");
+                //if (parameters.ContainsKey("1"))
+                //    parameters.Remove("1");
+                //if (parameters.ContainsKey("4"))
+                //    parameters.Remove("4");
+
+
+                //parameters.Add("1", "0");
+
+                //parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
+                //parameters.Add("5", timeVariationType.GetTimeCode());
+                //parameters.Add("4", "0");
+                //parameters.Add("7", "1");
+
+
+
+                //foreach (KeyValuePair<string, string> entry in parameters)
+                //{
+                //    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                //}
+                //if (rep_params.Length > 0)
+                //{
+                //    if (rep_params[rep_params.Length - 1] == '^')
+                //        rep_params = rep_params.Remove(rep_params.Length - 1);
+                //}
+
+
+
+
+
+                //ReportGenericRequest r = new ReportGenericRequest();
+                //r.paramString = rep_params;
+                ListRequest req = new ListRequest();
+                
+                ListResponse<PendingPunch> punches = _timeAttendanceService.ChildGetAll<PendingPunch>(req);
+                if (!punches.Success)
+                {
+                    Common.errorMessage(punches);
+                    return;
+                }
+            
+                punchesStore.DataSource = punches.Items;
+                punchesStore.DataBind();
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+        }
+
         protected void TimeStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             try
@@ -2906,7 +2975,26 @@ namespace AionHR.Web.UI.Forms
             branchAvailabilityStore.DataSource = resp.Items;
             branchAvailabilityStore.DataBind();
         }
+        
+             protected void processPunches(object sender, DirectEventArgs e)
+        {
+            PostRequest<PendingPunch> req = new PostRequest<PendingPunch>();
+            req.entity = new PendingPunch();
+            PostResponse<PendingPunch> resp = _timeAttendanceService.ChildAddOrUpdate<PendingPunch>(req); 
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return; 
 
+            }
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordSavingSucc
+            });
+            punchesStore.Reload();
+        }
         protected void Timebatch(object sender, DirectEventArgs e)
         {
             string approve = e.ExtraParams["approve"];

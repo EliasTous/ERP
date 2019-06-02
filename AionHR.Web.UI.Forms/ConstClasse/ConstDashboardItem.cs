@@ -37,7 +37,8 @@ namespace AionHR.Web.UI.Forms.ConstClasses
         public const short TA_UNPAID_LEAVE = 312;
 
         public const short APPROVAL_PURCHASE_ORDER = 405;
-
+        public const short PENDING_PUNCHES = 406;
+      
 
         // summary figures
         public const short SALARY_CHANGE_DUE = 901;

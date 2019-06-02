@@ -696,7 +696,32 @@
                     <TopBar>
                         <ext:Toolbar runat="server">
                             <Items>
-                               <ext:ComboBox runat="server" ID="inactivePref" Editable="false" FieldLabel="<%$ Resources: Status %>">
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="inactivePref"  FieldLabel="<%$ Resources: Status %>" SubmitValue="true"   >
+                                                  <Store>
+                                                  <ext:Store runat="server" ID="activeStatusStore" >
+                                                                <Model>
+                                                                    <ext:Model runat="server" IDProperty="key">
+                                                                        <Fields>
+                                                                            <ext:ModelField Name="key" />
+                                                                            <ext:ModelField Name="value" />
+                                                                        </Fields>
+                                                                    </ext:Model>
+                                                                    
+                                                                </Model>
+                                                              <Sorters>
+                                                    <ext:DataSorter Property="key" Direction="ASC" />
+                                                </Sorters>
+                                                            </ext:Store>
+
+                                                </Store>
+                                      <Listeners>
+                                        <Change Handler="App.Store1.reload()" />
+                                    </Listeners>
+        
+                                                  </ext:ComboBox>
+
+
+                            <%--   <ext:ComboBox runat="server" ID="inactivePref" Editable="false" FieldLabel="<%$ Resources: Status %>">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: All %>" Value="0" />
                                         <ext:ListItem Text="<%$ Resources: ActiveOnly %>" Value="1" />
@@ -705,7 +730,7 @@
                                     <Listeners>
                                         <Change Handler="App.Store1.reload()" />
                                     </Listeners>
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                 <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180" >
                                         <Triggers>
                                             <ext:FieldTrigger Icon="Search" />

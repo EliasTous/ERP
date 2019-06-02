@@ -459,12 +459,22 @@ namespace AionHR.Web.UI.Forms
 
 
 
+         
 
-
-            FlatSchedule fs = new FlatSchedule();
+                FlatSchedule fs = new FlatSchedule();
             fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
-          // fs.dayId = dayId.Value.ToString();
-            fs.shiftId = 0;
+           fs.dayId = dayId.Value.ToString();
+            DateTime parsed = DateTime.Now;
+            if (DateTime.TryParseExact(dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
+            {
+                fs.dtFrom = parsed;
+                fs.dtTo= parsed;
+
+            }
+            else
+                return; 
+
+                fs.shiftId = 0;
             PostRequest<FlatSchedule> request = new PostRequest<FlatSchedule>();
 
             request.entity = fs;
@@ -649,7 +659,8 @@ namespace AionHR.Web.UI.Forms
             DateTime activeTime = DateTime.ParseExact(dayId.Value.ToString() == string.Empty ? dateFrom.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"));
             DateTime fsfromTime = new DateTime(activeTime.Year, activeTime.Month, activeTime.Day, timeFrom.SelectedTime.Hours, timeFrom.SelectedTime.Minutes, 0);
             DateTime fsToTime = new DateTime(activeTime.Year, activeTime.Month, activeTime.Day, timeTo.SelectedTime.Hours, timeTo.SelectedTime.Minutes, 0);
-           
+            if (timeTo.SelectedTime.Hours >= 0 && timeTo.SelectedTime.Hours <= 12 && timeFrom.SelectedTime.Hours >= 12 && timeFrom.SelectedTime.Hours <= 24)
+                fsToTime = fsToTime.AddDays(1);
 
             if (dayId.Value != null && dayId.Value.ToString() != string.Empty)
             {

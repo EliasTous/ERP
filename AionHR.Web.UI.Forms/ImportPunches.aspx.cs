@@ -279,21 +279,27 @@ namespace AionHR.Web.UI.Forms
             }
             catch (Exception exp)
             {
+                string errorDetail = "";
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-
+                Viewport1.ActiveIndex = 0;
                 string[] errorDetails = exp.Source.Split(';');
-                if (errorDetails.Length == 3)
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + "<br />" + Resources.Common.LineNO + errorDetails[2] + "<br />" + GetGlobalResourceObject("Common", "FieldDetails") + ":" + errorDetails[0] + " " + errorDetails[1] + "<br />" + GetGlobalResourceObject("Common", "ExceptionMessage") + exp.Message).Show();
+               for(int i=0; i< errorDetails.Length-2;i++)
+                {
+                    errorDetail += errorDetails[i] + " ";
+                }
+               
+                  if (errorDetails.Length >0)
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Common", "FieldDetails") + ":" + errorDetail + "<br />" + GetGlobalResourceObject("Common", "ExceptionMessage") + exp.Message).Show();
+
                 else
                 {
-                    if (errorDetails.Length == 2)
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + "<br />" + Resources.Common.LineNO + errorDetails[1] + "<br />" + GetGlobalResourceObject("Common", "FieldDetails") + ":" + errorDetails[0] + "<br />" + GetGlobalResourceObject("Common", "ExceptionMessage") + exp.Message).Show();
-                    else
+                 
+                    
                         X.MessageBox.Alert(Resources.Common.Error, exp.Message);
                 }
                 //X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + "<br /> " + Resources.Common.LineNO + exp.HelpLink + "<br />" + GetGlobalResourceObject("Common", "FieldDetails") + ":" + exp.Source + " " + exp.Message).Show();
                 this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
-                Viewport1.ActiveIndex = 0;
+              
 
             }
         }

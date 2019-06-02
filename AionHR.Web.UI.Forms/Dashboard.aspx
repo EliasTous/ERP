@@ -2106,86 +2106,7 @@
                                                         </ext:GridPanel>
 
                                                        
-                                                     <%--   <ext:Panel runat="server" Hidden="true" Layout="HBoxLayout" Title="<%$Resources:Tasks %>" StyleSpec=" border: 1px solid #add2ed !important;">
-                                                            <LayoutConfig>
-                                                                <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
-                                                            </LayoutConfig>
-                                                            <Items>
-
-                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1">
-                                                                    <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" />
-                                                                    </LayoutConfig>
-                                                                    <Items>
-
-                                                                        <ext:Panel runat="server" ID="today" Flex="7">
-                                                                            <Content>
-                                                                                <div id="Chart2Container" style="padding: 10px; width: 100%; height: 100%;"></div>
-                                                                            </Content>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Layout="FitLayout" Height="20">
-                                                                            <Items>
-                                                                                <ext:Panel runat="server" Layout="HBoxLayout">
-                                                                                    <LayoutConfig>
-                                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
-                                                                                    </LayoutConfig>
-                                                                                    <Items>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                        <ext:Panel runat="server" Flex="1">
-                                                                                            <Items>
-                                                                                                <ext:HyperlinkButton runat="server" Height="20" PaddingSpec="0 0 0 0" Flex="1" Text="<%$Resources:OverDue %>" StyleSpec="font-size:16pt;">
-                                                                                                    <Listeners>
-                                                                                                        <Click Handler="App.overDueWindow.show();" />
-                                                                                                    </Listeners>
-                                                                                                </ext:HyperlinkButton>
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                    </Items>
-                                                                                </ext:Panel>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Height="10" />
-                                                                    </Items>
-                                                                </ext:Panel>
-                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1">
-                                                                    <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" />
-                                                                    </LayoutConfig>
-                                                                    <Items>
-
-                                                                        <ext:Panel runat="server" ID="overdue" Width="250" Height="250" Flex="7">
-                                                                            <Content>
-                                                                                <div id="Chart3Container" style="padding: 10px; width: 100%; height: 100%;"></div>
-                                                                            </Content>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Layout="FitLayout" Height="20">
-                                                                            <Items>
-                                                                                <ext:Panel runat="server" Layout="HBoxLayout">
-                                                                                    <LayoutConfig>
-                                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
-                                                                                    </LayoutConfig>
-                                                                                    <Items>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                        <ext:Panel runat="server" Flex="1">
-                                                                                            <Items>
-                                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Flex="1" Text="<%$Resources:DueToday %>" Height="20" StyleSpec="font-size:16pt;">
-                                                                                                    <Listeners>
-                                                                                                        <Click Handler="App.DueTodayWindow.show();" />
-                                                                                                    </Listeners>
-                                                                                                </ext:HyperlinkButton>
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                    </Items>
-                                                                                </ext:Panel>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Height="10" />
-                                                                    </Items>
-                                                                </ext:Panel>
-                                                            </Items>
-                                                        </ext:Panel>--%>
+                                                     
 
                                                         <ext:GridPanel MarginSpec="0 0 0 0"
                                                             ID="TimeGridPanel"
@@ -2697,8 +2618,8 @@
 
                             <ColumnModel ID="ColumnModel39" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                 <Columns>
-                                    <ext:Column ID="Column54" Visible="false" DataIndex="poId" runat="server" />
-                                    <ext:Column ID="Column55" Visible="false" DataIndex="approverId" runat="server" />
+                                    <ext:Column ID="Column55" Visible="false" DataIndex="poId" runat="server" />
+                                    <ext:Column ID="Column56" Visible="false" DataIndex="approverId" runat="server" />
                                  
                                        
                                      <ext:Column ID="Column57" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2" />
@@ -2706,8 +2627,8 @@
                                      <ext:Column ID="Column62" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
                                      <ext:Column ID="Column63" DataIndex="categoryName" Text="<%$ Resources: FieldCategory%>" runat="server" Flex="1" />
                                      <ext:Column ID="Column64" DataIndex="qty" Text="<%$ Resources: FieldQty%>" runat="server" Flex="1" />
-                                     <ext:Column ID="Column7"  DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " />
-                                     <ext:Column ID="Column56"  DataIndex="arName" runat="server" Flex="1" text="<%$ Resources:Common, ApprovalReason%> " />
+                                     <ext:Column ID="Column60"  DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " />
+                                     <ext:Column ID="Column67"  DataIndex="arName" runat="server" Flex="1" text="<%$ Resources:Common, ApprovalReason%> " />
                                        
                                           
                                                                    
@@ -2718,7 +2639,7 @@
                                      <ext:Column ID="PAComments" DataIndex="comments" Text="<%$ Resources: FieldComments%>" runat="server" Flex="2" />
                                    
                                       <ext:Column runat="server"
-                                ID="Column60" Visible="true"
+                                ID="Column68" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
                                 Width="80"
                                 Hideable="false"
@@ -2777,7 +2698,143 @@
                          
                      </ext:GridPanel>
 
+                                                       
+                                                         <ext:GridPanel MarginSpec="0 0 0 0"
+                                                            ID="PunchesGrid"
+                                                            runat="server"
+                                                            PaddingSpec="0 0 1 0"
+                                                            Header="false"
+                                                            Title="<%$ Resources:PunchesGrid %>"
+                                                            Layout="FitLayout"
+                                                            Scroll="Vertical"
+                                                            Border="false"
+                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
+                                                            <TopBar>
+                        <ext:Toolbar ID="Toolbar2" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                                <ext:Button ID="Button7" runat="server"  Icon="Reload">
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="processPunches">
+                                            <EventMask ShowMask="true" CustomTarget="={#{PunchesGrid}.body}" />
+                                            <ExtraParams>
+                                            <%--    <ext:Parameter Name="approve" Value="true" Mode="Raw" />--%>
+                                            </ExtraParams>
+                                        </Click>
+                                        
+                                    </DirectEvents>
+                                </ext:Button>
+                          
 
+                                
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
+                                                            <Store>
+                                                                <ext:Store 
+                                                                    ID="punchesStore"
+                                                                    runat="server" OnReadData="punchesStore_ReadData">
+                                                                  
+                                                                    <Model>
+                                                                        <ext:Model ID="Model5" runat="server" >
+                                                                            <Fields>
+                                                                                                                                                            
+                                                                                <ext:ModelField Name="employeeRef" />
+                                                                                <ext:ModelField Name="serialNo" />
+                                                                                <ext:ModelField Name="clockStamp" />
+                                                                                <ext:ModelField Name="udId"  />
+                                                                              
+                                                                            
+
+                                                                            </Fields>
+                                                                        </ext:Model>
+                                                                    </Model>
+
+                                                                </ext:Store>
+                                                            </Store>
+
+
+                                                            <ColumnModel ID="ColumnModel5" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                                                <Columns>
+                                                                  
+
+
+                                                                    <ext:Column ID="Column6" DataIndex="employeeRef" Text="Employee Ref" runat="server" Flex="1">
+                                                                   
+                                                                    </ext:Column>
+                                                                
+                                                                    <ext:DateColumn ID="DateColumn4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="clockStamp" Hideable="false" Flex="4"  />
+                          
+
+                                                                     <ext:Column ID="Column7" DataIndex="serialNo" Text="serialNo"  runat="server" Flex="2" />
+                                                            
+                                                                     <ext:Column ID="Column54" DataIndex="udId" Text="udId" runat="server" Flex="2" />
+
+                                                                
+                                                                  <%--  <ext:Column runat="server"
+                                                                        ID="Column55" Visible="true"
+                                                                        Text=""
+                                                                        Width="100"
+                                                                        Hideable="false"
+                                                                        Align="Center"
+                                                                        Fixed="true"
+                                                                        Filterable="false"
+                                                                        MenuDisabled="true"
+                                                                        Resizable="false">
+
+                                                                        <Renderer Handler="return  attachRender(); " />
+                                                                    </ext:Column>--%>
+
+
+
+                                                                </Columns>
+                                                            </ColumnModel>
+                                                            <Listeners>
+                                                             <%--   <Render Handler="this.on('cellclick', cellClick);" />--%>
+                                                                <Activate Handler="#{punchesStore}.reload();" />
+                                                            </Listeners>
+                                                         <%--   <DirectEvents>
+
+                                                                
+                                                                <CellClick OnEvent="TimePoPUP">
+                                                                    <EventMask ShowMask="true" />
+                                                                      <ExtraParams>
+                                                                         <ext:Parameter Name="employeeName" Value="record.data['fullName']" Mode="Raw" />
+                                                                         <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
+                                                                         <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
+                                                                           <ext:Parameter Name="dayIdDate" Value="record.data['dayIdDate']" Mode="Raw" />
+                                                                            <ext:Parameter Name="timeCode" Value="record.data['timeCode']" Mode="Raw" />
+                                                                           <ext:Parameter Name="timeCodeString" Value="record.data['timeCodeString']" Mode="Raw" />
+                                                                           <ext:Parameter Name="Notes" Value="record.data['notes']" Mode="Raw" />
+                                                                           <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
+                                                                             <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
+                                                                          <ext:Parameter Name="justification" Value="record.data['justification']" Mode="Raw" />
+                                                                    
+                                                                      
+                                                                        
+                                                                         
+                                                                    </ExtraParams>
+
+                                                             
+
+                                                                </CellClick>
+                                                            </DirectEvents>--%>
+
+
+                                                            <View>
+                                                                <ext:GridView ID="GridView5" runat="server" />
+                                                            </View>
+
+
+                                                            <SelectionModel>
+                                                                <ext:RowSelectionModel ID="rowSelectionModel4" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                                               
+                                                            </SelectionModel>
+                                                        </ext:GridPanel>
                                                      
 
                                                       
