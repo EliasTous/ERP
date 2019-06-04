@@ -860,8 +860,9 @@ namespace AionHR.Web.UI.Forms
 
                 //CAlling the branch cvailability before proceeding
 
-                string startAt, closeAt = string.Empty;
-                GetBranchSchedule(out startAt, out closeAt);
+                string startAt = "00:00";
+                string closeAt = "00:00";
+                //GetBranchSchedule(out startAt, out closeAt);
                 if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
                 {
                     html += @"</table></div>";
@@ -998,8 +999,9 @@ namespace AionHR.Web.UI.Forms
 
             //CAlling the branch cvailability before proceeding
 
-            string startAt, closeAt = string.Empty;
-            GetBranchSchedule(out startAt, out closeAt);
+            string startAt = "00:00";
+               string closeAt = "00:00";
+            //GetBranchSchedule(out startAt, out closeAt);
 
             if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
             {

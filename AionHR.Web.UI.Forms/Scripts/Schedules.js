@@ -190,6 +190,10 @@ function validateTo(curr,prev)
         return false;
     if (!validateFrom(curr))
         return false;
+    if (curr == "00:00" && curr == prev)
+        return false;
+    
+
     var currHours = curr.split(':')[0];
     var currMins = curr.split(':')[1];
     var prevHours = prev.split(':')[0];

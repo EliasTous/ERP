@@ -499,7 +499,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<FlatScheduleSelfService> response =_selfServiceService.ChildGetAll<FlatScheduleSelfService>(reqFS);
             if (!response.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                Common.errorMessage(response);
                 return;
             }
             this.dayId.Value = string.Empty;
@@ -912,8 +912,9 @@ namespace AionHR.Web.UI.Forms
 
             //CAlling the branch cvailability before proceeding
 
-            string startAt, closeAt = string.Empty;
-            GetBranchSchedule(out startAt, out closeAt);
+            string startAt = "00:00";
+               string closeAt = "00:00";
+         //   GetBranchSchedule(out startAt, out closeAt);
             if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
             {
 
