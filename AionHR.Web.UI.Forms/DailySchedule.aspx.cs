@@ -459,27 +459,43 @@ namespace AionHR.Web.UI.Forms
 
 
 
-         
 
-                FlatSchedule fs = new FlatSchedule();
-            fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
-           fs.dayId = dayId.Value.ToString();
+
+            //     FlatSchedule fs = new FlatSchedule();
+            // fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
+            //fs.dayId = dayId.Value.ToString();
+            // DateTime parsed = DateTime.Now;
+            // if (DateTime.TryParseExact(dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
+            // {
+            //     fs.dtFrom = parsed;
+            //     fs.dtTo= parsed;
+
+            // }
+            // else
+            //     return;
+
+            //  fs.shiftId = 0;
+
             DateTime parsed = DateTime.Now;
+            FlatScheduleRange fs = new FlatScheduleRange();
+            fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
+            fs.fromDayId = dayId.Value.ToString();
+            fs.toDayId = dayId.Value.ToString();
             if (DateTime.TryParseExact(dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
             {
                 fs.dtFrom = parsed;
-                fs.dtTo= parsed;
+                fs.dtTo = parsed;
 
             }
             else
-                return; 
-
-                fs.shiftId = 0;
-            PostRequest<FlatSchedule> request = new PostRequest<FlatSchedule>();
+                return;
+           
+            PostRequest<FlatScheduleRange> request = new PostRequest<FlatScheduleRange>();
 
             request.entity = fs;
-            PostResponse<FlatSchedule> r = _timeAttendanceService.ChildDelete<FlatSchedule>(request);
+            PostResponse<FlatScheduleRange> r = _timeAttendanceService.ChildDelete<FlatScheduleRange>(request);
 
+           
 
             //check if the insert failed
             if (!r.Success)//it maybe be another condition

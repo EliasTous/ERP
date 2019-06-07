@@ -303,6 +303,8 @@ namespace AionHR.Web.UI.Forms
                 gender1.Checked = true;
             else
                 gender2.Checked = true;
+            if (result.religion!=null)
+            religionCombo.Select(result.religion.ToString());
             //if (!string.IsNullOrEmpty(result.pictureUrl))
             //    imgControl.ImageUrl = result.pictureUrl;
 
