@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DailyScheduleSelfServices.aspx.cs" Inherits="AionHR.Web.UI.Forms.DailyScheduleSelfServices" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BranchAvailabilities.aspx.cs" Inherits="AionHR.Web.UI.Forms.BranchAvailabilities" %>
 
 
 
@@ -18,9 +18,9 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css?id=3" />
     <link rel="stylesheet" href="CSS/DailySchedule.css?id=100" />
   <%--  <link rel="stylesheet" href="CSS/defaultTheme.css?id=11" />--%>
-    <script type="text/javascript" src="Scripts/DailySchedule.js?id=250"></script>
+    <script type="text/javascript" src="Scripts/DailySchedule.js?id=5"></script>
     <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
- 
+    <script type="text/javascript" src="Scripts/ReportsCommon.js"></script>
     <script type="text/javascript" src="Scripts/jquery-new.js?id=30"></script>
     <script type="text/javascript" src="Scripts/tableHeadFixer.js?id=2"></script>
 
@@ -32,14 +32,14 @@
         function SwapRTL() {
             if (document.getElementById("isRTL").value == '1') {
 
-                $(".x-form-itemselector-add").css('background-image', 'url(/Site/ux/resources/images/itemselector/left-gif/ext.axd)');
-                $(".x-form-itemselector-remove").css('background-image', 'url(/Site/ux/resources/images/itemselector/right-gif/ext.axd)');
+                $(".x-form-itemselector-add").css('background-image', 'url(ux/resources/images/itemselector/left-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(ux/resources/images/itemselector/right-gif/ext.axd)');
 
             }
             else {
 
-                $(".x-form-itemselector-add").css('background-image', 'url(/Site//ux/resources/images/itemselector/right-gif/ext.axd)');
-                $(".x-form-itemselector-remove").css('background-image', 'url(/Site//ux/resources/images/itemselector/left-gif/ext.axd)');
+                $(".x-form-itemselector-add").css('background-image', 'url(ux/resources/images/itemselector/right-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(ux/resources/images/itemselector/left-gif/ext.axd)');
 
             }
         }
@@ -82,6 +82,41 @@
 
 
         }
+        //function setComboValues(branchIdParameter, departmentIdParameter, from, to) {
+           
+
+        //       if (branchIdParameter != null)
+        //    {
+               
+        //        App.branchId.setValue(branchIdParameter);
+        //    }
+               
+
+        //      if (departmentIdParameter != null)
+        //    {
+               
+        //        App.departmentId.setValue(departmentIdParameter);
+        //    }
+                
+         
+        //    if (from )
+        //    {
+        //        App.dateFrom.setValue(new Date(from));
+        //    }
+           
+        //    if (to)
+        //    {
+        //        App.dateTo.setValue(new Date(to));
+        //    }
+           
+
+
+            
+         
+
+
+        //}
+
     
     </script>
 
@@ -101,7 +136,11 @@
         <ext:Hidden ID="CurrentCalenderLabel" runat="server" />
          <ext:Hidden ID="isRTL" runat="server" />
 
-
+          <ext:Hidden ID="vals" runat="server" />
+        <ext:Hidden ID="texts" runat="server" />
+        <ext:Hidden ID="labels" runat="server" />
+        <ext:Hidden ID="format" runat="server" />
+        <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=TABA&values="/>
 
 
 
@@ -111,7 +150,22 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                <ext:ComboBox Visible="false" AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" EmptyText="<%$ Resources: Branch %>">
+
+                                   <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                       <Listeners>
+                                           <Click Handler=" App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
+                                   <ext:ToolbarSeparator />
+                                         <ext:Button  runat="server" Text="<%$ Resources: Common, Go %>">
+                                    <DirectEvents>
+                                        <Click OnEvent="BranchAvailability_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Hidden="true" EmptyText="<%$ Resources: Branch %>">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -126,8 +180,9 @@
                                     </Store>
                                 </ext:ComboBox>
 
-                           
-                                <ext:ComboBox Visible="false" AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Width="160" LabelAlign="Top"
+                                <ext:ToolbarSeparator />
+                                   
+                                <ext:ComboBox AnyMatch="true" Hidden="true" CaseSensitive="false" runat="server" ID="employeeId" Width="160" LabelAlign="Top"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
                                     TypeAhead="false"
@@ -150,25 +205,22 @@
                                         </ext:Store>
                                     </Store>
                                 </ext:ComboBox>
+                    
                               
-                                <ext:DateField runat="server" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: From %>" Editable="false">
+                                <ext:DateField runat="server" Hidden="true" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: From %>" Editable="false" >
                                     <%--  <Listeners>
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
                                     </Listeners>--%>
+                                  
                                 </ext:DateField>
-                                <ext:DateField runat="server" ID="dateTo" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: To %>" Editable="false">
+                                <ext:DateField runat="server" Hidden="true" ID="dateTo" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: To %>" Editable="false">
                                     <%--  <Listeners>
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
                                     </Listeners>--%>
+                                   
+
                                 </ext:DateField>
-                                <ext:ToolbarSeparator />
-                                  <ext:Button MarginSpec="0 0 0 0" runat="server" Text="<%$ Resources: Load %>">
-                                    <DirectEvents>
-                                        <Click OnEvent="Load_Click">
-                                            <EventMask ShowMask="true" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
+                             
                                 <ext:ComboBox Visible="false" AnyMatch="true" CaseSensitive="false" runat="server" ID="cmbEmployeeImport" Width="260" LabelAlign="Left" FieldLabel="<%$ Resources: ImportFrom %>"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
@@ -192,25 +244,42 @@
                                         </ext:Store>
                                     </Store>
                                 </ext:ComboBox>
-                                <ext:Button Visible="false" runat="server" Text="<%$ Resources: Import %>">
+                              <%--  <ext:Button runat="server" Text="<%$ Resources: Import %>">
                                     <DirectEvents>
                                         <Click OnEvent="Import_Click">
                                             <EventMask ShowMask="true" />
                                         </Click>
                                     </DirectEvents>
-                                </ext:Button>
-                                   <ext:Button Visible="false" runat="server" Text="<%$ Resources: Export %>">
+                                </ext:Button>--%>
+                                 <%--  <ext:Button runat="server" Text="<%$ Resources: Export %>">
                                     <DirectEvents>
                                         <Click OnEvent="Export_Click">
                                             <EventMask ShowMask="true" />
                                         </Click>
                                         
                                     </DirectEvents>
+
                                        <Listeners>
                                            <Click Handler="App.userSelector.toField.getStore().removeAll();"></Click>
                                        </Listeners>
                                 </ext:Button>
-
+                                    <ext:Button MarginSpec="0 0 0 10" runat="server" Text="<%$ Resources: Delete %>" ID="btnDelete">
+                                    <DirectEvents>
+                                        <Click OnEvent="Delete_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>--%>
+                                <ext:Button MarginSpec="0 0 0 10" ID="btnClear" runat="server" Text="<%$ Resources: Clear %>">
+                                    <DirectEvents>
+                                        <Click OnEvent="Clear_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                               
+                                
+                                
 
                             </Items>
                         </ext:Toolbar>
@@ -219,7 +288,7 @@
                     <DockedItems>
 
 
-                        <ext:Toolbar Visible="false" ID="Toolbar2" runat="server" Dock="Bottom" ClassicButtonStyle="true">
+                      <ext:Toolbar Visible="false" ID="Toolbar2" runat="server" Dock="Bottom" ClassicButtonStyle="true">
                             <Items>
                                 <ext:Button runat="server" Text="<%$ Resources: BranchAvailability %>">
                                     <DirectEvents>
@@ -245,34 +314,39 @@
 
 
                                 </ext:ComboBox>
-                                <ext:TextField ID="workingHours" Width="150" runat="server" FieldLabel="<%$ Resources:workingHours%>" DataIndex="workingHours" AllowBlank="true" ReadOnly="true" ></ext:TextField>
-                                
-                                <ext:Button MarginSpec="0 0 0 450" runat="server" Text="<%$ Resources: Load %>">
-                                    <DirectEvents>
-                                        <Click OnEvent="Load_Click">
+                                <ext:TextField Visible="false" ID="workingHours" Width="150" runat="server" FieldLabel="<%$ Resources:workingHours%>" DataIndex="workingHours" AllowBlank="true" ReadOnly="true" ></ext:TextField>
+                                  <ext:ComboBox Visible="false" AnyMatch="true" Width="150" LabelWidth="30" CaseSensitive="false" runat="server" ID="device" AllowBlank="true" Name="device"
+                                    SubmitValue="true"
+                                    TypeAhead="false"
+                                    FieldLabel="<%$ Resources: Share%>" Icon="Share">
+                                    <Items>
+                                        <ext:ListItem Text="<%$Resources:Common,email %>" Value="1" />
+                                        <ext:ListItem Text="<%$Resources:Common,whatsApp %>" Value="2" />
+                                      
+
+                                    </Items>
+                                        <DirectEvents>
+                                        <Select OnEvent="Share_Click">
                                             <EventMask ShowMask="true" />
-                                        </Click>
+                                        </Select>
+                                        
                                     </DirectEvents>
-                                </ext:Button>
+                                </ext:ComboBox>
+                                
+
+                              
                                 <ext:Button runat="server" Text="Import" Visible="false">
                                 </ext:Button>
-                                <ext:Button MarginSpec="0 0 0 10" runat="server" Text="<%$ Resources: Delete %>" ID="btnDelete">
-                                    <DirectEvents>
-                                        <Click OnEvent="Delete_Click">
-                                            <EventMask ShowMask="true" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
-                                <ext:Button MarginSpec="0 0 0 10" ID="btnClear" runat="server" Text="<%$ Resources: Clear %>">
-                                    <DirectEvents>
-                                        <Click OnEvent="Clear_Click">
-                                            <EventMask ShowMask="true" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
+                            
 
                             </Items>
                         </ext:Toolbar>
+                            <ext:Toolbar ID="labelbar" runat="server" Height="0" Dock="Top">
+
+                            <Items>
+                                 <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                            </ext:Toolbar>
 
 
                     </DockedItems>
@@ -541,6 +615,33 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+          <ext:Window runat="server"  Icon="PageEdit"
+            ID="reportsParams"
+            Width="600"
+          
+              MinHeight="350"
+            Title="<%$Resources:Common,Parameters %>"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="FitLayout" Resizable="true">
+            <Listeners>
+                <Show Handler="App.Panel8.loader.load();"></Show>
+            </Listeners>
+            <Items>
+                <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
+                    <Loader runat="server" Url="ReportParameterBrowser.aspx?_reportName=TABA" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+            
+                </Items>
+        </ext:Window>
+
 
     </form>
 </body>

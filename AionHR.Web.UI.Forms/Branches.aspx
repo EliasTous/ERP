@@ -444,7 +444,7 @@
                             BodyPadding="5"> 
                             <Items>
                                 <ext:TextField runat="server" Name="address" ID="address" Hidden="true" Disabled="true" />
-                                        <ext:TextField runat="server" Name="street1" AllowBlank="false" ID="costreet1" FieldLabel="<%$ Resources:FieldStreet1%>" >
+                                        <ext:TextField runat="server" Name="street1" AllowBlank="true" ID="costreet1" FieldLabel="<%$ Resources:FieldStreet1%>" >
                                             <Listeners>
                                                 <Change Handler="if(this.value=='') setNullable(true); else setNullable(false);" />
                                             </Listeners>

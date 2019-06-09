@@ -108,17 +108,17 @@ namespace AionHR.Web.UI.Forms
             DateTime to = new DateTime();
             String datefrom = "", dateTo = "";
 
-            if (parameters.ContainsKey("1"))
+            if (parameters.ContainsKey("2"))
             {
 
-                if (DateTime.TryParseExact(parameters["1"], "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out from))
+                if (DateTime.TryParseExact(parameters["2"], "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out from))
                     datefrom = from.ToString();
                 else
                     datefrom = null;
             }
-            if (parameters.ContainsKey("2"))
+            if (parameters.ContainsKey("3"))
             {
-                if (DateTime.TryParseExact(parameters["2"], "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out to))
+                if (DateTime.TryParseExact(parameters["3"], "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out to))
                     dateTo = to.ToString();
                 else
                     dateTo = null;
@@ -135,7 +135,7 @@ namespace AionHR.Web.UI.Forms
             //    branchId.SetValue(parameters["4"]);
             //}
 
-            X.Call("setComboValues", parameters.ContainsKey("3") ? parameters["3"] : null, parameters.ContainsKey("4") ? parameters["4"] : null, datefrom, dateTo);
+            X.Call("setComboValues", parameters.ContainsKey("1") ? parameters["1"] : null, datefrom, dateTo);
         }
 
         [DirectMethod]
@@ -307,13 +307,13 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
                 return null;
             }
-            if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
-            {
-                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectBranch")).Show();
-                return null;
-            }
-            else
-                branchID = branchId.Value.ToString();
+            //if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
+            //{
+            //    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectBranch")).Show();
+            //    return null;
+            //}
+            //else
+            //    branchID = branchId.Value.ToString();
 
 
 
@@ -595,13 +595,13 @@ namespace AionHR.Web.UI.Forms
         {
             X.Call("EnableTools");
             string branchID = string.Empty;
-            if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
-            {
-                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectBranch")).Show();
-                return;
-            }
-            else
-                branchID = branchId.Value.ToString();
+            //if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
+            //{
+            //    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectBranch")).Show();
+            //    return;
+            //}
+            //else
+            //    branchID = branchId.Value.ToString();
 
             if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
             {
@@ -762,7 +762,7 @@ namespace AionHR.Web.UI.Forms
                                
                         //    }
                            
-                            while (fss.dtTo >= fss.dtFrom) 
+                            while (fss.dtTo > fss.dtFrom) 
                             {
                               
                                 listIds.Add(fss.dtFrom.ToString("yyyyMMdd") + "_" + fss.dtFrom.ToString("HH:mm"));
@@ -958,7 +958,7 @@ namespace AionHR.Web.UI.Forms
                     DateTime from = fs.dtFrom;
                     DateTime to = fs.dtTo;
 
-                    while (to >= from)
+                    while (to > from)
                     {
 
                         listIds.Add(from.ToString("yyyyMMdd") + "_" + from.ToString("HH:mm"));
@@ -1095,25 +1095,25 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void GetBranchSchedule(out string startAt, out string closeAt)
-        {
-            BranchWorkRecordRequest reqBS = new BranchWorkRecordRequest();
-            reqBS.BranchId = branchId.Value.ToString();
-            reqBS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqBS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+        //private void GetBranchSchedule(out string startAt, out string closeAt)
+        //{
+        //    BranchWorkRecordRequest reqBS = new BranchWorkRecordRequest();
+        //    reqBS.BranchId = branchId.Value.ToString();
+        //    reqBS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+        //    reqBS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
 
-            ListResponse<BranchSchedule> response = _helpFunctionService.ChildGetAll<BranchSchedule>(reqBS);
-            if (response.Success)
-            {
-                startAt = response.Items[0].openAt;
-                closeAt = response.Items[0].closeAt;
-            }
-            else
-            {
-                startAt = string.Empty;
-                closeAt = string.Empty;
-            }
-        }
+        //    ListResponse<BranchSchedule> response = _helpFunctionService.ChildGetAll<BranchSchedule>(reqBS);
+        //    if (response.Success)
+        //    {
+        //        startAt = response.Items[0].openAt;
+        //        closeAt = response.Items[0].closeAt;
+        //    }
+        //    else
+        //    {
+        //        startAt = string.Empty;
+        //        closeAt = string.Empty;
+        //    }
+        //}
 
         private string FillOtherRow(string html, List<TimeSlot> timesList, int totalDays)
         {
@@ -1686,11 +1686,11 @@ namespace AionHR.Web.UI.Forms
         }
     }
 
-    internal class Availability
-    {
-        public string Count { get; set; }
-        public string Id { get; set; }
-    }
+    //internal class Availability
+    //{
+    //    public string Count { get; set; }
+    //    public string Id { get; set; }
+    //}
    
 
 

@@ -381,10 +381,21 @@ namespace AionHR.Web.UI.Forms
                     return nodes.ToJson();
                 case 7:
                     nodes = TreeBuilder.Instance.BuildSelftService(commonTree.Root);
+                                       
                     if (_systemService.SessionHelper.GetUserType() != 4)
                         tabHome.Loader.Url = "Dashboard.aspx";
                     else
+                    {
+                        ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+                        classReq.ClassId = "81101";
+
+                        classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+                        RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+                        if (modClass.result.accessLevel==0)
                         tabHome.Loader.Url = "BlankPage.aspx";
+                        else
+                            tabHome.Loader.Url = "Dashboard.aspx";
+                    }
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 case 8:

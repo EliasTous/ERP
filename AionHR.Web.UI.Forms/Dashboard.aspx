@@ -139,7 +139,7 @@
                 case 0: App.PendingWindow.show(); App.PendingStore.reload(); break;
                 case 1: App.NoShowUpWindow.show(); App.NoShowUpStore.reload(); break;
                 case 2: App.CheckedWindow.show(); App.CheckedStore.reload(); break;
-                case 3: App.LeaveWithoutExcuseWindow.show(); App.LeaveWithoutExcuseStore.reload(); break;
+              //  case 3: App.LeaveWithoutExcuseWindow.show(); App.LeaveWithoutExcuseStore.reload(); break;
                 case 4: App.LeaveWindow.show(); App.LeaveStore.reload(); break;
                 case 5: App.DayOffWindow.show(); App.DayOffStore.reload(); break;
             }
@@ -2699,7 +2699,7 @@
                      </ext:GridPanel>
 
                                                        
-                                                         <ext:GridPanel MarginSpec="0 0 0 0"
+                                                         <ext:GridPanel Hidden="true" MarginSpec="0 0 0 0"
                                                             ID="PunchesGrid"
                                                             runat="server"
                                                             PaddingSpec="0 0 1 0"
@@ -2747,6 +2747,7 @@
                                                                                 <ext:ModelField Name="serialNo" />
                                                                                 <ext:ModelField Name="clockStamp" />
                                                                                 <ext:ModelField Name="udId"  />
+                                                                                <ext:ModelField Name="recordId"  />
                                                                               
                                                                             
 
@@ -2762,21 +2763,21 @@
                                                                 <Columns>
                                                                   
 
-
-                                                                    <ext:Column ID="Column6" DataIndex="employeeRef" Text="Employee Ref" runat="server" Flex="1">
+                                                               
+                                                                    <ext:Column ID="Column6" DataIndex="employeeRef" Text="<%$ Resources: employeeRef %>" runat="server" Flex="1">
                                                                    
                                                                     </ext:Column>
                                                                 
                                                                     <ext:DateColumn ID="DateColumn4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="clockStamp" Hideable="false" Flex="4"  />
                           
 
-                                                                     <ext:Column ID="Column7" DataIndex="serialNo" Text="serialNo"  runat="server" Flex="2" />
+                                                                   <%--  <ext:Column ID="Column7" DataIndex="serialNo" Text="serialNo"  runat="server" Flex="2" />--%>
                                                             
-                                                                     <ext:Column ID="Column54" DataIndex="udId" Text="udId" runat="server" Flex="2" />
+                                                                     <ext:Column ID="Column54" DataIndex="udId" Text="<%$ Resources: DeviceRef %>" runat="server" Flex="2" />
 
                                                                 
-                                                                  <%--  <ext:Column runat="server"
-                                                                        ID="Column55" Visible="true"
+                                                                    <ext:Column runat="server"
+                                                                        ID="Column555" Visible="true"
                                                                         Text=""
                                                                         Width="100"
                                                                         Hideable="false"
@@ -2786,43 +2787,37 @@
                                                                         MenuDisabled="true"
                                                                         Resizable="false">
 
-                                                                        <Renderer Handler="return  attachRender(); " />
-                                                                    </ext:Column>--%>
+                                                                        <Renderer Handler="return  deleteRender(); " />
+                                                                    </ext:Column>
 
 
 
                                                                 </Columns>
                                                             </ColumnModel>
                                                             <Listeners>
-                                                             <%--   <Render Handler="this.on('cellclick', cellClick);" />--%>
+                                                          <Render Handler="this.on('cellclick', cellClick);" />
                                                                 <Activate Handler="#{punchesStore}.reload();" />
                                                             </Listeners>
-                                                         <%--   <DirectEvents>
+                                                            <DirectEvents>
 
                                                                 
-                                                                <CellClick OnEvent="TimePoPUP">
+                                                                <CellClick OnEvent="POPUPPendingPunches">
                                                                     <EventMask ShowMask="true" />
                                                                       <ExtraParams>
-                                                                         <ext:Parameter Name="employeeName" Value="record.data['fullName']" Mode="Raw" />
-                                                                         <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
-                                                                         <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
-                                                                           <ext:Parameter Name="dayIdDate" Value="record.data['dayIdDate']" Mode="Raw" />
-                                                                            <ext:Parameter Name="timeCode" Value="record.data['timeCode']" Mode="Raw" />
-                                                                           <ext:Parameter Name="timeCodeString" Value="record.data['timeCodeString']" Mode="Raw" />
-                                                                           <ext:Parameter Name="Notes" Value="record.data['notes']" Mode="Raw" />
-                                                                           <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
-                                                                             <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
-                                                                          <ext:Parameter Name="justification" Value="record.data['justification']" Mode="Raw" />
+                                                                       
                                                                     
                                                                       
-                                                                        
+                                                                     
+                                                                        <ext:Parameter Name="id" Value="record.data['recordId']" Mode="Raw" />
+                                                                  <%--      <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />--%>
+                                                                 
                                                                          
                                                                     </ExtraParams>
 
                                                              
 
                                                                 </CellClick>
-                                                            </DirectEvents>--%>
+                                                            </DirectEvents>
 
 
                                                             <View>
@@ -4605,7 +4600,7 @@
             AutoShow="false"
             Modal="true"
             Hidden="true"
-            Resizable="false"
+            Resizable="true"
             Maximizable="false"
             Draggable="false"
             Layout="Fit" >

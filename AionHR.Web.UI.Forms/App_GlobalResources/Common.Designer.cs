@@ -412,6 +412,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Branch Availability.
+        /// </summary>
+        internal static string BranchAvailability {
+            get {
+                return ResourceManager.GetString("BranchAvailability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Branches.
         /// </summary>
         internal static string Branches {

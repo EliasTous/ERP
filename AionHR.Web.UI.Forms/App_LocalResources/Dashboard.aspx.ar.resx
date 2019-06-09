@@ -681,4 +681,10 @@
   <data name="PunchesGrid" xml:space="preserve">
     <value>بصمات قيد الانتظار </value>
   </data>
+  <data name="DeviceRef" xml:space="preserve">
+    <value>رمز جهاز البصمة </value>
+  </data>
+  <data name="employeeRef" xml:space="preserve">
+    <value>رمز الموظف</value>
+  </data>
 </root>

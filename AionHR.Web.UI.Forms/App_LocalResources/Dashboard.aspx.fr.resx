@@ -678,4 +678,10 @@
   <data name="PunchesGrid" xml:space="preserve">
     <value>Poinçons en attente</value>
   </data>
+  <data name="DeviceRef" xml:space="preserve">
+    <value>Référence de l'appareil</value>
+  </data>
+  <data name="employeeRef" xml:space="preserve">
+    <value>Référence de l'employé</value>
+  </data>
 </root>

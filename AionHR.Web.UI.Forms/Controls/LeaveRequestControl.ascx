@@ -699,8 +699,8 @@
                                     <ext:Column ID="leaveIdCO" Visible="false" DataIndex="leaveId" runat="server">
                                     </ext:Column>
                                       <ext:Column ID="Column2" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="1">
-                                           <Renderer Handler=" return record.data['approverName'].fullName; ">
-                                           </Renderer>
+                                         
+                                          
                                          </ext:Column>
                                         <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
                                        

@@ -95,6 +95,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(OvertimeSetting), "delOT");
             ChildDeleteLookup.Add(typeof(FlatSchedule), "delFS");
             ChildDeleteLookup.Add(typeof(FlatScheduleRange), "delRangeFS");
+            ChildDeleteLookup.Add(typeof(PendingPunch), "delPP");
 
 
             //Flat Schedule

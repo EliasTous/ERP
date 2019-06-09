@@ -9,5 +9,6 @@ namespace AionHR.Model.TimeAttendance
 {
    public class PendingPunch : Check
     {
+        public string recordId { get; set; }
     }
 }

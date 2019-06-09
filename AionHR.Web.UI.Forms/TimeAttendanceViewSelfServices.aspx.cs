@@ -542,9 +542,50 @@ namespace AionHR.Web.UI.Forms
             {
                 //GEtting the filter from the page
 
-                AttendnanceDayListRequest req = GetAttendanceDayRequest();
+                //AttendnanceDayListRequest req = GetAttendanceDayRequest();
+                string rep_params = "";
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                if (startDayId.SelectedDate != DateTime.MinValue)
+
+                {
+                    parameters.Add("2", startDayId.SelectedDate.ToString("yyyyMMdd")); ;
 
 
+                }
+               
+                if (endDayId.SelectedDate != DateTime.MinValue)
+
+                {
+                    parameters.Add("3", endDayId.SelectedDate.ToString("yyyyMMdd"));
+
+
+                }
+
+                parameters.Add("1",_systemService.SessionHelper.GetEmployeeId());
+             
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
+
+
+
+                TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
+
+
+                req.paramString = rep_params;
+
+
+                req.Size = "30";
+                req.sortBy = "recordId";
+
+
+             
                 req.StartAt = e.Start.ToString();
                 ListResponse<AttendanceDay> daysResponse = _selfServiceService.ChildGetAll<AttendanceDay>(req);
                 if (!daysResponse.Success)

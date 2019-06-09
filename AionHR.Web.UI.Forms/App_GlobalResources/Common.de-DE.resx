@@ -1335,4 +1335,7 @@
   <data name="FourWeek" xml:space="preserve">
     <value>Vier Wochen</value>
   </data>
+  <data name="BranchAvailability" xml:space="preserve">
+    <value>Branch Verfügbarkeit</value>
+  </data>
 </root>

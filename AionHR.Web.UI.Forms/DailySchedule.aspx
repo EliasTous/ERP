@@ -82,9 +82,9 @@
 
 
         }
-        function setComboValues(employeeId,branchId,from,to) {
+        function setComboValues(employeeId,from,to) {
           
-                App.branchId.setValue(branchId);
+               
             if (employeeId != null)
             {
                 App.employeeId.insertRecord(1, { fullName: 'Text1', recordId: employeeId });
@@ -135,7 +135,7 @@
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="format" runat="server" />
-        <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=RT310&values="/>
+        <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=TAES&values="/>
 
 
 
@@ -271,8 +271,27 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
+                                    <ext:ToolbarSeparator />
                                
                                 
+                                  <ext:TextField ID="workingHours" Width="150" runat="server" FieldLabel="<%$ Resources:workingHours%>" DataIndex="workingHours" AllowBlank="true" ReadOnly="true" ></ext:TextField>
+                                  <ext:ComboBox AnyMatch="true" Width="150" LabelWidth="30" CaseSensitive="false" runat="server" ID="device" AllowBlank="true" Name="device"
+                                    SubmitValue="true"
+                                    TypeAhead="false"
+                                    FieldLabel="<%$ Resources: Share%>" Icon="Share">
+                                    <Items>
+                                        <ext:ListItem Text="<%$Resources:Common,email %>" Value="1" />
+                                        <ext:ListItem Text="<%$Resources:Common,whatsApp %>" Value="2" />
+                                      
+
+                                    </Items>
+                                        <DirectEvents>
+                                        <Select OnEvent="Share_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Select>
+                                        
+                                    </DirectEvents>
+                                </ext:ComboBox>
                                 
 
                             </Items>
@@ -282,7 +301,7 @@
                     <DockedItems>
 
 
-                        <ext:Toolbar ID="Toolbar2" runat="server" Dock="Bottom" ClassicButtonStyle="true">
+                        <ext:Toolbar ID="Toolbar2" Visible="false" runat="server" Dock="Bottom" ClassicButtonStyle="true">
                             <Items>
                                 <ext:Button runat="server" Text="<%$ Resources: BranchAvailability %>">
                                     <DirectEvents>
@@ -308,25 +327,7 @@
 
 
                                 </ext:ComboBox>
-                                <ext:TextField ID="workingHours" Width="150" runat="server" FieldLabel="<%$ Resources:workingHours%>" DataIndex="workingHours" AllowBlank="true" ReadOnly="true" ></ext:TextField>
-                                  <ext:ComboBox AnyMatch="true" Width="150" LabelWidth="30" CaseSensitive="false" runat="server" ID="device" AllowBlank="true" Name="device"
-                                    SubmitValue="true"
-                                    TypeAhead="false"
-                                    FieldLabel="<%$ Resources: Share%>" Icon="Share">
-                                    <Items>
-                                        <ext:ListItem Text="<%$Resources:Common,email %>" Value="1" />
-                                        <ext:ListItem Text="<%$Resources:Common,whatsApp %>" Value="2" />
-                                      
-
-                                    </Items>
-                                        <DirectEvents>
-                                        <Select OnEvent="Share_Click">
-                                            <EventMask ShowMask="true" />
-                                        </Select>
-                                        
-                                    </DirectEvents>
-                                </ext:ComboBox>
-                                
+                              
 
                               
                                 <ext:Button runat="server" Text="Import" Visible="false">
@@ -624,7 +625,7 @@
             </Listeners>
             <Items>
                 <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
-                    <Loader runat="server" Url="ReportParameterBrowser.aspx?_reportName=RT310" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                    <Loader runat="server" Url="ReportParameterBrowser.aspx?_reportName=TAES" Mode="Frame" ID="Loader8" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true">
                         <Listeners>

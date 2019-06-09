@@ -176,6 +176,7 @@
     <Content Include="Cases.aspx" />
     <Content Include="CertificateLevels.aspx" />
     <Content Include="CheckTypes.aspx" />
+    <Content Include="BranchAvailabilities.aspx" />
     <Content Include="DailySchedule.aspx" />
     <Content Include="DELogin.aspx" />
     <Content Include="DocumentCategories.aspx" />
@@ -598,6 +599,10 @@
     </EmbeddedResource>
     <Content Include="EmployeePages\App_LocalResources\JobInformation.aspx.fr.resx" />
     <Content Include="EmployeePages\App_LocalResources\JobInformation.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BranchAvailabilities.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BranchAvailabilities.aspx.de-DE.resx" />
+    <Content Include="App_LocalResources\BranchAvailabilities.aspx.fr.resx" />
+    <Content Include="App_LocalResources\BranchAvailabilities.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -800,6 +805,13 @@
     </Compile>
     <Compile Include="ConstClasse\Common.cs" />
     <Compile Include="ConstClasse\ConstClasses.cs" />
+    <Compile Include="BranchAvailabilities.aspx.cs">
+      <DependentUpon>BranchAvailabilities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BranchAvailabilities.aspx.designer.cs">
+      <DependentUpon>BranchAvailabilities.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DailySchedule.aspx.cs">
       <DependentUpon>DailySchedule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -682,4 +682,10 @@
   <data name="PunchesGrid" xml:space="preserve">
     <value>Ausstehende Punches</value>
   </data>
+  <data name="DeviceRef" xml:space="preserve">
+    <value>Gerätebezug</value>
+  </data>
+  <data name="employeeRef" xml:space="preserve">
+    <value>Mitarbeiterreferenz</value>
+  </data>
 </root>

@@ -609,15 +609,18 @@ namespace AionHR.Web.UI.Forms
             ListResponse<UserInfo> branches = _systemService.ChildGetAll<UserInfo>(req);
             if (!branches.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +branches.LogId: branches.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + branches.LogId : branches.Summary).Show();
                 return;
             }
-            //branches.Items.ForEach(x =>
-            //{
-            //    x.userTypeString = userTypeStore.GetById(x.userType).ToString();
-            //}
+            List<XMLDictionary> userTypeList = Common.XMLDictionaryList(_systemService, "7");
+            branches.Items.ForEach(x =>
+            {
+                x.userTypeString = userTypeList.Where(y => y.key == x.userType).Count() != 0 ? userTypeList.Where(y => y.key == x.userType).First().value : null;
+            }
+            );
 
-        
+
+
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 

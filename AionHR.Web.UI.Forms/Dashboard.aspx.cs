@@ -389,7 +389,11 @@ namespace AionHR.Web.UI.Forms
                 TimeGridPanel.Title = GetLocalResourceObject("Time").ToString() + " " + (APPROVAL_TIME != 0 ? APPROVAL_TIME.ToString() : "");
                 EmployeePenaltyApprovalGrid.Title = GetLocalResourceObject("EmployeePenaltyApproval").ToString() + " " + (APPROVAL_PENALTY != 0 ? APPROVAL_PENALTY.ToString() : "");
                 PurchasesGrid.Title= GetLocalResourceObject("PurchasesApproval").ToString() + " " + (APPROVAL_PURCHASE_ORDER != 0 ? APPROVAL_PURCHASE_ORDER.ToString() : "");
-                PunchesGrid.Title = GetLocalResourceObject("PunchesGrid").ToString() + " " + (PENDING_PUNCHES != 0 ? PENDING_PUNCHES.ToString() : "");
+                if (PENDING_PUNCHES != 0)
+                {
+                    PunchesGrid.Hidden = false;
+                    PunchesGrid.Title = GetLocalResourceObject("PunchesGrid").ToString() + " " + (PENDING_PUNCHES != 0 ? PENDING_PUNCHES.ToString() : "");
+                }
                 return dashoard;
             }
             catch (Exception exp)
@@ -417,7 +421,7 @@ namespace AionHR.Web.UI.Forms
                 activeChartData.Add(new ChartData() { name = GetLocalResourceObject("PENDING").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_PENDING).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_PENDING).First().count : 0, index = 0 });// 10 - Attended
                 activeChartData.Add(new ChartData() { name = GetLocalResourceObject("NO_SHOW_UP").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_NO_SHOW_UP).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_NO_SHOW_UP).First().count : 0, index = 1 });// 110 - Vacations
                 activeChartData.Add(new ChartData() { name = GetLocalResourceObject("CHECKED").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_CHECKED).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_CHECKED).ToList()[0].count : 0, index = 2 });// 111 - Unpaid leave
-                activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE_WITHOUT_EXCUSE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE_WITHOUT_EXCUSE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE_WITHOUT_EXCUSE).ToList()[0].count : 0, index = 3 });// 112 - Leave without excuse
+            //    activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE_WITHOUT_EXCUSE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE_WITHOUT_EXCUSE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE_WITHOUT_EXCUSE).ToList()[0].count : 0, index = 3 });// 112 - Leave without excuse
                                                                                                                                                                                                                                                                                                                                                           //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("BusinessLeave").ToString(), y = dashoard.Items.Where(x => x.itemId == 113).ToList()[0].count, index =4 });// 113 - business leave
                 activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE).ToList()[0].count : 0, index = 4 });
                 activeChartData.Add(new ChartData() { name = GetLocalResourceObject("DAY_OFF").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_DAY_OFF).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_DAY_OFF).ToList()[0].count : 0, index = 5 });
@@ -1594,7 +1598,74 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-        
+        [DirectMethod]
+        protected void POPUPPendingPunches(object sender, DirectEventArgs e)
+        {
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+            {
+                Yes = new MessageBoxButtonConfig
+                {
+                    //We are call a direct request metho for deleting a record
+                    Handler = String.Format("App.direct.DeletePendingPunchRecord({0})", id),
+                    Text = Resources.Common.Yes
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Text = Resources.Common.No
+                }
+
+            }).Show();
+           
+        }
+        [DirectMethod]
+        public void DeletePendingPunchRecord(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                PendingPunch n = new PendingPunch();
+                n.recordId = index;
+                n.clockStamp = new DateTime();
+                n.employeeRef = "";
+                n.serialNo = "";
+                n.udId = "";
+
+                PostRequest<PendingPunch> req = new PostRequest<PendingPunch>();
+                req.entity = n;
+                PostResponse<PendingPunch> res = _timeAttendanceService.ChildDelete<PendingPunch>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(res);
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    Store1.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+
         [DirectMethod]
         protected void TimePoPUP(object sender, DirectEventArgs e)
         {
@@ -1624,14 +1695,19 @@ namespace AionHR.Web.UI.Forms
                 Common.errorMessage(response);
                 return;
             }
-            TimeStatus.Select(response.result.status.ToString());
-            if (response.result.damageLevel == "1")
-                response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
-            else
-                response.result.damageLevel = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
+            if (response.result != null)
+            {
+                TimeStatus.Select(response.result.status.ToString());
+                if (response.result.damageLevel == "1")
+                    response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
+                else
+                    response.result.damageLevel = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
+                shiftStart.Text = response.result.shiftStart + " " + response.result.shiftEnd;
+                TimeFormPanel.SetValues(response.result);
+            }
 
-            TimeFormPanel.SetValues(response.result);
-            shiftStart.Text = response.result.shiftStart + " " + response.result.shiftEnd;
+           
+            
            // clockDuration.Text = response.result.clockDuration + " " + response.result.duration;
 
             TimeEmployeeName.Text = employeeName;
@@ -2516,7 +2592,7 @@ namespace AionHR.Web.UI.Forms
 
                 ReportGenericRequest TVReq = new ReportGenericRequest();
                 TVReq.paramString = rep_params;
-                ListResponse<DashBoardTimeVariation> resp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(TVReq);
+                ListResponse<DashBoardTimeVariation> resp = _dashBoardService.ChildGetAll<DashBoardTimeVariation>(TVReq);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
