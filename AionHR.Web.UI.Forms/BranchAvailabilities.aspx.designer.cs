@@ -157,6 +157,42 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden loaderUrl;
         
         /// <summary>
+        /// currentBranch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden currentBranch;
+        
+        /// <summary>
+        /// currentDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden currentDepartment;
+        
+        /// <summary>
+        /// currentfromDay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden currentfromDay;
+        
+        /// <summary>
+        /// currenttoDay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden currenttoDay;
+        
+        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>

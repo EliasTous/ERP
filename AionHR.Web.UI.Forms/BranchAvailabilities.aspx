@@ -141,7 +141,10 @@
         <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="format" runat="server" />
         <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=TABA&values="/>
-
+         <ext:Hidden ID="currentBranch" runat="server" />
+         <ext:Hidden ID="currentDepartment" runat="server" />
+         <ext:Hidden ID="currentfromDay" runat="server" />
+         <ext:Hidden ID="currenttoDay" runat="server" />
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="BorderLayout" ActiveIndex="0">
@@ -359,7 +362,7 @@
                     <Items>
                         <ext:Panel runat="server" ID="pnlSchedule" Layout="FitLayout" Flex="6" MarginSpec="0 5 5 5" StyleSpec=" border: 1px solid #add2ed !important;" Html="">
                         </ext:Panel>
-                        <ext:FormPanel Visible="false" runat="server" ID="pnlTools" Layout="VBoxLayout" Flex="1" MarginSpec="0 5 5 5" StyleSpec=" border: 1px solid #add2ed !important;">
+                        <ext:FormPanel Hidden="true" runat="server" ID="pnlTools" Layout="VBoxLayout" Flex="1" MarginSpec="0 5 5 5" StyleSpec=" border: 1px solid #add2ed !important;">
                             <Defaults>
                                 <ext:Parameter Name="padding" Value="5 5 5 5" Mode="Value" />
                             </Defaults>

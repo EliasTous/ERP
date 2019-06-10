@@ -549,7 +549,7 @@ namespace AionHR.Web.UI.Forms
                 return; 
             }
             ParamsListRequest req = new ParamsListRequest();
-            req.param = "scId=" + CurrentScId.Text;
+            req.param = "8|" + CurrentScId.Text;
             ListResponse<EmployeeParam> resp = _employeeService.ChildGetAll<EmployeeParam>(req); 
             if (!resp.Success)
             {

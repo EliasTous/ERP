@@ -968,7 +968,9 @@ namespace AionHR.Web.UI.Forms
             ListResponse<DayType> schedules = _branchService.ChildGetAll<DayType>(req);
             if (!schedules.Success)
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", schedules.ErrorCode) != null ? GetGlobalResourceObject("Errors", schedules.ErrorCode).ToString() : schedules.Summary).Show();
-            colorsStore.DataSource = schedules.Items;
+            List<DayType> mylist = new List<DayType>();
+            schedules.Items.ForEach(x => x.color = x.color.Replace(" ", String.Empty));
+            colorsStore.DataSource = schedules.Items; 
             colorsStore.DataBind();
             return schedules.Items;
         }

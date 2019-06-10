@@ -104,6 +104,7 @@ namespace AionHR.Web.UI.Forms
         public void SetVals(string labels)
         {
             this.vals.Text = labels;
+            currentDepartment.Text = currentBranch.Text = currentfromDay.Text = currenttoDay.Text = "";
         }
 
         [DirectMethod]
@@ -123,7 +124,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 FillBranches();
                 FillDepartment();
-               
+                currentDepartment.Text = currentBranch.Text = currentfromDay.Text = currenttoDay.Text = "";
                 this.workingHours.Value = string.Empty;
             }
             try
@@ -542,29 +543,37 @@ namespace AionHR.Web.UI.Forms
         
             BranchAvailabilityScheduleRecordRequest reqFS = new BranchAvailabilityScheduleRecordRequest();
             if (parameters.ContainsKey("1"))
-                reqFS.BranchId= Convert.ToInt32(parameters["1"]);
+            {
+                reqFS.BranchId = Convert.ToInt32(parameters["1"]);
+                currentBranch.Text = parameters["1"];
+            }
             else
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectBranch")).Show();
-                   return;
+                return;
             }
             if (parameters.ContainsKey("2"))
+            {
                 reqFS.departmentId = Convert.ToInt32(parameters["2"]);
+                currentDepartment.Text = parameters["2"];
+            }
             else
                 reqFS.departmentId = 0;
             if (parameters.ContainsKey("3"))
             {
                 reqFS.FromDayId = parameters["3"];
+                currentfromDay.Text = parameters["3"];
                 //DateTime parsed = DateTime.Now;
                 //if (DateTime.TryParse(parameters["3"], new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
                 //{
                 //    reqFS.FromDayId = parsed.ToString("yyyyMMdd");  
-                    
+
                 //}
             }
             if (parameters.ContainsKey("4"))
             {
                 reqFS.ToDayId = parameters["4"];
+                currenttoDay.Text= parameters["4"];
                 //DateTime parsed = DateTime.Now;
                 //if (DateTime.TryParse(parameters["4"], new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
                 //{
@@ -938,7 +947,18 @@ namespace AionHR.Web.UI.Forms
                 } while (dtStart <= dtEnd && !string.IsNullOrEmpty(dailyScheduleVariation));
 
                 //filling the Day slots
-                int totalDays = Convert.ToInt32(Math.Ceiling((dateTo.SelectedDate - dateFrom.SelectedDate).TotalDays));
+                DateTime totalDayTo = new DateTime();
+                DateTime totalDayFrom = new DateTime();
+                if (!DateTime.TryParseExact(currentfromDay.Text, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out totalDayTo))
+                {
+
+                }
+                if (!DateTime.TryParseExact(currenttoDay.Text, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out totalDayFrom))
+                {
+
+                }
+
+                int totalDays = Convert.ToInt32(Math.Ceiling((totalDayTo - totalDayFrom).TotalDays));
                 timesList = timesList.Distinct(new TimeSlotComparer()).ToList<TimeSlot>();
                 if (_systemService.SessionHelper.getLangauge().ToString() == "de")
                 {
@@ -1056,9 +1076,20 @@ namespace AionHR.Web.UI.Forms
                 timesList.Add(ts);
                 dtStart = dtStart.AddMinutes(Convert.ToInt32(dailyScheduleVariation));
             } while (dtStart <= dtEnd);
+            DateTime totalDayTo = new DateTime();
+            DateTime totalDayFrom = new DateTime();
+            if (!DateTime.TryParseExact(currentfromDay.Text, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out totalDayFrom))
+            {
 
+            }
+            if (!DateTime.TryParseExact(currenttoDay.Text, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out totalDayTo))
+            {
+
+            }
+
+            int totalDays = Convert.ToInt32(Math.Ceiling((totalDayTo - totalDayFrom).TotalDays));
             //filling the Day slots
-            int totalDays = Convert.ToInt32(Math.Ceiling((dateTo.SelectedDate - dateFrom.SelectedDate).TotalDays));
+      //      int totalDays = Convert.ToInt32(Math.Ceiling((dateTo.SelectedDate - dateFrom.SelectedDate).TotalDays));
             timesList = timesList.Distinct(new TimeSlotComparer()).ToList<TimeSlot>();
 
             html = FillFirstRow(html, timesList);
@@ -1085,7 +1116,7 @@ namespace AionHR.Web.UI.Forms
 
 
             html += @"</table></div>";
-            X.Call("BranchAvailability");
+          
             this.pnlSchedule.Html = html;
             X.Call("ColorifyAndCountSchedule", JSON.JavaScriptSerialize(listIds));
             X.Call("FixHeader");
@@ -1115,7 +1146,16 @@ namespace AionHR.Web.UI.Forms
 
         private string FillOtherRow(string html, List<TimeSlot> timesList, int totalDays)
         {
-            DateTime firstDate = dateFrom.SelectedDate;
+            Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+            DateTime firstDate = DateTime.Now;
+            if (!DateTime.TryParseExact(currentfromDay.Text, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out firstDate))
+            {
+               
+            }
+            
+                
+
+         //   DateTime firstDate = dateFrom.SelectedDate;
            
             for (int count = 0; count <= totalDays; count++)
             {
@@ -1228,9 +1268,9 @@ namespace AionHR.Web.UI.Forms
           //  this.storeEmployee = null;
             this.employeeScheduleWindow.Show();
             EmployeeCellScheduleRequest reqFS = new EmployeeCellScheduleRequest();
-            reqFS.BranchId = Convert.ToInt32(branchId.Value.ToString());
-            if (!string.IsNullOrEmpty(departmentId.SelectedItem.Text))
-                reqFS.departmentId = Convert.ToInt32(departmentId.Value.ToString());
+            reqFS.BranchId = Convert.ToInt32(currentBranch.Text);
+            if (!string.IsNullOrEmpty(currentDepartment.Text))
+                reqFS.departmentId = Convert.ToInt32(currentDepartment.Text);
             else
                 reqFS.departmentId = 0;
 

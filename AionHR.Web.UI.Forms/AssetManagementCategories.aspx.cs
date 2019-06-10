@@ -440,6 +440,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             //Reset all values of the relative object
+            ApprovalStore.Reload();
             currentCategory.Text = "";
             BasicInfoTab.Reset();
             FillParent();
