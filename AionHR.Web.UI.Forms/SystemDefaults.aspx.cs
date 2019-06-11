@@ -450,12 +450,12 @@ namespace AionHR.Web.UI.Forms
             catch { }
             try { nameFormatCombo.Select(items.Where(s => s.Key == "nameFormat").First().Value.ToString()); }
             catch { }
-            try
-            {
-                timeZoneCombo.Select(items.Where(s => s.Key == "timeZone").First().Value);
-            }
+            //try
+            //{
+            //    timeZoneCombo.Select(items.Where(s => s.Key == "timeZone").First().Value);
+            //}
 
-            catch { }
+            //catch { }
             try { fdowCombo.Select(items.Where(s => s.Key == "fdow").First().Value); }
 
             catch { }
@@ -891,10 +891,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("dateFormat", values.dateFormat.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("dateFormat", ""));
-            if (!string.IsNullOrEmpty(values.timeZone.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("timeZone", values.timeZone.ToString()));
-            else
-                submittedValues.Add(new KeyValuePair<string, string>("timeZone", ""));
+            //if (!string.IsNullOrEmpty(values.timeZone.ToString()))
+            //    submittedValues.Add(new KeyValuePair<string, string>("timeZone", values.timeZone.ToString()));
+            //else
+            //    submittedValues.Add(new KeyValuePair<string, string>("timeZone", ""));
             if (!string.IsNullOrEmpty(values.languageId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("languageId", values.languageId.ToString()));
             else
@@ -933,8 +933,8 @@ namespace AionHR.Web.UI.Forms
                 if (!string.IsNullOrEmpty(values.countryId.ToString()))
                     _systemService.SessionHelper.SetDefaultCountry(values.countryId.ToString());
                 
-                if (!string.IsNullOrEmpty(values.timeZone.ToString()))
-                    _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(values.timeZone.ToString()));
+                //if (!string.IsNullOrEmpty(values.timeZone.ToString()))
+                //    _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(values.timeZone.ToString()));
                 _systemService.SessionHelper.SetHijriSupport(values.enableHijri == null ? false : true);
 
                 Notification.Show(new NotificationConfig
@@ -1367,8 +1367,8 @@ namespace AionHR.Web.UI.Forms
 
                     if (!string.IsNullOrEmpty(genValues.countryId.ToString()))
                         _systemService.SessionHelper.SetDefaultCountry(genValues.countryId.ToString());
-                    if (!string.IsNullOrEmpty(genValues.timeZone.ToString()))
-                        _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(genValues.timeZone.ToString()));
+                    //if (!string.IsNullOrEmpty(genValues.timeZone.ToString()))
+                    //    _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(genValues.timeZone.ToString()));
                     _systemService.SessionHelper.SetHijriSupport(empValues.enableHijri == null ? false : true);
 
                     Notification.Show(new NotificationConfig

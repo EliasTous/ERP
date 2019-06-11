@@ -589,14 +589,14 @@ namespace AionHR.Web.UI.Forms
             {
                 _systemService.SessionHelper.SetHijriSupport(false);
             }
-            try
-            {
-                _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(defaults.Items.Where(s => s.Key == "timeZone").First().Value));
-            }
-            catch
-            {
-                _systemService.SessionHelper.SetDefaultTimeZone(0);
-            }
+            //try
+            //{
+            //    _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(defaults.Items.Where(s => s.Key == "timeZone").First().Value));
+            //}
+            //catch
+            //{
+            //    _systemService.SessionHelper.SetDefaultTimeZone(0);
+            //}
             try
             {
                 _systemService.SessionHelper.SetCalendarId(defaults.Items.Where(s => s.Key == "caId").First().Value);

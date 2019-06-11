@@ -97,10 +97,10 @@ namespace AionHR.Infrastructure.Session
                 value = "0";
             Set("vsId", value);
         }
-        public void SetDefaultTimeZone(int value)
-        {
-            Set("timeZone", value);
-        }
+        //public void SetDefaultTimeZone(int value)
+        //{
+        //    Set("timeZone", value);
+        //}
         public void SetDefaultCountry(string format)
         {
             Set("countryId", format);
@@ -146,10 +146,10 @@ namespace AionHR.Infrastructure.Session
             return nameFormat.ToString();
         }
 
-        public int GetDefaultTimeZone()
-        {
-            return Convert.ToInt32(Get("timeZone").ToString());
-        }
+        //public int GetDefaultTimeZone()
+        //{
+        //    return Convert.ToInt32(Get("timeZone").ToString());
+        //}
         public DateTime GetStartDate()
         {
             return DateTime.ParseExact(Get("StartDate").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);

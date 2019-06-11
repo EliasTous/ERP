@@ -173,7 +173,7 @@
                                         <ext:ListItem Text="31/1/2016" Value="dd/MM/yyyy" />
                                     </Items>
                                 </ext:ComboBox>
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldTimeZone %>" Name="timeZone" runat="server" ID="timeZoneCombo">
+                            <%--    <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldTimeZone %>" Name="timeZone" runat="server" ID="timeZoneCombo">
                                     <Items>
                                         <ext:ListItem Text="-12 UTC" Value="-12" />
                                         <ext:ListItem Text="-11 UTC" Value="-11" />
@@ -201,7 +201,7 @@
                                         <ext:ListItem Text="+11 UTC" Value="11" />
                                         <ext:ListItem Text="+12 UTC" Value="12" />
                                     </Items>
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1"   FieldLabel="<%$ Resources: FieldLanguageId%>" Name="languageId" runat="server" ID="languageId">
                                                                  
                                   
