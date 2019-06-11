@@ -1467,12 +1467,36 @@ namespace AionHR.Web.UI.Forms
         //}
         private EmployeesPaySlip GetReport(string payId)
         {
+           
+          
             try
             {
+                string rep_params = "";
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Add("1", payId);
+                parameters.Add("7", string.IsNullOrEmpty(selectedEmployeeId.Text) ? "0" : selectedEmployeeId.Text);
 
-                ReportCompositeRequest req = GetRequest(payId);
+                // ReportCompositeRequest req = GetRequest(payId);
 
+
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
+
+
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+                
                 ListResponse<AionHR.Model.Reports.RT507> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT507>(req);
+
+
+            
                 if (!resp.Success)
                 {
 
@@ -1490,7 +1514,7 @@ namespace AionHR.Web.UI.Forms
                 });
 
 
-                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters = new Dictionary<string, string>();
                 EmployeesPaySlip h = new EmployeesPaySlip(newlist, _systemService.SessionHelper.CheckIfArabicSession(), parameters);
 
 

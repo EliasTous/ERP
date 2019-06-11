@@ -110,7 +110,7 @@
                                 legendItemClick: function (e) {
 
                                     if (e.target.options.y > 0)
-                                        clickActiveHightChartPieSeries(e.target.options.index);
+                                        clickActiveHightChartPieSeries(e.target.options.index, e.target.options.name);
                                     return false;
                                 }
                             }
@@ -132,7 +132,7 @@
             });
 
         };
-        var clickActiveHightChartPieSeries = function (val) {
+        var clickActiveHightChartPieSeries = function (val,title) {
 
             switch (val) {
                
@@ -140,7 +140,7 @@
                 case 1: App.NoShowUpWindow.show(); App.NoShowUpStore.reload(); break;
                 case 2: App.CheckedWindow.show(); App.CheckedStore.reload(); break;
               //  case 3: App.LeaveWithoutExcuseWindow.show(); App.LeaveWithoutExcuseStore.reload(); break;
-                case 4: App.LeaveWindow.show(); App.LeaveStore.reload(); break;
+                case 4: App.LeaveWindow.show(); App.LeaveStore.reload(); App.LeaveWindow.setTitle(title); break;
                 case 5: App.DayOffWindow.show(); App.DayOffStore.reload(); break;
             }
 
@@ -195,7 +195,7 @@
                                 legendItemClick: function (e) {
 
                                     if (e.target.options.y > 0)
-                                        clickLateHightChartPieSeries(e.target.options.index);
+                                        clickLateHightChartPieSeries(e.target.options.index, e.target.options.name);
                                     return false;
                                 }
                             }
@@ -217,11 +217,14 @@
             });
 
         };
-        var clickLateHightChartPieSeries = function (val) {
+        var clickLateHightChartPieSeries = function (val,title) {
         
             App.CurrentTimeVariationType.setValue(val);
             App.TimeVariationStore.reload();
+            App.TimeVariationWindow.setTitle(title);
             App.TimeVariationWindow.show();
+
+           
         }
 
         var drawBreakHightChartPie = function (dataObject, rtl, normal) {
@@ -267,8 +270,8 @@
                         point: {
                             events: {
                                 legendItemClick: function (e) {
-                                      if (e.target.options.y > 0)
-                                    clickBreakHightChartPieSeries(e.target.options.index);
+                                    if (e.target.options.y > 0)
+                                        clickBreakHightChartPieSeries(e.target.options.index, e.target.options.name);
                                     return false;
                                 }
                             }
@@ -290,8 +293,9 @@
                 }]
             })
         };
-        var clickBreakHightChartPieSeries = function (val) {
-          App.direct.PaidAndUnpaidLeaveWindow(val);
+        var clickBreakHightChartPieSeries = function (val,title) {
+            App.direct.PaidAndUnpaidLeaveWindow(val);
+              App.LeaveWindow.setTitle(title);
 
            
         }
@@ -5005,7 +5009,7 @@
 
 
 
-        <ext:Window runat="server" Modal="true" 
+        <ext:Window runat="server" Modal="true"    Title="<%$ Resources: CHECKED %>"
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="CheckedWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -5013,7 +5017,7 @@
                     runat="server"
                     PaddingSpec="0 0 0 0"
                     Header="false"
-                   
+                  
                     Scroll="Vertical"
                     Border="false"
                   
@@ -5073,7 +5077,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-          <ext:Window runat="server" Modal="true" 
+          <ext:Window runat="server" Modal="true"     Title="<%$ Resources: PENDING %>"
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="PendingWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -5081,7 +5085,7 @@
                     runat="server"
                     PaddingSpec="0 0 0 0"
                     Header="false"
-                   
+                 
                     Scroll="Vertical"
                     Border="false"
                   
@@ -5099,11 +5103,11 @@
 
 
                                         <ext:ModelField Name="employeeName"  />
-                                        <ext:ModelField Name="dayStart" />
+                                        <ext:ModelField Name="dtTo" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="branchName" />
-                                        <ext:ModelField Name="dayEnd" />
+                                        <ext:ModelField Name="dtFrom" />
 
                                     </Fields>
                                 </ext:Model>
@@ -5120,8 +5124,8 @@
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
-                                          <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dayStart" Flex="3" Hideable="false" />
-                                          <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayEnd%>" DataIndex="dayEnd" Flex="3" Hideable="false" />
+                            <ext:DateColumn MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dtFrom" Flex="3" Hideable="false" ID="dtFrom" />
+                            <ext:DateColumn MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayEnd%>" DataIndex="dtTo" Flex="3" Hideable="false"  ID="dtTo"/>
                         <%--    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />--%>
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
                             <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
@@ -5144,7 +5148,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-           <ext:Window runat="server" Modal="true" 
+           <ext:Window runat="server" Modal="true"    Title="<%$ Resources: NO_SHOW_UP %>"
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="NoShowUpWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -5152,7 +5156,7 @@
                     runat="server"
                     PaddingSpec="0 0 0 0"
                     Header="false"
-                   
+                
                     Scroll="Vertical"
                     Border="false"
                   
@@ -5286,7 +5290,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-        <ext:Window runat="server" Modal="true" 
+        <ext:Window runat="server" Modal="true"    Title="<%$ Resources: LEAVE %>"
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="LeaveWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -5294,7 +5298,7 @@
                     runat="server"
                     PaddingSpec="0 0 0 0"
                     Header="false"
-                   
+                
                     Scroll="Vertical"
                     Border="false"
                   
@@ -5357,7 +5361,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-          <ext:Window runat="server" Modal="true" 
+          <ext:Window runat="server" Modal="true"  Title="<%$ Resources: DAY_OFF %>"
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="DayOffWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -5365,7 +5369,7 @@
                     runat="server"
                     PaddingSpec="0 0 0 0"
                     Header="false"
-                   
+                     
                     Scroll="Vertical"
                     Border="false"
                   
@@ -5383,11 +5387,11 @@
 
 
                                         <ext:ModelField Name="employeeName"  />
-                                        <ext:ModelField Name="dayStart" />
+                                        <ext:ModelField Name="dtFrom" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="branchName" />
-                                        <ext:ModelField Name="dayEnd" />
+                                        <ext:ModelField Name="dtTo" />
 
                                     </Fields>
                                 </ext:Model>
@@ -5404,8 +5408,8 @@
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
-                                          <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dayStart" Flex="3" Hideable="false" />
-                                          <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayEnd%>" DataIndex="dayEnd" Flex="3" Hideable="false" />
+                                          <ext:DateColumn MenuDisabled="true" Hidden="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dtFrom" Flex="3" Hideable="false" ID="DODtFrom" />
+                                          <ext:DateColumn MenuDisabled="true" Hidden="true" runat="server" Text="<%$ Resources: FieldDayEnd%>" DataIndex="dtTo" Flex="3" Hideable="false"  ID="DODtTo"/>
                         <%--    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />--%>
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
                             <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">

@@ -8,5 +8,7 @@ namespace AionHR.Model.Dashboard
 {
   public  class DashBoardDO :DashboardLW 
     {
+        public DateTime dtFrom { get; set; }
+        public DateTime dtTo { get; set; }
     }
 }
