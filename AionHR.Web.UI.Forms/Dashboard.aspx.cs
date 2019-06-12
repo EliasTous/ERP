@@ -1416,6 +1416,13 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(punches);
                     return;
                 }
+               
+                punches.Items.ForEach(x=>
+                {
+                    if (x.ppType != null )
+                        x.ppTypeString = GetLocalResourceObject("ppType" + x.ppType).ToString();
+                }
+                    );
             
                 punchesStore.DataSource = punches.Items;
                 punchesStore.DataBind();

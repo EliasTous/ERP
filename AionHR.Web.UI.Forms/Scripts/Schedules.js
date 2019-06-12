@@ -178,21 +178,35 @@ function getDay(dow) {
     }
 }
 function validateFrom(s) {
-    if (s.length != 5)
+    if (s.length !== 5)
         return false;
-    d = s.split(':'); if (d[0] > 23) return false; if (d[1] > 59) return false; return true ;
+    d = s.split(':');
+
+    if (d.length!==2)
+        return false;
+   
+    
+    
+    if (d[0] > 23) return false; if (d[1] > 59) return false; return true ;
 }
 
 function validateTo(curr,prev)
 
 {
-    if (curr.length != 5)
-        return false;
-    if (!validateFrom(curr))
-        return false;
-    if (curr == "00:00" && curr == prev)
+    if (curr.length !== 5)
         return false;
     
+       
+    if (!validateFrom(curr))
+        return false;
+    if (curr === "00:00" && curr === prev)
+        return false;
+    if (curr.split(':').length !== 2 || prev.split(':').length !== 2)
+    {
+       
+        return false;
+    }
+
 
     var currHours = curr.split(':')[0];
     var currMins = curr.split(':')[1];

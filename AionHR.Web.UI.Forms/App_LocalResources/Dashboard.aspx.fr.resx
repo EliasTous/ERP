@@ -684,4 +684,16 @@
   <data name="employeeRef" xml:space="preserve">
     <value>Référence de l'employé</value>
   </data>
+  <data name="ppType1" xml:space="preserve">
+    <value>Employé inconnu</value>
+  </data>
+  <data name="ppType2" xml:space="preserve">
+    <value>Périphérique inconnu</value>
+  </data>
+  <data name="ppType3" xml:space="preserve">
+    <value>Décalage inconnu</value>
+  </data>
+  <data name="ppType4" xml:space="preserve">
+    <value>Poinçon en double</value>
+  </data>
 </root>

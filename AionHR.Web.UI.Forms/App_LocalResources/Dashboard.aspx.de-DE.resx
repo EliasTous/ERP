@@ -688,4 +688,16 @@
   <data name="employeeRef" xml:space="preserve">
     <value>Mitarbeiterreferenz</value>
   </data>
+  <data name="ppType1" xml:space="preserve">
+    <value>Unbekannter Mitarbeiter</value>
+  </data>
+  <data name="ppType2" xml:space="preserve">
+    <value>Unbekanntes Gerät</value>
+  </data>
+  <data name="ppType3" xml:space="preserve">
+    <value>Unbekannte Schicht</value>
+  </data>
+  <data name="ppType4" xml:space="preserve">
+    <value>Stempel duplizieren</value>
+  </data>
 </root>
