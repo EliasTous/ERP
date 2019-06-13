@@ -1417,12 +1417,12 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
                
-                punches.Items.ForEach(x=>
-                {
-                    if (x.ppType != null )
-                        x.ppTypeString = GetLocalResourceObject("ppType" + x.ppType).ToString();
-                }
-                    );
+                //punches.Items.ForEach(x=>
+                //{
+                //    if (x.ppType != null )
+                //        x.ppTypeString = GetLocalResourceObject("ppType" + x.ppType).ToString();
+                //}
+                //    );
             
                 punchesStore.DataSource = punches.Items;
                 punchesStore.DataBind();
@@ -3086,6 +3086,7 @@ namespace AionHR.Web.UI.Forms
                 Icon = Icon.Information,
                 Html = Resources.Common.RecordSavingSucc
             });
+            BindAlerts();
             punchesStore.Reload();
         }
         protected void Timebatch(object sender, DirectEventArgs e)

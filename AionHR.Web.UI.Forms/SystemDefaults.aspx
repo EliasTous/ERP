@@ -1134,7 +1134,7 @@
                             </Buttons>
                         </ext:FormPanel>
 
-                           <ext:FormPanel DefaultButton="SaveBiometricSettingsBtn"
+                           <ext:FormPanel Hidden="true" DefaultButton="SaveBiometricSettingsBtn"
                             ID="BiometricSettings"
                             runat="server"
                             Title="<%$ Resources: BiometricSettings %>"

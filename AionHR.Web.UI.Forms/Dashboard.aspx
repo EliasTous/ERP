@@ -2752,7 +2752,7 @@
                                                                                 <ext:ModelField Name="clockStamp" />
                                                                                 <ext:ModelField Name="udId"  />
                                                                                 <ext:ModelField Name="recordId"  />
-                                                                                  <ext:ModelField Name="ppTypeString"  />
+                                                                                  <ext:ModelField Name="ppTypeName"  />
                                                                               
                                                                             
 
@@ -2779,7 +2779,7 @@
                                                                    <%--  <ext:Column ID="Column7" DataIndex="serialNo" Text="serialNo"  runat="server" Flex="2" />--%>
                                                             
                                                                      <ext:Column ID="Column54" DataIndex="udId" Text="<%$ Resources: DeviceRef %>" runat="server" Flex="2" />
-                                                                       <ext:Column ID="Column7" DataIndex="ppTypeString" Text="<%$ Resources: FieldType %>" runat="server" Flex="2" />
+                                                                       <ext:Column ID="Column7" DataIndex="ppTypeName" Text="<%$ Resources: FieldType %>" runat="server" Flex="2" />
 
                                                                 
                                                                     <ext:Column runat="server"

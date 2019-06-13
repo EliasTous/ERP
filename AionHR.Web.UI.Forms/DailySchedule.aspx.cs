@@ -47,7 +47,7 @@ namespace AionHR.Web.UI.Forms
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
-
+        List<FlatSchedule> currentFlat = new List<FlatSchedule>();
         protected override void InitializeCulture()
         {
 
@@ -353,11 +353,11 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod(ShowMask = true)]
         public void DayRangeDelete()
         {
-            if (dateFrom.SelectedDate < DateTime.Now || dateTo.SelectedDate == DateTime.Now)
-            {
-                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
-                return;
-            }
+            //if (dateFrom.SelectedDate < DateTime.Now || dateTo.SelectedDate == DateTime.Now)
+            //{
+            //    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
+            //    return;
+            //}
             if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
@@ -621,13 +621,36 @@ namespace AionHR.Web.UI.Forms
             }
 
             //Proceed to load
+            string rep_params = "";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("1", employeeId.Value.ToString());
+            parameters.Add("2", dateFrom.SelectedDate.ToString("yyyyMMdd"));
+            parameters.Add("3", dateTo.SelectedDate.ToString("yyyyMMdd"));
+            foreach (KeyValuePair<string, string> entry in parameters)
+            {
+                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+            }
+            if (rep_params.Length > 0)
+            {
+                if (rep_params[rep_params.Length - 1] == '^')
+                    rep_params = rep_params.Remove(rep_params.Length - 1);
+            }
 
-            BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
-            reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-            reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
-            reqFS.BranchId = 0;
-            ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
+
+
+
+
+
+
+            ReportGenericRequest reqFS = new ReportGenericRequest();
+            reqFS.paramString = rep_params;
+            //
+            //BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+            //reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
+            //reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            //reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            //reqFS.BranchId = 0;
+            ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
             if (!response.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
@@ -635,16 +658,28 @@ namespace AionHR.Web.UI.Forms
             }
             this.dayId.Value = string.Empty;
             BuildSchedule(response.Items);
-
+            currentFlat = response.Items;
             ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS);
             if (!workingHoursResponse.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                Common.errorMessage(workingHoursResponse);
                 return;
             }
             else
-                workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString(); 
+                workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString();
+               
+        }
 
+
+        bool TimeBetween(DateTime datetime, TimeSpan start, TimeSpan end)
+        {
+            // convert datetime to a TimeSpan
+            TimeSpan now = datetime.TimeOfDay;
+            // see if start comes before end
+            if (start < end)
+                return start <= now && now <= end;
+            // start is after end, so do the inverse comparison
+            return !(end < now && now < start);
         }
         protected void Save_Click(object sender, DirectEventArgs e)
         {
@@ -670,6 +705,51 @@ namespace AionHR.Web.UI.Forms
 
 
             }
+
+            DateTime fromDay = dateFrom.SelectedDate;
+            DateTime toDay = dateTo.SelectedDate;
+            TimeSpan start, end;
+            List<FlatSchedule> listToDelete = new List<FlatSchedule>();
+
+            //elias
+            List<FlatSchedule> temp = new List<FlatSchedule>(); 
+            do
+            {
+                temp= currentFlat.Where(x => x.dtFrom == fromDay).ToList();
+                temp.ForEach(y =>
+                {
+                    start = y.dtFrom.TimeOfDay;
+                    end = y.dtTo.TimeOfDay;
+                    if (timeFrom.SelectedTime >= start && timeFrom.SelectedTime <= end)
+                    {
+
+                        listToDelete.Add(y);
+                        
+                    }
+                    else
+                    {
+                        if (timeTo.SelectedTime >= start && timeTo.SelectedTime <= end)
+                        {
+
+                            listToDelete.Add(y);
+
+                        }
+
+                    }
+
+
+
+                    
+
+
+                });
+   
+
+              fromDay= fromDay.AddDays(1);
+            } while (fromDay <= toDay);
+
+
+
 
 
             DateTime activeTime = DateTime.ParseExact(dayId.Value.ToString() == string.Empty ? dateFrom.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"));

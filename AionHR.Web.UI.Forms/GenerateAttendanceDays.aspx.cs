@@ -386,6 +386,9 @@ namespace AionHR.Web.UI.Forms
 
 
                     //X.Msg.Alert(Resources.Common.Error, ErrorMessage).Show();
+                    if (resp.result.errorId != null)
+                        X.MessageBox.Alert(Resources.Common.Error, resp.result.errorName + "<br>" + Resources.Errors.ErrorLogId + resp.result.errorId + "<br>").Show();
+                    else
                     Common.errorMessage(resp);
                       
 

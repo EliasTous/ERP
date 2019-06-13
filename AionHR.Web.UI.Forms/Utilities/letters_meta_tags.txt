@@ -42,7 +42,7 @@
 "leave_employeeName",
 "leave_justification",
 "leave_destination",
-"leave_leavetype",
+"leave_leaveType",
 "approve_url", 
 "reject_url", 
 "replacement_employee"

@@ -81,8 +81,7 @@
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
            <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=RT108&values="/>
-     
-
+        
         <ext:Hidden runat="server" ID="imageVisible" />
         <ext:Viewport runat="server" Layout="FitLayout" ID="Viewport1">
             <Items>
@@ -191,6 +190,19 @@
                                     </DirectEvents>
                                 </ext:Button>
                                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                 <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
+                                    <Triggers>
+                                        <ext:FieldTrigger Icon="Search" />
+                                        <ext:FieldTrigger Handler="this.setValue('');" Icon="Clear" />
+                                    </Triggers>
+                                    <Listeners>
+                                        <KeyPress Fn="enterKeyPressSearchHandler" />
+
+                                        <TriggerClick Handler="#{Store1}.reload();" />
+                                        <SpecialKey Handler="if(e.keyCode==13)  #{Store1}.reload();App.selectedFilters.setText(' '); " />
+                                    </Listeners>
+                                </ext:TextField>
+                                  <ext:ToolbarSeparator></ext:ToolbarSeparator>
                              
                                 
                                 <ext:Container runat="server" Layout="FitLayout">

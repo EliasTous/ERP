@@ -142,6 +142,8 @@ namespace AionHR.Web.UI.Forms
         public void SetVals(string labels)
         {
             this.vals.Text = labels;
+            searchTrigger.Text = string.Empty;
+            labelbar.Hidden = false;
         }
 
         [DirectMethod]
@@ -513,19 +515,32 @@ namespace AionHR.Web.UI.Forms
 
 
 
-
-                ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
-                if (!emps.Success)
+                if (string.IsNullOrEmpty(searchTrigger.Text))
                 {
-                    Common.errorMessage(emps);
-                    return;
+                    ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
+                    if (!emps.Success)
+                    {
+                        Common.errorMessage(emps);
+                        return;
+                    }
+                    e.Total = emps.count;
+                    if (emps.Items != null)
+                    {
+                        this.Store1.DataSource = emps.Items;
+                        this.Store1.DataBind();
+                    }
                 }
-                e.Total = emps.count;
-                if (emps.Items != null)
+                else
                 {
-                    this.Store1.DataSource = emps.Items;
+                    List<EmployeeSnapShot> emps = Common.GetEmployeesFiltered(searchTrigger.Text);
+                    e.Total = emps.Count();
+                    this.Store1.DataSource = emps;
                     this.Store1.DataBind();
+                    labelbar.Hidden = true;
+
+
                 }
+
 
             }
             catch( Exception exp)
