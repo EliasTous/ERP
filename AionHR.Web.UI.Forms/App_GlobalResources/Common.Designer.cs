@@ -403,6 +403,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BiWeek.
+        /// </summary>
+        internal static string BiWeek {
+            get {
+                return ResourceManager.GetString("BiWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bonus Types.
         /// </summary>
         internal static string BonusTypes {

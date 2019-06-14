@@ -773,6 +773,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     EmployeeSalary lastSalary = lastSalaryList.Items.OrderBy(x => x.effectiveDate).ToList().Last();
                     this.EditSAForm.SetValues(lastSalary);
                     SAId.Text = "";
+                    effectiveDate.Value = DateTime.Now;
                 }
                 this.EditSAWindow.Show();
             }

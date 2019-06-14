@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace AionHR.Model.TimeAttendance
 {
     [ClassIdentifier("84111", "84")]
-    public class FlatSchedule
+    public class FlatSchedule :ModelBase
     {
 
         public DateTime dtFrom { get; set; }
