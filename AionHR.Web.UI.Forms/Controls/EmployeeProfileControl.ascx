@@ -530,6 +530,29 @@
         
     }
 </script>
+<script type="text/javascript">
+    function setScIdCombo(sctype) {
+                   
+         if (sctype==1 || sctype==3)
+         { 
+             
+            App.employeeControl1_scId.setValue('');
+           App.employeeControl1_scId.setDisabled(true);
+           App.employeeControl1_scId.select('');
+             App.employeeControl1_scId.allowBlank = true;
+             return;
+          } 
+
+            if (sctype==2)
+              {
+                App.employeeControl1_scId.setDisabled(false);
+                App.employeeControl1_scId.allowBlank = false;
+                return;
+                }
+               App.employeeControl1_scId.setDisabled(false);
+                App.employeeControl1_scId.allowBlank=true;   
+}
+</script>
 <style type="text/css">
     .tlb-BackGround {
         background: #fff;
@@ -1144,6 +1167,23 @@
                                     </Store>
 
                                 </ext:ComboBox>--%>
+                                   <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:FieldScheduleType%>"  runat="server" DisplayField="value" ValueField="key"   Name="scType" ID="scType" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="scTypeStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       <Listeners>
+                                          <Change Handler="setScIdCombo(this.value);" />
+                                       </Listeners>
+                                       </ext:ComboBox>
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="scId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="scId" FieldLabel="<%$ Resources:FieldSchedule%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="scheduleStore">

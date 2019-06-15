@@ -25,6 +25,7 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31000_25")]
         [ApplySecurity]
         public int? scId { get; set; }
+        public short? scType { get; set; }
         [PropertyID("31000_25")]
         [ApplySecurity]
         public string scName { get; set; }

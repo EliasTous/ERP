@@ -408,4 +408,7 @@
   <data name="uploadImageError" xml:space="preserve">
     <value>الرجاء اختيار صورة ذات حجم اصغر</value>
   </data>
+  <data name="FieldScheduleType" xml:space="preserve">
+    <value>نوع جدول الدوام </value>
+  </data>
 </root>

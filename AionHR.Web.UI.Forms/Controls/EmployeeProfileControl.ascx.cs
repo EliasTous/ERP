@@ -293,6 +293,7 @@ namespace AionHR.Web.UI.Forms
             //sponsorId.Select(result.sponsorId);
             vsId.Select(result.vsId);
             //caId.Select(result.caId);
+            scType.Select(result.scType.ToString());
             scId.Select(result.scId.ToString());
             divisionId.Select(result.divisionId);
             nqciId.Select(result.nqciId.ToString());
@@ -313,6 +314,11 @@ namespace AionHR.Web.UI.Forms
         {
             civilStatusStore.DataSource = Common.XMLDictionaryList(_systemService, "19");
             civilStatusStore.DataBind();
+        }
+        private void FillScTypeStore()
+        {
+            scTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "27");
+            scTypeStore.DataBind();
         }
         private void FillReligionStore()
         {
@@ -344,6 +350,7 @@ namespace AionHR.Web.UI.Forms
 
             FillSponsor();
             FillCivilStatusStore();
+            FillScTypeStore();
             img.Hidden = isAdd;
             FillVacationSchedule();
             FillSchedules();

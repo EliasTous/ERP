@@ -859,6 +859,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store VacationScheduleStore;
         
         /// <summary>
+        /// scType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox scType;
+        
+        /// <summary>
+        /// scTypeStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store scTypeStore;
+        
+        /// <summary>
         /// scId control.
         /// </summary>
         /// <remarks>

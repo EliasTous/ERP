@@ -417,4 +417,7 @@
   <data name="uploadImageError" xml:space="preserve">
     <value>La taille de l'image téléchargée est trop grande</value>
   </data>
+  <data name="FieldScheduleType" xml:space="preserve">
+    <value>Type de calendrier de présence</value>
+  </data>
 </root>

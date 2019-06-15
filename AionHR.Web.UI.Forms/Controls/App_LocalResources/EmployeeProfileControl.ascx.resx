@@ -417,4 +417,7 @@
   <data name="uploadImageError" xml:space="preserve">
     <value>Uploaded image size is to large</value>
   </data>
+  <data name="FieldScheduleType" xml:space="preserve">
+    <value>Attendance Schedule Type</value>
+  </data>
 </root>

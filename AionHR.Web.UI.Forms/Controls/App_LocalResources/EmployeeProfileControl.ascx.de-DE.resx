@@ -418,4 +418,7 @@
   <data name="uploadImageError" xml:space="preserve">
     <value>Die Größe des hochgeladenen Bildes ist zu groß</value>
   </data>
+  <data name="FieldScheduleType" xml:space="preserve">
+    <value>Art des Anwesenheitsplans</value>
+  </data>
 </root>
