@@ -131,6 +131,20 @@
     <Compile Include="AttendanceSchedule\AttendanceScheduleReport.Designer.cs">
       <DependentUpon>AttendanceScheduleReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="CurrentPayroll\dsSalaries.cs">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CurrentPayroll\dsSalaries.Designer.cs">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CurrentPayroll\CurrentPayrollReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CurrentPayroll\CurrentPayrollReport.Designer.cs">
+      <DependentUpon>CurrentPayrollReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmployeePayRollCross\dsSalaries.cs">
       <DependentUpon>dsSalaries.xsd</DependentUpon>
     </Compile>
@@ -296,12 +310,6 @@
     </Compile>
     <Compile Include="CheckTypesReport.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CurrentPayroll.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CurrentPayroll.Designer.cs">
-      <DependentUpon>CurrentPayroll.cs</DependentUpon>
     </Compile>
     <Compile Include="DailyAttendance.cs">
       <SubType>Component</SubType>
@@ -522,8 +530,8 @@
     <EmbeddedResource Include="CheckTypesReport.fr.resx">
       <DependentUpon>CheckTypesReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CurrentPayroll.fr.resx">
-      <DependentUpon>CurrentPayroll.cs</DependentUpon>
+    <EmbeddedResource Include="CurrentPayroll\CurrentPayrollReport.en-US.resx">
+      <DependentUpon>CurrentPayrollReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DailyAttendance.fr.resx">
       <DependentUpon>DailyAttendance.cs</DependentUpon>
@@ -556,6 +564,17 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeDetails.fr.resx">
       <DependentUpon>EmployeeDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CurrentPayroll\CurrentPayrollReport.ar.resx">
+      <DependentUpon>CurrentPayrollReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CurrentPayroll\CurrentPayrollReport.fr.resx">
+      <DependentUpon>CurrentPayrollReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CurrentPayroll\CurrentPayrollReport.resx">
+      <DependentUpon>CurrentPayrollReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeePayRollCross\EmployeePayrollCrossReport.ar.resx">
       <DependentUpon>EmployeePayrollCrossReport.cs</DependentUpon>
@@ -837,12 +856,6 @@
     <EmbeddedResource Include="CheckTypesReport.resx">
       <DependentUpon>CheckTypesReport.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CurrentPayroll.ar.resx">
-      <DependentUpon>CurrentPayroll.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CurrentPayroll.resx">
-      <DependentUpon>CurrentPayroll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DailyAttendance.ar.resx">
       <DependentUpon>DailyAttendance.cs</DependentUpon>
@@ -1131,6 +1144,17 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="AttendanceSchedule\dsSalaries.xss">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </None>
+    <None Include="CurrentPayroll\dsSalaries.xsc">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </None>
+    <None Include="CurrentPayroll\dsSalaries.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSalaries.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CurrentPayroll\dsSalaries.xss">
       <DependentUpon>dsSalaries.xsd</DependentUpon>
     </None>
     <None Include="EmployeePayRollCross\dsSalaries.xsc">

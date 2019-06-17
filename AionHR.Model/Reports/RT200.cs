@@ -218,6 +218,7 @@ namespace AionHR.Model.Reports
     public class RT200
     {
         public string employeeName { get; set; }
+        public string employeeRef { get; set; }
 
         public string branchName { get; set; }
         public string departmentName { get; set; }
