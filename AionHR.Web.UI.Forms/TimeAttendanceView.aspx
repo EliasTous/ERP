@@ -140,6 +140,8 @@
                         <ext:ModelField Name="FSString" />
                         <ext:ModelField Name="ASString" />
                         <ext:ModelField Name="TVString" />
+                         <ext:ModelField Name="schedule" />
+                         <ext:ModelField Name="attendance" />
                         
                                                                             
 
@@ -209,15 +211,15 @@
 
                             
                             <ext:Column  ID="Column1" MenuDisabled="true" Align="Center" runat="server"  Text="<%$ Resources: FieldEmployeeName%>" DataIndex="employeeName" Flex="3" Hideable="false">
-                                <Renderer Handler="return '<b>'+record.data['employeeName']+'</b><br />'+record.data['dayIdString']+'<br/>'+record.data['departmentName']+'<br/>'+record.data['positionName']+'<br/>'+record.data['branchName'];" />
+                                <Renderer Handler="return '<b>'+record.data['employeeName']+'</b><br />'+'<b>'+ record.data['dayIdString']+'</b><br/>'+record.data['departmentName']+'<br/>'+record.data['positionName']+'<br/>'+record.data['branchName'];" />
                                 
                             </ext:Column>
-                            <ext:Column ID="Column2" MenuDisabled="true" Align="Center" runat="server" Text="<%$ Resources: SC%>" DataIndex="employeeName" Flex="3" Hideable="false">
-                                <Renderer Handler="var fin_str = ''; var parts = record.data['FSString'].split('|'); console.log(parts); for(var i=0;i<parts.length;i++)fin_str +=parts[i]+'<br/>'; console.log(fin_str);return '<b>'+fin_str+'</b>'; " />
+                            <ext:Column ID="Column2" MenuDisabled="true" Align="Center" runat="server" Text="<%$ Resources: SC%>" DataIndex="schedule" Flex="3" Hideable="false">
+                             <%--   <Renderer Handler="var fin_str = ''; var parts = record.data['FSString'].split('|'); console.log(parts); for(var i=0;i<parts.length;i++)fin_str +=parts[i]+'<br/>'; console.log(fin_str);return '<b>'+fin_str+'</b>'; " />--%>
                                 
                             </ext:Column>
-                            <ext:Column ID="Column3" MenuDisabled="true" Align="Center" runat="server" Text="<%$ Resources: AttendanceShifts%>" DataIndex="employeeName" Flex="3" Hideable="false">
-                                <Renderer Handler="var fin_str = '';  var parts = record.data['ASString'].split('|'); for(var i=0;i<parts.length;i++)fin_str +=parts[i]+'<br/>'; return '<b>'+fin_str+'</b>'; " />
+                            <ext:Column ID="Column3" MenuDisabled="true" Align="Center" runat="server" Text="<%$ Resources: AttendanceShifts%>" DataIndex="attendance" Flex="3" Hideable="false">
+                             <%--   <Renderer Handler="var fin_str = '';  var parts = record.data['ASString'].split('|'); for(var i=0;i<parts.length;i++)fin_str +=parts[i]+'<br/>'; return '<b>'+fin_str+'</b>'; " />--%>
                                 
                             </ext:Column>
                              <ext:Column ID="Column5" MenuDisabled="true" Align="Center"  runat="server" Text="<%$ Resources: TimeVariations%>" DataIndex="employeeName" Flex="3" Hideable="false">
@@ -421,7 +423,7 @@
           <ext:Window runat="server"  Icon="PageEdit"
             ID="reportsParams"
             Width="600"
-            Height="500"
+            MinHeight="500"
             Title="<%$Resources:Common,Parameters %>"
             AutoShow="false"
             Modal="true"

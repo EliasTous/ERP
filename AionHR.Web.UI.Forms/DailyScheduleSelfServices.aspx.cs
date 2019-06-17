@@ -162,8 +162,8 @@ namespace AionHR.Web.UI.Forms
             FlatScheduleImport fs = new FlatScheduleImport();
             fs.toEmployeeId = Convert.ToInt32(employeeId.Value.ToString());
             fs.fromEmployeeId = Convert.ToInt32(cmbEmployeeImport.Value.ToString());
-            fs.fromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            fs.toDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            fs.fromDayId = dateFrom.SelectedDate;
+            fs.toDayId = dateTo.SelectedDate;
             PostRequest<FlatScheduleImport> request = new PostRequest<FlatScheduleImport>();
 
             request.entity = fs;
@@ -1310,9 +1310,9 @@ namespace AionHR.Web.UI.Forms
             FlatScheduleImport fs = new FlatScheduleImport();
 
             fs.fromEmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-           
-            fs.fromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            fs.toDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+
+            fs.fromDayId = dateFrom.SelectedDate;
+            fs.toDayId = dateTo.SelectedDate;
             foreach (Employee E in selectedUsers)
             {
                 fs.toEmployeeId = Convert.ToInt32(E.recordId);

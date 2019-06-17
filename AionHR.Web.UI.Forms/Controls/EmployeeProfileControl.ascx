@@ -261,7 +261,7 @@
         }
         return out;
     }
-    function FillLeftPanel(departmentName, branchName, positionName, reportToName, balance, lastLeave, paid, leaveBalance, allowedLeaves, esName, usedLeaves, paidLeaves, salary, serviceDuration, TerminationDate, unpaidLeaves) {
+    function FillLeftPanel(departmentName, branchName, positionName, reportToName, balance, lastLeave, paid, leaveBalance, allowedLeaves, esName, usedLeaves, paidLeaves, salary, serviceDuration, TerminationDate, unpaidLeaves,earnedLeaves,LeavePayment) {
 
 
 
@@ -282,7 +282,11 @@
         App.employeeControl1_esName = esName;
         App.employeeControl1_serviceDuration = serviceDuration;
         App.employeeControl1_TerminationDateLbl = TerminationDate;
-       
+
+
+        App.employeeControl1_earnedLeavesLbl = earnedLeaves;
+ App.employeeControl1_LeavePaymentLbl = LeavePayment;
+     
         FillLeftPanel(dep, branchName, positionName);
 
     }
@@ -744,6 +748,13 @@
                                         <ext:Label ID="serviceDuration" runat="server" />
                                     </Items>
                                 </ext:Panel>
+                                  <ext:Panel runat="server">
+                                    <Items>
+                                        <ext:Label ID="salaryTitle" Text="<%$ Resources:salary %>" runat="server" />
+                                       
+                                        <ext:Label ID="salaryLbl" runat="server" />
+                                    </Items>
+                                </ext:Panel>
                                 <ext:Panel runat="server">
                                     <Items>
                                         <ext:Label ID="eosBalanceTitle" Text="<%$ Resources:indemnity %>" runat="server" />
@@ -757,6 +768,27 @@
                                         <ext:Label ID="lastLeaveStartDateLbl" runat="server" />
                                     </Items>
                                 </ext:Panel>--%>
+
+                                
+
+                                 <ext:Panel runat="server"  MarginSpec="0 0 10 0" >
+                                    <Items>
+                                        <ext:Label ID="earnedLeavesTitle" Text="<%$ Resources:EarnedleavesTitle %>" runat="server" />
+                                        <ext:Label ID="earnedLeavesLbl" runat="server" />
+                                    </Items>
+                                </ext:Panel>
+                                 <ext:Panel runat="server">
+                                    <Items>
+                                        <ext:Label ID="usedLeavesTitle" Text="<%$ Resources:usedLeaves %>" runat="server" />
+                                        <ext:Label ID="usedLeavesLbl" runat="server" />
+                                    </Items>
+                                </ext:Panel>
+                                <ext:Panel runat="server">
+                                    <Items>
+                                        <ext:Label ID="LeavePaymentTitle" Text="<%$ Resources:LeavePayment %>" runat="server" />
+                                        <ext:Label ID="LeavePaymentLbl" runat="server" />
+                                    </Items>
+                                </ext:Panel>
                                  <ext:Panel runat="server">
                                     <Items>
                                         <ext:Label ID="leavesBalanceTitle" Text="<%$ Resources:leavesBalanceTitle %>" runat="server" />
@@ -776,31 +808,20 @@
                                         <ext:Label ID="allowedLeaveYtd" runat="server" />
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel runat="server">
-                                    <Items>
-                                        <ext:Label ID="usedLeavesTitle" Text="<%$ Resources:usedLeaves %>" runat="server" />
-                                        <ext:Label ID="usedLeavesLbl" runat="server" />
-                                    </Items>
-                                </ext:Panel>
-                                <ext:Panel runat="server">
+                               
+                                <ext:Panel runat="server" Hidden="true">
                                     <Items>
                                         <ext:Label ID="paidLeavesTitle" Text="<%$ Resources:paidLeaves %>" runat="server" />
                                         <ext:Label ID="paidLeavesLbl" runat="server" />
                                     </Items>
                                 </ext:Panel>
-                                  <ext:Panel runat="server">
+                                  <ext:Panel runat="server" Hidden="true">
                                     <Items>
                                         <ext:Label ID="unpaidLeavesTitle" Text="<%$ Resources:unPaidLeaves %>" runat="server" />
                                         <ext:Label ID="unpaidLeavesLbl" runat="server" />
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel runat="server">
-                                    <Items>
-                                        <ext:Label ID="salaryTitle" Text="<%$ Resources:salary %>" runat="server" />
-                                       
-                                        <ext:Label ID="salaryLbl" runat="server" />
-                                    </Items>
-                                </ext:Panel>
+                              
                                 <ext:HyperlinkButton runat="server" Text="<%$ Resources:DisplayTeamLink %>">
                                     <Listeners>
                                         <Click Handler="CheckSession()" />
@@ -875,7 +896,20 @@
                                     <Validator Handler="return !isNaN(this.value);" />
                                 </ext:TextField>
                                 
-
+                                  <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:FieldCivilStatus%>"  runat="server" DisplayField="value" ValueField="key"   Name="civilStatus" ID="civilStatus" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="civilStatusStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       </ext:ComboBox>
 
                             </Items>
                         </ext:Panel>
@@ -1209,20 +1243,7 @@
                                     FieldLabel="<%$ Resources:FieldHireDate%>"
                                     MsgTarget="Side"
                                     AllowBlank="false" />
-                                      <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:FieldCivilStatus%>"  runat="server" DisplayField="value" ValueField="key"   Name="civilStatus" ID="civilStatus" >
-                                             <Store>
-                                                <ext:Store runat="server" ID="civilStatusStore">
-                                                    <Model>
-                                                        <ext:Model runat="server">
-                                                            <Fields>
-                                                                <ext:ModelField Name="value" />
-                                                                <ext:ModelField Name="key" />
-                                                            </Fields>
-                                                        </ext:Model>
-                                                    </Model>
-                                                </ext:Store>
-                                            </Store>
-                                       </ext:ComboBox>
+                                    
                              
 
                                  <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">

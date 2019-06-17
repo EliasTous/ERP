@@ -240,4 +240,7 @@
   <data name="Share" xml:space="preserve">
     <value>Partager</value>
   </data>
+  <data name="setDefault" xml:space="preserve">
+    <value>définir par defaut</value>
+  </data>
 </root>

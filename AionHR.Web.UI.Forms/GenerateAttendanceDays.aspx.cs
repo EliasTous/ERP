@@ -166,10 +166,10 @@ namespace AionHR.Web.UI.Forms
             GD.employeeId = Convert.ToInt32(employeeFilter.Value); 
             GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
             GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
-            if (string.IsNullOrEmpty(branchId.Value.ToString()))
-                GD.branchId = 0;
-            else
-               GD.branchId =Convert.ToInt32(branchId.Value);
+            //if (string.IsNullOrEmpty(branchId.Value.ToString()))
+            //    GD.branchId = 0;
+            //else
+            //   GD.branchId =Convert.ToInt32(branchId.Value);
             request.entity = GD;
 
 
@@ -278,10 +278,10 @@ namespace AionHR.Web.UI.Forms
                 GD.employeeId = Convert.ToInt32(employeeFilter.Value);
                 GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
                 GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
-                if (string.IsNullOrEmpty(branchId.Value.ToString()))
-                    GD.branchId = 0;
-                else
-                    GD.branchId = Convert.ToInt32(branchId.Value);
+                //if (string.IsNullOrEmpty(branchId.Value.ToString()))
+                //    GD.branchId = 0;
+                //else
+                //    GD.branchId = Convert.ToInt32(branchId.Value);
 
                 request.entity = GD;
 

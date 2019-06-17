@@ -98,7 +98,7 @@ namespace AionHR.Web.UI.Forms
 
 
                 format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-
+                vals.Text = "2|" + DateTime.Today.ToString("yyyyMMdd") + "^3|" + DateTime.Today.ToString("yyyyMMdd");
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceDay), null, GridPanel1, null, null);
@@ -414,33 +414,33 @@ namespace AionHR.Web.UI.Forms
                 {
                     max++;
                     x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-                    ReportGenericRequest r = new ReportGenericRequest();
-                    r.paramString = "1| " + x.employeeId + "^2|" + x.dayId + "^3|" + x.dayId;
-                    ListResponse<FlatSchedule> fsresponse = _timeAttendanceService.ChildGetAll<FlatSchedule>(r);
-                    if (!fsresponse.Success)
-                    {
-                        Common.errorMessage(fsresponse);
-                        return;
-                    }
-                    fsresponse.Items.ForEach(fs => { fsstring += fs.from + " - " + fs.to + "|"; });
-                    if (fsstring.Length > 1)
-                    {
-                        fsstring = fsstring.Substring(0, fsstring.Length - 1);
-                        fsstring = "<span style='vertical-align:middle!important;'>" + fsstring + "</span>";
-                    }
-                    AttendanceShiftListRequest asReq = new AttendanceShiftListRequest();
-                    asReq.EmployeeId = Convert.ToInt32(x.employeeId);
-                    asReq.DayId = x.dayId;
-                    ListResponse<AttendanceShift> asResp = _timeAttendanceService.ChildGetAll<AttendanceShift>(asReq);
-                    if (!asResp.Success)
-                    {
-                        Common.errorMessage(asResp);
-                        return;
+                    //ReportGenericRequest r = new ReportGenericRequest();
+                    //r.paramString = "1| " + x.employeeId + "^2|" + x.dayId + "^3|" + x.dayId;
+                    //ListResponse<FlatSchedule> fsresponse = _timeAttendanceService.ChildGetAll<FlatSchedule>(r);
+                    //if (!fsresponse.Success)
+                    //{
+                    //    Common.errorMessage(fsresponse);
+                    //    return;
+                    //}
+                    //fsresponse.Items.ForEach(fs => { fsstring += fs.from + " - " + fs.to + "|"; });
+                    //if (fsstring.Length > 1)
+                    //{
+                    //    fsstring = fsstring.Substring(0, fsstring.Length - 1);
+                    //    fsstring = "<span style='vertical-align:middle!important;'>" + fsstring + "</span>";
+                    //}
+                    //AttendanceShiftListRequest asReq = new AttendanceShiftListRequest();
+                    //asReq.EmployeeId = Convert.ToInt32(x.employeeId);
+                    //asReq.DayId = x.dayId;
+                    //ListResponse<AttendanceShift> asResp = _timeAttendanceService.ChildGetAll<AttendanceShift>(asReq);
+                    //if (!asResp.Success)
+                    //{
+                    //    Common.errorMessage(asResp);
+                    //    return;
 
-                    }
-                    asResp.Items.ForEach(asItem => { asstring += asItem.checkIn + " - " + asItem.checkOut + "|"; });
-                    if (asstring.Length > 1)
-                        asstring = asstring.Substring(0, asstring.Length - 1);
+                    //}
+                    //asResp.Items.ForEach(asItem => { asstring += asItem.checkIn + " - " + asItem.checkOut + "|"; });
+                    //if (asstring.Length > 1)
+                    //    asstring = asstring.Substring(0, asstring.Length - 1);
                     ReportGenericRequest tvReq = new ReportGenericRequest();
                     tvReq.paramString = "1|" + x.employeeId + "^2|" + x.dayId + "^3|" + x.dayId;
                     ListResponse<DashBoardTimeVariation> tvResp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(tvReq);
@@ -475,7 +475,10 @@ namespace AionHR.Web.UI.Forms
                         employeeName = x.employeeName,
                         employeeId = x.employeeId.ToString(),
                         dayIdString = x.dayIdString,
-                        positionName = x.positionName
+                        positionName = x.positionName,
+                        attendance=x.attendance,
+                        schedule=x.schedule
+                       
                     });
                     if (max > 30)
                         break;

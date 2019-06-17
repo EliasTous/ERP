@@ -1221,7 +1221,9 @@ namespace AionHR.Web.UI.Forms
 
                forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString(),_systemService.SessionHelper.getLangauge()),
                forSummary.terminationDate != null ? forSummary.terminationDate.Value.ToString(_systemService.SessionHelper.GetDateformat()) :"",
-               forSummary.unpaidLeaves
+               forSummary.unpaidLeaves +"<br />",
+               forSummary.earnedLeaves + "<br />",
+               forSummary.leavePayments
             );
             //            fullNameLbl.Html = forSummary.name.fullName + "<br />";
 
@@ -1249,6 +1251,8 @@ namespace AionHR.Web.UI.Forms
             usedLeavesLbl.Html = forSummary.usedLeaves + "<br />";
             paidLeavesLbl.Html = forSummary.paidLeaves + "<br />";
             unpaidLeavesLbl.Html = forSummary.unpaidLeaves + "<br />";
+            LeavePaymentLbl.Html = forSummary.leavePayments + "<br />";
+            earnedLeavesLbl.Html = forSummary.earnedLeaves + "<br />";
             salaryLbl.Html = forSummary.salary!=null?((int) forSummary.salary).ToString("N2"):" " +" "+forSummary.currencyName+ "<br />";
             TerminationDateLbl.Html = forSummary.terminationDate != null ? forSummary.terminationDate.Value.ToString(_systemService.SessionHelper.GetDateformat()) : "";
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;

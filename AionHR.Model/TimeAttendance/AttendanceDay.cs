@@ -66,5 +66,10 @@ namespace AionHR.Model.Attendance
         public int OL_B_SIGN { get; set; }
         public int OL_D_SIGN { get; set; }
         public int OL_N_SIGN { get; set; }
+
+        public string schedule { get; set; }
+
+        public string attendance { get; set; }
+
     }
 }

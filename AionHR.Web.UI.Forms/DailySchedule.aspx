@@ -53,7 +53,7 @@
 
 
 
-            for (i = 0; i < items.length ; i++) {
+            for (i = 0; i < items.length; i++) {
                 if (fromStore.getById(items[i].userId) == null && toStore.getById(items[i].userId) == null) {
 
                     fromStore.add(items[i]);
@@ -272,8 +272,15 @@
                                     </DirectEvents>
                                 </ext:Button>
                                     <ext:ToolbarSeparator />
+                                  <ext:Button MarginSpec="0 0 0 0" ID="Button2" runat="server" Text="<%$ Resources: setDefault %>">
+                                    <DirectEvents>
+                                        <Click OnEvent="SetDefault_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
                                
-                                
+                                   <ext:ToolbarSeparator />
                                   <ext:TextField ID="workingHours" Width="150" runat="server" FieldLabel="<%$ Resources:workingHours%>" DataIndex="workingHours" AllowBlank="true" ReadOnly="true" ></ext:TextField>
                                   <ext:ComboBox AnyMatch="true" Width="150" LabelWidth="30" CaseSensitive="false" runat="server" ID="device" AllowBlank="true" Name="device"
                                     SubmitValue="true"
@@ -614,7 +621,7 @@
             ID="reportsParams"
             Width="600"
           
-              MinHeight="350"
+              MinHeight="500"
             Title="<%$Resources:Common,Parameters %>"
             AutoShow="false"
             Modal="true"

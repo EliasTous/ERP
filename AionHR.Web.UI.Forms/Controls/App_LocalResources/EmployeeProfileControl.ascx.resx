@@ -355,7 +355,7 @@
     <value>Reference Already Exist</value>
   </data>
   <data name="FieldSchedule" xml:space="preserve">
-    <value>Attendance Schedule</value>
+    <value>Schedule</value>
   </data>
   <data name="EmployeeCalenderTab" xml:space="preserve">
     <value>Employee Calender </value>
@@ -418,6 +418,15 @@
     <value>Uploaded image size is to large</value>
   </data>
   <data name="FieldScheduleType" xml:space="preserve">
-    <value>Attendance Schedule Type</value>
+    <value>Schedule Type</value>
+  </data>
+  <data name="EarnedleavesTitle" xml:space="preserve">
+    <value>Earned Leaves :</value>
+  </data>
+  <data name="LeaveBalance" xml:space="preserve">
+    <value>Leave Balance :</value>
+  </data>
+  <data name="LeavePayment" xml:space="preserve">
+    <value>Leave Payment :</value>
   </data>
 </root>

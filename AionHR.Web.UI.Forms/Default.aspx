@@ -513,11 +513,11 @@
                                                                             </Listeners>
                                                                         </ext:MenuItem>--%>
                                                                      
-                                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common , GenerateAttendanceDays%>">
+                                                                        <%--  <ext:MenuItem runat="server" Text="<%$Resources: Common , GenerateAttendanceDays%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('otSettings', 'GenerateAttendanceDays.aspx',#{GADTitle}.value , 'icon-Employees')" />
                                                                             </Listeners>
-                                                                        </ext:MenuItem>
+                                                                        </ext:MenuItem>--%>
 
                                                                       <%--  <ext:MenuItem runat="server" Text="<%$Resources: Common , SynchronizeAttendanceDays%>">
                                                                             <Listeners>

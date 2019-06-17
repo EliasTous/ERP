@@ -166,20 +166,20 @@ namespace AionHR.Web.UI.Forms
 
                 html += GetLocalResourceObject("usedLeaves").ToString() + " {usedLeaves} </td><td>";
                 html += GetLocalResourceObject("serviceDuration").ToString() + " {serviceDuration}</td><td>";
-                html += GetLocalResourceObject("earnedLeavesLeg").ToString() + " {earnedLeavesLeg}  </td><td>";
-                html += GetLocalResourceObject("LoansBalance").ToString() + " {loansBalance}   </td></tr><tr><td>";
-
-                html += GetLocalResourceObject("paidLeaves").ToString() + " {paidLeaves}  </td><td>";
-                html += GetLocalResourceObject("EmployeeStatus").ToString() + " {status}  </td><td>";
-                html += GetLocalResourceObject("usedLeavesLeg").ToString() + " {usedLeavesLeg}</td> </tr> <tr><td>";
+                html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + "{lastLeave}  </td> </tr><tr><td>";
+                
+                    //html += GetLocalResourceObject("LoansBalance").ToString() + " {loansBalance}   
+                html += GetLocalResourceObject("LoansBalance").ToString() + " {loansBalance}   </td><td>";
+                html += GetLocalResourceObject("EmployeeStatus").ToString() + " {status}  </td><td> </tr> <tr><td>";
+                //html += GetLocalResourceObject("usedLeavesLeg").ToString() + " {usedLeavesLeg}</td>";
 
 
                 html += GetLocalResourceObject("earnedLeaves").ToString() + " {earnedLeaves}</td><td>";
-                html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance} </td><td>";
+                html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance} </td><td></td></tr></table>";
                 //     html += GetLocalResourceObject("salary").ToString() + " {salary}  </td><td>";
 
 
-                html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + "{lastLeave} </td></tr></table>";
+                //html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + "{lastLeave} ";
 
            
 

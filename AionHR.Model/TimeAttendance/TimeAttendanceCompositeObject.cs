@@ -18,6 +18,9 @@ namespace AionHR.Model.TimeAttendance
         public string ASString { get; set; }
         public string TVString { get; set; }
         public string dayIdString { get; set; }
+        public string schedule { get; set; }
+
+        public string attendance { get; set; }
 
     }
 }

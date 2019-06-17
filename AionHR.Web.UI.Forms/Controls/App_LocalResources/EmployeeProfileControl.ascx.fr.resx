@@ -355,7 +355,7 @@
     <value>Reference deja saisie</value>
   </data>
   <data name="FieldSchedule" xml:space="preserve">
-    <value>Calendrier de présence</value>
+    <value>Programme</value>
   </data>
   <data name="EmployeeCalenderTab" xml:space="preserve">
     <value>Calendrier des employés</value>
@@ -418,6 +418,12 @@
     <value>La taille de l'image téléchargée est trop grande</value>
   </data>
   <data name="FieldScheduleType" xml:space="preserve">
-    <value>Type de calendrier de présence</value>
+    <value>Type d'horaire</value>
+  </data>
+  <data name="LeaveBalance" xml:space="preserve">
+    <value>Congé de solde :</value>
+  </data>
+  <data name="LeavePayment" xml:space="preserve">
+    <value>Congé de paiement :</value>
   </data>
 </root>

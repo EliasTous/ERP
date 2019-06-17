@@ -356,7 +356,7 @@
     <value>Referenz bereits vorhanden</value>
   </data>
   <data name="FieldSchedule" xml:space="preserve">
-    <value>Anwesenheitsplan</value>
+    <value>Zeitplan</value>
   </data>
   <data name="EmployeeCalenderTab" xml:space="preserve">
     <value>Mitarbeiterkalender</value>
@@ -419,6 +419,12 @@
     <value>Die Größe des hochgeladenen Bildes ist zu groß</value>
   </data>
   <data name="FieldScheduleType" xml:space="preserve">
-    <value>Art des Anwesenheitsplans</value>
+    <value>Zeitplantyp</value>
+  </data>
+  <data name="LeaveBalance" xml:space="preserve">
+    <value>Restbetrag hinterlassen :</value>
+  </data>
+  <data name="LeavePayment" xml:space="preserve">
+    <value>Urlaubszahlung :</value>
   </data>
 </root>

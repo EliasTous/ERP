@@ -622,7 +622,7 @@
             ID="reportsParams"
             Width="600"
           
-              MinHeight="350"
+               MinHeight="500"
             Title="<%$Resources:Common,Parameters %>"
             AutoShow="false"
             Modal="true"

@@ -76,6 +76,9 @@ namespace AionHR.Model.Employees.Profile
         public string departmentId { get; set; }
         public string branchId { get; set; }
 
+        public double? leavePayments { get; set; }
+        
+
 
     }
 }

@@ -250,8 +250,8 @@ namespace AionHR.Web.UI.Forms
             FlatScheduleImport fs = new FlatScheduleImport();
             fs.toEmployeeId = Convert.ToInt32(employeeId.Value.ToString());
             fs.fromEmployeeId = Convert.ToInt32(cmbEmployeeImport.Value.ToString());
-            fs.fromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            fs.toDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            fs.fromDayId = dateFrom.SelectedDate;
+            fs.toDayId = dateTo.SelectedDate;
             PostRequest<FlatScheduleImport> request = new PostRequest<FlatScheduleImport>();
 
             request.entity = fs;
@@ -967,6 +967,75 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+        protected void SetDefault_Click(object sender, DirectEventArgs e)
+        {
+            try
+            {
+
+
+                if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
+                {
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
+                    return;
+                }
+
+                if (dayId.Value == null || dayId.Value.ToString() == string.Empty)
+                {
+                    if (dateFrom.SelectedDate == DateTime.MinValue || dateTo.SelectedDate == DateTime.MinValue)
+                    {
+                        X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectdayOrFromToDate")).Show();
+                        return;
+                    }
+                    if (dateFrom.SelectedDate > dateTo.SelectedDate)
+                    {
+                        X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
+                        return;
+                    }
+
+
+
+                }
+                //string rep_params = "";
+                //Dictionary<string, string> parameters = new Dictionary<string, string>();
+                //parameters.Add("1", employeeId.Value.ToString());
+                //parameters.Add("2", dayId.Value.ToString() == string.Empty ? dateFrom.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString());
+                //parameters.Add("3", dayId.Value.ToString() == string.Empty ? dateTo.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString());
+
+
+                GenerateAttendanceDay GD = new GenerateAttendanceDay();
+                PostRequest<GenerateAttendanceDay> request = new PostRequest<GenerateAttendanceDay>();
+                GD.employeeId = Convert.ToInt32(employeeId.Value);
+                GD.fromDayId = dayId.Value.ToString() == string.Empty ? dateFrom.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString();
+                GD.toDayId = dayId.Value.ToString() == string.Empty ? dateTo.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString();
+
+
+                request.entity = GD;
+
+
+                PostResponse<GenerateAttendanceDay> resp = _timeAttendanceService.ChildAddOrUpdate<GenerateAttendanceDay>(request);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return;
+                }
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
+
+
+            }catch(Exception exp)
+            {
+                X.MessageBox.Alert(Resources.Common.Error, exp.Message);
+            }
+
+
+
+              
+        }
+
 
         private void BuildSchedule(List<FlatSchedule> items)
         {
@@ -1418,52 +1487,47 @@ namespace AionHR.Web.UI.Forms
         }
         protected void userSelectorStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            EmployeeSnapshotListRequest req = new EmployeeSnapshotListRequest();
-            if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
+            EmployeeQuickViewRecordRequest qvReq = new EmployeeQuickViewRecordRequest();
+            qvReq.RecordID = employeeId.Value.ToString();
+            qvReq.asOfDate = DateTime.Now;
+            RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(qvReq);
+            if (!qv.Success)
             {
-                req.BranchId = "0";
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+
+                Common.errorMessage(qv);
+                return;
             }
-            else
-                req.BranchId = branchId.Value.ToString();
-            //if (departmentId.Value == null || departmentId.Value.ToString() == string.Empty)
-            //{
-            //    req.DepartmentId = "0";
-            //}
-            //else
-            //    req.DepartmentId = departmentId.Value.ToString();
-           
-          
-           // req.IncludeIsInactive = 0;
-           // req.SortBy = "firstName";
+
+
+
+
+            EmployeeSnapshotListRequest req = new EmployeeSnapshotListRequest();
+
+            req.BranchId = qv.result.branchId;
+
 
             req.StartAt = "0";
-            req.Size = "1000";
+            req.Size = "2000";
             req.Filter = "";
-            ListResponse<EmployeeSnapShot> response = _employeeService.GetAll<EmployeeSnapShot>(req);
+           ListResponse<EmployeeSnapShot> response = ServiceLocator.Current.GetInstance<IEmployeeService>().ChildGetAll<EmployeeSnapShot>(req);
+
+
             if (!response.Success)
-               Common.errorMessage(response);
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+
+                Common.errorMessage(response);
+                return;
+            }
 
             else
-                //UsersListRequest req = new UsersListRequest();
-                //req.Size = "100";
-                //req.StartAt = "0";
-                //req.Filter = "";
-
-                //var s = jobInfo1.GetJobInfo();
-                //req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.ToString() : "0";
-                //req.PositionId = s.PositionId.HasValue ? s.PositionId.ToString() : "0";
-                //ListResponse<UserInfo> groups = _systemService.ChildGetAll<UserInfo>(req);
-                //if (!groups.Success)
-                //{
-                //    X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
-                //    return;
-                //}
-                //List<SecurityGroupUser> all = new List<SecurityGroupUser>();
-                //groups.Items.ForEach(x => all.Add(new SecurityGroupUser() { fullName = x.fullName, userId = x.recordId }));
+            {
                 response.Items.ForEach(x => x.fullName = x.name.fullName);
-            if(response.Items.Where(x => x.recordId == employeeId.SelectedItem.Value.ToString()).Count()!=0)
-            response.Items.Remove(response.Items.Where(x => x.recordId == employeeId.SelectedItem.Value.ToString()).ToArray()[0]);
-            X.Call("AddSource", response.Items);
+                if (response.Items.Where(x => x.recordId == employeeId.SelectedItem.Value.ToString()).Count() != 0)
+                    response.Items.Remove(response.Items.Where(x => x.recordId == employeeId.SelectedItem.Value.ToString()).ToArray()[0]);
+                X.Call("AddSource", response.Items);
+            }
 
         }
 
@@ -1643,9 +1707,9 @@ namespace AionHR.Web.UI.Forms
             FlatScheduleImport fs = new FlatScheduleImport();
 
             fs.fromEmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-           
-            fs.fromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            fs.toDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+
+            fs.fromDayId = dateFrom.SelectedDate;
+            fs.toDayId = dateTo.SelectedDate;
             foreach (Employee E in selectedUsers)
             {
                 fs.toEmployeeId = Convert.ToInt32(E.recordId);
@@ -1657,19 +1721,11 @@ namespace AionHR.Web.UI.Forms
                if (!r.Success)
                 {
                     Common.errorMessage(r);
+                    return;
                 }
             }
 
-            //check if the insert failed
-            //if (!r.Success)//it maybe be another condition
-            //{
-            //    //Show an error saving...
-            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-            //  Common.errorMessage(r);
-            //    return;
-            //}
-            //else
-            //{
+           
 
                 Notification.Show(new NotificationConfig
                 {
@@ -1679,18 +1735,42 @@ namespace AionHR.Web.UI.Forms
                 });
 
 
-                //Reload Again
-                BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
-                reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-                reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
-                reqFS.BranchId = 0;
-                ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
-                if (!response.Success)
-                {
-                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
-                    return;
-                }
+            //Reload Again
+
+
+
+            string rep_params = "";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("1", employeeId.Value.ToString());
+            parameters.Add("2", dateFrom.SelectedDate.ToString("yyyyMMdd"));
+            parameters.Add("3", dateTo.SelectedDate.ToString("yyyyMMdd"));
+            foreach (KeyValuePair<string, string> entry in parameters)
+            {
+                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+            }
+            if (rep_params.Length > 0)
+            {
+                if (rep_params[rep_params.Length - 1] == '^')
+                    rep_params = rep_params.Remove(rep_params.Length - 1);
+            }
+
+
+
+
+
+
+
+            ReportGenericRequest reqFS = new ReportGenericRequest();
+            reqFS.paramString = rep_params;
+            //
+
+            ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+            if (!response.Success)
+            {
+                Common.errorMessage(response);
+                return;
+            }
+            
                 this.dayId.Value = string.Empty;
                 BuildSchedule(response.Items);
                 this.cmbEmployeeImport.Value = string.Empty;
