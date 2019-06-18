@@ -406,7 +406,7 @@
                                 </ext:Button>
                                   <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="true" EnableDivision="false"  />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false"  />
 
                                     </Content>
 

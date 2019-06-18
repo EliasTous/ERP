@@ -440,6 +440,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Html = Resources.Common.RecordDeletedSucc
                     });
                     X.Call("parent.refreshQV");
+                    X.Call("parent.SetJobInfo", null, null, null, null,null);
                 }
 
             }
@@ -828,8 +829,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 }
 
                 X.Call("parent.refreshQV");
+                X.Call("parent.SetJobInfo", b.departmentId,b.branchId,b.positionId,b.divisionId,b.reportToId);
 
-            }catch(Exception exp)
+            }
+            catch(Exception exp)
             {
                 X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
             }

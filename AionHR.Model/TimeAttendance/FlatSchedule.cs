@@ -45,8 +45,11 @@ namespace AionHR.Model.TimeAttendance
     }
 
 
-    public class FlatScheduleRange : FlatSchedule
+    public class FlatScheduleRange 
     {
+        public int employeeId { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
     }
     [ClassIdentifier("84101", "84")]
     public class FlatScheduleBranchAvailability
@@ -61,8 +64,8 @@ namespace AionHR.Model.TimeAttendance
     {
         public int fromEmployeeId { get; set; }
         public int toEmployeeId { get; set; }
-        public DateTime fromDayId { get; set; }
-        public DateTime toDayId { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
 
     }
     [ClassIdentifier("84105", "84")]

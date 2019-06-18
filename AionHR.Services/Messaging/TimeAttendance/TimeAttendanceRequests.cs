@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AionHR.Services.Messaging;
 
 public class DayBreaksListRequest : ListRequest
@@ -43,12 +44,13 @@ public class OvertimeSettingsListRequest : ListRequest
 
 public class BranchScheduleRecordRequest : ListRequest
 {
-    public string FromDayId { get; set; }
+    public DateTime FromDayId { get; set; }
 
-    public string ToDayId { get; set; }
+    public DateTime ToDayId { get; set; }
 
     public int EmployeeId { get; set; }
     public int BranchId { get; set; }
+    
     private Dictionary<string, string> parameters;
 
     public override Dictionary<string, string> Parameters
@@ -56,8 +58,8 @@ public class BranchScheduleRecordRequest : ListRequest
         get
         {
             parameters = new Dictionary<string, string>();
-            parameters.Add("_fromDayId", FromDayId);
-            parameters.Add("_toDayId", ToDayId);
+            parameters.Add("_fromDayId", FromDayId.ToString());
+            parameters.Add("_toDayId", ToDayId.ToString());
             parameters.Add("_employeeId", EmployeeId.ToString());
             parameters.Add("_branchId", BranchId.ToString());
 

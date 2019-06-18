@@ -219,8 +219,8 @@ namespace AionHR.Web.UI.Forms
             FlatScheduleImport fs = new FlatScheduleImport();
             fs.toEmployeeId = Convert.ToInt32(employeeId.Value.ToString());
             fs.fromEmployeeId = Convert.ToInt32(cmbEmployeeImport.Value.ToString());
-            fs.fromDayId = dateFrom.SelectedDate;
-            fs.toDayId = dateTo.SelectedDate;
+            fs.startDate = dateFrom.SelectedDate;
+            fs.endDate = dateTo.SelectedDate;
             PostRequest<FlatScheduleImport> request = new PostRequest<FlatScheduleImport>();
 
             request.entity = fs;
@@ -250,8 +250,8 @@ namespace AionHR.Web.UI.Forms
                 //Reload Again
                 BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
                 reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-                reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+                reqFS.FromDayId = dateFrom.SelectedDate;
+                reqFS.ToDayId = dateTo.SelectedDate;
                 reqFS.BranchId = 0;
                 ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
                 if (!response.Success)
@@ -346,10 +346,10 @@ namespace AionHR.Web.UI.Forms
 
             FlatScheduleRange fs = new FlatScheduleRange();
             fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
-            fs.fromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            fs.toDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
-            fs.dtTo = dateTo.SelectedDate;
-            fs.dtFrom = dateFrom.SelectedDate;
+            //fs.fromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            //fs.toDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            fs.startDate = dateTo.SelectedDate;
+            fs.endDate = dateFrom.SelectedDate;
             PostRequest<FlatScheduleRange> request = new PostRequest<FlatScheduleRange>();
 
             request.entity = fs;
@@ -369,8 +369,8 @@ namespace AionHR.Web.UI.Forms
                 //Reload Again
                 BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
                 reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-                reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+                reqFS.FromDayId = dateFrom.SelectedDate;
+                reqFS.ToDayId = dateTo.SelectedDate;
                 reqFS.BranchId = 0;
                 ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
                 if (!response.Success)
@@ -448,12 +448,12 @@ namespace AionHR.Web.UI.Forms
             DateTime parsed = DateTime.Now;
             FlatScheduleRange fs = new FlatScheduleRange();
             fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
-            fs.fromDayId = dayId.Value.ToString();
-            fs.toDayId = dayId.Value.ToString();
+            //fs.fromDayId = dayId.Value.ToString();
+            //fs.toDayId = dayId.Value.ToString();
             if (DateTime.TryParseExact(dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
             {
-                fs.dtFrom = parsed;
-                fs.dtTo = parsed;
+                fs.startDate = parsed;
+                fs.endDate = parsed;
 
             }
             else
@@ -491,8 +491,8 @@ namespace AionHR.Web.UI.Forms
                 X.Call("DeleteDaySchedule", dayId.Value.ToString());
                 BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
                 reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-                reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+                reqFS.FromDayId = dateFrom.SelectedDate;
+                reqFS.ToDayId = dateTo.SelectedDate;
                 reqFS.BranchId = 0;
                 ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS);
                 if (!workingHoursResponse.Success)
@@ -631,8 +631,8 @@ namespace AionHR.Web.UI.Forms
 
             BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
             reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-            reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            reqFS.FromDayId = dateFrom.SelectedDate;
+            reqFS.ToDayId = dateTo.SelectedDate;
             reqFS.BranchId = 0;
             ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
             if (!response.Success)
@@ -722,9 +722,14 @@ namespace AionHR.Web.UI.Forms
                         //reloading the day only
                         BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
                         reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                        reqFS.FromDayId = dayId.Value.ToString();
-                        reqFS.ToDayId = dayId.Value.ToString();
-                        reqFS.BranchId = 0;
+                    DateTime parsed = new DateTime();
+                    if (!DateTime.TryParseExact(dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
+                    {
+                        return;
+                    }
+                    reqFS.FromDayId = parsed;
+                        reqFS.ToDayId = parsed;
+                    reqFS.BranchId = 0;
                         ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
                         if (!response.Success)
                         {
@@ -829,8 +834,8 @@ namespace AionHR.Web.UI.Forms
                     //Reload Again
                     BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
                     reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                    reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-                    reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+                    reqFS.FromDayId = dateFrom.SelectedDate;
+                    reqFS.ToDayId = dateTo.SelectedDate;
                     reqFS.BranchId = 0;
                     ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
                     if (!response.Success)
@@ -1315,8 +1320,8 @@ namespace AionHR.Web.UI.Forms
 
             BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
             reqFS.EmployeeId = Convert.ToInt32(employeeID);
-            reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            reqFS.FromDayId = dateFrom.SelectedDate;
+            reqFS.ToDayId = dateTo.SelectedDate;
             reqFS.BranchId = 0;
             ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
             if (!response.Success)
@@ -1567,8 +1572,8 @@ namespace AionHR.Web.UI.Forms
 
             fs.fromEmployeeId = Convert.ToInt32(employeeId.Value.ToString());
 
-            fs.fromDayId = dateFrom.SelectedDate;
-            fs.toDayId = dateTo.SelectedDate;
+            fs.startDate = dateFrom.SelectedDate;
+            fs.endDate = dateTo.SelectedDate;
             foreach (Employee E in selectedUsers)
             {
                 fs.toEmployeeId = Convert.ToInt32(E.recordId);
@@ -1605,8 +1610,8 @@ namespace AionHR.Web.UI.Forms
                 //Reload Again
                 BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
                 reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-                reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            reqFS.FromDayId = dateFrom.SelectedDate;
+            reqFS.ToDayId = dateTo.SelectedDate;
                 reqFS.BranchId = 0;
                 ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
                 if (!response.Success)

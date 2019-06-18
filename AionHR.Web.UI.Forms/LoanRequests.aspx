@@ -1138,8 +1138,8 @@
                                     <ext:Column ID="approverId" Visible="false" DataIndex="approverId" runat="server" />
                                  
                                         <ext:Column ID="Column8" DataIndex="approverName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
-                                           <Renderer Handler=" return record.data['approverName'].fullName; ">
-                                           </Renderer>
+                                          
+                                        
                                          </ext:Column>
                                     <ext:Column ID="departmentName" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1"/>
                                     <ext:Column ID="lAstatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >

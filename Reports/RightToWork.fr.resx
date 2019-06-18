@@ -667,7 +667,7 @@
     <value>782, 34.9999962</value>
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>Droit au travail</value>
+    <value>Permis de travail</value>
   </data>
   <data name="xrLabel1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>TopCenter</value>

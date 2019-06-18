@@ -320,6 +320,15 @@
         App.employeeControl1_divisionId.select(dId);
     }
 
+    function SetJobInfo(deptId, bId, pId, dId,rId) {
+    
+        App.employeeControl1_departmentId.setValue(deptId);
+        App.employeeControl1_branchId.setValue(bId);
+        App.employeeControl1_positionId.setValue(pId);
+        App.employeeControl1_divisionId.setValue(dId);
+        App.employeeControl1_reportToId.setValue(rId);
+    }
+
 
     var enterKeyPressSearchHandler = function (el, event) {
 
@@ -873,6 +882,12 @@
                         <ext:Panel runat="server" MarginSpec="0 20 0 0" ID="left">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server"  Name="recordId" />
+                                 <ext:TextField ID="positionId" Hidden="true" runat="server"  Name="positionId" />
+                                 <ext:TextField ID="departmentId" Hidden="true" runat="server"  Name="departmentId" />
+                                 <ext:TextField ID="branchId" Hidden="true" runat="server"  Name="branchId" />
+                                 <ext:TextField ID="divisionId" Hidden="true" runat="server"  Name="divisionId" />
+                                <ext:TextField ID="reportToId" Hidden="true" runat="server"  Name="reportToId" />
+                                
                                 <ext:TextField ID="reference" ValidateBlank="false" MsgTarget="None" ValidateOnChange="false" ValidateOnBlur="true" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference"  >
                                        <Validator Handler="return !isNaN(this.value);" />
                                    <%-- <Listeners>
@@ -1042,7 +1057,7 @@
                                  
                                 </ext:ComboBox>
 
-                                <ext:FieldContainer runat="server" Border="true" Visible="false">
+                             <%--   <ext:FieldContainer runat="server" Border="true" Visible="false">
                                     <Items>
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldDepartment%>" SimpleSubmit="true">
                                             <Store>
@@ -1168,7 +1183,7 @@
                                             </Listeners>
                                         </ext:ComboBox>
                                     </Items>
-                                </ext:FieldContainer>
+                                </ext:FieldContainer>--%>
 
 
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="vsId" Name="vsId" FieldLabel="<%$ Resources:FieldVacationSchedule%>" SimpleSubmit="true">
@@ -1299,7 +1314,18 @@
                                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                                             <ExtraParams>
+                                              
                                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                                 <ext:Parameter Name="positionId" Value="#{positionId}.getValue()" Mode="Raw" />
+                                                 <ext:Parameter Name="departmentId" Value="#{departmentId}.getValue()" Mode="Raw" />
+                                                 <ext:Parameter Name="branchId" Value="#{branchId}.getValue()" Mode="Raw" />
+                                                  <ext:Parameter Name="divisionId" Value="#{divisionId}.getValue()" Mode="Raw" />
+                                                 <ext:Parameter Name="reportToId" Value="#{reportToId}.getValue()" Mode="Raw" />
+
+
+
+
+
                                                 <ext:Parameter Name="hijCalBirthDate" Value="#{hijCalBirthDate}.getValue()" Mode="Raw" />
                                                  <ext:Parameter Name="gregCalBirthDate" Value="#{gregCalBirthDate}.getValue()" Mode="Raw" />
                                                 <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />

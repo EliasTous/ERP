@@ -286,16 +286,16 @@ namespace AionHR.Web.UI.Forms
 
         private void SelectCombos(Employee result)
         {
-            branchId.Select(result.branchId);
-            departmentId.Select(result.departmentId);
-            positionId.Select(result.positionId);
+            //branchId.Select(result.branchId);
+            //departmentId.Select(result.departmentId);
+            //positionId.Select(result.positionId);
             nationalityId.Select(result.nationalityId);
             //sponsorId.Select(result.sponsorId);
             vsId.Select(result.vsId);
             //caId.Select(result.caId);
             scType.Select(result.scType.ToString());
             scId.Select(result.scId.ToString());
-            divisionId.Select(result.divisionId);
+            //divisionId.Select(result.divisionId);
             nqciId.Select(result.nqciId.ToString());
             if (string.IsNullOrEmpty(result.civilStatus.ToString()))
                 result.civilStatus = 0;                
@@ -529,19 +529,19 @@ namespace AionHR.Web.UI.Forms
             }
             return resp.Items;
         }
-        private void FillPosition()
-        {
+        //private void FillPosition()
+        //{
 
-            positionStore.DataSource = GetPositions();
-            positionStore.DataBind();
-        }
+        //    positionStore.DataSource = GetPositions();
+        //    positionStore.DataBind();
+        //}
 
-        private void FillDepartment()
-        {
+        //private void FillDepartment()
+        //{
 
-            departmentStore.DataSource = GetDepartments();
-            departmentStore.DataBind();
-        }
+        //    departmentStore.DataSource = GetDepartments();
+        //    departmentStore.DataBind();
+        //}
         private void FillSecurityGroup()
         {
 
@@ -593,19 +593,19 @@ namespace AionHR.Web.UI.Forms
 
             return resp.Items;
         }
-        private void FillBranch()
-        {
+        //private void FillBranch()
+        //{
 
-            BranchStore.DataSource = GetBranches();
-            BranchStore.DataBind();
-        }
+        //    BranchStore.DataSource = GetBranches();
+        //    BranchStore.DataBind();
+        //}
 
-        private void FillDivision()
-        {
+        //private void FillDivision()
+        //{
 
-            divisionStore.DataSource = GetDivisions();
-            divisionStore.DataBind();
-        }
+        //    divisionStore.DataSource = GetDivisions();
+        //    divisionStore.DataBind();
+        //}
         private void FillSponsor()
         {
             ListRequest sponsorsRequest = new ListRequest();
@@ -651,6 +651,13 @@ namespace AionHR.Web.UI.Forms
             string id = CurrentEmployee.Text;
             //string hijCalBirthDate = e.ExtraParams["hijCalBirthDate"];
             string gregCalBirthDate = e.ExtraParams["gregCalBirthDate"];
+
+            string positionId = e.ExtraParams["positionId"];
+            string departmentId = e.ExtraParams["departmentId"];
+            string branchId = e.ExtraParams["branchId"];
+            string divisionId = e.ExtraParams["divisionId"];
+            string reportToId = e.ExtraParams["reportToId"];
+            
             string obj = e.ExtraParams["values"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
@@ -661,15 +668,28 @@ namespace AionHR.Web.UI.Forms
             b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text, reference = reference.Text.ToString().Replace(" ","") };
 
             b.recordId = id;
+            if (!string.IsNullOrEmpty(branchId))
+                b.branchId = Convert.ToInt32(branchId);
+
+            if (!string.IsNullOrEmpty(positionId))
+                b.positionId = Convert.ToInt32(positionId);
+            if (!string.IsNullOrEmpty(departmentId))
+                b.departmentId = Convert.ToInt32(departmentId);
+            if (!string.IsNullOrEmpty(reportToId))
+                b.reportToId = reportToId; 
+            if (!string.IsNullOrEmpty(divisionId))
+                b.divisionId = Convert.ToInt32(divisionId);
+
+
             // Define the object to add or edit as null
-            if (branchId.SelectedItem != null)
-                b.branchName = branchId.SelectedItem.Text;
-            if (departmentId.SelectedItem != null)
-                b.departmentName = departmentId.SelectedItem.Text;
-            if (positionId.SelectedItem != null)
-                b.positionName = positionId.SelectedItem.Text;
-            if (divisionId.SelectedItem != null)
-                b.divisionName = divisionId.SelectedItem.Text;
+            //if (branchId.SelectedItem != null)
+            //    b.branchName = branchId.SelectedItem.Text;
+            //if (departmentId.SelectedItem != null)
+            //    b.departmentName = departmentId.SelectedItem.Text;
+            //if (positionId.SelectedItem != null)
+            //    b.positionName = positionId.SelectedItem.Text;
+            //if (divisionId.SelectedItem != null)
+            //    b.divisionName = divisionId.SelectedItem.Text;
             b.name.fullName = b.name.firstName + " " + b.name.middleName + " " + b.name.lastName + " ";
             //if (b.birthDate.HasValue)
             //    b.birthDate = new DateTime(b.birthDate.Value.Year, b.birthDate.Value.Month, b.birthDate.Value.Day, 14, 0, 0);
@@ -1280,9 +1300,9 @@ namespace AionHR.Web.UI.Forms
         protected void addDepartment(object sender, DirectEventArgs e)
         {
             Department dept = new Department();
-            if (string.IsNullOrEmpty(departmentId.Text))
-                return;
-            dept.name = departmentId.Text;
+            //if (string.IsNullOrEmpty(departmentId.Text))
+            //    return;
+            //dept.name = departmentId.Text;
 
             PostRequest<Department> depReq = new PostRequest<Department>();
             depReq.entity = dept;
@@ -1290,8 +1310,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                FillDepartment();
-                departmentId.Select(dept.recordId);
+                //FillDepartment();
+                //departmentId.Select(dept.recordId);
             }
             else
             {
@@ -1303,10 +1323,10 @@ namespace AionHR.Web.UI.Forms
         }
         protected void addBranch(object sender, DirectEventArgs e)
         {
-            if (string.IsNullOrEmpty(branchId.Text))
-                return;
+            //if (string.IsNullOrEmpty(branchId.Text))
+            //    return;
             Branch dept = new Branch();
-            dept.name = branchId.Text;
+            //dept.name = branchId.Text;
            // dept.timeZone = _systemService.SessionHelper.GetDefaultTimeZone();
             dept.isInactive = false;
             PostRequest<Branch> depReq = new PostRequest<Branch>();
@@ -1315,8 +1335,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                FillBranch();
-                branchId.Select(dept.recordId);
+                //FillBranch();
+                //branchId.Select(dept.recordId);
             }
             else
             {
@@ -1340,8 +1360,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                FillPosition();
-                positionId.Select(dept.recordId);
+                //FillPosition();
+                //positionId.Select(dept.recordId);
             }
             else
             {
@@ -1354,10 +1374,10 @@ namespace AionHR.Web.UI.Forms
 
         protected void addDivision(object sender, DirectEventArgs e)
         {
-            if (string.IsNullOrEmpty(divisionId.Text))
-                return;
+            //if (string.IsNullOrEmpty(divisionId.Text))
+            //    return;
             Division dept = new Division();
-            dept.name = divisionId.Text;
+            //dept.name = divisionId.Text;
             dept.isInactive = false;
             PostRequest<Division> depReq = new PostRequest<Division>();
             depReq.entity = dept;
@@ -1368,11 +1388,11 @@ namespace AionHR.Web.UI.Forms
                 dept.recordId = response.recordId;
 
                 //When updating a store on server side via a directmethod, it is mandatory to re DataBind() so for that we called FillDivision() 
-                FillDivision();
-                //  divisionStore.Insert(0,dept);
-                //  divisionStore.Add(new { recordId = dept.recordId, name = dept.name });
+                //FillDivision();
+                ////  divisionStore.Insert(0,dept);
+                ////  divisionStore.Add(new { recordId = dept.recordId, name = dept.name });
 
-                divisionId.Value = dept.recordId;
+                //divisionId.Value = dept.recordId;
             }
             else
             {

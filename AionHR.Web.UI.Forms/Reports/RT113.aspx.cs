@@ -165,7 +165,66 @@ namespace AionHR.Web.UI.Forms.Reports
 
         private void SetExtLanguage()
         {
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+
+            switch (_systemService.SessionHelper.getLangauge())
+            {
+                case "ar":
+                    {
+                        this.ResourceManager1.RTL = true;
+                        this.Viewport1.RTL = true;
+                      //  this.rtl.Text = rtl.ToString();
+                        Culture = "ar";
+                        UICulture = "ar-AE";
+                        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
+                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
+                    }
+                    break;
+                case "en":
+                    {
+                        this.ResourceManager1.RTL = false;
+                        this.Viewport1.RTL = false;
+                        //  this.rtl.Text = rtl.ToString();
+                        Culture = "en";
+                        UICulture = "en";
+                        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                    }
+                    break;
+
+                case "fr":
+                    {
+                        this.ResourceManager1.RTL = false;
+                        this.Viewport1.RTL = false;
+                        //  this.rtl.Text = rtl.ToString();
+                        Culture = "en";
+                        UICulture = "fr-FR";
+                        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-FR");
+                    }
+                    break;
+                case "de":
+                    {
+                        this.ResourceManager1.RTL = false;
+                        this.Viewport1.RTL = false;
+                        //  this.rtl.Text = rtl.ToString();
+                        Culture = "en";
+                        UICulture = "de-DE";
+                        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("de-DE");
+                    }
+                    break;
+                default:
+                    {
+
+
+                        base.InitializeCulture();
+                        LocalisationManager.Instance.SetEnglishLocalisation();
+                    }
+                    break;
+
+            }
+
+                    bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             if (rtl)
             {
                 this.ResourceManager1.RTL = true;

@@ -218,6 +218,7 @@ namespace AionHR.Web.UI.Forms
             var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
+           // req.Position = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
             var d2 = employeeCombo1.GetEmployee();
             req.EmployeeId = d2.employeeId.ToString();
 
@@ -1043,7 +1044,7 @@ namespace AionHR.Web.UI.Forms
             edStore.DataBind();
             edId.ReadOnly = false;
             edId.RightButtons[0].Enabled = true;
-            GetLocalResourceObject("FieldDeduction").ToString();
+            edId.FieldLabel=GetLocalResourceObject("FieldDeduction").ToString();
             this.EditEDWindow.Show();
         }
 

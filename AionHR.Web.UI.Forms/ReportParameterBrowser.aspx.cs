@@ -104,6 +104,7 @@ namespace AionHR.Web.UI.Forms
                 case 31105: return "SalaryChangeReasonFilter.ascx";
                 case 31107: return "EmploymentStatusFilter.ascx";
                 case 90101: return "SecurityGroupsFilter.ascx";
+                case 51101: return "FiscalYearFilter.ascx";
                 default: X.Msg.Alert("Error","unknown control"); return "";
 
             }   

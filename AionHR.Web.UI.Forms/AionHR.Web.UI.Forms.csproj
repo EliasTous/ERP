@@ -190,6 +190,7 @@
     <Content Include="ProcessNotifications.aspx" />
     <Content Include="ReportParameterBrowser.aspx" />
     <Content Include="Reports\Controls\CertificateLevelFilter.ascx" />
+    <Content Include="Reports\Controls\FiscalYearFilter.ascx" />
     <Content Include="Reports\Controls\DocumentTypeFilter.ascx" />
     <Content Include="Reports\Controls\EntitlementDeductionFilter.ascx" />
     <Content Include="Reports\Controls\ApprovalsFilter.ascx" />
@@ -895,6 +896,13 @@
     </Compile>
     <Compile Include="Reports\Controls\CertificateLevelFilter.ascx.designer.cs">
       <DependentUpon>CertificateLevelFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\FiscalYearFilter.ascx.cs">
+      <DependentUpon>FiscalYearFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\FiscalYearFilter.ascx.designer.cs">
+      <DependentUpon>FiscalYearFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\DocumentTypeFilter.ascx.cs">
       <DependentUpon>DocumentTypeFilter.ascx</DependentUpon>
