@@ -20,6 +20,8 @@ namespace AionHR.Model.Reports
         public string major { get; set; }
         public DateTime dateFrom { get; set; }
         public DateTime dateTo { get; set; }
+        public string dateFromString { get; set; }
+        public string dateToString { get; set; }
         public double grade { get; set; }
     }
 }

@@ -117,79 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="xrTable2.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <assembly alias="DevExpress.Data.v18.2" name="DevExpress.Data.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="xrTable2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>10.0000067, 0</value>
   </data>
-  <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>Référence</value>
-  </data>
-  <data name="xrTableCell9.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="xrTableCell9.Weight" type="System.Double, mscorlib">
     <value>0.82744625337812117</value>
   </data>
-  <data name="xrTableCell10.Text" xml:space="preserve">
-    <value>Prenom</value>
-  </data>
-  <data name="xrTableCell10.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell10.Weight" type="System.Double, mscorlib">
     <value>1.720664912977695</value>
   </data>
-  <data name="xrTableCell11.Text" xml:space="preserve">
-    <value>Dater de</value>
-  </data>
-  <data name="xrTableCell11.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell11.Weight" type="System.Double, mscorlib">
     <value>0.93869334510124836</value>
   </data>
-  <data name="xrTableCell12.Text" xml:space="preserve">
-    <value>Date à</value>
-  </data>
-  <data name="xrTableCell12.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell12.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell12.Weight" type="System.Double, mscorlib">
     <value>0.92935444579780757</value>
   </data>
-  <data name="xrTableCell13.Text" xml:space="preserve">
-    <value>Degré</value>
-  </data>
-  <data name="xrTableCell13.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell13.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell13.Weight" type="System.Double, mscorlib">
     <value>0.58384104274512794</value>
   </data>
-  <data name="xrTableCell14.Text" xml:space="preserve">
-    <value>l' institut</value>
-  </data>
-  <data name="xrTableCell14.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell14.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell14.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
-  <data name="xrTableCell15.Text" xml:space="preserve">
-    <value>Matière principale</value>
-  </data>
-  <data name="xrTableCell15.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell15.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell15.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
-  <data name="xrTableCell16.Text" xml:space="preserve">
-    <value>Niveau</value>
-  </data>
-  <data name="xrTableCell16.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell16.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell16.Weight" type="System.Double, mscorlib">
     <value>1</value>
@@ -201,29 +177,29 @@
   <data name="xrTable2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>821, 25</value>
   </data>
-  <data name="xrTable2.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTable2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopCenter</value>
   </data>
   <data name="Detail.HeightF" type="System.Single, mscorlib">
     <value>25</value>
   </data>
-  <data name="Detail.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="Detail.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopLeft</value>
   </data>
   <data name="TopMargin.HeightF" type="System.Single, mscorlib">
     <value>10</value>
   </data>
-  <data name="TopMargin.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="TopMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopLeft</value>
   </data>
   <data name="BottomMargin.HeightF" type="System.Single, mscorlib">
     <value>6.25</value>
   </data>
-  <data name="BottomMargin.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopLeft</value>
   </data>
-  <data name="xrTable1.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTable1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>10.0000067, 0</value>
   </data>
   <data name="xrTableCell1.BackColor" type="System.Drawing.Color, System.Drawing">
     <value>Gainsboro</value>
@@ -231,11 +207,8 @@
   <data name="xrTableCell1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell1.Text" xml:space="preserve">
-    <value>Référence</value>
-  </data>
-  <data name="xrTableCell1.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell1.Weight" type="System.Double, mscorlib">
     <value>0.82744625337812117</value>
@@ -246,11 +219,8 @@
   <data name="xrTableCell2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell2.Text" xml:space="preserve">
-    <value>Prenom</value>
-  </data>
-  <data name="xrTableCell2.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell2.Weight" type="System.Double, mscorlib">
     <value>1.720664912977695</value>
@@ -261,11 +231,8 @@
   <data name="xrTableCell3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell3.Text" xml:space="preserve">
-    <value>Dater de</value>
-  </data>
-  <data name="xrTableCell3.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell3.Weight" type="System.Double, mscorlib">
     <value>0.93869334510124836</value>
@@ -276,11 +243,8 @@
   <data name="xrTableCell5.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell5.Text" xml:space="preserve">
-    <value>Date à</value>
-  </data>
-  <data name="xrTableCell5.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell5.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell5.Weight" type="System.Double, mscorlib">
     <value>0.92935444579780757</value>
@@ -291,11 +255,8 @@
   <data name="xrTableCell8.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell8.Text" xml:space="preserve">
-    <value>Degré</value>
-  </data>
-  <data name="xrTableCell8.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell8.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
     <value>0.58384104274512794</value>
@@ -306,11 +267,8 @@
   <data name="xrTableCell7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>l' institut</value>
-  </data>
-  <data name="xrTableCell7.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell7.Weight" type="System.Double, mscorlib">
     <value>1</value>
@@ -321,11 +279,8 @@
   <data name="xrTableCell6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell6.Text" xml:space="preserve">
-    <value>Matière principale</value>
-  </data>
-  <data name="xrTableCell6.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell6.Weight" type="System.Double, mscorlib">
     <value>1</value>
@@ -336,11 +291,8 @@
   <data name="xrTableCell4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell4.Text" xml:space="preserve">
-    <value>Niveau</value>
-  </data>
-  <data name="xrTableCell4.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTableCell4.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell4.Weight" type="System.Double, mscorlib">
     <value>1</value>
@@ -351,8 +303,8 @@
   <data name="xrTable1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>821, 25</value>
   </data>
-  <data name="xrTable1.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrTable1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopCenter</value>
   </data>
   <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
     <value>25</value>
@@ -360,62 +312,50 @@
   <data name="xrLabel1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 12pt, style=Bold</value>
   </data>
-  <data name="xrLabel1.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>343.563629, 27.5</value>
   </data>
   <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>100, 23.0000019</value>
   </data>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>Rapport de compétences</value>
+  <data name="xrLabel1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopCenter</value>
   </data>
-  <data name="xrLabel1.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="xrPageInfo2.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrPageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>763.125, 0</value>
   </data>
   <data name="xrPageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>67.875, 23</value>
   </data>
-  <data name="xrPageInfo2.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrPageInfo2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
-  <data name="xrPageInfo2.TextFormatString" xml:space="preserve">
-    <value>Page {0} of {1}</value>
-  </data>
-  <data name="xrPageInfo1.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>16.0220032, 0</value>
   </data>
   <data name="xrPageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>178.125015, 23</value>
   </data>
-  <data name="xrPageInfo1.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrPageInfo1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
-  <data name="xrPageInfo1.TextFormatString" xml:space="preserve">
-    <value>{0:dddd, d MMMM, yyyy H:mm}</value>
-  </data>
-  <data name="xrLabel2.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>194.147, 0</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>102.0614, 23</value>
   </data>
-  <data name="xrLabel2.Text" xml:space="preserve">
-    <value>Imprimé par:</value>
+  <data name="xrLabel2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
   </data>
-  <data name="xrLabel2.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="xrLabel6.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrLabel6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>296.208466, 0</value>
   </data>
   <data name="xrLabel6.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>432.166473, 23</value>
   </data>
-  <data name="xrLabel6.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="xrLabel6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
   </data>
   <data name="PageFooter.HeightF" type="System.Single, mscorlib">
     <value>29.166666</value>
@@ -431,5 +371,65 @@
   </data>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
     <value>3, 6, 10, 6</value>
+  </data>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>Rapport de compétences</value>
+  </data>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>Imprimé par:</value>
+  </data>
+  <data name="xrPageInfo1.TextFormatString" xml:space="preserve">
+    <value>{0:dddd, d MMMM, yyyy H:mm}</value>
+  </data>
+  <data name="xrPageInfo2.TextFormatString" xml:space="preserve">
+    <value>Page {0} of {1}</value>
+  </data>
+  <data name="xrTableCell1.Text" xml:space="preserve">
+    <value>Référence</value>
+  </data>
+  <data name="xrTableCell10.Text" xml:space="preserve">
+    <value>Prenom</value>
+  </data>
+  <data name="xrTableCell11.Text" xml:space="preserve">
+    <value>Dater de</value>
+  </data>
+  <data name="xrTableCell12.Text" xml:space="preserve">
+    <value>Date à</value>
+  </data>
+  <data name="xrTableCell13.Text" xml:space="preserve">
+    <value>Degré</value>
+  </data>
+  <data name="xrTableCell14.Text" xml:space="preserve">
+    <value>l' institut</value>
+  </data>
+  <data name="xrTableCell15.Text" xml:space="preserve">
+    <value>Matière principale</value>
+  </data>
+  <data name="xrTableCell16.Text" xml:space="preserve">
+    <value>Niveau</value>
+  </data>
+  <data name="xrTableCell2.Text" xml:space="preserve">
+    <value>Prenom</value>
+  </data>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>Dater de</value>
+  </data>
+  <data name="xrTableCell4.Text" xml:space="preserve">
+    <value>Niveau</value>
+  </data>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>Date à</value>
+  </data>
+  <data name="xrTableCell6.Text" xml:space="preserve">
+    <value>Matière principale</value>
+  </data>
+  <data name="xrTableCell7.Text" xml:space="preserve">
+    <value>l' institut</value>
+  </data>
+  <data name="xrTableCell8.Text" xml:space="preserve">
+    <value>Degré</value>
+  </data>
+  <data name="xrTableCell9.Text" xml:space="preserve">
+    <value>Référence</value>
   </data>
 </root>

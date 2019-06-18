@@ -257,3 +257,6 @@ ModelManifest.xml
 /AionHR.Model/Reports/RT303cs
 /Reports/AttendanceSchedule/AttendanceScheduleReport.Designer.cs
 /Reports/AttendanceSchedule/EmployeePayrollCrossReport.resx.bak
+/Reports/SkillsReport.resx
+/Reports/SkillsReport.Designer.cs
+/Reports/SkillsReport.cs

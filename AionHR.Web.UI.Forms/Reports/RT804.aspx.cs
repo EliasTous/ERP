@@ -211,7 +211,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.paramString = rep_params;
 
 
-            ListResponse<SecurityGroupUser> resp = _accessControlService.ChildGetAll<SecurityGroupUser>(req);
+            ListResponse<AionHR.Model.Reports.RT804> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT804>(req);
 
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
