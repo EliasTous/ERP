@@ -329,7 +329,11 @@ namespace AionHR.Web.UI.Forms
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            return Common.GetEmployeesFiltered(prms.Query);
+            List<EmployeeSnapShot> emp=   Common.GetEmployeesFiltered(prms.Query);
+
+
+
+            return emp.Where(x => x.activeStatus == (short)ActiveStatus.INACTIVE).ToList();
 
         }
 

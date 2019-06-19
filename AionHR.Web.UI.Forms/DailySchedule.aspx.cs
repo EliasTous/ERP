@@ -1015,12 +1015,33 @@ namespace AionHR.Web.UI.Forms
                 //parameters.Add("2", dayId.Value.ToString() == string.Empty ? dateFrom.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString());
                 //parameters.Add("3", dayId.Value.ToString() == string.Empty ? dateTo.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString());
 
+               
 
                 GenerateAttendanceDay GD = new GenerateAttendanceDay();
                 PostRequest<GenerateAttendanceDay> request = new PostRequest<GenerateAttendanceDay>();
                 GD.employeeId = Convert.ToInt32(employeeId.Value);
-                GD.fromDayId = dayId.Value.ToString() == string.Empty ? dateFrom.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString();
-                GD.toDayId = dayId.Value.ToString() == string.Empty ? dateTo.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString();
+                if (string.IsNullOrEmpty( dayId.Value.ToString()))
+                {
+                    GD.startDate = dateFrom.SelectedDate;
+                    GD.endDate = dateTo.SelectedDate; 
+                }
+                else
+                {
+                    DateTime parsed = new DateTime();
+                    if (!DateTime.TryParseExact(dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        GD.startDate = parsed;
+                        GD.endDate = parsed;
+                    }
+
+                }
+
+                //GD.fromDayId = dayId.Value.ToString() == string.Empty ? dateFrom.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString();
+                //GD.toDayId = dayId.Value.ToString() == string.Empty ? dateTo.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString();
 
 
                 request.entity = GD;

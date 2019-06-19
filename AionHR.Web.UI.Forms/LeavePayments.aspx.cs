@@ -882,7 +882,7 @@ namespace AionHR.Web.UI.Forms
                         leaveBalance.Text = routers.result.leaveBalance.ToString();
                     }
                     usedLeaves.Text = routers.result.usedLeaves.ToString();
-                    paidLeaves.Text = routers.result.paidLeaves.ToString();
+                    leavePayments.Text = routers.result.leavePayments.ToString();
 
 
                     lastLeaveStartDate.Value = routers.result.lastLeaveStartDate;

@@ -441,4 +441,7 @@
   <data name="titleBalanceErrorMessage" xml:space="preserve">
     <value>Bitte geben Sie den Wert Weniger oder Gleichwertiger Urlaub ein</value>
   </data>
+  <data name="FieldLeavePayments" xml:space="preserve">
+    <value>Zahlungen belassen</value>
+  </data>
 </root>

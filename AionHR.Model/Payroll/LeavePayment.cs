@@ -27,5 +27,6 @@ namespace AionHR.Model.Payroll
         public int postingStatus { get; set; }
         public string dateString { get; set; }
         public string effectiveDateString { get; set; }
+        public double leavePayments { get; set; }
     }
 }

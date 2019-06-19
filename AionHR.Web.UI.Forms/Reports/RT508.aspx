@@ -46,7 +46,7 @@
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="format" runat="server" />
-<ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=RT113&values="/>
+<ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=RT508&values="/>
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">

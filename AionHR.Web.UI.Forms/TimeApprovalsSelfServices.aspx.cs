@@ -214,6 +214,8 @@ namespace AionHR.Web.UI.Forms
             {
                 DashboardRequest req = GetDashboardRequest();
                 DashboardTimeListRequest r = new DashboardTimeListRequest();
+                r.fromDayId = dateRange1.GetRange().DateFrom.ToString("yyyyMMdd");
+                r.toDayId = dateRange1.GetRange().DateTo.ToString("yyyyMMdd");
                 r.dayId = "";
                 r.employeeId = 0;
                 if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))

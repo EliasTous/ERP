@@ -435,4 +435,7 @@
   <data name="titleBalanceErrorMessage" xml:space="preserve">
     <value>Please Enter Value Less or Equal Balance leave </value>
   </data>
+  <data name="FieldLeavePayments" xml:space="preserve">
+    <value>تسديد الاجازات </value>
+  </data>
 </root>

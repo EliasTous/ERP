@@ -164,8 +164,8 @@ namespace AionHR.Web.UI.Forms
             GenerateAttendanceDay GD = new GenerateAttendanceDay(); 
             PostRequest<GenerateAttendanceDay> request = new PostRequest<GenerateAttendanceDay>();
             GD.employeeId = Convert.ToInt32(employeeFilter.Value); 
-            GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
-            GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
+            //GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
+            //GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
             //if (string.IsNullOrEmpty(branchId.Value.ToString()))
             //    GD.branchId = 0;
             //else
@@ -276,8 +276,8 @@ namespace AionHR.Web.UI.Forms
                 GenerateAttendanceDay GD = new GenerateAttendanceDay();
                 PostRequest<GenerateAttendanceDay> request = new PostRequest<GenerateAttendanceDay>();
                 GD.employeeId = Convert.ToInt32(employeeFilter.Value);
-                GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
-                GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
+                //GD.fromDayId = startingDate.SelectedDate.ToString("yyyyMMdd");
+                //GD.toDayId = endingDate.SelectedDate.ToString("yyyyMMdd");
                 //if (string.IsNullOrEmpty(branchId.Value.ToString()))
                 //    GD.branchId = 0;
                 //else

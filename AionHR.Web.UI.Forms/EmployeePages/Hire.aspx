@@ -150,7 +150,7 @@
                             <ext:TextField runat="server"  LabelWidth="120" ID="pyReference" Name="pyReference" FieldLabel="<%$ Resources:pyReference %>" />
                              <ext:TextField runat="server"  LabelWidth="120" ID="taReference" Name="taReference" FieldLabel="<%$ Resources:taReference %>" />
                           
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="recBranchId" Name="recBranchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true" LabelWidth="120">
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="recBranchId" Name="recBranchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true" LabelWidth="120">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>

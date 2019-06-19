@@ -210,7 +210,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell15.Weight" type="System.Double, mscorlib">
-    <value>0.35909997398507931</value>
+    <value>0.29714850179088764</value>
   </data>
   <data name="xrTableCell16.Text" xml:space="preserve">
     <value>xrTableCell16</value>
@@ -219,7 +219,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell16.Weight" type="System.Double, mscorlib">
-    <value>0.33843522715292673</value>
+    <value>0.4003866993471184</value>
   </data>
   <data name="xrTableCell17.Text" xml:space="preserve">
     <value>xrTableCell17</value>
@@ -255,7 +255,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell20.Weight" type="System.Double, mscorlib">
-    <value>0.41240441722416787</value>
+    <value>0.50340406599614584</value>
   </data>
   <data name="xrTableCell21.Text" xml:space="preserve">
     <value>xrTableCell21</value>
@@ -264,7 +264,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell21.Weight" type="System.Double, mscorlib">
-    <value>0.41370165732054015</value>
+    <value>0.41370032433983939</value>
   </data>
   <data name="xrTableCell22.Text" xml:space="preserve">
     <value>xrTableCell22</value>
@@ -273,7 +273,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell22.Weight" type="System.Double, mscorlib">
-    <value>0.3931504005363598</value>
+    <value>0.43561722173089468</value>
   </data>
   <data name="xrTableCell23.Text" xml:space="preserve">
     <value>xrTableCell23</value>
@@ -282,14 +282,14 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell23.Weight" type="System.Double, mscorlib">
-    <value>0.47201506150109168</value>
+    <value>0.47201595015489223</value>
   </data>
   <data name="xrTableRow4.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrTable2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>1168.23718, 23</value>
+    <value>1186.5708, 23</value>
   </data>
   <data name="Detail.HeightF" type="System.Single, mscorlib">
     <value>23</value>
@@ -304,7 +304,7 @@
     <value>TopLeft</value>
   </data>
   <data name="xrLabel34.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>1108.39868, 31.958313</value>
+    <value>1126.732, 31.9582882</value>
   </data>
   <data name="xrLabel34.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>64.83862, 68.20837</value>
@@ -317,10 +317,10 @@ Employee  count</value>
     <value>MiddleCenter</value>
   </data>
   <data name="xrLabel31.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>1054.39331, 77.1666946</value>
+    <value>1066.89331, 77.16665</value>
   </data>
   <data name="xrLabel31.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>54.00525, 23</value>
+    <value>59.838623, 23</value>
   </data>
   <data name="xrLabel31.Text" xml:space="preserve">
     <value>Female</value>
@@ -329,7 +329,7 @@ Employee  count</value>
     <value>MiddleCenter</value>
   </data>
   <data name="xrLabel33.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>997.5653, 77.1666946</value>
+    <value>1010.06531, 77.1666946</value>
   </data>
   <data name="xrLabel33.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>56.828064, 23</value>
@@ -341,10 +341,10 @@ Employee  count</value>
     <value>MiddleCenter</value>
   </data>
   <data name="xrLabel30.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>997.5653, 31.958313</value>
+    <value>1010.06531, 31.9582882</value>
   </data>
   <data name="xrLabel30.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>110.833313, 45.20836</value>
+    <value>116.666626, 45.20836</value>
   </data>
   <data name="xrLabel30.Text" xml:space="preserve">
     <value>Total</value>
@@ -368,7 +368,7 @@ Employee  count</value>
     <value>889.0871, 54.1666679</value>
   </data>
   <data name="xrLabel27.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>108.47821, 23.0000038</value>
+    <value>120.97821, 23.0000038</value>
   </data>
   <data name="xrLabel27.Text" xml:space="preserve">
     <value>Foreigners</value>
@@ -440,7 +440,7 @@ Employee  count</value>
     <value>778.941467, 31.958313</value>
   </data>
   <data name="xrLabel20.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>218.6239, 22.2083588</value>
+    <value>231.12384, 22.2083588</value>
   </data>
   <data name="xrLabel20.Text" xml:space="preserve">
     <value>Supplier</value>
@@ -476,7 +476,7 @@ Employee  count</value>
     <value>340.494446, 0</value>
   </data>
   <data name="xrLabel17.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>832.742737, 31.9583263</value>
+    <value>851.076233, 31.9583263</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
     <value>Employee Count</value>
@@ -500,7 +500,7 @@ Employee  count</value>
     <value>940.9152, 77.1666946</value>
   </data>
   <data name="xrLabel16.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>56.6500854, 23</value>
+    <value>69.1500854, 23</value>
   </data>
   <data name="xrLabel16.Text" xml:space="preserve">
     <value>Famale</value>
@@ -545,10 +545,10 @@ Employee  count</value>
     <value>MiddleCenter</value>
   </data>
   <data name="xrLabel13.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>732.451965, 77.16665</value>
+    <value>723.9418, 77.16665</value>
   </data>
   <data name="xrLabel13.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>46.48932, 23</value>
+    <value>55, 23</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
     <value>Famale</value>
@@ -560,7 +560,7 @@ Employee  count</value>
     <value>683.1241, 77.16665</value>
   </data>
   <data name="xrLabel14.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>49.32794, 23</value>
+    <value>40.817688, 23</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
     <value>Male</value>

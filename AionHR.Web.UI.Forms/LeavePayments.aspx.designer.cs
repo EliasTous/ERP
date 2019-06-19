@@ -544,13 +544,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.NumberField usedLeaves;
         
         /// <summary>
-        /// paidLeaves control.
+        /// leavePayments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField paidLeaves;
+        protected global::Ext.Net.NumberField leavePayments;
         
         /// <summary>
         /// leaveBalance control.
