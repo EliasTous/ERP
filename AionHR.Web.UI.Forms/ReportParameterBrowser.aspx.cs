@@ -287,6 +287,28 @@ namespace AionHR.Web.UI.Forms
                                 }
                             }
                         }
+                        else if(cont.Split(' ').Length>1)
+                        {
+                            var parts = cont.Split(' ');
+                            cont = "";
+                            foreach(var part in parts)
+                            {
+                                if(part.StartsWith("u") && part.Length>5 && part[5]=='u')
+                                {
+                                    string[] chars = part.Split('u');
+                                    foreach (string uchar in chars)
+                                    {
+                                        cont += DirtyUTFWork(uchar);
+                                    }
+                                }
+                                else
+                                {
+                                    cont += part;
+                                }
+                                cont += ' ';
+                            }
+                            cont = cont.Substring(0, cont.Length - 1);
+                        }
                         texts += "["+allCaptions[Convert.ToInt32(text_id)-1]+":"+cont + "]";
                         
                     }
