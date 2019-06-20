@@ -260,7 +260,7 @@
 
                             <ext:Column ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEarnedLeaves %>" DataIndex="earnedLeaves" Hideable="false" Width="140"/>
                             <ext:Column ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldUsedLeaves %>" DataIndex="usedLeaves" Hideable="false" Width="140"/>
-                            <ext:Column ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLeavePayments %>" DataIndex="leavePayments" Hideable="false" Width="140"/>
+                          <%--  <ext:Column ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLeavePayments %>" DataIndex="leavePayments" Hideable="false" Width="140"/>--%>
                             <ext:Column ID="Column10" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBalanceLeaves %>" DataIndex="leaveBalance" Hideable="false" Width="140"/>
                               <ext:Column ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDays %>" DataIndex="days" Hideable="false" Width="140"/>
                         <%--    <ext:Column ID="Column11" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPostingStatus %>" DataIndex="postingStatus" Hideable="false" Width="140"/>--%>

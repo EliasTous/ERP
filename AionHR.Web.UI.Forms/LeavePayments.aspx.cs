@@ -309,11 +309,24 @@ namespace AionHR.Web.UI.Forms
            
                     this.BasicInfoTab.SetValues(response.result);
                     updateLeaveBalance.Text = "true";
-                      
+
+                    EmployeeQuickViewRecordRequest qvReq = new EmployeeQuickViewRecordRequest();
+
+                    qvReq.RecordID = response.result.employeeId.ToString(); ;
 
 
+                    qvReq.asOfDate = response.result.effectiveDate;
+
+                    RecordResponse<EmployeeQuickView> qvResp = _employeeService.ChildGetRecord<EmployeeQuickView>(qvReq);
+                    if (!qvResp.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, qvResp.Summary).Show();
+
+                    }
 
 
+                    leavePayments.Text = qvResp.result.leavePayments!=null? qvResp.result.leavePayments.ToString():"0";
 
 
 
