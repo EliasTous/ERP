@@ -12,7 +12,7 @@ namespace Reports
     {
         public BranchWorkforce(Dictionary<string, string> parameters)
         {
-            InitializeComponent();
+               InitializeComponent();
             printHeader(parameters);
           
             //

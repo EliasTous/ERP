@@ -12,7 +12,7 @@ namespace Reports
     {
         public DetailedAttendance(Dictionary<string, string> parameters)
         {
-            InitializeComponent();
+               InitializeComponent();
             printHeader(parameters);
 
         }
