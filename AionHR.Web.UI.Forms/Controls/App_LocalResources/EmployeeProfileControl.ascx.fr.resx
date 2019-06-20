@@ -142,7 +142,7 @@
     <value>Entreprise</value>
   </data>
   <data name="confirmDelete" xml:space="preserve">
-    <value>Veuillez taper "Supprimer" pour confirmer l'opération de suppression</value>
+    <value>Veuillez taper "Delete" pour confirmer l'opération de suppression</value>
   </data>
   <data name="ContactsTab" xml:space="preserve">
     <value>Contacts</value>

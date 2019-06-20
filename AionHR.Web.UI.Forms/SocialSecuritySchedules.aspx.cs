@@ -638,6 +638,7 @@ namespace AionHR.Web.UI.Forms
                                 Icon = Icon.Information,
                                 Html = Resources.Common.RecordUpdatedSucc
                             });
+                        Store1.Reload();
                             this.EditRecordWindow.Close();
 
 

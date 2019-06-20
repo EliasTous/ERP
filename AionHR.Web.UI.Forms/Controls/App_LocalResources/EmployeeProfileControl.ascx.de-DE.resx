@@ -142,7 +142,7 @@
     <value>Unternehmen</value>
   </data>
   <data name="confirmDelete" xml:space="preserve">
-    <value>Bitte geben Sie "Löschen" ein, um den Löschvorgang zu bestätigen.</value>
+    <value>Bitte geben Sie "Delete" ein, um den Löschvorgang zu bestätigen.</value>
   </data>
   <data name="ContactsTab" xml:space="preserve">
     <value>Kontakte</value>

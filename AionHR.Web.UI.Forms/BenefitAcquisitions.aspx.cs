@@ -1753,8 +1753,11 @@ namespace AionHR.Web.UI.Forms
                Common.errorMessage(response);
                 return;
             }
-            aqType.Select(response.result.aqType.ToString());
-            amount.Text = response.result.defaultAmount.ToString();
+            if (response.result != null)
+            {
+                aqType.Select(response.result.aqType.ToString());
+                amount.Text = response.result.defaultAmount.ToString();
+            }
 
         }
 

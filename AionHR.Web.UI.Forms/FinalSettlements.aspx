@@ -226,7 +226,7 @@
                             </ext:Column>
 
                             <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                                <Renderer Handler="return record.data['name'].fullName;" />
+                                
                             </ext:Column>
                            <ext:DateColumn runat="server" ID="dateCol" Text="<%$ Resources: FieldDate%>" DataIndex="date" Width="150" />
                             
