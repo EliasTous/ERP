@@ -230,7 +230,7 @@ namespace AionHR.Web.UI.Forms.Reports
            // h.Parameters["From"].Value = from;
           //  h.Parameters["To"].Value = to;
             h.Parameters["User"].Value = user;
-            h.Parameters["Filters"].Value = texts.Text;
+          //  h.Parameters["Filters"].Value = texts.Text;
 
             h.CreateDocument();
             ASPxWebDocumentViewer1.OpenReport(h);

@@ -156,7 +156,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell4.Weight" type="System.Double, mscorlib">
-    <value>0.43333595792095597</value>
+    <value>0.48333618802608513</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
     <value>xrTableCell9</value>
@@ -165,7 +165,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell9.Weight" type="System.Double, mscorlib">
-    <value>0.60671939422662358</value>
+    <value>0.60671908905083483</value>
   </data>
   <data name="xrTableCell8.Text" xml:space="preserve">
     <value>xrTableCell8</value>
@@ -174,7 +174,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
-    <value>0.87400978878350355</value>
+    <value>0.87400971248955639</value>
   </data>
   <data name="xrTableCell6.Text" xml:space="preserve">
     <value>fdsfsdf
@@ -188,7 +188,7 @@ fdsfsdfs
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell6.Weight" type="System.Double, mscorlib">
-    <value>3.30254520011708</value>
+    <value>3.2525453514816869</value>
   </data>
   <data name="xrTableCell11.Text" xml:space="preserve">
     <value>xrTableCell11</value>
@@ -255,10 +255,10 @@ fdsfsdfs
     <value>TopCenter</value>
   </data>
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>575.0366, 23.0000057</value>
+    <value>580.0366, 23.0000057</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>330.254517, 23.0000019</value>
+    <value>325.254517, 23.0000019</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>Justification</value>
@@ -279,7 +279,7 @@ fdsfsdfs
     <value>TopCenter</value>
   </data>
   <data name="xrLabel26.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>487.635651, 23.0000057</value>
+    <value>492.635651, 23.0000057</value>
   </data>
   <data name="xrLabel26.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>87.40097, 23.0000019</value>
@@ -303,10 +303,10 @@ fdsfsdfs
     <value>MiddleCenter</value>
   </data>
   <data name="xrLabel27.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>383.630127, 23.0000057</value>
+    <value>383.6301, 23.0000057</value>
   </data>
   <data name="xrLabel27.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>43.3335876, 22.9999943</value>
+    <value>48.33362, 22.9999943</value>
   </data>
   <data name="xrLabel27.Text" xml:space="preserve">
     <value>Seq</value>
@@ -327,7 +327,7 @@ fdsfsdfs
     <value>MiddleCenter</value>
   </data>
   <data name="xrLabel20.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>426.9637, 23.0000057</value>
+    <value>431.9637, 23.0000057</value>
   </data>
   <data name="xrLabel20.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>60.671936, 23.0000019</value>
