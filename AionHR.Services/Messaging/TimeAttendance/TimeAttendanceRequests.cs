@@ -105,9 +105,9 @@ public class FlatScheduleImportEmployeeRequest
 
 public class BranchAvailabilityScheduleRecordRequest : ListRequest
 {
-    public string FromDayId { get; set; }
+    public DateTime StartDate { get; set; }
 
-    public string ToDayId { get; set; }
+    public DateTime EndDate { get; set; }
 
     public int BranchId { get; set; }
 
@@ -119,8 +119,8 @@ public class BranchAvailabilityScheduleRecordRequest : ListRequest
         get
         {
             parameters = new Dictionary<string, string>();
-            parameters.Add("_fromDayId", FromDayId);
-            parameters.Add("_toDayId", ToDayId);
+            parameters.Add("_startDate", StartDate.ToString());
+            parameters.Add("_endDate", EndDate.ToString());
             parameters.Add("_branchId", BranchId.ToString());
             parameters.Add("_departmentId", departmentId.ToString());
 

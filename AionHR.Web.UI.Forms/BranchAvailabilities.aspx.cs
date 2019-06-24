@@ -561,25 +561,25 @@ namespace AionHR.Web.UI.Forms
                 reqFS.departmentId = 0;
             if (parameters.ContainsKey("3"))
             {
-                reqFS.FromDayId = parameters["3"];
+            //    reqFS.StartDate = parameters["3"];
                 currentfromDay.Text = parameters["3"];
-                //DateTime parsed = DateTime.Now;
-                //if (DateTime.TryParse(parameters["3"], new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
-                //{
-                //    reqFS.FromDayId = parsed.ToString("yyyyMMdd");  
+                DateTime parsed = DateTime.Now;
+                if (DateTime.TryParseExact(parameters["3"],"yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
+                {
+                    reqFS.StartDate = parsed;
 
-                //}
+                }
             }
             if (parameters.ContainsKey("4"))
             {
-                reqFS.ToDayId = parameters["4"];
+              //  reqFS.EndDate = parameters["4"];
                 currenttoDay.Text= parameters["4"];
-                //DateTime parsed = DateTime.Now;
-                //if (DateTime.TryParse(parameters["4"], new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
-                //{
-                //    reqFS.ToDayId = parsed.ToString("yyyyMMdd");
+                DateTime parsed = DateTime.Now;
+                if (DateTime.TryParseExact(parameters["4"], "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
+                {
+                    reqFS.EndDate = parsed;
 
-                //}
+                }
             }
 
 
@@ -742,7 +742,7 @@ namespace AionHR.Web.UI.Forms
                         foreach (FlatSchedule fss in response.Items)
                         {
 
-                      
+
                         //DateTime activeDate = DateTime.ParseExact(fss.dayId, "yyyyMMdd", new CultureInfo("en"));
                         //DateTime fsfromDate=new DateTime();
                         //DateTime fsToDate=new DateTime();
@@ -762,23 +762,24 @@ namespace AionHR.Web.UI.Forms
                         //        fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.to.Split(':')[0]), Convert.ToInt32(fss.to.Split(':')[1]), 0);
 
                         //}
-                       
-                     
-                        
+
+
+
                         //    DateTime temp = activeDate;
                         //    if (fsfromDate > fsToDate)
                         //    {
-                               
+
                         //        fsToDate = fsToDate.AddDays(1);
-                               
-                               
+
+
                         //    }
-                           
-                            while (fss.dtTo > fss.dtFrom) 
+                        int counter = 0;
+                            while (fss.dtTo > fss.dtFrom && counter!=3000) 
                             {
                               
                                 listIds.Add(fss.dtFrom.ToString("yyyyMMdd") + "_" + fss.dtFrom.ToString("HH:mm"));
                             fss.dtFrom = fss.dtFrom.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                            counter++;
 
                             } 
                           
@@ -942,6 +943,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     dtEnd = dtEnd.AddDays(1).AddMinutes(-Convert.ToInt32(dailyScheduleVariation));
                 }
+                int counter = 0;
                 do
                 {
                     TimeSlot ts = new TimeSlot();
@@ -949,7 +951,8 @@ namespace AionHR.Web.UI.Forms
                     ts.Time = dtStart.ToString("HH:mm");
                     timesList.Add(ts);
                     dtStart = dtStart.AddMinutes(Convert.ToInt32(dailyScheduleVariation));
-                } while (dtStart <= dtEnd && !string.IsNullOrEmpty(dailyScheduleVariation));
+                    counter++;
+                } while (dtStart <= dtEnd && !string.IsNullOrEmpty(dailyScheduleVariation)&& counter!=3000);
 
                 //filling the Day slots
                 DateTime totalDayTo = new DateTime();
@@ -980,13 +983,13 @@ namespace AionHR.Web.UI.Forms
                 {
                     DateTime from = fs.dtFrom;
                     DateTime to = fs.dtTo;
-
-                    while (to > from)
+                    counter = 0; 
+                    while (to > from && counter!=3000)
                     {
-
+                        
                         listIds.Add(from.ToString("yyyyMMdd") + "_" + from.ToString("HH:mm"));
                         from = from.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
-
+                        counter++;
                     }
                 }
 
@@ -1073,6 +1076,7 @@ namespace AionHR.Web.UI.Forms
             {
                 dtEnd = dtEnd.AddDays(1).AddMinutes(-Convert.ToInt32(dailyScheduleVariation));
             }
+            int counter = 0;
             do
             {
                 TimeSlot ts = new TimeSlot();
@@ -1080,7 +1084,8 @@ namespace AionHR.Web.UI.Forms
                 ts.Time = dtStart.ToString("HH:mm");
                 timesList.Add(ts);
                 dtStart = dtStart.AddMinutes(Convert.ToInt32(dailyScheduleVariation));
-            } while (dtStart <= dtEnd);
+                counter++;
+            } while (dtStart <= dtEnd && counter!=3000);
             DateTime totalDayTo = new DateTime();
             DateTime totalDayFrom = new DateTime();
             if (!DateTime.TryParseExact(currentfromDay.Text, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out totalDayFrom))
