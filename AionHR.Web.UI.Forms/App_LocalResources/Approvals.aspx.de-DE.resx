@@ -196,4 +196,10 @@
   <data name="approvalType" xml:space="preserve">
     <value>Zulassungsart</value>
   </data>
+  <data name="approvalFlow" xml:space="preserve">
+    <value>Genehmigungsablauf</value>
+  </data>
+  <data name="workflow" xml:space="preserve">
+    <value>Arbeitsablauf</value>
+  </data>
 </root>

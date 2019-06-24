@@ -110,6 +110,7 @@
     <Compile Include="Company\Structure\IDepartmentRepository.cs" />
     <Compile Include="Company\Structure\ImportDepartments.cs" />
     <Compile Include="Company\Structure\LegalReference.cs" />
+    <Compile Include="Company\Structure\WorkFlow.cs" />
     <Compile Include="Dashboard\CompanyRTW.cs" />
     <Compile Include="Dashboard\Dashboard.cs" />
     <Compile Include="Dashboard\DashboardAlertItem.cs" />

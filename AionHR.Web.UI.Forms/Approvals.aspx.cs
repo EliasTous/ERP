@@ -97,7 +97,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-                FillDepartment();
+             //   FillDepartment();
                 apId.Text = "";
 
             }
@@ -152,8 +152,11 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             apId.Text = id;
             panelRecordDetails.ActiveIndex = 0;
-            departmentId.Select("");
-            ApprovelDepartmentsStore.Reload();
+            approvalFlowStore.DataSource = Common.XMLDictionaryList(_systemService, "29");
+            approvalFlowStore.DataBind();
+
+            //departmentId.Select("");
+            //     ApprovelDepartmentsStore.Reload();
 
             switch (type)
             {
@@ -174,7 +177,7 @@ namespace AionHR.Web.UI.Forms
 
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-                    ApprovelDepartmentsGrid.Disabled = false;
+                    //ApprovelDepartmentsGrid.Disabled = false;
                     this.EditRecordWindow.Show();
                     break;
 
@@ -205,63 +208,63 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-        protected void PoPuPAD(object sender, DirectEventArgs e)
-        {
+        //protected void PoPuPAD(object sender, DirectEventArgs e)
+        //{
 
 
-            string apId = e.ExtraParams["apId"];
-            string departmentId = e.ExtraParams["departmentId"];
-            string type = e.ExtraParams["type"];
+        //    string apId = e.ExtraParams["apId"];
+        //    string departmentId = e.ExtraParams["departmentId"];
+        //    string type = e.ExtraParams["type"];
 
-            switch (type)
-            {
-                //case "imgEdit":
-                //    //Step 1 : get the object from the Web Service 
-                //    RecordRequest r = new RecordRequest();
-                //    r.RecordID = id;
+        //    switch (type)
+        //    {
+        //        //case "imgEdit":
+        //        //    //Step 1 : get the object from the Web Service 
+        //        //    RecordRequest r = new RecordRequest();
+        //        //    r.RecordID = id;
 
-                //    RecordResponse<Approval> response = _companyStructureService.ChildGetRecord<Approval>(r);
-                //    if (!response.Success)
-                //    {
-                //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                //       Common.errorMessage(response);
-                //        return;
-                //    }
-                //    //Step 2 : call setvalues with the retrieved object
-                //    this.BasicInfoTab.SetValues(response.result);
-
-
-                //    this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-                //    this.EditRecordWindow.Show();
-                //    break;
-
-                case "imgDelete":
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                    {
-                        Yes = new MessageBoxButtonConfig
-                        {
-                            //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteADRecord({0},{1})", apId, departmentId),
-                            Text = Resources.Common.Yes
-                        },
-                        No = new MessageBoxButtonConfig
-                        {
-                            Text = Resources.Common.No
-                        }
-
-                    }).Show();
-                    break;
-
-                case "imgAttach":
-
-                    //Here will show up a winow relatice to attachement depending on the case we are working on
-                    break;
-                default:
-                    break;
-            }
+        //        //    RecordResponse<Approval> response = _companyStructureService.ChildGetRecord<Approval>(r);
+        //        //    if (!response.Success)
+        //        //    {
+        //        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        //       Common.errorMessage(response);
+        //        //        return;
+        //        //    }
+        //        //    //Step 2 : call setvalues with the retrieved object
+        //        //    this.BasicInfoTab.SetValues(response.result);
 
 
-        }
+        //        //    this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
+        //        //    this.EditRecordWindow.Show();
+        //        //    break;
+
+        //        case "imgDelete":
+        //            X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+        //            {
+        //                Yes = new MessageBoxButtonConfig
+        //                {
+        //                    //We are call a direct request metho for deleting a record
+        //                    Handler = String.Format("App.direct.DeleteADRecord({0},{1})", apId, departmentId),
+        //                    Text = Resources.Common.Yes
+        //                },
+        //                No = new MessageBoxButtonConfig
+        //                {
+        //                    Text = Resources.Common.No
+        //                }
+
+        //            }).Show();
+        //            break;
+
+        //        case "imgAttach":
+
+        //            //Here will show up a winow relatice to attachement depending on the case we are working on
+        //            break;
+        //        default:
+        //            break;
+        //    }
+
+
+        //}
 
         /// <summary>
         /// This direct method will be called after confirming the delete
@@ -310,48 +313,48 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-        [DirectMethod]
-        public void DeleteADRecord(string apId, string departmentId)
-        {
-            try
-            {
-                //Step 1 Code to delete the object from the database 
-                ApprovelDepartment s = new ApprovelDepartment();
-                s.apId =Convert.ToInt32( apId);
-                s.departmentId = Convert.ToInt32(departmentId); 
-                PostRequest<ApprovelDepartment> req = new PostRequest<ApprovelDepartment>();
-                req.entity = s;
-                PostResponse<ApprovelDepartment> r = _companyStructureService.ChildDelete<ApprovelDepartment>(req);
-                if (!r.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(r);;
-                    return;
-                }
-                else
-                {
-                    //Step 2 :  remove the object from the store
-                    ApprovelDepartmentsStore.Reload();
+        //[DirectMethod]
+        //public void DeleteADRecord(string apId, string departmentId)
+        //{
+        //    try
+        //    {
+        //        //Step 1 Code to delete the object from the database 
+        //        ApprovelDepartment s = new ApprovelDepartment();
+        //        s.apId =Convert.ToInt32( apId);
+        //        s.departmentId = Convert.ToInt32(departmentId); 
+        //        PostRequest<ApprovelDepartment> req = new PostRequest<ApprovelDepartment>();
+        //        req.entity = s;
+        //        PostResponse<ApprovelDepartment> r = _companyStructureService.ChildDelete<ApprovelDepartment>(req);
+        //        if (!r.Success)
+        //        {
+        //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //           Common.errorMessage(r);;
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            //Step 2 :  remove the object from the store
+        //            ApprovelDepartmentsStore.Reload();
 
-                    //Step 3 : Showing a notification for the user 
-                    Notification.Show(new NotificationConfig
-                    {
-                        Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
-                        Html = Resources.Common.RecordDeletedSucc
-                    });
-                }
+        //            //Step 3 : Showing a notification for the user 
+        //            Notification.Show(new NotificationConfig
+        //            {
+        //                Title = Resources.Common.Notification,
+        //                Icon = Icon.Information,
+        //                Html = Resources.Common.RecordDeletedSucc
+        //            });
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-                //In case of error, showing a message box to the user
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //In case of error, showing a message box to the user
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
 
-            }
+        //    }
 
-        }
+        //}
 
 
 
@@ -436,11 +439,12 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-
+            approvalFlowStore.DataSource = Common.XMLDictionaryList(_systemService, "29");
+            approvalFlowStore.DataBind();
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
-            ApprovelDepartmentsGrid.Disabled = true;
+           // ApprovelDepartmentsGrid.Disabled = true;
             panelRecordDetails.ActiveIndex = 0;
             apId.Text = "";
 
@@ -559,7 +563,7 @@ namespace AionHR.Web.UI.Forms
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
-                        ApprovelDepartmentsGrid.Disabled = false;
+                        //ApprovelDepartmentsGrid.Disabled = false;
 
 
 
@@ -637,44 +641,44 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void FillDepartment()
-        {
-            DepartmentListRequest departmentsRequest = new DepartmentListRequest();
-            departmentsRequest.type = 0;
-            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
-            if (!resp.Success)
-                Common.errorMessage(resp);
-            departmentStore.DataSource = resp.Items;
-            departmentStore.DataBind();
-        }
+        //private void FillDepartment()
+        //{
+        //    DepartmentListRequest departmentsRequest = new DepartmentListRequest();
+        //    departmentsRequest.type = 0;
+        //    ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
+        //    if (!resp.Success)
+        //        Common.errorMessage(resp);
+        //    departmentStore.DataSource = resp.Items;
+        //    departmentStore.DataBind();
+        //}
 
-        protected void addDepartment(object sender, DirectEventArgs e)
-        {
-            ApprovelDepartment dept = new ApprovelDepartment();
-            dept.departmentId =Convert.ToInt32( departmentId.Value.ToString());
-            dept.apId = Convert.ToInt32(apId.Text);
+        //protected void addDepartment(object sender, DirectEventArgs e)
+        //{
+        //    ApprovelDepartment dept = new ApprovelDepartment();
+        //    dept.departmentId =Convert.ToInt32( departmentId.Value.ToString());
+        //    dept.apId = Convert.ToInt32(apId.Text);
 
-            PostRequest<ApprovelDepartment> depReq = new PostRequest<ApprovelDepartment>();
-            depReq.entity = dept;
-            PostResponse<ApprovelDepartment> response = _companyStructureService.ChildAddOrUpdate<ApprovelDepartment>(depReq);
-            if (response.Success)
-            {
-                ApprovelDepartmentsStore.Reload();
-                Notification.Show(new NotificationConfig
-                {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.RecordUpdatedSucc
-                });
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                Common.errorMessage(response);
-                return;
-            }
+        //    PostRequest<ApprovelDepartment> depReq = new PostRequest<ApprovelDepartment>();
+        //    depReq.entity = dept;
+        //    PostResponse<ApprovelDepartment> response = _companyStructureService.ChildAddOrUpdate<ApprovelDepartment>(depReq);
+        //    if (response.Success)
+        //    {
+        //        ApprovelDepartmentsStore.Reload();
+        //        Notification.Show(new NotificationConfig
+        //        {
+        //            Title = Resources.Common.Notification,
+        //            Icon = Icon.Information,
+        //            Html = Resources.Common.RecordUpdatedSucc
+        //        });
+        //    }
+        //    else
+        //    {
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        Common.errorMessage(response);
+        //        return;
+        //    }
 
-        }
+        //}
 
 
     }

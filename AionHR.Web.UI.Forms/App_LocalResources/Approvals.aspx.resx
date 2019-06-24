@@ -195,4 +195,10 @@
   <data name="approvalType" xml:space="preserve">
     <value>Approval Type</value>
   </data>
+  <data name="approvalFlow" xml:space="preserve">
+    <value>Approval Flow</value>
+  </data>
+  <data name="workflow" xml:space="preserve">
+    <value>Workflow</value>
+  </data>
 </root>

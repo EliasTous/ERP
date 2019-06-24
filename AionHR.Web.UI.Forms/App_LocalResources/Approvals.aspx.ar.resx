@@ -195,4 +195,10 @@
   <data name="approvalType" xml:space="preserve">
     <value>نوع الموافقة</value>
   </data>
+  <data name="approvalFlow" xml:space="preserve">
+    <value>تسلسل الموافقة</value>
+  </data>
+  <data name="workflow" xml:space="preserve">
+    <value>التسلسل </value>
+  </data>
 </root>

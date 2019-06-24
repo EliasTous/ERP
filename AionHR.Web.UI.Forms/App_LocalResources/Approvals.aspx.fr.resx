@@ -195,4 +195,10 @@
   <data name="approvalType" xml:space="preserve">
     <value>type d'approbation</value>
   </data>
+  <data name="approvalFlow" xml:space="preserve">
+    <value>Flux d'approbation</value>
+  </data>
+  <data name="workflow" xml:space="preserve">
+    <value>Flux de travail</value>
+  </data>
 </root>

@@ -299,22 +299,40 @@
                                                 </ext:Store>
                                             </Store>
                                           </ext:ComboBox>
+                                  <ext:ComboBox  AnyMatch="true" AllowBlank="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: approvalFlow %>"  runat="server" DisplayField="value" ValueField="key"   Name="approvalFlow" ID="approvalFlow" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="approvalFlowStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                      <Listeners>
+                                          <Change Handler=" if (this.value==2) #{workFlow}.setDisabled(false); else #{workFlow}.setDisabled(true); " />
+                                      </Listeners>
+                                          </ext:ComboBox>
+                                  <ext:ComboBox  AnyMatch="true" AllowBlank="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: workflow  %>"  runat="server" DisplayField="value" ValueField="key"   Name="workFlow" ID="workFlow" Disabled="true" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="workFlowStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                          </ext:ComboBox>
                                
                                     
-                                <ext:FieldSet ID="ApprovalLevelFS" runat="server" Disabled="false" Title="<%$ Resources:Approvallevel %>" >
-                                    <Items>
-                                       <ext:Checkbox runat="server" Name="branchHead" InputValue="true" ID="branchHead" DataIndex="branchHead" FieldLabel="<%$ Resources:branchHead %>" />
-                                       <ext:Checkbox runat="server" Name="departmentHead" InputValue="true" ID="departmentHead" DataIndex="departmentHead" FieldLabel="<%$ Resources:departmentHead %>" />
-                                       <ext:Checkbox runat="server" Name="reportTo" InputValue="true" ID="reportTo" DataIndex="reportTo" FieldLabel="<%$ Resources:reportTo %>" />
-                                       <ext:Checkbox runat="server" Name="departmentTree" InputValue="true" ID="departmentTree" DataIndex="departmentTree" FieldLabel="<%$ Resources:departmentTree%>" >
-                                           <Listeners>
-                                               <Change Handler="if (this.value) {#{departmentHead}.setValue(false);#{departmentHead}.setDisabled(true);}else #{departmentHead}.setDisabled(false);" />
-                                           </Listeners>
-                                           </ext:Checkbox>
-                                        <ext:Checkbox runat="server" Name="departmentList" InputValue="true" ID="departmentList" DataIndex="departmentList" FieldLabel="<%$ Resources:departmentList%>" Disabled="true" />
-                                    </Items>
-                                </ext:FieldSet>
-
+                             
                                   
                
         
@@ -343,7 +361,7 @@
                 </ext:Button>
                                 </Buttons>
                         </ext:FormPanel>
-                        <ext:GridPanel 
+                      <%--  <ext:GridPanel 
                                     ID="ApprovelDepartmentsGrid"
                                     runat="server"
                                    StoreID="ApprovelDepartmentsStore"
@@ -485,7 +503,7 @@
                        
                                                     </SelectionModel>
                             
-                                                </ext:GridPanel>
+                                                </ext:GridPanel>--%>
                     </Items>
                 </ext:TabPanel>
             </Items>
