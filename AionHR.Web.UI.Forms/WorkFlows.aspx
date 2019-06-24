@@ -53,6 +53,7 @@
                 <ext:DataSorter Property="recordId" Direction="ASC" />
             </Sorters>
         </ext:Store>
+        
 
 
     
@@ -253,7 +254,184 @@
                             </Items>
 
                         </ext:FormPanel>
+                             <ext:GridPanel 
+                    ID="workSequenceGrid"
+                    runat="server"
+                    StoreID="workSequenceStore" 
+                    PaddingSpec="0 0 1 0"
+                    Header="false" 
+                    Title="<%$ Resources: workSequenceWindowTitle %>"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"  
+                    Icon="User"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                                                <Store>
+                                                <ext:Store runat="server" ID="workSequenceStore">
+                                                    <Model>
+                                                        <ext:Model runat="server" IDProperty="seqNo" >
+                                                            <Fields>
+                                                                <ext:ModelField Name="approverPositionName" />
+                                                                <ext:ModelField Name="branchName" />
+                                                                <ext:ModelField Name="departmentName" />
+                                                                <ext:ModelField Name="wfId" />
+                                                                <ext:ModelField Name="seqNo" />
+                                                                <ext:ModelField Name="approverPosition" />
+                                                                <ext:ModelField Name="branchId" />
+                                                                <ext:ModelField Name="departmentId" />
+                                                               
+                                                            </Fields>
+
+                                                        </ext:Model>
+
+                                                    </Model>
+                                                      <Sorters>
+                <ext:DataSorter Property="seqNo" Direction="ASC" />
+            </Sorters>
+                                                </ext:Store>
+                                            </Store>
+                    <TopBar>
                         
+                        <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                                <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
+                                     <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>                           
+                                    <DirectEvents>
+                                        <Click OnEvent="ADDNewRecord">
+                                            <EventMask ShowMask="true" CustomTarget="={#{workSequenceGrid}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                               
+                                  
+                                   
+                               
+                        
+                             
+                              
+                            
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
+
+                    <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
+                        <Columns>
+                            <ext:RowNumbererColumn runat="server" Width="25" ID="seqNo" DataIndex="seqNo" />
+                            <ext:Column    CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
+
+                        </ext:Column>
+                          
+                             
+                        
+                           
+
+                            <ext:Column runat="server"
+                                ID="Column3" Visible="false"
+                                Text="<%$ Resources: Common , Delete %>"
+                                Width="100"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="deleteRender" />
+                              
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                ID="Column4"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
+                            
+                           <ext:Column runat="server"
+                                ID="Column5"  Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+
+                            </ext:Column>
+
+
+
+                        </Columns>
+                    </ColumnModel>
+                    <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar4" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar2" runat="server" />
+                                <ext:ToolbarFill />
+                                
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                    <BottomBar>
+
+                        <ext:PagingToolbar ID="PagingToolbar2"
+                            runat="server"
+                            FirstText="<%$ Resources:Common , FirstText %>"
+                            NextText="<%$ Resources:Common , NextText %>"
+                            PrevText="<%$ Resources:Common , PrevText %>"
+                            LastText="<%$ Resources:Common , LastText %>"
+                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
+                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
+                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
+                            DisplayInfo="true"
+                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
+                            Border="true"
+                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
+                            <Items>
+                               
+                            </Items>
+                            <Listeners>
+                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                            </Listeners>
+                        </ext:PagingToolbar>
+
+                    </BottomBar>
+                    <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
+                    <DirectEvents>
+                        
+                        <CellClick OnEvent="PoPuPWS">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>
+                    <View>
+                        <ext:GridView ID="GridView2" runat="server" />
+                    </View>
+
+                  
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single"  StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
                     </Items>
                 </ext:TabPanel>
             </Items>

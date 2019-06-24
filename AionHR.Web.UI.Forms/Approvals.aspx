@@ -294,7 +294,7 @@
                                                 </ext:Store>
                                             </Store>
                                           </ext:ComboBox>
-                                  <ext:ComboBox  AnyMatch="true" AllowBlank="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: approvalFlow %>"  runat="server" DisplayField="value" ValueField="key"   Name="approvalFlow" ID="approvalFlow" >
+                                  <ext:ComboBox  AnyMatch="true" AllowBlank="false" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: approvalFlow %>"  runat="server" DisplayField="value" ValueField="key"   Name="approvalFlow" ID="approvalFlow" >
                                              <Store>
                                                 <ext:Store runat="server" ID="approvalFlowStore">
                                                     <Model>
@@ -307,11 +307,9 @@
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
-                                      <Listeners>
-                                          <Change Handler=" if (this.value==2) {#{wfId}.setDisabled(false); #{wfId}.allowBlank=false; } else {#{wfId}.setDisabled(true); #{wfId}.allowBlank=true; #{wfId}.allowBlank=true; }" />
-                                      </Listeners>
+                                     
                                           </ext:ComboBox>
-                                  <ext:ComboBox  AnyMatch="true" AllowBlank="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: workflow  %>"  runat="server" DisplayField="value" ValueField="key"   Name="wfId" ID="wfId" Disabled="true" >
+                                  <ext:ComboBox  AnyMatch="true" AllowBlank="false" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: workflow  %>"  runat="server" DisplayField="value" ValueField="key"   Name="wfId" ID="wfId"  >
                                              <Store>
                                                 <ext:Store runat="server" ID="workFlowStore">
                                                     <Model>
