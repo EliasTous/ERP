@@ -217,7 +217,7 @@ namespace AionHR.Web.UI.Forms
             EmployeePayrollListRequest req = new EmployeePayrollListRequest();
             var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
-            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
+         //   req.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
            // req.Position = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
             var d2 = employeeCombo1.GetEmployee();
