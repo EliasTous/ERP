@@ -589,6 +589,7 @@
     <Content Include="Utilities\letters_meta_tags.txt" />
     <Content Include="Utilities\modules.txt" />
     <Content Include="LeaveSchedules.aspx" />
+    <Content Include="WorkFlows.aspx" />
     <Content Include="WorkingCalendars.aspx" />
     <Content Include="SystemAttachmentsUploader.ashx" />
     <Content Include="EmployeePhotoUploaderHandler.ashx" />
@@ -604,6 +605,9 @@
     <Content Include="App_LocalResources\BranchAvailabilities.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\BranchAvailabilities.aspx.fr.resx" />
     <Content Include="App_LocalResources\BranchAvailabilities.aspx.resx" />
+    <Content Include="App_LocalResources\WorkFlows.aspx.ar.resx" />
+    <Content Include="App_LocalResources\WorkFlows.aspx.fr.resx" />
+    <Content Include="App_LocalResources\WorkFlows.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -2399,6 +2403,13 @@
     </Compile>
     <Compile Include="VacationSchedules.aspx.designer.cs">
       <DependentUpon>VacationSchedules.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkFlows.aspx.cs">
+      <DependentUpon>WorkFlows.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkFlows.aspx.designer.cs">
+      <DependentUpon>WorkFlows.aspx</DependentUpon>
     </Compile>
     <Compile Include="WorkingCalendars.aspx.cs">
       <DependentUpon>WorkingCalendars.aspx</DependentUpon>

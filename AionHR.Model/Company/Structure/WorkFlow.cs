@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Company.Structure
 {
-   public class WorkFlow
+   public class WorkFlow :ModelBase
     {
+        public string name { get; set; }
     }
 }

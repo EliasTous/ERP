@@ -60,6 +60,7 @@
     <ext:Hidden runat="server" ID="ctTitle" Text="<%$Resources: Common , CheckTypes%>" />
     <ext:Hidden runat="server" ID="deTitle" Text="<%$Resources:Common , Departments %>" />
      <ext:Hidden runat="server" ID="arTitle" Text="<%$Resources:Common , ApprovalReason %>" />
+     <ext:Hidden runat="server" ID="wfTitle" Text="<%$Resources:Common , workFlow %>" />
     <ext:Hidden runat="server" ID="brTitle" Text="<%$Resources:Common , Branches %>" />
     <ext:Hidden runat="server" ID="diTitle" Text="<%$Resources:Common , Divisions %>" />
     <ext:Hidden runat="server" ID="poTitle" Text="<%$Resources:Common , Positions %>" />
@@ -370,6 +371,12 @@
                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ApprovalReason%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('ApprovalReasons', 'ApprovalReasons.aspx', #{arTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+
+                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , workFlow%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('WorkFlows', 'WorkFlows.aspx', #{wfTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                                          

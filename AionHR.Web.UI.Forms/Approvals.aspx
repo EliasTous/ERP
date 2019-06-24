@@ -45,12 +45,10 @@
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
-                        <ext:ModelField Name="branchHead" />
-                        <ext:ModelField Name="departmentHead" />
-                        <ext:ModelField Name="reportTo" />
-                        <ext:ModelField Name="departmentTree" />
-                        <ext:ModelField Name="departmentList" />
+                      
                         <ext:ModelField Name="name" />
+                         <ext:ModelField Name="approvalTypeName" />
+                         <ext:ModelField Name="approvalFlowName" />
 
                     </Fields>
                 </ext:Model>
@@ -145,12 +143,9 @@
                             <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false"/>
                            
                          
-                            <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: branchHead %>" DataIndex="branchHead"></ext:CheckColumn>
-                             <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: departmentHead %>" DataIndex="departmentHead"></ext:CheckColumn>
-                             <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: reportTo %>" DataIndex="reportTo"></ext:CheckColumn>
-                             <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: departmentTree %>" DataIndex="departmentTree"></ext:CheckColumn>
-                             <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: departmentList %>" DataIndex="departmentList"></ext:CheckColumn>
-
+                            <ext:Column runat="server" Flex="1" Text="<%$ Resources: approvalType %>" DataIndex="approvalTypeName"></ext:Column>
+                             <ext:Column runat="server" Flex="1" Text="<%$ Resources: approvalFlow %>" DataIndex="approvalFlowName"></ext:Column>
+                           
 
 
 
@@ -313,10 +308,10 @@
                                                 </ext:Store>
                                             </Store>
                                       <Listeners>
-                                          <Change Handler=" if (this.value==2) #{workFlow}.setDisabled(false); else #{workFlow}.setDisabled(true); " />
+                                          <Change Handler=" if (this.value==2) {#{wfId}.setDisabled(false); #{wfId}.allowBlank=false; } else {#{wfId}.setDisabled(true); #{wfId}.allowBlank=true; #{wfId}.allowBlank=true; }" />
                                       </Listeners>
                                           </ext:ComboBox>
-                                  <ext:ComboBox  AnyMatch="true" AllowBlank="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: workflow  %>"  runat="server" DisplayField="value" ValueField="key"   Name="workFlow" ID="workFlow" Disabled="true" >
+                                  <ext:ComboBox  AnyMatch="true" AllowBlank="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: workflow  %>"  runat="server" DisplayField="value" ValueField="key"   Name="wfId" ID="wfId" Disabled="true" >
                                              <Store>
                                                 <ext:Store runat="server" ID="workFlowStore">
                                                     <Model>

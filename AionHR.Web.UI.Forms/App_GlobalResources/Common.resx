@@ -1356,4 +1356,7 @@
   <data name="BiWeek" xml:space="preserve">
     <value>BiWeek</value>
   </data>
+  <data name="workFlow" xml:space="preserve">
+    <value>Work Flow</value>
+  </data>
 </root>

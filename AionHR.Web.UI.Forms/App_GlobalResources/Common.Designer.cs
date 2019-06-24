@@ -3742,6 +3742,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Work Flow.
+        /// </summary>
+        internal static string workFlow {
+            get {
+                return ResourceManager.GetString("workFlow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Working.
         /// </summary>
         internal static string working {

@@ -11,11 +11,16 @@ namespace AionHR.Model.Company.Structure
     public  class Approval:ModelBase 
     {
         public string name { get; set; }
-        public bool branchHead { get; set; }
-        public bool departmentHead { get; set; }
-        public bool reportTo { get; set; }
-        public bool departmentTree { get; set; }
-        public bool departmentList { get; set; }
-        public short approvalType { get; set; }
+
+        public string approvalTypeName { get; set; }
+        public string approvalFlowName { get; set; }
+
+
+        public string wfId { get; set; }
+        public string approvalType { get; set; }
+        public string approvalFlow { get; set; }
+
+
+       
     }
 }

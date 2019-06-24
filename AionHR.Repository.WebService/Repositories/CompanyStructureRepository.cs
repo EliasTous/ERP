@@ -26,6 +26,7 @@ namespace AionHR.Repository.WebService.Repositories
             base.ChildGetLookup.Add(typeof(Approval), "getAP");
             base.ChildGetLookup.Add(typeof(ApprovelDepartment), "getAD");
             base.ChildGetLookup.Add(typeof(ApprovalReason), "getAR");
+            base.ChildGetLookup.Add(typeof(WorkFlow), "getWF");
 
             base.ChildGetAllLookup.Add(typeof(Branch), "qryBR");
             base.ChildGetAllLookup.Add(typeof(Department), "qryDE");
@@ -35,6 +36,7 @@ namespace AionHR.Repository.WebService.Repositories
             base.ChildGetAllLookup.Add(typeof(Approval), "qryAP");
             base.ChildGetAllLookup.Add(typeof(ApprovelDepartment), "qryAD");
             base.ChildGetAllLookup.Add(typeof(ApprovalReason), "qryAR");
+            base.ChildGetAllLookup.Add(typeof(WorkFlow), "qryWF");
 
 
             base.ChildAddOrUpdateLookup.Add(typeof(Branch), "setBR");
@@ -45,6 +47,7 @@ namespace AionHR.Repository.WebService.Repositories
             base.ChildAddOrUpdateLookup.Add(typeof(Approval), "setAP");
             base.ChildAddOrUpdateLookup.Add(typeof(ApprovelDepartment), "setAD");
             base.ChildAddOrUpdateLookup.Add(typeof(ApprovalReason), "setAR");
+            base.ChildAddOrUpdateLookup.Add(typeof(WorkFlow), "setWF");
 
             ChildDeleteLookup.Add(typeof(Branch), "delBR");
             ChildDeleteLookup.Add(typeof(Department), "delDE");
@@ -54,6 +57,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(ApprovelDepartment), "delAD");
             ChildDeleteLookup.Add(typeof(LegalReference), "delBL");
             ChildDeleteLookup.Add(typeof(ApprovalReason), "delAR");
+            ChildDeleteLookup.Add(typeof(WorkFlow), "delWF");
 
 
 

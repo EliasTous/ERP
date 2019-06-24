@@ -23,16 +23,17 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
-using AionHR.Services.Messaging.CompanyStructure;
+using AionHR.Model.Employees.Profile;
 using AionHR.Web.UI.Forms.ConstClasses;
+
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class Approvals : System.Web.UI.Page
+    public partial class WorkFlows : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
-        ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
-        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        ICompanyStructureService _companyStructureRepository = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
         protected override void InitializeCulture()
         {
@@ -74,6 +75,7 @@ namespace AionHR.Web.UI.Forms
                     break;
             }
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -84,11 +86,9 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                approvalTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "24");
-
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveType), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(WorkFlow), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -97,8 +97,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-             //   FillDepartment();
-                apId.Text = "";
+
 
             }
 
@@ -150,13 +149,6 @@ namespace AionHR.Web.UI.Forms
 
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-            apId.Text = id;
-            panelRecordDetails.ActiveIndex = 0;
-            approvalFlowStore.DataSource = Common.XMLDictionaryList(_systemService, "29");
-            approvalFlowStore.DataBind();
-
-            //departmentId.Select("");
-            //     ApprovelDepartmentsStore.Reload();
 
             switch (type)
             {
@@ -165,7 +157,7 @@ namespace AionHR.Web.UI.Forms
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
 
-                    RecordResponse<Approval> response = _companyStructureService.ChildGetRecord<Approval>(r);
+                    RecordResponse<WorkFlow> response = _companyStructureRepository.ChildGetRecord<WorkFlow>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -177,7 +169,6 @@ namespace AionHR.Web.UI.Forms
 
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-                    //ApprovelDepartmentsGrid.Disabled = false;
                     this.EditRecordWindow.Show();
                     break;
 
@@ -208,63 +199,6 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-        //protected void PoPuPAD(object sender, DirectEventArgs e)
-        //{
-
-
-        //    string apId = e.ExtraParams["apId"];
-        //    string departmentId = e.ExtraParams["departmentId"];
-        //    string type = e.ExtraParams["type"];
-
-        //    switch (type)
-        //    {
-        //        //case "imgEdit":
-        //        //    //Step 1 : get the object from the Web Service 
-        //        //    RecordRequest r = new RecordRequest();
-        //        //    r.RecordID = id;
-
-        //        //    RecordResponse<Approval> response = _companyStructureService.ChildGetRecord<Approval>(r);
-        //        //    if (!response.Success)
-        //        //    {
-        //        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //        //       Common.errorMessage(response);
-        //        //        return;
-        //        //    }
-        //        //    //Step 2 : call setvalues with the retrieved object
-        //        //    this.BasicInfoTab.SetValues(response.result);
-
-
-        //        //    this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-        //        //    this.EditRecordWindow.Show();
-        //        //    break;
-
-        //        case "imgDelete":
-        //            X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-        //            {
-        //                Yes = new MessageBoxButtonConfig
-        //                {
-        //                    //We are call a direct request metho for deleting a record
-        //                    Handler = String.Format("App.direct.DeleteADRecord({0},{1})", apId, departmentId),
-        //                    Text = Resources.Common.Yes
-        //                },
-        //                No = new MessageBoxButtonConfig
-        //                {
-        //                    Text = Resources.Common.No
-        //                }
-
-        //            }).Show();
-        //            break;
-
-        //        case "imgAttach":
-
-        //            //Here will show up a winow relatice to attachement depending on the case we are working on
-        //            break;
-        //        default:
-        //            break;
-        //    }
-
-
-        //}
 
         /// <summary>
         /// This direct method will be called after confirming the delete
@@ -276,17 +210,18 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                Approval s = new Approval();
+                WorkFlow s = new WorkFlow();
                 s.recordId = index;
-               
+                //s.reference = "";
+
                 s.name = "";
-                PostRequest<Approval> req = new PostRequest<Approval>();
+                PostRequest<WorkFlow> req = new PostRequest<WorkFlow>();
                 req.entity = s;
-                PostResponse<Approval> r = _companyStructureService.ChildDelete<Approval>(req);
+                PostResponse<WorkFlow> r = _companyStructureRepository.ChildDelete<WorkFlow>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(r);;
+                    Common.errorMessage(r);
                     return;
                 }
                 else
@@ -313,48 +248,6 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-        //[DirectMethod]
-        //public void DeleteADRecord(string apId, string departmentId)
-        //{
-        //    try
-        //    {
-        //        //Step 1 Code to delete the object from the database 
-        //        ApprovelDepartment s = new ApprovelDepartment();
-        //        s.apId =Convert.ToInt32( apId);
-        //        s.departmentId = Convert.ToInt32(departmentId); 
-        //        PostRequest<ApprovelDepartment> req = new PostRequest<ApprovelDepartment>();
-        //        req.entity = s;
-        //        PostResponse<ApprovelDepartment> r = _companyStructureService.ChildDelete<ApprovelDepartment>(req);
-        //        if (!r.Success)
-        //        {
-        //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //           Common.errorMessage(r);;
-        //            return;
-        //        }
-        //        else
-        //        {
-        //            //Step 2 :  remove the object from the store
-        //            ApprovelDepartmentsStore.Reload();
-
-        //            //Step 3 : Showing a notification for the user 
-        //            Notification.Show(new NotificationConfig
-        //            {
-        //                Title = Resources.Common.Notification,
-        //                Icon = Icon.Information,
-        //                Html = Resources.Common.RecordDeletedSucc
-        //            });
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //In case of error, showing a message box to the user
-        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
-
-        //    }
-
-        //}
 
 
 
@@ -439,18 +332,14 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-            approvalFlowStore.DataSource = Common.XMLDictionaryList(_systemService, "29");
-            approvalFlowStore.DataBind();
+
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
-           // ApprovelDepartmentsGrid.Disabled = true;
-            panelRecordDetails.ActiveIndex = 0;
-            apId.Text = "";
 
             this.EditRecordWindow.Show();
         }
-        
+
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
@@ -466,39 +355,13 @@ namespace AionHR.Web.UI.Forms
             ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<Approval> routers = _companyStructureService.ChildGetAll<Approval>(request);
-           
+            ListResponse<WorkFlow> routers = _companyStructureRepository.ChildGetAll<WorkFlow>(request);
             if (!routers.Success)
-                 Common.errorMessage(routers);
+                return;
             this.Store1.DataSource = routers.Items;
             e.Total = routers.Items.Count; ;
 
             this.Store1.DataBind();
-        }
-        protected void ApprovelDepartmentsStore_RefreshData(object sender, StoreReadDataEventArgs e)
-        {
-
-            //GEtting the filter from the page
-            string filter = string.Empty;
-            int totalCount = 1;
-
-
-
-            //Fetching the corresponding list
-
-            //in this test will take a list of News
-            ApprovelDepartmentListRequest request = new ApprovelDepartmentListRequest();
-            request.apId = apId.Text;
-
-            request.Filter = "";
-            ListResponse<ApprovelDepartment> routers = _companyStructureService.ChildGetAll<ApprovelDepartment>(request);
-
-            if (!routers.Success)
-                 Common.errorMessage(routers);
-            this.ApprovelDepartmentsStore.DataSource = routers.Items;
-            e.Total = routers.Items.Count; ;
-
-            this.ApprovelDepartmentsStore.DataBind();
         }
 
 
@@ -512,15 +375,9 @@ namespace AionHR.Web.UI.Forms
 
 
             string obj = e.ExtraParams["values"];
-            Approval b = JsonConvert.DeserializeObject<Approval>(obj);
+            WorkFlow b = JsonConvert.DeserializeObject<WorkFlow>(obj);
 
             string id = e.ExtraParams["id"];
-            if (string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(apId.Text))
-            {
-                id = apId.Text;
-                b.recordId = id;
-            }
-
             // Define the object to add or edit as null
 
             if (string.IsNullOrEmpty(id))
@@ -530,10 +387,10 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<Approval> request = new PostRequest<Approval>();
+                    PostRequest<WorkFlow> request = new PostRequest<WorkFlow>();
 
                     request.entity = b;
-                    PostResponse<Approval> r = _companyStructureService.ChildAddOrUpdate<Approval>(request);
+                    PostResponse<WorkFlow> r = _companyStructureRepository.ChildAddOrUpdate<WorkFlow>(request);
 
 
                     //check if the insert failed
@@ -541,15 +398,14 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                       Common.errorMessage(r);
+                        Common.errorMessage(r);
                         return;
                     }
                     else
                     {
                         b.recordId = r.recordId;
-                        apId.Text = b.recordId;
                         //Add this record to the store 
-                        Store1.Reload();
+                        this.Store1.Insert(0, b);
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -559,11 +415,10 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        //this.EditRecordWindow.Close();
+                        this.EditRecordWindow.Close();
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
-                        //ApprovelDepartmentsGrid.Disabled = false;
 
 
 
@@ -585,9 +440,9 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     //getting the id of the record
-                    PostRequest<Approval> request = new PostRequest<Approval>();
+                    PostRequest<WorkFlow> request = new PostRequest<WorkFlow>();
                     request.entity = b;
-                    PostResponse<Approval> r = _companyStructureService.ChildAddOrUpdate<Approval>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<WorkFlow> r = _companyStructureRepository.ChildAddOrUpdate<WorkFlow>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -602,10 +457,9 @@ namespace AionHR.Web.UI.Forms
                     {
 
 
-                        //ModelProxy record = this.Store1.GetById(id);
-                        //BasicInfoTab.UpdateRecord(record);
-                        //record.Commit();
-                        Store1.Reload();
+                        ModelProxy record = this.Store1.GetById(id);
+                        BasicInfoTab.UpdateRecord(record);
+                        record.Commit();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -641,45 +495,8 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        //private void FillDepartment()
-        //{
-        //    DepartmentListRequest departmentsRequest = new DepartmentListRequest();
-        //    departmentsRequest.type = 0;
-        //    ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
-        //    if (!resp.Success)
-        //        Common.errorMessage(resp);
-        //    departmentStore.DataSource = resp.Items;
-        //    departmentStore.DataBind();
-        //}
-
-        //protected void addDepartment(object sender, DirectEventArgs e)
-        //{
-        //    ApprovelDepartment dept = new ApprovelDepartment();
-        //    dept.departmentId =Convert.ToInt32( departmentId.Value.ToString());
-        //    dept.apId = Convert.ToInt32(apId.Text);
-
-        //    PostRequest<ApprovelDepartment> depReq = new PostRequest<ApprovelDepartment>();
-        //    depReq.entity = dept;
-        //    PostResponse<ApprovelDepartment> response = _companyStructureService.ChildAddOrUpdate<ApprovelDepartment>(depReq);
-        //    if (response.Success)
-        //    {
-        //        ApprovelDepartmentsStore.Reload();
-        //        Notification.Show(new NotificationConfig
-        //        {
-        //            Title = Resources.Common.Notification,
-        //            Icon = Icon.Information,
-        //            Html = Resources.Common.RecordUpdatedSucc
-        //        });
-        //    }
-        //    else
-        //    {
-        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //        Common.errorMessage(response);
-        //        return;
-        //    }
-
-        //}
-
 
     }
+
+
 }
