@@ -454,8 +454,8 @@ namespace AionHR.Web.UI.Forms
 
             BranchAvailabilityScheduleRecordRequest reqFS = new BranchAvailabilityScheduleRecordRequest();
             reqFS.BranchId = Convert.ToInt32(branchId.Value.ToString());
-            reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            reqFS.StartDate = dateFrom.SelectedDate;
+            reqFS.EndDate = dateTo.SelectedDate;
             if (!string.IsNullOrEmpty(departmentId.SelectedItem.Text))
                 reqFS.departmentId = Convert.ToInt32(departmentId.Value.ToString());
             else
