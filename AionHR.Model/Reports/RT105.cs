@@ -11,7 +11,7 @@ namespace AionHR.Model.Reports
     [ClassIdentifier("80105", "80")]
     public class RT105
     {
-        public EmployeeName name
+        public string employeeName
         {
             get; set;
         }
@@ -29,7 +29,7 @@ namespace AionHR.Model.Reports
 
         public string notes { get; set; }
 
-        public EmployeeName reportToName
+        public string reportToName
         {
             get; set;
         }

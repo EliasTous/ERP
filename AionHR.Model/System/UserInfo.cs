@@ -29,8 +29,18 @@ namespace AionHR.Model.System
         public string email { get; set; }
         [PropertyID("20010_03")]
         [ApplySecurity]
-        public bool isInactive { get; set; }
+        public short activeStatus { get; set; }
+        public bool isInactive
+        {
+            get
+            {
+                if ((int)this.activeStatus == -1)
+                    return true;
+                else return false;
+            }
+            set { }
 
+        }
         [PropertyID("20010_04")]
         [ApplySecurity]
         public bool isAdmin
@@ -78,7 +88,7 @@ namespace AionHR.Model.System
         public string departmentName { get; set; }
         public string positionName { get; set; }
         public string userTypeName { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
 
 
 

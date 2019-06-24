@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT306.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT306" %>
 
-<%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
-<%@ Register Assembly="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.XtraReports.v18.2.Web.WebForms, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -36,7 +36,7 @@
                <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
-         <ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=RT306&values="/>
+         <ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=TATA&values="/>
         <ext:Hidden ID="vals" runat="server" />
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
@@ -124,7 +124,7 @@
             </Listeners>
             <Items>
                 <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
-                    <Loader runat="server" Url="../ReportParameterBrowser.aspx?_reportName=RT306" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                    <Loader runat="server" Url="../ReportParameterBrowser.aspx?_reportName=TATA" Mode="Frame" ID="Loader8" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true">
                         <Listeners>

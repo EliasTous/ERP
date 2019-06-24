@@ -28,6 +28,7 @@ using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
 using AionHR.Model.HelpFunction;
 using AionHR.Services.Messaging.TimeAttendance;
+using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -148,7 +149,7 @@ namespace AionHR.Web.UI.Forms
         {
 
 
-            int dayId = Convert.ToInt32(e.ExtraParams["dayId"]);
+            string dayId = e.ExtraParams["dayId"];
             int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
             CurrentDay.Text = dayId.ToString();
             CurrentEmployee.Text = employeeId.ToString();
@@ -161,7 +162,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
                     AttendanceShiftListRequest request = new AttendanceShiftListRequest();
                     request.EmployeeId = employeeId;
-                    request.DayId = dayId;
+                    request.DayId = dayId ;
                     ListResponse<AttendanceShift> shifts = _timeAttendanceService.ChildGetAll<AttendanceShift>(request);
                     if(shifts.Success)
                     {
@@ -527,7 +528,7 @@ namespace AionHR.Web.UI.Forms
             req.Size = "30";
             req.StartAt = "0";
             req.Filter = "";
-            req.SortBy = "dayId,checkIn";
+            req.SortBy = "dayId";
           
          //  req.apStatus = 0;
          
@@ -541,7 +542,50 @@ namespace AionHR.Web.UI.Forms
             {
                 //GEtting the filter from the page
 
-                AttendnanceDayListRequest req = GetAttendanceDayRequest();
+                //AttendnanceDayListRequest req = GetAttendanceDayRequest();
+                string rep_params = "";
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                if (startDayId.SelectedDate != DateTime.MinValue)
+
+                {
+                    parameters.Add("2", startDayId.SelectedDate.ToString("yyyyMMdd")); ;
+
+
+                }
+               
+                if (endDayId.SelectedDate != DateTime.MinValue)
+
+                {
+                    parameters.Add("3", endDayId.SelectedDate.ToString("yyyyMMdd"));
+
+
+                }
+
+                parameters.Add("1",_systemService.SessionHelper.GetEmployeeId());
+             
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
+
+
+
+                TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
+
+
+                req.paramString = rep_params;
+
+
+                req.Size = "30";
+                req.sortBy = "recordId";
+
+
+             
                 req.StartAt = e.Start.ToString();
                 ListResponse<AttendanceDay> daysResponse = _selfServiceService.ChildGetAll<AttendanceDay>(req);
                 if (!daysResponse.Success)
@@ -667,39 +711,8 @@ namespace AionHR.Web.UI.Forms
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            return Common.GetEmployeesFiltered(prms.Query);
 
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-
-            data.ForEach(s => s.fullName = s.name.fullName);
-            //  return new
-            // {
-            return data;
-            //};
-
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = "firstName";
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if(!response.Success)
-                 Common.errorMessage(response);
-            return response.Items;
         }
 
         protected void attendanceShiftStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -843,19 +856,40 @@ namespace AionHR.Web.UI.Forms
             this.EditShiftWindow.Show();
         }
 
-        protected void FillTimeApproval(int dayId, int employeeId)
+        protected void FillTimeApproval(string dayId, int employeeId)
         {
             try
             {
-                DashboardTimeListRequest r = new DashboardTimeListRequest();
-                r.dayId = dayId.ToString();
-                r.employeeId = employeeId;
-                r.approverId = 0;
-                r.StartAt = "0";
-                r.Size = "1000";
-              
+                
+                string rep_params = "";
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Add("1", employeeId.ToString());
+                parameters.Add("2", dayId.ToString());
+                parameters.Add("3", dayId.ToString());
+                parameters.Add("4", "0");
+                parameters.Add("5", "0");
+                parameters.Add("6", "0");
+                parameters.Add("7", "0");
+                parameters.Add("8", "0");
+                parameters.Add("9", "0");
+                parameters.Add("10", "0");
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
 
-                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
+
+
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+
+
+                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(req);
                 if (!Times.Success)
                 {
                     Common.errorMessage(Times);

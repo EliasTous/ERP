@@ -31,9 +31,9 @@ public class EmployeePayrollListRequest : ListRequest
     public string DepartmentId { get; set; }
 
     public string BranchId { get; set; }
-    public string PositionId { get; set; }
 
     public string EmployeeId { get; set; }
+   
 
     public string PayId { get; set; }
    
@@ -43,15 +43,12 @@ public class EmployeePayrollListRequest : ListRequest
         get
         {
             parameters = base.Parameters;
-            if (string.IsNullOrEmpty(PositionId))
-                PositionId = "0";
             parameters.Add("_payId", PayId);
             parameters.Add("_departmentId", DepartmentId);
             parameters.Add("_branchId", BranchId);
             parameters.Add("_employeeId", EmployeeId);
-            parameters.Add("_positionId", PositionId);
-
-
+           // parameters.Add("_positionId", Position);
+            
             return parameters;
         }
     }

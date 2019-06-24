@@ -11,7 +11,7 @@ namespace AionHR.Model.Reports
     [ClassIdentifier("80303", "80")]
     public class RT303
     {
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public string employeeId { get; set; }
         public string dayId { get; set; }
         public short? dow { get; set; }
@@ -33,5 +33,7 @@ namespace AionHR.Model.Reports
         public double? EARLY_LEAVE { get; set; }
         public double? EARLY_CHECKIN { get; set; }
         public double? OVERTIME { get; set; }
+        public double? scheduledHours { get; set; }
+        public double? workingHours { get; set; }
     }
 }

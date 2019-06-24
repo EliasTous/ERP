@@ -317,7 +317,7 @@
                                                     </Listeners>
                                                 </ext:ComboBox>
 
-                                         <ext:ComboBox      AnyMatch="true" CaseSensitive="false"  runat="server" EnableRegEx="true"  AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldJIBranch%>" >
+                                         <ext:ComboBox      AnyMatch="true" CaseSensitive="false"  runat="server" EnableRegEx="true"  AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldJIBranch%>" >
                                                 <Store>
                                                     <ext:Store runat="server" ID="BranchStore">
                                                         <Model>

@@ -167,8 +167,8 @@ public class SponsorsReport : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell16,
             this.xrTableCell18,
             this.xrTableCell20});
-            resources.ApplyResources(this.xrTableRow4, "xrTableRow4");
             this.xrTableRow4.Name = "xrTableRow4";
+            resources.ApplyResources(this.xrTableRow4, "xrTableRow4");
             // 
             // xrTableCell8
             // 
@@ -176,77 +176,77 @@ public class SponsorsReport : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell8.CanGrow = false;
             this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "name")});
-            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.StyleName = "FieldCaption";
             this.xrTableCell8.StylePriority.UseBorders = false;
             this.xrTableCell8.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
             // 
             // xrTableCell10
             // 
             this.xrTableCell10.CanGrow = false;
             this.xrTableCell10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "address")});
-            resources.ApplyResources(this.xrTableCell10, "xrTableCell10");
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell10, "xrTableCell10");
             // 
             // xrTableCell12
             // 
             this.xrTableCell12.CanGrow = false;
             this.xrTableCell12.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "city")});
-            resources.ApplyResources(this.xrTableCell12, "xrTableCell12");
             this.xrTableCell12.Name = "xrTableCell12";
             this.xrTableCell12.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell12, "xrTableCell12");
             // 
             // xrTableCell14
             // 
             this.xrTableCell14.CanGrow = false;
             this.xrTableCell14.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "phone")});
-            resources.ApplyResources(this.xrTableCell14, "xrTableCell14");
             this.xrTableCell14.Name = "xrTableCell14";
             this.xrTableCell14.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell14, "xrTableCell14");
             // 
             // xrTableCell16
             // 
             this.xrTableCell16.CanGrow = false;
             this.xrTableCell16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "mobile")});
-            resources.ApplyResources(this.xrTableCell16, "xrTableCell16");
             this.xrTableCell16.Name = "xrTableCell16";
             this.xrTableCell16.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell16, "xrTableCell16");
             // 
             // xrTableCell18
             // 
             this.xrTableCell18.CanGrow = false;
             this.xrTableCell18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "fax")});
-            resources.ApplyResources(this.xrTableCell18, "xrTableCell18");
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell18, "xrTableCell18");
             // 
             // xrTableCell20
             // 
             this.xrTableCell20.CanGrow = false;
             this.xrTableCell20.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "email")});
-            resources.ApplyResources(this.xrTableCell20, "xrTableCell20");
             this.xrTableCell20.Name = "xrTableCell20";
             this.xrTableCell20.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell20, "xrTableCell20");
             // 
             // TopMargin
             // 
-            resources.ApplyResources(this.TopMargin, "TopMargin");
             this.TopMargin.Name = "TopMargin";
             this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            resources.ApplyResources(this.TopMargin, "TopMargin");
             // 
             // BottomMargin
             // 
-            resources.ApplyResources(this.BottomMargin, "BottomMargin");
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            resources.ApplyResources(this.BottomMargin, "BottomMargin");
             // 
             // objectDataSource1
             // 
@@ -280,58 +280,58 @@ public class SponsorsReport : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell13,
             this.xrTableCell15,
             this.xrTableCell17});
-            resources.ApplyResources(this.xrTableRow3, "xrTableRow3");
             this.xrTableRow3.Name = "xrTableRow3";
+            resources.ApplyResources(this.xrTableRow3, "xrTableRow3");
             // 
             // xrTableCell19
             // 
             this.xrTableCell19.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell19, "xrTableCell19");
             this.xrTableCell19.Name = "xrTableCell19";
             this.xrTableCell19.StyleName = "FieldCaption";
             this.xrTableCell19.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell19, "xrTableCell19");
             // 
             // xrTableCell7
             // 
             this.xrTableCell7.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell7, "xrTableCell7");
             this.xrTableCell7.Name = "xrTableCell7";
             this.xrTableCell7.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell7, "xrTableCell7");
             // 
             // xrTableCell9
             // 
             this.xrTableCell9.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell9, "xrTableCell9");
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell9, "xrTableCell9");
             // 
             // xrTableCell11
             // 
             this.xrTableCell11.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell11, "xrTableCell11");
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell11, "xrTableCell11");
             // 
             // xrTableCell13
             // 
             this.xrTableCell13.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell13, "xrTableCell13");
             this.xrTableCell13.Name = "xrTableCell13";
             this.xrTableCell13.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell13, "xrTableCell13");
             // 
             // xrTableCell15
             // 
             this.xrTableCell15.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell15, "xrTableCell15");
             this.xrTableCell15.Name = "xrTableCell15";
             this.xrTableCell15.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell15, "xrTableCell15");
             // 
             // xrTableCell17
             // 
             this.xrTableCell17.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell17, "xrTableCell17");
             this.xrTableCell17.Name = "xrTableCell17";
             this.xrTableCell17.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell17, "xrTableCell17");
             // 
             // xrTableRow1
             // 
@@ -339,23 +339,23 @@ public class SponsorsReport : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell1,
             this.xrTableCell2,
             this.xrTableCell3});
-            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             this.xrTableRow1.Name = "xrTableRow1";
+            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             // 
             // xrTableCell1
             // 
-            resources.ApplyResources(this.xrTableCell1, "xrTableCell1");
             this.xrTableCell1.Name = "xrTableCell1";
+            resources.ApplyResources(this.xrTableCell1, "xrTableCell1");
             // 
             // xrTableCell2
             // 
-            resources.ApplyResources(this.xrTableCell2, "xrTableCell2");
             this.xrTableCell2.Name = "xrTableCell2";
+            resources.ApplyResources(this.xrTableCell2, "xrTableCell2");
             // 
             // xrTableCell3
             // 
-            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             this.xrTableCell3.Name = "xrTableCell3";
+            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             // 
             // xrTableRow2
             // 
@@ -363,23 +363,23 @@ public class SponsorsReport : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell4,
             this.xrTableCell5,
             this.xrTableCell6});
-            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             this.xrTableRow2.Name = "xrTableRow2";
+            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             // 
             // xrTableCell4
             // 
-            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             this.xrTableCell4.Name = "xrTableCell4";
+            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             // 
             // xrTableCell5
             // 
-            resources.ApplyResources(this.xrTableCell5, "xrTableCell5");
             this.xrTableCell5.Name = "xrTableCell5";
+            resources.ApplyResources(this.xrTableCell5, "xrTableCell5");
             // 
             // xrTableCell6
             // 
-            resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             this.xrTableCell6.Name = "xrTableCell6";
+            resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             // 
             // pageFooterBand1
             // 
@@ -521,7 +521,7 @@ public class SponsorsReport : DevExpress.XtraReports.UI.XtraReport
             this.FieldCaption,
             this.PageInfo,
             this.DataField});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();

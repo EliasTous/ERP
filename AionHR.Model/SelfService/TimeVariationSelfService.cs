@@ -26,7 +26,7 @@ namespace AionHR.Model.SelfService
         public short duration { get; set; }
         public string durationString { get; set; }
 
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public string branchName { get; set; }
         public string positionName { get; set; }
         public short? damageLevel { get; set; }

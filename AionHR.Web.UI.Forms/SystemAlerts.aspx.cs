@@ -212,6 +212,14 @@ namespace AionHR.Web.UI.Forms
             //    else
             //        union.Add(item);
             //}
+            resp.Items.ForEach(x =>
+                {
+                    if (x.activeStatus == (Int16)ActiveStatus.ACTIVE)
+                        x.isActive = true;
+                    else
+                        x.isActive = false;
+
+                });
             this.Store1.DataSource = resp.Items;
             e.Total = resp.Items.Count;
 
@@ -237,7 +245,14 @@ namespace AionHR.Web.UI.Forms
             string values = e.ExtraParams["values"];
 
             List<SystemAlert> alerts = JsonConvert.DeserializeObject<List<SystemAlert>>(values);
+            alerts.ForEach(x =>
+            {
+                if (x.isActive)
+                    x.activeStatus =(Int16) ActiveStatus.ACTIVE;
+                else
+                    x.activeStatus = (Int16)ActiveStatus.INACTIVE;
 
+            });
             PostRequest<SystemAlert[]> req = new PostRequest<SystemAlert[]>();
             req.entity = alerts.ToArray();
 

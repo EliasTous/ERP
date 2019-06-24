@@ -108,7 +108,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         Viewport1.Hidden = true;
                         return;
                     }
-                 //   dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+                    //   dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     fiscalyearStore.DataSource = GetYears();
@@ -201,12 +201,12 @@ namespace AionHR.Web.UI.Forms.Reports
             //  req.Add(dateRange1.GetRange());
             SalaryTypeParameterSet STP = new SalaryTypeParameterSet();
             if (string.IsNullOrEmpty(salaryType.Value.ToString()))
-                 STP.SalaryTypeId = 0;
+                STP.SalaryTypeId = 0;
             else
-            STP.SalaryTypeId = Convert.ToInt32(salaryType.Value);
+                STP.SalaryTypeId = Convert.ToInt32(salaryType.Value);
             req.Add(STP);
             FiscalYearParameter FYP = new FiscalYearParameter();
-            FYP.fiscalYear =Convert.ToInt32( fiscalYear.SelectedItem.Value);
+            FYP.fiscalYear = Convert.ToInt32(fiscalYear.SelectedItem.Value);
             req.Add(FYP);
             PeriodIdParameter PIP = new PeriodIdParameter();
             PIP.periodId = Convert.ToInt32(periodId.SelectedItem.Value);
@@ -232,7 +232,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 x.cvMissedPunches = Math.Round(x.cvMissedPunches, 2);
             });
 
-          
+
 
             PayrollPeriodTimeCodes h = new PayrollPeriodTimeCodes();
             h.DataSource = resp.Items;
@@ -240,8 +240,8 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             string d = periodId.SelectedItem.Text.ToString().Split('(')[1].Split(')')[0];
-            
-            
+
+
             string user = _systemService.SessionHelper.GetCurrentUser();
             h.Parameters["From"].Value = d.Split('-')[0].ToString().Trim();
             h.Parameters["To"].Value = d.Split('-')[1].Trim();
@@ -259,12 +259,12 @@ namespace AionHR.Web.UI.Forms.Reports
                     h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
                 if (req.Parameters["_employeeId"] != "0")
-                    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
+                    h.Parameters["Employee"].Value = resp.Items[0].employeeName;
                 else
                     h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
 
                 if (req.Parameters["_salaryType"] != "0")
-                    h.Parameters["SalaryType"].Value = salaryType.SelectedItem.Text; 
+                    h.Parameters["SalaryType"].Value = salaryType.SelectedItem.Text;
                 else
                     h.Parameters["SalaryType"].Value = GetGlobalResourceObject("Common", "All");
 
@@ -308,30 +308,10 @@ namespace AionHR.Web.UI.Forms.Reports
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
-           StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
 
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            return Common.GetEmployeesFiltered(prms.Query);
 
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-            req.filterField = "0";
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
         }
 
 
@@ -347,14 +327,14 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 req.Year = fiscalYear.Value.ToString();
                 if (!string.IsNullOrEmpty(salaryType.Value.ToString()))
-                req.PeriodType = Convert.ToInt32(salaryType.Value.ToString());
+                    req.PeriodType = Convert.ToInt32(salaryType.Value.ToString());
                 else
                 {
                     return;
                 }
                 if (string.IsNullOrEmpty(req.Year))
                 {
-                //    X.Call("FiscalYearError", Resources.Errors.);
+                    //    X.Call("FiscalYearError", Resources.Errors.);
                     return;
 
                 }
@@ -364,7 +344,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 if (!resp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() +"<br>"+GetGlobalResourceObject("Errors","ErrorLogId")+resp.LogId : resp.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
                     return;
                 }
                 List<object> obs = new List<Object>();

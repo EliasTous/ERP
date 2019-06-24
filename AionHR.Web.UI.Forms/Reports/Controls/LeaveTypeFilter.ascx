@@ -2,7 +2,7 @@
 <ext:Panel runat="server" Layout="HBoxLayout" Width="150">
     <Items>
        
-        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" Width="140" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="ltId" Name="ltId" EmptyText="<%$ Resources:FieldLeaveType%>">
+        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" Width="140" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="ltId" >
             <Store>
                 <ext:Store runat="server" ID="ltStore">
                     <Model>
@@ -16,7 +16,13 @@
                 </ext:Store>
             </Store>
 
-
+            <Triggers>
+                <ext:FieldTrigger Icon="Clear" />
+            </Triggers>
+            <Listeners>
+                <TriggerClick Handler="
+                                       this.clearValue();" />
+            </Listeners>
         </ext:ComboBox>
      
     </Items>

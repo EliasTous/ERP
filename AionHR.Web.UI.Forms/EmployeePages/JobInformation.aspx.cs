@@ -303,7 +303,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                                 new
                                 {
                                     recordId = response2.result.reportToId,
-                                    fullName =response2.result.reportToName.fullName
+                                    fullName =response2.result.reportToName
                                 }
                            });
                         reportToId.SetValue(response2.result.reportToId);
@@ -440,6 +440,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Html = Resources.Common.RecordDeletedSucc
                     });
                     X.Call("parent.refreshQV");
+                    X.Call("parent.SetJobInfo", null, null, null, null,null);
                 }
 
             }
@@ -718,9 +719,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (divisionId.SelectedItem != null)
                     b.divisionName = divisionId.SelectedItem.Text;
 
-                b.reportToName = new EmployeeName();
+               // b.reportToName = new EmployeeName();
                 if (reportToId.SelectedItem != null)
-                    b.reportToName.fullName = reportToId.SelectedItem.Text;
+                    b.reportToName = reportToId.SelectedItem.Text;
                 // Define the object to add or edit as null
                 if (b.reportToId == 0)
                     b.reportToId = null;
@@ -828,8 +829,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 }
 
                 X.Call("parent.refreshQV");
+                X.Call("parent.SetJobInfo", b.departmentId,b.branchId,b.positionId,b.divisionId,b.reportToId);
 
-            }catch(Exception exp)
+            }
+            catch(Exception exp)
             {
                 X.Msg.Alert(Resources.Common.Error,exp.Message).Show();
             }
@@ -897,45 +900,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             divisionStore.DataSource = resp.Items;
             divisionStore.DataBind();
         }
-
         [DirectMethod]
         public object FillSupervisor(string action, Dictionary<string, object> extraParams)
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            if (data == null)
-                data = new List<Employee>();
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-            //};
+            return Common.GetEmployeesFiltered(prms.Query);
 
         }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
+       
+        
 
         #region combobox dynamic insert
 
@@ -966,7 +940,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             Branch dept = new Branch();
             dept.name = branchId.Text;
             dept.isInactive = false;
-            dept.timeZone = _systemService.SessionHelper.GetDefaultTimeZone();
+       //     dept.timeZone = _systemService.SessionHelper.GetDefaultTimeZone();
             PostRequest<Branch> depReq = new PostRequest<Branch>();
             depReq.entity = dept;
             PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(depReq);

@@ -303,4 +303,25 @@
   <data name="tv_url" xml:space="preserve">
     <value>Url</value>
   </data>
+  <data name="leave_employeeName" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
+  <data name="approve_url" xml:space="preserve">
+    <value>Approuver l'URL</value>
+  </data>
+  <data name="leave_destination" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="leave_justification" xml:space="preserve">
+    <value>Justification</value>
+  </data>
+  <data name="leave_leavetype" xml:space="preserve">
+    <value>Laisser le type</value>
+  </data>
+  <data name="reject_url" xml:space="preserve">
+    <value>Rejeter l'URL</value>
+  </data>
+  <data name="replacement_employee" xml:space="preserve">
+    <value>Employé de remplacement</value>
+  </data>
 </root>

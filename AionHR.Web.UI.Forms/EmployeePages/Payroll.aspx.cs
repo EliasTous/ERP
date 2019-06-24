@@ -726,33 +726,61 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         protected void ADDNewSA(object sender, DirectEventArgs e)
         {
-            fillSalaryType();
-            CurrentSalary.Text = "";
-            entitlementsForm.Disabled = true;
-            DeductionForm.Disabled = true; 
+            try
+            {
+                fillSalaryType();
+                CurrentSalary.Text = "";
+                entitlementsForm.Disabled = true;
+                DeductionForm.Disabled = true;
 
-            //Reset all values of the relative object
-            EditSAForm.Reset();
-            entitlementsStore.DataSource = new List<SalaryDetail>();
-            entitlementsStore.DataBind();
-            deductionStore.DataSource = new List<SalaryDetail>();
-            deductionStore.DataBind();
-            TabPanel2.ActiveIndex = 0;
-            CurrentSalaryCurrency.Text = "";
-            this.EditSAWindow.Title = Resources.Common.AddNewRecord;
-            FillCurrency();
-            FillScr();
-            FillBank();
-            currencyId.Select(_systemService.SessionHelper.GetDefaultCurrency());
-            dedsStore.Reload();
-            entsStore.Reload();
-            paymentMethod.Select("1");
-           
-            effectiveDate.SelectedDate = DateTime.Today;
-            ENSeq.Text = "0";
-            DESeq.Text = "0";
+                //Reset all values of the relative object
+                EditSAForm.Reset();
+                entitlementsStore.DataSource = new List<SalaryDetail>();
+                entitlementsStore.DataBind();
+                deductionStore.DataSource = new List<SalaryDetail>();
+                deductionStore.DataBind();
+                TabPanel2.ActiveIndex = 0;
+                CurrentSalaryCurrency.Text = "";
+                this.EditSAWindow.Title = Resources.Common.AddNewRecord;
+                FillCurrency();
+                FillScr();
+                FillBank();
+                currencyId.Select(_systemService.SessionHelper.GetDefaultCurrency());
+                dedsStore.Reload();
+                entsStore.Reload();
+                paymentMethod.Select("1");
 
-            this.EditSAWindow.Show();
+                effectiveDate.SelectedDate = DateTime.Today;
+                ENSeq.Text = "0";
+                DESeq.Text = "0";
+                EmployeeSalaryListRequest request = new EmployeeSalaryListRequest();
+                request.Filter = "";
+                request.EmployeeId = CurrentEmployee.Text;
+
+                request.Filter = "";
+
+                request.Size = "50";
+                request.StartAt = "0";
+
+                ListResponse<EmployeeSalary> lastSalaryList = _employeeService.ChildGetAll<EmployeeSalary>(request);
+                if (!lastSalaryList.Success)
+                {
+                    Common.errorMessage(lastSalaryList);
+                    return;
+                }
+                if (lastSalaryList.Items != null && lastSalaryList.Items.Count > 0)
+                {
+                    EmployeeSalary lastSalary = lastSalaryList.Items.OrderBy(x => x.effectiveDate).ToList().Last();
+                    this.EditSAForm.SetValues(lastSalary);
+                    SAId.Text = "";
+                    effectiveDate.Value = DateTime.Now;
+                }
+                this.EditSAWindow.Show();
+            }
+            catch(Exception exp)
+            {
+                X.MessageBox.Alert(Resources.Common.Error, exp.Message);
+            }
         }
 
         protected void ADDNewBO(object sender, DirectEventArgs e)

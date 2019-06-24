@@ -195,8 +195,8 @@
                             Position="Bottom"
                             Grid="true"
                             AdjustByMajorUnit="true"
-                            Minimum="0">
-                            <Renderer Handler="return label;" />
+                            Minimum="0" >
+                           <Renderer Handler="return Ext.Number.toFixed(label, 1);" />
                         </ext:NumericAxis>
 
                         <ext:CategoryAxis Fields="departmentName" Position="Left" Grid="true" />

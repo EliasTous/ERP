@@ -14,7 +14,7 @@ namespace AionHR.Model.Attendance
     public  class ActiveCheck : ModelBase
     {
         public int employeeId { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public short checkStatus { get; set; }
         public string time { get; set; }
         public string positionName { get; set; }
@@ -33,7 +33,7 @@ namespace AionHR.Model.Attendance
     public  class MissedPunch : ModelBase
     {
         public int employeeId { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public string dayId { get; set; }
         public bool missedIn { get; set; }
         public bool missedOut { get; set; }
@@ -43,7 +43,7 @@ namespace AionHR.Model.Attendance
     public  class ActiveAbsence : ModelBase
     {
         public int employeeId { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public string positionName { get; set; }
         public string departmentName { get; set; }
         public string branchName { get; set; }
@@ -59,7 +59,7 @@ namespace AionHR.Model.Attendance
     public  class ActiveLeave : ModelBase
     {
         public int employeeId { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
         public string ltName { get; set; }

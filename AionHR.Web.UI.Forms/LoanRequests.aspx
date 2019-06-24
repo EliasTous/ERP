@@ -179,7 +179,7 @@
                         <ext:ModelField Name="deductedAmount" />
                          <ext:ModelField Name="ldMethod" />
                          <ext:ModelField Name="ldValue" />
-                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                        <ext:ModelField Name="employeeName"  />
                     </Fields>
                 </ext:Model>
             </Model>
@@ -296,8 +296,8 @@
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                              <ext:Column ID="Column5" DataIndex="loanRef" Text="<%$ Resources: FieldReference%>" runat="server" />
                             <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
-                                <Renderer Handler=" return record.data['employeeName'].fullName; ">
-                                </Renderer>
+                            
+                              
                             </ext:Column>
                            
                            <%-- <ext:Column ID="Column7" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />--%>
@@ -651,8 +651,25 @@
                         <ext:ConfigItem Name="startDateField" Value="date" Mode="Value" />
                     </CustomConfig>
                                     </ext:DateField>
-                                
-                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ldMethod" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  AllowBlank="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"  FieldLabel="<%$ Resources: LoanCoverageType %>"  runat="server" DisplayField="value" ValueField="key"   Name="ldMethod" ID="ldMethod" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="ldMethodStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                         <Listeners>
+                                               <Change Handler="  if(#{ldMethod}.value ==5) {#{ldValue}.setValue(null); #{ldValue}.setDisabled(true); } else {#{ldValue}.setDisabled(false);#{ldValue}.validate();}"></Change>
+
+                                           </Listeners>
+                                       </ext:ComboBox>
+                                    <%--    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ldMethod" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     FieldLabel="<%$ Resources: LoanCoverageType %>" AllowBlank="false" SubmitValue="true">
                                     <Items>
                                        
@@ -664,11 +681,8 @@
                                                 <ext:ListItem Text="<%$ Resources: PFormFullSalaryDeduction %>" Value="5" />
 
                                             </Items>
-                                           <Listeners>
-                                               <Change Handler="  if(#{ldMethod}.value ==5) {#{ldValue}.setValue(null); #{ldValue}.setDisabled(true); } else {#{ldValue}.setDisabled(false);#{ldValue}.validate();}"></Change>
-
-                                           </Listeners>
-                                        </ext:ComboBox>
+                                          
+                                        </ext:ComboBox>--%>
                                         <ext:TextField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
                                       
                                          <validator Handler="return validateLdValue(this.value);">
@@ -1100,7 +1114,7 @@
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
-                                                <ext:ModelField Name="approverName" IsComplex="true" />
+                                                <ext:ModelField Name="approverName"  />
                                                 <ext:ModelField Name="departmentName" />
                                                  <ext:ModelField Name="loanId" />
                                                 <ext:ModelField Name="approverId" />
@@ -1124,8 +1138,8 @@
                                     <ext:Column ID="approverId" Visible="false" DataIndex="approverId" runat="server" />
                                  
                                         <ext:Column ID="Column8" DataIndex="approverName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
-                                           <Renderer Handler=" return record.data['approverName'].fullName; ">
-                                           </Renderer>
+                                          
+                                        
                                          </ext:Column>
                                     <ext:Column ID="departmentName" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1"/>
                                     <ext:Column ID="lAstatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
@@ -1204,7 +1218,21 @@
                              </ext:NumberField>
                                 
                                 <ext:DateField ID="deductionDate" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="type"  Name="type" runat="server" FieldLabel="<%$ Resources:FieldType%>"  ForceSelection="true" AllowBlank="false" >
+                                    <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false"  FieldLabel="<%$ Resources:FieldType%>"  runat="server" DisplayField="value" ValueField="key"   Name="type" ID="type" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="typeStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       </ext:ComboBox>
+                             <%--   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="type"  Name="type" runat="server" FieldLabel="<%$ Resources:FieldType%>"  ForceSelection="true" AllowBlank="false" >
                                     <Items>
                                           <ext:ListItem Text="<%$ Resources: paymentType%>" Value="1"></ext:ListItem>
                                      
@@ -1212,7 +1240,7 @@
                                       
                                     </Items>
                                    
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                
                                   <ext:TextArea ID="notes" runat="server" FieldLabel="<%$ Resources:FieldNotes%>" Name="notes" AllowBlank="true"   MaxHeight="100"  Height="100"/>
                              

@@ -145,7 +145,7 @@
     <value>Time Attendance Reference</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
+    <value>Licenses to Branch</value>
   </data>
   <data name="FieldProbationPeriod" xml:space="preserve">
     <value>Probation Period</value>

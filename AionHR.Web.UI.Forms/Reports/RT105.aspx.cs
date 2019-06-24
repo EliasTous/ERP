@@ -170,7 +170,23 @@ namespace AionHR.Web.UI.Forms.Reports
             }
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
         [DirectMethod]
         public string CheckSession()
@@ -183,32 +199,18 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-            req.SortBy = "firstName";
-
-
-            req.Add(jobInfo1.GetJobInfo());//jobInfo1 is a user control that displays combos for employee job information
-            req.Add(activeStatus1.GetActiveStatus());
-
-            //req.Add();
-            return req;
-        }
+        
         protected void firstStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
 
-            ReportCompositeRequest req = GetRequest();
-            ListResponse<AionHR.Model.Reports.RT202> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT202>(req);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-               Common.errorMessage(resp);
-                return;
-            }
+            //ReportCompositeRequest req = GetRequest();
+            //ListResponse<AionHR.Model.Reports.RT202> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT202>(req);
+            //if (!resp.Success)
+            //{
+            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+            //   Common.errorMessage(resp);
+            //    return;
+            //}
 
 
 
@@ -220,7 +222,9 @@ namespace AionHR.Web.UI.Forms.Reports
         [DirectMethod]
         public void FillReport(bool throwException =true)
         {
-            ReportCompositeRequest req = GetRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<AionHR.Model.Reports.RT105> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT105>(req);
             //if (resp == null || string.IsNullOrEmpty(resp.Error))
             //{
@@ -234,32 +238,12 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
             resp.Items.ForEach(x => x.DateString = x.date.ToString(_systemService.SessionHelper.GetDateformat()));
-            JobHistory h = new JobHistory();
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+           
+            JobHistory h = new JobHistory(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            if (resp.Items.Count > 0)
-            {
-                if (req.Parameters["_departmentId"] != "0")
-                    h.Parameters["Department"].Value = resp.Items[0].departmentName;
-                else
-                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["Branch"].Value = resp.Items[0].branchName;
-                else
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_positionId"] != "0")
-                    h.Parameters["Position"].Value = resp.Items[0].positionName;
-                else
-                    h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_divisionId"] != "0")
-                    h.Parameters["Division"].Value = resp.Items[0].divisionName;
-                else
-                    h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
-
-            }
+           
             h.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
             h.DataSource = resp.Items;
           

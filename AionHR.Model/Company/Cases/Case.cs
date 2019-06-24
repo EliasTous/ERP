@@ -29,6 +29,6 @@ namespace AionHR.Model.Company.Cases
         public DateTime? closedDate { get; set; }
         [PropertyID("43000_01")]
         [ApplySecurity]
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
     }
 }

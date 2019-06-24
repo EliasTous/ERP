@@ -38,14 +38,11 @@
             this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell24 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.pageHeaderBand1 = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell26 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -77,13 +74,15 @@
             this.FieldCaption = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DataField = new DevExpress.XtraReports.UI.XRControlStyle();
-            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.BranchName = new DevExpress.XtraReports.Parameters.Parameter();
             this.DepartmentName = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -116,12 +115,12 @@
             this.xrTableCell10,
             this.xrTableCell12,
             this.xrTableCell16,
-            this.xrTableCell18,
+            this.xrTableCell13,
             this.xrTableCell20,
             this.xrTableCell22,
             this.xrTableCell24});
-            resources.ApplyResources(this.xrTableRow4, "xrTableRow4");
             this.xrTableRow4.Name = "xrTableRow4";
+            resources.ApplyResources(this.xrTableRow4, "xrTableRow4");
             // 
             // xrTableCell25
             // 
@@ -131,10 +130,10 @@
             this.xrTableCell25.CanGrow = false;
             this.xrTableCell25.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName.reference")});
-            resources.ApplyResources(this.xrTableCell25, "xrTableCell25");
             this.xrTableCell25.Name = "xrTableCell25";
             this.xrTableCell25.StylePriority.UseBorders = false;
             this.xrTableCell25.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell25, "xrTableCell25");
             // 
             // xrTableCell8
             // 
@@ -143,12 +142,12 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell8.CanGrow = false;
             this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName.fullName")});
-            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName")});
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.StyleName = "DataField";
             this.xrTableCell8.StylePriority.UseBorders = false;
             this.xrTableCell8.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
             // 
             // xrTableCell10
             // 
@@ -158,11 +157,11 @@
             this.xrTableCell10.CanGrow = false;
             this.xrTableCell10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "branchName")});
-            resources.ApplyResources(this.xrTableCell10, "xrTableCell10");
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.StyleName = "DataField";
             this.xrTableCell10.StylePriority.UseBorders = false;
             this.xrTableCell10.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell10, "xrTableCell10");
             // 
             // xrTableCell12
             // 
@@ -172,11 +171,11 @@
             this.xrTableCell12.CanGrow = false;
             this.xrTableCell12.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "departmentName")});
-            resources.ApplyResources(this.xrTableCell12, "xrTableCell12");
             this.xrTableCell12.Name = "xrTableCell12";
             this.xrTableCell12.StyleName = "DataField";
             this.xrTableCell12.StylePriority.UseBorders = false;
             this.xrTableCell12.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell12, "xrTableCell12");
             // 
             // xrTableCell16
             // 
@@ -186,26 +185,11 @@
             this.xrTableCell16.CanGrow = false;
             this.xrTableCell16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "currencyRef")});
-            resources.ApplyResources(this.xrTableCell16, "xrTableCell16");
             this.xrTableCell16.Name = "xrTableCell16";
             this.xrTableCell16.StyleName = "DataField";
             this.xrTableCell16.StylePriority.UseBorders = false;
             this.xrTableCell16.StylePriority.UseTextAlignment = false;
-            // 
-            // xrTableCell18
-            // 
-            this.xrTableCell18.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell18.CanGrow = false;
-            this.xrTableCell18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "netSalary")});
-            resources.ApplyResources(this.xrTableCell18, "xrTableCell18");
-            this.xrTableCell18.Name = "xrTableCell18";
-            this.xrTableCell18.StyleName = "DataField";
-            this.xrTableCell18.StylePriority.UseBorders = false;
-            this.xrTableCell18.StylePriority.UseTextAlignment = false;
-            this.xrTableCell18.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell18_PrintOnPage);
+            resources.ApplyResources(this.xrTableCell16, "xrTableCell16");
             // 
             // xrTableCell20
             // 
@@ -215,11 +199,11 @@
             this.xrTableCell20.CanGrow = false;
             this.xrTableCell20.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "bankName")});
-            resources.ApplyResources(this.xrTableCell20, "xrTableCell20");
             this.xrTableCell20.Name = "xrTableCell20";
             this.xrTableCell20.StyleName = "DataField";
             this.xrTableCell20.StylePriority.UseBorders = false;
             this.xrTableCell20.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell20, "xrTableCell20");
             // 
             // xrTableCell22
             // 
@@ -229,10 +213,10 @@
             this.xrTableCell22.CanGrow = false;
             this.xrTableCell22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "accountNumber")});
-            resources.ApplyResources(this.xrTableCell22, "xrTableCell22");
             this.xrTableCell22.Name = "xrTableCell22";
             this.xrTableCell22.StyleName = "DataField";
             this.xrTableCell22.StylePriority.UseBorders = false;
+            resources.ApplyResources(this.xrTableCell22, "xrTableCell22");
             // 
             // xrTableCell24
             // 
@@ -242,35 +226,23 @@
             this.xrTableCell24.CanGrow = false;
             this.xrTableCell24.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "swiftCode")});
-            resources.ApplyResources(this.xrTableCell24, "xrTableCell24");
             this.xrTableCell24.Name = "xrTableCell24";
             this.xrTableCell24.StyleName = "DataField";
             this.xrTableCell24.StylePriority.UseBorders = false;
             this.xrTableCell24.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell24, "xrTableCell24");
             // 
             // TopMargin
             // 
-            resources.ApplyResources(this.TopMargin, "TopMargin");
             this.TopMargin.Name = "TopMargin";
             this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            resources.ApplyResources(this.TopMargin, "TopMargin");
             // 
             // BottomMargin
             // 
-            resources.ApplyResources(this.BottomMargin, "BottomMargin");
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT111);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // pageHeaderBand1
-            // 
-            this.pageHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrTable1});
-            resources.ApplyResources(this.pageHeaderBand1, "pageHeaderBand1");
-            this.pageHeaderBand1.Name = "pageHeaderBand1";
+            resources.ApplyResources(this.BottomMargin, "BottomMargin");
             // 
             // xrTable1
             // 
@@ -293,8 +265,8 @@
             this.xrTableCell19,
             this.xrTableCell21,
             this.xrTableCell23});
-            resources.ApplyResources(this.xrTableRow3, "xrTableRow3");
             this.xrTableRow3.Name = "xrTableRow3";
+            resources.ApplyResources(this.xrTableRow3, "xrTableRow3");
             // 
             // xrTableCell26
             // 
@@ -302,10 +274,10 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell26.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell26, "xrTableCell26");
             this.xrTableCell26.Name = "xrTableCell26";
             this.xrTableCell26.StylePriority.UseBorders = false;
             this.xrTableCell26.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell26, "xrTableCell26");
             // 
             // xrTableCell7
             // 
@@ -313,11 +285,11 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell7.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell7, "xrTableCell7");
             this.xrTableCell7.Name = "xrTableCell7";
             this.xrTableCell7.StyleName = "FieldCaption";
             this.xrTableCell7.StylePriority.UseBorders = false;
             this.xrTableCell7.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell7, "xrTableCell7");
             // 
             // xrTableCell9
             // 
@@ -325,11 +297,11 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell9.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell9, "xrTableCell9");
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.StyleName = "FieldCaption";
             this.xrTableCell9.StylePriority.UseBorders = false;
             this.xrTableCell9.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell9, "xrTableCell9");
             // 
             // xrTableCell11
             // 
@@ -337,11 +309,11 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell11.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell11, "xrTableCell11");
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.StyleName = "FieldCaption";
             this.xrTableCell11.StylePriority.UseBorders = false;
             this.xrTableCell11.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell11, "xrTableCell11");
             // 
             // xrTableCell15
             // 
@@ -349,11 +321,11 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell15.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell15, "xrTableCell15");
             this.xrTableCell15.Name = "xrTableCell15";
             this.xrTableCell15.StyleName = "FieldCaption";
             this.xrTableCell15.StylePriority.UseBorders = false;
             this.xrTableCell15.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell15, "xrTableCell15");
             // 
             // xrTableCell17
             // 
@@ -361,11 +333,11 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell17.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell17, "xrTableCell17");
             this.xrTableCell17.Name = "xrTableCell17";
             this.xrTableCell17.StyleName = "FieldCaption";
             this.xrTableCell17.StylePriority.UseBorders = false;
             this.xrTableCell17.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell17, "xrTableCell17");
             // 
             // xrTableCell19
             // 
@@ -373,11 +345,11 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell19.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell19, "xrTableCell19");
             this.xrTableCell19.Name = "xrTableCell19";
             this.xrTableCell19.StyleName = "FieldCaption";
             this.xrTableCell19.StylePriority.UseBorders = false;
             this.xrTableCell19.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell19, "xrTableCell19");
             // 
             // xrTableCell21
             // 
@@ -385,11 +357,11 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell21.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell21, "xrTableCell21");
             this.xrTableCell21.Name = "xrTableCell21";
             this.xrTableCell21.StyleName = "FieldCaption";
             this.xrTableCell21.StylePriority.UseBorders = false;
             this.xrTableCell21.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell21, "xrTableCell21");
             // 
             // xrTableCell23
             // 
@@ -397,11 +369,11 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell23.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell23, "xrTableCell23");
             this.xrTableCell23.Name = "xrTableCell23";
             this.xrTableCell23.StyleName = "FieldCaption";
             this.xrTableCell23.StylePriority.UseBorders = false;
             this.xrTableCell23.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell23, "xrTableCell23");
             // 
             // xrTableRow1
             // 
@@ -409,23 +381,23 @@
             this.xrTableCell1,
             this.xrTableCell2,
             this.xrTableCell3});
-            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             this.xrTableRow1.Name = "xrTableRow1";
+            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             // 
             // xrTableCell1
             // 
-            resources.ApplyResources(this.xrTableCell1, "xrTableCell1");
             this.xrTableCell1.Name = "xrTableCell1";
+            resources.ApplyResources(this.xrTableCell1, "xrTableCell1");
             // 
             // xrTableCell2
             // 
-            resources.ApplyResources(this.xrTableCell2, "xrTableCell2");
             this.xrTableCell2.Name = "xrTableCell2";
+            resources.ApplyResources(this.xrTableCell2, "xrTableCell2");
             // 
             // xrTableCell3
             // 
-            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             this.xrTableCell3.Name = "xrTableCell3";
+            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             // 
             // xrTableRow2
             // 
@@ -433,23 +405,23 @@
             this.xrTableCell4,
             this.xrTableCell5,
             this.xrTableCell6});
-            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             this.xrTableRow2.Name = "xrTableRow2";
+            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             // 
             // xrTableCell4
             // 
-            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             this.xrTableCell4.Name = "xrTableCell4";
+            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             // 
             // xrTableCell5
             // 
-            resources.ApplyResources(this.xrTableCell5, "xrTableCell5");
             this.xrTableCell5.Name = "xrTableCell5";
+            resources.ApplyResources(this.xrTableCell5, "xrTableCell5");
             // 
             // xrTableCell6
             // 
-            resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             this.xrTableCell6.Name = "xrTableCell6";
+            resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             // 
             // pageFooterBand1
             // 
@@ -551,17 +523,10 @@
             this.DataField.Name = "DataField";
             this.DataField.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
-            // xrLabel3
-            // 
-            resources.ApplyResources(this.xrLabel3, "xrLabel3");
-            this.xrLabel3.Name = "xrLabel3";
-            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.StylePriority.UseTextAlignment = false;
-            // 
             // GroupHeader1
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel3});
+            this.xrTable1});
             resources.ApplyResources(this.GroupHeader1, "GroupHeader1");
             this.GroupHeader1.Name = "GroupHeader1";
             this.GroupHeader1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.GroupHeader1_BeforePrint);
@@ -576,16 +541,41 @@
             this.DepartmentName.Name = "DepartmentName";
             this.DepartmentName.Visible = false;
             // 
+            // PageHeader
+            // 
+            resources.ApplyResources(this.PageHeader, "PageHeader");
+            this.PageHeader.Name = "PageHeader";
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT111);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // xrTableCell13
+            // 
+            this.xrTableCell13.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell13.CanGrow = false;
+            this.xrTableCell13.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "netSalary")});
+            this.xrTableCell13.Multiline = true;
+            this.xrTableCell13.Name = "xrTableCell13";
+            this.xrTableCell13.StyleName = "DataField";
+            this.xrTableCell13.StylePriority.UseBorders = false;
+            this.xrTableCell13.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell13, "xrTableCell13");
+            // 
             // BankAccounts
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
             this.TopMargin,
             this.BottomMargin,
-            this.pageHeaderBand1,
             this.pageFooterBand1,
             this.reportHeaderBand1,
-            this.GroupHeader1});
+            this.GroupHeader1,
+            this.PageHeader});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
@@ -599,10 +589,10 @@
             this.FieldCaption,
             this.PageInfo,
             this.DataField});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -618,12 +608,10 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell16;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell20;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell22;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell24;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
-        private DevExpress.XtraReports.UI.PageHeaderBand pageHeaderBand1;
         private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow3;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
@@ -653,12 +641,13 @@
         private DevExpress.XtraReports.UI.XRControlStyle DataField;
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel4;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         private DevExpress.XtraReports.UI.GroupHeaderBand GroupHeader1;
         private DevExpress.XtraReports.Parameters.Parameter User;
         private DevExpress.XtraReports.Parameters.Parameter BranchName;
         private DevExpress.XtraReports.Parameters.Parameter DepartmentName;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell25;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell26;
+        private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell13;
     }
 }

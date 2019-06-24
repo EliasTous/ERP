@@ -107,7 +107,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     }
 
 
-                    dateRange1.DefaultStartDate = DateTime.Today;
+                   
                     format.Text = _systemService.SessionHelper.GetDateformat();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
 
@@ -135,7 +135,23 @@ namespace AionHR.Web.UI.Forms.Reports
             //this.OtherInfoTab.Visible = false;
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
         private void HideShowButtons()
         {
@@ -186,124 +202,29 @@ namespace AionHR.Web.UI.Forms.Reports
             else return "1";
         }
 
-
-        private ReportCompositeRequest GetRequest()
+private void FillReport(bool throwException = true)
         {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-            req.SortBy = "eventDt";
-
-
-            req.Add(dateRange1.GetRange());
-            req.Add(userCombo1.GetUser());
-            req.Add(transactionCombo1.GetTransactionType());
-            req.Add(moduleCombo1.GetModule());
-            req.Add(getMasterRef());
-            req.Add(getData());
+            int count = 0;
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
 
 
-            //req.Add();
-            return req;
-        }
-        [DirectMethod]
-        public object FillUsers(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-          List<UserInfo> data = GetUsersFiltered(prms.Query);
-
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<UserInfo> GetUsersFiltered(string query)
-        {
-            UsersListRequest req = new UsersListRequest();
-            req.Size = "100";
-            req.StartAt = "0";
-         
+           
 
 
-            req.DepartmentId = "0";
-            req.PositionId = "0";
-            req.BranchId = "0";
-            req.SortBy = "fullName";
-            req.Filter = query;
-
-            ListResponse<UserInfo> users = _systemService.ChildGetAll<UserInfo>(req);
-            return users.Items;
-        }
-
-        private void FillReport(bool throwException = true)
-        {
-            int count = 0; 
-            ReportCompositeRequest req = GetRequest();
-
-
-            foreach (KeyValuePair<string, string> entry in req.Parameters)
-            {
-                if (entry.Key == "_fromDate" || entry.Key == "_toDate" || entry.Key == "_size" || entry.Key == "_startAt"|| entry.Key == "_sortBy" || entry.Key == "_filter")
-                {
-                    continue;
-                }
-                if (entry.Key == "_masterRef" && !string.IsNullOrEmpty(entry.Value))
-                {
-                    count++;
-                    continue;
-                }
-                if (entry.Key == "_data" && !string.IsNullOrEmpty(entry.Value))
-                {
-                    count++;
-                    continue;
-                }
-                if (entry.Key == "_data" && string.IsNullOrEmpty(entry.Value))
-                {
-                   continue;
-                }
-                if (entry.Value != "0"   && entry.Key != "_masterRef")
-                    count++;
-               
-            }
-
-
-
-            if (dateRange1.DifferenceBetweenDates()!=null && dateRange1.DifferenceBetweenDates()>30&& count<2)
-            {
-                throw new Exception(FilterSelection.Value.ToString());
-              
-            }
-
+            
             ListResponse<AionHR.Model.Reports.RT802> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT802>(req);
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
-            resp.Items.ForEach(x => { x.TypeString = GetGlobalResourceObject("Common", "TrType" + x.type.ToString()).ToString(); x.ClassIdString = GetGlobalResourceObject("Classes", "Class" + x.classId.ToString())!=null? GetGlobalResourceObject("Classes", "Class" + x.classId.ToString()).ToString():"NA"; x.DateString = x.eventDt.ToString(_systemService.SessionHelper.GetDateformat()+ " HH:mm", new CultureInfo("en")); });
-            AuditTrail h = new AuditTrail();
+            resp.Items.ForEach(x => { x.TypeString = GetGlobalResourceObject("Common", "TrType" + x.type.ToString()).ToString(); x.ClassIdString = GetGlobalResourceObject("Classes", "Class" + x.classId.ToString()) != null ? GetGlobalResourceObject("Classes", "Class" + x.classId.ToString()).ToString() : "NA"; x.DateString = x.eventDt.ToString(_systemService.SessionHelper.GetDateformat() + " HH:mm", new CultureInfo("en")); });
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            AuditTrail h = new AuditTrail(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
-            h.Parameters["username"].Value = _systemService.SessionHelper.Get("CurrentUserName");
-            h.Parameters["From"].Value = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
-            h.Parameters["To"].Value = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
-            if (resp.Items.Count > 0)
-            {
-                if (!string.IsNullOrEmpty(req.Parameters["_trxType"]))
-                    h.Parameters["TrType"].Value = GetGlobalResourceObject("Common", "TrType" + req.Parameters["_trxType"]);
-                else
-                    h.Parameters["TrType"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (!string.IsNullOrEmpty(req.Parameters["_moduleId"]))
-                    h.Parameters["Module"].Value = GetGlobalResourceObject("Common", "Mod" + req.Parameters["_moduleId"]);
-                else
-                    h.Parameters["Module"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (resp.Items.Count > 0 && req.Parameters["_userId"] != "0")
-                    h.Parameters["User"].Value = resp.Items[0].userName;
-                else
-                    h.Parameters["User"].Value = GetGlobalResourceObject("Common", "All");
-
-            }
+            h.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+         //   h.Parameters["Filters"].Value = texts.Text;
             h.DataSource = resp.Items;
 
 
@@ -329,67 +250,7 @@ namespace AionHR.Web.UI.Forms.Reports
             //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport();
         }
-        [DirectMethod]
-        public object FillEmployee(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; s.reference = s.name.reference; });
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-
-
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
-        private MasterIdParameterSet getMasterRef()
-        {
-            MasterIdParameterSet s = new MasterIdParameterSet();
-         
-            if (string.IsNullOrEmpty(masterRef.Value.ToString() ))
-
-                s.masterRef = "";
-            else
-                s.masterRef = masterRef.Value.ToString();
-            return s;
-
-
-
-        }
-        private DataParameterSet getData()
-        {
-            DataParameterSet s = new DataParameterSet();
-
-            if (string.IsNullOrEmpty(data.Text))
-
-                s.data = "";
-            else
-                s.data = data.Text;
-            return s;
-
-
-
-        }
+       
 
     }
 }

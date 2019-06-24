@@ -154,7 +154,23 @@ namespace AionHR.Web.UI.Forms.Reports
             }
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
         [DirectMethod]
         public string CheckSession()
@@ -169,17 +185,15 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-
+       
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
-            try
-            {
-                ReportCompositeRequest req = GetRequest();
+           
 
-
-
-
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
                 ListResponse<AionHR.Model.Reports.RT310> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT310>(req);
                 if (!resp.Success)
                 {
@@ -198,30 +212,18 @@ namespace AionHR.Web.UI.Forms.Reports
 
                         resp.Items.RemoveAt(i);
                 }
-               
-                AttendanceScheduleReport h = new AttendanceScheduleReport(resp.Items, _systemService.SessionHelper.CheckIfArabicSession(),_systemService.SessionHelper.GetDateformat());
+                Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+                AttendanceScheduleReport h = new AttendanceScheduleReport(resp.Items, _systemService.SessionHelper.CheckIfArabicSession(),_systemService.SessionHelper.GetDateformat(), parameters);
                 h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
 
-                string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-                string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                //string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                //string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
                 h.Parameters["User"].Value = string.IsNullOrEmpty( _systemService.SessionHelper.GetCurrentUser())?" ": _systemService.SessionHelper.GetCurrentUser();
 
-                h.Parameters["From"].Value = from;
-                h.Parameters["To"].Value = to;
-
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["Branch"].Value = jobInfo1.GetDepartment();
-                else
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-
-
-
-              
-
+              //  h.Parameters["Fitlers"].Value = texts.Text;
 
                 h.CreateDocument();
 
@@ -229,26 +231,9 @@ namespace AionHR.Web.UI.Forms.Reports
                 ASPxWebDocumentViewer1.OpenReport(h);
 
             }
-            catch (Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
-
-        }
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-
-            req.Add(date.GetRange());
-            req.Add(jobInfo1.GetJobInfo());
-            req.Add(employeeCombo1.GetEmployee());
-
-
-            return req;
-        }
+         
+        
+      
 
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
@@ -277,38 +262,6 @@ namespace AionHR.Web.UI.Forms.Reports
             //FillReport(true);
         }
 
-        [DirectMethod]
-        public object FillEmployee(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
 
 
     }

@@ -36,42 +36,21 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public object FillReplacementEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
+            return Common.GetEmployeesFiltered(prms.Query);
+
         }
-      
+       
+       
+
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
+            return Common.GetEmployeesFiltered(prms.Query);
 
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = jobInfo1.GetDepartment();
-            req.BranchId = jobInfo1.GetBranch();
-            req.PositionId = jobInfo1.GetPosition();
-            req.DivisionId = jobInfo1.GetDivision();
-            req.IncludeIsInactive = 0;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
         }
 
 
@@ -143,7 +122,7 @@ namespace AionHR.Web.UI.Forms
         
                 includeOpen.Select("1");
                
-                DateColumn3.Format= Column2.Format = Column1.Format = _systemService.SessionHelper.GetDateformat();
+              Column2.Format = Column1.Format = _systemService.SessionHelper.GetDateformat();
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveRequest), null, GridPanel1, btnAdd, null);
@@ -390,7 +369,7 @@ namespace AionHR.Web.UI.Forms
 
             request.Size = "50";
             request.StartAt = e.Start.ToString();
-            request.SortBy = "firstName";
+            request.SortBy = "recordId";
             
             request.Filter = "";
             ListResponse<LeaveRequest> routers = _leaveManagementService.ChildGetAll<LeaveRequest>(request);

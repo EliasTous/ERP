@@ -462,7 +462,7 @@
             // xrLabel21
             // 
             this.xrLabel21.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName.fullName")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName")});
             resources.ApplyResources(this.xrLabel21, "xrLabel21");
             this.xrLabel21.Name = "xrLabel21";
             this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -503,6 +503,7 @@
             this.xrLabel27.Name = "xrLabel27";
             this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel27.StyleName = "DataField";
+            this.xrLabel27.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel28
             // 
@@ -521,9 +522,9 @@
             // 
             // BottomMargin
             // 
-            resources.ApplyResources(this.BottomMargin, "BottomMargin");
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            resources.ApplyResources(this.BottomMargin, "BottomMargin");
             // 
             // pageFooterBand1
             // 
@@ -670,7 +671,7 @@
             this.FieldCaption,
             this.PageInfo,
             this.DataField});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 

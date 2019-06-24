@@ -286,15 +286,16 @@ namespace AionHR.Web.UI.Forms
 
         private void SelectCombos(Employee result)
         {
-            branchId.Select(result.branchId);
-            departmentId.Select(result.departmentId);
-            positionId.Select(result.positionId);
+            //branchId.Select(result.branchId);
+            //departmentId.Select(result.departmentId);
+            //positionId.Select(result.positionId);
             nationalityId.Select(result.nationalityId);
             //sponsorId.Select(result.sponsorId);
             vsId.Select(result.vsId);
             //caId.Select(result.caId);
+            scType.Select(result.scType.ToString());
             scId.Select(result.scId.ToString());
-            divisionId.Select(result.divisionId);
+            //divisionId.Select(result.divisionId);
             nqciId.Select(result.nqciId.ToString());
             if (string.IsNullOrEmpty(result.civilStatus.ToString()))
                 result.civilStatus = 0;                
@@ -303,9 +304,26 @@ namespace AionHR.Web.UI.Forms
                 gender1.Checked = true;
             else
                 gender2.Checked = true;
+            if (result.religion!=null)
+            religionCombo.Select(result.religion.ToString());
             //if (!string.IsNullOrEmpty(result.pictureUrl))
             //    imgControl.ImageUrl = result.pictureUrl;
 
+        }
+       private void FillCivilStatusStore()
+        {
+            civilStatusStore.DataSource = Common.XMLDictionaryList(_systemService, "19");
+            civilStatusStore.DataBind();
+        }
+        private void FillScTypeStore()
+        {
+            scTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "27");
+            scTypeStore.DataBind();
+        }
+        private void FillReligionStore()
+        {
+            religionStore.DataSource = Common.XMLDictionaryList(_systemService, "20");
+            religionStore.DataBind();
         }
         private void InitCombos(bool isAdd)
         {
@@ -331,15 +349,16 @@ namespace AionHR.Web.UI.Forms
             gearButton.Hidden = isAdd;
 
             FillSponsor();
-
+            FillCivilStatusStore();
+            FillScTypeStore();
             img.Hidden = isAdd;
             FillVacationSchedule();
             FillSchedules();
             panelRecordDetails.Enabled = !isAdd;
             FillCitizenShip();
-
+            FillReligionStore();
             //FillWorkingCalendar();
-            
+
             SetTabPanelActivated(!isAdd);
 
 
@@ -426,8 +445,10 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void SetActivated(bool active)
+        private void SetActivated(ActiveStatus activeStatus)
+
         {
+            bool active = activeStatus == ActiveStatus.ACTIVE ? true : false;
             SaveButton.Disabled = !active;
             //SetTabPanelActivated(active);
 
@@ -508,19 +529,19 @@ namespace AionHR.Web.UI.Forms
             }
             return resp.Items;
         }
-        private void FillPosition()
-        {
+        //private void FillPosition()
+        //{
 
-            positionStore.DataSource = GetPositions();
-            positionStore.DataBind();
-        }
+        //    positionStore.DataSource = GetPositions();
+        //    positionStore.DataBind();
+        //}
 
-        private void FillDepartment()
-        {
+        //private void FillDepartment()
+        //{
 
-            departmentStore.DataSource = GetDepartments();
-            departmentStore.DataBind();
-        }
+        //    departmentStore.DataSource = GetDepartments();
+        //    departmentStore.DataBind();
+        //}
         private void FillSecurityGroup()
         {
 
@@ -572,19 +593,19 @@ namespace AionHR.Web.UI.Forms
 
             return resp.Items;
         }
-        private void FillBranch()
-        {
+        //private void FillBranch()
+        //{
 
-            BranchStore.DataSource = GetBranches();
-            BranchStore.DataBind();
-        }
+        //    BranchStore.DataSource = GetBranches();
+        //    BranchStore.DataBind();
+        //}
 
-        private void FillDivision()
-        {
+        //private void FillDivision()
+        //{
 
-            divisionStore.DataSource = GetDivisions();
-            divisionStore.DataBind();
-        }
+        //    divisionStore.DataSource = GetDivisions();
+        //    divisionStore.DataBind();
+        //}
         private void FillSponsor()
         {
             ListRequest sponsorsRequest = new ListRequest();
@@ -630,24 +651,45 @@ namespace AionHR.Web.UI.Forms
             string id = CurrentEmployee.Text;
             //string hijCalBirthDate = e.ExtraParams["hijCalBirthDate"];
             string gregCalBirthDate = e.ExtraParams["gregCalBirthDate"];
+
+            string positionId = e.ExtraParams["positionId"];
+            string departmentId = e.ExtraParams["departmentId"];
+            string branchId = e.ExtraParams["branchId"];
+            string divisionId = e.ExtraParams["divisionId"];
+            string reportToId = e.ExtraParams["reportToId"];
+            
             string obj = e.ExtraParams["values"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
             if (civilStatus.Value.ToString() == "0")
                 civilStatus.Value = string.Empty;
             Employee b = JsonConvert.DeserializeObject<Employee>(obj, settings);
+            b.activeStatus = Convert.ToInt16(ActiveStatus.ACTIVE);
             b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text, reference = reference.Text.ToString().Replace(" ","") };
 
             b.recordId = id;
+            if (!string.IsNullOrEmpty(branchId))
+                b.branchId = Convert.ToInt32(branchId);
+
+            if (!string.IsNullOrEmpty(positionId))
+                b.positionId = Convert.ToInt32(positionId);
+            if (!string.IsNullOrEmpty(departmentId))
+                b.departmentId = Convert.ToInt32(departmentId);
+            if (!string.IsNullOrEmpty(reportToId))
+                b.reportToId = reportToId; 
+            if (!string.IsNullOrEmpty(divisionId))
+                b.divisionId = Convert.ToInt32(divisionId);
+
+
             // Define the object to add or edit as null
-            if (branchId.SelectedItem != null)
-                b.branchName = branchId.SelectedItem.Text;
-            if (departmentId.SelectedItem != null)
-                b.departmentName = departmentId.SelectedItem.Text;
-            if (positionId.SelectedItem != null)
-                b.positionName = positionId.SelectedItem.Text;
-            if (divisionId.SelectedItem != null)
-                b.divisionName = divisionId.SelectedItem.Text;
+            //if (branchId.SelectedItem != null)
+            //    b.branchName = branchId.SelectedItem.Text;
+            //if (departmentId.SelectedItem != null)
+            //    b.departmentName = departmentId.SelectedItem.Text;
+            //if (positionId.SelectedItem != null)
+            //    b.positionName = positionId.SelectedItem.Text;
+            //if (divisionId.SelectedItem != null)
+            //    b.divisionName = divisionId.SelectedItem.Text;
             b.name.fullName = b.name.firstName + " " + b.name.middleName + " " + b.name.lastName + " ";
             //if (b.birthDate.HasValue)
             //    b.birthDate = new DateTime(b.birthDate.Value.Year, b.birthDate.Value.Month, b.birthDate.Value.Day, 14, 0, 0);
@@ -949,7 +991,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             string userId="";
-            bool isInactive; 
+            //bool isInactive; 
             string obj = e.ExtraParams["values"];
             UserByEmailRequest req = new UserByEmailRequest();
             req.Email = workEmailHF.Text;
@@ -963,22 +1005,22 @@ namespace AionHR.Web.UI.Forms
             }
 
 
-                if (enableSS.Checked)
-                   isInactive = true;
-                else
-                isInactive = false;
+                //if (enableSS.Checked)
+                //   isInactive = true;
+                //else
+                //isInactive = false;
 
             if (response.result == null)
             {
 
 
-                response.result = new UserInfo { employeeId = CurrentEmployee.Text, email = workEmailHF.Text, isInactive = isInactive, userType = 4, languageId = 1, password = "1", fullName = CurrentEmployeeFullName.Text };
+                response.result = new UserInfo { employeeId = CurrentEmployee.Text, email = workEmailHF.Text, activeStatus = enableSS.Checked ? Convert.ToInt16(ActiveStatus.INACTIVE) : Convert.ToInt16(ActiveStatus.ACTIVE), userType = 4, languageId = 1, password = "1", fullName = CurrentEmployeeFullName.Text };
             }
             PostRequest<UserInfo> request = new PostRequest<UserInfo>();
 
             request.entity = response.result;
             request.entity.userType = 4;
-            request.entity.isInactive = isInactive;
+            request.entity.activeStatus = enableSS.Checked?Convert.ToInt16( ActiveStatus.INACTIVE): Convert.ToInt16(ActiveStatus.ACTIVE);
             PostResponse<UserInfo> r = _systemService.ChildAddOrUpdate<UserInfo>(request);
             if (!r.Success)
             {
@@ -1114,11 +1156,11 @@ namespace AionHR.Web.UI.Forms
 
                 InitCombos(false);
                 SelectCombos(response.result);
-                SetActivated(!response.result.isInactive);
-                setTerminationWindow(response.result.isInactive);
+                SetActivated((ActiveStatus) response.result.activeStatus);
+                setTerminationWindow((ActiveStatus)response.result.activeStatus);
 
 
-                FixLoaderUrls(r.RecordID, response.result.hireDate.HasValue ? response.result.hireDate.Value.ToString("yyyy/MM/dd") : "", response.result.isInactive);
+                FixLoaderUrls(r.RecordID, response.result.hireDate.HasValue ? response.result.hireDate.Value.ToString("yyyy/MM/dd") : "", (ActiveStatus)response.result.activeStatus==ActiveStatus.INACTIVE?true:false);
             }
             catch(Exception exp)
             {
@@ -1126,8 +1168,9 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-        private void setTerminationWindow (bool isInactive)
+        private void setTerminationWindow (ActiveStatus isInactiveStatus)
         {
+          bool  isInactive = isInactiveStatus==ActiveStatus.INACTIVE ? true : false;
             if (isInactive)
                 saveTerminationButton.Text = GetLocalResourceObject("undoTermination").ToString();
             else
@@ -1174,7 +1217,7 @@ namespace AionHR.Web.UI.Forms
                 TerminationDateLbl.Hidden = true;
             }
 
-            string reportToFullName= forSummary.reportToName!=null? forSummary.reportToName.fullName:"";
+            string reportToFullName= forSummary.reportToName!=null? forSummary.reportToName:"";
 
 
             X.Call("FillLeftPanel",
@@ -1198,7 +1241,9 @@ namespace AionHR.Web.UI.Forms
 
                forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString(),_systemService.SessionHelper.getLangauge()),
                forSummary.terminationDate != null ? forSummary.terminationDate.Value.ToString(_systemService.SessionHelper.GetDateformat()) :"",
-               forSummary.unpaidLeaves
+               forSummary.unpaidLeaves +"<br />",
+               forSummary.earnedLeaves + "<br />",
+               forSummary.leavePayments
             );
             //            fullNameLbl.Html = forSummary.name.fullName + "<br />";
 
@@ -1226,6 +1271,8 @@ namespace AionHR.Web.UI.Forms
             usedLeavesLbl.Html = forSummary.usedLeaves + "<br />";
             paidLeavesLbl.Html = forSummary.paidLeaves + "<br />";
             unpaidLeavesLbl.Html = forSummary.unpaidLeaves + "<br />";
+            LeavePaymentLbl.Html = forSummary.leavePayments + "<br />";
+            earnedLeavesLbl.Html = forSummary.earnedLeaves + "<br />";
             salaryLbl.Html = forSummary.salary!=null?((int) forSummary.salary).ToString("N2"):" " +" "+forSummary.currencyName+ "<br />";
             TerminationDateLbl.Html = forSummary.terminationDate != null ? forSummary.terminationDate.Value.ToString(_systemService.SessionHelper.GetDateformat()) : "";
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
@@ -1253,9 +1300,9 @@ namespace AionHR.Web.UI.Forms
         protected void addDepartment(object sender, DirectEventArgs e)
         {
             Department dept = new Department();
-            if (string.IsNullOrEmpty(departmentId.Text))
-                return;
-            dept.name = departmentId.Text;
+            //if (string.IsNullOrEmpty(departmentId.Text))
+            //    return;
+            //dept.name = departmentId.Text;
 
             PostRequest<Department> depReq = new PostRequest<Department>();
             depReq.entity = dept;
@@ -1263,8 +1310,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                FillDepartment();
-                departmentId.Select(dept.recordId);
+                //FillDepartment();
+                //departmentId.Select(dept.recordId);
             }
             else
             {
@@ -1276,11 +1323,11 @@ namespace AionHR.Web.UI.Forms
         }
         protected void addBranch(object sender, DirectEventArgs e)
         {
-            if (string.IsNullOrEmpty(branchId.Text))
-                return;
+            //if (string.IsNullOrEmpty(branchId.Text))
+            //    return;
             Branch dept = new Branch();
-            dept.name = branchId.Text;
-            dept.timeZone = _systemService.SessionHelper.GetDefaultTimeZone();
+            //dept.name = branchId.Text;
+           // dept.timeZone = _systemService.SessionHelper.GetDefaultTimeZone();
             dept.isInactive = false;
             PostRequest<Branch> depReq = new PostRequest<Branch>();
             depReq.entity = dept;
@@ -1288,8 +1335,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                FillBranch();
-                branchId.Select(dept.recordId);
+                //FillBranch();
+                //branchId.Select(dept.recordId);
             }
             else
             {
@@ -1313,8 +1360,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                FillPosition();
-                positionId.Select(dept.recordId);
+                //FillPosition();
+                //positionId.Select(dept.recordId);
             }
             else
             {
@@ -1327,10 +1374,10 @@ namespace AionHR.Web.UI.Forms
 
         protected void addDivision(object sender, DirectEventArgs e)
         {
-            if (string.IsNullOrEmpty(divisionId.Text))
-                return;
+            //if (string.IsNullOrEmpty(divisionId.Text))
+            //    return;
             Division dept = new Division();
-            dept.name = divisionId.Text;
+            //dept.name = divisionId.Text;
             dept.isInactive = false;
             PostRequest<Division> depReq = new PostRequest<Division>();
             depReq.entity = dept;
@@ -1341,11 +1388,11 @@ namespace AionHR.Web.UI.Forms
                 dept.recordId = response.recordId;
 
                 //When updating a store on server side via a directmethod, it is mandatory to re DataBind() so for that we called FillDivision() 
-                FillDivision();
-                //  divisionStore.Insert(0,dept);
-                //  divisionStore.Add(new { recordId = dept.recordId, name = dept.name });
+                //FillDivision();
+                ////  divisionStore.Insert(0,dept);
+                ////  divisionStore.Add(new { recordId = dept.recordId, name = dept.name });
 
-                divisionId.Value = dept.recordId;
+                //divisionId.Value = dept.recordId;
             }
             else
             {
@@ -1459,7 +1506,7 @@ namespace AionHR.Web.UI.Forms
             FillSecurityGroup();
             if (response.result != null)
             {
-                if (response.result.isInactive == true)
+                if ((ActiveStatus) response.result.activeStatus == ActiveStatus.INACTIVE)
                 {
                     enableSS.Checked = true;
                 }
@@ -1527,7 +1574,7 @@ namespace AionHR.Web.UI.Forms
             }
             return new
             {
-                reportsTo = qv.result.reportToName!=null?qv.result.reportToName.fullName:"",
+                reportsTo = qv.result.reportToName!=null?qv.result.reportToName:"",
                 eosBalance = qv.result.indemnity,
                 paidLeavesYTD = qv.result.usedLeavesLeg,
                 leavesBalance = qv.result.leaveBalance,
@@ -1628,7 +1675,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 date.Value = DateTime.Now;
-                setTerminationWindow(false);
+                setTerminationWindow(ActiveStatus.ACTIVE);
             }
 
         }

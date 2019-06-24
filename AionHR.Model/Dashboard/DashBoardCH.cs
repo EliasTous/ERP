@@ -11,7 +11,7 @@ namespace AionHR.Model.Dashboard
     {
         public string firstPunch { get; set; }
         public string employeeId { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public string positionName { get; set; }
 
         public string branchName { get; set; }

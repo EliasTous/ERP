@@ -150,6 +150,9 @@
   <data name="xrLabel21.Text" xml:space="preserve">
     <value>الحالة</value>
   </data>
+  <data name="xrLabel26.Text" xml:space="preserve">
+    <value>طبع بواسطة :</value>
+  </data>
   <data name="xrLabel28.Text" xml:space="preserve">
     <value>الموظف</value>
   </data>

@@ -15,7 +15,7 @@ namespace AionHR.Model.AssetManagement
         public string supplierName { get; set; }
         public string branchName { get; set; }
         public string departmentName { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         public string serialNo { get; set; }
         public string supplierId { get; set; }
         public string categoryId { get; set; }

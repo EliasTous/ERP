@@ -406,7 +406,7 @@
                                 </ext:Button>
                                   <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="true" EnableDivision="false"  />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false"  />
 
                                     </Content>
 
@@ -568,7 +568,7 @@
                                                   <ext:ModelField Name="employeeId" />
 
                                                 <ext:ModelField Name="netSalary" />
-                                                <ext:ModelField Name="name" IsComplex="true" />
+                                                <ext:ModelField Name="employeeName"  />
                                                <%-- <ext:ModelField Name="branchName" />--%>
                                                 <ext:ModelField Name="departmentName" />
                                                 <ext:ModelField Name="currencyName" />
@@ -588,11 +588,11 @@
                             <ColumnModel>
                                 <Columns>
                                      <ext:Column runat="server" DataIndex="employeeId"  Visible="false"/>
-                                      <ext:Column runat="server" DataIndex="name" Text="<%$ Resources: FieldRef %>" width="75">
-                                        <Renderer Handler="return record.data['name'].reference;" />
-                                    </ext:Column>
-                                    <ext:Column runat="server" DataIndex="name" Text="<%$ Resources: FieldEmployee%>" Flex="2">
-                                        <Renderer Handler="return record.data['name'].fullName;" />
+                                  <%--    <ext:Column runat="server" DataIndex="name" Text="<%$ Resources: FieldRef %>" width="75">--%>
+                                       
+                               <%--     </ext:Column>--%>
+                                    <ext:Column runat="server" DataIndex="employeeName" Text="<%$ Resources: FieldEmployee%>" Flex="2">
+                                        
                                     </ext:Column>
                                       <ext:Column runat="server" ID="seqNoEM" DataIndex="seqNo" Hidden="true" />
                          <%--           <ext:Column runat="server" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" Flex="1" />--%>

@@ -406,22 +406,31 @@ namespace AionHR.Web.UI.Forms
             };
 
         }
+      
         [DirectMethod]
         public object FillSupervisor(string action, Dictionary<string, object> extraParams)
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-
-            //  return new
-            // {
-            return data;
-            //};
+            return Common.GetEmployeesFiltered(prms.Query);
 
         }
+        //[DirectMethod]
+        //public object FillSupervisor(string action, Dictionary<string, object> extraParams)
+        //{
+
+        //    StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+
+
+
+        //    List<Employee> data = GetEmployeesFiltered(prms.Query);
+
+        //    //  return new
+        //    // {
+        //    return data;
+        //    //};
+
+        //}
 
         private List<Employee> GetEmployeeByID(string id)
         {
@@ -436,24 +445,24 @@ namespace AionHR.Web.UI.Forms
             emps.Add(emp.result);
             return emps;
         }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
+        //private List<Employee> GetEmployeesFiltered(string query)
+        //{
 
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = "firstName";
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    req.DepartmentId = "0";
+        //    req.BranchId = "0";
+        //    req.IncludeIsInactive = 2;
+        //    req.SortBy = "firstName";
 
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
+        //    req.StartAt = "0";
+        //    req.Size = "20";
+        //    req.Filter = query;
 
 
 
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    return response.Items;
+        //}
 
 
         /// <summary>
@@ -540,7 +549,7 @@ namespace AionHR.Web.UI.Forms
                 return; 
             }
             ParamsListRequest req = new ParamsListRequest();
-            req.param = "scId=" + CurrentScId.Text;
+            req.param = "8|" + CurrentScId.Text;
             ListResponse<EmployeeParam> resp = _employeeService.ChildGetAll<EmployeeParam>(req); 
             if (!resp.Success)
             {

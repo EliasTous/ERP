@@ -322,5 +322,6 @@ var enterKeyPressSearchHandler = function (el, event) {
     if (enter === true) {
         App.Store1.reload();
         App.storeSize.setValue('unlimited');
+      
     }
 };

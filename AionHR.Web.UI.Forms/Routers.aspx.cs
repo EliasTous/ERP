@@ -209,7 +209,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 Code to delete the object from the database 
                 Router s = new Router();
                 s.recordId = index;
-                s.isInactive = false;
+                s.activeStatus =Convert.ToInt16( ActiveStatus.INACTIVE);
                 s.branchId = 0;
                 PostRequest<Router> req = new PostRequest<Router>();
                 req.entity = s;
@@ -511,7 +511,7 @@ namespace AionHR.Web.UI.Forms
             Branch dept = new Branch();
             dept.name = branchId.Text;
             dept.isInactive = false;
-            dept.timeZone = _systemService.SessionHelper.GetDefaultTimeZone();
+           // dept.timeZone = _systemService.SessionHelper.GetDefaultTimeZone();
             PostRequest<Branch> depReq = new PostRequest<Branch>();
             depReq.entity = dept;
             PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(depReq);

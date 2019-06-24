@@ -19,7 +19,7 @@
     <script type="text/javascript" src="Scripts/jquery-new.js?id=4"></script>
     <script type="text/javascript" src="Scripts/plugins/highcharts.js?id=5"></script>
     <script type="text/javascript" src="Scripts/Dashboard.js?id=178"></script>
-
+    <script type="text/javascript" src="Scripts/ReportsCommon.js?id=12"></script>
 
 
 
@@ -110,7 +110,7 @@
                                 legendItemClick: function (e) {
 
                                     if (e.target.options.y > 0)
-                                        clickActiveHightChartPieSeries(e.target.options.index);
+                                        clickActiveHightChartPieSeries(e.target.options.index, e.target.options.name);
                                     return false;
                                 }
                             }
@@ -132,14 +132,15 @@
             });
 
         };
-        var clickActiveHightChartPieSeries = function (val) {
+        var clickActiveHightChartPieSeries = function (val,title) {
 
             switch (val) {
+               
                 case 0: App.PendingWindow.show(); App.PendingStore.reload(); break;
                 case 1: App.NoShowUpWindow.show(); App.NoShowUpStore.reload(); break;
                 case 2: App.CheckedWindow.show(); App.CheckedStore.reload(); break;
-                case 3: App.LeaveWithoutExcuseWindow.show(); App.LeaveWithoutExcuseStore.reload(); break;
-                case 4: App.LeaveWindow.show(); App.LeaveStore.reload(); break;
+              //  case 3: App.LeaveWithoutExcuseWindow.show(); App.LeaveWithoutExcuseStore.reload(); break;
+                case 4: App.LeaveWindow.show(); App.LeaveStore.reload(); App.LeaveWindow.setTitle(title); break;
                 case 5: App.DayOffWindow.show(); App.DayOffStore.reload(); break;
             }
 
@@ -194,7 +195,7 @@
                                 legendItemClick: function (e) {
 
                                     if (e.target.options.y > 0)
-                                        clickLateHightChartPieSeries(e.target.options.index);
+                                        clickLateHightChartPieSeries(e.target.options.index, e.target.options.name);
                                     return false;
                                 }
                             }
@@ -216,11 +217,14 @@
             });
 
         };
-        var clickLateHightChartPieSeries = function (val) {
+        var clickLateHightChartPieSeries = function (val,title) {
         
             App.CurrentTimeVariationType.setValue(val);
             App.TimeVariationStore.reload();
+            App.TimeVariationWindow.setTitle(title);
             App.TimeVariationWindow.show();
+
+           
         }
 
         var drawBreakHightChartPie = function (dataObject, rtl, normal) {
@@ -266,8 +270,8 @@
                         point: {
                             events: {
                                 legendItemClick: function (e) {
-                                      if (e.target.options.y > 0)
-                                    clickBreakHightChartPieSeries(e.target.options.index);
+                                    if (e.target.options.y > 0)
+                                        clickBreakHightChartPieSeries(e.target.options.index, e.target.options.name);
                                     return false;
                                 }
                             }
@@ -289,8 +293,9 @@
                 }]
             })
         };
-        var clickBreakHightChartPieSeries = function (val) {
-          App.direct.PaidAndUnpaidLeaveWindow(val);
+        var clickBreakHightChartPieSeries = function (val,title) {
+            App.direct.PaidAndUnpaidLeaveWindow(val);
+              App.LeaveWindow.setTitle(title);
 
            
         }
@@ -818,7 +823,7 @@
         }
         function displayLeaveFirstCell(d) {
 
-            var str = "<div style= " + getStyle() + ">" + d.name;
+            var str = "<div style= " + getStyle() + ">" + d.employeeName;
             str += "<br/>";
             if (d.branchName != null )
                 str += d.branchName
@@ -1177,32 +1182,12 @@
          <ext:Hidden ID="PresentChart" runat="server" Text="<%$ Resources: present %>" />
          <ext:Hidden ID="AbsentChart" runat="server" Text="<%$ Resources: Absent %>" />
          <ext:Hidden ID="InChart" runat="server" Text="<%$ Resources: In %>" />
-        <ext:Store PageSize="30"
-            ID="OverDueStore"
-            runat="server" OnReadData="OverDueStore_ReadData"
-            RemoteSort="false"
-            RemoteFilter="false">
-          <%--  <Proxy>
-                <ext:PageProxy>
-                    <Listeners>
-                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                    </Listeners>
-                </ext:PageProxy>
-            </Proxy>--%>
-            <Model>
-                <ext:Model ID="Model8" runat="server" IDProperty="recordId">
-                    <Fields>
-
-                        <ext:ModelField Name="recordId" />
-                        <ext:ModelField Name="assignToName" ServerMapping="assignToName.fullName" />
-                        <ext:ModelField Name="dueDate" />
-                        <ext:ModelField Name="name" />
-
-                    </Fields>
-                </ext:Model>
-            </Model>
-
-        </ext:Store>
+          <ext:Hidden ID="vals" runat="server" />
+        <ext:Hidden ID="texts" runat="server" />
+        <ext:Hidden ID="labels" runat="server" />
+        <ext:Hidden ID="Hidden1" runat="server" />
+        <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=Dashboard&values="/>
+    
         <ext:Store
             ID="activeStore"
             runat="server" OnReadData="activeStore_refresh"
@@ -1214,7 +1199,7 @@
                     <Fields>
 
                         <ext:ModelField Name="employeeId" />
-                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="name"  />
                         <ext:ModelField Name="time" />
                         <ext:ModelField Name="checkStatus" />
                         <ext:ModelField Name="positionName" />
@@ -1237,7 +1222,7 @@
                     <Fields>
 
                         <ext:ModelField Name="employeeId" />
-                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="name"  />
                         <ext:ModelField Name="time" />
                         <ext:ModelField Name="checkStatus" />
                         <ext:ModelField Name="positionName" />
@@ -1260,7 +1245,7 @@
                     <Fields>
 
                         <ext:ModelField Name="employeeId" />
-                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="name"  />
                         <ext:ModelField Name="time" />
                         <ext:ModelField Name="checkStatus" />
                         <ext:ModelField Name="positionName" />
@@ -1352,48 +1337,47 @@
             <Items>
 
                 <ext:Panel runat="server" Layout="FitLayout" ID="root" PaddingSpec="5 5 5 5">
-                    <TopBar>
-                        <ext:Toolbar runat="server">
+                    <DockedItems>
+                          <ext:Toolbar runat="server" Height="30" Dock="Top">
+
                             <Items>
+                             
+                             
+                                
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" />
-                                    </Content>
-                                </ext:Container>
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
-                                    <Store>
-                                        <ext:Store runat="server" ID="statusStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-
-                                    <Items>
-                                        <ext:ListItem Text="<%$Resources:All %>" Value="0" />
-                                    </Items>
-                                </ext:ComboBox>
-
-
-                                <ext:ToolbarSeparator runat="server" />
-
-                                <ext:Button runat="server" Text="<%$Resources:Go %>">
-                                     <DirectEvents>
-                                     <Click OnEvent="RefreshAllGrid" ></Click>
-                                   </DirectEvents>
+                                          <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                       <Listeners>
+                                           <Click Handler=" App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
+                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
+                                             <DirectEvents>
+                                           <Click OnEvent="RefreshAllGrid" ></Click>
+                                         </DirectEvents>
                                     <Listeners>
                                         <Click Handler="RefreshAllGrids();App.LeaveRequestsStore.reload();" />
                                     </Listeners>
-                                </ext:Button>
+                                        </ext:Button>
+                                       
+                                    </Content>
+                                </ext:Container>
+                                       
+                        
 
                             </Items>
                         </ext:Toolbar>
-                    </TopBar>
+                           
+                        <ext:Toolbar ID="labelbar" runat="server" Height="0" Dock="Top">
+
+                            <Items>
+                                 <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                            </ext:Toolbar>
+
+                               
+                         
+                   </DockedItems>
                     <Items>
                         <ext:Panel
                             ID="Center" AnchorVertical="true"
@@ -1454,7 +1438,7 @@
 
 
 
-                                                                <%--   <%--           <ext:Panel runat="server" Layout="BorderLayout" Flex="1">
+                                                               <%--           <ext:Panel runat="server" Layout="BorderLayout" Flex="1">
                                                                     <LayoutConfig>
                                                                     </LayoutConfig>
                                                                     <Items>
@@ -1491,9 +1475,9 @@
                                                                         </ext:Panel>
 
                                                                     </Items>
-                                                                </ext:Panel>--%>
+                                                                </ext:Panel>
 
-                                                                <%--                                                                <ext:Panel runat="server" Layout="BorderLayout" ID="leavesHighChart" Flex="1">
+                                                                                                                             <ext:Panel runat="server" Layout="BorderLayout" ID="leavesHighChart" Flex="1">
                                                                     <LayoutConfig>
                                                                     </LayoutConfig>
                                                                     <Items>
@@ -1563,10 +1547,10 @@
                                                                             </Items>
                                                                         </ext:Panel>
                                                                     </Items>
-                                                                </ext:Panel>--%>
+                                                                </ext:Panel>
 
 
-                                                                <%--                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="1" Hidden="true">
+                                                                                                                             <ext:Panel runat="server" Layout="BorderLayout" Flex="1" Hidden="true">
                                                                     <Items>
                                                                         <ext:PolarChart Region="Center"
                                                                             ID="PolarChart6"
@@ -1875,7 +1859,7 @@
                                                                             <Fields>
 
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                                                                <ext:ModelField Name="name"  />
                                                                                 <ext:ModelField Name="dayId" />
                                                                                 <ext:ModelField Name="missedIn" />
                                                                                 <ext:ModelField Name="missedOut" />
@@ -1960,7 +1944,7 @@
 
                                                                                 <ext:ModelField Name="employeeId" />
                                                                                 <ext:ModelField Name="recordId" />
-                                                                                <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                                                                <ext:ModelField Name="name"  />
                                                                                 <ext:ModelField Name="destination" />
                                                                                 <ext:ModelField Name="ltName" />
                                                                                 <ext:ModelField Name="startDate" />
@@ -1970,6 +1954,7 @@
                                                                                 <ext:ModelField Name="leaveId" />
                                                                                  <ext:ModelField Name="arId" />
                                                                                    <ext:ModelField Name="arName" />
+                                                                                 <ext:ModelField Name="employeeName" />
 
                                                                                 
                                                                             
@@ -2073,7 +2058,7 @@
                                                                                 <ext:ModelField Name="amount" />
                                                                                 <ext:ModelField Name="ltName" />
                                                                                 <ext:ModelField Name="currencyRef" />
-                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="employeeName"  />
 
                                                                             </Fields>
                                                                         </ext:Model>
@@ -2087,8 +2072,8 @@
 
                                                                     <ext:Column Visible="false" ID="Column10" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" />
                                                                     <ext:Column ID="Column11" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
-                                                                        <Renderer Handler=" return record.data['employeeName'].fullName; ">
-                                                                        </Renderer>
+                                                                    
+                                                                     
                                                                     </ext:Column>
                                                                     <ext:Column ID="Column14" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
 
@@ -2125,86 +2110,7 @@
                                                         </ext:GridPanel>
 
                                                        
-                                                     <%--   <ext:Panel runat="server" Hidden="true" Layout="HBoxLayout" Title="<%$Resources:Tasks %>" StyleSpec=" border: 1px solid #add2ed !important;">
-                                                            <LayoutConfig>
-                                                                <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
-                                                            </LayoutConfig>
-                                                            <Items>
-
-                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1">
-                                                                    <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" />
-                                                                    </LayoutConfig>
-                                                                    <Items>
-
-                                                                        <ext:Panel runat="server" ID="today" Flex="7">
-                                                                            <Content>
-                                                                                <div id="Chart2Container" style="padding: 10px; width: 100%; height: 100%;"></div>
-                                                                            </Content>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Layout="FitLayout" Height="20">
-                                                                            <Items>
-                                                                                <ext:Panel runat="server" Layout="HBoxLayout">
-                                                                                    <LayoutConfig>
-                                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
-                                                                                    </LayoutConfig>
-                                                                                    <Items>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                        <ext:Panel runat="server" Flex="1">
-                                                                                            <Items>
-                                                                                                <ext:HyperlinkButton runat="server" Height="20" PaddingSpec="0 0 0 0" Flex="1" Text="<%$Resources:OverDue %>" StyleSpec="font-size:16pt;">
-                                                                                                    <Listeners>
-                                                                                                        <Click Handler="App.overDueWindow.show();" />
-                                                                                                    </Listeners>
-                                                                                                </ext:HyperlinkButton>
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                    </Items>
-                                                                                </ext:Panel>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Height="10" />
-                                                                    </Items>
-                                                                </ext:Panel>
-                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1">
-                                                                    <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" />
-                                                                    </LayoutConfig>
-                                                                    <Items>
-
-                                                                        <ext:Panel runat="server" ID="overdue" Width="250" Height="250" Flex="7">
-                                                                            <Content>
-                                                                                <div id="Chart3Container" style="padding: 10px; width: 100%; height: 100%;"></div>
-                                                                            </Content>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Layout="FitLayout" Height="20">
-                                                                            <Items>
-                                                                                <ext:Panel runat="server" Layout="HBoxLayout">
-                                                                                    <LayoutConfig>
-                                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
-                                                                                    </LayoutConfig>
-                                                                                    <Items>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                        <ext:Panel runat="server" Flex="1">
-                                                                                            <Items>
-                                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Flex="1" Text="<%$Resources:DueToday %>" Height="20" StyleSpec="font-size:16pt;">
-                                                                                                    <Listeners>
-                                                                                                        <Click Handler="App.DueTodayWindow.show();" />
-                                                                                                    </Listeners>
-                                                                                                </ext:HyperlinkButton>
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                    </Items>
-                                                                                </ext:Panel>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Height="10" />
-                                                                    </Items>
-                                                                </ext:Panel>
-                                                            </Items>
-                                                        </ext:Panel>--%>
+                                                     
 
                                                         <ext:GridPanel MarginSpec="0 0 0 0"
                                                             ID="TimeGridPanel"
@@ -2278,7 +2184,7 @@
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                                                                                <ext:ModelField Name="employeeName" />
                                                                                 <ext:ModelField Name="dayId" />
                                                                                 <ext:ModelField Name="dayIdDate"  />
                                                                                   <ext:ModelField Name="fullName"  />
@@ -2426,7 +2332,7 @@
                                                                         <ext:ModelField Name="deductedAmount" />
                                                                          <ext:ModelField Name="ldMethod" />
                                                                          <ext:ModelField Name="ldValue" />
-                                                                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                        <ext:ModelField Name="employeeName"  />
                                                                          <ext:ModelField Name="loanId" />
                                                                                   <ext:ModelField Name="departmentName" />
                                                                                     <ext:ModelField Name="arName" />
@@ -2448,8 +2354,8 @@
                                                                        <ext:Column ID="Column42" Visible="false" DataIndex="loanId" runat="server" />
                                                  <ext:Column ID="Column32" DataIndex="loanRef" Text="<%$ Resources: FieldReference%>" runat="server" Hidden="true" />
                                                 <ext:Column ID="Column33" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
-                                                    <Renderer Handler=" return record.data['employeeName'].fullName; ">
-                                                    </Renderer>
+                                                
+                                                
                                                 </ext:Column>
                            
                                                <%-- <ext:Column ID="Column7" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />--%>
@@ -2580,7 +2486,7 @@
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
-                                                <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                                                <ext:ModelField Name="employeeName"  />
                                                 <ext:ModelField Name="departmentName" />
                                                  <ext:ModelField Name="penaltyId" />
                                                 <ext:ModelField Name="penaltyName" />
@@ -2716,8 +2622,8 @@
 
                             <ColumnModel ID="ColumnModel39" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                 <Columns>
-                                    <ext:Column ID="Column54" Visible="false" DataIndex="poId" runat="server" />
-                                    <ext:Column ID="Column55" Visible="false" DataIndex="approverId" runat="server" />
+                                    <ext:Column ID="Column55" Visible="false" DataIndex="poId" runat="server" />
+                                    <ext:Column ID="Column56" Visible="false" DataIndex="approverId" runat="server" />
                                  
                                        
                                      <ext:Column ID="Column57" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2" />
@@ -2725,8 +2631,8 @@
                                      <ext:Column ID="Column62" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
                                      <ext:Column ID="Column63" DataIndex="categoryName" Text="<%$ Resources: FieldCategory%>" runat="server" Flex="1" />
                                      <ext:Column ID="Column64" DataIndex="qty" Text="<%$ Resources: FieldQty%>" runat="server" Flex="1" />
-                                     <ext:Column ID="Column7"  DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " />
-                                     <ext:Column ID="Column56"  DataIndex="arName" runat="server" Flex="1" text="<%$ Resources:Common, ApprovalReason%> " />
+                                     <ext:Column ID="Column60"  DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " />
+                                     <ext:Column ID="Column67"  DataIndex="arName" runat="server" Flex="1" text="<%$ Resources:Common, ApprovalReason%> " />
                                        
                                           
                                                                    
@@ -2737,7 +2643,7 @@
                                      <ext:Column ID="PAComments" DataIndex="comments" Text="<%$ Resources: FieldComments%>" runat="server" Flex="2" />
                                    
                                       <ext:Column runat="server"
-                                ID="Column60" Visible="true"
+                                ID="Column68" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
                                 Width="80"
                                 Hideable="false"
@@ -2795,6 +2701,142 @@
                             </SelectionModel>
                          
                      </ext:GridPanel>
+
+                                                       
+                                                         <ext:GridPanel Hidden="true" MarginSpec="0 0 0 0"
+                                                            ID="PunchesGrid"
+                                                            runat="server"
+                                                            PaddingSpec="0 0 1 0"
+                                                            Header="false"
+                                                            Title="<%$ Resources:PunchesGrid %>"
+                                                            Layout="FitLayout"
+                                                            Scroll="Vertical"
+                                                            Border="false"
+                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
+                                                            <TopBar>
+                        <ext:Toolbar ID="Toolbar2" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                                <ext:Button ID="Button7" runat="server"  Icon="Reload">
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="processPunches">
+                                            <EventMask ShowMask="true" CustomTarget="={#{PunchesGrid}.body}" />
+                                            <ExtraParams>
+                                            <%--    <ext:Parameter Name="approve" Value="true" Mode="Raw" />--%>
+                                            </ExtraParams>
+                                        </Click>
+                                        
+                                    </DirectEvents>
+                                </ext:Button>
+                          
+
+                                
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
+                                                            <Store>
+                                                                <ext:Store 
+                                                                    ID="punchesStore"
+                                                                    runat="server" OnReadData="punchesStore_ReadData">
+                                                                  
+                                                                    <Model>
+                                                                        <ext:Model ID="Model5" runat="server" >
+                                                                            <Fields>
+                                                                                                                                                            
+                                                                                <ext:ModelField Name="employeeRef" />
+                                                                                <ext:ModelField Name="serialNo" />
+                                                                                <ext:ModelField Name="clockStamp" />
+                                                                                <ext:ModelField Name="udId"  />
+                                                                                <ext:ModelField Name="recordId"  />
+                                                                                  <ext:ModelField Name="ppTypeName"  />
+                                                                              
+                                                                            
+
+                                                                            </Fields>
+                                                                        </ext:Model>
+                                                                    </Model>
+
+                                                                </ext:Store>
+                                                            </Store>
+
+
+                                                            <ColumnModel ID="ColumnModel5" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                                                <Columns>
+                                                                  
+
+                                                               
+                                                                    <ext:Column ID="Column6" DataIndex="employeeRef" Text="<%$ Resources: employeeRef %>" runat="server" Flex="1">
+                                                                   
+                                                                    </ext:Column>
+                                                                
+                                                                    <ext:DateColumn ID="DateColumn4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="clockStamp" Hideable="false" Flex="4"  />
+                          
+
+                                                                   <%--  <ext:Column ID="Column7" DataIndex="serialNo" Text="serialNo"  runat="server" Flex="2" />--%>
+                                                            
+                                                                     <ext:Column ID="Column54" DataIndex="udId" Text="<%$ Resources: DeviceRef %>" runat="server" Flex="2" />
+                                                                       <ext:Column ID="Column7" DataIndex="ppTypeName" Text="<%$ Resources: FieldType %>" runat="server" Flex="2" />
+
+                                                                
+                                                                    <ext:Column runat="server"
+                                                                        ID="Column555" Visible="true"
+                                                                        Text=""
+                                                                        Width="100"
+                                                                        Hideable="false"
+                                                                        Align="Center"
+                                                                        Fixed="true"
+                                                                        Filterable="false"
+                                                                        MenuDisabled="true"
+                                                                        Resizable="false">
+
+                                                                        <Renderer Handler="return  deleteRender(); " />
+                                                                    </ext:Column>
+
+
+
+                                                                </Columns>
+                                                            </ColumnModel>
+                                                            <Listeners>
+                                                          <Render Handler="this.on('cellclick', cellClick);" />
+                                                                <Activate Handler="#{punchesStore}.reload();" />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                
+                                                                <CellClick OnEvent="POPUPPendingPunches">
+                                                                    <EventMask ShowMask="true" />
+                                                                      <ExtraParams>
+                                                                       
+                                                                    
+                                                                      
+                                                                     
+                                                                        <ext:Parameter Name="id" Value="record.data['recordId']" Mode="Raw" />
+                                                                  <%--      <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />--%>
+                                                                 
+                                                                         
+                                                                    </ExtraParams>
+
+                                                             
+
+                                                                </CellClick>
+                                                            </DirectEvents>
+
+
+                                                            <View>
+                                                                <ext:GridView ID="GridView5" runat="server" />
+                                                            </View>
+
+
+                                                            <SelectionModel>
+                                                                <ext:RowSelectionModel ID="rowSelectionModel4" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                                               
+                                                            </SelectionModel>
+                                                        </ext:GridPanel>
+                                                     
 
                                                       
                                                          
@@ -3562,7 +3604,7 @@
             </Items>
         </ext:Window>
 
-        <ext:Window runat="server" Modal="true" Title="<%$Resources:OverDue %>" Layout="FitLayout"
+       <%-- <ext:Window runat="server" Modal="true" Title="<%$Resources:OverDue %>" Layout="FitLayout"
             Hidden="true" AutoShow="false" ID="overDueWindow" Width="400" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -3608,7 +3650,7 @@
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
-        </ext:Window>
+        </ext:Window>--%>
 
         <ext:Window runat="server" Modal="true" Title="<%$ Resources: LatenessGridTitle %>" Layout="FitLayout"
             Hidden="true" AutoShow="false" ID="lateWindow" Width="650" Height="300">
@@ -3642,7 +3684,7 @@
                                     <Fields>
 
                                         <ext:ModelField Name="employeeId" />
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
                                         <ext:ModelField Name="time" />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="departmentName" />
@@ -3715,7 +3757,7 @@
                                     <Fields>
 
                                         <ext:ModelField Name="employeeId" />
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
                                         <ext:ModelField Name="time" />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="departmentName" />
@@ -3781,7 +3823,7 @@
                                     <Fields>
 
                                         <ext:ModelField Name="employeeId" />
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="departmentName" />
                                         <ext:ModelField Name="branchName" />
@@ -3851,7 +3893,7 @@
                                     <Fields>
 
                                         <ext:ModelField Name="employeeId" />
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
 
                                         <ext:ModelField Name="destination" />
                                         <ext:ModelField Name="ltName" />
@@ -3919,7 +3961,7 @@
                                     <Fields>
 
                                         <ext:ModelField Name="employeeId" />
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
 
                                         <ext:ModelField Name="destination" />
                                         <ext:ModelField Name="ltName" />
@@ -4034,7 +4076,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
                                         <ext:ModelField Name="amount" />
                                         <ext:ModelField Name="date" />
                                         <ext:ModelField Name="currencyRef" />
@@ -4115,7 +4157,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="name"  />
                                         <ext:ModelField Name="amount" />
                                         <ext:ModelField Name="date" />
                                         <ext:ModelField Name="currencyRef" />
@@ -4287,7 +4329,7 @@
                             <Items>
                                 <ext:TextField ID="TextField1" runat="server" Name="recordId" Hidden="true" />
                                 <ext:TextField ID="leaveRef" runat="server" Name="leaveRef" FieldLabel="<%$ Resources:FieldLeaveRef%>" ReadOnly="true" />
-                                <ext:TextField ID="employeeName" runat="server" Name="employeeName.fullName" FieldLabel="<%$ Resources:FieldEmployeeName%>" ReadOnly="true" />
+                                <ext:TextField ID="employeeName" runat="server" Name="employeeName" FieldLabel="<%$ Resources:FieldEmployeeName%>" ReadOnly="true" />
 
 
                                 <%--   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" AllowBlank="false"
@@ -4564,7 +4606,7 @@
             AutoShow="false"
             Modal="true"
             Hidden="true"
-            Resizable="false"
+            Resizable="true"
             Maximizable="false"
             Draggable="false"
             Layout="Fit" >
@@ -4663,10 +4705,10 @@
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="employeeName"  />
                                                                                 <ext:ModelField Name="dayId" />
                                                                                 <ext:ModelField Name="dayIdDate"  />
-                                                                               <ext:ModelField Name="approverName" IsComplex="true" />
+                                                                               <ext:ModelField Name="approverName"  />
                                                                                 <ext:ModelField Name="timeCode" />
                                                                                 <ext:ModelField Name="timeCodeString" />
                                                                                 <ext:ModelField Name="approverId" />
@@ -4691,7 +4733,7 @@
                                                                    <ext:Column ID="Column40" DataIndex="timeCode"  runat="server" Visible="false" />
 
                                                                      <ext:Column ID="Column41" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
-                                                                    <Renderer Handler=" return record.data['approverName'].fullName;" />
+                                                                  
                                                                     </ext:Column>
                                                                                                                               
                                                                                                                                 
@@ -4893,9 +4935,9 @@
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="employeeName"  />
                                                                                
-                                                                               <ext:ModelField Name="approverName" IsComplex="true" />
+                                                                               <ext:ModelField Name="approverName"  />
                                                                                
                                                                                 <ext:ModelField Name="approverId" />
                                                                                 <ext:ModelField Name="status" />
@@ -4920,7 +4962,7 @@
                                                                  
 
                                                                      <ext:Column ID="Column49" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
-                                                                    <Renderer Handler=" return record.data['approverName'].fullName;" />
+                                                                  
                                                                     </ext:Column>
                                                                                                                               
                                                                                                                                 
@@ -4969,7 +5011,7 @@
 
 
 
-        <ext:Window runat="server" Modal="true" 
+        <ext:Window runat="server" Modal="true"    Title="<%$ Resources: CHECKED %>"
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="CheckedWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -4977,7 +5019,7 @@
                     runat="server"
                     PaddingSpec="0 0 0 0"
                     Header="false"
-                   
+                  
                     Scroll="Vertical"
                     Border="false"
                   
@@ -4994,7 +5036,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="firstPunch" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
@@ -5012,7 +5054,7 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFirstPunch%>" DataIndex="firstPunch" Width="55" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                            <%-- <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />--%>
@@ -5037,7 +5079,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-          <ext:Window runat="server" Modal="true" 
+          <ext:Window runat="server" Modal="true"     Title="<%$ Resources: PENDING %>"
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="PendingWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -5045,7 +5087,7 @@
                     runat="server"
                     PaddingSpec="0 0 0 0"
                     Header="false"
-                   
+                 
                     Scroll="Vertical"
                     Border="false"
                   
@@ -5062,12 +5104,12 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
-                                        <ext:ModelField Name="dayStart" />
+                                        <ext:ModelField Name="employeeName"  />
+                                        <ext:ModelField Name="dtTo" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="branchName" />
-                                        <ext:ModelField Name="dayEnd" />
+                                        <ext:ModelField Name="dtFrom" />
 
                                     </Fields>
                                 </ext:Model>
@@ -5081,11 +5123,11 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
-                                          <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dayStart" Flex="3" Hideable="false" />
-                                          <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayEnd%>" DataIndex="dayEnd" Flex="3" Hideable="false" />
+                            <ext:DateColumn MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dtFrom" Flex="3" Hideable="false" ID="dtFrom" />
+                            <ext:DateColumn MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayEnd%>" DataIndex="dtTo" Flex="3" Hideable="false"  ID="dtTo"/>
                         <%--    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />--%>
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
                             <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
@@ -5108,7 +5150,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-           <ext:Window runat="server" Modal="true" 
+           <ext:Window runat="server" Modal="true"    Title="<%$ Resources: NO_SHOW_UP %>"
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="NoShowUpWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -5116,7 +5158,7 @@
                     runat="server"
                     PaddingSpec="0 0 0 0"
                     Header="false"
-                   
+                
                     Scroll="Vertical"
                     Border="false"
                   
@@ -5133,7 +5175,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="dayStart" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
@@ -5152,7 +5194,7 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                           <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dayStart" Flex="3" Hideable="false" />
@@ -5204,7 +5246,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="dayStart" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
@@ -5223,7 +5265,7 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                           <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dayStart" Flex="3" Hideable="false" />
@@ -5250,7 +5292,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-        <ext:Window runat="server" Modal="true" 
+        <ext:Window runat="server" Modal="true"    Title="<%$ Resources: LEAVE %>"
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="LeaveWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -5258,7 +5300,7 @@
                     runat="server"
                     PaddingSpec="0 0 0 0"
                     Header="false"
-                   
+                
                     Scroll="Vertical"
                     Border="false"
                   
@@ -5275,7 +5317,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="from" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
@@ -5294,7 +5336,7 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                           <ext:DateColumn MenuDisabled="true" ID="LWFromField" runat="server" Text="<%$ Resources: FieldFrom%>" DataIndex="from" Flex="3" Hideable="false" />
@@ -5321,7 +5363,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-          <ext:Window runat="server" Modal="true" 
+          <ext:Window runat="server" Modal="true"  Title="<%$ Resources: DAY_OFF %>"
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="DayOffWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -5329,7 +5371,7 @@
                     runat="server"
                     PaddingSpec="0 0 0 0"
                     Header="false"
-                   
+                     
                     Scroll="Vertical"
                     Border="false"
                   
@@ -5346,12 +5388,12 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
-                                        <ext:ModelField Name="dayStart" />
+                                        <ext:ModelField Name="employeeName"  />
+                                        <ext:ModelField Name="dtFrom" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="branchName" />
-                                        <ext:ModelField Name="dayEnd" />
+                                        <ext:ModelField Name="dtTo" />
 
                                     </Fields>
                                 </ext:Model>
@@ -5365,11 +5407,11 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
-                                          <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dayStart" Flex="3" Hideable="false" />
-                                          <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayEnd%>" DataIndex="dayEnd" Flex="3" Hideable="false" />
+                                          <ext:DateColumn MenuDisabled="true" Hidden="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dtFrom" Flex="3" Hideable="false" ID="DODtFrom" />
+                                          <ext:DateColumn MenuDisabled="true" Hidden="true" runat="server" Text="<%$ Resources: FieldDayEnd%>" DataIndex="dtTo" Flex="3" Hideable="false"  ID="DODtTo"/>
                         <%--    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />--%>
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
                             <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
@@ -5417,7 +5459,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                       
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="positionName" />
@@ -5443,7 +5485,7 @@
                         <Columns>
 
                             
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                            
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                          
@@ -5498,7 +5540,7 @@
                                     <Fields>
 
 
-                                        <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="replacementName" ServerMapping="replacementName.fullName" />
                                      
                                         <ext:ModelField Name="ltName" />
@@ -5768,9 +5810,9 @@
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="employeeName"  />
                                                                                
-                                                                               <ext:ModelField Name="approverName" IsComplex="true" />
+                                                                               <ext:ModelField Name="approverName"  />
                                                                                
                                                                                 <ext:ModelField Name="approverId" />
                                                                                 <ext:ModelField Name="status" />
@@ -5793,7 +5835,7 @@
                                                                  
 
                                                                      <ext:Column ID="Column66" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
-                                                                    <Renderer Handler=" return record.data['approverName'].fullName;" />
+                                                                  
                                                                     </ext:Column>
                                                                                                                               
                                                                                                                                 
@@ -5902,7 +5944,7 @@
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
-                                                <ext:ModelField Name="approverName" IsComplex="true" />
+                                                <ext:ModelField Name="approverName"  />
                                                 <ext:ModelField Name="departmentName" />
                                                  <ext:ModelField Name="penaltyId" />
                                                 <ext:ModelField Name="approverId" />
@@ -5981,7 +6023,7 @@
                             <ExtraParams>
                                 <ext:Parameter Name="penaltyId" Value="#{PERecordId}.getValue()" Mode="Raw" />
                                  <ext:Parameter Name="penaltyStatus" Value="App.penaltyStatus.getValue()" Mode="Raw" />
-
+                                  <ext:Parameter Name="notes" Value="#{notes}.getValue()" Mode="Raw" />
                                 
                                 <ext:Parameter Name="values" Value="#{employeePenaltyForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
@@ -5995,7 +6037,31 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
-
+          <ext:Window runat="server"  Icon="PageEdit"
+            ID="reportsParams"
+            Width="600"
+            Height="500"
+            Title="<%$Resources:Common,Parameters %>"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="FitLayout" Resizable="true">
+            <Listeners>
+                <Show Handler="App.Panel8.loader.load();"></Show>
+            </Listeners>
+            <Items>
+                <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
+                    <Loader runat="server" Url="ReportParameterBrowser.aspx?_reportName=Dashboard" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+            
+                </Items>
+        </ext:Window>
         <uc:leaveControl runat="server" ID="leaveRequest1" />
       
       

@@ -12,7 +12,7 @@ namespace AionHR.Model.SelfService
     public class AssetAllowanceSelfService :ModelBase
     {
        
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         [PropertyID("60108_02")]
         [ApplySecurity]
         public int acId { get; set; }

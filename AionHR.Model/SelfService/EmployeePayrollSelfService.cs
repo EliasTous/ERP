@@ -12,7 +12,7 @@ namespace AionHR.Model.SelfService
     public class EmployeePayrollSelfService
     {
        
-        public EmployeeName name { get; set; }
+        public string name { get; set; }
         //[PropertyID("51021_02")]
         //[ApplySecurity]
         //public string branchName { get; set; }

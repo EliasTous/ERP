@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AionHR.Services.Messaging;
 
 public class DayBreaksListRequest : ListRequest
@@ -43,12 +44,13 @@ public class OvertimeSettingsListRequest : ListRequest
 
 public class BranchScheduleRecordRequest : ListRequest
 {
-    public string FromDayId { get; set; }
+    public DateTime FromDayId { get; set; }
 
-    public string ToDayId { get; set; }
+    public DateTime ToDayId { get; set; }
 
     public int EmployeeId { get; set; }
     public int BranchId { get; set; }
+    
     private Dictionary<string, string> parameters;
 
     public override Dictionary<string, string> Parameters
@@ -56,8 +58,8 @@ public class BranchScheduleRecordRequest : ListRequest
         get
         {
             parameters = new Dictionary<string, string>();
-            parameters.Add("_fromDayId", FromDayId);
-            parameters.Add("_toDayId", ToDayId);
+            parameters.Add("_fromDayId", FromDayId.ToString());
+            parameters.Add("_toDayId", ToDayId.ToString());
             parameters.Add("_employeeId", EmployeeId.ToString());
             parameters.Add("_branchId", BranchId.ToString());
 
@@ -348,13 +350,13 @@ public class AttendnanceDayListRequest : ListRequest
 
 public class ActiveAttendanceRequest : ListRequest
 {
-    public int DepartmentId { get; set; }
+    public string   DepartmentId { get; set; }
 
-    public int BranchId { get; set; }
+    public string BranchId { get; set; }
 
-    public int PositionId { get; set; }
-    public int StatusId { get; set; }
-    public int DivisionId { get; set; }
+    public string PositionId { get; set; }
+    public string StatusId { get; set; }
+    public string DivisionId { get; set; }
 
     public int? DayStatus { get; set; }
 
@@ -380,17 +382,17 @@ public class ActiveAttendanceRequest : ListRequest
 
    
 }
-public class TimeBoundedActiveAttendanceRequest : ActiveAttendanceRequest
+public class TimeBoundedActiveAttendanceRequest :ListRequest
 {
 
-
+    public string paramString { get; set; }
     public string startingDayId { get; set; }
     public override Dictionary<string, string> Parameters
     {
         get
         {
             parameters = base.Parameters;
-           
+            parameters.Add("_params", paramString);
             parameters.Add("_startingDayId", startingDayId);
             return parameters;
         }
@@ -418,7 +420,7 @@ public class AttendanceShiftListRequest : ListRequest
 {
     public int EmployeeId { get; set; }
 
-    public int DayId { get; set; }
+    public string DayId { get; set; }
 
 
 
@@ -429,6 +431,27 @@ public class AttendanceShiftListRequest : ListRequest
             parameters = base.Parameters;
             parameters.Add("_employeeId", EmployeeId.ToString());
             parameters.Add("_dayId", DayId.ToString());
+
+            return parameters;
+        }
+    }
+}
+public class TimeAttendanceViewListRequest : ListRequest
+{
+    public string paramString { get; set; }
+    public string sortBy { get; set; }
+
+    
+
+
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_params", paramString);
+            parameters.Add("_sortBy", sortBy);
 
             return parameters;
         }

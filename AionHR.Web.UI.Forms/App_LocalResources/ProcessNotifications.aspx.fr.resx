@@ -121,13 +121,13 @@
     <value>Demande de congé approuvée</value>
   </data>
   <data name="LEAVE_REQUEST_NEW" xml:space="preserve">
-    <value>Demande de congé nouvelle</value>
+    <value>Demande de congé nouvelle / Employe</value>
   </data>
   <data name="LEAVE_REQUEST_REJECTED" xml:space="preserve">
     <value>Demande de congé rejetée</value>
   </data>
   <data name="LOAN_REQUEST_APPROVED" xml:space="preserve">
-    <value>Loan Request Approved</value>
+    <value>Loan Request Approved / Employe</value>
   </data>
   <data name="LOAN_REQUEST_NEW" xml:space="preserve">
     <value>Loan Request New</value>

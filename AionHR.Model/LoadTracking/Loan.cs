@@ -57,7 +57,7 @@ namespace AionHR.Model.LoadTracking
         [PropertyID("45050_01")]
         [ApplySecurity]
         // get
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         [PropertyID("45050_04")]
         [ApplySecurity]
         public string ltName { get; set; }

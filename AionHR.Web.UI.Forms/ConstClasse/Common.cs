@@ -12,6 +12,8 @@ using System.Resources;
 using System.Web;
 using AionHR.Web.UI.Forms.App_GlobalResources;
 using System.Text.RegularExpressions;
+using AionHR.Model.Employees.Profile;
+using Microsoft.Practices.ServiceLocation;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -95,5 +97,96 @@ namespace AionHR.Web.UI.Forms
        
 
 }
+        public static Dictionary<string, string> FetchParametersAsDictionary(string text)
+        {
+            var values = text.Split('^');
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            foreach( var item in values)
+            {
+              var value=  item.Split('|');
+                if (value.Length == 2)
+                    parameters.Add(value[0], value[1]);
+                   
+
+            }
+            return parameters;
+
+
+        }
+        public static void ChangeKey <TKey, TValue>(this IDictionary<TKey, TValue> dic,
+                                     TKey fromKey, TKey toKey)
+        {
+            TValue value = dic[fromKey];
+            dic.Remove(fromKey);
+            dic[toKey] = value;
+        }
+
+        public static List<EmployeeSnapShot> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeSnapshotListRequest req = new EmployeeSnapshotListRequest();
+
+            req.BranchId = "0";
+
+
+            req.StartAt = "0";
+            req.Size = "20";
+            req.Filter = query;
+
+
+
+
+            ListResponse<EmployeeSnapShot> response = ServiceLocator.Current.GetInstance<IEmployeeService>().ChildGetAll<EmployeeSnapShot>(req);
+            if (!response.Success)
+            {
+                Common.errorMessage(response);
+                return new List<EmployeeSnapShot>();
+            }
+            response.Items.ForEach(s => s.fullName = s.name.fullName);
+            return response.Items;
+        }
+
+
+      
+
     }
+    public enum ActiveStatus { ACTIVE = 1, INACTIVE = -1 }
+
+    public class DateTimeRange
+    {
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
+
+        public bool Intersects(DateTimeRange test)
+        {
+            if (this.Start > this.End || test.Start > test.End)
+                throw new Exception();
+
+            if (this.Start == this.End || test.Start == test.End)
+                return false; // No actual date range
+
+            if (this.Start == test.Start || this.End == test.End)
+                return true; // If any set is the same time, then by default there must be some overlap. 
+
+            if (this.Start < test.Start)
+            {
+                if (this.End > test.Start && this.End < test.End)
+                    return true; // Condition 1
+
+                if (this.End > test.End)
+                    return true; // Condition 3
+            }
+            else
+            {
+                if (test.End > this.Start && test.End < this.End)
+                    return true; // Condition 2
+
+                if (test.End > this.End)
+                    return true; // Condition 4
+            }
+
+            return false;
+        }
+    }
+
 }

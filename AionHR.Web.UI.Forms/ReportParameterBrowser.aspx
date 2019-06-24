@@ -29,8 +29,8 @@
             <Items>
                 <ext:FormPanel
                     ID="FormPanel1"
-                    runat="server"
-                    Header="false"
+                    runat="server" 
+                    Header="false" DefaultButton="Button1"
                     Icon="ApplicationSideList"
                     DefaultAnchor="100%" BodyPadding="5">
 

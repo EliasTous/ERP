@@ -165,6 +165,9 @@
   <data name="xrLabel28.Text" xml:space="preserve">
     <value>لم يتم العثور على نتائج</value>
   </data>
+  <data name="xrLabel29.Text" xml:space="preserve">
+    <value>طبع بواسطة :</value>
+  </data>
   <data name="xrLabel31.Text" xml:space="preserve">
     <value>الموظف</value>
   </data>

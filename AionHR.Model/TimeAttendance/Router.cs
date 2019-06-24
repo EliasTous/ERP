@@ -15,7 +15,7 @@ namespace AionHR.Model.Attendance
         public string routerRef { get; set; }
         [PropertyID("41010_02")]
         [ApplySecurity]
-        public bool isInactive { get; set; }
+        public short activeStatus { get; set; }
         [PropertyID("41010_03")]
         [ApplySecurity]
         public int branchId { get; set; }

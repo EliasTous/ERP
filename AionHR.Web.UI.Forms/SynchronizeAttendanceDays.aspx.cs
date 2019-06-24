@@ -151,13 +151,13 @@ namespace AionHR.Web.UI.Forms
                 if (Convert.ToInt32(employeeFilter.Value) == 0)
                 {
                     EmployeeListRequest empRequest = new EmployeeListRequest();
-                    empRequest.BranchId = "0";
-                    empRequest.DepartmentId = "0";
-                    empRequest.DivisionId = "0";
+                    //empRequest.BranchId = "0";
+                    //empRequest.DepartmentId = "0";
+                    //empRequest.DivisionId = "0";
                     empRequest.Filter = "";
-                    empRequest.filterField = "0";
-                    empRequest.IncludeIsInactive = 0;
-                    empRequest.PositionId = "0";
+                    //empRequest.filterField = "0";
+                    //empRequest.IncludeIsInactive = 0;
+                    //empRequest.PositionId = "0";
                     empRequest.SortBy = "reference";
                     empRequest.StartAt = "0";
                     empRequest.Size = "2000";
@@ -211,7 +211,7 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-
+        
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
@@ -219,38 +219,36 @@ namespace AionHR.Web.UI.Forms
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
             if (prms.Query == "All" || prms.Query == "الكل")
             {
-                List<Employee> data1 = new List<Employee>();
-                data1.Add(new Employee() { fullName = prms.Query, recordId = "0" });
+                List<EmployeeSnapShot> data1 = new List<EmployeeSnapShot>();
+                data1.Add(new EmployeeSnapShot() { fullName = prms.Query, recordId = "0" });
                 return data1;
             }
             else
             {
-                List<Employee> data = GetEmployeesFiltered(prms.Query);
-                data.ForEach(s => { s.fullName = s.name.fullName; });
 
-                return data;
+                return Common.GetEmployeesFiltered(prms.Query);
             }
         }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
+        //private List<Employee> GetEmployeesFiltered(string query)
+        //{
 
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    req.DepartmentId = "0";
+        //    req.BranchId = "0";
+        //    req.IncludeIsInactive = 2;
+        //    req.SortBy = GetNameFormat();
 
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
+        //    req.StartAt = "0";
+        //    req.Size = "20";
+        //    req.Filter = query;
 
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    return response.Items;
+        //}
+        //private string GetNameFormat()
+        //{
+        //    return _systemService.SessionHelper.Get("nameFormat").ToString();
+        //}
 
         protected void StartLongAction(object sender, DirectEventArgs e)
         {
@@ -304,13 +302,13 @@ namespace AionHR.Web.UI.Forms
                 if (Convert.ToInt32(employeeFilter.Value) == 0)
                 {
                     EmployeeListRequest empRequest = new EmployeeListRequest();
-                    empRequest.BranchId = "0";
-                    empRequest.DepartmentId = "0";
-                    empRequest.DivisionId = "0";
+                    //empRequest.BranchId = "0";
+                    //empRequest.DepartmentId = "0";
+                    //empRequest.DivisionId = "0";
                     empRequest.Filter = "";
-                    empRequest.filterField = "0";
-                    empRequest.IncludeIsInactive = 0;
-                    empRequest.PositionId = "0";
+                    //empRequest.filterField = "0";
+                    //empRequest.IncludeIsInactive = 0;
+                    //empRequest.PositionId = "0";
                     empRequest.SortBy = "reference";
                     empRequest.StartAt = "0";
                     empRequest.Size = "2000";

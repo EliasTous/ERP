@@ -38,7 +38,7 @@ namespace AionHR.Web.UI.Forms
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IAdministrationService _administrationService = ServiceLocator.Current.GetInstance<IAdministrationService>();
-        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
 
 
         protected override void InitializeCulture()
@@ -140,20 +140,20 @@ namespace AionHR.Web.UI.Forms
             dcStore.DataSource = resp.Items;
             dcStore.DataBind();
         }
-        private void FilllanguageStore()
-        {
-            //TemplateBodyListReuqest req = new TemplateBodyListReuqest();
-            //req.TemplateId = Convert.ToInt32(recordId.Text);
-            //ListResponse<TemplateBody> bodies = _administrationService.ChildGetAll<TemplateBody>(req);
-            //if (!bodies.Success)
-            //{
-            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-            //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", bodies.ErrorCode) != null ? GetGlobalResourceObject("Errors", bodies.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + bodies.LogId : bodies.Summary).Show();
-            //    return;
-            //}
-            //languageStore.DataSource = bodies.Items;
-            //languageStore.DataBind();
-        }
+        //private void FilllanguageStore()
+        //{
+        //    //TemplateBodyListReuqest req = new TemplateBodyListReuqest();
+        //    //req.TemplateId = Convert.ToInt32(recordId.Text);
+        //    //ListResponse<TemplateBody> bodies = _administrationService.ChildGetAll<TemplateBody>(req);
+        //    //if (!bodies.Success)
+        //    //{
+        //    //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //    //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", bodies.ErrorCode) != null ? GetGlobalResourceObject("Errors", bodies.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + bodies.LogId : bodies.Summary).Show();
+        //    //    return;
+        //    //}
+        //    //languageStore.DataSource = bodies.Items;
+        //    //languageStore.DataBind();
+        //}
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
@@ -199,7 +199,7 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.ActiveIndex = 0;
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-            FilllanguageStore();
+            FillLanguageStore();
             FillBpId();
             FilldcStore();
             currentDocumentId.Text = id;
@@ -240,7 +240,7 @@ namespace AionHR.Web.UI.Forms
                     else
                     {
                         employeeNameTB.Hidden = false;
-                        employeeNameTB.Text = response.result.employeeName.fullName;
+                        employeeNameTB.Text = response.result.employeeName;
                     }
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -695,14 +695,21 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
 
         }
+        private void FillLanguageStore()
+        {
+            languageIdStore.DataSource = Common.XMLDictionaryList(_systemService, "23");
+            languageIdStore.DataBind();
+        }
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
+
             panelRecordDetails.ActiveIndex = 0;
             fdSet.Hidden = true;
             //Reset all values of the relative object
             BasicInfoTab1.Reset();
+          
             FillBpId();
-            FilllanguageStore();
+            FillLanguageStore();
             FilldcStore();
             documentNotesPanel.Disabled = true;
             DocumentDuesGrid.Disabled = true;
@@ -972,7 +979,7 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = resp.result.employeeId,
-                                    fullName =resp.result.employeeName.fullName
+                                    fullName =resp.result.employeeName
                                 }
                            });
                     employeeId.SetValue(resp.result.employeeId);
@@ -1763,43 +1770,12 @@ namespace AionHR.Web.UI.Forms
             return paranthized;
 
         }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-
-            req.DepartmentId = "0";
-
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            if (data == null)
-                data = new List<Employee>();
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-            //};
+            return Common.GetEmployeesFiltered(prms.Query);
 
         }
         protected void addDepartment(object sender, DirectEventArgs e)

@@ -12,7 +12,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
-    <script type="text/javascript" src="Scripts/Schedules.js?id=32"></script>
+    <script type="text/javascript" src="Scripts/Schedules.js?id=58"></script>
      <script type="text/javascript" src="Scripts/common.js?id=32"></script>
    
    
@@ -814,8 +814,12 @@
                                         <ext:InputMask Mask="99:99" />
 
                                     </Plugins>--%>
-                                    <Validator Handler="return validateFrom(this.getValue());" />
+                                    <Validator Handler="return validateFrom(this.getValue()); " />
+                                    <Listeners>
+                                        <Change Handler="App.lastOut.validate();" />
+                                    </Listeners>
                                 </ext:TextField>
+                                
                                 <ext:TextField ID="lastOut" runat="server" FieldLabel="<%$Resources: FieldLastOut %>" Name="lastOut" DataIndex="lastOut" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>">
                                     <%--<Plugins>
                                         <ext:InputMask Mask="99:99" />

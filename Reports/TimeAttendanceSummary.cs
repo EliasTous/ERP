@@ -52,16 +52,10 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel20;
     private DevExpress.XtraReports.Parameters.Parameter User;
     private XRLabel xrLabel12;
-    private PageHeaderBand PageHeader;
-    private XRLine xrLine2;
-    private XRLabel xrLabel23;
     private DevExpress.XtraReports.Parameters.Parameter Month;
-    private XRLabel xrLabel21;
     private XRLine xrLine3;
     private XRLine xrLine1;
-    private XRLabel xrLabel25;
     private DevExpress.XtraReports.Parameters.Parameter Employee;
-    private XRLabel xrLabel24;
 
     /// <summary>
     /// Required designer variable.
@@ -143,14 +137,8 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
-            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
-            this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
             this.Employee = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
-            this.xrLabel23 = new DevExpress.XtraReports.UI.XRLabel();
             this.Month = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -176,9 +164,9 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             // 
             // TopMargin
             // 
-            resources.ApplyResources(this.TopMargin, "TopMargin");
             this.TopMargin.Name = "TopMargin";
             this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            resources.ApplyResources(this.TopMargin, "TopMargin");
             // 
             // BottomMargin
             // 
@@ -188,8 +176,8 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             // 
             // groupHeaderBand1
             // 
-            resources.ApplyResources(this.groupHeaderBand1, "groupHeaderBand1");
             this.groupHeaderBand1.Expanded = false;
+            resources.ApplyResources(this.groupHeaderBand1, "groupHeaderBand1");
             this.groupHeaderBand1.Name = "groupHeaderBand1";
             // 
             // pageFooterBand1
@@ -310,7 +298,6 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.DetailReport2});
             this.DetailReport.DataMember = "EmployeeAttendances";
             this.DetailReport.DataSource = this.objectDataSource1;
-            resources.ApplyResources(this.DetailReport, "DetailReport");
             this.DetailReport.Level = 1;
             this.DetailReport.Name = "DetailReport";
             this.DetailReport.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.DetailReport_BeforePrint);
@@ -326,7 +313,6 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.Detail3});
             this.DetailReport2.DataMember = "EmployeeAttendances.Attendances";
             this.DetailReport2.DataSource = this.objectDataSource1;
-            resources.ApplyResources(this.DetailReport2, "DetailReport2");
             this.DetailReport2.Level = 0;
             this.DetailReport2.Name = "DetailReport2";
             // 
@@ -366,8 +352,8 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel6.BorderWidth = 1F;
             this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "EmployeeAttendances.Attendances.timeIn")});
-            resources.ApplyResources(this.xrLabel6, "xrLabel6");
             this.xrLabel6.KeepTogether = true;
+            resources.ApplyResources(this.xrLabel6, "xrLabel6");
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel6.StyleName = "Normal";
@@ -381,8 +367,8 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel17.BorderWidth = 1F;
             this.xrLabel17.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "EmployeeAttendances.Attendances.timeOut")});
-            resources.ApplyResources(this.xrLabel17, "xrLabel17");
             this.xrLabel17.KeepTogether = true;
+            resources.ApplyResources(this.xrLabel17, "xrLabel17");
             this.xrLabel17.Name = "xrLabel17";
             this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel17.StyleName = "Normal";
@@ -396,8 +382,8 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel22.BorderWidth = 1F;
             this.xrLabel22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "EmployeeAttendances.Attendances.workingTime")});
-            resources.ApplyResources(this.xrLabel22, "xrLabel22");
             this.xrLabel22.KeepTogether = true;
+            resources.ApplyResources(this.xrLabel22, "xrLabel22");
             this.xrLabel22.Name = "xrLabel22";
             this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel22.StyleName = "Normal";
@@ -504,7 +490,6 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.Detail2});
             this.DetailReport3.DataMember = "Days";
             this.DetailReport3.DataSource = this.objectDataSource1;
-            resources.ApplyResources(this.DetailReport3, "DetailReport3");
             this.DetailReport3.Level = 0;
             this.DetailReport3.Name = "DetailReport3";
             this.DetailReport3.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.Detail2_BeforePrint);
@@ -595,68 +580,23 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel18.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Days.DayNumber")});
-            resources.ApplyResources(this.xrLabel18, "xrLabel18");
             this.xrLabel18.KeepTogether = true;
+            resources.ApplyResources(this.xrLabel18, "xrLabel18");
             this.xrLabel18.Name = "xrLabel18";
             this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel18.StyleName = "Normal";
             this.xrLabel18.StylePriority.UseBorders = false;
-            // 
-            // PageHeader
-            // 
-            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel25,
-            this.xrLabel24,
-            this.xrLine2,
-            this.xrLabel23,
-            this.xrLabel21});
-            resources.ApplyResources(this.PageHeader, "PageHeader");
-            this.PageHeader.Name = "PageHeader";
-            this.PageHeader.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.PageHeader_BeforePrint);
-            // 
-            // xrLabel25
-            // 
-            this.xrLabel25.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Employee, "Text", "")});
-            resources.ApplyResources(this.xrLabel25, "xrLabel25");
-            this.xrLabel25.Name = "xrLabel25";
-            this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
             // Employee
             // 
             resources.ApplyResources(this.Employee, "Employee");
             this.Employee.Name = "Employee";
             // 
-            // xrLabel24
-            // 
-            resources.ApplyResources(this.xrLabel24, "xrLabel24");
-            this.xrLabel24.Name = "xrLabel24";
-            this.xrLabel24.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLine2
-            // 
-            resources.ApplyResources(this.xrLine2, "xrLine2");
-            this.xrLine2.Name = "xrLine2";
-            // 
-            // xrLabel23
-            // 
-            this.xrLabel23.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Month, "Text", "")});
-            resources.ApplyResources(this.xrLabel23, "xrLabel23");
-            this.xrLabel23.Name = "xrLabel23";
-            this.xrLabel23.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
             // Month
             // 
             resources.ApplyResources(this.Month, "Month");
             this.Month.Name = "Month";
             this.Month.Visible = false;
-            // 
-            // xrLabel21
-            // 
-            resources.ApplyResources(this.xrLabel21, "xrLabel21");
-            this.xrLabel21.Name = "xrLabel21";
-            this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
             // TimeAttendanceSummary
             // 
@@ -668,8 +608,7 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.pageFooterBand1,
             this.reportHeaderBand1,
             this.DetailReport,
-            this.DetailReport3,
-            this.PageHeader});
+            this.DetailReport3});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
@@ -684,7 +623,7 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.PageInfo,
             this.DataField,
             this.Normal});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -740,6 +679,6 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
 
     private void PageHeader_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        e.Cancel = RowCount == 0;
+       
     }
 }

@@ -349,7 +349,7 @@
     <value>الرمز موجود مسبقاً</value>
   </data>
   <data name="FieldSchedule" xml:space="preserve">
-    <value>جدول الدوام</value>
+    <value>الدوام</value>
   </data>
   <data name="EmployeeCalenderTab" xml:space="preserve">
     <value>تقاويم العمل </value>
@@ -407,5 +407,14 @@
   </data>
   <data name="uploadImageError" xml:space="preserve">
     <value>الرجاء اختيار صورة ذات حجم اصغر</value>
+  </data>
+  <data name="FieldScheduleType" xml:space="preserve">
+    <value>نوع الدوام </value>
+  </data>
+  <data name="LeaveBalance" xml:space="preserve">
+    <value>عدد الاجازات :</value>
+  </data>
+  <data name="LeavePayment" xml:space="preserve">
+    <value>بدل اجازات : </value>
   </data>
 </root>

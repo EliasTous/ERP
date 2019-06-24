@@ -182,21 +182,22 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = response.result.supervisorId,
-                                    fullName =response.result.supervisorName.fullName
+                                    fullName =response.result.managerName
                                 }
                            });
                         supervisorId.SetValue(response.result.supervisorId);
-                       
-
+                      
                     }
                     this.BasicInfoTab.SetValues(response.result);
+                    isInactiveCheck.SetValue(response.result.activeStatus == (Int16)ActiveStatus.ACTIVE ? false : true);
+                    isInactiveCheck.Checked = response.result.activeStatus == (Int16)ActiveStatus.ACTIVE ? false : true;
                     //if (!string.IsNullOrEmpty(response.result.scId))
                     //    scId.Select(response.result.scName);
                     //if (!string.IsNullOrEmpty(response.result.caId.ToString()))
                     //    caId.Select(response.result.caName);
                     //if (response.result.type != null)
                     //    type.Select(response.result.type); 
-                 
+
                     // InitCombos(response.result);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -326,24 +327,16 @@ namespace AionHR.Web.UI.Forms
             };
 
         }
+       
         [DirectMethod]
         public object FillSupervisor(string action, Dictionary<string, object> extraParams)
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            if (data == null)
-                data = new List<Employee>();
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-            //};
+            return Common.GetEmployeesFiltered(prms.Query);
 
         }
+       
 
         private List<Employee> GetEmployeeByID(string id)
         {
@@ -358,28 +351,28 @@ namespace AionHR.Web.UI.Forms
             emps.Add(emp.result);
             return emps;
         }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
+        //private List<Employee> GetEmployeesFiltered(string query)
+        //{
 
-            EmployeeListRequest req = new EmployeeListRequest();
-            if (string.IsNullOrEmpty(CurrentDepartment.Text))
-              req.DepartmentId = "0";
-            else
-            req.DepartmentId = CurrentDepartment.Text;
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = GetNameFormat();
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    if (string.IsNullOrEmpty(CurrentDepartment.Text))
+        //      req.DepartmentId = "0";
+        //    else
+        //    req.DepartmentId = CurrentDepartment.Text;
+        //    req.BranchId = "0";
+        //    req.IncludeIsInactive = 0;
+        //    req.SortBy = GetNameFormat();
 
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
+        //    req.StartAt = "0";
+        //    req.Size = "20";
+        //    req.Filter = query;
 
 
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
+
+
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    return response.Items;
+        //}
 
 
         /// <summary>
@@ -482,8 +475,16 @@ namespace AionHR.Web.UI.Forms
             DepartmentListRequest request = new DepartmentListRequest();
             request.Filter = searchTrigger.Text;
             request.type = 0;
-            request.isInactive = 2; 
+            request.isInactive = 0; 
             ListResponse<Department> branches = _branchService.ChildGetAll<Department>(request);
+            branches.Items.ForEach(x =>
+            {
+                if (x.activeStatus == (Int16)ActiveStatus.ACTIVE)
+                    x.isInactive = false;
+                else
+                    x.isInactive = true;
+
+            });
             if (!branches.Success)
             {
                 Common.errorMessage(branches);
@@ -510,16 +511,21 @@ namespace AionHR.Web.UI.Forms
             Department b = JsonConvert.DeserializeObject<Department>(obj);
             b.scName = scId.SelectedItem.Text;
             b.recordId = id;
-            b.supervisorName = new EmployeeName();
+            
             b.caName=caId.SelectedItem.Text;
             // Define the object to add or edit as null
             if (supervisorId.SelectedItem.Text != null)
 
-                b.supervisorName.fullName = supervisorId.SelectedItem.Text;
+                b.managerName = supervisorId.SelectedItem.Text;
             if (parentId.SelectedItem != null)
                 b.parentName = parentId.SelectedItem.Text;
             if (!b.isInactive.HasValue)
+            {
                 b.isInactive = false;
+                b.activeStatus = (Int16)ActiveStatus.ACTIVE;
+            }
+            else
+                b.activeStatus = (Int16)ActiveStatus.INACTIVE;
             if (scId.SelectedItem != null)
                 b.scId = scId.SelectedItem.Value;
            
@@ -547,7 +553,7 @@ namespace AionHR.Web.UI.Forms
                     {
 
                         //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                        Store1.Reload();
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -582,6 +588,7 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     int index = Convert.ToInt32(id);//getting the id of the record
+
                     PostRequest<Department> request = new PostRequest<Department>();
                     request.entity = b;
                     PostResponse<Department> r = _branchService.ChildAddOrUpdate<Department>(request);                   //Step 1 Selecting the object or building up the object for update purpose
@@ -599,16 +606,17 @@ namespace AionHR.Web.UI.Forms
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(index);
-                        BasicInfoTab.UpdateRecord(record);
+                        //ModelProxy record = this.Store1.GetById(index);
+                        //BasicInfoTab.UpdateRecord(record);
 
-                        record.Set("supervisorName", b.supervisorName);
-                        record.Set("parentName", b.parentName);
-                        record.Set("caName", b.caName);
-                        record.Set("scName", b.scName);
+                        //record.Set("managerName", b.managerName);
+                        //record.Set("parentName", b.parentName);
+                        //record.Set("caName", b.caName);
+                        //record.Set("scName", b.scName);
 
 
-                        record.Commit();
+                        //record.Commit();
+                        Store1.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -709,88 +717,88 @@ namespace AionHR.Web.UI.Forms
 
 
 
-        protected void printBtn_Click(object sender, EventArgs e)
-        {
-            DepartmentsReport p = GetReport();
-            string format = "Pdf";
-            string fileName = String.Format("Report.{0}", format);
+        //protected void printBtn_Click(object sender, EventArgs e)
+        //{
+        //    DepartmentsReport p = GetReport();
+        //    string format = "Pdf";
+        //    string fileName = String.Format("Report.{0}", format);
 
-            MemoryStream ms = new MemoryStream();
-            p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
-            Response.Clear();
-            Response.Write("<script>");
-            Response.Write("window.document.forms[0].target = '_blank';");
-            Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
-            Response.Write("</script>");
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
-        protected void ExportPdfBtn_Click(object sender, EventArgs e)
-        {
-            DepartmentsReport p = GetReport();
-            string format = "Pdf";
-            string fileName = String.Format("Report.{0}", format);
+        //    MemoryStream ms = new MemoryStream();
+        //    p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+        //    Response.Clear();
+        //    Response.Write("<script>");
+        //    Response.Write("window.document.forms[0].target = '_blank';");
+        //    Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
+        //    Response.Write("</script>");
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+        //    Response.BinaryWrite(ms.ToArray());
+        //    Response.Flush();
+        //    Response.Close();
+        //    //Response.Redirect("Reports/RT301.aspx");
+        //}
+        //protected void ExportPdfBtn_Click(object sender, EventArgs e)
+        //{
+        //    DepartmentsReport p = GetReport();
+        //    string format = "Pdf";
+        //    string fileName = String.Format("Report.{0}", format);
 
-            MemoryStream ms = new MemoryStream();
-            p.ExportToPdf(ms);
-            Response.Clear();
+        //    MemoryStream ms = new MemoryStream();
+        //    p.ExportToPdf(ms);
+        //    Response.Clear();
 
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+        //    Response.BinaryWrite(ms.ToArray());
+        //    Response.Flush();
+        //    Response.Close();
+        //    //Response.Redirect("Reports/RT301.aspx");
+        //}
 
-        protected void ExportXLSBtn_Click(object sender, EventArgs e)
-        {
-            DepartmentsReport p = GetReport();
-            string format = "xls";
-            string fileName = String.Format("Report.{0}", format);
+        //protected void ExportXLSBtn_Click(object sender, EventArgs e)
+        //{
+        //    DepartmentsReport p = GetReport();
+        //    string format = "xls";
+        //    string fileName = String.Format("Report.{0}", format);
 
-            MemoryStream ms = new MemoryStream();
-            p.ExportToXls(ms);
+        //    MemoryStream ms = new MemoryStream();
+        //    p.ExportToXls(ms);
 
-            Response.Clear();
+        //    Response.Clear();
 
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
-        private DepartmentsReport GetReport()
-        {
+        //    Response.ContentType = "application/vnd.ms-excel";
+        //    Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+        //    Response.BinaryWrite(ms.ToArray());
+        //    Response.Flush();
+        //    Response.Close();
+        //    //Response.Redirect("Reports/RT301.aspx");
+        //}
+        //private DepartmentsReport GetReport()
+        //{
 
-            DepartmentListRequest request = new DepartmentListRequest();
+        //    DepartmentListRequest request = new DepartmentListRequest();
 
-            request.Filter = "";
-            request.type = 0;
-            ListResponse<Department> resp = _branchService.ChildGetAll<Department>(request);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-               Common.errorMessage(resp);
-                return null;
-            }
-            DepartmentsReport p = new DepartmentsReport();
-            p.DataSource = resp.Items;
-            p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
-            p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            p.Parameters["Yes"].Value = GetGlobalResourceObject("Common", "Yes").ToString();
-            p.Parameters["No"].Value = GetGlobalResourceObject("Common", "No").ToString();
-            return p;
+        //    request.Filter = "";
+        //    request.type = 0;
+        //    ListResponse<Department> resp = _branchService.ChildGetAll<Department>(request);
+        //    if (!resp.Success)
+        //    {
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //       Common.errorMessage(resp);
+        //        return null;
+        //    }
+        //    DepartmentsReport p = new DepartmentsReport();
+        //    p.DataSource = resp.Items;
+        //    p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+        //    p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+        //    p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+        //    p.Parameters["Yes"].Value = GetGlobalResourceObject("Common", "Yes").ToString();
+        //    p.Parameters["No"].Value = GetGlobalResourceObject("Common", "No").ToString();
+        //    return p;
 
 
 
-        }
+        //}
       
         public void FillAttendanceScheduleStore()
         {

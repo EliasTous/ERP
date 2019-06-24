@@ -25,6 +25,7 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
 using AionHR.Services.Messaging.System;
+using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -94,7 +95,7 @@ namespace AionHR.Web.UI.Forms
             }
             try
             {
-                AccessControlApplier.ApplyAccessControlOnPage(typeof(DailySchedule), null, null, null, null);
+                //AccessControlApplier.ApplyAccessControlOnPage(typeof(DailySchedule), null, null, null, null);
             }
             catch (AccessDeniedException exp)
             {
@@ -139,12 +140,42 @@ namespace AionHR.Web.UI.Forms
 
             //Proceed to load
 
-            BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
-            reqFS.EmployeeId = 0;
-            reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqFS.ToDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqFS.BranchId = Convert.ToInt32(branchId.SelectedItem.Value);
-         
+            //BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+            //reqFS.EmployeeId = 0;
+            //reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            //reqFS.ToDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            //reqFS.BranchId = Convert.ToInt32(branchId.SelectedItem.Value);
+            string rep_params = "";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+
+
+
+           
+                parameters.Add("1", dateFrom.SelectedDate.ToString("yyyyMMdd"));
+          
+                parameters.Add("2", dateFrom.SelectedDate.ToString("yyyyMMdd"));
+           
+                parameters.Add("3", "0");
+            parameters.Add("4", branchId.SelectedItem.Value);
+
+            foreach (KeyValuePair<string, string> entry in parameters)
+            {
+                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+            }
+            if (rep_params.Length > 0)
+            {
+                if (rep_params[rep_params.Length - 1] == '^')
+                    rep_params = rep_params.Remove(rep_params.Length - 1);
+            }
+
+
+
+           
+            ReportGenericRequest reqFS = new ReportGenericRequest();
+            reqFS.paramString = rep_params;
+
+
             ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
             if (!response.Success)
             {
@@ -257,7 +288,7 @@ namespace AionHR.Web.UI.Forms
                     html += @"</table></div>";
                     this.pnlSchedule.Html = html;
                     X.Call("DisableTools");
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName.reference).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName).Show();
                     return;
                 }
             });
@@ -498,7 +529,7 @@ namespace AionHR.Web.UI.Forms
                     //    break;
                     
                     html += "<tr>";
-                    html += "<td id=" +e.ToList()[0].employeeId + " class='Employee'>" + e.ToList()[0].employeeName.fullName + "</td><td id=" + e.ToList()[0].employeeId + "_Total></td>";
+                    html += "<td id=" +e.ToList()[0].employeeId + " class='Employee'>" + e.ToList()[0].employeeName + "</td><td id=" + e.ToList()[0].employeeId + "_Total></td>";
                     //if (!_systemService.SessionHelper.CheckIfArabicSession())
                     //{
 
@@ -606,14 +637,43 @@ namespace AionHR.Web.UI.Forms
             Employee emp = new Employee();
             emp.recordId = employeeID;
             emp.fullName = Name;
+            string rep_params = "";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
 
 
 
-            BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
-            reqFS.EmployeeId = Convert.ToInt32(employeeID);
-            reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqFS.ToDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqFS.BranchId = 0;
+
+            
+                parameters.Add("1", dateFrom.SelectedDate.ToString("yyyyMMdd"));
+         
+                parameters.Add("2", dateFrom.SelectedDate.ToString("yyyyMMdd"));
+                if (!string.IsNullOrEmpty(employeeID))
+                parameters.Add("3", employeeID);
+                parameters.Add("4", "0");
+
+            foreach (KeyValuePair<string, string> entry in parameters)
+            {
+                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+            }
+            if (rep_params.Length > 0)
+            {
+                if (rep_params[rep_params.Length - 1] == '^')
+                    rep_params = rep_params.Remove(rep_params.Length - 1);
+            }
+
+
+
+           
+            ReportGenericRequest reqFS = new ReportGenericRequest();
+            reqFS.paramString = rep_params;
+
+
+
+            //BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+            //reqFS.EmployeeId = Convert.ToInt32(employeeID);
+            //reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            //reqFS.ToDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            //reqFS.BranchId = 0;
             ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
             if (!response.Success)
             {
@@ -648,11 +708,44 @@ namespace AionHR.Web.UI.Forms
             pnlTools.Hidden = false;
             currentEmployee.Text = EmployeeId;
             string startAt=string.Empty, closeAt=string.Empty;
-            BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
-            reqFS.EmployeeId = Convert.ToInt32(EmployeeId);
-            reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqFS.ToDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqFS.BranchId = 0;
+
+
+
+            string rep_params = "";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+
+
+
+          
+                parameters.Add("1", dateFrom.SelectedDate.ToString("yyyyMMdd"));
+          
+                parameters.Add("2", dateFrom.SelectedDate.ToString("yyyyMMdd"));
+         
+                parameters.Add("3", EmployeeId);
+                parameters.Add("4", "0");
+
+            foreach (KeyValuePair<string, string> entry in parameters)
+            {
+                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+            }
+            if (rep_params.Length > 0)
+            {
+                if (rep_params[rep_params.Length - 1] == '^')
+                    rep_params = rep_params.Remove(rep_params.Length - 1);
+            }
+
+
+
+         
+            ReportGenericRequest reqFS = new ReportGenericRequest();
+            reqFS.paramString = rep_params;
+
+            //BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+            //reqFS.EmployeeId = Convert.ToInt32(EmployeeId);
+            //reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            //reqFS.ToDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            //reqFS.BranchId = 0;
 
             ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
             if (!response.Success)

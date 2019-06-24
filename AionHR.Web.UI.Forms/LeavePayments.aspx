@@ -121,13 +121,13 @@
                         <ext:ModelField Name="effectiveDate" />
                           <ext:ModelField Name="paymentRef" />
                           <ext:ModelField Name="amount" />
-                         <ext:ModelField Name="employeeName" IsComplex="true" />
+                         <ext:ModelField Name="employeeName"  />
 
                           <ext:ModelField Name="salary" />
                           <ext:ModelField Name="days" />
                           <ext:ModelField Name="earnedLeaves" />
                           <ext:ModelField Name="usedLeaves" />
-                          <ext:ModelField Name="paidLeaves" />
+                          <ext:ModelField Name="leavePayments" />
                           <ext:ModelField Name="leaveBalance" />
                          <ext:ModelField Name="postingStatus" />
                     </Fields>
@@ -246,8 +246,8 @@
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                              <ext:Column ID="Column5" DataIndex="paymentRef" Text="<%$ Resources: FieldReference%>" runat="server" />
                             <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
-                                <Renderer Handler=" return record.data['employeeName'].fullName; ">
-                                </Renderer>
+                            
+                            
                             </ext:Column>
                            
                           
@@ -260,7 +260,7 @@
 
                             <ext:Column ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEarnedLeaves %>" DataIndex="earnedLeaves" Hideable="false" Width="140"/>
                             <ext:Column ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldUsedLeaves %>" DataIndex="usedLeaves" Hideable="false" Width="140"/>
-                            <ext:Column ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaidLeaves %>" DataIndex="paidLeaves" Hideable="false" Width="140"/>
+                          <%--  <ext:Column ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLeavePayments %>" DataIndex="leavePayments" Hideable="false" Width="140"/>--%>
                             <ext:Column ID="Column10" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBalanceLeaves %>" DataIndex="leaveBalance" Hideable="false" Width="140"/>
                               <ext:Column ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDays %>" DataIndex="days" Hideable="false" Width="140"/>
                         <%--    <ext:Column ID="Column11" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPostingStatus %>" DataIndex="postingStatus" Hideable="false" Width="140"/>--%>
@@ -484,7 +484,7 @@
                           
                                    <ext:NumberField runat="server" ReadOnly="true" ID="earnedLeaves" Name="earnedLeaves" FieldLabel="<%$ Resources: FieldEarnedLeaves %>" />
                                    <ext:NumberField runat="server" ReadOnly="true" ID="usedLeaves" Name="usedLeaves" FieldLabel="<%$ Resources: FieldUsedLeaves %>" />
-                                   <ext:NumberField runat="server" ReadOnly="true" ID="paidLeaves" Name="paidLeaves" FieldLabel="<%$ Resources: FieldPaidLeaves %>" />
+                                   <ext:NumberField runat="server" ReadOnly="true" ID="leavePayments" Name="leavePayments" FieldLabel="<%$ Resources: FieldLeavePayments %>" />
                                    <ext:NumberField runat="server" ReadOnly="true" ID="leaveBalance" Name="leaveBalance" FieldLabel="<%$ Resources: FieldBalanceLeaves %>" />
                                  <ext:TextField runat="server" ReadOnly="true" ID="salary" Name="salary" FieldLabel="<%$ Resources: FieldSalary %>"  >
                                         <Listeners> 

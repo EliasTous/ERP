@@ -12,8 +12,8 @@ namespace AionHR.Model.LeaveManagement
 
     public class Approvals
     {
-        public EmployeeName employeeName { get; set; }
-        public EmployeeName approverName { get; set; }
+        public string employeeName { get; set; }
+        public string approverName { get; set; }
         public string departmentName { get; set; }
         public int leaveId { get; set; }
         public int approverId { get; set; }

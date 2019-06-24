@@ -167,7 +167,7 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = response.result.employeeId,
-                                    fullName =response.result.employeeName.fullName
+                                    fullName =response.result.employeeName
                                 }
                      });
                     employeeId.SetValue(response.result.employeeId);
@@ -504,7 +504,11 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
+       
         [DirectMethod]
+
+
+
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
 
@@ -512,9 +516,9 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            List<EmployeeSnapShot> data = Common.GetEmployeesFiltered(prms.Query);
 
-            data.ForEach(s => s.fullName = s.name.fullName);
+
             //  return new
             // {
 
@@ -527,26 +531,26 @@ namespace AionHR.Web.UI.Forms
             //};
 
         }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
+        //private List<Employee> GetEmployeesFiltered(string query)
+        //{
 
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = "firstName";
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    req.DepartmentId = "0";
+        //    req.BranchId = "0";
+        //    req.IncludeIsInactive = 2;
+        //    req.SortBy = "firstName";
 
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
+        //    req.StartAt = "0";
+        //    req.Size = "20";
+        //    req.Filter = query;
 
 
 
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if (!response.Success)
-                 Common.errorMessage(response);
-            return response.Items;
-        }
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    if (!response.Success)
+        //         Common.errorMessage(response);
+        //    return response.Items;
+        //}
         public void SetFullName()
         {
             X.Call("SetNameEnabled", false, employeeId.SelectedItem.Text);

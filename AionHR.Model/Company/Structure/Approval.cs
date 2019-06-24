@@ -16,6 +16,6 @@ namespace AionHR.Model.Company.Structure
         public bool reportTo { get; set; }
         public bool departmentTree { get; set; }
         public bool departmentList { get; set; }
-
+        public short approvalType { get; set; }
     }
 }

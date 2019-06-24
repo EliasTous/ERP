@@ -70,7 +70,7 @@
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
-                        <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="employeeName"  />
                         <ext:ModelField Name="penaltyName" />
                         <ext:ModelField Name="employeeId" />
                         <ext:ModelField Name="penaltyId" />
@@ -387,7 +387,7 @@
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
-                                                <ext:ModelField Name="approverName" IsComplex="true" />
+                                                <ext:ModelField Name="approverName"  />
                                                 <ext:ModelField Name="departmentName" />
                                                  <ext:ModelField Name="penaltyId" />
                                                 <ext:ModelField Name="approverId" />
@@ -409,8 +409,8 @@
                                           <ext:Column ID="approverId" Visible="false" DataIndex="approverId" runat="server" />
                                  
                                         <ext:Column ID="Column8" DataIndex="approverName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
-                                           <Renderer Handler=" return record.data['approverName'].fullName; ">
-                                           </Renderer>
+                                         
+                                         
                                          </ext:Column>
                                     <ext:Column ID="departmentName" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1"/>
                                     <ext:Column ID="lAstatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >

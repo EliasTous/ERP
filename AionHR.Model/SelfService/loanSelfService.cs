@@ -45,7 +45,7 @@ namespace AionHR.Model.SelfService
         public string branchName { get; set; }
        
         // get
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
       
         public string ltName { get; set; }
        

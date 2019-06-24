@@ -161,8 +161,8 @@ namespace AionHR.Model.Reports
                 branchName = details[0].branchName;
                 departmentName = details[0].departmentName;
                 countryName = details[0].countryName;
-                name = details[0].employeeName.fullName;
-                employeeRef = details[0].employeeName.reference;
+                name = details[0].employeeName;
+             //   employeeRef = details[0].employeeName.;
                 currencyRef = details[0].currencyRef;
                 essAmount = details[0].essAmount;
                 cssAmount = details[0].cssAmount;
@@ -217,7 +217,8 @@ namespace AionHR.Model.Reports
     [ClassIdentifier("80200", "80")]
     public class RT200
     {
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
+        public string employeeRef { get; set; }
 
         public string branchName { get; set; }
         public string departmentName { get; set; }

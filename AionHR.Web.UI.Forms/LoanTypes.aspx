@@ -299,7 +299,25 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ldMethod" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                 <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  AllowBlank="true"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"   FieldLabel="<%$ Resources: LoanCoverageType %>"  runat="server" DisplayField="value" ValueField="key"   Name="ldMethod" ID="ldMethod" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="ldMethodStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                         <Listeners>
+                                               <Change Handler="#{ldValue}.setValue(0);"></Change>
+
+                                           </Listeners>
+                                       </ext:ComboBox>
+                               <%-- <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ldMethod" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     FieldLabel="<%$ Resources: LoanCoverageType %>" AllowBlank="true" SubmitValue="true">
                                     <Items>
                                        
@@ -315,7 +333,7 @@
                                                <Change Handler="#{ldValue}.setValue(0);"></Change>
 
                                            </Listeners>
-                                        </ext:ComboBox>
+                                        </ext:ComboBox>--%>
                                  <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="apId" Name="apId" FieldLabel="<%$ Resources:FieldApproval%>" >
                               
                                                 <Store>

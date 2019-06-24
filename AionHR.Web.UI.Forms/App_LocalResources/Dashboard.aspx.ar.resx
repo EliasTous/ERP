@@ -678,4 +678,25 @@
   <data name="RemainingDays" xml:space="preserve">
     <value>الايام المتبقية</value>
   </data>
+  <data name="PunchesGrid" xml:space="preserve">
+    <value>بصمات قيد الانتظار </value>
+  </data>
+  <data name="DeviceRef" xml:space="preserve">
+    <value>رمز جهاز البصمة </value>
+  </data>
+  <data name="employeeRef" xml:space="preserve">
+    <value>رمز الموظف</value>
+  </data>
+  <data name="ppType1" xml:space="preserve">
+    <value>موظف غير معروف</value>
+  </data>
+  <data name="ppType2" xml:space="preserve">
+    <value>جهاز غير معروف</value>
+  </data>
+  <data name="ppType3" xml:space="preserve">
+    <value>دوام غير معروف </value>
+  </data>
+  <data name="ppType4" xml:space="preserve">
+    <value>بصمة مكررة </value>
+  </data>
 </root>

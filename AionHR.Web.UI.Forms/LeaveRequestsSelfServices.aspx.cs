@@ -363,7 +363,7 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = response.result.replacementId,
-                                    fullName =response.result.replacementName.fullName
+                                    fullName =response.result.replacementName
                                 }
                    });
                 replacementId.SetValue(response.result.employeeId);
@@ -465,7 +465,7 @@ namespace AionHR.Web.UI.Forms
             request.status = 0;
             request.Size = "50";
             request.StartAt = e.Start.ToString();
-            request.SortBy = "firstName";
+            request.SortBy = "recordId";
 
             request.Filter = "";
             ListResponse<leaveRequetsSelfservice> routers = _selfServiceService.ChildGetAll<leaveRequetsSelfservice>(request);
@@ -862,7 +862,7 @@ namespace AionHR.Web.UI.Forms
                 y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
-                y.Parameters["Employee"].Value = request.employeeName.fullName;
+                y.Parameters["Employee"].Value = request.employeeName;
                 y.Parameters["Ref"].Value = request.leaveRef;
                 y.Parameters["From"].Value = request.startDate.ToString(dateFormat);
                 y.Parameters["To"].Value = request.endDate.ToString(dateFormat);
@@ -1023,7 +1023,7 @@ namespace AionHR.Web.UI.Forms
             // Define the object to add or edit as null
             if (!b.isPaid.HasValue)
                 b.isPaid = false;
-            b.employeeName = new EmployeeName();
+           // b.employeeName = new EmployeeName();
             //if (employeeId.SelectedItem != null)
 
             //    b.employeeName.fullName = employeeId.SelectedItem.Text;
@@ -1291,33 +1291,17 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-
         [DirectMethod]
         public object FillReplacementEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
+            return Common.GetEmployeesFiltered(prms.Query);
+
         }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
+       
+        
+       
 
 
         private string GetNameFormat()

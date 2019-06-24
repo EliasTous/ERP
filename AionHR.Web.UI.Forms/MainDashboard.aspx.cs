@@ -137,7 +137,7 @@ namespace AionHR.Web.UI.Forms
         private void FillLatenessGrid()
         {
             ActiveAttendanceRequest r = new ActiveAttendanceRequest();
-            r.BranchId = r.DepartmentId = r.PositionId = 0;
+            r.BranchId = r.DepartmentId = r.PositionId = "0";
             r.StartAt = "0";
             r.Size = "1000";
             

@@ -441,4 +441,7 @@
   <data name="titleBalanceErrorMessage" xml:space="preserve">
     <value>Veuillez entrer une valeur, un solde inférieur ou égal</value>
   </data>
+  <data name="FieldLeavePayments" xml:space="preserve">
+    <value>Congé de paiement</value>
+  </data>
 </root>

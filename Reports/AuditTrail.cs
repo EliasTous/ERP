@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
+using System.Collections.Generic;
+using System.Drawing.Printing;
 
 /// <summary>
 /// Summary description for AuditTrail
@@ -41,14 +43,6 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
     private DevExpress.XtraReports.Parameters.Parameter User;
     private DevExpress.XtraReports.Parameters.Parameter Module;
     private DevExpress.XtraReports.Parameters.Parameter TrType;
-    private PageHeaderBand PageHeader;
-    private XRRichText xrRichText1;
-    private XRLabel xrLabel16;
-    private XRLabel xrLabel13;
-    private XRLabel xrLabel11;
-    private XRLabel xrLabel9;
-    private XRLabel xrLabel20;
-    private XRLabel xrLabel18;
     private XRLabel xrLabel21;
     private XRLabel xrLabel22;
 
@@ -57,14 +51,86 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
-    public AuditTrail()
+    public AuditTrail(Dictionary<string, string> parameters)
     {
         InitializeComponent();
+        printHeader(parameters);
         //
         // TODO: Add constructor logic here
         //
     }
+    private void printHeader(Dictionary<string, string> parameters)
+    {
+        if (parameters.Count == 0)
+            return;
 
+
+        XRTable table = new XRTable();
+        table.BeginInit();
+
+
+        table.LocationF = new PointF(0, 0);
+        int count = 0;
+        XRTableRow row = new XRTableRow();
+
+        foreach (KeyValuePair<string, string> item in parameters)
+        {
+
+            XRTableCell cell = new XRTableCell();
+
+            cell.Text = item.Key;
+
+            cell.BackColor = Color.Gray;
+            cell.ForeColor = Color.White;
+
+            XRTableCell valueCell = new XRTableCell();
+
+            valueCell.Text = item.Value;
+
+            row.Cells.Add(cell);
+            row.Cells.Add(valueCell);
+
+            count++;
+            if (count % 4 == 0)
+            {
+                table.Rows.Add(row);
+                row = new XRTableRow();
+            }
+
+
+
+
+
+        }
+        if (count % 4 != 0)
+        {
+            for (int i = 0; i < (4 - (count % 4)) * 2; i++)
+            {
+                XRTableCell cell = new XRTableCell();
+
+
+
+                row.Cells.Add(cell);
+            }
+            table.Rows.Add(row);
+        }
+        table.BeforePrint += new PrintEventHandler(table_BeforePrint);
+        table.AdjustSize();
+        table.EndInit();
+
+
+        PageHeaderBand header = new PageHeaderBand();
+        header.Controls.Add(table);
+        this.Bands.Add(header);
+        //   this.PageHeader.Controls.Add(table);
+
+    }
+    private void table_BeforePrint(object sender, PrintEventArgs e)
+    {
+        XRTable table = ((XRTable)sender);
+        table.LocationF = new DevExpress.Utils.PointFloat(0F, 0F);
+        table.WidthF = this.PageWidth - this.Margins.Left - this.Margins.Right;
+    }
     /// <summary> 
     /// Clean up any resources being used.
     /// </summary>
@@ -121,16 +187,7 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             this.User = new DevExpress.XtraReports.Parameters.Parameter();
             this.Module = new DevExpress.XtraReports.Parameters.Parameter();
             this.TrType = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
-            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -215,15 +272,15 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             // 
             // TopMargin
             // 
-            resources.ApplyResources(this.TopMargin, "TopMargin");
             this.TopMargin.Name = "TopMargin";
             this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            resources.ApplyResources(this.TopMargin, "TopMargin");
             // 
             // BottomMargin
             // 
-            resources.ApplyResources(this.BottomMargin, "BottomMargin");
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            resources.ApplyResources(this.BottomMargin, "BottomMargin");
             // 
             // pageFooterBand1
             // 
@@ -245,7 +302,7 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             // xrLabel2
             // 
             this.xrLabel2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.username, "Text", "")});
+            new DevExpress.XtraReports.UI.XRBinding(this.User, "Text", "")});
             resources.ApplyResources(this.xrLabel2, "xrLabel2");
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -445,68 +502,6 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             this.TrType.ValueInfo = "All";
             this.TrType.Visible = false;
             // 
-            // PageHeader
-            // 
-            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel20,
-            this.xrLabel18,
-            this.xrLabel16,
-            this.xrLabel13,
-            this.xrLabel11,
-            this.xrLabel9,
-            this.xrRichText1});
-            resources.ApplyResources(this.PageHeader, "PageHeader");
-            this.PageHeader.Name = "PageHeader";
-            this.PageHeader.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.PageHeader_BeforePrint);
-            // 
-            // xrLabel20
-            // 
-            this.xrLabel20.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.User, "Text", "")});
-            resources.ApplyResources(this.xrLabel20, "xrLabel20");
-            this.xrLabel20.Name = "xrLabel20";
-            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLabel18
-            // 
-            resources.ApplyResources(this.xrLabel18, "xrLabel18");
-            this.xrLabel18.Name = "xrLabel18";
-            this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLabel16
-            // 
-            this.xrLabel16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.TrType, "Text", "")});
-            resources.ApplyResources(this.xrLabel16, "xrLabel16");
-            this.xrLabel16.Name = "xrLabel16";
-            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLabel13
-            // 
-            this.xrLabel13.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Module, "Text", "")});
-            resources.ApplyResources(this.xrLabel13, "xrLabel13");
-            this.xrLabel13.Name = "xrLabel13";
-            this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLabel11
-            // 
-            resources.ApplyResources(this.xrLabel11, "xrLabel11");
-            this.xrLabel11.Name = "xrLabel11";
-            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLabel9
-            // 
-            resources.ApplyResources(this.xrLabel9, "xrLabel9");
-            this.xrLabel9.Name = "xrLabel9";
-            this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrRichText1
-            // 
-            resources.ApplyResources(this.xrRichText1, "xrRichText1");
-            this.xrRichText1.Name = "xrRichText1";
-            this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
-            // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT802);
@@ -521,8 +516,7 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             this.groupHeaderBand1,
             this.pageFooterBand1,
             this.reportHeaderBand1,
-            this.GroupHeader1,
-            this.PageHeader});
+            this.GroupHeader1});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
@@ -540,8 +534,7 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             this.FieldCaption,
             this.PageInfo,
             this.DataField});
-            this.Version = "16.2";
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -566,6 +559,6 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
 
     private void PageHeader_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        e.Cancel = RowCount == 0;
+       
     }
 }

@@ -75,7 +75,7 @@
                                          <ext:ModelField Name="caId" />
                                          <ext:ModelField Name="dayIdDt"  />
                                          <ext:ModelField Name="employeeId"  />
-                                         <ext:ModelField Name="employeeName" IsComplex="true" />
+                                         <ext:ModelField Name="employeeName"  />
                                         
                                       
 

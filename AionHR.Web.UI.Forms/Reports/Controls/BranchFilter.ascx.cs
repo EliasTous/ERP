@@ -50,8 +50,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
                 Common.errorMessage(resp);
-            branchStore.DataSource = resp.Items;
-            branchStore.DataBind();
+            if (resp.Items != null)
+            {
+                branchStore.DataSource = resp.Items;
+                branchStore.DataBind();
+            }
 
         }
     }

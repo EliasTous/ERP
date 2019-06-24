@@ -67,7 +67,7 @@
                     <Fields>
 
                         <ext:ModelField Name="recordId" />                
-                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                        <ext:ModelField Name="employeeName"  />
                         <ext:ModelField Name="benefitName" />  
                         <ext:ModelField Name="bsName" />  
                         <ext:ModelField Name="period" />  

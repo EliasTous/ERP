@@ -237,7 +237,21 @@
                                 <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField  ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" MaxLength="3" />
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="profileId" runat="server" FieldLabel="<%$ Resources:FieldProfile%>" Name="profileId" IDMode="Static" SubmitValue="true" ForceSelection="true">
+                                    <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:FieldProfile%>"  runat="server" DisplayField="value" ValueField="key"   Name="profileId" ID="profileId" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="profileStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       </ext:ComboBox>
+                              <%--    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="profileId" runat="server" FieldLabel="<%$ Resources:FieldProfile%>" Name="profileId" IDMode="Static" SubmitValue="true" ForceSelection="true">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:Common, UAE %>" Value="0"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common, Syria %>" Value="1"></ext:ListItem>
@@ -250,7 +264,7 @@
                                         
                                       
                                     </Items>
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                               
                             </Items>
 

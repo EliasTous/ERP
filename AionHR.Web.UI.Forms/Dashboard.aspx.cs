@@ -155,7 +155,7 @@ namespace AionHR.Web.UI.Forms
                         BindAlerts();
                         alertStore.Reload();
 
-                        FillStatus();
+                      
 
                         //outStore.Reload();
                         //activeStore.Reload();
@@ -164,7 +164,8 @@ namespace AionHR.Web.UI.Forms
                         //missingPunchesStore.Reload();
                         //checkMontierStore.Reload();
                         format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                        PADate.Format= ColDate.Format= DateColumn12.Format= DateColumn10.Format=DateColumn11.Format = DateColumn9.Format  =  ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
+                        DateColumn4.Format = _systemService.SessionHelper.GetDateformat() + " HH:mm:ss";
+                         dtTo.Format=dtFrom.Format= PADate.Format= ColDate.Format= DateColumn12.Format= DateColumn10.Format=DateColumn11.Format = DateColumn9.Format  =  ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format = DateColumn3.Format  = _systemService.SessionHelper.GetDateformat();
                         periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         CountDateTo.SelectedDate = DateTime.Now;
@@ -182,13 +183,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-        private void FillStatus()
-        {
-            ListRequest statusReq = new ListRequest();
-            ListResponse<EmploymentStatus> resp = _employeeService.ChildGetAll<EmploymentStatus>(statusReq);
-            statusStore.DataSource = resp.Items;
-            statusStore.DataBind();
-        }
+     
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -334,8 +329,10 @@ namespace AionHR.Web.UI.Forms
             {
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
 
-                DashboardRequest req2 = GetDashboardRequest();
-                ListResponse<DashboardItem> dashoard = _dashBoardService.ChildGetAll<DashboardItem>(req2);
+                string rep_params = vals.Text;
+                ReportGenericRequest req2 = new ReportGenericRequest();
+                req2.paramString = rep_params;
+               ListResponse<DashboardItem> dashoard = _dashBoardService.ChildGetAll<DashboardItem>(req2);
                 if (!dashoard.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", dashoard.ErrorCode) != null ? GetGlobalResourceObject("Errors", dashoard.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + dashoard.LogId : dashoard.Summary).Show();
@@ -360,6 +357,7 @@ namespace AionHR.Web.UI.Forms
                 int APPROVAL_LOAN = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LOAN).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LOAN).First().count : 0;
                 int APPROVAL_PENALTY = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PENALTY).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PENALTY).First().count : 0;
                 int APPROVAL_PURCHASE_ORDER = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PURCHASE_ORDER).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PURCHASE_ORDER).First().count : 0;
+                int PENDING_PUNCHES = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.PENDING_PUNCHES).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.PENDING_PUNCHES).First().count : 0;
                 //List<DashboardItem> alert = new List<DashboardItem>();
                 //alert.Add(new DashboardItem() { itemString=GetLocalResourceObject("Anneversaries").ToString(),count=annev,itemId= ConstDashboardItem.WORK_ANNIVERSARY });
                 //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("Birthdays").ToString(), count = birth, itemId = ConstDashboardItem.BIRTHDAY });
@@ -391,7 +389,19 @@ namespace AionHR.Web.UI.Forms
                 TimeGridPanel.Title = GetLocalResourceObject("Time").ToString() + " " + (APPROVAL_TIME != 0 ? APPROVAL_TIME.ToString() : "");
                 EmployeePenaltyApprovalGrid.Title = GetLocalResourceObject("EmployeePenaltyApproval").ToString() + " " + (APPROVAL_PENALTY != 0 ? APPROVAL_PENALTY.ToString() : "");
                 PurchasesGrid.Title= GetLocalResourceObject("PurchasesApproval").ToString() + " " + (APPROVAL_PURCHASE_ORDER != 0 ? APPROVAL_PURCHASE_ORDER.ToString() : "");
-                
+                if (PENDING_PUNCHES != 0)
+                {
+                    PunchesGrid.Hidden = false;
+                    belowt.ShowTab(PunchesGrid);
+                    PunchesGrid.Title = GetLocalResourceObject("PunchesGrid").ToString() + " " + (PENDING_PUNCHES != 0 ? PENDING_PUNCHES.ToString() : "");
+                }
+                else
+                {
+                    belowt.HideTab(PunchesGrid);
+                    belowt.ActiveIndex = 0;
+                    PunchesGrid.Hidden = true;
+                }
+                    
                 return dashoard;
             }
             catch (Exception exp)
@@ -419,7 +429,7 @@ namespace AionHR.Web.UI.Forms
                 activeChartData.Add(new ChartData() { name = GetLocalResourceObject("PENDING").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_PENDING).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_PENDING).First().count : 0, index = 0 });// 10 - Attended
                 activeChartData.Add(new ChartData() { name = GetLocalResourceObject("NO_SHOW_UP").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_NO_SHOW_UP).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_NO_SHOW_UP).First().count : 0, index = 1 });// 110 - Vacations
                 activeChartData.Add(new ChartData() { name = GetLocalResourceObject("CHECKED").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_CHECKED).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_CHECKED).ToList()[0].count : 0, index = 2 });// 111 - Unpaid leave
-                activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE_WITHOUT_EXCUSE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE_WITHOUT_EXCUSE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE_WITHOUT_EXCUSE).ToList()[0].count : 0, index = 3 });// 112 - Leave without excuse
+            //    activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE_WITHOUT_EXCUSE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE_WITHOUT_EXCUSE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE_WITHOUT_EXCUSE).ToList()[0].count : 0, index = 3 });// 112 - Leave without excuse
                                                                                                                                                                                                                                                                                                                                                           //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("BusinessLeave").ToString(), y = dashoard.Items.Where(x => x.itemId == 113).ToList()[0].count, index =4 });// 113 - business leave
                 activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LEAVE).ToList()[0].count : 0, index = 4 });
                 activeChartData.Add(new ChartData() { name = GetLocalResourceObject("DAY_OFF").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_DAY_OFF).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_DAY_OFF).ToList()[0].count : 0, index = 5 });
@@ -429,7 +439,7 @@ namespace AionHR.Web.UI.Forms
 
 
                 List<ChartData> lateChartData = new List<ChartData>();
-                lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_CHECKIN).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_CHECKIN).ToList()[0].count : 0, index = ConstTimeVariationType.EARLY_CHECKIN });//  ALs.Items.Count
+                lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_CHECKIN).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_CHECKIN).ToList()[0].count : 0, index = ConstTimeVariationType.EARLY_CHECKIN, });//  ALs.Items.Count
                 lateChartData.Add(new ChartData() { name = GetLocalResourceObject("LATE_CHECKIN").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LATE_CHECKIN).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_LATE_CHECKIN).ToList()[0].count : 0, index = ConstTimeVariationType.LATE_CHECKIN });
                 lateChartData.Add(new ChartData() { name = GetLocalResourceObject("DURING_SHIFT_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.DURING_SHIFT_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.DURING_SHIFT_LEAVE).ToList()[0].count : 0, index = ConstTimeVariationType.DURING_SHIFT_LEAVE });
                 lateChartData.Add(new ChartData() { name = GetLocalResourceObject("EARLY_LEAVE").ToString(), y = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_LEAVE).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.TA_EARLY_LEAVE).ToList()[0].count : 0, index = ConstTimeVariationType.EARLY_LEAVE });
@@ -657,31 +667,20 @@ namespace AionHR.Web.UI.Forms
         }
         private ActiveAttendanceRequest GetActiveAttendanceRequest()
         {
+           
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+
+
             ActiveAttendanceRequest req = new ActiveAttendanceRequest();
-            var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
-            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
+
+            req.BranchId = parameters.ContainsKey("branchId") ? parameters["branchId"].ToString() : "0";
+            req.DepartmentId = parameters.ContainsKey("departmentId") ? parameters["branchId"].ToString() : "0";
+            req.DivisionId = parameters.ContainsKey("divisionId") ? parameters["branchId"].ToString() : "0";
+            req.PositionId = parameters.ContainsKey("positionId") ? parameters["branchId"].ToString() : "0";
+            req.StatusId = parameters.ContainsKey("esId") ? parameters["esId"].ToString() : "0";
             req.StartAt = "0";
             req.Size = "1000";
-            int intResult;
-
-
-            if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
-            {
-                req.StatusId = intResult;
-
-
-            }
-            else
-            {
-                req.StatusId = 0;
-
-            }
-
-
-
+       
 
             return req;
         }
@@ -689,103 +688,98 @@ namespace AionHR.Web.UI.Forms
         private EmployeeCountRequest GetEmployeeCountRequest()
 
         {
-            EmployeeCountRequest req = new EmployeeCountRequest();
-            var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
-            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
-            int intResult;
-
-
-
-            if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
-            {
-                req.StatusId = intResult;
-
-
-            }
-            else
-            {
-                req.StatusId = 0;
-
-            }
-
-
-
-
-            return req;
-        }
-
-        protected void OverDueStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
             try
             {
-                TaskManagementListRequest req = GetTaskManagementRequest();
-                ListResponse<Model.TaskManagement.Task> resp = _taskManagementService.GetAll<Model.TaskManagement.Task>(req);
-                if (!resp.Success)
-                {
-                    Common.errorMessage(resp);
-                    return;
-                }
-                List<Model.TaskManagement.Task> today = resp.Items.Where(x => x.dueDate == DateTime.Today && !x.completed).ToList();
-                List<Model.TaskManagement.Task> late = resp.Items.Where(x => x.dueDate < DateTime.Today && !x.completed).ToList();
-                int count = resp.Items.Count(x => !x.completed);
+                Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+                EmployeeCountRequest req = new EmployeeCountRequest();
+                req.BranchId = parameters.ContainsKey("branchId") ? parameters["branchId"].ToString() : "0";
+                req.DepartmentId = parameters.ContainsKey("departmentId") ? parameters["branchId"].ToString() : "0";
+                req.DivisionId = parameters.ContainsKey("divisionId") ? parameters["branchId"].ToString() : "0";
+                req.PositionId = parameters.ContainsKey("positionId") ? parameters["branchId"].ToString() : "0";
+                req.StatusId = parameters.ContainsKey("esId") ? parameters["esId"].ToString() : "0";
 
-                OverDueStore.DataSource = late;
-                OverDueStore.DataBind();
-                DueTodayStore.DataSource = today;
-                DueTodayStore.DataBind();
-                int overDue = late.Count;
-                int todays = today.Count;
-                X.Call("chart3", todays, count);
-                X.Call("chart2", overDue, count);
+
+
+
+
+
+
+                return req;
             }
-            catch (Exception exp)
+            catch(Exception exp)
             {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                X.MessageBox.Alert(Resources.Common.Error, exp.Message).Show();
+                return new EmployeeCountRequest();
             }
-
         }
 
+        //protected void OverDueStore_ReadData(object sender, StoreReadDataEventArgs e)
+        //{
+        //    try
+        //    {
+        //        TaskManagementListRequest req = GetTaskManagementRequest();
+        //        ListResponse<Model.TaskManagement.Task> resp = _taskManagementService.GetAll<Model.TaskManagement.Task>(req);
+        //        if (!resp.Success)
+        //        {
+        //            Common.errorMessage(resp);
+        //            return;
+        //        }
+        //        List<Model.TaskManagement.Task> today = resp.Items.Where(x => x.dueDate == DateTime.Today && !x.completed).ToList();
+        //        List<Model.TaskManagement.Task> late = resp.Items.Where(x => x.dueDate < DateTime.Today && !x.completed).ToList();
+        //        int count = resp.Items.Count(x => !x.completed);
+
+        //        OverDueStore.DataSource = late;
+        //        OverDueStore.DataBind();
+        //        DueTodayStore.DataSource = today;
+        //        DueTodayStore.DataBind();
+        //        int overDue = late.Count;
+        //        int todays = today.Count;
+        //        X.Call("chart3", todays, count);
+        //        X.Call("chart2", overDue, count);
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+        //    }
+
+        //}
 
 
-        private TaskManagementListRequest GetTaskManagementRequest()
-        {
-            TaskManagementListRequest req = new TaskManagementListRequest();
+
+        //private TaskManagementListRequest GetTaskManagementRequest()
+        //{
+        //    TaskManagementListRequest req = new TaskManagementListRequest();
 
 
-            var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+        //    var d = jobInfo1.GetJobInfo();
+        //    req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+        //    req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
 
 
 
-            req.DivisionId = 0;
+        //    req.DivisionId = 0;
 
 
-            req.Size = "30";
-            req.StartAt = "0";
-            req.Filter = "";
-            req.SortBy = "dueDate";
-            req.InRelationToId = 0;
-            req.AssignToId = 0;
-            req.Completed = 0;
+        //    req.Size = "30";
+        //    req.StartAt = "0";
+        //    req.Filter = "";
+        //    req.SortBy = "dueDate";
+        //    req.InRelationToId = 0;
+        //    req.AssignToId = 0;
+        //    req.Completed = 0;
 
-            return req;
-        }
+        //    return req;
+        //}
 
         private LoanManagementListRequest GetLoanManagementRequest()
         {
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             LoanManagementListRequest req = new LoanManagementListRequest();
-            var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
 
-
-
-
-            req.DivisionId = 0;
+            req.BranchId = parameters.ContainsKey("branchId") ? parameters["branchId"].ToString() : "0";
+            req.DepartmentId = parameters.ContainsKey("departmentId") ? parameters["branchId"].ToString() : "0";
+            req.DivisionId = parameters.ContainsKey("divisionId") ? parameters["branchId"].ToString() : "0";
+            req.PositionId = parameters.ContainsKey("positionId") ? parameters["branchId"].ToString() : "0";
 
 
             req.Size = "30";
@@ -832,29 +826,16 @@ namespace AionHR.Web.UI.Forms
 
         private DashboardRequest GetDashboardRequest()
         {
-
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             DashboardRequest req = new DashboardRequest();
 
-            int intResult;
-
-            var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
-            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
-            if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0")
-            {
-                req.EsId = Convert.ToInt32(esId.Value);
-
-
-
-            }
-            else
-            {
-                req.EsId = 0;
-
-            }
-
+            
+          
+            req.BranchId = parameters.ContainsKey("2") ? parameters["2"] : "0";
+            req.DepartmentId = parameters.ContainsKey("3") ? parameters["3"] : "0";
+            req.DivisionId = parameters.ContainsKey("4") ? parameters["4"] : "0";
+            req.PositionId = parameters.ContainsKey("1") ? parameters["1"] : "0";
+            req.EsId = parameters.ContainsKey("5") ? parameters["5"] : "0";
 
 
 
@@ -913,35 +894,79 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest req1 = GetDashboardRequest();
-                LeaveApprovalListRequest req = new LeaveApprovalListRequest();
-                req.status = 1;
-                if (!String.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-                    req.approverId = _systemService.SessionHelper.GetEmployeeId();
-                else
+                
+                if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
                     return;
-                req.leaveId = "0";
-                req.PositionId = req1.PositionId;
-                req.DepartmentId = req1.DepartmentId;
-                req.EsId = req1.EsId;
-                req.BranchId = req1.BranchId;
-                req.DivisionId = req1.DivisionId;
+
+                string rep_params = "";
+                Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                if (parameters.ContainsKey("5"))
+                    parameters.ChangeKey("5", "7");
+                if (parameters.ContainsKey("4"))
+                    parameters.ChangeKey("4", "6");
+                if (parameters.ContainsKey("2"))
+                    parameters.ChangeKey("2", "5");
+                if (parameters.ContainsKey("1"))
+                parameters.ChangeKey("1", "4");
 
 
-                if (req != null)
+
+
+
+                parameters.Add("1", "1");
+                parameters.Add("8", "0");
+                parameters.Add("2", _systemService.SessionHelper.GetEmployeeId().ToString());
+                foreach (KeyValuePair<string, string> entry in parameters)
                 {
-                     ListResponse<AionHR.Model.LeaveManagement.Approvals> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
+                    rep_params += entry.Key.ToString() + "|" + entry.Value+"^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params= rep_params.Remove(rep_params.Length - 1);
+                }
 
-                    if (!resp.Success)
-                    {
-                        Common.errorMessage(resp);
-                        return;
-                    }
 
 
+
+
+              
+
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+                ListResponse<AionHR.Model.LeaveManagement.Approvals> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
+                if (resp.Items != null)
+                {
                     LeaveRequestsStore.DataSource = resp.Items;
                     LeaveRequestsStore.DataBind();
                 }
+                //DashboardRequest req1 = GetDashboardRequest();
+                //LeaveApprovalListRequest req = new LeaveApprovalListRequest();
+               
+                //if (!String.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                //    req.approverId = _systemService.SessionHelper.GetEmployeeId();
+                //else
+                //    return;
+                //req.leaveId = "0";
+               
+             
+            
+
+
+                //if (req != null)
+                //{
+                //     ListResponse<AionHR.Model.LeaveManagement.Approvals> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
+
+                //    if (!resp.Success)
+                //    {
+                //        Common.errorMessage(resp);
+                //        return;
+                //    }
+
+
+                //    LeaveRequestsStore.DataSource = resp.Items;
+                //    LeaveRequestsStore.DataBind();
+                //}
             }
             catch (Exception exp)
             {
@@ -953,7 +978,9 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest req = GetDashboardRequest();
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
                 ListResponse<EmployeeBirthday> resp = _dashBoardService.ChildGetAll<EmployeeBirthday>(req);
                 if (!resp.Success)
                 {
@@ -973,7 +1000,9 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest req = GetDashboardRequest();
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
                 ListResponse<WorkAnniversary> resp = _dashBoardService.ChildGetAll<WorkAnniversary>(req);
                 if (!resp.Success)
                 {
@@ -993,9 +1022,9 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                CompanyRightToWorkListRequest req = new CompanyRightToWorkListRequest();
-                var d = jobInfo1.GetJobInfo();
-                req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
                 ListResponse <CompanyRTW> resp = _dashBoardService.ChildGetAll<CompanyRTW>(req);
                 if (!resp.Success)
                 {
@@ -1016,7 +1045,9 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest req = GetDashboardRequest();
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
                 ListResponse<EmpRTW> resp = _dashBoardService.ChildGetAll<EmpRTW>(req);
                 if (!resp.Success)
                 {
@@ -1036,7 +1067,9 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest req = GetDashboardRequest();
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
                 ListResponse<SalaryChange> resp = _dashBoardService.ChildGetAll<SalaryChange>(req);
                 if (!resp.Success)
                 {
@@ -1056,7 +1089,9 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest req = GetDashboardRequest();
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
                 ListResponse<ProbationEnd> resp = _dashBoardService.ChildGetAll<ProbationEnd>(req);
                 if (!resp.Success)
                 {
@@ -1112,7 +1147,20 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-                TimeBoundedActiveAttendanceRequest req = GetTimeBoundedActiveAttendanceRequest();
+                string rep_params = vals.Text;
+                TimeBoundedActiveAttendanceRequest req = new TimeBoundedActiveAttendanceRequest();
+                try
+                {
+                    req.startingDayId = periodToDate.SelectedDate.ToString("yyyyMMdd");
+                }
+                catch
+                {
+                    req.startingDayId = DateTime.Now.ToString("yyyyMMdd");
+
+
+                }
+                
+                req.paramString = rep_params;
 
                 ListResponse<AttendancePeriod> resp = _dashBoardService.ChildGetAll<AttendancePeriod>(req);
                 if (!resp.Success)
@@ -1150,28 +1198,28 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        private TimeBoundedActiveAttendanceRequest GetTimeBoundedActiveAttendanceRequest()
-        {
-            ActiveAttendanceRequest re = GetActiveAttendanceRequest();
-            TimeBoundedActiveAttendanceRequest b = new TimeBoundedActiveAttendanceRequest();
-            b.DepartmentId = re.DepartmentId;
-            b.BranchId = re.BranchId;
-            b.DayStatus = re.DayStatus;
-            b.DivisionId = re.DivisionId;
-            b.PositionId = re.PositionId;
+        //private TimeBoundedActiveAttendanceRequest GetTimeBoundedActiveAttendanceRequest()
+        //{
+        //    ActiveAttendanceRequest re = GetActiveAttendanceRequest();
+        //    TimeBoundedActiveAttendanceRequest b = new TimeBoundedActiveAttendanceRequest();
+        //    b.DepartmentId = re.DepartmentId;
+        //    b.BranchId = re.BranchId;
+        //    b.DayStatus = re.DayStatus;
+        //    b.DivisionId = re.DivisionId;
+        //    b.PositionId = re.PositionId;
 
-            try
-            {
-                b.startingDayId = periodToDate.SelectedDate.ToString("yyyyMMdd");
-            }
-            catch
-            {
-                b.startingDayId = DateTime.Now.ToString("yyyyMMdd");
+        //    try
+        //    {
+        //        b.startingDayId = periodToDate.SelectedDate.ToString("yyyyMMdd");
+        //    }
+        //    catch
+        //    {
+        //        b.startingDayId = DateTime.Now.ToString("yyyyMMdd");
 
 
-            }
-            return b;
-        }
+        //    }
+        //    return b;
+        //}
 
         protected void CompletedLoansStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
@@ -1311,35 +1359,150 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
+        
+              protected void punchesStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            try
+            {
+
+
+                //if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                //    return;
+
+                //string rep_params = "";
+                //Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                //if (parameters.ContainsKey("2"))
+                //    parameters.ChangeKey("2", "8");
+                //if (parameters.ContainsKey("3"))
+                //    parameters.ChangeKey("3", "9");
+                //if (parameters.ContainsKey("5"))
+                //    parameters.ChangeKey("5", "10");
+                //if (parameters.ContainsKey("1"))
+                //    parameters.Remove("1");
+                //if (parameters.ContainsKey("4"))
+                //    parameters.Remove("4");
+
+
+                //parameters.Add("1", "0");
+
+                //parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
+                //parameters.Add("5", timeVariationType.GetTimeCode());
+                //parameters.Add("4", "0");
+                //parameters.Add("7", "1");
+
+
+
+                //foreach (KeyValuePair<string, string> entry in parameters)
+                //{
+                //    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                //}
+                //if (rep_params.Length > 0)
+                //{
+                //    if (rep_params[rep_params.Length - 1] == '^')
+                //        rep_params = rep_params.Remove(rep_params.Length - 1);
+                //}
+
+
+
+
+
+                //ReportGenericRequest r = new ReportGenericRequest();
+                //r.paramString = rep_params;
+                ListRequest req = new ListRequest();
+                
+                ListResponse<PendingPunch> punches = _timeAttendanceService.ChildGetAll<PendingPunch>(req);
+                if (!punches.Success)
+                {
+                    Common.errorMessage(punches);
+                    return;
+                }
+               
+                //punches.Items.ForEach(x=>
+                //{
+                //    if (x.ppType != null )
+                //        x.ppTypeString = GetLocalResourceObject("ppType" + x.ppType).ToString();
+                //}
+                //    );
+            
+                punchesStore.DataSource = punches.Items;
+                punchesStore.DataBind();
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+        }
+
         protected void TimeStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             try
             {
-                DashboardRequest req = GetDashboardRequest();
-                DashboardTimeListRequest r = new DashboardTimeListRequest();
-                r.dayId = "";
-                r.employeeId = 0;
-                if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-                    r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
 
-                else
-                {
-                    TimeStore.DataSource = new List<Time>();
-                    TimeStore.DataBind();
+
+                if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
                     return;
-                }
-                r.timeCode = timeVariationType.GetTimeCode(); 
-                r.shiftId = "0";
-                r.apStatus = "1";
-                r.BranchId = req.BranchId;
-                r.DivisionId = req.DivisionId;
-                r.PositionId = req.PositionId;
-                r.DepartmentId = req.DepartmentId;
-                r.EsId = req.EsId;
-                r.Size = "50";
-                r.StartAt = "0";
-               
 
+                string rep_params = "";
+                Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                if (parameters.ContainsKey("2"))
+                    parameters.ChangeKey("2", "8");
+                if (parameters.ContainsKey("3"))
+                    parameters.ChangeKey("3", "9");
+                if (parameters.ContainsKey("5"))
+                    parameters.ChangeKey("5", "10");
+                if (parameters.ContainsKey("1"))
+                    parameters.Remove("1");
+                if (parameters.ContainsKey("4"))
+                    parameters.Remove("4");
+
+
+                parameters.Add("1", "0");
+
+                parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
+                parameters.Add("5", timeVariationType.GetTimeCode());
+                parameters.Add("4", "0");
+                parameters.Add("7", "1");
+
+
+
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
+
+
+
+                //DashboardRequest req = GetDashboardRequest();
+                //DashboardTimeListRequest r = new DashboardTimeListRequest();
+                //r.dayId = "";
+                //r.employeeId = 0;
+                //if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                //    r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+
+                //else
+                //{
+                //    TimeStore.DataSource = new List<Time>();
+                //    TimeStore.DataBind();
+                //    return;
+                //}
+                //r.timeCode = timeVariationType.GetTimeCode(); 
+                //r.shiftId = "0";
+                //r.apStatus = "1";
+                //r.BranchId = req.BranchId;
+                //r.DivisionId = req.DivisionId;
+                //r.PositionId = req.PositionId;
+                //r.DepartmentId = req.DepartmentId;
+                //r.EsId = req.EsId;
+                //r.Size = "50";
+                //r.StartAt = "0";
+
+                ReportGenericRequest r = new ReportGenericRequest();
+                r.paramString = rep_params;
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)
                 {
@@ -1350,7 +1513,7 @@ namespace AionHR.Web.UI.Forms
                 int currentTimeCode;
                 Times.Items.ForEach(x =>
                 {
-                    x.fullName = x.employeeName.fullName;
+                    x.fullName = x.employeeName;
                     x.statusString = FillApprovalStatus(x.status);
 
                     if (Int32.TryParse(x.timeCode, out currentTimeCode))
@@ -1384,14 +1547,14 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-                ActiveAttendanceRequest req1 = GetActiveAttendanceRequest();
+                DashboardRequest req1 = GetDashboardRequest();
                 ActiveAttendanceRecordRequest req = new ActiveAttendanceRecordRequest();
                 req.BranchId = req1.BranchId;
-                req.DayStatus = req1.DayStatus;
+              
                 req.DepartmentId = req1.DepartmentId;
                 req.DivisionId = req1.DivisionId;
                 req.PositionId = req1.PositionId;
-                req.StatusId = req1.StatusId; 
+                req.StatusId = req1.EsId; 
                 RecordResponse <LocalsRate> resp = _helpFunctionService.ChildGetRecord<LocalsRate>(req);
                 if (!resp.Success)
                 {
@@ -1450,7 +1613,75 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-        
+        [DirectMethod]
+        protected void POPUPPendingPunches(object sender, DirectEventArgs e)
+        {
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+            {
+                Yes = new MessageBoxButtonConfig
+                {
+                    //We are call a direct request metho for deleting a record
+                    Handler = String.Format("App.direct.DeletePendingPunchRecord({0})", id),
+                    Text = Resources.Common.Yes
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Text = Resources.Common.No
+                }
+
+            }).Show();
+           
+        }
+        [DirectMethod]
+        public void DeletePendingPunchRecord(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                PendingPunch n = new PendingPunch();
+                n.recordId = index;
+                n.clockStamp = new DateTime();
+                n.employeeRef = "";
+                n.serialNo = "0";
+                n.udId = "";
+
+                PostRequest<PendingPunch> req = new PostRequest<PendingPunch>();
+                req.entity = n;
+                PostResponse<PendingPunch> res = _timeAttendanceService.ChildDelete<PendingPunch>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(res);
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    punchesStore.Reload();
+                    BindAlerts();
+                   
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+
         [DirectMethod]
         protected void TimePoPUP(object sender, DirectEventArgs e)
         {
@@ -1480,14 +1711,19 @@ namespace AionHR.Web.UI.Forms
                 Common.errorMessage(response);
                 return;
             }
-            TimeStatus.Select(response.result.status.ToString());
-            if (response.result.damageLevel == "1")
-                response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
-            else
-                response.result.damageLevel = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
+            if (response.result != null)
+            {
+                TimeStatus.Select(response.result.status.ToString());
+                if (response.result.damageLevel == "1")
+                    response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
+                else
+                    response.result.damageLevel = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
+                shiftStart.Text = response.result.shiftStart + " " + response.result.shiftEnd;
+                TimeFormPanel.SetValues(response.result);
+            }
 
-            TimeFormPanel.SetValues(response.result);
-            shiftStart.Text = response.result.shiftStart + " " + response.result.shiftEnd;
+           
+            
            // clockDuration.Text = response.result.clockDuration + " " + response.result.duration;
 
             TimeEmployeeName.Text = employeeName;
@@ -1600,7 +1836,7 @@ namespace AionHR.Web.UI.Forms
                 ApprovalLoanStatus.Select("1");
                 LoanApprovalReasonControl.setApprovalReason(arId);
 
-                ApprovalLoanEmployeeName.Text = response.result.employeeName.fullName.ToString();
+                ApprovalLoanEmployeeName.Text = response.result.employeeName.ToString();
 
 
 
@@ -1713,7 +1949,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
 
                     this.LeaveRecordForm.SetValues(response.result);
-                    employeeName.Text = response.result.employeeName.fullName;
+                    employeeName.Text = response.result.employeeName;
                     LeaveApprovalReasonControl.setApprovalReason(arId);
                     this.LeaveRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.LeaveRecordWindow.Show();
@@ -1850,7 +2086,7 @@ namespace AionHR.Web.UI.Forms
                         Icon = Icon.Information,
                         Html = Resources.Common.RecordSavingSucc
                     });
-               
+                    BindAlerts();
                     this.purchaseApprovalWindow.Close();
                 }
 
@@ -1992,19 +2228,43 @@ namespace AionHR.Web.UI.Forms
         private void BindCompanyHeadCount(bool normalSized = true)
         {
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            ReportCompositeRequest req = new ReportCompositeRequest();
-            DateRangeParameterSet range = new DateRangeParameterSet();
-            range.DateFrom = new DateTime(1991, 1, 1);
-            try
-            {
-                range.DateTo = CountDateTo.SelectedDate;
-            }
-            catch (Exception)
-            {
 
-                range.DateTo = DateTime.Now;
+            string rep_params = "";
+            ReportGenericRequest req = new ReportGenericRequest();
+          
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("1", new DateTime(1991, 1, 1).ToString("yyyyMMdd"));
+            parameters.Add("2", CountDateTo.SelectedDate.ToString("yyyyMMdd"));
+
+
+
+
+
+            foreach (KeyValuePair<string, string> entry in parameters)
+            {
+                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
             }
-            req.Add(range);
+            if (rep_params.Length > 0)
+            {
+                if (rep_params[rep_params.Length - 1] == '^')
+                    rep_params = rep_params.Remove(rep_params.Length - 1);
+            }
+
+            //ReportCompositeRequest req = new ReportCompositeRequest();
+            //DateRangeParameterSet range = new DateRangeParameterSet();
+            //range.DateFrom = new DateTime(1991, 1, 1);
+            //try
+            //{
+            //    range.DateTo = CountDateTo.SelectedDate;
+            //}
+            //catch (Exception)
+            //{
+
+            //    range.DateTo = DateTime.Now;
+            //}
+            //req.Add(range);
+            req.paramString = rep_params;
             ListResponse<RT103> resp = _reportsService.ChildGetAll<RT103>(req);
             if (!resp.Success)
             {
@@ -2161,7 +2421,9 @@ namespace AionHR.Web.UI.Forms
         protected void retirementAge_ReadData(object sender, StoreReadDataEventArgs e)
         {
 
-            DashboardRequest req = GetDashboardRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<RetirementAge> resp = _dashBoardService.ChildGetAll<RetirementAge>(req);
             if (!resp.Success)
             {
@@ -2174,7 +2436,9 @@ namespace AionHR.Web.UI.Forms
         protected void TermEndDate_ReadData(object sender, StoreReadDataEventArgs e)
         {
 
-            DashboardRequest req = GetDashboardRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<TermEndDate> resp = _dashBoardService.ChildGetAll<TermEndDate>(req);
             if (!resp.Success)
             {
@@ -2187,7 +2451,9 @@ namespace AionHR.Web.UI.Forms
 
         protected void Checked_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardRequest req = GetDashboardRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<DashBoardCH> resp = _dashBoardService.ChildGetAll<DashBoardCH>(req);
             if (!resp.Success)
             {
@@ -2200,7 +2466,9 @@ namespace AionHR.Web.UI.Forms
 
         protected void Pending_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardRequest req = GetDashboardRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<DashBoardPE> resp = _dashBoardService.ChildGetAll<DashBoardPE>(req);
             if (!resp.Success)
             {
@@ -2212,7 +2480,9 @@ namespace AionHR.Web.UI.Forms
         }
         protected void NoShowUp_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardRequest req = GetDashboardRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<DashboardNS> resp = _dashBoardService.ChildGetAll<DashboardNS>(req);
             if (!resp.Success)
             {
@@ -2224,7 +2494,9 @@ namespace AionHR.Web.UI.Forms
         }
         protected void LeaveWithoutExcuse_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardRequest req = GetDashboardRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<DashboardLW> resp = _dashBoardService.ChildGetAll<DashboardLW>(req);
             if (!resp.Success)
             {
@@ -2236,7 +2508,9 @@ namespace AionHR.Web.UI.Forms
         }
         protected void DayOff_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardRequest req = GetDashboardRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<DashBoardDO> resp = _dashBoardService.ChildGetAll<DashBoardDO>(req);
             if (!resp.Success)
             {
@@ -2249,7 +2523,9 @@ namespace AionHR.Web.UI.Forms
         protected void EmploymentReviewDate_ReadData(object sender, StoreReadDataEventArgs e)
         {
 
-            DashboardRequest req = GetDashboardRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<EmploymentReview> resp = _dashBoardService.ChildGetAll<EmploymentReview>(req);
             if (!resp.Success)
             {
@@ -2261,7 +2537,9 @@ namespace AionHR.Web.UI.Forms
         }
         protected void Leave_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardRequest req = GetDashboardRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<DashBoardLE> resp = _dashBoardService.ChildGetAll<DashBoardLE>(req);
             if (!resp.Success)
             {
@@ -2284,26 +2562,54 @@ namespace AionHR.Web.UI.Forms
 
         protected void TimeVariationStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
+           
+            //string rep_params = "";
             try
             {
-                DashboardRequest req = GetDashboardRequest();
-                TimeVariationListRequest TVReq = new TimeVariationListRequest();
-                TVReq.BranchId = req.BranchId;
-                TVReq.DepartmentId = req.DepartmentId;
-                TVReq.DivisionId = req.DivisionId;
-                TVReq.EsId = req.EsId;
+                //    Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                //    if (parameters.ContainsKey("2"))
+                //        parameters.ChangeKey("2", "7");
+                //    if (parameters.ContainsKey("3"))
+                //        parameters.ChangeKey("3", "8");
+                //    if (parameters.ContainsKey("5"))
+                //        parameters.ChangeKey("5", "9");
+                //    if (parameters.ContainsKey("1"))
+                //        parameters.Remove("1");
+                //    if (parameters.ContainsKey("4"))
+                //        parameters.Remove("4");
+
+
+
+
+
+                ////    parameters.Add("1", "0");
+                //    parameters.Add("2", DateTime.Now.ToString("yyyyMMdd"));
+                //    parameters.Add("3", DateTime.Now.ToString("yyyyMMdd"));
+                // //   parameters.Add("5", CurrentTimeVariationType.Text);
+                //  //  parameters.Add("6", "0");
+
+
+
+                //foreach (KeyValuePair<string, string> entry in parameters)
+                //{
+                //    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                //}
+                //if (rep_params.Length > 0)
+                //{
+                //    if (rep_params[rep_params.Length - 1] == '^')
+                //        rep_params = rep_params.Remove(rep_params.Length - 1);
+                //}
+
+                string rep_params = vals.Text;
+
+
+
+
+
+                Services.Messaging.DashBoard.TimeVariationListRequest TVReq = new Services.Messaging.DashBoard.TimeVariationListRequest();
+                TVReq.paramString = rep_params;
                 TVReq.timeCode = CurrentTimeVariationType.Text;
-                TVReq.fromDayId = DateTime.Now;
-                TVReq.toDayId = DateTime.Now;
-                TVReq.PositionId = req.PositionId;
-                TVReq.employeeId = "0";
-                TVReq.apStatus = "0";
-                TVReq.fromDuration = "0";
-                TVReq.toDuration = "0";
-
-
-
-                ListResponse<DashBoardTimeVariation> resp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(TVReq);
+                ListResponse<DashBoardTimeVariation> resp = _dashBoardService.ChildGetAll<DashBoardTimeVariation>(TVReq);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
@@ -2343,7 +2649,9 @@ namespace AionHR.Web.UI.Forms
 
         public void PaidAndUnpaidLeaveWindow(string index)
         {
-            DashboardRequest req = GetDashboardRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<DashBoardPL> respPE;
             ListResponse<DashBoardUL> respUL;
             if (index == ConstDashboardItem.TA_PAID_LEAVE.ToString())
@@ -2381,23 +2689,67 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest request = GetDashboardRequest();
-                EmployeePenaltyApprovalListRequest req = new EmployeePenaltyApprovalListRequest();
-
-                req.apStatus = "1";
-                req.penaltyId = "0";
-                req.approverId = _systemService.SessionHelper.GetEmployeeId() != null ? _systemService.SessionHelper.GetEmployeeId().ToString() : null;
-                req.BranchId = request.BranchId;
-                req.PositionId = request.PositionId;
-                req.DivisionId = request.DivisionId;
-                req.DepartmentId = request.DepartmentId;
-                req.EsId = request.EsId;
-                if (string.IsNullOrEmpty(req.penaltyId) || string.IsNullOrEmpty(req.approverId))
-                {
-                    EmployeePenaltyApprovalStore.DataSource = new List<EmployeePenaltyApproval>();
-                    EmployeePenaltyApprovalStore.DataBind();
+                if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
                     return;
+
+                string rep_params = "";
+                Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                if (parameters.ContainsKey("5"))
+                    parameters.ChangeKey("5", "7");
+                if (parameters.ContainsKey("4"))
+                    parameters.ChangeKey("4", "6");
+                if (parameters.ContainsKey("2"))
+                    parameters.ChangeKey("2", "5");
+                if (parameters.ContainsKey("1"))
+                    parameters.ChangeKey("1", "4");
+
+
+
+                parameters.Add("1", "1");
+                parameters.Add("2", _systemService.SessionHelper.GetEmployeeId());
+
+                parameters.Add("8", "0");
+
+
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
                 }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
+
+
+
+
+
+
+
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+
+
+
+
+                //DashboardRequest request = GetDashboardRequest();
+                //EmployeePenaltyApprovalListRequest req = new EmployeePenaltyApprovalListRequest();
+
+                //req.apStatus = "1";
+                //req.penaltyId = "0";
+                //req.approverId = _systemService.SessionHelper.GetEmployeeId() != null ? _systemService.SessionHelper.GetEmployeeId().ToString() : null;
+                //req.BranchId = request.BranchId;
+                //req.PositionId = request.PositionId;
+                //req.DivisionId = request.DivisionId;
+                //req.DepartmentId = request.DepartmentId;
+                //req.EsId = request.EsId;
+                //if (string.IsNullOrEmpty(req.penaltyId) || string.IsNullOrEmpty(req.approverId))
+                //{
+                //    EmployeePenaltyApprovalStore.DataSource = new List<EmployeePenaltyApproval>();
+                //    EmployeePenaltyApprovalStore.DataBind();
+                //    return;
+                //}
                 ListResponse<EmployeePenaltyApproval> response = _employeeService.ChildGetAll<EmployeePenaltyApproval>(req);
 
                 if (!response.Success)
@@ -2496,26 +2848,63 @@ namespace AionHR.Web.UI.Forms
         }
         private void FillTimeApproval(int dayId, int employeeId, string timeCode, string shiftId, string apstatus)
         {
-            try
-            {
-                DashboardRequest req = GetDashboardRequest();
-                DashboardTimeListRequest r = new DashboardTimeListRequest();
-                r.fromDayId = dayId.ToString();
-                r.toDayId = dayId.ToString();
-                r.employeeId = employeeId;
-                r.approverId = 0;
-                r.timeCode = timeCode;
-                r.shiftId = shiftId;
-                // r.apStatus = apstatus.ToString();
-                r.apStatus = "0";
-                r.PositionId = req.PositionId;
-                r.DepartmentId = req.DepartmentId;
-                r.DivisionId = req.DivisionId;
-                r.BranchId = req.BranchId;
-                r.EsId = req.EsId;
-                r.StartAt = "0";
-                r.Size = "1000";
-               
+
+         
+           
+                string rep_params = "";
+                try
+                {
+                    Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                    if (parameters.ContainsKey("2"))
+                        parameters.ChangeKey("2", "8");
+                    if (parameters.ContainsKey("3"))
+                        parameters.ChangeKey("3", "9");
+                    if (parameters.ContainsKey("5"))
+                        parameters.ChangeKey("5", "10");
+                    if (parameters.ContainsKey("1"))
+                        parameters.Remove("1");
+                    if (parameters.ContainsKey("4"))
+                        parameters.Remove("4");
+
+
+
+
+
+
+
+
+                    parameters.Add("1", employeeId.ToString());
+                    parameters.Add("2", dayId.ToString());
+                    parameters.Add("3", dayId.ToString());
+                    parameters.Add("4", shiftId);
+
+                    parameters.Add("5", timeCode);
+                    parameters.Add("6", "0");
+                    parameters.Add("7", "0");
+
+
+
+                    foreach (KeyValuePair<string, string> entry in parameters)
+                    {
+                        rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                    }
+                    if (rep_params.Length > 0)
+                    {
+                        if (rep_params[rep_params.Length - 1] == '^')
+                            rep_params = rep_params.Remove(rep_params.Length - 1);
+                    }
+
+
+
+
+
+
+
+                    ReportGenericRequest r = new ReportGenericRequest();
+                    r.paramString = rep_params;
+
+
+              
 
                 ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)
@@ -2576,7 +2965,9 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest req = GetDashboardRequest();
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
                 ListResponse<LeavingSoon> resp = _dashBoardService.ChildGetAll<LeavingSoon>(req);
                 if (!resp.Success)
                 {
@@ -2605,9 +2996,9 @@ namespace AionHR.Web.UI.Forms
                 //    return;
                 //}
                 request.approverId = 0;
-                request.BranchId = 0;
-                request.DepartmentId = 0;
-                request.DivisionId = 0;
+                request.BranchId = "0";
+                request.DepartmentId = "0";
+                request.DivisionId = "0";
                 request.EmployeeId = EmployeeId;
                 request.Status = 0;
                 request.Filter = "";
@@ -2647,7 +3038,9 @@ namespace AionHR.Web.UI.Forms
 
         protected void alertStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardRequest req = GetDashboardRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<DashboardAlertItem> resp = _dashBoardService.ChildGetAll<DashboardAlertItem>(req);
             if (!resp.Success)
             {
@@ -2660,8 +3053,10 @@ namespace AionHR.Web.UI.Forms
         }
         protected void branchAvailabilityStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            
-            DashboardRequest req = GetDashboardRequest();
+
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<DashboardBranchAvailability> resp = _dashBoardService.ChildGetAll<DashboardBranchAvailability>(req);
             if (!resp.Success)
             {
@@ -2673,34 +3068,77 @@ namespace AionHR.Web.UI.Forms
             branchAvailabilityStore.DataSource = resp.Items;
             branchAvailabilityStore.DataBind();
         }
+        
+             protected void processPunches(object sender, DirectEventArgs e)
+        {
+            PostRequest<PendingPunch> req = new PostRequest<PendingPunch>();
+            req.entity = new PendingPunch();
+            PostResponse<PendingPunch> resp = _timeAttendanceService.ChildAddOrUpdate<PendingPunch>(req); 
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return; 
 
+            }
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordSavingSucc
+            });
+            BindAlerts();
+            punchesStore.Reload();
+        }
         protected void Timebatch(object sender, DirectEventArgs e)
         {
             string approve = e.ExtraParams["approve"];
             DashboardRequest req = GetDashboardRequest();
-            DashboardTimeListRequest r = new DashboardTimeListRequest();
-            r.dayId = "";
-            r.employeeId = 0;
-            if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-                r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+          //  DashboardTimeListRequest r = new DashboardTimeListRequest();
+            //r.dayId = "";
+            //r.employeeId = 0;
+            if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
 
-            else
-            {
+
+            { 
                 TimeStore.DataSource = new List<Time>();
                 TimeStore.DataBind();
                 return;
             }
-            r.timeCode = timeVariationType.GetTimeCode();
-            r.shiftId = "0";
-            r.apStatus = "1";
-            r.BranchId = req.BranchId;
-            r.DivisionId = req.DivisionId;
-            r.PositionId = req.PositionId;
-            r.DepartmentId = req.DepartmentId;
-            r.EsId = req.EsId;
-            r.StartAt = "0";
-            r.Size = "50";
-            
+            //r.timeCode = timeVariationType.GetTimeCode();
+            //r.shiftId = "0";
+            //r.apStatus = "1";
+            //r.BranchId = req.BranchId;
+            //r.DivisionId = req.DivisionId;
+            //r.PositionId = req.PositionId;
+            //r.DepartmentId = req.DepartmentId;
+            //r.EsId = req.EsId;
+            //r.StartAt = "0";
+            //r.Size = "50";
+
+            string rep_params = "";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("5", timeVariationType.GetTimeCode());
+            parameters.Add("7", "1");
+            parameters.Add("8",req.BranchId );
+            parameters.Add("9", req.DepartmentId);
+            parameters.Add("10", req.EsId);
+            parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
+
+            foreach (KeyValuePair<string, string> entry in parameters)
+            {
+                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+            }
+            if (rep_params.Length > 0)
+            {
+                if (rep_params[rep_params.Length - 1] == '^')
+                    rep_params = rep_params.Remove(rep_params.Length - 1);
+            }
+
+
+
+            ReportGenericRequest r = new ReportGenericRequest();
+            r.paramString = rep_params;
+
             ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
             if (!Times.Success)
             {
@@ -2732,28 +3170,37 @@ namespace AionHR.Web.UI.Forms
         {
             TabPanel5.ActiveIndex = 0;
             string penaltyId = e.ExtraParams["penaltyId"];
+
+            try { 
+
             EmployeePenaltyApprovalRecordRequest r = new EmployeePenaltyApprovalRecordRequest();
             r.penaltyId = penaltyId;
             r.approverId = _systemService.SessionHelper.GetEmployeeId();
             RecordResponse<EmployeePenaltyApproval> resp = _employeeService.ChildGetRecord<EmployeePenaltyApproval>(r);
-            if (!resp.Success)
+                if (!resp.Success)
+                {
+
+                    Common.errorMessage(resp);
+                    return;
+                }
+                PADate.Value = resp.result.date;
+                penaltyName.Text = resp.result.penaltyName;
+                PAEmployeeName.Text = resp.result.employeeName;
+                penaltyStatus.Select(resp.result.status.ToString());
+                notes.Text = resp.result.notes;
+
+                PERecordId.Text = penaltyId;
+
+
+
+                this.employeePenaltyApprovalWindow.Title = Resources.Common.EditWindowsTitle;
+                this.employeePenaltyApprovalWindow.Show();
+
+
+            }catch(Exception exp)
             {
-               
-                Common.errorMessage(resp);
-                return;
+                X.MessageBox.Alert(Resources.Common.Error, exp.Message);
             }
-            PADate.Value = resp.result.date;
-            penaltyName.Text = resp.result.penaltyName;
-            PAEmployeeName.Text = resp.result.employeeName.firstName;
-            penaltyStatus.Select(resp.result.status.ToString());
-            notes.Text = resp.result.notes;
-
-            PERecordId.Text = penaltyId;
-
-
-
-            this.employeePenaltyApprovalWindow.Title = Resources.Common.EditWindowsTitle;
-            this.employeePenaltyApprovalWindow.Show();
 
         }
 
@@ -2769,7 +3216,8 @@ namespace AionHR.Web.UI.Forms
             {
                 string penaltyId = e.ExtraParams["penaltyId"];
                 string penaltyStatusValue = e.ExtraParams["penaltyStatus"];
-                
+                string notes = e.ExtraParams["notes"];
+
                 EmployeePenaltyApprovalRecordRequest r = new EmployeePenaltyApprovalRecordRequest();
                 r.penaltyId = penaltyId;
                 r.approverId = _systemService.SessionHelper.GetEmployeeId();
@@ -2789,7 +3237,7 @@ namespace AionHR.Web.UI.Forms
 
 
                 PA.status = number;
-
+                PA.notes = notes;
 
 
 
@@ -2835,5 +3283,27 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
+
+
+
+       
     }
 }

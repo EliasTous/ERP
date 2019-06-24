@@ -173,7 +173,23 @@ namespace AionHR.Web.UI.Forms.Reports
             }
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
         [DirectMethod]
         public string CheckSession()
@@ -186,63 +202,16 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-            req.SortBy = "eventDt";
-
-
-          
-            req.Add(userCombo1.GetUser());
-
-            //req.Add();
-            return req;
-        }
-        [DirectMethod]
-        public object FillUsers(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<UserInfo> data = GetUsersFiltered(prms.Query);
-
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<UserInfo> GetUsersFiltered(string query)
-        {
-            UsersListRequest req = new UsersListRequest();
-            req.Size = "100";
-            req.StartAt = "0";
-            req.Filter = query;
-            req.SortBy = "fullName";
-
-            req.DepartmentId = "0";
-            req.PositionId = "0";
-            req.BranchId = "0";
-
-            ListResponse<UserInfo> users = _systemService.ChildGetAll<UserInfo>(req);
-            return users.Items;
-        }
-
         private void FillReport(bool throwException = true)
         {
 
-         
-            GroupUsersListRequest GroupUserReq = new GroupUsersListRequest();
-            GroupUserReq.Size = "";
-            GroupUserReq.StartAt = "";
-            GroupUserReq.Filter = "";
-            GroupUserReq.GroupId =string.IsNullOrEmpty(sgId.Value.ToString())?"0": sgId.Value.ToString();
-            GroupUserReq.UserId = userCombo1.GetUser().UserId.ToString();
+
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
 
 
-
-
-            ListResponse<SecurityGroupUser> resp = _accessControlService.ChildGetAll<SecurityGroupUser>(GroupUserReq);
+            ListResponse<AionHR.Model.Reports.RT804> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT804>(req);
 
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
@@ -261,13 +230,7 @@ namespace AionHR.Web.UI.Forms.Reports
            // h.Parameters["From"].Value = from;
           //  h.Parameters["To"].Value = to;
             h.Parameters["User"].Value = user;
-            //if (resp.Items.Count > 0)
-            //{
-            //    //if (req.Parameters["_userId"] != "0")
-            //    //    h.Parameters["UserId"].Value = resp.Items[0].userName;
-            //    else
-            //        h.Parameters["UserId"].Value = GetGlobalResourceObject("Common", "All");
-            //}
+          //  h.Parameters["Filters"].Value = texts.Text;
 
             h.CreateDocument();
             ASPxWebDocumentViewer1.OpenReport(h);
@@ -291,26 +254,6 @@ namespace AionHR.Web.UI.Forms.Reports
             //FillReport();
         }
 
-        [DirectMethod]
-        public object FillSecurityGroup(string action, Dictionary<string, object> extraParams)
-        {
-            //GEtting the filter from the page
-            string filter = string.Empty;
-
-
-            ListRequest req = new ListRequest();
-            req.Size = "1000";
-            req.StartAt = "0";
-            req.Filter = "";
-            
-
-            ListResponse<SecurityGroup> groups = _accessControlService.ChildGetAll<SecurityGroup>(req);
-            if (!groups.Success)
-            {
-                Common.errorMessage(groups);
-                return new List<SecurityGroup>();
-            }
-            return groups.Items;
-        }
+      
     }
 }

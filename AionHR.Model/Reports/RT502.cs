@@ -11,7 +11,7 @@ namespace AionHR.Model.Reports
     [ClassIdentifier("80502","80")]
  public  class RT502
     {
-        public EmployeeName name { get; set; }
+        public string employeeName { get; set; }
         public string branchName { get; set; }
         public string departmentName { get; set; }
         public int overtime { get; set; }

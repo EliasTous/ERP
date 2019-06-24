@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 namespace AionHR.Model.TimeAttendance
 {
     [ClassIdentifier("84111", "84")]
-    public class FlatSchedule
+    public class FlatSchedule :ModelBase
     {
 
-        
+        public DateTime dtFrom { get; set; }
+        public DateTime dtTo { get; set; }
         public string dayId { get; set; }
 
         public int shiftId { get; set; }
@@ -29,7 +30,7 @@ namespace AionHR.Model.TimeAttendance
         public string fromDayId { get; set; }
         public string toDayId { get; set; }
         public string duration { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
 
     }
     [ClassIdentifier("84104", "84")]
@@ -44,8 +45,11 @@ namespace AionHR.Model.TimeAttendance
     }
 
 
-    public class FlatScheduleRange : FlatSchedule
+    public class FlatScheduleRange 
     {
+        public int employeeId { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
     }
     [ClassIdentifier("84101", "84")]
     public class FlatScheduleBranchAvailability
@@ -60,8 +64,8 @@ namespace AionHR.Model.TimeAttendance
     {
         public int fromEmployeeId { get; set; }
         public int toEmployeeId { get; set; }
-        public string fromDayId { get; set; }
-        public string toDayId { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
 
     }
     [ClassIdentifier("84105", "84")]
@@ -69,7 +73,7 @@ namespace AionHR.Model.TimeAttendance
     {
         public int employeeId { get; set; }
 
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
 
 
 

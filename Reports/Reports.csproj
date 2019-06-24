@@ -33,86 +33,66 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.Charts.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.CodeParser.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.CodeParser.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.CodeParser.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.Data.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.DataAccess.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Office.v18.2.Core, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.Office.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Pdf.v18.2.Core, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.Pdf.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.PivotGrid.v18.2.Core, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v18.2.Export, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.Printing.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v18.2.Core, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxThemes.v16.2">
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.Web.ASPxThemes.v16.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Web.Resources.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Sparkline.v18.2.Core, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.Web.Resources.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Web.Resources.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.Web.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Web.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.Xpo.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v16.2.resources">
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.Xpo.v16.2.resources.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraCharts.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpo.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.XtraCharts.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v16.2.resources">
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.XtraCharts.v16.2.resources.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraGauges.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.XtraGauges.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGauges.v18.2.Core, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.XtraReports.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v16.2.resources">
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.XtraReports.v16.2.resources.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraReports.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\bin\bin\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v18.2.Web.WebForms, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v18.2.Web, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -150,6 +130,20 @@
     </Compile>
     <Compile Include="AttendanceSchedule\AttendanceScheduleReport.Designer.cs">
       <DependentUpon>AttendanceScheduleReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CurrentPayroll\dsSalaries.cs">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CurrentPayroll\dsSalaries.Designer.cs">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CurrentPayroll\CurrentPayrollReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CurrentPayroll\CurrentPayrollReport.Designer.cs">
+      <DependentUpon>CurrentPayrollReport.cs</DependentUpon>
     </Compile>
     <Compile Include="EmployeePayRollCross\dsSalaries.cs">
       <DependentUpon>dsSalaries.xsd</DependentUpon>
@@ -317,12 +311,6 @@
     <Compile Include="CheckTypesReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CurrentPayroll.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CurrentPayroll.Designer.cs">
-      <DependentUpon>CurrentPayroll.cs</DependentUpon>
-    </Compile>
     <Compile Include="DailyAttendance.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -331,12 +319,6 @@
     </Compile>
     <Compile Include="DayTypesReport.Designer.cs">
       <DependentUpon>DayTypesReport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DepartmentsReport.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DepartmentsReport.Designer.cs">
-      <DependentUpon>DepartmentsReport.cs</DependentUpon>
     </Compile>
     <Compile Include="DayStatus.cs">
       <SubType>Component</SubType>
@@ -497,21 +479,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
-      <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
-      <Name>AionHR.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AionHR.Model\AionHR.Model.csproj">
-      <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
-      <Name>AionHR.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
-      <Project>{F60BFEAF-3B3B-47C5-9DA0-AC8892DC9BE8}</Project>
-      <Name>AionHR.Services</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="Absense.fr.resx">
+      <DependentUpon>Absense.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ApproverPerformance.ar.resx">
+      <DependentUpon>ApproverPerformance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApproverPerformance.fr.resx">
       <DependentUpon>ApproverPerformance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ApproverPerformance.resx">
@@ -520,11 +494,53 @@
     <EmbeddedResource Include="AttendanceSchedule\AttendanceScheduleReport.en-US.resx">
       <DependentUpon>AttendanceScheduleReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceSchedule\AttendanceScheduleReport.fr.resx">
+      <DependentUpon>AttendanceScheduleReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuditTrail.fr.resx">
+      <DependentUpon>AuditTrail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BankAccounts.fr.resx">
+      <DependentUpon>BankAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bankTransfer.fr.resx">
+      <DependentUpon>bankTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BiometricDevicesReport.fr.resx">
+      <DependentUpon>BiometricDevicesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BonusTypesReport.fr.resx">
+      <DependentUpon>BonusTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BranchesReport.fr.resx">
+      <DependentUpon>BranchesReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BranchWorkforce.ar.resx">
+      <DependentUpon>BranchWorkforce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BranchWorkforce.fr.resx">
       <DependentUpon>BranchWorkforce.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BranchWorkforce.resx">
       <DependentUpon>BranchWorkforce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CertificateLevelsReport.fr.resx">
+      <DependentUpon>CertificateLevelsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckTypesReport.fr.resx">
+      <DependentUpon>CheckTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CurrentPayroll\CurrentPayrollReport.en-US.resx">
+      <DependentUpon>CurrentPayrollReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DailyAttendance.fr.resx">
+      <DependentUpon>DailyAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DayStatus.fr.resx">
+      <DependentUpon>DayStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DayTypesReport.fr.resx">
+      <DependentUpon>DayTypesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DetailedAttendance.ar.resx">
       <DependentUpon>DetailedAttendance.cs</DependentUpon>
@@ -537,17 +553,49 @@
       <DependentUpon>AttendanceScheduleReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="DetailedAttendance.fr.resx">
+      <DependentUpon>DetailedAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DivisonsReport.fr.resx">
+      <DependentUpon>DivisonsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentTypesReport.fr.resx">
+      <DependentUpon>DocumentTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeDetails.fr.resx">
+      <DependentUpon>EmployeeDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CurrentPayroll\CurrentPayrollReport.ar.resx">
+      <DependentUpon>CurrentPayrollReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CurrentPayroll\CurrentPayrollReport.fr.resx">
+      <DependentUpon>CurrentPayrollReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CurrentPayroll\CurrentPayrollReport.resx">
+      <DependentUpon>CurrentPayrollReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmployeePayRollCross\EmployeePayrollCrossReport.ar.resx">
       <DependentUpon>EmployeePayrollCrossReport.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeePayRollCross\EmployeePayrollCrossReport.fr.resx">
+      <DependentUpon>EmployeePayrollCrossReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeePayRollCross\EmployeePayrollCrossReport.resx">
       <DependentUpon>EmployeePayrollCrossReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmployeePayRoll\EmployeePaySlipSub.fr.resx">
+      <DependentUpon>EmployeePaySlipSub.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmployeePayRoll\EmployeesPaySlip.ar.resx">
       <DependentUpon>EmployeesPaySlip.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeePayRoll\EmployeesPaySlip.fr.resx">
+      <DependentUpon>EmployeesPaySlip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeePayRoll\EmployeesPaySlip.resx">
       <DependentUpon>EmployeesPaySlip.cs</DependentUpon>
@@ -557,6 +605,18 @@
       <DependentUpon>EmployeePaySlipSub.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmployeesNotes.fr.resx">
+      <DependentUpon>EmployeesNotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinalSettlementReport.fr.resx">
+      <DependentUpon>FinalSettlementReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoefencesReport.fr.resx">
+      <DependentUpon>GoefencesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupedDetailsAttendance.fr.resx">
+      <DependentUpon>GroupedDetailsAttendance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GroupedDetailsAttendance.resx">
       <DependentUpon>GroupedDetailsAttendance.cs</DependentUpon>
     </EmbeddedResource>
@@ -564,17 +624,62 @@
       <DependentUpon>GroupedPayrollCrossReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="GroupedPayRollCross\GroupedPayrollCrossReport.fr.resx">
+      <DependentUpon>GroupedPayrollCrossReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GroupedPayRollCross\GroupedPayrollCrossReport.resx">
       <DependentUpon>GroupedPayrollCrossReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Hirings.fr.resx">
+      <DependentUpon>Hirings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IndemnityReport.ar.resx">
+      <DependentUpon>IndemnityReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndemnityReport.fr.resx">
       <DependentUpon>IndemnityReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IndemnityReport.resx">
       <DependentUpon>IndemnityReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="JobHistory.fr.resx">
+      <DependentUpon>JobHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobPositions.fr.resx">
+      <DependentUpon>JobPositions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeaveBalance.fr.resx">
+      <DependentUpon>LeaveBalance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeaveList.fr.resx">
+      <DependentUpon>LeaveList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeavePaymentsReport.fr.resx">
+      <DependentUpon>LeavePaymentsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeaveRequestReport.fr.resx">
+      <DependentUpon>LeaveRequestReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoanOverridesReport.fr.resx">
+      <DependentUpon>LoanOverridesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoansReport.fr.resx">
+      <DependentUpon>LoansReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoanStatement.fr.resx">
+      <DependentUpon>LoanStatement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoanTypesReport.fr.resx">
+      <DependentUpon>LoanTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OvertimeSettingsReport.fr.resx">
+      <DependentUpon>OvertimeSettingsReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PayrollLeavePaymentsReport.ar.resx">
+      <DependentUpon>PayrollLeavePaymentsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayrollLeavePaymentsReport.fr.resx">
       <DependentUpon>PayrollLeavePaymentsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PayrollLeavePaymentsReport.resx">
@@ -583,25 +688,67 @@
     <EmbeddedResource Include="PayrollPeriodSummary.ar.resx">
       <DependentUpon>PayrollPeriodSummary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PayrollPeriodSummary.fr.resx">
+      <DependentUpon>PayrollPeriodSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PayrollPeriodSummary.resx">
       <DependentUpon>PayrollPeriodSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayrollPeriodTimeCodes.fr.resx">
+      <DependentUpon>PayrollPeriodTimeCodes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayrollsExport.fr.resx">
+      <DependentUpon>PayrollsExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayrollTimeSchedulesReport.fr.resx">
+      <DependentUpon>PayrollTimeSchedulesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PeriodSummary.fr.resx">
+      <DependentUpon>PeriodSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PointInTimeSalary.fr.resx">
+      <DependentUpon>PointInTimeSalary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="PunchLog\PunchLogReport.ar.resx">
       <DependentUpon>PunchLogReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PunchLog\PunchLogReport.en-US.resx">
+    <EmbeddedResource Include="PunchLog\PunchLogReport.fr.resx">
       <DependentUpon>PunchLogReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PunchLog\PunchLogReport.resx">
       <DependentUpon>PunchLogReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="receipts.fr.resx">
+      <DependentUpon>Receipts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Receipts.resx">
       <DependentUpon>Receipts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RelationshipTypesReport.fr.resx">
+      <DependentUpon>RelationshipTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightToWork.fr.resx">
+      <DependentUpon>RightToWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoutersReport.fr.resx">
+      <DependentUpon>RoutersReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalaryChangeReasonsReport.fr.resx">
+      <DependentUpon>SalaryChangeReasonsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalaryChanges.fr.resx">
+      <DependentUpon>SalaryChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalaryHistory.fr.resx">
+      <DependentUpon>SalaryHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SecurityGroupsReport.ar.resx">
+      <DependentUpon>SecurityGroupsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SecurityGroupsReport.fr.resx">
       <DependentUpon>SecurityGroupsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SecurityGroupsReport.resx">
@@ -611,20 +758,38 @@
       <DependentUpon>ShiftLogsReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShiftLogs\ShiftLogsReport.en-US.resx">
+    <EmbeddedResource Include="ShiftLogs\ShiftLogsReport.fr.resx">
       <DependentUpon>ShiftLogsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShiftLogs\ShiftLogsReport.resx">
       <DependentUpon>ShiftLogsReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="SignInTrail.fr.resx">
+      <DependentUpon>SignInTrail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Skills\Skills.ar.resx">
+      <DependentUpon>Skills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skills\Skills.fr.resx">
       <DependentUpon>Skills.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Skills\Skills.resx">
       <DependentUpon>Skills.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SponsorsReport.fr.resx">
+      <DependentUpon>SponsorsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TaskTypesReport.fr.resx">
+      <DependentUpon>TaskTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Terminations.fr.resx">
+      <DependentUpon>Terminations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TimeApproval.ar.resx">
+      <DependentUpon>TimeApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeApproval.fr.resx">
       <DependentUpon>TimeApproval.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TimeApproval.resx">
@@ -644,9 +809,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AuditTrail.ar.resx">
-      <DependentUpon>AuditTrail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AuditTrail.en.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AuditTrail.resx">
@@ -695,12 +857,6 @@
       <DependentUpon>CheckTypesReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="CurrentPayroll.ar.resx">
-      <DependentUpon>CurrentPayroll.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CurrentPayroll.resx">
-      <DependentUpon>CurrentPayroll.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DailyAttendance.ar.resx">
       <DependentUpon>DailyAttendance.cs</DependentUpon>
     </EmbeddedResource>
@@ -712,9 +868,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DayTypesReport.resx">
       <DependentUpon>DayTypesReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DepartmentsReport.ar.resx">
-      <DependentUpon>DepartmentsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DayStatus.ar.resx">
       <DependentUpon>DayStatus.cs</DependentUpon>
@@ -765,9 +918,6 @@
       <DependentUpon>GoefencesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hirings.ar.resx">
-      <DependentUpon>Hirings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Hirings.en.resx">
       <DependentUpon>Hirings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hirings.resx">
@@ -935,9 +1085,6 @@
     <EmbeddedResource Include="Terminations.ar.resx">
       <DependentUpon>Terminations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Terminations.en.resx">
-      <DependentUpon>Terminations.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Terminations.resx">
       <DependentUpon>Terminations.cs</DependentUpon>
     </EmbeddedResource>
@@ -947,13 +1094,16 @@
     <EmbeddedResource Include="TimeAttendanceSummary.en.resx">
       <DependentUpon>TimeAttendanceSummary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TimeAttendanceSummary.fr.resx">
+      <DependentUpon>TimeAttendanceSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TimeAttendanceSummary.resx">
       <DependentUpon>TimeAttendanceSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TurnoverRate.ar.resx">
       <DependentUpon>TurnoverRate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TurnoverRate.en.resx">
+    <EmbeddedResource Include="TurnoverRate.fr.resx">
       <DependentUpon>TurnoverRate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TurnoverRate.resx">
@@ -965,6 +1115,9 @@
     <EmbeddedResource Include="UsersReport.ar.resx">
       <DependentUpon>UsersReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UsersReport.fr.resx">
+      <DependentUpon>UsersReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UsersReport.resx">
       <DependentUpon>UsersReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -972,6 +1125,9 @@
       <DependentUpon>YearsInService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="YearsInService.en.resx">
+      <DependentUpon>YearsInService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YearsInService.fr.resx">
       <DependentUpon>YearsInService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="YearsInService.resx">
@@ -988,6 +1144,17 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="AttendanceSchedule\dsSalaries.xss">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </None>
+    <None Include="CurrentPayroll\dsSalaries.xsc">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </None>
+    <None Include="CurrentPayroll\dsSalaries.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSalaries.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CurrentPayroll\dsSalaries.xss">
       <DependentUpon>dsSalaries.xsd</DependentUpon>
     </None>
     <None Include="EmployeePayRollCross\dsSalaries.xsc">
@@ -1057,7 +1224,16 @@
       <DependentUpon>SkillsDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AionHR.Model\AionHR.Model.csproj">
+      <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
+      <Name>AionHR.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
+      <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
+      <Name>AionHR.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

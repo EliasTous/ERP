@@ -381,10 +381,21 @@ namespace AionHR.Web.UI.Forms
                     return nodes.ToJson();
                 case 7:
                     nodes = TreeBuilder.Instance.BuildSelftService(commonTree.Root);
+                                       
                     if (_systemService.SessionHelper.GetUserType() != 4)
                         tabHome.Loader.Url = "Dashboard.aspx";
                     else
+                    {
+                        ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+                        classReq.ClassId = "81101";
+
+                        classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+                        RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+                        if (modClass.result.accessLevel==0)
                         tabHome.Loader.Url = "BlankPage.aspx";
+                        else
+                            tabHome.Loader.Url = "Dashboard.aspx";
+                    }
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 case 8:
@@ -578,14 +589,14 @@ namespace AionHR.Web.UI.Forms
             {
                 _systemService.SessionHelper.SetHijriSupport(false);
             }
-            try
-            {
-                _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(defaults.Items.Where(s => s.Key == "timeZone").First().Value));
-            }
-            catch
-            {
-                _systemService.SessionHelper.SetDefaultTimeZone(0);
-            }
+            //try
+            //{
+            //    _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(defaults.Items.Where(s => s.Key == "timeZone").First().Value));
+            //}
+            //catch
+            //{
+            //    _systemService.SessionHelper.SetDefaultTimeZone(0);
+            //}
             try
             {
                 _systemService.SessionHelper.SetCalendarId(defaults.Items.Where(s => s.Key == "caId").First().Value);
@@ -605,11 +616,11 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 EmployeeListRequest request = new EmployeeListRequest();
-                request.BranchId = request.DepartmentId = request.PositionId = "0";
+              //  request.BranchId = request.DepartmentId = request.PositionId = "0";
                 request.StartAt = "0";
                 request.SortBy = "hireDate";
                 request.Size = "1";
-                request.IncludeIsInactive = 2;
+           //     request.IncludeIsInactive = 2;
                 var resp = _employeeService.GetAll<Employee>(request);
 
                 _systemService.SessionHelper.SetStartDate(resp.Items[0].hireDate.Value);

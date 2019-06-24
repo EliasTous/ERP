@@ -43,11 +43,11 @@
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.Ref = new DevExpress.XtraReports.Parameters.Parameter();
             this.Division = new DevExpress.XtraReports.Parameters.Parameter();
             this.Position = new DevExpress.XtraReports.Parameters.Parameter();
             this.Branch = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
@@ -81,7 +81,6 @@
             this.xrPivotGrid1.Appearance.TotalCell.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.xrPivotGrid1.DataMember = "SalariesItems";
             this.xrPivotGrid1.DataSource = this.dsSalaries1;
-            resources.ApplyResources(this.xrPivotGrid1, "xrPivotGrid1");
             this.xrPivotGrid1.Fields.AddRange(new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField[] {
             this.fieldItemName1,
             this.fieldItemValue1,
@@ -91,12 +90,13 @@
             this.fieldESS1,
             this.fieldEntitlementsvDeduction1,
             this.fieldBranch1});
+            resources.ApplyResources(this.xrPivotGrid1, "xrPivotGrid1");
             this.xrPivotGrid1.Name = "xrPivotGrid1";
             this.xrPivotGrid1.OptionsChartDataSource.ProvideColumnTotals = true;
             this.xrPivotGrid1.OptionsDataField.ColumnValueLineCount = 2;
             this.xrPivotGrid1.OptionsDataField.RowValueLineCount = 2;
             this.xrPivotGrid1.OptionsPrint.FilterSeparatorBarPadding = 3;
-            this.xrPivotGrid1.OptionsPrint.PrintHeadersOnEveryPage = true;
+            this.xrPivotGrid1.OptionsPrint.PrintColumnAreaOnEveryPage = true;
             this.xrPivotGrid1.OptionsView.ShowColumnGrandTotalHeader = false;
             this.xrPivotGrid1.OptionsView.ShowColumnGrandTotals = false;
             this.xrPivotGrid1.OptionsView.ShowColumnHeaders = false;
@@ -231,6 +231,14 @@
             resources.ApplyResources(this.ReportHeader, "ReportHeader");
             this.ReportHeader.Name = "ReportHeader";
             // 
+            // xrLabel1
+            // 
+            resources.ApplyResources(this.xrLabel1, "xrLabel1");
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            // 
             // Ref
             // 
             this.Ref.Name = "Ref";
@@ -253,14 +261,6 @@
             resources.ApplyResources(this.Branch, "Branch");
             this.Branch.Name = "Branch";
             this.Branch.Visible = false;
-            // 
-            // xrLabel1
-            // 
-            resources.ApplyResources(this.xrLabel1, "xrLabel1");
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.StylePriority.UseTextAlignment = false;
             // 
             // PageFooter
             // 
@@ -316,7 +316,7 @@
             this.Branch,
             this.Division,
             this.Ref});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.dsSalaries1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 

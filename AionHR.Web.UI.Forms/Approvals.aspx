@@ -285,7 +285,20 @@
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" />
                                                             
-                                
+                                 <ext:ComboBox  AnyMatch="true" AllowBlank="false" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: approvalType %>"  runat="server" DisplayField="value" ValueField="key"   Name="approvalType" ID="approvalType" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="approvalTypeStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                          </ext:ComboBox>
                                
                                     
                                 <ext:FieldSet ID="ApprovalLevelFS" runat="server" Disabled="false" Title="<%$ Resources:Approvallevel %>" >

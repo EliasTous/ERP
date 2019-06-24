@@ -39,7 +39,7 @@ namespace AionHR.Model.Employees.Profile
         public string taReference { set; get; }
         public DateTime pyActiveDate { set; get; }
 
-        public int recBranchId { set; get; }
+        public int? recBranchId { set; get; }
         [PropertyID("31141_02")]
         [ApplySecurity]
         public short? probationPeriod { set; get; }

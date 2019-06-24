@@ -27,7 +27,7 @@ namespace AionHR.Model.Company.Structure
         [PropertyID("21020_05")]
         [ApplySecurity]
         public AddressBook address { get; set; }
-        
+        public short activeStatus { get; set; }
         public string naId { get; set; }
         
         public string stId { get; set; }
@@ -36,7 +36,7 @@ namespace AionHR.Model.Company.Structure
         public int? caId { get; set; }
         public string caName { get; set; }
         public string managerId { get; set; }
-        public EmployeeName managerName { get; set; }
+        public string managerName { get; set; }
 
 
     }

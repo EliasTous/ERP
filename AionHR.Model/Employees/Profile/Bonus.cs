@@ -39,7 +39,7 @@ namespace AionHR.Model.Employees.Profile
         [ApplySecurity]
         public string currencyRef { get; set; }
         public int employeeId { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         [PropertyID("31031_02")]
         [ApplySecurity]
         public string btName { get; set; }

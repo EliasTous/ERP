@@ -7,17 +7,25 @@ using System.Collections.Generic;
 using System.Linq;
 using AionHR.Model.Reports;
 using DevExpress.XtraPivotGrid;
+using System.Drawing.Printing;
 
 namespace Reports.PunchLog
 {
     public partial class PunchLogReport : DevExpress.XtraReports.UI.XtraReport
     {
-        public PunchLogReport(List<RT308> items, bool isArabic,string DateFormat)
+        public PunchLogReport(List<RT308> items, bool isArabic,string DateFormat, Dictionary<string, string> parameters,int maxPunchCount)
         {
             InitializeComponent();
-          
+            if (maxPunchCount > 0)
+            {
+                fieldpunchId.Width = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / maxPunchCount;
+                fieldpunchId.MinWidth = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / maxPunchCount;
+            }
+            this.PaperKind = PaperKind.A4;
+            this.Landscape = false;
             fielddayId1.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             fielddayId1.ValueFormat.FormatString = DateFormat;
+
             if (isArabic)
             {
                 fieldemployeeName1.Caption = "الموظف";
@@ -38,6 +46,81 @@ namespace Reports.PunchLog
 
 
 
+            printHeader(parameters);
+
+            //
+            // TODO: Add constructor logic here
+            //
+        }
+        private void printHeader(Dictionary<string, string> parameters)
+        {
+            if (parameters.Count == 0)
+                return;
+
+
+            XRTable table = new XRTable();
+            table.BeginInit();
+
+
+            table.LocationF = new PointF(0, 0);
+            int count = 0;
+            XRTableRow row = new XRTableRow();
+
+            foreach (KeyValuePair<string, string> item in parameters)
+            {
+
+                XRTableCell cell = new XRTableCell();
+
+                cell.Text = item.Key;
+
+                cell.BackColor = Color.Gray;
+                cell.ForeColor = Color.White;
+
+                XRTableCell valueCell = new XRTableCell();
+
+                valueCell.Text = item.Value;
+
+                row.Cells.Add(cell);
+                row.Cells.Add(valueCell);
+
+                count++;
+                if (count % 4 == 0)
+                {
+                    table.Rows.Add(row);
+                    row = new XRTableRow();
+                }
+
+
+
+
+
+            }
+            if (count % 4 != 0)
+            {
+                for (int i = 0; i < (4 - (count % 4)) * 2; i++)
+                {
+                    XRTableCell cell = new XRTableCell();
+
+
+
+                    row.Cells.Add(cell);
+                }
+                table.Rows.Add(row);
+            }
+            table.BeforePrint += new PrintEventHandler(table_BeforePrint);
+            table.AdjustSize();
+            table.EndInit();
+
+
+
+            this.PageHeader.Controls.Add(table);
+
+        }
+        private void table_BeforePrint(object sender, PrintEventArgs e)
+        {
+            XRTable table = ((XRTable)sender);
+            table.LocationF = new DevExpress.Utils.PointFloat(0F, 0F);
+            table.WidthF = this.PageWidth - this.Margins.Left - this.Margins.Right;
         }
         private void grdAccountLedger_CustomFieldSort(object sender, DevExpress.XtraReports.UI.PivotGrid.PivotGridCustomFieldSortEventArgs e)
         {

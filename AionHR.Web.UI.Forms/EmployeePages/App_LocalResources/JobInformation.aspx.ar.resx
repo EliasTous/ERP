@@ -246,4 +246,7 @@
   <data name="FieldReportsTo" xml:space="preserve">
     <value>المدير المباشر</value>
   </data>
+  <data name="FieldNotes" xml:space="preserve">
+    <value>ملاحظات</value>
+  </data>
 </root>

@@ -92,7 +92,7 @@
                         <ext:ModelField Name="deductedAmount" />
                          <ext:ModelField Name="ldMethod" />
                          <ext:ModelField Name="ldValue" />
-                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                        <ext:ModelField Name="employeeName"  />
                     </Fields>
                 </ext:Model>
             </Model>
@@ -151,7 +151,7 @@
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                           <%--  <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
-                                <Renderer Handler=" return record.data['employeeName'].fullName; ">
+                            
                                 </Renderer>
                             </ext:Column>--%>
                           <%--  <ext:Column ID="Column5" DataIndex="loanRef" Text="<%$ Resources: FieldReference%>" runat="server" />--%>
@@ -376,6 +376,8 @@
                                                     <Fields>
                                                         <ext:ModelField Name="recordId" />
                                                         <ext:ModelField Name="name" />
+                                                           <ext:ModelField Name="ldMethod" />
+                                                          <ext:ModelField Name="ldValue" />
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
@@ -384,7 +386,12 @@
                                         </ext:Store>
 
                                     </Store>
-                                  
+                                  <Listeners>
+                                      <Select Handler="record = this.findRecordByValue(this.value); 
+                                          index = this.getStore().indexOf(record);
+                                          App.ldMethod.setValue(this.getStore().getAt(index).data['ldMethod']);
+                                          App.ldValue.setValue(this.getStore().getAt(index).data['ldValue']); " />
+                                  </Listeners>
                                   
                                 </ext:ComboBox>
 
@@ -416,7 +423,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:TextField   ID="amount" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount">
+                                <ext:TextField   ID="amount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount">
                                    <Validator Handler="return !isNaN(this.value);" /> 
                                     <%-- <Listeners>
                                                 <Change Handler="document.getElementById('amount').value=this.getValue(); this.next().setValue(this.value);" />
@@ -459,10 +466,7 @@
                                                 <ext:ListItem Text="<%$ Resources: FixedPayment %>" Value="5" />
 
                                             </Items>
-                                           <Listeners>
-                                               <Change Handler=" #{ldValue}.setValue(0);"></Change>
-
-                                           </Listeners>
+                                          
                                         </ext:ComboBox>
                                         <ext:NumberField Hidden="true" Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="true" >
                                         
@@ -485,6 +489,7 @@
                                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                                             <ExtraParams>
                                                 <ext:Parameter Name="ldMethod" Value="#{ldMethod}.getValue()" Mode="Raw" />
+                                                  <ext:Parameter Name="ldValue" Value="#{ldValue}.getValue()" Mode="Raw" />
                                                    <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                                 <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
                                             </ExtraParams>

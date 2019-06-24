@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/LiveSearch.css" />
     <link  rel="stylesheet" type="text/css" href="CSS/cropper.css" />
     <script type="text/javascript"  src="Scripts/jquery-new.js"></script>
-   
+    <script type="text/javascript" src="Scripts/ReportsCommon.js" ></script>
 
     <script type="text/javascript" src="Scripts/cropper.js"></script>
 
@@ -77,9 +77,11 @@
         <ext:Hidden runat="server" ID="imageData" />
          <ext:Hidden runat="server" ID="storeSize" />
           <ext:Hidden runat="server" ID="previousStartAt" />
-
-     
-
+          <ext:Hidden ID="vals" runat="server" />
+        <ext:Hidden ID="texts" runat="server" />
+        <ext:Hidden ID="labels" runat="server" />
+           <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=RT108&values="/>
+        
         <ext:Hidden runat="server" ID="imageVisible" />
         <ext:Viewport runat="server" Layout="FitLayout" ID="Viewport1">
             <Items>
@@ -161,7 +163,77 @@
                             </Sorters>
                         </ext:Store>
                     </Store>
-                    <TopBar>
+
+
+                       <DockedItems>
+                        <ext:Toolbar runat="server" Height="30" Dock="Top">
+
+                            <Items>
+                              <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="ADDNewRecord">
+                                            <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:Button ID="Button1" runat="server" Icon="DiskMultiple">
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="openBatchEM">
+                                            <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                 <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
+                                    <Triggers>
+                                        <ext:FieldTrigger Icon="Search" />
+                                        <ext:FieldTrigger Handler="this.setValue('');" Icon="Clear" />
+                                    </Triggers>
+                                    <Listeners>
+                                        <KeyPress Fn="enterKeyPressSearchHandler" />
+
+                                        <TriggerClick Handler="#{Store1}.reload();" />
+                                        <SpecialKey Handler="if(e.keyCode==13)  #{Store1}.reload();App.selectedFilters.setText(' '); " />
+                                    </Listeners>
+                                </ext:TextField>
+                                  <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                             
+                                
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                          <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                       <Listeners>
+                                           <Click Handler=" App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
+                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
+                                            <Listeners>
+                                                <Click Handler="App.Store1.reload();" />
+                                            </Listeners>
+                                        </ext:Button>
+                                       
+                                    </Content>
+                                </ext:Container>
+                                       
+                        
+
+                            </Items>
+                        </ext:Toolbar>
+                           
+                        <ext:Toolbar ID="labelbar" runat="server" Height="0" Dock="Top">
+
+                            <Items>
+                                 <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                            </ext:Toolbar>
+                  </DockedItems>
+                  <%--  <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
 
@@ -245,7 +317,7 @@
                             </Items>
                         </ext:Toolbar>
 
-                    </TopBar>
+                    </TopBar>--%>
 
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false">
                         <Columns>
@@ -604,7 +676,31 @@
             </Buttons>
           
         </ext:Window>
-
+           <ext:Window runat="server"  Icon="PageEdit"
+            ID="reportsParams"
+            Width="600"
+            Height="500"
+            Title="<%$Resources:Common,Parameters %>"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="FitLayout" Resizable="true">
+            <Listeners>
+                <Show Handler="App.Panel8.loader.load();"></Show>
+            </Listeners>
+            <Items>
+                <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
+                    <Loader runat="server" Url="ReportParameterBrowser.aspx?_reportName=RT108" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+            
+                </Items>
+        </ext:Window>
 
 
 

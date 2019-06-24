@@ -24,7 +24,7 @@ namespace AionHR.Model.Employees.Profile
         public string comment { get; set; }
         public int employeeId { get; set; }
 
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         [PropertyID("31071_01")]
         [ApplySecurity]
         public string statusName { get; set; }

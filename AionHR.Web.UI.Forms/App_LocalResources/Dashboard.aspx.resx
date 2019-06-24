@@ -678,4 +678,25 @@
   <data name="RemainingDays" xml:space="preserve">
     <value>Remaining Days</value>
   </data>
+  <data name="PunchesGrid" xml:space="preserve">
+    <value>Pending Punches</value>
+  </data>
+  <data name="DeviceRef" xml:space="preserve">
+    <value>Device Ref</value>
+  </data>
+  <data name="employeeRef" xml:space="preserve">
+    <value>Employee reference</value>
+  </data>
+  <data name="ppType1" xml:space="preserve">
+    <value>Unknown employee</value>
+  </data>
+  <data name="ppType2" xml:space="preserve">
+    <value>Unknown device</value>
+  </data>
+  <data name="ppType3" xml:space="preserve">
+    <value>Unknown shift</value>
+  </data>
+  <data name="ppType4" xml:space="preserve">
+    <value>Duplicate punch</value>
+  </data>
 </root>

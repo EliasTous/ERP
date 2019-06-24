@@ -53,11 +53,12 @@
                         <ext:ModelField Name="name" />
                         <ext:ModelField Name="categoryName" />
                         <ext:ModelField Name="supplierName" />
-                        <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="employeeName"  />
                         <ext:ModelField Name="departmentName" />
                         <ext:ModelField Name="serialNo" />
                         <ext:ModelField Name="statusName" />
                         <ext:ModelField Name="assetRef" />
+                        <ext:ModelField Name="branchName" />
 
                     </Fields>
                 </ext:Model>
@@ -152,7 +153,8 @@
                             <ext:Column CellCls="cellLink" ID="ColCategory" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCategory%>" DataIndex="categoryName" Flex="1" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="ColSupplierName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSupplier%>" DataIndex="supplierName" Flex="1" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="ColSerialNo" MenuDisabled="true" runat="server" Text="<%$ Resources:FieldSerialNo%>" DataIndex="serialNo" Flex="1" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="ColDepartment" MenuDisabled="true" runat="server" Text="<%$ Resources:FieldDepartment%>" DataIndex="department" Flex="1" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="ColDepartment" MenuDisabled="true" runat="server" Text="<%$ Resources:FieldDepartment%>" DataIndex="departmentName" Flex="1" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="ColBranch" MenuDisabled="true" runat="server" Text="<%$ Resources:FieldBranch%>" DataIndex="branchName" Flex="1" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="ColStatusName" MenuDisabled="true" runat="server" Text="<%$ Resources:CurrentStatus%>" DataIndex="statusName" Flex="1" Hideable="false" />
 
                             <ext:Column runat="server"

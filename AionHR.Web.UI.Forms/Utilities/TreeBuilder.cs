@@ -243,6 +243,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node TA = BuildLeafNode("rootParent_TA_TA", Resources.Common.TimeApprovals, "CalendarViewDay", true, timeAt);
             //Ext.Net.Node GA = BuildLeafNode("rootParent_TA_GA", Resources.Common.GenerateAttendanceDays, "UserGo", true, timeAt);
             Ext.Net.Node DS = BuildLeafNode("rootParent_TA_DS", Resources.Common.DailySchedule, "DateMagnify", true, timeAt);
+            Ext.Net.Node BA = BuildLeafNode("rootParent_TA_BA", Resources.Common.BranchAvailability, "DateMagnify", true, timeAt);
             Ext.Net.Node DA = BuildLeafNode("rootParent_TA_DA", Resources.Common.DayAvailability, "DateEdit", true, timeAt);
            // Ext.Net.Node GS = BuildLeafNode("rootParent_TA_GS", Resources.Common.GenerateAttendanceShift, "DateEdit", true, timeAt);
            // Ext.Net.Node SA = BuildLeafNode("rootParent_TA_SA", Resources.Common.SynchronizeAttendanceDays, "UserGo", true, timeAt);
@@ -258,11 +259,12 @@ namespace AionHR.Web.UI.Forms.Utilities
             //FillConfigItem(GA, "GA", "GenerateAttendanceDays.aspx", Resources.Common.GenerateAttendanceDays, "icon-Employees", "1");
             FillConfigItem(DS, "DS", "DailySchedule.aspx", Resources.Common.DailySchedule, "icon-Employees", "1");
             FillConfigItem(DA, "DA", "DaysAvailability.aspx", Resources.Common.DayAvailability, "icon-Employees", "1");
+            FillConfigItem(BA, "BA", "BranchAvailabilities.aspx", Resources.Common.BranchAvailability, "icon-Employees", "1");
             //FillConfigItem(EC, "EC", "EmployeeCals.aspx", Resources.Common.EmployeeCalender, "icon-Employees", "1");
-         //   FillConfigItem(GS, "GS", "GenerateAttendanceShifts.aspx", Resources.Common.GenerateAttendanceShift, "icon-Employees", "1");
-           // FillConfigItem(SA, "SA", "SynchronizeAttendanceDays.aspx", Resources.Common.SynchronizeAttendanceDays, "icon-Employees", "1");
+            //   FillConfigItem(GS, "GS", "GenerateAttendanceShifts.aspx", Resources.Common.GenerateAttendanceShift, "icon-Employees", "1");
+            // FillConfigItem(SA, "SA", "SynchronizeAttendanceDays.aspx", Resources.Common.SynchronizeAttendanceDays, "icon-Employees", "1");
 
-          
+
             nodes.Add(rootParent);
             return nodes;
             //Ext.Net.Node lvsetup = BuildParentNode("rootParent_LMS", Resources.Common.Setup, false, leaveMgmt);

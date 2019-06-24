@@ -25,6 +25,7 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31000_25")]
         [ApplySecurity]
         public int? scId { get; set; }
+        public short? scType { get; set; }
         [PropertyID("31000_25")]
         [ApplySecurity]
         public string scName { get; set; }
@@ -124,7 +125,7 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31000_15")]
         [ApplySecurity]
         public string caName { get; set; }
-        public bool isInactive { get; set; }
+        public short activeStatus { get; set; }
         [PropertyID("31000_23")]
         [ApplySecurity]
         public string pictureUrl { get; set; }
@@ -136,7 +137,7 @@ namespace AionHR.Model.Employees.Profile
         public string fullName { get; set; }
         [PropertyID("31000_22")]
         [ApplySecurity]
-        public EmployeeName reportToName { get; set; }
+        public string reportToName { get; set; }
 
         public bool bdHijriCal { get; set; }
         public string hijCalBirthDate

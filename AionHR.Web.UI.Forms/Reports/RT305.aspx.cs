@@ -209,35 +209,33 @@ namespace AionHR.Web.UI.Forms.Reports
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
+            return Common.GetEmployeesFiltered(prms.Query);
+
         }
 
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
+        //private List<Employee> GetEmployeesFiltered(string query)
+        //{
 
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    req.DepartmentId = "0";
+        //    req.BranchId = "0";
+        //    req.IncludeIsInactive = 2;
+        //    req.SortBy = GetNameFormat();
 
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
+        //    req.StartAt = "0";
+        //    req.Size = "20";
+        //    req.Filter = query;
 
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    return response.Items;
+        //}
 
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
+        //private string GetNameFormat()
+        //{
+        //    return _systemService.SessionHelper.Get("nameFormat").ToString();
+        //}
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
             
@@ -257,6 +255,7 @@ namespace AionHR.Web.UI.Forms.Reports
             resp.Items.ForEach(
                 x =>
                 {
+                   // x.justification = "test" + System.Environment.NewLine + "test1" + System.Environment.NewLine + "test2";
                     x.edAmount = Math.Round(x.edAmount, 2);
                     x.clockDurationString = ConstTimeVariationType.time(x.clockDuration, true);
                     x.durationString = ConstTimeVariationType.time(x.duration, true);
@@ -265,12 +264,14 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     x.apStatusString = FillApprovalStatus(x.apStatus);
                     x.damageLevelString = FillDamageLevelString(x.damageLevel);
-                    if (rtl)
-                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
-                    else
-                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
+                    //if (rtl)
+                    //    x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                    //else
+                    //    x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
 
-
+                 
+                        x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat());
+                  
                 }
                 );
 
@@ -278,8 +279,10 @@ namespace AionHR.Web.UI.Forms.Reports
            
 
                 Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-                Absense h = new Absense(parameters);
-                h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+         
+            Absense h = new Absense(parameters);
+        
+            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
                 h.DataSource = resp.Items;
 

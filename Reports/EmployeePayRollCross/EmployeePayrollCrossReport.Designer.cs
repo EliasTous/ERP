@@ -48,11 +48,11 @@
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.User = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.Ref = new DevExpress.XtraReports.Parameters.Parameter();
             this.Payment = new DevExpress.XtraReports.Parameters.Parameter();
             this.Position = new DevExpress.XtraReports.Parameters.Parameter();
             this.Branch = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.Department = new DevExpress.XtraReports.Parameters.Parameter();
             this.Division = new DevExpress.XtraReports.Parameters.Parameter();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
@@ -100,7 +100,7 @@
             this.xrPivotGrid1.Name = "xrPivotGrid1";
             this.xrPivotGrid1.OptionsChartDataSource.ProvideColumnTotals = true;
             this.xrPivotGrid1.OptionsPrint.FilterSeparatorBarPadding = 3;
-            this.xrPivotGrid1.OptionsPrint.PrintHeadersOnEveryPage = true;
+            this.xrPivotGrid1.OptionsPrint.PrintColumnAreaOnEveryPage = true;
             this.xrPivotGrid1.OptionsView.ShowColumnGrandTotalHeader = false;
             this.xrPivotGrid1.OptionsView.ShowColumnGrandTotals = false;
             this.xrPivotGrid1.OptionsView.ShowColumnHeaders = false;
@@ -155,6 +155,7 @@
             // 
             this.fieldCSS.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.fieldCSS.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.fieldCSS.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.fieldCSS.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.fieldCSS.AreaIndex = 3;
             resources.ApplyResources(this.fieldCSS, "fieldCSS");
@@ -191,6 +192,7 @@
             // fieldBasicSalary
             // 
             this.fieldBasicSalary.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.fieldBasicSalary.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.fieldBasicSalary.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.fieldBasicSalary.AreaIndex = 2;
             resources.ApplyResources(this.fieldBasicSalary, "fieldBasicSalary");
@@ -284,6 +286,14 @@
             resources.ApplyResources(this.ReportHeader, "ReportHeader");
             this.ReportHeader.Name = "ReportHeader";
             // 
+            // xrLabel1
+            // 
+            resources.ApplyResources(this.xrLabel1, "xrLabel1");
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            // 
             // Ref
             // 
             resources.ApplyResources(this.Ref, "Ref");
@@ -306,14 +316,6 @@
             resources.ApplyResources(this.Branch, "Branch");
             this.Branch.Name = "Branch";
             this.Branch.Visible = false;
-            // 
-            // xrLabel1
-            // 
-            resources.ApplyResources(this.xrLabel1, "xrLabel1");
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.StylePriority.UseTextAlignment = false;
             // 
             // Department
             // 
@@ -351,7 +353,7 @@
             this.Ref,
             this.Position,
             this.Division});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.dsSalaries1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 

@@ -39,7 +39,13 @@
 "leave_startDate",
 "leave_endDate",
 "leave_url",
-
+"leave_employeeName",
+"leave_justification",
+"leave_destination",
+"leave_leaveType",
+"leave_approveUrl", 
+"reject_url", 
+"replacement_employee"
 ]
 },
 {

@@ -142,7 +142,7 @@
     <value>الفرع </value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>من قبل : </value>
+    <value>طبع بواسطة :</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>
@@ -151,7 +151,7 @@
     <value>xrTableCell1</value>
   </data>
   <data name="xrTableCell10.Text" xml:space="preserve">
-    <value>xrTableCell10</value>
+    <value>ساعات التقويم</value>
   </data>
   <data name="xrTableCell11.Text" xml:space="preserve">
     <value>نهاية اليوم</value>
@@ -265,6 +265,6 @@
     <value>xrTableCell8</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>بداية اليوم </value>
+    <value>ساعات العمل</value>
   </data>
 </root>

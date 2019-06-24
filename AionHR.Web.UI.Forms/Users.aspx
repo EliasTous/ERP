@@ -268,7 +268,7 @@
                          <ext:ModelField Name="departmentName" />
                          <ext:ModelField Name="positionName" />
                          <ext:ModelField Name="userTypeName" />
-                         <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                         <ext:ModelField Name="employeeName"  />
                       
 
 
@@ -400,7 +400,7 @@
 
                            <ext:Column ID="Column7" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldEmployeeName%>" DataIndex="employeeName" Flex="1" Hideable="false" />
                            <%-- <ext:CheckColumn ID="ColIsAdmin" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsAdmin %>" DataIndex="isAdmin" Hideable="false" />--%>
-                             <ext:Column ID="ColUserType" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldUserType%>" DataIndex="userTypeName" Flex="1" Hideable="false" />
+                             <ext:Column ID="ColUserType" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldUserType%>" DataIndex="userTypeString" Flex="1" Hideable="false" />
                                   <ext:Column ID="Column3" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="1" Hideable="false" />
                               <ext:Column ID="Column5" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="1" Hideable="false" />
                               <ext:Column ID="Column6" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="1" Hideable="false" />

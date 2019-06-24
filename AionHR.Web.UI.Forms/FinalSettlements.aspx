@@ -90,7 +90,7 @@
                     <Fields>
 
                                              
-                        <ext:ModelField Name="name" IsComplex="true" />
+                        <ext:ModelField Name="employeeName"  />
                         <ext:ModelField Name="fsRef" />
                         <ext:ModelField Name="date"  />
                         <ext:ModelField Name="dateStringFormat" />
@@ -225,8 +225,8 @@
                              <ext:Column CellCls="cellLink" ID="ColfsRef" MenuDisabled="true" runat="server" Text="<%$ Resources:FieldReference%>" DataIndex="fsRef" Width="150" Hideable="false">
                             </ext:Column>
 
-                            <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                                <Renderer Handler="return record.data['name'].fullName;" />
+                            <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="employeeName" Flex="2" Hideable="false">
+                                
                             </ext:Column>
                            <ext:DateColumn runat="server" ID="dateCol" Text="<%$ Resources: FieldDate%>" DataIndex="date" Width="150" />
                             

@@ -233,7 +233,7 @@
     <value>Alle</value>
   </data>
   <data name="Status1" xml:space="preserve">
-    <value>In Prozess</value>
+    <value>Neu</value>
   </data>
   <data name="Status2" xml:space="preserve">
     <value>schwebend</value>

@@ -62,7 +62,7 @@ namespace AionHR.Model.LeaveManagement
         public string employeeRef { get; set; }
         [PropertyID("42020_03")]
         [ApplySecurity]
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         [PropertyID("42020_07")]
         [ApplySecurity]
         public string ltName { get; set; }
@@ -76,7 +76,7 @@ namespace AionHR.Model.LeaveManagement
       //  public int? leaveHours { get; set; }
         public string replacementId { get; set; }
 
-        public EmployeeName replacementName { get; set; }
+        public string replacementName { get; set; }
 
 
     }   

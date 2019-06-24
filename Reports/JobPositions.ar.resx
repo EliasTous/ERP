@@ -120,6 +120,9 @@
   <data name="xrLabel1.Text" xml:space="preserve">
     <value>الوظائف</value>
   </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>طبع بواسطة :</value>
+  </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>
   </data>

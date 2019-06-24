@@ -13,7 +13,7 @@ namespace AionHR.Model.Reports
     [ClassIdentifier("80301", "80")]
     public class RT301
     {
-        public EmployeeName name { get; set; }
+        public string name { get; set; }
         public string branchName { get; set; }
         
         public string departmentName { get; set; }
@@ -86,7 +86,7 @@ namespace AionHR.Model.Reports
 
             days.ToList().ForEach(x => Days.Add(new Day() { DayNumber=x })); 
       
-            var grouped = list.GroupBy(x => x.name.fullName);
+            var grouped = list.GroupBy(x => x.name);
 
 
             EmployeeAttendances = new EmployeeAttendanceCollection();

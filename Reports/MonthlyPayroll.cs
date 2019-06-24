@@ -196,9 +196,9 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             // 
             // BottomMargin
             // 
-            resources.ApplyResources(this.BottomMargin, "BottomMargin");
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            resources.ApplyResources(this.BottomMargin, "BottomMargin");
             // 
             // pageFooterBand1
             // 
@@ -328,7 +328,6 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.Detail1});
             this.DetailReport.DataMember = "Names";
             this.DetailReport.DataSource = this.objectDataSource1;
-            resources.ApplyResources(this.DetailReport, "DetailReport");
             this.DetailReport.Level = 1;
             this.DetailReport.Name = "DetailReport";
             this.DetailReport.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.DetailReport_BeforePrint);
@@ -435,7 +434,6 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.DetailReport2});
             this.DetailReport1.DataMember = "Payrolls";
             this.DetailReport1.DataSource = this.objectDataSource1;
-            resources.ApplyResources(this.DetailReport1, "DetailReport1");
             this.DetailReport1.Level = 2;
             this.DetailReport1.Name = "DetailReport1";
             this.DetailReport1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.DetailReport1_BeforePrint);
@@ -451,7 +449,6 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.Detail3});
             this.DetailReport2.DataMember = "Payrolls.Entitlements";
             this.DetailReport2.DataSource = this.objectDataSource1;
-            resources.ApplyResources(this.DetailReport2, "DetailReport2");
             this.DetailReport2.Level = 0;
             this.DetailReport2.Name = "DetailReport2";
             // 
@@ -545,7 +542,6 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.Detail4});
             this.DetailReport3.DataMember = "Totals";
             this.DetailReport3.DataSource = this.objectDataSource1;
-            resources.ApplyResources(this.DetailReport3, "DetailReport3");
             this.DetailReport3.Level = 3;
             this.DetailReport3.Name = "DetailReport3";
             this.DetailReport3.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.DetailReport3_BeforePrint);
@@ -618,7 +614,6 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.Detail5});
             this.DetailReport4.DataMember = "Headers";
             this.DetailReport4.DataSource = this.objectDataSource1;
-            resources.ApplyResources(this.DetailReport4, "DetailReport4");
             this.DetailReport4.Level = 0;
             this.DetailReport4.Name = "DetailReport4";
             // 
@@ -747,25 +742,27 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             // 
             // xrCrossBandBox1
             // 
-            this.xrCrossBandBox1.BorderWidth = 2F;
-            resources.ApplyResources(this.xrCrossBandBox1, "xrCrossBandBox1");
+            this.xrCrossBandBox1.AnchorVertical = ((DevExpress.XtraReports.UI.VerticalAnchorStyles)((DevExpress.XtraReports.UI.VerticalAnchorStyles.Top | DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom)));
             this.xrCrossBandBox1.EndBand = this.PageHeader;
+            resources.ApplyResources(this.xrCrossBandBox1, "xrCrossBandBox1");
             this.xrCrossBandBox1.Name = "xrCrossBandBox1";
             this.xrCrossBandBox1.StartBand = this.PageHeader;
             this.xrCrossBandBox1.WidthF = 940.625F;
             // 
             // xrCrossBandLine1
             // 
-            resources.ApplyResources(this.xrCrossBandLine1, "xrCrossBandLine1");
+            this.xrCrossBandLine1.AnchorVertical = ((DevExpress.XtraReports.UI.VerticalAnchorStyles)((DevExpress.XtraReports.UI.VerticalAnchorStyles.Top | DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom)));
             this.xrCrossBandLine1.EndBand = this.PageHeader;
+            resources.ApplyResources(this.xrCrossBandLine1, "xrCrossBandLine1");
             this.xrCrossBandLine1.Name = "xrCrossBandLine1";
             this.xrCrossBandLine1.StartBand = this.PageHeader;
             this.xrCrossBandLine1.WidthF = 1.041667F;
             // 
             // xrCrossBandLine2
             // 
-            resources.ApplyResources(this.xrCrossBandLine2, "xrCrossBandLine2");
+            this.xrCrossBandLine2.AnchorVertical = ((DevExpress.XtraReports.UI.VerticalAnchorStyles)((DevExpress.XtraReports.UI.VerticalAnchorStyles.Top | DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom)));
             this.xrCrossBandLine2.EndBand = this.PageHeader;
+            resources.ApplyResources(this.xrCrossBandLine2, "xrCrossBandLine2");
             this.xrCrossBandLine2.Name = "xrCrossBandLine2";
             this.xrCrossBandLine2.StartBand = this.PageHeader;
             this.xrCrossBandLine2.WidthF = 938.5417F;
@@ -804,7 +801,7 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.DataField,
             this.Money,
             this.header});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 

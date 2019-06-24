@@ -87,17 +87,24 @@ namespace AionHR.Web.UI.Forms
         {
             switch (classId)
             {
+                case 20102: return "UserComboFilter.ascx";
                 case 21102: return "BranchFilter.ascx";
                 case 41105: return "ScheduleFilter.ascx";
                 case 21104: return "DepartmentFilter.ascx";
+                case 21106: return "GovernmentOrganizationFilter.ascx";
                 case 21103: return "PositionFilter.ascx";
                 case 21101: return "DivisionFilter.ascx";
                 case 20105: return "NationalityFilter.ascx";
                 case 31201: return "EmployeeFilter.ascx";
                 case 31108: return "SponsorFilter.ascx";
                 case 51201: return "PayIdFilter.ascx";
+                case 42101: return "LeaveTypeFilter.ascx";
+                case 31102: return "CertificateLevelFilter.ascx";
+                case 31104: return "DocumentTypeFilter.ascx";
+                case 31105: return "SalaryChangeReasonFilter.ascx";
                 case 31107: return "EmploymentStatusFilter.ascx";
-
+                case 90101: return "SecurityGroupsFilter.ascx";
+                case 51101: return "FiscalYearFilter.ascx";
                 default: X.Msg.Alert("Error","unknown control"); return "";
 
             }   
@@ -280,6 +287,28 @@ namespace AionHR.Web.UI.Forms
                                 }
                             }
                         }
+                        else if(cont.Split(' ').Length>1)
+                        {
+                            var parts = cont.Split(' ');
+                            cont = "";
+                            foreach(var part in parts)
+                            {
+                                if(part.StartsWith("u") && part.Length>5 && part[5]=='u')
+                                {
+                                    string[] chars = part.Split('u');
+                                    foreach (string uchar in chars)
+                                    {
+                                        cont += DirtyUTFWork(uchar);
+                                    }
+                                }
+                                else
+                                {
+                                    cont += part;
+                                }
+                                cont += ' ';
+                            }
+                            cont = cont.Substring(0, cont.Length - 1);
+                        }
                         texts += "["+allCaptions[Convert.ToInt32(text_id)-1]+":"+cont + "]";
                         
                     }
@@ -328,29 +357,10 @@ namespace AionHR.Web.UI.Forms
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
+            return Common.GetEmployeesFiltered(prms.Query);
         }
 
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
+        
 
         private string GetNameFormat()
         {

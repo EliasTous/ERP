@@ -126,6 +126,9 @@
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>القسم : </value>
   </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>اسم الموظف :</value>
+  </data>
   <data name="xrLabel4.Text" xml:space="preserve">
     <value>xrLabel4</value>
   </data>
@@ -139,7 +142,7 @@
     <value>لم يتم العثور على نتائج</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>من قبل</value>
+    <value>طبع بواسطة :</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>
@@ -182,8 +185,5 @@
   </data>
   <data name="xrTableCell8.Text" xml:space="preserve">
     <value>xrTableCell8</value>
-  </data>
-  <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>اسم الموظف</value>
   </data>
 </root>

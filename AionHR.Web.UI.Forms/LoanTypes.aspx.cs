@@ -151,7 +151,7 @@ namespace AionHR.Web.UI.Forms
 
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-
+            FillLdMethodStore();
             switch (type)
             {
                 case "imgEdit":
@@ -326,7 +326,7 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             ApprovalStore.Reload();
-
+            FillLdMethodStore();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -359,7 +359,11 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-
+        private void FillLdMethodStore()
+        {
+            ldMethodStore.DataSource = Common.XMLDictionaryList(_systemService, "17");
+            ldMethodStore.DataBind();
+        }
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
 

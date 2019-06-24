@@ -14,7 +14,7 @@ namespace AionHR.Model.TimeAttendance
         [PropertyID("4108001")]
         public int employeeId { get; set; }
         [PropertyID("4108001")]
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         [PropertyID("4108002")]
         public string dayId { get; set; }
         [PropertyID("4108003")]

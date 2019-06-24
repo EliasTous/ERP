@@ -65,8 +65,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(EmployeePenalty), "qryPE");
             ChildGetAllLookup.Add(typeof(EmployeePenaltyApproval), "qryPA");
             ChildGetAllLookup.Add(typeof(EmployeeParam), "qryEM");
+            ChildGetAllLookup.Add(typeof(EmployeeSnapShot), "snapshotEM");
 
-            
+
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
             ChildGetLookup.Add(typeof(AllowanceType), "getAT");
             ChildGetLookup.Add(typeof(CertificateLevel), "getCL");

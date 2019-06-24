@@ -33,7 +33,7 @@ namespace AionHR.Model.Employees.Profile
         public string major { get; set; }
 
         public int employeeId { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
         [PropertyID("31041_02")]
         [ApplySecurity]
         public string clName { get; set; }

@@ -241,7 +241,7 @@
                                         <ext:ModelField Name="branchName" />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="divisionName" />
-                                        <ext:ModelField Name="reportToName" IsComplex="true" />
+                                        <ext:ModelField Name="reportToName"  />
                                         
                                         
 
@@ -295,8 +295,8 @@
                             <ext:Column Flex="2" ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIBranch%>" DataIndex="branchName" Hideable="false"  Align="Center" />
                             <ext:Column Flex="2" ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIPosition%>" DataIndex="positionName" Hideable="false"  Align="Center" />
                             <ext:Column Flex="2" Visible="false" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDivision%>" DataIndex="divisionName" Hideable="false" Align="Center" />
-                            <ext:Column Flex="2" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReportsTo%>" DataIndex="reportToName.fullName" Hideable="false" Align="Center" >
-                                <Renderer Handler=" return record.data['reportToName'].fullName;" />
+                            <ext:Column Flex="2" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReportsTo%>" DataIndex="reportToName" Hideable="false" Align="Center" >
+                            
                                 </ext:Column>
                           
 
@@ -505,7 +505,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="JIID" Hidden="true" runat="server"  Disabled="true" Name="recordId" />
-                                   <ext:TextArea runat="server" Name="notes" ID="notes" FieldLabel="<%$ Resources:FieldEHComment%>" />
+                             
                                 <ext:DateField runat="server" ID="date" Name="date" FieldLabel="<%$ Resources:FieldJIDate%>" />
                            <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldJIDepartment%>" >
                                <ListConfig MaxHeight="100"></ListConfig>
@@ -662,7 +662,7 @@
 
                                     </Store>
                                 </ext:ComboBox>
-
+                                      <ext:TextArea runat="server" Name="notes" ID="notes" FieldLabel="<%$ Resources:FieldNotes %>" />
                             </Items>
 
                         </ext:FormPanel>

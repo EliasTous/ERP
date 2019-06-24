@@ -209,7 +209,7 @@
                         <ext:ModelField Name="destination" />
                         <ext:ModelField Name="justification" />
                         <ext:ModelField Name="ltName" />
-                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                        <ext:ModelField Name="employeeName"  />
 
                     </Fields>
                 </ext:Model>

@@ -142,7 +142,7 @@
     <value>Unternehmen</value>
   </data>
   <data name="confirmDelete" xml:space="preserve">
-    <value>Bitte geben Sie "Löschen" ein, um den Löschvorgang zu bestätigen.</value>
+    <value>Bitte geben Sie "Delete" ein, um den Löschvorgang zu bestätigen.</value>
   </data>
   <data name="ContactsTab" xml:space="preserve">
     <value>Kontakte</value>
@@ -356,7 +356,7 @@
     <value>Referenz bereits vorhanden</value>
   </data>
   <data name="FieldSchedule" xml:space="preserve">
-    <value>Anwesenheitsplan</value>
+    <value>Zeitplan</value>
   </data>
   <data name="EmployeeCalenderTab" xml:space="preserve">
     <value>Mitarbeiterkalender</value>
@@ -417,5 +417,14 @@
   </data>
   <data name="uploadImageError" xml:space="preserve">
     <value>Die Größe des hochgeladenen Bildes ist zu groß</value>
+  </data>
+  <data name="FieldScheduleType" xml:space="preserve">
+    <value>Zeitplantyp</value>
+  </data>
+  <data name="LeaveBalance" xml:space="preserve">
+    <value>Restbetrag hinterlassen :</value>
+  </data>
+  <data name="LeavePayment" xml:space="preserve">
+    <value>Urlaubszahlung :</value>
   </data>
 </root>

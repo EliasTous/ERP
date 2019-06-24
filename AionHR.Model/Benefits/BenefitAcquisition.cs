@@ -11,7 +11,7 @@ namespace AionHR.Model.Benefits
     [ClassIdentifier("25101", "25")]
     public class BenefitAcquisition :ModelBase
     {
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
 
         public string benefitName { get; set; }
         public string bsName { get; set; }

@@ -27,6 +27,7 @@ using AionHR.Model.Employees;
 using AionHR.Services.Messaging.LoanManagment;
 using AionHR.Services.Messaging.Employees;
 using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -159,6 +160,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             CurrentpenaltyId.Text = id.ToString();
             FillPenalty();
+            panelRecordDetails.ActiveIndex = 0;
             switch (type)
             {
                 case "imgEdit":
@@ -179,7 +181,7 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = response.result.employeeId,
-                                    fullName =response.result.employeeName.fullName
+                                    fullName =response.result.employeeName
                                 }
                    });
                     employeeId.SetValue(response.result.employeeId);
@@ -349,7 +351,8 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
             FillPenalty();
             CurrentpenaltyId.Text = "";
-            date.SelectedDate = DateTime.Now; 
+            date.SelectedDate = DateTime.Now;
+            panelRecordDetails.ActiveIndex = 0;
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
             this.EditRecordWindow.Show();
@@ -541,56 +544,76 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
+            return Common.GetEmployeesFiltered(prms.Query);
+
         }
 
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
+        //private List<Employee> GetEmployeesFiltered(string query)
+        //{
 
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    req.DepartmentId = "0";
+        //    req.BranchId = "0";
+        //    req.IncludeIsInactive = 2;
+        //    req.SortBy = GetNameFormat();
 
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
+        //    req.StartAt = "0";
+        //    req.Size = "20";
+        //    req.Filter = query;
 
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    return response.Items;
+        //}
 
 
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
+        //private string GetNameFormat()
+        //{
+        //    return _systemService.SessionHelper.Get("nameFormat").ToString();
+        //}
 
         protected void ApprovalsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            EmployeePenaltyApprovalListRequest req = new EmployeePenaltyApprovalListRequest();
+            //EmployeePenaltyApprovalListRequest req = new EmployeePenaltyApprovalListRequest();
 
-            req.apStatus = "0";
-            req.penaltyId = CurrentpenaltyId.Text;
-            req.approverId = "0";
-            req.PositionId = 0;
-            req.DepartmentId = 0;
-            req.DivisionId = 0;
-            req.BranchId = 0;
-            req.EsId = 0;
-          
-            if (string.IsNullOrEmpty(req.penaltyId))
+         
+
+            if (string.IsNullOrEmpty(CurrentpenaltyId.Text))
             {
                 ApprovalStore.DataSource = new List<EmployeePenaltyApproval>();
                 ApprovalStore.DataBind();
                 return;
             }
+
+
+            string rep_params = "";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("1", "0");
+            parameters.Add("2","0");
+            parameters.Add("3", "0");
+            parameters.Add("4", "0");
+            parameters.Add("5", "0");
+            parameters.Add("6", "0");
+            parameters.Add("7", "0");
+            parameters.Add("8", CurrentpenaltyId.Text);
+
+            foreach (KeyValuePair<string, string> entry in parameters)
+            {
+                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+            }
+            if (rep_params.Length > 0)
+            {
+                if (rep_params[rep_params.Length - 1] == '^')
+                    rep_params = rep_params.Remove(rep_params.Length - 1);
+            }
+
+
+
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
+
+
             ListResponse<EmployeePenaltyApproval> response = _employeeService.ChildGetAll<EmployeePenaltyApproval>(req);
 
             if (!response.Success)
@@ -607,13 +630,10 @@ namespace AionHR.Web.UI.Forms
                         x.statusString = StatusNew.Text;
                         break;
                     case 2:
-                        x.statusString = StatusInProcess.Text;
-                        ;
-                        break;
-                    case 3:
                         x.statusString = StatusApproved.Text;
                         ;
                         break;
+                  
                     case -1:
                         x.statusString = StatusRejected.Text;
 

@@ -16,7 +16,7 @@ namespace AionHR.Model.AdminTemplates
         public string bcId { get; set; }
         public string bcName { get; set; }
         public bool inactive { get; set; }
-        public bool isInactive { get; set; }
+        public short activeStatus { get; set; }
         
         public string email { get; set; }
         public AddressBook address { get; set; }

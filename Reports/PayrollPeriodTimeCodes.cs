@@ -276,8 +276,8 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell16,
             this.xrTableCell17,
             this.xrTableCell18});
-            resources.ApplyResources(this.xrTableRow4, "xrTableRow4");
             this.xrTableRow4.Name = "xrTableRow4";
+            resources.ApplyResources(this.xrTableRow4, "xrTableRow4");
             // 
             // xrTableCell32
             // 
@@ -286,35 +286,35 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell32.CanGrow = false;
             this.xrTableCell32.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "name.fullName")});
-            resources.ApplyResources(this.xrTableCell32, "xrTableCell32");
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName")});
             this.xrTableCell32.Name = "xrTableCell32";
             this.xrTableCell32.StyleName = "DataField";
             this.xrTableCell32.StylePriority.UseBorders = false;
+            resources.ApplyResources(this.xrTableCell32, "xrTableCell32");
             // 
             // xrTableCell7
             // 
             this.xrTableCell7.CanGrow = false;
             this.xrTableCell7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "departmentName")});
-            resources.ApplyResources(this.xrTableCell7, "xrTableCell7");
             this.xrTableCell7.Name = "xrTableCell7";
+            resources.ApplyResources(this.xrTableCell7, "xrTableCell7");
             // 
             // xrTableCell8
             // 
             this.xrTableCell8.CanGrow = false;
             this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "branchName")});
-            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
             this.xrTableCell8.Name = "xrTableCell8";
+            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
             // 
             // xrTableCell9
             // 
             this.xrTableCell9.CanGrow = false;
             this.xrTableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "lateness")});
-            resources.ApplyResources(this.xrTableCell9, "xrTableCell9");
             this.xrTableCell9.Name = "xrTableCell9";
+            resources.ApplyResources(this.xrTableCell9, "xrTableCell9");
             this.xrTableCell9.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell11_BeforePrint);
             // 
             // xrTableCell10
@@ -322,8 +322,8 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell10.CanGrow = false;
             this.xrTableCell10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cvLateness")});
-            resources.ApplyResources(this.xrTableCell10, "xrTableCell10");
             this.xrTableCell10.Name = "xrTableCell10";
+            resources.ApplyResources(this.xrTableCell10, "xrTableCell10");
             this.xrTableCell10.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell10_BeforePrint);
             this.xrTableCell10.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell10_PrintOnPage);
             // 
@@ -332,8 +332,8 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell11.CanGrow = false;
             this.xrTableCell11.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "overtime")});
-            resources.ApplyResources(this.xrTableCell11, "xrTableCell11");
             this.xrTableCell11.Name = "xrTableCell11";
+            resources.ApplyResources(this.xrTableCell11, "xrTableCell11");
             this.xrTableCell11.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell11_BeforePrint);
             // 
             // xrTableCell12
@@ -341,8 +341,8 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell12.CanGrow = false;
             this.xrTableCell12.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cvOvertime")});
-            resources.ApplyResources(this.xrTableCell12, "xrTableCell12");
             this.xrTableCell12.Name = "xrTableCell12";
+            resources.ApplyResources(this.xrTableCell12, "xrTableCell12");
             this.xrTableCell12.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell10_PrintOnPage);
             // 
             // xrTableCell13
@@ -350,16 +350,16 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell13.CanGrow = false;
             this.xrTableCell13.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "absence")});
-            resources.ApplyResources(this.xrTableCell13, "xrTableCell13");
             this.xrTableCell13.Name = "xrTableCell13";
+            resources.ApplyResources(this.xrTableCell13, "xrTableCell13");
             // 
             // xrTableCell14
             // 
             this.xrTableCell14.CanGrow = false;
             this.xrTableCell14.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cvAbsence")});
-            resources.ApplyResources(this.xrTableCell14, "xrTableCell14");
             this.xrTableCell14.Name = "xrTableCell14";
+            resources.ApplyResources(this.xrTableCell14, "xrTableCell14");
             this.xrTableCell14.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell10_PrintOnPage);
             // 
             // xrTableCell15
@@ -367,16 +367,16 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell15.CanGrow = false;
             this.xrTableCell15.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "missedPunches")});
-            resources.ApplyResources(this.xrTableCell15, "xrTableCell15");
             this.xrTableCell15.Name = "xrTableCell15";
+            resources.ApplyResources(this.xrTableCell15, "xrTableCell15");
             // 
             // xrTableCell16
             // 
             this.xrTableCell16.CanGrow = false;
             this.xrTableCell16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cvMissedPunches")});
-            resources.ApplyResources(this.xrTableCell16, "xrTableCell16");
             this.xrTableCell16.Name = "xrTableCell16";
+            resources.ApplyResources(this.xrTableCell16, "xrTableCell16");
             this.xrTableCell16.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell10_PrintOnPage);
             // 
             // xrTableCell17
@@ -384,16 +384,16 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell17.CanGrow = false;
             this.xrTableCell17.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "disappearance")});
-            resources.ApplyResources(this.xrTableCell17, "xrTableCell17");
             this.xrTableCell17.Name = "xrTableCell17";
+            resources.ApplyResources(this.xrTableCell17, "xrTableCell17");
             // 
             // xrTableCell18
             // 
             this.xrTableCell18.CanGrow = false;
             this.xrTableCell18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cvDisappearance")});
-            resources.ApplyResources(this.xrTableCell18, "xrTableCell18");
             this.xrTableCell18.Name = "xrTableCell18";
+            resources.ApplyResources(this.xrTableCell18, "xrTableCell18");
             this.xrTableCell18.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell10_PrintOnPage);
             // 
             // TopMargin
@@ -776,23 +776,23 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell1,
             this.xrTableCell2,
             this.xrTableCell3});
-            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             this.xrTableRow1.Name = "xrTableRow1";
+            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             // 
             // xrTableCell1
             // 
-            resources.ApplyResources(this.xrTableCell1, "xrTableCell1");
             this.xrTableCell1.Name = "xrTableCell1";
+            resources.ApplyResources(this.xrTableCell1, "xrTableCell1");
             // 
             // xrTableCell2
             // 
-            resources.ApplyResources(this.xrTableCell2, "xrTableCell2");
             this.xrTableCell2.Name = "xrTableCell2";
+            resources.ApplyResources(this.xrTableCell2, "xrTableCell2");
             // 
             // xrTableCell3
             // 
-            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             this.xrTableCell3.Name = "xrTableCell3";
+            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             // 
             // xrTableRow2
             // 
@@ -800,23 +800,23 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell4,
             this.xrTableCell5,
             this.xrTableCell6});
-            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             this.xrTableRow2.Name = "xrTableRow2";
+            resources.ApplyResources(this.xrTableRow2, "xrTableRow2");
             // 
             // xrTableCell4
             // 
-            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             this.xrTableCell4.Name = "xrTableCell4";
+            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             // 
             // xrTableCell5
             // 
-            resources.ApplyResources(this.xrTableCell5, "xrTableCell5");
             this.xrTableCell5.Name = "xrTableCell5";
+            resources.ApplyResources(this.xrTableCell5, "xrTableCell5");
             // 
             // xrTableCell6
             // 
-            resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             this.xrTableCell6.Name = "xrTableCell6";
+            resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             // 
             // pageFooterBand1
             // 
@@ -1144,7 +1144,7 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.FieldCaption,
             this.PageInfo,
             this.DataField});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();

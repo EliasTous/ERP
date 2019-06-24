@@ -43,14 +43,11 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
     private DevExpress.XtraReports.Parameters.Parameter Division;
     private DevExpress.XtraReports.Parameters.Parameter EmploymentStatus;
     private XRLabel xrLabel23;
-    private PageHeaderBand PageHeader;
     private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
-    private XRLabel xrLabel17;
     private XRLabel xrLabel20;
     private XRLabel xrLabel24;
     private XRLabel xrLabel25;
     private XRLabel xrLabel26;
-    private XRTableCell xrTableCell7;
     private XRTableCell xrTableCell9;
     private XRTableCell xrTableCell8;
     private XRTableCell xrTableCell11;
@@ -66,6 +63,11 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
     private GroupHeaderBand GroupHeader1;
     private XRLabel xrLabel31;
     private DevExpress.XtraReports.Parameters.Parameter Employee;
+    private PageHeaderBand PageHeader;
+    private XRLabel xrLabel3;
+    private XRLabel xrLabel2;
+    private XRLabel xrLabel1;
+    private XRTableCell xrTableCell6;
 
     /// <summary>
     /// Required designer variable.
@@ -75,6 +77,8 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
     public Absense(Dictionary<string, string> parameters)
     {
         InitializeComponent();
+        xrTableCell5.RightToLeft = RightToLeft.No;
+        xrLabel29.RightToLeft = RightToLeft.No;
         printHeader(parameters);
         //
         // TODO: Add constructor logic here
@@ -182,20 +186,22 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.groupHeaderBand1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
@@ -221,15 +227,15 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.ApprovalStatus = new DevExpress.XtraReports.Parameters.Parameter();
             this.Position = new DevExpress.XtraReports.Parameters.Parameter();
             this.Division = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.Employee = new DevExpress.XtraReports.Parameters.Parameter();
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.GroupFooter2 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.xrLabel31 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel30 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel29 = new DevExpress.XtraReports.UI.XRLabel();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
+            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -262,94 +268,95 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell2,
             this.xrTableCell3,
             this.xrTableCell4,
-            this.xrTableCell7,
             this.xrTableCell9,
             this.xrTableCell8,
+            this.xrTableCell6,
             this.xrTableCell11,
             this.xrTableCell10,
             this.xrTableCell5});
-            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             this.xrTableRow1.Name = "xrTableRow1";
+            resources.ApplyResources(this.xrTableRow1, "xrTableRow1");
             // 
             // xrTableCell1
             // 
             this.xrTableCell1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName.fullName")});
-            resources.ApplyResources(this.xrTableCell1, "xrTableCell1");
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName")});
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell1, "xrTableCell1");
             // 
             // xrTableCell2
             // 
             this.xrTableCell2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "dayIdString")});
-            resources.ApplyResources(this.xrTableCell2, "xrTableCell2");
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell2, "xrTableCell2");
             // 
             // xrTableCell3
             // 
             this.xrTableCell3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "branchName")});
-            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             this.xrTableCell3.Name = "xrTableCell3";
             this.xrTableCell3.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             // 
             // xrTableCell4
             // 
             this.xrTableCell4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "seqNo")});
-            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             this.xrTableCell4.Name = "xrTableCell4";
             this.xrTableCell4.StylePriority.UseTextAlignment = false;
-            // 
-            // xrTableCell7
-            // 
-            this.xrTableCell7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "timeCodeString")});
-            resources.ApplyResources(this.xrTableCell7, "xrTableCell7");
-            this.xrTableCell7.Name = "xrTableCell7";
-            this.xrTableCell7.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             // 
             // xrTableCell9
             // 
             this.xrTableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "clockDurationString")});
-            resources.ApplyResources(this.xrTableCell9, "xrTableCell9");
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell9, "xrTableCell9");
             // 
             // xrTableCell8
             // 
             this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "damageLevelString")});
-            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
+            // 
+            // xrTableCell6
+            // 
+            this.xrTableCell6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "justification")});
+            this.xrTableCell6.Multiline = true;
+            this.xrTableCell6.Name = "xrTableCell6";
+            this.xrTableCell6.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell6, "xrTableCell6");
             // 
             // xrTableCell11
             // 
             this.xrTableCell11.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "apStatusString")});
-            resources.ApplyResources(this.xrTableCell11, "xrTableCell11");
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell11, "xrTableCell11");
             // 
             // xrTableCell10
             // 
             this.xrTableCell10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "durationString")});
-            resources.ApplyResources(this.xrTableCell10, "xrTableCell10");
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell10, "xrTableCell10");
             // 
             // xrTableCell5
             // 
             this.xrTableCell5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "edAmount", "{0:n2}")});
-            resources.ApplyResources(this.xrTableCell5, "xrTableCell5");
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrTableCell5, "xrTableCell5");
             this.xrTableCell5.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell5_PrintOnPage);
             // 
             // TopMargin
@@ -367,11 +374,13 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             // groupHeaderBand1
             // 
             this.groupHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel3,
+            this.xrLabel2,
+            this.xrLabel1,
             this.xrLabel26,
             this.xrLabel28,
             this.xrLabel27,
             this.xrLabel25,
-            this.xrLabel17,
             this.xrLabel20,
             this.xrLabel24,
             this.xrLabel19,
@@ -381,6 +390,43 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.groupHeaderBand1.Name = "groupHeaderBand1";
             this.groupHeaderBand1.RepeatEveryPage = true;
             this.groupHeaderBand1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.groupHeaderBand1_BeforePrint);
+            // 
+            // xrLabel3
+            // 
+            this.xrLabel3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrLabel3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "timeCodeString")});
+            resources.ApplyResources(this.xrLabel3, "xrLabel3");
+            this.xrLabel3.Multiline = true;
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel3.StylePriority.UseBorders = false;
+            this.xrLabel3.StylePriority.UseTextAlignment = false;
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel2, "xrLabel2");
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.StylePriority.UseBorders = false;
+            this.xrLabel2.StylePriority.UseTextAlignment = false;
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel1, "xrLabel1");
+            this.xrLabel1.Multiline = true;
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.StylePriority.UseBorders = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel26
             // 
@@ -425,17 +471,6 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel25.StylePriority.UseBorders = false;
             this.xrLabel25.StylePriority.UseTextAlignment = false;
-            // 
-            // xrLabel17
-            // 
-            this.xrLabel17.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel17, "xrLabel17");
-            this.xrLabel17.Name = "xrLabel17";
-            this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel17.StylePriority.UseBorders = false;
-            this.xrLabel17.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel20
             // 
@@ -645,11 +680,6 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.Division.Name = "Division";
             this.Division.Visible = false;
             // 
-            // PageHeader
-            // 
-            resources.ApplyResources(this.PageHeader, "PageHeader");
-            this.PageHeader.Name = "PageHeader";
-            // 
             // Employee
             // 
             this.Employee.Name = "Employee";
@@ -657,7 +687,6 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             // 
             // GroupFooter1
             // 
-            resources.ApplyResources(this.GroupFooter1, "GroupFooter1");
             this.GroupFooter1.Level = 1;
             this.GroupFooter1.Name = "GroupFooter1";
             // 
@@ -667,7 +696,6 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel31,
             this.xrLabel30,
             this.xrLabel29});
-            resources.ApplyResources(this.GroupFooter2, "GroupFooter2");
             this.GroupFooter2.Name = "GroupFooter2";
             this.GroupFooter2.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.groupHeaderBand1_BeforePrint);
             // 
@@ -715,18 +743,23 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel29.Summary = xrSummary2;
             this.xrLabel29.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell5_PrintOnPage);
             // 
+            // GroupHeader1
+            // 
+            this.GroupHeader1.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
+            new DevExpress.XtraReports.UI.GroupField("groupingKey", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
+            resources.ApplyResources(this.GroupHeader1, "GroupHeader1");
+            this.GroupHeader1.Level = 1;
+            this.GroupHeader1.Name = "GroupHeader1";
+            // 
+            // PageHeader
+            // 
+            resources.ApplyResources(this.PageHeader, "PageHeader");
+            this.PageHeader.Name = "PageHeader";
+            // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT305);
             this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // GroupHeader1
-            // 
-            resources.ApplyResources(this.GroupHeader1, "GroupHeader1");
-            this.GroupHeader1.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
-            new DevExpress.XtraReports.UI.GroupField("groupingKey", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
-            this.GroupHeader1.Level = 1;
-            this.GroupHeader1.Name = "GroupHeader1";
             // 
             // Absense
             // 
@@ -737,10 +770,10 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.groupHeaderBand1,
             this.pageFooterBand1,
             this.reportHeaderBand1,
-            this.PageHeader,
             this.GroupFooter1,
             this.GroupHeader1,
-            this.GroupFooter2});
+            this.GroupFooter2,
+            this.PageHeader});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
@@ -760,7 +793,7 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.FieldCaption,
             this.PageInfo,
             this.DataField});
-            this.Version = "16.2";
+            this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();

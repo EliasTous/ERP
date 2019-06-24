@@ -190,7 +190,7 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
-
+            panelRecordDetails.ActiveIndex = 0;
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             switch (type)
@@ -329,17 +329,11 @@ namespace AionHR.Web.UI.Forms
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-
-            //  return new
-            // {
-            return data;
-            //};
+            return Common.GetEmployeesFiltered(prms.Query);
 
         }
+       
+      
 
         private List<Employee> GetEmployeeByID(string id)
         {
@@ -354,24 +348,7 @@ namespace AionHR.Web.UI.Forms
             emps.Add(emp.result);
             return emps;
         }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-            
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = "firstName";
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
+        
 
 
         /// <summary>
@@ -450,7 +427,7 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-
+            panelRecordDetails.ActiveIndex = 0;
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             periodsGrid.Store[0].DataSource = new List<VacationSchedulePeriod>();
@@ -476,7 +453,10 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<VacationSchedule> branches = _branchService.ChildGetAll<VacationSchedule>(request);
             if (!branches.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + branches.LogId: branches.Summary).Show();
+            {
+                Common.errorMessage(branches);
+                return;
+            }
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 
@@ -485,7 +465,40 @@ namespace AionHR.Web.UI.Forms
 
 
 
+       private void DeletePeriods(string scheduleId)
+        {
+            try
+            {
+                VacationPeriodsListRequest req = new VacationPeriodsListRequest();
+                req.VacationScheduleId = scheduleId;
+                ListResponse<VacationSchedulePeriod> oldPeriods = _branchService.ChildGetAll<VacationSchedulePeriod>(req);
 
+                if (!oldPeriods.Success)
+                {
+                    Common.errorMessage(oldPeriods);
+                    return;
+                }
+                oldPeriods.Items.ForEach(x =>
+
+                {
+
+                    PostRequest<VacationSchedulePeriod> oldPeriodsRequest = new PostRequest<VacationSchedulePeriod>();
+                    oldPeriodsRequest.entity = x;
+                    PostResponse<VacationSchedulePeriod> oldPeriodsResponse = _branchService.ChildDelete<VacationSchedulePeriod>(oldPeriodsRequest);
+                    if (!oldPeriodsResponse.Success)
+                    {
+                        Common.errorMessage(oldPeriods);
+                        throw new Exception();
+
+                    }
+
+                });
+            }
+            catch
+            {
+
+            }
+        }
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
 
@@ -578,14 +591,16 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                         return;
                     }
-                   
-                    var deleteDesponse = _branchService.DeleteVacationSchedulePeriods(Convert.ToInt32(b.recordId));
-                    if (!deleteDesponse.Success)//it maybe another check
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", deleteDesponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", deleteDesponse.ErrorCode).ToString() : deleteDesponse.Summary).Show();
-                        return;
-                    }
+
+
+                    DeletePeriods(id);
+                    //   var deleteDesponse = _branchService.DeleteVacationSchedulePeriods(Convert.ToInt32(b.recordId));
+                    //if (!deleteDesponse.Success)//it maybe another check
+                    //{
+                    //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", deleteDesponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", deleteDesponse.ErrorCode).ToString() : deleteDesponse.Summary).Show();
+                    //    return;
+                    //}
                     List<VacationSchedulePeriod> periods = JsonConvert.DeserializeObject<List<VacationSchedulePeriod>>(pers);
                     PostResponse<VacationSchedulePeriod[]> result = AddPeriodsList(b.recordId, periods);
 

@@ -158,23 +158,14 @@ namespace AionHR.Web.UI.Forms.Reports
             }
         }
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-            req.SortBy = "departmentName";
-            req.Add(dateRange1.GetRange());
-
-            
-            return req;
-        }
+        
 
         protected void firstStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
 
-            ReportCompositeRequest req = GetRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<AionHR.Model.Reports.RT103> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT103>(req);
             if (!resp.Success)
             {
@@ -187,7 +178,23 @@ namespace AionHR.Web.UI.Forms.Reports
             firstStore.DataBind();
 
         }
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
         [DirectMethod]
         public string CheckSession()
         {

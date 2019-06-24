@@ -121,12 +121,15 @@ namespace AionHR.Web.UI.Forms
                 }
                 if (resp.result != null)
                 {
-                    resp.result.familyName = resp.result.name.familyName.ToString();
-                    resp.result.middleName = resp.result.name.middleName.ToString();
-                    resp.result.firstName = resp.result.name.firstName.ToString();
-                    resp.result.lastName = resp.result.name.lastName.ToString();
-                    resp.result.reference = resp.result.name.reference.ToString();
-                    resp.result.fullName = resp.result.name.fullName.ToString();
+                    if (resp.result.name != null)
+                    {
+                        resp.result.familyName = resp.result.name.familyName;
+                        resp.result.middleName = resp.result.name.middleName;
+                        resp.result.firstName = resp.result.name.firstName;
+                        resp.result.lastName = resp.result.name.lastName;
+                        resp.result.reference = resp.result.name.reference;
+                        resp.result.fullName = resp.result.name.fullName;
+                    }
 
                     BasicInfoTab.Reset();
                     BasicInfoTab.SetValues(resp.result);

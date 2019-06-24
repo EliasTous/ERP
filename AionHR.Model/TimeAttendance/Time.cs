@@ -12,8 +12,8 @@ namespace AionHR.Model.TimeAttendance
     [ClassIdentifier("41065", "41")]
     public  class Time
     {
-        public EmployeeName employeeName { set; get; }
-        public EmployeeName approverName { set; get; }
+        public string employeeName { set; get; }
+        public string approverName { set; get; }
         public string fullName { get; set; }
         public string departmentName { get; set; }
         public string branchName { get; set; }

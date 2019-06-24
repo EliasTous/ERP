@@ -139,13 +139,18 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-
+        private void FillProfileStore()
+        {
+            profileStore.DataSource = Common.XMLDictionaryList(_systemService, "11");
+            profileStore.DataBind();
+        }
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
+            FillProfileStore();
             switch (type)
             {
                 case "imgEdit":
@@ -327,6 +332,7 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+            FillProfileStore();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             string timeZone = Session["TimeZone"] as string;
 

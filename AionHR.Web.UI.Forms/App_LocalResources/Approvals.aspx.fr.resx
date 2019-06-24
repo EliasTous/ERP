@@ -192,4 +192,7 @@
   <data name="FieldDepartment" xml:space="preserve">
     <value>Department</value>
   </data>
+  <data name="approvalType" xml:space="preserve">
+    <value>type d'approbation</value>
+  </data>
 </root>

@@ -254,11 +254,11 @@ namespace AionHR.Web.UI.Forms
         {
           
             TimeVariationListRequest reqTV = new TimeVariationListRequest();
-            reqTV.BranchId = 0;
-            reqTV.DepartmentId = 0;
-            reqTV.DivisionId = 0;
-            reqTV.PositionId = 0;
-            reqTV.EsId = 0;
+            reqTV.BranchId = "0";
+            reqTV.DepartmentId = "0";
+            reqTV.DivisionId = "0";
+            reqTV.PositionId = "0";
+            reqTV.EsId = "0";
             reqTV.fromDayId = dateRange1.GetRange().DateFrom;
             reqTV.toDayId = dateRange1.GetRange().DateTo;
             reqTV.employeeId = _systemService.SessionHelper.GetEmployeeId();
@@ -378,39 +378,8 @@ namespace AionHR.Web.UI.Forms
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            return Common.GetEmployeesFiltered(prms.Query);
 
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-
-            data.ForEach(s => s.fullName = s.name.fullName);
-            //  return new
-            // {
-            return data;
-            //};
-
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = "firstName";
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if (!response.Success)
-                Common.errorMessage(response);
-            return response.Items;
         }
         //private ActiveAttendanceRequest GetActiveAttendanceRequest()
         //{
@@ -641,7 +610,35 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //getting the id of the record
-                TimeVariationListRequest req = GetAbsentRequest();
+                TimeVariationListRequest req1 = GetAbsentRequest();
+
+                string rep_params = "";
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Add("1", req1.employeeId);
+                parameters.Add("2", req1.fromDayId.ToString("yyyyMMdd"));
+                parameters.Add("3", req1.toDayId.ToString("yyyyMMdd"));
+                parameters.Add("4","0");
+                parameters.Add("5", req1.timeCode);
+                parameters.Add("6", req1.apStatus);
+                parameters.Add("7", req1.BranchId);
+                parameters.Add("8", req1.DepartmentId);
+                parameters.Add("9", req1.EsId);
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
+
+
+
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+
+
 
                 ListResponse<DashBoardTimeVariation> r = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);                    //Step 1 Selecting the object or building up the object for update purpose
 
@@ -716,21 +713,43 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardTimeListRequest r = new DashboardTimeListRequest();
-                r.dayId = dayId.ToString();
-                r.employeeId = employeeId;
-                r.approverId = 0;
-                r.timeCode = timeCode;
-                r.shiftId = shiftId;
-                r.StartAt = "0";
-                r.Size = "1000";
-                r.apStatus = "0";
-                r.fromDayId = dayId.ToString();
-                r.toDayId = dayId.ToString();
+                //DashboardTimeListRequest r = new DashboardTimeListRequest();
+                //r.dayId = dayId.ToString();
+           
+             
+                //r.timeCode = timeCode;
+                //r.shiftId = shiftId;
+             
+           
+                string rep_params = "";
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Add("1", employeeId.ToString());
+                parameters.Add("2", dayId.ToString());
+                parameters.Add("3", dayId.ToString());
+                parameters.Add("4", shiftId);
+                parameters.Add("5", timeCode);
+                parameters.Add("6", "0");
+                parameters.Add("7", "0");
+                parameters.Add("8", "0");
+                parameters.Add("9", "0");
+                parameters.Add("10", "0");
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
 
 
 
-                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+
+
+                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(req);
                 if (!Times.Success)
                 {
                     Common.errorMessage(Times);

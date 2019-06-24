@@ -31,6 +31,7 @@ using AionHR.Model.Attributes;
 using AionHR.Model.Access_Control;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Services.Messaging.CompanyStructure;
+using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -106,9 +107,9 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 ColHireDate.Format = _systemService.SessionHelper.GetDateformat();
 
-                inactivePref.Select("0");
+                //inactivePref.Select("0");
                 CurrentClassId.Text = ClassId.EPEM.ToString();
-               
+
                 BuildQuickViewTemplate();
                 try
                 {
@@ -121,7 +122,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-               
+
                 if (GridPanel1.ColumnModel.Columns[1].Renderer != null && !string.IsNullOrEmpty(GridPanel1.ColumnModel.Columns[1].Renderer.Handler))
                     imageVisible.Text = "False";
                 else
@@ -129,6 +130,26 @@ namespace AionHR.Web.UI.Forms
             }
 
 
+        }
+
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+            searchTrigger.Text = string.Empty;
+            labelbar.Hidden = false;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
         }
 
         private void BuildQuickViewTemplate()                         
@@ -145,20 +166,20 @@ namespace AionHR.Web.UI.Forms
 
                 html += GetLocalResourceObject("usedLeaves").ToString() + " {usedLeaves} </td><td>";
                 html += GetLocalResourceObject("serviceDuration").ToString() + " {serviceDuration}</td><td>";
-                html += GetLocalResourceObject("earnedLeavesLeg").ToString() + " {earnedLeavesLeg}  </td><td>";
-                html += GetLocalResourceObject("LoansBalance").ToString() + " {loansBalance}   </td></tr><tr><td>";
-
-                html += GetLocalResourceObject("paidLeaves").ToString() + " {paidLeaves}  </td><td>";
-                html += GetLocalResourceObject("EmployeeStatus").ToString() + " {status}  </td><td>";
-                html += GetLocalResourceObject("usedLeavesLeg").ToString() + " {usedLeavesLeg}</td> </tr> <tr><td>";
+                html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + "{lastLeave}  </td> </tr><tr><td>";
+                
+                    //html += GetLocalResourceObject("LoansBalance").ToString() + " {loansBalance}   
+                html += GetLocalResourceObject("LoansBalance").ToString() + " {loansBalance}   </td><td>";
+                html += GetLocalResourceObject("EmployeeStatus").ToString() + " {status}  </td><td> </tr> <tr><td>";
+                //html += GetLocalResourceObject("usedLeavesLeg").ToString() + " {usedLeavesLeg}</td>";
 
 
                 html += GetLocalResourceObject("earnedLeaves").ToString() + " {earnedLeaves}</td><td>";
-                html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance} </td><td>";
+                html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance} </td><td></td></tr></table>";
                 //     html += GetLocalResourceObject("salary").ToString() + " {salary}  </td><td>";
 
 
-                html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + "{lastLeave} </td></tr></table>";
+                //html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + "{lastLeave} ";
 
            
 
@@ -426,50 +447,50 @@ namespace AionHR.Web.UI.Forms
             employeeControl1.Add();
         }
 
-        private EmployeeListRequest GetListRequest(StoreReadDataEventArgs e)
-        {
-            previousStartAt.Text= e.Start.ToString();
-            EmployeeListRequest empRequest = new EmployeeListRequest();
-            if (!string.IsNullOrEmpty(inactivePref.Text) && inactivePref.Value.ToString() != "")
-            {
-                empRequest.IncludeIsInactive = Convert.ToInt32(inactivePref.Value);
-            }
-            else
-            {
-                empRequest.IncludeIsInactive = 2;
-            }
+        //private EmployeeListRequest GetListRequest(StoreReadDataEventArgs e)
+        //{
+        //    previousStartAt.Text= e.Start.ToString();
+        //    EmployeeListRequest empRequest = new EmployeeListRequest();
+        //    if (!string.IsNullOrEmpty(inactivePref.Text) && inactivePref.Value.ToString() != "")
+        //    {
+        //        empRequest.IncludeIsInactive = Convert.ToInt32(inactivePref.Value);
+        //    }
+        //    else
+        //    {
+        //        empRequest.IncludeIsInactive = 2;
+        //    }
 
-            var d = jobInfo1.GetJobInfo();
-            empRequest.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
-            empRequest.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
-            empRequest.filterField =  !string.IsNullOrEmpty(filterField.Text) ? filterField.Value.ToString() : "0";
-            //empRequest.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
-            //empRequest.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value.ToString() : "0";
+        //    var d = jobInfo1.GetJobInfo();
+        //    empRequest.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
+        //    empRequest.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
+        //    empRequest.filterField =  !string.IsNullOrEmpty(filterField.Text) ? filterField.Value.ToString() : "0";
+        //    //empRequest.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
+        //    //empRequest.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value.ToString() : "0";
 
 
-            if (e.Sort[0].Property == "name")
-                empRequest.SortBy = GetNameFormat();
-            else if (e.Sort[0].Property == "reference")
-                empRequest.SortBy = "reference";
-            else
-                empRequest.SortBy = e.Sort[0].Property;
-            if (storeSize.Text == "unlimited")
-            {
-                empRequest.Size = "1000";
-                empRequest.StartAt = "0";
-                storeSize.Text = "limited";
-            }
-            else
-            {
-                empRequest.Size = e.Limit.ToString();
-                empRequest.StartAt = e.Start.ToString();
-            }
-            if (string.IsNullOrEmpty(searchTrigger.Text))
-                empRequest.StartAt = previousStartAt.Text;
-            empRequest.Filter = searchTrigger.Text;
+        //    if (e.Sort[0].Property == "name")
+        //        empRequest.SortBy = GetNameFormat();
+        //    else if (e.Sort[0].Property == "reference")
+        //        empRequest.SortBy = "reference";
+        //    else
+        //        empRequest.SortBy = e.Sort[0].Property;
+        //    if (storeSize.Text == "unlimited")
+        //    {
+        //        empRequest.Size = "1000";
+        //        empRequest.StartAt = "0";
+        //        storeSize.Text = "limited";
+        //    }
+        //    else
+        //    {
+        //        empRequest.Size = e.Limit.ToString();
+        //        empRequest.StartAt = e.Start.ToString();
+        //    }
+        //    if (string.IsNullOrEmpty(searchTrigger.Text))
+        //        empRequest.StartAt = previousStartAt.Text;
+        //    empRequest.Filter = searchTrigger.Text;
 
-            return empRequest;
-        }
+        //    return empRequest;
+        //}
         private string GetNameFormat()
         {
             return _systemService.SessionHelper.Get("nameFormat").ToString();
@@ -480,23 +501,46 @@ namespace AionHR.Web.UI.Forms
             try {
                 //GEtting the filter from the page
 
-                EmployeeListRequest empRequest = GetListRequest(e);
+                //EmployeeListRequest empRequest = GetListRequest(e);
+
+
+                string rep_params = vals.Text;
+                EmployeeListRequest empRequest = new EmployeeListRequest();
+                // ReportGenericRequest req = new ReportGenericRequest();
+                empRequest.paramString= vals.Text;
+                empRequest.StartAt = e.Start.ToString();
+                empRequest.SortBy = "recordId";
+                empRequest.Size = "30";
 
 
 
 
-                ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
-                if (!emps.Success)
+                if (string.IsNullOrEmpty(searchTrigger.Text))
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", emps.ErrorCode) != null ? GetGlobalResourceObject("Errors", emps.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + emps.LogId : emps.Summary).Show();
-                    return;
+                    ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
+                    if (!emps.Success)
+                    {
+                        Common.errorMessage(emps);
+                        return;
+                    }
+                    e.Total = emps.count;
+                    if (emps.Items != null)
+                    {
+                        this.Store1.DataSource = emps.Items;
+                        this.Store1.DataBind();
+                    }
                 }
-                e.Total = emps.count;
-                if (emps.Items != null)
+                else
                 {
-                    this.Store1.DataSource = emps.Items;
+                    List<EmployeeSnapShot> emps = Common.GetEmployeesFiltered(searchTrigger.Text);
+                    e.Total = emps.Count();
+                    this.Store1.DataSource = emps;
                     this.Store1.DataBind();
+                    labelbar.Hidden = true;
+
+
                 }
+
 
             }
             catch( Exception exp)
@@ -571,7 +615,7 @@ namespace AionHR.Web.UI.Forms
 
 
                    
-                    reportsTo = qv.result.reportToName!=null? qv.result.reportToName.fullName:"",
+                    reportsTo = qv.result.reportToName!=null? qv.result.reportToName:"",
                     indemnity = qv.result.indemnity,
                     salary = qv.result.salary,
                     leavesBalance = qv.result.leaveBalance,

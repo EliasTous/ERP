@@ -95,7 +95,7 @@
                                             <Fields>
 
                                                 <ext:ModelField Name="teName" />
-                                                <ext:ModelField Name="prName" />
+                                                <ext:ModelField Name="processName" />
                                                 <ext:ModelField Name="templateId" />
                                                       <ext:ModelField Name="processId" />
                                              
@@ -115,7 +115,7 @@
                                 <Columns>
                                     <ext:Column ID="Column1" Visible="false" DataIndex="recordId" runat="server" />
                                   
-                                    <ext:Column ID="prName" Visible="true" DataIndex="prName" runat="server" Text="<%$ Resources:prName  %>" Flex="1">
+                                    <ext:Column ID="prName" Visible="true" DataIndex="processName" runat="server" Text="<%$ Resources:prName  %>" Flex="1">
                                         
                                     </ext:Column>
                                    

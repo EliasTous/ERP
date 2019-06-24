@@ -126,7 +126,7 @@
                                     </Store>
                                 </ext:ComboBox>
 
-                                <ext:ToolbarSeparator />
+                           
                                 <ext:ComboBox Visible="false" AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Width="160" LabelAlign="Top"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
@@ -150,7 +150,7 @@
                                         </ext:Store>
                                     </Store>
                                 </ext:ComboBox>
-                                <ext:ToolbarSeparator />
+                              
                                 <ext:DateField runat="server" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: From %>" Editable="false">
                                     <%--  <Listeners>
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
@@ -396,7 +396,7 @@
                                 <ext:Model ID="Model1" runat="server" IDProperty="recordId">
                                     <Fields>
                                         <ext:ModelField Name="employeeId" />
-                                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                                        <ext:ModelField Name="employeeName"  />
                                     </Fields>
                                 </ext:Model>
                             </Model>

@@ -1413,4 +1413,7 @@
   <data name="Hourly" xml:space="preserve">
     <value>Toutes les heures</value>
   </data>
+  <data name="BranchAvailability" xml:space="preserve">
+    <value>Disponibilité de la branche</value>
+  </data>
 </root>

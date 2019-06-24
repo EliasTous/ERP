@@ -27,6 +27,7 @@ using System.Threading;
 using Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
+using Reports.CurrentPayroll;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -182,38 +183,18 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-      
+
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
+            return Common.GetEmployeesFiltered(prms.Query);
 
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
         }
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
-        [DirectMethod]
+
+
+       
         public void SetLabels(string labels)
         {
             this.labels.Text = labels;
@@ -246,51 +227,51 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
-            var d = resp.Items.GroupBy(x => x.employeeName.reference);
-            CurrentPayrollLineCollection lines = new CurrentPayrollLineCollection();
-            HashSet<CurrentEntitlementDeduction> ens = new HashSet<CurrentEntitlementDeduction>(new CurrentEntitlementDeductionComparer());
-            HashSet<CurrentEntitlementDeduction> des = new HashSet<CurrentEntitlementDeduction>(new CurrentEntitlementDeductionComparer());
-            foreach (AionHR.Model.Reports.RT200 r in resp.Items)
-            {
-                if (string.IsNullOrEmpty(r.edName))
-                    continue;
+            //var d = resp.Items.GroupBy(x => x.employeeName);
+            //CurrentPayrollLineCollection lines = new CurrentPayrollLineCollection();
+            //HashSet<CurrentEntitlementDeduction> ens = new HashSet<CurrentEntitlementDeduction>(new CurrentEntitlementDeductionComparer());
+            //HashSet<CurrentEntitlementDeduction> des = new HashSet<CurrentEntitlementDeduction>(new CurrentEntitlementDeductionComparer());
+            //foreach (AionHR.Model.Reports.RT200 r in resp.Items)
+            //{
+            //    if (string.IsNullOrEmpty(r.edName))
+            //        continue;
 
-                if (r.edType == 1)
-                    ens.Add(new CurrentEntitlementDeduction() { name = r.edName, amount = 0, isTaxable = r.isTaxable });
-                else
-                    des.Add(new CurrentEntitlementDeduction() { name = r.edName, amount = 0 });
-            }
-            foreach (var item in d)
-            {
-                var list = item.ToList();
-                CurrentPayrollLine line = new CurrentPayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString());
-                lines.Add(line);
-            }
+            //    if (r.edType == 1)
+            //        ens.Add(new CurrentEntitlementDeduction() { name = r.edName, amount = 0, isTaxable = r.isTaxable });
+            //    else
+            //        des.Add(new CurrentEntitlementDeduction() { name = r.edName, amount = 0 });
+            //}
+            //foreach (var item in d)
+            //{
+            //    var list = item.ToList();
+            //    CurrentPayrollLine line = new CurrentPayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString());
+            //    lines.Add(line);
+            //}
 
-            CurrentPayrollCollection s = new CurrentPayrollCollection();
-            if (lines.Count > 0)
-            {
-                CurrentPayrollSet p = new CurrentPayrollSet(GetLocalResourceObject("Entitlements").ToString(), GetLocalResourceObject("Taxable").ToString(), GetLocalResourceObject("Deductions").ToString());
-                //p.PayPeriodString = resp.Items[0].startDate.ToString(_systemService.SessionHelper.GetDateformat()) + " - " + resp.Items[0].endDate.ToString(_systemService.SessionHelper.GetDateformat());
-                //p.PayDate = GetLocalResourceObject("PaidAt") + " " + resp.Items[0].payDate.ToString(_systemService.SessionHelper.GetDateformat());
-                p.Names = (lines[0] as CurrentPayrollLine).Entitlements;
-                p.DIndex = ens.Count;
-                p.taxableIndex = ens.Count(x => x.isTaxable);
-                p.Payrolls = lines;
-                s.Add(p);
-            }
+            //CurrentPayrollCollection s = new CurrentPayrollCollection();
+            //if (lines.Count > 0)
+            //{
+            //    CurrentPayrollSet p = new CurrentPayrollSet(GetLocalResourceObject("Entitlements").ToString(), GetLocalResourceObject("Taxable").ToString(), GetLocalResourceObject("Deductions").ToString());
+            //    //p.PayPeriodString = resp.Items[0].startDate.ToString(_systemService.SessionHelper.GetDateformat()) + " - " + resp.Items[0].endDate.ToString(_systemService.SessionHelper.GetDateformat());
+            //    //p.PayDate = GetLocalResourceObject("PaidAt") + " " + resp.Items[0].payDate.ToString(_systemService.SessionHelper.GetDateformat());
+            //    p.Names = (lines[0] as CurrentPayrollLine).Entitlements;
+            //    p.DIndex = ens.Count;
+            //    p.taxableIndex = ens.Count(x => x.isTaxable);
+            //    p.Payrolls = lines;
+            //    s.Add(p);
+            //}
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-            CurrentPayroll h = new CurrentPayroll(parameters);
+            CurrentPayrollReport h = new CurrentPayrollReport(resp.Items, _systemService.SessionHelper.CheckIfArabicSession(), parameters);
             //CurrentPayrollV1 h = new CurrentPayrollV1();
-            h.DataSource = s;
-            h.Parameters["columnCount"].Value = ens.Count + des.Count;
+          
+            //h.Parameters["columnCount"].Value = ens.Count + des.Count;
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-
+            h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
             string user = _systemService.SessionHelper.GetCurrentUser();
             h.Parameters["User"].Value = user;
-            
-            h.Parameters["DateFormat"].Value = DateTime.Now.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+
+          //  h.Parameters["DateFormat"].Value = DateTime.Now.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
             //if  (!_systemService.SessionHelper.CheckIfArabicSession())
             //  h.Parameters["DateFormat"].Value = DateTime.Now.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
             //else
@@ -308,17 +289,17 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-           
+
             //if (!resp.Success)
             //{
 
             //        throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
 
             //}
-           
 
-          
-            
+
+
+
         }
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)

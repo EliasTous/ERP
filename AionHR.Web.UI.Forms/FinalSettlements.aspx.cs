@@ -329,41 +329,15 @@ namespace AionHR.Web.UI.Forms
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<EmployeeSnapShot> emp=   Common.GetEmployeesFiltered(prms.Query);
 
 
 
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-
-            data.ForEach(s => s.fullName = s.name.fullName);
-            //  return new
-            // {
-            return data;
-            //};
+            return emp.Where(x => x.activeStatus == (short)ActiveStatus.INACTIVE).ToList();
 
         }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 1;
-            req.SortBy = "firstName";
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
 
 
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if (!response.Success)
-                 Common.errorMessage(response);
-            return response.Items;
-        }
-
-  
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
@@ -397,9 +371,9 @@ namespace AionHR.Web.UI.Forms
         {
             LoanManagementListRequest req = new LoanManagementListRequest();
 
-            req.BranchId = 0;
-            req.DepartmentId = 0;
-            req.DivisionId = 0;
+            req.BranchId = "0";
+            req.DepartmentId = "0";
+            req.DivisionId = "0";
             req.EmployeeId = Convert.ToInt32(employeeId);
             req.Status = 2;
             
@@ -616,7 +590,7 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = r.result.employeeId,
-                                    fullName =r.result.name.fullName
+                                    fullName =r.result.employeeName
                                 }
                       });
                         employeeId.SetValue(r.result.employeeId);
@@ -788,7 +762,7 @@ namespace AionHR.Web.UI.Forms
                 hireDateDf.Value = routers.result.hireDate;
                 nationalityTx.Text = routers.result.countryName;
                 divisionName.Text = routers.result.divisionName;
-                reportToName.Text = routers.result.reportToName != null ? routers.result.reportToName.fullName : "";
+                reportToName.Text = routers.result.reportToName != null ? routers.result.reportToName : "";
                 eosBalance.Text = routers.result.indemnity.ToString();
                 lastLeaveStartDate.Value = routers.result.lastLeaveStartDate;
                 lastLeaveEndDate.Value = routers.result.lastLeaveEndDate;
@@ -1671,7 +1645,7 @@ namespace AionHR.Web.UI.Forms
                 p.Parameters["positionName"].Value = routers.result.positionName;
                 p.Parameters["branchName"].Value = routers.result.branchName;
                 p.Parameters["divisionName"].Value = routers.result.divisionName;
-                p.Parameters["reportToName"].Value = routers.result.reportToName != null ? routers.result.reportToName.fullName : "";
+                p.Parameters["reportToName"].Value = routers.result.reportToName != null ? routers.result.reportToName : "";
 
 
 

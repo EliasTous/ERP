@@ -275,41 +275,41 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest req = new ListRequest();
             req.Filter = "";
-            ListResponse<ProcessNotification> res = _administrationService.ChildGetAll<ProcessNotification>(req);
-            if (!res.Success)//it maybe be another condition
+            ListResponse<ProcessNotification> resp = _administrationService.ChildGetAll<ProcessNotification>(req);
+            if (!resp.Success)//it maybe be another condition
             {
                 //Show an error saving...
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                Common.errorMessage(res);
+                Common.errorMessage(resp);
                 return;
             }
 
-            List<ProcessNotification> PN = new List<ProcessNotification>();
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("PENALTY_NEW").ToString(), processId = ProcessNotificationTypes.PENALTY_NEW });
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("PENALTY_APPROVED").ToString(), processId = ProcessNotificationTypes.PENALTY_APPROVED,  });
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("PENALTY_REJECTED").ToString(), processId = ProcessNotificationTypes.PENALTY_REJECTED });
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("TIME_SCHEDULE").ToString(), processId = ProcessNotificationTypes.TIME_SCHEDULE, });
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LEAVE_REQUEST_NEW").ToString(), processId = ProcessNotificationTypes.LEAVE_REQUEST_NEW, });
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LEAVE_REQUEST_APPROVED").ToString(), processId = ProcessNotificationTypes.LEAVE_REQUEST_APPROVED,  });
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LEAVE_REQUEST_REJECTED").ToString(), processId = ProcessNotificationTypes.LEAVE_REQUEST_REJECTED,  });
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LOAN_REQUEST_NEW").ToString(), processId = ProcessNotificationTypes.LOAN_REQUEST_NEW,  });
+            //List<ProcessNotification> PN = new List<ProcessNotification>();
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("PENALTY_NEW").ToString(), processId = ProcessNotificationTypes.PENALTY_NEW });
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("PENALTY_APPROVED").ToString(), processId = ProcessNotificationTypes.PENALTY_APPROVED,  });
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("PENALTY_REJECTED").ToString(), processId = ProcessNotificationTypes.PENALTY_REJECTED });
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("TIME_SCHEDULE").ToString(), processId = ProcessNotificationTypes.TIME_SCHEDULE, });
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LEAVE_REQUEST_NEW").ToString(), processId = ProcessNotificationTypes.LEAVE_REQUEST_NEW, });
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LEAVE_REQUEST_APPROVED").ToString(), processId = ProcessNotificationTypes.LEAVE_REQUEST_APPROVED,  });
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LEAVE_REQUEST_REJECTED").ToString(), processId = ProcessNotificationTypes.LEAVE_REQUEST_REJECTED,  });
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LOAN_REQUEST_NEW").ToString(), processId = ProcessNotificationTypes.LOAN_REQUEST_NEW,  });
 
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LOAN_REQUEST_APPROVED").ToString(), processId = ProcessNotificationTypes.LOAN_REQUEST_APPROVED,  });
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LOAN_REQUEST_REJECTED").ToString(), processId = ProcessNotificationTypes.LOAN_REQUEST_REJECTED });
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("PAYROLL_PAYSLIP").ToString(), processId = ProcessNotificationTypes.PAYROLL_PAYSLIP,  });
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LOAN_REQUEST_APPROVED").ToString(), processId = ProcessNotificationTypes.LOAN_REQUEST_APPROVED,  });
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("LOAN_REQUEST_REJECTED").ToString(), processId = ProcessNotificationTypes.LOAN_REQUEST_REJECTED });
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("PAYROLL_PAYSLIP").ToString(), processId = ProcessNotificationTypes.PAYROLL_PAYSLIP,  });
 
 
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("TIME_VARIATION_NEW").ToString(), processId = ProcessNotificationTypes.TIME_VARIATION_NEW });
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("TIME_VARIATION_APPROVED").ToString(), processId = ProcessNotificationTypes.TIME_VARIATION_APPROVED });
-            PN.Add(new ProcessNotification { prName = GetLocalResourceObject("TIME_VARIATION_REJECTED").ToString(), processId = ProcessNotificationTypes.TIME_VARIATION_REJECTED });
-            res.Items.ForEach(x =>
-            {
-               if ( (PN.Where(y => y.processId == x.processId).First()!=null ) )
-                    PN.Where(y => y.processId == x.processId).First().templateId = x.templateId;
-            });
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("TIME_VARIATION_NEW").ToString(), processId = ProcessNotificationTypes.TIME_VARIATION_NEW });
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("TIME_VARIATION_APPROVED").ToString(), processId = ProcessNotificationTypes.TIME_VARIATION_APPROVED });
+            //PN.Add(new ProcessNotification { prName = GetLocalResourceObject("TIME_VARIATION_REJECTED").ToString(), processId = ProcessNotificationTypes.TIME_VARIATION_REJECTED });
+            //res.Items.ForEach(x =>
+            //{
+            //   if ( (PN.Where(y => y.processId == x.processId).First()!=null ) )
+            //        PN.Where(y => y.processId == x.processId).First().templateId = x.templateId;
+            //});
             
 
-            ProcessNotificationStore.DataSource = PN;
+            ProcessNotificationStore.DataSource = resp.Items;
             ProcessNotificationStore.DataBind();
         }
         private void fillStore1()

@@ -499,19 +499,11 @@ namespace AionHR.Web.UI.Forms
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-
-
-            //  return new
-            // {
-            return data;
-            //};
+            return Common.GetEmployeesFiltered(prms.Query);
 
         }
-
+       
+      
         private List<Employee> GetEmployeeByID(string id)
         {
 
@@ -525,24 +517,7 @@ namespace AionHR.Web.UI.Forms
             emps.Add(emp.result);
             return emps;
         }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = "firstName";
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
+       
 
 
         /// <summary>
@@ -993,7 +968,9 @@ namespace AionHR.Web.UI.Forms
             ListResponse<DayType> schedules = _branchService.ChildGetAll<DayType>(req);
             if (!schedules.Success)
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", schedules.ErrorCode) != null ? GetGlobalResourceObject("Errors", schedules.ErrorCode).ToString() : schedules.Summary).Show();
-            colorsStore.DataSource = schedules.Items;
+            List<DayType> mylist = new List<DayType>();
+            schedules.Items.ForEach(x => x.color = x.color.Replace(" ", String.Empty));
+            colorsStore.DataSource = schedules.Items; 
             colorsStore.DataBind();
             return schedules.Items;
         }

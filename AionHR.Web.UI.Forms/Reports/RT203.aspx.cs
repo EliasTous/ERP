@@ -133,6 +133,23 @@ namespace AionHR.Web.UI.Forms.Reports
             //this.OtherInfoTab.Visible = false;
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
 
         private void HideShowButtons()
@@ -185,27 +202,14 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-            req.SortBy = "firstName";
-
-
-            req.Add(jobInfo1.GetJobInfo());
-            req.Add(activeStatus1.GetActiveStatus());
-            req.Add(date1.GetDate());
-
-            //req.Add();
-            return req;
-        }
+ 
 
 
         private void FillReport(bool throwException=true)
         {
-            ReportCompositeRequest req = GetRequest();
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<AionHR.Model.Reports.RT203> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT203>(req);
             //if (!resp.Success)
             //{
@@ -213,8 +217,9 @@ namespace AionHR.Web.UI.Forms.Reports
             //}
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
 
-            PointInTimeSalary h = new PointInTimeSalary();
+            PointInTimeSalary h = new PointInTimeSalary(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             resp.Items.ForEach(x => { x.SalaryTypeString = x.salaryType.HasValue ? GetGlobalResourceObject("Common", ((SalaryType)x.salaryType).ToString()).ToString() : ""; });
@@ -222,37 +227,14 @@ namespace AionHR.Web.UI.Forms.Reports
 
             h.DataSource = resp.Items;
 
-            string from = DateTime.Parse(req.Parameters["_asOfDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            //string from = DateTime.Parse(req.Parameters["_asOfDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             
             string user = _systemService.SessionHelper.GetCurrentUser();
 
-            h.Parameters["Date"].Value = from;
+            
            
             h.Parameters["User"].Value = user;
-            if (resp.Items.Count > 0)
-            {
-                if (req.Parameters["_departmentId"] != "0")
-                    h.Parameters["Department"].Value = resp.Items[0].departmentName;
-                else
-                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["Branch"].Value = jobInfo1.GetBranch();
-                else
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_positionId"] != "0")
-                    h.Parameters["Position"].Value = resp.Items[0].positionName;
-                else
-                    h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_divisionId"] != "0")
-                    h.Parameters["Division"].Value = jobInfo1.GetDivision();
-                else
-                    h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
-
-            }
-
+           // h.Parameters["Fitlers"].Value = texts.Text;
 
             h.CreateDocument();
             ASPxWebDocumentViewer1.OpenReport(h);

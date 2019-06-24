@@ -191,39 +191,8 @@ namespace AionHR.Web.UI.Forms
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            return Common.GetEmployeesFiltered(prms.Query);
 
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            if (data == null)
-                data = new List<Employee>();
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-            //};
-
-        }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-
-            req.DepartmentId = "0";
-
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = _systemService.SessionHelper.GetNameformat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
         }
 
 
@@ -449,6 +418,7 @@ namespace AionHR.Web.UI.Forms
             ApprovalsGridPanel.Disabled = true;
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+
             CurrencyControl.setCurrency(_systemService.SessionHelper.GetDefaultCurrency());
             FillBranch();
             FillDepartment();
@@ -470,7 +440,7 @@ namespace AionHR.Web.UI.Forms
                                         new
                                         {
                                             recordId =_systemService.SessionHelper.GetEmployeeId(),
-                                            fullName =resp.result.name.fullName
+                                            fullName =resp.result.name
 
                                         }
                       });
@@ -765,9 +735,9 @@ namespace AionHR.Web.UI.Forms
                 ApprovalStore.DataBind();
             }
             req.approverId = 0;
-            req.BranchId = 0;
-            req.DepartmentId = 0;
-         
+            req.BranchId = "0";
+            req.DepartmentId = "0";
+
             req.Status = 0;
             req.Filter = "";
           

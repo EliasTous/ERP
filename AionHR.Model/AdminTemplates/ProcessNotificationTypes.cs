@@ -28,6 +28,11 @@ public   class ProcessNotificationTypes
         public const short TIME_VARIATION_APPROVED = ModuleId.TA * 100 + 3;
         public const short TIME_VARIATION_REJECTED = ModuleId.TA * 100 + 4;
 
+        public const short LEAVE_REQUEST_NEW_APPROVER = ModuleId.LM * 100 + 0;
+
+        public const short LEAVE_REQUEST_NEW_EMPLOYEE =ModuleId.LM * 100 + 1;
+
+
 
     }
 }

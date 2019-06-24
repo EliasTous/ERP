@@ -141,6 +141,9 @@
   <data name="xrLabel22.Text" xml:space="preserve">
     <value>الرمز</value>
   </data>
+  <data name="xrLabel23.Text" xml:space="preserve">
+    <value>طبع بواسطة :</value>
+  </data>
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>الراتب الأساسي</value>
   </data>

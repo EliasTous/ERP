@@ -330,7 +330,7 @@
                                                 Text="<%$ Resources: FromDays %>" 
                                                 DataIndex="from"
                                                  Flex="1"
-                                                Align="Center">
+                                                Align="Center" >
                                                 <Editor>
                                                      <%-- Vtype="numberrange"
                                                         EndNumberField="toField"--%>
@@ -340,7 +340,7 @@
                                                         AllowBlank="false"
                                                         InvalidText="<%$Resources:MonthsFieldError %>"
                                                          >
-                                                        <Validator Handler="if(isNaN(this.value)) return false; return true;">
+                                                        <Validator Handler="if(isNaN(this.value)) return false; if (this.value>0) return true; else return false;">
                                                             
                                                         </Validator>
                                                         </ext:TextField>

@@ -42,53 +42,51 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-            //fill employee request 
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-
-        private string GetNameFormat()
-        {
-            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
-            req.Key = "nameFormat";
-            RecordResponse<KeyValuePair<string, string>> resp = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
-            if (!resp.Success )
-            {
-                Common.errorMessage(resp);
-                return "recordId";
-            }
-
-            string paranthized = resp.result.Value;
-            if (string.IsNullOrEmpty(paranthized))
-                return "recordId";
-            paranthized = paranthized.Replace('{', ' ');
-            paranthized = paranthized.Replace('}', ',');
-            paranthized = paranthized.Substring(0, paranthized.Length - 1);
-            paranthized = paranthized.Replace(" ", string.Empty);
-            return paranthized;
+            return Common.GetEmployeesFiltered(prms.Query);
 
         }
+
+        //private List<Employee> GetEmployeesFiltered(string query)
+        //{
+        //    //fill employee request 
+
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    req.DepartmentId = "0";
+        //    req.BranchId = "0";
+        //    req.IncludeIsInactive = 0;
+        //    req.SortBy = GetNameFormat();
+
+        //    req.StartAt = "0";
+        //    req.Size = "20";
+        //    req.Filter = query;
+
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    return response.Items;
+        //}
+
+        //private string GetNameFormat()
+        //{
+        //    SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+        //    req.Key = "nameFormat";
+        //    RecordResponse<KeyValuePair<string, string>> resp = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+        //    if (!resp.Success )
+        //    {
+        //        Common.errorMessage(resp);
+        //        return "recordId";
+        //    }
+
+        //    string paranthized = resp.result.Value;
+        //    if (string.IsNullOrEmpty(paranthized))
+        //        return "recordId";
+        //    paranthized = paranthized.Replace('{', ' ');
+        //    paranthized = paranthized.Replace('}', ',');
+        //    paranthized = paranthized.Substring(0, paranthized.Length - 1);
+        //    paranthized = paranthized.Replace(" ", string.Empty);
+        //    return paranthized;
+
+        //}
 
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
 
@@ -263,6 +261,18 @@ namespace AionHR.Web.UI.Forms
             ltStore.DataSource = resp.Items;
             ltStore.DataBind();
         }
+
+        private void FillTypeStore()
+        {
+            typeStore.DataSource = Common.XMLDictionaryList(_systemService, "21");
+            typeStore.DataBind();
+        }
+        private void FillLdMethodStore()
+        {
+            ldMethodStore.DataSource = Common.XMLDictionaryList(_systemService, "17");
+            ldMethodStore.DataBind();
+        }
+
         private void ApplyAccessControlOnLoanComments()
         {
             var properties = AccessControlApplier.GetPropertiesLevels(typeof(LoanComment));
@@ -411,18 +421,20 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = response.result.employeeId,
-                                    fullName =response.result.employeeName.fullName
+                                    fullName =response.result.employeeName
                                 }
                        });
                     employeeId.SetValue(response.result.employeeId);
-                //    effectiveDate.Disabled = response.result.status != 3;
+                    //    effectiveDate.Disabled = response.result.status != 3;
                     //FillFilesStore(Convert.ToInt32(id));
 
                     //Step 2 : call setvalues with the retrieved object
+                    CurrentEmployee.Text = response.result.employeeId;
                     this.BasicInfoTab.SetValues(response.result);
                     FillCurrency();
                     FillBranchField();
                     FillLoanType();
+                    FillLdMethodStore();
                     ltId.Select(response.result.ltId.ToString());
                     CurrentAmountCurrency.Text = response.result.currencyRef;
                     currencyId.Select(response.result.currencyId.ToString());
@@ -545,12 +557,12 @@ namespace AionHR.Web.UI.Forms
                        Common.errorMessage(response);
                         return;
                     }
-                   
+
 
                     //Step 2 : call setvalues with the retrieved object
 
 
-                 
+                    FillTypeStore();
                     this.deductionInfoTab.SetValues(response.result);
                    
                     this.EditDeductionWindow.Title = Resources.Common.EditWindowsTitle;
@@ -920,7 +932,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 BasicInfoTab.Reset();
-
+                CurrentEmployee.Text = "";
                 effectiveDate.Disabled = false;
                 caseCommentsAddButton.Disabled = false;
                 addDeduction.Disabled = false;
@@ -952,6 +964,7 @@ namespace AionHR.Web.UI.Forms
                 FillLoanType();
                 FillBranchField();
                 FillCurrency();
+                FillLdMethodStore();
                if( defaults.Items.Where(s => s.Key == "currencyId").Count()!=0)
                 currencyId.Select(defaults.Items.Where(s => s.Key == "currencyId").First().Value.ToString());
                 //  effectiveDate.Disabled = true;
@@ -965,7 +978,7 @@ namespace AionHR.Web.UI.Forms
         protected void ADDNewDeductionRecord(object sender, DirectEventArgs e)
         {
             deductionInfoTab.Reset();
-          
+            FillTypeStore();
            
             //Reset all values of the relative object
 
@@ -1032,9 +1045,9 @@ namespace AionHR.Web.UI.Forms
         {
             LoanManagementListRequest req = new LoanManagementListRequest();
             var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
+            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value.ToString() : "0";
 
             if (!string.IsNullOrEmpty(employeeFilter.Text) && employeeFilter.Value.ToString() != "0")
             {
@@ -1151,11 +1164,11 @@ namespace AionHR.Web.UI.Forms
                 string id = e.ExtraParams["id"];
                 // Define the object to add or edit as null
 
-                b.employeeName = new EmployeeName();
+            //    b.employeeName = new EmployeeName();
                 //if (ldMethodCom.SelectedItem != null)
                 //    b.ldMethod = ldMethodCom.SelectedItem.Value; 
                 if (employeeId.SelectedItem != null)
-                    b.employeeName.fullName = employeeId.SelectedItem.Text;
+                    b.employeeName = employeeId.SelectedItem.Text;
 
                 if (date.ReadOnly)
                     b.date = DateTime.Now;
@@ -1485,15 +1498,15 @@ namespace AionHR.Web.UI.Forms
                 ApprovalStore.DataBind();
             }
             req.approverId = 0;
-            req.BranchId = 0;
-            req.DepartmentId = 0;
-            req.DivisionId = 0;
+            req.BranchId = "0";
+            req.DepartmentId = "0";
+            req.DivisionId = "0";
             req.EmployeeId = 0;
             req.Status = 0;
             req.Filter = "";
-            req.PositionId = 0;
-            req.EsId = 0;
-            
+            req.PositionId = "0";
+            req.EsId = "0";
+
             req.SortBy = "recordId";
 
 

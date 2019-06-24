@@ -183,37 +183,43 @@ namespace AionHR.Web.UI.Forms.Reports
             }
             else return "1";
         }
+        //[DirectMethod]
+        //public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        //{
+
+        //    StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+        //    return Common.GetEmployeesFiltered(prms.Query);
+
+        //}
+
+        //private List<Employee> GetEmployeesFiltered(string query)
+        //{
+
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    req.DepartmentId = "0";
+        //    req.BranchId = "0";
+        //    req.IncludeIsInactive = 2;
+        //    req.SortBy = GetNameFormat();
+
+        //    req.StartAt = "0";
+        //    req.Size = "20";
+        //    req.Filter = query;
+
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    return response.Items;
+        //}
+
+        //private string GetNameFormat()
+        //{
+        //    return _systemService.SessionHelper.Get("nameFormat").ToString();
+        //}
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
+            return Common.GetEmployeesFiltered(prms.Query);
 
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
 
         private ReportCompositeRequest GetRequest()
@@ -246,7 +252,7 @@ namespace AionHR.Web.UI.Forms.Reports
             List<AionHR.Model.Reports.DailyAttendance> atts = new List<AionHR.Model.Reports.DailyAttendance>();
             resp.Items.ForEach(x => atts.Add(new AionHR.Model.Reports.DailyAttendance()
             {
-                name = x.name.fullName,
+                name = x.name,
                 branchName = x.branchName,
                 departmentName = x.departmentName,
                 Date = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")),
@@ -273,7 +279,7 @@ namespace AionHR.Web.UI.Forms.Reports
             {
 
                 if (req.Parameters["_employeeId"] != "0")
-                    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
+                    h.Parameters["Employee"].Value = resp.Items[0].name;
                 else
                     h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
             }

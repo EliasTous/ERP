@@ -171,7 +171,7 @@
                                         <ext:ModelField Name="documentRef" />
                                         <ext:ModelField Name="dtName" />
                                         <ext:ModelField Name="fileUrl" />
-                                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                                        <ext:ModelField Name="employeeName"  />
 
                                     </Fields>
                                 </ext:Model>
@@ -360,7 +360,7 @@
                                         <ext:ModelField Name="remarks" />
                                         <ext:ModelField Name="fileUrl" />
                                         <ext:ModelField Name="ctName" />
-                                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                                        <ext:ModelField Name="employeeName"  />
 
 
 

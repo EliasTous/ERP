@@ -261,4 +261,7 @@
   <data name="Share" xml:space="preserve">
     <value>مشاركة</value>
   </data>
+  <data name="setDefault" xml:space="preserve">
+    <value>الوضع الإفتراضي</value>
+  </data>
 </root>

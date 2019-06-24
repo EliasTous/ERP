@@ -11,7 +11,7 @@ namespace AionHR.Model.Reports
     [ClassIdentifier("80601", "80")]
     public class RT601
     {
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
 
         public DateTime startDate { get; set; }
 

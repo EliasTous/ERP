@@ -11,11 +11,12 @@ namespace AionHR.Model.Employees.Profile
     {
         public string reference { get; set; }
         public string fullName { get; set; }
+        public EmployeeName name { get; set; }
         public string departmentName { get; set; }
         public string positionName { get; set; }
         public string branchName { get; set; }
         public DateTime hireDate { get; set; }
-        public bool isInactive { get; set; }
+        public short activeStatus { get; set; }
         public DateTime? lastTACheck { get; set; }
         public short lastTACheckStatus { get; set; }
     }

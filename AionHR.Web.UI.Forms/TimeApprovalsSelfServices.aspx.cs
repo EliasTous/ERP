@@ -45,49 +45,46 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-            //fill employee request 
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-
-        private string GetNameFormat()
-        {
-            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
-            req.Key = "nameFormat";
-            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
-            if (!response.Success)
-            {
-
-            }
-            string paranthized = response.result.Value;
-            paranthized = paranthized.Replace('{', ' ');
-            paranthized = paranthized.Replace('}', ',');
-            paranthized = paranthized.Substring(0, paranthized.Length - 1);
-            paranthized = paranthized.Replace(" ", string.Empty);
-            return paranthized;
+            return Common.GetEmployeesFiltered(prms.Query);
 
         }
+        //private List<Employee> GetEmployeesFiltered(string query)
+        //{
+        //    //fill employee request 
+
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    req.DepartmentId = "0";
+        //    req.BranchId = "0";
+        //    req.IncludeIsInactive = 0;
+        //    req.SortBy = GetNameFormat();
+
+        //    req.StartAt = "0";
+        //    req.Size = "20";
+        //    req.Filter = query;
+
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    return response.Items;
+        //}
+
+        //private string GetNameFormat()
+        //{
+        //    SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+        //    req.Key = "nameFormat";
+        //    RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+        //    if (!response.Success)
+        //    {
+
+        //    }
+        //    string paranthized = response.result.Value;
+        //    paranthized = paranthized.Replace('{', ' ');
+        //    paranthized = paranthized.Replace('}', ',');
+        //    paranthized = paranthized.Substring(0, paranthized.Length - 1);
+        //    paranthized = paranthized.Replace(" ", string.Empty);
+        //    return paranthized;
+
+        //}
 
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
 
@@ -217,6 +214,8 @@ namespace AionHR.Web.UI.Forms
             {
                 DashboardRequest req = GetDashboardRequest();
                 DashboardTimeListRequest r = new DashboardTimeListRequest();
+                r.fromDayId = dateRange1.GetRange().DateFrom.ToString("yyyyMMdd");
+                r.toDayId = dateRange1.GetRange().DateTo.ToString("yyyyMMdd");
                 r.dayId = "";
                 r.employeeId = 0;
                 if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
@@ -250,7 +249,7 @@ namespace AionHR.Web.UI.Forms
                 int currentTimeCode;
                 Times.Items.ForEach(x =>
                 {
-                    x.fullName = x.employeeName.fullName;
+                    x.fullName = x.employeeName;
                     x.statusString = FillApprovalStatus(x.status);
                     if (Int32.TryParse(x.timeCode, out currentTimeCode))
                     {
@@ -676,20 +675,20 @@ namespace AionHR.Web.UI.Forms
             int intResult;
 
             var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
-            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
+            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0"; 
+            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value.ToString() : "0";
             if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0")
             {
-                req.EsId = Convert.ToInt32(esId.Value);
+                req.EsId = esId.Value.ToString();
 
 
 
             }
             else
             {
-                req.EsId = 0;
+                req.EsId = "0";
 
             }
 

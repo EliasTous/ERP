@@ -71,7 +71,7 @@ namespace AionHR.Model.Reports
         public string lateness_D { get; set; }
         public string scName { get; set; }
 
-        public EmployeeName employeeName { get; set; }
+        public string employeeName { get; set; }
 
     }
 }

@@ -209,16 +209,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-
-            data.ForEach(s => s.fullName = s.name.fullName);
-            //  return new
-            // {
-            return data;
-            //};
+            return Common.GetEmployeesFiltered(prms.Query);
 
         }
         private EmployeePayrollListRequest GetEmployeePayrollRequest()
@@ -228,6 +219,7 @@ namespace AionHR.Web.UI.Forms
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
             req.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
+           // req.Position = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
             var d2 = employeeCombo1.GetEmployee();
             req.EmployeeId = d2.employeeId.ToString();
 
@@ -269,27 +261,7 @@ namespace AionHR.Web.UI.Forms
 
         //    return req;
         //}
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = "firstName";
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if (!response.Success)
-                 Common.errorMessage(response);
-            return response.Items;
-        }
+     
 
 
         /// <summary>
@@ -1073,7 +1045,7 @@ namespace AionHR.Web.UI.Forms
             edStore.DataBind();
             edId.ReadOnly = false;
             edId.RightButtons[0].Enabled = true;
-            GetLocalResourceObject("FieldDeduction").ToString();
+            edId.FieldLabel=GetLocalResourceObject("FieldDeduction").ToString();
             this.EditEDWindow.Show();
         }
 
@@ -1497,18 +1469,43 @@ namespace AionHR.Web.UI.Forms
         //}
         private EmployeesPaySlip GetReport(string payId)
         {
+           
+          
             try
             {
+                string rep_params = "";
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Add("1", payId);
+                parameters.Add("7", string.IsNullOrEmpty(selectedEmployeeId.Text) ? "0" : selectedEmployeeId.Text);
 
-                ReportCompositeRequest req = GetRequest(payId);
+                // ReportCompositeRequest req = GetRequest(payId);
 
+
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
+
+
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+                
                 ListResponse<AionHR.Model.Reports.RT507> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT507>(req);
+
+
+            
                 if (!resp.Success)
                 {
 
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     Common.errorMessage(resp);
-                    return new EmployeesPaySlip(new List<RT501>(), _systemService.SessionHelper.CheckIfArabicSession());
+                  
+                    return new EmployeesPaySlip(new List<RT501>(), _systemService.SessionHelper.CheckIfArabicSession(), new Dictionary<string, string>());
 
                 }
                 List<RT501> newlist = new List<RT501>();
@@ -1518,9 +1515,9 @@ namespace AionHR.Web.UI.Forms
 
                 });
 
-               
 
-                EmployeesPaySlip h = new EmployeesPaySlip(newlist, _systemService.SessionHelper.CheckIfArabicSession());
+                parameters = new Dictionary<string, string>();
+                EmployeesPaySlip h = new EmployeesPaySlip(newlist, _systemService.SessionHelper.CheckIfArabicSession(), parameters);
 
 
               
@@ -1528,15 +1525,15 @@ namespace AionHR.Web.UI.Forms
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
                 string user = _systemService.SessionHelper.GetCurrentUser();
-              
-              
+                h.Parameters["user"].Value = user;
+
 
                 return h;
             }
             catch (Exception exp)
             {
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-                return new EmployeesPaySlip(new List<RT501>(), _systemService.SessionHelper.CheckIfArabicSession());
+                return new EmployeesPaySlip(new List<RT501>(), _systemService.SessionHelper.CheckIfArabicSession(),new Dictionary<string, string>());
 
             }
 

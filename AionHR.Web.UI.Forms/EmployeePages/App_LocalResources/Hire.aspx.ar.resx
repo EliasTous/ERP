@@ -145,7 +145,7 @@
     <value>الرقم في جهاز البصمة </value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>الفرع</value>
+    <value>ترخيص للفرع</value>
   </data>
   <data name="FieldProbationPeriod" xml:space="preserve">
     <value>فترة اختبار</value>

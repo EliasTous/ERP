@@ -104,7 +104,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         Viewport1.Hidden = true;
                         return;
                     }
-                    dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+                    
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     //FillReport(false, false);
@@ -170,6 +170,23 @@ namespace AionHR.Web.UI.Forms.Reports
             }
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
 
         [DirectMethod]
@@ -183,59 +200,15 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-
-
-            req.Add(dateRange1.GetRange());
-            req.Add(employeeCombo1.GetEmployee());
-            req.Add(jobInfo1.GetJobInfo());
-            return req;
-        }
-
-        [DirectMethod]
-        public object FillEmployee(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
+     
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
-            try
-            {
-                ReportCompositeRequest req = GetRequest();
+           
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
 
-                ListResponse<AionHR.Model.Reports.RT302> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT302>(req);
+                  ListResponse<AionHR.Model.Reports.RT302> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT302>(req);
                 //if (!resp.Success)
                 //{
                 //    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
@@ -245,38 +218,22 @@ namespace AionHR.Web.UI.Forms.Reports
                     Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
 
-
-                PeriodSummary h = new PeriodSummary();
+                Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+                PeriodSummary h = new PeriodSummary(parameters);
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
                 h.DataSource = resp.Items;
 
-                string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-                string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                //string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                //string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
                 string user = _systemService.SessionHelper.GetCurrentUser();
 
-                h.Parameters["DateFrom"].Value = from;
-                h.Parameters["DateTo"].Value = to;
+                
                 h.Parameters["User"].Value = user;
 
 
 
-
-                if (resp.Items.Count > 0)
-                {
-                    if (req.Parameters["_departmentId"] != "0")
-                        h.Parameters["Department"].Value = resp.Items[0].departmentName;
-                    else
-                        h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-                    if (req.Parameters["_branchId"] != "0")
-                        h.Parameters["Branch"].Value = resp.Items[0].branchName;
-                    else
-                        h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-                    if (req.Parameters["_employeeId"] != "0")
-                        h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
-                    else
-                        h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
-                }
+                //h.Parameters["Fitlers"].Value = texts.Text;
 
                 h.CreateDocument();
 
@@ -284,13 +241,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 ASPxWebDocumentViewer1.DataBind();
                 ASPxWebDocumentViewer1.OpenReport(h);
             }
-            catch(Exception exp)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-                
-            }
-        }
+         
+        
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {

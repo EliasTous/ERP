@@ -18,7 +18,7 @@ namespace AionHR.Model.SelfService
 
         public string email { get; set; }
 
-        public bool isInactive { get; set; }
+        public short activeStatus { get; set; }
 
 
         public bool isAdmin

@@ -11,8 +11,8 @@ namespace AionHR.Model.Employees
     [ClassIdentifier("31171", "31")]
     public class EmployeePenaltyApproval
     {
-        public EmployeeName approverName { get; set; }
-        public EmployeeName employeeName { get; set; }
+        public string approverName { get; set; }
+        public string employeeName { get; set; }
         public string departmentName { get; set; }
         public int penaltyId { get; set; }
         public DateTime date{ get; set; }

@@ -199,7 +199,10 @@ namespace AionHR.Web.UI.Forms
 
                     PasswordConfirmation.Text = response.result.password;
                     this.BasicInfoTab.SetValues(response.result);
-
+                    if (response.result.activeStatus == Convert.ToInt16(ActiveStatus.INACTIVE))
+                        isInactiveCheck.Checked = true;
+                    else
+                        isInactiveCheck.Checked = false;
 
 
                     if (!String.IsNullOrEmpty(response.result.employeeId))
@@ -423,7 +426,13 @@ namespace AionHR.Web.UI.Forms
             };
 
         }
+      
+
+
+        
         [DirectMethod]
+      
+
         public object FillSupervisor(string action, Dictionary<string, object> extraParams)
         {
 
@@ -431,9 +440,9 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            List<EmployeeSnapShot> data = Common.GetEmployeesFiltered(prms.Query);
 
-            data.ForEach(s => s.fullName = s.name.fullName);
+
             //  return new
             // {
 
@@ -462,26 +471,7 @@ namespace AionHR.Web.UI.Forms
             emps.Add(emp.result);
             return emps;
         }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = "firstName";
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if (!response.Success)
-                 Common.errorMessage(response);
-            return response.Items;
-        }
+        
 
 
         /// <summary>
@@ -565,6 +555,7 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             fullName.Disabled = false;
+            isInactiveCheck.Checked = false;
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             DeactivatePassword(false);
@@ -618,15 +609,18 @@ namespace AionHR.Web.UI.Forms
             ListResponse<UserInfo> branches = _systemService.ChildGetAll<UserInfo>(req);
             if (!branches.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") +branches.LogId: branches.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + branches.LogId : branches.Summary).Show();
                 return;
             }
-            //branches.Items.ForEach(x =>
-            //{
-            //    x.userTypeString = userTypeStore.GetById(x.userType).ToString();
-            //}
+            List<XMLDictionary> userTypeList = Common.XMLDictionaryList(_systemService, "7");
+            branches.Items.ForEach(x =>
+            {
+                x.userTypeString = userTypeList.Where(y => y.key == x.userType).Count() != 0 ? userTypeList.Where(y => y.key == x.userType).First().value : null;
+            }
+            );
 
-            
+
+
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 
@@ -639,12 +633,13 @@ namespace AionHR.Web.UI.Forms
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
 
-
+         
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
             UserInfo b = JsonConvert.DeserializeObject<UserInfo>(obj);
+            b.activeStatus = isInactiveCheck.Checked ?Convert.ToInt16( ActiveStatus.INACTIVE) : Convert.ToInt16(ActiveStatus.ACTIVE);
 
             b.recordId = id;
             // Define the object to add or edit as null
@@ -652,6 +647,8 @@ namespace AionHR.Web.UI.Forms
             {
                 b.employeeId = employeeId.SelectedItem.Value;
                 b.fullName = employeeId.SelectedItem.Text;
+               
+                
             }
            
             if (string.IsNullOrEmpty(CurrentUser.Text))
@@ -766,6 +763,7 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
+          
         }
 
         [DirectMethod]
@@ -786,6 +784,22 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public void SetFullName()
         {
+            if (employeeId.SelectedItem != null && employeeId.SelectedItem.Value != null)
+            {
+                RecordRequest empReq = new RecordRequest();
+                empReq.RecordID = employeeId.SelectedItem.Value;
+                RecordResponse<Employee> empRes = _employeeService.Get<Employee>(empReq);
+                if (!empRes.Success)
+
+                {
+
+                    Common.errorMessage(empRes);
+                    return;
+                }
+                email.Text = empRes.result.workMail;
+
+            }
+
             X.Call("SetNameEnabled", false, employeeId.SelectedItem.Text);
         }
 

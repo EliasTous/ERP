@@ -1,0 +1,579 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="DevExpress.Data.v18.2" name="DevExpress.Data.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="xrTable1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>0, 0.0468953438</value>
+  </data>
+  <data name="xrTableCell1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="xrTableCell1.Weight" type="System.Double, mscorlib">
+    <value>1.4701041147338232</value>
+  </data>
+  <data name="xrTableCell2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell2.Weight" type="System.Double, mscorlib">
+    <value>1.3650535045298082</value>
+  </data>
+  <data name="xrTableCell3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell3.Weight" type="System.Double, mscorlib">
+    <value>1.0011437902501534</value>
+  </data>
+  <data name="xrTableCell4.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell4.Weight" type="System.Double, mscorlib">
+    <value>0.43333595792095597</value>
+  </data>
+  <data name="xrTableCell9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell9.Weight" type="System.Double, mscorlib">
+    <value>0.60671939422662358</value>
+  </data>
+  <data name="xrTableCell8.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
+    <value>0.87400978878350355</value>
+  </data>
+  <data name="xrTableCell6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell6.Weight" type="System.Double, mscorlib">
+    <value>3.30254520011708</value>
+  </data>
+  <data name="xrTableCell11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell11.Weight" type="System.Double, mscorlib">
+    <value>0.99838746802866984</value>
+  </data>
+  <data name="xrTableCell10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell10.Weight" type="System.Double, mscorlib">
+    <value>0.60088870607221523</value>
+  </data>
+  <data name="xrTableCell5.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell5.Weight" type="System.Double, mscorlib">
+    <value>0.767812354736054</value>
+  </data>
+  <data name="xrTableRow1.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="xrTable1.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>1142, 23.0000038</value>
+  </data>
+  <data name="Detail.HeightF" type="System.Single, mscorlib">
+    <value>23.0469</value>
+  </data>
+  <data name="Detail.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopLeft</value>
+  </data>
+  <data name="TopMargin.HeightF" type="System.Single, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="TopMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopLeft</value>
+  </data>
+  <data name="BottomMargin.HeightF" type="System.Single, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopLeft</value>
+  </data>
+  <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>147.010422, 0</value>
+  </data>
+  <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>236.6197, 23</value>
+  </data>
+  <data name="xrLabel3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>575.0366, 23.0000057</value>
+  </data>
+  <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>330.254517, 23.0000019</value>
+  </data>
+  <data name="xrLabel2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>0, 0</value>
+  </data>
+  <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>147.010391, 23</value>
+  </data>
+  <data name="xrLabel1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrLabel26.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>487.635651, 23.0000057</value>
+  </data>
+  <data name="xrLabel26.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>87.40097, 23.0000019</value>
+  </data>
+  <data name="xrLabel26.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel28.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>1065.21875, 23.0000057</value>
+  </data>
+  <data name="xrLabel28.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>76.78113, 22.9999962</value>
+  </data>
+  <data name="xrLabel28.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel27.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>383.630127, 23.0000057</value>
+  </data>
+  <data name="xrLabel27.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>43.3335876, 22.9999943</value>
+  </data>
+  <data name="xrLabel27.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel25.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>905.291138, 23.0000057</value>
+  </data>
+  <data name="xrLabel25.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>99.8386841, 23</value>
+  </data>
+  <data name="xrLabel25.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel20.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>426.9637, 23.0000057</value>
+  </data>
+  <data name="xrLabel20.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>60.671936, 23.0000019</value>
+  </data>
+  <data name="xrLabel20.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel24.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>1005.12988, 23.0000057</value>
+  </data>
+  <data name="xrLabel24.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>60.0888672, 23.0000019</value>
+  </data>
+  <data name="xrLabel24.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel19.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>147.010376, 23.0000057</value>
+  </data>
+  <data name="xrLabel19.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>136.50531, 23.0000019</value>
+  </data>
+  <data name="xrLabel19.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel18.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>283.5157, 23.0000057</value>
+  </data>
+  <data name="xrLabel18.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>100.114441, 23.0000019</value>
+  </data>
+  <data name="xrLabel18.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel16.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>0, 23.0000057</value>
+  </data>
+  <data name="xrLabel16.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>147.010391, 23</value>
+  </data>
+  <data name="xrLabel16.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="groupHeaderBand1.HeightF" type="System.Single, mscorlib">
+    <value>46.0000076</value>
+  </data>
+  <data name="xrLabel22.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>359.46344, 96.91147</value>
+  </data>
+  <data name="xrLabel22.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>376.042969, 23.0000076</value>
+  </data>
+  <data name="xrLabel21.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>256.0157, 96.9114151</value>
+  </data>
+  <data name="xrLabel21.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>103.447754, 23.0000076</value>
+  </data>
+  <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>9.999993, 96.9114151</value>
+  </data>
+  <data name="xrPageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>178.677109, 23.0000076</value>
+  </data>
+  <data name="xrPageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>1005.12988, 96.9114151</value>
+  </data>
+  <data name="xrPageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>63.651123, 23.0000076</value>
+  </data>
+  <data name="xrPageInfo2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="pageFooterBand1.HeightF" type="System.Single, mscorlib">
+    <value>129.911469</value>
+  </data>
+  <data name="xrLabel23.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>1.90734863E-05, 62.9947929</value>
+  </data>
+  <data name="xrLabel23.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>1151.99988, 23.0000038</value>
+  </data>
+  <data name="xrLabel23.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="xrLabel11.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>0, 10</value>
+  </data>
+  <data name="xrLabel11.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>1152, 34.9999962</value>
+  </data>
+  <data name="xrLabel11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="reportHeaderBand1.HeightF" type="System.Single, mscorlib">
+    <value>95.9948</value>
+  </data>
+  <data name="xrLabel31.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>1005.12988, 0</value>
+  </data>
+  <data name="xrLabel31.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>60.0887451, 23</value>
+  </data>
+  <data name="xrLabel31.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel30.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>905.291138, 0</value>
+  </data>
+  <data name="xrLabel30.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>99.8386841, 23</value>
+  </data>
+  <data name="xrLabel30.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel29.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>1065.21875, 0</value>
+  </data>
+  <data name="xrLabel29.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>76.78113, 23</value>
+  </data>
+  <data name="xrLabel29.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
+    <value>5.83333349</value>
+  </data>
+  <data name="GroupHeader1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="PageHeader.HeightF" type="System.Single, mscorlib">
+    <value>10.338542</value>
+  </data>
+  <data name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>17, 17</value>
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.Landscape" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
+    <value>7, 10, 27, 25</value>
+  </data>
+  <data name="$this.PageHeight" type="System.Int32, mscorlib">
+    <value>827</value>
+  </data>
+  <data name="$this.PageWidth" type="System.Int32, mscorlib">
+    <value>1169</value>
+  </data>
+  <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
+    <value>A4</value>
+  </data>
+  <data name="Branch.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="Department.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="Division.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="Employee.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="From.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="Position.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="To.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="User.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="xrLabel10.Text" xml:space="preserve">
+    <value>xrLabel10</value>
+  </data>
+  <data name="xrLabel11.Text" xml:space="preserve">
+    <value>Variation des horaires</value>
+  </data>
+  <data name="xrLabel12.Text" xml:space="preserve">
+    <value>xrLabel12</value>
+  </data>
+  <data name="xrLabel13.Text" xml:space="preserve">
+    <value>xrLabel13</value>
+  </data>
+  <data name="xrLabel14.Text" xml:space="preserve">
+    <value>xrLabel14</value>
+  </data>
+  <data name="xrLabel15.Text" xml:space="preserve">
+    <value>xrLabel15</value>
+  </data>
+  <data name="xrLabel16.Text" xml:space="preserve">
+    <value>Employe</value>
+  </data>
+  <data name="xrLabel17.Text" xml:space="preserve">
+    <value>Code horaire</value>
+  </data>
+  <data name="xrLabel18.Text" xml:space="preserve">
+    <value>Branche</value>
+  </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>Jour</value>
+  </data>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>Justification</value>
+  </data>
+  <data name="xrLabel20.Text" xml:space="preserve">
+    <value>Durée </value>
+  </data>
+  <data name="xrLabel21.Text" xml:space="preserve">
+    <value>Par</value>
+  </data>
+  <data name="xrLabel22.Text" xml:space="preserve">
+    <value>xrLabel22</value>
+  </data>
+  <data name="xrLabel23.Text" xml:space="preserve">
+    <value>Aucun résultat trouvé</value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>Durée</value>
+  </data>
+  <data name="xrLabel25.Text" xml:space="preserve">
+    <value>Statut approuvé</value>
+  </data>
+  <data name="xrLabel26.Text" xml:space="preserve">
+    <value>Dommage</value>
+  </data>
+  <data name="xrLabel27.Text" xml:space="preserve">
+    <value>Séq</value>
+  </data>
+  <data name="xrLabel28.Text" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>Département</value>
+  </data>
+  <data name="xrLabel30.Text" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>À</value>
+  </data>
+  <data name="xrLabel5.Text" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="xrLabel6.Text" xml:space="preserve">
+    <value>Division</value>
+  </data>
+  <data name="xrLabel7.Text" xml:space="preserve">
+    <value>Employe</value>
+  </data>
+  <data name="xrLabel8.Text" xml:space="preserve">
+    <value>xrLabel8</value>
+  </data>
+  <data name="xrLabel9.Text" xml:space="preserve">
+    <value>xrLabel9</value>
+  </data>
+  <data name="xrPageInfo1.Format" xml:space="preserve">
+    <value>{0:dddd, MMMM d, yyyy H:mm}</value>
+  </data>
+  <data name="xrPageInfo2.Format" xml:space="preserve">
+    <value>Page {0} of {1}</value>
+  </data>
+  <data name="xrSummary2.FormatString" xml:space="preserve">
+    <value>{0:n2}</value>
+  </data>
+  <data name="xrTableCell1.Text" xml:space="preserve">
+    <value>xrTableCell1</value>
+  </data>
+  <data name="xrTableCell10.Text" xml:space="preserve">
+    <value>xrTableCell10</value>
+  </data>
+  <data name="xrTableCell11.Text" xml:space="preserve">
+    <value>xrTableCell11</value>
+  </data>
+  <data name="xrTableCell2.Text" xml:space="preserve">
+    <value>xrTableCell2</value>
+  </data>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>xrTableCell3</value>
+  </data>
+  <data name="xrTableCell4.Text" xml:space="preserve">
+    <value>xrTableCell4</value>
+  </data>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>xrTableCell5</value>
+  </data>
+  <data name="xrTableCell7.Text" xml:space="preserve">
+    <value>xrTableCell7</value>
+  </data>
+  <data name="xrTableCell8.Text" xml:space="preserve">
+    <value>xrTableCell8</value>
+  </data>
+  <data name="xrTableCell9.Text" xml:space="preserve">
+    <value>xrTableCell9</value>
+  </data>
+</root>

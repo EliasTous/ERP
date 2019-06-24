@@ -69,6 +69,12 @@
                             <Items>
                                  <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
+                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                        <uc:dateRange runat="server" ID="dateRange1" />
+                                    </Content>
+                                </ext:Container>
+                                 <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
                                         <uc:jobInfo runat="server" ID="jobInfo1" />
                                     </Content>
                                 </ext:Container>
@@ -151,7 +157,7 @@
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" ServerMapping="employeeName.fullName" />
+                                                                                <ext:ModelField Name="employeeName"  />
                                                                                 <ext:ModelField Name="dayId" />
                                                                                 <ext:ModelField Name="dayIdDate"  />
                                                                                   <ext:ModelField Name="fullName"  />
@@ -394,10 +400,10 @@
                                                                             <Fields>
                                                                                                                                                             
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="employeeName"  />
                                                                                 <ext:ModelField Name="dayId" />
                                                                                 <ext:ModelField Name="dayIdDate"  />
-                                                                               <ext:ModelField Name="approverName" IsComplex="true" />
+                                                                               <ext:ModelField Name="approverName"  />
                                                                                 <ext:ModelField Name="timeCode" />
                                                                                 <ext:ModelField Name="timeCodeString" />
                                                                                 <ext:ModelField Name="approverId" />
@@ -421,7 +427,7 @@
                                                                    <ext:Column ID="Column40" DataIndex="timeCode"  runat="server" Visible="false" />
 
                                                                      <ext:Column ID="Column41" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
-                                                                    <Renderer Handler=" return record.data['approverName'].fullName;" />
+                                                                  
                                                                     </ext:Column>
                                                                                                                               
                                                                                                                                 

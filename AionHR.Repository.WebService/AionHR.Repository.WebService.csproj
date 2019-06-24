@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -68,11 +71,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
-      <Project>{9955B92F-F16C-49B9-99F3-4919D3327263}</Project>
+      <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
       <Name>AionHR.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\AionHR.Model\AionHR.Model.csproj">
-      <Project>{ECB87836-818F-45F5-AB7F-F46CDE3C447F}</Project>
+      <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
       <Name>AionHR.Model</Name>
     </ProjectReference>
   </ItemGroup>

@@ -240,4 +240,7 @@
   <data name="Share" xml:space="preserve">
     <value>Aktie</value>
   </data>
+  <data name="setDefault" xml:space="preserve">
+    <value>Set Default</value>
+  </data>
 </root>

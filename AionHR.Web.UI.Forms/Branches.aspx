@@ -85,7 +85,7 @@
                          <ext:ModelField Name="scName" />
                         <ext:ModelField Name="isInactive" Type="Boolean" DefaultValue="false"/>
                           <ext:ModelField Name="caName" />
-                         <ext:ModelField Name="managerName" IsComplex="true" />
+                         <ext:ModelField Name="managerName"  />
                        
 
 
@@ -189,7 +189,7 @@
                               <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
                             <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="branchRef" width="150" Hideable="false" Visible="false"/>
                             <ext:Column   CellCls="cellLink" ID="ColManger" MenuDisabled="true" runat="server" Text="<%$ Resources: manager%>" DataIndex="managerName" Flex="2" >
-                                <Renderer Handler=" return record.data['managerName'].fullName ;"></Renderer>
+                                
                                 </ext:Column>
                             <ext:Column   CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                         
@@ -372,7 +372,7 @@
                                         <ext:ListItem Text="+12 UTC" Value="12" />
                                     </Items>
                                 </ext:ComboBox>--%>
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="scId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="scId" FieldLabel="<%$ Resources:FieldSchedule%>" SimpleSubmit="true">
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="scId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="scId" FieldLabel="<%$ Resources:FieldSchedule%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="scheduleStore">
                                             <Model>
@@ -444,7 +444,7 @@
                             BodyPadding="5"> 
                             <Items>
                                 <ext:TextField runat="server" Name="address" ID="address" Hidden="true" Disabled="true" />
-                                        <ext:TextField runat="server" Name="street1" AllowBlank="false" ID="costreet1" FieldLabel="<%$ Resources:FieldStreet1%>" >
+                                        <ext:TextField runat="server" Name="street1" AllowBlank="true" ID="costreet1" FieldLabel="<%$ Resources:FieldStreet1%>" >
                                             <Listeners>
                                                 <Change Handler="if(this.value=='') setNullable(true); else setNullable(false);" />
                                             </Listeners>

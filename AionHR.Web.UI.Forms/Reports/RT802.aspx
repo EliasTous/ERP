@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT802.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT802" %>
 
-<%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
-<%@ Register Assembly="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.XtraReports.v18.2.Web.WebForms, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -23,6 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../Scripts/moment.js"></script>
     <script type="text/javascript" src="../Scripts/RT201.js?id=18"></script>
+    <script type="text/javascript" src="../Scripts/ReportsCommon.js"></script>
     <script type="text/javascript">
         function alertNow(s, e) {
 
@@ -56,7 +57,11 @@
         <ext:Hidden ID="format" runat="server" />
                <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
           <ext:Hidden ID="FilterSelection" runat="server" Text="<%$ Resources:Common , FilterSelection %>" />
-
+             <ext:Hidden ID="vals" runat="server" />
+        <ext:Hidden ID="texts" runat="server" />
+        <ext:Hidden ID="labels" runat="server" />
+         <ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=RT802&values="/>
+		 
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
             <Items>
@@ -69,69 +74,39 @@
                     Margins="0 0 0 0"
                     Region="Center">
 
-                    <TopBar>
-                        <ext:Toolbar runat="server" Height="50" Layout="HBoxLayout">
-                            <Items>
+                    <DockedItems>
+                          <ext:Toolbar runat="server" Height="30" Dock="Top">
 
-                                <ext:Container runat="server" Layout="FitLayout" >
-                                    <Content>
-                                        <uc:dateRange runat="server" ID="dateRange1" />
-                                    </Content>
-                                </ext:Container>
+                            <Items>
+                                   
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:usersCombo runat="server" ID="userCombo1" EnableViewState="true" />
-                                    </Content>
-                                </ext:Container>
-                                <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <uc:moduleCombo runat="server" ID="moduleCombo1" EnableViewState="true" FromReport="True" />
-                                    </Content>
-                                </ext:Container>
-                                <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <uc:transactionCombo runat="server" ID="transactionCombo1" EnableViewState="true" />
-                                    </Content>
-                                </ext:Container>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="masterRef" Width="120" LabelAlign="Top"        DisplayField="fullName"
-                                            ValueField="reference" AllowBlank="true"
-                                            TypeAhead="false"
-                                            HideTrigger="true" SubmitValue="true"
-                                            MinChars="3" EmptyText="<%$ Resources:Common, FilterEmployee%>"
-                                            TriggerAction="Query" ForceSelection="true">
-                                            <Store>
-                                                <ext:Store runat="server" ID="Store2" AutoLoad="false">
-                                                    <Model>
-                                                        <ext:Model runat="server">
-                                                            <Fields>
-                                                                <ext:ModelField Name="reference" />
-                                                                <ext:ModelField Name="fullName" />
-                                                            </Fields>
-                                                        </ext:Model>
-                                                    </Model>
-                                                    <Proxy>
-                                                        <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
-                                                    </Proxy>
-                                                </ext:Store>
-                                            </Store>
-         
-                                  </ext:ComboBox>
-                                   <ext:TextField ID="data" runat="server" EmptyText="<%$ Resources:Common,data%>" Name="data"  ></ext:TextField>
-                                
-                                <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                          <ext:Button runat="server"  Text="<%$Resources:Common, Go %>" >
-                                     <Listeners>
-                                                <Click Handler="callbackPanel.PerformCallback('1');" />
+                                            <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                       <Listeners>
+                                           <Click Handler=" App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
+                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
+                                            <Listeners>
+                                              <%--  <Click Handler="if(App.payId.getValue()==null)   {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}  callbackPanel.PerformCallback('1');" />--%>
+                                                   <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
-                                </ext:Button>
+                                        </ext:Button>
+                                       
                                     </Content>
                                 </ext:Container>
-                              
+                                       
+                        
 
                             </Items>
                         </ext:Toolbar>
-                    </TopBar>
+                           <ext:Toolbar  ID="labelbar" runat="server" Height="0" Dock="Top">
+
+                            <Items>
+                                 <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                               </ext:Toolbar>
+              </DockedItems>
                     <Content>
                         
                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel" ClientSideEvents-CallbackError="alertNow" OnLoad="ASPxCallbackPanel1_Load"
@@ -162,7 +137,31 @@
             </Items>
         </ext:Viewport>
 
-
+              <ext:Window runat="server"  Icon="PageEdit"
+            ID="reportsParams"
+            Width="600"
+             MinHeight="500"
+            Title="<%$Resources:Common,Parameters %>"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="FitLayout" Resizable="true">
+            <Listeners>
+                <Show Handler="App.Panel8.loader.load();"></Show>
+            </Listeners>
+            <Items>
+                <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
+                    <Loader runat="server" Url="../ReportParameterBrowser.aspx?_reportName=RT802" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+            
+                </Items>
+        </ext:Window>
 
 
 

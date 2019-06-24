@@ -889,7 +889,7 @@
     <value>حسنا</value>
   </data>
   <data name="OpenDocuments" xml:space="preserve">
-    <value>Open Documents</value>
+    <value>عمليات قيد الإنجاز</value>
   </data>
   <data name="operationCompleted" xml:space="preserve">
     <value>تم اكمال العملية بنجاح </value>
@@ -1405,12 +1405,15 @@
     <value>ReportParameters</value>
   </data>
   <data name="Parameters" xml:space="preserve">
-    <value>تصفية</value>
+    <value>اختيار</value>
   </data>
   <data name="Onboarding" xml:space="preserve">
     <value>عند الوصول</value>
   </data>
   <data name="Hourly" xml:space="preserve">
     <value>ساعات</value>
+  </data>
+  <data name="BranchAvailability" xml:space="preserve">
+    <value>حالة الفرع</value>
   </data>
 </root>

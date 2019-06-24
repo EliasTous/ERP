@@ -42,30 +42,10 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
+            return Common.GetEmployeesFiltered(prms.Query);
 
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-            //fill employee request 
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 0;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
         }
 
         private string GetNameFormat()
@@ -317,7 +297,7 @@ namespace AionHR.Web.UI.Forms
                                 new
                                 {
                                     recordId = response.result.employeeId,
-                                    fullName =response.result.employeeName.fullName
+                                    fullName =response.result.employeeName
                                 }
                        });
                     employeeId.SetValue(response.result.employeeId);
@@ -329,11 +309,24 @@ namespace AionHR.Web.UI.Forms
            
                     this.BasicInfoTab.SetValues(response.result);
                     updateLeaveBalance.Text = "true";
-                      
+
+                    EmployeeQuickViewRecordRequest qvReq = new EmployeeQuickViewRecordRequest();
+
+                    qvReq.RecordID = response.result.employeeId.ToString(); ;
 
 
+                    qvReq.asOfDate = response.result.effectiveDate;
+
+                    RecordResponse<EmployeeQuickView> qvResp = _employeeService.ChildGetRecord<EmployeeQuickView>(qvReq);
+                    if (!qvResp.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, qvResp.Summary).Show();
+
+                    }
 
 
+                    leavePayments.Text = qvResp.result.leavePayments!=null? qvResp.result.leavePayments.ToString():"0";
 
 
 
@@ -691,11 +684,11 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
 
-            b.employeeName = new EmployeeName();
+          //  b.employeeName = new EmployeeName();
             //if (ldMethodCom.SelectedItem != null)
             //    b.ldMethod = ldMethodCom.SelectedItem.Value; 
             if (employeeId.SelectedItem != null)
-                b.employeeName.fullName = employeeId.SelectedItem.Text;
+                b.employeeName = employeeId.SelectedItem.Text;
 
             if (date.ReadOnly)
                 b.date = DateTime.Now;
@@ -902,7 +895,7 @@ namespace AionHR.Web.UI.Forms
                         leaveBalance.Text = routers.result.leaveBalance.ToString();
                     }
                     usedLeaves.Text = routers.result.usedLeaves.ToString();
-                    paidLeaves.Text = routers.result.paidLeaves.ToString();
+                    leavePayments.Text = routers.result.leavePayments.ToString();
 
 
                     lastLeaveStartDate.Value = routers.result.lastLeaveStartDate;

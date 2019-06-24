@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="xrLabel24.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="xrLabel24.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>268.330933, 23</value>
+  </data>
+  <data name="xrLabel25.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrLabel25.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrLabel25.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel25.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="xrLabel25.Text" xml:space="preserve">
+    <value>Departement</value>
+  </data>
+  <data name="xrLabel25.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel22.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrLabel22.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrLabel22.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel22.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>118.75, 23</value>
+  </data>
+  <data name="xrLabel22.Text" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="xrLabel22.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel23.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel23.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>321.875031, 22.9999962</value>
+  </data>
+  <data name="xrLabel18.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel18.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>285.728, 23</value>
+  </data>
+  <data name="xrLabel18.Text" xml:space="preserve">
+    <value>..................................</value>
+  </data>
+  <data name="xrLabel18.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel19.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrLabel19.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrLabel19.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel19.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>118.75, 23</value>
+  </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>Signature</value>
+  </data>
+  <data name="xrLabel19.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel20.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel20.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>285.728058, 23</value>
+  </data>
+  <data name="xrLabel20.Text" xml:space="preserve">
+    <value>xrLabel8</value>
+  </data>
+  <data name="xrLabel20.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel21.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrLabel21.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrLabel21.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel21.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>118.75, 23</value>
+  </data>
+  <data name="xrLabel21.Text" xml:space="preserve">
+    <value>Dis seulement</value>
+  </data>
+  <data name="xrLabel21.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel14.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrLabel14.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrLabel14.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel14.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>118.75, 23</value>
+  </data>
+  <data name="xrLabel14.Text" xml:space="preserve">
+    <value>Salaire net</value>
+  </data>
+  <data name="xrLabel14.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel15.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel15.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>285.728058, 23</value>
+  </data>
+  <data name="xrLabel15.Text" xml:space="preserve">
+    <value>xrLabel8</value>
+  </data>
+  <data name="xrLabel15.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel16.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrLabel16.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrLabel16.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel16.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>118.75, 23</value>
+  </data>
+  <data name="xrLabel16.Text" xml:space="preserve">
+    <value>Nombre total de jours</value>
+  </data>
+  <data name="xrLabel16.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel17.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel17.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>285.728, 23</value>
+  </data>
+  <data name="xrLabel17.Text" xml:space="preserve">
+    <value>xrLabel10</value>
+  </data>
+  <data name="xrLabel17.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrTable2.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrTableCell5.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrTableCell5.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>Total des avantages</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="xrTableCell5.Weight" type="System.Double, mscorlib">
+    <value>1.6839609360459986</value>
+  </data>
+  <data name="xrTableCell6.Text" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="xrTableCell6.Weight" type="System.Double, mscorlib">
+    <value>1.6839609360459986</value>
+  </data>
+  <data name="xrTableCell7.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrTableCell7.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell7.Text" xml:space="preserve">
+    <value>Le total des déductions</value>
+  </data>
+  <data name="xrTableCell7.Weight" type="System.Double, mscorlib">
+    <value>1.6839609360459986</value>
+  </data>
+  <data name="xrTableCell8.Text" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
+    <value>1.6839609360459986</value>
+  </data>
+  <data name="xrTableRow2.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTable2.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>808.956, 25</value>
+  </data>
+  <data name="xrTable2.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrSubBenifits.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrSubBenifits.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>404.478058, 23</value>
+  </data>
+  <data name="xrSubDeductions.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrSubDeductions.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>404.477936, 23</value>
+  </data>
+  <data name="xrTable1.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrTableCell1.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrTableCell1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell1.Text" xml:space="preserve">
+    <value>Avantages</value>
+  </data>
+  <data name="xrTableCell1.Weight" type="System.Double, mscorlib">
+    <value>1.6839609360459986</value>
+  </data>
+  <data name="xrTableCell2.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrTableCell2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell2.Text" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="xrTableCell2.Weight" type="System.Double, mscorlib">
+    <value>1.6839609360459986</value>
+  </data>
+  <data name="xrTableCell4.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrTableCell4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell4.Text" xml:space="preserve">
+    <value>Déductions</value>
+  </data>
+  <data name="xrTableCell4.Weight" type="System.Double, mscorlib">
+    <value>1.6839609360459986</value>
+  </data>
+  <data name="xrTableCell3.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrTableCell3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="xrTableCell3.Weight" type="System.Double, mscorlib">
+    <value>1.6839609360459986</value>
+  </data>
+  <data name="xrTableRow1.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="xrTable1.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>808.956, 25</value>
+  </data>
+  <data name="xrTable1.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel12.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrLabel12.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrLabel12.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel12.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="xrLabel12.Text" xml:space="preserve">
+    <value>Prenom</value>
+  </data>
+  <data name="xrLabel12.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel9.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel9.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>268.330933, 23</value>
+  </data>
+  <data name="xrLabel9.Text" xml:space="preserve">
+    <value>xrLabel9</value>
+  </data>
+  <data name="xrLabel9.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel10.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel10.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>321.875031, 22.9999962</value>
+  </data>
+  <data name="xrLabel10.Text" xml:space="preserve">
+    <value>xrLabel10</value>
+  </data>
+  <data name="xrLabel10.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel11.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrLabel11.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrLabel11.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel11.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>118.75, 23</value>
+  </data>
+  <data name="xrLabel11.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="xrLabel11.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel8.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel8.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>321.875031, 23</value>
+  </data>
+  <data name="xrLabel8.Text" xml:space="preserve">
+    <value>xrLabel8</value>
+  </data>
+  <data name="xrLabel8.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel13.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
+  </data>
+  <data name="xrLabel13.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrLabel13.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel13.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>118.75, 23</value>
+  </data>
+  <data name="xrLabel13.Text" xml:space="preserve">
+    <value>Numéro d'employé</value>
+  </data>
+  <data name="xrLabel13.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Detail.HeightF" type="System.Single, mscorlib">
+    <value>216.125</value>
+  </data>
+  <data name="Detail.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="TopMargin.HeightF" type="System.Single, mscorlib">
+    <value>6.79167128</value>
+  </data>
+  <data name="TopMargin.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="BottomMargin.HeightF" type="System.Single, mscorlib">
+    <value>9.375</value>
+  </data>
+  <data name="BottomMargin.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="PageHeader.HeightF" type="System.Single, mscorlib">
+    <value>24.583334</value>
+  </data>
+  <data name="xrLabel7.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 12pt, style=Bold</value>
+  </data>
+  <data name="xrLabel7.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel7.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>194.791656, 28.2083359</value>
+  </data>
+  <data name="xrLabel7.Text" xml:space="preserve">
+    <value>Rapport de paie des employés</value>
+  </data>
+  <data name="xrLabel7.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrPageInfo2.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrPageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>67.875, 23</value>
+  </data>
+  <data name="xrPageInfo2.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrPageInfo2.TextFormatString" xml:space="preserve">
+    <value>Page {0} of {1}</value>
+  </data>
+  <data name="xrPageInfo1.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrPageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>178.125015, 23</value>
+  </data>
+  <data name="xrPageInfo1.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrPageInfo1.TextFormatString" xml:space="preserve">
+    <value>{0:dddd, d MMMM, yyyy H:mm}</value>
+  </data>
+  <data name="xrLabel2.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>85.3421, 23</value>
+  </data>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>Imprimé par:</value>
+  </data>
+  <data name="xrLabel2.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel6.LocationFloat" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="xrLabel6.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>388.0416, 23</value>
+  </data>
+  <data name="xrLabel6.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="PageFooter.HeightF" type="System.Single, mscorlib">
+    <value>37.5</value>
+  </data>
+  <data name="employeePayrollDataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>17, 17</value>
+  </data>
+  <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="ReportHeader.HeightF" type="System.Single, mscorlib">
+    <value>39.1666679</value>
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
+    <value>11, 9, 7, 9</value>
+  </data>
+</root>

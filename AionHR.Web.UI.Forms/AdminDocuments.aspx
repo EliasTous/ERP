@@ -392,7 +392,22 @@
 
                                 </ext:ComboBox>
                                 <ext:TextField ID="oDocRef" runat="server" FieldLabel="<%$ Resources:oDocRef%>" Name="oDocRef" />
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="languageId" AllowBlank="false" Name="languageId"
+                                   <ext:ComboBox AllowBlank="false"  AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1"  FieldLabel="<%$ Resources: FieldLanguage%>"   runat="server" DisplayField="value" ValueField="key"   Name="languageId" ID="languageId" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="languageIdStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       </ext:ComboBox>
+
+                              <%--  <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="languageId" AllowBlank="false" Name="languageId"
                                     SubmitValue="true"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldLanguage%>">
@@ -403,7 +418,7 @@
                                          <ext:ListItem Text="<%$Resources:Common,DeutschLanguage %>" Value="4" />
 
                                     </Items>
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                 <ext:TextArea ID="notes" runat="server" FieldLabel="<%$ Resources:FieldNotes %>" Name="notes" Height="50" />
                             </Items>
 
@@ -828,7 +843,7 @@
 
 
                                                 <ext:ModelField Name="departmentName" />
-                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                <ext:ModelField Name="employeeName"  />
                                                 <ext:ModelField Name="date" />
                                                 <ext:ModelField Name="seqNo" />
                                                 <ext:ModelField Name="statusName" />

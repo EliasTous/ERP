@@ -142,7 +142,7 @@
     <value>Entreprise</value>
   </data>
   <data name="confirmDelete" xml:space="preserve">
-    <value>Veuillez taper "Supprimer" pour confirmer l'opération de suppression</value>
+    <value>Veuillez taper "Delete" pour confirmer l'opération de suppression</value>
   </data>
   <data name="ContactsTab" xml:space="preserve">
     <value>Contacts</value>
@@ -355,7 +355,7 @@
     <value>Reference deja saisie</value>
   </data>
   <data name="FieldSchedule" xml:space="preserve">
-    <value>Calendrier de présence</value>
+    <value>Programme</value>
   </data>
   <data name="EmployeeCalenderTab" xml:space="preserve">
     <value>Calendrier des employés</value>
@@ -416,5 +416,14 @@
   </data>
   <data name="uploadImageError" xml:space="preserve">
     <value>La taille de l'image téléchargée est trop grande</value>
+  </data>
+  <data name="FieldScheduleType" xml:space="preserve">
+    <value>Type d'horaire</value>
+  </data>
+  <data name="LeaveBalance" xml:space="preserve">
+    <value>Congé de solde :</value>
+  </data>
+  <data name="LeavePayment" xml:space="preserve">
+    <value>Congé de paiement :</value>
   </data>
 </root>

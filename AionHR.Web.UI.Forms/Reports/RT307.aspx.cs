@@ -135,7 +135,23 @@ namespace AionHR.Web.UI.Forms.Reports
             //this.OtherInfoTab.Visible = false;
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
         private void HideShowButtons()
         {
@@ -204,38 +220,7 @@ namespace AionHR.Web.UI.Forms.Reports
         //    return req;
         //}
 
-        [DirectMethod]
-        public object FillEmployee(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
-
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
-        }
+      
         //private void FillReport(bool isInitial = false, bool throwException = true)
         //{
 
@@ -333,49 +318,41 @@ namespace AionHR.Web.UI.Forms.Reports
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
-            try
-            {
-                DashboardTimeListRequest req = new DashboardTimeListRequest();
-
-
-                req.fromDayId = date2.GetRange().DateFrom.ToString("yyyyMMdd");
-                req.toDayId = date2.GetRange().DateTo.ToString("yyyyMMdd");
-             
-                if (string.IsNullOrEmpty(approverId.Value.ToString()))
-                    req.approverId = 0;
-                else
-                    req.approverId = Convert.ToInt32(approverId.Value.ToString());
+          
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
 
 
                 ListResponse<AionHR.Model.Reports.RT307> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT307> (req);
                 if (!resp.Success)
                     Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
-                //bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-                //resp.Items.ForEach(
-                //     x =>
-                //     {
-                //         if (!string.IsNullOrEmpty(x.clockDuration))
-                //             x.clockDuration = time(Convert.ToInt32(x.clockDuration), true);
-                //         if (!string.IsNullOrEmpty(x.duration))
-                //             x.duration = time(Convert.ToInt32(x.duration), true);
-                //         if (!string.IsNullOrEmpty(x.timeCode))
-                //             x.timeCodeString = FillTimeCode(Convert.ToInt32(x.timeCode));
-                //         x.statusString = FillApprovalStatus(x.status);
-                //         if (!string.IsNullOrEmpty(x.damageLevel))
-                //             x.damageLevel = FillDamageLevelString(Convert.ToInt16(x.damageLevel));
-                //         if (rtl)
-                //             x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
-                //         else
-                //             x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
+            //bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+            //resp.Items.ForEach(
+            //     x =>
+            //     {
+            //         if (!string.IsNullOrEmpty(x.clockDuration))
+            //             x.clockDuration = time(Convert.ToInt32(x.clockDuration), true);
+            //         if (!string.IsNullOrEmpty(x.duration))
+            //             x.duration = time(Convert.ToInt32(x.duration), true);
+            //         if (!string.IsNullOrEmpty(x.timeCode))
+            //             x.timeCodeString = FillTimeCode(Convert.ToInt32(x.timeCode));
+            //         x.statusString = FillApprovalStatus(x.status);
+            //         if (!string.IsNullOrEmpty(x.damageLevel))
+            //             x.damageLevel = FillDamageLevelString(Convert.ToInt16(x.damageLevel));
+            //         if (rtl)
+            //             x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+            //         else
+            //             x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
 
 
-                //     }
-                //     );
+            //     }
+            //     );
 
 
 
-
-                ApproverPerformance h = new ApproverPerformance();
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            ApproverPerformance h = new ApproverPerformance(parameters);
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
                 h.DataSource = resp.Items;
@@ -387,6 +364,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 //h.Parameters["FromParameter"].Value = from;
                 //h.Parameters["ToParameter"].Value = to;
                 h.Parameters["User"].Value = user;
+
+            
                 //if (req.Parameters["_dayStatus"] != "0")
                 //    h.Parameters["dayStatusParameter"].Value = dayStatus.SelectedItem.Text;
                 //else
@@ -422,11 +401,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 ASPxWebDocumentViewer1.OpenReport(h);
 
-            }
-            catch (Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
+       
 
         }
         private string FillDamageLevelString(short? DamageLevel)
@@ -543,16 +518,7 @@ namespace AionHR.Web.UI.Forms.Reports
         //    }
         //    return p;
         //}
-        [DirectMethod]
-        public object FillApprover(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
+       
 
 
     }

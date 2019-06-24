@@ -187,65 +187,80 @@ namespace AionHR.Web.UI.Forms.Reports
             else return "1";
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
 
 
-       
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
-            try
-            {
-                ReportCompositeRequest req = GetRequest();
+          
+                string rep_params = vals.Text;
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
 
-
-              
 
                 ListResponse<AionHR.Model.Reports.RT309> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT309>(req);
                 if (!resp.Success)
                     Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
                 int counter = 1;
-                List<AionHR.Model.Reports.RT309> newShiftLogsList = new List<AionHR.Model.Reports.RT309>();
+            int maxShiftCount = 0;
+            List<AionHR.Model.Reports.RT309> newShiftLogsList = new List<AionHR.Model.Reports.RT309>();
                 AionHR.Model.Reports.RT309 record = new AionHR.Model.Reports.RT309();
                 DateTime parsed = DateTime.Now;
 
 
-
-                foreach (var e in resp.Items.GroupBy(x=>x.employeeName))
+         
+            foreach (var e in resp.Items.GroupBy(x=>x.employeeName))
                 {
 
-                   
+               
                     e.ToList().ForEach(y =>
                     {
+
                         counter = 1;
                         if (DateTime.TryParseExact(y.dayId, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
                             {
 
-                            //y.dayIdDateTime = parsed;
-                            //record = new Model.Reports.RT309();
-                            //record.employeeName = y.employeeName;
-                            //record.dayIdDateTime = y.dayIdDateTime;
-                            //record.shiftLog = y.shiftLog;
 
-                            //record.shiftId = String.Format("{0} {1}", "Shift", counter);
-                            //counter++;
-                            //newShiftLogsList.Add(record);
+                         
+
                             y.shiftLog.ForEach(z =>
                             {
                                 y.dayIdDateTime = parsed;
                                 record = new Model.Reports.RT309();
                                 record.employeeName = y.employeeName;
                                 record.dayIdDateTime = y.dayIdDateTime;
+                                record.duration = y.duration;
                                 record.shiftLog = new List<ShiftLog>();
                                 record.shiftLog.Add(new ShiftLog { start = z.start, end = z.end });
 
                                 if (_systemService.SessionHelper.CheckIfArabicSession())
-                                    record.shiftId = String.Format("{0} {1}", "الفترة ",counter);
+                                    record.shiftId = String.Format("{0} {1}", "فترة  ",counter);
                                 else
                                     record.shiftId = String.Format("{0} {1}", "Shift ", counter);
-                                        counter++;
+                                if (maxShiftCount < counter)
+                                    maxShiftCount = counter;
+                                
+                                counter++;
                                 newShiftLogsList.Add(record);
-
+                               
 
                             }
                             );
@@ -255,30 +270,19 @@ namespace AionHR.Web.UI.Forms.Reports
                   
                   
                 }
-                ShiftLogsReport h = new ShiftLogsReport(newShiftLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat());
-                
+                Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+                ShiftLogsReport h = new ShiftLogsReport(newShiftLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat(), parameters, maxShiftCount);
+               // BasicShiftLogReport h = new BasicShiftLogReport(newShiftLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat(), parameters, maxShiftCount);
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-                h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
+             //  h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
 
-                string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-                string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-                h.Parameters["User"].Value = string.IsNullOrEmpty(_systemService.SessionHelper.GetCurrentUser()) ? " " : _systemService.SessionHelper.GetCurrentUser();
-
-                h.Parameters["From"].Value = from;
-                h.Parameters["To"].Value = to;
-
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["Branch"].Value = jobInfo1.GetDepartment();
-                else
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
+            //string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            //string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            h.Parameters["User"].Value = string.IsNullOrEmpty(_systemService.SessionHelper.GetCurrentUser()) ? " " : _systemService.SessionHelper.GetCurrentUser();
 
 
-
-
-
-
-
+              
                 h.CreateDocument();
 
 
@@ -286,27 +290,9 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
             }
-            catch (Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
-
-        }
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-
-            req.Size = "1000";
-            req.StartAt = "0";
-            
-            req.Add(date.GetRange());
-            req.Add(jobInfo1.GetJobInfo());
-            req.Add(employeeCombo1.GetEmployee());
-           
-
-            return req;
-        }
-
+          
+       
+    
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
@@ -334,36 +320,13 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
         [DirectMethod]
+   
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
+
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-        }
+            return Common.GetEmployeesFiltered(prms.Query);
 
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "0";
-            req.Size = "20";
-            req.Filter = query;
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
-
-        private string GetNameFormat()
-        {
-            return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
 
 
