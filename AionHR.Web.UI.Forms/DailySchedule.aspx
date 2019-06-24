@@ -142,7 +142,9 @@
         <ext:Viewport ID="Viewport1" runat="server" Layout="BorderLayout" ActiveIndex="0">
             <Items>
                 <ext:Panel runat="server" ID="panelHeader" Region="North">
-                    <TopBar>
+                    <DockedItems>
+
+
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
 
@@ -280,8 +282,15 @@
                                     </DirectEvents>
                                 </ext:Button>
                                
-                                   <ext:ToolbarSeparator />
-                                  <ext:TextField ID="workingHours" Width="150" runat="server" FieldLabel="<%$ Resources:workingHours%>" DataIndex="workingHours" AllowBlank="true" ReadOnly="true" ></ext:TextField>
+                                 
+                                  
+                                
+
+                            </Items>
+                        </ext:Toolbar>
+                          <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="true">
+                               <Items>
+                               <ext:TextField ID="workingHours" Width="150" runat="server" FieldLabel="<%$ Resources:workingHours%>" DataIndex="workingHours" AllowBlank="true" ReadOnly="true" ></ext:TextField>
                                   <ext:ComboBox AnyMatch="true" Width="150" LabelWidth="30" CaseSensitive="false" runat="server" ID="device" AllowBlank="true" Name="device"
                                     SubmitValue="true"
                                     TypeAhead="false"
@@ -299,14 +308,19 @@
                                         
                                     </DirectEvents>
                                 </ext:ComboBox>
-                                
+                                   </Items>
+                               </ext:Toolbar>
+                            <ext:Toolbar ID="labelbar" runat="server" Height="0" Dock="Top">
 
-                            </Items>
-                        </ext:Toolbar>
+                            <Items>
+                                 <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                            </ext:Toolbar>
 
-                    </TopBar>
-                    <DockedItems>
 
+                 
+                 
+                         
 
                         <ext:Toolbar ID="Toolbar2" Visible="false" runat="server" Dock="Bottom" ClassicButtonStyle="true">
                             <Items>
@@ -343,15 +357,10 @@
 
                             </Items>
                         </ext:Toolbar>
-                            <ext:Toolbar ID="labelbar" runat="server" Height="0" Dock="Top">
+                        
 
-                            <Items>
-                                 <ext:Label runat="server" ID="selectedFilters" />
-                                </Items>
-                            </ext:Toolbar>
-
-
-                    </DockedItems>
+                        </DockedItems>
+                 
                 </ext:Panel>
 
                 <ext:Panel ID="bodyPanel" Region="Center" runat="server">
