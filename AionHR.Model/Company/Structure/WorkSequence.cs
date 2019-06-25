@@ -12,7 +12,7 @@ namespace AionHR.Model.Company.Structure
         public string branchName { get; set; }
         public string departmentName { get; set; }
         public string wfId { get; set; }
-        public string seqNo { get; set; }
+        public int? seqNo { get; set; }
         public string approverPosition { get; set; }
 
         public string branchId { get; set; }

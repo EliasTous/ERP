@@ -309,7 +309,7 @@
                                             </Store>
                                      
                                           </ext:ComboBox>
-                                  <ext:ComboBox  AnyMatch="true" AllowBlank="false" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: workflow  %>"  runat="server" DisplayField="value" ValueField="key"   Name="wfId" ID="wfId"  >
+                                  <ext:ComboBox  AnyMatch="true" AllowBlank="false" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: workflow  %>"  runat="server" DisplayField="name" ValueField="recordId"   Name="wfId" ID="wfId"  >
                                              <Store>
                                                 <ext:Store runat="server" ID="workFlowStore">
                                                     <Model>

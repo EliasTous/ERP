@@ -74,6 +74,27 @@ namespace AionHR.Web.UI.Forms
                     break;
             }
         }
+        private void FillWorkFlowStore()
+        {
+            ListRequest req = new ListRequest();
+
+            req.Filter = "";
+            ListResponse<WorkFlow> resp = _companyStructureService.ChildGetAll<WorkFlow>(req);
+            if ( !resp.Success)
+            {
+                Common.errorMessage(resp);
+                return; 
+
+            }
+            if (resp.count != 0)
+            {
+                workFlowStore.DataSource = resp.Items;
+                workFlowStore.DataBind();
+
+            }
+
+           
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -85,6 +106,8 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
                 approvalTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "24");
+                FillWorkFlowStore();
+
 
                 try
                 {

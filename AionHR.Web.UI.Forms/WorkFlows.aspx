@@ -23,6 +23,7 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="currentWorkFlowId" runat="server" />
+        <ext:Hidden ID="currentSeq" runat="server" />
         
         <ext:Store
             ID="Store1"
@@ -433,6 +434,8 @@
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                             <ExtraParams>
+                             
+                                <ext:Parameter Name="count" Value="#{workSequenceGrid}.getStore().getCount()" Mode="Raw" />
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
@@ -486,7 +489,7 @@
                                                 </ext:Store>
                                             </Store>
                                     <Listeners>
-                                        <Change Handler="if (this.value==5) App.branchId.setDisabled(false); else App.branchId.setDisabled(true); if (this.value==4)  App.departmentId.setDisabled(false); else App.departmentId.setDisabled(true);  " />
+                                        <Change Handler="if (this.value==5) App.branchId.setDisabled(false); else {App.branchId.setDisabled(true);App.branchId.setValue('');} if (this.value==4)  App.departmentId.setDisabled(false); else {App.departmentId.setDisabled(true); App.departmentId.setValue('');  }" />
                                     </Listeners>
                                           </ext:ComboBox>
 

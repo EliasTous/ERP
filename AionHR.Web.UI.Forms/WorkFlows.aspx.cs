@@ -153,36 +153,16 @@ namespace AionHR.Web.UI.Forms
                     return;
                 List<WorkSequence> PN = e.Object<WorkSequence>();
 
-                WorkSequenceListRequest req = new WorkSequenceListRequest();
-                req.wfId = currentWorkFlowId.Text;
-                ListResponse<WorkSequence> resp = _companyStructureRepository.ChildGetAll<WorkSequence>(req);
-                if (!resp.Success)
-                {
-                    Common.errorMessage(resp);
-                    return;
-                }
-                PostRequest<WorkSequence> delReq = new PostRequest<WorkSequence>(); 
-
-                resp.Items.ForEach(x=>
-                    {
-                        delReq.entity = x;
-                        PostResponse<WorkSequence> delresp = _companyStructureRepository.ChildDelete<WorkSequence>(delReq); 
-                        if (!delresp.Success)
-                        {
-                            Common.errorMessage(delresp);
-                            throw new Exception();
-                        }
-
-                });
+                PostRequest<WorkSequence> req = new PostRequest<WorkSequence>();
                 int counter = 1;
                 PN.ForEach(x =>
                 {
 
-                    delReq.entity = x;
-                    delReq.entity.seqNo = counter.ToString();
-                    delReq.entity.wfId = currentWorkFlowId.Text;
+                    req.entity = x;
+                    req.entity.seqNo = counter;
+                    req.entity.wfId = currentWorkFlowId.Text;
                     counter++;
-                    PostResponse<WorkSequence> resp1 = _companyStructureRepository.ChildAddOrUpdate<WorkSequence>(delReq);
+                    PostResponse<WorkSequence> resp1 = _companyStructureRepository.ChildAddOrUpdate<WorkSequence>(req);
                     if (!resp1.Success)
                     {
                         Common.errorMessage(resp1);
@@ -196,9 +176,9 @@ namespace AionHR.Web.UI.Forms
                     Html = Resources.Common.RecordSavingSucc
                 });
             }
-            catch
+            catch( Exception exp)
             {
-
+                X.MessageBox.Alert(Resources.Common.Error, exp.Message).Show();
             }
 
         }
@@ -212,7 +192,8 @@ namespace AionHR.Web.UI.Forms
                 Common.errorMessage(resp);
                 return; 
             }
-
+            if (resp.Items.Count!=0)
+            currentSeq.Text = resp.Items.OrderBy(x => x.seqNo).Last().seqNo.ToString();
             workSequenceStore.DataSource = resp.Items;
             workSequenceStore.DataBind(); 
 
@@ -327,13 +308,29 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
 
                     //Step 2 : call setvalues with the retrieved object
+
+                    WorkSequenceRecordRequest r = new WorkSequenceRecordRequest();
+                    r.seqNo = seqNo;
+                    r.wfId = currentWorkFlowId.Text;
+
+                    RecordResponse<WorkSequence> response = _companyStructureRepository.ChildGetRecord<WorkSequence>(r);
+                    if (!response.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        Common.errorMessage(response);
+                        return;
+                    }
+                    //Step 2 : call setvalues with the retrieved object
+                    this.WSForm.SetValues(response.result);
+
                     seqNO.Text = seqNo;
-                    branchId.Select(branchIdParameter);
-                    branchId.SetValue(branchIdParameter);
-                    departmentId.Select(departmentIdParameter);
-                    departmentId.SetValue(departmentIdParameter);
-                    approverPosition.Select(approverPositionParameter);
-                    approverPosition.SetValue(approverPositionParameter);
+                   
+                    //branchId.Select(branchIdParameter);
+                    //branchId.SetValue(branchIdParameter);
+                    //departmentId.Select(departmentIdParameter);
+                    //departmentId.SetValue(departmentIdParameter);
+                    //approverPosition.Select(approverPositionParameter);
+                    //approverPosition.SetValue(approverPositionParameter);
                     
 
 
@@ -342,11 +339,25 @@ namespace AionHR.Web.UI.Forms
                     this.EditWSWindow.Show();
                     break;
 
+             
+
+
                 case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteWSRecord({0})",Convert.ToInt32( seqNo)),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
 
-
-                    workSequenceStore.Remove(seqNo);
-                 
+                    }).Show();
+                    break;
 
 
                     Notification.Show(new NotificationConfig
@@ -421,11 +432,28 @@ namespace AionHR.Web.UI.Forms
         }
 
         [DirectMethod]
-        public void DeleteWSRecord(string index)
+        public void DeleteWSRecord(int index)
         {
             try
             {
-                
+
+                //Step 2 :  remove the object from the store
+                WorkSequence s = new WorkSequence();
+                s.seqNo = index;
+                //s.reference = "";
+
+                s.wfId = currentWorkFlowId.Text;
+                PostRequest<WorkSequence> req = new PostRequest<WorkSequence>();
+                req.entity = s;
+                PostResponse<WorkSequence> r = _companyStructureRepository.ChildDelete<WorkSequence>(req);
+                if (!r.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(r);
+                    return;
+                }
+                else
+                {
                     //Step 2 :  remove the object from the store
                     workSequenceStore.Remove(index);
 
@@ -436,6 +464,9 @@ namespace AionHR.Web.UI.Forms
                         Icon = Icon.Information,
                         Html = Resources.Common.RecordDeletedSucc
                     });
+                }
+
+            
                 
 
             }
@@ -532,7 +563,7 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-
+            currentSeq.Text = string.Empty;
             currentWorkFlowId.Text = string.Empty;
             workSequenceGrid.Disabled = true;
             panelRecordDetails.ActiveIndex = 0;
@@ -547,7 +578,8 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             WSForm.Reset();
 
-            
+
+            //FillWorkSequenceStore(currentWorkFlowId.Text);
             this.EditWSWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -587,7 +619,7 @@ namespace AionHR.Web.UI.Forms
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
 
-
+            string count = e.ExtraParams["count"];
             string obj = e.ExtraParams["values"];
             WorkFlow b = JsonConvert.DeserializeObject<WorkFlow>(obj);
 
@@ -685,8 +717,10 @@ namespace AionHR.Web.UI.Forms
 
 
                     }
+                    
 
                 }
+                
                 catch (Exception ex)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -701,15 +735,21 @@ namespace AionHR.Web.UI.Forms
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
 
-
+           
             string obj = e.ExtraParams["values"];
+            string seqNO = e.ExtraParams["seqNO"];
             WorkSequence b = JsonConvert.DeserializeObject<WorkSequence>(obj);
             b.approverPositionName = approverPosition.SelectedItem.Text;
             b.branchName = branchId.SelectedItem.Text;
             b.departmentName = departmentId.SelectedItem.Text;
+            if (string.IsNullOrEmpty(seqNO))
 
-            
-            string seqNO = e.ExtraParams["seqNO"];
+                b.seqNo = null;
+            else
+
+                b.seqNo= Convert.ToInt32(seqNO);
+
+
             // Define the object to add or edit as null
 
             if (string.IsNullOrEmpty(seqNO))
@@ -717,8 +757,31 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
+                    PostRequest<WorkSequence> request = new PostRequest<WorkSequence>();
+                    request.entity = b;
+                    request.entity.wfId = currentWorkFlowId.Text;
+                    if (string.IsNullOrEmpty(currentSeq.Text))
+                    {
 
-                    this.workSequenceStore.Insert(0, b);
+
+                        request.entity.seqNo = 1;
+                        currentSeq.Text = "1";
+
+                    }
+                    else
+                    {
+                        request.entity.seqNo = Convert.ToInt32(currentSeq.Text) + 1;
+                        currentSeq.Text = (Convert.ToInt32(currentSeq.Text) + 1).ToString();
+                    }
+
+                    PostResponse<WorkSequence> r = _companyStructureRepository.ChildAddOrUpdate<WorkSequence>(request);
+                    if (!r.Success)
+                    {
+                        Common.errorMessage(r);
+                        return;
+                    }
+
+                    FillWorkSequenceStore(currentWorkFlowId.Text);
                     Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -750,8 +813,18 @@ namespace AionHR.Web.UI.Forms
                 {
 
 
-                    workSequenceStore.Remove(seqNO);
-                    this.workSequenceStore.Insert(0, b);
+                    PostRequest<WorkSequence> request = new PostRequest<WorkSequence>();
+                    request.entity = b;
+                    request.entity.wfId = currentWorkFlowId.Text;
+
+
+
+                    PostResponse<WorkSequence> r = _companyStructureRepository.ChildAddOrUpdate<WorkSequence>(request);
+                    if (!r.Success)
+                    {
+                        Common.errorMessage(r);
+                        return;
+                    }
 
 
                     Notification.Show(new NotificationConfig
@@ -760,6 +833,7 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
                         });
+                    FillWorkSequenceStore(currentWorkFlowId.Text);
                         this.EditWSWindow.Close();
 
 

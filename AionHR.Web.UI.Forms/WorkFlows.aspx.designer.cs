@@ -76,6 +76,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden currentWorkFlowId;
         
         /// <summary>
+        /// currentSeq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden currentSeq;
+        
+        /// <summary>
         /// Store1 control.
         /// </summary>
         /// <remarks>
