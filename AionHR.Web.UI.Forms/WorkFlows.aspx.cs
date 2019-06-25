@@ -151,6 +151,7 @@ namespace AionHR.Web.UI.Forms
             {
                 if (string.IsNullOrEmpty(currentWorkFlowId.Text))
                     return;
+                deleteAllWorkSequence(currentWorkFlowId.Text);
                 List<WorkSequence> PN = e.Object<WorkSequence>();
 
                 PostRequest<WorkSequence> req = new PostRequest<WorkSequence>();
@@ -196,6 +197,32 @@ namespace AionHR.Web.UI.Forms
             currentSeq.Text = resp.Items.OrderBy(x => x.seqNo).Last().seqNo.ToString();
             workSequenceStore.DataSource = resp.Items;
             workSequenceStore.DataBind(); 
+
+        }
+
+        private void deleteAllWorkSequence(string currentWfId)
+        {
+            WorkSequenceListRequest req = new WorkSequenceListRequest();
+            req.wfId = currentWfId;
+            ListResponse<WorkSequence> resp = _companyStructureRepository.ChildGetAll<WorkSequence>(req);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+
+            PostRequest<WorkSequence> req1 = new PostRequest<WorkSequence>();
+            resp.Items.ForEach(x=>
+            {
+                req1.entity = x;
+                PostResponse<WorkSequence> delresp = _companyStructureRepository.ChildDelete<WorkSequence>(req1);
+                if (!delresp.Success)
+                {
+                    Common.errorMessage(delresp);
+                    throw new Exception();
+                }
+
+            });
 
         }
         protected void PoPuP(object sender, DirectEventArgs e)
