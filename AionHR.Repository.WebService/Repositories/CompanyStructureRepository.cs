@@ -61,7 +61,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(LegalReference), "delBL");
             ChildDeleteLookup.Add(typeof(ApprovalReason), "delAR");
             ChildDeleteLookup.Add(typeof(WorkFlow), "delWF");
-            ChildDeleteLookup.Add(typeof(WorkFlow), "delWS");
+            ChildDeleteLookup.Add(typeof(WorkSequence), "delWS");
 
 
 

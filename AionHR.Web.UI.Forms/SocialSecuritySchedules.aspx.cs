@@ -186,6 +186,7 @@ namespace AionHR.Web.UI.Forms
                     this.BasicInfoTab.SetValues(response.result);
 
                     recordId.Text = id;
+                    socialSetupGrid.Disabled = false;
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                    
                     this.EditRecordWindow.Show();

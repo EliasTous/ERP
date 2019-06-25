@@ -117,11 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="approverPositionName" xml:space="preserve">
+    <value>Approver Position </value>
+  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Work Flow Info</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Work Flow</value>
+  </data>
+  <data name="EditWSWindow" xml:space="preserve">
+    <value>Work Sequence </value>
+  </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Department</value>
   </data>
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>
