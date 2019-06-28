@@ -18,9 +18,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
     CheckSession();
 
 
-    var t = e.getTarget(),
-            columnId = this.columns[columnIndex].id; // Get column id
-
+   
     if (t.className == "imgEdit") {
         //the ajax call is allowed
         commandName = t.className;
@@ -37,8 +35,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         commandName = t.className;
         return true;
     }
-    if (columnId == "ColName")
-        return true;
+  
 
 
     //forbidden

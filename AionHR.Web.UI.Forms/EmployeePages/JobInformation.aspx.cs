@@ -430,7 +430,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 else
                 {
                     //Step 2 :  remove the object from the store
-                    JIStore.Remove(index);
+                  
+                    JIStore.Reload();
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
@@ -511,7 +512,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             divisionId.Select(qv.result.divisionId);
             positionId.Select(qv.result.positionId);
             reportToId.Select(qv.result.reportToId);
-        
+            if (!string.IsNullOrEmpty(TotalJIRecords.Text))
+            {
+                if (TotalJIRecords.Text == "0")
+                {
+                    if (qv.result.hireDate!=null)
+                        date.SelectedDate =(DateTime) qv.result.hireDate;
+
+                }
+
+            }
             this.EditJobInfoWindow.Show();
         }
 
@@ -568,7 +578,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
             this.JIStore.DataSource = currencies.Items;
             e.Total = currencies.count;
-
+            TotalJIRecords.Text = currencies.count.ToString();
             this.JIStore.DataBind();
         }
 
@@ -749,7 +759,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         {
 
                             //Add this record to the store 
-                            this.JIStore.Insert(0, b);
+                           
+                            JIStore.Reload();
 
                             //Display successful notification
                             Notification.Show(new NotificationConfig
@@ -815,6 +826,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                                 Icon = Icon.Information,
                                 Html = Resources.Common.RecordUpdatedSucc
                             });
+                            JIStore.Reload();
                             this.EditJobInfoWindow.Close();
 
 
