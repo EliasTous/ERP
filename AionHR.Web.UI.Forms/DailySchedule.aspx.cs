@@ -660,11 +660,11 @@ namespace AionHR.Web.UI.Forms
             this.dayId.Value = string.Empty;
             BuildSchedule(response.Items);
             currentFlat = response.Items;
-            BranchScheduleRecordRequest req = new BranchScheduleRecordRequest();
+            FlatScheduleWorkingHoursRequest req = new FlatScheduleWorkingHoursRequest();
             req.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-            req.FromDayId = dateFrom.SelectedDate;
-            req.ToDayId = dateTo.SelectedDate;
-            req.BranchId = 0;
+            req.startDate = dateFrom.SelectedDate;
+            req.endDate = dateTo.SelectedDate;
+           
             ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(req);
             if (!workingHoursResponse.Success)
             {
@@ -970,13 +970,13 @@ namespace AionHR.Web.UI.Forms
                 }
                 FlatScheduleWorkingHoursRequest reqFS1 = new FlatScheduleWorkingHoursRequest();
                 reqFS1.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                reqFS1.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-                reqFS1.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+                reqFS1.startDate = dateFrom.SelectedDate;
+                reqFS1.endDate = dateTo.SelectedDate;
 
                 ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS1);
                 if (!workingHoursResponse.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                    Common.errorMessage(workingHoursResponse);
                     return;
                 }
                 else

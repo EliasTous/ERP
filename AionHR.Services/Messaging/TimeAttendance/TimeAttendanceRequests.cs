@@ -70,9 +70,9 @@ public class BranchScheduleRecordRequest : ListRequest
 
 public class FlatScheduleWorkingHoursRequest : ListRequest
 {
-    public string FromDayId { get; set; }
+    public DateTime startDate { get; set; }
 
-    public string ToDayId { get; set; }
+    public DateTime endDate { get; set; }
 
     public int EmployeeId { get; set; }
    
@@ -83,8 +83,8 @@ public class FlatScheduleWorkingHoursRequest : ListRequest
         get
         {
             parameters = new Dictionary<string, string>();
-            parameters.Add("_fromDayId", FromDayId);
-            parameters.Add("_toDayId", ToDayId);
+            parameters.Add("_startDate", startDate.ToString());
+            parameters.Add("_endDate", endDate.ToString());
             parameters.Add("_employeeId", EmployeeId.ToString());
      
 

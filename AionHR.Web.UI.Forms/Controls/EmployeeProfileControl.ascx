@@ -327,6 +327,7 @@
         App.employeeControl1_positionId.setValue(pId);
         App.employeeControl1_divisionId.setValue(dId);
         App.employeeControl1_reportToId.setValue(rId);
+        
     }
 
 
