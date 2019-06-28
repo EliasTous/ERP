@@ -148,6 +148,7 @@ public class DepartmentListRequest : ListRequest
 
    public int type { get; set; }
     public int? isInactive { get; set; }
+    public string sortBy { get; set; }
 
 
     public override Dictionary<string, string> Parameters
@@ -157,8 +158,12 @@ public class DepartmentListRequest : ListRequest
             parameters = base.Parameters;
             parameters.Add("_type", type.ToString());
             if (isInactive == null)
-                isInactive = 0; 
+                isInactive = 0;
+            if (string.IsNullOrEmpty(sortBy))
+                sortBy = "recordId";
+                
             parameters.Add("_activeStatus", isInactive.ToString()  );
+            parameters.Add("_sortBy", sortBy);
 
 
             return parameters;

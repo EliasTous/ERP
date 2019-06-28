@@ -476,6 +476,8 @@ namespace AionHR.Web.UI.Forms
             request.Filter = searchTrigger.Text;
             request.type = 0;
             request.isInactive = 0; 
+            request.Size= e.Limit.ToString();
+            request.StartAt= e.Start.ToString();
             ListResponse<Department> branches = _branchService.ChildGetAll<Department>(request);
             branches.Items.ForEach(x =>
             {
