@@ -101,7 +101,8 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
 
-
+                timeCodeStore.DataSource = Common.XMLDictionaryList(_systemService, "3");
+                timeCodeStore.DataBind();
             }
 
         }
@@ -180,7 +181,8 @@ namespace AionHR.Web.UI.Forms
                         }
                         FillApprovalStory();
                         FillensStore();
-
+                        timeCodeStore.DataSource = Common.XMLDictionaryList(_systemService, "3");
+                        timeCodeStore.DataBind();
                         this.BasicInfoTab.Reset();
                         //Step 2 : call setvalues with the retrieved object
                         this.BasicInfoTab.SetValues(response.result);
