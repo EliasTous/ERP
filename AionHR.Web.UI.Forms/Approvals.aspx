@@ -11,6 +11,21 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/LeaveTypes.js?id=110"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
+    <script type="text/javascript" >
+       
+        function setCombos(approvalType)
+        {
+            if (approvalType == 2) {
+                App.approvalFlow.setValue('1');
+                App.approvalFlow.setReadOnly(true);
+              
+            }
+            else {
+                App.approvalFlow.setValue('');               
+                App.approvalFlow.setReadOnly(false);
+            }
+        }
+    </script>
 
 
 </head>
@@ -293,6 +308,9 @@
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
+                                     <Listeners>
+                                         <Change Handler="setCombos(this.value);" />
+                                     </Listeners>
                                           </ext:ComboBox>
                                   <ext:ComboBox  AnyMatch="true" AllowBlank="false" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: approvalFlow %>"  runat="server" DisplayField="value" ValueField="key"   Name="approvalFlow" ID="approvalFlow" >
                                              <Store>
