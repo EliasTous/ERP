@@ -164,14 +164,14 @@
 
                     </TopBar>
 
-                    <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="true">
+                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="true">
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column ID="ColReference" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="departmentRef" width="150" Hideable="false" Visible="true"/>
+                            <ext:Column ID="ColReference" Sortable="true" MenuDisabled="true"  runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="departmentRef" width="150" Hideable="false" Visible="true"/>
                            
-                            <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                                <Renderer Handler="return  record.data['name']"/>
+                            <ext:Column CellCls="cellLink" Sortable="true"  ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
+                              
                                 
                             </ext:Column>
                             <ext:Column Visible="false" ID="ColparentId" MenuDisabled="true" runat="server" DataIndex="parentId" Flex="2" Hideable="false" />
@@ -282,8 +282,7 @@
 
 
                     <SelectionModel>
-                        <ext:RowSelectionModel ID="rowSelectionModel" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                           <ext:RowSelectionModel ID="rowSelectionModel" runat="server" Mode="Single" StopIDModeInheritance="true" />
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>

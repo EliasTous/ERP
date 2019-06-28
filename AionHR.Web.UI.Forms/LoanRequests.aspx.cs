@@ -1158,8 +1158,10 @@ namespace AionHR.Web.UI.Forms
 
                 string obj = e.ExtraParams["values"];
                 Loan b = JsonConvert.DeserializeObject<Loan>(obj);
+                if (!string.IsNullOrEmpty(b.ldValue))
                 b.ldValue = Regex.Replace(b.ldValue, "[^.0-9]", "");
-                b.amount = Convert.ToDouble(Regex.Replace(b.amount.ToString(), "[^.0-9]", ""));
+               
+                    b.amount = Convert.ToDouble(Regex.Replace(b.amount.ToString(), "[^.0-9]", ""));
 
                 string id = e.ExtraParams["id"];
                 // Define the object to add or edit as null
