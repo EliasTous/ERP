@@ -106,13 +106,7 @@
             RemotePaging="false"
             OnReadData="Store1_RefreshData"
             PageSize="30" IDMode="Explicit" Namespace="App" IsPagingStore="true">
-            <Proxy>
-                <ext:PageProxy>
-                    <Listeners>
-                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                    </Listeners>
-                </ext:PageProxy>
-            </Proxy>
+           
             <Model>
                 <ext:Model ID="Model1" runat="server" IDProperty="recordId">
                     <Fields>

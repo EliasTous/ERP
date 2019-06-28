@@ -83,11 +83,11 @@ namespace Reports.GroupedPayRollCross
                     cssAmount = 0;
                     essAmount = 0;
                     netSalary = 0;
-
+                    string primary = "";
 
                     employee.GroupBy(x => x.primaryKey).ToList().ForEach(y =>
                     {
-
+                        primary = y.ToList().First().primaryKey;
                         basicAmount += y.ToList().First().basicAmount;
                         cssAmount += y.ToList().First().cssAmount;
                         essAmount += y.ToList().First().essAmount;

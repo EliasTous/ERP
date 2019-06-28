@@ -570,6 +570,11 @@ namespace AionHR.Web.UI.Forms
 
                 }
             }
+            else
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
+                   return;
+            }
             if (parameters.ContainsKey("4"))
             {
               //  reqFS.EndDate = parameters["4"];
@@ -581,11 +586,20 @@ namespace AionHR.Web.UI.Forms
 
                 }
             }
+            else
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
+                return;
+            }
 
 
-          
-           
-              
+            if (reqFS.StartDate > reqFS.EndDate)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
+                return;
+            }
+
+
 
             ListResponse<FlatScheduleBranchAvailability> response = _helpFunctionService.ChildGetAll<FlatScheduleBranchAvailability>(reqFS);
             if (!response.Success)
