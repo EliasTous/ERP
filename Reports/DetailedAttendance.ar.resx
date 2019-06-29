@@ -162,6 +162,9 @@
   <data name="xrTableCell13.Text" xml:space="preserve">
     <value>اول دخول</value>
   </data>
+  <data name="xrTableCell13.Text1" xml:space="preserve">
+    <value>المجموع :</value>
+  </data>
   <data name="xrTableCell14.Text" xml:space="preserve">
     <value>xrTableCell14</value>
   </data>
