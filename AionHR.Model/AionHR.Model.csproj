@@ -184,8 +184,8 @@
     <Compile Include="Reports\RT506.cs" />
     <Compile Include="Reports\RT507.cs" />
     <Compile Include="Reports\RT508.cs" />
-    <Compile Include="Reports\RT803.cs" />
     <Compile Include="Reports\RT804.cs" />
+    <Compile Include="Reports\RT803.cs" />
     <Compile Include="Reports\ShiftLog.cs" />
     <Compile Include="SelfService\AssetLoan.cs" />
     <Compile Include="SelfService\EmployeePayrollSelfService.cs" />

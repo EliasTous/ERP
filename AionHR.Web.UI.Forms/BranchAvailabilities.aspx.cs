@@ -570,6 +570,11 @@ namespace AionHR.Web.UI.Forms
 
                 }
             }
+            else
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
+                   return;
+            }
             if (parameters.ContainsKey("4"))
             {
               //  reqFS.EndDate = parameters["4"];
@@ -581,11 +586,20 @@ namespace AionHR.Web.UI.Forms
 
                 }
             }
+            else
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
+                return;
+            }
 
 
-          
-           
-              
+            if (reqFS.StartDate > reqFS.EndDate)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
+                return;
+            }
+
+
 
             ListResponse<FlatScheduleBranchAvailability> response = _helpFunctionService.ChildGetAll<FlatScheduleBranchAvailability>(reqFS);
             if (!response.Success)
@@ -853,8 +867,8 @@ namespace AionHR.Web.UI.Forms
             }
             FlatScheduleWorkingHoursRequest reqFS1 = new FlatScheduleWorkingHoursRequest();
             reqFS1.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-            reqFS1.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqFS1.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            reqFS1.startDate = dateFrom.SelectedDate;
+            reqFS1.endDate = dateTo.SelectedDate;
       
             ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS1);
             if (!workingHoursResponse.Success)

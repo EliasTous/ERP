@@ -152,11 +152,11 @@ namespace AionHR.Web.UI.Forms
 
 
            
-                parameters.Add("1", dateFrom.SelectedDate.ToString("yyyyMMdd"));
-          
                 parameters.Add("2", dateFrom.SelectedDate.ToString("yyyyMMdd"));
+          
+                parameters.Add("3", dateFrom.SelectedDate.ToString("yyyyMMdd"));
            
-                parameters.Add("3", "0");
+             
             parameters.Add("4", branchId.SelectedItem.Value);
 
             foreach (KeyValuePair<string, string> entry in parameters)
@@ -215,6 +215,7 @@ namespace AionHR.Web.UI.Forms
         }
         private void BuildSchedule(List<FlatSchedule> items)
         {
+            string dailyScheduleVariation;
             SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
             req.Key = "dailySchedule";
             RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
@@ -223,21 +224,23 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", SystemDefaultResponse.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + SystemDefaultResponse.LogId : SystemDefaultResponse.Summary).Show();
                 return;
             }
+            if (string.IsNullOrEmpty(SystemDefaultResponse.result.Value))
+                dailyScheduleVariation = "60";
+            else
+                dailyScheduleVariation = SystemDefaultResponse.result.Value;
+
+
 
             string html = @"<div style = 'margin: 5px auto; width: 99%; height: 98%; overflow:auto;' > 
                              <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0'  style='width:auto;'>";
 
 
-            //CAlling the branch cvailability before proceeding
+       
 
-            string startAt, closeAt = string.Empty;
-            GetBranchSchedule(out startAt, out closeAt);
-            //if(startAt=="00:00"&& closeAt=="00:00")
-
-            //    {
-            //        X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("branchClosed")).Show();
-            //        return;
-            //    }
+            //string startAt, closeAt = string.Empty;
+            //GetBranchSchedule(out startAt, out closeAt);
+            string startAt = "00:00";
+            string closeAt = "00:00";
 
             if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
             {
@@ -257,62 +260,69 @@ namespace AionHR.Web.UI.Forms
             TimeSpan EmployeeTsStart, EmployeeTsEnd;
 
 
-            items.ForEach(x =>
-            {
-                string newFrom = "";
-                string newTo = "";
-                List<string> fromList = x.from.Split(':').ToList();
-                if (fromList.Count==2)
-                {
-                    newFrom = (Convert.ToInt32(fromList.First()) % 24).ToString();
-                    newFrom += ":" + fromList.ElementAt(1);
-                    EmployeeTsStart = TimeSpan.Parse(newFrom);
-                }
-                else
-                    EmployeeTsStart = TimeSpan.Parse(x.from);
+            //items.ForEach(x =>
+            //{
+            //    string newFrom = "";
+            //    string newTo = "";
+            //    List<string> fromList = x.dtFrom.TimeOfDay.Split(':').ToList();
+            //    if (fromList.Count==2)
+            //    {
+            //        newFrom = (Convert.ToInt32(fromList.First()) % 24).ToString();
+            //        newFrom += ":" + fromList.ElementAt(1);
+            //        EmployeeTsStart = TimeSpan.Parse(newFrom);
+            //    }
+            //    else
+            //        EmployeeTsStart = TimeSpan.Parse(x.from);
 
 
-               
-                List<string> ToList = x.to.Split(':').ToList();
-                if (ToList.Count == 2)
-                {
-                    newTo = (Convert.ToInt32(ToList.First()) % 24).ToString();
-                    newTo += ":" + ToList.ElementAt(1);
-                    EmployeeTsEnd = TimeSpan.Parse(newTo);
-                }
-                else
-                    EmployeeTsEnd = TimeSpan.Parse(x.to); 
 
-                if (EmployeeTsStart < tsStart || EmployeeTsEnd > tsClose)
-                {
-                    html += @"</table></div>";
-                    this.pnlSchedule.Html = html;
-                    X.Call("DisableTools");
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName).Show();
-                    return;
-                }
-            });
+            //    List<string> ToList = x.to.Split(':').ToList();
+            //    if (ToList.Count == 2)
+            //    {
+            //        newTo = (Convert.ToInt32(ToList.First()) % 24).ToString();
+            //        newTo += ":" + ToList.ElementAt(1);
+            //        EmployeeTsEnd = TimeSpan.Parse(newTo);
+            //    }
+            //    else
+            //        EmployeeTsEnd = TimeSpan.Parse(x.to); 
+
+            //    if (EmployeeTsStart < tsStart || EmployeeTsEnd > tsClose)
+            //    {
+            //        html += @"</table></div>";
+            //        this.pnlSchedule.Html = html;
+            //        X.Call("DisableTools");
+            //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "ErrorEmployeeTimeOutside").ToString() + x.employeeName).Show();
+            //        return;
+            //    }
+            //});
 
             //Filling The Times Slot
             List<TimeSlot> timesList = new List<TimeSlot>();
-            DateTime dtStart, dtEnd;
-            dtStart = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, 1, tsStart.Hours, tsStart.Minutes, 0);
-            dtEnd = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, 1, tsClose.Hours, tsClose.Minutes, 0);
-            if (dtStart >= dtEnd)
+            DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
+            DateTime dtEnd;
+            if (tsStart > tsClose)
             {
-                dtEnd = dtEnd.AddDays(1);
+                DateTime endDate = DateTime.Now;
+                endDate = endDate.AddDays(1);
+                dtEnd = new DateTime(endDate.Year, endDate.Month, endDate.Day, tsClose.Hours, tsClose.Minutes, 0);
             }
+            else
+                dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
 
-
-
+            if (dtEnd == dtStart)
+            {
+                dtEnd = dtEnd.AddDays(1).AddMinutes(-Convert.ToInt32(dailyScheduleVariation));
+            }
+            int counter = 0;
             do
             {
                 TimeSlot ts = new TimeSlot();
                 ts.ID = dtStart.ToString("HH:mm");
                 ts.Time = dtStart.ToString("HH:mm");
                 timesList.Add(ts);
-                dtStart = dtStart.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
-            } while (dtStart <= dtEnd);
+                dtStart = dtStart.AddMinutes(Convert.ToInt32(dailyScheduleVariation));
+                counter++;
+            } while (dtStart <= dtEnd && !string.IsNullOrEmpty(dailyScheduleVariation) && counter != 3000);
 
             //filling the Day slots
             //int totalDays = Convert.ToInt32(Math.Ceiling((dateTo.SelectedDate - dateFrom.SelectedDate).TotalDays));
@@ -330,73 +340,42 @@ namespace AionHR.Web.UI.Forms
             Dictionary<string, int> dic = new Dictionary<string, int>();
             if (items.Count != 0 && items != null)
             {
-                DateTime activeDate = DateTime.ParseExact(items[0].dayId, "yyyyMMdd", new CultureInfo("en"));
+                DateTime activeDate = items[0].dtFrom;
                 DateTime fsfromDate, fsToDate;
-
 
                 foreach (FlatSchedule fs in items)
                 {
 
-                     activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
 
-                     fsfromDate = new DateTime();
-                     fsToDate = new DateTime();
-                    int i = 0;
-                    if (Int32.TryParse(fs.from.Split(':')[0], out i))
-                    {
-                        if (i >= 24)
-                            fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i % 24, Convert.ToInt32(fs.from.Split(':')[1]), 0);
-                        else
-                            fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
-                    }
-                    if (Int32.TryParse(fs.to.Split(':')[0], out i))
-                    {
-                        if (i >= 24)
-                            fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, i % 24, Convert.ToInt32(fs.from.Split(':')[1]), 0);
-                        else
-                            fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
-
-                    }
-
-
-                    DateTime temp = fsfromDate;
-
-
-                    if (fsfromDate > fsToDate)
+                    DateTime from = fs.dtFrom;
+                    DateTime to = fs.dtTo;
+                    counter = 0;
+                    while (to > from && counter != 3000)
                     {
 
-                        fsToDate = fsToDate.AddDays(1);
-
-
-                    }
-
-
-                    do
-                    {
-                        if (fsfromDate.ToString("HH:mm") == "00:00")
+                        if (from.ToString("HH:mm") == "00:00")
                         {
-                            listIds.Add(fs.employeeId + "_" + fsfromDate.AddDays(-1).ToString("HH:mm"));
-                            listDn.Add(fs.employeeId + "_" + fs.departmentId + "_" + fsfromDate.AddDays(-1).ToString("HH:mm"));
+                            listIds.Add(fs.employeeId + "_" + from.AddDays(-1).ToString("HH:mm"));
+                            listDn.Add(fs.employeeId + "_" + fs.departmentId + "_" + from.AddDays(-1).ToString("HH:mm"));
                             listDS.Add(fs.departmentId.ToString());
-                            fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                            from = from.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                            counter++;
                             continue;
 
                         }
-                        listIds.Add(fs.employeeId + "_" + fsfromDate.ToString("HH:mm"));
-                        listDn.Add(fs.employeeId + "_" + fs.departmentId + "_" + fsfromDate.ToString("HH:mm"));
+                        listIds.Add(fs.employeeId + "_" + from.ToString("HH:mm"));
+                        listDn.Add(fs.employeeId + "_" + fs.departmentId + "_" + from.ToString("HH:mm"));
                         listDS.Add(fs.departmentId.ToString());
 
-                        //if (!dic.ContainsKey(fs.departmentId + "-" + fsfromDate.ToString("HH:mm")))
-                        //    dic.Add(fs.departmentId + "-" + fsfromDate.ToString("HH:mm"), 1);
-                        //else
-                        //    dic[fs.departmentId + "-" + fsfromDate.ToString("HH:mm")]++;
-                        fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
-                    } while (fsToDate >= fsfromDate);
+                        from = from.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
+                        counter++;
+
+                    }
                 }
+            
                 listDn = listDn.Distinct().ToList();
                 listDS = listDS.Distinct().ToList();
                 //listDS.ForEach(departmentID => dic.Add(departmentID+, listDn.Where(stringToCheck => stringToCheck.Contains(departmentID)).Count()));
-
 
                 fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(startAt.Split(':')[0]), Convert.ToInt32(startAt.Split(':')[1]), 0);
                 fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(closeAt.Split(':')[0]), Convert.ToInt32(closeAt.Split(':')[1]), 0);
@@ -404,17 +383,18 @@ namespace AionHR.Web.UI.Forms
                 {
                     fsToDate = fsToDate.AddDays(1);
                 }
+                counter = 0;
                 do
                 {
                     listDS.ForEach(departmentID =>
-                   {
-                       if (!dic.ContainsKey(departmentID + "-" + fsfromDate.ToString("HH:mm")))
-                           dic.Add(departmentID + "-" + fsfromDate.ToString("HH:mm"), listDn.Where(stringToCheck => stringToCheck.Contains(departmentID + "_" + fsfromDate.ToString("HH:mm"))).Count());
-                   });
+                    {
+                        if (!dic.ContainsKey(departmentID + "-" + fsfromDate.ToString("HH:mm")))
+                            dic.Add(departmentID + "-" + fsfromDate.ToString("HH:mm"), listDn.Where(stringToCheck => stringToCheck.Contains(departmentID + "_" + fsfromDate.ToString("HH:mm"))).Count());
+                    });
                     fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
-              
-                
-                } while (fsToDate >= fsfromDate);
+
+                    counter++;
+                } while (fsToDate >= fsfromDate && counter!=3000);
 
 
             }
@@ -707,7 +687,7 @@ namespace AionHR.Web.UI.Forms
             }
             pnlTools.Hidden = false;
             currentEmployee.Text = EmployeeId;
-            string startAt=string.Empty, closeAt=string.Empty;
+        
 
 
 
@@ -718,12 +698,12 @@ namespace AionHR.Web.UI.Forms
 
 
           
-                parameters.Add("1", dateFrom.SelectedDate.ToString("yyyyMMdd"));
-          
                 parameters.Add("2", dateFrom.SelectedDate.ToString("yyyyMMdd"));
+          
+                parameters.Add("3", dateFrom.SelectedDate.ToString("yyyyMMdd"));
          
-                parameters.Add("3", EmployeeId);
-                parameters.Add("4", "0");
+                parameters.Add("1", EmployeeId);
+               
 
             foreach (KeyValuePair<string, string> entry in parameters)
             {
@@ -759,16 +739,16 @@ namespace AionHR.Web.UI.Forms
                              <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' >";
             if (response.Items.Count == 0)
                 Load_Click(new object(), new DirectEventArgs(null));
-            else                
-            GetBranchSchedule(out startAt, out closeAt);
-           
+          
+                //  GetBranchSchedule(out startAt, out closeAt);
 
+            string startAt = "00:00", closeAt = "00:00";
             TimeSpan tsStart = TimeSpan.Parse(startAt);
-            timeFrom.MinTime = tsStart;
-            timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value)));
+            //timeFrom.MinTime = tsStart;
+            //timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value)));
             timeFrom.SelectedTime = tsStart;
             TimeSpan tsClose = TimeSpan.Parse(closeAt);
-            timeTo.MaxTime = tsClose;
+           //timeTo.MaxTime = tsClose;
          
 
 
@@ -783,7 +763,7 @@ namespace AionHR.Web.UI.Forms
                 dtEnd = dtEnd.AddDays(1);
             }
 
-
+            int counter = 0;
             do
             {
                 TimeSlot ts = new TimeSlot();
@@ -792,7 +772,8 @@ namespace AionHR.Web.UI.Forms
                 timesList.Add(ts);
                
                 dtStart = dtStart.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
-            } while (dtStart <= dtEnd);
+                counter++;
+            } while (dtStart <= dtEnd && counter!=3000);
             
             html = FillFirstRow(html, timesList);
 
@@ -803,16 +784,17 @@ namespace AionHR.Web.UI.Forms
             List<string> listIds = new List<string>();
             foreach (FlatSchedule fs in response.Items)
             {
-                DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
-                DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
-                DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
+                DateTime activeDate = fs.dtFrom;
+                DateTime fsfromDate = fs.dtFrom;
+                DateTime fsToDate = fs.dtTo;
 
-                
+               counter = 0;
                 do
                 {
                     listIds.Add(EmployeeId + "_" + fsfromDate.ToString("HH:mm"));
                     fsfromDate = fsfromDate.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
-                } while (fsToDate >= fsfromDate);
+                    counter++;
+                } while (fsToDate > fsfromDate &&counter!=3000);
             }
             var d = response.Items.GroupBy(x => x.employeeId);
             List<string> totaldayId = new List<string>();
@@ -832,11 +814,85 @@ namespace AionHR.Web.UI.Forms
 
         protected void Save_Click(object sender, DirectEventArgs e)
         {
+            List<FlatSchedule> currentFlat;
+            string rep_params = "";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("1", currentEmployee.Text);
+            parameters.Add("2", dateFrom.SelectedDate.ToString("yyyyMMdd") );
+            parameters.Add("3", dateFrom.SelectedDate.ToString("yyyyMMdd"));
+            foreach (KeyValuePair<string, string> entry in parameters)
+            {
+                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+            }
+            if (rep_params.Length > 0)
+            {
+                if (rep_params[rep_params.Length - 1] == '^')
+                    rep_params = rep_params.Remove(rep_params.Length - 1);
+            }
+
+
+
+
+
+
+
+            ReportGenericRequest reqSaveFS = new ReportGenericRequest();
+            reqSaveFS.paramString = rep_params;
+            //
+
+            ListResponse<FlatSchedule> respSaveFS = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqSaveFS);
+            if (!respSaveFS.Success)
+            {
+                Common.errorMessage(respSaveFS);
+                return;
+            }
+
+            currentFlat = respSaveFS.Items;
+
+
+            List<FlatSchedule> listToDelete = new List<FlatSchedule>();
+            DateTime fromday = dateFrom.SelectedDate; 
+            DateTime today = dateFrom.SelectedDate;
+            DateTimeRange fixRange = new DateTimeRange();
+            DateTimeRange compareRange = new DateTimeRange();
+            List<FlatSchedule> temp = new List<FlatSchedule>();
+         int    counter = 0;
+            do
+            {
+                temp = currentFlat.Where(x => x.dtFrom.Date == fromday.Date).ToList();
+
+                foreach (FlatSchedule f in temp)
+                {
+                    fixRange.Start = f.dtFrom;
+                    fixRange.End = f.dtTo;
+                    compareRange.Start = f.dtFrom.Date + new TimeSpan(timeFrom.SelectedTime.Hours, timeFrom.SelectedTime.Minutes, 0);
+                    compareRange.End = f.dtFrom.Date + new TimeSpan(timeTo.SelectedTime.Hours, timeTo.SelectedTime.Minutes, 0);
+                    if (compareRange.Intersects(fixRange))
+                        listToDelete.Add(f);
+                }
+
+                fromday = fromday.AddDays(1);
+                counter++;
+            } while (fromday <= today && counter != 3000);
+
+
+            PostRequest<FlatSchedule> deleteRequest = new PostRequest<FlatSchedule>();
+            listToDelete.ForEach(x =>
+            {
+                deleteRequest.entity = x;
+                PostResponse<FlatSchedule> deleteResp = _timeAttendanceService.ChildDelete<FlatSchedule>(deleteRequest);
+                if (!deleteResp.Success)
+                    Common.errorMessage(deleteResp);
+
+            });
+
+
             FlatSchedule fs = new FlatSchedule();
-            fs.from = timeFrom.SelectedTime.ToString().Substring(0,5);
-            fs.to = timeTo.SelectedTime.ToString().Substring(0, 5);
+            fs.dtFrom = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, dateFrom.SelectedDate.Day, timeFrom.SelectedTime.Hours, timeFrom.SelectedTime.Minutes, 0);
+            fs.dtTo = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, dateFrom.SelectedDate.Day, timeTo.SelectedTime.Hours, timeTo.SelectedTime.Minutes, 0);
             fs.employeeId = Convert.ToInt32(currentEmployee.Text);
-            fs.dayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+
+
             PostRequest<FlatSchedule> request = new PostRequest<FlatSchedule>();
 
             request.entity = fs;

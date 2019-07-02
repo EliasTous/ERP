@@ -145,13 +145,25 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell10.Weight" type="System.Double, mscorlib">
-    <value>238.0027457415955</value>
+    <value>118.79364559698151</value>
+  </data>
+  <data name="xrTableCell12.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 12pt</value>
+  </data>
+  <data name="xrTableCell12.Text" xml:space="preserve">
+    <value>xrTableCell12</value>
+  </data>
+  <data name="xrTableCell12.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell12.Weight" type="System.Double, mscorlib">
+    <value>118.79364559698151</value>
   </data>
   <data name="xrTableRow4.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <data name="xrTable2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>705, 30</value>
+    <value>704.1665, 30</value>
   </data>
   <data name="Detail.HeightF" type="System.Single, mscorlib">
     <value>30</value>
@@ -289,7 +301,7 @@
     <value>Arial, 14pt</value>
   </data>
   <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>User </value>
+    <value>Module</value>
   </data>
   <data name="xrTableCell7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -301,13 +313,25 @@
     <value>Arial, 14pt</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>Email</value>
+    <value>Class</value>
   </data>
   <data name="xrTableCell9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell9.Weight" type="System.Double, mscorlib">
-    <value>238.00273813607953</value>
+    <value>118.79366875813645</value>
+  </data>
+  <data name="xrTableCell11.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 14pt</value>
+  </data>
+  <data name="xrTableCell11.Text" xml:space="preserve">
+    <value>Access Level </value>
+  </data>
+  <data name="xrTableCell11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="xrTableCell11.Weight" type="System.Double, mscorlib">
+    <value>119.20908205350105</value>
   </data>
   <data name="xrTableRow3.Weight" type="System.Double, mscorlib">
     <value>1</value>

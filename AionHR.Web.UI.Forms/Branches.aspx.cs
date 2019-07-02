@@ -118,7 +118,9 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-              
+                address.Text = string.Empty;
+
+
             }
 
 
@@ -459,6 +461,7 @@ namespace AionHR.Web.UI.Forms
             managerId.Disabled = true;
             branchId.Text = "";
             addressForm.Reset();
+            address.Text = string.Empty;
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             FillNationality();
             FillState();

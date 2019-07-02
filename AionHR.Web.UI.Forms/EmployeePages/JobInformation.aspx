@@ -33,6 +33,7 @@
         <ext:Hidden ID="PaymentMethodCash" runat="server" Text="<%$ Resources: PaymentMethodCash %>" />
         <ext:Hidden ID="PaymentMethodBank" runat="server" Text="<%$ Resources: PaymentMethodBank %>" />
         <ext:Hidden ID="EmployeeTerminated" runat="server" />
+          <ext:Hidden ID="TotalJIRecords" runat="server" />
           <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
