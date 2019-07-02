@@ -40,7 +40,7 @@ namespace AionHR.Services.Messaging
             get
             {
                 if (Size == null)
-                    Size = "30";
+                    Size = "100";
                 if (StartAt == null)
                     StartAt = "0";
                 parameters = base.Parameters;

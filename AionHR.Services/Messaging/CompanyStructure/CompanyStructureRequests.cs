@@ -162,7 +162,7 @@ public class DepartmentListRequest : ListRequest
             if (string.IsNullOrEmpty(sortBy))
                 sortBy = "recordId";
             if (string.IsNullOrEmpty(Size))
-                Size = "30";
+                Size = "100";
             if (string.IsNullOrEmpty(StartAt))
                 StartAt = "0";
 
