@@ -510,4 +510,7 @@
   <data name="lawViolationEntitlementDeduction" xml:space="preserve">
     <value>Déduction pour infraction à la loi</value>
   </data>
+  <data name="lastGenFSDateTime" xml:space="preserve">
+    <value>dernier horaire généré</value>
+  </data>
 </root>

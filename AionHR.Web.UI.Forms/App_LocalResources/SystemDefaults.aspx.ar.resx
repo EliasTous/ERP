@@ -457,6 +457,6 @@
     <value>خصم تجاوز القانون</value>
   </data>
   <data name="lastGenFSDateTime" xml:space="preserve">
-    <value>Last Auto Scheduled</value>
+    <value>آخر جدول تم إنشاؤه</value>
   </data>
 </root>
