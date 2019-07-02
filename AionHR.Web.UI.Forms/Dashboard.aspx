@@ -1438,261 +1438,14 @@
 
 
 
-                                                               <%--           <ext:Panel runat="server" Layout="BorderLayout" Flex="1">
-                                                                    <LayoutConfig>
-                                                                    </LayoutConfig>
-                                                                    <Items>
-                                                                        <ext:Panel runat="server" ID="active" Region="Center">
-                                                                            <Content>
-                                                                                <div id="activeChartCont" style="padding: 10px; width: 100%; height: 100%;"></div>
-                                                                            </Content>
-                                                                        </ext:Panel>
-
-                                                                        <ext:Panel runat="server" Layout="FitLayout" Region="South">
-                                                                            <Items>
-
-                                                                                <ext:Panel runat="server" Layout="HBoxLayout" PaddingSpec="0 0 10 0">
-                                                                                    <LayoutConfig>
-                                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
-                                                                                    </LayoutConfig>
-                                                                                    <Items>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-
-                                                                                        <ext:Panel runat="server" Flex="1">
-                                                                                            <Items>
-                                                                                                <ext:HyperlinkButton Height="20" runat="server" PaddingSpec="0 0 0 0" Flex="1" Text="<%$Resources:ActiveGridTitle %>" StyleSpec="font-size:16pt;">
-                                                                                                    <Listeners>
-                                                                                                        <Click Handler="App.activeWindow.show();" />
-                                                                                                    </Listeners>
-                                                                                                </ext:HyperlinkButton>
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                    </Items>
-                                                                                </ext:Panel>
-
-                                                                            </Items>
-                                                                        </ext:Panel>
-
-                                                                    </Items>
-                                                                </ext:Panel>
-
-                                                                                                                             <ext:Panel runat="server" Layout="BorderLayout" ID="leavesHighChart" Flex="1">
-                                                                    <LayoutConfig>
-                                                                    </LayoutConfig>
-                                                                    <Items>
-
-                                                                        <ext:Panel runat="server" ID="late" Region="Center">
-                                                                            <Content>
-                                                                                <div id="leavesChartCont" style="padding: 10px; width: 100%; height: 100%;"></div>
-                                                                            </Content>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Layout="FitLayout" Region="South">
-                                                                            <Items>
-                                                                                <ext:Panel runat="server" Layout="HBoxLayout" PaddingSpec="0 0 10 0">
-                                                                                    <LayoutConfig>
-                                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
-                                                                                    </LayoutConfig>
-                                                                                    <Items>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                        <ext:Panel runat="server" Flex="1">
-                                                                                            <Items>
-                                                                                                <ext:HyperlinkButton runat="server" Height="20" PaddingSpec="0 0 0 0" Flex="1" Text="<%$Resources:Late %>" StyleSpec="font-size:16pt;">
-                                                                                                    <Listeners>
-                                                                                                        <Click Handler="App.lateWindow.show();" />
-                                                                                                    </Listeners>
-                                                                                                </ext:HyperlinkButton>
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                    </Items>
-                                                                                </ext:Panel>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Height="10" />
-
-                                                                    </Items>
-                                                                </ext:Panel>
-
-                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="1" Hidden="true">
-                                                                    <LayoutConfig>
-                                                                    </LayoutConfig>
-                                                                    <Items>
-                                                                        <ext:Panel runat="server" ID="absense" Region="Center">
-                                                                            <Content>
-                                                                                <div id="absentChartCont" style="padding: 10px; width: 100%; height: 100%;"></div>
-                                                                            </Content>
-                                                                        </ext:Panel>
-
-                                                                        <ext:Panel runat="server" Layout="FitLayout" Region="South">
-                                                                            <Items>
-                                                                                <ext:Panel runat="server" Layout="HBoxLayout" PaddingSpec="0 0 10 0">
-                                                                                    <LayoutConfig>
-                                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
-                                                                                    </LayoutConfig>
-                                                                                    <Items>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                        <ext:Panel runat="server" Flex="1">
-                                                                                            <Items>
-                                                                                                <ext:HyperlinkButton runat="server" Height="20" PaddingSpec="0 0 10 0" Flex="1" Text="<%$Resources:Out %>" StyleSpec="font-size:16pt;">
-                                                                                                    <Listeners>
-                                                                                                        <Click Handler="App.absentWindow.show();" />
-                                                                                                    </Listeners>
-                                                                                                </ext:HyperlinkButton>
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                    </Items>
-                                                                                </ext:Panel>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                    </Items>
-                                                                </ext:Panel>
-
-
-                                                                                                                             <ext:Panel runat="server" Layout="BorderLayout" Flex="1" Hidden="true">
-                                                                    <Items>
-                                                                        <ext:PolarChart Region="Center"
-                                                                            ID="PolarChart6"
-                                                                            runat="server"
-                                                                            Shadow="true"
-                                                                            InsetPadding="1"
-                                                                            InnerPadding="1">
-
-                                                                            <Store>
-                                                                                <ext:Store runat="server" ID="AbsentLeaveStore">
-                                                                                    <Model>
-                                                                                        <ext:Model runat="server">
-                                                                                            <Fields>
-                                                                                                <ext:ModelField Name="Count" />
-                                                                                                <ext:ModelField Name="emps" />
-                                                                                            </Fields>
-                                                                                        </ext:Model>
-                                                                                    </Model>
-                                                                                </ext:Store>
-                                                                            </Store>
-
-                                                                            <AnimationConfig Duration="500"></AnimationConfig>
-                                                                            <Interactions>
-                                                                                <ext:ItemHighlightInteraction />
-                                                                            </Interactions>
-                                                                            <Series>
-                                                                                <ext:PieSeries
-                                                                                    AngleField="Count"
-                                                                                    ShowInLegend="true"
-                                                                                    Donut="50"
-                                                                                    HighlightMargin="0">
-
-                                                                                    <%--                <Label Field="Name" Display="Rotate" FontSize="18" FontFamily="Arial" />
-                                                            <Label Field="Name" Display="Over" FontSize="18" FontFamily="Arial" />
-                                                                                    <Label Field="emps" Display="Inside" FontSize="12" FontFamily="Arial">
-                                                                                        <Renderer Handler=" " />
-                                                                                    </Label>
-                                                                                    <Tooltip runat="server" TrackMouse="true" Width="140" Height="28">
-
-                                                                                        <Renderer Fn="tipRenderer" />
-                                                                                    </Tooltip>
-                                                                                    <Renderer Fn="segmentRenderer" />
-                                                                                </ext:PieSeries>
-
-                                                                            </Series>
-                                                                            <Items>
-                                                                            </Items>
-                                                                        </ext:PolarChart>
-
-                                                                        <ext:Panel runat="server" Layout="FitLayout" Region="South">
-                                                                            <Items>
-                                                                                <ext:Panel runat="server" Layout="HBoxLayout" PaddingSpec="0 0 10 0">
-                                                                                    <LayoutConfig>
-                                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
-                                                                                    </LayoutConfig>
-                                                                                    <Items>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                        <ext:Panel runat="server" Flex="4">
-                                                                                            <Items>
-                                                                                                <ext:HyperlinkButton runat="server" Height="20" PaddingSpec="0 0 10 0" Flex="1" Text="<%$Resources:Out %>" StyleSpec="font-size:16pt;">
-                                                                                                    <Listeners>
-                                                                                                        <Click Handler="App.absenseStore.reload();App.absentWindow.show();" />
-                                                                                                    </Listeners>
-                                                                                                </ext:HyperlinkButton>
-
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1">
-                                                                                            <Items>
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="3">
-                                                                                            <Items>
-                                                                                                <ext:HyperlinkButton runat="server" Height="20" PaddingSpec="0 0 10 0" Flex="1" Text="<%$Resources:Paid %>" StyleSpec="font-size:16pt;">
-                                                                                                    <Listeners>
-                                                                                                        <Click Handler="App.leavesStore.reload();App.onLeavewindow.show();" />
-                                                                                                    </Listeners>
-                                                                                                </ext:HyperlinkButton>
-
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1">
-                                                                                            <Items>
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="5">
-                                                                                            <Items>
-                                                                                                <ext:HyperlinkButton runat="server" Height="20" PaddingSpec="0 0 10 0" Flex="1" Text="<%$Resources:Unpaid %>" StyleSpec="font-size:16pt;">
-                                                                                                    <Listeners>
-                                                                                                        <Click Handler="App.UnpaidLeavesStore.reload();App.unpaidLeavesWindow.show();" />
-                                                                                                    </Listeners>
-                                                                                                </ext:HyperlinkButton>
-
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                    </Items>
-                                                                                </ext:Panel>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Height="10" />
-                                                                    </Items>
-                                                                </ext:Panel>--%>
+                                                          
                                                             </Items>
 
                                                         </ext:Panel>
 
 
 
-                                                      <%--  <ext:Panel ID="pnlDepartmentCount" AutoUpdateLayout="true" Hidden="true" runat="server" Title="<%$Resources: DepartmentsCount %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
-                                                            <Defaults>
-                                                                <ext:Parameter Name="margin" Value="0 5 0 0" Mode="Value" />
-                                                            </Defaults>
-                                                            <LayoutConfig>
-                                                                <ext:HBoxLayoutConfig Align="Stretch" />
-                                                            </LayoutConfig>
-                                                            <TopBar>
-                                                                <ext:Toolbar runat="server">
-                                                                    <Items>
-                                                                        <ext:Button runat="server" Icon="ZoomIn">
-                                                                            <Listeners>
-                                                                                <Click Handler="App.MaximumChartWindow.show();" />
-                                                                            </Listeners>
-                                                                            <DirectEvents>
-
-                                                                                <Click OnEvent="zoomDepartmentCount" />
-                                                                            </DirectEvents>
-
-                                                                        </ext:Button>
-
-
-                                                                    </Items>
-                                                                </ext:Toolbar>
-                                                            </TopBar>
-                                                            <Items>
-                                                                <ext:Panel AutoUpdateLayout="true"
-                                                                    runat="server"
-                                                                    Header="false" ID="pnlDeparmentsCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1" Html="<div id='deparmentsCountHighChart' style='width:100%;height:100%' />">
-                                                                </ext:Panel>
-                                                            </Items>
-                                                        </ext:Panel>--%>
+                                                      
                                                         <ext:Panel Header="true" Resizable="true" ID="pnlAttendancePeriod" AutoUpdateLayout="true" runat="server" Title="<%$Resources: AttendancePeriod %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
                                                             <TopBar>
                                                                 <ext:Toolbar runat="server">
@@ -1837,70 +1590,7 @@
 
                                                             </Items>
                                                         </ext:Panel>
-                                                     <%--   <ext:GridPanel MarginSpec="0 0 0 0"
-                                                            ID="missingPunchesGrid" Hidden="true"
-                                                            runat="server" HideHeaders="true"
-                                                            PaddingSpec="0 0 1 0"
-                                                            Header="false"
-                                                            Title="<%$ Resources: MissingPunchesGridTitle %>"
-                                                            Layout="FitLayout"
-                                                            Scroll="Vertical"
-                                                            Border="false"
-                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True">
-                                                            <Store>
-                                                                <ext:Store
-                                                                    ID="missingPunchesStore" PageSize="30"
-                                                                    runat="server" OnReadData="missingPunchesStore_ReadData"
-                                                                    RemoteSort="false"
-                                                                    RemoteFilter="false">
-
-                                                                    <Model>
-                                                                        <ext:Model ID="Model5" runat="server" IDProperty="recordId">
-                                                                            <Fields>
-
-                                                                                <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="name"  />
-                                                                                <ext:ModelField Name="dayId" />
-                                                                                <ext:ModelField Name="missedIn" />
-                                                                                <ext:ModelField Name="missedOut" />
-                                                                                <ext:ModelField Name="time" />
-
-                                                                            </Fields>
-                                                                        </ext:Model>
-                                                                    </Model>
-
-                                                                </ext:Store>
-                                                            </Store>
-
-
-                                                            <ColumnModel ID="ColumnModel5" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
-                                                                <Columns>
-
-                                                                    <ext:Column Visible="false" ID="Column7" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                                                                    <ext:Column Flex="3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75" Align="Center">
-                                                                        <Renderer Handler="  return displayMissedPunchRecord(record.data);">
-                                                                        </Renderer>
-                                                                    </ext:Column>
-                                                                    <%--   <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="2" Hideable="false">
-                                        <Renderer Handler="try {var s = record.data['date'].split('T'); return s[0];} catch(err){return record.data['date'];}"></Renderer>
-                                    </ext:Column>
-                                    <ext:CheckColumn MenuDisabled="true" runat="server" Text="<%$ Resources: FieldMissedIn%>" DataIndex="missedIn" Flex="2" Hideable="false" />
-                                    <ext:CheckColumn MenuDisabled="true" runat="server" Text="<%$ Resources: FieldMissedOut%>" DataIndex="missedOut" Flex="2" Hideable="false" />
-                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Flex="2" Hideable="false" />
-                                                                </Columns>
-                                                            </ColumnModel>
-
-
-                                                            <View>
-                                                                <ext:GridView ID="GridView5" runat="server" />
-                                                            </View>
-
-
-                                                            <SelectionModel>
-                                                                <ext:RowSelectionModel ID="rowSelectionModel4" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />
-                                                            </SelectionModel>
-                                                        </ext:GridPanel>--%>
+                                                 
 
                                                     </Items>
                                                     <Listeners>
@@ -1931,13 +1621,7 @@
                                                                     runat="server" OnReadData="LeaveRequestsStore_ReadData"
                                                                     RemoteSort="false"
                                                                     RemoteFilter="false">
-                                                                   <%-- <Proxy>
-                                                                        <ext:PageProxy>
-                                                                            <Listeners>
-                                                                                <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                                                                            </Listeners>
-                                                                        </ext:PageProxy>
-                                                                    </Proxy>--%>
+                                                                 
                                                                     <Model>
                                                                         <ext:Model ID="Model10" runat="server" IDProperty="recordId">
                                                                             <Fields>
@@ -2366,9 +2050,7 @@
                                                 <ext:Column ID="Column35" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Width="140">
                                                     <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['amount']; "></Renderer>
                                                 </ext:Column>
-                                             <%--   <ext:Column ID="Column36" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDeductedAmount %>" DataIndex="deductedAmount" Hideable="false" Width="140">
-                                                    <Renderer Handler="return  record.data['currencyRef']+ '&nbsp;'+record.data['deductedAmount'] ;"></Renderer>
-                                                </ext:Column>--%>
+                                         
 
                                                <%-- <ext:Column ID="Column12" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="2" />--%>
 
@@ -2380,13 +2062,10 @@
                                                    
                                                 </ext:Column>
 
-                                               <%-- <ext:DateColumn ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="120" Align="Center">
-                                                </ext:DateColumn>--%>
-                                                <%-- <ext:Column ID="ldMethodCo" DataIndex="ldMethod " Text="<%$ Resources: LoanCoverageType %>" runat="server" Flex="2"   >
-                                                     <Renderer Handler="return GetldMethodName(record.data['ldMethod']);" />
-                                                     </ext:Column>--%>
+                                           
+                                              
 
-                                               <%--  <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" Flex="2" Visible="false" />--%>
+                                             
                              
                            
 
@@ -3354,16 +3033,7 @@
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocument %>" DataIndex="dtName" Hideable="false" />
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentRef %>" DataIndex="documentRef" Hideable="false" />
 
-                            <%--<ext:Column Visible="false" ID="Column13" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" />
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayEmployeeRTW(record.data);  ">
-                                </Renderer>
-                            </ext:Column>
-                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
-
-                                <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
-
-                            </ext:Column>--%>
+                        
                         </Columns>
                     </ColumnModel>
 
@@ -3604,53 +3274,7 @@
             </Items>
         </ext:Window>
 
-       <%-- <ext:Window runat="server" Modal="true" Title="<%$Resources:OverDue %>" Layout="FitLayout"
-            Hidden="true" AutoShow="false" ID="overDueWindow" Width="400" Height="300">
-            <Items>
-                <ext:GridPanel MarginSpec="0 0 0 0"
-                    ID="GridPanel2" HideHeaders="false"
-                    runat="server"
-                    PaddingSpec="0 0 1 0"
-                    Header="false"
-                    Title="<%$Resources:OverDue %>"
-                    Layout="FitLayout"
-                    Scroll="Vertical" StoreID="OverDueStore"
-                    Border="false"
-                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
-
-
-
-                    <ColumnModel ID="ColumnModel9" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
-                        <Columns>
-                            <ext:Column Visible="false" ID="Column6" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" />
-                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTaskName %>" DataIndex="name" Hideable="false" Flex="1">
-                            </ext:Column>
-                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="assignToName" Hideable="false" Flex="1">
-                            </ext:Column>
-                            <ext:DateColumn ID="DateColumn4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDueDate %>" DataIndex="dueDate" Hideable="false" Width="100">
-                            </ext:DateColumn>
-
-
-
-
-
-
-                        </Columns>
-                    </ColumnModel>
-
-
-                    <View>
-                        <ext:GridView ID="GridView9" runat="server" />
-                    </View>
-
-
-                    <SelectionModel>
-                        <ext:RowSelectionModel ID="rowSelectionModel8" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
-                    </SelectionModel>
-                </ext:GridPanel>
-            </Items>
-        </ext:Window>--%>
+      
 
         <ext:Window runat="server" Modal="true" Title="<%$ Resources: LatenessGridTitle %>" Layout="FitLayout"
             Hidden="true" AutoShow="false" ID="lateWindow" Width="650" Height="300">
@@ -4094,13 +3718,8 @@
                     <ColumnModel ID="ColumnModel16" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
-                            <%--                                                   <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" />
-                                                    <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
-                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Width="55" Hideable="false" />
-                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
-                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
-                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            --%><ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: Loan %>" DataIndex="name" Hideable="false" Width="75">
+                          
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: Loan %>" DataIndex="name" Hideable="false" Width="75">
                                 <Renderer Handler=" return displayTotalLoans(record.data);  ">
                                 </Renderer>
                             </ext:Column>

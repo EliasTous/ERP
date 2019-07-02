@@ -523,13 +523,13 @@ namespace AionHR.Web.UI.Forms
                 //} while (fsToDate >= fsfromDate);
 
                 X.Call("DeleteDaySchedule", dayId.Value.ToString());
-               
 
-                BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+
+                FlatScheduleWorkingHoursRequest reqFS = new FlatScheduleWorkingHoursRequest();
                 reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                reqFS.FromDayId = dateFrom.SelectedDate;
-                reqFS.ToDayId = dateTo.SelectedDate;
-                reqFS.BranchId = 0;
+                reqFS.startDate = dateFrom.SelectedDate;
+                reqFS.endDate = dateTo.SelectedDate;
+               
                 ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS);
                 if (!workingHoursResponse.Success)
                 {

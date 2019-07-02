@@ -491,7 +491,7 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldSchedule %>" Name="scId" DisplayField="name" ValueField="recordId" runat="server" ID="scId">
+                              <%--  <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldSchedule %>" Name="scId" DisplayField="name" ValueField="recordId" runat="server" ID="scId">
                                     <Store>
                                         <ext:Store runat="server" ID="scheduleStore">
                                             <Model>
@@ -505,7 +505,7 @@
                                         </ext:Store>
                                     </Store>
 
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                        <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldFirstDayOfWeek %>" Name="fdow" runat="server" ID="fdowCombo">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:Common, MondayText %>" Value="1" />

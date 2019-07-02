@@ -179,7 +179,7 @@ namespace AionHR.Web.UI.Forms
             FillVS();
             FillIDs();
             FillPassports();
-            FillSchedules();
+           // FillSchedules();
             //FillTsId();
             FillSsid();
             FillIndustry();
@@ -294,18 +294,18 @@ namespace AionHR.Web.UI.Forms
 
 
 
-        private void FillSchedules()
-        {
-            ListRequest vsRequest = new ListRequest();
-            ListResponse<AttendanceSchedule> resp = _timeAttendanceService.ChildGetAll<AttendanceSchedule>(vsRequest);
-            if (!resp.Success)
-            {
-                Common.errorMessage(resp);
-                return;
-            }
-            scheduleStore.DataSource = resp.Items;
-            scheduleStore.DataBind();
-        }
+        //private void FillSchedules()
+        //{
+        //    ListRequest vsRequest = new ListRequest();
+        //    ListResponse<AttendanceSchedule> resp = _timeAttendanceService.ChildGetAll<AttendanceSchedule>(vsRequest);
+        //    if (!resp.Success)
+        //    {
+        //        Common.errorMessage(resp);
+        //        return;
+        //    }
+        //    scheduleStore.DataSource = resp.Items;
+        //    scheduleStore.DataBind();
+        //}
 
         private void FillIDs()
         {
@@ -468,9 +468,9 @@ namespace AionHR.Web.UI.Forms
             try { passportCombo.Select(items.Where(s => s.Key == "passportDocTypeId").First().Value); }
 
             catch { }
-            try { scId.Select(items.Where(s => s.Key == "scId").First().Value); }
+            //try { scId.Select(items.Where(s => s.Key == "scId").First().Value); }
 
-            catch { }
+            //catch { }
             try { vsId.Select(items.Where(s => s.Key == "vsId").First().Value); }
 
             catch { }
@@ -958,10 +958,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("caId",""));
            
 
-            if (!string.IsNullOrEmpty(values.scId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("scId", values.scId.ToString()));
-            else
-                submittedValues.Add(new KeyValuePair<string, string>("scId", " "));
+            //if (!string.IsNullOrEmpty(values.scId.ToString()))
+            //    submittedValues.Add(new KeyValuePair<string, string>("scId", values.scId.ToString()));
+            //else
+            //    submittedValues.Add(new KeyValuePair<string, string>("scId", " "));
             if (values.localServerIP != null && !string.IsNullOrEmpty(values.localServerIP.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("localServerIP", values.localServerIP.ToString() + "/AionWSLocal"));
             else
