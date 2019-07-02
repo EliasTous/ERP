@@ -151,7 +151,7 @@ public class DepartmentListRequest : ListRequest
     public string sortBy { get; set; }
 
 
-   public string sortBy { get; set; }
+  
 
 
     public override Dictionary<string, string> Parameters
