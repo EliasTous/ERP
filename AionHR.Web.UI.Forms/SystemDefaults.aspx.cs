@@ -514,12 +514,12 @@ namespace AionHR.Web.UI.Forms
             }
             catch { }
 
-            //try
+            try
 
-            //{
-            //    lastGeneratedTADayId.Text = DateTime.ParseExact(items.Where(s => s.Key == "lastGeneratedTADayId").First().Value, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat()); ;
-            //}
-            //catch { }
+            {
+                lastGenFSDateTime.Text = items.Where(s => s.Key == "lastGenFSDateTime").First().Value;
+            }
+            catch { }
             try { PYFSLeaveBalEDId.Select(items.Where(s => s.Key == "PYFSLeaveBalEDId").First().Value); }
 
             catch { }

@@ -527,8 +527,8 @@
                                         <ext:Label runat="server" MarginSpec="5 0 10 10" Text="  /AionWSLocal" />
                                     </Items>
                                 </ext:Panel>
-                              <%--  <ext:TextField runat="server" Name="lastGeneratedTADayId" ReadOnly="true" ID="lastGeneratedTADayId" LabelWidth="150" FieldLabel="<%$Resources:lastGeneratedTADayId %>">
-                                </ext:TextField>--%>
+                                <ext:TextField runat="server" Name="lastGenFSDateTime" ReadOnly="true" ID="lastGenFSDateTime" LabelWidth="150" FieldLabel="<%$Resources:lastGenFSDateTime %>">
+                                </ext:TextField>
                                  
                                 <ext:ComboBox AllowBlank="true" AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: SourceAttendanceSchedule %>" Name="sourceTASC" runat="server" ID="sourceTASC">
                                     <Items>
