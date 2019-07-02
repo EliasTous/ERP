@@ -243,7 +243,23 @@
                             <Items>
                                 
                                         <ext:TextField runat="server" Name="recordId" ID="recordId" Hidden="true" Disabled="true" />
-                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="dependencyType" Name="dependencyType" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false"
+
+                                 <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldDependency%>"  runat="server" DisplayField="value" ValueField="key"   Name="dependencyType" ID="dependencyType" AllowBlank="false">
+                                             <Store>
+                                                <ext:Store runat="server" ID="dependencyTypeStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       </ext:ComboBox>
+
+                                       <%-- <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="dependencyType" Name="dependencyType" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false"
                                             FieldLabel="<%$ Resources: FieldDependency %>">
                                             <Items>
 
@@ -254,7 +270,7 @@
                                                 <ext:ListItem Text="<%$ Resources: FosterChild %>" Value="<%$ Resources:ComboBoxValues, EPDEDependencyTypeFosterChild %>" />
                                             </Items>
 
-                                        </ext:ComboBox>
+                                        </ext:ComboBox>--%>
                                         <ext:TextField runat="server" Name="firstName" AllowBlank="false" ID="firstName" FieldLabel="<%$ Resources:FieldFirstName%>" />
                                         <ext:TextField runat="server" Name="middleName" AllowBlank="true" ID="middleName" FieldLabel="<%$ Resources:FieldMiddleName%>" />
                                         <ext:TextField runat="server" Name="lastName" AllowBlank="false" ID="lastName" FieldLabel="<%$ Resources:FieldLastName%>" />

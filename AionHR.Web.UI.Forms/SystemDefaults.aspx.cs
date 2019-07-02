@@ -477,12 +477,12 @@ namespace AionHR.Web.UI.Forms
             //try { tsId.Select(items.Where(s => s.Key == "tsId").First().Value); }
 
             //catch { }
-            try
+            //try
 
-            {
-                enableCameraCheck.Checked = items.Where(s => s.Key == "enableCamera").First().Value == "true";
-            }
-            catch { }
+            //{
+            //    enableCameraCheck.Checked = items.Where(s => s.Key == "enableCamera").First().Value == "true";
+            //}
+            //catch { }
             try
 
             {
@@ -985,7 +985,7 @@ namespace AionHR.Web.UI.Forms
             else
                 submittedValues.Add(new KeyValuePair<string, string>("dailySchedule", GetGlobalResourceObject("ComboBoxValues", "dailySchedule_15").ToString()));
 
-            submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
+            //submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
 
             if (!string.IsNullOrEmpty(values.punchSource.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("punchSource", values.punchSource.ToString()));

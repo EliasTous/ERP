@@ -96,6 +96,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                 bool disabled = EmployeeTerminated.Text == "1";
                 Button2.Disabled = Button7.Disabled = disabled;
+                dependencyTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "30");
+                dependencyTypeStore.DataBind();
                 if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
                     return;
                 try

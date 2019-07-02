@@ -563,7 +563,7 @@
                                        
                                     </Items>
                                 </ext:ComboBox>
-                                   <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" LabelWidth="150" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
+                               <%--    <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" LabelWidth="150" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />--%>
 
                             </Items>
                             <Buttons>
