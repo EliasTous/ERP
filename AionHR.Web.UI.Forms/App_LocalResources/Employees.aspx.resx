@@ -330,4 +330,7 @@
   <data name="FieldTimeAttendance" xml:space="preserve">
     <value>Time Attendance Reference</value>
   </data>
+  <data name="FieldScheduleType" xml:space="preserve">
+    <value>Schedule Type</value>
+  </data>
 </root>

@@ -147,9 +147,9 @@
                                         <ext:ModelField Name="departmentName" />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="branchName" />
-                                        <ext:ModelField Name="divisionName" />
+                                        <ext:ModelField Name="scTypeName" />
                                         <ext:ModelField Name="hireDate" />
-
+                                          <ext:ModelField Name="scName" />
 
 
 
@@ -347,7 +347,9 @@
                             </ext:Column>
                             <ext:Column ID="ColPositionName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="2" Hideable="false" />
                             <ext:Column ID="ColBranchName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="2" Hideable="false" />
-                            <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDivision%>" DataIndex="divisionName" Flex="2" Hideable="false" />
+                              <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSchedule%>" DataIndex="scName" Flex="2" Hideable="false" />
+                              <ext:Column ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldScheduleType%>" DataIndex="scTypeName" Flex="2" Hideable="false" />
+                          
                             <ext:DateColumn ID="ColHireDate" Format="dd-MMM-yyyy" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHireDate%>" DataIndex="hireDate" Width="120" Hideable="false">
                             </ext:DateColumn>
 

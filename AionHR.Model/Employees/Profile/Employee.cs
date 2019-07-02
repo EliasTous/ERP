@@ -109,6 +109,10 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31000_21")]
         [ApplySecurity]
         public string divisionName { get; set; }
+
+
+        public string scTypeName { get; set; }
+   
         [PropertyID("31000_20")]
         [ApplySecurity]
         public string branchName { get; set; }

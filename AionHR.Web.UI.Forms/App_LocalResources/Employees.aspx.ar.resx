@@ -327,4 +327,7 @@
   <data name="FieldTimeAttendance" xml:space="preserve">
     <value>الدوام </value>
   </data>
+  <data name="FieldScheduleType" xml:space="preserve">
+    <value>نوع الدوام </value>
+  </data>
 </root>
