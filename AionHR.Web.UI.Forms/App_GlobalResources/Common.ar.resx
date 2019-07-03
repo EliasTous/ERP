@@ -1416,4 +1416,7 @@
   <data name="BranchAvailability" xml:space="preserve">
     <value>حالة الفرع</value>
   </data>
+  <data name="Rules" xml:space="preserve">
+    <value>القواعد</value>
+  </data>
 </root>

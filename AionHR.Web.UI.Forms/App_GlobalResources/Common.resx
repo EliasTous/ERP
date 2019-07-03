@@ -1359,4 +1359,7 @@
   <data name="workFlow" xml:space="preserve">
     <value>Work Flow</value>
   </data>
+  <data name="Rules" xml:space="preserve">
+    <value>Rules</value>
+  </data>
 </root>

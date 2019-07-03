@@ -16,13 +16,13 @@
         function setCombos(approvalType)
         {
             if (approvalType == 2) {
-                App.approvalFlow.setValue('1');
-                App.approvalFlow.setReadOnly(true);
+                App.approvalFlow.setValue('');
+                App.approvalFlow.setDisabled(true);
               
             }
             else {
-                App.approvalFlow.setValue('');               
-                App.approvalFlow.setReadOnly(false);
+                App.approvalFlow.setValue('');
+                App.approvalFlow.setDisabled(false);
             }
         }
     </script>

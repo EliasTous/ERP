@@ -157,6 +157,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden wfTitle;
         
         /// <summary>
+        /// ruTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden ruTitle;
+        
+        /// <summary>
         /// brTitle control.
         /// </summary>
         /// <remarks>

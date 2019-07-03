@@ -1338,4 +1338,7 @@
   <data name="BranchAvailability" xml:space="preserve">
     <value>Branch Verfügbarkeit</value>
   </data>
+  <data name="Rules" xml:space="preserve">
+    <value>Regeln</value>
+  </data>
 </root>

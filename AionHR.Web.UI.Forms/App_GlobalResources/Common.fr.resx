@@ -1416,4 +1416,7 @@
   <data name="BranchAvailability" xml:space="preserve">
     <value>Disponibilité de la branche</value>
   </data>
+  <data name="Rules" xml:space="preserve">
+    <value>Règles</value>
+  </data>
 </root>

@@ -28,7 +28,10 @@ namespace AionHR.Repository.WebService.Repositories
             base.ChildGetLookup.Add(typeof(ApprovalReason), "getAR");
             base.ChildGetLookup.Add(typeof(WorkFlow), "getWF");
             base.ChildGetLookup.Add(typeof(WorkSequence), "getWS");
-            
+            base.ChildGetLookup.Add(typeof(Rule), "getRU");
+            base.ChildGetLookup.Add(typeof(RuleCondition), "getRC");
+            base.ChildGetLookup.Add(typeof(RuleMessage), "getRM");
+
             base.ChildGetAllLookup.Add(typeof(Branch), "qryBR");
             base.ChildGetAllLookup.Add(typeof(Department), "qryDE");
             base.ChildGetAllLookup.Add(typeof(Position), "qryPO");
@@ -39,6 +42,9 @@ namespace AionHR.Repository.WebService.Repositories
             base.ChildGetAllLookup.Add(typeof(ApprovalReason), "qryAR");
             base.ChildGetAllLookup.Add(typeof(WorkFlow), "qryWF");
             base.ChildGetAllLookup.Add(typeof(WorkSequence), "qryWS");
+            base.ChildGetAllLookup.Add(typeof(Rule), "qryRU");
+            base.ChildGetAllLookup.Add(typeof(RuleCondition), "qryRC");
+            base.ChildGetAllLookup.Add(typeof(RuleMessage), "qryRM");
 
 
             base.ChildAddOrUpdateLookup.Add(typeof(Branch), "setBR");
@@ -51,6 +57,9 @@ namespace AionHR.Repository.WebService.Repositories
             base.ChildAddOrUpdateLookup.Add(typeof(ApprovalReason), "setAR");
             base.ChildAddOrUpdateLookup.Add(typeof(WorkFlow), "setWF");
             base.ChildAddOrUpdateLookup.Add(typeof(WorkSequence), "setWS");
+            base.ChildAddOrUpdateLookup.Add(typeof(Rule), "setRU");
+            base.ChildAddOrUpdateLookup.Add(typeof(RuleCondition), "setRC");
+            base.ChildAddOrUpdateLookup.Add(typeof(RuleMessage), "setRM");
 
             ChildDeleteLookup.Add(typeof(Branch), "delBR");
             ChildDeleteLookup.Add(typeof(Department), "delDE");
@@ -62,6 +71,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(ApprovalReason), "delAR");
             ChildDeleteLookup.Add(typeof(WorkFlow), "delWF");
             ChildDeleteLookup.Add(typeof(WorkSequence), "delWS");
+
+            ChildDeleteLookup.Add(typeof(Rule), "delRU");
+            ChildDeleteLookup.Add(typeof(RuleCondition), "delRC");
+            ChildDeleteLookup.Add(typeof(RuleMessage), "delRM");
 
 
 
