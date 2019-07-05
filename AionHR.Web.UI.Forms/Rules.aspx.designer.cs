@@ -625,13 +625,40 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.FormPanel conditionForm;
         
         /// <summary>
-        /// TextField1 control.
+        /// moduleId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField TextField1;
+        protected global::Ext.Net.ComboBox moduleId;
+        
+        /// <summary>
+        /// moduleStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store moduleStore;
+        
+        /// <summary>
+        /// classId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox classId;
+        
+        /// <summary>
+        /// ClassStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store ClassStore;
         
         /// <summary>
         /// keyName control.
@@ -640,7 +667,16 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField keyName;
+        protected global::Ext.Net.ComboBox keyName;
+        
+        /// <summary>
+        /// keyNameStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store keyNameStore;
         
         /// <summary>
         /// oper control.

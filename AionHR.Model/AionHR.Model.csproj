@@ -199,6 +199,7 @@
     <Compile Include="SelfService\TimeSelfService.cs" />
     <Compile Include="SelfService\TimeVariationSelfService.cs" />
     <Compile Include="SelfService\UserInfoSelfService.cs" />
+    <Compile Include="System\ClassProperty.cs" />
     <Compile Include="System\ResetPassword.cs" />
     <Compile Include="Employees\ShareAttachment.cs" />
     <Compile Include="System\XMLDictionary.cs" />

@@ -153,7 +153,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(ClassProperty), EditClassPropertiesForm, propertiesGrid, null, Button6);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Access_Control.ClassProperty), EditClassPropertiesForm, propertiesGrid, null, Button6);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -164,7 +164,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 try
                 {
-                    var properties = AccessControlApplier.GetPropertiesLevels(typeof(ClassProperty));
+                    var properties = AccessControlApplier.GetPropertiesLevels(typeof(AionHR.Model.Access_Control.ClassProperty));
 
                     var result = propertiesGrid.ColumnModel.Columns[propertiesGrid.ColumnModel.Columns.Count - 1];
                     var item = properties.Where(x => x.index == "accessLevel").ToList()[0];
@@ -535,15 +535,15 @@ namespace AionHR.Web.UI.Forms
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string classId = e.ExtraParams["classId"];
 
-            List<ClassProperty> properties = JsonConvert.DeserializeObject<List<ClassProperty>>(e.ExtraParams["values"]);
-            PostRequest<ClassProperty> req = new PostRequest<ClassProperty>();
-            PostResponse<ClassProperty> resp = null;
+            List<AionHR.Model.Access_Control.ClassProperty> properties = JsonConvert.DeserializeObject<List<AionHR.Model.Access_Control.ClassProperty>>(e.ExtraParams["values"]);
+            PostRequest<AionHR.Model.Access_Control.ClassProperty> req = new PostRequest<AionHR.Model.Access_Control.ClassProperty>();
+            PostResponse<AionHR.Model.Access_Control.ClassProperty> resp = null;
             foreach (var item in properties)
             {
                 item.classId = CurrentClass.Text;
                 item.sgId = CurrentGroup.Text;
                 req.entity = item;
-                resp = _accessControlService.ChildAddOrUpdate<ClassProperty>(req);
+                resp = _accessControlService.ChildAddOrUpdate<AionHR.Model.Access_Control.ClassProperty>(req);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
@@ -1127,7 +1127,7 @@ namespace AionHR.Web.UI.Forms
             PropertiesListRequest req = new PropertiesListRequest();
             req.GroupId = CurrentGroup.Text;
             req.ClassId = CurrentClass.Text;
-            ListResponse<ClassProperty> stored = _accessControlService.ChildGetAll<ClassProperty>(req);
+            ListResponse<AionHR.Model.Access_Control.ClassProperty> stored = _accessControlService.ChildGetAll<AionHR.Model.Access_Control.ClassProperty>(req);
             if (!stored.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, stored.Summary).Show();
@@ -1135,7 +1135,7 @@ namespace AionHR.Web.UI.Forms
             }
 
 
-            List<ClassProperty> final = new List<ClassProperty>();
+            List<AionHR.Model.Access_Control.ClassProperty> final = new List<AionHR.Model.Access_Control.ClassProperty>();
             foreach (var item in properites)
             {
                 if (GetGlobalResourceObject("AccessControl", item.name) == null)
@@ -1143,7 +1143,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     item.name = GetGlobalResourceObject("AccessControl", item.name).ToString();
-                    final.Add(new ClassProperty() { index = item.index, propertyId = item.propertyId, name = item.name, accessLevel = 2 });
+                    final.Add(new AionHR.Model.Access_Control.ClassProperty() { index = item.index, propertyId = item.propertyId, name = item.name, accessLevel = 2 });
                 }
             }
             JsonSerializerSettings settings = new JsonSerializerSettings();

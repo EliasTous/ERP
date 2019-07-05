@@ -169,6 +169,7 @@
     <Compile Include="Messaging\SelfService\SelfServiceRequests.cs" />
     <Compile Include="Messaging\System\AttachementRecordRequest.cs" />
     <Compile Include="Messaging\System\BackgroundJobRecordRequest.cs" />
+    <Compile Include="Messaging\System\ClassPropertyListRequest.cs" />
     <Compile Include="Messaging\System\CompanyUploadLogoRequest.cs" />
     <Compile Include="Messaging\System\UrlKeyRequest.cs" />
     <Compile Include="Messaging\System\XMLDictionaryListRequest.cs" />

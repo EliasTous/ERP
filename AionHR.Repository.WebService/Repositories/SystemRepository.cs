@@ -120,6 +120,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(RetirementAge), "qryRE");
             ChildGetAllLookup.Add(typeof(TermEndDate), "qryTE");
             ChildGetAllLookup.Add(typeof(XMLDictionary), "qryXML");
+            ChildGetAllLookup.Add(typeof(ClassProperty), "qryCP");
 
 
             ChildAddOrUpdateLookup.Add(typeof(KeyValuePair<string, string>), "setDE");

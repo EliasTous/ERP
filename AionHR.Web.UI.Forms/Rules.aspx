@@ -652,8 +652,66 @@
                             DefaultAnchor="100%" 
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="TextField1" runat="server"  Name="recordId"  Hidden="true"/>
-                                <ext:TextField ID="keyName" runat="server" FieldLabel="<%$ Resources:FieldKeyName%>" Name="keyName" AllowBlank="false"  />
+                                <ext:TextField  runat="server"  Name="recordId"  Hidden="true"/>
+
+                                  <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldModule%>"  runat="server" DisplayField="value" ValueField="key"   Name="moduleId" ID="moduleId"  >
+                                             <Store>
+                                                <ext:Store runat="server" ID="moduleStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       
+                                      <DirectEvents>
+                                         <Select OnEvent="FillClassIdCombo" />
+                                      </DirectEvents>
+                                       </ext:ComboBox>
+
+                                   <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldClass%>"  runat="server" DisplayField="className" ValueField="classId"   Name="classId" ID="classId"  >
+                                             <Store>
+                                                <ext:Store runat="server" ID="ClassStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="className" />
+                                                                <ext:ModelField Name="classId" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                        <Listeners>
+                                                <Select Handler="if(App.moduleId.getValue() != null && App.moduleId.getValue() != '' && App.classId.getValue() != null && App.classId.getValue() != '' )   return true; else false;  " />
+                                            </Listeners>
+                                       <DirectEvents>
+
+                                           <Select OnEvent="FillKeyName" />
+                                       </DirectEvents>
+                                       </ext:ComboBox>
+
+
+                                 <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:FieldKeyName%>"  runat="server" DisplayField="propertyName" ValueField="propertyName"   Name="keyName" ID="keyName"  >
+                                             <Store>
+                                                <ext:Store runat="server" ID="keyNameStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="propertyName" />
+                                                              
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                      
+                                       </ext:ComboBox>
+                             <%--   <ext:TextField ID="keyName" runat="server" FieldLabel="<%$ Resources:FieldKeyName%>" Name="keyName" AllowBlank="false"  />--%>
                                 <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldOperator%>"  runat="server" DisplayField="value" ValueField="key"   Name="oper" ID="oper" AllowBlank="false" >
                                              <Store>
                                                 <ext:Store runat="server" ID="operStore">

@@ -186,4 +186,10 @@
   <data name="FieldValue" xml:space="preserve">
     <value>Value</value>
   </data>
+  <data name="FieldClass" xml:space="preserve">
+    <value>Class</value>
+  </data>
+  <data name="FieldModule" xml:space="preserve">
+    <value>Module</value>
+  </data>
 </root>

@@ -27,6 +27,8 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Services.Messaging.CompanyStructure;
+using AionHR.Model.Access_Control;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -34,7 +36,7 @@ namespace AionHR.Web.UI.Forms
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
-
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
 
@@ -95,6 +97,8 @@ namespace AionHR.Web.UI.Forms
                 operStore.DataBind();
                 languageStore.DataSource= Common.XMLDictionaryList(_systemService, "23");
                 languageStore.DataBind();
+                moduleStore.DataSource = Common.XMLDictionaryList(_systemService, "1");
+                moduleStore.DataBind();
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(EntitlementDeduction), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
@@ -175,7 +179,18 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.conditionForm.SetValues(response.result);
-                 
+                    keyName.GetStore().Add(new object[]
+                       {
+                                new
+                                {
+                                   propertyName=response.result.keyName
+                                }
+                       });
+                    keyName.SetValue(response.result.keyName);
+                    moduleId.Hidden = true;
+                    classId.Hidden = true;
+                    keyName.ReadOnly = true;
+
 
                     this.conditionWindow.Title = Resources.Common.EditWindowsTitle;
                     this.conditionWindow.Show();
@@ -552,7 +567,9 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             conditionForm.Reset();
-           
+            moduleId.Hidden = false;
+            classId.Hidden = false;
+            keyName.ReadOnly = false;
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
@@ -671,6 +688,48 @@ namespace AionHR.Web.UI.Forms
 
 
             this.messagesStore.DataBind();
+        }
+
+        
+        protected void FillKeyName(object sender, DirectEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(moduleId.SelectedItem.Value.ToString()) && !string.IsNullOrEmpty(classId.SelectedItem.Value.ToString()))
+            {
+                ClassPropertyListRequest req = new ClassPropertyListRequest();
+                req.moduleId = moduleId.SelectedItem.Value.ToString();
+                req.classId = classId.SelectedItem.Value.ToString();
+                ListResponse<AionHR.Model.System.ClassProperty> resp = _systemService.ChildGetAll<AionHR.Model.System.ClassProperty>(req);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return;
+                }
+                keyNameStore.DataSource = resp.Items;
+                keyNameStore.DataBind();
+            }
+
+
+        }
+        protected void FillClassIdCombo(object sender, DirectEventArgs e)
+        {
+
+            if (!string.IsNullOrEmpty(moduleId.SelectedItem.Value.ToString()))
+                {
+                AccessControlListRequest req = new AccessControlListRequest();
+                req.GroupId = "0";
+                req.ModuleId = moduleId.SelectedItem.Value.ToString();
+                ListResponse<ModuleClass> resp = _accessControlService.ChildGetAll<ModuleClass>(req);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return;
+                }
+                ClassStore.DataSource = resp.Items;
+                ClassStore.DataBind();
+            }
+
+
+
         }
         protected void SaveNewConditionRecord(object sender, DirectEventArgs e)
         {
@@ -1024,10 +1083,10 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-       
-       
 
-       
+        protected void Unnamed_Event()
+        {
 
+        }
     }
 }
