@@ -245,9 +245,10 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node DS = BuildLeafNode("rootParent_TA_DS", Resources.Common.DailySchedule, "DateMagnify", true, timeAt);
             Ext.Net.Node BA = BuildLeafNode("rootParent_TA_BA", Resources.Common.BranchAvailability, "DateMagnify", true, timeAt);
             Ext.Net.Node DA = BuildLeafNode("rootParent_TA_DA", Resources.Common.DayAvailability, "DateEdit", true, timeAt);
-           // Ext.Net.Node GS = BuildLeafNode("rootParent_TA_GS", Resources.Common.GenerateAttendanceShift, "DateEdit", true, timeAt);
-           // Ext.Net.Node SA = BuildLeafNode("rootParent_TA_SA", Resources.Common.SynchronizeAttendanceDays, "UserGo", true, timeAt);
-          
+            Ext.Net.Node TP = BuildLeafNode("rootParent_TA_TP", Resources.Common.TimePerformances, "DateEdit", true, timeAt);
+            // Ext.Net.Node GS = BuildLeafNode("rootParent_TA_GS", Resources.Common.GenerateAttendanceShift, "DateEdit", true, timeAt);
+            // Ext.Net.Node SA = BuildLeafNode("rootParent_TA_SA", Resources.Common.SynchronizeAttendanceDays, "UserGo", true, timeAt);
+
             //Ext.Net.Node EC = BuildLeafNode("rootParent_TA_EC", Resources.Common.EmployeeCalender, "UserGo", true, timeAt);
 
 
@@ -260,6 +261,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(DS, "DS", "DailySchedule.aspx", Resources.Common.DailySchedule, "icon-Employees", "1");
             FillConfigItem(DA, "DA", "DaysAvailability.aspx", Resources.Common.DayAvailability, "icon-Employees", "1");
             FillConfigItem(BA, "BA", "BranchAvailabilities.aspx", Resources.Common.BranchAvailability, "icon-Employees", "1");
+            FillConfigItem(TP, "Tp", "TimePerformances.aspx", Resources.Common.TimePerformances, "icon-Employees", "1");
             //FillConfigItem(EC, "EC", "EmployeeCals.aspx", Resources.Common.EmployeeCalender, "icon-Employees", "1");
             //   FillConfigItem(GS, "GS", "GenerateAttendanceShifts.aspx", Resources.Common.GenerateAttendanceShift, "icon-Employees", "1");
             // FillConfigItem(SA, "SA", "SynchronizeAttendanceDays.aspx", Resources.Common.SynchronizeAttendanceDays, "icon-Employees", "1");

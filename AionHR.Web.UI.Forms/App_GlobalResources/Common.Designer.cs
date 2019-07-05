@@ -3490,6 +3490,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Time Performance.
+        /// </summary>
+        internal static string TimePerformances {
+            get {
+                return ResourceManager.GetString("TimePerformances", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time Schedule.
         /// </summary>
         internal static string TimeSchedule {

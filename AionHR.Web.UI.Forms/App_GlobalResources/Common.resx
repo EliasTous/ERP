@@ -1362,4 +1362,7 @@
   <data name="Rules" xml:space="preserve">
     <value>Rules</value>
   </data>
+  <data name="TimePerformances" xml:space="preserve">
+    <value>Time Performance</value>
+  </data>
 </root>

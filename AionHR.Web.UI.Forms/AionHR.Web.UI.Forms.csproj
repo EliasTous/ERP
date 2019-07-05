@@ -235,6 +235,7 @@
     <Content Include="TimeApprovalsSelfServices.aspx" />
     <Content Include="TimeAttendanceApprovals.aspx" />
     <Content Include="TimeAttendanceViewSelfServices.aspx" />
+    <Content Include="TimePerformances.aspx" />
     <Content Include="TimeVariationSelfServices.aspx" />
     <Content Include="Absent.aspx" />
     <Content Include="AdminTemplates.aspx" />
@@ -609,12 +610,11 @@
     <Content Include="App_LocalResources\WorkFlows.aspx.ar.resx" />
     <Content Include="App_LocalResources\WorkFlows.aspx.fr.resx" />
     <Content Include="App_LocalResources\WorkFlows.aspx.resx" />
-    <Content Include="App_LocalResources\Rules.ar.resx" />
     <Content Include="App_LocalResources\Rules.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\Rules.aspx.fr.resx" />
-    <Content Include="App_LocalResources\Rules.resx" />
     <Content Include="App_LocalResources\Rules.aspx.ar.resx" />
     <Content Include="App_LocalResources\Rules.aspx.resx" />
+    <Content Include="App_LocalResources\TimePerformances.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -1202,6 +1202,13 @@
     </Compile>
     <Compile Include="TimeAttendanceViewSelfServices.aspx.designer.cs">
       <DependentUpon>TimeAttendanceViewSelfServices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TimePerformances.aspx.cs">
+      <DependentUpon>TimePerformances.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimePerformances.aspx.designer.cs">
+      <DependentUpon>TimePerformances.aspx</DependentUpon>
     </Compile>
     <Compile Include="TimeVariationSelfServices.aspx.cs">
       <DependentUpon>TimeVariationSelfServices.aspx</DependentUpon>
