@@ -3094,6 +3094,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rule Triggers.
+        /// </summary>
+        internal static string RuleTriggers {
+            get {
+                return ResourceManager.GetString("RuleTriggers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Salary.
         /// </summary>
         internal static string Salary {

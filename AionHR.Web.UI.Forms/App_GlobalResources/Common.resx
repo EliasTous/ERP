@@ -1365,4 +1365,7 @@
   <data name="TimePerformances" xml:space="preserve">
     <value>Time Performance</value>
   </data>
+  <data name="RuleTriggers" xml:space="preserve">
+    <value>Rule Triggers</value>
+  </data>
 </root>

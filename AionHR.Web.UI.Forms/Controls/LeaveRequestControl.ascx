@@ -111,10 +111,10 @@
         //App.leaveRequest1_leavePeriod.setValue(sum.toFixed(2));
       //  App.leaveRequest1_leaveHours.setValue(sum);
       //  App.leaveRequest1_workingHours.setValue(sumTotalWorkingHours);
-        if (sum == 0 || sumTotalWorkingHours == 0)
-            App.leaveRequest1_leaveDaysField.setValue(0);
-        else
-        App.leaveRequest1_leaveDaysField.setValue(App.leaveRequest1_LeaveDaysGrid.getStore().getCount() * (sum / sumTotalWorkingHours));
+        //if (sum == 0 || sumTotalWorkingHours == 0)
+        //    App.leaveRequest1_leaveDaysField.setValue(0);
+        //else
+        //App.leaveRequest1_leaveDaysField.setValue(App.leaveRequest1_LeaveDaysGrid.getStore().getCount() * (sum / sumTotalWorkingHours));
         
         
 
@@ -395,7 +395,7 @@
                         </ext:Panel>
                            <ext:Panel runat="server" Layout="HBoxLayout">
                             <Items>
-                                   <ext:NumberField ReadOnly="true"  runat="server" Width="200" ID="leaveDaysField"  Name="leaveDaysField"  FieldLabel="<%$Resources:leaveDays %>" >
+                                   <ext:NumberField ReadOnly="true" Visible="false"  runat="server" Width="200" ID="leaveDaysField"  Name="leaveDaysField"  FieldLabel="<%$Resources:leaveDays %>" >
                                        </ext:NumberField>
                                    <ext:NumberField ReadOnly="true" Visible="false" runat="server" Width="200" ID="leaveHours" Name="leaveHours"  FieldLabel="<%$Resources:leaveHours %>">
                                        </ext:NumberField>

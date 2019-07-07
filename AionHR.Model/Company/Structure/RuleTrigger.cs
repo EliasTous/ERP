@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AionHR.Model.Company.Structure
+{
+   public class RuleTrigger
+    {
+        public string classId { get; set; }
+        public string accessType { get; set; }
+
+        public string seqNo { get; set; }
+        public string ruleId { get; set; }
+        
+
+       
+
+
+    }
+}

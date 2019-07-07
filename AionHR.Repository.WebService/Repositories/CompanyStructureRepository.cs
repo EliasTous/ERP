@@ -45,6 +45,7 @@ namespace AionHR.Repository.WebService.Repositories
             base.ChildGetAllLookup.Add(typeof(Rule), "qryRU");
             base.ChildGetAllLookup.Add(typeof(RuleCondition), "qryRC");
             base.ChildGetAllLookup.Add(typeof(RuleMessage), "qryRM");
+            base.ChildGetAllLookup.Add(typeof(RuleTrigger), "qryRT");
 
 
             base.ChildAddOrUpdateLookup.Add(typeof(Branch), "setBR");
@@ -60,6 +61,7 @@ namespace AionHR.Repository.WebService.Repositories
             base.ChildAddOrUpdateLookup.Add(typeof(Rule), "setRU");
             base.ChildAddOrUpdateLookup.Add(typeof(RuleCondition), "setRC");
             base.ChildAddOrUpdateLookup.Add(typeof(RuleMessage), "setRM");
+            base.ChildAddOrUpdateLookup.Add(typeof(RuleTrigger), "setRT");
 
             ChildDeleteLookup.Add(typeof(Branch), "delBR");
             ChildDeleteLookup.Add(typeof(Department), "delDE");
@@ -75,6 +77,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(Rule), "delRU");
             ChildDeleteLookup.Add(typeof(RuleCondition), "delRC");
             ChildDeleteLookup.Add(typeof(RuleMessage), "delRM");
+            ChildDeleteLookup.Add(typeof(RuleTrigger), "delRT");
 
 
 

@@ -62,6 +62,9 @@
      <ext:Hidden runat="server" ID="arTitle" Text="<%$Resources:Common , ApprovalReason %>" />
      <ext:Hidden runat="server" ID="wfTitle" Text="<%$Resources:Common , workFlow %>" />
         <ext:Hidden runat="server" ID="ruTitle" Text="<%$Resources:Common , Rules %>" />
+        <ext:Hidden runat="server" ID="RuleTriggerTitle" Text="<%$Resources:Common , RuleTriggers %>" />
+
+    
     <ext:Hidden runat="server" ID="brTitle" Text="<%$Resources:Common , Branches %>" />
     <ext:Hidden runat="server" ID="diTitle" Text="<%$Resources:Common , Divisions %>" />
     <ext:Hidden runat="server" ID="poTitle" Text="<%$Resources:Common , Positions %>" />
@@ -380,11 +383,27 @@
                                                                                 <Click Handler="openNewTab('WorkFlows', 'WorkFlows.aspx', #{wfTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
+                                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common , Rules%>">
+                                                                             <Menu>
+                                                                                    <ext:Menu runat="server">
+                                                                                        <Items>
                                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Rules%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('Rules', 'Rules.aspx', #{ruTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
+                                                                              
                                                                         </ext:MenuItem>
+                                                                                             <ext:MenuItem runat="server" Text="<%$Resources: Common , RuleTriggers%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('RuleTriggers', 'RuleTriggers.aspx', #{RuleTriggerTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                              
+                                                                        </ext:MenuItem>
+                                                                                            </Items>
+                                                                                        </ext:Menu>
+                                                                                  </Menu>
+                                                                              
+                                                                              </ext:MenuItem>
                                                                          
                                                                     </Items>
                                                                 </ext:Menu>
@@ -911,15 +930,15 @@
                                     <Click Handler="openModule(6);" />
                                 </Listeners>
                             </ext:Button>
-                            <ext:ToolbarFill runat="server" />
-                            
-                            <ext:Button ID="btnAdminAffairs" runat="server" Icon="EmailAttach" ToolTip="<%$ Resources:Common , AdministrationAffairs %>">
+                              <ext:Button ID="btnAdminAffairs" runat="server" Icon="EmailAttach" ToolTip="<%$ Resources:Common , AdministrationAffairs %>">
                                 <Listeners>
                                     <Click Handler="openModule(9);" />
                                 </Listeners>
                             </ext:Button>
                             <ext:ToolbarFill runat="server" />
-
+                            
+                          
+                          
 
                         </Items>
                     </ext:Toolbar>

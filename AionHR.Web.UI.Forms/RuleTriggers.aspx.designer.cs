@@ -10,7 +10,7 @@
 namespace AionHR.Web.UI.Forms {
     
     
-    public partial class TimeAttendanceView {
+    public partial class RuleTriggers {
         
         /// <summary>
         /// Form1 control.
@@ -67,175 +67,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
-        /// TotalText control.
+        /// CurrentModule control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden TotalText;
-        
-        /// <summary>
-        /// HoursWorked control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden HoursWorked;
-        
-        /// <summary>
-        /// TotalBreaksText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden TotalBreaksText;
-        
-        /// <summary>
-        /// overtimeText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden overtimeText;
-        
-        /// <summary>
-        /// earlyCheckInText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden earlyCheckInText;
-        
-        /// <summary>
-        /// minutesText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden minutesText;
-        
-        /// <summary>
-        /// CurrentEmployee control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden CurrentEmployee;
-        
-        /// <summary>
-        /// CurrentDay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden CurrentDay;
-        
-        /// <summary>
-        /// CurrentCA control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden CurrentCA;
-        
-        /// <summary>
-        /// CurrentSC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden CurrentSC;
-        
-        /// <summary>
-        /// vals control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden vals;
-        
-        /// <summary>
-        /// texts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden texts;
-        
-        /// <summary>
-        /// labels control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden labels;
-        
-        /// <summary>
-        /// FromSelfService control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden FromSelfService;
-        
-        /// <summary>
-        /// loaderUrl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden loaderUrl;
-        
-        /// <summary>
-        /// allHF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden allHF;
-        
-        /// <summary>
-        /// pendingHF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden pendingHF;
-        
-        /// <summary>
-        /// approvedHF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden approvedHF;
-        
-        /// <summary>
-        /// format control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden format;
+        protected global::Ext.Net.Hidden CurrentModule;
         
         /// <summary>
         /// Store1 control.
@@ -274,58 +112,85 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.GridPanel GridPanel1;
         
         /// <summary>
-        /// labelbar control.
+        /// Toolbar1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Toolbar labelbar;
+        protected global::Ext.Net.Toolbar Toolbar1;
         
         /// <summary>
-        /// selectedFilters control.
+        /// btnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label selectedFilters;
+        protected global::Ext.Net.Button btnAdd;
         
         /// <summary>
-        /// Column1 control.
+        /// ColRecordId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column1;
+        protected global::Ext.Net.Column ColRecordId;
         
         /// <summary>
-        /// Column2 control.
+        /// ColName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column2;
+        protected global::Ext.Net.Column ColName;
         
         /// <summary>
-        /// Column3 control.
+        /// colDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column3;
+        protected global::Ext.Net.Column colDelete;
         
         /// <summary>
-        /// Column5 control.
+        /// colAttach control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column5;
+        protected global::Ext.Net.Column colAttach;
+        
+        /// <summary>
+        /// colEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column colEdit;
+        
+        /// <summary>
+        /// Toolbar2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Toolbar Toolbar2;
+        
+        /// <summary>
+        /// StatusBar1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.StatusBar StatusBar1;
         
         /// <summary>
         /// PagingToolbar1 control.
@@ -355,183 +220,219 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.RowSelectionModel rowSelectionModel;
         
         /// <summary>
-        /// total control.
+        /// EditRecordWindow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label total;
+        protected global::Ext.Net.Window EditRecordWindow;
         
         /// <summary>
-        /// totalBreaks control.
+        /// panelRecordDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label totalBreaks;
+        protected global::Ext.Net.TabPanel panelRecordDetails;
         
         /// <summary>
-        /// TimeApprovalWindow control.
+        /// triggersForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window TimeApprovalWindow;
+        protected global::Ext.Net.FormPanel triggersForm;
         
         /// <summary>
-        /// timeApprovalGrid control.
+        /// modulesCombo1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridPanel timeApprovalGrid;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.MoudleFilter modulesCombo1;
         
         /// <summary>
-        /// Store3 control.
+        /// classesGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store Store3;
+        protected global::Ext.Net.GridPanel classesGrid;
         
         /// <summary>
-        /// Model3 control.
+        /// classesStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Model Model3;
+        protected global::Ext.Net.Store classesStore;
         
         /// <summary>
-        /// Column6 control.
+        /// Column3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column6;
+        protected global::Ext.Net.Column Column3;
         
         /// <summary>
-        /// Column10 control.
+        /// Column1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column10;
+        protected global::Ext.Net.Column Column1;
         
         /// <summary>
-        /// Column11 control.
+        /// Column8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column11;
+        protected global::Ext.Net.Column Column8;
         
         /// <summary>
-        /// Column12 control.
+        /// Toolbar7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column12;
+        protected global::Ext.Net.Toolbar Toolbar7;
         
         /// <summary>
-        /// Column13 control.
+        /// StatusBar4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column13;
+        protected global::Ext.Net.StatusBar StatusBar4;
         
         /// <summary>
-        /// Column14 control.
+        /// GridView4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column14;
+        protected global::Ext.Net.GridView GridView4;
         
         /// <summary>
-        /// Column15 control.
+        /// rowSelectionModel3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column15;
+        protected global::Ext.Net.RowSelectionModel rowSelectionModel3;
         
         /// <summary>
-        /// Column16 control.
+        /// SaveButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column16;
+        protected global::Ext.Net.Button SaveButton;
         
         /// <summary>
-        /// Column17 control.
+        /// CancelButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column17;
+        protected global::Ext.Net.Button CancelButton;
         
         /// <summary>
-        /// GridView3 control.
+        /// TriggerWindow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridView GridView3;
+        protected global::Ext.Net.Window TriggerWindow;
         
         /// <summary>
-        /// rowSelectionModel2 control.
+        /// TriggerForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.RowSelectionModel rowSelectionModel2;
+        protected global::Ext.Net.FormPanel TriggerForm;
         
         /// <summary>
-        /// Button2 control.
+        /// classSelectedId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button Button2;
+        protected global::Ext.Net.TextField classSelectedId;
         
         /// <summary>
-        /// reportsParams control.
+        /// accessType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Window reportsParams;
+        protected global::Ext.Net.ComboBox accessType;
         
         /// <summary>
-        /// Panel8 control.
+        /// accessTypeStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel Panel8;
+        protected global::Ext.Net.Store accessTypeStore;
+        
+        /// <summary>
+        /// ruleSelector control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ItemSelector ruleSelector;
+        
+        /// <summary>
+        /// ruleSelectorStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store ruleSelectorStore;
+        
+        /// <summary>
+        /// Button5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button5;
+        
+        /// <summary>
+        /// Button6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button6;
     }
 }

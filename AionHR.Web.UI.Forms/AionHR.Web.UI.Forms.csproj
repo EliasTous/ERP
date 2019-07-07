@@ -226,6 +226,7 @@
     <Content Include="Reports\RT508.aspx" />
     <Content Include="Routers.aspx" />
     <Content Include="Rules.aspx" />
+    <Content Include="RuleTriggers.aspx" />
     <Content Include="Scripts\AdminTemplates.js" />
     <Content Include="Scripts\ReportsCommon.js" />
     <Content Include="Scripts\SystemDefaults.js" />
@@ -615,6 +616,7 @@
     <Content Include="App_LocalResources\Rules.aspx.ar.resx" />
     <Content Include="App_LocalResources\Rules.aspx.resx" />
     <Content Include="App_LocalResources\TimePerformances.aspx.resx" />
+    <Content Include="App_LocalResources\RuleTriggers.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -1160,6 +1162,13 @@
     </Compile>
     <Compile Include="Rules.aspx.designer.cs">
       <DependentUpon>Rules.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RuleTriggers.aspx.cs">
+      <DependentUpon>RuleTriggers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RuleTriggers.aspx.designer.cs">
+      <DependentUpon>RuleTriggers.aspx</DependentUpon>
     </Compile>
     <Compile Include="SelfServiceResetPasswords.aspx.cs">
       <DependentUpon>SelfServiceResetPasswords.aspx</DependentUpon>

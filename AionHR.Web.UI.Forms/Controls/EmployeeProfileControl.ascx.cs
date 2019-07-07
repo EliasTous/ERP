@@ -1225,7 +1225,7 @@ namespace AionHR.Web.UI.Forms
                 forSummary.departmentName + "<br />",
               forSummary.branchName + "<br />",
                forSummary.positionName + "<br />",
-               !string.IsNullOrEmpty(reportToFullName.Trim())? " " : GetLocalResourceObject("FieldReportsTo").ToString() + " :<br/>" + reportToFullName + "<br />",
+               !string.IsNullOrEmpty(reportToFullName.Trim())? " " : GetLocalResourceObject("FieldReportsTo").ToString() + " :<br />" + reportToFullName + "<br />",
 
                forSummary.indemnity + "<br />",
                forSummary.usedLeavesLeg + "<br/>",

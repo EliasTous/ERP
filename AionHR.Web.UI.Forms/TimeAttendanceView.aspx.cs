@@ -44,6 +44,7 @@ namespace AionHR.Web.UI.Forms
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
+        ISelfServiceService _selfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
         List<XMLDictionary> timeCode = new List<XMLDictionary>();
 
         protected override void InitializeCulture()
@@ -114,7 +115,10 @@ namespace AionHR.Web.UI.Forms
                 List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
 
             }
-
+            if (!string.IsNullOrEmpty(Request.QueryString["_fromSelfService"]))
+                FromSelfService.Text = Request.QueryString["_fromSelfService"];
+            else
+                FromSelfService.Text = "false";
 
         }
 
@@ -388,7 +392,8 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                //GEtting the filter from the page
+                
+
 
                 string rep_params = vals.Text;
                 TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
@@ -396,9 +401,11 @@ namespace AionHR.Web.UI.Forms
                 req.StartAt = e.Start.ToString();
                 req.Size = "30";
                 req.sortBy = "dayId";
-
-
-                ListResponse<AttendanceDay> daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
+                ListResponse<AttendanceDay> daysResponse;
+                if (FromSelfService.Text=="true")
+                    daysResponse = _selfServiceService.ChildGetAll<AttendanceDay>(req);
+                else
+                    daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
                 if (!daysResponse.Success)
                 {
                     Common.errorMessage(daysResponse);
@@ -443,8 +450,12 @@ namespace AionHR.Web.UI.Forms
                     //    asstring = asstring.Substring(0, asstring.Length - 1);
                     ReportGenericRequest tvReq = new ReportGenericRequest();
                     tvReq.paramString = "1|" + x.employeeId + "^2|" + x.dayId + "^3|" + x.dayId;
-                    ListResponse<DashBoardTimeVariation> tvResp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(tvReq);
-                    if(!tvResp.Success)
+                    ListResponse<DashBoardTimeVariation> tvResp;
+                    if (FromSelfService.Text == "true")
+                        tvResp = _selfServiceService.ChildGetAll<DashBoardTimeVariation>(tvReq);
+                    else
+                        tvResp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(tvReq);
+                    if (!tvResp.Success)
                     {
                         Common.errorMessage(tvResp);
                         return;

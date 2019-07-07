@@ -149,6 +149,7 @@
     <Compile Include="Messaging\CompanyStructure\PositionListRequest.cs" />
     <Compile Include="Messaging\CompanyStructure\RuleConditionListRequest.cs" />
     <Compile Include="Messaging\CompanyStructure\RuleMessageRecordRequest.cs" />
+    <Compile Include="Messaging\CompanyStructure\RuleTriggerListRequset.cs" />
     <Compile Include="Messaging\CompanyStructure\WorkSequenceListRequest.cs" />
     <Compile Include="Messaging\DashBoard\CompanyRightToWorkListRequest.cs" />
     <Compile Include="Messaging\DashBoard\LeaveApprovalListRequest.cs" />

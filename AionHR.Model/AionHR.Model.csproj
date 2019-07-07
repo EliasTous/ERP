@@ -113,6 +113,7 @@
     <Compile Include="Company\Structure\Rule.cs" />
     <Compile Include="Company\Structure\RuleCondition.cs" />
     <Compile Include="Company\Structure\RuleMessage.cs" />
+    <Compile Include="Company\Structure\RuleTrigger.cs" />
     <Compile Include="Company\Structure\WorkFlow.cs" />
     <Compile Include="Company\Structure\WorkSequence.cs" />
     <Compile Include="Dashboard\CompanyRTW.cs" />

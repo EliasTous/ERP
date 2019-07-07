@@ -104,6 +104,7 @@
          <ext:Hidden ID="vals" runat="server" />
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
+          <ext:Hidden ID="FromSelfService" runat="server" />
        
         <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=TAAD&values="/>
          <ext:Hidden ID="allHF" runat="server" Text="<%$ Resources: FieldAll %>" />
