@@ -88,7 +88,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     SetExtLanguage();
                     HideShowButtons();
-
+                    holidayCount.Text = "0";
                     if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                         X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                     CurrentEmployee.Text = Request.QueryString["employeeId"];
@@ -107,30 +107,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Common.errorMessage(resp);
                         return;
                     }
-                    double holidayCount = 0;
-                    if (resp.result != null)
-                    {
-                        LeaveCalendarDayListRequest reqCD2 = new LeaveCalendarDayListRequest();
-                        if (resp.result.hireDate != null)
-                            reqCD2.StartDayId = ((DateTime)resp.result.hireDate).ToString("yyyyMMdd");
-                        reqCD2.EndDayId = resp.result.probationEndDate.ToString("yyyyMMdd").ToString();
-                        reqCD2.IsWorkingDay = false;
-                        
-                        reqCD2.caId = resp.result.caId != null ? (Int32)resp.result.caId : 0;
 
 
-                        reqCD2.employeeId = Request.QueryString["employeeId"];
-                       
-                        ListResponse<LeaveCalendarDay> holidayRespone = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(reqCD2);
-                        if (!holidayRespone.Success)
-                        {
-                            Common.errorMessage(holidayRespone);
-                        }
-                        else
-                            holidayCount = holidayRespone.Items.Count;
+                    employeeCaId.Text = resp.result.caId.ToString();
 
 
-                    }
+
                     probationPeriod.SuspendEvent("Change");
                     if (resp.result != null)
                     {
@@ -173,11 +155,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     bool disabled = EmployeeTerminated.Text == "1";
 
                     saveButton.Disabled = disabled;
-                    probationPeriod.Value = 0;
+                    //probationPeriod.Value = 0;
 
                     probationPeriod.ResumeEvent("Change");
 
-                    
+
 
                     try
                     {
@@ -209,12 +191,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         infoField.Visible = true;
                     }
                 }
-                catch(Exception exp)
+                catch (Exception exp)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
                 }
-               
+
             }
 
         }
@@ -266,9 +248,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             h.employeeId = CurrentEmployee.Text;
 
             PostResponse<HireInfo> resp = _employeeService.ChildAddOrUpdate<HireInfo>(req);
-            if(!resp.Success)
+            if (!resp.Success)
             {
-               Common.errorMessage(resp);
+                Common.errorMessage(resp);
                 return;
             }
 
@@ -303,7 +285,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest departmentsRequest = new ListRequest();
             ListResponse<NoticePeriod> resp = _employeeService.ChildGetAll<NoticePeriod>(departmentsRequest);
             if (!resp.Success)
-               Common.errorMessage(resp);
+                Common.errorMessage(resp);
             npStore.DataSource = resp.Items;
             npStore.DataBind();
         }
@@ -311,7 +293,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         {
             NoticePeriod dept = new NoticePeriod();
             dept.name = npId.Text;
-           
+
             PostRequest<NoticePeriod> depReq = new PostRequest<NoticePeriod>();
             depReq.entity = dept;
             PostResponse<NoticePeriod> response = _employeeService.ChildAddOrUpdate<NoticePeriod>(depReq);
@@ -324,7 +306,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                 Common.errorMessage(response);
+                Common.errorMessage(response);
                 return;
             }
 
@@ -347,7 +329,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                 Common.errorMessage(response);
+                Common.errorMessage(response);
                 return;
             }
 
@@ -359,7 +341,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListResponse<Sponsor> resp = _employeeService.ChildGetAll<Sponsor>(sponserRequest);
             if (!resp.Success)
             {
-               Common.errorMessage(resp);
+                Common.errorMessage(resp);
                 return;
             }
             sponsorStore.DataSource = resp.Items;
@@ -371,7 +353,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
             {
-               Common.errorMessage(resp);
+                Common.errorMessage(resp);
                 return;
             }
             branchStore.DataSource = resp.Items;
@@ -380,7 +362,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         [DirectMethod]
         protected void Unnamed_Event()
         {
-           
+
 
         }
         private void FillPrevRecordIdField()
@@ -417,10 +399,69 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (!routers.Success)
                 return;
             this.Store2.DataSource = routers.Items;
-          
+
 
             this.Store2.DataBind();
 
         }
+
+        private  string RemoveSpecialCharacters(string str)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in str)
+            {
+                if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '.' || c == '-' || c == ':' || c == ' ')
+                {
+                    sb.Append(c);
+                }
+            }
+            return sb.ToString();
+        }
+
+        [DirectMethod]
+        public void calHolidays(string probationEndDate)
+        {
+
+            probationEndDate = RemoveSpecialCharacters(probationEndDate);
+
+            WorkingDayListRequest reqCD2 = new WorkingDayListRequest();
+            DateTime date = DateTime.Now;
+          if (!DateTime.TryParse(hireDate.Value.ToString(), out date))
+              {
+                return;
+              }
+            reqCD2.StartDayId = date.ToString("yyyyMMdd");
+            if (!DateTime.TryParse(probationEndDate, out date))
+            {
+                return;
+            }
+
+            reqCD2.EndDayId = date.ToString("yyyyMMdd");
+            reqCD2.IsWorkingDay = false;
+            if (string.IsNullOrEmpty(employeeCaId.Text))
+            {
+                return;
+            }
+            reqCD2.caId = Convert.ToInt32(employeeCaId.Text);
+
+
+                reqCD2.employeeId = Request.QueryString["employeeId"];
+
+                ListResponse<LeaveCalendarDay> holidayRespone = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(reqCD2);
+                if (!holidayRespone.Success)
+                {
+                    Common.errorMessage(holidayRespone);
+                return;
+                }
+            holidayCount.Text = holidayRespone.count.ToString();
+
+
+
+
+
+
+        }
+
+       
     }
 }

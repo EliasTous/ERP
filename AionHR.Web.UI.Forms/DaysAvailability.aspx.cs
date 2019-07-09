@@ -235,12 +235,12 @@ namespace AionHR.Web.UI.Forms
                              <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0'  style='width:auto;'>";
 
 
-       
+
 
             //string startAt, closeAt = string.Empty;
             //GetBranchSchedule(out startAt, out closeAt);
-            string startAt = "00:00";
-            string closeAt = "00:00";
+            string startAt = items.Count != 0 ? items.Min(x => x.dtFrom.TimeOfDay).ToString() : "00:00";
+            string closeAt = items.Count != 0 ? items.Max(x => x.dtTo.TimeOfDay).ToString() : "00:00";
 
             if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
             {
@@ -739,10 +739,11 @@ namespace AionHR.Web.UI.Forms
                              <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' >";
             if (response.Items.Count == 0)
                 Load_Click(new object(), new DirectEventArgs(null));
-          
-                //  GetBranchSchedule(out startAt, out closeAt);
 
-            string startAt = "00:00", closeAt = "00:00";
+            //  GetBranchSchedule(out startAt, out closeAt);
+
+            string startAt = response.Items.Count != 0 ? response.Items.Min(x => x.dtFrom.TimeOfDay).ToString() : "00:00";
+            string closeAt = response.Items.Count != 0 ? response.Items.Max(x => x.dtTo.TimeOfDay).ToString() : "00:00";
             TimeSpan tsStart = TimeSpan.Parse(startAt);
             //timeFrom.MinTime = tsStart;
             //timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value)));
