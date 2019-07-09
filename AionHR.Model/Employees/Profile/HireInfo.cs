@@ -54,6 +54,8 @@ namespace AionHR.Model.Employees.Profile
 
 
         public int? languageId { get; set; }
+        public int? caId { get; set; }
+        
 
     }
 }
