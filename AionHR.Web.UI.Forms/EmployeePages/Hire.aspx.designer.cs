@@ -121,6 +121,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden hireDate;
         
         /// <summary>
+        /// employeeCaId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden employeeCaId;
+        
+        /// <summary>
+        /// holidayCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden holidayCount;
+        
+        /// <summary>
         /// Viewport11 control.
         /// </summary>
         /// <remarks>

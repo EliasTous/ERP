@@ -122,6 +122,35 @@ public class LeaveCalendarDayListRequest : ListRequest
     }
 }
 
+public class WorkingDayListRequest : ListRequest
+{
+    public string employeeId { get; set; }
+
+    public string StartDayId { get; set; }
+
+    public string EndDayId { get; set; }
+
+    public bool IsWorkingDay { get; set; }
+
+    public int caId { get; set; }
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_employeeId", employeeId);
+            parameters.Add("_startDayId", StartDayId.ToString());
+            parameters.Add("_endDayId", EndDayId.ToString());
+            parameters.Add("_isWorkingDay", IsWorkingDay ? "1" : "0");
+            parameters.Add("_caId", caId.ToString());
+
+
+            return parameters;
+        }
+    }
+}
+
 public class LeaveDayListRequest : ListRequest
 {
     public string LeaveId { get; set; }
