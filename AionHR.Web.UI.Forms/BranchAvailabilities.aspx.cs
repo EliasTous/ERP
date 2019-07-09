@@ -903,8 +903,8 @@ namespace AionHR.Web.UI.Forms
 
                 //CAlling the branch cvailability before proceeding
 
-                string startAt = "00:00";
-                string closeAt = "00:00";
+                string startAt = items.Count != 0 ? items.Min(x => x.dtFrom.TimeOfDay).ToString() : "00:00";
+                string closeAt = items.Count != 0 ? items.Max(x => x.dtTo.TimeOfDay).ToString() : "00:00";
                 //GetBranchSchedule(out startAt, out closeAt);
                 if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
                 {
@@ -1055,8 +1055,8 @@ namespace AionHR.Web.UI.Forms
 
             //CAlling the branch cvailability before proceeding
 
-            string startAt = "00:00";
-               string closeAt = "00:00";
+            string startAt = items.Count != 0 ? items.Min(x => TimeSpan.Parse(x.time)).ToString() : "00:00";
+            string closeAt = items.Count != 0 ? items.Max(x => TimeSpan.Parse(x.time)).ToString() : "00:00";
             //GetBranchSchedule(out startAt, out closeAt);
 
             if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))

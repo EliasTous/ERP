@@ -417,4 +417,7 @@
   <data name="LeavePayment" xml:space="preserve">
     <value>بدل اجازات : </value>
   </data>
+  <data name="EarnedleavesTitle" xml:space="preserve">
+    <value>إجازة مستحقة :</value>
+  </data>
 </root>

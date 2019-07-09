@@ -24,6 +24,7 @@ using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Benefits;
 using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Model.TimeAttendance;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -33,6 +34,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IBenefitsService _benefitsService = ServiceLocator.Current.GetInstance<IBenefitsService>();
+        ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
 
 
         protected override void InitializeCulture()
@@ -105,7 +107,30 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Common.errorMessage(resp);
                         return;
                     }
+                    double holidayCount = 0;
+                    if (resp.result != null)
+                    {
+                        LeaveCalendarDayListRequest reqCD2 = new LeaveCalendarDayListRequest();
+                        if (resp.result.hireDate != null)
+                            reqCD2.StartDayId = ((DateTime)resp.result.hireDate).ToString("yyyyMMdd");
+                        reqCD2.EndDayId = resp.result.probationEndDate.ToString("yyyyMMdd").ToString();
+                        reqCD2.IsWorkingDay = false;
+                        
+                        reqCD2.caId = resp.result.caId != null ? (Int32)resp.result.caId : 0;
 
+
+                        reqCD2.employeeId = Request.QueryString["employeeId"];
+                       
+                        ListResponse<LeaveCalendarDay> holidayRespone = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(reqCD2);
+                        if (!holidayRespone.Success)
+                        {
+                            Common.errorMessage(holidayRespone);
+                        }
+                        else
+                            holidayCount = holidayRespone.Items.Count;
+
+
+                    }
                     probationPeriod.SuspendEvent("Change");
                     if (resp.result != null)
                     {
@@ -152,6 +177,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     probationPeriod.ResumeEvent("Change");
 
+                    
 
                     try
                     {
