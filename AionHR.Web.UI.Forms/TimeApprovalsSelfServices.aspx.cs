@@ -36,12 +36,14 @@ using AionHR.Model.SelfService;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Services.Messaging.TimeAttendance;
 using AionHR.Model.TimeAttendance;
-using AionHR.Model.SelfService;
+
 
 namespace AionHR.Web.UI.Forms
 {
     public partial class TimeApprovalsSelfServices : System.Web.UI.Page
     {
+
+       
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
@@ -99,7 +101,25 @@ namespace AionHR.Web.UI.Forms
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
 
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
 
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+         
+            labelbar.Hidden = false;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
 
         protected override void InitializeCulture()
         {
@@ -141,6 +161,9 @@ namespace AionHR.Web.UI.Forms
                     break;
             }
         }
+
+
+       
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -151,7 +174,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
 
-                FillStatus();
+               
 
                 TimeStore.Reload();
 
@@ -203,6 +226,12 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+
+
+       
+
+
+
         [DirectMethod]
         protected void TimeTab_Load(object sender, EventArgs e)
         {
@@ -212,34 +241,44 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest req = GetDashboardRequest();
-                DashboardTimeListRequest r = new DashboardTimeListRequest();
-                r.fromDayId = dateRange1.GetRange().DateFrom.ToString("yyyyMMdd");
-                r.toDayId = dateRange1.GetRange().DateTo.ToString("yyyyMMdd");
-                r.dayId = "";
-                r.employeeId = 0;
-                if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-                    r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+                //DashboardRequest req = GetDashboardRequest();
+                //DashboardTimeListRequest r = new DashboardTimeListRequest();
+                //r.fromDayId = dateRange1.GetRange().DateFrom.ToString("yyyyMMdd");
+                //r.toDayId = dateRange1.GetRange().DateTo.ToString("yyyyMMdd");
+                //r.dayId = "";
+                //r.employeeId = 0;
+                //if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                //    r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
 
-                else
-                {
-                    TimeStore.DataSource = new List<Time>();
-                    TimeStore.DataBind();
-                    return;
-                }
-                r.timeCode = timeVariationType.GetTimeCode();
-                r.shiftId = "0";
-                r.apStatus = "1";
-                r.BranchId = req.BranchId;
-                r.DivisionId = req.DivisionId;
-                r.PositionId = req.PositionId;
-                r.DepartmentId = req.DepartmentId;
-                r.EsId = req.EsId;
-                r.Size = "50";
-                r.StartAt = "0";
+                //else
+                //{
+                //    TimeStore.DataSource = new List<Time>();
+                //    TimeStore.DataBind();
+                //    return;
+                //}
+                //r.timeCode = timeVariationType.GetTimeCode();
+                //r.shiftId = "0";
+                //r.apStatus = "1";
+                //r.BranchId = req.BranchId;
+                //r.DivisionId = req.DivisionId;
+                //r.PositionId = req.PositionId;
+                //r.DepartmentId = req.DepartmentId;
+                //r.EsId = req.EsId;
+                //r.Size = "50";
+                //r.StartAt = "0";
 
 
-                ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(r);
+                //ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(r);
+                string rep_params = vals.Text;
+                TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
+                req.paramString = rep_params;
+                req.StartAt = e.Start.ToString();
+                req.Size = "30";
+                req.sortBy = "dayId";
+                ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(req);
+
+
+
                 if (!Times.Success)
                 {
                     Common.errorMessage(Times);
@@ -329,26 +368,56 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest req = GetDashboardRequest();
-                DashboardTimeListRequest r = new DashboardTimeListRequest();
-                r.fromDayId = dayId.ToString();
-                r.toDayId = dayId.ToString();
-                r.employeeId = employeeId;
-                r.approverId = 0;
-                r.timeCode = timeCode;
-                r.shiftId = shiftId;
-                // r.apStatus = apstatus.ToString();
-                r.apStatus = "0";
-                r.PositionId = req.PositionId;
-                r.DepartmentId = req.DepartmentId;
-                r.DivisionId = req.DivisionId;
-                r.BranchId = req.BranchId;
-                r.EsId = req.EsId;
-                r.StartAt = "0";
-                r.Size = "1000";
+
+                string rep_params = "";
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Add("1", employeeId.ToString());
+                parameters.Add("2", dayId.ToString());
+                parameters.Add("3", dayId.ToString());
+                parameters.Add("5", timeCode);
+                parameters.Add("7", apstatus);
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
 
 
-                ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(r);
+
+
+
+
+               
+                TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
+                req.paramString = rep_params;
+                req.StartAt = "0";
+                req.Size = "30";
+                req.sortBy = "dayId";
+                ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(req);
+
+                //DashboardTimeListRequest r = new DashboardTimeListRequest();
+                //r.fromDayId = dayId.ToString();
+                //r.toDayId = dayId.ToString();
+                //r.employeeId = employeeId;
+                //r.approverId = 0;
+                //r.timeCode = timeCode;
+                //r.shiftId = shiftId;
+                //// r.apStatus = apstatus.ToString();
+                //r.apStatus = "0";
+                //r.PositionId = req.PositionId;
+                //r.DepartmentId = req.DepartmentId;
+                //r.DivisionId = req.DivisionId;
+                //r.BranchId = req.BranchId;
+                //r.EsId = req.EsId;
+                //r.StartAt = "0";
+                //r.Size = "1000";
+
+
+              
                 if (!Times.Success)
                 {
                     Common.errorMessage(Times);
@@ -579,13 +648,7 @@ namespace AionHR.Web.UI.Forms
         }
 
      
-        private void FillStatus()
-        {
-            ListRequest statusReq = new ListRequest();
-            ListResponse<EmploymentStatus> resp = _employeeService.ChildGetAll<EmploymentStatus>(statusReq);
-            statusStore.DataSource = resp.Items;
-            statusStore.DataBind();
-        }
+       
 
 
 
@@ -617,31 +680,66 @@ namespace AionHR.Web.UI.Forms
         protected void Timebatch(object sender, DirectEventArgs e)
         {
             string approve = e.ExtraParams["approve"];
-            DashboardRequest req = GetDashboardRequest();
-            DashboardTimeListRequest r = new DashboardTimeListRequest();
-            r.dayId = "";
-            r.employeeId = 0;
-            if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-                r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+            string timeCode = "0";
+         
 
-            else
+            string rep_params = vals.Text;
+            Dictionary<string, string> parameters = Common.FetchReportParameters(vals.Text);
+            if (parameters.ContainsKey("5"))
+                timeCode = parameters["5"];
+
+            parameters = new Dictionary<string, string>();
+            parameters.Add("5", timeCode);
+            parameters.Add("7", "1");
+
+
+            foreach (KeyValuePair<string, string> entry in parameters)
             {
-                TimeStore.DataSource = new List<Time>();
-                TimeStore.DataBind();
-                return;
+                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
             }
-            r.timeCode = timeVariationType.GetTimeCode();
-            r.shiftId = "0";
-            r.apStatus = "1";
-            r.BranchId = req.BranchId;
-            r.DivisionId = req.DivisionId;
-            r.PositionId = req.PositionId;
-            r.DepartmentId = req.DepartmentId;
-            r.EsId = req.EsId;
-            r.StartAt = "0";
-            r.Size = "50";
+            if (rep_params.Length > 0)
+            {
+                if (rep_params[rep_params.Length - 1] == '^')
+                    rep_params = rep_params.Remove(rep_params.Length - 1);
+            }
 
-            ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(r);
+
+
+
+
+
+
+            TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
+            req.paramString = rep_params;
+            req.StartAt = "0";
+            req.Size = "30";
+            req.sortBy = "dayId";
+            ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(req);
+
+            //DashboardTimeListRequest r = new DashboardTimeListRequest();
+            //r.dayId = "";
+            //r.employeeId = 0;
+            //if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+            //    r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+
+            //else
+            //{
+            //    TimeStore.DataSource = new List<Time>();
+            //    TimeStore.DataBind();
+            //    return;
+            //}
+            //r.timeCode = timeVariationType.GetTimeCode();
+            //r.shiftId = "0";
+            //r.apStatus = "1";
+            //r.BranchId = req.BranchId;
+            //r.DivisionId = req.DivisionId;
+            //r.PositionId = req.PositionId;
+            //r.DepartmentId = req.DepartmentId;
+            //r.EsId = req.EsId;
+            //r.StartAt = "0";
+            //r.Size = "50";
+
+            //ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(r);
             if (!Times.Success)
             {
                 Common.errorMessage(Times);
@@ -667,36 +765,6 @@ namespace AionHR.Web.UI.Forms
             TimeStore.Reload();
            
         }
-        private DashboardRequest GetDashboardRequest()
-        {
-
-            DashboardRequest req = new DashboardRequest();
-
-            int intResult;
-
-            var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
-            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0"; 
-            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value.ToString() : "0";
-            if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0")
-            {
-                req.EsId = esId.Value.ToString();
-
-
-
-            }
-            else
-            {
-                req.EsId = "0";
-
-            }
-
-
-
-
-
-            return req;
-        }
+       
     }
 }

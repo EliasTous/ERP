@@ -186,4 +186,7 @@
   <data name="DamageWITH_DAMAGE" xml:space="preserve">
     <value>With Damage</value>
   </data>
+  <data name="FieldRejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
 </root>

@@ -27,7 +27,7 @@
     <script src="Scripts/theme.js" type="text/javascript">  </script>
     <script src="Scripts/moment.js" type="text/javascript">  </script>
     <script src="Scripts/moment-timezone.js" type="text/javascript">  </script>
-
+        <script type="text/javascript" src="Scripts/ReportsCommon.js" ></script>
     <script type="text/javascript" src="Scripts/locales/ar.js?id=10"></script>
 
 
@@ -41,7 +41,11 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentLanguage" runat="server"  />
-     
+        <ext:Hidden ID="vals" runat="server" />
+        <ext:Hidden ID="texts" runat="server" />
+        <ext:Hidden ID="labels" runat="server" />
+        <ext:Hidden ID="format" runat="server" />
+        <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=SSTA&values="/>
 
        
       
@@ -64,41 +68,33 @@
                                                             Scroll="Vertical"
                                                             Border="false"
                                                             ColumnLines="True" IDMode="Explicit" RenderXType="True" >
-                                                            <TopBar>
-                        <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
-                            <Items>
-                                 <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                        <uc:dateRange runat="server" ID="dateRange1" />
-                                    </Content>
-                                </ext:Container>
-                                 <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" />
-                                    </Content>
-                                </ext:Container>
-                                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
-                                    <Store>
-                                        <ext:Store runat="server" ID="statusStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
 
-                                    <Items>
-                                        <ext:ListItem Text="<%$Resources:Common ,All %>" Value="0" />
-                                    </Items>
-                                </ext:ComboBox>
-                                   <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                                <ext:Button ID="btnApprovals" runat="server" Text="<%$ Resources:approveAll  %>" Icon="StopGreen">
+                            <DockedItems>
+                        <ext:Toolbar runat="server" Height="30" Dock="Top">
+
+                            <Items>
+                             
+                             
+                                
+                                
+                                          <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                       <Listeners>
+                                           <Click Handler=" App.reportsParams.show();" />
+                                       </Listeners>
+                                        </ext:Button>
+                                  <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
+                                            <Listeners>
+                                                <Click Handler="App.TimeStore.reload();" />
+                                            </Listeners>
+                                        </ext:Button>
+                                  <ext:ToolbarSeparator></ext:ToolbarSeparator>
+
+                                      
+                                 
+                               
+                                 
+                                        <ext:Button ID="btnApprovals" runat="server" Text="<%$ Resources:approveAll  %>" Icon="StopGreen">
                                     <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>
@@ -112,8 +108,8 @@
                                         
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                                <ext:Button ID="btnReject" runat="server"  Icon="StopRed" Text="<%$ Resources:rejectAll  %>"> 
+                                  <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                                <ext:Button ID="btnReject" runat="server"  Icon="StopRed" Text="<%$ Resources:rejectAll  %>"> 
                                      <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>      
@@ -126,28 +122,33 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                                 <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <uc:TimeVariationTypeControl runat="server" ID="timeVariationType" />
-                                    </Content>
-                                </ext:Container>
-                                  <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                                <ext:Button ID="Button1" runat="server"  Icon="Reload">       
-                                     <Listeners>
-                                        <Click Handler="CheckSession();#{TimeStore}.reload();" />
-                                    </Listeners>                           
-                                   
-                                </ext:Button>
-                              
 
-                                
+                        
 
                             </Items>
                         </ext:Toolbar>
+                           
+                        <ext:Toolbar ID="labelbar" runat="server" Height="0" Dock="Top">
 
-                    </TopBar>
-                                                            <Store>
+                            <Items>
+                                 <ext:Label runat="server" ID="selectedFilters" />
+                                </Items>
+                            </ext:Toolbar>
+                  </DockedItems>
+
+
+
+                                                       
+                    
+                                
+                                
+                        
+                              
+                           
+                              
+
+                                
+                     <Store>
                                                                 <ext:Store 
                                                                     ID="TimeStore"
                                                                     runat="server" OnReadData="TimeStore_ReadData">
@@ -491,7 +492,33 @@
 
         </ext:Window>
 
-    
+        
+           <ext:Window runat="server"  Icon="PageEdit"
+            ID="reportsParams"
+            Width="600"
+            Height="500"
+            Title="<%$Resources:Common,Parameters %>"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="FitLayout" Resizable="true">
+            <Listeners>
+                <Show Handler="App.Panel8.loader.load();"></Show>
+            </Listeners>
+            <Items>
+                <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
+                    <Loader runat="server" Url="ReportParameterBrowser.aspx?_reportName=SSTA" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+            
+                </Items>
+        </ext:Window>
+
 
     </form>
 </body>
