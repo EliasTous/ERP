@@ -104,6 +104,7 @@
          <ext:Hidden ID="vals" runat="server" />
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
+        <ext:Hidden ID="FromSelfService" runat="server" />
        
         <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=TAAD&values="/>
          <ext:Hidden ID="allHF" runat="server" Text="<%$ Resources: FieldAll %>" />
@@ -434,7 +435,7 @@
             </Listeners>
             <Items>
                 <ext:Panel runat="server" Layout="FitLayout"  ID="Panel8" DefaultAnchor="100%">
-                    <Loader runat="server" Url="ReportParameterBrowser.aspx?_reportName=TAAD" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                    <Loader  runat="server" Url="ReportParameterBrowser.aspx?_reportName=TAAD" Mode="Frame" ID="Loader8" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true">
                         <Listeners>

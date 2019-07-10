@@ -44,6 +44,7 @@ namespace AionHR.Web.UI.Forms
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
+        ISelfServiceService _selfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
         List<XMLDictionary> timeCode = new List<XMLDictionary>();
 
         protected override void InitializeCulture()
@@ -95,10 +96,22 @@ namespace AionHR.Web.UI.Forms
             {
 
                 SetExtLanguage();
-
+                if (!string.IsNullOrEmpty(Request.QueryString["_fromSelfService"]))
+                {
+                    FromSelfService.Text = Request.QueryString["_fromSelfService"];
+                    loaderUrl.Text = "ReportParameterBrowser.aspx?_reportName=SSAD&values=";
+                    Panel8.Loader.Url = "ReportParameterBrowser.aspx?_reportName=SSAD";
+                 
+                    vals.Text = "2|" + new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1).ToString("yyyyMMdd") + "^3|" + DateTime.Today.ToString("yyyyMMdd");
+                }
+                else
+                {
+                    vals.Text = "2|" + DateTime.Today.ToString("yyyyMMdd") + "^3|" + DateTime.Today.ToString("yyyyMMdd");
+                    FromSelfService.Text = "false";
+                }
 
                 format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                vals.Text = "2|" + DateTime.Today.ToString("yyyyMMdd") + "^3|" + DateTime.Today.ToString("yyyyMMdd");
+               
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceDay), null, GridPanel1, null, null);
@@ -112,9 +125,10 @@ namespace AionHR.Web.UI.Forms
                 }
 
                 List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
+               
 
             }
-
+           
 
         }
 
@@ -388,7 +402,8 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                //GEtting the filter from the page
+                
+
 
                 string rep_params = vals.Text;
                 TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
@@ -396,9 +411,11 @@ namespace AionHR.Web.UI.Forms
                 req.StartAt = e.Start.ToString();
                 req.Size = "30";
                 req.sortBy = "dayId";
-
-
-                ListResponse<AttendanceDay> daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
+                ListResponse<AttendanceDay> daysResponse;
+                if (FromSelfService.Text=="true")
+                    daysResponse = _selfServiceService.ChildGetAll<AttendanceDay>(req);
+                else
+                    daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
                 if (!daysResponse.Success)
                 {
                     Common.errorMessage(daysResponse);
@@ -443,8 +460,12 @@ namespace AionHR.Web.UI.Forms
                     //    asstring = asstring.Substring(0, asstring.Length - 1);
                     ReportGenericRequest tvReq = new ReportGenericRequest();
                     tvReq.paramString = "1|" + x.employeeId + "^2|" + x.dayId + "^3|" + x.dayId;
-                    ListResponse<DashBoardTimeVariation> tvResp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(tvReq);
-                    if(!tvResp.Success)
+                    ListResponse<DashBoardTimeVariation> tvResp;
+                    if (FromSelfService.Text == "true")
+                        tvResp = _selfServiceService.ChildGetAll<DashBoardTimeVariation>(tvReq);
+                    else
+                        tvResp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(tvReq);
+                    if (!tvResp.Success)
                     {
                         Common.errorMessage(tvResp);
                         return;
