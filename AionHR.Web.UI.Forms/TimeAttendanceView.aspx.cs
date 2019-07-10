@@ -96,10 +96,22 @@ namespace AionHR.Web.UI.Forms
             {
 
                 SetExtLanguage();
-
+                if (!string.IsNullOrEmpty(Request.QueryString["_fromSelfService"]))
+                {
+                    FromSelfService.Text = Request.QueryString["_fromSelfService"];
+                    loaderUrl.Text = "ReportParameterBrowser.aspx?_reportName=SSAD&values=";
+                    Panel8.Loader.Url = "ReportParameterBrowser.aspx?_reportName=SSAD";
+                 
+                    vals.Text = "2|" + new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1).ToString("yyyyMMdd") + "^3|" + DateTime.Today.ToString("yyyyMMdd");
+                }
+                else
+                {
+                    vals.Text = "2|" + DateTime.Today.ToString("yyyyMMdd") + "^3|" + DateTime.Today.ToString("yyyyMMdd");
+                    FromSelfService.Text = "false";
+                }
 
                 format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                vals.Text = "2|" + DateTime.Today.ToString("yyyyMMdd") + "^3|" + DateTime.Today.ToString("yyyyMMdd");
+               
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceDay), null, GridPanel1, null, null);
@@ -113,12 +125,10 @@ namespace AionHR.Web.UI.Forms
                 }
 
                 List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
+               
 
             }
-            if (!string.IsNullOrEmpty(Request.QueryString["_fromSelfService"]))
-                FromSelfService.Text = Request.QueryString["_fromSelfService"];
-            else
-                FromSelfService.Text = "false";
+           
 
         }
 

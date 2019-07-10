@@ -444,7 +444,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 settings.ContractResolver = res;
                 LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
                 b.status = Convert.ToInt16(status);
-                b.leaveDays = Convert.ToDouble(leaveDaysField.Text);
+              //  b.leaveDays = Convert.ToDouble(leaveDaysField.Text);
                 //b.status = Convert.ToInt16(status1); 
                 string id = e.ExtraParams["id"];
                 // Define the object to add or edit as null

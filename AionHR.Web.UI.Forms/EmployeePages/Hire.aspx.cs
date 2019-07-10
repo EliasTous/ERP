@@ -109,7 +109,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }
 
 
-                    employeeCaId.Text = resp.result.caId.ToString();
+                    
 
 
 
@@ -132,7 +132,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         hireDate.Text = resp.result.hireDate.Value.ToShortDateString();
                         probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
                         bsId.Select(resp.result.bsId.ToString());
-
+                        employeeCaId.Text = resp.result.caId.ToString();
 
                     }
                     else
@@ -146,6 +146,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         probationEndDate.Value = response.result.hireDate;
                         probationEndDate.MinDate = Convert.ToDateTime(response.result.hireDate);
                         pyActiveDate.Value = response.result.hireDate;
+                        probationPeriod.Value = 0;
                     }
 
                     probationEndDate.Format = nextReviewDate.Format = termEndDate.Format = pyActiveDate.Format = _systemService.SessionHelper.GetDateformat();
