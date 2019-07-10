@@ -1756,7 +1756,7 @@
                             <Bind Handler="if(record.get('pictureUrl')!='') cmp.setImageUrl(record.get('pictureUrl')); " />
                         </Listeners>
                     </ext:ComponentColumn>
-                    <ext:Column runat="server" DataIndex="name.fullName" Flex="1">
+                    <ext:Column runat="server" DataIndex="name" Flex="1">
                         <Renderer Handler="return record.data['name'].fullName +' ,'+ record.data['positionName'];" />
                     </ext:Column>
 

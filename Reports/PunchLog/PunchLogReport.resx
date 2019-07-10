@@ -127,6 +127,9 @@
   <data name="fieldemployeeName1.RowValueLineCount" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="fieldemployeeName1.Width" type="System.Int32, mscorlib">
+    <value>200</value>
+  </data>
   <data name="fielddayId1.Caption" xml:space="preserve">
     <value>Date</value>
   </data>
@@ -136,10 +139,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrPivotGrid1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>794.5, 115</value>
+    <value>794.5, 169.000046</value>
   </data>
   <data name="Detail.HeightF" type="System.Single, mscorlib">
-    <value>115</value>
+    <value>179.000046</value>
   </data>
   <data name="Detail.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>TopLeft</value>
@@ -218,6 +221,9 @@
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>Printed By:</value>
+  </data>
+  <data name="PageFooter.HeightF" type="System.Single, mscorlib">
+    <value>40</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
