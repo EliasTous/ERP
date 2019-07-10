@@ -111,7 +111,7 @@
             this.fieldemployeeName1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.fieldemployeeName1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldemployeeName1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldemployeeName1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldemployeeName1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Top;
             this.fieldemployeeName1.Appearance.FieldValue.WordWrap = true;
             this.fieldemployeeName1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.fieldemployeeName1.AreaIndex = 0;
@@ -229,6 +229,7 @@
             this.xrPageInfo1,
             this.xrLabel3,
             this.xrLabel2});
+            resources.ApplyResources(this.PageFooter, "PageFooter");
             this.PageFooter.Name = "PageFooter";
             // 
             // xrPageInfo2

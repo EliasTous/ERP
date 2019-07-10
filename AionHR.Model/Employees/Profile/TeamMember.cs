@@ -6,14 +6,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Profile
 {
-    public class TeamMember:ModelBase
+    public class TeamMember:EmployeeParam
     {
-        public string pictureUrl { get; set; }
-
-        public string name { get; set; }
-
-        public int positionId { get; set; }
-
-        public string positionName { get; set; }
+      
     }
 }
