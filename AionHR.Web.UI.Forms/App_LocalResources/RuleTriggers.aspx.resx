@@ -129,6 +129,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Certificate Level</value>
   </data>
+  <data name="FielAccessType" xml:space="preserve">
+    <value>Access Type</value>
+  </data>
   <data name="FieldAccessType" xml:space="preserve">
     <value>Access Type</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
+  </data>
+  <data name="FieldRule" xml:space="preserve">
+    <value>Rule</value>
   </data>
   <data name="FieldType" xml:space="preserve">
     <value>Type</value>

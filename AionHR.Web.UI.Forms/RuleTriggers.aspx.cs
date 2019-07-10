@@ -171,10 +171,12 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuPClass(object sender, DirectEventArgs e)
         {
 
-
+            ruleSelector.Disabled = true;
             string classId = e.ExtraParams["classId"];
+            string ClassNameParam = e.ExtraParams["ClassName"];
             classSelectedId.Text = classId;
-            ruleSelectorStore.Reload();
+            className.Text = ClassNameParam;
+         //   ruleSelectorStore.Reload();
             TriggerWindow.Show();
 
 
@@ -185,7 +187,10 @@ namespace AionHR.Web.UI.Forms
         {
 
 
-            //string id = e.ExtraParams["id"];
+            //string accessType = e.ExtraParams["accessType"];
+            //string ruleId = e.ExtraParams["ruleId"];
+            //string classId = e.ExtraParams["classId"];
+
             //string type = e.ExtraParams["type"];
 
             //switch (type)
@@ -382,10 +387,15 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            ListRequest request = new ListRequest();
+            RuleTriggerListRequset Listreq = new RuleTriggerListRequset();
+            Listreq.ruleId = "0";
+            Listreq.accessType = accessType.SelectedItem.Value;
+            Listreq.classId = classSelectedId.Text;
 
-            request.Filter = "";
-            ListResponse<Model.Company.Structure.Rule> response = _companyStructureService.ChildGetAll<Model.Company.Structure.Rule>(request);
+
+            ListResponse<RuleTrigger> response = _companyStructureService.ChildGetAll<RuleTrigger>(Listreq);
+           
+
             if (!response.Success)
             {
                 Common.errorMessage(response);
@@ -407,19 +417,21 @@ namespace AionHR.Web.UI.Forms
             ////Fetching the corresponding list
 
             ////in this test will take a list of News
-            //ListRequest request = new ListRequest();
+            RuleTriggerListRequset Listreq = new RuleTriggerListRequset();
+            Listreq.ruleId = "0";
+            Listreq.accessType = "0";
+            Listreq.classId = "0";
+            ListResponse<RuleTrigger> resp = _companyStructureService.ChildGetAll<RuleTrigger>(Listreq);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
 
-            //request.Filter = "";
-            //ListResponse<CertificateLevel> resp = _employeeService.ChildGetAll<CertificateLevel>(request);
-            //if (!resp.Success)
-            //{
-            //    Common.errorMessage(resp);
-            //    return;
-            //}
-            //this.Store1.DataSource = resp.Items;
-            //e.Total = resp.Items.Count; ;
+            this.Store1.DataSource = resp.Items;
+            e.Total = resp.Items.Count; ;
 
-            //this.Store1.DataBind();
+            this.Store1.DataBind();
         }
 
 

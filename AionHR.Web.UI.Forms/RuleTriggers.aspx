@@ -73,19 +73,26 @@
                 </ext:PageProxy>
             </Proxy>
             <Model>
-                <ext:Model ID="Model1" runat="server" IDProperty="recordId">
+                <ext:Model ID="Model1" runat="server" >
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
                         
-                        <ext:ModelField Name="name" />
+                        <ext:ModelField Name="className" />
+                          <ext:ModelField Name="ruleName" />
+                          <ext:ModelField Name="accessTypeName" />
+                           <ext:ModelField Name="ruleId" />
+                          <ext:ModelField Name="accessType" />
+                          <ext:ModelField Name="classId" />
+                        
+                        
                         <%--<ext:ModelField Name="reference" />--%>
                       
                                </Fields>
                 </ext:Model>
             </Model>
             <Sorters>
-                <ext:DataSorter Property="recordId" Direction="ASC" />
+                <ext:DataSorter Property="className" Direction="ASC" />
             </Sorters>
         </ext:Store>
 
@@ -131,8 +138,10 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                        </ext:Column>
+                            <ext:Column    CellCls="cellLink" ID="ColClassName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldClass%>" DataIndex="className" Flex="1" Hideable="false" />
+                            <ext:Column    CellCls="cellLink" ID="ColRuleName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRule%>" DataIndex="ruleName" Flex="1" Hideable="false" />
+                            <ext:Column    CellCls="cellLink" ID="ColAccessTypeName" MenuDisabled="true" runat="server" Text="<%$ Resources: FielAccessType%>" DataIndex="accessTypeName" Flex="1" Hideable="false" />
+                       
                             <%--<ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Width ="300" Hideable="false" />--%>
                              
                         
@@ -226,7 +235,10 @@
                         <CellClick OnEvent="PoPuP">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="accessType" Value="record.data['accessType']" Mode="Raw" />
+                                   <ext:Parameter Name="ruleId" Value="record.data['ruleId']" Mode="Raw" />
+                                   <ext:Parameter Name="classId" Value="record.data['classId']" Mode="Raw" />
+                                
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -355,6 +367,7 @@
                                             <EventMask ShowMask="true" />
                                             <ExtraParams>
                                                 <ext:Parameter Name="classId" Value="record.data['classId']" Mode="Raw" />
+                                                  <ext:Parameter Name="className" Value="record.data['className']" Mode="Raw" />
                                            
                                                
                                             </ExtraParams>
@@ -427,6 +440,8 @@
                     <Items>
 
                         <ext:TextField ID="classSelectedId"  runat="server"  Name="classSelectedId"  Hidden="true"/>
+                        <ext:TextField ID="className"  runat="server"  Name="className" FieldLabel="<%$ Resources: FieldClass%>"  ReadOnly="true"  />
+
                         <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldAccessType%>"  runat="server" DisplayField="value" ValueField="key"   Name="accessType" ID="accessType" AllowBlank="false"  >
                                              <Store>
                                                 <ext:Store runat="server" ID="accessTypeStore">
@@ -440,6 +455,9 @@
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
+                            <Listeners>
+                                <Select Handler="App.ruleSelectorStore.reload(); App.ruleSelector.setDisabled(false);" />
+                            </Listeners>
                                        </ext:ComboBox>
                         <ext:ItemSelector runat="server"  MaxHeight="300" MinHeight="300" AutoScroll="true" ID="ruleSelector" FromTitle="<%$Resources:All %>" DisplayField="name" ValueField="recordId"
                             ToTitle="<%$Resources:Selected %>" SubmitValue="true" SimpleSubmit="true"  >

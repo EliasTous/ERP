@@ -10,6 +10,7 @@ namespace AionHR.Services.Messaging.CompanyStructure
     {
         public string ruleId { get; set; }
         public string accessType { get; set; }
+        public string classId { get; set; }
 
 
 
@@ -27,6 +28,7 @@ namespace AionHR.Services.Messaging.CompanyStructure
 
                 parameters.Add("_ruleId", ruleId);
                 parameters.Add("_accessType", accessType);
+                parameters.Add("_classId", classId);
 
 
                 return parameters;

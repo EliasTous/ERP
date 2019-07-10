@@ -13,9 +13,13 @@ namespace AionHR.Model.Company.Structure
 
         public string seqNo { get; set; }
         public string ruleId { get; set; }
-        
 
-       
+        public string className { get; set; }
+        public string ruleName { get; set; }
+
+        public string accessTypeName { get; set; }
+
+
 
 
     }
