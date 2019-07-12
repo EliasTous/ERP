@@ -8,6 +8,7 @@ namespace AionHR.Model.Company.Structure
 {
    public class RuleTrigger
     {
+       
         public string classId { get; set; }
         public string accessType { get; set; }
 

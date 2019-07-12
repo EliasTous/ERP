@@ -1695,6 +1695,8 @@ namespace AionHR.Web.UI.Forms
             string status = e.ExtraParams["status"];
             string shiftId = e.ExtraParams["shiftId"];
             string justificationParam = e.ExtraParams["justification"];
+            currentSeqNo.Text = e.ExtraParams["seqNo"];
+
 
             string notes = e.ExtraParams["notes"];
 
@@ -1754,6 +1756,7 @@ namespace AionHR.Web.UI.Forms
             string category = e.ExtraParams["categoryName"];
             string commentsParameter = e.ExtraParams["comments"];
             string arIdParameter = e.ExtraParams["arId"];
+            currentSeqNo.Text = e.ExtraParams["seqNo"];
             PAstatus.Select(statusParameter);
             PurchasApprovalReasonControl.setApprovalReason(arIdParameter);
 
@@ -1803,7 +1806,7 @@ namespace AionHR.Web.UI.Forms
                 string id = e.ExtraParams["id"];
                 string employeeId = e.ExtraParams["employeeId"];
                 string arId = e.ExtraParams["arId"];
-
+                currentSeqNo.Text = e.ExtraParams["seqNo"];
                 //SetTabPanelEnable(true);
 
 
@@ -1927,6 +1930,7 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
             string arId= e.ExtraParams["arId"];
+            string seqNoParamter = e.ExtraParams["seqNo"];
             switch (type)
             {
 
@@ -1951,6 +1955,7 @@ namespace AionHR.Web.UI.Forms
                     this.LeaveRecordForm.SetValues(response.result);
                     employeeName.Text = response.result.employeeName;
                     LeaveApprovalReasonControl.setApprovalReason(arId);
+                    seqNo.Text = seqNoParamter; 
                     this.LeaveRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.LeaveRecordWindow.Show();
                     break;
@@ -2007,6 +2012,7 @@ namespace AionHR.Web.UI.Forms
                 LA.loanId = id;
                 LA.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
                 LA.arId = LoanApprovalReasonControl.getApprovalReason() == "0" ? null : LoanApprovalReasonControl.getApprovalReason();
+                LA.seqNo = currentSeqNo.Text;
                 PostRequest<LoanApproval> request = new PostRequest<LoanApproval>();
                 request.entity = LA;
 
@@ -2024,7 +2030,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 else
                 {
-
+                    currentSeqNo.Text = "";
                     ApprovalLoanStore.Reload();
                     Notification.Show(new NotificationConfig
                     {
@@ -2058,6 +2064,8 @@ namespace AionHR.Web.UI.Forms
             PA.poId = string.IsNullOrEmpty(poId) ? (Int32?)null : Convert.ToInt32(poId);
             PA.arId = PurchasApprovalReasonControl.getApprovalReason() == "0" ? null : PurchasApprovalReasonControl.getApprovalReason();
             PA.approverId = _systemService.SessionHelper.GetEmployeeId();
+            PA.seqNo = currentSeqNo.Text;
+            
             try
             {
                 //New Mode
@@ -2078,7 +2086,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 else
                 {
-
+                    currentSeqNo.Text = "";
                     PurchasesApprovalStore.Reload();
                     Notification.Show(new NotificationConfig
                     {
@@ -2103,6 +2111,8 @@ namespace AionHR.Web.UI.Forms
         {
             string obj = e.ExtraParams["values"];
             string id = e.ExtraParams["id"];
+            string seqNo = e.ExtraParams["seqNo"];
+            
             LeaveRequest LV = JsonConvert.DeserializeObject<LeaveRequest>(obj);
             try
             {
@@ -2123,6 +2133,7 @@ namespace AionHR.Web.UI.Forms
                     request.entity.notes = " ";
 
                 request.entity.arId = LeaveApprovalReasonControl.getApprovalReason() == "0" ? null : LeaveApprovalReasonControl.getApprovalReason();
+                request.entity.seqNo = seqNo;
                 PostResponse<DashboardLeave> r = _leaveManagementService.ChildAddOrUpdate<DashboardLeave>(request);
 
 
@@ -2176,7 +2187,7 @@ namespace AionHR.Web.UI.Forms
                 request.entity.status = TI.status;
                 request.entity.notes = TI.notes;
                 request.entity.shiftId = TI.shiftId;
-             
+                request.entity.seqNo = seqNo.Text;
 
                 PostResponse<Time> r = _timeAttendanceService.ChildAddOrUpdate<Time>(request);
 
@@ -2193,6 +2204,7 @@ namespace AionHR.Web.UI.Forms
                 {
 
                     TimeStore.Reload();
+                    seqNo.Text = "";
                     Notification.Show(new NotificationConfig
                     {
                         Title = Resources.Common.Notification,
@@ -3169,13 +3181,15 @@ namespace AionHR.Web.UI.Forms
         protected void EmployeePenaltyApprovalPoPUP(object sender, DirectEventArgs e)
         {
             TabPanel5.ActiveIndex = 0;
-            string penaltyId = e.ExtraParams["penaltyId"];
 
+            string penaltyId = e.ExtraParams["penaltyId"];
+            currentSeqNo.Text= e.ExtraParams["seqNo"];
             try { 
 
             EmployeePenaltyApprovalRecordRequest r = new EmployeePenaltyApprovalRecordRequest();
             r.penaltyId = penaltyId;
             r.approverId = _systemService.SessionHelper.GetEmployeeId();
+            
             RecordResponse<EmployeePenaltyApproval> resp = _employeeService.ChildGetRecord<EmployeePenaltyApproval>(r);
                 if (!resp.Success)
                 {
@@ -3245,6 +3259,7 @@ namespace AionHR.Web.UI.Forms
 
                 PostRequest<EmployeePenaltyApproval> request = new PostRequest<EmployeePenaltyApproval>();
                 request.entity = PA;
+                request.entity.seqNo = currentSeqNo.Text;
 
 
                 PostResponse<EmployeePenaltyApproval> resp1 = _employeeService.ChildAddOrUpdate<EmployeePenaltyApproval>(request);

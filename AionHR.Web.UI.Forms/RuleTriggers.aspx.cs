@@ -156,7 +156,7 @@ namespace AionHR.Web.UI.Forms
                 AccessControlListRequest req = new AccessControlListRequest();
                 req.GroupId = "0";
                 req.ModuleId = CurrentModule.Text;
-                ListResponse<ModuleClass> resp = _accessControlService.ChildGetAll<ModuleClass>(req);
+                ListResponse<ModuleClass> resp = _systemService.ChildGetAll<ModuleClass>(req);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
@@ -173,7 +173,7 @@ namespace AionHR.Web.UI.Forms
 
             ruleSelector.Disabled = true;
             string classId = e.ExtraParams["classId"];
-            string ClassNameParam = e.ExtraParams["ClassName"];
+            string ClassNameParam = e.ExtraParams["className"];
             classSelectedId.Text = classId;
             className.Text = ClassNameParam;
          //   ruleSelectorStore.Reload();
@@ -187,58 +187,54 @@ namespace AionHR.Web.UI.Forms
         {
 
 
-            //string accessType = e.ExtraParams["accessType"];
-            //string ruleId = e.ExtraParams["ruleId"];
-            //string classId = e.ExtraParams["classId"];
+            string accessTypeParam = e.ExtraParams["accessType"];
+            string ruleId = e.ExtraParams["ruleId"];
+            string classId = e.ExtraParams["classId"];
+            string ClassNameParam = e.ExtraParams["className"];
+            string seqNo = e.ExtraParams["seqNo"];
+            
 
-            //string type = e.ExtraParams["type"];
+            string type = e.ExtraParams["type"];
+            CurrentRuleId.Text = ruleId;
+            switch (type)
+            {
+                case "imgEdit":
+                    //Step 1 : get the object from the Web Service 
 
-            //switch (type)
-            //{
-            //    case "imgEdit":
-            //        //Step 1 : get the object from the Web Service 
-            //        RecordRequest r = new RecordRequest();
-            //        r.RecordID = id;
+                    ruleSelector.Disabled = false;
+                    accessType.Select(accessTypeParam);
+                    classSelectedId.Text = classId;
+                    className.Text = ClassNameParam;
+                    ruleSelectorStore.Reload();
+                    TriggerWindow.Show();
 
-            //        RecordResponse<CertificateLevel> response = _employeeService.ChildGetRecord<CertificateLevel>(r);
-            //        if (!response.Success)
-            //        {
-            //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-            //            Common.errorMessage(response);
-            //            return;
-            //        }
-            //        //Step 2 : call setvalues with the retrieved object
-            //        this.BasicInfoTab.SetValues(response.result);
+                    
+                    break;
 
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteRecord({0},{1},{2},{3})", ruleId, classId, accessTypeParam,seqNo),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
 
-            //        this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-            //        this.EditRecordWindow.Show();
-            //        break;
+                    }).Show();
+                    break;
 
-            //    case "imgDelete":
-            //        X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-            //        {
-            //            Yes = new MessageBoxButtonConfig
-            //            {
-            //                //We are call a direct request metho for deleting a record
-            //                Handler = String.Format("App.direct.DeleteRecord({0})", id),
-            //                Text = Resources.Common.Yes
-            //            },
-            //            No = new MessageBoxButtonConfig
-            //            {
-            //                Text = Resources.Common.No
-            //            }
+                case "imgAttach":
 
-            //        }).Show();
-            //        break;
-
-            //    case "imgAttach":
-
-            //        //Here will show up a winow relatice to attachement depending on the case we are working on
-            //        break;
-            //    default:
-            //        break;
-            //}
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
 
 
         }
@@ -248,19 +244,19 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
         [DirectMethod]
-        public void DeleteRecord(string index)
+        public void DeleteRecord(string ruleId, string classId,string accessType,string seqNo)
         {
             try
             {
                 //Step 1 Code to delete the object from the database 
-                CertificateLevel s = new CertificateLevel();
-                s.recordId = index;
-                //s.reference = "";
-
-                s.name = "";
-                PostRequest<CertificateLevel> req = new PostRequest<CertificateLevel>();
+                RuleTrigger s = new RuleTrigger();
+                s.ruleId = ruleId;
+                s.classId = classId;
+                s.accessType = accessType;
+                s.seqNo = seqNo;
+                PostRequest<RuleTrigger> req = new PostRequest<RuleTrigger>();
                 req.entity = s;
-                PostResponse<CertificateLevel> r = _employeeService.ChildDelete<CertificateLevel>(req);
+                PostResponse<RuleTrigger> r = _companyStructureService.ChildDelete<RuleTrigger>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -270,7 +266,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     //Step 2 :  remove the object from the store
-                    Store1.Remove(index);
+                    Store1.Reload();
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
@@ -375,8 +371,9 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             //BasicInfoTab.Reset();
-
+            CurrentRuleId.Text = "0";
             EditRecordWindow.Show();
+            accessType.Reset();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -385,23 +382,56 @@ namespace AionHR.Web.UI.Forms
         protected void ruleSelectorStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
 
+            if (string.IsNullOrEmpty(accessType.SelectedItem.Value))
+                return;
 
 
-            RuleTriggerListRequset Listreq = new RuleTriggerListRequset();
-            Listreq.ruleId = "0";
-            Listreq.accessType = accessType.SelectedItem.Value;
-            Listreq.classId = classSelectedId.Text;
+            ListRequest Listreq = new ListRequest();
+
+            Listreq.Filter = "";
+            ListResponse<Model.Company.Structure.Rule> allRulesTrigger = _companyStructureService.ChildGetAll<Model.Company.Structure.Rule>(Listreq);
 
 
-            ListResponse<RuleTrigger> response = _companyStructureService.ChildGetAll<RuleTrigger>(Listreq);
            
 
-            if (!response.Success)
+           
+            if (!allRulesTrigger.Success)
             {
-                Common.errorMessage(response);
+                Common.errorMessage(allRulesTrigger);
                 return;
             }
-            X.Call("AddSource", response.Items);
+
+            RuleTriggerListRequset selectedRequest = new RuleTriggerListRequset();
+            selectedRequest.ruleId = string.IsNullOrEmpty(CurrentRuleId.Text) ? "0" : CurrentRuleId.Text;
+            selectedRequest.accessType = accessType.SelectedItem.Value;
+            selectedRequest.classId = classSelectedId.Text;
+
+
+            ListResponse<RuleTrigger> selectedRuleTrigger = _companyStructureService.ChildGetAll<RuleTrigger>(selectedRequest);
+
+            if (!selectedRuleTrigger.Success)
+            {
+                Common.errorMessage(selectedRuleTrigger);
+                return;
+            }
+
+            //selectedRuleTrigger.Items.ForEach(x =>
+            //{
+            //    allRulesTrigger.Items.Remove(x);
+
+            //});
+
+            ruleSelectorStore.DataSource = allRulesTrigger.Items;
+            ruleSelectorStore.DataBind();
+
+            this.ruleSelector.SelectedItems.Clear();
+            selectedRuleTrigger.Items.ForEach(x =>
+            {
+                this.ruleSelector.SelectedItems.Add(new Ext.Net.ListItem() { Value = x.ruleId  });
+            });
+
+            this.ruleSelector.UpdateSelectedItems();
+            this.ruleSelector.Update();
 
 
         }
@@ -445,76 +475,65 @@ namespace AionHR.Web.UI.Forms
                 string classIdParameter = e.ExtraParams["classId"];
                 string accessTypeParameter = e.ExtraParams["accessType"];
 
-                if (!string.IsNullOrEmpty(accessTypeParameter))
+
+                List<AionHR.Model.Company.Structure.RuleTrigger> selectedRules = new List<AionHR.Model.Company.Structure.RuleTrigger>();
+                int count = 1;
+                foreach (var item in ruleSelector.SelectedItems)
                 {
 
-
-
-                    List<AionHR.Model.Company.Structure.RuleTrigger> selectedRules = new List<AionHR.Model.Company.Structure.RuleTrigger>();
-                    int count = 0;
-                    foreach (var item in ruleSelector.SelectedItems)
-                    {
-
-                        selectedRules.Add(new AionHR.Model.Company.Structure.RuleTrigger() { ruleId = item.Value, classId = classIdParameter, accessType = accessTypeParameter, seqNo = count.ToString() });
-                        count++;
-                    }
-
-                    RuleTriggerListRequset Listreq = new RuleTriggerListRequset();
-                    Listreq.ruleId = "0";
-                    Listreq.accessType = accessTypeParameter;
-                    ListResponse<RuleTrigger> Listresp = _companyStructureService.ChildGetAll<RuleTrigger>(Listreq);
-                    if (!Listresp.Success)
-                    {
-                        Common.errorMessage(Listresp);
-                        return;
-                    }
-
-
-
-
-                    else
-                    {
-                        PostRequest<RuleTrigger> req = new PostRequest<RuleTrigger>();
-                        Listresp.Items.Where(y=>y.classId== classIdParameter).ToList().ForEach(x =>
-                        {
-                            req.entity = x;
-                            PostResponse<RuleTrigger> delresp = _companyStructureService.ChildDelete<RuleTrigger>(req);
-                            if (!delresp.Success)
-                            {
-                                Common.errorMessage(delresp);
-                                throw new Exception();
-                            }
-                        });
-
-                        selectedRules.ForEach(x =>
-                        {
-                            req.entity = x;
-                            PostResponse<RuleTrigger> delresp = _companyStructureService.ChildAddOrUpdate<RuleTrigger>(req);
-                        });
-
-
-
-
-
-
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
-
-
-
-
-
-                    }
-
-
-
-
-
+                    selectedRules.Add(new AionHR.Model.Company.Structure.RuleTrigger() { ruleId = item.Value, classId = classIdParameter, accessType = accessTypeParameter, seqNo = count.ToString() });
+                    count++;
                 }
+
+                RuleTriggerListRequset Listreq = new RuleTriggerListRequset();
+                Listreq.ruleId = "0";
+                Listreq.accessType = accessTypeParameter;
+                Listreq.classId = classIdParameter;
+                ListResponse<RuleTrigger> Listresp = _companyStructureService.ChildGetAll<RuleTrigger>(Listreq);
+                if (!Listresp.Success)
+                {
+                    Common.errorMessage(Listresp);
+                    return;
+                }
+
+                PostRequest<RuleTrigger> req = new PostRequest<RuleTrigger>();
+                Listresp.Items.ForEach(x =>
+                 {
+                     req.entity = x;
+                     PostResponse<RuleTrigger> delresp = _companyStructureService.ChildDelete<RuleTrigger>(req);
+                     if (!delresp.Success)
+                     {
+                         Common.errorMessage(delresp);
+                         throw new Exception();
+                     }
+                 });
+
+                    selectedRules.ForEach(x =>
+                    {
+                        req.entity = x;
+                        PostResponse<RuleTrigger> resp = _companyStructureService.ChildAddOrUpdate<RuleTrigger>(req);
+                        if (!resp.Success)
+                        {
+                            Common.errorMessage(resp);
+                            throw new Exception();
+                        }
+                    });
+
+
+
+
+
+
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordSavingSucc
+                    });
+
+
+                Store1.Reload();
+              
             }
             catch(Exception exp)
             {

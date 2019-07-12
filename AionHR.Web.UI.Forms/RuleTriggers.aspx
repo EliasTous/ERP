@@ -57,6 +57,7 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
             <ext:Hidden ID="CurrentModule" runat="server"  />
+           <ext:Hidden ID="CurrentRuleId" runat="server"  />
         
         <ext:Store
             ID="Store1"
@@ -84,6 +85,7 @@
                            <ext:ModelField Name="ruleId" />
                           <ext:ModelField Name="accessType" />
                           <ext:ModelField Name="classId" />
+                         <ext:ModelField Name="seqNo" />
                         
                         
                         <%--<ext:ModelField Name="reference" />--%>
@@ -238,6 +240,8 @@
                                 <ext:Parameter Name="accessType" Value="record.data['accessType']" Mode="Raw" />
                                    <ext:Parameter Name="ruleId" Value="record.data['ruleId']" Mode="Raw" />
                                    <ext:Parameter Name="classId" Value="record.data['classId']" Mode="Raw" />
+                                 <ext:Parameter Name="className" Value="record.data['className']" Mode="Raw" />
+                                 <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                 
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
@@ -440,6 +444,7 @@
                     <Items>
 
                         <ext:TextField ID="classSelectedId"  runat="server"  Name="classSelectedId"  Hidden="true"/>
+                       
                         <ext:TextField ID="className"  runat="server"  Name="className" FieldLabel="<%$ Resources: FieldClass%>"  ReadOnly="true"  />
 
                         <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldAccessType%>"  runat="server" DisplayField="value" ValueField="key"   Name="accessType" ID="accessType" AllowBlank="false"  >

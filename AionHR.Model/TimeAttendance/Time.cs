@@ -13,6 +13,7 @@ namespace AionHR.Model.TimeAttendance
     public  class Time
     {
         public string employeeName { set; get; }
+        public string seqNo { set; get; }
         public string approverName { set; get; }
         public string fullName { get; set; }
         public string departmentName { get; set; }

@@ -21,6 +21,7 @@ namespace AionHR.Model.AssetManagement
         public string Comments { get; set; }
         public string arId { get; set; }
         public string arName { get; set; }
+        public string seqNo { get; set; }
 
 
 

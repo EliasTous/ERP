@@ -718,7 +718,7 @@ namespace AionHR.Web.UI.Forms
                 AccessControlListRequest req = new AccessControlListRequest();
                 req.GroupId = "0";
                 req.ModuleId = moduleId.SelectedItem.Value.ToString();
-                ListResponse<ModuleClass> resp = _accessControlService.ChildGetAll<ModuleClass>(req);
+                ListResponse<ModuleClass> resp = _systemService.ChildGetAll<ModuleClass>(req);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);

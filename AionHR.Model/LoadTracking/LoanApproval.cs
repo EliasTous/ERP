@@ -12,6 +12,7 @@ namespace AionHR.Model.LoadTracking
     public class LoanApproval 
     {
         public string approverName { get; set; }
+        public string seqNo { get; set; }
         public string employeeName { get; set; }
         public double amount { get; set; }
         public string currencyRef { get; set; }

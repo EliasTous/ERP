@@ -391,6 +391,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden loaderUrl;
         
         /// <summary>
+        /// currentSeqNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden currentSeqNo;
+        
+        /// <summary>
         /// activeStore control.
         /// </summary>
         /// <remarks>
@@ -2774,6 +2783,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField TextField1;
+        
+        /// <summary>
+        /// seqNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField seqNo;
         
         /// <summary>
         /// leaveRef control.

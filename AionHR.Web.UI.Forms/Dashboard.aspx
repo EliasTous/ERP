@@ -1187,7 +1187,7 @@
         <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="Hidden1" runat="server" />
         <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=Dashboard&values="/>
-    
+        <ext:Hidden ID="currentSeqNo" runat="server" />
         <ext:Store
             ID="activeStore"
             runat="server" OnReadData="activeStore_refresh"
@@ -1639,6 +1639,7 @@
                                                                                  <ext:ModelField Name="arId" />
                                                                                    <ext:ModelField Name="arName" />
                                                                                  <ext:ModelField Name="employeeName" />
+                                                                                 <ext:ModelField Name="seqNo" />
 
                                                                                 
                                                                             
@@ -1688,6 +1689,7 @@
                                                                     <ExtraParams>
                                                                         <ext:Parameter Name="id" Value="record.data['leaveId']" Mode="Raw" />
                                                                         <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
+                                                                           <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
 
                                                                         <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                                                     </ExtraParams>
@@ -1880,6 +1882,7 @@
                                                                                 <ext:ModelField Name="status" />
                                                                                   <ext:ModelField Name="statusString" />
                                                                                 <ext:ModelField Name="notes" />
+                                                                                 <ext:ModelField Name="seqNo" />
                                                                             
 
                                                                             </Fields>
@@ -1947,6 +1950,7 @@
                                                                            <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
                                                                              <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
                                                                           <ext:Parameter Name="justification" Value="record.data['justification']" Mode="Raw" />
+                                                                            <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                                                     
                                                                       
                                                                         
@@ -2021,6 +2025,7 @@
                                                                                   <ext:ModelField Name="departmentName" />
                                                                                     <ext:ModelField Name="arName" />
                                                                                  <ext:ModelField Name="arId" />
+                                                                                  <ext:ModelField Name="seqNo" />
 
                                                                             
 
@@ -2127,6 +2132,7 @@
                                                                       <ExtraParams>
                                                                         <ext:Parameter Name="id" Value="record.data['loanId']" Mode="Raw" />
                                                                          <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
+                                                                           <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                                                             <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
                                                                                                                                  
                                                                                                                                                 
@@ -2174,6 +2180,7 @@
                                                  <ext:ModelField Name="statusString" />
                                                  <ext:ModelField Name="notes" />
                                                  <ext:ModelField Name="date" />
+                                                 <ext:ModelField Name="seqNo" />
                                                
                                                 
                                                 
@@ -2226,6 +2233,7 @@
                                                                     <EventMask ShowMask="true" />
                                                                     <ExtraParams>
                                                                         <ext:Parameter Name="penaltyId" Value="record.data['penaltyId']" Mode="Raw" />
+                                                                         <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                                                         <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                                                     </ExtraParams>
 
@@ -2289,6 +2297,7 @@
                                                    <ext:ModelField Name="comments" />
                                                        <ext:ModelField Name="arId" />
                                                        <ext:ModelField Name="arName" />
+                                                 <ext:ModelField Name="seqNo" />
                                                  
                                                 
                                                 
@@ -2354,6 +2363,7 @@
                                                                          <ext:Parameter Name="categoryName" Value="record.data['categoryName']" Mode="Raw" />
                                                                          <ext:Parameter Name="comments" Value="record.data['comments']" Mode="Raw" />
                                                                            <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
+                                                                           <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                                                         
                                                                        <%-- <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />--%>
                                                                     </ExtraParams>
@@ -3950,6 +3960,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="TextField1" runat="server" Name="recordId" Hidden="true" />
+                                 <ext:TextField ID="seqNo" runat="server" Name="seqNo" Hidden="true" />
                                 <ext:TextField ID="leaveRef" runat="server" Name="leaveRef" FieldLabel="<%$ Resources:FieldLeaveRef%>" ReadOnly="true" />
                                 <ext:TextField ID="employeeName" runat="server" Name="employeeName" FieldLabel="<%$ Resources:FieldEmployeeName%>" ReadOnly="true" />
 
@@ -4045,6 +4056,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{LeaveRecordWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="seqNo" Value="#{seqNo}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{LeaveRecordForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

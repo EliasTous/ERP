@@ -12,6 +12,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.Dashboard;
 using AionHR.Model.TimeAttendance;
 using AionHR.Model.Reports;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Repository.WebService.Repositories
 {
@@ -70,7 +71,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(BackgroundJob), "getBJ");
 
             ChildGetAllLookup.Add(typeof(ReportParameter), "qryRP");
-
+            ChildGetAllLookup.Add(typeof(ModuleClass), "qryCL");
 
 
 
@@ -120,7 +121,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(RetirementAge), "qryRE");
             ChildGetAllLookup.Add(typeof(TermEndDate), "qryTE");
             ChildGetAllLookup.Add(typeof(XMLDictionary), "qryXML");
-            ChildGetAllLookup.Add(typeof(ClassProperty), "qryCP");
+            ChildGetAllLookup.Add(typeof(AionHR.Model.System.ClassProperty), "qryCP");
 
 
             ChildAddOrUpdateLookup.Add(typeof(KeyValuePair<string, string>), "setDE");
