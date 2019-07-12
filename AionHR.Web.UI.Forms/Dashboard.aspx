@@ -2432,6 +2432,7 @@
                                                                                 <ext:ModelField Name="udId"  />
                                                                                 <ext:ModelField Name="recordId"  />
                                                                                   <ext:ModelField Name="ppTypeName"  />
+                                                                                  <ext:ModelField Name="employeeName" />
                                                                               
                                                                             
 
@@ -2445,12 +2446,14 @@
 
                                                             <ColumnModel ID="ColumnModel5" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                                                 <Columns>
-                                                                  
-
-                                                               
-                                                                    <ext:Column ID="Column6" DataIndex="employeeRef" Text="<%$ Resources: employeeRef %>" runat="server" Flex="1">
+                                                                    <ext:Column ID="Column6" DataIndex="employeeRef" Text="<%$ Resources: employeeRef %>" runat="server" Flex="2">
                                                                    
                                                                     </ext:Column>
+                                                                      <ext:Column ID="Column69" DataIndex="employeeName" Text="<%$ Resources: FieldEmployee %>" runat="server" Flex="4">
+                                                                   
+                                                                    </ext:Column>
+                                                               
+                                                                  
                                                                 
                                                                     <ext:DateColumn ID="DateColumn4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="clockStamp" Hideable="false" Flex="4"  />
                           

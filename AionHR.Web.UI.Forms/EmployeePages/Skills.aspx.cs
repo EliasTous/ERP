@@ -214,7 +214,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 n.employeeId = Convert.ToInt32(CurrentEmployee.Text);
                 n.dateFrom = DateTime.Now;
                 n.dateTo = DateTime.Now;
-                n.grade = 0;
+                n.grade = "0";
                 n.institution = "";
                 n.major = "";
                 
@@ -332,9 +332,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.recordId = id;
             // Define the object to add or edit as null
             b.clName = clId.SelectedItem.Text;
-            b.dateFrom = new DateTime(b.dateFrom.Year, b.dateFrom.Month, b.dateFrom.Day, 14, 0, 0);
-            b.dateTo = new DateTime(b.dateTo.Year, b.dateTo.Month, b.dateTo.Day, 14, 0, 0);
-            
+            if (b.dateFrom != null)
+            {
+                DateTime Date =(DateTime) b.dateFrom; 
+                b.dateFrom = new DateTime(Date.Year, Date.Month, Date.Day, 14, 0, 0);
+            }
+            if (b.dateTo != null)
+            {
+                DateTime Date = (DateTime)b.dateTo;
+                b.dateTo = new DateTime(Date.Year, Date.Month, Date.Day, 14, 0, 0);
+            }
 
             if (string.IsNullOrEmpty(id))
             {
