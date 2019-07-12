@@ -308,7 +308,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListResponse<EmployeeCertificate> documents = _employeeService.ChildGetAll<EmployeeCertificate>(request);
             if (!documents.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, documents.Summary).Show();
+                Common.errorMessage(documents);
                 return;
             }
             this.skillStore.DataSource = documents.Items;

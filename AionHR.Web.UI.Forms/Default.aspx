@@ -898,7 +898,7 @@
                                     <Click Handler="openModule(6);" />
                                 </Listeners>
                             </ext:Button>
-                            <ext:ToolbarFill runat="server" />
+                           <ext:ToolbarSeparator ID="sep5" runat="server"></ext:ToolbarSeparator>
                             
                             <ext:Button ID="btnAdminAffairs" runat="server" Icon="EmailAttach" ToolTip="<%$ Resources:Common , AdministrationAffairs %>">
                                 <Listeners>
