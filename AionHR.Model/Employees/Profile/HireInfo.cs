@@ -19,7 +19,7 @@ namespace AionHR.Model.Employees.Profile
         public string npName { get; set; }
         [PropertyID("31141_02")]
         [ApplySecurity]
-        public DateTime probationEndDate { get; set; }
+        public DateTime? probationEndDate { get; set; }
         [PropertyID("31141_03")]
         [ApplySecurity]
         public DateTime? nextReviewDate { get; set; }
