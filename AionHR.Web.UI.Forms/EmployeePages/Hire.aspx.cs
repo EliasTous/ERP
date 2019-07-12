@@ -109,12 +109,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }
 
 
-                    
 
 
+                    employeeCaId.Text = resp.result.caId.ToString();
 
                     probationPeriod.SuspendEvent("Change");
-                    if (resp.result != null)
+             
+                    if (resp.result.probationEndDate != null)
                     {
                         hireInfoForm.SetValues(resp.result);
                         npId.Select(resp.result.npId.ToString());
@@ -132,7 +133,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         hireDate.Text = resp.result.hireDate.Value.ToShortDateString();
                         probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
                         bsId.Select(resp.result.bsId.ToString());
-                        employeeCaId.Text = resp.result.caId.ToString();
+                      //  employeeCaId.Text = resp.result.caId.ToString();
 
                     }
                     else
@@ -141,9 +142,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         r.RecordID = Request.QueryString["employeeId"];
                         RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
 
-                        probationEndDateHidden.Value = response.result.hireDate;
+                       // probationEndDateHidden.Value = response.result.hireDate;
                         hireDate.Text = response.result.hireDate.Value.ToShortDateString();
-                        probationEndDate.Value = response.result.hireDate;
+                      //  probationEndDate.Value = response.result.hireDate;
+                        probationEndDate.SelectedDate =(DateTime) response.result.hireDate;
+                        oldProbEnd.SelectedDate = (DateTime)response.result.hireDate;
                         probationEndDate.MinDate = Convert.ToDateTime(response.result.hireDate);
                         pyActiveDate.Value = response.result.hireDate;
                         probationPeriod.Value = 0;
@@ -159,6 +162,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     //probationPeriod.Value = 0;
 
                     probationPeriod.ResumeEvent("Change");
+                 
 
 
 
@@ -419,25 +423,38 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             return sb.ToString();
         }
 
-        [DirectMethod]
-        public void calHolidays(string probationEndDate)
+        
+        protected void calcProbEndDate(object sender, DirectEventArgs e)
         {
+            if (stopEvent.Text=="true")
+            {
+                stopEvent.Text = "false";
 
-            probationEndDate = RemoveSpecialCharacters(probationEndDate);
+                return;
+            }
+            if (string.IsNullOrEmpty(probationPeriod.Text))
+                return;
+            string selectedProbationEndDate = e.ExtraParams["probationEndDate"];
+          
+
+            selectedProbationEndDate = RemoveSpecialCharacters(selectedProbationEndDate);
 
             WorkingDayListRequest reqCD2 = new WorkingDayListRequest();
+
             DateTime date = DateTime.Now;
-          if (!DateTime.TryParse(hireDate.Value.ToString(), out date))
-              {
-                return;
-              }
-            reqCD2.StartDayId = date.ToString("yyyyMMdd");
-            if (!DateTime.TryParse(probationEndDate, out date))
+            if (!DateTime.TryParse(hireDate.Value.ToString(), out date))
             {
                 return;
             }
 
-            reqCD2.EndDayId = date.ToString("yyyyMMdd");
+            reqCD2.EndDayId = date.AddDays(Convert.ToDouble(probationPeriod.Text)).ToString("yyyyMMdd");
+
+            //if (!DateTime.TryParse(hireDate.Value.ToString(), out date))
+            //{
+            //    return;
+            //}
+            reqCD2.StartDayId = date.ToString("yyyyMMdd");
+          
             reqCD2.IsWorkingDay = false;
             if (string.IsNullOrEmpty(employeeCaId.Text))
             {
@@ -454,7 +471,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Common.errorMessage(holidayRespone);
                 return;
                 }
-            holidayCount.Text = holidayRespone.count.ToString();
+
+
+
+
+            oldProbEnd.SelectedDate = date.AddDays(holidayRespone.count + Convert.ToDouble(probationPeriod.Text));
+            oldProbEnd.Value = date.AddDays(holidayRespone.count + Convert.ToDouble(probationPeriod.Text));
+            probationEndDate.SelectedDate = date.AddDays(holidayRespone.count + Convert.ToDouble(probationPeriod.Text));
+            stopEvent.Text = "false";
 
 
 
@@ -462,7 +486,26 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
 
         }
+        protected void activateEvent(object sender, DirectEventArgs e)
+        {
+            string control = e.ExtraParams["control"];
 
-       
+            if (control== "probationPeriod")
+            {
+                probationPeriod.ResumeEvent("Change");
+                probationEndDate.SuspendEvent("Change");
+                
+            }
+        
+            else
+            {
+                probationEndDate.ResumeEvent("Change");
+                probationPeriod.SuspendEvent("Change");
+             
+            }
+
+        }
+
+
     }
 }

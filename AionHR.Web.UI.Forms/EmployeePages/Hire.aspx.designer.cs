@@ -103,15 +103,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden oldProb;
         
         /// <summary>
-        /// oldProbEnd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden oldProbEnd;
-        
-        /// <summary>
         /// hireDate control.
         /// </summary>
         /// <remarks>
@@ -137,6 +128,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden holidayCount;
+        
+        /// <summary>
+        /// stopEvent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden stopEvent;
         
         /// <summary>
         /// Viewport11 control.
@@ -202,13 +202,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.NumberField probationPeriod;
         
         /// <summary>
-        /// probationEndDateHidden control.
+        /// oldProbEnd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateField probationEndDateHidden;
+        protected global::Ext.Net.DateField oldProbEnd;
         
         /// <summary>
         /// probationEndDate control.

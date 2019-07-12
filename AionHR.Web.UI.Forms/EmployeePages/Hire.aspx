@@ -14,33 +14,18 @@
     <script type="text/javascript" src="../Scripts/moment.js?id=0"></script>
    
     <script type="text/javascript">
+       
         function calcProb()
         {
-           
-           
+
+         
             if (App.probationEndDate.getValue() == '') {
                 return;
             }
-          
+           
            App.probationPeriod.setValue(parseInt(moment(App.probationEndDate.getValue()).diff(moment(App.hireDate.getValue()), 'days')) );
         }
-        function calcProbEndDate()
-        {
-           
-            
-            if (App.hireDate.getValue() == null) {
-                alert("Error ! No Hire Date");
-                
-                return;
-            }
-            
-            var d;
-           
-            App.direct.calHolidays(App.probationEndDate.getValue());
-            d = moment(App.hireDate.getValue()).add(parseInt(App.probationPeriod.getValue()) + parseInt(App.holidayCount.getValue()), 'days');
-            App.probationEndDate.setValue(new Date(d.toDate()));
-            App.oldProbEnd.setValue(new Date(d.toDate()));
-        }
+      
     </script>
 
 </head>
@@ -56,10 +41,11 @@
         <ext:Hidden ID="EmployeeTerminated" runat="server" />
         <ext:Hidden ID="CurrentEmployeeName" runat="server" />
         <ext:Hidden ID="oldProb" runat="server" />
-        <ext:Hidden ID="oldProbEnd" runat="server" />
+       
           <ext:Hidden ID="hireDate" runat="server"  />
          <ext:Hidden ID="employeeCaId" runat="server"  />
           <ext:Hidden ID="holidayCount" runat="server"   />
+           <ext:Hidden ID="stopEvent" runat="server"   />
 
 
 
@@ -112,18 +98,25 @@
                             </Listeners>
                         </ext:ComboBox>
                             <ext:NumberField runat="server" AllowBlank="true" ID="probationPeriod" Name="probationPeriod" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationPeriod  %>" MinValue="0">
-                                <Listeners>
-                                   <%-- <Change Handler= "App.probationEndDate.setValue(Ext.Date.add(App.probationEndDate.value, Ext.Date.Day, + App.probationPeriod.value));"></Change>--%>
-                                    <Change Handler ="if(this.value== #{oldProb}.value) {alert('same');return false;} #{oldProb}.value = this.value; calcProbEndDate();"></Change>
-                                </Listeners>
+                              
+                                <DirectEvents>
+                                 
+                                    <Change OnEvent="calcProbEndDate" >
+                                          <ExtraParams>
+                                
+                                <ext:Parameter Name="probationEndDate" Value="#{probationEndDate}.getValue()" Mode="Raw"  />
+                            </ExtraParams>
+                                        </Change>
+                                </DirectEvents>
                             
                             </ext:NumberField>
-                                <ext:DateField runat="server"  ID="probationEndDateHidden" Hidden="true">
-                                    
-                                </ext:DateField>
+                                 <ext:DateField runat="server" Hidden="true" ID="oldProbEnd" Name="oldProbEnd" />
+
                         <ext:DateField runat="server" AllowBlank="false" ID="probationEndDate" Name="probationEndDate" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationEndDate %>" >
+                          
                                 <Listeners> 
-                                      <Change Handler="if(moment(this.value).isSame(moment( #{oldProbEnd}.value) )) {alert('same');return false;} #{oldProbEnd}.value = this.value; calcProb();"></Change>
+                                        
+                                         <Change Handler="if(moment(this.value).isSame(moment( #{oldProbEnd}.value) )) {return false;} #{oldProbEnd}.value = this.value; calcProb(); App.stopEvent.setValue('true');"></Change>
                                     </Listeners>
                            
                         </ext:DateField>
