@@ -20,14 +20,14 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31041_03")]
         [ApplySecurity]
 
-        public DateTime dateFrom { get; set; }
+        public DateTime? dateFrom { get; set; }
         [PropertyID("31041_04")]
         [ApplySecurity]
-        public DateTime dateTo { get; set; }
+        public DateTime? dateTo { get; set; }
 
         [PropertyID("31041_05")]
         [ApplySecurity]
-        public double? grade { get; set; }
+        public string grade { get; set; }
         [PropertyID("31041_06")]
         [ApplySecurity]
         public string major { get; set; }

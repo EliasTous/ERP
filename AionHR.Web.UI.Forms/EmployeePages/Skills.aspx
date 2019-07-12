@@ -121,7 +121,7 @@
                           
                             
                             <ext:DateColumn  CellCls="cellLink" ID="dateToColumn" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDateTo%>" DataIndex="dateTo" Width="100" Hideable="false" />
-                            <ext:NumberColumn CellCls="cellLink" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldGrade%>" DataIndex="grade" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldGrade%>" DataIndex="grade" Flex="2" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldMajor%>" DataIndex="major" Flex="2" Hideable="false" />
 
 
@@ -271,13 +271,13 @@
                                                     <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                 </Listeners>
                                 </ext:ComboBox>
-                                <ext:DateField AllowBlank="false" ID="dateFrom" runat="server" Name="dateFrom" FieldLabel="<%$ Resources:FieldDateFrom%>"  />
-                                <ext:DateField AllowBlank="false"  ID="dateTo" runat="server" Name="dateTo" FieldLabel="<%$ Resources:FieldDateTo%>"  />
+                                <ext:DateField  ID="dateFrom" runat="server" Name="dateFrom" FieldLabel="<%$ Resources:FieldDateFrom%>"  />
+                                <ext:DateField   ID="dateTo" runat="server" Name="dateTo" FieldLabel="<%$ Resources:FieldDateTo%>"  />
                                 
                                 <ext:TextArea runat="server" Name="remarks"  ID="remarks"  FieldLabel="<%$ Resources:FieldRemarks%>" />
                                 <ext:TextField runat="server" InputType="Password" Visible="false" Name="remarks"  ID="remarksField"  FieldLabel="<%$ Resources:FieldRemarks%>" />
-                                <ext:TextField runat="server" Name="grade" ID="grade" FieldLabel="<%$ Resources:FieldGrade%>" >
-                                    <Validator Handler="return !isNaN(this.value)&& this.value>0 && this.value<100" />
+                                <ext:TextField runat="server" Name="grade" ID="grade" FieldLabel="<%$ Resources:FieldGrade%>" AllowBlank="false" >
+                                
                                     </ext:TextField>
                                 <ext:TextField  runat="server" Name="major" AllowBlank="false"  ID="major"  FieldLabel="<%$ Resources:FieldMajor%>" />
                             </Items>

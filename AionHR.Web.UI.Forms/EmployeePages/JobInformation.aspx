@@ -555,7 +555,7 @@
                                                         </Model>
                                                     </ext:Store>
                                                 </Store>
-                                                    <RightButtons>
+                                                 <%--   <RightButtons>
                                                         <ext:Button ID="Button4" runat="server" Icon="Add" Hidden="true">
                                                             <Listeners>
                                                                 <Click Handler="CheckSession();  " />
@@ -571,7 +571,7 @@
                                                 <Listeners>
                                                     <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
                                                     <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                                </Listeners>
+                                                </Listeners>--%>
                                             </ext:ComboBox>
                                   <ext:ComboBox     AnyMatch="true" CaseSensitive="false"  EnableRegEx="true"   runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local"   ForceSelection="true"  TypeAhead="true" MinChars="1" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldJIDivision%>" >
                                                 <Store>

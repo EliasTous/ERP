@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.TimeAttendance
 {
-   public class PendingPunch : Check
+    public class PendingPunch : Check
     {
         public string recordId { get; set; }
-       
+
         public string ppTypeName { get; set; }
+
+        public string employeeName { get; set; }
 
     }
 }
