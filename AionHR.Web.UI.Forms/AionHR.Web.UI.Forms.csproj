@@ -588,6 +588,7 @@
     <Content Include="TimeAttendanceView.aspx" />
     <Content Include="TimeCodes.aspx" />
     <Content Include="TrainingTypes.aspx" />
+    <Content Include="UserProperties.aspx" />
     <Content Include="Utilities\alerts.txt" />
     <Content Include="Utilities\letters_meta_tags.txt" />
     <Content Include="Utilities\modules.txt" />
@@ -617,6 +618,7 @@
     <Content Include="App_LocalResources\Rules.aspx.resx" />
     <Content Include="App_LocalResources\TimePerformances.aspx.resx" />
     <Content Include="App_LocalResources\RuleTriggers.aspx.resx" />
+    <Content Include="App_LocalResources\UserProperties.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -1665,6 +1667,13 @@
     </Compile>
     <Compile Include="TimeCodes.aspx.designer.cs">
       <DependentUpon>TimeCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserProperties.aspx.cs">
+      <DependentUpon>UserProperties.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserProperties.aspx.designer.cs">
+      <DependentUpon>UserProperties.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AccessControlApplier.cs" />
     <Compile Include="App_GlobalResources\AccessControl.designer.cs">

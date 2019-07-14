@@ -1368,4 +1368,7 @@
   <data name="RuleTriggers" xml:space="preserve">
     <value>Rule Triggers</value>
   </data>
+  <data name="UserProperties" xml:space="preserve">
+    <value>User Properties</value>
+  </data>
 </root>

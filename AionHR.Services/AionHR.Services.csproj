@@ -158,6 +158,7 @@
     <Compile Include="Messaging\Employees\EmployeePenaltyApprovalRecordRequest.cs" />
     <Compile Include="Messaging\Employees\ParamsListRequest.cs" />
     <Compile Include="Messaging\Employees\ShareAttachmentPostRequest.cs" />
+    <Compile Include="Messaging\Employees\UserPropertyRecordRequest.cs" />
     <Compile Include="Messaging\HelpFunction\ActiveAttendanceRecordRequest.cs" />
     <Compile Include="Messaging\Reports\BalanceStatusParameterSet.cs" />
     <Compile Include="Messaging\Reports\BranchWorkforceParameterSet.cs" />

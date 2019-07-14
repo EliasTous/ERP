@@ -3697,6 +3697,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Properties.
+        /// </summary>
+        internal static string UserProperties {
+            get {
+                return ResourceManager.GetString("UserProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Users.
         /// </summary>
         internal static string Users {

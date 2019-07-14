@@ -66,6 +66,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(EmployeePenaltyApproval), "qryPA");
             ChildGetAllLookup.Add(typeof(EmployeeParam), "qryEM");
             ChildGetAllLookup.Add(typeof(EmployeeSnapShot), "snapshotEM");
+            ChildGetAllLookup.Add(typeof(UserProperty), "qryUP");
 
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
@@ -100,6 +101,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(EmployeeCount), "cntEM");
             ChildGetLookup.Add(typeof(EmployeeCalendar), "getCA");
             ChildGetLookup.Add(typeof(EmployeeCal), "getCA");
+            
 
             ChildGetLookup.Add(typeof(NoticePeriod), "getNP");
             ChildGetLookup.Add(typeof(EmployeeTermination), "getTE");
@@ -107,6 +109,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(EmploymentStatusByReferance), "getST2");
             ChildGetLookup.Add(typeof(EmployeePenalty), "getPE");
             ChildGetLookup.Add(typeof(EmployeePenaltyApproval), "getPA");
+            ChildGetLookup.Add(typeof(UserProperty), "getUP");
 
 
 
@@ -149,6 +152,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(EmployeePenaltyApproval), "setPA");
             ChildAddOrUpdateLookup.Add(typeof(SyncFullName), "syncFullName");
             ChildAddOrUpdateLookup.Add(typeof(ShareAttachment), "share");
+            ChildAddOrUpdateLookup.Add(typeof(UserProperty), "setUP");
 
 
 
@@ -184,6 +188,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(EmployeeCal), "delCA");
             ChildDeleteLookup.Add(typeof(EmployeeTermination), "delTE");
             ChildDeleteLookup.Add(typeof(EmployeePenalty), "delPE");
+            ChildDeleteLookup.Add(typeof(UserProperty), "delUP");
 
         }
 

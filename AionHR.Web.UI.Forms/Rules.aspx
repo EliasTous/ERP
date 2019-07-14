@@ -667,13 +667,15 @@
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
-                                       
+                                       <Listeners>
+                                           <Change Handler="if (this.value!=null) { App.classId.setDisabled(false); App.classId.setValue(''); } else {App.classId.setDisabled(true); App.classId.setValue('');}" />
+                                       </Listeners>
                                       <DirectEvents>
                                          <Select OnEvent="FillClassIdCombo" />
                                       </DirectEvents>
                                        </ext:ComboBox>
 
-                                   <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldClass%>"  runat="server" DisplayField="className" ValueField="classId"   Name="classId" ID="classId"  >
+                                   <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldClass%>"  runat="server" DisplayField="className" ValueField="classId"   Name="classId" ID="classId"  Disabled="true" >
                                              <Store>
                                                 <ext:Store runat="server" ID="ClassStore">
                                                     <Model>
