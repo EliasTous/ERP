@@ -63,7 +63,7 @@
                         
                         <ext:ModelField Name="timeZone" />
                         
-                        <ext:ModelField Name="isInactive" Type="Boolean" DefaultValue="false"/>
+                        <ext:ModelField Name="activeStatusString"/>
                        
 
 
@@ -171,7 +171,7 @@
                                 <Renderer Handler="var sign = ''; if(record.data['timeZone']>=0) sign = '+'; return 'UTC '+sign + record.data['timeZone'] + ':00 ' " />     
                                 </ext:Column>
                           --%>
-                            <ext:CheckColumn ID="ColInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Width="100" Hideable="false" />
+                            <ext:Column ID="ColActiveStatus" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="activeStatusString" Width="100" Hideable="false" />
 
                          
 
@@ -337,8 +337,23 @@
                                         <ext:ListItem Text="+12 UTC" Value="12" />
                                     </Items>
                                 </ext:ComboBox>--%>
-                                
-                                <ext:Checkbox ID="isInactive" runat="server" FieldLabel="<%$ Resources: FieldIsInactive%>" Name="isInactive" InputValue="true" />
+                                     <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" AllowBlank="false" ValueField="key" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="value" ID="activeStatus" Name="activeStatus" FieldLabel="<%$ Resources:FieldIsInactive%>" SimpleSubmit="true">
+
+                                            <Store>
+                                                <ext:Store runat="server" ID="activeStatusStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="key" />
+                                                                <ext:ModelField Name="value" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+
+                                        </ext:ComboBox>
+                             <%--  <ext:Checkbox ID="isInactive" runat="server" FieldLabel="<%$ Resources: FieldIsInactive%>" Name="isInactive" InputValue="true" />--%>
                                
 
                             </Items>

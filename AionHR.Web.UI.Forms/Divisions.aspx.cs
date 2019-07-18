@@ -35,6 +35,7 @@ namespace AionHR.Web.UI.Forms
 
         protected override void InitializeCulture()
         {
+          
 
             switch (_systemService.SessionHelper.getLangauge())
             {
@@ -94,7 +95,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-
+                FillActiveStatus();
 
             }
 
@@ -102,7 +103,12 @@ namespace AionHR.Web.UI.Forms
         }
 
       
+        private void FillActiveStatus()
+        {
+            activeStatusStore.DataSource = Common.XMLDictionaryList(_systemService, "16");
+            activeStatusStore.DataBind();
 
+        }
      
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
@@ -355,9 +361,16 @@ namespace AionHR.Web.UI.Forms
             ListResponse<Division> branches = _branchService.ChildGetAll<Division>(request);
             if (!branches.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString()+ "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + branches.LogId: branches.Summary).Show();
+                Common.errorMessage(branches); 
                 return;
             }
+
+            branches.Items.ForEach(x =>
+                {
+                x.activeStatusString= x.activeStatus == (Int16)ActiveStatus.ACTIVE ? Resources.Common.Active.ToString() : Resources.Common.Inactive.ToString();
+
+                });
+
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 
@@ -376,7 +389,7 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             Division b = JsonConvert.DeserializeObject<Division>(obj);
-            b.isInactive = isInactive.Checked;
+          //  b.isInactive = isInactive.Checked;
             b.recordId = id;
             // Define the object to add or edit as null
 
@@ -406,7 +419,7 @@ namespace AionHR.Web.UI.Forms
                     {
 
                         //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                        Store1.Reload();
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -458,9 +471,7 @@ namespace AionHR.Web.UI.Forms
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(index);
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Commit();
+                        Store1.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,

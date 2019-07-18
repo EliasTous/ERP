@@ -133,7 +133,7 @@
                     ColumnLines="True" IDMode="Explicit" RenderXType="True" ForceFit="true">
 
                     <TopBar>
-                        <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
+                        <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false" DefaultButton="goButton">
                             <Items>
                                 <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                     <Listeners>
@@ -200,34 +200,14 @@
                                     </Items>
                                  
                                 </ext:ComboBox>
-                                <ext:Button runat="server" Text="<%$ Resources: Common,Go%>" MarginSpec="0 0 0 0" Width="100">
+                                <ext:Button ID="goButton" runat="server" Text="<%$ Resources: Common,Go%>" MarginSpec="0 0 0 0" Width="100">
                                     <Listeners>
                                         <Click Handler="#{Store1}.reload();">
                                         </Click>
                                     </Listeners>
                                 </ext:Button>
-                                <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                                <ext:Button Visible="false" ID="btnDeleteSelected" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
-                                    <Listeners>
-                                        <Click Handler="CheckSession();"></Click>
-                                    </Listeners>
-                                    <DirectEvents>
-                                        <Click OnEvent="btnDeleteAll">
-                                            <EventMask ShowMask="true" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
-                                <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
-                                <ext:TextField Visible="false" ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
-                                    <Triggers>
-                                        <ext:FieldTrigger Icon="Search" />
-                                    </Triggers>
-                                    <Listeners>
-                                        <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                        <TriggerClick Handler="#{Store1}.reload();" />
-                                    </Listeners>
-                                </ext:TextField>
-
+                              
+                              
                             </Items>
                         </ext:Toolbar>
 

@@ -116,15 +116,13 @@ namespace AionHR.Web.UI.Forms
         {
 
             EmployeeListRequest empRequest = new EmployeeListRequest();
-            //empRequest.BranchId = "0";
-            //empRequest.DepartmentId = "0";
-         
-            //empRequest.IncludeIsInactive = 0;
-            string sortby= GetNameFormat();
-            empRequest.SortBy = "lastName";
-
-            empRequest.Size = "1000";
+            // ReportGenericRequest req = new ReportGenericRequest();
+            empRequest.paramString = "11|1";
             empRequest.StartAt = "0";
+            empRequest.SortBy = "lastName";
+            empRequest.Size = "1000";
+
+                                                   
 
             ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
             if (!emps.Success)

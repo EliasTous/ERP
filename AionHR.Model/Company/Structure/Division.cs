@@ -19,5 +19,9 @@ namespace AionHR.Model.Company.Structure
         [PropertyID("21010_03")]
         [ApplySecurity]
         public bool? isInactive { get; set; }
+
+        public short? activeStatus { get; set; }
+
+        public string activeStatusString { get; set; }
     }
 }
