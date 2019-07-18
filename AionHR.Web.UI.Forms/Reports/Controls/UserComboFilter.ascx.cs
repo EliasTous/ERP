@@ -25,7 +25,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         private void FillUsers()
         {
             UsersListRequest req = new UsersListRequest();
-            req.Size = "100";
+            req.Size = "1000";
             req.StartAt = "0";
             
 
