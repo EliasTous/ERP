@@ -916,6 +916,8 @@ namespace AionHR.Web.UI.Forms
                 parameters.Add("1", "1");
                 parameters.Add("8", "0");
                 parameters.Add("2", _systemService.SessionHelper.GetEmployeeId().ToString());
+
+                parameters.Add("9", "3");
                 foreach (KeyValuePair<string, string> entry in parameters)
                 {
                     rep_params += entry.Key.ToString() + "|" + entry.Value+"^";
@@ -1462,6 +1464,8 @@ namespace AionHR.Web.UI.Forms
                 parameters.Add("5", timeVariationType.GetTimeCode());
                 parameters.Add("4", "0");
                 parameters.Add("7", "1");
+                parameters.Add("11", "3");
+
 
 
 
@@ -2893,10 +2897,11 @@ namespace AionHR.Web.UI.Forms
                     parameters.Add("5", timeCode);
                     parameters.Add("6", "0");
                     parameters.Add("7", "0");
+                  
 
 
 
-                    foreach (KeyValuePair<string, string> entry in parameters)
+                foreach (KeyValuePair<string, string> entry in parameters)
                     {
                         rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
                     }
