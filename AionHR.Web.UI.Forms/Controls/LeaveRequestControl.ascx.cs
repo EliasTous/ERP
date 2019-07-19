@@ -80,7 +80,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 //////FillDepartment();
                 //////FillDivision();
                 //////FillBranch();
-
+                LeaveApprovalStatusControl.setApprovalStatus("1");
                 DateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                 startDate.Format = endDate.Format = _systemService.SessionHelper.GetDateformat();
                 try
@@ -186,7 +186,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 }
                 //Step 2 : call setvalues with the retrieved object
                 this.BasicInfoTab.SetValues(response.result);
-
+                LeaveApprovalStatusControl.setApprovalStatus(response.result.status.ToString());
 
 
                 FillLeaveType();
@@ -274,8 +274,7 @@ namespace AionHR.Web.UI.Forms.Controls
             panelRecordDetails.ActiveTabIndex = 0;
             leaveDaysStore.DataSource = new List<LeaveDay>();
             leaveDaysStore.DataBind();
-            status.Disabled = true;
-            status.Select(0);
+            LeaveApprovalStatusControl.setApprovalStatus("1");
             shouldDisableLastDay.Text = "0";
             startDate.Value = DateTime.Now;
             this.EditRecordWindow.Show();

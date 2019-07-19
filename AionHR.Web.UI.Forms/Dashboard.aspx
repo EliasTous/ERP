@@ -1640,6 +1640,7 @@
                                                                                    <ext:ModelField Name="arName" />
                                                                                  <ext:ModelField Name="employeeName" />
                                                                                  <ext:ModelField Name="seqNo" />
+                                                                                  <ext:ModelField Name="status" />
 
                                                                                 
                                                                             
@@ -1690,7 +1691,8 @@
                                                                         <ext:Parameter Name="id" Value="record.data['leaveId']" Mode="Raw" />
                                                                         <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
                                                                            <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
-
+                                                                         <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
+                                                                        
                                                                         <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                                                     </ExtraParams>
 
@@ -2134,6 +2136,7 @@
                                                                          <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
                                                                            <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                                                             <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
+                                                                           <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
                                                                                                                                  
                                                                                                                                                 
                                                                     </ExtraParams>
@@ -2234,7 +2237,10 @@
                                                                     <ExtraParams>
                                                                         <ext:Parameter Name="penaltyId" Value="record.data['penaltyId']" Mode="Raw" />
                                                                          <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
-                                                                        <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                                                           <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
+                                                                          <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                                                         
+                                                                        
                                                                     </ExtraParams>
 
                                                                 </CellClick>
@@ -4013,16 +4019,12 @@
 
 
 
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status"
-                                    FieldLabel="<%$ Resources: FieldStatus %>">
-                                    <Items>
-
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusNew %>"  />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusApproved %>" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusRefused %>" />
-                                    </Items>
-
-                                </ext:ComboBox>
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalStatusControl  runat="server" ID="LeveApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" />
+                                            </Content>
+                                        </ext:Container>  
 
                                   <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
@@ -4288,17 +4290,13 @@
 
 
 
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="TimeStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="status" 
-                                    FieldLabel="<%$ Resources: FieldStatus %>">
-                                    <Items>
-                                        
-                                     
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="<%$ Resources:ComboBoxValues,  SYTATATimeStatusNew %>" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues,  SYTATATimeStatusApproved %>" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="<%$ Resources:ComboBoxValues,  SYTATATimeStatusRefused %>" />
-                                    </Items>
+                                <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalStatusControl  runat="server" ID="TimeApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" />
+                                            </Content>
+                                        </ext:Container>  
 
-                                </ext:ComboBox>
 
                                  <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
@@ -4484,18 +4482,13 @@
 
                                 <ext:TextArea ID="purpose" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" ReadOnly="true" />
                                  <ext:TextField ID="purposeField" InputType="Password" Visible="false" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" ReadOnly="true" />
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ApprovalLoanStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false" SubmitValue="true">
-                                    <Items>
-                                         <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusNew %>"  />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusApproved %>" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusRefused %>" />
-                                    </Items>
-                                    <Listeners>
-                                        <%--<Change Handler="if(this.value==3) {this.next().setDisabled(false); this.next().setValue(new Date());} else {this.next().setDisabled(true); this.next().clear();}">
-                                        </Change>--%>
-                                    </Listeners>
-                                </ext:ComboBox>
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalStatusControl  runat="server" ID="LoanApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" />
+                                            </Content>
+                                        </ext:Container>  
+
                                   <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
@@ -4529,7 +4522,7 @@
                                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{ApprovalLoanWindow}.body}" />
                                             <ExtraParams>
                                                 <ext:Parameter Name="id" Value="#{ApprovalRecordId}.getValue()" Mode="Raw" />
-                                                <ext:Parameter Name="status" Value="#{ApprovalLoanStatus}.getValue()" Mode="Raw" />
+                                             
                                                   <ext:Parameter Name="notes" Value="#{LoanNotes}.getValue()" Mode="Raw" />
                                                  
                                                 <ext:Parameter Name="values" Value="#{ApprovalLoanForm}.getForm().getValues()" Mode="Raw" Encode="true" />
@@ -5368,18 +5361,12 @@
 
                                
 
-                                
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="PAstatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false" SubmitValue="true">
-                                    <Items>
-                                       
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusApproved %>" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusRefused %>" />
-                                    </Items>
-                                    <Listeners>
-                                       
-                                    </Listeners>
-                                </ext:ComboBox>
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalStatusControl  runat="server" ID="PurchaseApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" />
+                                            </Content>
+                                        </ext:Container>  
                                  <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
@@ -5404,7 +5391,7 @@
                                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{purchaseApprovalWindow}.body}" />
                                             <ExtraParams>
                                                
-                                                  <ext:Parameter Name="PAstatus" Value="#{PAstatus}.getValue()" Mode="Raw" />
+                                               
                                                    <ext:Parameter Name="poId" Value="#{poId}.getValue()" Mode="Raw" />
                                                  
                                                 <ext:Parameter Name="values" Value="#{purchaseApprovalForm}.getForm().getValues()" Mode="Raw" Encode="true" />
@@ -5545,16 +5532,12 @@
 
                                
                                   <%--  <ext:NumberField ID="NumberField1"  runat="server" FieldLabel="<%$ Resources:FieldAmount%>"  DataIndex="amount" DecimalPrecision="2" MinValue="0" AllowBlank="false"/>--%>
-                                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="penaltyStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status"
-                                    FieldLabel="<%$ Resources: FieldStatus %>">
-                                    <Items>
-
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusNew %>"  />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusApproved %>" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="<%$ Resources:ComboBoxValues, SYLMLRStatusRefused %>" />
-                                    </Items>
-
-                                </ext:ComboBox>
+                                  <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalStatusControl  runat="server" ID="PenaltyApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" />
+                                            </Content>
+                                        </ext:Container>  
                                  <ext:TextArea ID="notes"  runat="server" FieldLabel="<%$ Resources:FieldNotes%>"  DataIndex="notes"  />
 
 
@@ -5656,7 +5639,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="penaltyId" Value="#{PERecordId}.getValue()" Mode="Raw" />
-                                 <ext:Parameter Name="penaltyStatus" Value="App.penaltyStatus.getValue()" Mode="Raw" />
+                          
                                   <ext:Parameter Name="notes" Value="#{notes}.getValue()" Mode="Raw" />
                                 
                                 <ext:Parameter Name="values" Value="#{employeePenaltyForm}.getForm().getValues()" Mode="Raw" Encode="true" />

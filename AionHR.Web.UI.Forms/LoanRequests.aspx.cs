@@ -34,6 +34,7 @@ using AionHR.Services.Messaging.LoanManagment;
 using AionHR.Model.Attributes;
 using AionHR.Web.UI.Forms.ConstClasses;
 using System.Text.RegularExpressions;
+using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -1492,31 +1493,34 @@ namespace AionHR.Web.UI.Forms
 
         protected void ApprovalsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            LoanManagementListRequest req = new LoanManagementListRequest();
-            req.LoanId = currentLoanId.Text;
-            if(string.IsNullOrEmpty(req.LoanId))
+            //string rep_params = "";
+            //Dictionary<string, string> parameters = new Dictionary<string, string>();
+            //parameters
+            //foreach (KeyValuePair<string, string> entry in parameters)
+            //{
+            //    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+            //}
+            //if (rep_params.Length > 0)
+            //{
+            //    if (rep_params[rep_params.Length - 1] == '^')
+            //        rep_params = rep_params.Remove(rep_params.Length - 1);
+            //}
+
+
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = "8|" + currentLoanId.Text; 
+          
+            if(string.IsNullOrEmpty(currentLoanId.Text))
             {
                 ApprovalStore.DataSource = new List<LoanApproval>();
                 ApprovalStore.DataBind();
+                return;
             }
-            req.approverId = 0;
-            req.BranchId = "0";
-            req.DepartmentId = "0";
-            req.DivisionId = "0";
-            req.EmployeeId = 0;
-            req.Status = 0;
-            req.Filter = "";
-            req.PositionId = "0";
-            req.EsId = "0";
-
-            req.SortBy = "recordId";
-
-
-
-
-
-            req.Size = "1000";
-            req.StartAt = "0";
+          
+            
+                  
+          
+          
             ListResponse<LoanApproval> response = _loanService.ChildGetAll<LoanApproval>(req);
           
             if (!response.Success)

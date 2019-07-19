@@ -189,17 +189,12 @@
                                         <ext:ListItem Text="-----All-----" Value="0" />
                                     </Items>
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="includeOpen" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    EmptyText="<%$ Resources: FilterStatus %>">
-                                    <Items>
-                                           <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="-1" />
-                                      
-                                    </Items>
-                                 
-                                </ext:ComboBox>
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalStatusControl  runat="server" ID="LeveApprovalStatusFilter" EmptyText="<%$ Resources:Common, status %>" FieldType="Filter" />
+                                            </Content>
+                                        </ext:Container>  
                                 <ext:Button ID="goButton" runat="server" Text="<%$ Resources: Common,Go%>" MarginSpec="0 0 0 0" Width="100">
                                     <Listeners>
                                         <Click Handler="#{Store1}.reload();">

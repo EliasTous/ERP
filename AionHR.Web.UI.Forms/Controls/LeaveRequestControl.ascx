@@ -455,19 +455,13 @@
                         </ext:ComboBox>
 
 
-                        <ext:ComboBox Disabled="true"  AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status" 
-                            FieldLabel="<%$ Resources: FieldStatus %>">
-                            <Items>
+                      <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalStatusControl  runat="server" ID="LeaveApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" ReadOnly="true" />
+                                            </Content>
+                                        </ext:Container>  
 
-                                <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="<%$ Resources:ComboBoxValues, LMLRStatusPending %>"  />
-                                <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="<%$ Resources:ComboBoxValues, LMLRStatusApproved %>"   />
-                                <ext:ListItem Text="<%$ Resources: FieldUsed %>" Value="<%$ Resources:ComboBoxValues, LMLRStatusUsed %>" />
-                                <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="<%$ Resources:ComboBoxValues, LMLRStatusRefused %>"  />
-                            </Items>
-                            <Listeners>
-                                <Change Handler="SetReturnDateState();" />
-                            </Listeners>
-                        </ext:ComboBox>
                         <ext:FieldSet ID="summary" runat="server" Disabled="true" Title="<%$ Resources:RecentLeaves%>" >
                             <Items>
                                 <ext:TextField runat="server" ID="leaveBalance" FieldLabel="<%$Resources: LeaveBalance %>" Name="leaveBalance" />

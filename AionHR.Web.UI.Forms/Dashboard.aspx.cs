@@ -389,15 +389,17 @@ namespace AionHR.Web.UI.Forms
                 TimeGridPanel.Title = GetLocalResourceObject("Time").ToString() + " " + (APPROVAL_TIME != 0 ? APPROVAL_TIME.ToString() : "");
                 EmployeePenaltyApprovalGrid.Title = GetLocalResourceObject("EmployeePenaltyApproval").ToString() + " " + (APPROVAL_PENALTY != 0 ? APPROVAL_PENALTY.ToString() : "");
                 PurchasesGrid.Title= GetLocalResourceObject("PurchasesApproval").ToString() + " " + (APPROVAL_PURCHASE_ORDER != 0 ? APPROVAL_PURCHASE_ORDER.ToString() : "");
-                if (PENDING_PUNCHES != 0)
+                if (PENDING_PUNCHES != 0 )
                 {
                     PunchesGrid.Hidden = false;
                     belowt.ShowTab(PunchesGrid);
                     PunchesGrid.Title = GetLocalResourceObject("PunchesGrid").ToString() + " " + (PENDING_PUNCHES != 0 ? PENDING_PUNCHES.ToString() : "");
+                    belowt.ActiveIndex = belowt.ActiveTabIndex;
                 }
                 else
                 {
                     belowt.HideTab(PunchesGrid);
+                  if (belowt.ActiveTabIndex==7)
                     belowt.ActiveIndex = 0;
                     PunchesGrid.Hidden = true;
                 }
@@ -917,7 +919,7 @@ namespace AionHR.Web.UI.Forms
                 parameters.Add("8", "0");
                 parameters.Add("2", _systemService.SessionHelper.GetEmployeeId().ToString());
 
-                parameters.Add("9", "3");
+                parameters.Add("9", "0");
                 foreach (KeyValuePair<string, string> entry in parameters)
                 {
                     rep_params += entry.Key.ToString() + "|" + entry.Value+"^";
@@ -1304,55 +1306,58 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                string filter = string.Empty;
-                int totalCount = 1;
 
-
-
-                //Fetching the corresponding list
-
-                //in this test will take a list of News
-                //ListRequest request = new ListRequest();
-                DashboardRequest req = GetDashboardRequest();
-                LoanManagementListRequest request = new LoanManagementListRequest();
                 if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                    return;
+
+                string rep_params = "";
+                Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                if (parameters.ContainsKey("5"))
+                    parameters.ChangeKey("5", "7");
+                if (parameters.ContainsKey("4"))
+                    parameters.ChangeKey("4", "6");
+                if (parameters.ContainsKey("2"))
+                    parameters.ChangeKey("2", "5");
+                if (parameters.ContainsKey("1"))
+                    parameters.ChangeKey("1", "4");
+
+
+
+
+
+                parameters.Add("1", "1");
+              
+                parameters.Add("2", _systemService.SessionHelper.GetEmployeeId().ToString());
+
+              
+                foreach (KeyValuePair<string, string> entry in parameters)
                 {
-                    ApprovalLoanStore.DataSource = new List<Loan>();
-                    ApprovalLoanStore.DataBind();
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
+                                                                      
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+                ListResponse<LoanApproval> resp = _loanService.ChildGetAll<LoanApproval>(req);
+
+                                                                         
+                if (!resp.Success)
+                {
+                     Common.errorMessage(resp);
                     return;
                 }
-                request.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
-                request.BranchId = req.BranchId;
-                request.DepartmentId = req.DepartmentId;
-                request.DivisionId = req.DivisionId;
-                request.EmployeeId = 0;
-                request.Status = 1;
-                request.Filter = "";
-                request.LoanId = "0";
-                request.SortBy = "recordId";
-                request.PositionId = req.PositionId;
-                request.EsId = req.EsId;
-
-
-
-
-
-                request.Size = "1000";
-                request.StartAt = "0";
-                ListResponse<LoanApproval> routers = _loanService.ChildGetAll<LoanApproval>(request);
-                if (!routers.Success)
-                {
-                     Common.errorMessage(routers);
-                    return;
-                }
-                routers.Items.ForEach(x =>
+                resp.Items.ForEach(x =>
                 {
 
                     x.statusString = FillApprovalStatus(x.status);
                 }
-            );
-                this.ApprovalLoanStore.DataSource = routers.Items;
-                e.Total = routers.count;
+                  );
+                this.ApprovalLoanStore.DataSource = resp.Items;
+                e.Total = resp.count;
 
                 this.ApprovalLoanStore.DataBind();
             }
@@ -1464,7 +1469,7 @@ namespace AionHR.Web.UI.Forms
                 parameters.Add("5", timeVariationType.GetTimeCode());
                 parameters.Add("4", "0");
                 parameters.Add("7", "1");
-                parameters.Add("11", "3");
+                //parameters.Add("11", "3");
 
 
 
@@ -1719,7 +1724,7 @@ namespace AionHR.Web.UI.Forms
             }
             if (response.result != null)
             {
-                TimeStatus.Select(response.result.status.ToString());
+                TimeApprovalStatusControl.setApprovalStatus(response.result.status.ToString());
                 if (response.result.damageLevel == "1")
                     response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
                 else
@@ -1735,7 +1740,7 @@ namespace AionHR.Web.UI.Forms
             TimeEmployeeName.Text = employeeName;
             TimedayIdDate.Text = dayIdDate;
             TimeTimeCodeString.Text = timeCodeString;
-
+            TimeApprovalStatusControl.setApprovalStatus(status);
             shiftIdTF.Text = shiftId;
             TimeemployeeIdTF.Text = employeeId;
             TimedayIdTF.Text = dayId;
@@ -1761,7 +1766,7 @@ namespace AionHR.Web.UI.Forms
             string commentsParameter = e.ExtraParams["comments"];
             string arIdParameter = e.ExtraParams["arId"];
             currentSeqNo.Text = e.ExtraParams["seqNo"];
-            PAstatus.Select(statusParameter);
+            PurchaseApprovalStatusControl.setApprovalStatus(statusParameter);
             PurchasApprovalReasonControl.setApprovalReason(arIdParameter);
 
 
@@ -1811,6 +1816,8 @@ namespace AionHR.Web.UI.Forms
                 string employeeId = e.ExtraParams["employeeId"];
                 string arId = e.ExtraParams["arId"];
                 currentSeqNo.Text = e.ExtraParams["seqNo"];
+                string status = e.ExtraParams["status"];
+                
                 //SetTabPanelEnable(true);
 
 
@@ -1840,7 +1847,7 @@ namespace AionHR.Web.UI.Forms
 
                 //Step 2 : call setvalues with the retrieved object
                 this.ApprovalLoanForm.SetValues(response.result);
-                ApprovalLoanStatus.Select("1");
+                LoanApprovalStatusControl.setApprovalStatus(status);
                 LoanApprovalReasonControl.setApprovalReason(arId);
 
                 ApprovalLoanEmployeeName.Text = response.result.employeeName.ToString();
@@ -1935,6 +1942,9 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             string arId= e.ExtraParams["arId"];
             string seqNoParamter = e.ExtraParams["seqNo"];
+            string status = e.ExtraParams["status"];
+
+            
             switch (type)
             {
 
@@ -1959,7 +1969,8 @@ namespace AionHR.Web.UI.Forms
                     this.LeaveRecordForm.SetValues(response.result);
                     employeeName.Text = response.result.employeeName;
                     LeaveApprovalReasonControl.setApprovalReason(arId);
-                    seqNo.Text = seqNoParamter; 
+                    seqNo.Text = seqNoParamter;
+                    LeveApprovalStatusControl.setApprovalStatus(status);
                     this.LeaveRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.LeaveRecordWindow.Show();
                     break;
@@ -1989,7 +2000,7 @@ namespace AionHR.Web.UI.Forms
         {
             string obj = e.ExtraParams["values"];
             string id = e.ExtraParams["id"];
-            string status = e.ExtraParams["status"];
+         
             string notes = e.ExtraParams["notes"];
             //LoanApproval LV = JsonConvert.DeserializeObject<LoanApproval>(obj);
 
@@ -2011,7 +2022,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 : Fill The object and insert in the store 
                 LoanApproval LA = new LoanApproval();
 
-                LA.status = Convert.ToInt16(status);
+                LA.status = Convert.ToInt16(LoanApprovalStatusControl.GetApprovalStatus());
                 LA.notes = notes;
                 LA.loanId = id;
                 LA.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
@@ -2060,11 +2071,11 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["values"];
             string poId = e.ExtraParams["poId"];
 
-            string status = e.ExtraParams["PAstatus"];
+           
             
             AssetManagementPurchaseOrderApproval PA = JsonConvert.DeserializeObject<AssetManagementPurchaseOrderApproval>(obj);
 
-            PA.status = string.IsNullOrEmpty(status) ? (Int16?)null : Convert.ToInt16(status);
+            PA.status = string.IsNullOrEmpty(PurchaseApprovalStatusControl.GetApprovalStatus()) ? (Int16?)null : Convert.ToInt16(PurchaseApprovalStatusControl.GetApprovalStatus());
             PA.poId = string.IsNullOrEmpty(poId) ? (Int32?)null : Convert.ToInt32(poId);
             PA.arId = PurchasApprovalReasonControl.getApprovalReason() == "0" ? null : PurchasApprovalReasonControl.getApprovalReason();
             PA.approverId = _systemService.SessionHelper.GetEmployeeId();
@@ -2138,6 +2149,7 @@ namespace AionHR.Web.UI.Forms
 
                 request.entity.arId = LeaveApprovalReasonControl.getApprovalReason() == "0" ? null : LeaveApprovalReasonControl.getApprovalReason();
                 request.entity.seqNo = seqNo;
+                request.entity.status = Convert.ToInt16(LeveApprovalStatusControl.GetApprovalStatus());
                 PostResponse<DashboardLeave> r = _leaveManagementService.ChildAddOrUpdate<DashboardLeave>(request);
 
 
@@ -2188,10 +2200,10 @@ namespace AionHR.Web.UI.Forms
                 request.entity.dayId = TI.dayId;
                 request.entity.timeCode = TI.timeCode;
                 request.entity.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
-                request.entity.status = TI.status;
+                request.entity.status = Convert.ToInt16(TimeApprovalStatusControl.GetApprovalStatus());
                 request.entity.notes = TI.notes;
                 request.entity.shiftId = TI.shiftId;
-                request.entity.seqNo = seqNo.Text;
+                request.entity.seqNo = currentSeqNo.Text;
 
                 PostResponse<Time> r = _timeAttendanceService.ChildAddOrUpdate<Time>(request);
 
@@ -3188,6 +3200,8 @@ namespace AionHR.Web.UI.Forms
             TabPanel5.ActiveIndex = 0;
 
             string penaltyId = e.ExtraParams["penaltyId"];
+            string status = e.ExtraParams["status"];
+
             currentSeqNo.Text= e.ExtraParams["seqNo"];
             try { 
 
@@ -3205,7 +3219,7 @@ namespace AionHR.Web.UI.Forms
                 PADate.Value = resp.result.date;
                 penaltyName.Text = resp.result.penaltyName;
                 PAEmployeeName.Text = resp.result.employeeName;
-                penaltyStatus.Select(resp.result.status.ToString());
+                PenaltyApprovalStatusControl.setApprovalStatus(resp.result.status.ToString());
                 notes.Text = resp.result.notes;
 
                 PERecordId.Text = penaltyId;
@@ -3234,7 +3248,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 string penaltyId = e.ExtraParams["penaltyId"];
-                string penaltyStatusValue = e.ExtraParams["penaltyStatus"];
+              
                 string notes = e.ExtraParams["notes"];
 
                 EmployeePenaltyApprovalRecordRequest r = new EmployeePenaltyApprovalRecordRequest();
@@ -3251,7 +3265,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 : Fill The object and insert in the store 
                 EmployeePenaltyApproval PA = resp.result;
                 short number = 0;
-                if (!Int16.TryParse(penaltyStatusValue, out number))
+                if (!Int16.TryParse(PenaltyApprovalStatusControl.GetApprovalStatus(), out number))
                     return;
 
 

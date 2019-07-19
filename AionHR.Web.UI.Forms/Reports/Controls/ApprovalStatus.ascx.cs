@@ -1,6 +1,7 @@
 ﻿using AionHR.Model.AssetManagement;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.System;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.Reports;
@@ -23,20 +24,25 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         public string AllowBlank { get; set; }
         public string  ReadOnly { get; set; }
 
+        public string EmptyText { get; set; }
+
 
         IAssetManagementService _assetManagementService = ServiceLocator.Current.GetInstance<IAssetManagementService>();
+        ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            fillApprovalStatus();
             if (!string.IsNullOrEmpty(FieldLabel))
                 apStatus.FieldLabel = FieldLabel;
+           
 
-            if (!string.IsNullOrEmpty(FieldType)&&FieldType=="Form")
-                apStatus.RemoveByValue("0");
             if (!string.IsNullOrEmpty(AllowBlank))
                 apStatus.AllowBlank = Convert.ToBoolean(AllowBlank);
             if (!string.IsNullOrEmpty(ReadOnly))
                 apStatus.ReadOnly = Convert.ToBoolean(ReadOnly);
+
+            if (!string.IsNullOrEmpty(EmptyText))
+                apStatus.EmptyText = EmptyText;
 
 
         }
@@ -67,6 +73,20 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                 apStatus.SetValue(status);
                 apStatus.Select(status);
             }
+          
+        }
+
+
+        private void fillApprovalStatus()
+        {
+            List< XMLDictionary> approvalsStatusList  = Common.XMLDictionaryList(_systemService, "13");
+            if (!string.IsNullOrEmpty(FieldType) && FieldType == "Filter")
+            {
+
+                approvalsStatusList.Add(new XMLDictionary { key = 0, value = Resources.Common.All });
+            }
+            apStatusStore.DataSource = approvalsStatusList;
+            apStatusStore.DataBind();
           
         }
     }

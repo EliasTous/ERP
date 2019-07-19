@@ -463,13 +463,13 @@ namespace AionHR.Web.UI.Forms.Controls {
         protected global::Ext.Net.Button Button9;
         
         /// <summary>
-        /// status control.
+        /// LeaveApprovalStatusControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox status;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus LeaveApprovalStatusControl;
         
         /// <summary>
         /// summary control.

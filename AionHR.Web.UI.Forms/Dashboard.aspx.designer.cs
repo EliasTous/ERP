@@ -2848,13 +2848,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField destination;
         
         /// <summary>
-        /// status control.
+        /// LeveApprovalStatusControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox status;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus LeveApprovalStatusControl;
         
         /// <summary>
         /// LeaveApprovalReasonControl control.
@@ -3172,13 +3172,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField shiftStart;
         
         /// <summary>
-        /// TimeStatus control.
+        /// TimeApprovalStatusControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox TimeStatus;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus TimeApprovalStatusControl;
         
         /// <summary>
         /// TimeApprovalReasonControl control.
@@ -3433,13 +3433,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField purposeField;
         
         /// <summary>
-        /// ApprovalLoanStatus control.
+        /// LoanApprovalStatusControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox ApprovalLoanStatus;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus LoanApprovalStatusControl;
         
         /// <summary>
         /// LoanApprovalReasonControl control.
@@ -4261,13 +4261,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField categoryName;
         
         /// <summary>
-        /// PAstatus control.
+        /// PurchaseApprovalStatusControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox PAstatus;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus PurchaseApprovalStatusControl;
         
         /// <summary>
         /// PurchasApprovalReasonControl control.
@@ -4378,13 +4378,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField PAEmployeeName;
         
         /// <summary>
-        /// penaltyStatus control.
+        /// PenaltyApprovalStatusControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox penaltyStatus;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus PenaltyApprovalStatusControl;
         
         /// <summary>
         /// notes control.

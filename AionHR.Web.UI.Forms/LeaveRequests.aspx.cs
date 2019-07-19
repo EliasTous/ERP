@@ -120,7 +120,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
         
-                includeOpen.Select("1");
+               
                
               Column2.Format = Column1.Format = _systemService.SessionHelper.GetDateformat();
                 try
@@ -336,9 +336,9 @@ namespace AionHR.Web.UI.Forms
 
             }
 
-            if (!string.IsNullOrEmpty(includeOpen.Text))
+            if (!string.IsNullOrEmpty(LeveApprovalStatusFilter.GetApprovalStatus()))
             {
-                req.status = Convert.ToInt32(includeOpen.Value);
+                req.status = Convert.ToInt32(LeveApprovalStatusFilter.GetApprovalStatus());
 
 
             }
