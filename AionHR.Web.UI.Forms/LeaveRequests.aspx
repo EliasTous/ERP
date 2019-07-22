@@ -101,6 +101,7 @@
                         <ext:ModelField Name="returnDate" />
                         <ext:ModelField Name="ltId" />
                         <ext:ModelField Name="status" />
+                          <ext:ModelField Name="statusString" />
                         <ext:ModelField Name="isPaid" />
                         <ext:ModelField Name="destination" />
                         <ext:ModelField Name="justification" />
@@ -226,8 +227,8 @@
                             <ext:Column runat="server" Width="70" Text="<%$ Resources: LateDays%>">
                                 <Renderer Handler="if(record.data['returnDate']!='') var d=moment(record.data['returnDate']).diff(moment(record.data['endDate']), 'days')+1; if(d>0) return d; else return '';" />
                             </ext:Column>
-                            <ext:Column ID="Column3" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
-                                <Renderer Handler="return(GetStatusName(record.data['status']));" />
+                            <ext:Column ID="Column3" DataIndex="statusString" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
+                            
                             </ext:Column>
 
                             <ext:Column ID="Column5" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="2" />

@@ -22,6 +22,6 @@ namespace AionHR.Model.Reports
         public DateTime dateTo { get; set; }
         public string dateFromString { get; set; }
         public string dateToString { get; set; }
-        public double grade { get; set; }
+        public string grade { get; set; }
     }
 }

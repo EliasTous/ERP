@@ -363,7 +363,7 @@
                                                         AllowBlank="false"
                                                         InvalidText="<%$Resources:MonthsFieldError %>"
                                                          >
-                                                        <Validator Handler="if(isNaN(this.value)) return false; return true;">
+                                                        <Validator Handler="if(isNaN(this.value) || this.value==0) return false; return true;">
                                                             
                                                         </Validator>
                                                         </ext:TextField>
@@ -497,7 +497,7 @@
                                                         AllowBlank="false"
                                                         InvalidText="<%$Resources:MonthsFieldError %>"
                                                          >
-                                                        <Validator Handler="if(isNaN(this.value)) return false; return true;">
+                                                        <Validator Handler="if(isNaN(this.value)|| this.value==0) return false; return true;">
                                                             
                                                         </Validator>
                                                         </ext:TextField>

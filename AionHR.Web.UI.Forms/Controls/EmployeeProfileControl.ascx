@@ -516,6 +516,10 @@
         App.employeeControl1_branchLbl.el.setStyle('float', alignment);
         App.employeeControl1_positionLbl.el.setStyle('float', alignment);
         App.employeeControl1_reportsToLbl.el.setStyle('float', alignment);
+         App.employeeControl1_mangerLbl.el.setStyle('float', alignment);
+
+
+        
         App.employeeControl1_esName.el.setStyle('float', alignment);
         App.employeeControl1_serviceDuration.el.setStyle('float', alignment);
         App.employeeControl1_eosBalanceTitle.el.setStyle('float', alignment);
@@ -743,6 +747,13 @@
                                         <ext:Label ID="positionLbl" runat="server" />
                                     </Items>
                                 </ext:Panel>
+
+                                <ext:Panel runat="server">
+                                    <Items>
+                                        <ext:Label ID="mangerLbl" Text="<%$ Resources:FieldReportsTo %>" runat="server" />
+                                    </Items>
+                                </ext:Panel>
+
                                 <ext:Panel runat="server">
                                     <Items>
                                         <ext:Label ID="reportsToLbl" runat="server" />

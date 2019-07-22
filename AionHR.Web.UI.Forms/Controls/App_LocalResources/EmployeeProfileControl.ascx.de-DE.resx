@@ -244,7 +244,7 @@
     <value>Religion</value>
   </data>
   <data name="FieldReportsTo" xml:space="preserve">
-    <value>Manager</value>
+    <value>Manager :</value>
   </data>
   <data name="FieldSponsor" xml:space="preserve">
     <value>Sponsor</value>

@@ -238,7 +238,7 @@
     <value>الدين</value>
   </data>
   <data name="FieldReportsTo" xml:space="preserve">
-    <value>المدير: </value>
+    <value>المدير :</value>
   </data>
   <data name="FieldSponsor" xml:space="preserve">
     <value>الكفيل</value>

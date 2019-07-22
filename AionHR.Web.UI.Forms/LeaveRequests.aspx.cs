@@ -355,6 +355,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
+          List<XMLDictionary> statusList=  Common.XMLDictionaryList(_systemService, "13");
 
             //GEtting the filter from the page
             string filter = string.Empty;
@@ -379,6 +380,13 @@ namespace AionHR.Web.UI.Forms
                 Common.errorMessage(routers);
                 return;
             }
+            routers.Items.ForEach(x =>
+            {
+                x.statusString = statusList.Where(y => y.key == x.status).Count() != 0 ? statusList.Where(y => y.key == x.status).First().value : "";
+
+            }
+
+               );
 
             this.Store1.DataSource = routers.Items;
             e.Total = routers.count ;

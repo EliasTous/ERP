@@ -250,67 +250,73 @@ namespace AionHR.Web.UI.Forms
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        private TimeVariationListRequest GetAbsentRequest()
-        {
-          
-            TimeVariationListRequest reqTV = new TimeVariationListRequest();
-            reqTV.BranchId = "0";
-            reqTV.DepartmentId = "0";
-            reqTV.DivisionId = "0";
-            reqTV.PositionId = "0";
-            reqTV.EsId = "0";
-            reqTV.fromDayId = dateRange1.GetRange().DateFrom;
-            reqTV.toDayId = dateRange1.GetRange().DateTo;
-            reqTV.employeeId = _systemService.SessionHelper.GetEmployeeId();
-           
-                if (string.IsNullOrEmpty(apStatus.Value.ToString()))
-            {
-
-                reqTV.apStatus = "0";
-            }
-            else
-                reqTV.apStatus = apStatus.Value.ToString();
-            if (!string.IsNullOrEmpty(Request.QueryString["_employeeId"]) && !string.IsNullOrEmpty(Request.QueryString["_fromDayId"]) && !string.IsNullOrEmpty(Request.QueryString["_toDayId"]))
-            {
-                reqTV.fromDayId = DateTime.ParseExact(Request.QueryString["_fromDayId"], "yyyyMMdd", new CultureInfo("en"));
-                reqTV.toDayId = DateTime.ParseExact(Request.QueryString["_toDayId"], "yyyyMMdd", new CultureInfo("en"));
-                reqTV.employeeId = Request.QueryString["_employeeId"];
-            }
-            if (string.IsNullOrEmpty(fromDuration.Text))
-            {
-
-                reqTV.fromDuration = "0";
-            }
-            else
-                reqTV.fromDuration = fromDuration.Text;
-            if (string.IsNullOrEmpty(toDuration.Text))
-            {
-
-                reqTV.toDuration = "0";
-            }
-            else
-                reqTV.toDuration = toDuration.Text; 
-
-            if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
-            {
-
-                reqTV.timeCode = "0";
-            }
-            else
-            reqTV.timeCode = timeVariationType.Value.ToString();
-
-          
-         
-            return reqTV;
-        }
+       
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
+                 
+             
+             
+                   
+
+
+
+         
+
+
+
             try
             {
-                //GEtting the filter from the page
+                if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                    return;
 
-                TimeVariationListRequest req = GetAbsentRequest();
+                string rep_params = "";
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+
+
+
+
+                //  parameters.Add("1", "1");
+                if (!string.IsNullOrEmpty(Request.QueryString["_employeeId"]) && !string.IsNullOrEmpty(Request.QueryString["_fromDayId"]) && !string.IsNullOrEmpty(Request.QueryString["_toDayId"]))
+                {
+                    parameters.Add("2", Request.QueryString["_fromDayId"]);
+                    parameters.Add("3", Request.QueryString["_toDayId"]);
+                    parameters.Add("1", Request.QueryString["_employeeId"]);
+                }
+                else
+                {
+                    parameters.Add("1", _systemService.SessionHelper.GetEmployeeId());
+                    parameters.Add("2", dateRange1.GetRange().DateFrom.ToString("yyyyMMdd"));
+                    parameters.Add("3", dateRange1.GetRange().DateTo.ToString("yyyyMMdd"));
+                    if (!string.IsNullOrEmpty(apStatus.Value.ToString()))
+                        parameters.Add("5", apStatus.Value.ToString());
+                                        
+
+                    if (!string.IsNullOrEmpty(timeVariationType.Value.ToString()))
+                        parameters.Add("4", timeVariationType.Value.ToString());
+                   
+
+                }
+
+              
+
+
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
+
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+         
+
+               
 
                 ListResponse<TimeVariationSelfService> daysResponse = _selfServiceService.ChildGetAll<TimeVariationSelfService>(req);
 
@@ -588,6 +594,60 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
 
+        }
+
+        private TimeVariationListRequest GetAbsentRequest()
+        {
+
+            TimeVariationListRequest reqTV = new TimeVariationListRequest();
+            reqTV.BranchId = "0";
+            reqTV.DepartmentId = "0";
+            reqTV.DivisionId = "0";
+            reqTV.PositionId = "0";
+            reqTV.EsId = "0";
+            reqTV.fromDayId = dateRange1.GetRange().DateFrom;
+            reqTV.toDayId = dateRange1.GetRange().DateTo;
+            reqTV.employeeId = _systemService.SessionHelper.GetEmployeeId();
+
+            if (string.IsNullOrEmpty(apStatus.Value.ToString()))
+            {
+
+                reqTV.apStatus = "0";
+            }
+            else
+                reqTV.apStatus = apStatus.Value.ToString();
+            if (!string.IsNullOrEmpty(Request.QueryString["_employeeId"]) && !string.IsNullOrEmpty(Request.QueryString["_fromDayId"]) && !string.IsNullOrEmpty(Request.QueryString["_toDayId"]))
+            {
+                reqTV.fromDayId = DateTime.ParseExact(Request.QueryString["_fromDayId"], "yyyyMMdd", new CultureInfo("en"));
+                reqTV.toDayId = DateTime.ParseExact(Request.QueryString["_toDayId"], "yyyyMMdd", new CultureInfo("en"));
+                reqTV.employeeId = Request.QueryString["_employeeId"];
+            }
+            if (string.IsNullOrEmpty(fromDuration.Text))
+            {
+
+                reqTV.fromDuration = "0";
+            }
+            else
+                reqTV.fromDuration = fromDuration.Text;
+            if (string.IsNullOrEmpty(toDuration.Text))
+            {
+
+                reqTV.toDuration = "0";
+            }
+            else
+                reqTV.toDuration = toDuration.Text;
+
+            if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
+            {
+
+                reqTV.timeCode = "0";
+            }
+            else
+                reqTV.timeCode = timeVariationType.Value.ToString();
+
+
+
+            return reqTV;
         }
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {

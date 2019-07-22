@@ -564,13 +564,13 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                     <DirectEvents>
-                                        <Select OnEvent="LoanTypeChanged" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                        <Change OnEvent="LoanTypeChanged" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                                             <ExtraParams>
                                                 <ext:Parameter Name="id" Value="#{ltId}.getValue()" Mode="Raw" />
                                                 
                                             </ExtraParams>
-                                        </Select>
+                                        </Change>
                                     </DirectEvents>
                                     
                                 </ext:ComboBox>

@@ -778,7 +778,7 @@
                     <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                     <ExtraParams>
                         <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                         <ext:Parameter Name="status" Value="#{status}.getValue()" Mode="Raw" />
+                      
                         
                         <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
                         <ext:Parameter Name="days" Value="Ext.encode(#{LeaveDaysGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />

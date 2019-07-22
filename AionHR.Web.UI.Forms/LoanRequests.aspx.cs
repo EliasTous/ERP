@@ -388,6 +388,8 @@ namespace AionHR.Web.UI.Forms
             addDeduction.Disabled = false;
             effectiveDate.Disabled = false;
             DeductionGridPanel.Disabled = false;
+            ApprovalsGridPanel.Disabled = false;
+            loanCommentGrid.Disabled = false;
             string id = e.ExtraParams["id"];
             currentLoanId.Text = id;
             Store3.Reload();
@@ -933,6 +935,8 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 BasicInfoTab.Reset();
+                ApprovalsGridPanel.Disabled = true;
+                loanCommentGrid.Disabled = true;
                 CurrentEmployee.Text = "";
                 effectiveDate.Disabled = false;
                 caseCommentsAddButton.Disabled = false;
@@ -1206,8 +1210,11 @@ namespace AionHR.Web.UI.Forms
 
                         else
                         {
+                            currentLoanId.Text = r.recordId;
                             LoanAmount.Text = b.amount.ToString();
                             DeductionGridPanel.Disabled = false;
+                            ApprovalsGridPanel.Disabled = false;
+                            loanCommentGrid.Disabled = false;
                             b.recordId = r.recordId;
                             if (b.effectiveDate != null)
                                 X.GetCmp<DateField>("deductionDate").MinDate = Convert.ToDateTime(b.effectiveDate);
@@ -1229,6 +1236,7 @@ namespace AionHR.Web.UI.Forms
                             RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                             sm.DeselectAll();
                             sm.Select(b.recordId.ToString());
+                            ApprovalStore.Reload();
 
 
 
@@ -1266,6 +1274,8 @@ namespace AionHR.Web.UI.Forms
                         else
                         {
                             DeductionGridPanel.Disabled = false;
+                            ApprovalsGridPanel.Disabled = false;
+                            loanCommentGrid.Disabled = false;
                             if (b.effectiveDate != null)
                                 X.GetCmp<DateField>("deductionDate").MinDate = Convert.ToDateTime(b.effectiveDate);
                             LoanAmount.Text = b.amount.ToString();
@@ -1287,7 +1297,7 @@ namespace AionHR.Web.UI.Forms
                                 Html = Resources.Common.RecordUpdatedSucc
                             });
                             this.EditRecordWindow.Close();
-
+                            ApprovalStore.Reload();
 
                         }
 
@@ -1484,6 +1494,7 @@ namespace AionHR.Web.UI.Forms
                 ldValue.Text = resp.result.ldValue.ToString();
                 ldMethod.ReadOnly = resp.result.disableEditing;
                 ldValue.ReadOnly= resp.result.disableEditing;
+             
 
             }
             else

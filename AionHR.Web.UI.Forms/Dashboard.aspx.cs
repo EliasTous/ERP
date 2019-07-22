@@ -915,11 +915,11 @@ namespace AionHR.Web.UI.Forms
 
 
 
-                parameters.Add("1", "1");
-                parameters.Add("8", "0");
+              //  parameters.Add("1", "1");
+              //  parameters.Add("8", "0");
                 parameters.Add("2", _systemService.SessionHelper.GetEmployeeId().ToString());
 
-                parameters.Add("9", "0");
+                parameters.Add("9", "1");
                 foreach (KeyValuePair<string, string> entry in parameters)
                 {
                     rep_params += entry.Key.ToString() + "|" + entry.Value+"^";
@@ -1325,11 +1325,12 @@ namespace AionHR.Web.UI.Forms
 
 
 
-                parameters.Add("1", "1");
+              //  parameters.Add("1", "1");
               
                 parameters.Add("2", _systemService.SessionHelper.GetEmployeeId().ToString());
+                parameters.Add("9", "1");
 
-              
+
                 foreach (KeyValuePair<string, string> entry in parameters)
                 {
                     rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
@@ -1468,8 +1469,8 @@ namespace AionHR.Web.UI.Forms
                 parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
                 parameters.Add("5", timeVariationType.GetTimeCode());
                 parameters.Add("4", "0");
-                parameters.Add("7", "1");
-                //parameters.Add("11", "3");
+              //  parameters.Add("7", "1");
+                parameters.Add("11", "1");
 
 
 
@@ -2736,7 +2737,7 @@ namespace AionHR.Web.UI.Forms
                 parameters.Add("1", "1");
                 parameters.Add("2", _systemService.SessionHelper.GetEmployeeId());
 
-                parameters.Add("8", "0");
+             
 
 
                 foreach (KeyValuePair<string, string> entry in parameters)
@@ -3017,30 +3018,33 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                LoanManagementListRequest request = new LoanManagementListRequest();
-                //if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-                //{
-                //    storeApprovalLoan.DataSource = new List<Loan>();
-                //    storeApprovalLoan.DataBind();
-                //    return;
-                //}
-                request.approverId = 0;
-                request.BranchId = "0";
-                request.DepartmentId = "0";
-                request.DivisionId = "0";
-                request.EmployeeId = EmployeeId;
-                request.Status = 0;
-                request.Filter = "";
-                request.LoanId = loanId; 
-                request.SortBy = "recordId";
+
+                if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                    return;
+
+             
+                
+
+
+              
+
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = "8|" + loanId;
+                ListResponse<LoanApproval> routers = _loanService.ChildGetAll<LoanApproval>(req);                                                                                                        
+               
+                //request.EmployeeId = EmployeeId;
+                //request.Status = 0;
+                //request.Filter = "";
+                //request.LoanId = loanId; 
+                //request.SortBy = "recordId";
 
 
 
 
 
-                request.Size = "1000";
-                request.StartAt = "0";
-                ListResponse<LoanApproval> routers = _loanService.ChildGetAll<LoanApproval>(request);
+                //request.Size = "1000";
+                //request.StartAt = "0";
+              
                 if (!routers.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + routers.LogId : routers.Summary).Show();

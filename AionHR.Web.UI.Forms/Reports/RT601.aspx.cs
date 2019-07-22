@@ -220,7 +220,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     s.statusString = GetLocalResourceObject("StatusRejected").ToString();
                 else
                     s.statusString = GetLocalResourceObject("Status" + s.status).ToString();
-
+                if (s.leaveType!=0)
                 s.leaveTypeString = GetLocalResourceObject("leaveType" + s.leaveType).ToString();
             });
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
