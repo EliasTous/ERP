@@ -198,6 +198,10 @@ namespace AionHR.Web.UI.Forms.Reports
      private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
+
+            List<XMLDictionary> statusList = Common.XMLDictionaryList(_systemService, "13");
+            
+
             string rep_params = vals.Text;
             ReportGenericRequest req = new ReportGenericRequest();
             req.paramString = rep_params;
@@ -216,10 +220,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     s.returnDateString = s.returnDate.Value.ToString(format, new CultureInfo("en"));
 
                 s.isPaidString = s.isPaid ? GetLocalResourceObject("Paid1").ToString() : GetLocalResourceObject("Paid0").ToString();
-                if (s.status == -1)
-                    s.statusString = GetLocalResourceObject("StatusRejected").ToString();
-                else
-                    s.statusString = GetLocalResourceObject("Status" + s.status).ToString();
+                s.statusString = statusList.Where(y => y.key == s.status).Count() != 0 ? statusList.Where(y => y.key == s.status).First().value : ""; 
                 if (s.leaveType!=0)
                 s.leaveTypeString = GetLocalResourceObject("leaveType" + s.leaveType).ToString();
             });

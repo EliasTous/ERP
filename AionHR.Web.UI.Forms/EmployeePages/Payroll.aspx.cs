@@ -773,8 +773,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     EmployeeSalary lastSalary = lastSalaryList.Items.OrderBy(x => x.effectiveDate).ToList().Last();
                     this.EditSAForm.SetValues(lastSalary);
                     SAId.Text = "";
-                    effectiveDate.Value = lastSalary.effectiveDate;
+                    effectiveDate.Value = DateTime.Now;
                 }
+                else
+                {
+                    EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
+                    req.RecordID = CurrentEmployee.Text; 
+                    req.asOfDate = DateTime.Now;
+                    RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        return;
+                    }
+                    effectiveDate.Value = resp.result.hireDate; 
+                }
+
+                
+
                 this.EditSAWindow.Show();
             }
             catch(Exception exp)
