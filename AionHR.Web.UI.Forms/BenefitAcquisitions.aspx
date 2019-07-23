@@ -498,11 +498,11 @@
                                           </ext:Store>
                                     </Store>
                                 <DirectEvents> 
-                                    <Select OnEvent="selectAqType">
+                                    <Change OnEvent="selectAqType">
                                         <ExtraParams>
                                          <ext:Parameter Name="benefitId" Value="this.value" Mode="Raw" />
                                             </ExtraParams>
-                                    </Select>
+                                    </Change>
                                 </DirectEvents>
                               <Listeners>
                                   <Select Handler="if(this.value!=null){ #{dateFrom}.setDisabled(false); }"></Select>

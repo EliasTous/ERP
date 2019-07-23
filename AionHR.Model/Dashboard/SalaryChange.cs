@@ -14,6 +14,7 @@ namespace AionHR.Model.Dashboard
         public string employeeName { get; set; }
 
         public DateTime effectiveDate { get; set; }
+        public string effectiveDateString { get; set; }
 
         public double basicAmount { get; set; }
 

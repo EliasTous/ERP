@@ -228,6 +228,10 @@
     <Content Include="Rules.aspx" />
     <Content Include="RuleTriggers.aspx" />
     <Content Include="Scripts\AdminTemplates.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\momentLocale.js" />
     <Content Include="Scripts\ReportsCommon.js" />
     <Content Include="Scripts\SystemDefaults.js" />
     <Content Include="SelfServiceResetPasswords.aspx" />

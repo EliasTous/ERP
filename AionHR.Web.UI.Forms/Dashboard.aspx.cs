@@ -110,7 +110,42 @@ namespace AionHR.Web.UI.Forms
                 
                 try
                 {
-                   
+                    switch (_systemService.SessionHelper.getLangauge())
+                    {
+                        case "ar":
+                            {
+                                currentLanguage.Text = "ar";
+                                ResourceManager1.Locale = "ar";
+                            }
+                            break;
+                        case "en":
+                            {
+                                currentLanguage.Text = "en";
+                                ResourceManager1.Locale = "en";
+                            }
+                            break;
+
+                        case "fr":
+                            {
+                                currentLanguage.Text = "fr-FR";
+                                ResourceManager1.Locale = "fr-FR";
+                            }
+                            break;
+                        case "de":
+                            {
+                                currentLanguage.Text = "de-DE";
+                                ResourceManager1.Locale = "de-DE";
+                            }
+                            break;
+                        default:
+                            {
+
+                                currentLanguage.Text = "en";
+                                ResourceManager1.Locale = "en";
+                            }
+                            break;
+                    }
+
                     SetExtLanguage();
                     HideShowButtons();
                     HideShowColumns();
@@ -991,6 +1026,7 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(resp);
                     return;
                 }
+                resp.Items.ForEach(x => x.birthDateString = x.birthDate.ToString(_systemService.SessionHelper.GetDateformat()));
                 BirthdaysStore.DataSource = resp.Items;
                 BirthdaysStore.DataBind();
             }
@@ -1035,6 +1071,7 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(resp);
                     return;
                 }
+                resp.Items.ForEach(x => x.expiryDateString = x.expiryDate.ToString(_systemService.SessionHelper.GetDateformat()));
                 CompanyRightToWorkStore.DataSource = resp.Items;
                 CompanyRightToWorkStore.DataBind();
             }
@@ -1080,6 +1117,7 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(resp);
                     return;
                 }
+                resp.Items.ForEach(x => x.effectiveDateString = x.effectiveDate.ToString(_systemService.SessionHelper.GetDateformat()));
                 SCRStore.DataSource = resp.Items;
                 SCRStore.DataBind();
             }
@@ -1102,6 +1140,7 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(resp);
                     return;
                 }
+                resp.Items.ForEach(x => x.probationEndDateString = x.probationEndDate.ToString(_systemService.SessionHelper.GetDateformat()));
                 ProbationStore.DataSource = resp.Items;
                 ProbationStore.DataBind();
             }
@@ -2459,6 +2498,7 @@ namespace AionHR.Web.UI.Forms
                 Common.errorMessage(resp);
                 return;
             }
+            resp.Items.ForEach(x => x.hireDateString = x.hireDate.ToString(_systemService.SessionHelper.GetDateformat()));
             retirementAgeStore.DataSource = resp.Items;
             retirementAgeStore.DataBind();
         }

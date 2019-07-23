@@ -17,6 +17,7 @@ namespace AionHR.Model.Dashboard
         public string npName { get; set; }
 
         public DateTime probationEndDate { get; set; }
+        public string probationEndDateString { get; set; }
 
         public DateTime nextReviewDate { get; set; }
 

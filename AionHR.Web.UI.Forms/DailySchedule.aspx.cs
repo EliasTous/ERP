@@ -1105,7 +1105,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     DateTime from = fs.dtFrom;
                     DateTime to = fs.dtTo;
-                    DateTime temp = fs.dtFrom;
+                 
                     counter = 0;
 
                     
@@ -1113,7 +1113,7 @@ namespace AionHR.Web.UI.Forms
                     while (to > from && counter!=3000)
                     {
 
-                        listIds.Add(temp.ToString("yyyyMMdd") + "_" + from.ToString("HH:mm"));
+                        listIds.Add(from.ToString("yyyyMMdd") + "_" + from.ToString("HH:mm"));
                         from = from.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
                         counter++;
 
@@ -1274,7 +1274,7 @@ namespace AionHR.Web.UI.Forms
         {
             DateTime firstDate = dateFrom.SelectedDate;
            
-            for (int count = 0; count <= totalDays; count++)
+            for (int count = totalDays; count >= 0; count--)
             {
                 html += "<tr>";
                 if (!_systemService.SessionHelper.CheckIfArabicSession())
@@ -1292,7 +1292,7 @@ namespace AionHR.Web.UI.Forms
                     html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + string.Format("<div style='width:43px;display:inline-block'>{0}</div> {1} - {2}", (string)GetLocalResourceObject(day), dayNumber, month) + "</td><td id=" + firstDate.ToString("yyyyMMdd") + "_Total></td>";
                 }
 
-                for (int index = 0; index < timesList.Count; index++)
+                for (int index = timesList.Count-1; index >=0; index--)
                 {
                     html += "<td id=" + firstDate.ToString("yyyyMMdd") + "_" + timesList[index].ID + "></td>";
                                     }
@@ -1307,7 +1307,7 @@ namespace AionHR.Web.UI.Forms
           
 
             html += "<thead><tr ><th style='width:120px;'></th><th>"+GetLocalResourceObject("total")+"</th>";
-            for (int index = 0; index < timesList.Count; index++)
+            for (int index = timesList.Count-1; index >= 0; index--)
             {
                 html += "<th>" + timesList[index].Time + "</th>";
             }

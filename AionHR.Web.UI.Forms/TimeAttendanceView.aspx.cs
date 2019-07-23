@@ -96,6 +96,43 @@ namespace AionHR.Web.UI.Forms
             {
 
                 SetExtLanguage();
+
+                switch (_systemService.SessionHelper.getLangauge())
+                {
+                    case "ar":
+                        {
+
+                            ResourceManager1.Locale = "ar";
+                        }
+                        break;
+                    case "en":
+                        {
+
+                            ResourceManager1.Locale = "en";
+                        }
+                        break;
+
+                    case "fr":
+                        {
+
+                            ResourceManager1.Locale = "fr-FR";
+                        }
+                        break;
+                    case "de":
+                        {
+
+                            ResourceManager1.Locale = "de-DE";
+                        }
+                        break;
+                    default:
+                        {
+
+
+                            ResourceManager1.Locale = "en";
+
+                        }
+                        break;
+                }
                 if (!string.IsNullOrEmpty(Request.QueryString["_fromSelfService"]))
                 {
                     FromSelfService.Text = Request.QueryString["_fromSelfService"];

@@ -16,6 +16,7 @@ namespace AionHR.Model.Dashboard
         public string documentRef { get; set; }
 
         public DateTime expiryDate { get; set; }
+        public string expiryDateString { get; set; }
 
         public int days { get; set; }
     }

@@ -32,6 +32,7 @@ using AionHR.Model.Access_Control;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Services.Messaging.CompanyStructure;
 using AionHR.Services.Messaging.Reports;
+using System.Threading;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -56,12 +57,14 @@ namespace AionHR.Web.UI.Forms
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetArabicLocalisation();
+                      
                     }
                     break;
                 case "en":
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetEnglishLocalisation();
+                       
                     }
                     break;
 
@@ -69,12 +72,14 @@ namespace AionHR.Web.UI.Forms
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetFrenchLocalisation();
+                        
                     }
                     break;
                 case "de":
                     {
                         base.InitializeCulture();
                         LocalisationManager.Instance.SetGermanyLocalisation();
+                       
                     }
                     break;
                 default:
@@ -102,6 +107,46 @@ namespace AionHR.Web.UI.Forms
             if (!X.IsAjaxRequest && !IsPostBack)
             {
 
+                switch (_systemService.SessionHelper.getLangauge())
+                {
+                    case "ar":
+                        {
+                           
+                            ResourceManager1.Locale = "ar";
+                        }
+                        break;
+                    case "en":
+                        {
+                           
+                            ResourceManager1.Locale = "en";
+                        }
+                        break;
+
+                    case "fr":
+                        {
+                          
+                            ResourceManager1.Locale = "fr-FR";
+                        }
+                        break;
+                    case "de":
+                        {
+                           
+                            ResourceManager1.Locale = "de-DE";
+                        }
+                        break;
+                    default:
+                        {
+
+
+                            ResourceManager1.Locale = "en";
+                        }
+                        break;
+                }
+
+
+
+
+
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
@@ -127,6 +172,11 @@ namespace AionHR.Web.UI.Forms
                     imageVisible.Text = "False";
                 else
                     imageVisible.Text = "True";
+
+
+                
+
+
             }
 
 

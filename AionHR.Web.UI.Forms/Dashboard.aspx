@@ -20,7 +20,10 @@
     <script type="text/javascript" src="Scripts/plugins/highcharts.js?id=5"></script>
     <script type="text/javascript" src="Scripts/Dashboard.js?id=178"></script>
     <script type="text/javascript" src="Scripts/ReportsCommon.js?id=12"></script>
-
+    <script type="text/javascript" src="Scripts/moment-with-locales.js" ></script>
+ 
+       
+       
 
 
     <style type="text/css">
@@ -817,7 +820,7 @@
             var s = 'text-align:' + dir;
             return s;
         }
-        function getDateFormatted(d) {
+       function getDateFormatted(d) {
             var friendlydate = moment(d, 'YYYYMMDD');
             return friendlydate.format(document.getElementById("format").value);
         }
@@ -867,7 +870,7 @@
         }
         function displayRTW(s) {
             var str = "<div style=" + getStyle() + ">";
-            str += s.documentRef + '- ' + getDateFormatted(s.expiryDate);
+            str += s.documentRef + '- ' + s.expiryDateString;
             return str;
         }
         function displayEmployeeRTW(s) {
@@ -880,14 +883,14 @@
             var str = "<div style=" + getStyle() + ">" + s.name + '(' + moment().diff(s.birthDate, 'years') + ')';
             str += '<br/>';
             var nowD = moment();
-            str += getDateFormatted(s.birthDate);
+            str += s.birthDateString
             return str;
         }
         function displayAnniversary(s) {
             var str = "<div style=" + getStyle() + ">" + s.name + '(' + moment().diff(s.hireDate, 'years') + ')';
             str += '<br/>';
             var nowD = moment();
-            str += getDateFormatted(s.hireDate);
+            str += s.hireDateString
             return str;
         }
         function displayLate(s) {
@@ -900,14 +903,14 @@
         function displaySCR(s) {
             var str = "<div style=" + getStyle() + ">" + s.employeeName;
             str += '<br/>';
-            str += getDateFormatted(s.effectiveDate) + ', ' + s.currencyRef + s.finalAmount;
+            str += s.effectiveDateString + ', ' + s.currencyRef + s.finalAmount;
             str += '</div>';
             return str;
         }
         function displayProbation(s) {
             var str = "<div style=" + getStyle() + ">" + s.employeeName;
             str += '<br/>';
-            str += getDateFormatted(s.probationEndDate);
+            str += s.probationEndDateString;
             str += '</div>';
             return str;
         }
@@ -1188,6 +1191,9 @@
         <ext:Hidden ID="Hidden1" runat="server" />
         <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=Dashboard&values="/>
         <ext:Hidden ID="currentSeqNo" runat="server" />
+          <ext:Hidden ID="currentLanguage" runat="server" />
+
+
         <ext:Store
             ID="activeStore"
             runat="server" OnReadData="activeStore_refresh"
@@ -2796,6 +2802,9 @@
 
                                         <ext:ModelField Name="name" ServerMapping="name.fullName" />
                                         <ext:ModelField Name="birthDate" />
+                                          <ext:ModelField Name="birthDateString" />
+
+                                      
                                         <ext:ModelField Name="days" />
 
 
@@ -2949,6 +2958,8 @@
                                         <ext:ModelField Name="documentRef" />
                                         <ext:ModelField Name="expiryDate" />
                                         <ext:ModelField Name="days" />
+                                         <ext:ModelField Name="expiryDateString" />
+                                        
 
                                     </Fields>
                                 </ext:Model>
@@ -3171,6 +3182,7 @@
                                         <ext:ModelField Name="finalAmount" />
                                         <ext:ModelField Name="currencyRef" />
                                         <ext:ModelField Name="days" />
+                                         <ext:ModelField Name="effectiveDateString" />
 
                                     </Fields>
                                 </ext:Model>
@@ -3247,6 +3259,7 @@
                                         <ext:ModelField Name="employeeName"  />
                                         <ext:ModelField Name="probationEndDate" />
                                         <ext:ModelField Name="days" />
+                                         <ext:ModelField Name="probationEndDateString" />
 
 
                                     </Fields>
@@ -4103,7 +4116,7 @@
                                         <ext:ModelField Name="name" ServerMapping="name.fullName"  />
                                         <ext:ModelField Name="hireDate" />
                                         <ext:ModelField Name="days" />
-
+                                         <ext:ModelField Name="hireDateString" />
                                     </Fields>
                                 </ext:Model>
                             </Model>

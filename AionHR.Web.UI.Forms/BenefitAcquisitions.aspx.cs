@@ -1741,22 +1741,29 @@ namespace AionHR.Web.UI.Forms
 
         protected void selectAqType(object sender, DirectEventArgs e)
         {
-            string benefitId = e.ExtraParams["benefitId"];
-            ScheduleBenefitsRecordRequest r = new ScheduleBenefitsRecordRequest();
-            r.bsId = bsIdHidden.Text;
-            r.benefitId = benefitId;
+            try
+            {
+                string benefitId = e.ExtraParams["benefitId"];
+                ScheduleBenefitsRecordRequest r = new ScheduleBenefitsRecordRequest();
+                r.bsId = bsIdHidden.Text;
+                r.benefitId = benefitId;
 
-            RecordResponse<ScheduleBenefits> response = _benefitsService.ChildGetRecord<ScheduleBenefits>(r);
-            if (!response.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-               Common.errorMessage(response);
-                return;
+                RecordResponse<ScheduleBenefits> response = _benefitsService.ChildGetRecord<ScheduleBenefits>(r);
+                if (!response.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(response);
+                    return;
+                }
+                if (response.result != null)
+                {
+                    aqType.Select(response.result.aqType.ToString());
+                    amount.Text = response.result.defaultAmount.ToString();
+                }
             }
-            if (response.result != null)
+            catch(Exception exp)
             {
-                aqType.Select(response.result.aqType.ToString());
-                amount.Text = response.result.defaultAmount.ToString();
+                X.MessageBox.Alert(Resources.Common.Error, exp.Message);
             }
 
         }
