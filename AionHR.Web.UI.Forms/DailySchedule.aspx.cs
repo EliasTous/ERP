@@ -1105,11 +1105,15 @@ namespace AionHR.Web.UI.Forms
                 {
                     DateTime from = fs.dtFrom;
                     DateTime to = fs.dtTo;
+                    DateTime temp = fs.dtFrom;
                     counter = 0;
+
+                    
+
                     while (to > from && counter!=3000)
                     {
 
-                        listIds.Add(from.ToString("yyyyMMdd") + "_" + from.ToString("HH:mm"));
+                        listIds.Add(temp.ToString("yyyyMMdd") + "_" + from.ToString("HH:mm"));
                         from = from.AddMinutes(Convert.ToInt32(SystemDefaultResponse.result.Value));
                         counter++;
 

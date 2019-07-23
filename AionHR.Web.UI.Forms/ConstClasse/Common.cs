@@ -159,8 +159,8 @@ namespace AionHR.Web.UI.Forms
 
         public bool Intersects(DateTimeRange test)
         {
-            if (this.Start > this.End || test.Start > test.End)
-                throw new Exception();
+            //if (this.Start > this.End || test.Start > test.End)
+            //    throw new Exception();
 
             if (this.Start == this.End || test.Start == test.End)
                 return false; // No actual date range
