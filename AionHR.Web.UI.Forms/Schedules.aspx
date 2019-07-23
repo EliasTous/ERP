@@ -746,7 +746,7 @@
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>
                 </ext:Button>
-                <ext:Button ID="setDefaultBtn" runat="server" Text="<%$ Resources:SetDefault %>" Hidden="true">
+            <%--    <ext:Button ID="setDefaultBtn" runat="server" Text="<%$ Resources:SetDefault %>" Hidden="true">
                     <Listeners>
                         <Click Handler="CheckSession();"></Click>
                     </Listeners>
@@ -758,7 +758,7 @@
                             </ExtraParams>
                         </Click>
                     </DirectEvents>
-                </ext:Button>
+                </ext:Button>--%>
             </Buttons>
         </ext:Window>
 

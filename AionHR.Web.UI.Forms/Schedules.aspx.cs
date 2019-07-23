@@ -236,7 +236,7 @@ namespace AionHR.Web.UI.Forms
                     this.BasicInfoTab.SetValues(response.result);
                     //_systemService.SessionHelper.Set("currentSchedule",r.RecordID);
                     //// InitCombos(response.result);
-                    setDefaultBtn.Hidden = false;
+                //    setDefaultBtn.Hidden = false;
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     //FillDow("1");
@@ -572,7 +572,7 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
             this.EditRecordWindow.Show();
-            setDefaultBtn.Hidden = true;
+           // setDefaultBtn.Hidden = true;
             //fci_max_lt.Text = fci_min_ot.Text = lco_max_el.Text = lco_max_ot.Text = lco_min_ot.Text = "0";
         }
         protected void AddNewDay(object sender, DirectEventArgs e)
@@ -670,7 +670,7 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordSavingSucc
                         });
-                        setDefaultBtn.Hidden = false;
+                     //   setDefaultBtn.Hidden = false;
                         recordId.Text = b.recordId;
 
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
