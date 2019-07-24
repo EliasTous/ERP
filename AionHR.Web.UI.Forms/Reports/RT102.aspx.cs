@@ -44,7 +44,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 case "ar":
                     {
                         base.InitializeCulture();
-                        LocalisationManager.Instance.SetArabicLocalisation();
+                        System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("ar");
+                        System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("ar");
                     }
                     break;
                 case "en":
@@ -57,7 +58,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 case "fr":
                     {
                         base.InitializeCulture();
-                        LocalisationManager.Instance.SetFrenchLocalisation();
+                        System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr");
+                        System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("fr");
                     }
                     break;
                 case "de":
@@ -84,6 +86,7 @@ namespace AionHR.Web.UI.Forms.Reports
             {
 
                 SetExtLanguage();
+              
                 HideShowButtons();
                 HideShowColumns();
 
@@ -148,24 +151,51 @@ namespace AionHR.Web.UI.Forms.Reports
 
         private void SetExtLanguage()
         {
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            if (rtl)
+
+            switch (_systemService.SessionHelper.getLangauge())
             {
-                this.ResourceManager1.RTL = true;
-                this.Viewport1.RTL = true;
-                this.rtl.Text = rtl.ToString();
-                Culture = "ar";
-                UICulture = "ar-AE";
-                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
+                case "ar":
+                    {
+                        this.ResourceManager1.RTL = true;
+                        this.Viewport1.RTL = true;
+                        this.rtl.Text = "ar";
+                        Culture = "ar";
+                        UICulture = "ar";
+                    }
+                    break;
+                case "en":
+                    {
+                        Culture = "en";
+                        UICulture = "en-US";
+                    }
+                    break;
+
+                case "fr":
+                    {
+                        Culture = "fr";
+                        UICulture = "fr";
+                       
+                    }
+                    break;
+                case "de":
+                    {
+                      Culture = "de-DE";
+                        UICulture = "de-DE";
+                    }
+                    break;
+                default:
+                    {
+                        Culture = "en";
+                        UICulture = "en-US";
+
+                    }
+                    break;
             }
-            else
-            {
-                Culture = "en";
-                UICulture = "en-US";
-                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
-            }
+
+
+
+
+            
         }
 
         [DirectMethod]
@@ -302,6 +332,7 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport(true);
+             
         }
 
      

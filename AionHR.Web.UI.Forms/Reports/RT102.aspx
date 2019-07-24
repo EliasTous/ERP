@@ -108,7 +108,7 @@
                   </DockedItems>
                     <Content>
                         
-                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"
+                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel" 
                             Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" ClientSideEvents-CallbackError="alertNow">
                             <PanelCollection>
                                 <dx:PanelContent runat="server">

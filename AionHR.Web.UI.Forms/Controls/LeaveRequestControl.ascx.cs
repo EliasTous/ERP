@@ -226,18 +226,19 @@ namespace AionHR.Web.UI.Forms.Controls
                 X.Call("CalcSum");
                 panelRecordDetails.ActiveTabIndex = 0;
 
-                setNormal();
-                if (response.result.status == 2)
-                {
-                    endDateHidden.Text = response.result.endDate.ToString();
-                    startDateHidden.Text = response.result.startDate.ToString();
-                    setApproved(true);
-                }
+                //setNormal();
+                setApproved(true);
+                //if (response.result.status == 2)
+                //{
+                //    endDateHidden.Text = response.result.endDate.ToString();
+                //    startDateHidden.Text = response.result.startDate.ToString();
+                   
+                //}
 
-                else if (response.result.status == 3 || response.result.status == -1)
-                    setUsed(true);
-                else
-                { setNormal(); }
+                //else if (response.result.status == 3 || response.result.status == -1)
+                //    setUsed(true);
+                //else
+                //{ setNormal(); }
                 if (ViewOnly.Text == "1")
                     SaveButton.Disabled = true;
                 RefreshSecurityForControls();
@@ -338,8 +339,10 @@ namespace AionHR.Web.UI.Forms.Controls
             leaveDaysField.Disabled = disabled;
             leaveHours.Disabled = disabled;
             workingHours.Disabled = disabled;
+            if (!string.IsNullOrEmpty(endDateHidden.Text))
             endDate.MaxDate = DateTime.Parse(endDateHidden.Text);
-            endDate.MinDate = DateTime.Parse(startDateHidden.Text);
+            if (!string.IsNullOrEmpty(startDateHidden.Text))
+                endDate.MinDate = DateTime.Parse(startDateHidden.Text);
             endDateHidden.Text = "";
             startDateHidden.Text = "";
         }

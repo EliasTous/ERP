@@ -97,42 +97,7 @@ namespace AionHR.Web.UI.Forms
 
                 SetExtLanguage();
 
-                switch (_systemService.SessionHelper.getLangauge())
-                {
-                    case "ar":
-                        {
-
-                            ResourceManager1.Locale = "ar";
-                        }
-                        break;
-                    case "en":
-                        {
-
-                            ResourceManager1.Locale = "en";
-                        }
-                        break;
-
-                    case "fr":
-                        {
-
-                            ResourceManager1.Locale = "fr-FR";
-                        }
-                        break;
-                    case "de":
-                        {
-
-                            ResourceManager1.Locale = "de-DE";
-                        }
-                        break;
-                    default:
-                        {
-
-
-                            ResourceManager1.Locale = "en";
-
-                        }
-                        break;
-                }
+               
                 if (!string.IsNullOrEmpty(Request.QueryString["_fromSelfService"]))
                 {
                     FromSelfService.Text = Request.QueryString["_fromSelfService"];
@@ -464,10 +429,43 @@ namespace AionHR.Web.UI.Forms
                 string fsstring = "";
                 string asstring = "";
                 string tvstring = "";
+                CultureInfo c = new CultureInfo("en");
+                switch (_systemService.SessionHelper.getLangauge())
+                {
+                    case "ar":
+                        {
+
+                            c = new CultureInfo("ar") ;
+                        }
+                        break;
+                    case "en":
+                        {
+
+                            c = new CultureInfo("en");
+                        }
+                        break;
+
+                    case "fr":
+                        {
+
+                            c = new CultureInfo("fr-FR");
+                        }
+                        break;
+                    case "de":
+                        {
+
+                            c = new CultureInfo("de-DE");
+                        }
+                        break;
+                  
+                       
+                }
+
+               
                 foreach (var x in daysResponse.Items)
                 {
                     max++;
-                    x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                    x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), c);
                     //ReportGenericRequest r = new ReportGenericRequest();
                     //r.paramString = "1| " + x.employeeId + "^2|" + x.dayId + "^3|" + x.dayId;
                     //ListResponse<FlatSchedule> fsresponse = _timeAttendanceService.ChildGetAll<FlatSchedule>(r);
