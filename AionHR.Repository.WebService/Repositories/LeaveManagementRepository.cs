@@ -37,7 +37,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(LeaveType), "qryLT");
             ChildGetAllLookup.Add(typeof(LeaveRequest), "qryLR");
             ChildGetAllLookup.Add(typeof(LeaveDay), "qryLD");
-            ChildGetAllLookup.Add(typeof(Approvals), "qryLA");
+            ChildGetAllLookup.Add(typeof(Approvals), "pendingLA");
             ChildGetAllLookup.Add(typeof(LeaveSchedule), "qryLS");
             ChildGetAllLookup.Add(typeof(LeaveSchedulePeriod), "qryLP");
 

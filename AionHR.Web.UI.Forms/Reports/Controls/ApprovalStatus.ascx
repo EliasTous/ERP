@@ -4,7 +4,7 @@
                                              <Store>
                                                 <ext:Store runat="server" ID="apStatusStore">
                                                     <Model>
-                                                        <ext:Model runat="server">
+                                                        <ext:Model runat="server" >
                                                             <Fields>
                                                                 <ext:ModelField Name="value" />
                                                                 <ext:ModelField Name="key" />

@@ -189,8 +189,9 @@ namespace AionHR.Web.UI.Forms
                         branchAvailabilityStore.Reload();
                         BindAlerts();
                         alertStore.Reload();
+                        ppTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "26");
+                        ppTypeStore.DataBind();
 
-                      
 
                         //outStore.Reload();
                         //activeStore.Reload();
@@ -954,7 +955,7 @@ namespace AionHR.Web.UI.Forms
               //  parameters.Add("8", "0");
                 parameters.Add("2", _systemService.SessionHelper.GetEmployeeId().ToString());
 
-                parameters.Add("9", "1");
+                parameters.Add("1", "1");
                 foreach (KeyValuePair<string, string> entry in parameters)
                 {
                     rep_params += entry.Key.ToString() + "|" + entry.Value+"^";
@@ -974,38 +975,17 @@ namespace AionHR.Web.UI.Forms
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
                 ListResponse<AionHR.Model.LeaveManagement.Approvals> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return;
+                }
                 if (resp.Items != null)
                 {
                     LeaveRequestsStore.DataSource = resp.Items;
                     LeaveRequestsStore.DataBind();
                 }
-                //DashboardRequest req1 = GetDashboardRequest();
-                //LeaveApprovalListRequest req = new LeaveApprovalListRequest();
-               
-                //if (!String.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-                //    req.approverId = _systemService.SessionHelper.GetEmployeeId();
-                //else
-                //    return;
-                //req.leaveId = "0";
-               
-             
-            
-
-
-                //if (req != null)
-                //{
-                //     ListResponse<AionHR.Model.LeaveManagement.Approvals> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
-
-                //    if (!resp.Success)
-                //    {
-                //        Common.errorMessage(resp);
-                //        return;
-                //    }
-
-
-                //    LeaveRequestsStore.DataSource = resp.Items;
-                //    LeaveRequestsStore.DataBind();
-                //}
+              
             }
             catch (Exception exp)
             {
@@ -1367,7 +1347,7 @@ namespace AionHR.Web.UI.Forms
               //  parameters.Add("1", "1");
               
                 parameters.Add("2", _systemService.SessionHelper.GetEmployeeId().ToString());
-                parameters.Add("9", "1");
+                parameters.Add("1", "1");
 
 
                 foreach (KeyValuePair<string, string> entry in parameters)
@@ -1455,8 +1435,11 @@ namespace AionHR.Web.UI.Forms
 
                 //ReportGenericRequest r = new ReportGenericRequest();
                 //r.paramString = rep_params;
-                ListRequest req = new ListRequest();
-                
+                PendingPunchListRequest req = new PendingPunchListRequest();
+
+                req.ppTypeParam = ppType.SelectedItem.Value==null ? "0" : ppType.SelectedItem.Value.ToString();
+
+
                 ListResponse<PendingPunch> punches = _timeAttendanceService.ChildGetAll<PendingPunch>(req);
                 if (!punches.Success)
                 {
@@ -1503,13 +1486,13 @@ namespace AionHR.Web.UI.Forms
                     parameters.Remove("4");
 
 
-                parameters.Add("1", "0");
+             //   parameters.Add("1", "0");
 
                 parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
                 parameters.Add("5", timeVariationType.GetTimeCode());
-                parameters.Add("4", "0");
+            //    parameters.Add("4", "0");
               //  parameters.Add("7", "1");
-                parameters.Add("11", "1");
+                parameters.Add("7", "1");
 
 
 
@@ -2861,22 +2844,50 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                DashboardRequest request = GetDashboardRequest();
-                AssetManagementPurchaseOrderApprovalListRequest req = new AssetManagementPurchaseOrderApprovalListRequest();
 
-                req.poId = "0";
-                req.Status = 1;
-                req.approverId = _systemService.SessionHelper.GetEmployeeId() != null ? Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId().ToString()) : 0;
-                req.BranchId = request.BranchId;
 
-                req.DepartmentId = request.DepartmentId;
+               
+                    if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                        return;
 
-                if ( string.IsNullOrEmpty(req.approverId.ToString()))
-                {
-                    PurchasesApprovalStore.DataSource = new List<AssetManagementPurchaseOrderApproval>();
-                    PurchasesApprovalStore.DataBind();
-                    return;
-                }
+                    string rep_params = "";
+                    Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                    if (parameters.ContainsKey("5"))
+                        parameters.ChangeKey("5", "7");
+                    if (parameters.ContainsKey("4"))
+                        parameters.ChangeKey("4", "6");
+                    if (parameters.ContainsKey("2"))
+                        parameters.ChangeKey("2", "5");
+                    if (parameters.ContainsKey("1"))
+                        parameters.ChangeKey("1", "4");
+
+
+
+                    parameters.Add("1", "1");
+                    parameters.Add("2", _systemService.SessionHelper.GetEmployeeId());
+
+
+
+
+                    foreach (KeyValuePair<string, string> entry in parameters)
+                    {
+                        rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                    }
+                    if (rep_params.Length > 0)
+                    {
+                        if (rep_params[rep_params.Length - 1] == '^')
+                            rep_params = rep_params.Remove(rep_params.Length - 1);
+                    }
+
+
+
+
+
+
+
+                    ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+              
                 ListResponse<AssetManagementPurchaseOrderApproval> response = _assetManagementService.ChildGetAll<AssetManagementPurchaseOrderApproval>(req);
 
                 if (!response.Success)
@@ -2884,29 +2895,8 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(response);
                     return;
                 }
-                response.Items.ForEach(x =>
-                {
-
-                    switch (x.status)
-                    {
-                        case 1:
-                            x.statusString = StatusNew.Text;
-                            break;
-                        case 2:
-                            x.statusString = StatusInProcess.Text;
-                            ;
-                            break;
-                        case 3:
-                            x.statusString = StatusApproved.Text;
-                            ;
-                            break;
-                        case -1:
-                            x.statusString = StatusRejected.Text;
-
-                            break;
-                    }
-                }
-              );
+             
+             
                 PurchasesApprovalStore.DataSource = response.Items;
                 PurchasesApprovalStore.DataBind();
             }

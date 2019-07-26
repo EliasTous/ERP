@@ -19,8 +19,9 @@ namespace AionHR.Model.Company.Structure
         public string wfId { get; set; }
         public string approvalType { get; set; }
         public string approvalFlow { get; set; }
+        public string wfName { get; set; }
 
 
-       
+
     }
 }

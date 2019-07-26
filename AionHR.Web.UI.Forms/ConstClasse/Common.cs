@@ -53,6 +53,8 @@ namespace AionHR.Web.UI.Forms
             }
             if (!resp.Success)
             {
+                if (string.IsNullOrEmpty(resp.LogId) || resp.LogId == "0")
+                    throw new Exception(Resources.Common.Error + " : "+ resp.Error);
                 throw new Exception(resp.Error + "<br>" + LogId + resp.LogId + "</br>");
 
             }

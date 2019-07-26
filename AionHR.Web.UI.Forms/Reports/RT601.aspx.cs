@@ -221,8 +221,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 s.isPaidString = s.isPaid ? GetLocalResourceObject("Paid1").ToString() : GetLocalResourceObject("Paid0").ToString();
                 s.statusString = statusList.Where(y => y.key == s.status).Count() != 0 ? statusList.Where(y => y.key == s.status).First().value : ""; 
-                if (s.leaveType!=0)
-                s.leaveTypeString = GetLocalResourceObject("leaveType" + s.leaveType).ToString();
+               
             });
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             LeaveList h = new LeaveList(parameters);

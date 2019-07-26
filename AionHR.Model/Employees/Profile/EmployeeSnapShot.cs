@@ -19,5 +19,11 @@ namespace AionHR.Model.Employees.Profile
         public short activeStatus { get; set; }
         public DateTime? lastTACheck { get; set; }
         public short lastTACheckStatus { get; set; }
+        public string scName { get; set; }
+        public string scTypeName { get; set; }
+
+
+        
+
     }
 }

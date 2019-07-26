@@ -34,7 +34,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(AssetManagementPurchaseOrder), "qryPO");
             ChildGetAllLookup.Add(typeof(AssetManagementOnBoarding), "qryOB");
             ChildGetAllLookup.Add(typeof(AssetManagementLoan), "qryLO");
-            ChildGetAllLookup.Add(typeof(AssetManagementPurchaseOrderApproval), "qryPA");
+            ChildGetAllLookup.Add(typeof(AssetManagementPurchaseOrderApproval), "pendingPA");
             ChildGetAllLookup.Add(typeof(AssetManagementCategoryProperty), "qryCP");
             ChildGetAllLookup.Add(typeof(AssetPropertyValue), "qryAP");
 

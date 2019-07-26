@@ -64,6 +64,9 @@
                         <ext:ModelField Name="name" />
                          <ext:ModelField Name="approvalTypeName" />
                          <ext:ModelField Name="approvalFlowName" />
+                          <ext:ModelField Name="wfName" />
+
+                        
 
                     </Fields>
                 </ext:Model>
@@ -160,6 +163,7 @@
                          
                             <ext:Column runat="server" Flex="1" Text="<%$ Resources: approvalType %>" DataIndex="approvalTypeName"></ext:Column>
                              <ext:Column runat="server" Flex="1" Text="<%$ Resources: approvalFlow %>" DataIndex="approvalFlowName"></ext:Column>
+                              <ext:Column runat="server" Flex="1" Text="<%$ Resources: workflow %>" DataIndex="wfName"></ext:Column>
                            
 
 

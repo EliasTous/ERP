@@ -2431,6 +2431,24 @@
                                         
                                     </DirectEvents>
                                 </ext:Button>
+
+                                  <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" EmptyText="<%$ Resources: FieldType%>"  runat="server" DisplayField="value" ValueField="key"   Name="ppType" ID="ppType"  >
+                                             <Store>
+                                                <ext:Store runat="server" ID="ppTypeStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                      <Listeners>
+                                          <Select Handler="#{punchesStore}.reload();" />
+                                      </Listeners>
+                                       </ext:ComboBox>
                           
 
                                 
@@ -4035,7 +4053,7 @@
                                  <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
-                                                <uc:ApprovalStatusControl  runat="server" ID="LeveApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" />
+                                                <uc:ApprovalStatusControl  runat="server" ID="LeveApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" InQueue="false" />
                                             </Content>
                                         </ext:Container>  
 
@@ -4306,7 +4324,7 @@
                                 <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
-                                                <uc:ApprovalStatusControl  runat="server" ID="TimeApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" />
+                                                <uc:ApprovalStatusControl  runat="server" ID="TimeApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" InQueue="false" />
                                             </Content>
                                         </ext:Container>  
 
@@ -4498,7 +4516,7 @@
                                  <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
-                                                <uc:ApprovalStatusControl  runat="server" ID="LoanApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" />
+                                                <uc:ApprovalStatusControl  runat="server" ID="LoanApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" InQueue="false"/>
                                             </Content>
                                         </ext:Container>  
 
@@ -5377,7 +5395,7 @@
                                  <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
-                                                <uc:ApprovalStatusControl  runat="server" ID="PurchaseApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" />
+                                                <uc:ApprovalStatusControl  runat="server" ID="PurchaseApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" InQueue="false" />
                                             </Content>
                                         </ext:Container>  
                                  <ext:Container runat="server"  Layout="FitLayout">
@@ -5548,7 +5566,7 @@
                                   <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
-                                                <uc:ApprovalStatusControl  runat="server" ID="PenaltyApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" />
+                                                <uc:ApprovalStatusControl  runat="server" ID="PenaltyApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" InQueue="false" />
                                             </Content>
                                         </ext:Container>  
                                  <ext:TextArea ID="notes"  runat="server" FieldLabel="<%$ Resources:FieldNotes%>"  DataIndex="notes"  />

@@ -63,7 +63,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(EmployeeCalendar), "qryCA");
             ChildGetAllLookup.Add(typeof(EmployeeCal), "qryCA");
             ChildGetAllLookup.Add(typeof(EmployeePenalty), "qryPE");
-            ChildGetAllLookup.Add(typeof(EmployeePenaltyApproval), "qryPA");
+            ChildGetAllLookup.Add(typeof(EmployeePenaltyApproval), "pendingPA");
             ChildGetAllLookup.Add(typeof(EmployeeParam), "qryEM");
             ChildGetAllLookup.Add(typeof(EmployeeSnapShot), "snapshotEM");
             ChildGetAllLookup.Add(typeof(UserProperty), "qryUP");

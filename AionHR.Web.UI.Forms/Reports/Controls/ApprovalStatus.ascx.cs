@@ -24,6 +24,9 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         public string AllowBlank { get; set; }
         public string  ReadOnly { get; set; }
 
+        public string InQueue { get; set; }
+
+
         public string EmptyText { get; set; }
 
 
@@ -85,6 +88,12 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
                 approvalsStatusList.Add(new XMLDictionary { key = 0, value = Resources.Common.All });
             }
+
+            if (!string.IsNullOrEmpty(InQueue) && InQueue.ToUpper() == "FALSE")
+            {
+                if (approvalsStatusList.Where(x => x.key == 3).Count() != 0)
+                 approvalsStatusList.Remove(approvalsStatusList.Where(x => x.key == 3).ToList().First());
+                 }
             apStatusStore.DataSource = approvalsStatusList;
             apStatusStore.DataBind();
           
