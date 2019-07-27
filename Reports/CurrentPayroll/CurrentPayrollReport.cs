@@ -12,20 +12,21 @@ namespace Reports.CurrentPayroll
 {
     public partial class CurrentPayrollReport : DevExpress.XtraReports.UI.XtraReport
     {
-        public CurrentPayrollReport(List<RT200> items, bool isArabic,Dictionary<string,string> parameters)
+        public CurrentPayrollReport(List<RT200> items, /*bool isArabic*/ string getLanguage, Dictionary<string,string> parameters)
         {
             
             InitializeComponent();
             printHeader(parameters);
-            if (isArabic)
+            //if (isArabic)
+            if (getLanguage == "ar")
             {
-               // fieldSalaryDate.Caption = "التاريخ";
+                // fieldSalaryDate.Caption = "التاريخ";
                 fieldBranch.Caption = "الفرع";
                 fieldEmployeeName.Caption = "الموظف";
                 fieldCounrty.Caption = "البلد";
                 fieldDepartment.Caption = "القسم";
                 fieldBasicSalary.Caption = "الاسأسي";
-               
+
                 this.RightToLeft = RightToLeft.Yes;
                 this.RightToLeftLayout = RightToLeftLayout.Yes;
                 fieldItemValue.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
@@ -39,7 +40,47 @@ namespace Reports.CurrentPayroll
 
 
             }
-          
+            else if (getLanguage == "fr")
+            {
+                // fieldSalaryDate.Caption = "التاريخ";
+                fieldBranch.Caption = "Branche";
+                fieldEmployeeName.Caption = "Nom Employé";
+                fieldCounrty.Caption = "Pays";
+                fieldDepartment.Caption = "Departement";
+                fieldBasicSalary.Caption = "Sal.Base";
+            }
+
+            string tax = "";
+            string ent = "";
+            string nonTax = "";
+            string ded = "";
+            string netSal = "";
+
+            if (getLanguage == "ar")
+            {
+                tax = "ضريبي";
+                ent = "الاستحقاقات";
+                nonTax = "غير ضريبي";
+                ded = "استقطاعات";
+                netSal = "صافي الراتب";
+            }
+            else if (getLanguage == "en")
+            {
+                tax = "Taxable";
+                ent = "Entitlements";
+                nonTax = "Non Taxable";
+                ded = "Deductions";
+                netSal = "Net Salary";
+            }
+            else if (getLanguage == "fr")
+            {
+                tax = "Taxable";
+                ent = "Droits";
+                nonTax = "Non Taxable";
+                ded = "Deductions";
+                netSal = "Salaire Net";
+            }
+
             dsSalaries1.DataTable1.AddDataTable1Row("ad");
             //var salaryDate = new DateTime();
             //if (items.Count!=0)
@@ -53,8 +94,8 @@ namespace Reports.CurrentPayroll
                 {
 
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName,
-                       salary.edName, salary.edAmount, isArabic ? "ضريبي" : "Taxable", salary.basicAmount, salary.cssAmount,
-                     salary.essAmount, isArabic ? "الاستحقاقات" : "Entitlements", salary.branchName, salary.employeeRef, salary.countryName, salary.departmentName);
+                       salary.edName, salary.edAmount, /*isArabic ? "ضريبي" : "Taxable"*/ tax, salary.basicAmount, salary.cssAmount,
+                     salary.essAmount, /*isArabic ? "الاستحقاقات" : "Entitlements"*/ ent, salary.branchName, salary.employeeRef, salary.countryName, salary.departmentName);
 
                  
                 }
@@ -62,16 +103,16 @@ namespace Reports.CurrentPayroll
                 foreach (var salary in employee.Where(u => !u.isTaxable && u.edType == 1))
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName,
-                      salary.edName, salary.edAmount, isArabic ? "غير ضريبي" : "Non Taxable", salary.basicAmount, salary.cssAmount,
-                    salary.essAmount, isArabic ? "الاستحقاقات" : "Entitlements", salary.branchName, salary.employeeRef, salary.countryName, salary.departmentName);
+                      salary.edName, salary.edAmount, /*isArabic ? "غير ضريبي" : "Non Taxable"*/nonTax, salary.basicAmount, salary.cssAmount,
+                    salary.essAmount, /*isArabic ? "الاستحقاقات" : "Entitlements"*/ ent, salary.branchName, salary.employeeRef, salary.countryName, salary.departmentName);
                    
                 }
 
                 foreach (var salary in employee.Where(u => u.isTaxable && u.edType == 2))
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName,
-                     salary.edName, salary.edAmount, isArabic ? "ضريبي" : "Taxable", salary.basicAmount, salary.cssAmount,
-                   salary.essAmount, isArabic ? "استقطاعات" : "Deductions", salary.branchName, salary.employeeRef, salary.countryName, salary.departmentName);
+                     salary.edName, salary.edAmount, /*isArabic ? "ضريبي" : "Taxable"*/ tax, salary.basicAmount, salary.cssAmount,
+                   salary.essAmount, /*isArabic ? "استقطاعات" : "Deductions"*/ ded, salary.branchName, salary.employeeRef, salary.countryName, salary.departmentName);
                    
                 }
 
@@ -80,14 +121,14 @@ namespace Reports.CurrentPayroll
                    
 
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName,
-                        salary.edName, salary.edAmount, isArabic ? "غير ضريبي" : "Non Taxable", salary.basicAmount, salary.cssAmount,
-                      salary.essAmount, isArabic ? "استقطاعات" : "Deductions",salary.branchName,salary.employeeRef,salary.countryName,salary.departmentName);
+                        salary.edName, salary.edAmount, /*isArabic ? "غير ضريبي" : "Non Taxable"*/ nonTax, salary.basicAmount, salary.cssAmount,
+                      salary.essAmount, /*isArabic ? "استقطاعات" : "Deductions"*/ ded,salary.branchName,salary.employeeRef,salary.countryName,salary.departmentName);
 
 
 
                 }
 
-                dsSalaries1.SalariesItems.AddSalariesItemsRow(defaultSal.employeeName, isArabic ? "صافي الراتب" : "Net Salary",defaultSal.netSalary, "    ",defaultSal.basicAmount,defaultSal.cssAmount
+                dsSalaries1.SalariesItems.AddSalariesItemsRow(defaultSal.employeeName, /*isArabic ? "صافي الراتب" : "Net Salary"*/ netSal,defaultSal.netSalary, "    ",defaultSal.basicAmount,defaultSal.cssAmount
                         ,defaultSal.essAmount," ",defaultSal.branchName,defaultSal.employeeRef,defaultSal.countryName,defaultSal.departmentName
                        
                          );

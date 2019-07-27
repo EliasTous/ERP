@@ -236,6 +236,8 @@ namespace AionHR.Web.UI.Forms.Reports
             //string department = jobInfo1.GetDepartment();
             //string position = jobInfo1.GetPosition();
             //string employee = employeeFilter.GetEmployeeName();
+
+            string getLan = _systemService.SessionHelper.getLangauge();
         
             // this variable for check if the user request arabic report or english   true mean arabic reprot
             bool isArabic = _systemService.SessionHelper.CheckIfArabicSession();
@@ -311,7 +313,8 @@ namespace AionHR.Web.UI.Forms.Reports
             //    s.Add(p);
             //}
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-            EmployeePayrollCrossReport h = new EmployeePayrollCrossReport(resp.Items, isArabic, parameters);
+            //EmployeePayrollCrossReport h = new EmployeePayrollCrossReport(resp.Items, isArabic, parameters);
+            EmployeePayrollCrossReport h = new EmployeePayrollCrossReport(resp.Items, getLan, parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.PrintingSystem.Document.AutoFitToPagesWidth = 1;

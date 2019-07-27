@@ -226,7 +226,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 DateTime parsed = DateTime.Now;
 
 
-         
+            string getLan = _systemService.SessionHelper.getLangauge();
+
             foreach (var e in resp.Items.GroupBy(x=>x.employeeName))
                 {
 
@@ -251,10 +252,13 @@ namespace AionHR.Web.UI.Forms.Reports
                                 record.shiftLog = new List<ShiftLog>();
                                 record.shiftLog.Add(new ShiftLog { start = z.start, end = z.end });
 
-                                if (_systemService.SessionHelper.CheckIfArabicSession())
+                                //if (_systemService.SessionHelper.CheckIfArabicSession())
+                                if (getLan == "ar")
                                     record.shiftId = String.Format("{0} {1}", "فترة  ",counter);
-                                else
-                                    record.shiftId = String.Format("{0} {1}", "Shift ", counter);
+                                else if (getLan == "fr")
+                                    record.shiftId = String.Format("{0} {1}", "Horraire ", counter);
+                                else 
+                                    record.shiftId = String.Format("{0} {1}", "shift ", counter);
                                 if (maxShiftCount < counter)
                                     maxShiftCount = counter;
                                 
@@ -271,7 +275,7 @@ namespace AionHR.Web.UI.Forms.Reports
                   
                 }
                 Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-                ShiftLogsReport h = new ShiftLogsReport(newShiftLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat(), parameters, maxShiftCount);
+                ShiftLogsReport h = new ShiftLogsReport(newShiftLogsList, /*_systemService.SessionHelper.CheckIfArabicSession()*/ getLan, _systemService.SessionHelper.GetDateformat(), parameters, maxShiftCount);
                // BasicShiftLogReport h = new BasicShiftLogReport(newShiftLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat(), parameters, maxShiftCount);
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;

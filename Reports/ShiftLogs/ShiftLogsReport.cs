@@ -16,7 +16,7 @@ namespace Reports.ShiftLogs
     {
 
         List<RT309> items = new List<RT309>();
-        public ShiftLogsReport(List<RT309> items, bool isArabic,string DateFormat, Dictionary<string, string> parameters,int maxShiftCount)
+        public ShiftLogsReport(List<RT309> items, /*bool isArabic*/ string getLanguage, string DateFormat, Dictionary<string, string> parameters,int maxShiftCount)
         {
             this.items = items;
             this.PaperKind = PaperKind.A4;
@@ -31,7 +31,8 @@ namespace Reports.ShiftLogs
            
             fielddayId1.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             fielddayId1.ValueFormat.FormatString = DateFormat;
-            if (isArabic)
+            //if (isArabic)
+            if (getLanguage == "ar")
             {
                 fieldemployeeName1.Caption = "الموظف";
                 fielddayId1.Caption = "التاريخ";
@@ -40,11 +41,28 @@ namespace Reports.ShiftLogs
                 xrPivotGrid1.RightToLeft = RightToLeft.Yes; ;
 
             }
+
+
+            string dur = "";
+
+            if (getLanguage == "ar")
+            {
+                dur = "المدة";
+            }
+            else if (getLanguage == "en")
+            {
+                dur = "Duration";
+            }
+            else if (getLanguage == "fr")
+            {
+                dur = "Durée";
+            }
+
             shiftLogsDS1.DataTable1.AddDataTable1Row("ad");
 
             items.ForEach(x =>
             {
-                shiftLogsDS1.ShiftItems.AddShiftItemsRow(x.employeeId, x.employeeName, x.dayIdDateTime,time(x.duration,true) , isArabic?"المدة":"Duration");
+                shiftLogsDS1.ShiftItems.AddShiftItemsRow(x.employeeId, x.employeeName, x.dayIdDateTime,time(x.duration,true) , /*isArabic?"المدة":"Duration"*/ dur);
                 shiftLogsDS1.ShiftItems.AddShiftItemsRow(x.employeeId,x.employeeName,x.dayIdDateTime,buildShiftValue(x.shiftLog),x.shiftId);
             });
 

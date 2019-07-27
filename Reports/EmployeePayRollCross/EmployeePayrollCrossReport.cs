@@ -12,12 +12,13 @@ namespace Reports.EmployeePayRollCross
 {
     public partial class EmployeePayrollCrossReport : DevExpress.XtraReports.UI.XtraReport
     {
-        public EmployeePayrollCrossReport(List<RT501> items, bool isArabic,Dictionary<string,string> parameters)
+        public EmployeePayrollCrossReport(List<RT501> items, /*bool isArabic,*/ string getLanguage,Dictionary<string,string> parameters)
         {
             
             InitializeComponent();
             printHeader(parameters);
-            if (isArabic)
+            //if (isArabic)
+            if (getLanguage == "ar")
             {
                 fieldSalaryDate.Caption = "التاريخ";
                 fieldBranch.Caption = "الفرع";
@@ -34,7 +35,38 @@ namespace Reports.EmployeePayRollCross
 
 
             }
-          
+
+            string tax = "";
+            string ent = "";
+            string nonTax = "";
+            string ded = "";
+            string netSal = "";
+
+            if(getLanguage == "ar")
+            {
+                tax = "ضريبي";
+                ent = "الاستحقاقات";
+                nonTax = "غير ضريبي";
+                ded = "استقطاعات";
+                netSal = "صافي الراتب";
+            }
+            else if (getLanguage == "en")
+            {
+                tax = "Taxable";
+                ent = "Entitlements";
+                nonTax = "Non Taxable";
+                ded = "Deductions";
+                netSal = "Net Salary";
+            }
+            else if (getLanguage == "fr")
+            {
+                tax = "Taxable";
+                ent = "Droits";
+                nonTax = "Non Taxable";
+                ded = "Deductions";
+                netSal = "Salaire Net";
+            }
+
             dsSalaries1.DataTable1.AddDataTable1Row("ad");
             var salaryDate = new DateTime();
             if (items.Count!=0)
@@ -48,8 +80,8 @@ namespace Reports.EmployeePayRollCross
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName,
                         salaryDate, order, salary.edName, salary.edAmount,
-                        isArabic ? "ضريبي" : "Taxable", 1, salary.basicAmount, salary.cssAmount,
-                        salary.essAmount, isArabic ? "الاستحقاقات" : "Entitlements",salary.branchName
+                        /*isArabic ? "ضريبي" : "Taxable"*/ tax, 1, salary.basicAmount, salary.cssAmount,
+                        salary.essAmount, /*isArabic ? "الاستحقاقات" : "Entitlements"*/ ent,salary.branchName
                         );
                     order++;
                 }
@@ -58,8 +90,8 @@ namespace Reports.EmployeePayRollCross
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName,
                         salaryDate, order, salary.edName, salary.edAmount,
-                       isArabic ? "غير ضريبي" : "Non Taxable", 1, salary.basicAmount, salary.cssAmount,
-                        salary.essAmount, isArabic ? "الاستحقاقات" : "Entitlements", salary.branchName
+                       /*isArabic ? "غير ضريبي" : "Non Taxable"*/ nonTax, 1, salary.basicAmount, salary.cssAmount,
+                        salary.essAmount, /*isArabic ? "الاستحقاقات" : "Entitlements"*/ ent, salary.branchName
                         );
                     order++;
                 }
@@ -68,8 +100,8 @@ namespace Reports.EmployeePayRollCross
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName,
                         salaryDate, order, salary.edName, salary.edAmount,
-                        isArabic ? "ضريبي" : "Taxable", 1, salary.basicAmount, salary.cssAmount,
-                        salary.essAmount, isArabic ? "استقطاعات" : "Deductions", salary.branchName
+                        /*isArabic ? "ضريبي" : "Taxable"*/ tax, 1, salary.basicAmount, salary.cssAmount,
+                        salary.essAmount, /*isArabic ? "استقطاعات" : "Deductions"*/ ded, salary.branchName
                         );
                     order++;
                 }
@@ -78,15 +110,15 @@ namespace Reports.EmployeePayRollCross
                 {
                     dsSalaries1.SalariesItems.AddSalariesItemsRow(salary.employeeName,
                         salaryDate, order, salary.edName, salary.edAmount,
-                       isArabic ? "غير ضريبي" : "Non Taxable", 1, salary.basicAmount, salary.cssAmount,
-                        salary.essAmount, isArabic ? "استقطاعات" : "Deductions", salary.branchName
+                       /*isArabic ? "غير ضريبي" : "Non Taxable"*/ nonTax, 1, salary.basicAmount, salary.cssAmount,
+                        salary.essAmount, /*isArabic ? "استقطاعات" : "Deductions"*/ ded, salary.branchName
                         );
                     order++;
                 }
 
                 dsSalaries1.SalariesItems.AddSalariesItemsRow(defaultSal.employeeName,
                          salaryDate, order, "", defaultSal.netSalary,
-                        isArabic ? "صافي الراتب" : "Net Salary", 1, defaultSal.basicAmount, defaultSal.cssAmount, 
+                        /*isArabic ? "صافي الراتب" : "Net Salary"*/ netSal, 1, defaultSal.basicAmount, defaultSal.cssAmount, 
                          defaultSal.essAmount, "    ", defaultSal.branchName
                          );
             }

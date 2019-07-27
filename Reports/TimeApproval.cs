@@ -7,11 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Drawing.Printing;
 
+
 /// <summary>
 /// Summary description for Absense
 /// </summary>
 public class TimeApproval : DevExpress.XtraReports.UI.XtraReport
 {
+
+
     private DevExpress.XtraReports.UI.DetailBand Detail;
     private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
     private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
@@ -76,11 +79,19 @@ public class TimeApproval : DevExpress.XtraReports.UI.XtraReport
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
-    public TimeApproval(Dictionary<string, string> parameters)
+    public TimeApproval(Dictionary<string, string> parameters, string getLang)
     {
         InitializeComponent();
         printHeader(parameters);
-       
+
+        if (getLang == "fr")
+        {
+            xrLabel1.Text = "Branche";
+            xrLabel11.Text = "Approbation du temps";
+            xrLabel19.Text = "Jour";
+            xrLabel20.Text = "Employe";
+        }
+
 
     }
     

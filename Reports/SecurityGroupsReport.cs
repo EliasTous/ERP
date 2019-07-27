@@ -11,6 +11,9 @@ namespace Reports
         public SecurityGroupsReport()
         {
             InitializeComponent();
+            xrLabel4.WidthF = (float)190;
+            xrLabel2.LocationF = new PointF(190, 37);
+
         }
 
     }

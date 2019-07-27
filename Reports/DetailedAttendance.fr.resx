@@ -130,7 +130,7 @@
     <value>Par</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
-    <value>Prenom :</value>
+    <value>Nom :</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>A :</value>
@@ -178,7 +178,7 @@
     <value>xrTableCell28</value>
   </data>
   <data name="xrTableCell29.Text" xml:space="preserve">
-    <value>Shift Leave sans excuse</value>
+    <value>Congé sans excuse</value>
   </data>
   <data name="xrTableCell3.Text" xml:space="preserve">
     <value>xrTableCell3</value>
@@ -211,7 +211,7 @@
     <value>xrTableCell38</value>
   </data>
   <data name="xrTableCell39.Text" xml:space="preserve">
-    <value>Early Check IN</value>
+    <value>Enregistrement anticipé</value>
   </data>
   <data name="xrTableCell4.Text" xml:space="preserve">
     <value>xrTableCell4</value>
@@ -220,7 +220,7 @@
     <value>xrTableCell40</value>
   </data>
   <data name="xrTableCell41.Text" xml:space="preserve">
-    <value>HEURES SUPPLÉMENTAIRES</value>
+    <value>Heures supplementaires</value>
   </data>
   <data name="xrTableCell42.Text" xml:space="preserve">
     <value>xrTableCell42</value>
@@ -633,5 +633,11 @@
   </data>
   <data name="xrTableRow4.Weight" type="System.Double, mscorlib">
     <value>1</value>
+  </data>
+  <data name="xrTableCell10.Text" xml:space="preserve">
+    <value>Heures prévues</value>
+  </data>
+  <data name="xrTableCell9.Text" xml:space="preserve">
+    <value>Heures de travail</value>
   </data>
 </root>

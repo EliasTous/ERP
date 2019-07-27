@@ -128,17 +128,11 @@
   <data name="xrTableCell8.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell8.Text" xml:space="preserve">
-    <value>xrTableCell8</value>
-  </data>
   <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
     <value>25.75</value>
   </data>
   <data name="xrTableCell10.Dpi" type="System.Single, mscorlib">
     <value>100</value>
-  </data>
-  <data name="xrTableCell10.Text" xml:space="preserve">
-    <value>xrTableCell10</value>
   </data>
   <data name="xrTableCell10.Weight" type="System.Double, mscorlib">
     <value>29.772441351413725</value>
@@ -146,17 +140,11 @@
   <data name="xrTableCell12.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell12.Text" xml:space="preserve">
-    <value>xrTableCell12</value>
-  </data>
   <data name="xrTableCell12.Weight" type="System.Double, mscorlib">
     <value>19.017584443092346</value>
   </data>
   <data name="xrTableCell14.Dpi" type="System.Single, mscorlib">
     <value>100</value>
-  </data>
-  <data name="xrTableCell14.Text" xml:space="preserve">
-    <value>xrTableCell14</value>
   </data>
   <data name="xrTableCell14.Weight" type="System.Double, mscorlib">
     <value>19.276370978355409</value>
@@ -164,17 +152,11 @@
   <data name="xrTableCell16.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell16.Text" xml:space="preserve">
-    <value>xrTableCell16</value>
-  </data>
   <data name="xrTableCell16.Weight" type="System.Double, mscorlib">
     <value>21.158220183849334</value>
   </data>
   <data name="xrTableCell18.Dpi" type="System.Single, mscorlib">
     <value>100</value>
-  </data>
-  <data name="xrTableCell18.Text" xml:space="preserve">
-    <value>xrTableCell18</value>
   </data>
   <data name="xrTableCell18.Weight" type="System.Double, mscorlib">
     <value>32.6191368341446</value>
@@ -182,17 +164,11 @@
   <data name="xrTableCell20.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell20.Text" xml:space="preserve">
-    <value>xrTableCell20</value>
-  </data>
   <data name="xrTableCell20.Weight" type="System.Double, mscorlib">
     <value>24.45212442874908</value>
   </data>
   <data name="xrTableCell22.Dpi" type="System.Single, mscorlib">
     <value>100</value>
-  </data>
-  <data name="xrTableCell22.Text" xml:space="preserve">
-    <value>xrTableCell22</value>
   </data>
   <data name="xrTableCell22.Weight" type="System.Double, mscorlib">
     <value>21.238496780395504</value>
@@ -246,7 +222,7 @@
   <data name="xrTableCell7.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell7.Text" xml:space="preserve">
+  <data name="xrLabel12.Text" xml:space="preserve">
     <value>Montant de base</value>
   </data>
   <data name="xrTableCell7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -258,7 +234,7 @@
   <data name="xrTableCell9.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell9.Text" xml:space="preserve">
+  <data name="xrLabel17.Text" xml:space="preserve">
     <value>CSS Montant</value>
   </data>
   <data name="xrTableCell9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -270,7 +246,7 @@
   <data name="xrTableCell11.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell11.Text" xml:space="preserve">
+  <data name="xrLabel14.Text" xml:space="preserve">
     <value>Montant de la déduction</value>
   </data>
   <data name="xrTableCell11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -282,7 +258,7 @@
   <data name="xrTableCell13.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell13.Text" xml:space="preserve">
+  <data name="xrLabel13.Text" xml:space="preserve">
     <value>Montant du droit</value>
   </data>
   <data name="xrTableCell13.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -294,7 +270,7 @@
   <data name="xrTableCell15.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell15.Text" xml:space="preserve">
+  <data name="xrLabel11.Text" xml:space="preserve">
     <value>Date fin</value>
   </data>
   <data name="xrTableCell15.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -306,7 +282,7 @@
   <data name="xrTableCell17.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell17.Text" xml:space="preserve">
+  <data name="xrLabel15.Text" xml:space="preserve">
     <value>ESS Montant</value>
   </data>
   <data name="xrTableCell17.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -318,7 +294,7 @@
   <data name="xrTableCell19.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell19.Text" xml:space="preserve">
+  <data name="xrLabel16.Text" xml:space="preserve">
     <value>Salaire net</value>
   </data>
   <data name="xrTableCell19.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -330,7 +306,7 @@
   <data name="xrTableCell21.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell21.Text" xml:space="preserve">
+  <data name="xrLabel10.Text" xml:space="preserve">
     <value>Date de début</value>
   </data>
   <data name="xrTableCell21.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -357,26 +333,17 @@
   <data name="xrTableCell1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell1.Text" xml:space="preserve">
-    <value>xrTableCell1</value>
-  </data>
   <data name="xrTableCell1.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <data name="xrTableCell2.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell2.Text" xml:space="preserve">
-    <value>xrTableCell2</value>
-  </data>
   <data name="xrTableCell2.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <data name="xrTableCell3.Dpi" type="System.Single, mscorlib">
     <value>100</value>
-  </data>
-  <data name="xrTableCell3.Text" xml:space="preserve">
-    <value>xrTableCell3</value>
   </data>
   <data name="xrTableCell3.Weight" type="System.Double, mscorlib">
     <value>1</value>
@@ -390,26 +357,17 @@
   <data name="xrTableCell4.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell4.Text" xml:space="preserve">
-    <value>xrTableCell4</value>
-  </data>
   <data name="xrTableCell4.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <data name="xrTableCell5.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrTableCell5.Text" xml:space="preserve">
-    <value>xrTableCell5</value>
-  </data>
   <data name="xrTableCell5.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <data name="xrTableCell6.Dpi" type="System.Single, mscorlib">
     <value>100</value>
-  </data>
-  <data name="xrTableCell6.Text" xml:space="preserve">
-    <value>xrTableCell6</value>
   </data>
   <data name="xrTableCell6.Weight" type="System.Double, mscorlib">
     <value>1</value>
