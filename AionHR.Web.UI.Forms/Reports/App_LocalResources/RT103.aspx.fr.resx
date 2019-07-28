@@ -117,91 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="fieldCSS.Caption" xml:space="preserve">
-    <value>Css</value>
+  <data name="ActiveOnly" xml:space="preserve">
+    <value>Active Only</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="fieldCSS.MinWidth" type="System.Int32, mscorlib">
-    <value>50</value>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
   </data>
-  <data name="fieldCSS.Width" type="System.Int32, mscorlib">
-    <value>60</value>
+  <data name="DateFrom" xml:space="preserve">
+    <value>From</value>
   </data>
-  <data name="fieldEmployeeName.Caption" xml:space="preserve">
-    <value>اسم الموظف</value>
+  <data name="DateTo" xml:space="preserve">
+    <value>To</value>
   </data>
-  <data name="fieldEmployeeName.Width" type="System.Int32, mscorlib">
-    <value>150</value>
+  <data name="EmployeeCount" xml:space="preserve">
+    <value>Nombres d'employés</value>
   </data>
-  <data name="fieldESS.Caption" xml:space="preserve">
-    <value>Ess</value>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branch</value>
   </data>
-  <data name="fieldESS.MinWidth" type="System.Int32, mscorlib">
-    <value>50</value>
+  <data name="FieldDate" xml:space="preserve">
+    <value>Date</value>
   </data>
-  <data name="fieldESS.Width" type="System.Int32, mscorlib">
-    <value>60</value>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Department</value>
   </data>
-  <data name="fieldBasicSalary.Caption" xml:space="preserve">
-    <value>اساسي</value>
+  <data name="FieldDivision" xml:space="preserve">
+    <value>Division</value>
   </data>
-  <data name="fieldBasicSalary.MinWidth" type="System.Int32, mscorlib">
-    <value>50</value>
+  <data name="FieldEmployee" xml:space="preserve">
+    <value>Employee</value>
   </data>
-  <data name="fieldBasicSalary.Width" type="System.Int32, mscorlib">
-    <value>60</value>
+  <data name="FieldFullName" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="fieldBranch.Caption" xml:space="preserve">
-    <value>الفرع</value>
+  <data name="FieldMonth" xml:space="preserve">
+    <value>Month</value>
   </data>
-  <assembly alias="DevExpress.Data.v18.2" name="DevExpress.Data.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="xrPivotGrid1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>0, 0</value>
+  <data name="FieldPosition" xml:space="preserve">
+    <value>Position</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="xrPivotGrid1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>1141.00012, 149.166672</value>
-  </data>
-  <data name="Detail.HeightF" type="System.Single, mscorlib">
-    <value>169.375</value>
-  </data>
-  <data name="xrPageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>0, 0</value>
-  </data>
-  <data name="xrPageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>229.166687, 30.166626</value>
-  </data>
-  <data name="xrPageInfo2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="xrPageInfo2.TextFormatString" xml:space="preserve">
-    <value>{0:dddd, MMMM d, yyyy h:mm tt}</value>
-  </data>
-  <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>1041, 0</value>
-  </data>
-  <data name="xrPageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>100, 30.166626</value>
-  </data>
-  <data name="xrPageInfo1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="xrPageInfo1.TextFormatString" xml:space="preserve">
-    <value>Page {0} of {1}</value>
-  </data>
-  <data name="BottomMargin.HeightF" type="System.Single, mscorlib">
-    <value>39.3332939</value>
-  </data>
-  <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>511.5, 10</value>
-  </data>
-  <data name="ReportHeader.HeightF" type="System.Single, mscorlib">
-    <value>80.2083359</value>
-  </data>
-  <data name="PageHeader.HeightF" type="System.Single, mscorlib">
-    <value>23.333334</value>
-  </data>
-  <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
-    <value>11, 7, 21, 39</value>
+  <data name="InactiveOnly" xml:space="preserve">
+    <value>Inactive Only</value>
   </data>
 </root>

@@ -439,7 +439,7 @@
     <value>Parameter1</value>
   </data>
   <data name="fieldBasicSalary.Caption" xml:space="preserve">
-    <value>élémentaire</value>
+    <value>Sal. Base</value>
   </data>
   <data name="Payment.Description" xml:space="preserve">
     <value>Parameter1</value>
@@ -488,5 +488,11 @@
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>{0:dddd, MMMM d, yyyy h:mm tt}</value>
+  </data>
+  <data name="fieldBranch.Caption" xml:space="preserve">
+    <value>Branche</value>
+  </data>
+  <data name="fieldEmployeeName.Caption" xml:space="preserve">
+    <value>Nom Employe</value>
   </data>
 </root>

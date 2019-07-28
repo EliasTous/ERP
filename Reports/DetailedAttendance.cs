@@ -10,10 +10,21 @@ namespace Reports
 {
     public partial class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
     {
-        public DetailedAttendance(Dictionary<string, string> parameters)
+        public DetailedAttendance(Dictionary<string, string> parameters, string getLang)
         {
                InitializeComponent();
             printHeader(parameters);
+
+            if (getLang == "fr")
+            {
+                xrLabel1.Text = "Assistance détaillée";
+                xrLabel13.Text = "Nom :";
+                xrTableCell9.Text = "Heures de travail";
+                xrTableCell10.Text = "Heures prévues";
+                xrTableCell29.Text = "Congé sans excuse";
+                xrTableCell39.Text = "Enregistrement anticipé";
+                xrTableCell41.Text = "Heures supplementaires";
+            }
 
         }
         private void printHeader(Dictionary<string, string> parameters)

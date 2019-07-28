@@ -148,7 +148,7 @@
     <value>Times New Roman, 12pt</value>
   </data>
   <data name="xrTableCell10.Text" xml:space="preserve">
-    <value>Email</value>
+    <value>Courrier electronique</value>
   </data>
   <data name="xrTableCell10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -368,7 +368,7 @@
     <value>Arial, 14pt</value>
   </data>
   <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>Utilisateur</value>
+    <value>Module</value>
   </data>
   <data name="xrTableCell7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -383,7 +383,7 @@
     <value>Arial, 14pt</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>Email</value>
+    <value>Classe</value>
   </data>
   <data name="xrTableCell9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -456,5 +456,8 @@
   </data>
   <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
     <value>A4</value>
+  </data>
+  <data name="xrTableCell11.Text" xml:space="preserve">
+    <value>niveau d'accès</value>
   </data>
 </root>

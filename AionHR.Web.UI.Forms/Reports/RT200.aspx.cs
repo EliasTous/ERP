@@ -260,8 +260,11 @@ namespace AionHR.Web.UI.Forms.Reports
             //    p.Payrolls = lines;
             //    s.Add(p);
             //}
+            //test/
+            string getLan = _systemService.SessionHelper.getLangauge();
+
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-            CurrentPayrollReport h = new CurrentPayrollReport(resp.Items, _systemService.SessionHelper.CheckIfArabicSession(), parameters);
+            CurrentPayrollReport h = new CurrentPayrollReport(resp.Items, /*_systemService.SessionHelper.CheckIfArabicSession()*/ getLan, parameters);
             //CurrentPayrollV1 h = new CurrentPayrollV1();
           
             //h.Parameters["columnCount"].Value = ens.Count + des.Count;

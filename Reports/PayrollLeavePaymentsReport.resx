@@ -361,136 +361,169 @@
     <value>50</value>
   </data>
   <data name="xrLabel2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.5pt, style=Bold</value>
+    <value>Arial, 8pt, style=Bold</value>
   </data>
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>150.833221, 10.0000067</value>
+    <value>150.833191, 0</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>195.9583, 23</value>
+    <value>195.9583, 50.7083244</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>Employee Name</value>
   </data>
+  <data name="xrLabel2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.5pt, style=Bold</value>
+    <value>Arial, 8pt, style=Bold</value>
   </data>
   <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>0, 10.0000067</value>
+    <value>0, 0</value>
   </data>
   <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>80, 23</value>
+    <value>80, 50.7083244</value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>Payment Ref</value>
   </data>
+  <data name="xrLabel3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.5pt, style=Bold</value>
+    <value>Arial, 8pt, style=Bold</value>
   </data>
   <data name="xrLabel4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>79.99983, 10.0000067</value>
+    <value>79.99983, 0</value>
   </data>
   <data name="xrLabel4.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>70.83337, 23</value>
+    <value>70.83337, 50.7083244</value>
   </data>
   <data name="xrLabel4.Text" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="xrLabel4.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.5pt, style=Bold</value>
+    <value>Arial, 8pt, style=Bold</value>
   </data>
   <data name="xrLabel5.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>346.791565, 10.0000067</value>
+    <value>346.791565, 0</value>
   </data>
   <data name="xrLabel5.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>90, 23</value>
+    <value>90, 50.7083244</value>
   </data>
   <data name="xrLabel5.Text" xml:space="preserve">
     <value>Effective Date</value>
   </data>
+  <data name="xrLabel5.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel6.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.5pt, style=Bold</value>
+    <value>Arial, 8pt, style=Bold</value>
   </data>
   <data name="xrLabel6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>436.7915, 10.0000067</value>
+    <value>436.7915, 0</value>
   </data>
   <data name="xrLabel6.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>90, 23</value>
+    <value>90, 50.7083244</value>
   </data>
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>Earned Leaves</value>
   </data>
+  <data name="xrLabel6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel7.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.5pt, style=Bold</value>
+    <value>Arial, 8pt, style=Bold</value>
   </data>
   <data name="xrLabel7.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>526.791565, 10.0000067</value>
+    <value>526.791565, 0</value>
   </data>
   <data name="xrLabel7.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>90, 23</value>
+    <value>90, 50.7083244</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
     <value>Used Leaves</value>
   </data>
+  <data name="xrLabel7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel8.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.5pt, style=Bold</value>
+    <value>Arial, 8pt, style=Bold</value>
   </data>
   <data name="xrLabel8.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>616.7915, 10.0000067</value>
+    <value>616.7915, 0</value>
   </data>
   <data name="xrLabel8.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>90, 23</value>
+    <value>90, 50.7083244</value>
   </data>
   <data name="xrLabel8.Text" xml:space="preserve">
     <value>Paid Leaves</value>
   </data>
+  <data name="xrLabel8.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel9.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.5pt, style=Bold</value>
+    <value>Arial, 8pt, style=Bold</value>
   </data>
   <data name="xrLabel9.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>801.5831, 10.0000067</value>
+    <value>801.5831, 0</value>
   </data>
   <data name="xrLabel9.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>68.75006, 23</value>
+    <value>68.75006, 50.7083244</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
     <value>Salary</value>
   </data>
+  <data name="xrLabel9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel10.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.5pt, style=Bold</value>
+    <value>Arial, 8pt, style=Bold</value>
   </data>
   <data name="xrLabel10.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>870.333252, 10.0000067</value>
+    <value>870.333252, 0</value>
   </data>
   <data name="xrLabel10.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>80, 23</value>
+    <value>80, 50.7083244</value>
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
     <value>Pay Now</value>
   </data>
+  <data name="xrLabel10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel11.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.5pt, style=Bold</value>
+    <value>Arial, 8pt, style=Bold</value>
   </data>
   <data name="xrLabel11.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>950.333252, 10.0000067</value>
+    <value>950.333252, 0</value>
   </data>
   <data name="xrLabel11.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>96.666626, 23</value>
+    <value>96.66675, 50.7083244</value>
   </data>
   <data name="xrLabel11.Text" xml:space="preserve">
     <value>Net To Pay</value>
   </data>
+  <data name="xrLabel11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel23.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.5pt, style=Bold</value>
+    <value>Arial, 8pt, style=Bold</value>
   </data>
   <data name="xrLabel23.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>706.791565, 10.0000067</value>
+    <value>706.791565, 0</value>
   </data>
   <data name="xrLabel23.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>94.791626, 23</value>
+    <value>94.791626, 50.7083244</value>
   </data>
   <data name="xrLabel23.Text" xml:space="preserve">
     <value>Leave Balance</value>
+  </data>
+  <data name="xrLabel23.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
   </data>
   <data name="xrLabel22.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
@@ -526,7 +559,7 @@
     <value>27.083334</value>
   </data>
   <data name="groupHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>33.0000076</value>
+    <value>50.7083244</value>
   </data>
   <data name="PageHeader.HeightF" type="System.Single, mscorlib">
     <value>57.2916679</value>

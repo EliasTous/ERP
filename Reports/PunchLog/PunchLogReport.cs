@@ -13,7 +13,7 @@ namespace Reports.PunchLog
 {
     public partial class PunchLogReport : DevExpress.XtraReports.UI.XtraReport
     {
-        public PunchLogReport(List<RT308> items, bool isArabic,string DateFormat, Dictionary<string, string> parameters,int maxPunchCount)
+        public PunchLogReport(List<RT308> items, /*bool isArabic*/ string getLanguage, string DateFormat, Dictionary<string, string> parameters,int maxPunchCount)
         {
             InitializeComponent();
             if (maxPunchCount > 0)
@@ -26,7 +26,8 @@ namespace Reports.PunchLog
             fielddayId1.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             fielddayId1.ValueFormat.FormatString = DateFormat;
 
-            if (isArabic)
+            //if (isArabic)
+            if (getLanguage == "ar")
             {
                 fieldemployeeName1.Caption = "الموظف";
                 fielddayId1.Caption = "التاريخ";
@@ -35,6 +36,14 @@ namespace Reports.PunchLog
                 xrPivotGrid1.RightToLeft = RightToLeft.Yes; ;
 
             }
+            else if (getLanguage == "fr")
+            {
+                fieldemployeeName1.Caption = "Employe";
+                fielddayId1.Caption = "Date";
+            }
+
+
+
             dsSalaries1.DataTable1.AddDataTable1Row("ad");
 
             items.ForEach(x =>

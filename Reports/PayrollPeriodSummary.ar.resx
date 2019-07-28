@@ -120,28 +120,28 @@
   <data name="xrLabel1.Text" xml:space="preserve">
     <value>إجمالي الرواتب</value>
   </data>
-  <data name="xrTableCell11.Text" xml:space="preserve">
-    <value>الراتب الأساسي</value>
-  </data>
-  <data name="xrTableCell13.Text" xml:space="preserve">
-    <value>الإستحقاقات</value>
-  </data>
-  <data name="xrTableCell15.Text" xml:space="preserve">
-    <value>الخصومات</value>
-  </data>
-  <data name="xrTableCell17.Text" xml:space="preserve">
-    <value>ضمان الإجتماعي على الموظف</value>
-  </data>
-  <data name="xrTableCell19.Text" xml:space="preserve">
-    <value>صافي الراتب</value>
-  </data>
-  <data name="xrTableCell21.Text" xml:space="preserve">
-    <value>ضمان الإجتماعي على الشركة</value>
-  </data>
-  <data name="xrTableCell7.Text" xml:space="preserve">
+  <data name="xrLabel10.Text" xml:space="preserve">
     <value>بداية المدة</value>
   </data>
-  <data name="xrTableCell9.Text" xml:space="preserve">
+  <data name="xrLabel11.Text" xml:space="preserve">
     <value>نهاية المدة</value>
+  </data>
+  <data name="xrLabel12.Text" xml:space="preserve">
+    <value>الراتب الأساسي</value>
+  </data>
+  <data name="xrLabel13.Text" xml:space="preserve">
+    <value>الإستحقاقات</value>
+  </data>
+  <data name="xrLabel14.Text" xml:space="preserve">
+    <value>الخصومات</value>
+  </data>
+  <data name="xrLabel15.Text" xml:space="preserve">
+    <value>ضمان الإجتماعي على الموظف</value>
+  </data>
+  <data name="xrLabel16.Text" xml:space="preserve">
+    <value>صافي الراتب</value>
+  </data>
+  <data name="xrLabel17.Text" xml:space="preserve">
+    <value>ضمان الإجتماعي على الشركة</value>
   </data>
 </root>

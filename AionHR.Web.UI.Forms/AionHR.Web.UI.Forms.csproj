@@ -115,9 +115,8 @@
     <Reference Include="Ext.Net.Utilities, Version=2.5.0.0, Culture=neutral, PublicKeyToken=2c34ac34702a3c23, processorArchitecture=MSIL">
       <HintPath>..\packages\Ext.NET.Utilities.2.5.0\lib\Ext.Net.Utilities.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\AionASP\AionHR.Web.UI.Forms\bin\log4net.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -127,7 +126,7 @@
       <HintPath>..\packages\Microsoft.Practices.ServiceLocation.2.0.5\lib\net45\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
-      <HintPath>..\..\..\AionASP\AionHR.Web.UI.Forms\bin\Microsoft.Web.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -392,7 +391,9 @@
     <Content Include="Reports\App_LocalResources\Hirings.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT102.aspx.resx" />
-    <Content Include="Reports\App_LocalResources\RT103.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT103.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Reports\App_LocalResources\RT104.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT201.aspx.resx" />
     <Content Include="Reports\Controls\ActiveStatusFilter.ascx" />
@@ -2806,7 +2807,9 @@
     <Content Include="Reports\App_LocalResources\RT402.aspx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />
-    <Content Include="Reports\App_LocalResources\RT103.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT103.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Reports\Controls\App_LocalResources\EmployeeFilter.ascx.resx" />
     <Content Include="Reports\Controls\App_LocalResources\EmployeeFilter.ascx.ar.resx" />
     <Content Include="Reports\Controls\App_LocalResources\BranchFilter.ascx.resx" />

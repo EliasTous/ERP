@@ -16,6 +16,17 @@ namespace Reports
             xrLabel21.RightToLeft = RightToLeft.No;
             xrLabel22.RightToLeft = RightToLeft.No;
             xrLabel19.RightToLeft = RightToLeft.No;
+            xrLabel3.HeightF = (float)50.71;
+            xrLabel2.HeightF = (float)50.71;
+            xrLabel4.HeightF = (float)50.71;
+            xrLabel5.HeightF = (float)50.71;
+            xrLabel6.HeightF = (float)50.71;
+            xrLabel7.HeightF = (float)50.71;
+            xrLabel8.HeightF = (float)50.71;
+            xrLabel9.HeightF = (float)50.71;
+            xrLabel10.HeightF = (float)50.71;
+            xrLabel11.HeightF = (float)50.71;
+            xrLabel23.HeightF = (float)50.71;
             printHeader(parameters);
 
         }

@@ -74,12 +74,17 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
-    public Absense(Dictionary<string, string> parameters)
+    public Absense(Dictionary<string, string> parameters, string getLang)
     {
         InitializeComponent();
         xrTableCell5.RightToLeft = RightToLeft.No;
         xrLabel29.RightToLeft = RightToLeft.No;
         printHeader(parameters);
+
+        if (getLang == "fr")
+        {
+            xrLabel11.Text = "Variation des horaires";
+        }
         //
         // TODO: Add constructor logic here
         //
