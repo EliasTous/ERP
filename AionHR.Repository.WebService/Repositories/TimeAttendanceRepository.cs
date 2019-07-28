@@ -30,7 +30,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(Router), "getRO");
             ChildGetLookup.Add(typeof(Geofence), "getGF");
             ChildGetLookup.Add(typeof(Time), "getTA");
-
+            ChildGetLookup.Add(typeof(DashBoardTimeVariation), "getTV");
+            
 
 
             ChildGetAllLookup.Add(typeof(DayType), "qryDT");
@@ -84,7 +85,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(PendingPunch), "processPP");
             ChildAddOrUpdateLookup.Add(typeof(DashBoardTimeVariation), "setTV");
             ChildAddOrUpdateLookup.Add(typeof(MailFlatShedule), "mailFS");
-
+            ChildAddOrUpdateLookup.Add(typeof(OverrideTimeVariation), "overrideTV");
+            
             ChildDeleteLookup.Add(typeof(AttendanceBreak), "delSB");
             ChildDeleteLookup.Add(typeof(AttendanceSchedule), "delSC");
             ChildDeleteLookup.Add(typeof(WorkingCalendar), "delCA");

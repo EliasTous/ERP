@@ -311,7 +311,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return editRender();" />
+                             <Renderer handler="if (record.data['timeCode']===41) return editRender()+'&nbsp;&nbsp;' +attachRender(); else return editRender() " />
 
                                   </ext:Column>
 
@@ -609,6 +609,176 @@
                 </ext:Panel>
             
                 </Items>
+        </ext:Window>
+
+
+          <ext:Window 
+            ID="overrideWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:overrideWindow %>"
+            Width="450"
+            Height="500"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+            
+            <Items>
+                <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                    <Items>
+                        <ext:FormPanel
+                            ID="overrideForm" DefaultButton="SaveOverrideButton"
+                            runat="server"
+                            Title="<%$ Resources: overrideWindow %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" 
+                            BodyPadding="5">
+                            <Items>
+                                    <ext:TextField ID="shiftId" runat="server"  Name="shiftId"   Hidden="true"/>
+                                  <ext:TextField ID="employeeId" runat="server"  Name="employeeId"   Hidden="true"/>
+                              
+                               
+
+                                
+                                
+
+                               <ext:TextField ID="employeeRef" runat="server" FieldLabel="<%$ Resources:FieldEmployeeRef%>" Name="FieldEmployeeRef"   ReadOnly="true"/>
+                                 <ext:TextField ID="employeeName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeName"   ReadOnly="true"/>
+                                 <ext:FieldSet Collapsible="false" runat="server" Title="<%$ Resources: FieldShift%>" >
+                                 <Items>
+                                 <ext:DateField ID="dtFrom" runat="server" FieldLabel="<%$ Resources:FieldDateFrom%>" Name="dtFrom" Format="dd/MM/yyyy HH:mm" ReadOnly="true"  />
+                                 <ext:DateField ID="dtTo" runat="server" FieldLabel="<%$ Resources:FieldDateTo%>" Name="dtTo" Format="dd/MM/yyyy HH:mm" ReadOnly="true"  />
+                                     </Items>
+                                   </ext:FieldSet>
+
+
+                                   <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldTimeCode%>"  runat="server" DisplayField="value" ValueField="key"   Name="timeCode" ID="timeCode" ReadOnly="true" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="timeCodeStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       </ext:ComboBox>
+                          
+                             <ext:ComboBox    AnyMatch="true" CaseSensitive="false"   runat="server"  ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" >
+                                    <Store>
+                                        <ext:Store runat="server" ID="branchStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                      <DirectEvents>
+                                  <Change OnEvent="FillUdId">
+                                  <EventMask ShowMask="true" /> 
+                                      <ExtraParams>
+                                        <ext:Parameter Name="branchId" Value="this.value" Mode="Raw" />
+                                          </ExtraParams>
+                                  </Change>
+
+                                 </DirectEvents>
+                                 
+                                </ext:ComboBox>
+
+                                  <ext:ComboBox    AnyMatch="true" CaseSensitive="false"   runat="server"  ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="udId" Name="udId" FieldLabel="<%$ Resources:FieldBiometric%>" >
+                                    <Store>
+                                        <ext:Store runat="server" ID="udIdStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                   
+                             
+                                </ext:ComboBox>
+
+                               
+
+                              
+
+
+                                   <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldInOut%>"  runat="server" DisplayField="value" ValueField="key"   Name="inOut" ID="inOut" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="inOutStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+
+                                      <DirectEvents>
+                                      <Select OnEvent="SelectedCheckType" >
+
+                                      <EventMask ShowMask="true" /> 
+                                      <ExtraParams>
+                                      <ext:Parameter Name="dtFrom" Value="App.dtFrom.getValue()" Mode="Raw" />
+                                            <ext:Parameter Name="dtTo" Value="App.dtTo.getValue()" Mode="Raw" />
+                                           <ext:Parameter Name="inOut" Value="App.inOut.getValue()" Mode="Raw" />
+                                          </ExtraParams>
+                                       </Select>
+
+                                 </DirectEvents>
+                                       </ext:ComboBox>
+
+
+                                  <ext:DateField ID="clockStamp" runat="server" FieldLabel="<%$ Resources:FieldClockStamp%>" Format="dd/MM/yyyy HH:mm" Name="clockStamp"  />
+                                
+                             
+                            </Items>
+
+                        </ext:FormPanel>
+                        
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="SaveOverrideButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{overrideForm}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveOverrideNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{overrideWindow}.body}" />
+                            <ExtraParams>
+                              
+                                   <ext:Parameter Name="shiftId" Value="App.shiftId.getValue()" Mode="Raw" />
+                                  <ext:Parameter Name="clockStamp" Value="App.clockStamp.getValue()" Mode="Raw" />
+                                  <ext:Parameter Name="employeeId" Value="App.employeeId.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value ="#{overrideForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button3" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
         </ext:Window>
 
 

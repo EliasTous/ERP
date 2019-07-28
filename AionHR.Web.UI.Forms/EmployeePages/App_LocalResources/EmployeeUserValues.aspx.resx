@@ -117,91 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="User.Description" xml:space="preserve">
-    <value>Parameter1</value>
+  <data name="AddressForm" xml:space="preserve">
+    <value>Address</value>
   </data>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>كشف سلف موظف</value>
+  <data name="Child" xml:space="preserve">
+    <value>Child</value>
   </data>
-  <data name="xrLabel17.Text" xml:space="preserve">
-    <value>لم يتم العثور على نتائج</value>
+  <data name="DomesticPartner" xml:space="preserve">
+    <value>Domestic Partner</value>
   </data>
-  <data name="xrLabel2.Text" xml:space="preserve">
-    <value>اسم الموظف </value>
+  <data name="EditContactWindowTitle" xml:space="preserve">
+    <value>Dependants</value>
   </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>xrLabel3</value>
+  <data name="ErrorAddressMissing" xml:space="preserve">
+    <value>Missing Address Fields!</value>
   </data>
-  <data name="xrLabel4.Text" xml:space="preserve">
-    <value>xrLabel4</value>
+  <data name="FieldBirthDate" xml:space="preserve">
+    <value>Birth Date</value>
   </data>
-  <data name="xrLabel5.Text" xml:space="preserve">
-    <value>xrLabel5</value>
+  <data name="FieldCity" xml:space="preserve">
+    <value>City</value>
   </data>
-  <data name="xrLabel6.Text" xml:space="preserve">
-    <value>طبع بواسطة :</value>
+  <data name="FieldCountryName" xml:space="preserve">
+    <value>Country</value>
   </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>xrLabel7</value>
+  <data name="FieldDependency" xml:space="preserve">
+    <value>Dependency</value>
   </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>صفحة {0} من {1}</value>
+  <data name="FieldFirstName" xml:space="preserve">
+    <value>First Name</value>
   </data>
-  <data name="xrTableCell1.Text" xml:space="preserve">
-    <value>xrTableCell1</value>
+  <data name="FieldFullName" xml:space="preserve">
+    <value>Full Name</value>
   </data>
-  <data name="xrTableCell10.Text" xml:space="preserve">
-    <value>xrTableCell10</value>
+  <data name="FieldGender" xml:space="preserve">
+    <value>Gender</value>
   </data>
-  <data name="xrTableCell11.Text" xml:space="preserve">
-    <value>التاريخ</value>
+  <data name="FieldIsCitizen" xml:space="preserve">
+    <value>Is Citizen</value>
   </data>
-  <data name="xrTableCell12.Text" xml:space="preserve">
-    <value>xrTableCell12</value>
+  <data name="FieldIsStudent" xml:space="preserve">
+    <value>Is Student</value>
   </data>
-  <data name="xrTableCell13.Text" xml:space="preserve">
-    <value>التاريخ</value>
+  <data name="FieldLastName" xml:space="preserve">
+    <value>Last Name</value>
   </data>
-  <data name="xrTableCell14.Text" xml:space="preserve">
-    <value>الوصف</value>
+  <data name="FieldMiddleName" xml:space="preserve">
+    <value>Middle Name</value>
   </data>
-  <data name="xrTableCell15.Text" xml:space="preserve">
-    <value>المجموع</value>
+  <data name="FieldPhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
   </data>
-  <data name="xrTableCell17.Text" xml:space="preserve">
-    <value>الرمز</value>
+  <data name="FieldPostalCode" xml:space="preserve">
+    <value>Postal Code</value>
   </data>
-  <data name="xrTableCell18.Text" xml:space="preserve">
-    <value>الوصف </value>
+  <data name="FieldRTName" xml:space="preserve">
+    <value>Relation</value>
   </data>
-  <data name="xrTableCell19.Text" xml:space="preserve">
-    <value>المبلغ</value>
+  <data name="FieldState" xml:space="preserve">
+    <value>State</value>
   </data>
-  <data name="xrTableCell2.Text" xml:space="preserve">
-    <value>xrTableCell2</value>
+  <data name="FieldStreet1" xml:space="preserve">
+    <value>Street 1</value>
   </data>
-  <data name="xrTableCell20.Text" xml:space="preserve">
-    <value>المجموع</value>
+  <data name="FieldStreet2" xml:space="preserve">
+    <value>Street 2</value>
   </data>
-  <data name="xrTableCell3.Text" xml:space="preserve">
-    <value>التاريخ</value>
+  <data name="FosterChild" xml:space="preserve">
+    <value>Foster Child</value>
   </data>
-  <data name="xrTableCell4.Text" xml:space="preserve">
-    <value>xrTableCell4</value>
+  <data name="phone" xml:space="preserve">
+    <value>Phone</value>
   </data>
-  <data name="xrTableCell5.Text" xml:space="preserve">
-    <value>xrTableCell5</value>
+  <data name="Spouse" xml:space="preserve">
+    <value>Spouse</value>
   </data>
-  <data name="xrTableCell6.Text" xml:space="preserve">
-    <value>xrTableCell6</value>
+  <data name="StepChild" xml:space="preserve">
+    <value>Step Child</value>
   </data>
-  <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>الرمز</value>
+  <data name="EditWindowTitle" xml:space="preserve">
+    <value> User Properties</value>
   </data>
-  <data name="xrTableCell8.Text" xml:space="preserve">
-    <value>الوصف</value>
+  <data name="FieldMask" xml:space="preserve">
+    <value>Mask</value>
   </data>
-  <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>المبلغ</value>
+  <data name="FieldProperty" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="FieldValue" xml:space="preserve">
+    <value>Value</value>
   </data>
 </root>

@@ -67,8 +67,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(EmployeeParam), "qryEM");
             ChildGetAllLookup.Add(typeof(EmployeeSnapShot), "snapshotEM");
             ChildGetAllLookup.Add(typeof(UserProperty), "qryUP");
+            ChildGetAllLookup.Add(typeof(EmployeeUserValue), "qryUV");
 
-
+            
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
             ChildGetLookup.Add(typeof(AllowanceType), "getAT");
             ChildGetLookup.Add(typeof(CertificateLevel), "getCL");
@@ -110,8 +111,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(EmployeePenalty), "getPE");
             ChildGetLookup.Add(typeof(EmployeePenaltyApproval), "getPA");
             ChildGetLookup.Add(typeof(UserProperty), "getUP");
+            ChildGetLookup.Add(typeof(EmployeeUserValue), "getUV");
 
-
+            
 
 
 
@@ -153,8 +155,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(SyncFullName), "syncFullName");
             ChildAddOrUpdateLookup.Add(typeof(ShareAttachment), "share");
             ChildAddOrUpdateLookup.Add(typeof(UserProperty), "setUP");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeUserValue), "setUV");
 
-
+            
 
             ChildDeleteLookup.Add(typeof(Sponsor), "delSP");
             ChildDeleteLookup.Add(typeof(AllowanceType), "delAT");
@@ -189,6 +192,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(EmployeeTermination), "delTE");
             ChildDeleteLookup.Add(typeof(EmployeePenalty), "delPE");
             ChildDeleteLookup.Add(typeof(UserProperty), "delUP");
+            ChildDeleteLookup.Add(typeof(EmployeeUserValue), "delUV");
 
         }
 

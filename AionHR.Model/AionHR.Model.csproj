@@ -146,6 +146,7 @@
     <Compile Include="Employees\EmployeeCal.cs" />
     <Compile Include="Employees\EmployeePenalty.cs" />
     <Compile Include="Employees\EmployeePenaltyApproval.cs" />
+    <Compile Include="Employees\EmployeeUserValue.cs" />
     <Compile Include="Employees\EmploymentStatusByReferance.cs" />
     <Compile Include="Employees\ImportEmploymentStatus.cs" />
     <Compile Include="Employees\Profile\AssetAllowance.cs" />
@@ -359,6 +360,7 @@
     <Compile Include="TimeAttendance\ImportOvertimeSetting.cs" />
     <Compile Include="TimeAttendance\ITimeAttendanceRepository.cs" />
     <Compile Include="TimeAttendance\LeaveCalendarDay.cs" />
+    <Compile Include="TimeAttendance\OverrideTimeVariation.cs" />
     <Compile Include="TimeAttendance\OvertimeSetting.cs" />
     <Compile Include="TimeAttendance\PendingPunch.cs" />
     <Compile Include="TimeAttendance\Router.cs" />

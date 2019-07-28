@@ -156,6 +156,7 @@
     <Compile Include="Messaging\DashBoard\TimeVariationListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeePenaltyApprovalListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeePenaltyApprovalRecordRequest.cs" />
+    <Compile Include="Messaging\Employees\EmployeeUserValueRecordRequest.cs" />
     <Compile Include="Messaging\Employees\ParamsListRequest.cs" />
     <Compile Include="Messaging\Employees\ShareAttachmentPostRequest.cs" />
     <Compile Include="Messaging\Employees\UserPropertyRecordRequest.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="Messaging\TaskManagement\TaskManagmentRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\DashboardTimeListRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeAttendanceRequests.cs" />
+    <Compile Include="Messaging\TimeAttendance\TimeVariationRecordRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

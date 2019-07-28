@@ -106,9 +106,9 @@ namespace AionHR.Web.UI.Forms
                 }
                 //dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                 //FillStatus();
-               
-             
 
+
+               
 
 
 
@@ -531,7 +531,7 @@ namespace AionHR.Web.UI.Forms
                 int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
                 string damageLavel = e.ExtraParams["damage"];
                 string durationValue = e.ExtraParams["duration"];
-                string timeCode = e.ExtraParams["timeCode"];
+                string timeCodeParameter = e.ExtraParams["timeCode"];
                 string shiftId = e.ExtraParams["shiftId"];
                 string apStatus = e.ExtraParams["apStatus"];
                 string type = e.ExtraParams["type"];
@@ -571,12 +571,59 @@ namespace AionHR.Web.UI.Forms
                         break;
 
                     case "imgAttach":
+                        overrideForm.Reset();
+                        TimeVariationRecordRequest req = new TimeVariationRecordRequest();
+                        req.employeeId = employeeId.ToString();
+                        req.dayId = dayId.ToString();
+                        req.shiftId = shiftId;
+                        req.timeCode = timeCodeParameter;
+                        RecordResponse<DashBoardTimeVariation> resp = _timeAttendanceService.ChildGetRecord<DashBoardTimeVariation>(req);
+                       if (!resp.Success)
+                        {
+                            Common.errorMessage(resp);
+                            return;
+                        }
 
-                        //Here will show up a winow relatice to attachement depending on the case we are working on
+
+                        timeCodeStore.DataSource = ConstTimeVariationType.TimeCodeList(_systemService).Where(x => x.key == Convert.ToInt32(timeCodeParameter)).ToList();
+                        timeCodeStore.DataBind();
+
+                        FillBranch();
+                        EmployeeQuickViewRecordRequest QVReq = new EmployeeQuickViewRecordRequest();
+                        QVReq.RecordID = employeeId.ToString();
+
+                        QVReq.asOfDate = DateTime.Now;
+                        RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(QVReq);
+
+                        if (!qv.Success)
+                        {
+                            Common.errorMessage(qv);
+                            return;
+                        }
+                        overrideForm.SetValues(resp.result);
+
+
+                        branchId.Select(qv.result.branchId);
+
+                        ListRequest UdIdReq = new ListRequest();
+
+                        UdIdReq.Filter = "";
+                        ListResponse<BiometricDevice> UdIdResp = _timeAttendanceService.ChildGetAll<BiometricDevice>(UdIdReq);
+                        if (!UdIdResp.Success)
+                        {
+                            Common.errorMessage(UdIdResp);
+                            return;
+                        }
+
+
+                        inOutStore.DataSource = Common.XMLDictionaryList(_systemService, "34");
+                        inOutStore.DataBind();
+                        overrideWindow.Show();
+
                         break;
 
                     case "LinkRender":
-                        FillTimeApproval(dayId, employeeId,timeCode,shiftId,apStatus);
+                        FillTimeApproval(dayId, employeeId,timeCodeParameter,shiftId,apStatus);
                         TimeApprovalWindow.Show();
 
                         break;
@@ -589,6 +636,169 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
 
+        }
+
+        private void FillBranch()
+        {
+
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            branchStore.DataSource = resp.Items;
+            branchStore.DataBind();
+          
+
+        }
+
+        protected void FillUdId(object sender, DirectEventArgs e)
+        {
+
+            string branchIdParameter = e.ExtraParams["branchId"];
+
+            ListRequest UdIdReq = new ListRequest();
+
+            UdIdReq.Filter = "";
+            ListResponse<BiometricDevice> UdIdResp = _timeAttendanceService.ChildGetAll<BiometricDevice>(UdIdReq);
+            if (!UdIdResp.Success)
+            {
+                Common.errorMessage(UdIdResp);
+                return;
+            }
+            udIdStore.DataSource = UdIdResp.Items.Where(x => x.branchId == branchIdParameter);
+            udIdStore.DataBind();
+        }
+
+
+        protected void SelectedCheckType (object sender, DirectEventArgs e)
+        {
+
+            string inOut = e.ExtraParams["inOut"];
+            string dtFromParameter = e.ExtraParams["dtFrom"];
+            string dtToParameter = e.ExtraParams["dtTo"];
+
+            DateTime temp = DateTime.Now;
+
+            if (DateTime.TryParse(dtFromParameter, out temp))
+
+            {
+                clockStamp.MinDate = temp.AddDays(-1);
+                clockStamp.SelectedDate = temp; 
+
+            }
+            if (DateTime.TryParse(dtToParameter, out temp))
+
+            {
+                clockStamp.MaxDate = temp.AddDays(+1);
+
+
+            }
+
+          
+
+            clockStamp.MinDate = new DateTime(1930, 01, 01);
+            clockStamp.MaxDate = new DateTime(2050, 01, 01);
+            switch (inOut)
+            {
+                case "1":
+
+                    if (DateTime.TryParse(dtFromParameter, out temp))
+
+                    {
+
+                        if (temp.TimeOfDay.Hours >= 6)
+                            clockStamp.MinDate = dtFrom.SelectedDate;
+                    }
+
+                    break;
+                case "2":
+                    if (DateTime.TryParse(dtToParameter, out temp))
+                    {
+                       
+                        if (temp.TimeOfDay.Hours <= 6)
+                            clockStamp.MaxDate = dtTo.SelectedDate;
+                    }
+                   
+                    break;
+            }
+
+           
+        }
+
+        protected void SaveOverrideNewRecord(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+
+            try
+            {
+
+
+             string obj = e.ExtraParams["values"];
+                string clockStamp = e.ExtraParams["clockStamp"];
+                string shiftId = e.ExtraParams["shiftId"];
+            string employeeId = e.ExtraParams["employeeId"];
+            OverrideTimeVariation b = JsonConvert.DeserializeObject<OverrideTimeVariation>(obj);
+
+
+            TimeVariationRecordRequest recReq = new TimeVariationRecordRequest();
+            recReq.employeeId = employeeId.ToString();
+            recReq.dayId = dtFrom.SelectedDate.ToString("yyyyMMdd");
+            recReq.shiftId = shiftId;
+            recReq.timeCode = b.timeCode.ToString(); 
+            RecordResponse<DashBoardTimeVariation> recResp = _timeAttendanceService.ChildGetRecord<DashBoardTimeVariation>(recReq);
+
+            if (!recResp.Success)
+            {
+                Common.errorMessage(recResp);
+                return; 
+            }
+
+                PostRequest<OverrideTimeVariation> req = new PostRequest<OverrideTimeVariation>();
+                req.entity = b; 
+                req.entity.apStatus = recResp.result.apStatus.ToString();
+                req.entity.clockDuration = recResp.result.clockDuration.ToString();
+                req.entity.damageLevel = recResp.result.damageLevel.ToString();
+                req.entity.duration = recResp.result.duration.ToString();
+                req.entity.shiftId = shiftId;
+                DateTime temp = DateTime.Now; 
+                if (DateTime.TryParse(clockStamp,out temp))
+                    {
+                    req.entity.clockStamp = temp; 
+
+                }
+                else
+                {
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                }
+                PostResponse<OverrideTimeVariation> resp = _timeAttendanceService.ChildAddOrUpdate<OverrideTimeVariation>(req);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return; 
+                }
+
+
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+                overrideWindow.Close(); 
+
+            }
+
+
+            catch (Exception ex)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+            }
         }
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {

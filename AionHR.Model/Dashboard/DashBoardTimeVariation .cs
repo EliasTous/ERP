@@ -13,7 +13,7 @@ namespace AionHR.Model.Dashboard
     {
         public string timeName;
 
-        public string recordId { get { return employeeId.ToString() + dayId.ToString() + shiftId.ToString() + timeCode.ToString(); } }
+        public string recordId { get { if (!string.IsNullOrEmpty(dayId)){ return employeeId.ToString() + dayId.ToString() + shiftId.ToString() + timeCode.ToString(); } else return employeeId.ToString() + shiftId.ToString() + timeCode.ToString(); } }
         public int employeeId { get; set; }
         public string dayId { get; set; }
         public DateTime dayIdDate { get; set; }
@@ -34,6 +34,11 @@ namespace AionHR.Model.Dashboard
         public short? damageLevel { get; set; }
         public string damageLevelString { get; set; }
         public string justification { get; set; }
+        public DateTime dtFrom { get; set; }
+        public DateTime dtTo { get; set; }
+
+
+        public string employeeRef { get; set; }
 
 
     }

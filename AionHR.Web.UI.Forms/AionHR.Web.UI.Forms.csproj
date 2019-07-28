@@ -184,6 +184,7 @@
     <Content Include="DailySchedule.aspx" />
     <Content Include="DELogin.aspx" />
     <Content Include="DocumentCategories.aspx" />
+    <Content Include="EmployeePages\EmployeeUserValues.aspx" />
     <Content Include="Ext.NET.Default.aspx" />
     <Content Include="FRLogin.aspx" />
     <Content Include="Geofences.aspx" />
@@ -627,6 +628,7 @@
     <Content Include="App_LocalResources\TimePerformances.aspx.resx" />
     <Content Include="App_LocalResources\RuleTriggers.aspx.resx" />
     <Content Include="App_LocalResources\UserProperties.aspx.resx" />
+    <Content Include="EmployeePages\App_LocalResources\EmployeeUserValues.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -856,6 +858,13 @@
     </Compile>
     <Compile Include="DocumentCategories.aspx.designer.cs">
       <DependentUpon>DocumentCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePages\EmployeeUserValues.aspx.cs">
+      <DependentUpon>EmployeeUserValues.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePages\EmployeeUserValues.aspx.designer.cs">
+      <DependentUpon>EmployeeUserValues.aspx</DependentUpon>
     </Compile>
     <Compile Include="FRLogin.aspx.cs">
       <DependentUpon>FRLogin.aspx</DependentUpon>

@@ -351,4 +351,28 @@
   <data name="FieldJustification" xml:space="preserve">
     <value>Justification</value>
   </data>
+  <data name="FieldBiometric" xml:space="preserve">
+    <value>Biometric Device</value>
+  </data>
+  <data name="FieldClockStamp" xml:space="preserve">
+    <value>Clock Stamp</value>
+  </data>
+  <data name="FieldDateFrom" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="FieldDateTo" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="FieldEmployeeRef" xml:space="preserve">
+    <value>Employee Ref</value>
+  </data>
+  <data name="FieldInOut" xml:space="preserve">
+    <value>Check Type</value>
+  </data>
+  <data name="FieldShift" xml:space="preserve">
+    <value>Shift</value>
+  </data>
+  <data name="overrideWindow" xml:space="preserve">
+    <value>Override Time Variation</value>
+  </data>
 </root>
