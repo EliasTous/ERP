@@ -260,7 +260,7 @@ namespace AionHR.Web.UI.Forms.Reports
             //    p.Payrolls = lines;
             //    s.Add(p);
             //}
-
+            //test/
             string getLan = _systemService.SessionHelper.getLangauge();
 
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
