@@ -668,7 +668,7 @@
                                             </Store>
                                        </ext:ComboBox>
                           
-                             <ext:ComboBox    AnyMatch="true" CaseSensitive="false"   runat="server"  ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" >
+                             <ext:ComboBox AllowBlank="false"    AnyMatch="true" CaseSensitive="false"   runat="server"  ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" >
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -693,7 +693,7 @@
                                  
                                 </ext:ComboBox>
 
-                                  <ext:ComboBox    AnyMatch="true" CaseSensitive="false"   runat="server"  ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="udId" Name="udId" FieldLabel="<%$ Resources:FieldBiometric%>" >
+                                  <ext:ComboBox  AllowBlank="false"   AnyMatch="true" CaseSensitive="false"   runat="server"  ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="udId" Name="udId" FieldLabel="<%$ Resources:FieldBiometric%>" >
                                     <Store>
                                         <ext:Store runat="server" ID="udIdStore">
                                             <Model>

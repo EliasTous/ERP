@@ -3697,7 +3697,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User Properties.
+        ///   Looks up a localized string similar to Custom Properties.
         /// </summary>
         internal static string UserProperties {
             get {

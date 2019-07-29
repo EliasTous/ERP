@@ -83,7 +83,7 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                <ext:Button Visible="false" ID="Button2" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                     <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>
@@ -95,7 +95,7 @@
                                 </ext:Button>
                                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
 
-                                <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
+                               
 
 
                             </Items>
@@ -153,7 +153,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d; " />
+                                <Renderer Handler="return editRender(); " />
 
                             </ext:Column>
 

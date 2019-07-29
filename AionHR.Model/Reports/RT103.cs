@@ -17,6 +17,11 @@ namespace AionHR.Model.Reports
             set;
             get;
         }
+        public string dateString
+        {
+            set;
+            get;
+        }
     }
 
    

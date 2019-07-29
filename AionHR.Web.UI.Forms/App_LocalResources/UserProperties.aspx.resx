@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>User Property Info</value>
+    <value>Custom Property Info</value>
   </data>
   <data name="CHECKBOX" xml:space="preserve">
     <value>CHECK BOX</value>
@@ -130,7 +130,7 @@
     <value>DATE TIME</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit User Property</value>
+    <value>Edit Custom Property</value>
   </data>
   <data name="FieldMask" xml:space="preserve">
     <value>Mask</value>
@@ -151,6 +151,6 @@
     <value>TEXT</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>User Properties</value>
+    <value>Custom Property</value>
   </data>
 </root>

@@ -2451,7 +2451,20 @@
                                        </ext:ComboBox>
                           
 
-                                
+                                   <ext:Button ID="deleteAllPunches" runat="server"  Icon="Delete">
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="DeletePunches">
+                                            <EventMask ShowMask="true" CustomTarget="={#{PunchesGrid}.body}" />
+                                            <ExtraParams>
+                                            <%--    <ext:Parameter Name="approve" Value="true" Mode="Raw" />--%>
+                                            </ExtraParams>
+                                        </Click>
+                                        
+                                    </DirectEvents>
+                                </ext:Button>
 
                             </Items>
                         </ext:Toolbar>

@@ -454,10 +454,9 @@ namespace AionHR.Web.UI.Forms.Reports
                            x.statusString = FillApprovalStatus(x.status);
                            if (!string.IsNullOrEmpty(x.damageLevel))
                                x.damageLevel = FillDamageLevelString(Convert.ToInt16(x.damageLevel));
-                           if (rtl)
-                               x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
-                           else
-                               x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
+                          
+                               x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", CultureInfo.CurrentUICulture);
+                         
 
 
                        }

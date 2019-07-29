@@ -215,7 +215,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         {
 
 
-            string propertyId = e.ExtraParams["propertyId"];
+            string propertyIdParamter = e.ExtraParams["propertyId"];
             string type = e.ExtraParams["type"];
 
             switch (type)
@@ -223,7 +223,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 case "imgEdit":
                     EmployeeUserValueRecordRequest req = new EmployeeUserValueRecordRequest();
                     req.employeeId = CurrentEmployee.Text;
-                    req.propertyId = propertyId;
+                    req.propertyId = propertyIdParamter;
                     RecordResponse<EmployeeUserValue> resp = _employeeService.ChildGetRecord<EmployeeUserValue>(req); 
                     if (!resp.Success)
                     {
@@ -232,8 +232,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }
 
                     FillPropertyStore();
-
-                    EmployeeValueForm.SetValues(resp.result); 
+                    if (resp.result == null)
+                    {
+                        propertyId.Select(propertyIdParamter);
+                    }
+                    else
+                    {
+                        EmployeeValueForm.SetValues(resp.result);
+                    }
                     this.EditWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditWindow.Show();
                     break;
@@ -244,7 +250,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteRecord({0})", propertyId),
+                            Handler = String.Format("App.direct.DeleteRecord({0})", propertyIdParamter),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -337,6 +343,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             string obj = e.ExtraParams["values"];
             EmployeeUserValue b = JsonConvert.DeserializeObject<EmployeeUserValue>(obj);
+            b.employeeId = CurrentEmployee.Text;
 
 
 
@@ -457,7 +464,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 else
                 {
                     //Step 2 :  remove the object from the store
-                    UserValueStore.Remove(index);
+                    UserValueStore.Reload();
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig

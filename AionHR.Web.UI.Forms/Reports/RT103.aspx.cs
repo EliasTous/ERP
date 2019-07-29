@@ -167,6 +167,11 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportGenericRequest req = new ReportGenericRequest();
             req.paramString = rep_params;
             ListResponse<AionHR.Model.Reports.RT103> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT103>(req);
+            resp.Items.ForEach(x =>
+            {
+                x.dateString = x.date.ToString(_systemService.SessionHelper.GetDateformat(), System.Threading.Thread.CurrentThread.CurrentUICulture);
+
+            });
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

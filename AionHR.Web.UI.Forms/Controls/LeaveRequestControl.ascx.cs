@@ -226,14 +226,13 @@ namespace AionHR.Web.UI.Forms.Controls
                 X.Call("CalcSum");
                 panelRecordDetails.ActiveTabIndex = 0;
 
-                //setNormal();
+             
                 setApproved(true);
-                //if (response.result.status == 2)
-                //{
-                //    endDateHidden.Text = response.result.endDate.ToString();
-                //    startDateHidden.Text = response.result.startDate.ToString();
-                   
-                //}
+                if (response.result.status == 1)
+                {
+                    setNormal();
+
+                }
 
                 //else if (response.result.status == 3 || response.result.status == -1)
                 //    setUsed(true);
@@ -505,6 +504,8 @@ namespace AionHR.Web.UI.Forms.Controls
                             {
                                 RefreshLeaveCalendarCallBack();
                             }
+
+                            
                             //Display successful notification
                             Notification.Show(new NotificationConfig
                             {
@@ -513,6 +514,16 @@ namespace AionHR.Web.UI.Forms.Controls
                                 Html = Resources.Common.RecordSavingSucc
                             });
 
+
+                            RecordRequest rec = new RecordRequest();
+                            rec.RecordID = b.recordId;
+                            RecordResponse<LeaveRequest> recordResponse = _leaveManagementService.ChildGetRecord<LeaveRequest>(rec);
+                            if (!recordResponse.Success)
+                            {
+                                X.Msg.Alert(Resources.Common.Error, recordResponse.Summary).Show();
+                                return;
+                            }
+                            leaveRef.Text = recordResponse.result.leaveRef;
                             //this.EditRecordWindow.Close();
                             //SetTabPanelEnabled(true);
                             //////RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
@@ -1360,25 +1371,10 @@ namespace AionHR.Web.UI.Forms.Controls
                Common.errorMessage(response);
                 return;
             }
+            List<XMLDictionary> statusList = Common.XMLDictionaryList(_systemService, "13");
             response.Items.ForEach(x =>
             {
-                switch (x.status)
-                {
-                    case 1:
-                        x.stringStatus = GetLocalResourceObject("New").ToString();
-                        break;
-                    case 2:
-                        x.stringStatus = GetLocalResourceObject("FieldApproved").ToString();
-                        break;
-                    case -1:
-                        x.stringStatus = GetLocalResourceObject("FieldRefused").ToString();
-                        break;
-                    default:
-                        x.stringStatus = "";
-                        break;
-
-
-                }
+                x.stringStatus = statusList.Where(y => y.key == x.status).Count() != 0 ? statusList.Where(y => y.key == x.status).First().value : string.Empty;
             }
             );
             ApprovalsStore.DataSource = response.Items;

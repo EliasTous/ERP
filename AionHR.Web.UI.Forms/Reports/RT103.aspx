@@ -66,6 +66,7 @@
 
                         <ext:ModelField Name="headCount" />
                         <ext:ModelField Name="date" />
+                         <ext:ModelField Name="dateString" />
 
 
 
@@ -149,15 +150,15 @@
 
                                         <ext:CategoryAxis Title="<%$ Resources: FieldDate %>"
                                             Position="Bottom"
-                                            Fields="date"
+                                            Fields="dateString"
                                             Grid="true">
-                                            <Renderer Handler="var s = moment(label); return s.format(#{format}.value);" />
+                                           
                                             <Label RotationDegrees="-45" />
                                         </ext:CategoryAxis>
                                     </Axes>
                                     <Series>
                                         <ext:AreaSeries
-                                            XField="date"
+                                            XField="dateString"
                                             YField="headCount">
                                             <StyleSpec>
                                                 <ext:Sprite GlobalAlpha="0.8" />
@@ -169,7 +170,7 @@
                                                 <ext:CircleSprite GlobalAlpha="1" ScalingX="1.5" ScalingY="1.5" />
                                             </HighlightDefaults>
                                             <Tooltip runat="server" TrackMouse="true" StyleSpec="background: #fff">
-                                                <Renderer Handler=" var s = moment(record.get('date'));  toolTip.setHtml(s.format(#{format}.value) + ': ' + record.get('headCount') );" />
+                                                <Renderer Handler="   toolTip.setHtml(record.get('dateString')  + ': ' + record.get('headCount') );" />
                                             </Tooltip>
                                         </ext:AreaSeries>
                                     </Series>

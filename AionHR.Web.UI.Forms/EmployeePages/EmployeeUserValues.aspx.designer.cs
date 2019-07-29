@@ -139,15 +139,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Button Button2;
         
         /// <summary>
-        /// ToolbarFill1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ToolbarFill ToolbarFill1;
-        
-        /// <summary>
         /// Column7 control.
         /// </summary>
         /// <remarks>

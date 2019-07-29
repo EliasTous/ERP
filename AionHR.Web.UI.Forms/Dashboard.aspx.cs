@@ -3152,6 +3152,55 @@ namespace AionHR.Web.UI.Forms
             BindAlerts();
             punchesStore.Reload();
         }
+
+
+        protected void DeletePunches(object sender, DirectEventArgs e)
+        {
+            try
+            {
+
+                PendingPunchListRequest req = new PendingPunchListRequest();
+
+                req.ppTypeParam = ppType.SelectedItem.Value == null ? "0" : ppType.SelectedItem.Value.ToString();
+
+
+                ListResponse<PendingPunch> punches = _timeAttendanceService.ChildGetAll<PendingPunch>(req);
+                if (!punches.Success)
+                {
+                    Common.errorMessage(punches);
+                    return;
+                }
+
+                PostRequest<PendingPunch> delReq = new PostRequest<PendingPunch>();
+
+
+                punches.Items.ForEach(x =>
+                {
+                    delReq.entity = x;
+                    PostResponse<PendingPunch> delResp = _timeAttendanceService.ChildDelete<PendingPunch>(delReq);
+                    if (!delResp.Success)
+                    {
+                        Common.errorMessage(delResp);
+                        throw new Exception();
+                    }
+                });
+
+
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
+                BindAlerts();
+                punchesStore.Reload();
+            }
+            catch(Exception exp)
+            {
+                if (!string.IsNullOrEmpty(exp.Message))
+                X.MessageBox.Alert(Resources.Common.Error, exp.Message);
+            }
+        }
         protected void Timebatch(object sender, DirectEventArgs e)
         {
             string approve = e.ExtraParams["approve"];

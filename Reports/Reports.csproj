@@ -1225,13 +1225,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
+      <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
+      <Name>AionHR.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AionHR.Model\AionHR.Model.csproj">
       <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
       <Name>AionHR.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
-      <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
-      <Name>AionHR.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
