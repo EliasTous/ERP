@@ -310,8 +310,7 @@
     <value>64.83862, 68.20837</value>
   </data>
   <data name="xrLabel34.Text" xml:space="preserve">
-    <value>Total
-Employee  count</value>
+    <value>Total Employee Count</value>
   </data>
   <data name="xrLabel34.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -503,7 +502,7 @@ Employee  count</value>
     <value>69.1500854, 23</value>
   </data>
   <data name="xrLabel16.Text" xml:space="preserve">
-    <value>Famale</value>
+    <value>Female</value>
   </data>
   <data name="xrLabel16.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -515,7 +514,7 @@ Employee  count</value>
     <value>54.32831, 23</value>
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
-    <value>Famale</value>
+    <value>Female</value>
   </data>
   <data name="xrLabel10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -527,7 +526,7 @@ Employee  count</value>
     <value>55.81726, 23</value>
   </data>
   <data name="xrLabel11.Text" xml:space="preserve">
-    <value>Famale</value>
+    <value>Female</value>
   </data>
   <data name="xrLabel11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -551,7 +550,7 @@ Employee  count</value>
     <value>55, 23</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
-    <value>Famale</value>
+    <value>Female</value>
   </data>
   <data name="xrLabel13.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -575,7 +574,7 @@ Employee  count</value>
     <value>59.32794, 23</value>
   </data>
   <data name="xrLabel6.Text" xml:space="preserve">
-    <value>Famale</value>
+    <value>Female</value>
   </data>
   <data name="xrLabel6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -599,7 +598,7 @@ Employee  count</value>
     <value>66.828125, 23</value>
   </data>
   <data name="xrLabel8.Text" xml:space="preserve">
-    <value>Famale</value>
+    <value>Female</value>
   </data>
   <data name="xrLabel8.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -772,18 +771,18 @@ Employee  count</value>
   <data name="reportHeaderBand1.HeightF" type="System.Single, mscorlib">
     <value>50</value>
   </data>
-  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
+  </data>
   <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
     <value>100.1667</value>
   </data>
   <data name="PageHeader.HeightF" type="System.Single, mscorlib">
     <value>20</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.Landscape" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>

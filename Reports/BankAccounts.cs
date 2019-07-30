@@ -13,11 +13,12 @@ namespace Reports
         public BankAccounts(Dictionary<string, string> parameters)
         {
             InitializeComponent();
-            xrTableCell13.RightToLeft = RightToLeft.No;
+            //xrTableCell13.RightToLeft = RightToLeft.No;
            // xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
 
 
             printHeader(parameters);
+            xrTable1.HeightF = 40;
 
     }
     private void printHeader(Dictionary<string, string> parameters)

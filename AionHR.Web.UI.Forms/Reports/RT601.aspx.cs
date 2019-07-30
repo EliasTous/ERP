@@ -221,7 +221,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 else
                     s.statusString = GetLocalResourceObject("Status" + s.status).ToString();
 
-                s.leaveTypeString = GetLocalResourceObject("leaveType" + s.leaveType).ToString();
+                //s.leaveTypeString = GetLocalResourceObject("leaveType" + s.ltName).ToString();
             });
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             LeaveList h = new LeaveList(parameters);

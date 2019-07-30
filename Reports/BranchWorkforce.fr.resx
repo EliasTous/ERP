@@ -777,4 +777,7 @@
   <data name="xrTableRow4.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
+  <data name="xrLabel34.Text" xml:space="preserve">
+    <value>Nombre total d'employé</value>
+  </data>
 </root>

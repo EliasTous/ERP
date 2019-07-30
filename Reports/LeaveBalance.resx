@@ -256,7 +256,7 @@
     <value>721.8751, 0</value>
   </data>
   <data name="xrLabel27.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>96.12482, 23</value>
+    <value>96.12482, 43</value>
   </data>
   <data name="xrLabel27.Text" xml:space="preserve">
     <value>Value</value>
@@ -268,7 +268,7 @@
     <value>597.041748, 0</value>
   </data>
   <data name="xrLabel23.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>61.4583435, 23</value>
+    <value>61.4583435, 43</value>
   </data>
   <data name="xrLabel23.Text" xml:space="preserve">
     <value>Paid</value>
@@ -280,7 +280,7 @@
     <value>658.5001, 0</value>
   </data>
   <data name="xrLabel24.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>63.375, 23</value>
+    <value>63.375, 43</value>
   </data>
   <data name="xrLabel24.Text" xml:space="preserve">
     <value>Balance</value>
@@ -292,7 +292,7 @@
     <value>419.583282, 0</value>
   </data>
   <data name="xrLabel12.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>61.4583435, 23</value>
+    <value>61.4583435, 43</value>
   </data>
   <data name="xrLabel12.Text" xml:space="preserve">
     <value>Salary</value>
@@ -304,7 +304,7 @@
     <value>306.916656, 0</value>
   </data>
   <data name="xrLabel11.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>112.499969, 23</value>
+    <value>112.499969, 43</value>
   </data>
   <data name="xrLabel11.Text" xml:space="preserve">
     <value>Last Return Date</value>
@@ -316,7 +316,7 @@
     <value>552.0001, 0</value>
   </data>
   <data name="xrLabel10.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>45.0416565, 23</value>
+    <value>45.0416565, 43</value>
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
     <value>Used</value>
@@ -328,10 +328,10 @@
     <value>481.041656, 0</value>
   </data>
   <data name="xrLabel9.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>70.9584656, 23</value>
+    <value>70.9584656, 43</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>Accured</value>
+    <value>Accrued</value>
   </data>
   <data name="xrLabel9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -340,7 +340,7 @@
     <value>194.416641, 0</value>
   </data>
   <data name="xrLabel8.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>112.499969, 23</value>
+    <value>112.499969, 43</value>
   </data>
   <data name="xrLabel8.Text" xml:space="preserve">
     <value>Hire Date</value>
@@ -352,7 +352,7 @@
     <value>0, 0</value>
   </data>
   <data name="xrLabel7.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>194.416641, 23</value>
+    <value>194.416641, 43</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
     <value>Name</value>
@@ -361,7 +361,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="groupHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>23</value>
+    <value>43</value>
   </data>
   <data name="User.Description" xml:space="preserve">
     <value>Parameter1</value>
@@ -459,15 +459,15 @@
   <data name="To.Description" xml:space="preserve">
     <value>Parameter1</value>
   </data>
-  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
+  </data>
   <data name="PageHeader.HeightF" type="System.Single, mscorlib">
     <value>15.833333</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
     <value>24, 8, 41, 30</value>
   </data>

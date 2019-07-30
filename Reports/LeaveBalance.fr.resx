@@ -382,7 +382,7 @@
     <value>70.9584656, 23</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>Accured</value>
+    <value>Accumulé</value>
   </data>
   <data name="xrLabel9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -412,7 +412,7 @@
     <value>194.416641, 23</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
-    <value>Prenom</value>
+    <value>Nom</value>
   </data>
   <data name="xrLabel7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -496,7 +496,7 @@
     <value>818, 47.91667</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
-    <value>Congé de solde</value>
+    <value>Balance de congés</value>
   </data>
   <data name="xrLabel13.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>TopCenter</value>

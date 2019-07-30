@@ -436,7 +436,7 @@
     <value>888, 35</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
-    <value>Antécédents salariaux</value>
+    <value>Histoire de salaires</value>
   </data>
   <data name="reportHeaderBand1.Dpi" type="System.Single, mscorlib">
     <value>100</value>

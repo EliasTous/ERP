@@ -286,8 +286,11 @@ namespace AionHR.Web.UI.Forms.Reports
                 x.licenseIssueDateString = x.licenseIssueDate == null ? " " : ((DateTime)x.licenseIssueDate).ToString(_systemService.SessionHelper.GetDateformat());
 
             });
+
+            string getLang = _systemService.SessionHelper.getLangauge();
+
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-            BranchWorkforce h = new BranchWorkforce(parameters);
+            BranchWorkforce h = new BranchWorkforce(parameters, getLang);
           
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;

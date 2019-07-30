@@ -214,8 +214,11 @@ namespace AionHR.Web.UI.Forms.Reports
             //}
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+
+            string getLang = _systemService.SessionHelper.getLangauge();
+
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-            SalaryHistory h = new SalaryHistory(parameters);
+            SalaryHistory h = new SalaryHistory(parameters, getLang);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             resp.Items.ForEach(x => { x.PaymentFrequencyString = x.paymentFrequency.HasValue? GetGlobalResourceObject("Common", ((PaymentFrequency)x.paymentFrequency).ToString()).ToString():""; });

@@ -64,7 +64,8 @@ namespace AionHR.Web.UI.Forms
             ListResponse<AionHR.Model.Reports.RT201> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT201>(req);
 
            
-            SalaryHistory h = new SalaryHistory(new Dictionary<string, string> ());
+
+            SalaryHistory h = new SalaryHistory(new Dictionary<string, string> (), "");
             h.DataSource = resp.Items;
            
             ASPxWebDocumentViewer1.OpenReport(h);

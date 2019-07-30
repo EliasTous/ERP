@@ -48,6 +48,7 @@ namespace Reports.CurrentPayroll
                 fieldCounrty.Caption = "Pays";
                 fieldDepartment.Caption = "Departement";
                 fieldBasicSalary.Caption = "Sal.Base";
+                xrLabel1.Text = "Paie actuelle";
             }
 
             string tax = "";
