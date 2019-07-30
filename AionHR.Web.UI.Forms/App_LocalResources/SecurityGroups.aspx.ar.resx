@@ -213,4 +213,7 @@
   <data name="FieldEmail" xml:space="preserve">
     <value>البريد الالكتروني</value>
   </data>
+  <data name="checkAll" xml:space="preserve">
+    <value>تحديد الكل</value>
+  </data>
 </root>

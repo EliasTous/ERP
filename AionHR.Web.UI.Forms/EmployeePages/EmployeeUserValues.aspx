@@ -110,7 +110,7 @@
 
                             
                             <ext:Column runat="server" Text="<%$ Resources: FieldProperty %>" DataIndex="propertyName" Flex="1" />
-                              <ext:Column runat="server" Text="<%$ Resources: FieldMask %>" DataIndex="maskString" Flex="1" />
+                            <%--  <ext:Column runat="server" Text="<%$ Resources: FieldMask %>" DataIndex="maskString" Flex="1" />--%>
                               <ext:Column runat="server" Text="<%$ Resources: FieldValue %>" DataIndex="value" Flex="1" />
                           
                           
@@ -235,7 +235,7 @@
                                 
                                       
 
-                                 <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldProperty%>"  runat="server" DisplayField="name" ValueField="recordId"   Name="propertyId" ID="propertyId" AllowBlank="false">
+                                 <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldProperty%>"  runat="server" DisplayField="name" ValueField="recordId"   Name="propertyId" ID="propertyId" AllowBlank="false" ReadOnly="true">
                                              <Store>
                                                 <ext:Store runat="server" ID="propertyStore">
                                                     <Model>

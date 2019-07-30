@@ -614,6 +614,28 @@ namespace AionHR.Web.UI.Forms
                             Common.errorMessage(UdIdResp);
                             return;
                         }
+                        FlatPunchesListRequest FPreq = new FlatPunchesListRequest();
+                        FPreq.shiftId = shiftId;
+                        FPreq.sortBy = "clockStamp";
+                        FPreq.StartAt = "0";
+                        FPreq.Size = "30";
+                        ListResponse <FlatPunch> FPresp = _timeAttendanceService.ChildGetAll<FlatPunch>(FPreq); 
+
+                        if (!FPresp.Success)
+                        {
+                            Common.errorMessage(FPresp);
+                            return;
+                        }
+
+                    
+                        FPresp.Items.ForEach(x =>
+                        {
+                            punchesList.Text += x.clockStamp.ToString(_systemService.SessionHelper.GetDateformat()+ " HH:mm", CultureInfo.CurrentUICulture) + System.Environment.NewLine; 
+
+                        }
+
+
+                            );
 
 
                         inOutStore.DataSource = Common.XMLDictionaryList(_systemService, "34");

@@ -44,15 +44,11 @@
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.Ref = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Division = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Position = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Branch = new DevExpress.XtraReports.Parameters.Parameter();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.User = new DevExpress.XtraReports.Parameters.Parameter();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.User = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dsSalaries1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -239,34 +235,11 @@
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
             // 
-            // Ref
-            // 
-            this.Ref.Name = "Ref";
-            this.Ref.Visible = false;
-            // 
-            // Division
-            // 
-            resources.ApplyResources(this.Division, "Division");
-            this.Division.Name = "Division";
-            this.Division.Visible = false;
-            // 
-            // Position
-            // 
-            resources.ApplyResources(this.Position, "Position");
-            this.Position.Name = "Position";
-            this.Position.Visible = false;
-            // 
-            // Branch
-            // 
-            resources.ApplyResources(this.Branch, "Branch");
-            this.Branch.Name = "Branch";
-            this.Branch.Visible = false;
-            // 
             // PageFooter
             // 
             this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel11,
-            this.xrLabel2});
+            this.xrLabel3,
+            this.xrLabel11});
             resources.ApplyResources(this.PageFooter, "PageFooter");
             this.PageFooter.Name = "PageFooter";
             // 
@@ -279,13 +252,10 @@
             this.xrLabel11.StylePriority.UseBorders = false;
             this.xrLabel11.StylePriority.UseTextAlignment = false;
             // 
-            // xrLabel2
+            // PageHeader
             // 
-            this.xrLabel2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.User, "Text", "")});
-            resources.ApplyResources(this.xrLabel2, "xrLabel2");
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            resources.ApplyResources(this.PageHeader, "PageHeader");
+            this.PageHeader.Name = "PageHeader";
             // 
             // User
             // 
@@ -293,10 +263,15 @@
             this.User.Name = "User";
             this.User.Visible = false;
             // 
-            // PageHeader
+            // xrLabel3
             // 
-            resources.ApplyResources(this.PageHeader, "PageHeader");
-            this.PageHeader.Name = "PageHeader";
+            this.xrLabel3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.User, "Text", "")});
+            resources.ApplyResources(this.xrLabel3, "xrLabel3");
+            this.xrLabel3.Multiline = true;
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel3.StylePriority.UseTextAlignment = false;
             // 
             // GroupedPayrollCrossReport
             // 
@@ -311,11 +286,7 @@
             this.DataSource = this.dsSalaries1;
             resources.ApplyResources(this, "$this");
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
-            this.Position,
-            this.User,
-            this.Branch,
-            this.Division,
-            this.Ref});
+            this.User});
             this.Version = "18.2";
             ((System.ComponentModel.ISupportInitialize)(this.dsSalaries1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -330,15 +301,9 @@
         private dsSalaries dsSalaries1;
         private DevExpress.XtraReports.UI.XRPivotGrid xrPivotGrid1;
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
-        private DevExpress.XtraReports.Parameters.Parameter Ref;
-        private DevExpress.XtraReports.Parameters.Parameter Division;
-        private DevExpress.XtraReports.Parameters.Parameter Position;
-        private DevExpress.XtraReports.Parameters.Parameter Branch;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.UI.PageFooterBand PageFooter;
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
-        private DevExpress.XtraReports.Parameters.Parameter User;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldItemName1;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldItemValue1;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldTaxableNoTaxable1;
@@ -348,5 +313,7 @@
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldEntitlementsvDeduction1;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldBranch1;
         private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel3;
+        private DevExpress.XtraReports.Parameters.Parameter User;
     }
 }

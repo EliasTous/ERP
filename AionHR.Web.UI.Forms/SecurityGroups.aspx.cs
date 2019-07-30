@@ -1176,26 +1176,27 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(stored);
                     return;
                 }
-                if (stored.Items.Count == 0)
-                {
-                    superUserCheck.Checked = true;
-                    dataStore.DataSource = new List<DataAccessItemView>();
-                    dataStore.DataBind();
-                }
-                else
-                {
+                dataStore.DataSource = stored.Items;
+                dataStore.DataBind();
+                //if (stored.Items.Count == 0)
+                //{
+                //    superUserCheck.Checked = true;
+                //    dataStore.DataSource = new List<DataAccessItemView>();
+                //    dataStore.DataBind();
+                //}
+                //else
+                //{
 
 
-                    //DataAccessListRequest req = new DataAccessListRequest();
+                //    //DataAccessListRequest req = new DataAccessListRequest();
 
 
-                    //req.classId = classId;
-                    //req.sgId = CurrentGroup.Text;
-                    //ListResponse<DataAccessItemView> stored = _accessControlService.ChildGetAll<DataAccessItemView>(req);
-                    dataStore.DataSource = stored.Items;
-                    dataStore.DataBind();
-                    superUserCheck.Checked = false;
-                }
+                //    //req.classId = classId;
+                //    //req.sgId = CurrentGroup.Text;
+                //    //ListResponse<DataAccessItemView> stored = _accessControlService.ChildGetAll<DataAccessItemView>(req);
+                  
+                //    superUserCheck.Checked = false;
+                //}
             }catch(Exception exp)
             {
                 X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message);
@@ -1280,70 +1281,70 @@ namespace AionHR.Web.UI.Forms
             X.Call("clearDirty");
         }
 
-        protected void ToggleSuperuser(object sender, DirectEventArgs e)
-        {
-            if (superUserCheck.Checked)
-            {
-            //    PostRequest<DataAccessItemView> req = new PostRequest<DataAccessItemView>();
-            //    DataAccessItemView x = new DataAccessItemView();
-            //    x.classId = classIdCombo.SelectedItem.Value;
-            //    x.sgId = CurrentGroup.Text;
-            //    x.hasAccess = true;
-            //    x.recordId = "0";
-            //    req.entity = x;
-            //    PostResponse<DataAccessItemView> resp = _accessControlService.ChildAddOrUpdate<DataAccessItemView>(req);
-            //    if (!resp.Success)
-            //    {
-            //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-            //        Common.errorMessage(resp);
-            //        return;
-            //    }
+        //protected void ToggleSuperuser(object sender, DirectEventArgs e)
+        //{
+        //    if (superUserCheck.Checked)
+        //    {
+        //    //    PostRequest<DataAccessItemView> req = new PostRequest<DataAccessItemView>();
+        //    //    DataAccessItemView x = new DataAccessItemView();
+        //    //    x.classId = classIdCombo.SelectedItem.Value;
+        //    //    x.sgId = CurrentGroup.Text;
+        //    //    x.hasAccess = true;
+        //    //    x.recordId = "0";
+        //    //    req.entity = x;
+        //    //    PostResponse<DataAccessItemView> resp = _accessControlService.ChildAddOrUpdate<DataAccessItemView>(req);
+        //    //    if (!resp.Success)
+        //    //    {
+        //    //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //    //        Common.errorMessage(resp);
+        //    //        return;
+        //    //    }
 
-            //}
-            //else
-            //{
-                DataAccessListRequest req = new DataAccessListRequest();
+        //    //}
+        //    //else
+        //    //{
+        //        DataAccessListRequest req = new DataAccessListRequest();
 
 
-                req.classId = classIdCombo.SelectedItem.Value;
-                req.sgId = CurrentGroup.Text;
-                ListResponse<DataAccessItemView> stored = _accessControlService.ChildGetAll<DataAccessItemView>(req);
-                if (!stored.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    Common.errorMessage(stored);
-                    return;
-                }
-                PostRequest<DataAccessItemView> req1 = new PostRequest<DataAccessItemView>();
-                stored.Items.ForEach(x =>
-                {
-                    req1.entity = x;
-                    PostResponse<DataAccessItemView> resp = _accessControlService.ChildDelete<DataAccessItemView>(req1);
-                    if (!resp.Success)
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        Common.errorMessage(resp);
-                        return;
-                    }
-                });
+        //        req.classId = classIdCombo.SelectedItem.Value;
+        //        req.sgId = CurrentGroup.Text;
+        //        ListResponse<DataAccessItemView> stored = _accessControlService.ChildGetAll<DataAccessItemView>(req);
+        //        if (!stored.Success)
+        //        {
+        //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //            Common.errorMessage(stored);
+        //            return;
+        //        }
+        //        PostRequest<DataAccessItemView> req1 = new PostRequest<DataAccessItemView>();
+        //        stored.Items.ForEach(x =>
+        //        {
+        //            req1.entity = x;
+        //            PostResponse<DataAccessItemView> resp = _accessControlService.ChildDelete<DataAccessItemView>(req1);
+        //            if (!resp.Success)
+        //            {
+        //                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //                Common.errorMessage(resp);
+        //                return;
+        //            }
+        //        });
 
-                //PostRequest<DataAccessItemView> req = new PostRequest<DataAccessItemView>();
-                //DataAccessItemView x = new DataAccessItemView();
-                //x.classId = classIdCombo.SelectedItem.Value;
-                //x.sgId = CurrentGroup.Text;
-                //x.hasAccess = false;
-                //x.recordId = "0";
-                //req.entity = x;
-                //PostResponse<DataAccessItemView> resp = _accessControlService.ChildDelete<DataAccessItemView>(req);
-                //if (!resp.Success)
-                //{
-                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                //    Common.errorMessage(resp);
-                //    return;
-                //}
-            }
-            dataStore.Reload();
-        }
+        //        //PostRequest<DataAccessItemView> req = new PostRequest<DataAccessItemView>();
+        //        //DataAccessItemView x = new DataAccessItemView();
+        //        //x.classId = classIdCombo.SelectedItem.Value;
+        //        //x.sgId = CurrentGroup.Text;
+        //        //x.hasAccess = false;
+        //        //x.recordId = "0";
+        //        //req.entity = x;
+        //        //PostResponse<DataAccessItemView> resp = _accessControlService.ChildDelete<DataAccessItemView>(req);
+        //        //if (!resp.Success)
+        //        //{
+        //        //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        //    Common.errorMessage(resp);
+        //        //    return;
+        //        //}
+        //    }
+        //    dataStore.Reload();
+        //}
 
         protected void modulesStore_RefreshData(object sender, StoreReadDataEventArgs e)
         {
@@ -1376,6 +1377,32 @@ namespace AionHR.Web.UI.Forms
             //Fetching the corresponding list
 
             //in this test will take a list of News
+
+
+        }
+       
+        protected void CheckAll(object sender, DirectEventArgs e)
+        {
+
+            string classId = "";
+            if (classIdCombo.SelectedItem == null || string.IsNullOrEmpty(classIdCombo.SelectedItem.Value))
+                return; 
+            else
+                classId = classIdCombo.SelectedItem.Value;
+            DataAccessListRequest dataListRequest = new DataAccessListRequest();
+
+
+            dataListRequest.classId = classId;
+            dataListRequest.sgId = CurrentGroup.Text;
+            ListResponse<DataAccessItemView> stored = _accessControlService.ChildGetAll<DataAccessItemView>(dataListRequest);
+            if (!stored.Success)
+            {
+                Common.errorMessage(stored);
+                return;
+            }
+            stored.Items.ForEach(x => x.hasAccess = true);
+            dataStore.DataSource = stored.Items;
+            dataStore.DataBind();
 
 
         }

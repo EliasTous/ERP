@@ -12,6 +12,16 @@
     <script type="text/javascript" src="../Scripts/Notes.js?id=18"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
     <script type="text/javascript" src="../Scripts/moment.js?id=0"></script>
+    
+    <style type="text/css" >
+        .x-grid-row-editor-buttons {
+  background-color: #eaf1fb;
+  position: absolute;
+  top:71PX;
+  padding: 4px;
+  height: 32px; 
+}
+    </style>
 
 
 </head>
@@ -185,7 +195,7 @@
                         </Columns>
                     </ColumnModel>
                     <Plugins>
-                        <ext:RowEditing runat="server" SaveHandler="validateSave"  SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>" />
+                        <ext:RowEditing runat="server"  SaveHandler="validateSave"  SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>" />
                         
                     </Plugins>
                     <DockedItems>

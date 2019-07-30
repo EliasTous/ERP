@@ -348,4 +348,7 @@
   <data name="FieldJustification" xml:space="preserve">
     <value>التبرير</value>
   </data>
+  <data name="Fieldpunches" xml:space="preserve">
+    <value>البصمات </value>
+  </data>
 </root>

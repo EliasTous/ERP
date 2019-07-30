@@ -117,16 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="approverPositionName" xml:space="preserve">
+    <value>Position d'approbateur</value>
+  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Niveau de Motif de l'approbation</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Modifier le niveau de Motif de l'approbation</value>
   </data>
+  <data name="EditWSWindow" xml:space="preserve">
+    <value>Grille de séquence de flux de travail</value>
+  </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branche</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>département</value>
+  </data>
   <data name="FieldName" xml:space="preserve">
     <value>Non</value>
   </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Motifs d'approbation</value>
+  </data>
+  <data name="workSequenceTitle" xml:space="preserve">
+    <value>Grille de séquence de flux de travail</value>
   </data>
 </root>

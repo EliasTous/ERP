@@ -255,7 +255,7 @@
                             </ext:Column>
                           
                             <ext:Column CellCls="cellLink" ID="ColEmployeeName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="employeeName" Flex="2" Hideable="false">
-                                <Renderer Handler="return record.data['employeeName'].fullName;" />
+                              
                             </ext:Column>
                            <ext:Column runat="server" ID="ColBenefitName" Text="<%$ Resources: benefitName%>" DataIndex="benefitName" Width="150" />
                            <ext:DateColumn runat="server" ID="ColAqDate" Text="<%$ Resources: aqDate%>" DataIndex="aqDate" Width="150" />

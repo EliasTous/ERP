@@ -117,103 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccessLevel" xml:space="preserve">
-    <value>Niveau d'accès</value>
-  </data>
-  <data name="AccessLevels" xml:space="preserve">
-    <value>Niveaux d'accès</value>
-  </data>
-  <data name="Add" xml:space="preserve">
-    <value>Ajouter</value>
-  </data>
   <data name="All" xml:space="preserve">
-    <value>tout</value>
+    <value>Tout</value>
+  </data>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Informations déclencheurs</value>
   </data>
   <data name="Class" xml:space="preserve">
     <value>Classe</value>
   </data>
-  <data name="EditGroup" xml:space="preserve">
-    <value>Editer le groupe</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Modifier les déclencheurs de règles</value>
   </data>
-  <data name="EditGroupUsers" xml:space="preserve">
-    <value>Utilisateurs du groupe</value>
+  <data name="FielAccessType" xml:space="preserve">
+    <value>Access Type</value>
   </data>
-  <data name="FieldDescription" xml:space="preserve">
-    <value>La description</value>
+  <data name="FieldAccessType" xml:space="preserve">
+    <value>Type d'accès</value>
+  </data>
+  <data name="FieldClass" xml:space="preserve">
+    <value>Classe</value>
+  </data>
+  <data name="FieldModule" xml:space="preserve">
+    <value>Module</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>prénom</value>
+    <value>Prénom</value>
   </data>
-  <data name="Filter" xml:space="preserve">
-    <value>Filtre</value>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
   </data>
-  <data name="GroupInfo" xml:space="preserve">
-    <value>Informations sur le groupe</value>
+  <data name="FieldReference" xml:space="preserve">
+    <value>Reference</value>
   </data>
-  <data name="Groups" xml:space="preserve">
-    <value>Groupes</value>
+  <data name="FieldRule" xml:space="preserve">
+    <value>Règle</value>
   </data>
-  <data name="Property" xml:space="preserve">
-    <value>Propriété</value>
+  <data name="FieldType" xml:space="preserve">
+    <value>Type</value>
   </data>
-  <data name="Read" xml:space="preserve">
-    <value>Vue</value>
-  </data>
-  <data name="Remove" xml:space="preserve">
-    <value>Retirer</value>
+  <data name="FieldValue" xml:space="preserve">
+    <value>Valeur</value>
   </data>
   <data name="Selected" xml:space="preserve">
-    <value>En groupe</value>
+    <value>Choisi</value>
   </data>
-  <data name="SelectModule" xml:space="preserve">
-    <value>Sélectionnez un module</value>
+  <data name="Trigger" xml:space="preserve">
+    <value>Déclencheur</value>
   </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utilisateurs</value>
+  <data name="Triggers" xml:space="preserve">
+    <value>Déclencheurs</value>
   </data>
-  <data name="NoAccess" xml:space="preserve">
-    <value>Pas d'accès</value>
-  </data>
-  <data name="WriteClass" xml:space="preserve">
-    <value>Ajouter, modifier</value>
-  </data>
-  <data name="FullControl" xml:space="preserve">
-    <value>Controle total</value>
-  </data>
-  <data name="DefaultAccessLevel" xml:space="preserve">
-    <value>Niveau d'accès par défaut</value>
-  </data>
-  <data name="WriteProperty" xml:space="preserve">
-    <value>modifier</value>
-  </data>
-  <data name="ApplyModule" xml:space="preserve">
-    <value>Appliquer le module</value>
-  </data>
-  <data name="ResetProperties" xml:space="preserve">
-    <value>Réinitialiser</value>
-  </data>
-  <data name="Active" xml:space="preserve">
-    <value>Actif</value>
-  </data>
-  <data name="DataAccess" xml:space="preserve">
-    <value>Accès aux données</value>
-  </data>
-  <data name="Record" xml:space="preserve">
-    <value>Record</value>
-  </data>
-  <data name="DaSaveText" xml:space="preserve">
-    <value>Toutes les modifications seront annulées, Continuer?</value>
-  </data>
-  <data name="DaSaveTitle" xml:space="preserve">
-    <value>Confirmer</value>
-  </data>
-  <data name="IsSuperUser" xml:space="preserve">
-    <value>Est super utilisateur</value>
-  </data>
-  <data name="FieldEmail" xml:space="preserve">
-    <value>mail</value>
-  </data>
-  <data name="checkAll" xml:space="preserve">
-    <value>Vérifie tout</value>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Déclencheurs de règles</value>
   </data>
 </root>

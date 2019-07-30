@@ -54,7 +54,7 @@ namespace AionHR.Model.Employees.Profile
         public string workMail { get; set; }
         [PropertyID("31000_09")]
         [ApplySecurity]
-        public short gender { get; set; }
+        public short? gender { get; set; }
         [PropertyID("31000_10")]
         [ApplySecurity]
         public string mobile { get; set; }

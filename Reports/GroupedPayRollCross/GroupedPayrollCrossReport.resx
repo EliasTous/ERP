@@ -186,14 +186,20 @@
   <data name="ReportHeader.HeightF" type="System.Single, mscorlib">
     <value>70.2083359</value>
   </data>
-  <data name="Division.Description" xml:space="preserve">
+  <data name="User.Description" xml:space="preserve">
     <value>Parameter1</value>
   </data>
-  <data name="Position.Description" xml:space="preserve">
-    <value>Parameter1</value>
+  <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>123.375, 0</value>
   </data>
-  <data name="Branch.Description" xml:space="preserve">
-    <value>Parameter1</value>
+  <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>471.666626, 20.208334</value>
+  </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>xrLabel3</value>
+  </data>
+  <data name="xrLabel3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
   </data>
   <data name="xrLabel11.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>23.3750019, 0</value>
@@ -206,18 +212,6 @@
   </data>
   <data name="xrLabel11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
-  </data>
-  <data name="User.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>123.375, 0</value>
-  </data>
-  <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>417.916626, 20.2083359</value>
-  </data>
-  <data name="xrLabel2.Text" xml:space="preserve">
-    <value>xrLabel2</value>
   </data>
   <data name="PageFooter.HeightF" type="System.Single, mscorlib">
     <value>23</value>

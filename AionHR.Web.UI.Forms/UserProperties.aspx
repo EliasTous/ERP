@@ -240,17 +240,24 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
-                               <ext:ComboBox AnyMatch="true"  CaseSensitive="false" runat="server" ID="mask" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false"  FieldLabel="<%$ Resources: FieldMask %>">
-                                    <Items>
 
-                                        <ext:ListItem Text="<%$ Resources: TEXT %>" Value="<%$ Resources:StaticComboBox, AM_CP_mask_Text %>" />
-                                        <ext:ListItem Text="<%$ Resources: NUMERIC %>" Value="<%$ Resources:StaticComboBox, AM_CP_mask_NUMERIC %>"/>
-                                        <ext:ListItem Text="<%$ Resources: DATE %>" Value="<%$ Resources:StaticComboBox, AM_CP_mask_DATE %>" />
-                                        <ext:ListItem Text="<%$ Resources:  DATE_TIME %>" Value="<%$ Resources:StaticComboBox, AM_CP_mask_DATE_TIME %>" />
-                                          <ext:ListItem Text="<%$ Resources:  CHECKBOX  %>" Value="<%$ Resources:StaticComboBox, AM_CP_mask_CHECKBOX  %>" />
-                                    </Items>
 
-                                </ext:ComboBox>
+                                  <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldMask%>"  runat="server" DisplayField="value" ValueField="key"   Name="mask" ID="mask" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="MaskStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       </ext:ComboBox>
+
+                             
 
                                 
 

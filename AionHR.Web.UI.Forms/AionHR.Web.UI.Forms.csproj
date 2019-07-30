@@ -630,6 +630,10 @@
     <Content Include="App_LocalResources\RuleTriggers.aspx.resx" />
     <Content Include="App_LocalResources\UserProperties.aspx.resx" />
     <Content Include="EmployeePages\App_LocalResources\EmployeeUserValues.aspx.resx" />
+    <Content Include="App_LocalResources\RuleTriggers.aspx.fr.resx" />
+    <Content Include="App_LocalResources\RuleTriggers.aspx.ar.resx" />
+    <Content Include="App_LocalResources\UserProperties.aspx.ar.resx" />
+    <Content Include="App_LocalResources\UserProperties.aspx.fr.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />

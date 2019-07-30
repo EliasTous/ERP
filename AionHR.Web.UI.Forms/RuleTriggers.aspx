@@ -142,7 +142,7 @@
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                             <ext:Column    CellCls="cellLink" ID="ColClassName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldClass%>" DataIndex="className" Flex="1" Hideable="false" />
                             <ext:Column    CellCls="cellLink" ID="ColRuleName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRule%>" DataIndex="ruleName" Flex="1" Hideable="false" />
-                            <ext:Column    CellCls="cellLink" ID="ColAccessTypeName" MenuDisabled="true" runat="server" Text="<%$ Resources: FielAccessType%>" DataIndex="accessTypeName" Flex="1" Hideable="false" />
+                            <ext:Column    CellCls="cellLink" ID="ColAccessTypeName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAccessType%>" DataIndex="accessTypeName" Flex="1" Hideable="false" />
                        
                             <%--<ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Width ="300" Hideable="false" />--%>
                              

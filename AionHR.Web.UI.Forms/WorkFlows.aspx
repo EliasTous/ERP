@@ -262,7 +262,7 @@
                    
                     PaddingSpec="0 0 1 0"
                     Header="false" 
-                    Title="workSequenceGrid"
+                    Title="<%$ Resources: workSequenceTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
                     Border="false"  

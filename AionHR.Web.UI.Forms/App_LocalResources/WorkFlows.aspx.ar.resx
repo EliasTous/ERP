@@ -117,16 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="approverPositionName" xml:space="preserve">
+    <value>وظيفة المعمد</value>
+  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>معلومات سبب التعميد</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل معلومات سبب التعميد</value>
   </data>
+  <data name="EditWSWindow" xml:space="preserve">
+    <value>شبكة تسلسل سير العمل</value>
+  </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>الفرع </value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>القسم </value>
+  </data>
   <data name="FieldName" xml:space="preserve">
     <value>الاسم</value>
   </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>اسباب التعميد</value>
+  </data>
+  <data name="workSequenceTitle" xml:space="preserve">
+    <value>شبكة تسلسل سير العمل</value>
   </data>
 </root>

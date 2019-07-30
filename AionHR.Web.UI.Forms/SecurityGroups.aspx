@@ -34,6 +34,9 @@
             }
             return out;
         }
+
+         
+        
         function show() {
             
             var fromStore = App.usersStore;
@@ -704,11 +707,11 @@
                                             </Items>
 
                                         </ext:ComboBox>
-                                        <ext:Checkbox runat="server" ID="superUserCheck" FieldLabel="<%$Resources:IsSuperUser %>">
+                                        <ext:Button runat="server" ID="checkAll" Text="<%$Resources:checkAll %>">
                                             <DirectEvents>
-                                                <Change OnEvent="ToggleSuperuser" />
+                                                <Click OnEvent="CheckAll" />
                                             </DirectEvents>
-                                        </ext:Checkbox>
+                                        </ext:Button>
                                       
                                     </Items>
 

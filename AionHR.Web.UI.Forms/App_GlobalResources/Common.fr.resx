@@ -1419,4 +1419,13 @@
   <data name="Rules" xml:space="preserve">
     <value>Règles</value>
   </data>
+  <data name="workFlow" xml:space="preserve">
+    <value>Flux de travail</value>
+  </data>
+  <data name="RuleTriggers" xml:space="preserve">
+    <value>Déclencheurs de règles</value>
+  </data>
+  <data name="UserProperties" xml:space="preserve">
+    <value>Propriétés personnalisées</value>
+  </data>
 </root>

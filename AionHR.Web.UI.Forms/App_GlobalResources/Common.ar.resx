@@ -1419,4 +1419,13 @@
   <data name="Rules" xml:space="preserve">
     <value>القواعد</value>
   </data>
+  <data name="workFlow" xml:space="preserve">
+    <value>سير العمل </value>
+  </data>
+  <data name="RuleTriggers" xml:space="preserve">
+    <value>مشغلات القاعدة</value>
+  </data>
+  <data name="UserProperties" xml:space="preserve">
+    <value>خصائص مخصصة</value>
+  </data>
 </root>

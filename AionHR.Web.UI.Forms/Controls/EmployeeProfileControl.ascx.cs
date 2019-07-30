@@ -302,7 +302,7 @@ namespace AionHR.Web.UI.Forms
             civilStatus.Select(result.civilStatus.ToString());
             if (result.gender == 1)
                 gender1.Checked = true;
-            else
+            if (result.gender == 2)
                 gender2.Checked = true;
             if (result.religion!=null)
             religionCombo.Select(result.religion.ToString());

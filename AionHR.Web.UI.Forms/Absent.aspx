@@ -653,6 +653,9 @@
                                    </ext:FieldSet>
 
 
+                                    <ext:TextArea ID="punchesList" runat="server" FieldLabel="<%$ Resources:Fieldpunches%>" Name="punchesList"    Scrollable="Both" ReadOnly="true" />
+
+
                                    <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldTimeCode%>"  runat="server" DisplayField="value" ValueField="key"   Name="timeCode" ID="timeCode" ReadOnly="true" >
                                              <Store>
                                                 <ext:Store runat="server" ID="timeCodeStore">

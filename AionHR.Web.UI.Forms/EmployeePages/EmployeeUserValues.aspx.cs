@@ -221,6 +221,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             switch (type)
             {
                 case "imgEdit":
+
+                    EmployeeValueForm.Reset();
                     EmployeeUserValueRecordRequest req = new EmployeeUserValueRecordRequest();
                     req.employeeId = CurrentEmployee.Text;
                     req.propertyId = propertyIdParamter;

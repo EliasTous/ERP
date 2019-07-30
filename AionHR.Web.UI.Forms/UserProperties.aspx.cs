@@ -87,6 +87,8 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+                MaskStore.DataSource = Common.XMLDictionaryList(_systemService, "35");
+                MaskStore.DataBind();
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(CertificateLevel), BasicInfoTab, GridPanel1, btnAdd, SaveButton);

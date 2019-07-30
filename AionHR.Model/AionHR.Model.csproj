@@ -206,6 +206,7 @@
     <Compile Include="System\ResetPassword.cs" />
     <Compile Include="Employees\ShareAttachment.cs" />
     <Compile Include="System\XMLDictionary.cs" />
+    <Compile Include="TimeAttendance\FlatPunch.cs" />
     <Compile Include="TimeAttendance\MailFlatShedule.cs" />
     <Compile Include="HelpFunction\PayrollExport.cs" />
     <Compile Include="HelpFunction\SynchronizeAttendanceDay.cs" />

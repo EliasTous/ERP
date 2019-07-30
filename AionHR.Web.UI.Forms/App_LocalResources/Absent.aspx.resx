@@ -375,4 +375,7 @@
   <data name="overrideWindow" xml:space="preserve">
     <value>Override Time Variation</value>
   </data>
+  <data name="Fieldpunches" xml:space="preserve">
+    <value>Punches</value>
+  </data>
 </root>
