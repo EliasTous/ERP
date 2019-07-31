@@ -17,14 +17,18 @@ namespace Reports
 
             if (getLang == "fr")
             {
-                xrLabel1.Text = "Assistance détaillée";
+                xrLabel1.Text = "Présence détaillée";
                 xrLabel13.Text = "Nom :";
                 xrTableCell9.Text = "Heures de travail";
                 xrTableCell10.Text = "Heures prévues";
                 xrTableCell29.Text = "Congé sans excuse";
                 xrTableCell39.Text = "Enregistrement anticipé";
                 xrTableCell41.Text = "Heures supplementaires";
+
+                xrTable1.HeightF = 60;
             }
+
+            
 
         }
         private void printHeader(Dictionary<string, string> parameters)

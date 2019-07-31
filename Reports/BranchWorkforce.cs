@@ -10,14 +10,21 @@ namespace Reports
 {
     public partial class BranchWorkforce : DevExpress.XtraReports.UI.XtraReport
     {
-        public BranchWorkforce(Dictionary<string, string> parameters)
+        public BranchWorkforce(Dictionary<string, string> parameters, string getLang)
         {
                InitializeComponent();
             printHeader(parameters);
-          
+
             //
             // TODO: Add constructor logic here
             //
+
+
+            if (getLang == "fr")
+            {
+                xrLabel33.Text = "Mâle";
+                xrLabel31.Text = "Femelle";
+            }
         }
         private void printHeader(Dictionary<string, string> parameters)
         {

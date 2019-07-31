@@ -13,7 +13,7 @@ namespace Reports
 {
     public partial class SalaryHistory : DevExpress.XtraReports.UI.XtraReport
     {
-        public SalaryHistory(Dictionary<string, string> parameters)
+        public SalaryHistory(Dictionary<string, string> parameters, string getLang)
         {
             InitializeComponent();
             xrLabel28.RightToLeft = RightToLeft.No;
@@ -22,6 +22,11 @@ namespace Reports
             xrLabel27.RightToLeft = RightToLeft.No;
 
             printHeader(parameters);
+
+            if (getLang == "fr")
+            {
+                xrLabel13.Text = "Histoire de salaires";
+            }
 
         }
         private void printHeader(Dictionary<string, string> parameters)

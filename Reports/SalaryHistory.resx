@@ -237,6 +237,9 @@
   <data name="xrLabel24.Text" xml:space="preserve">
     <value>Net Salary</value>
   </data>
+  <data name="xrLabel24.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel23.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>810.6667, 32.99998</value>
   </data>
@@ -245,6 +248,9 @@
   </data>
   <data name="xrLabel23.Text" xml:space="preserve">
     <value>Deductions</value>
+  </data>
+  <data name="xrLabel23.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
   </data>
   <data name="xrLabel22.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>723.1667, 32.99998</value>
@@ -255,11 +261,17 @@
   <data name="xrLabel22.Text" xml:space="preserve">
     <value>Entitlements</value>
   </data>
+  <data name="xrLabel22.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="xrLabel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
   <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>10, 10</value>
+    <value>10.0000067, 10.0000067</value>
   </data>
   <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>142.5, 23</value>
+    <value>137.433914, 23</value>
   </data>
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>10.0000067, 32.9999924</value>
@@ -270,6 +282,9 @@
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>Payment Frequency</value>
   </data>
+  <data name="xrLabel2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>264.95285, 32.99999</value>
   </data>
@@ -278,6 +293,9 @@
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>Effective Date</value>
+  </data>
+  <data name="xrLabel3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
   </data>
   <data name="xrLabel4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>382.718536, 32.99999</value>
@@ -288,6 +306,9 @@
   <data name="xrLabel4.Text" xml:space="preserve">
     <value>Salary Type</value>
   </data>
+  <data name="xrLabel4.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel5.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>553.2, 32.99998</value>
   </data>
@@ -296,6 +317,9 @@
   </data>
   <data name="xrLabel5.Text" xml:space="preserve">
     <value>Basic Amount / Currency </value>
+  </data>
+  <data name="xrLabel5.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleLeft</value>
   </data>
   <data name="groupHeaderBand1.HeightF" type="System.Single, mscorlib">
     <value>67.9999847</value>

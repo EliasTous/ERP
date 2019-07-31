@@ -268,7 +268,7 @@
     <value>222.2222, 36.00001</value>
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>Prenom</value>
+    <value>Nom</value>
   </data>
   <data name="xrLabel1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleLeft</value>
@@ -421,7 +421,7 @@
     <value>638, 35</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
-    <value>licenciement</value>
+    <value>Terminaisons</value>
   </data>
   <data name="reportHeaderBand1.Dpi" type="System.Single, mscorlib">
     <value>100</value>

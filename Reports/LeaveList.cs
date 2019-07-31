@@ -30,9 +30,11 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel6;
     private XRLabel xrLabel5;
     private XRLabel xrLabel4;
+    private XRLabel xrLabel3;
     private XRLabel xrLabel2;
     private XRLabel xrLabel16;
     private XRLabel xrLabel15;
+    private XRLabel xrLabel14;
     private XRLabel xrLabel13;
     private XRLabel xrLabel12;
     private XRLabel xrLabel11;
@@ -53,8 +55,6 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel32;
     private XRLabel xrLabel31;
     private XRLabel xrLabel33;
-    private XRLabel xrLabel36;
-    private XRLabel xrLabel35;
     private XRLabel xrLabel39;
     private XRLabel xrLabel38;
     private XRLabel xrLabel37;
@@ -74,6 +74,22 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
         //
         // TODO: Add constructor logic here
         printHeader(parameters);
+
+        this.xrLabel14.WidthF = (float)206.42;
+        this.xrLabel3.WidthF = (float)206.42;
+
+        this.xrLabel15.LocationF = new PointF(1275, 23);
+        this.xrLabel2.LocationF = new PointF(1275, 0);
+        this.xrLabel15.WidthF = 76;
+        this.xrLabel2.WidthF = 76;
+
+        this.xrLabel16.LocationF = new PointF(1351, 23);
+        this.xrLabel1.LocationF = new PointF(1351, 0);
+        this.xrLabel16.WidthF = 328;
+        this.xrLabel1.WidthF = 328;
+
+        this.xrLabel30.LocationF = new PointF(650, 8);
+        this.xrLabel30.WidthF = 365;
 
     }
     private void printHeader(Dictionary<string, string> parameters)
@@ -174,24 +190,24 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel34 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel40 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel39 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel36 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel32 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.groupHeaderBand1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel38 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel37 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel35 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel33 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel31 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
@@ -230,13 +246,13 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel34,
             this.xrLabel40,
             this.xrLabel39,
-            this.xrLabel36,
             this.xrLabel32,
             this.xrLabel8,
             this.xrLabel7,
             this.xrLabel6,
             this.xrLabel5,
             this.xrLabel4,
+            this.xrLabel3,
             this.xrLabel2});
             resources.ApplyResources(this.Detail, "Detail");
             this.Detail.Name = "Detail";
@@ -299,20 +315,6 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel39.StylePriority.UseBorders = false;
             this.xrLabel39.StylePriority.UseFont = false;
             this.xrLabel39.StylePriority.UseTextAlignment = false;
-            // 
-            // xrLabel36
-            // 
-            this.xrLabel36.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrLabel36.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ltName")});
-            resources.ApplyResources(this.xrLabel36, "xrLabel36");
-            this.xrLabel36.Name = "xrLabel36";
-            this.xrLabel36.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel36.StylePriority.UseBorders = false;
-            this.xrLabel36.StylePriority.UseFont = false;
-            this.xrLabel36.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel32
             // 
@@ -398,6 +400,20 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.StylePriority.UseTextAlignment = false;
             // 
+            // xrLabel3
+            // 
+            this.xrLabel3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrLabel3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ltName")});
+            resources.ApplyResources(this.xrLabel3, "xrLabel3");
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel3.StylePriority.UseBorders = false;
+            this.xrLabel3.StylePriority.UseFont = false;
+            this.xrLabel3.StylePriority.UseTextAlignment = false;
+            // 
             // xrLabel2
             // 
             this.xrLabel2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
@@ -429,11 +445,11 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             this.groupHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel38,
             this.xrLabel37,
-            this.xrLabel35,
             this.xrLabel33,
             this.xrLabel31,
             this.xrLabel16,
             this.xrLabel15,
+            this.xrLabel14,
             this.xrLabel13,
             this.xrLabel12,
             this.xrLabel11,
@@ -467,18 +483,6 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel37.StylePriority.UseBorders = false;
             this.xrLabel37.StylePriority.UseFont = false;
             this.xrLabel37.StylePriority.UseTextAlignment = false;
-            // 
-            // xrLabel35
-            // 
-            this.xrLabel35.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel35, "xrLabel35");
-            this.xrLabel35.Name = "xrLabel35";
-            this.xrLabel35.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel35.StylePriority.UseBorders = false;
-            this.xrLabel35.StylePriority.UseFont = false;
-            this.xrLabel35.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel33
             // 
@@ -527,6 +531,18 @@ public class LeaveList : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel15.StylePriority.UseBorders = false;
             this.xrLabel15.StylePriority.UseFont = false;
             this.xrLabel15.StylePriority.UseTextAlignment = false;
+            // 
+            // xrLabel14
+            // 
+            this.xrLabel14.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel14, "xrLabel14");
+            this.xrLabel14.Name = "xrLabel14";
+            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel14.StylePriority.UseBorders = false;
+            this.xrLabel14.StylePriority.UseFont = false;
+            this.xrLabel14.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel13
             // 
