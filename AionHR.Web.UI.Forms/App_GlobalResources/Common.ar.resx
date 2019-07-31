@@ -1428,4 +1428,7 @@
   <data name="UserProperties" xml:space="preserve">
     <value>خصائص مخصصة</value>
   </data>
+  <data name="TimePerformances" xml:space="preserve">
+    <value>الاداء حسب الوقت </value>
+  </data>
 </root>

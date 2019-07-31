@@ -364,15 +364,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColOper;
         
         /// <summary>
-        /// ColRcoName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column ColRcoName;
-        
-        /// <summary>
         /// ColKeyName control.
         /// </summary>
         /// <remarks>
@@ -380,6 +371,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column ColKeyName;
+        
+        /// <summary>
+        /// ColRcoName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColRcoName;
         
         /// <summary>
         /// ColValue control.

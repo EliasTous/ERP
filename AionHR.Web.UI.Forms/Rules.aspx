@@ -336,10 +336,10 @@
                         <Columns>
                              <ext:Column ID="ColConditionRecordId" Visible="false" DataIndex="recordId" runat="server" />
                              <ext:Column ID="ColOper" Visible="false" DataIndex="recordId" runat="server" />
-                               
+                               <ext:Column ID="ColKeyName" DataIndex="keyName" Text="<%$ Resources: FieldKeyName%>" runat="server"  />
                               <ext:Column ID="ColRcoName" DataIndex="rcoName" Text="<%$ Resources: FieldOperator%>" runat="server"  />
 
-                               <ext:Column ID="ColKeyName" DataIndex="keyName" Text="<%$ Resources: FieldKeyName%>" runat="server"  />
+                               
                                <ext:Column ID="ColValue" DataIndex="value" Text="<%$ Resources: FieldValue%>" runat="server"  />
                        
                           

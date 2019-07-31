@@ -155,15 +155,13 @@ namespace AionHR.Web.UI.Forms.Reports
                 this.rtl.Text = rtl.ToString();
                 Culture = "ar";
                 UICulture = "ar-AE";
-                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
+              
             }
             else
             {
                 Culture = "en";
                 UICulture = "en-US";
-                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+              
             }
         }
 

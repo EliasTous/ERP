@@ -223,25 +223,30 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 case "imgEdit":
 
                     EmployeeValueForm.Reset();
-                    EmployeeUserValueRecordRequest req = new EmployeeUserValueRecordRequest();
-                    req.employeeId = CurrentEmployee.Text;
-                    req.propertyId = propertyIdParamter;
-                    RecordResponse<EmployeeUserValue> resp = _employeeService.ChildGetRecord<EmployeeUserValue>(req); 
-                    if (!resp.Success)
-                    {
-                        Common.errorMessage(resp);
-                        return; 
-                    }
+                    //EmployeeUserValueRecordRequest req = new EmployeeUserValueRecordRequest();
+                    //req.employeeId = CurrentEmployee.Text;
+                    //req.propertyId = propertyIdParamter;
+                    //RecordResponse<EmployeeUserValue> resp = _employeeService.ChildGetRecord<EmployeeUserValue>(req); 
+                    //if (!resp.Success)
+                    //{
+                    //    Common.errorMessage(resp);
+                    //    return; 
+                    //}
 
                     FillPropertyStore();
-                    if (resp.result == null)
-                    {
-                        propertyId.Select(propertyIdParamter);
-                    }
-                    else
-                    {
-                        EmployeeValueForm.SetValues(resp.result);
-                    }
+                    //if (resp.result == null)
+                    //{
+                    //    propertyId.Select(propertyIdParamter);
+                    //}
+                    //else
+                    //{
+                    propertyId.Select(propertyIdParamter);
+
+                    // Panel8.Loader.Url= "UserPropertyExplorer.aspx?_employeeId ="+CurrentEmployee.Text+"&_propertyId="+ propertyIdParamter;
+                    Panel8.Reload();
+
+
+
                     this.EditWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditWindow.Show();
                     break;

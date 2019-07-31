@@ -222,7 +222,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
             Dictionary<string, string> parameters = Common.FetchReportParameters(texts.Text);
           UsersReport h = new UsersReport(parameters);
-
+            List<XMLDictionary> userTypeList = Common.XMLDictionaryList(_systemService, "7");
+            resp.Items.ForEach(x => x.userTypeName = userTypeList.Where(y => y.key == x.userType).Count() != 0 ? userTypeList.Where(y => y.key == x.userType).First().value : "");
             //  resp.Items.ForEach(x => x.DateString = x.eventDT.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"))); SignInTrail h = new SignInTrail();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;

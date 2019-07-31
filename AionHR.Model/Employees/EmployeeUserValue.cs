@@ -15,5 +15,16 @@ namespace AionHR.Model.Employees
         public string propertyId { get; set; }
         public string employeeId { get; set; }
         public string value { get; set; }
+
+
+        public double GetValueDouble()
+        { return Convert.ToDouble(value); }
+        public DateTime GetValueDateTime()
+        { return DateTime.Parse(value); }
+
+        public bool GetValueBool()
+        {
+            return value == "true";
+        }
     }
 }

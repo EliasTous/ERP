@@ -1487,18 +1487,21 @@ namespace AionHR.Web.UI.Forms
 
         protected void LoanTypeChanged(object sender, DirectEventArgs e)
         {
-            RecordResponse<LoanType> resp = _loanService.ChildGetRecord<LoanType>(new RecordRequest() { RecordID = e.ExtraParams["id"] });
-            if(resp.Success)
+            if (!string.IsNullOrEmpty(e.ExtraParams["id"]))
             {
-                ldMethod.Select(resp.result.ldMethod.ToString());
-                ldValue.Text = resp.result.ldValue.ToString();
-                ldMethod.ReadOnly = resp.result.disableEditing;
-                ldValue.ReadOnly= resp.result.disableEditing;
-             
+                RecordResponse<LoanType> resp = _loanService.ChildGetRecord<LoanType>(new RecordRequest() { RecordID = e.ExtraParams["id"] });
+                if (resp.Success)
+                {
+                    ldMethod.Select(resp.result.ldMethod.ToString());
+                    ldValue.Text = resp.result.ldValue.ToString();
+                    ldMethod.ReadOnly = resp.result.disableEditing;
+                    ldValue.ReadOnly = resp.result.disableEditing;
 
+
+                }
+                else
+                    Common.errorMessage(resp);
             }
-            else
-                Common.errorMessage(resp);
 
         }
 

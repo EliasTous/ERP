@@ -15,7 +15,9 @@
      <script type="text/javascript" src="Scripts/ReportsCommon.js?id=10"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
+ <script type="text/javascript" >
     
+ </script>
   
   
 
@@ -34,6 +36,13 @@
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=TATV&values="/>
+
+
+         <ext:Hidden ID="duration" runat="server" Text="<%$ Resources: FieldDuration %>"/>
+         <ext:Hidden ID="pending" runat="server" Text="<%$ Resources: FieldPending %>"/>
+         <ext:Hidden ID="approved" runat="server" Text="<%$ Resources: FieldApproved %>"/>
+         <ext:Hidden ID="rejected" runat="server" Text="<%$ Resources: FieldRejected %>"/>
+          <ext:Hidden ID="forHF" runat="server" Text="<%$ Resources: FieldFor %>"/>
         
         <ext:Store
             ID="Store1"
@@ -106,7 +115,7 @@
                     <Axes>
                         <ext:NumericAxis
                             Position="Left"
-                            Fields="duration,pending,pending,rejected"
+                            Fields="duration,pending,approved,rejected"
                             Grid="true"
                             Minimum="0" >
                           
@@ -119,12 +128,14 @@
                             <Label RotationDegrees="-45"  />
                         </ext:CategoryAxis>
                     </Axes>
-                    <Series >
+                    <Series>
                         
                         <ext:LineSeries
-                            Title="duration"
+                           
                             XField="dateString"
-                            YField="duration" >
+                            YField="duration"  >
+                         
+      <Renderer Handler="this.setTitle(App.duration.getValue());" />
                             <Marker>
                                 <ext:Sprite  Duration="200"  Easing="BackIn" />
                             </Marker>
@@ -139,9 +150,10 @@
                         </ext:LineSeries>
 
                         <ext:LineSeries
-                            Title="pending"
+                          
                             XField="dateString"
                             YField="pending">
+                            <Renderer Handler="this.setTitle(App.pending.getValue());" />
                             <Marker>
                                 <ext:Sprite SpriteType="Triangle" Duration="200" Easing="BackOut" />
                             </Marker>
@@ -151,14 +163,15 @@
                             </HighlightConfig>
 
                             <Tooltip TrackMouse="true" runat="server">
-                                <Renderer Handler="var title = context.series.getTitle(); toolTip.setHtml(title + ' for ' + record.get('dateString') + ': ' + record.get(context.series.getYField()) );" />
+                                <Renderer Handler="var title = context.series.getTitle(); toolTip.setHtml(title + App.FieldFor.getValue()  + record.get('dateString') + ': ' + record.get(context.series.getYField()) );" />
                             </Tooltip>
                         </ext:LineSeries>
 
                         <ext:LineSeries
-                            Title="approved"
+                           
                             XField="dateString"
                             YField="approved">
+                               <Renderer Handler="this.setTitle(App.approved.getValue());" />
                             <Marker>
                                 <ext:Sprite SpriteType="Arrow" Duration="200" Easing="BackOut" />
                             </Marker>
@@ -168,14 +181,15 @@
                             </HighlightConfig>
 
                             <Tooltip TrackMouse="true" runat="server">
-                                <Renderer Handler="var title = context.series.getTitle(); toolTip.setHtml(title + ' for ' + record.get('dateString') + ': ' + record.get(context.series.getYField()) );" />
+                                <Renderer Handler="var title = context.series.getTitle(); toolTip.setHtml(title + App.FieldFor.getValue() + record.get('dateString') + ': ' + record.get(context.series.getYField()) );" />
                             </Tooltip>
                         </ext:LineSeries>
 
                         <ext:LineSeries
-                            Title="rejected"
+                           
                             XField="dateString"
                             YField="rejected">
+                             <Renderer Handler="this.setTitle(App.rejected.getValue());" />
                             <Marker>
                                 <ext:Sprite SpriteType="Cross" Duration="200" Easing="BackOut" />
                             </Marker>
@@ -185,7 +199,7 @@
                             </HighlightConfig>
 
                             <Tooltip TrackMouse="true" runat="server">
-                                <Renderer Handler="var title = context.series.getTitle(); toolTip.setHtml(title + ' for ' + record.get('dateString') + ': ' + record.get(context.series.getYField()) );" />
+                                <Renderer Handler="var title = context.series.getTitle(); toolTip.setHtml(title + App.FieldFor.getValue()  + record.get('dateString') + ': ' + record.get(context.series.getYField()) );" />
                             </Tooltip>
                         </ext:LineSeries>
                     </Series>

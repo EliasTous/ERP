@@ -107,7 +107,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-                chartStore.Data = new TimePerformance { dateString = DateTime.Now.ToString(_systemService.SessionHelper.GetDateformat()), approved = 0, duration = 0, pending = 0, rejected = 0 };
+                chartStore.Data = new TimePerformance { dateString = DateTime.Now.ToString(_systemService.SessionHelper.GetDateformat(),CultureInfo.CurrentCulture), approved = 0, duration = 0, pending = 0, rejected = 0 };
                 chartStore.DataBind();
 
             }
@@ -535,7 +535,7 @@ namespace AionHR.Web.UI.Forms
                 //req.paramString = rep_params;
 
 
-
+                
                 ////Fetching the corresponding list
 
                 ////in this test will take a list of News

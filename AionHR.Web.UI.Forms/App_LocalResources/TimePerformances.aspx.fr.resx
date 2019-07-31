@@ -117,97 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddressForm" xml:space="preserve">
-    <value>Address</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Performance temporelle</value>
   </data>
-  <data name="Child" xml:space="preserve">
-    <value>Child</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Performance temporelle</value>
   </data>
-  <data name="DomesticPartner" xml:space="preserve">
-    <value>Domestic Partner</value>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>Accepté</value>
   </data>
-  <data name="EditContactWindowTitle" xml:space="preserve">
-    <value>Dependants</value>
+  <data name="FieldDay" xml:space="preserve">
+    <value>journée</value>
   </data>
-  <data name="ErrorAddressMissing" xml:space="preserve">
-    <value>Missing Address Fields!</value>
+  <data name="FieldDayId" xml:space="preserve">
+    <value>journée</value>
   </data>
-  <data name="FieldBirthDate" xml:space="preserve">
-    <value>Birth Date</value>
+  <data name="FieldDuration" xml:space="preserve">
+    <value>Durée</value>
   </data>
-  <data name="FieldCity" xml:space="preserve">
-    <value>City</value>
+  <data name="FieldFor" xml:space="preserve">
+    <value>pour</value>
   </data>
-  <data name="FieldCountryName" xml:space="preserve">
-    <value>Country</value>
+  <data name="FieldPending" xml:space="preserve">
+    <value>Nouveau</value>
   </data>
-  <data name="FieldDependency" xml:space="preserve">
-    <value>Dependency</value>
+  <data name="FieldRejected" xml:space="preserve">
+    <value>Refuse</value>
   </data>
-  <data name="FieldFirstName" xml:space="preserve">
-    <value>First Name</value>
+  <data name="TimePerformance" xml:space="preserve">
+    <value>Performance temporelle</value>
   </data>
-  <data name="FieldFullName" xml:space="preserve">
-    <value>Full Name</value>
-  </data>
-  <data name="FieldGender" xml:space="preserve">
-    <value>Gender</value>
-  </data>
-  <data name="FieldIsCitizen" xml:space="preserve">
-    <value>Is Citizen</value>
-  </data>
-  <data name="FieldIsStudent" xml:space="preserve">
-    <value>Is Student</value>
-  </data>
-  <data name="FieldLastName" xml:space="preserve">
-    <value>Last Name</value>
-  </data>
-  <data name="FieldMiddleName" xml:space="preserve">
-    <value>Middle Name</value>
-  </data>
-  <data name="FieldPhoneNumber" xml:space="preserve">
-    <value>Phone Number</value>
-  </data>
-  <data name="FieldPostalCode" xml:space="preserve">
-    <value>Postal Code</value>
-  </data>
-  <data name="FieldRTName" xml:space="preserve">
-    <value>Relation</value>
-  </data>
-  <data name="FieldState" xml:space="preserve">
-    <value>State</value>
-  </data>
-  <data name="FieldStreet1" xml:space="preserve">
-    <value>Street 1</value>
-  </data>
-  <data name="FieldStreet2" xml:space="preserve">
-    <value>Street 2</value>
-  </data>
-  <data name="FosterChild" xml:space="preserve">
-    <value>Foster Child</value>
-  </data>
-  <data name="phone" xml:space="preserve">
-    <value>Phone</value>
-  </data>
-  <data name="Spouse" xml:space="preserve">
-    <value>Spouse</value>
-  </data>
-  <data name="StepChild" xml:space="preserve">
-    <value>Step Child</value>
-  </data>
-  <data name="EditWindowTitle" xml:space="preserve">
-    <value> User Properties</value>
-  </data>
-  <data name="FieldMask" xml:space="preserve">
-    <value>Mask</value>
-  </data>
-  <data name="FieldProperty" xml:space="preserve">
-    <value>Property</value>
-  </data>
-  <data name="FieldValue" xml:space="preserve">
-    <value>Value</value>
-  </data>
-  <data name="Properties" xml:space="preserve">
-    <value>Properties</value>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Performance temporelle</value>
   </data>
 </root>

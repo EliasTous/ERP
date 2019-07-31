@@ -184,6 +184,7 @@
     <Content Include="DELogin.aspx" />
     <Content Include="DocumentCategories.aspx" />
     <Content Include="EmployeePages\EmployeeUserValues.aspx" />
+    <Content Include="EmployeePages\UserPropertyExplorer.aspx" />
     <Content Include="Ext.NET.Default.aspx" />
     <Content Include="FRLogin.aspx" />
     <Content Include="Geofences.aspx" />
@@ -634,6 +635,8 @@
     <Content Include="App_LocalResources\RuleTriggers.aspx.ar.resx" />
     <Content Include="App_LocalResources\UserProperties.aspx.ar.resx" />
     <Content Include="App_LocalResources\UserProperties.aspx.fr.resx" />
+    <Content Include="App_LocalResources\TimePerformances.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TimePerformances.aspx.fr.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -870,6 +873,13 @@
     </Compile>
     <Compile Include="EmployeePages\EmployeeUserValues.aspx.designer.cs">
       <DependentUpon>EmployeeUserValues.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePages\UserPropertyExplorer.aspx.cs">
+      <DependentUpon>UserPropertyExplorer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePages\UserPropertyExplorer.aspx.designer.cs">
+      <DependentUpon>UserPropertyExplorer.aspx</DependentUpon>
     </Compile>
     <Compile Include="FRLogin.aspx.cs">
       <DependentUpon>FRLogin.aspx</DependentUpon>

@@ -1428,4 +1428,7 @@
   <data name="UserProperties" xml:space="preserve">
     <value>Propriétés personnalisées</value>
   </data>
+  <data name="TimePerformances" xml:space="preserve">
+    <value>La performance du temps</value>
+  </data>
 </root>

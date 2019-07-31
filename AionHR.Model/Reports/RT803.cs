@@ -17,7 +17,8 @@ namespace AionHR.Model.Reports
         public string email { get; set; }
         public string fullName { get; set; }
         public short activeStatus { get; set; }
-        
+        public int userType { get; set; }
+
 
     }
 }

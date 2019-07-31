@@ -12,7 +12,14 @@
     <script type="text/javascript" src="../Scripts/Contacts.js?id=0"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
     <script type="text/javascript">
-      
+        function hideWindow() {
+            App.EditWindow.close();
+        }
+ function refreshStore() {
+            App.UserValueStore.reload();
+        Ext.Notification.show({title:'success', html:'good'}); 
+        }
+
     </script>
 
 </head>
@@ -25,6 +32,9 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentEmployee" runat="server" />
+        <ext:Hidden ID="SuccRecordSaving" runat="server" Text="<%$ Resources:Common , RecordSavingSucc %>" />
+        <ext:Hidden ID="NotificationTitle" runat="server" Text="<%$ Resources:Common , Notification %>" />
+     
         <ext:Hidden ID="EmployeeTerminated" runat="server" />
         <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
@@ -174,6 +184,7 @@
 
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
+                        <CellClick Handler="App.Panel8.loader.url='UserPropertyExplorer.aspx?_employeeId='+App.CurrentEmployee.value+'&_propertyId='+ record.data['propertyId']; alert(App.Panel8.loader.url);" />
                     </Listeners>
                     <DirectEvents>
                         <CellClick OnEvent="PoPuP">
@@ -219,12 +230,12 @@
             Hidden="true"
             Resizable="false"
             Maximizable="false"
-            Layout="Fit">
+            Layout="FitLayout">
 
             <Items>
                 <ext:TabPanel ID="TabPanel2" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
                     <Items>
-                        <ext:FormPanel
+                        <ext:FormPanel Flex="1"
                             ID="EmployeeValueForm" DefaultButton="SaveEmployeeValue"
                             runat="server" 
                             Title="<%$ Resources: EditWindowTitle %>"
@@ -248,10 +259,22 @@
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
+                                      
                                        </ext:ComboBox>
-                                  <ext:TextField runat="server" Name="value" ID="value" FieldLabel="<%$ Resources: FieldValue%>"  />
+                                  <ext:Panel runat="server" Layout="FitLayout" Flex="1"  ID="Panel8" DefaultAnchor="100%" >
+                                 <Loader runat="server"  Mode="Frame" ID="Loader8" TriggerEvent="show"
+                                ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <Listeners>
+                         </Listeners>
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                                      </ext:Panel>
                                     
                             </Items>
+
+
+
                         </ext:FormPanel>
 
 
@@ -259,30 +282,7 @@
                     </Items>
                 </ext:TabPanel>
             </Items>
-            <Buttons>
-                <ext:Button ID="SaveEmployeeValue" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
-
-                    <Listeners>
-                        <Click Handler="CheckSession(); if (!#{EmployeeValueForm}.getForm().isValid()) {return false;} " />
-                    </Listeners>
-                    <DirectEvents>
-                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditWindow}.body}" />
-                            <ExtraParams>
-                              
-                                
-                           
-                                <ext:Parameter Name="values" Value="#{EmployeeValueForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
-                            </ExtraParams>
-                        </Click>
-                    </DirectEvents>
-                </ext:Button>
-                <ext:Button ID="Button8" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
-                    <Listeners>
-                        <Click Handler="this.up('window').hide();" />
-                    </Listeners>
-                </ext:Button>
-            </Buttons>
+           
         </ext:Window>
 
 

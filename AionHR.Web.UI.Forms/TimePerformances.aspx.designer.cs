@@ -103,6 +103,51 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden loaderUrl;
         
         /// <summary>
+        /// duration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden duration;
+        
+        /// <summary>
+        /// pending control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden pending;
+        
+        /// <summary>
+        /// approved control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden approved;
+        
+        /// <summary>
+        /// rejected control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden rejected;
+        
+        /// <summary>
+        /// forHF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden forHF;
+        
+        /// <summary>
         /// Store1 control.
         /// </summary>
         /// <remarks>
