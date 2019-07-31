@@ -83,6 +83,17 @@ public class LeaveBalance : DevExpress.XtraReports.UI.XtraReport
         xrLabel24.HeightF = 43;
         xrLabel27.HeightF = 43;
 
+
+        xrLabel1.HeightF = 44;
+        xrLabel2.HeightF = 44;
+        xrLabel25.HeightF = 44;
+        xrLabel26.HeightF = 44;
+        xrLabel3.HeightF = 44;
+        xrLabel4.HeightF = 44;
+        xrLabel5.HeightF = 44;
+        xrLabel6.HeightF = 44;
+        xrLabel28.HeightF = 44;
+
     }
     private void printHeader(Dictionary<string, string> parameters)
     {
