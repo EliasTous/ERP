@@ -152,7 +152,21 @@ namespace AionHR.Web.UI.Forms.Reports
         {
 
         }
-
+        [DirectMethod]
+        public bool ExistMandatoryFields(string reportCode)
+        {
+            ReportParametersListRequest req = new ReportParametersListRequest();
+            req.ReportName = reportCode;
+            ListResponse<ReportParameter> parameters = _systemService.ChildGetAll<ReportParameter>(req);
+            if (!parameters.Success)
+            {
+                X.Msg.Alert("Error", "Error");
+            }
+            foreach (var item in parameters.Items)
+                if (item.mandatory)
+                    return true;
+            return false;
+        }
 
         /// <summary>
         /// hiding uncessary column in the grid. 

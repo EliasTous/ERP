@@ -151,15 +151,22 @@ namespace AionHR.Web.UI.Forms
                         
                         case 1: TextField tf = new TextField() { ID = "tb_" + item.id , FieldLabel=item.caption };
                             FormPanel1.Items.Add(tf);
-                            if (valuesDict != null && valuesDict.ContainsKey(item.id)) tf.Text = valuesDict[item.id]; break;
+                            if (valuesDict != null && valuesDict.ContainsKey(item.id)) tf.Text = valuesDict[item.id];
+                            tf.AllowBlank = !item.mandatory;
+                            break;
                         case 3:
                         case 2:NumberField nf = new NumberField() { ID = "nb_" + item.id, FieldLabel = item.caption };
                             if (valuesDict != null && valuesDict.ContainsKey(item.id))
                                 nf.Value = Convert.ToDouble(valuesDict[item.id]);
-                                FormPanel1.Items.Add(nf);break;
+                                FormPanel1.Items.Add(nf);
+                            
+    
+                            break;
                         case 4: DateField d = new DateField() {  ID = "date_" + item.id, FieldLabel = item.caption }; FormPanel1.Items.Add(d);
                             if (valuesDict != null && valuesDict.ContainsKey(item.id))
                                 d.SelectedDate = DateTime.ParseExact(valuesDict[item.id],"yyyyMMdd",new CultureInfo("en"));
+
+                            d.AllowBlank = !item.mandatory;
                                 break;
                         
                         case 5:
@@ -184,7 +191,7 @@ namespace AionHR.Web.UI.Forms
                                 if (valuesDict != null && valuesDict.ContainsKey(item.id))
                                     box.Select(valuesDict[item.id]);
                                 FormPanel1.Items.Add(box);
-
+                                box.AllowBlank = !item.mandatory;
 
                                 break;
                             }
@@ -213,7 +220,7 @@ namespace AionHR.Web.UI.Forms
                                 if (contAsCombo != null)
                                     contAsCombo.Select(valuesDict[item.id]);
                             }
-                             
+                            contAsCombo.GetComboBox().AllowBlank = !item.mandatory;
                             Container c = new Container() { Layout = "FitLayout" };
                             c.ContentControls.Add(cont);
                             FormPanel1.Items.Add(c);
