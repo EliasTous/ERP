@@ -1341,4 +1341,10 @@
   <data name="Rules" xml:space="preserve">
     <value>Regeln</value>
   </data>
+  <data name="RequiredFields" xml:space="preserve">
+    <value>Please fill in required fields before pressing Go</value>
+  </data>
+  <data name="RequiredFieldsHeader" xml:space="preserve">
+    <value>Missing Filters</value>
+  </data>
 </root>
