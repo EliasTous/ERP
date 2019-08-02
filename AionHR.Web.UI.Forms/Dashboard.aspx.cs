@@ -430,7 +430,7 @@ namespace AionHR.Web.UI.Forms
                     PunchesGrid.Hidden = false;
                     belowt.ShowTab(PunchesGrid);
                     PunchesGrid.Title = GetLocalResourceObject("PunchesGrid").ToString() + " " + (PENDING_PUNCHES != 0 ? PENDING_PUNCHES.ToString() : "");
-                    belowt.ActiveIndex = belowt.ActiveTabIndex;
+                   belowt.ActiveIndex = belowt.ActiveTabIndex-1;
                 }
                 else
                 {
@@ -3291,7 +3291,7 @@ namespace AionHR.Web.UI.Forms
             EmployeePenaltyApprovalRecordRequest r = new EmployeePenaltyApprovalRecordRequest();
             r.penaltyId = penaltyId;
             r.approverId = _systemService.SessionHelper.GetEmployeeId();
-            
+                r.seqNo = currentSeqNo.Text; 
             RecordResponse<EmployeePenaltyApproval> resp = _employeeService.ChildGetRecord<EmployeePenaltyApproval>(r);
                 if (!resp.Success)
                 {
@@ -3337,6 +3337,7 @@ namespace AionHR.Web.UI.Forms
                 EmployeePenaltyApprovalRecordRequest r = new EmployeePenaltyApprovalRecordRequest();
                 r.penaltyId = penaltyId;
                 r.approverId = _systemService.SessionHelper.GetEmployeeId();
+                r.seqNo = currentSeqNo.Text;
                 RecordResponse<EmployeePenaltyApproval> resp = _employeeService.ChildGetRecord<EmployeePenaltyApproval>(r);
                 if (!resp.Success)
                 {

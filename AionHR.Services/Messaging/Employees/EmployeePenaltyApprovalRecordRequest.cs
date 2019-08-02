@@ -12,8 +12,9 @@ namespace AionHR.Services.Messaging.Employees
        
         public string penaltyId { get; set; }
         public string approverId { get; set; }
+        public string seqNo { get; set; }
 
-      
+
 
         protected Dictionary<string, string> parameters;
         public override Dictionary<string, string> Parameters
@@ -23,7 +24,8 @@ namespace AionHR.Services.Messaging.Employees
                 parameters = new Dictionary<string, string>();
                 parameters.Add("_approverId", approverId);
                 parameters.Add("_penaltyId", penaltyId);
-           
+                parameters.Add("_seqNo", seqNo);
+
 
                 return parameters;
             }

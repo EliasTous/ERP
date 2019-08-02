@@ -627,7 +627,7 @@ namespace AionHR.Web.UI.Forms
                             return;
                         }
 
-                    
+                        punchesList.Text = "";
                         FPresp.Items.ForEach(x =>
                         {
                             punchesList.Text += x.clockStamp.ToString(_systemService.SessionHelper.GetDateformat()+ " HH:mm", CultureInfo.CurrentUICulture) + System.Environment.NewLine; 
@@ -944,11 +944,7 @@ namespace AionHR.Web.UI.Forms
                 parameters.Add("3", dayId.ToString());
                 parameters.Add("4", shiftId);
                 parameters.Add("5", timeCode);
-                parameters.Add("6", "0");
-                parameters.Add("7", "0");
-                parameters.Add("8", "0");
-                parameters.Add("9", "0");
-                parameters.Add("10", "0");
+                
                 foreach (KeyValuePair<string, string> entry in parameters)
                 {
                     rep_params += entry.Key.ToString() + "|" + entry.Value + "^";

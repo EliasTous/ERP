@@ -1307,7 +1307,7 @@ namespace AionHR.Web.UI.Forms
           
 
             html += "<thead><tr ><th style='width:120px;'></th><th>"+GetLocalResourceObject("total")+"</th>";
-            for (int index = timesList.Count-1; index >= 0; index--)
+            for (int index = 0; index <timesList.Count(); index++)
             {
                 html += "<th>" + timesList[index].Time + "</th>";
             }

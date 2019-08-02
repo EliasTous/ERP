@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>أداء حسب الوقت</value>
+    <value>أداء الحضور</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>أداء حسب الوقت</value>
+    <value>أداء الحضور</value>
   </data>
   <data name="FieldApproved" xml:space="preserve">
     <value>موافق عليه </value>
@@ -145,9 +145,9 @@
     <value>مرفوض</value>
   </data>
   <data name="TimePerformance" xml:space="preserve">
-    <value>أداء حسب الوقت</value>
+    <value>أداء الحضور</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>أداء حسب الوقت</value>
+    <value>أداء الحضور</value>
   </data>
 </root>

@@ -311,7 +311,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                             <Renderer handler="if (record.data['timeCode']===41) return editRender()+'&nbsp;&nbsp;' +attachRender(); else return editRender() " />
+                             <Renderer handler="if (record.data['timeCode']===41 && record.data['apStatus']!=-1) return editRender()+'&nbsp;&nbsp;' +attachRender(); else return editRender() " />
 
                                   </ext:Column>
 

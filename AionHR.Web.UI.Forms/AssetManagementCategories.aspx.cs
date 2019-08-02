@@ -145,7 +145,7 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
-
+            PropertiesGrid.Disabled = false;
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             currentCategory.Text = id.ToString();
@@ -445,6 +445,7 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
             FillParent();
             panelRecordDetails.ActiveIndex = 0;
+            PropertiesGrid.Disabled = true;
             PropertiesStore.Reload();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
          
@@ -504,10 +505,10 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["values"];
             AssetManagementCategory b = JsonConvert.DeserializeObject<AssetManagementCategory>(obj);
            
-            b.recordId = id;
+        
             // Define the object to add or edit as null
 
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(currentCategory.Text))
             {
 
                 try
@@ -530,10 +531,7 @@ namespace AionHR.Web.UI.Forms
                     else
                     {
 
-                        //Add this record to the store 
-                        this.Store1.Insert(0, b);
-
-                        //Display successful notification
+                     
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -541,10 +539,7 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditRecordWindow.Close();
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
+                       currentCategory.Text=r.recordId;
 
 
 
@@ -565,9 +560,11 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
-                    int index = Convert.ToInt32(id);//getting the id of the record
+                   
                     PostRequest<AssetManagementCategory> request = new PostRequest<AssetManagementCategory>();
+                    
                     request.entity = b;
+                    request.entity.recordId = currentCategory.Text;
                     PostResponse<AssetManagementCategory> r = _assetManagementService.ChildAddOrUpdate<AssetManagementCategory>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
@@ -583,9 +580,7 @@ namespace AionHR.Web.UI.Forms
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(index);
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Commit();
+                        Store1.Reload(); 
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
