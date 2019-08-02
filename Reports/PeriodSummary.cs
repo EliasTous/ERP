@@ -880,7 +880,6 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel54.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel54.StylePriority.UseBorders = false;
             this.xrLabel54.StylePriority.UseTextAlignment = false;
-            resources.ApplyResources(xrSummary1, "xrSummary1");
             xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel54.Summary = xrSummary1;
             // 
@@ -896,7 +895,6 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel53.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel53.StylePriority.UseBorders = false;
             this.xrLabel53.StylePriority.UseTextAlignment = false;
-            resources.ApplyResources(xrSummary2, "xrSummary2");
             xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel53.Summary = xrSummary2;
             // 
@@ -912,7 +910,6 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel52.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel52.StylePriority.UseBorders = false;
             this.xrLabel52.StylePriority.UseTextAlignment = false;
-            resources.ApplyResources(xrSummary3, "xrSummary3");
             xrSummary3.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel52.Summary = xrSummary3;
             // 
@@ -928,7 +925,6 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel51.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel51.StylePriority.UseBorders = false;
             this.xrLabel51.StylePriority.UseTextAlignment = false;
-            resources.ApplyResources(xrSummary4, "xrSummary4");
             xrSummary4.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel51.Summary = xrSummary4;
             // 
@@ -944,7 +940,6 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel47.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel47.StylePriority.UseBorders = false;
             this.xrLabel47.StylePriority.UseTextAlignment = false;
-            resources.ApplyResources(xrSummary5, "xrSummary5");
             xrSummary5.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel47.Summary = xrSummary5;
             // 
