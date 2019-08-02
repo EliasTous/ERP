@@ -2680,6 +2680,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please fill in required fields before pressing Go.
+        /// </summary>
+        internal static string RequiredFields {
+            get {
+                return ResourceManager.GetString("RequiredFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Filters.
+        /// </summary>
+        internal static string RequiredFieldsHeader {
+            get {
+                return ResourceManager.GetString("RequiredFieldsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset.
         /// </summary>
         internal static string Reset {

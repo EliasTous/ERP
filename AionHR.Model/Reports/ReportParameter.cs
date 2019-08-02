@@ -15,6 +15,7 @@ namespace AionHR.Model.Reports
         public string data { get; set; }
         public int controlType { get; set; }
         public int classId { get; set; }
+        public bool mandatory { get; set; }
            
     }
 }

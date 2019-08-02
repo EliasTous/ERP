@@ -1371,4 +1371,10 @@
   <data name="UserProperties" xml:space="preserve">
     <value>Custom Properties</value>
   </data>
+  <data name="RequiredFields" xml:space="preserve">
+    <value>Please fill in required fields before pressing Go</value>
+  </data>
+  <data name="RequiredFieldsHeader" xml:space="preserve">
+    <value>Missing Filters</value>
+  </data>
 </root>

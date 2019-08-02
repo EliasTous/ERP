@@ -2,6 +2,7 @@
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.Reports;
+using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms.Reports.Controls
 {
-    public partial class EmploymentStatusFilter : System.Web.UI.UserControl
+    public partial class EmploymentStatusFilter : System.Web.UI.UserControl,IComboControl
     {
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected void Page_Load(object sender, EventArgs e)
@@ -46,6 +47,22 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             ListResponse<EmploymentStatus> resp = _employeeService.ChildGetAll<EmploymentStatus>(statusReq);
             statusStore.DataSource = resp.Items;
             statusStore.DataBind();
+        }
+
+        public void Select(object id)
+        {
+            esId.Select(id);
+        }
+
+        public void SetLabel(string newLabel)
+        {
+            esId.FieldLabel = newLabel;
+            
+        }
+
+        public ComboBox GetComboBox()
+        {
+            return esId;
         }
     }
 }
