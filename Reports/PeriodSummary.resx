@@ -588,11 +588,11 @@ Hours
   <data name="xrLabel54.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>60.66992, 31.3333187</value>
   </data>
-  <data name="xrSummary1.FormatString" xml:space="preserve">
-    <value>{0:n0}</value>
-  </data>
   <data name="xrLabel54.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel54.TextFormatString" xml:space="preserve">
+    <value>{0:#,#.00}</value>
   </data>
   <data name="xrLabel53.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>1279.9552, 0</value>
@@ -600,11 +600,11 @@ Hours
   <data name="xrLabel53.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>59.3748779, 31.3333187</value>
   </data>
-  <data name="xrSummary2.FormatString" xml:space="preserve">
-    <value>{0:n0}</value>
-  </data>
   <data name="xrLabel53.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel53.TextFormatString" xml:space="preserve">
+    <value>{0:#,#.00}</value>
   </data>
   <data name="xrLabel52.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>1219.9552, 0</value>
@@ -612,11 +612,11 @@ Hours
   <data name="xrLabel52.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>60, 31.3333187</value>
   </data>
-  <data name="xrSummary3.FormatString" xml:space="preserve">
-    <value>{0:n0}</value>
-  </data>
   <data name="xrLabel52.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel52.TextFormatString" xml:space="preserve">
+    <value>{0:#,#.00}</value>
   </data>
   <data name="xrLabel51.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>1110.72009, 0</value>
@@ -624,11 +624,11 @@ Hours
   <data name="xrLabel51.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>109.234985, 31.3333187</value>
   </data>
-  <data name="xrSummary4.FormatString" xml:space="preserve">
-    <value>{0:n0}</value>
-  </data>
   <data name="xrLabel51.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel51.TextFormatString" xml:space="preserve">
+    <value>{0:#,#.00}</value>
   </data>
   <data name="xrLabel47.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>1060.58044, 0</value>
@@ -636,11 +636,11 @@ Hours
   <data name="xrLabel47.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>50.13965, 31.3333187</value>
   </data>
-  <data name="xrSummary5.FormatString" xml:space="preserve">
-    <value>{0:n0}</value>
-  </data>
   <data name="xrLabel47.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel47.TextFormatString" xml:space="preserve">
+    <value>{0:#,#.00}</value>
   </data>
   <data name="xrLabel43.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>975.6587, 0</value>
