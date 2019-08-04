@@ -238,6 +238,7 @@
                                                                            <ext:Parameter Name="Notes" Value="record.data['notes']" Mode="Raw" />
                                                                            <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
                                                                              <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
+                                                                             <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                                                     
                                                                       
                                                                         
@@ -411,6 +412,7 @@
                                                                                 <ext:ModelField Name="status" />
                                                                                 <ext:ModelField Name="notes" />
                                                                                   <ext:ModelField Name="statusString" />
+                                                                                     <ext:ModelField Name="seqNo" />
                                                                             
 
                                                                             </Fields>

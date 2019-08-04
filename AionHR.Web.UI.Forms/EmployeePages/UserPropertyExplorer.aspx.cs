@@ -10,6 +10,7 @@ using Microsoft.Practices.ServiceLocation;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -78,59 +79,63 @@ namespace AionHR.Web.UI.Forms
             if (!X.IsAjaxRequest && !IsPostBack)
             {
                 SetExtLanguage();
-                if (string.IsNullOrEmpty(Request.QueryString["_propertyId"]) || string.IsNullOrEmpty(Request.QueryString["_employeeId"]))
-                {
-                    X.Msg.Alert("Error", "Error").Show();
-                    return;
-                }
-                currentPropertyId.Text = Request.QueryString["_propertyId"];
-                currentEmployeeId.Text = Request.QueryString["_employeeId"];
 
 
-                EmployeeUserValueRecordRequest EVReq = new EmployeeUserValueRecordRequest();
-                EVReq.employeeId = currentEmployeeId.Text;
-                EVReq.propertyId = currentPropertyId.Text;
-                RecordResponse<EmployeeUserValue> EVresp = _employeeService.ChildGetRecord<EmployeeUserValue>(EVReq);
+                EmployeeContactsListRequest EVreq = new EmployeeContactsListRequest();
+                EVreq.EmployeeId = Convert.ToInt32(Request.QueryString["employeeId"]);
+                ListResponse<EmployeeUserValue> EVresp = _employeeService.ChildGetAll<EmployeeUserValue>(EVreq);
                 if (!EVresp.Success)
                 {
                     Common.errorMessage(EVresp);
                     return;
                 }
 
-                UserPropertyRecordRequest UPReq = new UserPropertyRecordRequest();
-                UPReq.propertyId = currentPropertyId.Text;
+                ListRequest UPReq = new ListRequest();
 
-                RecordResponse<UserProperty> UPResp = _employeeService.ChildGetRecord<UserProperty>(UPReq);
+                UPReq.Filter = "";
+                ListResponse<UserProperty> UPResp = _employeeService.ChildGetAll<UserProperty>(UPReq);
                 if (!UPResp.Success)
                 {
                     Common.errorMessage(UPResp);
                     return;
                 }
+
+                //UserPropertyRecordRequest UPReq = new UserPropertyRecordRequest();
+                //UPReq.propertyId = propertyIdParamter;
+
+                //RecordResponse<UserProperty> UPResp = _employeeService.ChildGetRecord<UserProperty>(UPReq);
+                //if (!UPResp.Success)
+                //{
+                //    Common.errorMessage(UPResp);
+                //    return;
+                //}
                 try
                 {
-                    EmployeeUserValue EV;
-                    if (EVresp.result != null)
-                        EV = EVresp.result;
-                    else
-                        EV = new EmployeeUserValue();
+                    //EmployeeUserValue EV;
+                    //if (EVresp.result != null)
+                    //    EV = EVresp.result;
+                    //else
+                    //    EV = new EmployeeUserValue();
 
 
-                            switch (UPResp.result.mask)
+                    EVresp.Items.ForEach(x =>
+                    {
+                        UserProperty corrVal = UPResp.Items.Where(y => y.recordId == x.propertyId).Count() != 0 ? UPResp.Items.Where(y => y.recordId == x.propertyId).First() : new UserProperty(); 
+                            //AssetPropertyValue corrVal = valResp.Items.Where(d => d.propertyId == x.propertyId).ToList().Count > 0 ? valResp.Items.Where(d => d.propertyId == x.propertyId).ToList()[0] : null;
+                            switch (x.mask)
                             {
-                               
-                            case 2: propertiesForm.Items.Add(new NumberField() { Value= !string.IsNullOrEmpty(EV.value) ? EV.GetValueDouble() : 0, FieldLabel = "value", Name = "value" }); break; //number
-                            case 3: propertiesForm.Items.Add(new DateField() { SelectedDate =  !string.IsNullOrEmpty(EV.value) ? EV.GetValueDateTime() : DateTime.Now, Name = "value", FieldLabel = "value" }); break;
-                            case 4: propertiesForm.Items.Add(new DateField() { SelectedDate = !string.IsNullOrEmpty(EV.value) ? EV.GetValueDateTime() : DateTime.Now, Name = "value", FieldLabel = "value" ,Format=_systemService.SessionHelper.GetDateformat()+" HH:mm" }); break;//datetime
-
-                             case 5: propertiesForm.Items.Add(new Checkbox() { Checked =  !string.IsNullOrEmpty(EV.value) ? EV.GetValueBool() : false, FieldLabel = "value" , Name = "value", InputValue = "true" }); break;//checkbox
-                            default: propertiesForm.Items.Add(new TextField() { Text = !string.IsNullOrEmpty(EV.value) ? EV.value : "", FieldLabel = "value", Name = "value" }); break;
-                    }
+                                case 1: propertiesForm.Items.Add(new TextField() { Text = x.value != null && !string.IsNullOrEmpty(x.value) ? x.value : "", FieldLabel = x.propertyName, Name = x.propertyId }); break; //text
+                                case 2: propertiesForm.Items.Add(new NumberField() { Value = x.value != null && !string.IsNullOrEmpty(x.value) ? x.GetValueDouble() : 0, FieldLabel = x.propertyName, Name = x.propertyId }); break; //number
+                                case 3: propertiesForm.Items.Add(new DateField() { Value = x.value, Name = x.propertyId, FieldLabel = x.propertyName, Format = _systemService.SessionHelper.GetDateformat() }); break;//datetime
+                            case 4: propertiesForm.Items.Add(new DateField() { Value = x.value.Replace('.',':') , Name = x.propertyId, FieldLabel = x.propertyName ,Format=_systemService.SessionHelper.GetDateformat()+ " HH.mm",SubmitFormat = "m/d/Y H.i" }); break;
+                            case 5: propertiesForm.Items.Add(new Checkbox() { Checked = x.value != null && !string.IsNullOrEmpty(x.value) ? x.GetValueBool() : false, FieldLabel = x.propertyName, Name = x.propertyId, InputValue = "true" }); break;//checkbox
+                            }
                         
-                   
+                    });
                 }
-                catch(Exception exp)
+                catch (Exception exp)
                 {
-                    X.Msg.Alert("Error", exp.Message);
+                    X.Msg.Alert("Error", exp.Message).Show();
                 }
 
 
@@ -141,64 +146,44 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveProperties(object sender, DirectEventArgs e)
         {
-            string obj = e.ExtraParams["values"];
-            EmployeeUserValue b = JsonConvert.DeserializeObject<EmployeeUserValue>(obj);
-            b.employeeId = currentEmployeeId.Text;
-            b.propertyId = currentPropertyId.Text; 
-
-
-
-
-            try
+          //  string AssetId = currentAsset.Text;
+         //   string catId = currentCat.Text;
+            string[] values = e.ExtraParams["values"].Split(',');
+            List<string> sentIds = new List<string>();
+            for (int i = 0; i < values.Length; i++)
             {
-                //New Mode
-                PostRequest<EmployeeUserValue> request = new PostRequest<EmployeeUserValue>();
-                request.entity = b;
 
-                PostResponse<EmployeeUserValue> r = _employeeService.ChildAddOrUpdate<EmployeeUserValue>(request);
-
-
-                //check if the insert failed
-                if (!r.Success)//it maybe be another condition
-                {
-                    //Show an error saving...
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    Common.errorMessage(r);
-                    return;
-                }
-                else
-                {
-
-                    //Add this record to the store 
-                    //this.dependandtsStore.Insert(0, b);
-
-                    //Display successful notification
-                    Notification.Show(new NotificationConfig
-                    {
-                        Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
-                        Html = Resources.Common.RecordSavingSucc,
-                        HideDelay = 250
-                    });
-
-
-                    X.Call("parent.hideWindow");
-                    X.Call("parent.refreshStore");
-
-                    
-
-
-                }
+                sentIds.Add(values[i].Split(':')[0].Replace("\"", "").Replace("{", ""));
+                PostRequest<EmployeeUserValue> req = new PostRequest<EmployeeUserValue>();
+                req.entity = new EmployeeUserValue() {employeeId= Request.QueryString["employeeId"],  propertyId = values[i].Split(':')[0].Replace("\"", "").Replace("{", ""), value = values[i].Split(':')[1].Replace("\"", "").Replace("}", "") };
+                PostResponse<EmployeeUserValue> resp = _employeeService.ChildAddOrUpdate<EmployeeUserValue>(req);
+                if (!resp.Success)
+                    Common.errorMessage(resp);
             }
-            catch (Exception ex)
+            //AssetManagementCategoryPropertyListRequest propReq = new AssetManagementCategoryPropertyListRequest();
+            ////propReq.categoryId = catId;
+            ////propReq.categoryId = catId;
+            //ListResponse<AssetManagementCategoryProperty> propResp = _assetManagementService.ChildGetAll<AssetManagementCategoryProperty>(propReq);
+            //if (!propResp.Success)
+            //    Common.errorMessage(propResp);
+            //propResp.Items.ForEach(x =>
+            //{
+            //    if (x.mask == 5 && !sentIds.Contains(x.propertyId))
+            //    {
+            //        PostRequest<AssetPropertyValue> req = new PostRequest<AssetPropertyValue>();
+            //        PostResponse<AssetPropertyValue> resp = _assetManagementService.ChildAddOrUpdate<AssetPropertyValue>(req);
+            //        if (!resp.Success)
+            //            Common.errorMessage(resp);
+            //    }
+
+            //});
+
+            Notification.Show(new NotificationConfig
             {
-                //Error exception displaying a messsage box
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-            }
-
-
-
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordSavingSucc
+            });
         }
 
         [DirectMethod]

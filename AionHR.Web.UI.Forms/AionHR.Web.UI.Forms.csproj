@@ -183,7 +183,6 @@
     <Content Include="DailySchedule.aspx" />
     <Content Include="DELogin.aspx" />
     <Content Include="DocumentCategories.aspx" />
-    <Content Include="EmployeePages\EmployeeUserValues.aspx" />
     <Content Include="EmployeePages\UserPropertyExplorer.aspx" />
     <Content Include="Ext.NET.Default.aspx" />
     <Content Include="FRLogin.aspx" />
@@ -630,7 +629,6 @@
     <Content Include="App_LocalResources\TimePerformances.aspx.resx" />
     <Content Include="App_LocalResources\RuleTriggers.aspx.resx" />
     <Content Include="App_LocalResources\UserProperties.aspx.resx" />
-    <Content Include="EmployeePages\App_LocalResources\EmployeeUserValues.aspx.resx" />
     <Content Include="App_LocalResources\RuleTriggers.aspx.fr.resx" />
     <Content Include="App_LocalResources\RuleTriggers.aspx.ar.resx" />
     <Content Include="App_LocalResources\UserProperties.aspx.ar.resx" />
@@ -866,13 +864,6 @@
     </Compile>
     <Compile Include="DocumentCategories.aspx.designer.cs">
       <DependentUpon>DocumentCategories.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeePages\EmployeeUserValues.aspx.cs">
-      <DependentUpon>EmployeeUserValues.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EmployeePages\EmployeeUserValues.aspx.designer.cs">
-      <DependentUpon>EmployeeUserValues.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeePages\UserPropertyExplorer.aspx.cs">
       <DependentUpon>UserPropertyExplorer.aspx</DependentUpon>

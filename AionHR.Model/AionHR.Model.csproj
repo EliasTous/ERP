@@ -93,6 +93,7 @@
     <Compile Include="AssetManagement\AssetPOReception.cs" />
     <Compile Include="AssetManagement\AssetPropertyValue.cs" />
     <Compile Include="AssetManagement\IAssetManagementRepository.cs" />
+    <Compile Include="AssetManagement\PendingPA.cs" />
     <Compile Include="Attributes\PropertyID.cs" />
     <Compile Include="Benefits\Benefit.cs" />
     <Compile Include="Benefits\BenefitAcquisition.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Employees\EmployeeUserValue.cs" />
     <Compile Include="Employees\EmploymentStatusByReferance.cs" />
     <Compile Include="Employees\ImportEmploymentStatus.cs" />
+    <Compile Include="Employees\PendingPA.cs" />
     <Compile Include="Employees\Profile\AssetAllowance.cs" />
     <Compile Include="Employees\Profile\AssetCategory.cs" />
     <Compile Include="Employees\Profile\BatchEM.cs" />
@@ -183,6 +185,8 @@
     <Compile Include="Employees\UserProperty.cs" />
     <Compile Include="HelpFunction\BenefitAcquisitionAcquisitionRate.cs" />
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
+    <Compile Include="LeaveManagement\PendingLA.cs" />
+    <Compile Include="LoadTracking\PendingLA.cs" />
     <Compile Include="Reports\PT501.cs" />
     <Compile Include="Reports\ReportParameter.cs" />
     <Compile Include="Reports\RT115.cs" />
@@ -364,6 +368,7 @@
     <Compile Include="TimeAttendance\OverrideTimeVariation.cs" />
     <Compile Include="TimeAttendance\OvertimeSetting.cs" />
     <Compile Include="TimeAttendance\PendingPunch.cs" />
+    <Compile Include="TimeAttendance\PendingTA.cs" />
     <Compile Include="TimeAttendance\Router.cs" />
     <Compile Include="Company\Cases\Case.cs" />
     <Compile Include="Company\Cases\CaseComment.cs" />

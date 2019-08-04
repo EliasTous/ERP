@@ -1423,7 +1423,7 @@
                     </Loader>
                 </ext:Panel>
                   <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: EmployeeUserValues %>" ID="Panel9" DefaultAnchor="100%">
-                    <Loader runat="server" Url="EmployeePages/EmployeeUserValues.aspx" Mode="Frame" ID="Loader9" TriggerEvent="show"
+                    <Loader runat="server" Url="EmployeePages/UserPropertyExplorer.aspx" Mode="Frame" ID="Loader9" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true">
                         <LoadMask ShowMask="true" />

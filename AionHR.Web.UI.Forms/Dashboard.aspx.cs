@@ -974,7 +974,7 @@ namespace AionHR.Web.UI.Forms
 
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
-                ListResponse<AionHR.Model.LeaveManagement.Approvals> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
+                ListResponse<AionHR.Model.LeaveManagement.PendingLA> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.PendingLA>(req);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
@@ -1362,7 +1362,7 @@ namespace AionHR.Web.UI.Forms
                                                                       
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
-                ListResponse<LoanApproval> resp = _loanService.ChildGetAll<LoanApproval>(req);
+                ListResponse<AionHR.Model.LoadTracking.PendingLA> resp = _loanService.ChildGetAll<AionHR.Model.LoadTracking.PendingLA>(req);
 
                                                                          
                 if (!resp.Success)
@@ -1535,7 +1535,7 @@ namespace AionHR.Web.UI.Forms
 
                 ReportGenericRequest r = new ReportGenericRequest();
                 r.paramString = rep_params;
-                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
+                ListResponse<PendingTA> Times = _timeAttendanceService.ChildGetAll<PendingTA>(r);
                 if (!Times.Success)
                 {
                     Common.errorMessage(Times);
@@ -1733,9 +1733,7 @@ namespace AionHR.Web.UI.Forms
             string notes = e.ExtraParams["notes"];
 
             TimeApprovalRecordRequest r = new TimeApprovalRecordRequest();
-            r.approverId = _systemService.SessionHelper.GetEmployeeId().ToString();
-            r.employeeId = employeeId;
-            r.dayId = dayId;
+            r.seqNo = currentSeqNo.Text; 
             r.timeCode = timeCode;
             r.shiftId = shiftId;
             RecordResponse<Time> response = _timeAttendanceService.ChildGetRecord<Time>(r);
@@ -2802,7 +2800,7 @@ namespace AionHR.Web.UI.Forms
                 //    EmployeePenaltyApprovalStore.DataBind();
                 //    return;
                 //}
-                ListResponse<EmployeePenaltyApproval> response = _employeeService.ChildGetAll<EmployeePenaltyApproval>(req);
+                ListResponse<AionHR.Model.Employees.PendingPA> response = _employeeService.ChildGetAll<AionHR.Model.Employees.PendingPA>(req);
 
                 if (!response.Success)
                 {
@@ -2888,7 +2886,7 @@ namespace AionHR.Web.UI.Forms
                     ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
               
-                ListResponse<AssetManagementPurchaseOrderApproval> response = _assetManagementService.ChildGetAll<AssetManagementPurchaseOrderApproval>(req);
+                ListResponse<AionHR.Model.AssetManagement.PendingPA> response = _assetManagementService.ChildGetAll<AionHR.Model.AssetManagement.PendingPA>(req);
 
                 if (!response.Success)
                 {

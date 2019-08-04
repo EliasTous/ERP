@@ -25,14 +25,26 @@
         <ext:Hidden runat="server" ID="currentPropertyId" />
          <ext:Hidden runat="server" ID="currentEmployeeId" />
        
-        <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
+        <ext:Viewport ID="Viewport1" runat="server" Layout="VBoxLayout" Padding="10">
+            <LayoutConfig>
+                <ext:VBoxLayoutConfig Align="Stretch" />
+            </LayoutConfig>
             <Items>
+
+                
+                   
+
                 <ext:FormPanel
+                   
                     ID="propertiesForm"
                     runat="server"
                     Header="false"
-                    Icon="ApplicationSideList"
-                    DefaultAnchor="100%" >
+                    Icon="ApplicationSideList"   
+                     Height="430"
+    
+                 Scrollable="Both"
+                    MinHeight="400"
+                    DefaultAnchor="100%" AutoUpdateLayout="true" >
 
                     <Items>
                     </Items>
@@ -51,7 +63,7 @@
                                 </Click>
                             </DirectEvents>
                         </ext:Button>
-                        <ext:Button ID="Button8" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                        <ext:Button Visible="false" ID="Button8" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                             <Listeners>
                                 <Click Handler="parent.hideWindow()" />
                             </Listeners>
