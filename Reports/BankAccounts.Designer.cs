@@ -129,7 +129,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell25.CanGrow = false;
             this.xrTableCell25.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName.reference")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeRef")});
             this.xrTableCell25.Name = "xrTableCell25";
             this.xrTableCell25.StylePriority.UseBorders = false;
             this.xrTableCell25.StylePriority.UseTextAlignment = false;
