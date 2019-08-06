@@ -19,8 +19,22 @@ namespace Reports
 
             printHeader(parameters);
             xrTable1.HeightF = 40;
+            xrTableCell25.WidthF = (float)54.24;
+            xrTableCell26.WidthF = (float)54.24;
 
-    }
+            xrTableCell7.WidthF = (float)110.45;
+            xrTableCell8.WidthF = (float)110.45;
+
+            xrTableCell9.WidthF = (float)89.38;
+            xrTableCell10.WidthF = (float)89.38;
+
+            xrTableCell11.WidthF = (float)107.08;
+            xrTableCell12.WidthF = (float)107.08;
+
+            xrTableCell15.WidthF = (float)62.05;
+            xrTableCell16.WidthF = (float)62.05;
+
+        }
     private void printHeader(Dictionary<string, string> parameters)
     {
         if (parameters.Count == 0)

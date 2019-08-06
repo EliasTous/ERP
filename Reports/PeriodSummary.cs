@@ -103,18 +103,25 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         xrLabel2.LocationF = new PointF((float)470.98, 0);
         xrLabel25.WidthF = (float)167.56;
         xrLabel25.LocationF = new PointF((float)471.16, 0);
+        xrLabel5.LocationF = new PointF((float)471.16, 0);
+        xrLabel5.WidthF = (float)167.56;
+
 
         xrLabel3.LocationF = new PointF((float)638.53, 0);
         xrLabel4.LocationF = new PointF((float)638.53, 0);
+        xrLabel7.LocationF = new PointF((float)638.53, 0);
 
         xrLabel6.LocationF = new PointF((float)699.57, 0);
         xrLabel8.LocationF = new PointF((float)699.57, 0);
+        xrLabel18.LocationF = new PointF((float)699.57, 0);
 
         xrLabel36.LocationF = new PointF((float)766.38, 0);
         xrLabel11.LocationF = new PointF((float)766.38, 0);
+        xrLabel35.LocationF = new PointF((float)766.38, 0);
 
         xrLabel42.LocationF = new PointF((float)825.76, 0);
         xrLabel12.LocationF = new PointF((float)825.76, 0);
+        xrLabel37.LocationF = new PointF((float)825.76, 0);
     }
     private void printHeader(Dictionary<string, string> parameters)
     {
@@ -503,7 +510,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "employeeName")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "name.fullName")});
             resources.ApplyResources(this.xrLabel1, "xrLabel1");
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
