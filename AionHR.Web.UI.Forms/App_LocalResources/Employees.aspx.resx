@@ -333,4 +333,19 @@
   <data name="FieldScheduleType" xml:space="preserve">
     <value>Schedule Type</value>
   </data>
+  <data name="FieldFilter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="FieldLangaugeId" xml:space="preserve">
+    <value>Langauge</value>
+  </data>
+  <data name="FieldPreview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="FieldTemplate" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="mailWindowTitle" xml:space="preserve">
+    <value>Mail Employees</value>
+  </data>
 </root>

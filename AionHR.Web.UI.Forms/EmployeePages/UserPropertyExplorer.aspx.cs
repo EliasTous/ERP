@@ -127,7 +127,7 @@ namespace AionHR.Web.UI.Forms
                                 case 1: propertiesForm.Items.Add(new TextField() { Text = x.value != null && !string.IsNullOrEmpty(x.value) ? x.value : "", FieldLabel = x.propertyName, Name = x.propertyId }); break; //text
                                 case 2: propertiesForm.Items.Add(new NumberField() { Value = x.value != null && !string.IsNullOrEmpty(x.value) ? x.GetValueDouble() : 0, FieldLabel = x.propertyName, Name = x.propertyId }); break; //number
                                 case 3: propertiesForm.Items.Add(new DateField() { Value = x.value, Name = x.propertyId, FieldLabel = x.propertyName, Format = _systemService.SessionHelper.GetDateformat() }); break;//datetime
-                            case 4: propertiesForm.Items.Add(new DateField() { Value = x.value.Replace('.',':') , Name = x.propertyId, FieldLabel = x.propertyName ,Format=_systemService.SessionHelper.GetDateformat()+ " HH.mm",SubmitFormat = "m/d/Y H.i" }); break;
+                            case 4: propertiesForm.Items.Add(new DateField() { Value = x.value!=null?x.value.Replace('.',':'):"" , Name = x.propertyId, FieldLabel = x.propertyName ,Format=_systemService.SessionHelper.GetDateformat()+ " HH.mm",SubmitFormat = "m/d/Y H.i" }); break;
                             case 5: propertiesForm.Items.Add(new Checkbox() { Checked = x.value != null && !string.IsNullOrEmpty(x.value) ? x.GetValueBool() : false, FieldLabel = x.propertyName, Name = x.propertyId, InputValue = "true" }); break;//checkbox
                             }
                         

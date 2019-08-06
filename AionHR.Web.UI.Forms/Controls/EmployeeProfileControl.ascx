@@ -551,7 +551,7 @@
 <script type="text/javascript">
     function setScIdCombo(sctype) {
                    
-         if (sctype==1 || sctype==3)
+         if (sctype==1 || sctype==3 || sctype==4 )
          { 
              
             App.employeeControl1_scId.setValue('');

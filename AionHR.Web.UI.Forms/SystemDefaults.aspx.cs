@@ -640,6 +640,15 @@ namespace AionHR.Web.UI.Forms
             }
 
             catch { }
+            try
+            {
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "pytvEndDate").First().Value.ToString()))
+                    pytvEndDate.Text = "15";
+                pytvEndDate.Text = (items.Where(s => s.Key == "pytvEndDate").First().Value);
+
+            }
+
+            catch { }
 
 
 
@@ -1125,10 +1134,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("FSWDEDId", values.FSWDEDId.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("FSWDEDId", ""));
-            if (!string.IsNullOrEmpty(values.MaxLoanDeduction.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", values.MaxLoanDeduction.ToString()));
+            if (!string.IsNullOrEmpty(values.pytvEndDate.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("pytvEndDate", values.pytvEndDate.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", "30"));
+                submittedValues.Add(new KeyValuePair<string, string>("pytvEndDate", "15"));
 
 
 

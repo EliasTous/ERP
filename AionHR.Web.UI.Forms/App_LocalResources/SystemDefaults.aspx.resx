@@ -513,4 +513,7 @@
   <data name="lastGenFSDateTime" xml:space="preserve">
     <value>Last Auto Scheduled</value>
   </data>
+  <data name="TimeVariationEndDate" xml:space="preserve">
+    <value>Time Variation End Date</value>
+  </data>
 </root>

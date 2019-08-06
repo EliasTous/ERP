@@ -1081,6 +1081,7 @@
                                                   
                                                 </ext:ComboBox>
                                     <ext:NumberField Width="400" runat="server" LabelWidth="150" ID="MaxLoanDeduction" Name="MaxLoanDeduction" FieldLabel="<%$ Resources: MaxLoanDeduction  %>" MinValue="0" MaxValue="100" AllowDecimals="true" DecimalPrecision="2" AllowBlank="true"/>
+                                    <ext:NumberField Width="400" runat="server" LabelWidth="150" ID="pytvEndDate" Name="pytvEndDate" FieldLabel="<%$ Resources: TimeVariationEndDate  %>" MinValue="15" MaxValue="28"  AllowBlank="true"/>
                                
                             </Items>
                             <Buttons>

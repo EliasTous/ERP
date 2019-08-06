@@ -33,6 +33,10 @@ using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Services.Messaging.CompanyStructure;
 using AionHR.Services.Messaging.Reports;
 using System.Threading;
+using AionHR.Model.AdminTemplates;
+using AionHR.Infrastructure.Tokens;
+using AionHR.Services.Implementations;
+using AionHR.Repository.WebService.Repositories;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -45,6 +49,7 @@ namespace AionHR.Web.UI.Forms
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+        IAdministrationService _administrationService = ServiceLocator.Current.GetInstance<IAdministrationService>();
 
 
 
@@ -99,6 +104,32 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        private void FillTemplateStore()
+        {
+
+            //GEtting the filter from the page
+         
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<AdTemplate> resp = _administrationService.ChildGetAll<AdTemplate>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            this.templateStore.DataSource = resp.Items;
+           
+
+            this.templateStore.DataBind();
+        }
+
+       
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -146,7 +177,9 @@ namespace AionHR.Web.UI.Forms
 
 
 
-
+                FillTemplateStore();
+                langaugeStore.DataSource = Common.XMLDictionaryList(_systemService, "23");
+                langaugeStore.DataBind();
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
@@ -695,18 +728,18 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        protected void openBatchEM(object sender, DirectEventArgs e )
-        {
-            batchForm.Reset();
-            FillCalendars();
-            FillSchedules();
-            FillVS();
-            FillDepartments();
-            FillBranches();
-            FillDivisions();
-            FillPositions();
-            batchWindow.Show();
-        }
+        //protected void openBatchEM(object sender, DirectEventArgs e )
+        //{
+        //    batchForm.Reset();
+        //    FillCalendars();
+        //    FillSchedules();
+        //    FillVS();
+        //    FillDepartments();
+        //    FillBranches();
+        //    FillDivisions();
+        //    FillPositions();
+        //    batchWindow.Show();
+        //}
         private void FillDepartments()
         {
             departmentStore.DataSource = GetDepartments();
@@ -843,6 +876,211 @@ namespace AionHR.Web.UI.Forms
                 batchWindow.Close();
                 return;
             }
+        }
+
+        protected void StartLongAction(object sender, DirectEventArgs e)
+        {
+          
+          
+           
+            //this.Session["LongActionProgressGenAD"] = 0;
+            DictionarySessionStorage storage = new DictionarySessionStorage();
+            storage.Save("AccountId", _systemService.SessionHelper.Get("AccountId"));
+            storage.Save("UserId", _systemService.SessionHelper.Get("UserId"));
+            storage.Save("key", _systemService.SessionHelper.Get("Key"));
+            storage.Save("LanguageId", _systemService.SessionHelper.Get("Language").ToString() == "en" ? "1" : "2");
+            SessionHelper h = new SessionHelper(storage, new APIKeyBasedTokenGenerator());
+
+            //HttpRuntime.Cache.Insert("TotalRecords", 0);
+            //HttpRuntime.Cache.Insert("LongActionProgress", 0);
+            //HttpRuntime.Cache.Insert("finished", "0");
+
+            ThreadPool.QueueUserWorkItem(MailEm, new object[] { h });
+
+
+
+            this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", TaskManager1.ClientID);
+
+
+
+        }
+
+        protected void MailEm(object state)
+        {
+            try
+            {
+                object[] array = state as object[];
+                SessionHelper h = (SessionHelper)array[0];
+
+                AdministrationService administrationService = new AdministrationService(new AdministrationRepository(), h);
+
+
+                RecordRequest req = new RecordRequest();
+
+
+
+                //PostResponse<GeneratePayroll> resp = payrollService.ChildAddOrUpdate<GeneratePayroll>(req);
+                //if (!resp.Success)
+                //{
+
+                //    HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
+                //    HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
+                //    HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
+
+                //}
+                //else
+                //{
+                //    if (!string.IsNullOrEmpty(resp.recordId))
+                //        HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
+                //}
+
+
+
+
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+
+            }
+        }
+        protected void RefreshProgress(object sender, DirectEventArgs e)
+        {
+
+            try
+            {
+
+
+                double progress = 0;
+                if (
+                HttpRuntime.Cache.Get("ErrorMsgGenEM") != null ||
+                HttpRuntime.Cache.Get("ErrorLogIdGenEM") != null ||
+                HttpRuntime.Cache.Get("ErrorErrorCodeGenEM") != null)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "Error_" + HttpRuntime.Cache.Get("ErrorErrorCodeGenEM")) != null ? GetGlobalResourceObject("Errors", "Error_" + HttpRuntime.Cache.Get("ErrorErrorCodeGenEM").ToString()).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + HttpRuntime.Cache.Get("ErrorLogIdGenEM").ToString() : HttpRuntime.Cache.Get("ErrorMsgGenEM").ToString()).Show();
+                    HttpRuntime.Cache.Remove("genEM_RecordId");
+                    this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                    mailWindow.Close();
+                   
+                    Viewport1.ActiveIndex = 0;
+                    if (HttpRuntime.Cache.Get("ErrorErrorCodeGenEM") != null)
+                        HttpRuntime.Cache.Remove("ErrorErrorCodeGenEM");
+                    if (HttpRuntime.Cache.Get("ErrorLogIdGenEM") != null)
+                        HttpRuntime.Cache.Remove("ErrorLogIdGenEM");
+                    if (HttpRuntime.Cache.Get("ErrorErrorCodeGenEM") != null)
+                        HttpRuntime.Cache.Remove("ErrorErrorCodeGenEM");
+
+
+
+                }
+
+
+
+                RecordRequest req = new RecordRequest();
+                if (HttpRuntime.Cache["genEM_RecordId"] != null)
+                    req.RecordID = HttpRuntime.Cache["genEM_RecordId"].ToString();
+                else
+                {
+                   
+                    return;
+                }
+                RecordResponse<BackgroundJob> resp = _systemService.ChildGetRecord<BackgroundJob>(req);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    HttpRuntime.Cache.Remove("genEM_RecordId");
+                    this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                    mailWindow.Close();
+                    Viewport1.ActiveIndex = 0;
+                
+                    return;
+                }
+                if (resp.result.errorId != null)
+                {
+
+
+                    X.Msg.Alert(Resources.Common.Error, resp.result.errorName).Show();
+                    HttpRuntime.Cache.Remove("genEM_RecordId");
+                    this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                   
+                    Viewport1.ActiveIndex = 0;
+                    mailWindow.Close();
+                }
+                else
+                {
+
+
+                    if (resp.result.taskSize == 0)
+                    {
+                        progress = 0;
+                        this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                        mailWindow.Close();
+                        Store1.Reload();
+                        Viewport1.ActiveIndex = 2;
+                      
+                      
+                    }
+                    else
+                    {
+                        progress = (double)resp.result.completed / resp.result.taskSize;
+                        string prog = (float.Parse(progress.ToString()) * 100).ToString();
+                        string message = GetGlobalResourceObject("Common", "working").ToString();
+                   
+                        this.mailEmployeesProgressBar.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+
+                    }
+
+
+                    if (resp.result.taskSize == resp.result.completed)
+                    {
+                        this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                        HttpRuntime.Cache.Remove("genEM_RecordId");
+                        mailWindow.Close();
+                        Store1.Reload();
+                        Viewport1.ActiveIndex = 2;
+                      
+                        X.Msg.Alert("", Resources.Common.operationCompleted).Show();
+
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+
+            }
+
+
+
+
+
+
+
+
+
+        }
+
+        private  string ReplaceAll( string seed, char[] chars, char replacementCharacter)
+        {
+            return chars.Aggregate(seed, (str, cItem) => str.Replace(cItem, replacementCharacter));
+        }
+        protected void FillPreview(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(templateId.SelectedItem.Value.ToString()) || string.IsNullOrEmpty(templateId.SelectedItem.Value.ToString()))
+                return; 
+            TemplateBodyRecordRequest req = new TemplateBodyRecordRequest();
+            req.TemplateId = Convert.ToInt32(templateId.SelectedItem.Value); 
+            req.LanguageId= Convert.ToInt32(langaugeId.SelectedItem.Value);
+            RecordResponse<TemplateBody> resp = _administrationService.ChildGetRecord<TemplateBody>(req);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return; 
+            }
+
+          
+            Panel1.Update(Server.UrlDecode(resp.result.textBody),true);
         }
     }
 }

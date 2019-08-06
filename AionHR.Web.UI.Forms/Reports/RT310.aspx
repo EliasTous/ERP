@@ -41,6 +41,8 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
                <ext:Hidden ID="Error" runat="server" Text="<%$ Resources:Common , Error %>" />
+            <ext:Hidden ID="required" runat="server" Text="<%$ Resources:Common , RequiredFields %>" />
+         <ext:Hidden ID="errorheader" runat="server" Text="<%$ Resources:Common , RequiredFieldsHeader %>" />
         <ext:Hidden ID="rtl" runat="server" />
          <ext:Hidden ID="Hidden1" runat="server" />
         <ext:Hidden ID="vals" runat="server" />
@@ -78,7 +80,9 @@
                                         </ext:Button>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
-                                                <Click Handler="callbackPanel.PerformCallback('1');" />
+                                            <Click Handler="if(App.vals.value ==null || App.vals.value=='') if(App.direct.ExistMandatoryFields('RT310')){
+                                                    Ext.MessageBox.alert(#{errorheader}.value, #{required}.value); return false;
+                                                    }callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
                                        

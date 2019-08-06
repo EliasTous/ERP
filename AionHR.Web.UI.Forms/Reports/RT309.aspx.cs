@@ -131,6 +131,23 @@ namespace AionHR.Web.UI.Forms.Reports
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
         /// </summary>
+        /// 
+
+        [DirectMethod]
+        public bool ExistMandatoryFields(string reportCode)
+        {
+            ReportParametersListRequest req = new ReportParametersListRequest();
+            req.ReportName = reportCode;
+            ListResponse<ReportParameter> parameters = _systemService.ChildGetAll<ReportParameter>(req);
+            if (!parameters.Success)
+            {
+                X.Msg.Alert("Error", "Error");
+            }
+            foreach (var item in parameters.Items)
+                if (item.mandatory)
+                    return true;
+            return false;
+        }
         private void HideShowTabs()
         {
             //this.OtherInfoTab.Visible = false;

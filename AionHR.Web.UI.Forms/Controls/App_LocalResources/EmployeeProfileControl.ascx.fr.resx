@@ -426,4 +426,7 @@
   <data name="LeavePayment" xml:space="preserve">
     <value>Congé de paiement :</value>
   </data>
+  <data name="EmployeeUserValues" xml:space="preserve">
+    <value>Valeur d'utilisateur</value>
+  </data>
 </root>

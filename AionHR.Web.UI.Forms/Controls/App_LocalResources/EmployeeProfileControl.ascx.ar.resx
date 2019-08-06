@@ -420,4 +420,7 @@
   <data name="EarnedleavesTitle" xml:space="preserve">
     <value>إجازة مستحقة :</value>
   </data>
+  <data name="EmployeeUserValues" xml:space="preserve">
+    <value>الخصائص</value>
+  </data>
 </root>

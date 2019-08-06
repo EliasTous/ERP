@@ -931,6 +931,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.NumberField MaxLoanDeduction;
         
         /// <summary>
+        /// pytvEndDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField pytvEndDate;
+        
+        /// <summary>
         /// SavePayrollSettingsBtn control.
         /// </summary>
         /// <remarks>

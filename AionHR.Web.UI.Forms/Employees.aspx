@@ -14,6 +14,11 @@
     <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=16" />
     <link rel="stylesheet" type="text/css" href="CSS/LiveSearch.css" />
     <link  rel="stylesheet" type="text/css" href="CSS/cropper.css" />
+
+      <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
+    <link rel="stylesheet" href="CSS/LiveSearch.css" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <script type="text/javascript"  src="Scripts/jquery-new.js"></script>
     <script type="text/javascript" src="Scripts/ReportsCommon.js" ></script>
 
@@ -53,6 +58,9 @@
     <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.islamic-ar.js"></script>
     <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.lang.js"></script>
     <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.picker-ar.js"></script>
+    <script type="text/javascript" >
+        
+    </script>
     
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -179,7 +187,16 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:Button ID="Button1" runat="server" Icon="DiskMultiple">
+
+                                
+
+                                       <ext:Button ID="mailEmployees" runat="server" Icon="Mail">
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); App.mailWindow.show();" />
+                                    </Listeners>
+                                    
+                                </ext:Button>
+                             <%--   <ext:Button ID="Button1" runat="server" Icon="DiskMultiple">
                                     <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>
@@ -188,7 +205,7 @@
                                             <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
                                         </Click>
                                     </DirectEvents>
-                                </ext:Button>
+                                </ext:Button>--%>
                                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
                                  <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
                                     <Triggers>
@@ -704,7 +721,121 @@
                 </Items>
         </ext:Window>
 
+           <ext:Window
+            ID="mailWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:mailWindowTitle %>"
+            Width="400"
+            Height="350"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+             Resizable="true"
+            Maximizable="false"
+            Layout="Fit">
 
+            <Items>
+            
+                        <ext:FormPanel
+                            ID="mailForm" DefaultButton="saveMailButton"
+                            runat="server"
+                          
+                            DefaultAnchor="100%"
+                            BodyPadding="5">
+                            <Items>
+                            <ext:TextField ID="filter" Name="filter" runat="server" FieldLabel="<%$ Resources: FieldFilter %>" />
+                                <ext:ComboBox AnyMatch="true" Width="330" CaseSensitive="false" runat="server" ID="templateId" Name="templateId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    DisplayField="name"
+                                    ValueField="recordId"
+                                    FieldLabel="<%$ Resources: FieldTemplate %>">
+                                    <Store>
+                                        <ext:Store runat="server" ID="templateStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+
+
+                                        </ext:Store>
+
+                                    </Store>
+                                   
+                                </ext:ComboBox>
+                                 <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldLangaugeId %>"  runat="server" DisplayField="value" ValueField="key"   Name="langaugeId" ID="langaugeId" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="langaugeStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                     <DirectEvents>
+                                         <Select OnEvent="FillPreview" />
+                                     </DirectEvents>
+                                       </ext:ComboBox>
+
+                                <ext:Panel runat="server" Layout="FitLayout" Flex="1" ID="Panel1" RTL="false" Border="true" Scrollable="Both" Height="150" Width="100"  />
+                                
+                                 <ext:ProgressBar ID="mailEmployeesProgressBar" runat="server"   />
+                        
+                             
+                            </Items>
+                            
+                        </ext:FormPanel>
+
+  
+            </Items>
+            <Buttons>
+                <ext:Button ID="saveMailButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession();   if (!#{mailForm}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="StartLongAction" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{mailWindow}.body}" />
+                            <ExtraParams>
+                               
+                                <ext:Parameter Name="values" Value="#{mailForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                            
+                        <Click Handler="this.up('window').hide(); " />
+                    </Listeners>
+                    
+                </ext:Button>
+            </Buttons>
+          
+        </ext:Window>
+          <ext:TaskManager ID="TaskManager1" runat="server">
+            <Tasks>
+                <ext:Task 
+                    TaskID="longactionprogress"
+                    Interval="2000" 
+                    AutoRun="false" 
+                    OnStart="#{GenerateButton}.setDisabled(true);"
+                       OnStop="#{GenerateButton}.setDisabled(false);" >
+                 
+                    <DirectEvents>
+                        <Update OnEvent="RefreshProgress" />
+                    </DirectEvents>                    
+                </ext:Task>
+            </Tasks>
+        </ext:TaskManager>
 
     </form>
 

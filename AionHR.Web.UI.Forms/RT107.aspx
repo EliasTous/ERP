@@ -766,7 +766,7 @@
                                 
                                 
                                 Resizable="false">
-                                <Renderer handler="if(record.data['count']>0) return  '<img class=imgAttach  style=cursor:pointer; src=../Images/Tools/application_edit.png />';" />
+                                <Renderer handler="if(record.data['count']>0) return  '<img class=imgAttach  style=cursor:pointer; src=Images/Tools/application_edit.png />';" />
                             </ext:Column>
 
 
@@ -927,7 +927,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Handler="return '<img class=imgEdit style=cursor:pointer; src=../Images/Tools/edit.png />';" />
+                                <Renderer Handler="return '<img class=imgEdit style=cursor:pointer; src=Images/Tools/edit.png />';" />
                             </ext:Column>
                         </Columns>
                     </ColumnModel>

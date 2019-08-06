@@ -10,6 +10,7 @@ using System.Threading;
 using AionHR.Model.Employees.Profile;
 using Reports.AttendanceSchedule;
 using System.Globalization;
+using AionHR.Model.Reports;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -116,7 +117,21 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-
+        [DirectMethod]
+        public bool ExistMandatoryFields(string reportCode)
+        {
+            ReportParametersListRequest req = new ReportParametersListRequest();
+            req.ReportName = reportCode;
+            ListResponse<ReportParameter> parameters = _systemService.ChildGetAll<ReportParameter>(req);
+            if (!parameters.Success)
+            {
+                X.Msg.Alert("Error", "Error");
+            }
+            foreach (var item in parameters.Items)
+                if (item.mandatory)
+                    return true;
+            return false;
+        }
         private void HideShowButtons()
         {
 
