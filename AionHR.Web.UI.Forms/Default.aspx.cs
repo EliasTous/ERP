@@ -233,7 +233,7 @@ namespace AionHR.Web.UI.Forms
                 DefaultTabCloseMenu.CloseAllTabsText = GetGlobalResourceObject("Common", "CloseAllTabsText").ToString();
                 DefaultTabCloseMenu.CloseOthersTabsText= GetGlobalResourceObject("Common", "CloseOthersTabsText").ToString();
                 DefaultTabCloseMenu.CloseTabText= GetGlobalResourceObject("Common", "CloseTabText").ToString();
-             
+                X.Call("refreshPage");
 
             }
         }

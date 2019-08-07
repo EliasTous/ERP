@@ -8,10 +8,12 @@
     <link rel="stylesheet" type="text/css" href="CSS/Tools.css?id=12" />
 
     <script type="text/javascript" src="Scripts/jquery.min.js?id=5"></script>
-    <script type="text/javascript" src="Scripts/app.js?id=7"></script>
+    <script type="text/javascript" src="Scripts/app.js?id=22"></script>
     <script type="text/javascript" src="Scripts/Common.js?id=6"></script>
     <script type="text/javascript" src="Scripts/default.js?id=15"></script>
     <script type="text/javascript">
+
+       
         //var beforeMenu = function (pnl, tab, menu) {
         //    menu.items.get(0).setText(tab.title);
 
@@ -261,6 +263,7 @@
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , Sponsors%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('sponsors', 'Sponsors.aspx', #{sponsorsTitle}.value, 'icon-Employees')" />
+                                                                
                                                             </Listeners>
                                                         </ext:MenuItem>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , CertificateLevels%>">
@@ -1060,10 +1063,11 @@
                         </Loader>
                      
                     </ext:Panel>
-
+                    
 
 
                 </Items>
+                  
                   <Plugins>
                      <ext:TabCloseMenu  runat="server" ID="DefaultTabCloseMenu"  CloseAllTabsIconCls="#EmailGo" />
                 </Plugins>

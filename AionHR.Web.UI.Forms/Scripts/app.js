@@ -161,6 +161,8 @@ var openNewTab = function (id, url, title, iconCls) {
                 }
             }
         });
+        var currentTab = id + "^" + url + "^" + title + "^"+iconCls; 
+        setCookie("openedTabs", getCookie("openedTabs") +"|"+ currentTab);
     }
     else {
         App.tabPanel.closeTab(tab);
@@ -261,6 +263,57 @@ var openModule = function (id) {
 
 
 }
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function refreshPage()
+{
+    var tabsArray = getCookie("openedTabs").split("|");
+    tabsArray.forEach(element => {
+        var tabInformation = element.split("^");
+        if (tabInformation.length === 4)
+            openNewTab(tabInformation[0], tabInformation[1], tabInformation[2], tabInformation[3]);
+    });
+}
 
 
 
+var removeTab = function (el, tab) {
+    App.tabPanel.closeTab(tab);
+    if (getCookie("openedTabs")) {
+        
+        var id = tab.id;
+        var arr = getCookie("openedTabs").split("^");
+        arr.splice(id, 4);
+      
+        arr.forEach(element => {
+            setCookie("openedTabs", element  + "^" );
+        });
+     
+
+        setCookie("openedTabs", getCookie("openedTabs").slice(0, -1) );
+
+    }
+  
+    return true;
+};
