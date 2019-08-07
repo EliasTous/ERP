@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Tools.css?id=12" />
 
     <script type="text/javascript" src="Scripts/jquery.min.js?id=5"></script>
-    <script type="text/javascript" src="Scripts/app.js?id=22"></script>
+    <script type="text/javascript" src="Scripts/app.js?id=153"></script>
     <script type="text/javascript" src="Scripts/Common.js?id=6"></script>
     <script type="text/javascript" src="Scripts/default.js?id=15"></script>
     <script type="text/javascript">
@@ -1064,9 +1064,13 @@
                      
                     </ext:Panel>
                     
+                   
 
 
                 </Items>
+              <Listeners> 
+                  <BeforeRemove Fn="removeTab" />
+              </Listeners>
                   
                   <Plugins>
                      <ext:TabCloseMenu  runat="server" ID="DefaultTabCloseMenu"  CloseAllTabsIconCls="#EmailGo" />

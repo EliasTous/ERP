@@ -136,10 +136,7 @@ function setGlobalInterval(s)
     interval = s;
 }
 var openNewTab = function (id, url, title, iconCls) {
-    console.log(id);
-    console.log(url);
-    console.log(title);
-    console.log(iconCls);
+  
     var tab = App.tabPanel.getComponent(id);
    // if (id != 'dashboard') {
         //alert(interval);
@@ -161,10 +158,37 @@ var openNewTab = function (id, url, title, iconCls) {
                 }
             }
         });
-        var currentTab = id + "^" + url + "^" + title + "^"+iconCls; 
-        setCookie("openedTabs", getCookie("openedTabs") +"|"+ currentTab);
-    }
+        
+        if (!getCookie('openedTabs')) {
+            var tabsArray = [id, url, title, iconCls];
+            setCookie("openedTabs", JSON.stringify(tabsArray));
+           
+        }
+        else {
+           
+            var json_str = getCookie('openedTabs');
+
+            tabsArray = JSON.parse(json_str);
+            var index = tabsArray.indexOf(tab.id);
+      
+            if (index === -1) {
+                tabsArray.push(id);
+                tabsArray.push(url);
+                tabsArray.push(title);
+                tabsArray.push(iconCls);
+              
+                setCookie("openedTabs", JSON.stringify(tabsArray));
+
+            }
+        }
+
+
+           
+        }
+       
+    
     else {
+        
         App.tabPanel.closeTab(tab);
         tab = App.tabPanel.add({
             id: id,
@@ -288,30 +312,37 @@ function getCookie(cname) {
 
 function refreshPage()
 {
-    var tabsArray = getCookie("openedTabs").split("|");
-    tabsArray.forEach(element => {
-        var tabInformation = element.split("^");
-        if (tabInformation.length === 4)
-            openNewTab(tabInformation[0], tabInformation[1], tabInformation[2], tabInformation[3]);
-    });
+  
+    var json_str = getCookie("openedTabs");
+    var tabsArray = JSON.parse(json_str);
+    for (var i = 0; i < tabsArray.length; i+=4) 
+        openNewTab(tabsArray[i], tabsArray[i + 1], tabsArray[i + 2], tabsArray[i+3]);
+  
+  
 }
 
 
 
 var removeTab = function (el, tab) {
-    App.tabPanel.closeTab(tab);
-    if (getCookie("openedTabs")) {
-        
-        var id = tab.id;
-        var arr = getCookie("openedTabs").split("^");
-        arr.splice(id, 4);
-      
-        arr.forEach(element => {
-            setCookie("openedTabs", element  + "^" );
-        });
-     
 
-        setCookie("openedTabs", getCookie("openedTabs").slice(0, -1) );
+    
+    if (getCookie("openedTabs")) {
+        var json_str = getCookie("openedTabs");
+        var tabsArray = JSON.parse(json_str);
+       
+
+        var index = tabsArray.indexOf(tab.id);
+        
+        if (index !== -1)
+            tabsArray.splice(index, 4);
+       
+        
+        setCookie("openedTabs", JSON.stringify(tabsArray));
+        
+
+       
+
+        
 
     }
   
