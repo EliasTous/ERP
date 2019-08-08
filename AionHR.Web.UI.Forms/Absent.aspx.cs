@@ -947,6 +947,7 @@ namespace AionHR.Web.UI.Forms
                 parameters.Add("1", employeeId.ToString());
                 parameters.Add("2", dayId.ToString());
                 parameters.Add("3", dayId.ToString());
+                if (!string.IsNullOrEmpty(shiftId))
                 parameters.Add("4", shiftId);
                 parameters.Add("5", timeCode);
                 
