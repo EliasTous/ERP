@@ -1274,7 +1274,7 @@ namespace AionHR.Web.UI.Forms
         {
             DateTime firstDate = dateFrom.SelectedDate;
            
-            for (int count = totalDays; count >= 0; count--)
+            for (int count = 0; count <timesList.Count; count++)
             {
                 html += "<tr>";
                 if (!_systemService.SessionHelper.CheckIfArabicSession())
@@ -1292,7 +1292,7 @@ namespace AionHR.Web.UI.Forms
                     html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + string.Format("<div style='width:43px;display:inline-block'>{0}</div> {1} - {2}", (string)GetLocalResourceObject(day), dayNumber, month) + "</td><td id=" + firstDate.ToString("yyyyMMdd") + "_Total></td>";
                 }
 
-                for (int index = timesList.Count-1; index >=0; index--)
+                for (int index =0; index <timesList.Count; index++)
                 {
                     html += "<td id=" + firstDate.ToString("yyyyMMdd") + "_" + timesList[index].ID + "></td>";
                                     }

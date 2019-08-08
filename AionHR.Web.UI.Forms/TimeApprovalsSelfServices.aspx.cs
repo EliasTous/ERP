@@ -323,14 +323,16 @@ namespace AionHR.Web.UI.Forms
             string status = e.ExtraParams["status"];
             string shiftId = e.ExtraParams["shiftId"];
             string seqNo = e.ExtraParams["seqNo"];
-
+            string tvId = e.ExtraParams["tvId"];
+            
 
             string notes = e.ExtraParams["notes"];
 
             TimeApprovalRecordRequest r = new TimeApprovalRecordRequest();
             r.seqNo = seqNo;
-            r.timeCode = timeCode;
-            r.shiftId = shiftId;
+            //r.timeCode = timeCode;
+            //r.shiftId = shiftId;
+            r.tvId = tvId;
             RecordResponse<TimeSelfService> response = _selfServiceService.ChildGetRecord<TimeSelfService>(r);
             if (!response.Success)
             {

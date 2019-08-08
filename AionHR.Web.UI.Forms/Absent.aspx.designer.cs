@@ -625,6 +625,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField shiftId;
         
         /// <summary>
+        /// ORId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField ORId;
+        
+        /// <summary>
         /// employeeId control.
         /// </summary>
         /// <remarks>

@@ -115,6 +115,8 @@ function GetChangeTypeString(index)
             App.direct.Logout({
                 success: function (result) {
                     window.location.href = result;
+                    removeCookie("openedTabs");
+
 
 
                 },
@@ -136,4 +138,13 @@ function GetChangeTypeString(index)
 
 function setCompanyName(companyName) {
     App.CompanyNameLiteral.setText(companyName);
+}
+
+function removeCookie(cname) {
+    var d = new Date();
+    var cvalue = "removed";
+    d.setDate(d.getDate() - 1);
+    var expires = "expires=" + d.toUTCString();
+    
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 namespace AionHR.Model.Dashboard
 {
     [ClassIdentifier("41066", "41")]
-    public  class DashBoardTimeVariation
+    public  class DashBoardTimeVariation :ModelBase
     {
         public string timeName;
 
-        public string recordId { get { if (!string.IsNullOrEmpty(dayId)){ return employeeId.ToString() + dayId.ToString() + shiftId.ToString() + timeCode.ToString(); } else return employeeId.ToString() + shiftId.ToString() + timeCode.ToString(); } }
+        public string primaryKey { get { if (!string.IsNullOrEmpty(dayId)){ return employeeId.ToString() + dayId.ToString() + shiftId.ToString() + timeCode.ToString(); } else return employeeId.ToString() + shiftId.ToString() + timeCode.ToString(); } }
         public int employeeId { get; set; }
         public string dayId { get; set; }
         public DateTime dayIdDate { get; set; }

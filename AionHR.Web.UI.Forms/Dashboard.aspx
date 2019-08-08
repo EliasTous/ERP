@@ -1891,6 +1891,7 @@
                                                                                   <ext:ModelField Name="statusString" />
                                                                                 <ext:ModelField Name="notes" />
                                                                                  <ext:ModelField Name="seqNo" />
+                                                                                 <ext:ModelField Name="tvId" />
                                                                             
 
                                                                             </Fields>
@@ -1959,6 +1960,7 @@
                                                                              <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
                                                                           <ext:Parameter Name="justification" Value="record.data['justification']" Mode="Raw" />
                                                                             <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
+                                                                             <ext:Parameter Name="tvId" Value="record.data['tvId']" Mode="Raw" />
                                                                     
                                                                       
                                                                         

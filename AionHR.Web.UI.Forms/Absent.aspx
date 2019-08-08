@@ -128,7 +128,7 @@
                            <ext:ModelField Name="apStatusString" />
                         <ext:ModelField Name="apStatus" />
                            <ext:ModelField Name="damageLevel" />
-                         <ext:ModelField Name="recordId" />
+                    
                            <ext:ModelField Name="damageLevelString" />
                    
                             <ext:ModelField Name="dayId" />
@@ -360,7 +360,7 @@
                             <EventMask ShowMask="true" />
                             <ExtraParams>
 
-                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="id" Value="record.data['recordId']" Mode="Raw" />
                                   <ext:Parameter Name="duration" Value="record.data['duration']" Mode="Raw" />
                                   <ext:Parameter Name="damage" Value="record.data['damageLevel']" Mode="Raw" />
                                    <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
@@ -636,6 +636,7 @@
                             BodyPadding="5">
                             <Items>
                                     <ext:TextField ID="shiftId" runat="server"  Name="shiftId"   Hidden="true"/>
+                                 <ext:TextField ID="ORId" runat="server"  Name="recordId"   Hidden="true"/>
                                   <ext:TextField ID="employeeId" runat="server"  Name="employeeId"   Hidden="true"/>
                               
                                
@@ -771,6 +772,7 @@
                                    <ext:Parameter Name="shiftId" Value="App.shiftId.getValue()" Mode="Raw" />
                                   <ext:Parameter Name="clockStamp" Value="App.clockStamp.getValue()" Mode="Raw" />
                                   <ext:Parameter Name="employeeId" Value="App.employeeId.getValue()" Mode="Raw" />
+                                    <ext:Parameter Name="recordId" Value="App.ORId.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value ="#{overrideForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

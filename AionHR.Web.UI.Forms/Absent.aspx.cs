@@ -547,7 +547,7 @@ namespace AionHR.Web.UI.Forms
 
                         damage.Select(damageLavel);
                         duration.Text = durationValue;
-                        recordId.Text = id;
+                       // recordId.Text = id;
                         justification.Text = justificationParam;
                         this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                         this.EditRecordWindow.Show();
@@ -572,11 +572,12 @@ namespace AionHR.Web.UI.Forms
 
                     case "imgAttach":
                         overrideForm.Reset();
-                        TimeVariationRecordRequest req = new TimeVariationRecordRequest();
-                        req.employeeId = employeeId.ToString();
-                        req.dayId = dayId.ToString();
-                        req.shiftId = shiftId;
-                        req.timeCode = timeCodeParameter;
+                        RecordRequest req = new RecordRequest();
+                        //req.employeeId = employeeId.ToString();
+                        //req.dayId = dayId.ToString();
+                        //req.shiftId = shiftId;
+                        //req.timeCode = timeCodeParameter;
+                        req.RecordID = id;
                         RecordResponse<DashBoardTimeVariation> resp = _timeAttendanceService.ChildGetRecord<DashBoardTimeVariation>(req);
                        if (!resp.Success)
                         {
@@ -584,7 +585,7 @@ namespace AionHR.Web.UI.Forms
                             return;
                         }
 
-
+                        ORId.Text = resp.result.recordId;
                         timeCodeStore.DataSource = ConstTimeVariationType.TimeCodeList(_systemService).Where(x => x.key == Convert.ToInt32(timeCodeParameter)).ToList();
                         timeCodeStore.DataBind();
 
@@ -637,7 +638,7 @@ namespace AionHR.Web.UI.Forms
 
                             );
 
-
+                       
                         inOutStore.DataSource = Common.XMLDictionaryList(_systemService, "34");
                         inOutStore.DataBind();
                         overrideWindow.Show();
@@ -764,14 +765,17 @@ namespace AionHR.Web.UI.Forms
                 string clockStamp = e.ExtraParams["clockStamp"];
                 string shiftId = e.ExtraParams["shiftId"];
             string employeeId = e.ExtraParams["employeeId"];
+                string recordId = e.ExtraParams["recordId"];
+                
             OverrideTimeVariation b = JsonConvert.DeserializeObject<OverrideTimeVariation>(obj);
 
 
-            TimeVariationRecordRequest recReq = new TimeVariationRecordRequest();
-            recReq.employeeId = employeeId.ToString();
-            recReq.dayId = dtFrom.SelectedDate.ToString("yyyyMMdd");
-            recReq.shiftId = shiftId;
-            recReq.timeCode = b.timeCode.ToString(); 
+            RecordRequest recReq = new RecordRequest();
+                recReq.RecordID = recordId; 
+            //recReq.employeeId = employeeId.ToString();
+            //recReq.dayId = dtFrom.SelectedDate.ToString("yyyyMMdd");
+            //recReq.shiftId = shiftId;
+            //recReq.timeCode = b.timeCode.ToString(); 
             RecordResponse<DashBoardTimeVariation> recResp = _timeAttendanceService.ChildGetRecord<DashBoardTimeVariation>(recReq);
 
             if (!recResp.Success)
@@ -783,6 +787,7 @@ namespace AionHR.Web.UI.Forms
                 PostRequest<OverrideTimeVariation> req = new PostRequest<OverrideTimeVariation>();
                 req.entity = b; 
                 req.entity.apStatus = recResp.result.apStatus.ToString();
+               
                 req.entity.clockDuration = recResp.result.clockDuration.ToString();
                 req.entity.damageLevel = recResp.result.damageLevel.ToString();
                 req.entity.duration = recResp.result.duration.ToString();
@@ -862,12 +867,12 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
 
-                    if (r.Items.Where(x => x.recordId == id).Count() == 0)
+                    if (r.Items.Where(x => x.primaryKey == id).Count() == 0)
                         return;
                     else
                     {
                         PostRequest<DashBoardTimeVariation> request = new PostRequest<DashBoardTimeVariation>();
-                        request.entity = r.Items.Where(x => x.recordId == id).First();
+                        request.entity = r.Items.Where(x => x.primaryKey == id).First();
                         request.entity.damageLevel = Convert.ToInt16(damage.Value);
                         request.entity.duration = Convert.ToInt16(duration.Text);
                         request.entity.justification = b.justification;

@@ -1728,6 +1728,7 @@ namespace AionHR.Web.UI.Forms
             string shiftId = e.ExtraParams["shiftId"];
             string justificationParam = e.ExtraParams["justification"];
             currentSeqNo.Text = e.ExtraParams["seqNo"];
+            string tvId = e.ExtraParams["tvId"];
 
 
             string notes = e.ExtraParams["notes"];
@@ -1736,6 +1737,9 @@ namespace AionHR.Web.UI.Forms
             r.seqNo = currentSeqNo.Text; 
             r.timeCode = timeCode;
             r.shiftId = shiftId;
+            r.tvId = tvId;
+            
+
             RecordResponse<Time> response = _timeAttendanceService.ChildGetRecord<Time>(r);
             if (!response.Success)
             {

@@ -10,7 +10,7 @@
     <script type="text/javascript" src="Scripts/jquery.min.js?id=5"></script>
     <script type="text/javascript" src="Scripts/app.js?id=153"></script>
     <script type="text/javascript" src="Scripts/Common.js?id=6"></script>
-    <script type="text/javascript" src="Scripts/default.js?id=15"></script>
+    <script type="text/javascript" src="Scripts/default.js?id=17"></script>
     <script type="text/javascript">
 
        
@@ -207,7 +207,7 @@
             </Store>
           <Listeners>
                  <FocusEnter Handler="App.languageId.onTriggerClick();"   />    
-                 <Select Handler="App.direct.Change_language(this.value);" />
+                 <Select Handler="App.direct.Change_language(this.value);   removeCookie('openedTabs');" />
             </Listeners>
 
            
