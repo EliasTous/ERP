@@ -3697,6 +3697,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unschedule Punches.
+        /// </summary>
+        internal static string UnschedulePunches {
+            get {
+                return ResourceManager.GetString("UnschedulePunches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unspecified.
         /// </summary>
         internal static string unspecified {

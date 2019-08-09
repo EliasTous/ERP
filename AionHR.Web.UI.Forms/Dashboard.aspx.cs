@@ -1490,8 +1490,8 @@ namespace AionHR.Web.UI.Forms
 
                 parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
                 parameters.Add("5", timeVariationType.GetTimeCode());
-            //    parameters.Add("4", "0");
-              //  parameters.Add("7", "1");
+                //    parameters.Add("4", "0");
+                //  parameters.Add("7", "1");
                 parameters.Add("7", "1");
 
 
@@ -1546,6 +1546,9 @@ namespace AionHR.Web.UI.Forms
                 Times.Items.ForEach(x =>
                 {
                     x.fullName = x.employeeName;
+                    if (string.IsNullOrEmpty(x.shiftId))
+                        x.shiftId = " ";
+                  
                     x.statusString = FillApprovalStatus(x.status);
 
                     if (Int32.TryParse(x.timeCode, out currentTimeCode))
@@ -1559,8 +1562,9 @@ namespace AionHR.Web.UI.Forms
                 // TimeStore.DataSource = Times.Items.Where(x=>x.status==1).ToList<Time>();
                 ////List<ActiveLeave> leaves = new List<ActiveLeave>();
                 //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
-
+                
                 TimeStore.DataSource = Times.Items;
+               
                 TimeStore.DataBind();
             }
             catch (Exception exp)
@@ -1718,25 +1722,18 @@ namespace AionHR.Web.UI.Forms
         protected void TimePoPUP(object sender, DirectEventArgs e)
         {
             TabPanel1.ActiveIndex = 0;
-            string employeeId = e.ExtraParams["employeeId"];
-            string employeeName = e.ExtraParams["employeeName"];
-            string dayId = e.ExtraParams["dayId"];
-            string dayIdDate = e.ExtraParams["dayIdDate"];
-            string timeCode = e.ExtraParams["timeCode"];
-            string timeCodeString = e.ExtraParams["timeCodeString"];
-            string status = e.ExtraParams["status"];
-            string shiftId = e.ExtraParams["shiftId"];
-            string justificationParam = e.ExtraParams["justification"];
+           
+          
+    
             currentSeqNo.Text = e.ExtraParams["seqNo"];
             string tvId = e.ExtraParams["tvId"];
 
 
-            string notes = e.ExtraParams["notes"];
+         
 
             TimeApprovalRecordRequest r = new TimeApprovalRecordRequest();
             r.seqNo = currentSeqNo.Text; 
-            r.timeCode = timeCode;
-            r.shiftId = shiftId;
+          
             r.tvId = tvId;
             
 
@@ -1751,29 +1748,41 @@ namespace AionHR.Web.UI.Forms
             {
                 TimeApprovalStatusControl.setApprovalStatus(response.result.status.ToString());
                 if (response.result.damageLevel == "1")
+                {
                     response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
+                    damageLevel.Text = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
+                }
                 else
+                {
                     response.result.damageLevel = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
-                shiftStart.Text = response.result.shiftStart + " " + response.result.shiftEnd;
-                TimeFormPanel.SetValues(response.result);
+                    damageLevel.Text = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
+                }
+                if (!string.IsNullOrEmpty(response.result.shiftStart))
+                    shiftStart.Text = response.result.shiftStart;
+                if (!string.IsNullOrEmpty(response.result.shiftEnd))
+                    shiftStart.Text += " " + response.result.shiftStart;
+
+
+              
+
+
+                // clockDuration.Text = response.result.clockDuration + " " + response.result.duration;
+                List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
+
+
+                clockDuration.Text = response.result.clockDuration;
+                duration.Text = response.result.duration;
+                TimeEmployeeName.Text = response.result.employeeName;
+                TimedayIdDate.SelectedDate = response.result.date;
+                TimeTimeCodeString.Text = timeCode.Where(y => y.key == Convert.ToInt32(response.result.timeCode)).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(response.result.timeCode)).First().value : string.Empty; ;
+                TimeApprovalStatusControl.setApprovalStatus(response.result.status.ToString());
+                shiftIdTF.Text = string.IsNullOrEmpty(response.result.shiftId) ? "" : response.result.shiftId;
+                TimeNotes.Text = response.result.notes;
+                justification.Text = response.result.justification;
+
+
+                FillTimeApproval(response.result.dtFrom, response.result.dtTo, response.result.employeeId, response.result.timeCode, response.result.shiftId, response.result.status.ToString());
             }
-
-           
-            
-           // clockDuration.Text = response.result.clockDuration + " " + response.result.duration;
-
-            TimeEmployeeName.Text = employeeName;
-            TimedayIdDate.Text = dayIdDate;
-            TimeTimeCodeString.Text = timeCodeString;
-            TimeApprovalStatusControl.setApprovalStatus(status);
-            shiftIdTF.Text = shiftId;
-            TimeemployeeIdTF.Text = employeeId;
-            TimedayIdTF.Text = dayId;
-            TimeTimeCodeTF.Text = timeCode;
-
-
-            FillTimeApproval(Convert.ToInt32(dayId), Convert.ToInt32(employeeId), timeCode, shiftId, status);
-
             this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
             this.TimeWindow.Show();
 
@@ -2212,23 +2221,30 @@ namespace AionHR.Web.UI.Forms
         protected void SaveTimeRecord(object sender, DirectEventArgs e)
         {
             string obj = e.ExtraParams["values"];
-            string id = e.ExtraParams["id"];
-            Time TI = JsonConvert.DeserializeObject<Time>(obj);
+            string tvId = e.ExtraParams["tvId"];
+            string notes = e.ExtraParams["notes"];
+            //Time TI = JsonConvert.DeserializeObject<Time>(obj);
             try
             {
-                //New Mode
-                //Step 1 : Fill The object and insert in the store 
+                TimeApprovalRecordRequest recReq = new TimeApprovalRecordRequest();
+                recReq.seqNo = currentSeqNo.Text;
+
+                recReq.tvId = tvId;
+
+
+                RecordResponse<Time> reqResp = _timeAttendanceService.ChildGetRecord<Time>(recReq);
+                if (!reqResp.Success)
+                {
+                    Common.errorMessage(reqResp);
+                }
 
                 PostRequest<Time> request = new PostRequest<Time>();
-                request.entity = new Time();
-                request.entity.employeeId = TI.employeeId;
-                request.entity.dayId = TI.dayId;
-                request.entity.timeCode = TI.timeCode;
-                request.entity.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+                request.entity = reqResp.result;
+                
                 request.entity.status = Convert.ToInt16(TimeApprovalStatusControl.GetApprovalStatus());
-                request.entity.notes = TI.notes;
-                request.entity.shiftId = TI.shiftId;
-                request.entity.seqNo = currentSeqNo.Text;
+                request.entity.notes = notes;
+                
+                
 
                 PostResponse<Time> r = _timeAttendanceService.ChildAddOrUpdate<Time>(request);
 
@@ -2639,7 +2655,7 @@ namespace AionHR.Web.UI.Forms
                 ////    parameters.Add("1", "0");
                 //    parameters.Add("2", DateTime.Now.ToString("yyyyMMdd"));
                 //    parameters.Add("3", DateTime.Now.ToString("yyyyMMdd"));
-                // //   parameters.Add("5", CurrentTimeVariationType.Text);
+                //  parameters.Add("5", CurrentTimeVariationType.Text);
                 //  //  parameters.Add("6", "0");
 
 
@@ -2907,7 +2923,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
-        private void FillTimeApproval(int dayId, int employeeId, string timeCode, string shiftId, string apstatus)
+        private void FillTimeApproval(DateTime dtFrom, DateTime dtTo, int employeeId, string timeCode, string shiftId, string apstatus)
         {
 
          
@@ -2935,8 +2951,8 @@ namespace AionHR.Web.UI.Forms
 
                  
                     parameters.Add("1", employeeId.ToString());
-                    parameters.Add("2", dayId.ToString());
-                    parameters.Add("3", dayId.ToString());
+                parameters.Add("2", dtFrom.ToString("yyyyMMdd"));
+                    parameters.Add("3", dtTo.ToString("yyyyMMdd"));
                 if (!string.IsNullOrEmpty(shiftId))
                     parameters.Add("4", shiftId);
             
@@ -2989,8 +3005,8 @@ namespace AionHR.Web.UI.Forms
                 });
 
                 timeApprovalStore.DataSource = Times.Items;
-                ////List<ActiveLeave> leaves = new List<ActiveLeave>();
-                //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+                //////List<ActiveLeave> leaves = new List<ActiveLeave>();
+                ////leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
 
                 timeApprovalStore.DataBind();

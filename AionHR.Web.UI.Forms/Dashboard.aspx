@@ -1872,28 +1872,19 @@
                                                                 <ext:Store 
                                                                     ID="TimeStore"
                                                                     runat="server" OnReadData="TimeStore_ReadData">
-                                                                  
-                                                                    <Model>
+                                                                       <Model>
                                                                         <ext:Model ID="Model24" runat="server" >
-                                                                            <Fields>
-                                                                                                                                                            
-                                                                                <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName" />
-                                                                                <ext:ModelField Name="dayId" />
-                                                                                <ext:ModelField Name="dayIdDate"  />
-                                                                                  <ext:ModelField Name="fullName"  />
-                                                                            <ext:ModelField Name="justification" />
-                                                                                <ext:ModelField Name="timeCode" />
-                                                                                  <ext:ModelField Name="shiftId" />
-                                                                                <ext:ModelField Name="timeCodeString" />
-                                                                                <ext:ModelField Name="approverId" />
-                                                                                <ext:ModelField Name="status" />
-                                                                                  <ext:ModelField Name="statusString" />
-                                                                                <ext:ModelField Name="notes" />
-                                                                                 <ext:ModelField Name="seqNo" />
-                                                                                 <ext:ModelField Name="tvId" />
-                                                                            
+                                                                            <Fields>                                                                                                                                                   
+                                                                         
+                                                                             
+                                                                                    <ext:ModelField Name="date" />
+                                                                                   <ext:ModelField Name="timeCodeString"  />
+                                                                                 <ext:ModelField Name="fullName"  />
 
+                                                                                  <ext:ModelField Name="notes" />
+                                                                                    <ext:ModelField Name="seqNo" />
+                                                                                 <ext:ModelField Name="tvId" />
+                                                                                
                                                                             </Fields>
                                                                         </ext:Model>
                                                                     </Model>
@@ -1907,11 +1898,12 @@
                                                                   
 
 
-                                                                    <ext:Column ID="Column27" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
+                                                               
+                                                                        <ext:Column ID="Column27" DataIndex="fullName"  Text="<%$ Resources: FieldEmployee %>"  runat="server" Flex="1"  >
+                                                                          
+                                                                            </ext:Column>
                                                                    
-                                                                    </ext:Column>
-                                                                
-                                                                    <ext:DateColumn ID="DateColumn5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="dayIdDate" Hideable="false" Width="100" />
+                                                                    <ext:DateColumn ID="DateColumn5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="date" Hideable="false" Width="100" />
                           
 
                                                                      <ext:Column ID="Column26" DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="1" />
@@ -1932,7 +1924,7 @@
                                                                         MenuDisabled="true"
                                                                         Resizable="false">
 
-                                                                        <Renderer Handler="return  attachRender(); " />
+                                                                        <Renderer Handler="return  editRender(); " />
                                                                     </ext:Column>
 
 
@@ -1949,16 +1941,9 @@
                                                                 <CellClick OnEvent="TimePoPUP">
                                                                     <EventMask ShowMask="true" />
                                                                       <ExtraParams>
-                                                                         <ext:Parameter Name="employeeName" Value="record.data['fullName']" Mode="Raw" />
-                                                                         <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
-                                                                         <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
-                                                                           <ext:Parameter Name="dayIdDate" Value="record.data['dayIdDate']" Mode="Raw" />
-                                                                            <ext:Parameter Name="timeCode" Value="record.data['timeCode']" Mode="Raw" />
-                                                                           <ext:Parameter Name="timeCodeString" Value="record.data['timeCodeString']" Mode="Raw" />
-                                                                           <ext:Parameter Name="Notes" Value="record.data['notes']" Mode="Raw" />
-                                                                           <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
-                                                                             <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
-                                                                          <ext:Parameter Name="justification" Value="record.data['justification']" Mode="Raw" />
+                                                                        
+                                                                            
+                                                                       
                                                                             <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                                                              <ext:Parameter Name="tvId" Value="record.data['tvId']" Mode="Raw" />
                                                                     
@@ -4308,12 +4293,13 @@
                             DefaultAnchor="100%" OnLoad="TimeTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="TimeemployeeIdTF" runat="server" Name="employeeId"  ReadOnly="true"  Hidden="true"/>
+                                  <ext:TextField ID="tvId" runat="server" Name="tvId" Hidden="true" />
+                              
                                 <ext:TextField ID="shiftIdTF" runat="server" Name="shiftId" FieldLabel="<%$ Resources: FieldShift%>"   ReadOnly="true" />
-                                <ext:TextField ID="TimedayIdTF" runat="server" Name="dayId"  ReadOnly="true" Hidden="true" />
-                                <ext:TextField ID="TimeTimeCodeTF" runat="server" Name="timeCode"  ReadOnly="true" Hidden="true" />
+                          
+                               
                                <ext:TextField ID="TimeEmployeeName" runat="server" FieldLabel="<%$ Resources:FieldName%>" ReadOnly="true" />
-                                <ext:DateField ID="TimedayIdDate" runat="server" Name="dayIdDate"  FieldLabel="<%$ Resources:FieldDate%>"  ReadOnly="true" />
+                                <ext:DateField ID="TimedayIdDate" runat="server" Name="date"  FieldLabel="<%$ Resources:FieldDate%>"  ReadOnly="true" />
                                 <ext:TextField ID="TimeTimeCodeString" runat="server" Name="timeCodeString" FieldLabel="<%$ Resources: FieldTimeCode%>"   ReadOnly="true" />
 
                                 <ext:Panel runat="server" Layout="HBoxLayout">
@@ -4351,11 +4337,9 @@
                                             </Content>
                                         </ext:Container>  
 
-                                  <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification"   AllowBlank="true" ReadOnly="true" />
+                               <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification"   AllowBlank="true" ReadOnly="true" />
 
-                                <ext:TextArea runat="server" FieldLabel="<%$Resources: FieldNotes %>" ID="TimeNotes" Name="notes" MaxHeight="5" />
-
-                                 
+                                   <ext:TextArea runat="server" FieldLabel="<%$Resources: FieldNotes %>" ID="TimeNotes" Name="notes" MaxHeight="5" />
 
                             </Items>
 
@@ -4381,19 +4365,16 @@
                                                                     <Model>
                                                                         <ext:Model ID="Model33" runat="server" >
                                                                             <Fields>
-                                                                                                                                                            
-                                                                                <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName"  />
-                                                                                <ext:ModelField Name="dayId" />
-                                                                                <ext:ModelField Name="dayIdDate"  />
-                                                                               <ext:ModelField Name="approverName"  />
-                                                                                <ext:ModelField Name="timeCode" />
-                                                                                <ext:ModelField Name="timeCodeString" />
-                                                                                <ext:ModelField Name="approverId" />
-                                                                                <ext:ModelField Name="status" />
-                                                                                <ext:ModelField Name="notes" />
+                                                                                           <ext:ModelField Name="approverName"  />
+                                                                                  <ext:ModelField Name="timeCodeString" />
                                                                                   <ext:ModelField Name="statusString" />
-                                                                                 <ext:ModelField Name="arName" />
+                                                                                   <ext:ModelField Name="arName" />
+                                                                                  <ext:ModelField Name="notes" />
+
+                                                                           
+                                                                              
+                                                                                
+                                                                              
                                                                             
 
                                                                             </Fields>
@@ -4406,9 +4387,7 @@
                                                               </Store>
                                                             <ColumnModel ID="ColumnModel34" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                                                 <Columns>
-                                                                   <ext:Column ID="Column38" DataIndex="dayId"  runat="server" Visible="false" />
-                                                                   <ext:Column ID="Column39" DataIndex="employeeId"  runat="server" Visible="false" />
-                                                                   <ext:Column ID="Column40" DataIndex="timeCode"  runat="server" Visible="false" />
+                                                                
 
                                                                      <ext:Column ID="Column41" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
                                                                   
@@ -4462,7 +4441,10 @@
 
 
                             <ExtraParams>
-                               
+                                <ext:Parameter Name="tvId" Value="#{tvId}.getValue()" Mode="Raw" />
+                                    <ext:Parameter Name="notes" Value="#{TimeNotes}.getValue()" Mode="Raw" />
+
+                                
                                 <ext:Parameter Name="values" Value="#{TimeFormPanel}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

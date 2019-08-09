@@ -598,6 +598,7 @@
     <Content Include="TimeAttendanceView.aspx" />
     <Content Include="TimeCodes.aspx" />
     <Content Include="TrainingTypes.aspx" />
+    <Content Include="UnschedulePunches.aspx" />
     <Content Include="UserProperties.aspx" />
     <Content Include="Utilities\alerts.txt" />
     <Content Include="Utilities\letters_meta_tags.txt" />
@@ -635,6 +636,7 @@
     <Content Include="App_LocalResources\UserProperties.aspx.fr.resx" />
     <Content Include="App_LocalResources\TimePerformances.aspx.ar.resx" />
     <Content Include="App_LocalResources\TimePerformances.aspx.fr.resx" />
+    <Content Include="App_LocalResources\UnschedulePunches.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -1690,6 +1692,13 @@
     </Compile>
     <Compile Include="TimeCodes.aspx.designer.cs">
       <DependentUpon>TimeCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UnschedulePunches.aspx.cs">
+      <DependentUpon>UnschedulePunches.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UnschedulePunches.aspx.designer.cs">
+      <DependentUpon>UnschedulePunches.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserProperties.aspx.cs">
       <DependentUpon>UserProperties.aspx</DependentUpon>

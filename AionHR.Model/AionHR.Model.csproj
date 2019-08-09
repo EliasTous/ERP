@@ -410,6 +410,7 @@
     <Compile Include="TimeAttendance\Time.cs" />
     <Compile Include="TimeAttendance\TimeAttendanceCompositeObject.cs" />
     <Compile Include="TimeAttendance\TimePerformance.cs" />
+    <Compile Include="TimeAttendance\UnschedulePunch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Readme\Ext.NET\CHANGELOG.md" />

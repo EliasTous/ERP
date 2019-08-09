@@ -3109,13 +3109,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.FormPanel TimeFormPanel;
         
         /// <summary>
-        /// TimeemployeeIdTF control.
+        /// tvId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField TimeemployeeIdTF;
+        protected global::Ext.Net.TextField tvId;
         
         /// <summary>
         /// shiftIdTF control.
@@ -3125,24 +3125,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField shiftIdTF;
-        
-        /// <summary>
-        /// TimedayIdTF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField TimedayIdTF;
-        
-        /// <summary>
-        /// TimeTimeCodeTF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField TimeTimeCodeTF;
         
         /// <summary>
         /// TimeEmployeeName control.
@@ -3269,33 +3251,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Model Model33;
-        
-        /// <summary>
-        /// Column38 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column38;
-        
-        /// <summary>
-        /// Column39 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column39;
-        
-        /// <summary>
-        /// Column40 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column40;
         
         /// <summary>
         /// Column41 control.
