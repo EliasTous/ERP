@@ -105,6 +105,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         xrLabel25.LocationF = new PointF((float)471.16, 0);
         xrLabel5.LocationF = new PointF((float)471.16, 0);
         xrLabel5.WidthF = (float)167.56;
+        xrLabel5.HeightF = 40;
 
 
         xrLabel3.LocationF = new PointF((float)638.53, 0);
@@ -122,6 +123,19 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         xrLabel42.LocationF = new PointF((float)825.76, 0);
         xrLabel12.LocationF = new PointF((float)825.76, 0);
         xrLabel37.LocationF = new PointF((float)825.76, 0);
+
+
+        xrLabel7.HeightF = 40;
+        xrLabel18.HeightF = 40;
+        xrLabel35.HeightF = 40;
+        xrLabel37.HeightF = 40;
+        xrLabel39.HeightF = 40;
+        xrLabel43.HeightF = 40;
+        xrLabel47.HeightF = 40;
+        xrLabel51.HeightF = 40;
+        xrLabel52.HeightF = 40;
+        xrLabel53.HeightF = 40;
+        xrLabel54.HeightF = 40;
     }
     private void printHeader(Dictionary<string, string> parameters)
     {
