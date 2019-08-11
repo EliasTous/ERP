@@ -20,6 +20,7 @@ namespace AionHR.Infrastructure.WebService
         /// the message returned
         /// </summary>
         public string message { get; set; }
+        public string recordId { get; set; }
 
         public string error { get; set; }
         public string errorName { get; set; }

@@ -76,6 +76,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden vals;
         
         /// <summary>
+        /// currentEmployee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden currentEmployee;
+        
+        /// <summary>
         /// texts control.
         /// </summary>
         /// <remarks>
@@ -173,6 +182,24 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column1;
+        
+        /// <summary>
+        /// Column4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column4;
+        
+        /// <summary>
+        /// Column5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column5;
         
         /// <summary>
         /// Column2 control.
@@ -274,13 +301,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Window EditRecordWindow;
         
         /// <summary>
-        /// Panel1 control.
+        /// reportPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel Panel1;
+        protected global::Ext.Net.Panel reportPanel;
         
         /// <summary>
         /// SaveButton control.

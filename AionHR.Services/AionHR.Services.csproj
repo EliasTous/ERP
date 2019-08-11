@@ -132,7 +132,7 @@
     <Compile Include="Messaging\AdministrativeAffairs\DocumentDueRecordRequest.cs" />
     <Compile Include="Messaging\AdministrativeAffairs\DocumentNoteListRequest.cs" />
     <Compile Include="Messaging\AdministrativeAffairs\DocumentNoteRecordRequest.cs" />
-    <Compile Include="Messaging\AdministrativeAffairs\MailEmployeeListRequest.cs" />
+    <Compile Include="Messaging\AdministrativeAffairs\MailEmployeeRecordRequest.cs" />
     <Compile Include="Messaging\Asset Management\AssetManagementAssetListRequest.cs" />
     <Compile Include="Messaging\Asset Management\AssetManagementCategoryPropertyListRequest.cs" />
     <Compile Include="Messaging\Asset Management\AssetManagementCategoryPropertyRecordRequest.cs" />

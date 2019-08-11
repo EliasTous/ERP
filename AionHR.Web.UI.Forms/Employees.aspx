@@ -192,9 +192,10 @@
 
                                        <ext:Button ID="mailEmployees" runat="server" Icon="Mail">
                                     <Listeners>
-                                        <Click Handler="CheckSession(); App.mailWindow.show();" />
+                                        <Click Handler="CheckSession(); App.Panel1.body.update('');  App.filter1.setText(App.texts.getValue());  App.mailForm.reset(); App.mailWindow.show(); " />
                                     </Listeners>
-                                    
+
+                                          
                                 </ext:Button>
                              <%--   <ext:Button ID="Button1" runat="server" Icon="DiskMultiple">
                                     <Listeners>
@@ -744,7 +745,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                            <ext:TextField ID="filter" Name="filter" runat="server" FieldLabel="<%$ Resources: FieldFilter %>" />
+                            <ext:Label ID="filter1"  runat="server" FieldLabel="<%$ Resources: FieldFilter %>" />
                                 <ext:ComboBox AnyMatch="true" Width="330" CaseSensitive="false" runat="server" ID="templateId" Name="templateId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name"
                                     ValueField="recordId"
@@ -780,7 +781,11 @@
                                                 </ext:Store>
                                             </Store>
                                      <DirectEvents>
-                                         <Select OnEvent="FillPreview" />
+                                           
+                                            
+                                         <Select OnEvent="FillPreview" >
+                                             <EventMask ShowMask="true" />
+                                             </Select>
                                      </DirectEvents>
                                        </ext:ComboBox>
 
@@ -827,8 +832,8 @@
                     TaskID="longactionprogress"
                     Interval="2000" 
                     AutoRun="false" 
-                    OnStart="#{GenerateButton}.setDisabled(true);"
-                       OnStop="#{GenerateButton}.setDisabled(false);" >
+                    OnStart="#{saveMailButton}.setDisabled(true);"
+                       OnStop="#{saveMailButton}.setDisabled(false);" >
                  
                     <DirectEvents>
                         <Update OnEvent="RefreshProgress" />

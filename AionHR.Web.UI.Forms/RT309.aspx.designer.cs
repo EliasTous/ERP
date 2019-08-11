@@ -175,6 +175,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Panel Center;
         
         /// <summary>
+        /// reportToolbar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Toolbar reportToolbar;
+        
+        /// <summary>
         /// labelbar control.
         /// </summary>
         /// <remarks>

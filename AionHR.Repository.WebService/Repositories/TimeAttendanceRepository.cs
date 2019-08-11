@@ -90,7 +90,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(DashBoardTimeVariation), "setTV");
             ChildAddOrUpdateLookup.Add(typeof(MailFlatShedule), "mailFS");
             ChildAddOrUpdateLookup.Add(typeof(OverrideTimeVariation), "overrideTV");
-            
+            ChildAddOrUpdateLookup.Add(typeof(processUnscheduledPunch), "processUP");
+
             ChildDeleteLookup.Add(typeof(AttendanceBreak), "delSB");
             ChildDeleteLookup.Add(typeof(AttendanceSchedule), "delSC");
             ChildDeleteLookup.Add(typeof(WorkingCalendar), "delCA");

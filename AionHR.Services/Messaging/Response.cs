@@ -16,6 +16,7 @@ namespace AionHR.Services.Messaging
         /// The generic object list
         /// </summary>
         public T result { get; set; }
+        public string recordId { get; set; }
 
         /// <summary>
         /// Total record count : Used only for generic listing request

@@ -246,7 +246,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node BA = BuildLeafNode("rootParent_TA_BA", Resources.Common.BranchAvailability, "DateMagnify", true, timeAt);
             Ext.Net.Node DA = BuildLeafNode("rootParent_TA_DA", Resources.Common.DayAvailability, "DateEdit", true, timeAt);
             Ext.Net.Node TP = BuildLeafNode("rootParent_TA_TP", Resources.Common.TimePerformances, "DateEdit", true, timeAt);
-          //  Ext.Net.Node UP = BuildLeafNode("rootParent_TA_UP", Resources.Common.UnschedulePunches, "DateEdit", true, timeAt);
+          Ext.Net.Node UP = BuildLeafNode("rootParent_TA_UP", Resources.Common.UnschedulePunches, "DateEdit", true, timeAt);
             // Ext.Net.Node GS = BuildLeafNode("rootParent_TA_GS", Resources.Common.GenerateAttendanceShift, "DateEdit", true, timeAt);
             // Ext.Net.Node SA = BuildLeafNode("rootParent_TA_SA", Resources.Common.SynchronizeAttendanceDays, "UserGo", true, timeAt);
 
@@ -263,7 +263,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(DA, "DA", "DaysAvailability.aspx", Resources.Common.DayAvailability, "icon-Employees", "1");
             FillConfigItem(BA, "BA", "BranchAvailabilities.aspx", Resources.Common.BranchAvailability, "icon-Employees", "1");
             FillConfigItem(TP, "Tp", "TimePerformances.aspx", Resources.Common.TimePerformances, "icon-Employees", "1");
-         //   FillConfigItem(UP, "Up", "UnschedulePunches.aspx", Resources.Common.UnschedulePunches, "icon-Employees", "1");
+            FillConfigItem(UP, "Up", "UnschedulePunches.aspx", Resources.Common.UnschedulePunches, "icon-Employees", "1");
             //FillConfigItem(EC, "EC", "EmployeeCals.aspx", Resources.Common.EmployeeCalender, "icon-Employees", "1");
             //   FillConfigItem(GS, "GS", "GenerateAttendanceShifts.aspx", Resources.Common.GenerateAttendanceShift, "icon-Employees", "1");
             // FillConfigItem(SA, "SA", "SynchronizeAttendanceDays.aspx", Resources.Common.SynchronizeAttendanceDays, "icon-Employees", "1");
@@ -405,7 +405,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(rt306, "rt306", "Reports/RT306.aspx", Resources.Common.RT306, "icon-Employees", "1");
             FillConfigItem(rt307, "rt307", "Reports/RT307.aspx", Resources.Common.RT307, "icon-Employees", "1");
             FillConfigItem(rt308, "rt308", "Reports/RT308.aspx", Resources.Common.RT308, "icon-Employees", "1");
-            FillConfigItem(rt309, "rt309", "Reports/RT309.aspx", Resources.Common.RT309, "icon-Employees", "1");
+            FillConfigItem(rt309, "rt309", "RT309.aspx", Resources.Common.RT309, "icon-Employees", "1");
             FillConfigItem(rt310, "rt310", "Reports/RT310.aspx", Resources.Common.RT310, "icon-Employees", "1");
 
             FillConfigItem(rt401, "rt401", "Reports/RT401.aspx", Resources.Common.RT401, "icon-Employees", "1");

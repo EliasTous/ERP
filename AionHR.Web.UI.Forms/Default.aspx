@@ -552,11 +552,11 @@
                                                                             </Listeners>
                                                                         </ext:MenuItem>
 
-                                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common , UnschedulePunches%>">
+                                                                       <%--   <ext:MenuItem runat="server" Text="<%$Resources: Common , UnschedulePunches%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('unschedulePunches', 'UnschedulePunches.aspx', #{UPTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
-                                                                        </ext:MenuItem>
+                                                                        </ext:MenuItem>--%>
                                                                      <%--   <ext:MenuItem runat="server" Text="<%$Resources: Common , Geofences%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('Geofences', 'Geofences.aspx', #{gfTitle}.value, 'icon-Employees')" />

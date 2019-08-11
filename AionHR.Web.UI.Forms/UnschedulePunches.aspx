@@ -13,6 +13,13 @@
     <script type="text/javascript" src="Scripts/common.js" ></script>
      <script type="text/javascript" src="Scripts/ReportsCommon.js?id=10"></script>
    
+
+
+
+   
+ 
+ 
+  
  
 </head>
 <body style="background: url(Images/bg.png) repeat;" ">
@@ -25,6 +32,7 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
 
            <ext:Hidden ID="vals" runat="server" />
+          <ext:Hidden ID="currentEmployee" runat="server" />
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=TAUP&values="/>
@@ -36,22 +44,19 @@
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
             PageSize="50" IDMode="Explicit" Namespace="App">
-            <Proxy>
-                <ext:PageProxy>
-                    <Listeners>
-                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                    </Listeners>
-                </ext:PageProxy>
-            </Proxy>
+           
             <Model>
                 <ext:Model ID="Model1" runat="server">
                     <Fields>
 
                         <ext:ModelField Name="employeeRef" />
+                          <ext:ModelField Name="employeeId" />
                         
                         <ext:ModelField Name="employeeName" />
                           <ext:ModelField Name="AttendedHours" />
                           <ext:ModelField Name="variation" />
+                            <ext:ModelField Name="branchName" />
+                          <ext:ModelField Name="positionName" />
                      
                                </Fields>
                 </ext:Model>
@@ -122,7 +127,9 @@
                          
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployeeRef%>" DataIndex="employeeRef" Flex="1" Hideable="false" />
                              <ext:Column    CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployeeName%>" DataIndex="employeeName" Flex="2" Hideable="false" />
-                             <ext:Column    CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAttendedHours%>" DataIndex="attendedHours" Flex="2" Hideable="false" />
+                             <ext:Column    CellCls="cellLink" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="2" Hideable="false" />
+                             <ext:Column    CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="2" Hideable="false" />
+                             <ext:Column    CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAttendedHours%>" DataIndex="AttendedHours" Flex="2" Hideable="false" />
                              <ext:Column    CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldVariation%>" DataIndex="variation" Flex="2" Hideable="false" />
                       
                          
@@ -211,14 +218,16 @@
 
                     </BottomBar>
                     <Listeners>
+                       
                         <Render Handler="this.on('cellclick', cellClick);" />
+                     
                     </Listeners>
                     <DirectEvents>
                         
                         <CellClick OnEvent="PoPuP">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -249,12 +258,12 @@
             AutoShow="false"
             Modal="true"
             Hidden="true"
-            Layout="Fit">
+            Layout="Fit" >
             
             <Items>
-             
-                  <ext:Panel runat="server" Layout="FitLayout"  ID="Panel1" DefaultAnchor="100%">
-                    <Loader runat="server" Url="Reports/RT306.aspx" Mode="Frame" ID="Loader1" TriggerEvent="show"
+              
+                          <ext:Panel runat="server" Layout="FitLayout"  ID="reportPanel" DefaultAnchor="100%">
+                    <Loader runat="server" Url="RT309.aspx" Mode="Frame" ID="Loader1" TriggerEvent="show" 
                         ReloadOnEvent="true"
                         DisableCaching="true">
                         <Listeners>
@@ -262,19 +271,22 @@
                         <LoadMask ShowMask="true" />
                     </Loader>
                 </ext:Panel>
+             
+               
+                     
             </Items>
+                    
             <Buttons>
-                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                <ext:Button ID="SaveButton" runat="server" Text="Process" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                        <Click Handler="CheckSession();  " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                               
                             </ExtraParams>
                         </Click>
                     </DirectEvents>
@@ -289,7 +301,7 @@
           <ext:Window runat="server"  Icon="PageEdit"
             ID="reportsParams"
             Width="600"
-            Height="500"
+            MinHeight="500"
             Title="<%$Resources:Common,Parameters %>"
             AutoShow="false"
             Modal="true"

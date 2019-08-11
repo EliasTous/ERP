@@ -37,6 +37,7 @@ using AionHR.Model.AdminTemplates;
 using AionHR.Infrastructure.Tokens;
 using AionHR.Services.Implementations;
 using AionHR.Repository.WebService.Repositories;
+using AionHR.Services.Messaging.AdministrativeAffairs;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -233,6 +234,7 @@ namespace AionHR.Web.UI.Forms
         public void SetTexts(string labels)
         {
             this.texts.Text = labels;
+            filter1.Text = labels;
         }
 
         private void BuildQuickViewTemplate()                         
@@ -894,8 +896,8 @@ namespace AionHR.Web.UI.Forms
             //HttpRuntime.Cache.Insert("TotalRecords", 0);
             //HttpRuntime.Cache.Insert("LongActionProgress", 0);
             //HttpRuntime.Cache.Insert("finished", "0");
-
-            ThreadPool.QueueUserWorkItem(MailEm, new object[] { h });
+            string tamplate = templateId.SelectedItem.Value; 
+            ThreadPool.QueueUserWorkItem(MailEm, new object[] { h , tamplate, vals.Text });
 
 
 
@@ -911,28 +913,30 @@ namespace AionHR.Web.UI.Forms
             {
                 object[] array = state as object[];
                 SessionHelper h = (SessionHelper)array[0];
+                string tamplate= (string)array[1];
+                string vals = (string)array[2];
 
                 AdministrationService administrationService = new AdministrationService(new AdministrationRepository(), h);
 
 
-                RecordRequest req = new RecordRequest();
+                MailEmployeeRecordRequest req = new MailEmployeeRecordRequest();
+                req.param = vals;
+                req.templateId = tamplate;
 
+                RecordResponse<MailEmployee> resp = administrationService.ChildGetRecord<MailEmployee>(req);
+                if (!resp.Success)
+                {
 
+                    HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
+                    HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
+                    HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
 
-                //PostResponse<GeneratePayroll> resp = payrollService.ChildAddOrUpdate<GeneratePayroll>(req);
-                //if (!resp.Success)
-                //{
-
-                //    HttpRuntime.Cache.Insert("ErrorMsgGenEM", resp.Summary);
-                //    HttpRuntime.Cache.Insert("ErrorLogIdGenEM", resp.LogId);
-                //    HttpRuntime.Cache.Insert("ErrorErrorCodeGenEM", resp.ErrorCode);
-
-                //}
-                //else
-                //{
-                //    if (!string.IsNullOrEmpty(resp.recordId))
-                //        HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
-                //}
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(resp.recordId))
+                        HttpRuntime.Cache.Insert("genEM_RecordId", resp.recordId);
+                }
 
 
 
@@ -952,6 +956,7 @@ namespace AionHR.Web.UI.Forms
 
 
                 double progress = 0;
+                
                 if (
                 HttpRuntime.Cache.Get("ErrorMsgGenEM") != null ||
                 HttpRuntime.Cache.Get("ErrorLogIdGenEM") != null ||
@@ -962,7 +967,7 @@ namespace AionHR.Web.UI.Forms
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                     mailWindow.Close();
                    
-                    Viewport1.ActiveIndex = 0;
+                
                     if (HttpRuntime.Cache.Get("ErrorErrorCodeGenEM") != null)
                         HttpRuntime.Cache.Remove("ErrorErrorCodeGenEM");
                     if (HttpRuntime.Cache.Get("ErrorLogIdGenEM") != null)
@@ -970,7 +975,7 @@ namespace AionHR.Web.UI.Forms
                     if (HttpRuntime.Cache.Get("ErrorErrorCodeGenEM") != null)
                         HttpRuntime.Cache.Remove("ErrorErrorCodeGenEM");
 
-
+                    return;
 
                 }
 
@@ -1003,8 +1008,9 @@ namespace AionHR.Web.UI.Forms
                     HttpRuntime.Cache.Remove("genEM_RecordId");
                     this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                    
-                    Viewport1.ActiveIndex = 0;
+                  
                     mailWindow.Close();
+                    return;
                 }
                 else
                 {
@@ -1015,8 +1021,7 @@ namespace AionHR.Web.UI.Forms
                         progress = 0;
                         this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                         mailWindow.Close();
-                        Store1.Reload();
-                        Viewport1.ActiveIndex = 2;
+                        
                       
                       
                     }
@@ -1036,8 +1041,7 @@ namespace AionHR.Web.UI.Forms
                         this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                         HttpRuntime.Cache.Remove("genEM_RecordId");
                         mailWindow.Close();
-                        Store1.Reload();
-                        Viewport1.ActiveIndex = 2;
+                       
                       
                         X.Msg.Alert("", Resources.Common.operationCompleted).Show();
 
@@ -1079,7 +1083,7 @@ namespace AionHR.Web.UI.Forms
                 return; 
             }
 
-          
+            if (resp.result!=null)
             Panel1.Update(Server.UrlDecode(resp.result.textBody),true);
         }
     }

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.AdminTemplates
 {
-   public class MailEmployee
+   public class MailEmployee :ModelBase
     {
+        public string Params { get; set; }
+        public string templateId { get; set; }
     }
 }

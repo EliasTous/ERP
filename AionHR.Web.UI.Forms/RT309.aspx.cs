@@ -113,9 +113,54 @@ namespace AionHR.Web.UI.Forms.Reports
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
 
+
+                    if (Request.QueryString["_fromUP"] == "true" && !string.IsNullOrEmpty(Request.QueryString["_employeeId"]))
+                    {
+                        reportToolbar.Hidden = true;
+
+
+                        Dictionary<string, string> parameters = new Dictionary<string, string>();
+                        if (!string.IsNullOrEmpty(Request.QueryString["_startDate"]))
+                            parameters.Add("1", Request.QueryString["_startDate"]);
+                        if (!string.IsNullOrEmpty(Request.QueryString["_endDate"]))
+                            parameters.Add("2", Request.QueryString["_endDate"]);
+                        if (!string.IsNullOrEmpty(Request.QueryString["_branchId"]))
+                            parameters.Add("4", Request.QueryString["_branchId"]);
+                        parameters.Add("3", Request.QueryString["_employeeId"]);
+
+                        string rep_params = "";
+                        foreach (KeyValuePair<string, string> entry in parameters)
+                        {
+                            rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                        }
+                        if (rep_params.Length > 0)
+                        {
+                            if (rep_params[rep_params.Length - 1] == '^')
+                                rep_params = rep_params.Remove(rep_params.Length - 1);
+                        }
+                       
+                        vals.Text = rep_params;
+
+
+                        X.Call("reportCallBack");
+                      
+
+                       // FillReport(true);
+
+
+                    }
+                    else
+                    {
+                        reportToolbar.Hidden = false;
+                        vals.Text = string.Empty;
+                    }
+
                 }
                 catch { }
             }
+
+         
+
 
         }
 

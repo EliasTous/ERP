@@ -24,6 +24,7 @@ namespace AionHR.Services.Messaging
         public string Message { get; set; }
         public string Error { get; set; }
         public string LogId { get; set; }
+        public string recordId { get; set; }
 
 
         public string Summary

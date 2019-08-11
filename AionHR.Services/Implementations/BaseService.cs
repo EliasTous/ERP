@@ -35,7 +35,7 @@ namespace AionHR.Services.Implementations
                 response.ErrorCode = "Error_1";
                 response.errorName = "Error in the returned  structure from web service";
                 response.LogId = "0";
-
+                
 
             }
             else
@@ -44,7 +44,7 @@ namespace AionHR.Services.Implementations
                 response.Error = webResponse.error;
                 response.LogId = webResponse.logId;
                 response.errorName = webResponse.errorName;
-                
+                response.recordId = webResponse.recordId;
                 response.Summary = webResponse.Details;
                 if (!string.IsNullOrEmpty(webResponse.statusId))
                 response.ErrorCode = "Error_"+webResponse.statusId.Substring(1);
@@ -150,7 +150,11 @@ namespace AionHR.Services.Implementations
             var webResponse = GetRepository().ChildGetRecord<TChild>(headers, request.Parameters);
             response = CreateServiceResponse<RecordResponse<TChild>>(webResponse);
             if (webResponse != null)
+            {
                 response.result = webResponse.record;
+                response.recordId = webResponse.recordId;
+            }
+            
             return response;
         }
 

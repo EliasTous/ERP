@@ -46,7 +46,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(AdminDocumentDue), "getDD");
             ChildGetLookup.Add(typeof(AdminDocTransfer), "getDT");
             ChildGetLookup.Add(typeof(AdminDocumentDX), "getDX");
-           
+            ChildGetLookup.Add(typeof(MailEmployee), "mailEM");
+
 
             ChildAddOrUpdateLookup.Add(typeof(AdTemplate), "setTE");
             ChildAddOrUpdateLookup.Add(typeof(TemplateBody), "setTB");
@@ -64,6 +65,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(AdminDocumentDX), "setDX");
             ChildAddOrUpdateLookup.Add(typeof(AdminDepartment), "setDE");
             ChildAddOrUpdateLookup.Add(typeof(AdminDocumentDX[]), "aseDX");
+          //  ChildAddOrUpdateLookup.Add(typeof(MailEmployee), "mailEM");
+            
 
             ChildDeleteLookup.Add(typeof(AdTemplate), "delTE");
             ChildDeleteLookup.Add(typeof(TemplateBody), "delTB");

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Services.Messaging.AdministrativeAffairs
 {
-   public class MailEmployeeListRequest : RecordRequest
+   public class MailEmployeeRecordRequest : RecordRequest
     {
         public string param { get; set; }
         public string templateId { get; set; }

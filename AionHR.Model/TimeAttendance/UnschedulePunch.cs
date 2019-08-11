@@ -13,5 +13,11 @@ namespace AionHR.Model.TimeAttendance
         public string employeeName { get; set; }
         public string AttendedHours { get; set; }
         public string variation { get; set; }
+        public string positionName { get; set; }
+        public string branchName { get; set; }
+       // public string employeeId { get; set; }
+
+
+
     }
 }

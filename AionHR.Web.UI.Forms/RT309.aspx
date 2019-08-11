@@ -30,9 +30,25 @@
             Ext.MessageBox.alert(App.Error.getValue(), e.message);
             e.handled = true;
         }
+
+         
+
+          
+        
+
+        function reportCallBack()
+        {
+              
+            callbackPanel.PerformCallback('1');
+        }
+       
+
+       
+       
     </script>
+  
 </head>
-<body style="background: url(Images/bg.png) repeat;">
+<body style="background: url(Images/bg.png) repeat;" onload="">
     <form id="Form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
 
@@ -64,7 +80,7 @@
                     Margins="0 0 0 0"
                     Region="Center">
                    <DockedItems>
-                        <ext:Toolbar runat="server" Height="30" Dock="Top">
+                        <ext:Toolbar ID="reportToolbar" runat="server" Height="30" Dock="Top">
 
                             <Items>
                              
@@ -103,7 +119,7 @@
                     <Content>
 
                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server"  ClientSideEvents-CallbackError="alertNow" ClientInstanceName="callbackPanel"
-                            Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" >
+                            Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load">
                             <PanelCollection>
                                 <dx:PanelContent runat="server">
                                    

@@ -115,6 +115,7 @@ namespace AionHR.Web.UI.Forms
                 //    Viewport1.Hidden = true;
                 //    return;
                 //}
+                currentEmployee.Text = "";
 
 
             }
@@ -163,6 +164,22 @@ namespace AionHR.Web.UI.Forms
 
         protected void PoPuP(object sender, DirectEventArgs e)
         {
+            string employeeId = e.ExtraParams["employeeId"];
+            currentEmployee.Text = employeeId;
+            string startDate = ""
+                , endDate="", branchId=""; 
+
+            Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+            if (parameters.ContainsKey("1"))
+                startDate = parameters["1"];
+            if (parameters.ContainsKey("2"))
+                endDate= parameters["2"];
+            if (parameters.ContainsKey("4"))
+                branchId= parameters["4"];
+
+
+            reportPanel.LoadContent("RT309.aspx?_fromUP=true&_employeeId="+ employeeId+ "&_startDate="+startDate+ "&_endDate=" + endDate+ "&_branchId="+branchId, true);
+
 
 
             EditRecordWindow.Show();
@@ -289,114 +306,41 @@ namespace AionHR.Web.UI.Forms
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
 
+            processUnscheduledPunch PUP = new processUnscheduledPunch();
+            Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+            if (parameters.ContainsKey("1"))
+                PUP.startDate =DateTime.ParseExact( parameters["1"],"yyyyMMdd", new CultureInfo("en")).ToString("yyyy-MM-dd");
+            if (parameters.ContainsKey("2"))
+                PUP.endDate = DateTime.ParseExact(parameters["2"], "yyyyMMdd", new CultureInfo("en")).ToString("yyyy-MM-dd");
+            
+            if (parameters.ContainsKey("4"))
+                PUP.branchId = parameters["4"];
 
-            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            PUP.employeeId = currentEmployee.Text;
+            PostRequest<processUnscheduledPunch> request = new PostRequest<processUnscheduledPunch>();
 
-
-            string obj = e.ExtraParams["values"];
-            CertificateLevel b = JsonConvert.DeserializeObject<CertificateLevel>(obj);
-
-            string id = e.ExtraParams["id"];
-            // Define the object to add or edit as null
-
-            if (string.IsNullOrEmpty(id))
+            request.entity = PUP;
+            PostResponse<processUnscheduledPunch> r = _timeAttendanceService.ChildAddOrUpdate<processUnscheduledPunch>(request);
+            if (!r.Success)//it maybe be another condition
             {
-
-                try
-                {
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<CertificateLevel> request = new PostRequest<CertificateLevel>();
-
-                    request.entity = b;
-                    PostResponse<CertificateLevel> r = _employeeService.ChildAddOrUpdate<CertificateLevel>(request);
-
-
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        Common.errorMessage(r);
-                        return;
-                    }
-                    else
-                    {
-                        b.recordId = r.recordId;
-                        //Add this record to the store 
-                        this.Store1.Insert(0, b);
-
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
-
-                        this.EditRecordWindow.Close();
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
-
-
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-                }
-
-
+                //Show an error saving...
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                Common.errorMessage(r);
+                return;
             }
             else
             {
-                //Update Mode
-
-                try
+                Notification.Show(new NotificationConfig
                 {
-                    //getting the id of the record
-                    PostRequest<CertificateLevel> request = new PostRequest<CertificateLevel>();
-                    request.entity = b;
-                    PostResponse<CertificateLevel> r = _employeeService.ChildAddOrUpdate<CertificateLevel>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
 
-                    //Step 2 : saving to store
-
-                    //Step 3 :  Check if request fails
-                    if (!r.Success)//it maybe another check
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        Common.errorMessage(r);
-                        return;
-                    }
-                    else
-                    {
-
-
-                        ModelProxy record = this.Store1.GetById(id);
-                      
-                        record.Commit();
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                        });
-                        this.EditRecordWindow.Close();
-
-
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                }
+                this.EditRecordWindow.Close();
             }
+
+            
         }
 
         [DirectMethod]

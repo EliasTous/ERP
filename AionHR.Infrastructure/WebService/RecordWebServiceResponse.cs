@@ -13,6 +13,7 @@ namespace AionHR.Infrastructure.WebService
     public class RecordWebServiceResponse<T> : BaseWebServiceResponse
     {
         public T record { get; set; }
-        
+        public string recordId { get; set; }
+
     }
 }
