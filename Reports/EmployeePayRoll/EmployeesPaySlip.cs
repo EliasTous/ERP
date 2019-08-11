@@ -17,7 +17,7 @@ namespace Reports.EmployeePayRoll
         {
             InitializeComponent();
             xrTableCell8.RightToLeft = RightToLeft.No;
-            xrTableCell6.RightToLeft = RightToLeft.No;
+            xrTableCell6.RightToLeft = RightToLeft.No; 
             printHeader(parameters);
             if (details.Count == 0)
             { return; }

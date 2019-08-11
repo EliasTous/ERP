@@ -297,7 +297,7 @@
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
   <data name="xrTableCell5.Text" xml:space="preserve">
-    <value>Total Benifits</value>
+    <value>Total Benefits</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="xrTableCell5.Weight" type="System.Double, mscorlib">
@@ -589,18 +589,18 @@
   <data name="PageFooter.HeightF" type="System.Single, mscorlib">
     <value>37.5</value>
   </data>
-  <metadata name="employeePayrollDataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="employeePayrollDataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
+  </data>
   <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
     <value>0</value>
   </data>
   <data name="ReportHeader.HeightF" type="System.Single, mscorlib">
     <value>39.1666679</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
     <value>11, 9, 7, 9</value>
   </data>

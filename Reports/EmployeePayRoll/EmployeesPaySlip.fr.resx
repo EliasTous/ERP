@@ -529,7 +529,7 @@
     <value>194.791656, 28.2083359</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
-    <value>Rapport de paie des employés</value>
+    <value>Bulletins de paie</value>
   </data>
   <data name="xrLabel7.TextAlignment" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
