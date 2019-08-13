@@ -1726,7 +1726,7 @@ namespace AionHR.Web.UI.Forms
           
     
             currentSeqNo.Text = e.ExtraParams["seqNo"];
-            string tvId = e.ExtraParams["tvId"];
+            string tvIdParameter = e.ExtraParams["tvId"];
 
 
          
@@ -1734,7 +1734,7 @@ namespace AionHR.Web.UI.Forms
             TimeApprovalRecordRequest r = new TimeApprovalRecordRequest();
             r.seqNo = currentSeqNo.Text; 
           
-            r.tvId = tvId;
+            r.tvId = tvIdParameter;
             
 
             RecordResponse<Time> response = _timeAttendanceService.ChildGetRecord<Time>(r);
@@ -1779,7 +1779,7 @@ namespace AionHR.Web.UI.Forms
                 shiftIdTF.Text = string.IsNullOrEmpty(response.result.shiftId) ? "" : response.result.shiftId;
                 TimeNotes.Text = response.result.notes;
                 justification.Text = response.result.justification;
-
+                tvId.Text = tvIdParameter;
 
                 FillTimeApproval(response.result.dtFrom, response.result.dtTo, response.result.employeeId, response.result.timeCode, response.result.shiftId, response.result.status.ToString());
             }

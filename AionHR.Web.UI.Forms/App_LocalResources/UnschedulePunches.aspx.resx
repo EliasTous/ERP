@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Certificate Level Info</value>
+    <value>Unschedule Punches Info</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Certificate Level</value>
+    <value>Edit Unschedule Punches</value>
   </data>
   <data name="FieldAttendedHours" xml:space="preserve">
     <value>Attended Hours</value>
