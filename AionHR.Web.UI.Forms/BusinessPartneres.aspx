@@ -305,7 +305,7 @@
                                  
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false"  />
                            
-                                      <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="bcId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="bcId" FieldLabel="<%$ Resources:FieldBusinessPartnerCategory%>" SimpleSubmit="true">
+                                      <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="bcId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="bcId" FieldLabel="<%$ Resources:FieldBusinessPartnerCategory%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="bcIdStore">
                                             <Model>
@@ -321,8 +321,21 @@
 
                                 </ext:ComboBox>
                             
+                                 <ext:ComboBox AllowBlank="false"  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldStatus%>"  runat="server" DisplayField="value" ValueField="key"   Name="activeStatus" ID="activeStatus" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="activeStatusStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       </ext:ComboBox>
                                 
-                                <ext:Checkbox ID="isInactive" runat="server" FieldLabel="<%$ Resources: FieldInactive%>" Name="isInactive" InputValue="true" />
                               <ext:TextField ID="email" runat="server" FieldLabel="<%$ Resources:FieldEmail%>" Name="email" Vtype="email"  />
 
                             </Items>

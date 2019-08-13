@@ -148,8 +148,48 @@ namespace AionHR.Web.UI.Forms
             return response.Items;
         }
 
+        public static bool isThreadSafe()
+        {
+            if (HttpRuntime.Cache.Get("isThreadSafe") != null)
+            {
+                if (HttpRuntime.Cache.Get("isThreadSafe").ToString() == "3000")
+                    return false;
+            }
 
-      
+
+
+            return true;
+
+
+
+        }
+        public static string getThreadSafeCounter()
+        {
+            if (HttpRuntime.Cache.Get("isThreadSafe") != null)
+                return HttpRuntime.Cache.Get("isThreadSafe").ToString();
+            else
+                return "0";
+
+
+        }
+
+        public static void increasThreadSafeCounter()
+        {
+            int counter = 0;
+            if (HttpRuntime.Cache.Get("isThreadSafe") != null)
+            {
+                counter = Convert.ToInt32(getThreadSafeCounter());
+                counter++;
+
+                HttpRuntime.Cache.Insert("isThreadSafe", counter.ToString());
+            }
+            else
+                HttpRuntime.Cache.Insert("isThreadSafe", 1);
+
+
+
+        }
+
 
     }
     public enum ActiveStatus { ACTIVE = 1, INACTIVE = -1 }
@@ -189,8 +229,9 @@ namespace AionHR.Web.UI.Forms
 
             return false;
         }
+      
     }
-
   
+
 
 }

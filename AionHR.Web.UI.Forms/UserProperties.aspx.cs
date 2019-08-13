@@ -176,7 +176,7 @@ namespace AionHR.Web.UI.Forms
                     break;
 
                 case "imgDelete":
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.deleteUserProperty+"<br>"+ Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
                         {

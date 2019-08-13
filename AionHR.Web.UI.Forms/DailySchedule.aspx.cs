@@ -1035,10 +1035,10 @@ namespace AionHR.Web.UI.Forms
                 }
 
                 TimeSpan tsStart = TimeSpan.Parse(startAt);
-                timeFrom.Value = tsStart;
+                //timeFrom.Value = tsStart;
                 // timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
                 TimeSpan tsClose = TimeSpan.Parse(closeAt);
-                timeTo.Value = tsClose;
+              //  timeTo.Value = tsClose;
 
 
                 TimeSpan EmployeeTsStart, EmployeeTsEnd;
@@ -1096,7 +1096,11 @@ namespace AionHR.Web.UI.Forms
                     Thread.CurrentThread.CurrentCulture = culture;
                 }
                 html = FillFirstRow(html, timesList);
+                
+                items.ForEach(x =>
+                {
 
+                });
                 html = FillOtherRow(html, timesList, totalDays);
 
                 //Preparing the ids to get colorified
@@ -1188,10 +1192,10 @@ namespace AionHR.Web.UI.Forms
             }
 
             TimeSpan tsStart = TimeSpan.Parse(startAt);
-            timeFrom.Value = tsStart;
+           // timeFrom.Value = tsStart;
             // timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
             TimeSpan tsClose = TimeSpan.Parse(closeAt);
-            timeTo.Value = tsClose;
+        //    timeTo.Value = tsClose;
 
 
 
@@ -1273,9 +1277,13 @@ namespace AionHR.Web.UI.Forms
         private string FillOtherRow(string html, List<TimeSlot> timesList, int totalDays)
         {
             DateTime firstDate = dateFrom.SelectedDate;
-           
-            for (int count = 0; count <timesList.Count; count++)
+            DateTime LastDate = dateTo.SelectedDate;
+            int counter = 0;
+
+          while(firstDate.Date<= LastDate.Date)
             {
+                if (counter == 3000)
+                    break;
                 html += "<tr>";
                 if (!_systemService.SessionHelper.CheckIfArabicSession())
                 {
@@ -1298,6 +1306,7 @@ namespace AionHR.Web.UI.Forms
                                     }
                 html += "</tr>";
                 firstDate = firstDate.AddDays(1);
+                counter++;
             }
             return html;
         }

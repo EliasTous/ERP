@@ -1825,9 +1825,18 @@ namespace AionHR.Web.UI.Forms
 
 
                 }
-            
 
 
+                if (!Common.isThreadSafe())
+                {
+                    this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                    HttpRuntime.Cache.Remove("isThreadSafe");
+                    Common.errorMessage(null);
+                }
+                else
+                {
+                    Common.increasThreadSafeCounter();
+                }
                 RecordRequest req = new RecordRequest();
                 if (HttpRuntime.Cache["genEM_RecordId"] != null)
                     req.RecordID = HttpRuntime.Cache["genEM_RecordId"].ToString();

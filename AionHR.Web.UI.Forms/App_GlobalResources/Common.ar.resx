@@ -1437,4 +1437,7 @@
   <data name="RequiredFieldsHeader" xml:space="preserve">
     <value>Missing Filters</value>
   </data>
+  <data name="deleteUserProperty" xml:space="preserve">
+    <value>سيؤدي حذف خاصية إلى حذف جميع بيانات الموظف لهذه الخاصية</value>
+  </data>
 </root>

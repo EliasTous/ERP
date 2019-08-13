@@ -31,6 +31,7 @@ using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Model.AssetManagement;
 using AionHR.Services.Messaging.Asset_Management;
 using AionHR.Services.Messaging.System;
+using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -726,23 +727,31 @@ namespace AionHR.Web.UI.Forms
 
         protected void ApprovalsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            AssetManagementPurchaseOrderApprovalListRequest req = new AssetManagementPurchaseOrderApprovalListRequest();
-            req.poId = currentPurchaseOrderId.Text;
-          
-            if (string.IsNullOrEmpty(req.poId))
-            {
-                ApprovalStore.DataSource = new List<AssetManagementPurchaseOrderApproval>();
-                ApprovalStore.DataBind();
-            }
-            req.approverId = 0;
-            req.BranchId = "0";
-            req.DepartmentId = "0";
+            //AssetManagementPurchaseOrderApprovalListRequest req = new AssetManagementPurchaseOrderApprovalListRequest();
+            //req.poId = currentPurchaseOrderId.Text;
 
-            req.Status = 0;
-            req.Filter = "";
-          
+            //if (string.IsNullOrEmpty(req.poId))
+            //{
+            //    ApprovalStore.DataSource = new List<AssetManagementPurchaseOrderApproval>();
+            //    ApprovalStore.DataBind();
+            //}
+            //req.approverId = 0;
+            //req.BranchId = "0";
+            //req.DepartmentId = "0";
 
-         
+            //req.Status = 0;
+            //req.Filter = "";
+
+
+
+
+
+
+
+
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = "8|" + currentPurchaseOrderId.Text;
+
             ListResponse<AssetManagementPurchaseOrderApproval> response = _assetManagementService.ChildGetAll<AssetManagementPurchaseOrderApproval>(req);
 
             if (!response.Success)
@@ -753,24 +762,8 @@ namespace AionHR.Web.UI.Forms
             response.Items.ForEach(x =>
             {
 
-                switch (x.status)
-                {
-                    case 1:
-                        x.statusString = StatusNew.Text;
-                        break;
-                    case 2:
-                        x.statusString = StatusApproved.Text;
-                        ;
-                        break;
-
-
-                    case -1:
-                        x.statusString = StatusRejected.Text;
-
-                        break;
-                }
-            }
-          );
+                x.statusString = Common.XMLDictionaryList(_systemService, "13").Where(y => y.key == (x.status != null ? Convert.ToInt32(x.status) : 0)).Count() != 0 ? Common.XMLDictionaryList(_systemService, "13").Where(y => y.key == (x.status != null ? Convert.ToInt32(x.status) : 0)).First().value : "";
+            });
             ApprovalStore.DataSource = response.Items;
             ApprovalStore.DataBind();
         }

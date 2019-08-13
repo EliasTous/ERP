@@ -23,5 +23,7 @@ namespace AionHR.Model.Reports
         public string dateFromString { get; set; }
         public string dateToString { get; set; }
         public string grade { get; set; }
+        public string employeeRef { get; set; }
+        
     }
 }

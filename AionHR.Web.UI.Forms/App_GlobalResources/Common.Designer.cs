@@ -844,6 +844,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deleting a property will have all employee data for this property deleted..
+        /// </summary>
+        internal static string deleteUserProperty {
+            get {
+                return ResourceManager.GetString("deleteUserProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Departments.
         /// </summary>
         internal static string Departments {

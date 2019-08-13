@@ -195,4 +195,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>الشريك التجاري</value>
   </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
 </root>

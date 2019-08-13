@@ -639,6 +639,7 @@
                                  <ext:TextField ID="ORId" runat="server"  Name="recordId"   Hidden="true"/>
                                   <ext:TextField ID="employeeId" runat="server"  Name="employeeId"   Hidden="true"/>
                               
+                              
                                
 
                                 
@@ -773,6 +774,7 @@
                                   <ext:Parameter Name="clockStamp" Value="App.clockStamp.getValue()" Mode="Raw" />
                                   <ext:Parameter Name="employeeId" Value="App.employeeId.getValue()" Mode="Raw" />
                                     <ext:Parameter Name="recordId" Value="App.ORId.getValue()" Mode="Raw" />
+                              
                                 <ext:Parameter Name="values" Value ="#{overrideForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

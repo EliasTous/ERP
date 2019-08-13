@@ -160,7 +160,7 @@
                                                                                 <ext:ModelField Name="employeeId" />
                                                                                 <ext:ModelField Name="employeeName"  />
                                                                                 <ext:ModelField Name="dayId" />
-                                                                                <ext:ModelField Name="dayIdDate"  />
+                                                                                <ext:ModelField Name="date"  />
                                                                                   <ext:ModelField Name="fullName"  />
                                                                            
                                                                                 <ext:ModelField Name="timeCode" />
@@ -192,14 +192,15 @@
                                                                    
                                                                     </ext:Column>
                                                                 
-                                                                    <ext:DateColumn ID="DateColumn5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="dayIdDate" Hideable="false" Width="100" />
+                                                                    <ext:DateColumn ID="DateColumn5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="date" Hideable="false" Width="100" />
                           
 
                                                                      <ext:Column ID="Column26" DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="1" />
                                                                  <%--    <ext:Column ID="Column30" Visible="false" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
                                                                         
                                                                     </ext:Column>--%>
-                                                                      <ext:Column ID="Column1" DataIndex="arName" Text="<%$ Resources: Common,ApprovalReason %>"  runat="server" Flex="1" />
+                                                                      <ext:Column ID="Column2" DataIndex="statusString" Text="<%$ Resources: Common,ApprovalReason %>"  runat="server" Flex="1" />
+                                                                      <ext:Column ID="Column1" DataIndex="arName" Text="<%$ Resources: Common,status %>"  runat="server" Flex="1" />
                                                                      <ext:Column ID="Column28" DataIndex="notes" Text="<%$ Resources: FieldNotes %>" runat="server" Flex="2" />
 
                                                                 

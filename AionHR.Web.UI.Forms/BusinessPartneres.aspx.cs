@@ -93,9 +93,10 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-            
 
 
+                activeStatusStore.DataSource = Common.XMLDictionaryList(_systemService, "16");
+                activeStatusStore.DataBind();
                 if (_systemService.SessionHelper.CheckIfIsAdmin())
                     return;
                 try
@@ -267,6 +268,7 @@ namespace AionHR.Web.UI.Forms
                     address.Text = response.result.address.recordId;
                     addressForm.Reset();
                     addressForm.SetValues(response.result.address);
+                    activeStatus.Select(response.result.activeStatus);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;

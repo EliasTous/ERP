@@ -195,4 +195,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Associé</value>
   </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>Statut</value>
+  </data>
 </root>

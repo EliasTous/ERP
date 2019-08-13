@@ -1437,4 +1437,7 @@
   <data name="RequiredFieldsHeader" xml:space="preserve">
     <value>Missing Filters</value>
   </data>
+  <data name="deleteUserProperty" xml:space="preserve">
+    <value>La suppression d'une propriété aura toutes les données d'employé pour cette propriété supprimées.</value>
+  </data>
 </root>

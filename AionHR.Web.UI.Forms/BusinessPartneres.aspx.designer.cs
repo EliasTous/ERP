@@ -337,13 +337,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store bcIdStore;
         
         /// <summary>
-        /// isInactive control.
+        /// activeStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox isInactive;
+        protected global::Ext.Net.ComboBox activeStatus;
+        
+        /// <summary>
+        /// activeStatusStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store activeStatusStore;
         
         /// <summary>
         /// email control.

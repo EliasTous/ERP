@@ -39,6 +39,7 @@ namespace AionHR.Model.Dashboard
 
 
         public string employeeRef { get; set; }
+        public DateTime? date { get; set; }
 
 
     }

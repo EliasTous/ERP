@@ -549,6 +549,14 @@ namespace AionHR.Web.UI.Forms
                         duration.Text = durationValue;
                        // recordId.Text = id;
                         justification.Text = justificationParam;
+                        if (apStatus=="2" || apStatus=="-1")
+                        {
+                            disableEditing(false);
+                        }
+                        else
+                            disableEditing(true);
+
+                        recordId.Text = id;
                         this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                         this.EditRecordWindow.Show();
                         break;
@@ -750,6 +758,14 @@ namespace AionHR.Web.UI.Forms
 
            
         }
+        private void disableEditing(bool isActive)
+        {
+            duration.ReadOnly = !isActive;
+            damage.ReadOnly = !isActive;
+           
+            
+
+        }
 
         protected void SaveOverrideNewRecord(object sender, DirectEventArgs e)
         {
@@ -792,6 +808,9 @@ namespace AionHR.Web.UI.Forms
                 req.entity.damageLevel = recResp.result.damageLevel.ToString();
                 req.entity.duration = recResp.result.duration.ToString();
                 req.entity.shiftId = shiftId;
+                req.entity.employeeId = recResp.result.employeeId.ToString();
+                req.entity.date = recResp.result.date;
+
                 DateTime temp = DateTime.Now; 
                 if (DateTime.TryParse(clockStamp,out temp))
                     {
@@ -848,35 +867,27 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //getting the id of the record
-                string rep_params = vals.Text;
-                ReportGenericRequest req = new ReportGenericRequest();
-                req.paramString = rep_params;
+             
+                RecordRequest req = new RecordRequest();
+                req.RecordID = id; 
 
 
-                ListResponse<DashBoardTimeVariation> r = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);                    //Step 1 Selecting the object or building up the object for update purpose
+                RecordResponse<DashBoardTimeVariation> r = _timeAttendanceService.ChildGetRecord<DashBoardTimeVariation>(req);                    //Step 1 Selecting the object or building up the object for update purpose
 
-                //Step 2 : saving to store
-
-                //Step 3 :  Check if request fails
-                if (!r.Success)//it maybe another check
+                if (!r.Success)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                   Common.errorMessage(r);;
-                    return;
+                    Common.errorMessage(r);
+                    return; 
                 }
-                else
-                {
-
-                    if (r.Items.Where(x => x.primaryKey == id).Count() == 0)
-                        return;
-                    else
-                    {
+                   if (r.result!=null)
+                { 
+                  
                         PostRequest<DashBoardTimeVariation> request = new PostRequest<DashBoardTimeVariation>();
-                        request.entity = r.Items.Where(x => x.primaryKey == id).First();
+                        request.entity = r.result;
                         request.entity.damageLevel = Convert.ToInt16(damage.Value);
                         request.entity.duration = Convert.ToInt16(duration.Text);
                         request.entity.justification = b.justification;
-                      //  request.entity.recordId = null;
+                        
                         PostResponse<DashBoardTimeVariation> response = _timeAttendanceService.ChildAddOrUpdate<DashBoardTimeVariation>(request);
                         if (!response.Success)//it maybe another check
                         {
@@ -885,7 +896,7 @@ namespace AionHR.Web.UI.Forms
                             return;
                         }
                     }
-                }
+                
 
 
                 Store1.Reload();

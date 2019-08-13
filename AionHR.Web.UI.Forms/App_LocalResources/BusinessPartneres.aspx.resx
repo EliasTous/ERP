@@ -195,4 +195,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Business Partner</value>
   </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
 </root>

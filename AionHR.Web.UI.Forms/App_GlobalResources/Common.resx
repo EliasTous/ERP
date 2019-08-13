@@ -1380,4 +1380,7 @@
   <data name="UnschedulePunches" xml:space="preserve">
     <value>Unschedule Punches</value>
   </data>
+  <data name="deleteUserProperty" xml:space="preserve">
+    <value>Deleting a property will have all employee data for this property deleted.</value>
+  </data>
 </root>

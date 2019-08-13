@@ -19,7 +19,7 @@ namespace Reports.Skills
             {
                 var row = skillsDataSet1.Skills.NewSkillsRow();
 
-             //   row.Reference = u.employeeName.reference;
+                row.Reference = u.employeeRef;
                 row.FullName = u.employeeName;
                 row.DateFrom = u.dateFrom;
                 row.DateTo = u.dateTo;

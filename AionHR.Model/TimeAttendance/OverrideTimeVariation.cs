@@ -17,7 +17,9 @@ namespace AionHR.Model.TimeAttendance
         public DateTime clockStamp { get; set; }
         public string udid { get; set; }
         public string inOut { get; set; }
-     
+        public string employeeId { get; set; }
+        public DateTime? date { get; set; }
+
 
     }
 }
