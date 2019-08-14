@@ -535,7 +535,7 @@
     <value>194.791656, 28.2083359</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
-    <value>Employee Payroll Report</value>
+    <value>Pay Slip</value>
   </data>
   <data name="xrLabel7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
