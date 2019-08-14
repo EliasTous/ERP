@@ -29,6 +29,7 @@
     <script type="text/javascript" src="Scripts/Employees.js?id=24"></script>
 
     <script type="text/javascript">
+
         function setDepartmentAllowBlank(allowBlank) {
             App.departmentId.allowBlank = allowBlank;
 
@@ -89,6 +90,8 @@
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
            <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=RT108&values="/>
+         <ext:Hidden ID="textBody" runat="server" />
+        
         
         <ext:Hidden runat="server" ID="imageVisible" />
         <ext:Viewport runat="server" Layout="FitLayout" ID="Viewport1">
@@ -192,7 +195,7 @@
 
                                        <ext:Button ID="mailEmployees" runat="server" Icon="Mail">
                                     <Listeners>
-                                        <Click Handler="CheckSession(); App.Panel1.body.update('');  App.filter1.setText(App.texts.getValue());  App.mailForm.reset(); App.mailWindow.show(); " />
+                                        <Click Handler="CheckSession();App.pnlMaximumTamplate.body.update('');    App.Panel1.body.update('');  App.filter1.setText(App.texts.getValue());  App.mailForm.reset(); App.mailWindow.show(); " />
                                     </Listeners>
 
                                           
@@ -741,7 +744,7 @@
                         <ext:FormPanel
                             ID="mailForm" DefaultButton="saveMailButton"
                             runat="server"
-                          
+                         
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
@@ -789,7 +792,17 @@
                                      </DirectEvents>
                                        </ext:ComboBox>
 
-                                <ext:Panel runat="server" Layout="FitLayout" Flex="1" ID="Panel1" RTL="false" Border="true" Scrollable="Both" Height="150" Width="100"  />
+                                <ext:Panel  runat="server" Layout="FitLayout" Flex="1" ID="Panel1" RTL="false" Border="true" Scrollable="Both" Height="150" Width="100"   >
+                                    <Buttons>
+                                        <ext:Button   Text="<%$ Resources: FieldTemplate %>" runat="server">
+                                            <Listeners>
+                                                <Click Handler=" App.MaximumTamplateWindow.show();" />
+                                            </Listeners>
+                                        </ext:Button>
+                                    </Buttons>
+                                    </ext:Panel>
+                                  
+                                  
                                 
                                  <ext:ProgressBar ID="mailEmployeesProgressBar" runat="server"   />
                         
@@ -841,6 +854,31 @@
                 </ext:Task>
             </Tasks>
         </ext:TaskManager>
+
+          <ext:Window
+            ID="MaximumTamplateWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title=""
+            Width="450"
+            Height="500"
+            IDMode="Static"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Resizable="false"
+            Maximized="true"
+            Draggable="false"
+            Layout="Fit">
+            <Items>
+                <ext:Panel AutoUpdateLayout="true"
+                    runat="server"
+                    ID="pnlMaximumTamplate" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                    Layout="FitLayout" Flex="1" Anchor="100% 100%">
+                </ext:Panel>
+            </Items>
+
+        </ext:Window>
 
     </form>
 

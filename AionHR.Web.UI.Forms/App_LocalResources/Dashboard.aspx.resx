@@ -699,4 +699,7 @@
   <data name="ppType4" xml:space="preserve">
     <value>Duplicate punch</value>
   </data>
+  <data name="FieldHelpText" xml:space="preserve">
+    <value>Help Text</value>
+  </data>
 </root>

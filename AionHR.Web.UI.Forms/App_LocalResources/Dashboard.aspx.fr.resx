@@ -696,4 +696,7 @@
   <data name="ppType4" xml:space="preserve">
     <value>Poinçon en double</value>
   </data>
+  <data name="FieldHelpText" xml:space="preserve">
+    <value>Help Text</value>
+  </data>
 </root>

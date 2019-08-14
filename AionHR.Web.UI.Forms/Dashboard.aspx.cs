@@ -1760,7 +1760,7 @@ namespace AionHR.Web.UI.Forms
                 if (!string.IsNullOrEmpty(response.result.shiftStart))
                     shiftStart.Text = response.result.shiftStart;
                 if (!string.IsNullOrEmpty(response.result.shiftEnd))
-                    shiftStart.Text += " " + response.result.shiftStart;
+                    shiftStart.Text += " " + response.result.shiftEnd;
 
 
               
@@ -1780,6 +1780,7 @@ namespace AionHR.Web.UI.Forms
                 TimeNotes.Text = response.result.notes;
                 justification.Text = response.result.justification;
                 tvId.Text = tvIdParameter;
+                helpText.Text = response.result.helpText; 
 
                 FillTimeApproval(response.result.dtFrom, response.result.dtTo, response.result.employeeId, response.result.timeCode, response.result.shiftId, response.result.status.ToString());
             }

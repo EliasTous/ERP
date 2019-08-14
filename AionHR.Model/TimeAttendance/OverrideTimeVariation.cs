@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.TimeAttendance
 {
-  public  class OverrideTimeVariation
+  public  class OverrideTimeVariation :ModelBase
     {
         public string shiftId { get; set; }
         public string timeCode { get; set; }

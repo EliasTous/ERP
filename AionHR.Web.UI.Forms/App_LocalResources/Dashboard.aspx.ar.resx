@@ -699,4 +699,7 @@
   <data name="ppType4" xml:space="preserve">
     <value>بصمة مكررة </value>
   </data>
+  <data name="FieldHelpText" xml:space="preserve">
+    <value>نص المساعدة</value>
+  </data>
 </root>

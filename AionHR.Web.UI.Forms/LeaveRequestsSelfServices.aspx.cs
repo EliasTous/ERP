@@ -366,7 +366,7 @@ namespace AionHR.Web.UI.Forms
                                     fullName =response.result.replacementName
                                 }
                    });
-                replacementId.SetValue(response.result.employeeId);
+                replacementId.SetValue(response.result.replacementId);
 
             }
 

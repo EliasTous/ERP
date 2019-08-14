@@ -34,7 +34,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     if (string.IsNullOrEmpty(resp.LogId)|| resp.LogId=="0")
-                        X.Msg.Alert(Resources.Common.Error, resp.Error ).Show();
+                        X.Msg.Alert(Resources.Common.Error, string.Format("{0, -4}", resp.Error)).Show();
                     else
                     X.Msg.Alert(Resources.Common.Error, resp.Error + "<br>" + Resources.Errors.ErrorLogId + resp.LogId + "<br>").Show();
                 }
@@ -152,7 +152,7 @@ namespace AionHR.Web.UI.Forms
         {
             if (HttpRuntime.Cache.Get("isThreadSafe") != null)
             {
-                if (HttpRuntime.Cache.Get("isThreadSafe").ToString() == "3000")
+                if (HttpRuntime.Cache.Get("isThreadSafe").ToString() == "200")
                     return false;
             }
 

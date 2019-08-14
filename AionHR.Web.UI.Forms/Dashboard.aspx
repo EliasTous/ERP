@@ -4311,7 +4311,7 @@
                                       </ext:Panel>
                                   <ext:TextField ID="damageLevel" runat="server" Name="damageLevel" FieldLabel="<%$ Resources: FielddamageLevel%>" ReadOnly="true" />
                                   <ext:TextField ID="shiftStart" runat="server" Name="shiftStart" FieldLabel="<%$ Resources: FieldShift%>" ReadOnly="true" />
-                                <%--  <ext:TextField ID="shiftEnd" runat="server" Name="shiftEnd" FieldLabel="<%$ Resources: FieldshiftEnd%>" ReadOnly="true" />--%>
+                                <ext:TextField ID="helpText" runat="server" Name="helpText" FieldLabel="<%$ Resources: FieldHelpText%>" ReadOnly="true" />
                                 
                                
                               

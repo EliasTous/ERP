@@ -57,7 +57,9 @@ namespace AionHR.Model.TimeAttendance
         public DateTime dtFrom { get; set; }
         public DateTime dtTo { get; set; }
         public DateTime date { get; set; }
-        
+        public string helpText { get; set; }
+
+
 
 
 

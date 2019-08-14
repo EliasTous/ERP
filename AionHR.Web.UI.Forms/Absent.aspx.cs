@@ -536,8 +536,7 @@ namespace AionHR.Web.UI.Forms
                 string apStatus = e.ExtraParams["apStatus"];
                 string type = e.ExtraParams["type"];
                 string justificationParam = e.ExtraParams["justification"];
-                
-
+              
                 switch (type)
                 {
                     case "imgEdit":
@@ -810,7 +809,7 @@ namespace AionHR.Web.UI.Forms
                 req.entity.shiftId = shiftId;
                 req.entity.employeeId = recResp.result.employeeId.ToString();
                 req.entity.date = recResp.result.date;
-
+                req.entity.recordId = recordId;
                 DateTime temp = DateTime.Now; 
                 if (DateTime.TryParse(clockStamp,out temp))
                     {
@@ -828,7 +827,7 @@ namespace AionHR.Web.UI.Forms
                     return; 
                 }
 
-
+                Store1.Reload();
                 Notification.Show(new NotificationConfig
                 {
                     Title = Resources.Common.Notification,

@@ -1092,8 +1092,11 @@ namespace AionHR.Web.UI.Forms
                 return; 
             }
 
-            if (resp.result!=null)
-            Panel1.Update(Server.UrlDecode(resp.result.textBody),true);
+            if (resp.result != null)
+            {
+                Panel1.Update(Server.UrlDecode(resp.result.textBody), true);
+                pnlMaximumTamplate.Update(Server.UrlDecode(resp.result.textBody), true);
+            }
         }
     }
 }

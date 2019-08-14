@@ -202,6 +202,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden loaderUrl;
         
         /// <summary>
+        /// textBody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden textBody;
+        
+        /// <summary>
         /// imageVisible control.
         /// </summary>
         /// <remarks>
@@ -749,5 +758,23 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TaskManager TaskManager1;
+        
+        /// <summary>
+        /// MaximumTamplateWindow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window MaximumTamplateWindow;
+        
+        /// <summary>
+        /// pnlMaximumTamplate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel pnlMaximumTamplate;
     }
 }
