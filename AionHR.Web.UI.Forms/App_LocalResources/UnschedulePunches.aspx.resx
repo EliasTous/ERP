@@ -129,6 +129,12 @@
   <data name="FieldBranch" xml:space="preserve">
     <value>Branch</value>
   </data>
+  <data name="FieldDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FieldDuration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
   <data name="FieldEmployeeName" xml:space="preserve">
     <value>Employee</value>
   </data>
@@ -146,6 +152,9 @@
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
+  </data>
+  <data name="FieldShifts" xml:space="preserve">
+    <value>Shifts</value>
   </data>
   <data name="FieldVariation" xml:space="preserve">
     <value>Variation</value>

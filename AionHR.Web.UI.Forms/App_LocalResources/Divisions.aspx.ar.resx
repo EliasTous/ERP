@@ -124,7 +124,7 @@
     <value>تعديل الإدارة العليا</value>
   </data>
   <data name="FieldIsInactive" xml:space="preserve">
-    <value>غير نشط؟</value>
+    <value>حالة نشطة</value>
   </data>
   <data name="FieldName" xml:space="preserve">
     <value>الاسم</value>

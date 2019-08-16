@@ -110,7 +110,8 @@ namespace AionHR.Web.UI.Forms
                 }
                 FillDepartment();
                 dateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                ListRequest req = new ListRequest();
+                AdminDepartmentListRequest req = new AdminDepartmentListRequest();
+                req.status = 0;
                 ListResponse<AdminDepartment> resp = _administrationService.ChildGetAll<AdminDepartment>(req);
                 if (!resp.Success)
                 {

@@ -14,16 +14,16 @@
 
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css" />
     <link rel="stylesheet" type="text/css" href="../CSS/RT101.css?id=2" />
-    <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Dashboard.js"></script>
+    <link rel="stylesheet" href="CSS/LiveSearch.css" />
+    <script type="text/javascript" src="../Scripts/Dashboard.js?$$REVISION$$"></script>
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
-    <script type="text/javascript" src="../Scripts/common.js"></script>
-    <script type="text/javascript" src="../Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="Scripts/common.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.min.js"></script>
     <script src="https://superal.github.io/canvas2image/canvas2image.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="../Scripts/moment.js"></script>
-    <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
-    <script type="text/javascript" src="../Scripts/ReportsCommon.js"></script>
+    <script type="text/javascript" src="Scripts/moment.js"></script>
+    <script type="text/javascript" src="Scripts/RT101.js?id=18"></script>
+    <script type="text/javascript" src="Scripts/ReportsCommon.js"></script>
     <script type="text/javascript">
         function alertNow(s, e) {
 

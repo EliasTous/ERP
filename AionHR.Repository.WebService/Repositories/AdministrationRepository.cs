@@ -30,7 +30,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(AdminDocumentDue), "qryDD");
             ChildGetAllLookup.Add(typeof(AdminDocTransfer), "qryDT");
             ChildGetAllLookup.Add(typeof(AdminDocumentDX), "qryDX");
-            
+            ChildGetAllLookup.Add(typeof(AdminDepartment), "qryDO");
+
 
 
             ChildGetLookup.Add(typeof(AdTemplate), "getTE");

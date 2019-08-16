@@ -27,6 +27,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Services.Messaging.Reports;
 using AionHR.Model.TimeAttendance;
+using AionHR.Model.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -36,6 +37,7 @@ namespace AionHR.Web.UI.Forms
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
 
         protected override void InitializeCulture()
         {
@@ -116,6 +118,7 @@ namespace AionHR.Web.UI.Forms
                 //    return;
                 //}
                 currentEmployee.Text = "";
+                Column8.Format = _systemService.SessionHelper.GetDateformat();
 
 
             }
@@ -167,20 +170,26 @@ namespace AionHR.Web.UI.Forms
             string employeeId = e.ExtraParams["employeeId"];
             currentEmployee.Text = employeeId;
             string startDate = ""
-                , endDate="", branchId=""; 
+                , endDate="", branchId="";
 
-            Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
-            if (parameters.ContainsKey("1"))
-                startDate = parameters["1"];
-            if (parameters.ContainsKey("2"))
-                endDate= parameters["2"];
-            if (parameters.ContainsKey("4"))
-                branchId= parameters["4"];
-
-
-            reportPanel.LoadContent("RT309.aspx?_fromUP=true&_employeeId="+ employeeId+ "&_startDate="+startDate+ "&_endDate=" + endDate+ "&_branchId="+branchId, true);
+            //Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+            //if (parameters.ContainsKey("1"))
+            //    startDate = parameters["1"];
+            //if (parameters.ContainsKey("2"))
+            //    endDate= parameters["2"];
+            //if (parameters.ContainsKey("4"))
+            //    branchId= parameters["4"];
 
 
+
+
+
+
+
+
+            //      reportPanel.LoadContent(new ComponentLoader { Url = "RT309.aspx?_fromUP=true&_employeeId=" + employeeId + "&_startDate=" + startDate + "&_endDate=" + endDate + "&_branchId=" + branchId, Mode = LoadMode.Frame, DisableCaching = true });
+
+            FillStore2(employeeId);
 
             EditRecordWindow.Show();
 
@@ -357,6 +366,100 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-     
+
+        private void FillStore2(string employeeId)
+        {
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = vals.Text;
+           if (string.IsNullOrEmpty( vals.Text))
+            {
+                req.paramString = "3|" + employeeId; 
+
+            }
+           else
+            {
+                req.paramString = vals.Text+ "^3|" + employeeId;
+            }
+            ListResponse<AionHR.Model.Reports.RT309> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT309>(req);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            DateTime temp;
+            resp.Items.ForEach(x =>
+            {
+                x.shiftId = buildShiftValue(x.shiftLog);
+                if (DateTime.TryParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out temp))
+                x.dayIdDateTime = temp;
+            }
+ 
+            );
+            store2.DataSource = resp.Items;
+            store2.DataBind(); 
+
+        }
+
+        private string buildShiftValue(List<ShiftLog> shifts)
+        {
+            try
+            {
+                string shift = "";
+
+                shifts.ForEach(x => {
+
+                    if (string.IsNullOrEmpty(x.start))
+                        shift += x.end;
+                    else
+                    {
+                        if (string.IsNullOrEmpty(x.end))
+                        {
+                            shift += x.start;
+                        }
+                        else
+                            shift += x.start + " - " + x.end;
+                    }
+
+                    shift += Environment.NewLine;
+
+                });
+
+                //if (shifts.Count != 0)
+                //{
+                //    if (string.IsNullOrEmpty(shifts[0].start))
+                //        shift = shifts[0].end;
+                //    else
+                //    {
+                //        if (string.IsNullOrEmpty(shifts[0].end))
+                //        {
+                //            shift = shifts[0].start;
+                //        }
+                //        else
+                //            shift = shifts[0].start + " - " + shifts[0].end;
+                //    }
+
+                //    shift += Environment.NewLine;
+
+                //}
+                //if (shifts.Count==2)
+                //{
+                //    shift += Environment.NewLine;
+                //    if (string.IsNullOrEmpty(shifts[1].start))
+                //        shift += shifts[1].end;
+                //    else
+                //    {
+                //        if (string.IsNullOrEmpty(shifts[1].end))
+                //        {
+                //            shift += shifts[1].start;
+                //        }
+                //        else
+                //            shift += shifts[1].start + " - " + shifts[1].end;
+                //    }
+                //}
+                return shift;
+            }
+            catch { return ""; }
+        }
+
     }
 }

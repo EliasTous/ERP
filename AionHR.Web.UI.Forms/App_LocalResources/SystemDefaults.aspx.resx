@@ -516,4 +516,7 @@
   <data name="TimeVariationEndDate" xml:space="preserve">
     <value>Time Variation End Date</value>
   </data>
+  <data name="weeklyTAHours" xml:space="preserve">
+    <value>Weekly Working Hours</value>
+  </data>
 </root>

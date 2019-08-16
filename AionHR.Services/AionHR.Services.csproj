@@ -128,6 +128,7 @@
     <Compile Include="Interfaces\ITaskManagementService.cs" />
     <Compile Include="Interfaces\ITimeAttendanceService.cs" />
     <Compile Include="Messaging\AccessControl\AccessControlRequests.cs" />
+    <Compile Include="Messaging\AdministrativeAffairs\AdminDepartmentListRequest.cs" />
     <Compile Include="Messaging\AdministrativeAffairs\AdministrativeAffairsRequests.cs" />
     <Compile Include="Messaging\AdministrativeAffairs\DocumentDueRecordRequest.cs" />
     <Compile Include="Messaging\AdministrativeAffairs\DocumentNoteListRequest.cs" />

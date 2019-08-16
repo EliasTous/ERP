@@ -124,7 +124,7 @@
     <value>Modifier la division</value>
   </data>
   <data name="FieldIsInactive" xml:space="preserve">
-    <value>Est inactif?</value>
+    <value>Statut Actif</value>
   </data>
   <data name="FieldName" xml:space="preserve">
     <value>Nom</value>

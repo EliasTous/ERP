@@ -459,4 +459,7 @@
   <data name="lastGenFSDateTime" xml:space="preserve">
     <value>آخر جدول تم إنشاؤه</value>
   </data>
+  <data name="weeklyTAHours" xml:space="preserve">
+    <value>ساعات العمل الاسبوعية</value>
+  </data>
 </root>

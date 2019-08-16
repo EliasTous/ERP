@@ -262,7 +262,7 @@
             
             <Items>
               
-                          <ext:Panel runat="server" Layout="FitLayout"  ID="reportPanel" DefaultAnchor="100%">
+                       <%--   <ext:Panel runat="server" Layout="FitLayout"  ID="reportPanel" DefaultAnchor="100%" >
                     <Loader runat="server" Url="RT309.aspx" Mode="Frame" ID="Loader1" TriggerEvent="show" 
                         ReloadOnEvent="true"
                         DisableCaching="true">
@@ -270,8 +270,150 @@
                          </Listeners>
                         <LoadMask ShowMask="true" />
                     </Loader>
-                </ext:Panel>
-             
+                </ext:Panel>--%>
+
+
+                  <ext:GridPanel 
+                    ID="GridPanel2"
+                    runat="server"
+                  
+                    PaddingSpec="0 0 1 0"
+                    Header="false" 
+                    Title="<%$ Resources: WindowTitle %>"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"  
+                    Icon="User"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+
+                   
+                           <Store>
+                                <ext:Store runat="server" ID="store2">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                               
+                                                 <ext:ModelField Name="employeeRef" />
+                                                   <ext:ModelField Name="employeeName" />
+                                                   <ext:ModelField Name="dayIdDateTime" />
+                                                   <ext:ModelField Name="duration" />
+                                                   <ext:ModelField Name="shiftId" />
+
+                                               
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+                   
+
+
+                    <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
+                        <Columns>
+                         
+                            <ext:Column    CellCls="cellLink" ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployeeRef%>" DataIndex="employeeRef" Flex="1" Hideable="false" />
+                             <ext:Column    CellCls="cellLink" ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployeeName%>" DataIndex="employeeName" Flex="2" Hideable="false" />
+                             <ext:DateColumn    ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="dayIdDateTime" Flex="2" Hideable="false" />
+                              <ext:Column    CellCls="cellLink" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDuration%>" DataIndex="duration" Flex="2" Hideable="false" />
+                               <ext:Column    CellCls="cellLink" ID="Column10" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldShifts%>" DataIndex="shiftId" Flex="2" Hideable="false" Align="Center" />
+                           
+                      
+                         
+                             
+                        
+                           
+
+                            <ext:Column runat="server"
+                                ID="Column12" Visible="false"
+                                Text="<%$ Resources: Common , Delete %>"
+                                Width="100"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="deleteRender" />
+                              
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                ID="Column13" Visible="false"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
+                            
+                           <ext:Column runat="server"
+                                ID="Column14"  Visible="false"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer handler="return editRender();" />
+
+                            </ext:Column>
+
+
+
+                        </Columns>
+                    </ColumnModel>
+                    <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar3" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar2" runat="server" />
+                                <ext:ToolbarFill />
+                                
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                    <BottomBar>
+
+                        <ext:PagingToolbar ID="PagingToolbar2"
+                            runat="server"
+                            FirstText="<%$ Resources:Common , FirstText %>"
+                            NextText="<%$ Resources:Common , NextText %>"
+                            PrevText="<%$ Resources:Common , PrevText %>"
+                            LastText="<%$ Resources:Common , LastText %>"
+                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
+                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
+                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
+                            DisplayInfo="true"
+                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
+                            Border="true"
+                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
+                            <Items>
+                               
+                            </Items>
+                            <Listeners>
+                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                            </Listeners>
+                        </ext:PagingToolbar>
+
+                    </BottomBar>
+                
+                    <View>
+                        <ext:GridView ID="GridView2" runat="server" />
+                    </View>
+
+                  
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single"  StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
                
                      
             </Items>

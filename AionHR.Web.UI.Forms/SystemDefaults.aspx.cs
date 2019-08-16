@@ -685,8 +685,11 @@ namespace AionHR.Web.UI.Forms
                 backofficeEmail.Text = items.Where(s => s.Key == "backofficeEmail").First().Value;
             }
             catch { }
-
-
+            try
+            {
+                weeklyTAHours.Text = (items.Where(s => s.Key == "weeklyTAHours").First().Value);
+            }
+            catch { }
 
             try { pp_storeType.Select(items.Where(s => s.Key == "pp_storeType").First().Value); }
 
@@ -1001,6 +1004,12 @@ namespace AionHR.Web.UI.Forms
             else
                 submittedValues.Add(new KeyValuePair<string, string>("punchSource", values.punchSource.ToString()));
 
+
+            if (values.weeklyTAHours != null && !string.IsNullOrEmpty(values.weeklyTAHours.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("weeklyTAHours", values.weeklyTAHours.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("weeklyTAHours", "0"));
+
             return submittedValues;
         }
 
@@ -1145,6 +1154,8 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("pyalDays", values.pyalDays.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("pyalDays", "30"));
+
+          
             if (values.pyaaDays != null && !string.IsNullOrEmpty(values.pyaaDays.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("pyaaDays", values.pyaaDays.ToString()));
             else

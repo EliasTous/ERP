@@ -286,9 +286,9 @@ namespace AionHR.Web.UI.Forms
                              if (!string.IsNullOrEmpty(x.damageLevel))
                                  x.damageLevel = FillDamageLevelString(Convert.ToInt16(x.damageLevel));
                              if (rtl)
-                                 x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                                 x.dayIdString = x.date.ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
                              else
-                                 x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
+                                 x.dayIdString = x.date.ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
 
 
                          }

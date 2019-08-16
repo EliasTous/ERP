@@ -513,4 +513,7 @@
   <data name="lastGenFSDateTime" xml:space="preserve">
     <value>dernier horaire généré</value>
   </data>
+  <data name="weeklyTAHours" xml:space="preserve">
+    <value>Heures de travail hebdomadaires</value>
+  </data>
 </root>
