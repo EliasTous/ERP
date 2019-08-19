@@ -1347,4 +1347,7 @@
   <data name="RequiredFieldsHeader" xml:space="preserve">
     <value>Missing Filters</value>
   </data>
+  <data name="UnschedulePunches" xml:space="preserve">
+    <value>außerplanmäßige Schläge info</value>
+  </data>
 </root>

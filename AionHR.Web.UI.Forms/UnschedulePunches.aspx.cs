@@ -312,7 +312,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-        protected void SaveNewRecord(object sender, DirectEventArgs e)
+        protected void processPunches(object sender, DirectEventArgs e)
         {
 
             processUnscheduledPunch PUP = new processUnscheduledPunch();
@@ -324,8 +324,9 @@ namespace AionHR.Web.UI.Forms
             
             if (parameters.ContainsKey("4"))
                 PUP.branchId = parameters["4"];
-
-            PUP.employeeId = currentEmployee.Text;
+            if (parameters.ContainsKey("3"))
+                PUP.employeeId = parameters["3"];
+           
             PostRequest<processUnscheduledPunch> request = new PostRequest<processUnscheduledPunch>();
 
             request.entity = PUP;
@@ -346,7 +347,7 @@ namespace AionHR.Web.UI.Forms
                     Html = Resources.Common.RecordSavingSucc
                 });
 
-                this.EditRecordWindow.Close();
+              //  this.EditRecordWindow.Close();
             }
 
             
@@ -461,5 +462,9 @@ namespace AionHR.Web.UI.Forms
             catch { return ""; }
         }
 
+        protected void Unnamed_Event()
+        {
+
+        }
     }
 }

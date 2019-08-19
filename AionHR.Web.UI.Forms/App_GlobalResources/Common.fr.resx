@@ -1440,4 +1440,7 @@
   <data name="deleteUserProperty" xml:space="preserve">
     <value>La suppression d'une propriété aura toutes les données d'employé pour cette propriété supprimées.</value>
   </data>
+  <data name="UnschedulePunches" xml:space="preserve">
+    <value>Informations sur les poinçons sans horaire</value>
+  </data>
 </root>

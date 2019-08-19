@@ -598,7 +598,10 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             conditionsGrid.Disabled = true;
             messagesGrid.Disabled = true;
-
+            conditionsStore.DataSource = new List<Model.Company.Structure.RuleCondition>();
+            conditionsStore.DataBind(); 
+            messagesStore.DataSource= new List<Model.Company.Structure.RuleMessage>();
+            messagesStore.DataBind(); 
             this.EditRecordWindow.Show();
         }
 

@@ -2460,7 +2460,8 @@
                                                             <Store>
                                                                 <ext:Store 
                                                                     ID="punchesStore"
-                                                                    runat="server" OnReadData="punchesStore_ReadData">
+                                                                    runat="server" OnReadData="punchesStore_ReadData" >
+                                                                    
                                                                   
                                                                     <Model>
                                                                         <ext:Model ID="Model5" runat="server" >
@@ -4268,8 +4269,8 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:Time%>"
-            Width="450"
-            Height="500"
+            MinWidth="550"
+            MinHeight="550"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -4396,11 +4397,11 @@
                                                                                                                                 
                           
 
-                                                                     <ext:Column ID="Column43"  DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="1" />
+                                                                     <ext:Column ID="Column43"  DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="2" />
                                                                      <ext:Column ID="Column44" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
                                                                          
                                                                     </ext:Column>
-                                                                     <ext:Column ID="Column66" DataIndex="arName" Text="<%$ Resources: Common,ApprovalReason %>" Flex="1" runat="server"  />
+                                                                     <ext:Column ID="Column66" DataIndex="arName" Text="<%$ Resources: Common,ApprovalReason %>" Flex="2" runat="server"  />
                                                                       
                                                                      <ext:Column ID="Column45" DataIndex="notes" Text="<%$ Resources: FieldNotes %>" runat="server" Flex="2" />
 

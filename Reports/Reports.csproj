@@ -459,6 +459,12 @@
     <Compile Include="TimeAttendanceSummary.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TimeAttendanceViewReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimeAttendanceViewReport.Designer.cs">
+      <DependentUpon>TimeAttendanceViewReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="TurnoverRate.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1099,6 +1105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TimeAttendanceSummary.resx">
       <DependentUpon>TimeAttendanceSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeAttendanceViewReport.resx">
+      <DependentUpon>TimeAttendanceViewReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TurnoverRate.ar.resx">
       <DependentUpon>TurnoverRate.cs</DependentUpon>

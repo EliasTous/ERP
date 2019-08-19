@@ -26,6 +26,12 @@
         }
     </style>
     <script type="text/javascript">
+
+
+           function openInNewTab() {
+            window.document.forms[0].target = '_blank';
+
+        }
         function setTotal(t, b) {
             // alert(t);
             // alert(document.getElementById("total"));
@@ -110,6 +116,9 @@
          <ext:Hidden ID="allHF" runat="server" Text="<%$ Resources: FieldAll %>" />
           <ext:Hidden ID="pendingHF" runat="server" Text="<%$ Resources: FieldPending %>" />
           <ext:Hidden ID="approvedHF" runat="server" Text="<%$ Resources: FieldApptoved %>" />
+
+              <ext:Hidden ID="StartAt" runat="server" />
+        
        
 
 
@@ -190,6 +199,25 @@
                                                 <Click Handler="App.Store1.reload();" />
                                             </Listeners>
                                         </ext:Button>
+                                       
+                                            <ext:Button runat="server" Icon="Printer">
+                                    <Menu>
+                                        <ext:Menu runat="server">
+                                            <Items>
+                                                <ext:MenuItem runat="server"  Text="<%$ Resources:Common , Print %>" AutoPostBack="true" OnClick="printBtn_Click" OnClientClick="openInNewTab();"  >
+                                            
+                                                    <Listeners>
+                                                        <Click Handler="openInNewTab();" />
+                                                    </Listeners>
+                                                </ext:MenuItem>
+                                              
+                                            
+                                                    
+                                                
+                                            </Items>
+                                        </ext:Menu>
+                                    </Menu>
+                                </ext:Button>
                                        
                                     </Content>
                                 </ext:Container>

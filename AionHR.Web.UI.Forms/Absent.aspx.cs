@@ -739,8 +739,11 @@ namespace AionHR.Web.UI.Forms
 
                     {
 
+                       
+
                         if (temp.TimeOfDay.Hours >= 6)
                             clockStamp.MinDate = dtFrom.SelectedDate;
+                        clockStamp.Value = dtFromParameter;
                     }
 
                     break;
@@ -750,6 +753,7 @@ namespace AionHR.Web.UI.Forms
                        
                         if (temp.TimeOfDay.Hours <= 6)
                             clockStamp.MaxDate = dtTo.SelectedDate;
+                        clockStamp.Value = dtToParameter;
                     }
                    
                     break;

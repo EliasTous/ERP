@@ -104,6 +104,13 @@
                                                 <Click Handler="App.Store1.reload();" />
                                             </Listeners>
                                         </ext:Button>
+                                          <ext:Button runat="server" Text="<%$Resources: Process %>" >
+                                           <DirectEvents> 
+                                               <Click OnEvent="processPunches">
+                                                   <EventMask ShowMask="true" />
+                                               </Click>
+                                           </DirectEvents>
+                                        </ext:Button>
                                        
                                     </Content>
                                 </ext:Container>
@@ -164,7 +171,7 @@
                             </ext:Column>
                             
                            <ext:Column runat="server"
-                                ID="colEdit"  Visible="true"
+                                ID="colEdit"  Visible="false"
                                 Text=""
                                 Width="100"
                                 Hideable="false"
@@ -419,7 +426,7 @@
             </Items>
                     
             <Buttons>
-                <ext:Button ID="SaveButton" runat="server" Text="Process" Icon="Disk">
+              <%--  <ext:Button  ID="SaveButton" runat="server" Text="Process" Icon="Disk" >
 
                     <Listeners>
                         <Click Handler="CheckSession();  " />
@@ -432,7 +439,7 @@
                             </ExtraParams>
                         </Click>
                     </DirectEvents>
-                </ext:Button>
+                </ext:Button>--%>
                 <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
                         <Click Handler="this.up('window').hide();" />

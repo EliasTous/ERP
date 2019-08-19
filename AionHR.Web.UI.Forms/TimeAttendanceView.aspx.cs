@@ -32,6 +32,7 @@ using AionHR.Model.Dashboard;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Services.Messaging.System;
 using AionHR.Services.Messaging.Reports;
+using Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -97,13 +98,13 @@ namespace AionHR.Web.UI.Forms
 
                 SetExtLanguage();
 
-               
+                StartAt.Text = "0";
                 if (!string.IsNullOrEmpty(Request.QueryString["_fromSelfService"]))
                 {
                     FromSelfService.Text = Request.QueryString["_fromSelfService"];
                     loaderUrl.Text = "ReportParameterBrowser.aspx?_reportName=SSAD&values=";
                     Panel8.Loader.Url = "ReportParameterBrowser.aspx?_reportName=SSAD";
-                 
+
                     vals.Text = "2|" + new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1).ToString("yyyyMMdd") + "^3|" + DateTime.Today.ToString("yyyyMMdd");
                 }
                 else
@@ -113,7 +114,7 @@ namespace AionHR.Web.UI.Forms
                 }
 
                 format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-               
+
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceDay), null, GridPanel1, null, null);
@@ -127,10 +128,10 @@ namespace AionHR.Web.UI.Forms
                 }
 
                 List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
-               
+
 
             }
-           
+
 
         }
 
@@ -243,12 +244,12 @@ namespace AionHR.Web.UI.Forms
 
 
         }
- 
+
 
         /// <summary>
         /// hiding uncessary column in the grid. 
         /// </summary>
-        
+
 
 
         private void SetExtLanguage()
@@ -404,17 +405,18 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                
+
 
 
                 string rep_params = vals.Text;
                 TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
                 req.paramString = rep_params;
                 req.StartAt = e.Start.ToString();
+                StartAt.Text= e.Start.ToString();
                 req.Size = "30";
                 req.sortBy = "dayId";
                 ListResponse<AttendanceDay> daysResponse;
-                if (FromSelfService.Text=="true")
+                if (FromSelfService.Text == "true")
                     daysResponse = _selfServiceService.ChildGetAll<AttendanceDay>(req);
                 else
                     daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
@@ -435,7 +437,7 @@ namespace AionHR.Web.UI.Forms
                     case "ar":
                         {
 
-                            c = new CultureInfo("ar") ;
+                            c = new CultureInfo("ar");
                         }
                         break;
                     case "en":
@@ -457,11 +459,11 @@ namespace AionHR.Web.UI.Forms
                             c = new CultureInfo("de-DE");
                         }
                         break;
-                  
-                       
+
+
                 }
 
-               
+
                 foreach (var x in daysResponse.Items)
                 {
                     max++;
@@ -507,17 +509,17 @@ namespace AionHR.Web.UI.Forms
                     }
                     tvResp.Items.ForEach(tv => {
                         string color = "black";
-                        if(tv.apStatus.HasValue)
-                        switch(tv.apStatus.Value)
-                        {
-                            case 1: color = "black"; break;
-                            case 2: color = "green"; break;
-                            case -1: color = "red"; break;
+                        if (tv.apStatus.HasValue)
+                            switch (tv.apStatus.Value)
+                            {
+                                case 1: color = "black"; break;
+                                case 2: color = "green"; break;
+                                case -1: color = "red"; break;
 
-                                   
-                        }
-                        string scriptCode = "App.direct.DisplayApprovals(\""+x.dayId+"\",\""+x.employeeId+"\",\""+tv.shiftId+"\",\""+tv.timeCode+"\");";
-                        tvstring += "<span class='time-variation-link' style='color:" + color+"' onclick='"+ scriptCode+"'>"+tv.timeName +" : "+tv.duration.ToString()+" "+ minutesText.Text+"</span>"+"|"; });
+
+                            }
+                        string scriptCode = "App.direct.DisplayApprovals(\"" + x.dayId + "\",\"" + x.employeeId + "\",\"" + tv.shiftId + "\",\"" + tv.timeCode + "\");";
+                        tvstring += "<span class='time-variation-link' style='color:" + color + "' onclick='" + scriptCode + "'>" + tv.timeName + " : " + tv.duration.ToString() + " " + minutesText.Text + "</span>" + "|"; });
                     if (tvstring.Length > 1)
                         tvstring = tvstring.Substring(0, tvstring.Length - 1);
                     objs.Add(new TimeAttendanceCompositeObject()
@@ -532,9 +534,9 @@ namespace AionHR.Web.UI.Forms
                         employeeId = x.employeeId.ToString(),
                         dayIdString = x.dayIdString,
                         positionName = x.positionName,
-                        attendance=x.attendance,
-                        schedule=x.schedule
-                       
+                        attendance = x.attendance,
+                        schedule = x.schedule
+
                     });
                     if (max > 30)
                         break;
@@ -607,7 +609,7 @@ namespace AionHR.Web.UI.Forms
             ReportGenericRequest req = new ReportGenericRequest();
             req.paramString = "1|" + employeeId + "^2|" + dayId + "^3|" + dayId + "^4|" + shiftId + "^5|" + code;
             ListResponse<Time> resp = _timeAttendanceService.ChildGetAll<Time>(req);
-            
+
             if (!resp.Success)
             {
                 Common.errorMessage(resp);
@@ -631,8 +633,8 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                
-            
+
+
 
                 string rep_params = "";
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -689,6 +691,143 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
 
+        }
+
+        private TimeAttendanceViewReport GetReport()
+        {
+
+            string rep_params = vals.Text;
+            TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
+            req.paramString = rep_params;
+            req.StartAt = StartAt.Text;
+            req.Size = "30";
+            req.sortBy = "dayId";
+            ListResponse<AttendanceDay> daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
+
+
+            if (!daysResponse.Success)
+            {
+                Common.errorMessage(daysResponse);
+                return new TimeAttendanceViewReport();
+            }
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+            List<TimeAttendanceCompositeObject> objs = new List<TimeAttendanceCompositeObject>();
+            int max = 0;
+            string fsstring = "";
+            string asstring = "";
+            string tvstring = "";
+            CultureInfo c = new CultureInfo("en");
+            switch (_systemService.SessionHelper.getLangauge())
+            {
+                case "ar":
+                    {
+
+                        c = new CultureInfo("ar");
+                    }
+                    break;
+                case "en":
+                    {
+
+                        c = new CultureInfo("en");
+                    }
+                    break;
+
+                case "fr":
+                    {
+
+                        c = new CultureInfo("fr-FR");
+                    }
+                    break;
+                case "de":
+                    {
+
+                        c = new CultureInfo("de-DE");
+                    }
+                    break;
+
+            }
+
+
+
+            foreach (var x in daysResponse.Items)
+            {
+                max++;
+                x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), c);
+               
+                ReportGenericRequest tvReq = new ReportGenericRequest();
+                tvReq.paramString = "1|" + x.employeeId + "^2|" + x.dayId + "^3|" + x.dayId;
+                ListResponse<DashBoardTimeVariation> tvResp;
+
+                tvResp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(tvReq);
+                if (!tvResp.Success)
+                {
+                    Common.errorMessage(tvResp);
+                    return new TimeAttendanceViewReport();
+                }
+                tvResp.Items.ForEach(tv => {
+                    tvstring += tv.timeName + " : " + tv.duration.ToString() + " " + minutesText.Text + "|";
+                });
+                if (tvstring.Length > 1)
+                    tvstring = tvstring.Substring(0, tvstring.Length - 1);
+                objs.Add(new TimeAttendanceCompositeObject()
+                {
+                    FSString = fsstring,
+                    ASString = asstring,
+                    TVString = tvstring,
+                    dayId = x.dayId,
+                    branchName = x.branchName,
+                    departmentName = x.departmentName,
+                    employeeName = x.employeeName+ System.Environment.NewLine +x.dayIdString+ System.Environment.NewLine + x.branchName + System.Environment.NewLine + x.positionName ,
+                    employeeId = x.employeeId.ToString(),
+                    dayIdString = x.dayIdString,
+                    positionName = x.positionName,
+                    attendance = x.attendance,
+                    schedule = x.schedule
+
+                });
+                if (max > 30)
+                    break;
+                fsstring = "";
+                asstring = "";
+                tvstring = "";
+            }
+
+
+            TimeAttendanceViewReport p = new TimeAttendanceViewReport();
+
+        
+            p.DataSource = objs;
+
+        //    p.DataSource = resp.Items;
+            p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+            p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+           
+            return p;
+
+
+
+        }
+
+        protected void printBtn_Click(object sender, EventArgs e)
+        {
+            TimeAttendanceViewReport p = GetReport();
+            string format = "Pdf";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+            Response.Clear();
+            Response.Write("<script>");
+            Response.Write("window.document.forms[0].target = '_blank';");
+            Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
+            Response.Write("</script>");
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
         }
     }
 }

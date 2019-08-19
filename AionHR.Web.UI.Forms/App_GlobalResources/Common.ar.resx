@@ -1440,4 +1440,7 @@
   <data name="deleteUserProperty" xml:space="preserve">
     <value>سيؤدي حذف خاصية إلى حذف جميع بيانات الموظف لهذه الخاصية</value>
   </data>
+  <data name="UnschedulePunches" xml:space="preserve">
+    <value>البصمات بدون دوام</value>
+  </data>
 </root>

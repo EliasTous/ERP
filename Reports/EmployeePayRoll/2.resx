@@ -117,52 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Unschedule Punches Info</value>
-  </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Unschedule Punches</value>
-  </data>
-  <data name="FieldAttendedHours" xml:space="preserve">
-    <value>Attended Hours</value>
-  </data>
-  <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
-  </data>
-  <data name="FieldDate" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="FieldDuration" xml:space="preserve">
-    <value>Duration</value>
-  </data>
-  <data name="FieldEmployeeName" xml:space="preserve">
-    <value>Employee</value>
-  </data>
-  <data name="FieldEmployeeRef" xml:space="preserve">
-    <value>Ref</value>
-  </data>
-  <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="FieldPosition" xml:space="preserve">
-    <value>Position</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
-  <data name="FieldReference" xml:space="preserve">
-    <value>Reference</value>
-  </data>
-  <data name="FieldShifts" xml:space="preserve">
-    <value>Shifts</value>
-  </data>
-  <data name="FieldVariation" xml:space="preserve">
-    <value>Variation</value>
-  </data>
-  <data name="Process" xml:space="preserve">
-    <value>Process</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>Unschedule Punches</value>
-  </data>
+  <metadata name="employeePayrollDataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

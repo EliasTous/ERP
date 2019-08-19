@@ -44,6 +44,7 @@
          <ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=RT503&values="/>
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
+           <ext:Hidden ID="required" runat="server" Text="<%$ Resources:Common , RequiredFields %>" />
         
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
@@ -81,8 +82,9 @@
                                           
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
-                                                 <%-- <Click Handler=" if(App.payId.getValue()==null)  {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}   callbackPanel.PerformCallback('1');" />--%>
-                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
+                                             <Click Handler="if(App.vals.value ==null || App.vals.value=='') if(App.direct.ExistMandatoryFields('RT503')){
+                                                    Ext.MessageBox.alert(#{errorheader}.value, #{required}.value); return false;
+                                                    }callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
                                        

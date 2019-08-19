@@ -118,25 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Unschedule Punches Info</value>
+    <value>außerplanmäßige Schläge info</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Unschedule Punches</value>
+    <value>ungeplante Schläge bearbeiten</value>
   </data>
   <data name="FieldAttendedHours" xml:space="preserve">
-    <value>Attended Hours</value>
+    <value>Besuchte Stunden</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
+    <value>Ast</value>
   </data>
   <data name="FieldDate" xml:space="preserve">
-    <value>Date</value>
+    <value>Datum</value>
   </data>
   <data name="FieldDuration" xml:space="preserve">
-    <value>Duration</value>
+    <value>Dauer</value>
   </data>
   <data name="FieldEmployeeName" xml:space="preserve">
-    <value>Employee</value>
+    <value>Mitarbeiter</value>
   </data>
   <data name="FieldEmployeeRef" xml:space="preserve">
     <value>Ref</value>
@@ -148,21 +148,21 @@
     <value>Position</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>Datensatz-ID</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
-    <value>Reference</value>
+    <value>Referenz</value>
   </data>
   <data name="FieldShifts" xml:space="preserve">
-    <value>Shifts</value>
+    <value>Verschiebungen</value>
   </data>
   <data name="FieldVariation" xml:space="preserve">
     <value>Variation</value>
   </data>
   <data name="Process" xml:space="preserve">
-    <value>Process</value>
+    <value>Verarbeiten</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Unschedule Punches</value>
+    <value>Stanzen aufheben</value>
   </data>
 </root>
