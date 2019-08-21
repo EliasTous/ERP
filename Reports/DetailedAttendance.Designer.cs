@@ -278,6 +278,7 @@
             this.xrTableCell34.StylePriority.UseBorders = false;
             this.xrTableCell34.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell34, "xrTableCell34");
+            this.xrTableCell34.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell34_BeforePrint);
             // 
             // xrTableCell36
             // 
@@ -292,6 +293,7 @@
             this.xrTableCell36.StylePriority.UseBorders = false;
             this.xrTableCell36.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell36, "xrTableCell36");
+            this.xrTableCell36.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell36_BeforePrint);
             // 
             // xrTableCell38
             // 
@@ -306,6 +308,7 @@
             this.xrTableCell38.StylePriority.UseBorders = false;
             this.xrTableCell38.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell38, "xrTableCell38");
+            this.xrTableCell38.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell38_BeforePrint);
             // 
             // xrTableCell40
             // 
@@ -320,6 +323,7 @@
             this.xrTableCell40.StylePriority.UseBorders = false;
             this.xrTableCell40.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell40, "xrTableCell40");
+            this.xrTableCell40.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell40_BeforePrint);
             // 
             // xrTableCell42
             // 
@@ -334,6 +338,7 @@
             this.xrTableCell42.StylePriority.UseBorders = false;
             this.xrTableCell42.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell42, "xrTableCell42");
+            this.xrTableCell42.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell42_BeforePrint);
             // 
             // TopMargin
             // 
@@ -962,6 +967,7 @@
             xrSummary8.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.xrTableCell22.Summary = xrSummary8;
             resources.ApplyResources(this.xrTableCell22, "xrTableCell22");
+            this.xrTableCell22.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrTableCell22_SummaryCalculated);
             // 
             // xrTableCell23
             // 
@@ -978,6 +984,7 @@
             xrSummary9.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.xrTableCell23.Summary = xrSummary9;
             resources.ApplyResources(this.xrTableCell23, "xrTableCell23");
+            this.xrTableCell23.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrTableCell23_SummaryCalculated);
             // 
             // xrTableCell24
             // 
@@ -994,6 +1001,7 @@
             xrSummary10.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.xrTableCell24.Summary = xrSummary10;
             resources.ApplyResources(this.xrTableCell24, "xrTableCell24");
+            this.xrTableCell24.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrTableCell24_SummaryCalculated);
             // 
             // xrTableCell25
             // 
@@ -1010,6 +1018,7 @@
             xrSummary11.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.xrTableCell25.Summary = xrSummary11;
             resources.ApplyResources(this.xrTableCell25, "xrTableCell25");
+            this.xrTableCell25.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrTableCell25_SummaryCalculated);
             // 
             // xrTableCell26
             // 
@@ -1026,6 +1035,7 @@
             xrSummary12.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.xrTableCell26.Summary = xrSummary12;
             resources.ApplyResources(this.xrTableCell26, "xrTableCell26");
+            this.xrTableCell26.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrTableCell26_SummaryCalculated);
             // 
             // objectDataSource1
             // 

@@ -138,7 +138,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell11.Weight" type="System.Double, mscorlib">
-    <value>11.750744571988731</value>
+    <value>8.5806454614564132</value>
   </data>
   <data name="xrTableCell18.Text" xml:space="preserve">
     <value>xrTableCell18</value>
@@ -147,7 +147,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell18.Weight" type="System.Double, mscorlib">
-    <value>16.051571625668387</value>
+    <value>12.024930634932108</value>
   </data>
   <data name="xrTableCell12.Text" xml:space="preserve">
     <value>xrTableCell12</value>
@@ -156,7 +156,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell12.Weight" type="System.Double, mscorlib">
-    <value>10.948042715988471</value>
+    <value>9.4178209331948377</value>
   </data>
   <data name="xrTableCell28.Text" xml:space="preserve">
     <value>xrTableCell28</value>
@@ -165,7 +165,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell28.Weight" type="System.Double, mscorlib">
-    <value>12.706486238066846</value>
+    <value>12.228294338819753</value>
   </data>
   <data name="xrTableCell30.Text" xml:space="preserve">
     <value>xrTableCell30</value>
@@ -174,7 +174,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell30.Weight" type="System.Double, mscorlib">
-    <value>14.994745361250317</value>
+    <value>14.516560466733175</value>
   </data>
   <data name="xrTableCell32.Text" xml:space="preserve">
     <value>xrTableCell32</value>
@@ -183,7 +183,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell32.Weight" type="System.Double, mscorlib">
-    <value>11.113536236051363</value>
+    <value>8.7225907492757955</value>
   </data>
   <data name="xrTableCell34.Text" xml:space="preserve">
     <value>xrTableCell34</value>
@@ -192,7 +192,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell34.Weight" type="System.Double, mscorlib">
-    <value>11.01287914578319</value>
+    <value>8.7414544904908542</value>
   </data>
   <data name="xrTableCell36.Text" xml:space="preserve">
     <value>xrTableCell36</value>
@@ -201,7 +201,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell36.Weight" type="System.Double, mscorlib">
-    <value>10.677134083181478</value>
+    <value>10.677148968232613</value>
   </data>
   <data name="xrTableCell38.Text" xml:space="preserve">
     <value>xrTableCell38</value>
@@ -210,7 +210,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell38.Weight" type="System.Double, mscorlib">
-    <value>7.09771820136357</value>
+    <value>8.6518497542378086</value>
   </data>
   <data name="xrTableCell40.Text" xml:space="preserve">
     <value>xrTableCell40</value>
@@ -219,7 +219,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell40.Weight" type="System.Double, mscorlib">
-    <value>9.2300209249314591</value>
+    <value>9.3495627706045319</value>
   </data>
   <data name="xrTableCell42.Text" xml:space="preserve">
     <value>xrTableCell42</value>
@@ -228,14 +228,14 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell42.Weight" type="System.Double, mscorlib">
-    <value>10.192482625081981</value>
+    <value>9.2361005777702836</value>
   </data>
   <data name="xrTableRow4.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrTable2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>1242.00012, 37</value>
+    <value>1123.25012, 37</value>
   </data>
   <data name="Detail.HeightF" type="System.Single, mscorlib">
     <value>37</value>
@@ -346,10 +346,10 @@
     <value>28</value>
   </data>
   <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>5, 5</value>
+    <value>4.999987, 4.999987</value>
   </data>
   <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>1106.667, 35</value>
+    <value>740.000244, 35</value>
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
     <value>Detailed Attendance</value>
@@ -476,7 +476,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell9.Weight" type="System.Double, mscorlib">
-    <value>14.125091880452997</value>
+    <value>10.314442669705128</value>
   </data>
   <data name="xrTableCell10.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 10pt</value>
@@ -488,7 +488,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell10.Weight" type="System.Double, mscorlib">
-    <value>19.294940066991025</value>
+    <value>14.454684094138877</value>
   </data>
   <data name="xrTableCell19.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 10pt</value>
@@ -500,7 +500,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell19.Weight" type="System.Double, mscorlib">
-    <value>13.16019624168208</value>
+    <value>11.32077997492442</value>
   </data>
   <data name="xrTableCell27.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 10pt</value>
@@ -512,7 +512,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell27.Weight" type="System.Double, mscorlib">
-    <value>15.27395009500156</value>
+    <value>14.699135077139241</value>
   </data>
   <data name="xrTableCell29.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 10pt</value>
@@ -524,7 +524,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell29.Weight" type="System.Double, mscorlib">
-    <value>18.024572195854851</value>
+    <value>17.449765598093279</value>
   </data>
   <data name="xrTableCell31.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 10pt</value>
@@ -536,7 +536,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell31.Weight" type="System.Double, mscorlib">
-    <value>13.359129700962589</value>
+    <value>10.485071451852484</value>
   </data>
   <data name="xrTableCell33.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 10pt</value>
@@ -548,7 +548,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell33.Weight" type="System.Double, mscorlib">
-    <value>13.238123584151911</value>
+    <value>10.507745934230321</value>
   </data>
   <data name="xrTableCell35.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 10pt</value>
@@ -560,7 +560,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell35.Weight" type="System.Double, mscorlib">
-    <value>12.834557744652237</value>
+    <value>12.834566164752987</value>
   </data>
   <data name="xrTableCell37.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 10pt</value>
@@ -572,7 +572,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell37.Weight" type="System.Double, mscorlib">
-    <value>8.53187793381747</value>
+    <value>10.400037266995948</value>
   </data>
   <data name="xrTableCell39.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 10pt</value>
@@ -584,7 +584,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell39.Weight" type="System.Double, mscorlib">
-    <value>11.095032158705378</value>
+    <value>11.238729598095398</value>
   </data>
   <data name="xrTableCell41.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 10pt</value>
@@ -596,13 +596,13 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell41.Weight" type="System.Double, mscorlib">
-    <value>12.251971874381537</value>
+    <value>11.10233762860652</value>
   </data>
   <data name="xrTableRow3.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <data name="xrTable1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>1242.00012, 39.5000458</value>
+    <value>1123.25012, 39.5000458</value>
   </data>
   <data name="xrTable1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -632,7 +632,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell14.Weight" type="System.Double, mscorlib">
-    <value>11.750744571988731</value>
+    <value>8.5806454614564132</value>
   </data>
   <data name="xrTableCell15.Text" xml:space="preserve">
     <value>xrTableCell18</value>
@@ -641,7 +641,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell15.Weight" type="System.Double, mscorlib">
-    <value>16.051571625668387</value>
+    <value>12.024930634932108</value>
   </data>
   <data name="xrTableCell16.Text" xml:space="preserve">
     <value>xrTableCell12</value>
@@ -650,7 +650,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell16.Weight" type="System.Double, mscorlib">
-    <value>10.948042715988471</value>
+    <value>9.4178209331948377</value>
   </data>
   <data name="xrTableCell17.Text" xml:space="preserve">
     <value>xrTableCell28</value>
@@ -659,7 +659,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell17.Weight" type="System.Double, mscorlib">
-    <value>12.706486238066846</value>
+    <value>12.228294338819753</value>
   </data>
   <data name="xrTableCell20.Text" xml:space="preserve">
     <value>xrTableCell30</value>
@@ -668,7 +668,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell20.Weight" type="System.Double, mscorlib">
-    <value>14.994745361250317</value>
+    <value>14.516560466733175</value>
   </data>
   <data name="xrTableCell21.Text" xml:space="preserve">
     <value>xrTableCell32</value>
@@ -677,7 +677,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell21.Weight" type="System.Double, mscorlib">
-    <value>11.113536236051363</value>
+    <value>8.7225907492757955</value>
   </data>
   <data name="xrTableCell22.Text" xml:space="preserve">
     <value>xrTableCell34</value>
@@ -686,7 +686,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell22.Weight" type="System.Double, mscorlib">
-    <value>11.01287914578319</value>
+    <value>8.7414544904908542</value>
   </data>
   <data name="xrTableCell23.Text" xml:space="preserve">
     <value>xrTableCell36</value>
@@ -695,7 +695,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell23.Weight" type="System.Double, mscorlib">
-    <value>10.677134083181478</value>
+    <value>10.677148968232613</value>
   </data>
   <data name="xrTableCell24.Text" xml:space="preserve">
     <value>xrTableCell38</value>
@@ -704,7 +704,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell24.Weight" type="System.Double, mscorlib">
-    <value>7.09771820136357</value>
+    <value>8.6518497542378086</value>
   </data>
   <data name="xrTableCell25.Text" xml:space="preserve">
     <value>xrTableCell40</value>
@@ -713,7 +713,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell25.Weight" type="System.Double, mscorlib">
-    <value>9.2300209249314591</value>
+    <value>9.3495627706045319</value>
   </data>
   <data name="xrTableCell26.Text" xml:space="preserve">
     <value>xrTableCell42</value>
@@ -722,13 +722,13 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell26.Weight" type="System.Double, mscorlib">
-    <value>10.192482625081981</value>
+    <value>9.2361005777702836</value>
   </data>
   <data name="xrTableRow5.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <data name="xrTable3.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>1242.00012, 37</value>
+    <value>1123.25012, 37</value>
   </data>
   <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

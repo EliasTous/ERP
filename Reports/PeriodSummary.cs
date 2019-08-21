@@ -46,7 +46,6 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel3;
     private XRLabel xrLabel41;
     private XRLabel xrLabel40;
-    private XRLabel xrLabel49;
     private XRLabel xrLabel48;
     private XRLabel xrLabel34;
     private XRLabel xrLabel50;
@@ -79,6 +78,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel39;
     private FormattingRule formattingRule1;
     private PageHeaderBand PageHeader;
+    private XRLabel xrLabel9;
 
     /// <summary>
     /// Required designer variable.
@@ -231,7 +231,6 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
     private void InitializeComponent()
     {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PeriodSummary));
             DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary2 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary3 = new DevExpress.XtraReports.UI.XRSummary();
@@ -243,6 +242,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             DevExpress.XtraReports.UI.XRSummary xrSummary9 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary10 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary11 = new DevExpress.XtraReports.UI.XRSummary();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PeriodSummary));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrLabel50 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel46 = new DevExpress.XtraReports.UI.XRLabel();
@@ -251,7 +251,6 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel34 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel49 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel41 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel40 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
@@ -311,12 +310,14 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel9,
             this.xrLabel50,
             this.xrLabel46,
             this.xrLabel45,
@@ -324,7 +325,6 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel12,
             this.xrLabel11,
             this.xrLabel34,
-            this.xrLabel49,
             this.xrLabel41,
             this.xrLabel40,
             this.xrLabel8,
@@ -349,6 +349,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel50.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel50.StylePriority.UseBorders = false;
             this.xrLabel50.StylePriority.UseTextAlignment = false;
+            this.xrLabel50.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.XrLabel50_BeforePrint);
             // 
             // xrLabel46
             // 
@@ -362,6 +363,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel46.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel46.StylePriority.UseBorders = false;
             this.xrLabel46.StylePriority.UseTextAlignment = false;
+            this.xrLabel46.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.XrLabel46_BeforePrint);
             // 
             // xrLabel45
             // 
@@ -388,6 +390,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel44.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel44.StylePriority.UseBorders = false;
             this.xrLabel44.StylePriority.UseTextAlignment = false;
+            this.xrLabel44.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.XrLabel44_BeforePrint);
             // 
             // xrLabel12
             // 
@@ -427,18 +430,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel34.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel34.StylePriority.UseBorders = false;
             this.xrLabel34.StylePriority.UseTextAlignment = false;
-            // 
-            // xrLabel49
-            // 
-            this.xrLabel49.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel49, "xrLabel49");
-            this.xrLabel49.Name = "xrLabel49";
-            this.xrLabel49.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel49.StylePriority.UseBorders = false;
-            this.xrLabel49.StylePriority.UseTextAlignment = false;
-            this.xrLabel49.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel49_BeforePrint);
+            this.xrLabel34.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel34_BeforePrint);
             // 
             // xrLabel41
             // 
@@ -903,6 +895,12 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel54.StylePriority.UseTextAlignment = false;
             xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel54.Summary = xrSummary1;
+            this.xrLabel54.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.XrLabel54_SummaryCalculated);
+            this.xrLabel54.SummaryGetResult += new DevExpress.XtraReports.UI.SummaryGetResultHandler(this.XrLabel54_SummaryGetResult);
+            this.xrLabel54.SummaryRowChanged += new System.EventHandler(this.XrLabel54_SummaryRowChanged);
+            this.xrLabel54.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.XrLabel54_BeforePrint);
+            this.xrLabel54.AfterPrint += new System.EventHandler(this.XrLabel54_AfterPrint);
+            this.xrLabel54.TextChanged += new System.EventHandler(this.XrLabel54_TextChanged);
             // 
             // xrLabel53
             // 
@@ -918,6 +916,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel53.StylePriority.UseTextAlignment = false;
             xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel53.Summary = xrSummary2;
+            this.xrLabel53.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.XrLabel53_SummaryCalculated);
             // 
             // xrLabel52
             // 
@@ -933,6 +932,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel52.StylePriority.UseTextAlignment = false;
             xrSummary3.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel52.Summary = xrSummary3;
+            this.xrLabel52.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.XrLabel52_SummaryCalculated);
             // 
             // xrLabel51
             // 
@@ -963,6 +963,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel47.StylePriority.UseTextAlignment = false;
             xrSummary5.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel47.Summary = xrSummary5;
+            this.xrLabel47.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.XrLabel47_SummaryCalculated);
             // 
             // xrLabel43
             // 
@@ -1077,6 +1078,20 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.PageHeader, "PageHeader");
             this.PageHeader.Name = "PageHeader";
             // 
+            // xrLabel9
+            // 
+            this.xrLabel9.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrLabel9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "name.reference")});
+            resources.ApplyResources(this.xrLabel9, "xrLabel9");
+            this.xrLabel9.Multiline = true;
+            this.xrLabel9.Name = "xrLabel9";
+            this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel9.StylePriority.UseBorders = false;
+            this.xrLabel9.StylePriority.UseTextAlignment = false;
+            // 
             // PeriodSummary
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1133,7 +1148,19 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
 
     private void xrLabel34_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
+        //int TotalMinutes = Convert.ToInt32(GetCurrentColumnValue("TotalMinutesField"));
 
+        //(sender as DevExpress.XtraReports.UI.XRControl).Text = new TimeSpan(0, TotalMinutes, 0).ToString("c");
+
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+            (sender as XRLabel).Text = "00:00";
+        else
+        {
+            //int mins = Convert.ToInt32((sender as XRLabel).Text);
+            //(sender as XRLabel).Text = (mins / 60).ToString().PadLeft(2, '0') + ":" + (mins % 60).ToString().PadLeft(2, '0');
+            (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0') 
+                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2,'0');
+        }
     }
 
     private void xrLabel11_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
@@ -1141,9 +1168,9 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         //if ((sender as XRLabel).Text == "0")
         //    (sender as XRLabel).Text = "";
         //else
-        //{ 
-        //int mins = Convert.ToInt32((sender as XRLabel).Text);
-        //(sender as XRLabel).Text = (mins / 60).ToString().PadLeft(2, '0') + ":" + (mins % 60).ToString().PadLeft(2, '0');
+        //{
+        //    int mins = Convert.ToInt32((sender as XRLabel).Text);
+        //    (sender as XRLabel).Text = (mins / 60).ToString().PadLeft(2, '0') + ":" + (mins % 60).ToString().PadLeft(2, '0');
         //}
     }
 
@@ -1165,5 +1192,123 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
     private void xrLabel38_SummaryCalculated(object sender, TextFormatEventArgs e)
     {
         
+    }
+
+    private void XrLabel34_BeforePrint_1(object sender, PrintEventArgs e)
+    {
+        //TimeSpan.FromHours().ToString("hh:mm");
+    }
+
+    private void XrLabel54_BeforePrint(object sender, PrintEventArgs e)
+    {
+        
+    }
+
+    private void XrLabel54_AfterPrint(object sender, EventArgs e)
+    {
+
+    }
+
+    private void XrLabel54_SummaryCalculated(object sender, TextFormatEventArgs e)
+    {
+        if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+            (sender as XRLabel).Text = "00:00";
+        else
+        {
+
+            string hours = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+            string minutes = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+            e.Text = hours + ":" + minutes;
+        }
+
+        
+    }
+
+    private void XrLabel54_SummaryGetResult(object sender, SummaryGetResultEventArgs e)
+    {
+
+    }
+
+    private void XrLabel54_SummaryRowChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void XrLabel54_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void XrLabel50_BeforePrint(object sender, PrintEventArgs e)
+    {
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+            (sender as XRLabel).Text = "00:00";
+        else
+        {
+            (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+        }
+    }
+
+    private void XrLabel53_SummaryCalculated(object sender, TextFormatEventArgs e)
+    {
+        if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+            (sender as XRLabel).Text = "00:00";
+        else
+        {
+
+            string hours = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+            string minutes = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+            e.Text = hours + ":" + minutes;
+        }
+    }
+
+    private void XrLabel46_BeforePrint(object sender, PrintEventArgs e)
+    {
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+            (sender as XRLabel).Text = "00:00";
+        else
+        {
+            (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+        }
+    }
+
+    private void XrLabel52_SummaryCalculated(object sender, TextFormatEventArgs e)
+    {
+        if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+            (sender as XRLabel).Text = "00:00";
+        else
+        {
+
+            string hours = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+            string minutes = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+            e.Text = hours + ":" + minutes;
+        }
+    }
+
+    private void XrLabel44_BeforePrint(object sender, PrintEventArgs e)
+    {
+
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+            (sender as XRLabel).Text = "00:00";
+        else
+        {
+            (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+        }
+    }
+
+    private void XrLabel47_SummaryCalculated(object sender, TextFormatEventArgs e)
+    {
+        if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+            (sender as XRLabel).Text = "00:00";
+        else
+        {
+
+            string hours = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+            string minutes = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+            e.Text = hours + ":" + minutes;
+        }
     }
 }
