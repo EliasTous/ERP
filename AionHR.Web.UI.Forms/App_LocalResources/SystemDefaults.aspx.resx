@@ -519,4 +519,7 @@
   <data name="weeklyTAHours" xml:space="preserve">
     <value>Weekly Working Hours</value>
   </data>
+  <data name="apply_ALDA_CSPO" xml:space="preserve">
+    <value>Apply Data Access Control To Position</value>
+  </data>
 </root>

@@ -1114,6 +1114,8 @@
                                 <ext:Checkbox FieldLabel="<%$ Resources: apply_ALDA_CSBR %>" LabelWidth="150" runat="server" InputValue="True" Name="apply_ALDA_CSBR" ID="apply_ALDA_CSBR" />
                                 <ext:Checkbox FieldLabel="<%$ Resources: apply_ALDA_CSDE %>" LabelWidth="150" runat="server" InputValue="True" Name="apply_ALDA_CSDE" ID="apply_ALDA_CSDE" />
                                 <ext:Checkbox FieldLabel="<%$ Resources: apply_ALDA_CSDI %>" LabelWidth="150" runat="server" InputValue="True" Name="apply_ALDA_CSDI" ID="apply_ALDA_CSDI" />
+                                <ext:Checkbox FieldLabel="<%$ Resources: apply_ALDA_CSPO %>" LabelWidth="150" runat="server" InputValue="True" Name="apply_ALDA_CSPO" ID="apply_ALDA_CSPO" />
+
 
                             </Items>
                             <Buttons>

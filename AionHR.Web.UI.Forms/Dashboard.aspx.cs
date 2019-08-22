@@ -1773,7 +1773,7 @@ namespace AionHR.Web.UI.Forms
                 clockDuration.Text = response.result.clockDuration;
                 duration.Text = response.result.duration;
                 TimeEmployeeName.Text = response.result.employeeName;
-                TimedayIdDate.SelectedDate = response.result.date;
+                TimedayIdDate.SelectedDate =(DateTime) response.result.date;
                 TimeTimeCodeString.Text = timeCode.Where(y => y.key == Convert.ToInt32(response.result.timeCode)).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(response.result.timeCode)).First().value : string.Empty; ;
                 TimeApprovalStatusControl.setApprovalStatus(response.result.status.ToString());
                 shiftIdTF.Text = string.IsNullOrEmpty(response.result.shiftId) ? "" : response.result.shiftId;
@@ -1782,7 +1782,7 @@ namespace AionHR.Web.UI.Forms
                 tvId.Text = tvIdParameter;
                 helpText.Text = response.result.helpText; 
 
-                FillTimeApproval(response.result.dtFrom, response.result.dtTo, response.result.employeeId, response.result.timeCode, response.result.shiftId, response.result.status.ToString());
+                FillTimeApproval((DateTime)response.result.dtFrom, (DateTime)response.result.dtTo, response.result.employeeId, response.result.timeCode, response.result.shiftId, response.result.status.ToString());
             }
             this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
             this.TimeWindow.Show();
@@ -3169,8 +3169,9 @@ namespace AionHR.Web.UI.Forms
                 Icon = Icon.Information,
                 Html = Resources.Common.RecordSavingSucc
             });
-            BindAlerts();
             punchesStore.Reload();
+            BindAlerts();
+           
         }
 
 
@@ -3212,8 +3213,9 @@ namespace AionHR.Web.UI.Forms
                     Icon = Icon.Information,
                     Html = Resources.Common.RecordSavingSucc
                 });
-                BindAlerts();
+               
                 punchesStore.Reload();
+                BindAlerts();
             }
             catch(Exception exp)
             {
@@ -3323,6 +3325,7 @@ namespace AionHR.Web.UI.Forms
                 penaltyName.Text = resp.result.penaltyName;
                 PAEmployeeName.Text = resp.result.employeeName;
                 PenaltyApprovalStatusControl.setApprovalStatus(resp.result.status.ToString());
+                PAAmount.Text = resp.result.amount;
                 notes.Text = resp.result.notes;
 
                 PERecordId.Text = penaltyId;

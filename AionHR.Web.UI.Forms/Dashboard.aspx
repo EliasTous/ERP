@@ -2177,6 +2177,7 @@
                                                  <ext:ModelField Name="notes" />
                                                  <ext:ModelField Name="date" />
                                                  <ext:ModelField Name="seqNo" />
+                                                 <ext:ModelField Name="amount" />
                                                
                                                 
                                                 
@@ -2199,9 +2200,10 @@
                                      <ext:Column CellCls="cellLink" ID="ColPenaltyName" MenuDisabled="true" runat="server" Text="<%$ Resources:Common, FieldPenaltyName%>" DataIndex="penaltyName" />
                                     <ext:DateColumn  ID="ColDate" MenuDisabled="true" runat="server" DataIndex="date" Text="<%$ Resources: FieldDate%>" Flex="1" Hideable="false" />
                                     <ext:Column ID="lAstatus" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
+
                                        
                                     </ext:Column>
-                                      
+                                       <ext:Column ID="Column38" DataIndex="amount" Text="<%$ Resources: FieldAmount%>" runat="server" Flex="1" />
                                     <ext:Column ID="LAnotes" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
                                        
                                     </ext:Column>
@@ -5567,6 +5569,7 @@
                                                 <uc:ApprovalStatusControl  runat="server" ID="PenaltyApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" InQueue="false" />
                                             </Content>
                                         </ext:Container>  
+                                  <ext:TextField ID="PAAmount" runat="server"   DataIndex="amount"  FieldLabel="<%$ Resources: FieldAmount %>" ReadOnly="true" />
                                  <ext:TextArea ID="notes"  runat="server" FieldLabel="<%$ Resources:FieldNotes%>"  DataIndex="notes"  />
 
 
@@ -5686,7 +5689,7 @@
           <ext:Window runat="server"  Icon="PageEdit"
             ID="reportsParams"
             Width="600"
-            Height="500"
+            MinHeight="600"
             Title="<%$Resources:Common,Parameters %>"
             AutoShow="false"
             Modal="true"

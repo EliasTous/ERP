@@ -911,7 +911,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             List<SalaryDetail> deductions = null;
             EmployeeSalary b = JsonConvert.DeserializeObject<EmployeeSalary>(obj);
             b.basicAmount = Convert.ToDouble(basicAmount);
-            b.finalAmount = Convert.ToDouble(finalAmount);
+            b.finalAmount = Convert.ToDouble(finalAmount,new CultureInfo("en"));
             
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
            

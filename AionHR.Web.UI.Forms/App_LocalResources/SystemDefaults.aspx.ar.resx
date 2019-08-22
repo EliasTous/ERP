@@ -462,4 +462,7 @@
   <data name="weeklyTAHours" xml:space="preserve">
     <value>ساعات العمل الاسبوعية</value>
   </data>
+  <data name="apply_ALDA_CSPO" xml:space="preserve">
+    <value>تطبيق حماية البيانات للوظائف</value>
+  </data>
 </root>

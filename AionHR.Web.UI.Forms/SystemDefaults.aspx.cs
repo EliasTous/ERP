@@ -504,6 +504,12 @@ namespace AionHR.Web.UI.Forms
             try
 
             {
+                apply_ALDA_CSPO.Checked = items.Where(s => s.Key == "apply-ALDA-CSPO").First().Value == "true";
+            }
+            catch { }
+            try
+
+            {
                 enableHijri.Checked = items.Where(s => s.Key == "enableHijri").First().Value == "true";
             }
             catch { }
@@ -1200,6 +1206,7 @@ namespace AionHR.Web.UI.Forms
             submittedValues.Add(new KeyValuePair<string, string>("apply-ALDA-CSBR", values.apply_ALDA_CSBR == null ? "false" : "true"));
             submittedValues.Add(new KeyValuePair<string, string>("apply-ALDA-CSDE", values.apply_ALDA_CSDE == null ? "false" : "true"));
             submittedValues.Add(new KeyValuePair<string, string>("apply-ALDA-CSDI", values.apply_ALDA_CSDI == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("apply-ALDA-CSPO", values.apply_ALDA_CSPO == null ? "false" : "true"));
             return submittedValues;
         }
         private void SaveSecuritySettings(dynamic values)

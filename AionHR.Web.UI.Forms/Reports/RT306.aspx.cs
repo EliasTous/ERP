@@ -455,7 +455,7 @@ namespace AionHR.Web.UI.Forms.Reports
                            if (!string.IsNullOrEmpty(x.damageLevel))
                                x.damageLevel = FillDamageLevelString(Convert.ToInt16(x.damageLevel));
                           if (x.date!=null)
-                               x.dayId = x.date.ToString("dddd  dd MMMM yyyy ", CultureInfo.CurrentUICulture);
+                               x.dayId =((DateTime) x.date).ToString("dddd  dd MMMM yyyy ", CultureInfo.CurrentUICulture);
                          
 
 

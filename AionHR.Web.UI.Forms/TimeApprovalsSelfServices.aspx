@@ -338,11 +338,13 @@
                             BodyPadding="5"  OnLoad="TimeTab_Load">
                             <Items>
                                 <ext:TextField ID="TimeemployeeIdTF" runat="server" Name="employeeId"  ReadOnly="true"  Hidden="true"/>
+                                 <ext:TextField ID="seqNo" runat="server" Name="seqTF"  ReadOnly="true"  Hidden="true"/>
+                                   <ext:TextField ID="tvId" runat="server" Name="tvId"  ReadOnly="true"  Hidden="true"/>
                                   <ext:TextField ID="shiftIdTF" runat="server" Name="shiftId" FieldLabel="<%$ Resources: FieldShift%>"   ReadOnly="true" />
-                                 <ext:TextField ID="TimedayIdTF" runat="server" Name="dayId"  ReadOnly="true" Hidden="true" />
+                               
                                   <ext:TextField ID="TimeTimeCodeTF" runat="server" Name="timeCode"  ReadOnly="true" Hidden="true" />
                                <ext:TextField ID="TimeEmployeeName" runat="server" FieldLabel="<%$ Resources:FieldName%>" ReadOnly="true" />
-                                <ext:DateField ID="TimedayIdDate" runat="server" Name="dayIdDate"  FieldLabel="<%$ Resources:FieldDate%>"  ReadOnly="true" />
+                                <ext:DateField ID="TimedayIdDate" runat="server" Name="date"  FieldLabel="<%$ Resources:FieldDate%>"  ReadOnly="true" />
                                 <ext:TextField ID="TimeTimeCodeString" runat="server" Name="timeCodeString" FieldLabel="<%$ Resources: FieldTimeCode%>"   ReadOnly="true" />
 
 
@@ -483,7 +485,8 @@
 
 
                             <ExtraParams>
-                               
+                                 <ext:Parameter Name="seqNo" Value="#{seqNo}.getValue()" Mode="Raw" />
+                                  <ext:Parameter Name="tvId" Value="#{tvId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{TimeFormPanel}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

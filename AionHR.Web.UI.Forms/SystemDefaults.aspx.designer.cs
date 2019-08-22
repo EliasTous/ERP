@@ -994,6 +994,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Checkbox apply_ALDA_CSDI;
         
         /// <summary>
+        /// apply_ALDA_CSPO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox apply_ALDA_CSPO;
+        
+        /// <summary>
         /// SaveSecuritySettingsBtn control.
         /// </summary>
         /// <remarks>

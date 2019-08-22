@@ -350,22 +350,23 @@ namespace AionHR.Web.UI.Forms
 
 
             TimeEmployeeName.Text = employeeName;
-            TimedayIdDate.Text = dayIdDate;
+           // TimedayIdDate.Text = dayIdDate;
             TimeTimeCodeString.Text = timeCodeString;
 
             shiftIdTF.Text = shiftId;
             TimeemployeeIdTF.Text = employeeId;
-            TimedayIdTF.Text = dayId;
+            
             TimeTimeCodeTF.Text = timeCode;
+         
 
 
-            FillTimeApproval(Convert.ToInt32(dayId), Convert.ToInt32(employeeId), timeCode, shiftId, status);
+            FillTimeApproval(((DateTime)response.result.date).ToString("yyyyMMdd"), Convert.ToInt32(employeeId), timeCode, shiftId, status);
 
             this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
             this.TimeWindow.Show();
 
         }
-        private void FillTimeApproval(int dayId, int employeeId, string timeCode, string shiftId, string apstatus)
+        private void FillTimeApproval(string dayId, int employeeId, string timeCode, string shiftId, string apstatus)
         {
             try
             {
@@ -452,22 +453,33 @@ namespace AionHR.Web.UI.Forms
         protected void SaveTimeRecord(object sender, DirectEventArgs e)
         {
             string obj = e.ExtraParams["values"];
-            string id = e.ExtraParams["id"];
+            string seqNo = e.ExtraParams["seqNo"];
+            string tvId= e.ExtraParams["tvId"];
             Time TI = JsonConvert.DeserializeObject<Time>(obj);
             try
             {
                 //New Mode
                 //Step 1 : Fill The object and insert in the store 
+                TimeApprovalRecordRequest recReq = new TimeApprovalRecordRequest();
+                recReq.seqNo = seqNo;
+                //r.timeCode = timeCode;
+                //r.shiftId = shiftId;
+                recReq.tvId = tvId;
+                RecordResponse<TimeSelfService> recResp = _selfServiceService.ChildGetRecord<TimeSelfService>(recReq);
+                if (!recResp.Success)
+                {
+                    Common.errorMessage(recResp);
+                    return;
 
+                }
                 PostRequest<TimeSelfService> request = new PostRequest<TimeSelfService>();
-                request.entity = new TimeSelfService();
-                request.entity.employeeId = TI.employeeId;
-                request.entity.dayId = TI.dayId;
-                request.entity.timeCode = TI.timeCode;
-                request.entity.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+
+                request.entity = recResp.result;
+                if (recResp.result == null)
+                    return;
                 request.entity.status = TI.status;
                 request.entity.notes = TI.notes;
-                request.entity.shiftId = TI.shiftId;
+            
 
                 PostResponse<TimeSelfService> r = _selfServiceService.ChildAddOrUpdate<TimeSelfService>(request);
 

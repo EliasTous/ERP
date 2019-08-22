@@ -512,4 +512,7 @@
   <data name="lawViolationEntitlementDeduction" xml:space="preserve">
     <value>Gesetzesübertretung Abzug</value>
   </data>
+  <data name="apply_ALDA_CSPO" xml:space="preserve">
+    <value>Anwenden der Datenzugriffssteuerung auf Position</value>
+  </data>
 </root>

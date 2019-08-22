@@ -516,4 +516,7 @@
   <data name="weeklyTAHours" xml:space="preserve">
     <value>Heures de travail hebdomadaires</value>
   </data>
+  <data name="apply_ALDA_CSPO" xml:space="preserve">
+    <value>Appliquer le contrôle d'accès aux données aux Position</value>
+  </data>
 </root>
