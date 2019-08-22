@@ -27,10 +27,15 @@ namespace Reports
 
                 xrTable1.HeightF = 60;
             }
+            else if (getLang == "ar")
+            {
+                xrLabel11.Text = "القسم";
+                xrLabel13.Text = "الإسم";
+            }
 
-            
 
-        }
+
+            }
         private void printHeader(Dictionary<string, string> parameters)
         {
             if (parameters.Count == 0)
@@ -113,6 +118,126 @@ namespace Reports
             if ((sender as XRTableCell).Text.ToLower() == "false")
                 (sender as XRTableCell).Text = " ";
 
+        }
+
+        private void xrTableCell42_BeforePrint(object sender, PrintEventArgs e)
+        {
+            if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+                (sender as XRLabel).Text = TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+            }
+        }
+
+        private void xrTableCell26_SummaryCalculated(object sender, TextFormatEventArgs e)
+        {
+            if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+                (sender as XRTableCell).Text = "00:00";
+            else
+            {
+
+                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = hours + ":" + minutes;
+            }
+        }
+
+        private void xrTableCell40_BeforePrint(object sender, PrintEventArgs e)
+        {
+            if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+                (sender as XRLabel).Text = TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+            }
+        }
+
+        private void xrTableCell25_SummaryCalculated(object sender, TextFormatEventArgs e)
+        {
+            if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+
+                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = hours + ":" + minutes;
+            }
+        }
+
+        private void xrTableCell38_BeforePrint(object sender, PrintEventArgs e)
+        {
+            if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+                (sender as XRLabel).Text = TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+            }
+        }
+
+        private void xrTableCell24_SummaryCalculated(object sender, TextFormatEventArgs e)
+        {
+            if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+
+                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = hours + ":" + minutes;
+            }
+        }
+
+        private void xrTableCell36_BeforePrint(object sender, PrintEventArgs e)
+        {
+            if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+                (sender as XRLabel).Text = TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+            }
+        }
+
+        private void xrTableCell23_SummaryCalculated(object sender, TextFormatEventArgs e)
+        {
+            if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+
+                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = hours + ":" + minutes;
+            }
+        }
+
+        private void xrTableCell34_BeforePrint(object sender, PrintEventArgs e)
+        {
+            if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+                (sender as XRLabel).Text = TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+            }
+        }
+
+        private void xrTableCell22_SummaryCalculated(object sender, TextFormatEventArgs e)
+        {
+            if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+
+                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = hours + ":" + minutes;
+            }
         }
     }
 }

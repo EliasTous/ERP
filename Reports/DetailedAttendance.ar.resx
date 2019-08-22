@@ -123,8 +123,11 @@
   <data name="xrLabel10.Text" xml:space="preserve">
     <value>xrLabel10</value>
   </data>
-  <data name="xrLabel11.Text2" xml:space="preserve">
+  <data name="xrLabel11.Text" xml:space="preserve">
     <value>القسم </value>
+  </data>
+  <data name="xrLabel13.Text" xml:space="preserve">
+    <value>الإسم</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>من : </value>
@@ -160,7 +163,7 @@
     <value>xrTableCell12</value>
   </data>
   <data name="xrTableCell13.Text" xml:space="preserve">
-    <value>اول دخول</value>
+    <value>المجموع :</value>
   </data>
   <data name="xrTableCell13.Text1" xml:space="preserve">
     <value>المجموع :</value>

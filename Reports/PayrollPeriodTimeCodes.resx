@@ -374,7 +374,7 @@
     <value>71.26581, 21.57737</value>
   </data>
   <data name="xrLabel18.Text" xml:space="preserve">
-    <value>Days</value>
+    <value>Time</value>
   </data>
   <data name="xrLabel18.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -386,7 +386,7 @@
     <value>161.583191, 22.9999924</value>
   </data>
   <data name="xrLabel19.Text" xml:space="preserve">
-    <value>Day Leave Without Excuse
+    <value>Shift Leave Without Excuse
 </value>
   </data>
   <data name="xrLabel19.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -412,7 +412,7 @@
     <value>54.59909, 21.5773811</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
-    <value>Days</value>
+    <value>Time</value>
   </data>
   <data name="xrLabel15.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -449,7 +449,7 @@
     <value>54.59909, 21.5773811</value>
   </data>
   <data name="xrLabel12.Text" xml:space="preserve">
-    <value>Days</value>
+    <value>Time</value>
   </data>
   <data name="xrLabel12.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -798,12 +798,12 @@
   <data name="ReportFooter.HeightF" type="System.Single, mscorlib">
     <value>54.1666679</value>
   </data>
-  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.Landscape" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>

@@ -23,7 +23,7 @@ namespace Reports.CurrentPayroll
                 // fieldSalaryDate.Caption = "التاريخ";
                 fieldBranch.Caption = "الفرع";
                 fieldEmployeeName.Caption = "الموظف";
-                fieldCounrty.Caption = "البلد";
+                fieldCountry.Caption = "البلد";
                 fieldDepartment.Caption = "القسم";
                 fieldBasicSalary.Caption = "الاسأسي";
 
@@ -45,7 +45,7 @@ namespace Reports.CurrentPayroll
                 // fieldSalaryDate.Caption = "التاريخ";
                 fieldBranch.Caption = "Branche";
                 fieldEmployeeName.Caption = "Nom Employé";
-                fieldCounrty.Caption = "Pays";
+                fieldCountry.Caption = "Pays";
                 fieldDepartment.Caption = "Departement";
                 fieldBasicSalary.Caption = "Sal.Base";
                 xrLabel1.Text = "Paie actuelle";
