@@ -128,7 +128,7 @@ namespace AionHR.Web.UI.Forms
                    
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(CaseComment), null, caseCommentGrid, null, Button1);
-                    ApplyAccessControlOnCaseComments();
+                    //ApplyAccessControlOnCaseComments();
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -138,13 +138,13 @@ namespace AionHR.Web.UI.Forms
                 }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Attachement), EditDocumentForm, filesGrid, Button2, SaveDocumentButton);
-                    var properties = AccessControlApplier.GetPropertiesLevels(typeof(Attachement));
-                    if (properties.Where(x => x.index == "url").ToList()[0].accessLevel == 0)
-                    {
-                        var s = filesGrid.ColumnModel.Columns[filesGrid.ColumnModel.Columns.Count - 1];
-                        s.Renderer.Handler = s.Renderer.Handler.Replace("attachRender()", "' '");
-                    }
+                    //AccessControlApplier.ApplyAccessControlOnPage(typeof(Attachement), EditDocumentForm, filesGrid, Button2, SaveDocumentButton);
+                    //var properties = AccessControlApplier.GetPropertiesLevels(typeof(Attachement));
+                    //if (properties.Where(x => x.index == "url").ToList()[0].accessLevel == 0)
+                    //{
+                    //    var s = filesGrid.ColumnModel.Columns[filesGrid.ColumnModel.Columns.Count - 1];
+                    //    s.Renderer.Handler = s.Renderer.Handler.Replace("attachRender()", "' '");
+                    //}
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -164,43 +164,43 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void ApplyAccessControlOnCaseComments()
-        {
-            var properties = AccessControlApplier.GetPropertiesLevels(typeof(CaseComment));
-            foreach (var item in properties)
-            {
-                if (item.propertyId == "4300103")
-                {
-                    if (item.accessLevel < 2)
-                        caseCommentGrid.ColumnModel.Columns[caseCommentGrid.ColumnModel.Columns.Count - 1].Renderer.Handler = " return '';";
-                }
+        //private void ApplyAccessControlOnCaseComments()
+        //{
+        //    var properties = AccessControlApplier.GetPropertiesLevels(typeof(CaseComment));
+        //    foreach (var item in properties)
+        //    {
+        //        if (item.propertyId == "4300103")
+        //        {
+        //            if (item.accessLevel < 2)
+        //                caseCommentGrid.ColumnModel.Columns[caseCommentGrid.ColumnModel.Columns.Count - 1].Renderer.Handler = " return '';";
+        //        }
 
-                if (item.accessLevel == 0)
-                {
-                    if (item.propertyId == "4300102")
-                    {
-                        caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler = caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("s.calendar()", "'***** '");
-                    }
-                    else
-                    {
-                        var indices = typeof(CaseComment).GetProperties().Where(x =>
-                        {
-                            var d = x.GetCustomAttributes(typeof(PropertyID), false);
-                            if (d.Count() == 0)
-                                return false;
-                            return (x.GetCustomAttributes(typeof(PropertyID), false).ToList()[0] as PropertyID).ID == item.propertyId;
-                        }).ToList();
+        //        if (item.accessLevel == 0)
+        //        {
+        //            if (item.propertyId == "4300102")
+        //            {
+        //                caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler = caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("s.calendar()", "'***** '");
+        //            }
+        //            else
+        //            {
+        //                var indices = typeof(CaseComment).GetProperties().Where(x =>
+        //                {
+        //                    var d = x.GetCustomAttributes(typeof(PropertyID), false);
+        //                    if (d.Count() == 0)
+        //                        return false;
+        //                    return (x.GetCustomAttributes(typeof(PropertyID), false).ToList()[0] as PropertyID).ID == item.propertyId;
+        //                }).ToList();
 
-                        indices.ForEach(x =>
-                        {
-                            caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler = caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("record.data['" + x.Name + "']", "'***** '");
-                        });
-                    }
+        //                indices.ForEach(x =>
+        //                {
+        //                    caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler = caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("record.data['" + x.Name + "']", "'***** '");
+        //                });
+        //            }
 
-                }
-            }
+        //        }
+        //    }
 
-        }
+        //}
 
 
 

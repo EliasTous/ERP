@@ -188,7 +188,7 @@ namespace AionHR.Web.UI.Forms
 
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(LoanComment), null, loanCommentGrid, null, caseCommentsAddButton);
-                    ApplyAccessControlOnLoanComments();
+                    //ApplyAccessControlOnLoanComments();
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -276,43 +276,43 @@ namespace AionHR.Web.UI.Forms
             ldMethodStore.DataBind();
         }
 
-        private void ApplyAccessControlOnLoanComments()
-        {
-            var properties = AccessControlApplier.GetPropertiesLevels(typeof(LoanComment));
-            foreach (var item in properties)
-            {
-                if (item.propertyId == "4501103")
-                {
-                    if (item.accessLevel < 2)
-                        loanCommentGrid.ColumnModel.Columns[loanCommentGrid.ColumnModel.Columns.Count - 1].Renderer.Handler = " return '';";
-                }
+        //private void ApplyAccessControlOnLoanComments()
+        //{
+        //    var properties = AccessControlApplier.GetPropertiesLevels(typeof(LoanComment));
+        //    foreach (var item in properties)
+        //    {
+        //        if (item.propertyId == "4501103")
+        //        {
+        //            if (item.accessLevel < 2)
+        //                loanCommentGrid.ColumnModel.Columns[loanCommentGrid.ColumnModel.Columns.Count - 1].Renderer.Handler = " return '';";
+        //        }
 
-                if (item.accessLevel == 0)
-                {
-                    if (item.propertyId == "4501102")
-                    {
-                        loanCommentGrid.ColumnModel.Columns[1].Renderer.Handler = loanCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("s.calendar()", "'***** '");
-                    }
-                    else
-                    {
-                        var indices = typeof(LoanComment).GetProperties().Where(x =>
-                        {
-                            var d = x.GetCustomAttributes(typeof(PropertyID), false);
-                            if (d.Count() == 0)
-                                return false;
-                            return (x.GetCustomAttributes(typeof(PropertyID), false).ToList()[0] as PropertyID).ID == item.propertyId;
-                        }).ToList();
+        //        if (item.accessLevel == 0)
+        //        {
+        //            if (item.propertyId == "4501102")
+        //            {
+        //                loanCommentGrid.ColumnModel.Columns[1].Renderer.Handler = loanCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("s.calendar()", "'***** '");
+        //            }
+        //            else
+        //            {
+        //                var indices = typeof(LoanComment).GetProperties().Where(x =>
+        //                {
+        //                    var d = x.GetCustomAttributes(typeof(PropertyID), false);
+        //                    if (d.Count() == 0)
+        //                        return false;
+        //                    return (x.GetCustomAttributes(typeof(PropertyID), false).ToList()[0] as PropertyID).ID == item.propertyId;
+        //                }).ToList();
 
-                        indices.ForEach(x =>
-                        {
-                            loanCommentGrid.ColumnModel.Columns[1].Renderer.Handler = loanCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("record.data['" + x.Name + "']", "'***** '");
-                        });
-                    }
+        //                indices.ForEach(x =>
+        //                {
+        //                    loanCommentGrid.ColumnModel.Columns[1].Renderer.Handler = loanCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("record.data['" + x.Name + "']", "'***** '");
+        //                });
+        //            }
 
-                }
-            }
+        //        }
+        //    }
 
-        }
+        //}
 
         protected void addSACurrency(object sender, DirectEventArgs e)
         {

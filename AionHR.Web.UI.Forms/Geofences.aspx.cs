@@ -89,7 +89,7 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(Geofence), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
-                    ApplyLocationAccessControl();
+                   // ApplyLocationAccessControl();
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -110,22 +110,22 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        private void ApplyLocationAccessControl()
-        {
+        //private void ApplyLocationAccessControl()
+        //{
             
-            var properties = AccessControlApplier.GetPropertiesLevels(typeof(Geofence));
-            var d = properties.Where(x => x.propertyId == "4102003");
-            if(d.Count()>0)
-            {
-                switch(d.ToList()[0].accessLevel)
-                {
-                    case 1:  break;
-                    case 2: break;
-                    case 0:break;
-                }
-            }
+        //    var properties = AccessControlApplier.GetPropertiesLevels(typeof(Geofence));
+        //    var d = properties.Where(x => x.propertyId == "4102003");
+        //    if(d.Count()>0)
+        //    {
+        //        switch(d.ToList()[0].accessLevel)
+        //        {
+        //            case 1:  break;
+        //            case 2: break;
+        //            case 0:break;
+        //        }
+        //    }
 
-        }
+        //}
 
         private void HideShowTabs()
         {

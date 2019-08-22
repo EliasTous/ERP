@@ -141,7 +141,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(SalaryDetail), ENForm, entitlementsGrid, Button11, SaveENButton);
-                    ApplyAccessControlEntitlements();
+                   // ApplyAccessControlEntitlements();
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -152,7 +152,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(SalaryDetail), DEForm, deductionGrid, Button14, Button15);
-                    ApplyAccessControlDeductions();
+                    //ApplyAccessControlDeductions();
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -174,36 +174,36 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         }
 
-        private void ApplyAccessControlEntitlements()
-        {
+        //private void ApplyAccessControlEntitlements()
+        //{
 
 
-            var properties = AccessControlApplier.GetPropertiesLevels(typeof(SalaryDetail));
+        //    var properties = AccessControlApplier.GetPropertiesLevels(typeof(SalaryDetail));
 
-            properties.ForEach(property =>
-            {
-                switch (property.propertyId)
-                {
-                    case "3106301": entEdId.Disabled = property.accessLevel < 1; entEdId.InputType = property.accessLevel < 1 ? InputType.Password : InputType.Text; entEdId.ReadOnly = property.accessLevel < 2 ? true : false; break;
-                    default: break;
-                }
-            });
+        //    properties.ForEach(property =>
+        //    {
+        //        switch (property.propertyId)
+        //        {
+        //            case "3106301": entEdId.Disabled = property.accessLevel < 1; entEdId.InputType = property.accessLevel < 1 ? InputType.Password : InputType.Text; entEdId.ReadOnly = property.accessLevel < 2 ? true : false; break;
+        //            default: break;
+        //        }
+        //    });
 
-        }
+        //}
 
-        private void ApplyAccessControlDeductions()
-        {
-            var properties = AccessControlApplier.GetPropertiesLevels(typeof(SalaryDetail));
-            properties.ForEach(property =>
-            {
-                switch (property.propertyId)
-                {
-                    case "3106301": dedEdId.Disabled = property.accessLevel < 1; dedEdId.InputType = property.accessLevel < 1 ? InputType.Password : InputType.Text; dedEdId.ReadOnly = property.accessLevel < 2 ? true : false; break;
-                    default: break;
-                }
-            });
+        //private void ApplyAccessControlDeductions()
+        //{
+        //    var properties = AccessControlApplier.GetPropertiesLevels(typeof(SalaryDetail));
+        //    properties.ForEach(property =>
+        //    {
+        //        switch (property.propertyId)
+        //        {
+        //            case "3106301": dedEdId.Disabled = property.accessLevel < 1; dedEdId.InputType = property.accessLevel < 1 ? InputType.Password : InputType.Text; dedEdId.ReadOnly = property.accessLevel < 2 ? true : false; break;
+        //            default: break;
+        //        }
+        //    });
 
-        }
+        //}
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional

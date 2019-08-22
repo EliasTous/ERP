@@ -24,7 +24,7 @@ namespace AionHR.Services.Implementations
             PostResponse<AttendanceBreak> response;
             var headers = SessionHelper.GetAuthorizationHeadersForUser();
 
-            AttendanceBreak breaks = new AttendanceBreak() { scId = ScheduleId, dow = dow, start = "00:00", end = "00:00", isBenefitOT = false, name = " ", seqNo = 0 };
+            AttendanceBreak breaks = new AttendanceBreak() { scId = ScheduleId, dow = dow, start = "00:00", end = "00:00", name = " ", seqNo = 0 };
             var webResponse = GetRepository().ChildDelete<AttendanceBreak>(breaks, headers);
             response = CreateServiceResponse<PostResponse<AttendanceBreak>>(webResponse);
 

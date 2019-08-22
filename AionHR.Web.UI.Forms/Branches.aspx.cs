@@ -109,7 +109,7 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(Branch), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
-                    ApplyAccessControlOnAddress();
+                    //ApplyAccessControlOnAddress();
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -126,35 +126,35 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void ApplyAccessControlOnAddress()
-        {
+        //private void ApplyAccessControlOnAddress()
+        //{
             
             
-            var properties = AccessControlApplier.GetPropertiesLevels(typeof(Branch));
-            var level = properties.Where(x =>
+        //    var properties = AccessControlApplier.GetPropertiesLevels(typeof(Branch));
+        //    var level = properties.Where(x =>
 
-                x.propertyId == "2102005"
-           ).ToList()[0].accessLevel;
+        //        x.propertyId == "2102005"
+        //   ).ToList()[0].accessLevel;
             
-            switch (level)
-            {
-                case 0:
-                    addressForm.Items.ForEach(x =>
-                    {
-                        (x as Field).InputType = InputType.Password;
-                        (x as Field).ReadOnly = true;
-                    });
-                    break;
-                case 1:
-                    addressForm.Items.ForEach(x =>
-                    {
+        //    switch (level)
+        //    {
+        //        case 0:
+        //            addressForm.Items.ForEach(x =>
+        //            {
+        //                (x as Field).InputType = InputType.Password;
+        //                (x as Field).ReadOnly = true;
+        //            });
+        //            break;
+        //        case 1:
+        //            addressForm.Items.ForEach(x =>
+        //            {
 
-                        (x as Field).ReadOnly = true;
-                    }); break;
-                default: break;
-            }
+        //                (x as Field).ReadOnly = true;
+        //            }); break;
+        //        default: break;
+        //    }
 
-        }
+        //}
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional

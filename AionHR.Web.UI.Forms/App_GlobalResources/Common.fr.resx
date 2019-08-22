@@ -1432,7 +1432,7 @@
     <value>La performance du temps</value>
   </data>
   <data name="RequiredFields" xml:space="preserve">
-    <value>Please fill in required fields before pressing Go</value>
+    <value>Veuillez remplir les champs obligatoires avant d'appuyer sur Allez</value>
   </data>
   <data name="RequiredFieldsHeader" xml:space="preserve">
     <value>Missing Filters</value>

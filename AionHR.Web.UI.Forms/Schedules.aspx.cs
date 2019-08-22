@@ -125,40 +125,40 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
 
-                ApplyAccessControlOnBreaks();
+                //ApplyAccessControlOnBreaks();
 
             }
 
 
         }
 
-        private void ApplyAccessControlOnBreaks()
-        {
-            ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
-            classReq.ClassId = (typeof(AttendanceBreak).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-            classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
-            switch (modClass.result.accessLevel)
-            {
-                case 1: AddBreakButton.Disabled = true; editDisabled.Text = "1"; deleteDisabled.Value = "1"; break;
-                case 2: AddBreakButton.Disabled = true; deleteDisabled.Value = "1"; break;
-                default: break;
-            }
-            var properties = AccessControlApplier.GetPropertiesLevels(typeof(AttendanceBreak));
+        //private void ApplyAccessControlOnBreaks()
+        //{
+        //    ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+        //    classReq.ClassId = (typeof(AttendanceBreak).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+        //    classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+        //    RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+        //    switch (modClass.result.accessLevel)
+        //    {
+        //        case 1: AddBreakButton.Disabled = true; editDisabled.Text = "1"; deleteDisabled.Value = "1"; break;
+        //        case 2: AddBreakButton.Disabled = true; deleteDisabled.Value = "1"; break;
+        //        default: break;
+        //    }
+        //    var properties = AccessControlApplier.GetPropertiesLevels(typeof(AttendanceBreak));
 
-            int i = 1;
-            foreach (var item in properties)
-            {
-                if (item.accessLevel < 2 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
-                    periodsGrid.ColumnModel.Columns[i].Editor[0].ReadOnly = true;
-                if (item.accessLevel < 1 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
-                    periodsGrid.ColumnModel.Columns[i].Editor[0].InputType = InputType.Password;
+        //    int i = 1;
+        //    foreach (var item in properties)
+        //    {
+        //        if (item.accessLevel < 2 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
+        //            periodsGrid.ColumnModel.Columns[i].Editor[0].ReadOnly = true;
+        //        if (item.accessLevel < 1 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
+        //            periodsGrid.ColumnModel.Columns[i].Editor[0].InputType = InputType.Password;
 
-                i++;
-            }
+        //        i++;
+        //    }
 
 
-        }
+        //}
 
 
 

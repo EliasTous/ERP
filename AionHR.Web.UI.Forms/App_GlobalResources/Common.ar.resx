@@ -1432,7 +1432,7 @@
     <value>أداء الحضور</value>
   </data>
   <data name="RequiredFields" xml:space="preserve">
-    <value>Please fill in required fields before pressing Go</value>
+    <value>يرجى ملء الحقول المطلوبة قبل الضغط على بحث</value>
   </data>
   <data name="RequiredFieldsHeader" xml:space="preserve">
     <value>Missing Filters</value>

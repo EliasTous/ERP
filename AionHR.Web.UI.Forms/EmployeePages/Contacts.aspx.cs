@@ -113,38 +113,38 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         }
 
-        private void ApplySecurityEmergencyContacts()
-        {
-            try
-            {
-                AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeEmergencyContact), ecbasicInfo, emergencyContactsGrid, btnAdd, SaveEmergencyContactButton);
-            }
-            catch (AccessDeniedException exp)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                emergencyContactsGrid.Hidden = true;
+        //private void ApplySecurityEmergencyContacts()
+        //{
+        //    try
+        //    {
+        //        AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeEmergencyContact), ecbasicInfo, emergencyContactsGrid, btnAdd, SaveEmergencyContactButton);
+        //    }
+        //    catch (AccessDeniedException exp)
+        //    {
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+        //        emergencyContactsGrid.Hidden = true;
 
-            }
-            var properties = AccessControlApplier.GetPropertiesLevels(typeof(EmployeeEmergencyContact));
+        //    }
+        //   // var properties = AccessControlApplier.GetPropertiesLevels(typeof(EmployeeEmergencyContact));
 
-            var att = properties.Where(x =>
+        //   // var att = properties.Where(x =>
 
-                x.propertyId == "3112107"
-           );
-            if(att.Count()>0)
-            {
-                switch(att.ToList()[0].accessLevel)
-                {
-                    case 0:
-                        LimitEmergencyContactAddress(true); break;
-                    case 1: LimitEmergencyContactAddress(false); break;
-                    case 2:
-                    default: break;
+        //   //     x.propertyId == "3112107"
+        //   //);
+        //   // if(att.Count()>0)
+        //   // {
+        //   //     switch(att.ToList()[0].accessLevel)
+        //   //     {
+        //   //         case 0:
+        //   //             LimitEmergencyContactAddress(true); break;
+        //   //         case 1: LimitEmergencyContactAddress(false); break;
+        //   //         case 2:
+        //   //         default: break;
 
-                }
-            }
-        }
+        //   //     }
+        //   // }
+        //}
         private void LimitContactAddress(bool isNoAccess)//true no access, false view only
         {
             //No Access
@@ -176,24 +176,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 contactGrid.Hidden = true;
 
             }
-            var properties = AccessControlApplier.GetPropertiesLevels(typeof(EmployeeContact));
+           // var properties = AccessControlApplier.GetPropertiesLevels(typeof(EmployeeContact));
 
-            var att = properties.Where(x =>
+           // var att = properties.Where(x =>
 
-                x.propertyId == "3112202"
-           );
-            if (att.Count() > 0)
-            {
-                switch (att.ToList()[0].accessLevel)
-                {
-                    case 0:
-                        LimitContactAddress(true); break;
-                    case 1: LimitContactAddress(false); break;
-                    case 2:
-                    default: break;
+           //     x.propertyId == "3112202"
+           //);
+           // if (att.Count() > 0)
+           // {
+           //     switch (att.ToList()[0].accessLevel)
+           //     {
+           //         case 0:
+           //             LimitContactAddress(true); break;
+           //         case 1: LimitContactAddress(false); break;
+           //         case 2:
+           //         default: break;
 
-                }
-            }
+           //     }
+           // }
         }
 
         private void HideShowTabs()

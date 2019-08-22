@@ -699,9 +699,11 @@
                                        </DirectEvents>
                                             <Items>
 
-                                                <ext:ListItem Text="<%$ Resources: Classes,Class21010  %>" Value="21010" />
-                                                <ext:ListItem Text="<%$ Resources:  Classes,Class21020  %>" Value="21020" />
-                                                <ext:ListItem Text="<%$ Resources:  Classes,Class21040  %>" Value="21040" />
+                                                <ext:ListItem Text="<%$ Resources: Classes,Class21010  %>" Value="21101" />
+                                                <ext:ListItem Text="<%$ Resources:  Classes,Class21020  %>" Value="21102" />
+                                                <ext:ListItem Text="<%$ Resources:  Classes,Class21103  %>" Value="21103" />
+                                                <ext:ListItem Text="<%$ Resources:  Classes,Class21040  %>" Value="21104" />
+                                                  
                                                
 
                                             </Items>

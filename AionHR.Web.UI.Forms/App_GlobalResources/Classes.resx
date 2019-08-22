@@ -213,6 +213,9 @@
   <data name="Class21099" xml:space="preserve">
     <value>Import Departments</value>
   </data>
+  <data name="Class21103" xml:space="preserve">
+    <value>Positions</value>
+  </data>
   <data name="Class22010" xml:space="preserve">
     <value>Document Type</value>
   </data>

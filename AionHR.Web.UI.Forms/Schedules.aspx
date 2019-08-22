@@ -842,7 +842,7 @@
                                                         <ext:ModelField Name="start" />
                                                         <ext:ModelField Name="end" />
 
-                                                        <ext:ModelField Name="isBenefitOT" />
+                                                     
 
                                                     </Fields>
                                                 </ext:Model>
@@ -932,13 +932,7 @@
                                                 </Editor>
                                                 <%--<Renderer Handler="if(isValidDate(record.data['end'])){var dt = new Date(record.data['end']); var dtString = moment(dt).format('HH:mm'); return dtString;} else return record.data['end']; "/>--%>
                                             </ext:Column>
-                                            <ext:CheckColumn runat="server" Text="<%$ Resources:FieldIsBenifit %>" DataIndex="isBenefitOT">
-                                                <Editor>
-                                                    <ext:Checkbox runat="server" InputValue="true"
-                                                        ID="isBenefitOT" />
-
-                                                </Editor>
-                                            </ext:CheckColumn>
+                                          
                                             <ext:Column runat="server" Visible="false"></ext:Column>
 
 

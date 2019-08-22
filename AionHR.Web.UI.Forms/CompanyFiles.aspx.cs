@@ -113,12 +113,12 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-                var properties = AccessControlApplier.GetPropertiesLevels(typeof(Attachement));
-                if (properties.Where(x => x.index == "url").ToList()[0].accessLevel == 0)
-                {
-                    var s = GridPanel1.ColumnModel.Columns[GridPanel1.ColumnModel.Columns.Count - 1];
-                    s.Renderer.Handler = s.Renderer.Handler.Replace("attachRender()", "' '");
-                }
+            //    var properties = AccessControlApplier.GetPropertiesLevels(typeof(Attachement));
+            //    if (properties.Where(x => x.index == "url").ToList()[0].accessLevel == 0)
+            //    {
+            //        var s = GridPanel1.ColumnModel.Columns[GridPanel1.ColumnModel.Columns.Count - 1];
+            //        s.Renderer.Handler = s.Renderer.Handler.Replace("attachRender()", "' '");
+            //    }
             }
 
         }

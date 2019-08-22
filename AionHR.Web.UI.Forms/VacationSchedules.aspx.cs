@@ -115,37 +115,37 @@ namespace AionHR.Web.UI.Forms
                 if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
                     return;
 
-                ApplySecurityOnVacationPeriods();
+               // ApplySecurityOnVacationPeriods();
             }
 
          
         }
 
-        private void ApplySecurityOnVacationPeriods()
-        {
-            ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
-            classReq.ClassId = (typeof(VacationSchedulePeriod).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-            classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
-            switch (modClass.result.accessLevel)
-            {
-                case 1: addPeriod.Disabled = true; editDisabled.Text = "1"; deleteDisabled.Text = "1"; break;
-                case 2: addPeriod.Disabled = true; deleteDisabled.Text = "1"; break;
-                default: break;
-            }
+        //private void ApplySecurityOnVacationPeriods()
+        //{
+        //    ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+        //    classReq.ClassId = (typeof(VacationSchedulePeriod).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+        //    classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+        //    RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+        //    switch (modClass.result.accessLevel)
+        //    {
+        //        case 1: addPeriod.Disabled = true; editDisabled.Text = "1"; deleteDisabled.Text = "1"; break;
+        //        case 2: addPeriod.Disabled = true; deleteDisabled.Text = "1"; break;
+        //        default: break;
+        //    }
            
-            var properties = AccessControlApplier.GetPropertiesLevels(typeof(VacationSchedulePeriod));
-            int i = 1;
-            foreach (var item in properties)
-            {
-                if (item.accessLevel < 2 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
-                    periodsGrid.ColumnModel.Columns[i].Editor[0].ReadOnly = true;
-                if (item.accessLevel < 1 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
-                    periodsGrid.ColumnModel.Columns[i].Editor[0].InputType = InputType.Password;
+        //    var properties = AccessControlApplier.GetPropertiesLevels(typeof(VacationSchedulePeriod));
+        //    int i = 1;
+        //    foreach (var item in properties)
+        //    {
+        //        if (item.accessLevel < 2 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
+        //            periodsGrid.ColumnModel.Columns[i].Editor[0].ReadOnly = true;
+        //        if (item.accessLevel < 1 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
+        //            periodsGrid.ColumnModel.Columns[i].Editor[0].InputType = InputType.Password;
 
-                i++;
-            }
-        }
+        //        i++;
+        //    }
+        //}
 
 
 

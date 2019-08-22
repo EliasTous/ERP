@@ -164,28 +164,28 @@ namespace AionHR.Web.UI.Forms
                 }
                 try
                 {
-                    var properties = AccessControlApplier.GetPropertiesLevels(typeof(AionHR.Model.Access_Control.ClassProperty));
+                    //var properties = AccessControlApplier.GetPropertiesLevels(typeof(AionHR.Model.Access_Control.ClassProperty));
 
-                    var result = propertiesGrid.ColumnModel.Columns[propertiesGrid.ColumnModel.Columns.Count - 1];
-                    var item = properties.Where(x => x.index == "accessLevel").ToList()[0];
-                    switch (item.accessLevel)
-                    {
-                        case 0:
+                    //var result = propertiesGrid.ColumnModel.Columns[propertiesGrid.ColumnModel.Columns.Count - 1];
+                    //var item = properties.Where(x => x.index == "accessLevel").ToList()[0];
+                    //switch (item.accessLevel)
+                    //{
+                    //    case 0:
 
-                            ((result as WidgetColumn).Widget[0] as Field).InputType = InputType.Password;
-                            (result as WidgetColumn).Widget[0].Disabled = true;
+                    //        ((result as WidgetColumn).Widget[0] as Field).InputType = InputType.Password;
+                    //        (result as WidgetColumn).Widget[0].Disabled = true;
 
-                            break;
-                        case 1:
+                    //        break;
+                    //    case 1:
 
 
 
-                            (result as WidgetColumn).Widget[0].Disabled = true;
+                    //        (result as WidgetColumn).Widget[0].Disabled = true;
 
-                            break;
-                        default: break;
+                    //        break;
+                    //    default: break;
 
-                    }
+                    //}
                 }
                 catch (AccessDeniedException exp)
                 {

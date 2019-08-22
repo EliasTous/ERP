@@ -249,40 +249,40 @@ namespace AionHR.Web.UI.Forms
             //}
         }
 
-        public static List<UC> GetPropertiesLevels(Type type)
-        {
-            ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
-            string classId= type.GetCustomAttribute<ClassIdentifier>().ClassID;
-            classReq.ClassId = classId;
-            classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
-            if (modClass == null || modClass.result == null)
-            {
-                throw new AccessDeniedException();
-            }
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = classId;
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
-            List<UC> properites = new List<UC>();
-            type.GetProperties().ToList<PropertyInfo>().ForEach(x =>
-            {
-                if (x.GetCustomAttribute<PropertyID>() != null)
-                {
-                    properites.Add(new UC() { index = x.Name, propertyId = x.GetCustomAttribute<PropertyID>().ID, accessLevel = modClass.result.accessLevel });
-                }
-            });
+        //public static List<UC> GetPropertiesLevels(Type type)
+        //{
+        //    ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+        //    string classId= type.GetCustomAttribute<ClassIdentifier>().ClassID;
+        //    classReq.ClassId = classId;
+        //    classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+        //    RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+        //    if (modClass == null || modClass.result == null)
+        //    {
+        //        throw new AccessDeniedException();
+        //    }
+        //    UserPropertiesPermissions req = new UserPropertiesPermissions();
+        //    req.ClassId = classId;
+        //    req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+        //    ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+        //    List<UC> properites = new List<UC>();
+        //    type.GetProperties().ToList<PropertyInfo>().ForEach(x =>
+        //    {
+        //        if (x.GetCustomAttribute<PropertyID>() != null)
+        //        {
+        //            properites.Add(new UC() { index = x.Name, propertyId = x.GetCustomAttribute<PropertyID>().ID, accessLevel = modClass.result.accessLevel });
+        //        }
+        //    });
 
-            resp.Items.ForEach(x =>
-            {
-                properites.ForEach(y =>
-                {
-                    if (x.propertyId == y.propertyId)
-                        y.accessLevel = Math.Min(y.accessLevel,x.accessLevel);
+        //    resp.Items.ForEach(x =>
+        //    {
+        //        properites.ForEach(y =>
+        //        {
+        //            if (x.propertyId == y.propertyId)
+        //                y.accessLevel = Math.Min(y.accessLevel,x.accessLevel);
 
-                });
-            });
-            return properites;
-        }
+        //        });
+        //    });
+        //    return properites;
+        //}
     }
 }

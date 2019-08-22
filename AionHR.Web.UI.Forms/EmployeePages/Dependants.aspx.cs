@@ -121,36 +121,36 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
         }
-        private void ApplyAccessControlOnAddress()
-        {
+        //private void ApplyAccessControlOnAddress()
+        //{
            
-            var properties = AccessControlApplier.GetPropertiesLevels(typeof(Dependant));
-            var att = properties.Where(x =>
+        //    var properties = AccessControlApplier.GetPropertiesLevels(typeof(Dependant));
+        //    var att = properties.Where(x =>
 
-                x.propertyId == "3115010"
-           );
-            int level = 0;
-            if (att.Count() == 0 || att.ToList()[0].accessLevel == 2)
-                return;
-            level = att.ToList()[0].accessLevel;
-            switch (level)
-            {
-                case 0:
-                    addressForm.Items.ForEach(x =>
-                    {
-                        (x as Field).InputType = InputType.Password;
-                        (x as Field).ReadOnly = true;
-                    });
-                    break;
-                case 1:
-                    addressForm.Items.ForEach(x =>
-                    {
+        //        x.propertyId == "3115010"
+        //   );
+        //    int level = 0;
+        //    if (att.Count() == 0 || att.ToList()[0].accessLevel == 2)
+        //        return;
+        //    level = att.ToList()[0].accessLevel;
+        //    switch (level)
+        //    {
+        //        case 0:
+        //            addressForm.Items.ForEach(x =>
+        //            {
+        //                (x as Field).InputType = InputType.Password;
+        //                (x as Field).ReadOnly = true;
+        //            });
+        //            break;
+        //        case 1:
+        //            addressForm.Items.ForEach(x =>
+        //            {
 
-                        (x as Field).ReadOnly = true;
-                    }); break;
-            }
+        //                (x as Field).ReadOnly = true;
+        //            }); break;
+        //    }
 
-        }
+        //}
         private void HideShowTabs()
         {
             //this.OtherInfoTab.Visible = false;

@@ -21,7 +21,7 @@ namespace AionHR.Model.Attendance
         public string end { get; set; }
         [PropertyID("41052_04")]
         [ApplySecurity]
-        public bool? isBenefitOT { get; set; }
+      
 
         public int scId { get; set; }
         public short dow { get; set; }

@@ -182,21 +182,21 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
 
-                var properties = AccessControlApplier.GetPropertiesLevels(typeof(Employee));
-                int level = properties.Where(x => x.index == "pictureUrl").ToList()[0].accessLevel;
-                if (level == 0)
-                {
-                    imgControl.Hidden = true;
-                    noImage.Hidden = false;
+                //var properties = AccessControlApplier.GetPropertiesLevels(typeof(Employee));
+                //int level = properties.Where(x => x.index == "pictureUrl").ToList()[0].accessLevel;
+                //if (level == 0)
+                //{
+                //    imgControl.Hidden = true;
+                //    noImage.Hidden = false;
 
-                }
+                //}
 
-                ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
-                classReq.ClassId = "31000";
-                classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
-                RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
-                if (modClass.result.accessLevel < 3)
-                    deleteGear.Disabled = terminationGear.Disabled = true;
+                //ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+                //classReq.ClassId = "31000";
+                //classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+                //RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+                //if (modClass.result.accessLevel < 3)
+                //    deleteGear.Disabled = terminationGear.Disabled = true;
 
 
                 
