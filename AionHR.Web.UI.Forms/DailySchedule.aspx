@@ -82,9 +82,9 @@
 
 
         }
-        function setComboValues(employeeId,from,to) {
+        function setComboValues(employeeId, from, to) {
+
           
-               
             if (employeeId != null)
             {
                 App.employeeId.insertRecord(1, { fullName: 'Text1', recordId: employeeId });
@@ -93,7 +93,7 @@
                 else
                 App.employeeId.setValue(null);
             if (from )
-            {
+            {               
                 App.dateFrom.setValue(new Date(from));
             }
             else
@@ -203,13 +203,13 @@
                                 </ext:ComboBox>
                     
                               
-                                <ext:DateField runat="server" Hidden="true" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: From %>" Editable="false" >
+                                <ext:DateField runat="server" Hidden="true" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: From %>"  AutoDataBind="true" >
                                     <%--  <Listeners>
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
                                     </Listeners>--%>
                                   
                                 </ext:DateField>
-                                <ext:DateField runat="server" Hidden="true" ID="dateTo" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: To %>" Editable="false">
+                                <ext:DateField runat="server" Hidden="true" ID="dateTo" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: To %>"  AutoDataBind="true">
                                     <%--  <Listeners>
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
                                     </Listeners>--%>
@@ -383,19 +383,19 @@
                                     ForceSelection="true"
                                     ID="timeFrom" Text="From"
                                     runat="server"
-                                    Width="100"
+                                    Width="75"
                                     Increment="15"
                                     SelectedTime="00:00"
-                                    Format="hh:mm tt" />
+                                    Format="H:i" />
                                 <ext:Label runat="server" Text="<%$ Resources: To %>" />
                                 <ext:TimeField
                                     ForceSelection="true"
                                     ID="timeTo" Text="From"
                                     runat="server"
-                                    Width="100"
+                                    Width="75"
                                     Increment="15"
                                    SelectedTime="13:00"
-                                    Format="hh:mm tt" />
+                                    Format="H:i"  />
                                    
                                    
                                 <ext:Button runat="server" Text="<%$ Resources: Save %>" Disabled="true" ID="btnSave" StyleSpec="margin:0 0 10px 0;">

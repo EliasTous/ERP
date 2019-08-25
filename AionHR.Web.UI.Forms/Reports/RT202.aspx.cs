@@ -216,9 +216,13 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
             //resp.Items.ForEach(x => { x.PaymentFrequencyString = GetGlobalResourceObject("Common", ((PaymentFrequency)x.paymentFrequency).ToString()).ToString(); });
-            resp.Items.ForEach(x => { x.SalaryTypeString = x.salaryType.HasValue ? GetGlobalResourceObject("Common", ((SalaryType)x.salaryType).ToString()).ToString() : ""; });
-            resp.Items.ForEach(x => { x.PrevSalaryTypeString = x.prevSalaryType.HasValue? GetGlobalResourceObject("Common", ((SalaryType)x.prevSalaryType).ToString()).ToString():""; x.DateString = x.effectiveDate.ToString(_systemService.SessionHelper.GetDateformat(), CultureInfo.CurrentUICulture); });
-
+          
+            resp.Items.ForEach(x =>
+            {
+                x.SalaryTypeString = x.salaryType.HasValue ? GetGlobalResourceObject("Common", ((SalaryType)x.salaryType).ToString()).ToString() : "";
+                x.PrevSalaryTypeString = x.prevSalaryType.HasValue ? GetGlobalResourceObject("Common", ((SalaryType)x.prevSalaryType).ToString()).ToString() : "";
+                x.DateString = x.effectiveDate != null ? ((DateTime)(x.effectiveDate)).ToString(_systemService.SessionHelper.GetDateformat(), CultureInfo.CurrentCulture) : "";
+            });
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             SalaryChanges h = new SalaryChanges(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;

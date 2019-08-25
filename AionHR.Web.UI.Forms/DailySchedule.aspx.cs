@@ -111,15 +111,15 @@ namespace AionHR.Web.UI.Forms
             if (parameters.ContainsKey("2"))
             {
 
-                if (DateTime.TryParseExact(parameters["2"], "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out from))
-                    datefrom = from.ToString();
+                if (DateTime.TryParseExact(parameters["2"], "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.None, out from))
+                    datefrom = from.ToString("yyyy-MM-dd");
                 else
                     datefrom = null;
             }
             if (parameters.ContainsKey("3"))
             {
-                if (DateTime.TryParseExact(parameters["3"], "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out to))
-                    dateTo = to.ToString();
+                if (DateTime.TryParseExact(parameters["3"], "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.None, out to))
+                    dateTo = to.ToString("yyyy-MM-dd");
                 else
                     dateTo = null;
             }
@@ -134,7 +134,7 @@ namespace AionHR.Web.UI.Forms
             //    branchId.Select(parameters["4"]);
             //    branchId.SetValue(parameters["4"]);
             //}
-
+            
             X.Call("setComboValues", parameters.ContainsKey("1") ? parameters["1"] : null, datefrom, dateTo);
         }
 
@@ -525,19 +525,21 @@ namespace AionHR.Web.UI.Forms
                 X.Call("DeleteDaySchedule", dayId.Value.ToString());
 
 
-                FlatScheduleWorkingHoursRequest reqFS = new FlatScheduleWorkingHoursRequest();
-                reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                reqFS.startDate = dateFrom.SelectedDate;
-                reqFS.endDate = dateTo.SelectedDate;
-               
-                ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS);
-                if (!workingHoursResponse.Success)
-                {
-                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
-                    return;
-                }
-                else
-                    workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString();
+                //FlatScheduleWorkingHoursRequest reqFS = new FlatScheduleWorkingHoursRequest();
+                //reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
+                //reqFS.startDate = dateFrom.SelectedDate;
+                //reqFS.endDate = dateTo.SelectedDate;
+
+                //ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS);
+                //if (!workingHoursResponse.Success)
+                //{
+                //    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                //    return;
+                //}
+                //else
+                //    workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString();
+                calculateWorkingHours();
+
             }
         }
         protected void Clear_Click(object sender, DirectEventArgs e)
@@ -613,7 +615,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
                 return;
             }
-
+           
             if (dateFrom.SelectedDate == DateTime.MinValue || dateTo.SelectedDate == DateTime.MinValue)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
@@ -626,20 +628,20 @@ namespace AionHR.Web.UI.Forms
             }
 
             //Proceed to load
-            string rep_params = "";
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("1", employeeId.Value.ToString());
-            parameters.Add("2", dateFrom.SelectedDate.ToString("yyyyMMdd"));
-            parameters.Add("3", dateTo.SelectedDate.ToString("yyyyMMdd"));
-            foreach (KeyValuePair<string, string> entry in parameters)
-            {
-                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
-            }
-            if (rep_params.Length > 0)
-            {
-                if (rep_params[rep_params.Length - 1] == '^')
-                    rep_params = rep_params.Remove(rep_params.Length - 1);
-            }
+            //string rep_params = "";
+            //Dictionary<string, string> parameters = new Dictionary<string, string>();
+            //parameters.Add("1", employeeId.Value.ToString());
+            //parameters.Add("2", dateFrom.SelectedDate.ToString("yyyyMMdd"));
+            //parameters.Add("3", dateTo.SelectedDate.ToString("yyyyMMdd"));
+            //foreach (KeyValuePair<string, string> entry in parameters)
+            //{
+            //    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+            //}
+            //if (rep_params.Length > 0)
+            //{
+            //    if (rep_params[rep_params.Length - 1] == '^')
+            //        rep_params = rep_params.Remove(rep_params.Length - 1);
+            //}
 
 
 
@@ -648,7 +650,7 @@ namespace AionHR.Web.UI.Forms
 
 
             ReportGenericRequest reqFS = new ReportGenericRequest();
-            reqFS.paramString = rep_params;
+            reqFS.paramString = vals.Text;
             
            
             ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
@@ -660,20 +662,22 @@ namespace AionHR.Web.UI.Forms
             this.dayId.Value = string.Empty;
             BuildSchedule(response.Items);
             currentFlat = response.Items;
-            FlatScheduleWorkingHoursRequest req = new FlatScheduleWorkingHoursRequest();
-            req.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-            req.startDate = dateFrom.SelectedDate;
-            req.endDate = dateTo.SelectedDate;
-           
-            ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(req);
-            if (!workingHoursResponse.Success)
-            {
-                Common.errorMessage(workingHoursResponse);
-                return;
-            }
-            else
-                workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString();
-               
+            //FlatScheduleWorkingHoursRequest req = new FlatScheduleWorkingHoursRequest();
+            //req.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
+            //req.startDate =new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month,dateFrom.SelectedDate.Day,12,0,0);
+            //req.endDate = new DateTime(dateTo.SelectedDate.Year, dateTo.SelectedDate.Month, dateTo.SelectedDate.Day, 0, 0, 0);
+
+            //ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(req);
+            //if (!workingHoursResponse.Success)
+            //{
+            //    Common.errorMessage(workingHoursResponse);
+            //    return;
+            //}
+            //else
+            //    workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString();
+            calculateWorkingHours();
+
+
         }
 
 
@@ -717,20 +721,20 @@ namespace AionHR.Web.UI.Forms
 
 
                 }
-                string rep_params = "";
-                Dictionary<string, string> parameters = new Dictionary<string, string>();
-                parameters.Add("1", employeeId.Value.ToString());
-                parameters.Add("2", dayId.Value.ToString() == string.Empty ? dateFrom.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString());
-                parameters.Add("3", dayId.Value.ToString() == string.Empty ? dateTo.SelectedDate.ToString("yyyyMMdd"):dayId.Value.ToString());
-                foreach (KeyValuePair<string, string> entry in parameters)
-                {
-                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
-                }
-                if (rep_params.Length > 0)
-                {
-                    if (rep_params[rep_params.Length - 1] == '^')
-                        rep_params = rep_params.Remove(rep_params.Length - 1);
-                }
+                //string rep_params = "";
+                //Dictionary<string, string> parameters = new Dictionary<string, string>();
+                //parameters.Add("1", employeeId.Value.ToString());
+                //parameters.Add("2", dayId.Value.ToString() == string.Empty ? dateFrom.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString());
+                //parameters.Add("3", dayId.Value.ToString() == string.Empty ? dateTo.SelectedDate.ToString("yyyyMMdd"):dayId.Value.ToString());
+                //foreach (KeyValuePair<string, string> entry in parameters)
+                //{
+                //    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                //}
+                //if (rep_params.Length > 0)
+                //{
+                //    if (rep_params[rep_params.Length - 1] == '^')
+                //        rep_params = rep_params.Remove(rep_params.Length - 1);
+                //}
 
 
 
@@ -739,7 +743,7 @@ namespace AionHR.Web.UI.Forms
 
 
                 ReportGenericRequest reqSaveFS = new ReportGenericRequest();
-                reqSaveFS.paramString = rep_params;
+                reqSaveFS.paramString = vals.Text;
                 //
 
                 ListResponse<FlatSchedule> respSaveFS = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqSaveFS);
@@ -1858,6 +1862,22 @@ namespace AionHR.Web.UI.Forms
 
 
             return req;
+        }
+        private void calculateWorkingHours()
+        {
+            ReportGenericRequest reqFS = new ReportGenericRequest();
+            reqFS.paramString = vals.Text;
+
+
+            ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+            if (!response.Success)
+            {
+                Common.errorMessage(response);
+
+                return;
+            }
+            workingHours.Text = Common.time(response.Items.Sum(x => Convert.ToInt32(x.duration)), true);
+
         }
     }
 

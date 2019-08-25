@@ -224,7 +224,7 @@ namespace AionHR.Web.UI.Forms.Reports
             y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             string format = _systemService.SessionHelper.GetDateformat();
-            CultureInfo cul = CultureInfo.CurrentUICulture; 
+            CultureInfo cul = CultureInfo.CurrentCulture; 
             resp.Items.ForEach(x =>
             {
                 x.hireDateString = x.hireDate.HasValue? x.hireDate.Value.ToString(format, cul) :"";
