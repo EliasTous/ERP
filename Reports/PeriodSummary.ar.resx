@@ -139,7 +139,7 @@
     <value>xrLabel1</value>
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
-    <value>مغادرة خلال ساعات العمل</value>
+    <value>غياب دوام بدون إذن</value>
   </data>
   <data name="xrLabel10.Text1" xml:space="preserve">
     <value>Shift Leave Without Excuse</value>
