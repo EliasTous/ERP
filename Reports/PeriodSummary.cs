@@ -105,7 +105,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         xrLabel25.LocationF = new PointF((float)471.16, 0);
         xrLabel5.LocationF = new PointF((float)471.16, 0);
         xrLabel5.WidthF = (float)167.56;
-        xrLabel5.HeightF = 40;
+        //xrLabel5.HeightF = 40;
 
 
         xrLabel3.LocationF = new PointF((float)638.53, 0);
@@ -124,18 +124,59 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         xrLabel12.LocationF = new PointF((float)825.76, 0);
         xrLabel37.LocationF = new PointF((float)825.76, 0);
 
+        xrLabel9.LocationF = new PointF((float)0, 0);
+        xrLabel9.WidthF = (float)52.59;
+        //xrLabel9.HeightF = (float)22;
 
-        xrLabel7.HeightF = 40;
-        xrLabel18.HeightF = 40;
-        xrLabel35.HeightF = 40;
-        xrLabel37.HeightF = 40;
-        xrLabel39.HeightF = 40;
-        xrLabel43.HeightF = 40;
-        xrLabel47.HeightF = 40;
-        xrLabel51.HeightF = 40;
-        xrLabel52.HeightF = 40;
-        xrLabel53.HeightF = 40;
-        xrLabel54.HeightF = 40;
+        xrLabel48.LocationF = new PointF((float)0, 0);
+        xrLabel48.WidthF = (float)52.59;
+
+        xrLabel48.HeightF = 52;
+        xrLabel20.HeightF = 52;
+        xrLabel23.HeightF = 52;
+        xrLabel2.HeightF = 52;
+        xrLabel3.HeightF = 52;
+        xrLabel6.HeightF = 52;
+        xrLabel36.HeightF = 52;
+        xrLabel42.HeightF = 52;
+        xrLabel10.HeightF = 52;
+        xrLabel13.HeightF = 52;
+        xrLabel14.HeightF = 52;
+        xrLabel15.HeightF = 52;
+        xrLabel16.HeightF = 52;
+        xrLabel17.HeightF = 52;
+        xrLabel22.HeightF = 52;
+
+
+        xrLabel9.HeightF = 53;
+        xrLabel1.HeightF = 53;
+        xrLabel24.HeightF = 53;
+        xrLabel25.HeightF = 53;
+        xrLabel4.HeightF = 53;
+        xrLabel8.HeightF = 53;
+        xrLabel11.HeightF = 53;
+        xrLabel12.HeightF = 53;
+        xrLabel40.HeightF = 53;
+        xrLabel41.HeightF = 53;
+        xrLabel44.HeightF = 53;
+        xrLabel45.HeightF = 53;
+        xrLabel46.HeightF = 53;
+        xrLabel50.HeightF = 53;
+        xrLabel34.HeightF = 53;
+
+        xrLabel5.HeightF = 32;
+        xrLabel7.HeightF = 32;
+        xrLabel18.HeightF = 32;
+        xrLabel35.HeightF = 32;
+        xrLabel37.HeightF = 32;
+        xrLabel39.HeightF = 32;
+        xrLabel43.HeightF = 32;
+        xrLabel47.HeightF = 32;
+        xrLabel51.HeightF = 32;
+        xrLabel52.HeightF = 32;
+        xrLabel53.HeightF = 32;
+        xrLabel54.HeightF = 32;
+
     }
     private void printHeader(Dictionary<string, string> parameters)
     {
