@@ -888,19 +888,7 @@ namespace AionHR.Web.UI.Forms
 
                 BuildSchedule(response.Items);
 
-                FlatScheduleWorkingHoursRequest reqFS1 = new FlatScheduleWorkingHoursRequest();
-                reqFS1.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                reqFS1.startDate = dateFrom.SelectedDate;
-                reqFS1.endDate = dateTo.SelectedDate;
-
-                ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS1);
-                if (!workingHoursResponse.Success)
-                {
-                    Common.errorMessage(workingHoursResponse);
-                    return;
-                }
-                else
-                    workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString();
+                calculateWorkingHours();
 
             }
             catch (Exception exp)
