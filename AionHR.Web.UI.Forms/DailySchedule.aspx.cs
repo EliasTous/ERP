@@ -1300,8 +1300,8 @@ namespace AionHR.Web.UI.Forms
                 {
                     string day = firstDate.ToString("ddd");
                     string dayNumber = firstDate.ToString("dd");
-                    string month = firstDate.ToString("MM");
-                    html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + string.Format("<div style='width:43px;display:inline-block'>{0}</div> {1} - {2}", (string)GetLocalResourceObject(day), dayNumber, month) + "</td><td id=" + firstDate.ToString("yyyyMMdd") + "_Total></td>";
+                    string month = firstDate.ToString("MMM",new CultureInfo("ar-AE"));
+                    html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + string.Format("<div style='width:50 px;display:inline-block'>{0}</div> {1} - {2}", (string)GetLocalResourceObject(day), dayNumber, month) + "</td><td id=" + firstDate.ToString("yyyyMMdd") + "_Total></td>";
                 }
 
                 for (int index =0; index <timesList.Count; index++)

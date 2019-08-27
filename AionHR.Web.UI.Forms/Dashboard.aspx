@@ -952,83 +952,9 @@
 
             if (window.
                 parent.App.tabPanel.getActiveTab().id == "dashboard" || (window.parent.App.tabPanel.getActiveTab().id == "tabHome" && (window.parent.App.activeModule.value == 4 || window.parent.App.activeModule.value == 5 || window.parent.App.activeModule.value == 1 || window.parent.App.activeModule.value == 7))) {
-                ////Not Chained
-                App.alertStore.reload();
-                //App.activeStore.reload();
-              //  App.LocalRateStore.reload();
-                //// App.Store1.reload();
-
-                //App.LeaveRequestsStore.reload();
-                //App.LoansStore.reload();
-                //App.OverDueStore.reload();
-                // App.LocalRateStore.reload();
-                /*Chained*/
-
-                //App.activeStore.reload(
-                //       { 
-                //           callback: function () {
-                //               alert('active called');
-                //               App.absenseStore.reload(
-                //                    {
-                //                        callback: function () {
-                //                            alert('absenseStore called');
-                //                            App.latenessStore.reload(
-                //                                {
-                //                                    callback: function () {
-                //                                        App.missingPunchesStore.reload(
-                //                                            {
-                //                                                callback: function () {
-                //                                                    App.checkMontierStore.reload(
-                //                                                        {
-                //                                                            callback: function () {
-                //                                                                App.outStore.reload(
-                //                                                                       {
-                //                                                                           callback: function () {
-                //                                                                               App.attendanceChartStore.reload(
-                //                                                                                {
-                //                                                                                    callback: function () {
-                //                                                                                        App.InChartStore.reload(
-                //                                                                                            {
-                //                                                                                                callback: function () {
-                //                                                                                                    App.OutChartStore.reload(
-                //                                                                                                        {
-                //                                                                                                            callback: function () {
-                //                                                                                                                App.LeaveRequestsStore.reload(
-                //                                                                                                                    {
-                //                                                                                                                        callback: function () {
-                //                                                                                                                            App.LoansStore.reload(
-                //                                                                                                                                {
-                //                                                                                                                                    callback: function () {
-                //                                                                                                                                            App.AlertsStore.reload();
-                //                                                                                                                                    }
-                //                                                                                                                                });
-                //                                                                                                                        }
-                //                                                                                                                    });
-                //                                                                                                            }
-                //                                                                                                        });
-                //                                                                                                }
-                //                                                                                            });
-                //                                                                                    }
-                //                                                                                });
-                //                                                                           }
-                //                                                                       });
-                //                                                            }
-                //                                                        });
-                //                                                }
-                //                                            });
-                //                                    }
-                //                                });
-                //                        }
-                //                    });
-                //           }
-                //       });
-
-                //$('.flashing').fadeTo(1000, 0.1, function () { $(this).fadeTo(2000, 1.0); });
-
+                App.alertStore.reload();            
             }
-            else {
-                // alert('No Refresh');
-            }
+          
         }
         var tipRenderer = function (toolTip, record, context) {
             var total = 0;
@@ -1361,9 +1287,7 @@
                                              <DirectEvents>
                                            <Click OnEvent="RefreshAllGrid" ></Click>
                                          </DirectEvents>
-                                    <Listeners>
-                                        <Click Handler="RefreshAllGrids();App.LeaveRequestsStore.reload();" />
-                                    </Listeners>
+                                  
                                         </ext:Button>
                                        
                                     </Content>
@@ -1611,7 +1535,95 @@
                                                     <Items>
 
 
-                                                        <ext:GridPanel MarginSpec="0 0 0 0"
+                                                      
+                                                      <%--  <ext:GridPanel MarginSpec="0 0 0 0"
+                                                            ID="LoansGrid"
+                                                            runat="server"
+                                                            PaddingSpec="0 0 0 0"
+                                                            Header="false"
+                                                            Title="<%$Resources:Loans %>"
+                                                            Layout="FitLayout"
+                                                            Scroll="Vertical"
+                                                            Border="false" Visible="false"
+                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
+                                                             
+                                                            <Store>
+                                                                    
+                   
+          
+                                                                <ext:Store
+
+                                                                    ID="LoansStore"
+                                                                    runat="server"  RemoteFilter="false" RemoteSort="false"
+                                                                    PageSize="30"  >
+                                                                   
+                                                                    <Model>
+                                                                        <ext:Model ID="Model11" runat="server" IDProperty="recordId">
+                                                                            <Fields>
+
+                                                                                <ext:ModelField Name="recordId" />
+                                                                                <ext:ModelField Name="employeeId" />
+
+                                                                                <ext:ModelField Name="date" />
+                                                                                <ext:ModelField Name="branchName" />
+                                                                                <ext:ModelField Name="purpose" />
+                                                                                <ext:ModelField Name="amount" />
+                                                                                <ext:ModelField Name="ltName" />
+                                                                                <ext:ModelField Name="currencyRef" />
+                                                                                <ext:ModelField Name="employeeName"  />
+
+                                                                            </Fields>
+                                                                        </ext:Model>
+                                                                    </Model>
+
+                                                                </ext:Store>
+                                                            </Store>
+
+                                                            <ColumnModel ID="ColumnModel12" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                                                <Columns>
+
+                                                                    <ext:Column Visible="false" ID="Column10" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" />
+                                                                    <ext:Column ID="Column11" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
+                                                                    
+                                                                     
+                                                                    </ext:Column>
+                                                                    <ext:Column ID="Column14" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
+
+                                                                    <ext:DateColumn ID="DateColumn3" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
+
+                                                                    <ext:Column ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Width="100">
+                                                                        <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['amount']; "></Renderer>
+                                                                    </ext:Column>
+
+                                                                    <ext:Column ID="Column16" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="1" />
+
+
+
+
+
+
+
+
+
+
+                                                                </Columns>
+                                                            </ColumnModel>
+
+
+                                                            <View>
+                                                                <ext:GridView ID="GridView12" runat="server" />
+                                                            </View>
+
+
+                                                            <SelectionModel>
+                                                                <ext:RowSelectionModel ID="rowSelectionModel11" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />
+                                                            </SelectionModel>
+                                                        </ext:GridPanel>--%>
+
+                                                       
+                                                     
+                                                         <ext:GridPanel MarginSpec="0 0 0 0"
                                                             ID="LeavesGrid"
                                                             runat="server"
                                                             PaddingSpec="0 0 1 0"
@@ -1718,95 +1730,7 @@
                                                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                                                             </SelectionModel>
                                                         </ext:GridPanel>
-                                                        <ext:GridPanel MarginSpec="0 0 0 0"
-                                                            ID="LoansGrid"
-                                                            runat="server"
-                                                            PaddingSpec="0 0 0 0"
-                                                            Header="false"
-                                                            Title="<%$Resources:Loans %>"
-                                                            Layout="FitLayout"
-                                                            Scroll="Vertical"
-                                                            Border="false" Visible="false"
-                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
-                                                             
-                                                            <Store>
-                                                                    
-                   
-          
-                                                                <ext:Store
-
-                                                                    ID="LoansStore"
-                                                                    runat="server"  RemoteFilter="false" RemoteSort="false"
-                                                                    PageSize="30"  >
-                                                                   
-                                                                    <Model>
-                                                                        <ext:Model ID="Model11" runat="server" IDProperty="recordId">
-                                                                            <Fields>
-
-                                                                                <ext:ModelField Name="recordId" />
-                                                                                <ext:ModelField Name="employeeId" />
-
-                                                                                <ext:ModelField Name="date" />
-                                                                                <ext:ModelField Name="branchName" />
-                                                                                <ext:ModelField Name="purpose" />
-                                                                                <ext:ModelField Name="amount" />
-                                                                                <ext:ModelField Name="ltName" />
-                                                                                <ext:ModelField Name="currencyRef" />
-                                                                                <ext:ModelField Name="employeeName"  />
-
-                                                                            </Fields>
-                                                                        </ext:Model>
-                                                                    </Model>
-
-                                                                </ext:Store>
-                                                            </Store>
-
-                                                            <ColumnModel ID="ColumnModel12" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
-                                                                <Columns>
-
-                                                                    <ext:Column Visible="false" ID="Column10" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" />
-                                                                    <ext:Column ID="Column11" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
-                                                                    
-                                                                     
-                                                                    </ext:Column>
-                                                                    <ext:Column ID="Column14" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
-
-                                                                    <ext:DateColumn ID="DateColumn3" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
-
-                                                                    <ext:Column ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Width="100">
-                                                                        <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['amount']; "></Renderer>
-                                                                    </ext:Column>
-
-                                                                    <ext:Column ID="Column16" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="1" />
-
-
-
-
-
-
-
-
-
-
-                                                                </Columns>
-                                                            </ColumnModel>
-
-
-                                                            <View>
-                                                                <ext:GridView ID="GridView12" runat="server" />
-                                                            </View>
-
-
-                                                            <SelectionModel>
-                                                                <ext:RowSelectionModel ID="rowSelectionModel11" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
-                                                            </SelectionModel>
-                                                        </ext:GridPanel>
-
-                                                       
-                                                     
-
-                                                        <ext:GridPanel MarginSpec="0 0 0 0"
+                                                         <ext:GridPanel MarginSpec="0 0 0 0"
                                                             ID="TimeGridPanel"
                                                             runat="server"
                                                             PaddingSpec="0 0 1 0"
@@ -2150,7 +2074,7 @@
                                                                
                                                             </SelectionModel>
                                                         </ext:GridPanel>
-                                                            <ext:GridPanel
+                                                         <ext:GridPanel
                             ID="EmployeePenaltyApprovalGrid"
                             runat="server"
                             PaddingSpec="0 0 1 0"
@@ -2390,9 +2314,7 @@
                               
                             </SelectionModel>
                          
-                     </ext:GridPanel>
-
-                                                       
+                     </ext:GridPanel>                                                                                                              
                                                          <ext:GridPanel Hidden="true" MarginSpec="0 0 0 0"
                                                             ID="PunchesGrid"
                                                             runat="server"

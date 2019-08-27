@@ -201,7 +201,7 @@ namespace AionHR.Web.UI.Forms
                         //checkMontierStore.Reload();
                         format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                         DateColumn4.Format = _systemService.SessionHelper.GetDateformat() + " HH:mm:ss";
-                         dtTo.Format=dtFrom.Format= PADate.Format= ColDate.Format= DateColumn12.Format= DateColumn10.Format=DateColumn11.Format = DateColumn9.Format  =  ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format = DateColumn3.Format  = _systemService.SessionHelper.GetDateformat();
+                         dtTo.Format=dtFrom.Format= PADate.Format= ColDate.Format= DateColumn12.Format= DateColumn10.Format=DateColumn11.Format = DateColumn9.Format  =  ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format =  _systemService.SessionHelper.GetDateformat();
                         periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         CountDateTo.SelectedDate = DateTime.Now;
@@ -430,14 +430,14 @@ namespace AionHR.Web.UI.Forms
                     PunchesGrid.Hidden = false;
                     belowt.ShowTab(PunchesGrid);
                     PunchesGrid.Title = GetLocalResourceObject("PunchesGrid").ToString() + " " + (PENDING_PUNCHES != 0 ? PENDING_PUNCHES.ToString() : "");
-                   belowt.ActiveIndex = belowt.ActiveTabIndex-1;
+                    belowt.ActiveIndex = belowt.ActiveTabIndex==6?5: belowt.ActiveTabIndex;
                 }
                 else
                 {
                     belowt.HideTab(PunchesGrid);
-                  if (belowt.ActiveTabIndex==7)
+                  if (belowt.ActiveTabIndex==5)
                     belowt.ActiveIndex = 0;
-                    PunchesGrid.Hidden = true;
+                    //PunchesGrid.Hidden = true;
                 }
                     
                 return dashoard;
@@ -886,6 +886,7 @@ namespace AionHR.Web.UI.Forms
             alertStore.Reload();
             branchAvailabilityStore.Reload();
             BindAlerts();
+            LeaveRequestsStore.Reload();
         }
 
         protected void attendanceChartStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -902,31 +903,31 @@ namespace AionHR.Web.UI.Forms
 
 
 
-        protected void LoansStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            try
-            {
-                LoanManagementListRequest req = GetLoanManagementRequest();
-                req.Status = 1;
-                ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
-                //List<Loan> OpenLoans = loans.Items.Where(t => t.status == 1).ToList();
+        //protected void LoansStore_ReadData(object sender, StoreReadDataEventArgs e)
+        //{
+        //    try
+        //    {
+        //        LoanManagementListRequest req = GetLoanManagementRequest();
+        //        req.Status = 1;
+        //        ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
+        //        //List<Loan> OpenLoans = loans.Items.Where(t => t.status == 1).ToList();
 
-                if (!resp.Success)
-                {
-                    Common.errorMessage(resp);
-                    return;
-                }
+        //        if (!resp.Success)
+        //        {
+        //            Common.errorMessage(resp);
+        //            return;
+        //        }
 
-                LoansStore.DataSource = resp.Items;
-                LoansStore.DataBind();
-                int x = resp.count;
-                X.Call("loansChart", x, x + (10 - (x % 10)));
-            }
-            catch (Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-            }
-        }
+        //        LoansStore.DataSource = resp.Items;
+        //        LoansStore.DataBind();
+        //        int x = resp.count;
+        //        X.Call("loansChart", x, x + (10 - (x % 10)));
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+        //    }
+        //}
 
         protected void LeaveRequestsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
