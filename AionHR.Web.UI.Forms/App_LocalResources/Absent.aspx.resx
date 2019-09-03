@@ -378,4 +378,7 @@
   <data name="Fieldpunches" xml:space="preserve">
     <value>Punches</value>
   </data>
+  <data name="RejectRecord" xml:space="preserve">
+    <value>Are you sure you want to reject the selected record ?</value>
+  </data>
 </root>

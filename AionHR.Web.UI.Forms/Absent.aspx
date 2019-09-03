@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/AttendanceDayView.js?id=5"></script>
+    <script type="text/javascript" src="Scripts/AttendanceDayView.js?id=12"></script>
      <script type="text/javascript" src="Scripts/ReportsCommon.js?id=10"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
@@ -98,6 +98,7 @@
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=TATV&values="/>
+          <ext:Hidden ID="isSuperUser" runat="server" />
         
         <ext:Store
             ID="Store1"
@@ -311,7 +312,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                             <Renderer handler="if ((record.data['timeCode']===41 || record.data['timeCode']===21) && record.data['apStatus']!=-1) return editRender()+'&nbsp;&nbsp;' +attachRender(); else return editRender() " />
+                             <Renderer handler="if ((record.data['timeCode']===41 || record.data['timeCode']===21) && record.data['apStatus']!=-1) { if (record.data['apStatus']==2) return editRender()+'&nbsp;&nbsp;' +attachRender()+'&nbsp;&nbsp;'+rejectRender(); else return editRender()+'&nbsp;&nbsp;' +attachRender();  }else { if ( record.data['apStatus']==2 && App.isSuperUser.getValue()=='true'){return rejectRender()+'&nbsp;&nbsp;'+ editRender(); }else   return editRender();} " />
 
                                   </ext:Column>
 

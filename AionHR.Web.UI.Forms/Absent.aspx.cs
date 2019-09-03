@@ -108,7 +108,8 @@ namespace AionHR.Web.UI.Forms
                 //FillStatus();
 
 
-               
+                isSuperUser.Text = _systemService.SessionHelper.GetUserType() == 1 ? "true" : "false";
+             
 
 
 
@@ -577,6 +578,25 @@ namespace AionHR.Web.UI.Forms
                         }).Show();
                         break;
 
+
+
+                    case "imgReject":
+                        X.Msg.Confirm(Resources.Common.Confirmation, GetLocalResourceObject("RejectRecord").ToString(), new MessageBoxButtonsConfig
+                        {
+                            Yes = new MessageBoxButtonConfig
+                            {
+                                //We are call a direct request metho for deleting a record
+                                Handler = String.Format("App.direct.RejectRecord({0})", id),
+                                Text = Resources.Common.Yes
+                            },
+                            No = new MessageBoxButtonConfig
+                            {
+                                Text = Resources.Common.No
+                            }
+
+                        }).Show();
+                        break;
+
                     case "imgAttach":
                         overrideForm.Reset();
                         RecordRequest req = new RecordRequest();
@@ -664,6 +684,50 @@ namespace AionHR.Web.UI.Forms
             catch(Exception exp)
             {
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+
+        }
+
+        [DirectMethod]
+        public void RejectRecord(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                RecordRequest req = new RecordRequest();
+                req.RecordID = index;
+
+
+                RecordResponse<DashBoardTimeVariation> r = _timeAttendanceService.ChildGetRecord<DashBoardTimeVariation>(req);                    //Step 1 Selecting the object or building up the object for update purpose
+
+                if (!r.Success)
+                {
+                    Common.errorMessage(r);
+                    return;
+                }
+                else
+                {
+                    PostRequest<DashBoardTimeVariation> rejReq = new PostRequest<DashBoardTimeVariation>();
+                    rejReq.entity = r.result;
+                    rejReq.entity.apStatus = -1;
+                    PostResponse<DashBoardTimeVariation> rejResp = _timeAttendanceService.ChildAddOrUpdate<DashBoardTimeVariation>(rejReq);
+
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordUpdatedSucc
+                    });
+                }
+                Store1.Reload();
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
             }
 
         }
