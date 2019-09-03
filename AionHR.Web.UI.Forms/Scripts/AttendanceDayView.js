@@ -14,6 +14,10 @@ var LinkRender = function (val, metaData, record, rowIndex, colIndex, store,apst
     return '<a href="#" class="LinkRender"  style="cursor:pointer;"  >' + apstatusString +'</a>';
 };
 
+var rejectRender = function () {
+    return '<img class="imgReject"  style="cursor:pointer;" src="Images/logoff.png" />';
+};
+
 
 
 
@@ -28,6 +32,11 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         columnId = this.columns[columnIndex].id; // Get column id
 
     if (t.className == "imgEdit") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+    if (t.className == "imgReject") {
         //the ajax call is allowed
         commandName = t.className;
         return true;
