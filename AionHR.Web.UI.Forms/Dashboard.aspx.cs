@@ -1030,6 +1030,7 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(resp);
                     return;
                 }
+                resp.Items.ForEach(x => x.hireDateString = x.hireDate.ToString(_systemService.SessionHelper.GetDateformat()));
                 AnniversaryStore.DataSource = resp.Items;
                 AnniversaryStore.DataBind();
             }
@@ -3251,13 +3252,41 @@ namespace AionHR.Web.UI.Forms
             //r.Size = "50";
 
             string rep_params = "";
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("5", timeVariationType.GetTimeCode());
-            parameters.Add("7", "1");
-            parameters.Add("8",req.BranchId );
-            parameters.Add("9", req.DepartmentId);
-            parameters.Add("10", req.EsId);
+            //Dictionary<string, string> parameters = new Dictionary<string, string>();
+            //parameters.Add("5", timeVariationType.GetTimeCode());
+            //parameters.Add("7", "1");
+            //parameters.Add("8",req.BranchId );
+            //parameters.Add("9", req.DepartmentId);
+            //parameters.Add("10", req.EsId);
+            //parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
+
+
+
+
+            Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+            if (parameters.ContainsKey("2"))
+                parameters.ChangeKey("2", "8");
+            if (parameters.ContainsKey("3"))
+                parameters.ChangeKey("3", "9");
+            if (parameters.ContainsKey("5"))
+                parameters.ChangeKey("5", "10");
+            if (parameters.ContainsKey("1"))
+                parameters.Remove("1");
+            if (parameters.ContainsKey("4"))
+                parameters.Remove("4");
+
+
+            //   parameters.Add("1", "0");
+
             parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
+            parameters.Add("5", timeVariationType.GetTimeCode());
+            //    parameters.Add("4", "0");
+            //  parameters.Add("7", "1");
+            parameters.Add("7", "1");
+
+
+
+
 
             foreach (KeyValuePair<string, string> entry in parameters)
             {

@@ -241,7 +241,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   />
-                                <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldActionType%>"  runat="server" DisplayField="value" ValueField="key"   Name="actionType" ID="actionType" >
+                                <ext:ComboBox AllowBlank="false" AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldActionType%>"  runat="server" DisplayField="value" ValueField="key"   Name="actionType" ID="actionType" >
                                              <Store>
                                                 <ext:Store runat="server" ID="actionTypeStore">
                                                     <Model>

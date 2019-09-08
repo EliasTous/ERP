@@ -405,8 +405,17 @@
                                     </Proxy>
 
                                 </ext:Store>
-
+                                
                             </Store>
+                                       <DirectEvents>
+                                           <Change OnEvent="fillEmployeeInfo" >
+                                                <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                <ext:Parameter Name="employeeId" Value="this.value" Mode="Raw" />
+                              
+                            </ExtraParams>
+                                               </Change>
+                                       </DirectEvents>
                         </ext:ComboBox>
                                         <ext:ComboBox      AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false"   ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SubmitValue="true" >
                                                 <Store>

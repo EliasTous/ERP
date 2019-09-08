@@ -685,7 +685,7 @@
     </HeaderConfig>
     <Items>
 
-        <ext:Panel ID="leftPanel" runat="server" Region="West" PaddingSpec="00 0 0" Padding="0" TitleAlign="Center" DefaultAnchor="100%"
+        <ext:Panel Resizable="true" ID="leftPanel" runat="server" Region="West" PaddingSpec="00 0 0" Padding="0" TitleAlign="Center" DefaultAnchor="100%"
             Header="false" Collapsible="false" BodyPadding="5" Width="170" StyleSpec="border-left:2px solid #2A92D4;border-right:2px solid #2A92D4;"
             Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" BodyBorder="0">
 
@@ -714,7 +714,7 @@
                             <DirectEvents>
                             </DirectEvents>
                         </ext:FileUploadField>
-                        <ext:Panel runat="server" ID="img" MarginSpec="20 0 0 0">
+                        <ext:Panel  runat="server" ID="img" MarginSpec="20 0 0 0">
 
                             <Items>
                                 <ext:Panel runat="server">
@@ -742,7 +742,7 @@
                                         <ext:Label ID="branchLbl" runat="server" />
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel runat="server">
+                                <ext:Panel  runat="server">
                                     <Items>
                                         <ext:Label ID="positionLbl" runat="server" />
                                     </Items>
@@ -792,7 +792,7 @@
 
                                 
 
-                                 <ext:Panel runat="server"  MarginSpec="0 0 10 0" >
+                                 <ext:Panel runat="server"  MarginSpec="0 0 5 0" >
                                     <Items>
                                         <ext:Label ID="earnedLeavesTitle" Text="<%$ Resources:EarnedleavesTitle %>" runat="server" />
                                         <ext:Label ID="earnedLeavesLbl" runat="server" />

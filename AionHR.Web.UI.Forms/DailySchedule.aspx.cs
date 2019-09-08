@@ -279,12 +279,11 @@ namespace AionHR.Web.UI.Forms
 
 
                 //Reload Again
-                BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
-                reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
-                reqFS.FromDayId = dateFrom.SelectedDate;
-                reqFS.ToDayId = dateTo.SelectedDate;
-                reqFS.BranchId = 0;
-                ListResponse<FlatSchedule> response = _helpFunctionService.ChildGetAll<FlatSchedule>(reqFS);
+                ReportGenericRequest reqFS = new ReportGenericRequest();
+                reqFS.paramString = vals.Text;
+
+
+                ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
                 if (!response.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();

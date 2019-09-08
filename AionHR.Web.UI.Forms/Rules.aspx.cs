@@ -759,6 +759,7 @@ namespace AionHR.Web.UI.Forms
 
                     request.entity = b;
                     request.entity.ruleId = currentRuId.Text;
+                    request.entity.value = string.IsNullOrEmpty(request.entity.value) ? null : request.entity.value;
                     PostResponse<Model.Company.Structure.RuleCondition> r = _companyStructureService.ChildAddOrUpdate<Model.Company.Structure.RuleCondition>(request);
 
 
@@ -810,7 +811,7 @@ namespace AionHR.Web.UI.Forms
                     PostRequest<Model.Company.Structure.RuleCondition> request = new PostRequest<Model.Company.Structure.RuleCondition>();
                     request.entity = b;
                     request.entity.ruleId = currentRuId.Text;
-
+                    request.entity.value = string.IsNullOrEmpty(request.entity.value) ? null : request.entity.value;
                     PostResponse<Model.Company.Structure.RuleCondition> r = _companyStructureService.ChildAddOrUpdate<Model.Company.Structure.RuleCondition>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
