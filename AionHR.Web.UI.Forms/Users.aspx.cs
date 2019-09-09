@@ -88,7 +88,8 @@ namespace AionHR.Web.UI.Forms
 
                 SetExtLanguage();
                 HideShowButtons();
-
+                languageIdStore.DataSource = Common.XMLDictionaryList(_systemService, "23");
+                languageIdStore.DataBind();
                 this.rtl.Text = _systemService.SessionHelper.CheckIfArabicSession() ? "True" : "False";
                 try
                 {

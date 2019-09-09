@@ -768,10 +768,23 @@ namespace AionHR.Web.UI.Forms
             ApprovalStore.DataBind();
         }
 
+        protected void fillEmployeeInfo(object sender, DirectEventArgs e)
+        {
+            string employeeId = e.ExtraParams["employeeId"];
+            if (string.IsNullOrEmpty(employeeId))
+                return;
+            EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
+            req.RecordID = employeeId;
+            req.asOfDate = DateTime.Now;
+            RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            branchId.Select(resp.result.branchId);
+            departmentId.Select(resp.result.departmentId);
 
-
-
-
-
+        }
     }
 }

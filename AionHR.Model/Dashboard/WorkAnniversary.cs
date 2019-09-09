@@ -19,5 +19,6 @@ namespace AionHR.Model.Dashboard
         }
 
         public int days { get; set; }
+        public string hireDateString { get; set; }
     }
 }

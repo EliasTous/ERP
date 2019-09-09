@@ -354,4 +354,7 @@
   <data name="FieldJustification" xml:space="preserve">
     <value>Justification</value>
   </data>
+  <data name="RejectRecord" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir rejeter l'enregistrement sélectionné?</value>
+  </data>
 </root>

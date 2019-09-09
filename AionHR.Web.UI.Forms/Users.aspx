@@ -502,7 +502,7 @@
             Modal="true"
             Hidden="true"
             Layout="Fit">
-
+             
             <Items>
                 <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
                     <Items>
@@ -523,7 +523,7 @@
                                 <ext:Checkbox ID="isInactiveCheck" TabIndex="4" runat="server" FieldLabel="<%$ Resources: FieldIsInActive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
                            <%--     <ext:Checkbox ID="isAdminCheck" TabIndex="5" runat="server" FieldLabel="<%$ Resources: FieldIsAdmin%>" DataIndex="isAdmin" Name="isAdmin" InputValue="true" />--%>
 
-                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="userType" AllowBlank="false"  Name="userType" DisplayField="value" ValueField="key" 
+                                   <ext:ComboBox InputType="Search" AnyMatch="true" CaseSensitive="false" runat="server" ID="userType" AllowBlank="false"  Name="userType" DisplayField="value" ValueField="key" 
                                     SubmitValue="true"  StoreID="userTypeStore"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldUserType%>">
@@ -540,7 +540,7 @@
                                            <Select Handler="if (this.value!=1) #{employeeId}.allowBlank = false; else #{employeeId}.allowBlank = true; #{employeeId}.validate(); "></Select>
                                        </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" TabIndex="6" Name="employeeId"
+                                <ext:ComboBox InputType="Search" AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" TabIndex="6" Name="employeeId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"
@@ -572,17 +572,26 @@
                                         <FocusLeave Handler=" if(this.value==null|| isNaN(this.value) )SetNameEnabled(true,'');  if(isNaN(this.value)) this.setValue(null);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="languageId" AllowBlank="false" TabIndex="7" Name="languageId"
-                                    SubmitValue="true"
-                                    TypeAhead="false"
-                                    FieldLabel="<%$ Resources: FieldLanguageId%>">
-                                    <Items>
-                                        <ext:ListItem Text="<%$Resources:Common,EnglishLanguage %>" Value="1" />
-                                        <ext:ListItem Text="<%$Resources:Common,ArabicLanguage %>" Value="2" />
-                                         <ext:ListItem Text="<%$Resources:Common,FrenchLanguage %>" Value="3" />
-                                          <ext:ListItem Text="<%$Resources:Common,DeutschLanguage %>" Value="4" />
-                                    </Items>
-                                </ext:ComboBox>
+
+                                   <ext:ComboBox InputType="Search" AllowBlank="false"  AnyMatch="true" CaseSensitive="false" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="3"  FieldLabel="<%$ Resources: FieldLanguageId%>"   runat="server" DisplayField="value" ValueField="key"   Name="languageId" ID="languageId" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="languageIdStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                    <Listeners>
+                                        <FocusEnter Handler="this.expand();" />
+                                    </Listeners>
+                                       </ext:ComboBox>
+                                
+                             
 
                                 <ext:TextField
                                     ID="PasswordField" TabIndex="8"

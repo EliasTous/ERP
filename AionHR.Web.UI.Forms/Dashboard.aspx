@@ -139,12 +139,12 @@
 
             switch (val) {
                
-                case 0: App.PendingWindow.show(); App.PendingStore.reload(); break;
-                case 1: App.NoShowUpWindow.show(); App.NoShowUpStore.reload(); break;
-                case 2: App.CheckedWindow.show(); App.CheckedStore.reload(); break;
+                case 0: App.PendingWindow.show(); App.PendingStore.reload({ loadMask: true }); break;
+                case 1: App.NoShowUpWindow.show(); App.NoShowUpStore.reload({ loadMask: true }); break;
+                case 2: App.CheckedWindow.show(); App.CheckedStore.reload({ loadMask: true }); break;
               //  case 3: App.LeaveWithoutExcuseWindow.show(); App.LeaveWithoutExcuseStore.reload(); break;
-                case 4: App.LeaveWindow.show(); App.LeaveStore.reload(); App.LeaveWindow.setTitle(title); break;
-                case 5: App.DayOffWindow.show(); App.DayOffStore.reload(); break;
+                case 4: App.LeaveWindow.show(); App.LeaveStore.reload({ loadMask: true }); App.LeaveWindow.setTitle(title); break;
+                case 5: App.DayOffWindow.show(); App.DayOffStore.reload({ loadMask: true }); break;
             }
 
         };
@@ -223,8 +223,9 @@
         var clickLateHightChartPieSeries = function (val,title) {
         
             App.CurrentTimeVariationType.setValue(val);
-            App.TimeVariationStore.reload();
+            App.TimeVariationStore.reload({ loadMask: true });
             App.TimeVariationWindow.setTitle(title);
+           
             App.TimeVariationWindow.show();
 
            
@@ -2825,6 +2826,8 @@
                                         <ext:ModelField Name="name" ServerMapping="name.fullName" />
                                         <ext:ModelField Name="hireDate" />
                                         <ext:ModelField Name="days" />
+                                         <ext:ModelField Name="hireDateString" />
+                                        
 
                                     </Fields>
                                 </ext:Model>
@@ -4677,7 +4680,7 @@
                     <ext:Store
                             ID="PendingStore"
                             runat="server" OnReadData="Pending_ReadData"
-                            PageSize="30">
+                            PageSize="30" >
 
                             <Model>
                                 <ext:Model ID="Model27" runat="server">
@@ -5016,6 +5019,7 @@
         </ext:Window>
         <ext:Window runat="server" Modal="true" 
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="TimeVariationWindow" Width="600" Height="300">
+           
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
                     ID="TimeVariationGrid" Layout="FitLayout"
@@ -5032,7 +5036,8 @@
                     <ext:Store
                             ID="TimeVariationStore"
                             runat="server" 
-                            PageSize="30" OnReadData="TimeVariationStore_ReadData">
+                            PageSize="30" OnReadData="TimeVariationStore_ReadData" >
+                      
 
                             <Model>
                                 <ext:Model ID="Model32" runat="server">

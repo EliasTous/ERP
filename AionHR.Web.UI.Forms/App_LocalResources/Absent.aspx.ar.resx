@@ -351,4 +351,7 @@
   <data name="Fieldpunches" xml:space="preserve">
     <value>البصمات </value>
   </data>
+  <data name="RejectRecord" xml:space="preserve">
+    <value>هل أنت متأكد انك تريد رفض السجل المحدد ؟</value>
+  </data>
 </root>
