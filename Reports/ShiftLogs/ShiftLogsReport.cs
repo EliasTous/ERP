@@ -291,7 +291,7 @@ namespace Reports.ShiftLogs
             e.GetFieldValue(fieldemployeeName1);
            if ( e.RowValueType == PivotGridValueType.Total && e.ColumnIndex==0)
             {
-                e.DisplayText =time(items.Where(x => x.employeeName == e.GetFieldValue(fieldemployeeName1).ToString()).Sum(x => x.duration),true);
+                e.DisplayText =time(items.Where(x => x.employeeName == e.GetFieldValue(fieldemployeeName1).ToString()).Sum(x => x.duration/2),true);
                 return;
 
             }
