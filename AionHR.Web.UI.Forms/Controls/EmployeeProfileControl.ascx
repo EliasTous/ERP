@@ -687,7 +687,7 @@
 
         <ext:Panel Resizable="true" ID="leftPanel" runat="server" Region="West" PaddingSpec="00 0 0" Padding="0" TitleAlign="Center" DefaultAnchor="100%"
             Header="false" Collapsible="false" BodyPadding="5" Width="170" StyleSpec="border-left:2px solid #2A92D4;border-right:2px solid #2A92D4;"
-            Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" BodyBorder="0">
+          Layout="FitLayout"  Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" BodyBorder="0">
 
             <Items>
                 <ext:Panel runat="server" ID="alignedPanel" Header="false">
