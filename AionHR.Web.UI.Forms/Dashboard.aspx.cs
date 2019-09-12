@@ -1723,72 +1723,79 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         protected void TimePoPUP(object sender, DirectEventArgs e)
         {
-            TabPanel1.ActiveIndex = 0;
-           
-          
-    
-            currentSeqNo.Text = e.ExtraParams["seqNo"];
-            string tvIdParameter = e.ExtraParams["tvId"];
-
-
-         
-
-            TimeApprovalRecordRequest r = new TimeApprovalRecordRequest();
-            r.seqNo = currentSeqNo.Text; 
-          
-            r.tvId = tvIdParameter;
-            
-
-            RecordResponse<Time> response = _timeAttendanceService.ChildGetRecord<Time>(r);
-            if (!response.Success)
+            try
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                Common.errorMessage(response);
-                return;
+                TabPanel1.ActiveIndex = 0;
+
+
+
+                currentSeqNo.Text = e.ExtraParams["seqNo"];
+                string tvIdParameter = e.ExtraParams["tvId"];
+
+
+
+
+                TimeApprovalRecordRequest r = new TimeApprovalRecordRequest();
+                r.seqNo = currentSeqNo.Text;
+
+                r.tvId = tvIdParameter;
+
+
+                RecordResponse<Time> response = _timeAttendanceService.ChildGetRecord<Time>(r);
+                if (!response.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(response);
+                    return;
+                }
+                if (response.result != null)
+                {
+                    TimeApprovalStatusControl.setApprovalStatus(response.result.status.ToString());
+                    if (response.result.damageLevel == "1")
+                    {
+                        response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
+                        damageLevel.Text = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
+                    }
+                    else
+                    {
+                        response.result.damageLevel = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
+                        damageLevel.Text = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
+                    }
+                    if (!string.IsNullOrEmpty(response.result.shiftStart))
+                        shiftStart.Text = response.result.shiftStart;
+                    if (!string.IsNullOrEmpty(response.result.shiftEnd))
+                        shiftStart.Text += " " + response.result.shiftEnd;
+
+
+
+
+
+                    // clockDuration.Text = response.result.clockDuration + " " + response.result.duration;
+                    List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
+
+
+                    clockDuration.Text = response.result.clockDuration;
+                    duration.Text = response.result.duration;
+                    TimeEmployeeName.Text = response.result.employeeName;
+                    TimedayIdDate.SelectedDate = (DateTime)response.result.date;
+                    TimeTimeCodeString.Text = timeCode.Where(y => y.key == Convert.ToInt32(response.result.timeCode)).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(response.result.timeCode)).First().value : string.Empty; ;
+                    TimeApprovalStatusControl.setApprovalStatus(response.result.status.ToString());
+                    shiftIdTF.Text = string.IsNullOrEmpty(response.result.shiftId) ? "" : response.result.shiftId;
+                    TimeNotes.Text = response.result.notes;
+                    justification.Text = response.result.justification;
+                    tvId.Text = tvIdParameter;
+                    helpText.Text = response.result.helpText;
+
+                    FillTimeApproval((DateTime)response.result.dtFrom, (DateTime)response.result.dtTo, response.result.employeeId, response.result.timeCode, response.result.shiftId, response.result.status.ToString());
+                }
+                this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
+                this.TimeWindow.Show();
             }
-            if (response.result != null)
+            catch (Exception exp)
             {
-                TimeApprovalStatusControl.setApprovalStatus(response.result.status.ToString());
-                if (response.result.damageLevel == "1")
-                {
-                    response.result.damageLevel = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
-                    damageLevel.Text = GetLocalResourceObject("DamageWITHOUT_DAMAGE").ToString();
-                }
-                else
-                {
-                    response.result.damageLevel = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
-                    damageLevel.Text = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
-                }
-                if (!string.IsNullOrEmpty(response.result.shiftStart))
-                    shiftStart.Text = response.result.shiftStart;
-                if (!string.IsNullOrEmpty(response.result.shiftEnd))
-                    shiftStart.Text += " " + response.result.shiftEnd;
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
 
-
-              
-
-
-                // clockDuration.Text = response.result.clockDuration + " " + response.result.duration;
-                List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
-
-
-                clockDuration.Text = response.result.clockDuration;
-                duration.Text = response.result.duration;
-                TimeEmployeeName.Text = response.result.employeeName;
-                TimedayIdDate.SelectedDate =(DateTime) response.result.date;
-                TimeTimeCodeString.Text = timeCode.Where(y => y.key == Convert.ToInt32(response.result.timeCode)).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(response.result.timeCode)).First().value : string.Empty; ;
-                TimeApprovalStatusControl.setApprovalStatus(response.result.status.ToString());
-                shiftIdTF.Text = string.IsNullOrEmpty(response.result.shiftId) ? "" : response.result.shiftId;
-                TimeNotes.Text = response.result.notes;
-                justification.Text = response.result.justification;
-                tvId.Text = tvIdParameter;
-                helpText.Text = response.result.helpText; 
-
-                FillTimeApproval((DateTime)response.result.dtFrom, (DateTime)response.result.dtTo, response.result.employeeId, response.result.timeCode, response.result.shiftId, response.result.status.ToString());
             }
-            this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
-            this.TimeWindow.Show();
-
         }
         [DirectMethod]
         protected void PurchasesApprovalPoPUP(object sender, DirectEventArgs e)
