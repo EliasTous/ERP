@@ -437,7 +437,7 @@ namespace AionHR.Web.UI.Forms
                     case "ar":
                         {
 
-                            c = new CultureInfo("ar");
+                            c = new CultureInfo("en");
                         }
                         break;
                     case "en":

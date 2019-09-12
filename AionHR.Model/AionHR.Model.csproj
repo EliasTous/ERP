@@ -371,6 +371,7 @@
     <Compile Include="TimeAttendance\PendingPunch.cs" />
     <Compile Include="TimeAttendance\PendingTA.cs" />
     <Compile Include="TimeAttendance\processUnscheduledPunch.cs" />
+    <Compile Include="TimeAttendance\RejectTimeVariationc.cs" />
     <Compile Include="TimeAttendance\Router.cs" />
     <Compile Include="Company\Cases\Case.cs" />
     <Compile Include="Company\Cases\CaseComment.cs" />

@@ -707,10 +707,29 @@ namespace AionHR.Web.UI.Forms
                 }
                 else
                 {
-                    PostRequest<DashBoardTimeVariation> rejReq = new PostRequest<DashBoardTimeVariation>();
-                    rejReq.entity = r.result;
+                     RejectTimeVariationc rejectObject = new RejectTimeVariationc();
+                    rejectObject.clockDuration = r.result.clockDuration;
+                    rejectObject.damageLevel= r.result.damageLevel;
+                    rejectObject.date= r.result.date;
+                    rejectObject.dayId = r.result.dayId;
+                    rejectObject.dtFrom = r.result.dtFrom;
+                    rejectObject.dtTo = r.result.dtTo;
+                    rejectObject.duration = r.result.duration;
+                    rejectObject.employeeId = r.result.employeeId;
+                    rejectObject.recordId = r.result.recordId;
+                    rejectObject.shiftId = r.result.shiftId;
+                    rejectObject.timeCode = r.result.timeCode;
+                    rejectObject.justification = r.result.justification;
+                 
+
+
+
+                    PostRequest<RejectTimeVariationc> rejReq = new PostRequest<RejectTimeVariationc>();
+                    rejReq.entity = rejectObject;
+
+
                     rejReq.entity.apStatus = -1;
-                    PostResponse<DashBoardTimeVariation> rejResp = _timeAttendanceService.ChildAddOrUpdate<DashBoardTimeVariation>(rejReq);
+                    PostResponse<RejectTimeVariationc> rejResp = _timeAttendanceService.ChildAddOrUpdate<RejectTimeVariationc>(rejReq);
 
                     Notification.Show(new NotificationConfig
                     {

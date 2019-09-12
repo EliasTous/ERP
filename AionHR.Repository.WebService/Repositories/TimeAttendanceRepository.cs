@@ -88,6 +88,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(Time), "setTA");
             ChildAddOrUpdateLookup.Add(typeof(PendingPunch), "processPP");
             ChildAddOrUpdateLookup.Add(typeof(DashBoardTimeVariation), "setTV");
+            ChildAddOrUpdateLookup.Add(typeof(RejectTimeVariationc), "setRTV");
             ChildAddOrUpdateLookup.Add(typeof(MailFlatShedule), "mailFS");
             ChildAddOrUpdateLookup.Add(typeof(OverrideTimeVariation), "overrideTV");
             ChildAddOrUpdateLookup.Add(typeof(processUnscheduledPunch), "processUP");
