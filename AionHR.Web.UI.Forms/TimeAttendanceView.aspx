@@ -210,6 +210,10 @@
                                                         <Click Handler="openInNewTab();" />
                                                     </Listeners>
                                                 </ext:MenuItem>
+                                                  <ext:MenuItem runat="server" Text="Pdf" AutoPostBack="true" OnClick="ExportPdfBtn_Click">
+                                                </ext:MenuItem>
+                                                <ext:MenuItem runat="server" Text="Excel" AutoPostBack="true" OnClick="ExportXLSBtn_Click">
+                                                </ext:MenuItem>
                                               
                                             
                                                     

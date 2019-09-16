@@ -829,5 +829,42 @@ namespace AionHR.Web.UI.Forms
             Response.Close();
             //Response.Redirect("Reports/RT301.aspx");
         }
+
+        protected void ExportPdfBtn_Click(object sender, EventArgs e)
+        {
+            TimeAttendanceViewReport p = GetReport();
+            string format = "Pdf";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToPdf(ms);
+            Response.Clear();
+
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
+        }
+
+        protected void ExportXLSBtn_Click(object sender, EventArgs e)
+        {
+            TimeAttendanceViewReport p = GetReport();
+            string format = "xls";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToXls(ms);
+
+            Response.Clear();
+
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
+        }
     }
 }
