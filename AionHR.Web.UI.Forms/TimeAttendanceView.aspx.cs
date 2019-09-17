@@ -463,7 +463,10 @@ namespace AionHR.Web.UI.Forms
 
                 }
 
-
+                Dictionary<String, string> parameter = Common.FetchParametersAsDictionary(rep_params);
+                string timeCode = "";
+                if (parameter.ContainsKey("4"))
+                    timeCode = parameter["4"].ToString();
                 foreach (var x in daysResponse.Items)
                 {
                     max++;
@@ -496,7 +499,10 @@ namespace AionHR.Web.UI.Forms
                     //if (asstring.Length > 1)
                     //    asstring = asstring.Substring(0, asstring.Length - 1);
                     ReportGenericRequest tvReq = new ReportGenericRequest();
+                    if (string.IsNullOrEmpty(timeCode))
                     tvReq.paramString = "1|" + x.employeeId + "^2|" + x.dayId + "^3|" + x.dayId;
+                    else
+                        tvReq.paramString = "1|" + x.employeeId + "^2|" + x.dayId + "^3|" + x.dayId+ "^4|"+timeCode;
                     ListResponse<DashBoardTimeVariation> tvResp;
                     if (FromSelfService.Text == "true")
                         tvResp = _selfServiceService.ChildGetAll<DashBoardTimeVariation>(tvReq);

@@ -1786,7 +1786,7 @@ namespace AionHR.Web.UI.Forms
                     tvId.Text = tvIdParameter;
                     helpText.Text = response.result.helpText;
 
-                    FillTimeApproval((DateTime)response.result.dtFrom, (DateTime)response.result.dtTo, response.result.employeeId, response.result.timeCode, response.result.shiftId, response.result.status.ToString());
+                    FillTimeApproval(response.result.dtFrom, response.result.dtTo, response.result.employeeId, response.result.timeCode, response.result.shiftId, response.result.status.ToString());
                 }
                 this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
                 this.TimeWindow.Show();
@@ -2933,7 +2933,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
-        private void FillTimeApproval(DateTime dtFrom, DateTime dtTo, int employeeId, string timeCode, string shiftId, string apstatus)
+        private void FillTimeApproval(DateTime? dtFrom, DateTime? dtTo, int employeeId, string timeCode, string shiftId, string apstatus)
         {
 
          
@@ -2961,8 +2961,10 @@ namespace AionHR.Web.UI.Forms
 
                  
                     parameters.Add("1", employeeId.ToString());
-                parameters.Add("2", dtFrom.ToString("yyyyMMdd"));
-                    parameters.Add("3", dtTo.ToString("yyyyMMdd"));
+                if (dtFrom!=null)
+                parameters.Add("2",((DateTime) dtFrom).ToString("yyyyMMdd"));
+                if (dtTo != null)
+                    parameters.Add("3", ((DateTime)dtTo).ToString("yyyyMMdd"));
                 if (!string.IsNullOrEmpty(shiftId))
                     parameters.Add("4", shiftId);
             
