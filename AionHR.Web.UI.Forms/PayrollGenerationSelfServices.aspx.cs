@@ -314,7 +314,7 @@ namespace AionHR.Web.UI.Forms
             PostRequest<GenerationHeader> req = new PostRequest<GenerationHeader>();
             req.entity = h;
 
-            PostResponse<GenerationHeader> resp = _payrollService.ChildAddOrUpdate<GenerationHeader>(req);
+            PostResponse<GenerationHeader> resp = _selfServiceService.ChildAddOrUpdate<GenerationHeader>(req);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -347,7 +347,7 @@ namespace AionHR.Web.UI.Forms
             PostRequest<GenerationHeader> req = new PostRequest<GenerationHeader>();
             req.entity = h;
 
-            PostResponse<GenerationHeader> resp = _payrollService.ChildAddOrUpdate<GenerationHeader>(req);
+            PostResponse<GenerationHeader> resp = _selfServiceService.ChildAddOrUpdate<GenerationHeader>(req);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -425,7 +425,7 @@ namespace AionHR.Web.UI.Forms
                 case "imgEdit":
                     RecordRequest req = new RecordRequest();
                     req.RecordID = id;
-                    RecordResponse<GenerationHeader> resp = _payrollService.ChildGetRecord<GenerationHeader>(req);
+                    RecordResponse<GenerationHeader> resp = _selfServiceService.ChildGetRecord<GenerationHeader>(req);
                     if (!resp.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -492,7 +492,7 @@ namespace AionHR.Web.UI.Forms
             h.recordId = id;
             PostRequest<GenerationHeader> delReq = new PostRequest<GenerationHeader>();
             delReq.entity = h;
-            PostResponse<GenerationHeader> res = _payrollService.ChildDelete<GenerationHeader>(delReq);
+            PostResponse<GenerationHeader> res = _selfServiceService.ChildDelete<GenerationHeader>(delReq);
             if (!res.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -910,11 +910,11 @@ namespace AionHR.Web.UI.Forms
         {
             PayrollListRequest req = GetPayrollListRequest();
 
-            ListResponse<GenerationHeader> headers = _payrollService.ChildGetAll<GenerationHeader>(req);
+            ListResponse<GenerationHeader> headers = _selfServiceService.ChildGetAll<GenerationHeader>(req);
             if (!headers.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, headers.Summary).Show();
+                Common.errorMessage(headers);
                 return;
             }
             payrollsStore.DataSource = headers.Items;

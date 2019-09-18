@@ -48,6 +48,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(PayrollSocialSecurity), "qryES");
             ChildGetAllLookup.Add(typeof(AdminDocTransfer), "qryTR");
             ChildGetAllLookup.Add(typeof(AssetLoan), "qryAL");
+            ChildGetAllLookup.Add(typeof(GenerationHeader), "qryPE");
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");
             ChildGetLookup.Add(typeof(EmployeeComplaintSelfService), "getCO");
@@ -60,6 +61,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(Dependant), "getDE");
             ChildGetLookup.Add(typeof(EmployeeContact), "getCO");
             ChildGetLookup.Add(typeof(EmployeeEmergencyContact), "getEC");
+            ChildGetLookup.Add(typeof(GenerationHeader), "getPE");
 
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");
             ChildAddOrUpdateLookup.Add(typeof(UserInfoSelfService), "setUS");
@@ -75,6 +77,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(DashBoardTimeVariation), "setTV");
             ChildAddOrUpdateLookup.Add(typeof(AttendanceShift), "setAS");
             ChildAddOrUpdateLookup.Add(typeof(AdminDocTransfer), "setTR");
+            ChildAddOrUpdateLookup.Add(typeof(GenerationHeader), "setPE");
 
             ChildDeleteLookup.Add(typeof(MyInfo), "delEM");
             ChildDeleteLookup.Add(typeof(EmployeeComplaintSelfService), "delCO");
@@ -84,6 +87,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(leaveRequetsSelfservice), "delLR");
             ChildDeleteLookup.Add(typeof(loanSelfService), "delLO");
             ChildDeleteLookup.Add(typeof(AttendanceShift), "delAS");
+            ChildDeleteLookup.Add(typeof(GenerationHeader), "delPE");
         }
         }
     

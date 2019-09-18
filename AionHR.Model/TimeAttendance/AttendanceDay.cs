@@ -71,5 +71,8 @@ namespace AionHR.Model.Attendance
 
         public string attendance { get; set; }
 
+        public string variation { get; set; }
+        public string effectiveTime { get; set; }
+
     }
 }

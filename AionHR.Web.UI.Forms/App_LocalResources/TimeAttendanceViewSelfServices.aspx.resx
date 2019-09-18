@@ -318,4 +318,7 @@
   <data name="FieldWorkingTime" xml:space="preserve">
     <value>Working Time</value>
   </data>
+  <data name="effectiveTime" xml:space="preserve">
+    <value>Effective Time</value>
+  </data>
 </root>

@@ -21,6 +21,7 @@ namespace AionHR.Model.TimeAttendance
         public string schedule { get; set; }
 
         public string attendance { get; set; }
+        public string effectiveTime { get; set; }
 
     }
 }

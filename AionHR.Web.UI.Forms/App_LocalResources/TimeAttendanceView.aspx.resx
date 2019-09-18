@@ -360,4 +360,7 @@
   <data name="Minutes" xml:space="preserve">
     <value>Minutes</value>
   </data>
+  <data name="effectiveTime" xml:space="preserve">
+    <value>Effective Time</value>
+  </data>
 </root>

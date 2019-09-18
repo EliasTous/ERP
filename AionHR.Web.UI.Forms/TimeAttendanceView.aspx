@@ -255,10 +255,13 @@
                              <%--   <Renderer Handler="var fin_str = '';  var parts = record.data['ASString'].split('|'); for(var i=0;i<parts.length;i++)fin_str +=parts[i]+'<br/>'; return '<b>'+fin_str+'</b>'; " />--%>
                                 
                             </ext:Column>
+                              <ext:Column ID="Column4" MenuDisabled="true" Align="Center" runat="server" Text="<%$ Resources: effectiveTime%>" DataIndex="effectiveTime" Flex="2" Hideable="false" />
+
                              <ext:Column ID="Column5" MenuDisabled="true" Align="Center"  runat="server" Text="<%$ Resources: TimeVariations%>" DataIndex="employeeName" Flex="3" Hideable="false">
                                 <Renderer Handler="if(record.data['TVString']=='') return '';var fin_str = ''; var parts = record.data['TVString'].split('|'); for(var i=0;i<parts.length;i++)fin_str +=parts[i]+'<br/>'; return fin_str; " />
                                 
                             </ext:Column>
+                          
 
                       
                              

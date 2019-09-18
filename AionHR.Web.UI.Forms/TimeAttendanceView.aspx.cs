@@ -541,7 +541,9 @@ namespace AionHR.Web.UI.Forms
                         dayIdString = x.dayIdString,
                         positionName = x.positionName,
                         attendance = x.attendance,
-                        schedule = x.schedule
+                        schedule = x.schedule,
+                        effectiveTime = x.effectiveTime
+                       
 
                     });
                     if (max > 30)
@@ -708,101 +710,28 @@ namespace AionHR.Web.UI.Forms
             req.StartAt = StartAt.Text;
             req.Size = "30";
             req.sortBy = "dayId";
-            ListResponse<AttendanceDay> daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
+            ListResponse<AttendanceDay> resp = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
 
 
-            if (!daysResponse.Success)
+            if (!resp.Success)
             {
-                Common.errorMessage(daysResponse);
+                Common.errorMessage(resp);
                 return new TimeAttendanceViewReport();
             }
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            List<TimeAttendanceCompositeObject> objs = new List<TimeAttendanceCompositeObject>();
-            int max = 0;
-            string fsstring = "";
-            string asstring = "";
-            string tvstring = "";
-            CultureInfo c = new CultureInfo("en");
-            switch (_systemService.SessionHelper.getLangauge())
+
+            resp.Items.ForEach(x =>
             {
-                case "ar":
-                    {
-
-                        c = new CultureInfo("ar");
-                    }
-                    break;
-                case "en":
-                    {
-
-                        c = new CultureInfo("en");
-                    }
-                    break;
-
-                case "fr":
-                    {
-
-                        c = new CultureInfo("fr-FR");
-                    }
-                    break;
-                case "de":
-                    {
-
-                        c = new CultureInfo("de-DE");
-                    }
-                    break;
-
-            }
-
-
-
-            foreach (var x in daysResponse.Items)
-            {
-                max++;
-                x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), c);
-               
-                ReportGenericRequest tvReq = new ReportGenericRequest();
-                tvReq.paramString = "1|" + x.employeeId + "^2|" + x.dayId + "^3|" + x.dayId;
-                ListResponse<DashBoardTimeVariation> tvResp;
-
-                tvResp = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(tvReq);
-                if (!tvResp.Success)
-                {
-                    Common.errorMessage(tvResp);
-                    return new TimeAttendanceViewReport();
-                }
-                tvResp.Items.ForEach(tv => {
-                    tvstring += tv.timeName + " : " + tv.duration.ToString() + " " + minutesText.Text + "|";
-                });
-                if (tvstring.Length > 1)
-                    tvstring = tvstring.Substring(0, tvstring.Length - 1);
-                objs.Add(new TimeAttendanceCompositeObject()
-                {
-                    FSString = fsstring,
-                    ASString = asstring,
-                    TVString = tvstring,
-                    dayId = x.dayId,
-                    branchName = x.branchName,
-                    departmentName = x.departmentName,
-                    employeeName = x.employeeName+ System.Environment.NewLine +x.dayIdString+ System.Environment.NewLine + x.branchName + System.Environment.NewLine + x.positionName ,
-                    employeeId = x.employeeId.ToString(),
-                    dayIdString = x.dayIdString,
-                    positionName = x.positionName,
-                    attendance = x.attendance,
-                    schedule = x.schedule
-
-                });
-                if (max > 30)
-                    break;
-                fsstring = "";
-                asstring = "";
-                tvstring = "";
-            }
+                x.employeeName  = x.employeeName + System.Environment.NewLine + x.dayIdString + System.Environment.NewLine + x.branchName + System.Environment.NewLine + x.positionName;
+            });
+           
+           
 
 
             TimeAttendanceViewReport p = new TimeAttendanceViewReport();
 
         
-            p.DataSource = objs;
+            p.DataSource = resp.Items;
 
         //    p.DataSource = resp.Items;
             p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();

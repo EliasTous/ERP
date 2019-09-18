@@ -13,5 +13,10 @@ namespace Reports
             InitializeComponent();
         }
 
+        private void tableCell5_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+
+            ((XRTableCell)sender).Text = ((XRTableCell)sender).Text.Replace("\\n", Environment.NewLine);
+        }
     }
 }
