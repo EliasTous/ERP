@@ -526,6 +526,31 @@ namespace AionHR.Web.UI.Forms
                 lastGenFSDateTime.Text = items.Where(s => s.Key == "lastGenFSDateTime").First().Value;
             }
             catch { }
+
+            try
+
+            {
+                lastReceivedPunch.Text = items.Where(s => s.Key == "lastReceivedPunch").First().Value;
+            }
+            catch { }
+
+            try
+
+            {
+                lastProcessedPunch.Text = items.Where(s => s.Key == "lastProcessedPunch").First().Value;
+            }
+            catch { }
+
+            try
+
+            {
+                lastGenTATV.Text = items.Where(s => s.Key == "lastGenTATV").First().Value;
+            }
+            catch { }
+
+
+
+
             try { PYFSLeaveBalEDId.Select(items.Where(s => s.Key == "PYFSLeaveBalEDId").First().Value); }
 
             catch { }

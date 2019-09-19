@@ -522,4 +522,13 @@
   <data name="apply_ALDA_CSPO" xml:space="preserve">
     <value>Apply Data Access Control To Position</value>
   </data>
+  <data name="lastGenTATV" xml:space="preserve">
+    <value>Last generated variations</value>
+  </data>
+  <data name="lastProcessedPunch" xml:space="preserve">
+    <value>Last Processed Punch</value>
+  </data>
+  <data name="lastReceivedPunch" xml:space="preserve">
+    <value>Last Received Punch</value>
+  </data>
 </root>
