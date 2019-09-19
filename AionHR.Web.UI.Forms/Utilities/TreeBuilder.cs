@@ -490,6 +490,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node AL = BuildLeafNode("AL", Resources.Common.AssetLoans, "UserComment", true, ss);
             Ext.Net.Node RP = BuildLeafNode("RP", Resources.Common.ChangePassword, "UserComment", true, ss);
             Ext.Net.Node TR = BuildLeafNode("TR", Resources.Common.PendingTransfers, "ArrowSwitchBluegreen", true, ss);
+            Ext.Net.Node LRP = BuildLeafNode("LRP", Resources.Common.leaveReplacementApproval, "UserComment", true, ss);
 
 
 
@@ -507,6 +508,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(TimeApprovals, "TimeApprovalsSelfServices", "TimeApprovalsSelfServices.aspx", Resources.Common.TimeApprovalsSelfService, "icon-Employees", "1");
             FillConfigItem(TR, "TR", "SSTransfers.aspx", Resources.Common.PendingTransfers, "ArrowSwitchBluegreen", "1");
             FillConfigItem(AL, "AL", "AssetLoans.aspx", Resources.Common.AssetLoans, "icon-Employees", "1");
+            FillConfigItem(LRP, "LRP", "LeaveReplacementApprovals.aspx", Resources.Common.leaveReplacementApproval, "icon-Employees", "1");
 
 
             nodes.Add(rootParent);

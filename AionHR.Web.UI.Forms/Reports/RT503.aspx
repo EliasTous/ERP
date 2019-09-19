@@ -45,7 +45,7 @@
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
            <ext:Hidden ID="required" runat="server" Text="<%$ Resources:Common , RequiredFields %>" />
-        
+           <ext:Hidden ID="errorheader" runat="server" Text="<%$ Resources:Common , RequiredFieldsHeader %>" />
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
             <Items>

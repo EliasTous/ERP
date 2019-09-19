@@ -171,6 +171,7 @@
     <Compile Include="Messaging\Reports\SkillsParameterSet.cs" />
     <Compile Include="Messaging\Reports\TimeCodeRecordRequest.cs" />
     <Compile Include="Messaging\SelfService\AssetLoanListRequest.cs" />
+    <Compile Include="Messaging\SelfService\LeaveReplacementApprovalListRequest.cs" />
     <Compile Include="Messaging\SelfService\SelfServiceRequests.cs" />
     <Compile Include="Messaging\System\AttachementRecordRequest.cs" />
     <Compile Include="Messaging\System\BackgroundJobRecordRequest.cs" />

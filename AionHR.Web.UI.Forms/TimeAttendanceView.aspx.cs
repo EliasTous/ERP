@@ -707,8 +707,8 @@ namespace AionHR.Web.UI.Forms
             string rep_params = vals.Text;
             TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
             req.paramString = rep_params;
-            req.StartAt = StartAt.Text;
-            req.Size = "30";
+            req.StartAt = "0";
+            req.Size = "10000";
             req.sortBy = "dayId";
             ListResponse<AttendanceDay> resp = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
 

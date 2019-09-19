@@ -273,7 +273,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                <Renderer Handler=" if (record.data['status']==1){return editRender()+'&nbsp;&nbsp;' +deleteRender();} else {return editRender();} " />
 
                             </ext:Column>
 

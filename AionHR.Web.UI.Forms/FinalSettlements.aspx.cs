@@ -722,7 +722,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     Common.errorMessage(response);
-                    throw new Exception();
+                    return;
                 }
 
 
@@ -742,7 +742,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                      Common.errorMessage(routers);
-
+                    return;
                 }
                 //RecordRequest req = new RecordRequest();
                 //req.RecordID = employeeId.Value.ToString();

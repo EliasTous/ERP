@@ -15,6 +15,16 @@
     <script src="Scripts/SecurityGroups.js?id=3" type="text/javascript"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript">
+
+
+       
+         function CheckAll() {
+            App.dataStore.each(function (record) {
+
+                record.set("hasAccess", true);
+              
+            });
+        }
         function ResetPropertiesAccessLevels() {
             App.propertiesStore.each(function (record) {
 
@@ -710,9 +720,9 @@
 
                                         </ext:ComboBox>
                                         <ext:Button runat="server" ID="checkAll" Text="<%$Resources:checkAll %>">
-                                            <DirectEvents>
-                                                <Click OnEvent="CheckAll" />
-                                            </DirectEvents>
+                                            <Listeners>
+                                                <Click Handler="CheckAll();" />
+                                            </Listeners>
                                         </ext:Button>
                                       
                                     </Items>
@@ -729,7 +739,7 @@
                                     Scroll="Vertical"
                                     Border="false"
                                     Icon="User" 
-                                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                                    ColumnLines="True" IDMode="Explicit" RenderXType="True" >
 
                                     <Store>
                                         <ext:Store runat="server" ID="dataStore" OnReadData="dataStore_ReadData" AutoLoad="true">
@@ -752,9 +762,15 @@
 
                                             <ext:Column Visible="false" ID="Column10" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" />
                                             <ext:Column ID="Column11" MenuDisabled="true" runat="server" Text="<%$ Resources:Record%>" DataIndex="name" Hideable="false" Flex="1" />
+
+                                            
+
+
+
+                                               
                                            <ext:WidgetColumn ID="WidgetColumn2" MenuDisabled="true"  runat="server" Text="<%$ Resources: Active %>" DataIndex="hasAccess" Hideable="false" Width="75" Align="Center">
                                 <Widget>
-                                    <ext:Checkbox runat="server" Name="hasAccess" ID="chk">
+                                    <ext:Checkbox runat="server" Name="hasAccess" >
                                         <Listeners>
                                             
                                             <Change Handler="var rec = this.getWidgetRecord(); rec.set('hasAccess',this.value);  "  >
@@ -762,14 +778,7 @@
                                             </Change>
                                             
                                         </Listeners>
-                                   <%--     <DirectEvents>
-                                            <Change OnEvent ="onChangeActive_Event">
-                                                <ExtraParams>
-                                                    <ext:Parameter Name="recordId" Value="this.getWidgetRecord().data['recordId']" Mode="Raw" />
-                                                    <ext:Parameter Name="state" Value="this.value" Mode="Raw" />
-                                                </ExtraParams>
-                                            </Change>
-                                        </DirectEvents>--%>
+                                
                                     </ext:Checkbox>
 
                                 </Widget>
@@ -802,6 +811,7 @@
                                                   <Click OnEvent="SaveDA">
                                                       <ExtraParams>
                                                           <ext:Parameter Name="values" Value="Ext.encode(#{GridPanel1}.getRowsValues({dirtyRowsOnly : true}))" Mode="Raw"  />
+
                                                       </ExtraParams>
                                                   </Click>
                                               </DirectEvents>

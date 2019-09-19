@@ -203,6 +203,7 @@
     <Compile Include="SelfService\AssetLoan.cs" />
     <Compile Include="SelfService\EmployeePayrollSelfService.cs" />
     <Compile Include="SelfService\FlatScheduleSelfService.cs" />
+    <Compile Include="SelfService\LeaveReplacementApproval.cs" />
     <Compile Include="SelfService\SelfServiceResetPassword.cs" />
     <Compile Include="SelfService\TimeSelfService.cs" />
     <Compile Include="SelfService\TimeVariationSelfService.cs" />

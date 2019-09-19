@@ -9,12 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-  <script type="text/javascript">
-       numberRenderer : function(format){
-           return function(v){
-               return Ext.util.Format.number(v, format);
-           };
-   </script>
+ 
     <script type="text/javascript" src="Scripts/common.js"></script>
    
     <script type="text/javascript" src="Scripts/Payrollindemnities.js?id=95"></script>

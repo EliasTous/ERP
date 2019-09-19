@@ -1383,4 +1383,7 @@
   <data name="deleteUserProperty" xml:space="preserve">
     <value>Deleting a property will have all employee data for this property deleted.</value>
   </data>
+  <data name="leaveReplacementApproval" xml:space="preserve">
+    <value>Leave Replacement Approval</value>
+  </data>
 </root>

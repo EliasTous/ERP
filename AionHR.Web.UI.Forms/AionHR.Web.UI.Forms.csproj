@@ -188,6 +188,7 @@
     <Content Include="FRLogin.aspx" />
     <Content Include="Geofences.aspx" />
     <Content Include="ImportFlatSchedule.aspx" />
+    <Content Include="LeaveReplacementApprovals.aspx" />
     <Content Include="MediaCategories.aspx" />
     <Content Include="MediaItems.aspx" />
     <Content Include="PayrollGenerationSelfServices.aspx" />
@@ -640,6 +641,7 @@
     <Content Include="App_LocalResources\UnschedulePunches.aspx.ar.resx" />
     <Content Include="App_LocalResources\UnschedulePunches.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\UnschedulePunches.aspx.fr.resx" />
+    <Content Include="App_LocalResources\LeaveReplacementApprovals.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -897,6 +899,13 @@
     </Compile>
     <Compile Include="ImportFlatSchedule.aspx.designer.cs">
       <DependentUpon>ImportFlatSchedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveReplacementApprovals.aspx.cs">
+      <DependentUpon>LeaveReplacementApprovals.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveReplacementApprovals.aspx.designer.cs">
+      <DependentUpon>LeaveReplacementApprovals.aspx</DependentUpon>
     </Compile>
     <Compile Include="MediaCategories.aspx.cs">
       <DependentUpon>MediaCategories.aspx</DependentUpon>

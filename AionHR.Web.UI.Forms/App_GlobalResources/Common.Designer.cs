@@ -1879,6 +1879,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leave Replacement Approval.
+        /// </summary>
+        internal static string leaveReplacementApproval {
+            get {
+                return ResourceManager.GetString("leaveReplacementApproval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leave Reports.
         /// </summary>
         internal static string LeaveReports {

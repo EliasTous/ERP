@@ -159,7 +159,7 @@ public class DataAccessListRequest:ListRequest
     {
         get
         {
-            parameters = base.parameters;
+            parameters = new Dictionary<string, string>();
             
             parameters.Add("_sgId", sgId);
             parameters.Add("_classId", classId);

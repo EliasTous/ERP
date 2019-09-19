@@ -20,25 +20,33 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(DataAccessItemView), "getDA");
             ChildGetLookup.Add(typeof(UserDataAccess), "getUD");
             ChildGetLookup.Add(typeof(ModuleClass), "getUC");
+
+
+
             ChildGetAllLookup.Add(typeof(SecurityGroup), "qrySG");
             ChildGetAllLookup.Add(typeof(DataAccessItemView), "qryDA");
+            ChildGetAllLookup.Add(typeof(ModuleClass), "qryCL");
+            ChildGetAllLookup.Add(typeof(UC), "qryUP");
+            ChildGetAllLookup.Add(typeof(ClassProperty), "qryCP");
+            ChildGetAllLookup.Add(typeof(SecurityGroupUser), "qryUS");
+
             ChildAddOrUpdateLookup.Add(typeof(SecurityGroup), "setSG");
             ChildAddOrUpdateLookup.Add(typeof(DataAccessItemView), "setDA");
+            ChildAddOrUpdateLookup.Add(typeof(ClassProperty), "setCP");
+            ChildAddOrUpdateLookup.Add(typeof(SecurityGroupUser), "setUS");
+            ChildAddOrUpdateLookup.Add(typeof(ModuleClass), "setCL");
+            ChildAddOrUpdateLookup.Add(typeof(ModuleClass[]), "arrCL");
 
 
             ChildDeleteLookup.Add(typeof(SecurityGroup), "delSG");
             ChildDeleteLookup.Add(typeof(DataAccessItemView), "delDA");
-
-
-            ChildGetAllLookup.Add(typeof(ModuleClass), "qryCL");
-            ChildGetAllLookup.Add(typeof(UC), "qryUP");
-            ChildGetAllLookup.Add(typeof(ClassProperty), "qryCP");
-            ChildAddOrUpdateLookup.Add(typeof(ClassProperty), "setCP");
-            ChildGetAllLookup.Add(typeof(SecurityGroupUser), "qryUS");
-            ChildAddOrUpdateLookup.Add(typeof(SecurityGroupUser), "setUS");
-            ChildAddOrUpdateLookup.Add(typeof(ModuleClass), "setCL");
-            ChildAddOrUpdateLookup.Add(typeof(ModuleClass[]), "arrCL");
             ChildDeleteLookup.Add(typeof(SecurityGroupUser), "delUS");
+
+
+
+
+
+
 
         }
     }

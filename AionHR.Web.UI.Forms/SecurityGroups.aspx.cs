@@ -1199,7 +1199,7 @@ namespace AionHR.Web.UI.Forms
                 //}
             }catch(Exception exp)
             {
-                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message);
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message).Show();
             }
 
         }
