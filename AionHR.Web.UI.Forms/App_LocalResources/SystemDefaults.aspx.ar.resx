@@ -465,4 +465,13 @@
   <data name="apply_ALDA_CSPO" xml:space="preserve">
     <value>تطبيق حماية البيانات للوظائف</value>
   </data>
+  <data name="lastGenTATV" xml:space="preserve">
+    <value>أخر الفروقات المصدرة</value>
+  </data>
+  <data name="lastProcessedPunch" xml:space="preserve">
+    <value>البصمات الأخيرة المعالجة</value>
+  </data>
+  <data name="lastReceivedPunch" xml:space="preserve">
+    <value>البصمات الأخيرة المستلمة</value>
+  </data>
 </root>

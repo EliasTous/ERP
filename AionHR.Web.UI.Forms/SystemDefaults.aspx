@@ -527,8 +527,10 @@
                                         <ext:Label runat="server" MarginSpec="5 0 10 10" Text="  /AionWSLocal" />
                                     </Items>
                                 </ext:Panel>
-                                <ext:TextField runat="server" Name="lastGenFSDateTime" ReadOnly="true" ID="lastGenFSDateTime" LabelWidth="150" FieldLabel="<%$Resources:lastGenFSDateTime %>">
-                                </ext:TextField>
+                                <ext:TextField runat="server" Name="lastGenFSDateTime" ReadOnly="true" ID="lastGenFSDateTime" LabelWidth="150" FieldLabel="<%$Resources:lastGenFSDateTime %>"></ext:TextField>
+                                <ext:TextField runat="server" Name="lastReceivedPunch" ReadOnly="true" ID="lastReceivedPunch" LabelWidth="150" FieldLabel="<%$Resources:lastReceivedPunch %>"></ext:TextField>
+                                <ext:TextField runat="server" Name="lastProcessedPunch" ReadOnly="true" ID="lastProcessedPunch" LabelWidth="150" FieldLabel="<%$Resources:lastProcessedPunch %>"></ext:TextField>
+                                <ext:TextField runat="server" Name="lastGenTATV" ReadOnly="true" ID="lastGenTATV" LabelWidth="150" FieldLabel="<%$Resources:lastGenTATV %>"></ext:TextField>
                                  
                                 <ext:ComboBox AllowBlank="true" AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: SourceAttendanceSchedule %>" Name="sourceTASC" runat="server" ID="sourceTASC">
                                     <Items>

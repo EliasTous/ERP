@@ -519,4 +519,13 @@
   <data name="apply_ALDA_CSPO" xml:space="preserve">
     <value>Appliquer le contrôle d'accès aux données aux Position</value>
   </data>
+  <data name="lastGenTATV" xml:space="preserve">
+    <value>Dernières variations générées</value>
+  </data>
+  <data name="lastProcessedPunch" xml:space="preserve">
+    <value>Dernier poincons traité</value>
+  </data>
+  <data name="lastReceivedPunch" xml:space="preserve">
+    <value>Dernier poincons reçu</value>
+  </data>
 </root>
