@@ -713,6 +713,7 @@
                                                         <ext:ModelField Name="pct" />
                                                         <ext:ModelField Name="fixedAmount" />
                                                         <ext:ModelField Name="isTaxable" />
+                                                        <ext:ModelField Name="edCalcType" />
 
                                                     </Fields>
                                                 </ext:Model>
@@ -1217,7 +1218,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:FieldEntitlement %>"
             Width="650"
-            Height="320"
+            Height="450"
             AutoShow="false"
             Modal="true"
             Closable="false"
@@ -1227,7 +1228,7 @@
             FocusOnToFront="true"
             Header="false"
             Hidden="true"
-            Layout="Fit">
+            Layout="FitLayout" >
 
             <Items>
                 <ext:TabPanel ID="TabPanel3" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Header="false">
@@ -1286,6 +1287,21 @@
                                 <ext:TextArea runat="server" ID="enComment" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:TextField runat="server" InputType="Password" Visible="false" ID="enCommentField" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:Checkbox ID="isTaxable" FieldLabel="<%$ Resources: FieldIsTaxable %>" runat="server" DataIndex="isTaxable" Name="isTaxable" InputValue="true" />
+                                   <ext:ComboBox  AllowBlank="false"  AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="edCalcType"  FieldLabel="<%$ Resources:FieldEdCalcType%>" SubmitValue="true"  Name="edCalcType" >
+                                              <Store>
+                                              <ext:Store runat="server" ID="edCalcTypeStore" >
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="key" />
+                                                                        <ext:ModelField Name="value" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                            </Store>
+        
+                                              </ext:ComboBox>
                             </Items>
 
                         </ext:FormPanel>

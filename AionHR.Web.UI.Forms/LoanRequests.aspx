@@ -147,7 +147,7 @@
         <ext:Store
             ID="Store1"
             runat="server"
-            RemoteSort="True"
+            RemoteSort="false"
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
             PageSize="40" IDMode="Explicit" Namespace="App">

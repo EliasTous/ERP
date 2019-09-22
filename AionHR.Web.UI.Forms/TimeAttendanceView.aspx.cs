@@ -719,10 +719,13 @@ namespace AionHR.Web.UI.Forms
                 return new TimeAttendanceViewReport();
             }
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-
+            DateTime temp = new DateTime();
             resp.Items.ForEach(x =>
             {
-                x.employeeName  = x.employeeName + System.Environment.NewLine + x.dayIdString + System.Environment.NewLine + x.branchName + System.Environment.NewLine + x.positionName;
+               if ( DateTime.TryParseExact(x.dayId,"yyyyMMdd", new CultureInfo("en"), DateTimeStyles.None,out temp))
+                x.employeeName  = x.employeeName + System.Environment.NewLine +temp.ToString(_systemService.SessionHelper.GetDateformat()) + System.Environment.NewLine + x.branchName + System.Environment.NewLine + x.positionName;
+               else
+                x.employeeName = x.employeeName  + System.Environment.NewLine + x.branchName + System.Environment.NewLine + x.positionName;
             });
            
            

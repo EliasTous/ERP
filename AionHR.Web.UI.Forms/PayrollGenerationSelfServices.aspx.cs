@@ -114,11 +114,11 @@ namespace AionHR.Web.UI.Forms
 
                 DateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                 Viewport1.ActiveIndex = 0;
-                yearStore.DataSource = GetYears();
-                yearStore.DataBind();
-                salaryTypeId1.setSalaryType("5");
-                status.Select("0");
-                salaryTypeId1.ADDHandler("select", "App.payrollsStore.reload();");
+                //yearStore.DataSource = GetYears();
+                //yearStore.DataBind();
+                //salaryTypeId1.setSalaryType("5");
+                //status.Select("0");
+                //salaryTypeId1.ADDHandler("select", "App.payrollsStore.reload();");
                 payrollsStore.Reload();
                 if (!string.IsNullOrEmpty(Request.QueryString["payId"]))
                 {
@@ -415,7 +415,7 @@ namespace AionHR.Web.UI.Forms
             {
                 case "imgAttach":
                     //Step 1 : get the object from the Web Service 
-                    CurrentPayId.Text = id;
+                   // CurrentPayId.Text = id;
                     Viewport1.ActiveIndex = 2;
 
 
@@ -853,62 +853,66 @@ namespace AionHR.Web.UI.Forms
             {
 
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId")  + resp.LogId : resp.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
             Store1.DataSource = resp.Items;
             Store1.DataBind();
         }
 
-        private PayrollListRequest GetPayrollListRequest()
-        {
-            PayrollListRequest req = new PayrollListRequest();
+        //private PayrollListRequest GetPayrollListRequest()
+        //{
+        //    PayrollListRequest req = new PayrollListRequest();
 
-            if (!string.IsNullOrEmpty(year.Text) && !string.IsNullOrEmpty(year.Value.ToString()))
-            {
-                req.Year = year.Value.ToString();
-
-
-            }
-            else
-            {
-                req.Year = "0";
-            }
-
-            if (!string.IsNullOrEmpty(salaryTypeId1.GetSalaryTypeId()) )
-            {
-                req.PeriodType = salaryTypeId1.GetSalaryTypeId();
-
-            }
-            else
-            {
-                req.PeriodType = "1";
-            }
+        //    if (!string.IsNullOrEmpty(year.Text) && !string.IsNullOrEmpty(year.Value.ToString()))
+        //    {
+        //        req.Year = year.Value.ToString();
 
 
+        //    }
+        //    else
+        //    {
+        //        req.Year = "0";
+        //    }
 
-            if (!string.IsNullOrEmpty(status.Text) && !string.IsNullOrEmpty(status.Value.ToString()))
-            {
-                req.Status = status.Value.ToString();
+        //    if (!string.IsNullOrEmpty(salaryTypeId1.GetSalaryTypeId()) )
+        //    {
+        //        req.PeriodType = salaryTypeId1.GetSalaryTypeId();
+
+        //    }
+        //    else
+        //    {
+        //        req.PeriodType = "1";
+        //    }
 
 
-            }
-            else
-            {
-                req.Status = "0";
 
-            }
+        //    if (!string.IsNullOrEmpty(status.Text) && !string.IsNullOrEmpty(status.Value.ToString()))
+        //    {
+        //        req.Status = status.Value.ToString();
 
 
-            req.Size = "30";
-            req.StartAt = "0";
-            req.Filter = "";
+        //    }
+        //    else
+        //    {
+        //        req.Status = "0";
 
-            return req;
-        }
+        //    }
+
+
+        //    req.Size = "30";
+        //    req.StartAt = "0";
+        //    req.Filter = "";
+
+        //    return req;
+        //}
         protected void payrollsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            PayrollListRequest req = GetPayrollListRequest();
+            EmployeePayrollListRequest req = new EmployeePayrollListRequest();
+            req.EmployeeId = _systemService.SessionHelper.GetEmployeeId();
+
+            req.PayId = "0";
+        
 
             ListResponse<GenerationHeader> headers = _selfServiceService.ChildGetAll<GenerationHeader>(req);
             if (!headers.Success)
@@ -932,10 +936,10 @@ namespace AionHR.Web.UI.Forms
         public void PayrollPages()
         {
 
-            yearStore.DataSource = GetYears();
-            yearStore.DataBind();
-            salaryTypeId1.setSalaryType("5");
-            status.Select("0");
+            //yearStore.DataSource = GetYears();
+            //yearStore.DataBind();
+            //salaryTypeId1.setSalaryType("5");
+            //status.Select("0");
             Viewport1.ActiveIndex = 0;
         }
 

@@ -642,6 +642,7 @@
     <Content Include="App_LocalResources\UnschedulePunches.aspx.de-DE.resx" />
     <Content Include="App_LocalResources\UnschedulePunches.aspx.fr.resx" />
     <Content Include="App_LocalResources\LeaveReplacementApprovals.aspx.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Payroll.aspx.fr.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />

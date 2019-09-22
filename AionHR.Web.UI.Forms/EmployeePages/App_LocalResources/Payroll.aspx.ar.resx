@@ -276,4 +276,7 @@
   <data name="FieldswiftCode" xml:space="preserve">
     <value>رقم البنك</value>
   </data>
+  <data name="FieldEdCalcType" xml:space="preserve">
+    <value>نوع الحساب </value>
+  </data>
 </root>

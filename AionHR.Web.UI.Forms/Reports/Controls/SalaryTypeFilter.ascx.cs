@@ -29,16 +29,16 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                 if (!IsPostBack)
                 {
 
-                    XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+                    //XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
-                    request.database = "2";
-                    ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
-                    if (!resp.Success)
-                    {
-                        Common.errorMessage(resp);
-                        return;
-                    }
-                    salaryTypeList.AddRange(resp.Items);
+                    //request.database = "2";
+                    //ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+                    //if (!resp.Success)
+                    //{
+                    //    Common.errorMessage(resp);
+                    //    return;
+                    //}
+                    salaryTypeList.AddRange(Common.XMLDictionaryList(_systemService,"2"));
                     FillSalaryTypeStore();
                     //  salaryTypeId.Select(0);
                     if (string.IsNullOrEmpty(Width))

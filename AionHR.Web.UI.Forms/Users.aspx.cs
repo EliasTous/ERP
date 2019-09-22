@@ -568,16 +568,16 @@ namespace AionHR.Web.UI.Forms
               protected void userTypeStore_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
-            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+            //XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
-            request.database = "7";
-            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
-            if (!resp.Success)
-            {
-                Common.errorMessage(resp);
-                return;
-            }
-            userTypeStore.DataSource = resp.Items;
+            //request.database = "7";
+            //ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            //if (!resp.Success)
+            //{
+            //    Common.errorMessage(resp);
+            //    return;
+            //}
+            userTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "7");
             userTypeStore.DataBind();
         
         }

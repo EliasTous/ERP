@@ -152,6 +152,7 @@
                         <ext:ModelField Name="TVString" />
                          <ext:ModelField Name="schedule" />
                          <ext:ModelField Name="attendance" />
+                     <ext:ModelField Name="effectiveTime" />
                         
                                                                             
 

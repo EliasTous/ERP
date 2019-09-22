@@ -1945,8 +1945,9 @@
                                                                                   <ext:ModelField Name="departmentName" />
                                                                                     <ext:ModelField Name="arName" />
                                                                                  <ext:ModelField Name="arId" />
-                                                                                  <ext:ModelField Name="seqNo" />
-
+                                                                                  <ext:ModelField Name="seqNo" /> 
+                                                                                <ext:ModelField Name="arName" />
+                                                                                
                                                                             
 
                                                                             </Fields>

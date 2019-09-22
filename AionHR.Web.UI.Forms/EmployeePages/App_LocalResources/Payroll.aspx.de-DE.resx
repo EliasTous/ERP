@@ -295,4 +295,7 @@
   <data name="FieldswiftCode" xml:space="preserve">
     <value>SWIFT-Code</value>
   </data>
+  <data name="FieldEdCalcType" xml:space="preserve">
+    <value>Berechnungstyp</value>
+  </data>
 </root>

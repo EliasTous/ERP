@@ -45,18 +45,18 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         }
         private void FilltimeCodeStore()
         {
-            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+            //XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
-            request.database = "3";
-            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
-            if (!resp.Success)
-            {
-                Common.errorMessage(resp);
-                return;
-            }
-           
-       
-            timeVariationStore.DataSource = resp.Items;
+            //request.database = "3";
+            //ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            //if (!resp.Success)
+            //{
+            //    Common.errorMessage(resp);
+            //    return;
+            //}
+
+
+            timeVariationStore.DataSource = Common.XMLDictionaryList(_systemService, "3");
             timeVariationStore.DataBind();
 
         }

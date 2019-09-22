@@ -1457,6 +1457,10 @@ namespace AionHR.Web.UI.Forms
                 //    );
             
                 punchesStore.DataSource = punches.Items;
+                if (punches.Items != null)
+                    PunchesGrid.Title = GetLocalResourceObject("PurchasesApproval").ToString() + " " + (punches.Items.Count != 0 ? punches.Items.Count.ToString() : "");
+                else
+                    PunchesGrid.Title = GetLocalResourceObject("PurchasesApproval").ToString();
                 punchesStore.DataBind();
             }
             catch (Exception exp)
@@ -1786,7 +1790,7 @@ namespace AionHR.Web.UI.Forms
                     tvId.Text = tvIdParameter;
                     helpText.Text = response.result.helpText;
 
-                    FillTimeApproval(response.result.dtFrom, response.result.dtTo, response.result.employeeId, response.result.timeCode, response.result.shiftId, response.result.status.ToString());
+                    FillTimeApproval(response.result.date, response.result.dtFrom, response.result.dtTo, response.result.employeeId, response.result.timeCode, response.result.shiftId, response.result.status.ToString());
                 }
                 this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
                 this.TimeWindow.Show();
@@ -2933,7 +2937,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
-        private void FillTimeApproval(DateTime? dtFrom, DateTime? dtTo, int employeeId, string timeCode, string shiftId, string apstatus)
+        private void FillTimeApproval(DateTime? date, DateTime? dtFrom, DateTime? dtTo, int employeeId, string timeCode, string shiftId, string apstatus)
         {
 
          
@@ -2963,8 +2967,12 @@ namespace AionHR.Web.UI.Forms
                     parameters.Add("1", employeeId.ToString());
                 if (dtFrom!=null)
                 parameters.Add("2",((DateTime) dtFrom).ToString("yyyyMMdd"));
+                else
+                    parameters.Add("2", ((DateTime)date).ToString("yyyyMMdd"));
                 if (dtTo != null)
                     parameters.Add("3", ((DateTime)dtTo).ToString("yyyyMMdd"));
+                else
+                    parameters.Add("3", ((DateTime)date).ToString("yyyyMMdd"));
                 if (!string.IsNullOrEmpty(shiftId))
                     parameters.Add("4", shiftId);
             

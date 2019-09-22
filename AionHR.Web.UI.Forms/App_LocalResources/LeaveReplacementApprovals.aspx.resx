@@ -294,4 +294,7 @@
   <data name="YearsInService" xml:space="preserve">
     <value>Years In Service</value>
   </data>
+  <data name="apStatus" xml:space="preserve">
+    <value>Replacement Approval Status </value>
+  </data>
 </root>

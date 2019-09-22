@@ -65,18 +65,18 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
       
         private void FillModulesStore()
         {
-            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+            //XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
-            request.database = "1";
-            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
-            if (!resp.Success)
-            {
-                Common.errorMessage(resp);
-                return;
-            }
+            //request.database = "1";
+            //ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            //if (!resp.Success)
+            //{
+            //    Common.errorMessage(resp);
+            //    return;
+            //}
             if (FromReport=="True")
                 moduleList.Add(new XMLDictionary() { value = GetGlobalResourceObject("Common", "All").ToString(), key = 0 });
-            moduleList.AddRange(resp.Items);
+            moduleList.AddRange(Common.XMLDictionaryList(_systemService,"1"));
             this.modulesStore.DataSource = moduleList;
 
 

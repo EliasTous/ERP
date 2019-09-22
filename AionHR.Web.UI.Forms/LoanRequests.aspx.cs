@@ -1099,9 +1099,8 @@ namespace AionHR.Web.UI.Forms
             LoanManagementListRequest request = GetLoanManagementRequest();
             request.Filter = "";
 
-            request.SortBy = e.Sort[0].Property;
-            if (e.Sort[0].Property == "employeeName")
-                request.SortBy = _systemService.SessionHelper.GetNameformat();
+            request.SortBy = "recordId";
+           
 
 
             request.Filter = "";

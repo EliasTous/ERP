@@ -1192,6 +1192,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Checkbox isTaxable;
         
         /// <summary>
+        /// edCalcType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox edCalcType;
+        
+        /// <summary>
+        /// edCalcTypeStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store edCalcTypeStore;
+        
+        /// <summary>
         /// SaveENButton control.
         /// </summary>
         /// <remarks>

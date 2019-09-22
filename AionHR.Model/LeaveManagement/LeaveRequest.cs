@@ -78,6 +78,7 @@ namespace AionHR.Model.LeaveManagement
         public string replacementId { get; set; }
 
         public string replacementName { get; set; }
+        public string replApStatus { get; set; }
 
 
     }   

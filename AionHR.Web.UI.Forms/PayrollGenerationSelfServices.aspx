@@ -93,70 +93,7 @@
             
             <Items>
                 <ext:Panel runat="server" ID="payrolls" Layout="FitLayout">
-                    <TopBar>
-                        <ext:Toolbar runat="server">
-                            <Items>
-                                <ext:Button runat="server" Visible="false" ID="AddButton" Text="<%$ Resources:Common,Add %>" Icon="Add">
-                                    <Listeners>
-                                        <Click Handler="CheckSession();App.direct.AddPayroll();" />
-                                    </Listeners>
-                                </ext:Button>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" EmptyText="<%$ Resources: FieldYear %>" Name="year" runat="server" DisplayField="fiscalYear" ValueField="fiscalYear" ID="year">
-                                    <Store>
-                                        <ext:Store runat="server" ID="yearStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-
-                                                        <ext:ModelField Name="fiscalYear" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                    <Listeners>
-                                      <%--  <Select Handler="App.salaryTypeFilter.setValue(5); App.payrollsStore.reload();">--%>
-                                               <Select Handler="App.salaryTypeId_salaryTypeId.setValue(5); App.payrollsStore.reload();">
-                                        </Select>
-                                        
-                                    </Listeners>
-                                </ext:ComboBox>
-                                 <ext:Container runat="server" Layout="FitLayout"  >
-                                    <Content>
-                                        <uc:salaryTypeControl runat="server" ID="salaryTypeId1" Width="190" />
-                                            
-                                          
-                                    </Content>
-                                </ext:Container>
-                                <%--<ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="salaryTypeFilter"  Name="salaryTypeFilter" runat="server" EmptyText="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                    <Items>
-
-                                        <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: SalaryBiWeekly%>" Value="3"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: SalaryFourWeekly%>" Value="4"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="5"></ext:ListItem>
-                                    </Items>
-                                    <Listeners>
-                                        <Select Handler="App.payrollsStore.reload();">
-                                        </Select>
-                                    </Listeners>
-                                </ext:ComboBox>--%>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="status"  runat="server" EmptyText="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                    <Items>
-
-                                        <ext:ListItem Text="<%$ Resources: Status0%>" Value="0"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: Status1%>" Value="1"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources: Status2%>" Value="2"></ext:ListItem>
-
-                                    </Items>
-                                    <Listeners>
-                                        <Select Handler="App.payrollsStore.reload();">
-                                        </Select>
-                                    </Listeners>
-                                </ext:ComboBox>
-                            </Items>
-                        </ext:Toolbar>
-                    </TopBar>
+                
                     <Items>
                         <ext:GridPanel  runat="server" ID="payrollsGrid" Scroll="Vertical" Layout="FitLayout"  SortableColumns="false"  EnableColumnResize="false" EnableColumnHide="false">
                             
@@ -174,6 +111,9 @@
                                                 <ext:ModelField Name="startDate" />
                                                 <ext:ModelField Name="endDate" />
                                                 <ext:ModelField Name="notes" />
+                                                 <ext:ModelField Name="payId" />
+
+                                                
                                             </Fields>
                                         </ext:Model>
                                     </Model>
@@ -187,10 +127,10 @@
 
                                     <ext:DateColumn runat="server" ID="periodTo" Text="<%$ Resources: FieldTo%>" DataIndex="endDate" Width="150" />
 
-                                    <ext:Column runat="server" DataIndex="status" Text="<%$ Resources: FieldStatus%>" Flex="1">
-                                        <Renderer Handler="return getStatusText(record.data['status']);" />
+                               <%--     <ext:Column runat="server" DataIndex="status" Text="<%$ Resources: FieldStatus%>" Flex="1">
+                                       
                                     </ext:Column>
-                                       <ext:Column runat="server" ID="Column2" Text="<%$ Resources: FieldNotes%>" DataIndex="notes"  Flex="2" />
+                                       <ext:Column runat="server" ID="Column2" Text="<%$ Resources: FieldNotes%>" DataIndex="notes"  Flex="2" />--%>
                                      
                                     <ext:Column runat="server"
                                         ID="colEdit" Visible="true"
@@ -215,7 +155,7 @@
                             <Listeners>
                                 <Render Handler="this.on('cellclick', cellClick);" />
                         <%--        <AfterRender Handler="App.year.setValue(new Date().getFullYear()); App.salaryTypeFilter.setValue(5); App.status.setValue(2); App.payrollsStore.reload();" />--%>
-                               <AfterRender Handler="App.year.setValue(new Date().getFullYear());" />
+                              <%-- <AfterRender Handler="App.year.setValue(new Date().getFullYear());" />--%>
                               <%--  <AfterLayout Handler="alert('fterlayout');App.payrollsStore.reload();" />--%>
                                 
                             </Listeners>
@@ -223,7 +163,7 @@
                                 <CellClick OnEvent="PoPuPHeader" IsUpload="true">
                                     <EventMask ShowMask="true" />
                                     <ExtraParams>
-                                        <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                        <ext:Parameter Name="id" Value="record.data['payId']" Mode="Raw" />
                                         <ext:Parameter Name="salaryType" Value="record.data['salaryType']" Mode="Raw" />
                                          <ext:Parameter Name="fiscalYear" Value="record.data['fiscalYear']" Mode="Raw" />
 
@@ -275,7 +215,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Listeners>
-                                <AfterLayout Handler="CheckSession(); App.fiscalYear.setValue(new Date().getFullYear()); App.salaryType.setValue(5);App.fiscalPeriodsStore.reload();" />
+                          <%--      <AfterLayout Handler="CheckSession(); App.fiscalYear.setValue(new Date().getFullYear()); App.salaryType.setValue(5);App.fiscalPeriodsStore.reload();" />--%>
                             </Listeners>
                             <Items>
                                 <ext:TextField runat="server" ID="payRefTF" Name="payRef" FieldLabel="<%$ Resources: FieldPayRef %>" AllowBlank="true" />

@@ -16,8 +16,10 @@ namespace Reports.ShiftLogs
     {
 
         List<RT309> items = new List<RT309>();
+        bool isArabic;
         public ShiftLogsReport(List<RT309> items, /*bool isArabic*/ string getLanguage, string DateFormat, Dictionary<string, string> parameters,int maxShiftCount)
         {
+            isArabic = false;
             this.items = items;
             this.PaperKind = PaperKind.A4;
            // this.Landscape = true;
@@ -34,12 +36,13 @@ namespace Reports.ShiftLogs
             //if (isArabic)
             if (getLanguage == "ar")
             {
+                isArabic = true;
                 fieldemployeeName1.Caption = "الموظف";
                 fielddayId1.Caption = "التاريخ";
                 this.RightToLeft = RightToLeft.Yes;
                 this.RightToLeftLayout = RightToLeftLayout.Yes;
                 xrPivotGrid1.RightToLeft = RightToLeft.Yes; ;
-
+                
             }
 
 
@@ -169,6 +172,7 @@ namespace Reports.ShiftLogs
             try
             {
                 string shift = "";
+               
 
                 shifts.ForEach(x => {
 
@@ -181,7 +185,10 @@ namespace Reports.ShiftLogs
                             shift += x.start;
                         }
                         else
+                        {
+                           
                             shift += x.start + " - " + x.end;
+                        }
                     }
                   
                     shift += Environment.NewLine;

@@ -370,16 +370,16 @@ namespace AionHR.Web.UI.Forms.Reports
         }
         private void fillSalaryType()
         {
-            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+            //XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
-            request.database = "2";
-            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
-            if (!resp.Success)
-            {
-                Common.errorMessage(resp);
-                return;
-            }
-            salaryTypeStore.DataSource = resp.Items;
+            //request.database = "2";
+            //ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            //if (!resp.Success)
+            //{
+            //    Common.errorMessage(resp);
+            //    return;
+            //}
+            salaryTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "2");
             salaryTypeStore.DataBind();
         }
     }

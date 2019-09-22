@@ -92,7 +92,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 HideShowColumns();
                 if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
+
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
+
+
+                edCalcTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "37");
+                edCalcTypeStore.DataBind();
 
 
                 date.Format = effectiveDate.Format = cc.Format = ccc.Format = _systemService.SessionHelper.GetDateformat();
@@ -1853,16 +1858,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
         private void  fillSalaryType()
         {
-            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+            //XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
-            request.database = "2";
-            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
-            if(!resp.Success)
-            {
-                Common.errorMessage(resp);
-                return; 
-            }
-            salaryTypeStore.DataSource = resp.Items;
+            //request.database = "2";
+            //ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            //if(!resp.Success)
+            //{
+            //    Common.errorMessage(resp);
+            //    return; 
+            //}
+            salaryTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "2");
             salaryTypeStore.DataBind();
         }
 

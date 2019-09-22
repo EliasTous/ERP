@@ -69,12 +69,11 @@ namespace AionHR.Web.UI.Forms.Reports
 
         public void setApprovalReason(string id)
         {
-            if (!string.IsNullOrEmpty(id))
-            {
+            
                 arId.SetValue(id);
                 arId.Select(id);
               
-            }
+            
 
         }
     }

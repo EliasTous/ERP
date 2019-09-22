@@ -69,5 +69,6 @@ namespace AionHR.Model.Employees.Profile
         public string edName { get; set; }
         public bool? isTaxable { get; set; }
         public int employeeId { get; set; }
+        public string edCalcType { get; set; }
     }
 }

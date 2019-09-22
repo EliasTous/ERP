@@ -11,9 +11,34 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/LeaveRequests.js?id=9"></script>
-    <script type="text/javascript" src="Secripts/common.js?id=120"></script>
+    <script type="text/javascript" src="Scripts/common.js?id=130"></script>
     <script type="text/javascript" src="Scripts/moment.js?id=20"></script>
     <script type="text/javascript">
+function calcEndDate() {
+      
+        if (App.startDate.getValue() == null) {
+            //alert(App.SpecifyStartDateFirst.value);
+            App.calDays.setValue('');
+            return;
+        }
+        var d;
+        if (App.calDays.value == 1)
+            d = moment(App.startDate.getValue());
+        else
+            d = moment(App.startDate.getValue()).add(parseInt(App.calDays.value) - 1, 'days');
+        //App.endDate.setValue(new Date(d.toDate()));
+    }
+    function calcDays() {
+        
+        if (App.startDate.getValue() == '' && App.endDate.getValue() == '') {
+            return;
+        }
+        if (App.startDate.getValue() == '') {
+            //alert('specify start date');
+            return;
+        }
+        App.calDays.setValue(parseInt(moment(App.endDate.getValue()).diff(moment(App.startDate.getValue()), 'days')+1));
+    }
         //function CalcSum() {
 
         //    var sum = 0;
@@ -59,6 +84,7 @@
         <ext:Hidden ID="StatusApproved" runat="server" Text="<%$ Resources: FieldApproved %>" />
         <ext:Hidden ID="StatusRefused" runat="server" Text="<%$ Resources: FieldRefused %>" />
         <ext:Hidden ID="StatusUsed" runat="server" Text="<%$ Resources: FieldUsed %>" />
+            <ext:Hidden ID="CurrentLeaveId" runat="server"  />
       
         
         
@@ -107,6 +133,9 @@
                         <ext:ModelField Name="justification" />
                         <ext:ModelField Name="ltName" />
                         <ext:ModelField Name="employeeName"    />
+                         <ext:ModelField Name="replApStatus"    />
+
+                        
 
                     </Fields>
                 </ext:Model>
@@ -249,6 +278,9 @@
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                   <ext:Parameter Name="replApStatus" Value="record.data['replApStatus']" Mode="Raw" />
+
+                                
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -286,7 +318,7 @@
         <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
            
             <%--<Listeners>
-                        <TabChange Handler="CheckSession(); App.leaveRequest1_direct.Unnamed_Event();" />
+                        <TabChange Handler="CheckSession(); App.direct.Unnamed_Event();" />
                     </Listeners>--%>
             <Items>
                 <ext:FormPanel
@@ -383,7 +415,7 @@
 
                                     </Listeners>
                             <%--          <Listeners>
-                                        <Change Handler="alert(this.value);App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum();" />
+                                        <Change Handler="alert(this.value);App.direct.MarkLeaveChanged(); CalcSum();" />
                                     </Listeners>--%>
                         </ext:DateField>
                           
@@ -398,7 +430,7 @@
                                         </change>
                                     </DirectEvents>
                                    <%-- <Listeners>
-                                        <Change Handler="App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum(); " />
+                                        <Change Handler="App.direct.MarkLeaveChanged(); CalcSum(); " />
                                     </Listeners>--%>
                                     <Listeners>
                                         <Change Handler="if(moment(this.value).isSame(moment( #{oldEnd}.value) )) {return false;} #{oldEnd}.value = this.value; calcDays();calcEndDate();" />
@@ -406,10 +438,7 @@
                                     </Listeners>
                                 </ext:DateField>
                                 <ext:NumberField runat="server" ID="calDays" Width="150" Name="calDays" MinValue="1" FieldLabel="<%$Resources:CalDays %>" LabelWidth="30">
-                                  <Listeners>
-                                        <Change Handler="if(this.value==null) { return false;}calcEndDate();" />
-
-                                    </Listeners>
+                                 
                                 </ext:NumberField>
                             </Items>
                         </ext:Panel>
@@ -466,6 +495,14 @@
                                             </Content>
                                         </ext:Container>  
 
+
+                          <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalStatusControl  runat="server" ID="apStatus" FieldLabel="<%$ Resources: apStatus %>"  />
+                                            </Content>
+                                        </ext:Container>  
+
                         <ext:FieldSet ID="summary" runat="server" Disabled="true" Title="<%$ Resources:RecentLeaves%>" >
                             <Items>
                                 <ext:TextField runat="server" ID="leaveBalance" FieldLabel="<%$Resources: LeaveBalance %>" Name="leaveBalance" />
@@ -485,7 +522,7 @@
                                         </Change>
                                     </DirectEvents>
                                   <%--  <Listeners>
-                                        <FocusLeave Handler="if(App.leaveRequest1_returnDate.getValue()>=App.leaveRequest1_endDate.getValue()) App.leaveRequest1_shouldDisableLastDay.value='1'; else App.leaveRequest1_shouldDisableLastDay.value='0';" />
+                                        <FocusLeave Handler="if(App.returnDate.getValue()>=App.endDate.getValue()) App.shouldDisableLastDay.value='1'; else App.shouldDisableLastDay.value='0';" />
                                     </Listeners>
                                 </ext:DateField>
                                 <ext:TextArea runat="server" FieldLabel="<%$Resources: ReturnNotes %>" ID="returnNotes" Name="returnNotes" />

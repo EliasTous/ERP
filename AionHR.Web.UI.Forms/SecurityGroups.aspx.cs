@@ -799,16 +799,16 @@ namespace AionHR.Web.UI.Forms
                         //masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("FullControl").ToString(), "3"));
                         maxLevel = 3;
                     }
-                    XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+                  //  XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
-                    request.database = "5";
-                    ListResponse<XMLDictionary> masterLevels = _systemService.ChildGetAll<XMLDictionary>(request);
-                    if (!masterLevels.Success)
-                    {
-                        Common.errorMessage(masterLevels);
-                        return;
-                    }
-                    classAccessLevelsStore.DataSource = masterLevels.Items;
+                    //request.database = "5";
+                    //ListResponse<XMLDictionary> masterLevels = Common.XMLDictionaryList(_systemService, "5");
+                    //if (!masterLevels.Success)
+                    //{
+                    //    Common.errorMessage(masterLevels);
+                    //    return;
+                    //}
+                    classAccessLevelsStore.DataSource = Common.XMLDictionaryList(_systemService, "5");
                     classAccessLevelsStore.DataBind();
                     EditClassLevelForm.Reset();
                     int levelInt = Convert.ToInt32(level);

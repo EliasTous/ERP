@@ -209,16 +209,40 @@ namespace AionHR.Web.UI.Forms
             yearsInService.Text = resp.result.serviceDuration;
 
         }
+
+
+        private void setApproved(bool disabled)
+        {
+         
+            startDate.Disabled = disabled;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled = */ltId.Disabled =  disabled;
+          
+            replacementIdCB.Disabled = disabled;
+            
+            //leavePeriod.Disabled = disabled;
+            calDays.Disabled = disabled;
+            leaveRef.Disabled = disabled;
+            leaveDaysField.Disabled = disabled;
+            leaveHours.Disabled = disabled;
+            workingHours.Disabled = disabled;
+           
+           
+        }
+
+
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
 
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
+            string replApStatus = e.ExtraParams["replApStatus"];
+            CurrentLeaveId.Text = id;
 
             switch (type)
             {
                 case "imgEdit":
+
                     //Step 1 : get the object from the Web Service 
                     employeeId.SuspendEvent("select");
                     startDate.SuspendEvent("change");
@@ -280,14 +304,16 @@ namespace AionHR.Web.UI.Forms
                     panelRecordDetails.ActiveTabIndex = 0;
 
 
-                   
-                  
+
+
 
                     //else if (response.result.status == 3 || response.result.status == -1)
                     //    setUsed(true);
                     //else
                     //{ setNormal(); }
-                  
+                    setApproved(true);
+                    calDays.Value = (response.result.startDate - response.result.endDate).Days + 3;
+                    apStatus.setApprovalStatus(replApStatus);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     employeeId.ResumeEvent("select");
@@ -416,9 +442,16 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            LeaveReplacementApprovalListRequest req =new LeaveReplacementApprovalListRequest();
+
+            LeaveReplacementApprovalListRequest req = new LeaveReplacementApprovalListRequest();
 
             req.employeeId = _systemService.SessionHelper.GetEmployeeId();
+            req.apStatus = "1";
+            req.StartAt = e.Start.ToString();
+            req.Size = "50";
+            req.SortBy = "recordId";
+
+
             ListResponse<LeaveReplacementApproval> routers = _selfServiceService.ChildGetAll<LeaveReplacementApproval>(req);
 
             if (!routers.Success)
@@ -571,20 +604,24 @@ namespace AionHR.Web.UI.Forms
 
                 //List<LeaveDay> days = GenerateLeaveDays(e.ExtraParams["days"]);
 
-                if (string.IsNullOrEmpty(id))
-                {
-                    //if (days.Count == 0)
-                    //{
-                    //    days = GenerateDefaultLeaveDays();
-                    //}
+              
 
                     try
                     {
-                        //New Mode
-                        //Step 1 : Fill The object and insert in the store 
-                        PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
+                    RecordRequest rec = new RecordRequest();
+                    rec.RecordID = CurrentLeaveId.Text;
+                    RecordResponse<LeaveRequest> recordResponse = _leaveManagementService.ChildGetRecord<LeaveRequest>(rec);
 
-                        request.entity = b;
+
+                    if (!recordResponse.Success)
+                    {
+                        Common.errorMessage(recordResponse);
+                        return;
+                    }
+                    PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
+
+                    request.entity = recordResponse.result;
+                       request.entity.replApStatus = apStatus.GetApprovalStatus();
                         PostResponse<LeaveRequest> r = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(request);
 
 
@@ -599,21 +636,7 @@ namespace AionHR.Web.UI.Forms
                         else
                         {
                             b.recordId = r.recordId;
-                            //CurrentLeave.Text = b.recordId;
-                            //     LeaveRequestNotification(b);
-                            //Add this record to the store 
-                            //days.ForEach(d =>
-                            //{
-                            //    d.leaveId = Convert.ToInt32(b.recordId);
-                            //    d.employeeId = Convert.ToInt32(b.employeeId);
-                            //});
-                            //AddDays(days);
-                            //if (Store1 != null)
-                            //    this.Store1.Reload();
-                            //else
-                            //{
-                            //    RefreshLeaveCalendarCallBack();
-                            //}
+                           
                             Store1.Reload();
 
 
@@ -626,15 +649,15 @@ namespace AionHR.Web.UI.Forms
                             });
 
 
-                            RecordRequest rec = new RecordRequest();
-                            rec.RecordID = b.recordId;
-                            RecordResponse<LeaveRequest> recordResponse = _leaveManagementService.ChildGetRecord<LeaveRequest>(rec);
-                            if (!recordResponse.Success)
-                            {
-                                X.Msg.Alert(Resources.Common.Error, recordResponse.Summary).Show();
-                                return;
-                            }
-                            leaveRef.Text = recordResponse.result.leaveRef;
+                            //RecordRequest rec = new RecordRequest();
+                            //rec.RecordID = b.recordId;
+                            //RecordResponse<LeaveRequest> recordResponse = _leaveManagementService.ChildGetRecord<LeaveRequest>(rec);
+                            //if (!recordResponse.Success)
+                            //{
+                            //    X.Msg.Alert(Resources.Common.Error, recordResponse.Summary).Show();
+                            //    return;
+                            //}
+                            //leaveRef.Text = recordResponse.result.leaveRef;
                             //this.EditRecordWindow.Close();
                             //SetTabPanelEnabled(true);
                             //////RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
@@ -654,26 +677,9 @@ namespace AionHR.Web.UI.Forms
 
 
                 }
-                else
-                {
-                    //Update Mode
-
-                    try
-                    {
-                     
-                            
-
-
-                        
-
-                    }
-                    catch (Exception ex)
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                    }
-                }
-            }
+               
+                
+            
             catch (Exception exp)
             {
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
