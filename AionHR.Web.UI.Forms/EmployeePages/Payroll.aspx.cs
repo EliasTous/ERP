@@ -1110,6 +1110,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj);
             b.fixedAmount = Convert.ToDouble(FixedAmount);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+            if (string.IsNullOrEmpty(ENSeq.Text))
+                ENSeq.Text = "0";
             b.seqNo = Convert.ToInt16(ENSeq.Text);
             if (!b.includeInTotal.HasValue)
                 b.includeInTotal = false;
@@ -1578,7 +1580,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListResponse<SalaryDetail> details = _employeeService.ChildGetAll<SalaryDetail>(req);
             if (!details.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, details.Summary).Show();
+                Common.errorMessage(details);
 
                 return;
             }

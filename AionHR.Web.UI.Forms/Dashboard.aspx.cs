@@ -2965,14 +2965,14 @@ namespace AionHR.Web.UI.Forms
 
                  
                     parameters.Add("1", employeeId.ToString());
-                if (dtFrom!=null)
+                //if (dtFrom!=null)
                 parameters.Add("2",((DateTime) dtFrom).ToString("yyyyMMdd"));
-                else
-                    parameters.Add("2", ((DateTime)date).ToString("yyyyMMdd"));
-                if (dtTo != null)
+                //else
+                //    parameters.Add("2", ((DateTime)date).ToString("yyyyMMdd"));
+                //if (dtTo != null)
                     parameters.Add("3", ((DateTime)dtTo).ToString("yyyyMMdd"));
-                else
-                    parameters.Add("3", ((DateTime)date).ToString("yyyyMMdd"));
+                //else
+                //    parameters.Add("3", ((DateTime)date).ToString("yyyyMMdd"));
                 if (!string.IsNullOrEmpty(shiftId))
                     parameters.Add("4", shiftId);
             
