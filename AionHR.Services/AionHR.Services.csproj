@@ -177,6 +177,7 @@
     <Compile Include="Messaging\System\BackgroundJobRecordRequest.cs" />
     <Compile Include="Messaging\System\ClassPropertyListRequest.cs" />
     <Compile Include="Messaging\System\CompanyUploadLogoRequest.cs" />
+    <Compile Include="Messaging\System\TimeVariationHistoryListRequest.cs" />
     <Compile Include="Messaging\System\UrlKeyRequest.cs" />
     <Compile Include="Messaging\System\XMLDictionaryListRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\FlatPunchesListRequest.cs" />

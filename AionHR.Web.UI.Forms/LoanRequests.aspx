@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
 
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LoanRequests.js"></script>
+    <script type="text/javascript" src="Scripts/LoanRequests.js?id=20"></script>
 
 
     <script type="text/javascript" src="Scripts/common.js"></script>
@@ -370,7 +370,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler=" if (record.data['status']==2) return editRender(); if (record.data['deductedAmount'] >0  ) return editRender(); else  return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
+                                <Renderer Handler=" if (record.data['status']==2) return editRender()+'&nbsp;&nbsp;'+historeRender(); if (record.data['deductedAmount'] >0  ) return editRender()+'&nbsp;&nbsp;'+historeRender(); else  return editRender()+ '&nbsp&nbsp'+ deleteRender()+'&nbsp;&nbsp;'+historeRender();" />
 
                             </ext:Column>
 
@@ -1283,7 +1283,7 @@
             </Buttons>
         </ext:Window>
 
-    
+     <uc:TimeVariationHistoryControl runat="server" ID="TimeVariationHistoryControl1" />
 
     </form>
 </body>

@@ -211,6 +211,7 @@
     <Compile Include="System\ClassProperty.cs" />
     <Compile Include="System\ResetPassword.cs" />
     <Compile Include="Employees\ShareAttachment.cs" />
+    <Compile Include="System\TimeVariationHistory.cs" />
     <Compile Include="System\XMLDictionary.cs" />
     <Compile Include="TimeAttendance\FlatPunch.cs" />
     <Compile Include="TimeAttendance\MailFlatShedule.cs" />

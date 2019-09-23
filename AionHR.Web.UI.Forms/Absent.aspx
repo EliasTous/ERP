@@ -9,49 +9,14 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/AttendanceDayView.js?id=12"></script>
+    <script type="text/javascript" src="Scripts/Absent.js?id=10" ></script>
      <script type="text/javascript" src="Scripts/ReportsCommon.js?id=10"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
      <script type="text/javascript">
   
-        var LinkRender = function (val, metaData, record, rowIndex, colIndex, store, apstatusString) {
-
-            return '<a href="#" class="LinkRender"  style="cursor:pointer;"  >' + apstatusString + '</a>';
-        };
-        //function startRefresh() {
-
-
-        //    setInterval(RefreshAllGrids, 60000);
-
-        //}
-        //function RefreshAllGrids() {
-
-
-
-        //    if (window.
-        //        parent.App.tabPanel.getActiveTab().id == "ab") {
-
-
-
-        //        /* Not Chained
-        //        App.activeStore.reload();
-        //        App.absenseStore.reload();
-        //        App.latenessStore.reload();
-        //        App.missingPunchesStore.reload();
-        //        App.checkMontierStore.reload();
-        //        App.outStore.reload();*/
-
-
-        //        /*Chained*/
-
-        //        App.Store1.reload();
-        //    }
-        //    else {
-        //        // alert('No Refresh');
-        //    }
-
-        //}
+     
+     
         function dump(obj) {
             var out = '';
             for (var i in obj) {
@@ -311,9 +276,7 @@
                                 Filterable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-
-                             <Renderer handler="if ((record.data['timeCode']===41 || record.data['timeCode']===21) && record.data['apStatus']!=-1) { if (record.data['apStatus']==2) return editRender()+'&nbsp;&nbsp;' +attachRender()+'&nbsp;&nbsp;'+rejectRender(); else return editRender()+'&nbsp;&nbsp;' +attachRender();  }else { if ( record.data['apStatus']==2 && App.isSuperUser.getValue()=='true'){return rejectRender()+'&nbsp;&nbsp;'+ editRender(); }else   return editRender();} " />
-
+                                      <Renderer handler="if ((record.data['timeCode']===41 || record.data['timeCode']===21) && record.data['apStatus']!=-1) { if (record.data['apStatus']==2) return editRender()+'&nbsp;&nbsp;' +attachRender()+'&nbsp;&nbsp;'+rejectRender()+'&nbsp;&nbsp;'+historeRender(); else return editRender()+'&nbsp;&nbsp;' +attachRender()+'&nbsp;&nbsp;'+historeRender();   }else { if ( record.data['apStatus']==2 && App.isSuperUser.getValue()=='true'){return rejectRender()+'&nbsp;&nbsp;'+ editRender()+'&nbsp;&nbsp;'+historeRender();  }else   return editRender()+'&nbsp;&nbsp;'+historeRender(); } " />
                                   </ext:Column>
 
 
@@ -788,7 +751,7 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
-
+        <uc:TimeVariationHistoryControl runat="server" ID="TimeVariationHistoryControl1" />
 
     </form>
 </body>

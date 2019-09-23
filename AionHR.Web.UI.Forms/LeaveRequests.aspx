@@ -10,42 +10,10 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LeaveRequests.js?id=9"></script>
-    <script type="text/javascript" src="Secripts/common.js?id=120"></script>
+   <script type="text/javascript" src="Scripts/Absent.js?id=10" ></script>
+   
     <script type="text/javascript" src="Scripts/moment.js?id=20"></script>
-    <script type="text/javascript">
-        //function CalcSum() {
-
-        //    var sum = 0;
-        //    App.LeaveDaysGrid.getStore().each(function (record) {
-        //        sum += record.data['leaveHours'];
-        //    });
-
-        //    App.sumHours.setValue(sum.toFixed(2));
-        //    App.sumHours2.setValue(sum.toFixed(2));
-
-
-        //}
-
-        //function FillReturnInfo(id, d1, d2) {
-
-        //    App.leaveId.setValue(id);
-        //    App.DateField1.setValue(new Date(d1));
-        //    App.DateField2.setValue(new Date(d2));
-        //    App.returnDate.setValue(new Date(d2));
-        //    App.Button1.setDisabled(false);
-        //}
-        //function SetReturnDateState() {
-        //    if (App.status.value == 2)
-        //        App.returnDate.setDisabled(false);
-        //    else
-        //        App.returnDate.setDisabled(true);
-        //}
-     
-      
-
-        
-    </script>
+   
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
@@ -60,21 +28,7 @@
         <ext:Hidden ID="StatusRefused" runat="server" Text="<%$ Resources: FieldRefused %>" />
         <ext:Hidden ID="StatusUsed" runat="server" Text="<%$ Resources: FieldUsed %>" />
       
-        
-        
-<%--        <ext:Hidden ID="SundayText" runat="server" Text="<%$ Resources:Common , SundayText %>" />
-        <ext:Hidden ID="MondayText" runat="server" Text="<%$ Resources:Common , MondayText %>" />
-        <ext:Hidden ID="TuesdayText" runat="server" Text="<%$ Resources:Common , TuesdayText %>" />
-        <ext:Hidden ID="WednesdayText" runat="server" Text="<%$ Resources:Common , WednesdayText %>" />
-        <ext:Hidden ID="ThursdayText" runat="server" Text="<%$ Resources:Common , ThursdayText %>" />
-        <ext:Hidden ID="FridayText" runat="server" Text="<%$ Resources:Common , FridayText %>" />
-        <ext:Hidden ID="SaturdayText" runat="server" Text="<%$ Resources:Common , SaturdayText %>" />--%>
-       <%-- <ext:Hidden ID="CurrentLeave" runat="server" />
-        <ext:Hidden ID="DateFormat" runat="server" />
-        <ext:Hidden ID="approved" runat="server" />--%>
-       <%-- <ext:Hidden ID="LeaveChanged" runat="server" Text="1" EnableViewState="true" />
-        <ext:Hidden ID="TotalText" runat="server" Text="<%$ Resources: TotalText %>" />
-        <ext:Hidden ID="StoredLeaveChanged" runat="server" Text="0" EnableViewState="true" />--%>
+    
         <ext:Store
             ID="Store1"
             runat="server"
@@ -273,7 +227,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler=" if (record.data['status']==1){return editRender()+'&nbsp;&nbsp;' +deleteRender();} else {return editRender();} " />
+                                <Renderer Handler=" if (record.data['status']==1){return editRender()+'&nbsp;&nbsp;' +deleteRender()+'&nbsp;&nbsp;'+historeRender();} else {return editRender()+'&nbsp;&nbsp;'+historeRender();} " />
 
                             </ext:Column>
 
@@ -342,6 +296,7 @@
         </ext:Viewport>
 
         <uc:leaveControl runat="server" ID="leaveRequest1" />
+          <uc:TimeVariationHistoryControl runat="server" ID="TimeVariationHistoryControl1" />
 
 
     </form>

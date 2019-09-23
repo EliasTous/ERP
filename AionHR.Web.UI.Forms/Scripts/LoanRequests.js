@@ -10,6 +10,9 @@ var attachRender = function () {
     return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
 };
 
+var historeRender = function () {
+    return '<img class="imgHistory"  style="cursor:pointer;"  src="Images/Tools/error.png" />';
+};
 
 var commandName;
 var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
@@ -21,18 +24,24 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
     var t = e.getTarget(),
         columnId = this.columns[columnIndex].id; // Get column id
 
-    if (t.className == "imgEdit") {
+    if (t.className === "imgEdit") {
         //the ajax call is allowed
         commandName = t.className;
         return true;
     }
 
-    if (t.className == "imgDelete") {
+    if (t.className === "imgDelete") {
         //the ajax call is allowed
         commandName = t.className;
         return true;
     }
-    if (t.className == "imgAttach") {
+    if (t.className === "imgAttach") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+
+    if (t.className === "imgHistory") {
         //the ajax call is allowed
         commandName = t.className;
         return true;
@@ -47,7 +56,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
 
 var getCellType = function (grid, rowIndex, cellIndex) {
 
-    if (cellIndex == 0)
+    if (cellIndex === 0)
         return "";
     if (commandName != "")
         return commandName;
@@ -60,7 +69,7 @@ var getCellType = function (grid, rowIndex, cellIndex) {
 var enterKeyPressSearchHandler = function (el, event) {
 
     var enter = false;
-    if (event.getKey() == event.ENTER) {
+    if (event.getKey() === event.ENTER) {
         if (el.getValue().length > 0)
         { enter = true; }
     }

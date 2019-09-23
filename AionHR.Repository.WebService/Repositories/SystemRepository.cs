@@ -72,8 +72,9 @@ namespace AionHR.Repository.WebService.Repositories
 
             ChildGetAllLookup.Add(typeof(ReportParameter), "qryRP");
             ChildGetAllLookup.Add(typeof(ModuleClass), "qryCL");
+            ChildGetAllLookup.Add(typeof(TimeVariationHistory), "qryTL");
 
-
+            
 
 
 

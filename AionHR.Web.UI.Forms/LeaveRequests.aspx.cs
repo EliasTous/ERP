@@ -229,6 +229,11 @@ namespace AionHR.Web.UI.Forms
 
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
+
+                case "imgHistory":
+
+                    TimeVariationHistoryControl1.Show("42201", id);
+                    break;
                 default:
                     break;
             }

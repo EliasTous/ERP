@@ -544,7 +544,7 @@ namespace AionHR.Web.UI.Forms
                         //Step 1 : get the object from the Web Service 
 
                         //Step 2 : call setvalues with the retrieved object
-
+                       
                         damage.Select(damageLavel);
                         duration.Text = durationValue;
                        // recordId.Text = id;
@@ -677,6 +677,12 @@ namespace AionHR.Web.UI.Forms
                         TimeApprovalWindow.Show();
 
                         break;
+
+                    case "imgHistory":
+
+                        TimeVariationHistoryControl1.Show("45201", id);
+                        break;
+
                     default:
                         break;
                 }

@@ -180,6 +180,7 @@
     <Content Include="CertificateLevels.aspx" />
     <Content Include="CheckTypes.aspx" />
     <Content Include="BranchAvailabilities.aspx" />
+    <Content Include="Controls\TimeVariationHistoryControl.ascx" />
     <Content Include="DailySchedule.aspx" />
     <Content Include="DELogin.aspx" />
     <Content Include="DocumentCategories.aspx" />
@@ -232,6 +233,7 @@
     <Content Include="RT309.aspx" />
     <Content Include="Rules.aspx" />
     <Content Include="RuleTriggers.aspx" />
+    <Content Include="Scripts\Absent.js" />
     <Content Include="Scripts\AdminTemplates.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
@@ -643,6 +645,10 @@
     <Content Include="App_LocalResources\UnschedulePunches.aspx.fr.resx" />
     <Content Include="App_LocalResources\LeaveReplacementApprovals.aspx.resx" />
     <Content Include="EmployeePages\App_LocalResources\Payroll.aspx.fr.resx" />
+    <Content Include="Controls\App_LocalResources\TimeVariationHistoryControl.ascx.ar.resx" />
+    <Content Include="Controls\App_LocalResources\TimeVariationHistoryControl.ascx.de-DE.resx" />
+    <Content Include="Controls\App_LocalResources\TimeVariationHistoryControl.ascx.fr.resx" />
+    <Content Include="Controls\App_LocalResources\TimeVariationHistoryControl.ascx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -851,6 +857,13 @@
     </Compile>
     <Compile Include="BranchAvailabilities.aspx.designer.cs">
       <DependentUpon>BranchAvailabilities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TimeVariationHistoryControl.ascx.cs">
+      <DependentUpon>TimeVariationHistoryControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\TimeVariationHistoryControl.ascx.designer.cs">
+      <DependentUpon>TimeVariationHistoryControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="DailySchedule.aspx.cs">
       <DependentUpon>DailySchedule.aspx</DependentUpon>

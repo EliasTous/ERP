@@ -9,10 +9,21 @@ var deleteRender = function () {
 var attachRender = function () {
     return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
 };
+var LinkRender = function (val, metaData, record, rowIndex, colIndex, store, apstatusString) {
+
+    return '<a href="#" class="LinkRender"  style="cursor:pointer;"  >' + apstatusString + '</a>';
+};
+
+
+var rejectRender = function () {
+    return '<img class="imgReject"  style="cursor:pointer;" src="Images/logoff.png" />';
+};
+
 
 var historeRender = function () {
     return '<img class="imgHistory"  style="cursor:pointer;"  src="Images/Tools/error.png" />';
 };
+
 
 
 var commandName;
@@ -30,6 +41,11 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         commandName = t.className;
         return true;
     }
+    if (t.className === "imgReject") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
 
     if (t.className === "imgDelete") {
         //the ajax call is allowed
@@ -37,6 +53,11 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         return true;
     }
     if (t.className === "imgAttach") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+    if (t.className === "LinkRender") {
         //the ajax call is allowed
         commandName = t.className;
         return true;
@@ -49,12 +70,15 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
 
 
 
+
+
     //forbidden
     return false;
 };
 
 
 var getCellType = function (grid, rowIndex, cellIndex) {
+
     if (cellIndex === 0)
         return "";
     if (commandName !== "")
@@ -62,37 +86,4 @@ var getCellType = function (grid, rowIndex, cellIndex) {
     var columnId = grid.columns[cellIndex].id; // Get column id
 
     return columnId;
-};
-
-
-var enterKeyPressSearchHandler = function (el, event) {
-
-    var enter = false;
-    if (event.getKey() === event.ENTER) {
-        if (el.getValue().length > 0)
-        { enter = true; }
-    }
-
-    if (enter === true) {
-        App.Store1.reload();
-    }
-};
-function GetStatusName(index)
-{
-    switch(index){
-        case "1" :case 1:
-            return document.getElementById("StatusPending").value;
-            
-        case "2" :case 2:
-            return document.getElementById("StatusApproved").value;
-          
-        case"-1" :case -1:
-            return document.getElementById("StatusRefused").value;
-          
-        case "3": case 3:
-            return document.getElementById("StatusUsed").value;
-          
-
-         default:break;
-    }
 }
