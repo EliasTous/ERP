@@ -10,7 +10,7 @@
 namespace AionHR.Web.UI.Forms {
     
     
-    public partial class EntitlementDeductions {
+    public partial class PayrollExpressions {
         
         /// <summary>
         /// Form1 control.
@@ -67,24 +67,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
-        /// EntitlementText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden EntitlementText;
-        
-        /// <summary>
-        /// DeductionText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden DeductionText;
-        
-        /// <summary>
         /// Store1 control.
         /// </summary>
         /// <remarks>
@@ -139,42 +121,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button btnAdd;
         
         /// <summary>
-        /// btnReload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button btnReload;
-        
-        /// <summary>
-        /// btnDeleteSelected control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button btnDeleteSelected;
-        
-        /// <summary>
-        /// ToolbarFillExport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ToolbarFill ToolbarFillExport;
-        
-        /// <summary>
-        /// searchTrigger control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField searchTrigger;
-        
-        /// <summary>
         /// ColRecordId control.
         /// </summary>
         /// <remarks>
@@ -193,13 +139,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColName;
         
         /// <summary>
-        /// ColType control.
+        /// ColExpression control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column ColType;
+        protected global::Ext.Net.Column ColExpression;
         
         /// <summary>
         /// colDelete control.
@@ -319,67 +265,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField name;
         
         /// <summary>
-        /// type control.
+        /// expression control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox type;
-        
-        /// <summary>
-        /// paycodeRef control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox paycodeRef;
-        
-        /// <summary>
-        /// Store2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store Store2;
-        
-        /// <summary>
-        /// Model3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Model Model3;
-        
-        /// <summary>
-        /// expressionId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox expressionId;
-        
-        /// <summary>
-        /// expressionStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store expressionStore;
-        
-        /// <summary>
-        /// isTaxable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Checkbox isTaxable;
+        protected global::Ext.Net.TextArea expression;
         
         /// <summary>
         /// SaveButton control.
@@ -389,6 +281,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button SaveButton;
+        
+        /// <summary>
+        /// checkEX control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button checkEX;
         
         /// <summary>
         /// CancelButton control.

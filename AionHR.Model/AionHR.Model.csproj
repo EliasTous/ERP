@@ -188,6 +188,9 @@
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
     <Compile Include="LeaveManagement\PendingLA.cs" />
     <Compile Include="LoadTracking\PendingLA.cs" />
+    <Compile Include="Payroll\CheckExpression.cs" />
+    <Compile Include="Payroll\PayrollConstant.cs" />
+    <Compile Include="Payroll\PayrollExpression.cs" />
     <Compile Include="Reports\PT501.cs" />
     <Compile Include="Reports\ReportParameter.cs" />
     <Compile Include="Reports\RT115.cs" />

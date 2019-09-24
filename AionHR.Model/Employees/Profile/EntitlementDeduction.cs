@@ -23,5 +23,6 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31061_04")]
         [ApplySecurity]
         public bool isTaxable { get; set; }
+        public string expressionId { get; set; }
     }
 }

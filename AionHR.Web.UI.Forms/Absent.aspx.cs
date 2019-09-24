@@ -680,7 +680,7 @@ namespace AionHR.Web.UI.Forms
 
                     case "imgHistory":
 
-                        TimeVariationHistoryControl1.Show("45201", id);
+                        TimeVariationHistoryControl1.Show("41204", id);
                         break;
 
                     default:

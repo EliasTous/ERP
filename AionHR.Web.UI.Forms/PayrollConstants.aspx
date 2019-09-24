@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EntitlementDeductions.aspx.cs" Inherits="AionHR.Web.UI.Forms.EntitlementDeductions" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayrollConstants.aspx.cs" Inherits="AionHR.Web.UI.Forms.PayrollConstants" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -10,8 +9,13 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/EntitlementDeductions.js" ></script>
+    <script type="text/javascript" src="Scripts/CertificateLevels.js" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
+    <script type="text/javascript" >
+function hasWhiteSpace(s) {
+  return s.indexOf(' ') >= 0;
+}
+    </script>
    
  
 </head>
@@ -23,8 +27,6 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        <ext:Hidden ID="EntitlementText" runat="server" Text="<%$ Resources:Entitlement %>" />
-        <ext:Hidden ID="DeductionText" runat="server" Text="<%$ Resources:Deduction %>" />
         
         <ext:Store
             ID="Store1"
@@ -41,17 +43,19 @@
                 </ext:PageProxy>
             </Proxy>
             <Model>
-                <ext:Model ID="Model1" runat="server" IDProperty="recordId">
+                <ext:Model ID="Model1" runat="server" IDProperty="constant" >
                     <Fields>
 
-                        <ext:ModelField Name="recordId" />                       
-                        <ext:ModelField Name="type" />
-                        <ext:ModelField Name="name" />
-                    </Fields>
+                        <ext:ModelField Name="constant" />
+                        
+                        <ext:ModelField Name="value" />
+                        <%--<ext:ModelField Name="reference" />--%>
+                      
+                               </Fields>
                 </ext:Model>
             </Model>
-            <Sorters>
-                <ext:DataSorter Property="recordId" Direction="ASC" />
+              <Sorters>
+                <ext:DataSorter Property="constant" Direction="ASC" />
             </Sorters>
         </ext:Store>
 
@@ -73,6 +77,7 @@
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
 
                     <TopBar>
+                        
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
                                 <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
@@ -85,55 +90,8 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                                      <ext:Button ID="btnReload" runat="server"  Icon="Reload">       
-                                     <Listeners>
-                                        <Click Handler="CheckSession();#{Store1}.reload();" />
-                                    </Listeners>                           
-                                   
-                                </ext:Button>
-                                <ext:Button Visible="false" ID="btnDeleteSelected" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
-                                 <Listeners>
-                                        <Click Handler="CheckSession();"></Click>
-                                    </Listeners>
-                                    <DirectEvents>
-                                        <Click OnEvent="btnDeleteAll">
-                                            <EventMask ShowMask="true" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
-                                <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
-                                 <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180" >
-                                        <Triggers>
-                                            <ext:FieldTrigger Icon="Search" />
-                                        </Triggers>
-                                        <Listeners>
-                                            <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                            <TriggerClick Handler="#{Store1}.reload();" />
-                                        </Listeners>
-                                    </ext:TextField>
-                                  <ext:Button runat="server" Icon="Printer">
-                                    <Menu>
-                                        <ext:Menu runat="server">
-                                            <Items>
-                                                <ext:MenuItem runat="server"  Text="<%$ Resources:Common , Print %>" AutoPostBack="true" OnClick="printBtn_Click" OnClientClick="openInNewTab();"  >
-                                            
-                                                    <Listeners>
-                                                        <Click Handler="openInNewTab();" />
-                                                    </Listeners>
-                                                </ext:MenuItem>
-                                                <ext:MenuItem runat="server"  Text="Pdf" AutoPostBack="true" OnClick="ExportPdfBtn_Click"  >
-                                            
-                                                    
-                                                </ext:MenuItem>
-                                                <ext:MenuItem runat="server"  Text="Excel" AutoPostBack="true" OnClick="ExportXLSBtn_Click"  >
-                                            
-                                                    
-                                                </ext:MenuItem>
-                                            </Items>
-                                        </ext:Menu>
-                                    </Menu>
-                                </ext:Button>
+                              
+                              
                             
                             </Items>
                         </ext:Toolbar>
@@ -142,19 +100,15 @@
 
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
-                            <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-
-                         
-                                </ext:Column>
-                            <ext:Column    CellCls="cellLink" ID="ColType" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldType%>" DataIndex="type" Width ="200" Hideable="false">
-                                <Renderer Handler="return record.data['type']==1? #{EntitlementText}.value :#{DeductionText}.value;">
-
-                                </Renderer>
-                                </ext:Column>
+                          
+                            <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldConstant%>" DataIndex="constant" Flex="1" Hideable="false" />
+                                    <ext:Column    CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldValue%>" DataIndex="value" Flex="1" Hideable="false" />
+                     
+                            <%--<ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Width ="300" Hideable="false" />--%>
+                             
+                        
                            
 
-                           
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -180,7 +134,8 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
-                            <ext:Column runat="server"
+                            
+                           <ext:Column runat="server"
                                 ID="colEdit"  Visible="true"
                                 Text=""
                                 Width="100"
@@ -238,10 +193,13 @@
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
+                        
                         <CellClick OnEvent="PoPuP">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                           
+                                  <ext:Parameter Name="value" Value="record.data['value']" Mode="Raw" />
+                                  <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -285,70 +243,21 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
-                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="type" runat="server" FieldLabel="<%$ Resources:FieldType%>" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"  Name="type" AllowBlank="false" >
-                                    <Items>
-                                        <ext:ListItem Text="<%$ Resources:Entitlement%>" Value="1"></ext:ListItem>
-                                        <ext:ListItem Text="<%$ Resources:Deduction%>" Value="2"></ext:ListItem>
-                                    </Items>
-                                </ext:ComboBox>
-                                <ext:ComboBox
-                                      
-                                         SubmitValue="true"
-                                         AnyMatch="true"
-                                        CaseSensitive="false" 
-                                        runat="server" ValueField="payCode"
-                                        QueryMode="Local" ForceSelection="true"
-                                        TypeAhead="true" MinChars="1" AllowBlank="false"
-                                        DisplayField="name"  ID="paycodeRef" 
-                                       Name="paycodeRef" FieldLabel="<%$ Resources:paycodeRef %>" 
-                                       SimpleSubmit="true"  ReadOnly="false">
-                                       <Store>
-                                        <ext:Store   ID="Store2"
-                                            runat="server"
-                                            RemoteSort="False"
-                                            RemoteFilter="true"
-                                          
-                                            PageSize="50" IDMode="Explicit" Namespace="App">
-                                            <Proxy>
-                                                <ext:PageProxy DirectFn="App.direct.PayCodeReadData">
-                                                    <Listeners>
-                                                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                                                    </Listeners>
-                                                </ext:PageProxy>
-                                            </Proxy>
-                                            <Model>
-                                             <ext:Model ID="Model3" runat="server" IDProperty="payCode" >
-                                                <Fields>                                                                                                
-                                                            <ext:ModelField Name="name" />
-                                                            <ext:ModelField Name="payCode" />
-                                                                               
-                                                        </Fields>
-                                                    </ext:Model>
-                                                </Model>
-                                             
-                                                 </ext:Store>
-                                           </Store>
-                              
-                                      
-                                       </ext:ComboBox>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="Expression" Name="expressionId" runat="server" DisplayField="name" ValueField="recordId" ID="expressionId">
-                                            <Store>
-                                                <ext:Store runat="server" ID="expressionStore">
-                                                    <Model>
-                                                        <ext:Model runat="server">
-                                                            <Fields>
-                                                                <ext:ModelField Name="recordId" />
-                                                                <ext:ModelField Name="name" />
-                                                            </Fields>
-                                                        </ext:Model>
-                                                    </Model>
-                                                </ext:Store>
-                                            </Store>
-                                     </ext:ComboBox>
-                               <%-- <ext:TextField ID="paycodeRef" runat="server" FieldLabel="<%$ Resources:paycodeRef%>" Name="paycodeRef"   AllowBlank="false"/>--%>
-                                 <ext:Checkbox FieldLabel="<%$ Resources: isTaxable %>" runat="server" InputValue="True" Name="isTaxable" ID="isTaxable" />
+                               
+                                <ext:TextField ID="constant" runat="server" FieldLabel="<%$ Resources:FieldConstant%>" Name="constant"   AllowBlank="false" MaxLength="20"  >
+                                     <Validator Handler="return !hasWhiteSpace(this.value);" />
+                                  
+                                    </ext:TextField>
+                                
+                                 <ext:NumberField ID="value" runat="server" FieldLabel="<%$ Resources:FieldValue%>" Name="value"   AllowBlank="false" AllowDecimals="true" DecimalPrecision="2" />
+                
+                                
+
+                                
+                                
+                                
+                               
+
                             </Items>
 
                         </ext:FormPanel>
@@ -366,7 +275,7 @@
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                               
                                 <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

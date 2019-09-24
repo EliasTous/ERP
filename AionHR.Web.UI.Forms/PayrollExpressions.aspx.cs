@@ -24,18 +24,18 @@ using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
-using AionHR.Model.Payroll;
 using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Model.Payroll;
+using AionHR.Services.Messaging.Payroll;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class EntitlementDeductions : System.Web.UI.Page
+    public partial class PayrollExpressions : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
-        IPayrollService _PayrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
-
+        IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
 
         protected override void InitializeCulture()
         {
@@ -78,20 +78,6 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        private void FillExpressionStore()
-        {
-            ListRequest req = new ListRequest();
-            ListResponse<PayrollExpression> resp = _PayrollService.ChildGetAll<PayrollExpression>(req);
-            if (!resp.Success)
-            {
-                Common.errorMessage(resp);
-                return;
-            }
-
-            expressionStore.DataSource = resp.Items;
-            expressionStore.DataBind();
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -102,11 +88,9 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                Store2.Reload();
-                FillExpressionStore();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EntitlementDeduction), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(CertificateLevel), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -115,6 +99,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+
 
             }
 
@@ -174,17 +159,16 @@ namespace AionHR.Web.UI.Forms
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
 
-                    RecordResponse<EntitlementDeduction> response = _employeeService.ChildGetRecord<EntitlementDeduction>(r);
+                    RecordResponse<PayrollExpression> response = _payrollService.ChildGetRecord<PayrollExpression>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                         Common.errorMessage(response);
+                        Common.errorMessage(response);
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-                    paycodeRef.Select(response.result.paycodeRef);
-                    expressionId.Select(response.result.expressionId);
+
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -228,18 +212,18 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                EntitlementDeduction s = new EntitlementDeduction();
+                PayrollExpression s = new PayrollExpression();
                 s.recordId = index;
+                //s.reference = "";
 
                 s.name = "";
-                s.type = 1;
-                PostRequest<EntitlementDeduction> req = new PostRequest<EntitlementDeduction>();
+                PostRequest<PayrollExpression> req = new PostRequest<PayrollExpression>();
                 req.entity = s;
-                PostResponse<EntitlementDeduction> r = _employeeService.ChildDelete<EntitlementDeduction>(req);
+                PostResponse<PayrollExpression> r = _payrollService.ChildDelete<PayrollExpression>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                     Common.errorMessage(r);
+                    Common.errorMessage(r);
                     return;
                 }
                 else
@@ -373,12 +357,14 @@ namespace AionHR.Web.UI.Forms
             ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<EntitlementDeduction> routers = _employeeService.ChildGetAll<EntitlementDeduction>(request);
-            if (!routers.Success)
-                Common.errorMessage(routers);
-
-            this.Store1.DataSource = routers.Items;
-            e.Total = routers.Items.Count; ;
+            ListResponse<PayrollExpression> resp = _payrollService.ChildGetAll<PayrollExpression>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            this.Store1.DataSource = resp.Items;
+            e.Total = resp.Items.Count; ;
 
             this.Store1.DataBind();
         }
@@ -394,7 +380,7 @@ namespace AionHR.Web.UI.Forms
 
 
             string obj = e.ExtraParams["values"];
-            EntitlementDeduction b = JsonConvert.DeserializeObject<EntitlementDeduction>(obj);
+            PayrollExpression b = JsonConvert.DeserializeObject<PayrollExpression>(obj);
 
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
@@ -406,10 +392,10 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<EntitlementDeduction> request = new PostRequest<EntitlementDeduction>();
+                    PostRequest<PayrollExpression> request = new PostRequest<PayrollExpression>();
 
                     request.entity = b;
-                    PostResponse<EntitlementDeduction> r = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(request);
+                    PostResponse<PayrollExpression> r = _payrollService.ChildAddOrUpdate<PayrollExpression>(request);
 
 
                     //check if the insert failed
@@ -417,14 +403,14 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                         Common.errorMessage(r);
+                        Common.errorMessage(r);
                         return;
                     }
                     else
                     {
                         b.recordId = r.recordId;
                         //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                        Store1.Reload();
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -435,9 +421,7 @@ namespace AionHR.Web.UI.Forms
                         });
 
                         this.EditRecordWindow.Close();
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
+                        
 
 
 
@@ -459,9 +443,9 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     //getting the id of the record
-                    PostRequest<EntitlementDeduction> request = new PostRequest<EntitlementDeduction>();
+                    PostRequest<PayrollExpression> request = new PostRequest<PayrollExpression>();
                     request.entity = b;
-                    PostResponse<EntitlementDeduction> r = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<PayrollExpression> r = _payrollService.ChildAddOrUpdate<PayrollExpression>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -469,16 +453,14 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                         Common.errorMessage(r);
+                        Common.errorMessage(r);
                         return;
                     }
                     else
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(id);
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Commit();
+                        Store1.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -498,6 +480,29 @@ namespace AionHR.Web.UI.Forms
                 }
             }
         }
+        protected void checkRecordExpression(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+
+
+            string obj = e.ExtraParams["values"];
+            PayrollExpression b = JsonConvert.DeserializeObject<PayrollExpression>(obj);
+
+            CheckExpressionRecordRequest req = new CheckExpressionRecordRequest();
+            req.expression = b.expression;
+            RecordResponse<CheckExpression> resp = _payrollService.ChildGetRecord<CheckExpression>(req);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return; 
+            }
+            if (resp.result.success)
+                X.MessageBox.Alert(Resources.Common.Notification, GetLocalResourceObject("trueEX").ToString()).Show();
+            else
+                X.MessageBox.Alert(Resources.Common.Error, resp.result.returnMessage).Show();
+        }
 
         [DirectMethod]
         public string CheckSession()
@@ -513,133 +518,7 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-        protected void printBtn_Click(object sender, EventArgs e)
-        {
-            EntitlementDeductionsReport p = GetReport();
-            string format = "Pdf";
-            string fileName = String.Format("Report.{0}", format);
-
-            MemoryStream ms = new MemoryStream();
-            p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
-            Response.Clear();
-            Response.Write("<script>");
-            Response.Write("window.document.forms[0].target = '_blank';");
-            Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
-            Response.Write("</script>");
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
-        protected void ExportPdfBtn_Click(object sender, EventArgs e)
-        {
-            EntitlementDeductionsReport p = GetReport();
-            string format = "Pdf";
-            string fileName = String.Format("Report.{0}", format);
-
-            MemoryStream ms = new MemoryStream();
-            p.ExportToPdf(ms);
-            Response.Clear();
-
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
-
-        protected void ExportXLSBtn_Click(object sender, EventArgs e)
-        {
-            EntitlementDeductionsReport p = GetReport();
-            string format = "xls";
-            string fileName = String.Format("Report.{0}", format);
-
-            MemoryStream ms = new MemoryStream();
-            p.ExportToXls(ms);
-
-            Response.Clear();
-
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
-        private EntitlementDeductionsReport GetReport()
-        {
-
-            ListRequest request = new ListRequest();
-
-            request.Filter = "";
-            ListResponse<EntitlementDeduction> resp = _employeeService.ChildGetAll<EntitlementDeduction>(request);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                Common.errorMessage(resp);
-                return null;
-            }
-            EntitlementDeductionsReport p = new EntitlementDeductionsReport();
-            p.DataSource = resp.Items;
-            p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
-            p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            p.Parameters["Entitlement"].Value = GetGlobalResourceObject("Common", "Entitlement").ToString();
-            p.Parameters["Deduction"].Value = GetGlobalResourceObject("Common", "Deduction").ToString();
-            return p;
-
-
-
-        }
-        [DirectMethod]
-        public object PayCodeReadData(string action, Dictionary<string, object> extraParams)
        
-        {
-            ListRequest req = new ListRequest();
-            ListResponse<PayCode> eds = _PayrollService.ChildGetAll<PayCode>(req);
-
-            //Store2.DataSource = eds.Items;
-            //Store2.DataBind();
-            if (eds.Items == null)
-                return new List<PayCode>();
-            else
-                return eds.Items;
-                
-
-          
-
-
-
-        }
-
-        protected void addED(object sender, DirectEventArgs e)
-        {
-            PayCode obj = new PayCode();
-            obj.name = paycodeRef.Text;
-            obj.payCode = paycodeRef.Text;
-
-            PostRequest<PayCode> req = new PostRequest<PayCode>();
-            req.entity = obj;
-            PostResponse<PayCode> response = _PayrollService.ChildAddOrUpdate<PayCode>(req);
-            if (response.Success)
-            {
-
-                Store2.Reload();
-                paycodeRef.Select(paycodeRef.Text);
-                paycodeRef.SetValue(paycodeRef.Text);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                Common.errorMessage(response);
-                return;
-            }
-
-
-        }
 
     }
 }

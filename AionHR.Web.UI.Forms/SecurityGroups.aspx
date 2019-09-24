@@ -689,7 +689,8 @@
                                 <ext:Toolbar runat="server">
                                     <Items>
                                         <ext:Hidden runat="server" ID="currentSelection"></ext:Hidden>
-                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Editable="false" ID="classIdCombo" ValueField="id" DisplayField="name" FieldLabel="<%$ Resources:SelectModule%>">
+                                          
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"  ID="classIdCombo" ValueField="key" DisplayField="value" FieldLabel="<%$ Resources:SelectModule%>">
                                       <Listeners>
                                           <BeforeSelect Handler="App.currentSelection.value=this.value">
 
@@ -707,18 +708,24 @@
                                                </ExtraParams>
                                            </Select>
                                        </DirectEvents>
-                                            <Items>
-
-                                                <ext:ListItem Text="<%$ Resources: Classes,Class21010  %>" Value="21101" />
-                                                <ext:ListItem Text="<%$ Resources:  Classes,Class21020  %>" Value="21102" />
-                                                <ext:ListItem Text="<%$ Resources:  Classes,Class21103  %>" Value="21103" />
-                                                <ext:ListItem Text="<%$ Resources:  Classes,Class21040  %>" Value="21104" />
-                                                  
-                                               
-
-                                            </Items>
-
+                                        
+                                             <Store>
+                                                <ext:Store runat="server" ID="classIdComboStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
                                         </ext:ComboBox>
+
+                                         
+
+
                                         <ext:Button runat="server" ID="checkAll" Text="<%$Resources:checkAll %>">
                                             <Listeners>
                                                 <Click Handler="CheckAll();" />

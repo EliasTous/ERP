@@ -1386,4 +1386,13 @@
   <data name="leaveReplacementApproval" xml:space="preserve">
     <value>Leave Replacement Approval</value>
   </data>
+  <data name="Constants" xml:space="preserve">
+    <value>Constants</value>
+  </data>
+  <data name="Formulas" xml:space="preserve">
+    <value>Formulas</value>
+  </data>
+  <data name="expressions" xml:space="preserve">
+    <value>Expressions</value>
+  </data>
 </root>

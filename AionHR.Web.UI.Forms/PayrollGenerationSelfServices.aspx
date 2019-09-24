@@ -122,10 +122,10 @@
                             <ColumnModel>
                                 <Columns>
                                     <ext:Column Visible="false" runat="server" ID="recordHeaderID" text="" DataIndex="recordId" Width="200" />
-                                    <ext:Column runat="server" ID="c1" Text="<%$ Resources: FieldRef%>" DataIndex="payRef" Width="200"  />
-                                    <ext:DateColumn runat="server" ID="periodFrom" Text="<%$ Resources: FieldFrom%>" DataIndex="startDate" Width="150" />
+                                    <ext:Column runat="server" ID="c1" Text="<%$ Resources: FieldRef%>" DataIndex="payRef" Flex="1"  />
+                                    <ext:DateColumn runat="server" ID="periodFrom" Text="<%$ Resources: FieldFrom%>" DataIndex="startDate" Flex="1"  />
 
-                                    <ext:DateColumn runat="server" ID="periodTo" Text="<%$ Resources: FieldTo%>" DataIndex="endDate" Width="150" />
+                                    <ext:DateColumn runat="server" ID="periodTo" Text="<%$ Resources: FieldTo%>" DataIndex="endDate" Flex="1"  />
 
                                <%--     <ext:Column runat="server" DataIndex="status" Text="<%$ Resources: FieldStatus%>" Flex="1">
                                        

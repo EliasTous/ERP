@@ -655,6 +655,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Constants.
+        /// </summary>
+        internal static string Constants {
+            get {
+                return ResourceManager.GetString("Constants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to © 2017 AionHR. All rights reserved..
         /// </summary>
         internal static string CopyRight {
@@ -1213,6 +1222,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expressions.
+        /// </summary>
+        internal static string expressions {
+            get {
+                return ResourceManager.GetString("expressions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to February.
         /// </summary>
         internal static string February {
@@ -1452,6 +1470,15 @@ namespace Resources {
         internal static string Folders {
             get {
                 return ResourceManager.GetString("Folders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formulas.
+        /// </summary>
+        internal static string Formulas {
+            get {
+                return ResourceManager.GetString("Formulas", resourceCulture);
             }
         }
         

@@ -150,7 +150,7 @@ namespace AionHR.Web.UI.Forms
              
                 HideShowButtons();
                 //HideShowColumns();
-
+                
                 CurrentClassId.Text = ClassId.EPEM.ToString();
 
                 date.Format= gregCalBirthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();

@@ -98,7 +98,8 @@ namespace AionHR.Web.UI.Forms
                 modulesCombo1.ADDHandler("select", "App.CurrentModule.setValue(this.value); App.classesStore.reload();");
                 SetExtLanguage();
                 HideShowButtons();
-
+                classIdComboStore.DataSource = Common.XMLDictionaryList(_systemService, "40");
+                classIdComboStore.DataBind();
 
                 groupsStore.Reload();
                 //userSelector.ButtonsText = new ItemSelectorButtonsText();

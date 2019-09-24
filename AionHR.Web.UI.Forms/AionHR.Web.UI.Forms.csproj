@@ -192,6 +192,8 @@
     <Content Include="LeaveReplacementApprovals.aspx" />
     <Content Include="MediaCategories.aspx" />
     <Content Include="MediaItems.aspx" />
+    <Content Include="PayrollConstants.aspx" />
+    <Content Include="PayrollExpressions.aspx" />
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
     <Content Include="ReportParameterBrowser.aspx" />
@@ -649,6 +651,8 @@
     <Content Include="Controls\App_LocalResources\TimeVariationHistoryControl.ascx.de-DE.resx" />
     <Content Include="Controls\App_LocalResources\TimeVariationHistoryControl.ascx.fr.resx" />
     <Content Include="Controls\App_LocalResources\TimeVariationHistoryControl.ascx.resx" />
+    <Content Include="App_LocalResources\PayrollConstants.aspx.resx" />
+    <Content Include="App_LocalResources\PayrollExpressions.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -934,6 +938,20 @@
     </Compile>
     <Compile Include="MediaItems.aspx.designer.cs">
       <DependentUpon>MediaItems.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayrollConstants.aspx.cs">
+      <DependentUpon>PayrollConstants.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayrollConstants.aspx.designer.cs">
+      <DependentUpon>PayrollConstants.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayrollExpressions.aspx.cs">
+      <DependentUpon>PayrollExpressions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayrollExpressions.aspx.designer.cs">
+      <DependentUpon>PayrollExpressions.aspx</DependentUpon>
     </Compile>
     <Compile Include="PayrollGenerationSelfServices.aspx.cs">
       <DependentUpon>PayrollGenerationSelfServices.aspx</DependentUpon>
