@@ -391,6 +391,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden coTitle;
         
         /// <summary>
+        /// fuTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden fuTitle;
+        
+        /// <summary>
+        /// pyarTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden pyarTitle;
+        
+        /// <summary>
         /// exTitle control.
         /// </summary>
         /// <remarks>

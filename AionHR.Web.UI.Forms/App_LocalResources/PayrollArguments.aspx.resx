@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Payroll Expression Info</value>
+    <value>Payroll Argument Info</value>
   </data>
   <data name="checkEX" xml:space="preserve">
-    <value>Check Expression</value>
+    <value>Check Argument</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Payroll Expression</value>
-  </data>
-  <data name="FieldExpression" xml:space="preserve">
-    <value>Expression</value>
+    <value>Edit Argument Function</value>
   </data>
   <data name="FieldName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FieldName1" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
@@ -139,21 +139,9 @@
     <value>Reference</value>
   </data>
   <data name="trueEX" xml:space="preserve">
-    <value>Expression is correct</value>
+    <value>Argument is correct</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Payroll Expressions </value>
-  </data>
-  <data name="EXFUNEditWindowTitle" xml:space="preserve">
-    <value>Expression Function</value>
-  </data>
-  <data name="EXFUNTitle" xml:space="preserve">
-    <value>Expression Functions</value>
-  </data>
-  <data name="FieldFunctionId" xml:space="preserve">
-    <value>Function</value>
-  </data>
-  <data name="FiledFunctionId" xml:space="preserve">
-    <value>Function</value>
+    <value>Payroll Arguments</value>
   </data>
 </root>

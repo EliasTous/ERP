@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Payroll
 {
-   public class CheckExpression
+   public class CheckExpression : ModelBase
     {
         public string expression { get; set; }
         public bool success { get; set; }
         public string returnMessage { get; set; }
     }
+
+
 }

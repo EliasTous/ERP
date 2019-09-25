@@ -40,7 +40,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(PenaltyDetail), "qryPD");
             ChildGetAllLookup.Add(typeof(PayrollConstant), "qryCO");
             ChildGetAllLookup.Add(typeof(PayrollExpression), "qryEX");
-            
+            ChildGetAllLookup.Add(typeof(PayrollFunction), "qryFU");
+            ChildGetAllLookup.Add(typeof(PayrollArgument), "qryAR");
+            ChildGetAllLookup.Add(typeof(PayrollExpFunc), "qryEF");
+
 
 
             ChildAddOrUpdateLookup.Add(typeof(FiscalYear), "setYE");
@@ -69,6 +72,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(MailEmployee), "mailEM");
             ChildAddOrUpdateLookup.Add(typeof(PayrollConstant), "setCO");
             ChildAddOrUpdateLookup.Add(typeof(PayrollExpression), "setEX");
+            ChildAddOrUpdateLookup.Add(typeof(PayrollFunction), "setFU");
+            ChildAddOrUpdateLookup.Add(typeof(CheckExpression), "checkEX");
+            ChildAddOrUpdateLookup.Add(typeof(PayrollExpFunc), "setEF");
 
 
 
@@ -98,6 +104,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(TimeCode), "delTC");
             ChildDeleteLookup.Add(typeof(PayrollConstant), "delCO");
             ChildDeleteLookup.Add(typeof(PayrollExpression), "delEX");
+            ChildDeleteLookup.Add(typeof(PayrollFunction), "delFU");
+            ChildDeleteLookup.Add(typeof(PayrollExpFunc), "delEF");
 
 
 
@@ -120,7 +128,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(FiscalPeriod), "getPE");
             ChildGetLookup.Add(typeof(PayrollConstant), "getCO");
             ChildGetLookup.Add(typeof(PayrollExpression), "getEX");
-            ChildGetLookup.Add(typeof(CheckExpression), "checkEX");
+            //ChildGetLookup.Add(typeof(CheckExpression), "checkEX");
+            ChildGetLookup.Add(typeof(PayrollFunction), "getFU");
+            ChildGetLookup.Add(typeof(PayrollExpFunc), "getEF");
+
 
 
         }

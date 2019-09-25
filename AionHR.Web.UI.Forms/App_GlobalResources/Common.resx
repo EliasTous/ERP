@@ -1395,4 +1395,10 @@
   <data name="expressions" xml:space="preserve">
     <value>Expressions</value>
   </data>
+  <data name="Functions" xml:space="preserve">
+    <value>Functions</value>
+  </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>Arguments</value>
+  </data>
 </root>

@@ -192,8 +192,10 @@
     <Content Include="LeaveReplacementApprovals.aspx" />
     <Content Include="MediaCategories.aspx" />
     <Content Include="MediaItems.aspx" />
+    <Content Include="PayrollArguments.aspx" />
     <Content Include="PayrollConstants.aspx" />
     <Content Include="PayrollExpressions.aspx" />
+    <Content Include="PayrollFunctions.aspx" />
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
     <Content Include="ReportParameterBrowser.aspx" />
@@ -653,6 +655,8 @@
     <Content Include="Controls\App_LocalResources\TimeVariationHistoryControl.ascx.resx" />
     <Content Include="App_LocalResources\PayrollConstants.aspx.resx" />
     <Content Include="App_LocalResources\PayrollExpressions.aspx.resx" />
+    <Content Include="App_LocalResources\PayrollFunctions.aspx.resx" />
+    <Content Include="App_LocalResources\PayrollArguments.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -939,6 +943,13 @@
     <Compile Include="MediaItems.aspx.designer.cs">
       <DependentUpon>MediaItems.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PayrollArguments.aspx.cs">
+      <DependentUpon>PayrollArguments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayrollArguments.aspx.designer.cs">
+      <DependentUpon>PayrollArguments.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PayrollConstants.aspx.cs">
       <DependentUpon>PayrollConstants.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -952,6 +963,13 @@
     </Compile>
     <Compile Include="PayrollExpressions.aspx.designer.cs">
       <DependentUpon>PayrollExpressions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayrollFunctions.aspx.cs">
+      <DependentUpon>PayrollFunctions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayrollFunctions.aspx.designer.cs">
+      <DependentUpon>PayrollFunctions.aspx</DependentUpon>
     </Compile>
     <Compile Include="PayrollGenerationSelfServices.aspx.cs">
       <DependentUpon>PayrollGenerationSelfServices.aspx</DependentUpon>

@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayrollExpressions.aspx.cs" Inherits="AionHR.Web.UI.Forms.PayrollExpressions" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayrollFunctions.aspx.cs" Inherits="AionHR.Web.UI.Forms.PayrollFunctions" %>
+
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -23,8 +24,6 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         
-        <ext:Hidden ID="CurrentExpressionId" runat="server" />
-
         <ext:Store
             ID="Store1"
             runat="server"
@@ -46,7 +45,7 @@
                         <ext:ModelField Name="recordId" />
                         
                         <ext:ModelField Name="name" />
-                          <ext:ModelField Name="expression" />
+                          <ext:ModelField Name="functionBody" />
                         <%--<ext:ModelField Name="reference" />--%>
                       
                                </Fields>
@@ -99,12 +98,7 @@
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="1" Hideable="false" />
-                                <ext:Column    CellCls="cellLink" ID="ColExpression" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldExpression%>" DataIndex="expression" Flex="1" Hideable="false" />
-                        
-                            <%--<ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Width ="300" Hideable="false" />--%>
-                             
-                        
-                           
+                                <ext:Column    CellCls="cellLink" ID="ColFunctionBody" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBody%>" DataIndex="functionBody" Flex="1" Hideable="false" />
 
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
@@ -240,115 +234,16 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
-                                <ext:TextArea ID="expression" runat="server" FieldLabel="<%$ Resources:FieldExpression%>" Name="expression"   AllowBlank="false" MinHeight="20" />
-                                <%--<ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference"   AllowBlank="false"/>--%>
-
+                                <ext:TextArea ID="functionBody" runat="server" FieldLabel="<%$ Resources:FieldBody%>" Name="functionBody"   AllowBlank="false" MinHeight="20" />
+ 
                             </Items>
 
                         </ext:FormPanel>
-
-                          <ext:GridPanel
-                            ID="ExFunGridPanel"
-                            runat="server"
-                            PaddingSpec="0 0 1 0"
-                            Header="false"
-                            MaxHeight="350"
-                            Layout="FitLayout"
-                            Scroll="Vertical"
-                            Border="false"
-                             Title="<%$ Resources: EXFUNTitle %>"
-                            ColumnLines="True" IDMode="Explicit" RenderXType="True" >
-                                  <TopBar>
-                                    <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
-                                     <Items>
-                                    <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
-                                            <Listeners>
-                                                 <Click Handler="CheckSession();" />
-                                            </Listeners>                           
-                                    <DirectEvents>
-                                        <Click OnEvent="ADDExFunNewRecord">
-                                            <EventMask ShowMask="true" CustomTarget="={#{ExFunGridPanel}.body}" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
-                            </Items>
-                        </ext:Toolbar>
-
-                    </TopBar>
-                            
-                            <Store>
-                                <ext:Store runat="server" ID="ExpressionFunctionStore" OnReadData="EXFUNStore_ReadData">
-                                    <Model>
-                                        <ext:Model runat="server">
-                                            <Fields>
-                                               <ext:ModelField Name="expressionId"  />
-                                                 <ext:ModelField Name="functionId" />
-                                                <ext:ModelField Name="functionName" />
-                                                   
-                                                
-                                            </Fields>
-                                        </ext:Model>
-                                    </Model>
-                                </ext:Store>
-                            </Store>
-
-                            
-                            <ColumnModel ID="ColumnModel4" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
-                                <Columns>
-                                    <ext:Column ID="ColExpressionId" Visible="false" DataIndex="expressionId" runat="server" />
-                                   
-                                     <ext:Column ID="ColFunctionId" DataIndex="functionName" Text="<%$ Resources: FieldFunctionId%>" runat="server" Flex="1"/>
-
-                                   
-                                    
-                            <ext:Column runat="server"
-                                ID="Column1"  Visible="true"
-                                Text=""
-                                Width="100"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer handler="return deleteRender(); " />
-
-                            </ext:Column>
-
-
-                                </Columns>
-                            </ColumnModel>
-
-                          
-                          <Listeners>
-                        <Render Handler="this.on('cellclick', cellClick);" />
-                    </Listeners>
-                    
-                               <DirectEvents>
-                        <CellClick OnEvent="PoPuPEXPFUN">
-                            <EventMask ShowMask="true" />
-                            <ExtraParams>
-                                <ext:Parameter Name="expressionId" Value="record.data['expressionId']" Mode="Raw" />
-                                <ext:Parameter Name="functionId" Value="record.data['functionId']" Mode="Raw" />
-                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
-                            </ExtraParams>
-
-                        </CellClick>
-                    </DirectEvents>
-                            <View>
-                                <ext:GridView ID="GridView4" runat="server" />
-                            </View>
-
-
-                            <SelectionModel>
-                                <ext:RowSelectionModel ID="rowSelectionModel3" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
-                            </SelectionModel>
-                         
-                     </ext:GridPanel>
                         
+
+                       
+
+
                     </Items>
                 </ext:TabPanel>
             </Items>
@@ -368,7 +263,9 @@
                         </Click>
                     </DirectEvents>
                 </ext:Button>
-                  <ext:Button ID="checkEX" runat="server" Text="<%$ Resources: checkEX %>" Icon="Disk">
+                 
+
+                 <ext:Button ID="checkEX" runat="server" Text="<%$ Resources: checkEX %>" Icon="Disk">
 
                     <Listeners>
                         <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
@@ -379,13 +276,12 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="name" Value="#{name}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="expression" Value="#{expression}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="functionBody" Value="#{functionBody}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
                     </DirectEvents>
                 </ext:Button>
-
 
 
                 <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
@@ -396,88 +292,6 @@
             </Buttons>
         </ext:Window>
 
-
-
-         <ext:Window 
-            ID="EditEXFUNWindow"
-            runat="server"
-            Icon="PageEdit"
-            Title="<%$ Resources:EXFUNEditWindowTitle %>"
-            Width="450"
-            Height="400"
-            AutoShow="false"
-            Modal="true"
-            Hidden="true"
-            Layout="Fit">
-            
-            <Items>
-                <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
-                    <Items>
-                        <ext:FormPanel
-                            ID="EXFUNForm" DefaultButton="SaveEXFUNButton"
-                            runat="server"
-                            Title="<%$ Resources: EXFUNEditWindowTitle %>"
-                            Icon="ApplicationSideList"
-                            DefaultAnchor="100%" 
-                            BodyPadding="5">
-                            <Items>
-                              <ext:TextField ID="expressionId" Hidden="true" runat="server"  Disabled="true" Name="expressionId" />
-
-
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" 
-                                    TypeAhead="true" MinChars="1" DisplayField="name" ID="functionId" Name="functionId" FieldLabel="<%$ Resources:FiledFunctionId%>" >
-                                    <Store>
-                                        <ext:Store runat="server" ID="FunctionStore" >
-                                            <Model>
-                                                <ext:Model runat="server" IDProperty="recordId">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                         </ext:Store>
-                                    </Store>
-                                  
-                                </ext:ComboBox>
-
-
-                                
-                                
-                                  
-                            </Items>
-                          
-                        </ext:FormPanel>
-                          
-
-                        
-                    </Items>
-                </ext:TabPanel>
-            </Items>
-            <Buttons>
-                <ext:Button ID="SaveEXFUNButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
-
-                    <Listeners>
-                        <Click Handler="CheckSession();  if (!#{EXFUNForm}.getForm().isValid()) {return false;} " />
-                    </Listeners>
-                    <DirectEvents>
-                        <Click OnEvent="SaveNewEXFUNRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditEXFUNWindow}.body}" />
-                            <ExtraParams>
-                                <ext:Parameter Name="expressionId" Value="#{expressionId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="functionId" Value="#{functionId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value ="#{EXFUNForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
-                            </ExtraParams>
-                        </Click>
-                    </DirectEvents>
-                </ext:Button>
-                <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
-                    <Listeners>
-                        <Click Handler="this.up('window').hide();" />
-                    </Listeners>
-                </ext:Button>
-            </Buttons>
-        </ext:Window>
 
 
     </form>
