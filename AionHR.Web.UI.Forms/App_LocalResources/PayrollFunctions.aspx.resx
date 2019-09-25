@@ -147,4 +147,19 @@
   <data name="FieldBody" xml:space="preserve">
     <value>Body</value>
   </data>
+  <data name="EXFUNTitle" xml:space="preserve">
+    <value>Function Contants</value>
+  </data>
+  <data name="Fieldconstant" xml:space="preserve">
+    <value>Constant</value>
+  </data>
+  <data name="FUNConstEditWindowTitle" xml:space="preserve">
+    <value>Function Constant</value>
+  </data>
+  <data name="Filedconstant" xml:space="preserve">
+    <value>Constant</value>
+  </data>
+  <data name="FUNConstTitle" xml:space="preserve">
+    <value>Function Constant</value>
+  </data>
 </root>

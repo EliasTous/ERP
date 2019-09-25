@@ -152,6 +152,7 @@ namespace AionHR.Web.UI.Forms
 
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
+            CurrentFunctionId.Text = id;
 
             switch (type)
             {
@@ -170,6 +171,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
 
+                    FillFUNConstStore(e.ExtraParams["id"]);
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -537,8 +539,307 @@ namespace AionHR.Web.UI.Forms
 
 
 
+        private void FillFUNConstStore(string FUNConstID)
+        {
+            //GenericParametersRequest request = new GenericParametersRequest();
+            //request.paramString = "1|" + CustID;
+            //request.Filter = "";
+            //ListResponse<Address> Measurements = _saleService.ChildGetAll<Address>(request);
+            //if (!Measurements.Success)
+            //{
+            //    Common.errorMessage(Measurements);
+            //    return;
+            //}
+            //this.ClientAddressStore.DataSource = Measurements.Items;
+
+            //this.AddressGridPanel.DataBind();
+
+            PayrollFunConstCodeRequest request = new PayrollFunConstCodeRequest();
+            request.FunctionId = FUNConstID;
+            request.Filter = "";
+            ListResponse<PayrollFunConst> resp = _payrollService.ChildGetAll<PayrollFunConst>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+            }
+            this.FunctionConstStore.DataSource = resp.Items;
+
+            this.FunConstGridPanel.DataBind();
+        }
 
 
+        protected void SaveNewFUNConstRecord(object sender, DirectEventArgs e)
+        {
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            string id = CurrentFunctionId.Text; //e.ExtraParams["expressionId"];
+            string functionId = e.ExtraParams["functionId"];
+            string constant = e.ExtraParams["constant"];
+
+            string obj = e.ExtraParams["values"];
+            PayrollFunConst b = JsonConvert.DeserializeObject<PayrollFunConst>(obj);
+            b.functionId = id;
+            // Define the object to add or edit as null
+
+            //if (string.IsNullOrEmpty(id))
+            //{
+
+            try
+            {
+                //New Mode
+                //Step 1 : Fill The object and insert in the store 
+                PostRequest<PayrollFunConst> request = new PostRequest<PayrollFunConst>();
+                request.entity = new PayrollFunConst();                
+                request.entity.functionId = functionId;
+                request.entity.constant = constant;
+                PostResponse<PayrollFunConst> r = _payrollService.ChildAddOrUpdate<PayrollFunConst>(request);
+                b.recordId = r.recordId;
+
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+
+                    Common.errorMessage(r);
+                    return;
+                }
+                else
+                {
+
+
+                    //Add this record to the store 
+                    //this.ClientAddressStore.Insert(0, b);
+
+                    //Display successful notification
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordSavingSucc
+                    });
+                    FunctionConstStore.Reload();
+
+
+                    this.EditFUNConstWindow.Close();
+                    //RowSelectionModel sm = this.ClientGridPanel.GetSelectionModel() as RowSelectionModel;
+                    //sm.DeselectAll();
+                    //sm.Select(b.recordId.ToString());
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
+
+
+            //}
+            //else
+            //{
+            //    //Update Mode
+
+            //    try
+            //    {
+            //        PostRequest<ClientAddress> request = new PostRequest<ClientAddress>();
+            //        request.entity = new ClientAddress();
+            //        request.entity.address = b;
+            //        request.entity.clientId = CurrentClientId.Text;
+            //        request.entity.addressId = id;
+            //        PostResponse<ClientAddress> r = _saleService.ChildAddOrUpdate<ClientAddress>(request);
+            //        b.recordId = r.recordId;
+
+            //        //Step 2 : saving to store
+
+            //        //Step 3 :  Check if request fails
+            //        if (!r.Success)//it maybe another check
+            //        {
+            //            Common.errorMessage(r);
+            //            return;
+            //        }
+            //        else
+            //        {
+
+
+            //            //ModelProxy record = this.ClientStore.GetById(index);
+            //            //BasicInfoTab.UpdateRecord(record);
+            //            //record.Commit();
+
+            //            ClientAddressStore.Reload();
+
+
+            //            Notification.Show(new NotificationConfig
+            //            {
+            //                Title = Resources.Common.Notification,
+            //                Icon = Icon.Information,
+            //                Html = Resources.Common.RecordUpdatedSucc
+            //            });
+            //            this.EditAddressWindow.Close();
+
+
+            //        }
+
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+            //        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+            //    }
+            //}
+        }
+
+
+        protected void FUNConstStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            string filter = string.Empty;
+            int totalCount = 1;
+
+            if (string.IsNullOrEmpty(CurrentFunctionId.Text))
+                return;
+
+            PayrollFunConstCodeRequest request = new PayrollFunConstCodeRequest();
+            request.FunctionId = CurrentFunctionId.Text;
+            request.Filter = "";
+            ListResponse<PayrollFunConst> resp = _payrollService.ChildGetAll<PayrollFunConst>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+            }
+            this.FunctionConstStore.DataSource = resp.Items;
+
+            this.FunConstGridPanel.DataBind();
+
+        }
+
+        protected void ADDFunConstNewRecord(object sender, DirectEventArgs e)
+        {
+            FUNConstForm.Reset();
+
+            FillConstantStore();
+
+
+            this.EditFUNConstWindow.Show();
+        }
+
+        private void FillConstantStore()
+        {
+            ListRequest request = new ListRequest();
+            request.Filter = "";
+
+            ListResponse<PayrollConstant> Items = _payrollService.ChildGetAll<PayrollConstant>(request);
+            if (!Items.Success)
+            {
+                Common.errorMessage(Items);
+                return;
+            }
+            this.ConstantStore.DataSource = Items.Items;
+
+            this.ConstantStore.DataBind();
+        }
+
+        protected void PoPuPFUNConst(object sender, DirectEventArgs e)
+        {
+            FillConstantStore();
+
+            string id = e.ExtraParams["constant"];
+            int fnid = Convert.ToInt32(e.ExtraParams["functionId"]);
+            string type = e.ExtraParams["type"];
+            //addressId.Text = e.ExtraParams["addressId"];
+            switch (type)
+            {
+                //case "imgEdit":
+                //    //Step 1 : get the object from the Web Service 
+                //    AddressRequest r = new AddressRequest();
+                //    r.AddressId = id.ToString();
+
+
+                //    RecordResponse<Address> response = _systemService.ChildGetRecord<Address>(r);
+                //    if (!response.Success)
+                //    {
+                //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //        Common.errorMessage(response);
+                //        return;
+                //    }
+                //    //Step 2 : call setvalues with the retrieved object
+
+                //    this.AddressForm.SetValues(response.result);
+
+                //    this.EditAddressWindow.Title = Resources.Common.EditWindowsTitle;
+                //    this.EditAddressWindow.Show();
+                //    break;
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteFUNConstRecord({0},{1})", id, fnid),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                case "imgAttach":
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        [DirectMethod]
+        public void DeleteFUNConstRecord(string exId, int fnId)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                PayrollFunConst n = new PayrollFunConst();
+                n.constant = exId.ToString();
+                n.functionId = fnId.ToString();
+
+                PostRequest<PayrollFunConst> req = new PostRequest<PayrollFunConst>();
+                req.entity = n;
+                PostResponse<PayrollFunConst> res = _payrollService.ChildDelete<PayrollFunConst>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    Common.errorMessage(res);
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    FunctionConstStore.Remove(exId);
+
+                    FunctionConstStore.Reload();
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
 
 
 

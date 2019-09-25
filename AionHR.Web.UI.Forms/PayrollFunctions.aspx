@@ -23,7 +23,9 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        
+        <ext:Hidden ID="CurrentFunctionId" runat="server" />
+
+
         <ext:Store
             ID="Store1"
             runat="server"
@@ -241,7 +243,106 @@
                         </ext:FormPanel>
                         
 
-                       
+                        <ext:GridPanel
+                            ID="FunConstGridPanel"
+                            runat="server"
+                            PaddingSpec="0 0 1 0"
+                            Header="false"
+                            MaxHeight="350"
+                            Layout="FitLayout"
+                            Scroll="Vertical"
+                            Border="false"
+                             Title="<%$ Resources: FUNConstTitle %>"
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True" >
+                                  <TopBar>
+                                    <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
+                                     <Items>
+                                    <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
+                                            <Listeners>
+                                                 <Click Handler="CheckSession();" />
+                                            </Listeners>                           
+                                    <DirectEvents>
+                                        <Click OnEvent="ADDFunConstNewRecord">
+                                            <EventMask ShowMask="true" CustomTarget="={#{FunConstGridPanel}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
+                            
+                            <Store>
+                                <ext:Store runat="server" ID="FunctionConstStore" OnReadData="FUNConstStore_ReadData">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                               <ext:ModelField Name="functionId" />
+                                                <ext:ModelField Name="constant" />
+                                                   
+                                                
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+
+                            
+                            <ColumnModel ID="ColumnModel4" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                <Columns>
+                                    <ext:Column ID="ColFunctionId" Visible="false" DataIndex="functionId" runat="server" />
+                                   
+                                     <ext:Column ID="Colconstant" DataIndex="constant" Text="<%$ Resources: Fieldconstant%>" runat="server" Flex="1"/>
+
+                                   
+                                    
+                            <ext:Column runat="server"
+                                ID="Column1"  Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer handler="return deleteRender(); " />
+
+                            </ext:Column>
+
+
+                                </Columns>
+                            </ColumnModel>
+
+                          
+                          <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
+                    
+                               <DirectEvents>
+                        <CellClick OnEvent="PoPuPFUNConst">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                <ext:Parameter Name="constant" Value="record.data['constant']" Mode="Raw" />
+                                <ext:Parameter Name="functionId" Value="record.data['functionId']" Mode="Raw" />
+                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>
+                            <View>
+                                <ext:GridView ID="GridView4" runat="server" />
+                            </View>
+
+
+                            <SelectionModel>
+                                <ext:RowSelectionModel ID="rowSelectionModel3" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                            </SelectionModel>
+                         
+                     </ext:GridPanel>
 
 
                     </Items>
@@ -292,6 +393,85 @@
             </Buttons>
         </ext:Window>
 
+        <ext:Window 
+            ID="EditFUNConstWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:FUNConstEditWindowTitle %>"
+            Width="450"
+            Height="400"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+            
+            <Items>
+                <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                    <Items>
+                        <ext:FormPanel
+                            ID="FUNConstForm" DefaultButton="SaveFUNConstButton"
+                            runat="server"
+                            Title="<%$ Resources: FUNConstEditWindowTitle %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" 
+                            BodyPadding="5">
+                            <Items>
+                              <ext:TextField ID="functionId" Hidden="true" runat="server"  Disabled="true" Name="functionId" />
+
+
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false" runat="server" AllowBlank="true" ValueField="name" QueryMode="Local" ForceSelection="true" 
+                                    TypeAhead="true" MinChars="1" DisplayField="name" ID="constant" Name="constant" FieldLabel="<%$ Resources:Filedconstant%>" >
+                                    <Store>
+                                        <ext:Store runat="server" ID="ConstantStore" >
+                                            <Model>
+                                                <ext:Model runat="server" IDProperty="name">
+                                                    <Fields>                                                        
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                         </ext:Store>
+                                    </Store>
+                                  
+                                </ext:ComboBox>
+
+
+                                
+                                
+                                  
+                            </Items>
+                          
+                        </ext:FormPanel>
+                          
+
+                        
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="SaveFUNConstButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession();  if (!#{FUNConstForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveNewFUNConstRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditFUNConstWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="constant" Value="#{constant}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="functionId" Value="#{functionId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value ="#{FUNConstForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
 
 
     </form>

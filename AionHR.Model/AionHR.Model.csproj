@@ -193,6 +193,7 @@
     <Compile Include="Payroll\PayrollConstant.cs" />
     <Compile Include="Payroll\PayrollExpFunc.cs" />
     <Compile Include="Payroll\PayrollExpression.cs" />
+    <Compile Include="Payroll\PayrollFunConst.cs" />
     <Compile Include="Payroll\PayrollFunction.cs" />
     <Compile Include="Reports\PT501.cs" />
     <Compile Include="Reports\ReportParameter.cs" />
