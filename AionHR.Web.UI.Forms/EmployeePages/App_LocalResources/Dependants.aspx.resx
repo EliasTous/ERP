@@ -195,4 +195,10 @@
   <data name="StepChild" xml:space="preserve">
     <value>Step Child</value>
   </data>
+  <data name="FieldHasSpecialNeeds" xml:space="preserve">
+    <value>Has Special Needs</value>
+  </data>
+  <data name="FieldIsEmployed" xml:space="preserve">
+    <value>Is Employed</value>
+  </data>
 </root>

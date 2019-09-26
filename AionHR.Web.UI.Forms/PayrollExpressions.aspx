@@ -220,8 +220,8 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="450"
-            Height="330"
+            Width="550"
+            Height="400"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -240,7 +240,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
-                                <ext:TextArea ID="expression" runat="server" FieldLabel="<%$ Resources:FieldExpression%>" Name="expression"   AllowBlank="false" MinHeight="20" />
+                                <ext:TextArea ID="expression" runat="server" FieldLabel="<%$ Resources:FieldExpression%>" Name="expression"   AllowBlank="false" MinHeight="150" MinWidth="200" />
                                 <%--<ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference"   AllowBlank="false"/>--%>
 
                             </Items>

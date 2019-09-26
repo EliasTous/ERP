@@ -364,6 +364,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Checkbox isCitizen;
         
         /// <summary>
+        /// isEmployed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox isEmployed;
+        
+        /// <summary>
+        /// hasSpecialNeeds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox hasSpecialNeeds;
+        
+        /// <summary>
         /// addressForm control.
         /// </summary>
         /// <remarks>

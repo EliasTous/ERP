@@ -222,10 +222,31 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                    stateId.Select(entity.address.stateId);
                     phone.Text = entity.address.phone;
 
-                    if (entity.gender == "0")
+                    if (entity.gender == "1")
                         gender0.Checked = true;
                     else
                         gender1.Checked = true;
+
+                    if (entity.hasSpecialNeeds == true)
+                        hasSpecialNeeds.Checked = true;
+                    else
+                        hasSpecialNeeds.Checked = false;
+
+                    if (entity.isEmployed == true)
+                        isEmployed.Checked = true;
+                    else
+                        isEmployed.Checked = false;
+
+                    if (entity.isStudent == true)
+                        isStudent.Checked = true;
+                    else
+                        isStudent.Checked = false;
+
+                    if (entity.isCitizen == true)
+                        isCitizen.Checked = true;
+                    else
+                        isCitizen.Checked = false;
+
                     FillNationality();
                     countryId.Select(entity.address.countryId);
                     dependencyType.Select(entity.dependencyType);
@@ -362,6 +383,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 b.isCitizen = false;
             if (!b.isStudent.HasValue)
                 b.isStudent = false;
+            if (!b.isEmployed.HasValue)
+                b.isEmployed = false;
+            if (!b.hasSpecialNeeds.HasValue)
+                b.hasSpecialNeeds = false;
             if (string.IsNullOrEmpty(add.city) && string.IsNullOrEmpty(add.countryId) && string.IsNullOrEmpty(add.street1) && string.IsNullOrEmpty(add.stateId) && string.IsNullOrEmpty(add.phone))
             {
                 b.address = null;

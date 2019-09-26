@@ -45,7 +45,20 @@ namespace AionHR.Model.Employees.Profile
         public AddressBook address { get; set; }
 
         public string naId { get; set; }
+        public bool? hasSpecialNeeds { get; set; }
+        [PropertyID("31150_11")]
+        [ApplySecurity]
+
+        public bool? isEmployed { get; set; }
+        [PropertyID("31150_12")]
+        [ApplySecurity]
 
         public string stateId { get; set; }
+       
+
+        
+
+
+
     }
 }

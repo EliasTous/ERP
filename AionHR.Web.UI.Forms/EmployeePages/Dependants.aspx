@@ -80,6 +80,8 @@
                                         <ext:ModelField Name="phoneNumber" />
                                         <ext:ModelField Name="isStudent" />
                                         <ext:ModelField Name="isCitizen" />
+                                         <ext:ModelField Name="isEmployed" />
+                                        <ext:ModelField Name="hasSpecialNeeds" />
                                         <ext:ModelField Name="address" IsComplex="true" />
 
 
@@ -222,7 +224,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditContactWindowTitle %>"
             Width="340"
-            Height="400"
+            Height="440"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -287,6 +289,9 @@
 
                                         <ext:Checkbox ID="isStudent" runat="server" FieldLabel="<%$ Resources: FieldIsStudent%>" DataIndex="isStudent" Name="isStudent" InputValue="true" />
                                         <ext:Checkbox ID="isCitizen" runat="server" FieldLabel="<%$ Resources: FieldIsCitizen%>" DataIndex="isCitizen" Name="isCitizen" InputValue="true" />
+
+                                        <ext:Checkbox ID="isEmployed" runat="server" FieldLabel="<%$ Resources: FieldIsEmployed%>" DataIndex="isEmployed" Name="isEmployed" InputValue="true" />
+                                        <ext:Checkbox ID="hasSpecialNeeds" runat="server" FieldLabel="<%$ Resources: FieldHasSpecialNeeds%>" DataIndex="hasSpecialNeeds" Name="hasSpecialNeeds" InputValue="true" />
                                   
                             </Items>
                         </ext:FormPanel>
