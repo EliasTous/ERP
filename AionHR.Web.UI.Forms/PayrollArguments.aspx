@@ -39,7 +39,7 @@
                 </ext:PageProxy>
             </Proxy>
             <Model>
-                <ext:Model ID="Model1" runat="server" IDProperty="recordId">
+                <ext:Model ID="Model1" runat="server" IDProperty="name">
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
@@ -52,7 +52,7 @@
                 </ext:Model>
             </Model>
             <Sorters>
-                <ext:DataSorter Property="recordId" Direction="ASC" />
+                <ext:DataSorter Property="name" Direction="ASC" />
             </Sorters>
         </ext:Store>
 
