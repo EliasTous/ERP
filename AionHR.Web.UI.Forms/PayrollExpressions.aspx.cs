@@ -201,6 +201,8 @@ namespace AionHR.Web.UI.Forms
 
                     FillEXFUNStore(e.ExtraParams["id"]);
 
+                    ExFunGridPanel.Enable();
+
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -369,6 +371,7 @@ namespace AionHR.Web.UI.Forms
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
+            ExFunGridPanel.Disable();
 
             this.EditRecordWindow.Show();
         }
@@ -452,7 +455,8 @@ namespace AionHR.Web.UI.Forms
                         });
 
                         this.EditRecordWindow.Close();
-                        
+
+                        ExFunGridPanel.Enable();
 
 
 

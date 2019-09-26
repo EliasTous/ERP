@@ -94,6 +94,8 @@
       <ext:Hidden runat="server" ID="coTitle" Text="<%$Resources:Common , Constants %>" />
     <ext:Hidden runat="server" ID="fuTitle" Text="<%$Resources:Common , Functions %>" />
     <ext:Hidden runat="server" ID="pyarTitle" Text="<%$Resources:Common , Arguments %>" />
+    <ext:Hidden runat="server" ID="pybsTitle" Text="<%$Resources:Common , PayrollBenefitSchedules %>" />
+    <ext:Hidden runat="server" ID="pybeTitle" Text="<%$Resources:Common , PayrollBenefits %>" />
       <ext:Hidden runat="server" ID="exTitle" Text="<%$Resources:Common , expressions %>" />
 
     
@@ -710,6 +712,32 @@
                                                                                 <Click Handler="openNewTab('expressions', 'PayrollExpressions.aspx', #{exTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
+                                                                        </Items>
+                                                                        </ext:Menu>
+                                                                </Menu>
+                                                                        </ext:MenuItem>
+
+
+                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Benefits%>">
+                                                            <Menu>
+                                                                <ext:Menu runat="server">
+                                                                    <Items>
+
+
+                                                                           <ext:MenuItem runat="server" Text="<%$Resources: Common , PayrollBenefitSchedules %>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('PayrollBenefitSchedules', 'PayrollBenefitSchedules.aspx', #{pybsTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+
+
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , PayrollBenefits %>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('PayrollBenefits', 'PayrollBenefits.aspx', #{pybeTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                       
+                                                                        
                                                                         </Items>
                                                                         </ext:Menu>
                                                                 </Menu>

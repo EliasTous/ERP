@@ -193,6 +193,8 @@
     <Content Include="MediaCategories.aspx" />
     <Content Include="MediaItems.aspx" />
     <Content Include="PayrollArguments.aspx" />
+    <Content Include="PayrollBenefits.aspx" />
+    <Content Include="PayrollBenefitSchedules.aspx" />
     <Content Include="PayrollConstants.aspx" />
     <Content Include="PayrollExpressions.aspx" />
     <Content Include="PayrollFunctions.aspx" />
@@ -657,6 +659,8 @@
     <Content Include="App_LocalResources\PayrollExpressions.aspx.resx" />
     <Content Include="App_LocalResources\PayrollFunctions.aspx.resx" />
     <Content Include="App_LocalResources\PayrollArguments.aspx.resx" />
+    <Content Include="App_LocalResources\PayrollBenefitSchedules.aspx.resx" />
+    <Content Include="App_LocalResources\PayrollBenefits.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -949,6 +953,20 @@
     </Compile>
     <Compile Include="PayrollArguments.aspx.designer.cs">
       <DependentUpon>PayrollArguments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayrollBenefits.aspx.cs">
+      <DependentUpon>PayrollBenefits.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayrollBenefits.aspx.designer.cs">
+      <DependentUpon>PayrollBenefits.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayrollBenefitSchedules.aspx.cs">
+      <DependentUpon>PayrollBenefitSchedules.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayrollBenefitSchedules.aspx.designer.cs">
+      <DependentUpon>PayrollBenefitSchedules.aspx</DependentUpon>
     </Compile>
     <Compile Include="PayrollConstants.aspx.cs">
       <DependentUpon>PayrollConstants.aspx</DependentUpon>

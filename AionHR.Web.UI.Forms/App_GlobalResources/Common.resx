@@ -1401,4 +1401,10 @@
   <data name="Arguments" xml:space="preserve">
     <value>Arguments</value>
   </data>
+  <data name="PayrollBenefitSchedules" xml:space="preserve">
+    <value>Benefit Schedules</value>
+  </data>
+  <data name="PayrollBenefits" xml:space="preserve">
+    <value>Benefits</value>
+  </data>
 </root>

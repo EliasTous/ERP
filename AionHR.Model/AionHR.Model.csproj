@@ -190,6 +190,8 @@
     <Compile Include="LoadTracking\PendingLA.cs" />
     <Compile Include="Payroll\CheckExpression.cs" />
     <Compile Include="Payroll\PayrollArgument.cs" />
+    <Compile Include="Payroll\PayrollBenefit.cs" />
+    <Compile Include="Payroll\PayrollBenefitSchedule.cs" />
     <Compile Include="Payroll\PayrollConstant.cs" />
     <Compile Include="Payroll\PayrollExpFunc.cs" />
     <Compile Include="Payroll\PayrollExpression.cs" />

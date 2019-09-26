@@ -173,6 +173,8 @@ namespace AionHR.Web.UI.Forms
 
                     FillFUNConstStore(e.ExtraParams["id"]);
 
+                    FunConstGridPanel.Enable();
+
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -341,6 +343,7 @@ namespace AionHR.Web.UI.Forms
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
+            FunConstGridPanel.Disable();
 
             this.EditRecordWindow.Show();
         }
@@ -422,6 +425,9 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordSavingSucc
                         });
+
+
+                        FunConstGridPanel.Enable();
 
                         this.EditRecordWindow.Close();
 
@@ -589,7 +595,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 : Fill The object and insert in the store 
                 PostRequest<PayrollFunConst> request = new PostRequest<PayrollFunConst>();
                 request.entity = new PayrollFunConst();                
-                request.entity.functionId = functionId;
+                request.entity.functionId = id;
                 request.entity.constant = constant;
                 PostResponse<PayrollFunConst> r = _payrollService.ChildAddOrUpdate<PayrollFunConst>(request);
                 b.recordId = r.recordId;
@@ -744,6 +750,7 @@ namespace AionHR.Web.UI.Forms
             FillConstantStore();
 
             string id = e.ExtraParams["constant"];
+            CurrentDelFuncID.Text = e.ExtraParams["constant"];
             int fnid = Convert.ToInt32(e.ExtraParams["functionId"]);
             string type = e.ExtraParams["type"];
             //addressId.Text = e.ExtraParams["addressId"];
@@ -776,7 +783,7 @@ namespace AionHR.Web.UI.Forms
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteFUNConstRecord({0},{1})", id, fnid),
+                            Handler = String.Format("App.direct.DeleteFUNConstRecord({0})", fnid),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -797,13 +804,13 @@ namespace AionHR.Web.UI.Forms
         }
 
         [DirectMethod]
-        public void DeleteFUNConstRecord(string exId, int fnId)
+        public void DeleteFUNConstRecord(int fnId)
         {
             try
             {
                 //Step 1 Code to delete the object from the database 
                 PayrollFunConst n = new PayrollFunConst();
-                n.constant = exId.ToString();
+                n.constant = CurrentDelFuncID.Text;//exId.ToString();
                 n.functionId = fnId.ToString();
 
                 PostRequest<PayrollFunConst> req = new PostRequest<PayrollFunConst>();
@@ -818,7 +825,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     //Step 2 :  remove the object from the store
-                    FunctionConstStore.Remove(exId);
+                    FunctionConstStore.Remove(CurrentDelFuncID.Text);
 
                     FunctionConstStore.Reload();
                     //Step 3 : Showing a notification for the user 

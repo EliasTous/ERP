@@ -409,6 +409,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden pyarTitle;
         
         /// <summary>
+        /// pybsTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden pybsTitle;
+        
+        /// <summary>
+        /// pybeTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden pybeTitle;
+        
+        /// <summary>
         /// exTitle control.
         /// </summary>
         /// <remarks>

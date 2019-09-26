@@ -44,6 +44,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(PayrollArgument), "qryAR");
             ChildGetAllLookup.Add(typeof(PayrollExpFunc), "qryEF");
             ChildGetAllLookup.Add(typeof(PayrollFunConst), "qryFC");
+            ChildGetAllLookup.Add(typeof(PayrollBenefitSchedule), "qryBS");
+            ChildGetAllLookup.Add(typeof(PayrollBenefit), "qryBE");
 
 
 
@@ -77,6 +79,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(CheckExpression), "checkEX");
             ChildAddOrUpdateLookup.Add(typeof(PayrollExpFunc), "setEF");
             ChildAddOrUpdateLookup.Add(typeof(PayrollFunConst), "setFC");
+            ChildAddOrUpdateLookup.Add(typeof(PayrollBenefitSchedule), "setBS");
+            ChildAddOrUpdateLookup.Add(typeof(PayrollBenefit), "setBE");
 
 
 
@@ -109,6 +113,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(PayrollFunction), "delFU");
             ChildDeleteLookup.Add(typeof(PayrollExpFunc), "delEF");
             ChildDeleteLookup.Add(typeof(PayrollFunConst), "delFC");
+            ChildDeleteLookup.Add(typeof(PayrollBenefitSchedule), "delBS");
+            ChildDeleteLookup.Add(typeof(PayrollBenefit), "delBE");
 
 
 
@@ -135,6 +141,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(PayrollFunction), "getFU");
             ChildGetLookup.Add(typeof(PayrollExpFunc), "getEF");
             ChildGetLookup.Add(typeof(PayrollFunConst), "getFC");
+            ChildGetLookup.Add(typeof(PayrollBenefitSchedule), "getBS");
+            ChildGetLookup.Add(typeof(PayrollBenefit), "getBE");
 
 
 

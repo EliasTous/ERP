@@ -2473,6 +2473,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Benefits.
+        /// </summary>
+        internal static string PayrollBenefits {
+            get {
+                return ResourceManager.GetString("PayrollBenefits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benefit Schedules.
+        /// </summary>
+        internal static string PayrollBenefitSchedules {
+            get {
+                return ResourceManager.GetString("PayrollBenefitSchedules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payroll Defaults.
         /// </summary>
         internal static string PayrollDefaults {
