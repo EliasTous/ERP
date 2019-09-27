@@ -212,6 +212,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     //Step 1 : get the object from the Web Service 
                     Dependant entity = GetDEById(id.ToString());
                     //Step 2 : call setvalues with the retrieved object
+                    this.infoForm.Reset();
+                    this.addressForm.Reset();
                     this.infoForm.SetValues(entity);
                     street1.Text = entity.address.street1;
                     street2.Text = entity.address.street2;
@@ -303,6 +305,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             //Reset all values of the relative object
             infoForm.Reset();
+        
+          
             this.EditContactWindow.Title = Resources.Common.AddNewRecord;
 
             FillNationality();
@@ -328,31 +332,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             EmployeeContactsListRequest request = new EmployeeContactsListRequest();
             request.EmployeeId = Convert.ToInt32(CurrentEmployee.Text);
-            ListResponse<Dependant> documents = _employeeService.ChildGetAll<Dependant>(request);
-            if (!documents.Success)
+            ListResponse<Dependant> resp = _employeeService.ChildGetAll<Dependant>(request);
+            if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, documents.Summary).Show();
+                Common.errorMessage(resp);
                 return;
             }
-           foreach (Dependant d in documents.Items)
-            {
-                switch (d.dependencyType)
-                {
-                    case "1": d.dependencyType = GetLocalResourceObject("Spouse").ToString(); 
-                        break;
-                    case "2":d.dependencyType = GetLocalResourceObject("Child").ToString();
-                        break;
-                    case "3":d.dependencyType = GetLocalResourceObject("DomesticPartner").ToString();
-                        break;
-                    case "4":d.dependencyType = GetLocalResourceObject("StepChild").ToString();
-                        break;
-                    case "5":d.dependencyType = GetLocalResourceObject("FosterChild").ToString();
-                        break;
-                        
-                }
-            }
-            this.dependandtsStore.DataSource = documents.Items;
-            e.Total = documents.count;
+           
+          
+            this.dependandtsStore.DataSource = resp.Items;
+            e.Total = resp.count;
 
             this.dependandtsStore.DataBind();
 
@@ -619,12 +608,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                 PostRequest<Dependant> req = new PostRequest<Dependant>();
                 req.entity = n;
-                PostResponse<Dependant> res = _employeeService.ChildDelete<Dependant>(req);
-                if (!res.Success)
+                PostResponse<Dependant> resp = _employeeService.ChildDelete<Dependant>(req);
+                if (!resp.Success)
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    Common.errorMessage(resp);
                     return;
                 }
                 else

@@ -62,7 +62,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
 
 
 var getCellType = function (grid, rowIndex, cellIndex) {
-    alert("test");
+   
     var columnId = grid.columns[cellIndex].id; // Get column id
     return commandName;
 };

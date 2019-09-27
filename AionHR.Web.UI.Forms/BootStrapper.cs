@@ -84,6 +84,7 @@ namespace AionHR.Web.UI.Forms
                 For<IDashBoardRepository>().Use<DashBoardRepository>();
                 For<IAdministrationRepository>().Use<AdministrationRepository>();
                 For<IAssetManagementRepository>().Use<AssetManagementRepository>();
+                For<IMathematicalRepository>().Use<MathematicalRepository>();
 
                 //Services
                 For<ISystemService>().Use<SystemService>();
@@ -108,6 +109,7 @@ namespace AionHR.Web.UI.Forms
                 For<IDashBoardService>().Use<DashBoardService>();
                 For<IAdministrationService>().Use<AdministrationService>();
                 For<IAssetManagementService>().Use<AssetManagementService>();
+                For<IMathematicalService>().Use<MathematicalService>();
 
             }
         }

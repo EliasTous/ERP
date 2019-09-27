@@ -35,7 +35,7 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
-        IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+        IMathematicalService _payrollService = ServiceLocator.Current.GetInstance<IMathematicalService>();
 
         protected override void InitializeCulture()
         {

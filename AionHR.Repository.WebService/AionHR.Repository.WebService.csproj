@@ -63,6 +63,7 @@
     <Compile Include="Repositories\PayrollRepository.cs" />
     <Compile Include="Repositories\ReportsRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\MathematicalRepository.cs" />
     <Compile Include="Repositories\SelfServiceRepository.cs" />
     <Compile Include="Repositories\SystemRepository.cs" />
     <Compile Include="Repositories\LeaveManagementRepository.cs" />

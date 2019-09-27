@@ -232,7 +232,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arguments.
+        ///   Looks up a localized string similar to Payroll Arguments.
         /// </summary>
         internal static string Arguments {
             get {

@@ -21,6 +21,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(GenerationHeader), "qryHE");
             ChildGetAllLookup.Add(typeof(FiscalPeriod), "qryPE");
             ChildGetAllLookup.Add(typeof(EmployeePayroll), "qryEM");
+          
 
             ChildGetAllLookup.Add(typeof(PayrollEntitlementDeduction), "qryED");
             ChildGetAllLookup.Add(typeof(TimeSchedule), "qryTS");
@@ -38,12 +39,14 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(Bank), "qryBA");
             ChildGetAllLookup.Add(typeof(PenaltyType), "qryPT");
             ChildGetAllLookup.Add(typeof(PenaltyDetail), "qryPD");
-            ChildGetAllLookup.Add(typeof(PayrollConstant), "qryCO");
-            ChildGetAllLookup.Add(typeof(PayrollExpression), "qryEX");
-            ChildGetAllLookup.Add(typeof(PayrollFunction), "qryFU");
             ChildGetAllLookup.Add(typeof(PayrollArgument), "qryAR");
-            ChildGetAllLookup.Add(typeof(PayrollExpFunc), "qryEF");
-            ChildGetAllLookup.Add(typeof(PayrollFunConst), "qryFC");
+
+           
+
+
+
+
+          
             ChildGetAllLookup.Add(typeof(PayrollBenefitSchedule), "qryBS");
             ChildGetAllLookup.Add(typeof(PayrollBenefit), "qryBE");
 
@@ -73,22 +76,25 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(TimeCode), "setTC");
             ChildAddOrUpdateLookup.Add(typeof(FiscalPeriod), "setPE");
             ChildAddOrUpdateLookup.Add(typeof(MailEmployee), "mailEM");
-            ChildAddOrUpdateLookup.Add(typeof(PayrollConstant), "setCO");
-            ChildAddOrUpdateLookup.Add(typeof(PayrollExpression), "setEX");
-            ChildAddOrUpdateLookup.Add(typeof(PayrollFunction), "setFU");
+            ChildAddOrUpdateLookup.Add(typeof(PayrollArgument), "setAR");
+
+
+
+
+            ChildAddOrUpdateLookup.Add(typeof(GeneratePayroll), "genEM");
+
             ChildAddOrUpdateLookup.Add(typeof(CheckExpression), "checkEX");
-            ChildAddOrUpdateLookup.Add(typeof(PayrollExpFunc), "setEF");
-            ChildAddOrUpdateLookup.Add(typeof(PayrollFunConst), "setFC");
+           
             ChildAddOrUpdateLookup.Add(typeof(PayrollBenefitSchedule), "setBS");
             ChildAddOrUpdateLookup.Add(typeof(PayrollBenefit), "setBE");
 
 
 
             ChildAddOrUpdateLookup.Add(typeof(DeletePayroll), "delEM");
+         
 
 
 
-            ChildAddOrUpdateLookup.Add(typeof(GeneratePayroll), "genEM");
 
             ChildDeleteLookup.Add(typeof(FiscalYear), "delYE");
             ChildDeleteLookup.Add(typeof(PayrollEntitlementDeduction), "delED");
@@ -108,13 +114,13 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(PenaltyType), "delPT");
             ChildDeleteLookup.Add(typeof(PenaltyDetail), "delPD");
             ChildDeleteLookup.Add(typeof(TimeCode), "delTC");
-            ChildDeleteLookup.Add(typeof(PayrollConstant), "delCO");
-            ChildDeleteLookup.Add(typeof(PayrollExpression), "delEX");
-            ChildDeleteLookup.Add(typeof(PayrollFunction), "delFU");
-            ChildDeleteLookup.Add(typeof(PayrollExpFunc), "delEF");
-            ChildDeleteLookup.Add(typeof(PayrollFunConst), "delFC");
+          
+         
+          
+         
             ChildDeleteLookup.Add(typeof(PayrollBenefitSchedule), "delBS");
             ChildDeleteLookup.Add(typeof(PayrollBenefit), "delBE");
+            ChildDeleteLookup.Add(typeof(PayrollArgument), "delAR");
 
 
 
@@ -135,14 +141,14 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(PenaltyType), "getPT");
             ChildGetLookup.Add(typeof(PenaltyDetail), "getPD");
             ChildGetLookup.Add(typeof(FiscalPeriod), "getPE");
-            ChildGetLookup.Add(typeof(PayrollConstant), "getCO");
-            ChildGetLookup.Add(typeof(PayrollExpression), "getEX");
+           
+          
             //ChildGetLookup.Add(typeof(CheckExpression), "checkEX");
-            ChildGetLookup.Add(typeof(PayrollFunction), "getFU");
-            ChildGetLookup.Add(typeof(PayrollExpFunc), "getEF");
-            ChildGetLookup.Add(typeof(PayrollFunConst), "getFC");
+         
+          
             ChildGetLookup.Add(typeof(PayrollBenefitSchedule), "getBS");
             ChildGetLookup.Add(typeof(PayrollBenefit), "getBE");
+            ChildGetLookup.Add(typeof(PayrollArgument), "getAR");
 
 
 

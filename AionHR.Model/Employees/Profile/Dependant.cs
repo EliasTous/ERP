@@ -54,9 +54,10 @@ namespace AionHR.Model.Employees.Profile
         [ApplySecurity]
 
         public string stateId { get; set; }
-       
+        public string dtName { get; set; }
 
-        
+
+
 
 
 

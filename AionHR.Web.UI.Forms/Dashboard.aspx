@@ -18,7 +18,7 @@
     <script type="text/javascript" src="Scripts/CircileProgress.js?id=3"></script>
     <script type="text/javascript" src="Scripts/jquery-new.js?id=4"></script>
     <script type="text/javascript" src="Scripts/plugins/highcharts.js?id=5"></script>
-    <script type="text/javascript" src="Scripts/Dashboard.js?id=178"></script>
+    <script type="text/javascript" src="Scripts/Dashboard.js?id=10"></script>
     <script type="text/javascript" src="Scripts/ReportsCommon.js?id=12"></script>
     <script type="text/javascript" src="Scripts/moment-with-locales.js" ></script>
  
