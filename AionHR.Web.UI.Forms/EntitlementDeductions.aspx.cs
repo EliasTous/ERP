@@ -35,6 +35,7 @@ namespace AionHR.Web.UI.Forms
         IPayrollService _PayrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IMathematicalService _mathematicalService = ServiceLocator.Current.GetInstance<IMathematicalService>();
 
 
         protected override void InitializeCulture()
@@ -81,7 +82,7 @@ namespace AionHR.Web.UI.Forms
         private void FillExpressionStore()
         {
             ListRequest req = new ListRequest();
-            ListResponse<PayrollExpression> resp = _PayrollService.ChildGetAll<PayrollExpression>(req);
+            ListResponse<PayrollExpression> resp = _mathematicalService.ChildGetAll<PayrollExpression>(req);
             if (!resp.Success)
             {
                 Common.errorMessage(resp);

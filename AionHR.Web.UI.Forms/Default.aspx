@@ -495,6 +495,40 @@
                                                                     </Items>
                                                                 </ext:Menu>
                                                             </Menu>
+                                                               <ext:MenuItem runat="server" Text="<%$Resources: Common , Formulas%>">
+                                                            <Menu>
+                                                                <ext:Menu runat="server">
+                                                                    <Items>
+
+
+                                                                           <ext:MenuItem runat="server" Text="<%$Resources: Common , Arguments %>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('Arguments', 'PayrollArguments.aspx', #{pyarTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                       
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , Constants %>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('Constants', 'PayrollConstants.aspx', #{coTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , Functions %>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('Functions', 'PayrollFunctions.aspx', #{fuTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+
+
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , expressions%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('expressions', 'PayrollExpressions.aspx', #{exTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                        </Items>
+                                                                        </ext:Menu>
+                                                                </Menu>
+                                                                        </ext:MenuItem>
                                                         </ext:MenuItem>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , Files%>">
                                                             <Menu>
