@@ -492,10 +492,7 @@
                                                                                 </ext:Menu>
                                                                             </Menu>
                                                                         </ext:MenuItem>
-                                                                    </Items>
-                                                                </ext:Menu>
-                                                            </Menu>
-                                                               <ext:MenuItem runat="server" Text="<%$Resources: Common , Formulas%>">
+                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , Formulas%>">
                                                             <Menu>
                                                                 <ext:Menu runat="server">
                                                                     <Items>
@@ -529,6 +526,10 @@
                                                                         </ext:Menu>
                                                                 </Menu>
                                                                         </ext:MenuItem>
+                                                                    </Items>
+                                                                </ext:Menu>
+                                                            </Menu>
+                                                              
                                                         </ext:MenuItem>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , Files%>">
                                                             <Menu>
