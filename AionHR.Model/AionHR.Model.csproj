@@ -186,6 +186,8 @@
     <Compile Include="Employees\UserProperty.cs" />
     <Compile Include="HelpFunction\BenefitAcquisitionAcquisitionRate.cs" />
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
+    <Compile Include="LeaveManagement\LeaveReturn.cs" />
+    <Compile Include="LeaveManagement\LeaveReturnApproval.cs" />
     <Compile Include="LeaveManagement\PendingLA.cs" />
     <Compile Include="LoadTracking\PendingLA.cs" />
     <Compile Include="Mathematical\IMathematicalRepository.cs" />

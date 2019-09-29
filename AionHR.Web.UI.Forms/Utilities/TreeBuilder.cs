@@ -238,6 +238,10 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node leaveMgmt = BuildParentNode("rootParent_LM", Resources.Common.LeaveManagement, true, rootParent);
             Ext.Net.Node lr = BuildLeafNode("rootParent_LM_LR", Resources.Common.LeaveRequests, "UserGo", true, leaveMgmt);
             Ext.Net.Node lc = BuildLeafNode("rootParent_LM_LC", Resources.Common.LeaveCalendar, "DateNext", true, leaveMgmt);
+            Ext.Net.Node Re = BuildLeafNode("rootParent_LM_RE", Resources.Common.LeaveReturn, "ResultsetFirst", true, leaveMgmt);
+
+
+
             Ext.Net.Node ad = BuildLeafNode("rootParent_TA_AD", Resources.Common.AttendanceDay, "CalendarViewDay", true, timeAt);
             Ext.Net.Node ab = BuildLeafNode("rootParent_TA_AB", Resources.Common.timeVariations, "CalendarViewDay", true, timeAt);
             Ext.Net.Node TA = BuildLeafNode("rootParent_TA_TA", Resources.Common.TimeApprovals, "CalendarViewDay", true, timeAt);
@@ -255,6 +259,7 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             FillConfigItem(lr, "lr", "LeaveRequests.aspx", Resources.Common.LeaveRequests, "icon-Employees", "1");
             FillConfigItem(lc, "lc", "LeaveCalendar.aspx", Resources.Common.LeaveCalendar, "icon-Employees", "1");
+            FillConfigItem(Re, "Re", "LeaveReturns.aspx", Resources.Common.LeaveReturn, "icon-Employees", "1");
             FillConfigItem(ad, "ad", "TimeAttendanceView.aspx", Resources.Common.AttendanceDay, "icon-Employees", "1");
             FillConfigItem(ab, "ab", "Absent.aspx", Resources.Common.timeVariations, "icon-Employees", "1");
             FillConfigItem(TA, "TA", "TimeAttendanceApprovals.aspx", Resources.Common.TimeApprovals, "icon-Employees", "1");

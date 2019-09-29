@@ -1656,7 +1656,7 @@
                                                                                 <ext:ModelField Name="departmentName" />
                                                                                 <ext:ModelField Name="leaveId" />
                                                                                  <ext:ModelField Name="arId" />
-                                                                                   <ext:ModelField Name="arName" />
+                                                                                 <ext:ModelField Name="arName" />
                                                                                  <ext:ModelField Name="employeeName" />
                                                                                  <ext:ModelField Name="seqNo" />
                                                                                   <ext:ModelField Name="status" />
@@ -1731,6 +1731,115 @@
                                                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                                                             </SelectionModel>
                                                         </ext:GridPanel>
+                                                           <ext:GridPanel MarginSpec="0 0 0 0"
+                                                            ID="leveReturnGrid"
+                                                            runat="server"
+                                                            PaddingSpec="0 0 1 0"
+                                                            Header="false"
+                                                            Title="Leave Return"
+                                                            Layout="FitLayout"
+                                                            Scroll="Vertical"
+                                                            Border="false"
+                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
+                                                            <Store>
+                                                                <ext:Store PageSize="30"
+                                                                    ID="leaveReturnStore"
+                                                                    runat="server" OnReadData="leaveReturnStore_ReadData"
+                                                                    RemoteSort="false"
+                                                                    RemoteFilter="false">
+                                                                 
+                                                                    <Model>
+                                                                        <ext:Model ID="Model8" runat="server" IDProperty="recordId">
+                                                                            <Fields>
+
+                                                                                <ext:ModelField Name="employeeId" />
+                                                                                <ext:ModelField Name="recordId" />
+                                                                                <ext:ModelField Name="name"  />
+                                                                                <ext:ModelField Name="destination" />
+                                                                                <ext:ModelField Name="ltName" />
+                                                                                <ext:ModelField Name="startDate" />
+                                                                                <ext:ModelField Name="endDate" />
+                                                                                <ext:ModelField Name="branchName" />
+                                                                                <ext:ModelField Name="departmentName" />
+                                                                                <ext:ModelField Name="leaveId" />
+                                                                                 <ext:ModelField Name="arId" />
+                                                                                 <ext:ModelField Name="arName" />
+                                                                                 <ext:ModelField Name="employeeName" />
+                                                                                 <ext:ModelField Name="seqNo" />
+                                                                                  <ext:ModelField Name="status" />
+
+                                                                                
+                                                                            
+
+                                                                            </Fields>
+                                                                        </ext:Model>
+                                                                    </Model>
+
+                                                                </ext:Store>
+                                                            </Store>
+
+
+                                                            <ColumnModel ID="ColumnModel9" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                                                <Columns>
+                                                                    <ext:Column Visible="false" ID="Column10" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" />
+                                                                    <ext:Column ID="Column11" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
+                                                                    
+                                                                    </ext:Column>
+                                                                    <ext:DateColumn ID="DateColumn3" DataIndex="startDate" Text="<%$ Resources: FieldStartDate%>" runat="server" Width="100" />
+                                                                    <ext:DateColumn ID="DateColumn13" DataIndex="endDate" Text="<%$ Resources: FieldEndDate%>" runat="server" Width="100" />
+                                                                     <ext:Column ID="Column14" DataIndex="arName" Text="<%$ Resources: Common, ApprovalReason%>" runat="server" Flex="1" />
+                                                                <%--    <ext:Column ID="Column16" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />--%>
+                                                                    <ext:Column runat="server"
+                                                                        ID="Column20" Visible="true"
+                                                                        Text=""
+                                                                        Width="100"
+                                                                        Hideable="false"
+                                                                        Align="Center"
+                                                                        Fixed="true"
+                                                                        Filterable="false"
+                                                                        MenuDisabled="true"
+                                                                        Resizable="false">
+
+                                                                        <Renderer Handler="return editRender()+'&nbsp;&nbsp;' + attachRender(); " />
+                                                                    </ext:Column>
+
+
+
+                                                                </Columns>
+                                                            </ColumnModel>
+                                                            <Listeners>
+                                                                <Render Handler="this.on('cellclick', cellClick);" />
+                                                            </Listeners>
+                                                            <DirectEvents>
+                                                                <CellClick OnEvent="leaveReturnPoPUP">
+                                                                    <EventMask ShowMask="true" />
+                                                                    <ExtraParams>
+                                                                        <ext:Parameter Name="id" Value="record.data['leaveId']" Mode="Raw" />
+                                                                        <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
+                                                                           <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
+                                                                         <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
+                                                                        
+                                                                        <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                                                    </ExtraParams>
+
+                                                                </CellClick>
+                                                            </DirectEvents>
+
+
+                                                            <View>
+                                                                <ext:GridView ID="GridView9" runat="server" />
+                                                            </View>
+
+                                                            <Listeners>
+                                                                <Activate Handler="#{LeaveRequestsStore}.reload();" />
+                                                            </Listeners>
+                                                            <SelectionModel>
+                                                                <ext:RowSelectionModel ID="rowSelectionModel8" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                                                            </SelectionModel>
+                                                        </ext:GridPanel>
+
+
                                                          <ext:GridPanel MarginSpec="0 0 0 0"
                                                             ID="TimeGridPanel"
                                                             runat="server"

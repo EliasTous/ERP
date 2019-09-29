@@ -190,6 +190,7 @@
     <Content Include="Geofences.aspx" />
     <Content Include="ImportFlatSchedule.aspx" />
     <Content Include="LeaveReplacementApprovals.aspx" />
+    <Content Include="LeaveReturns.aspx" />
     <Content Include="MediaCategories.aspx" />
     <Content Include="MediaItems.aspx" />
     <Content Include="PayrollArguments.aspx" />
@@ -661,6 +662,7 @@
     <Content Include="App_LocalResources\PayrollArguments.aspx.resx" />
     <Content Include="App_LocalResources\PayrollBenefitSchedules.aspx.resx" />
     <Content Include="App_LocalResources\PayrollBenefits.aspx.resx" />
+    <Content Include="App_LocalResources\LeaveReturns.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -932,6 +934,13 @@
     </Compile>
     <Compile Include="LeaveReplacementApprovals.aspx.designer.cs">
       <DependentUpon>LeaveReplacementApprovals.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveReturns.aspx.cs">
+      <DependentUpon>LeaveReturns.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveReturns.aspx.designer.cs">
+      <DependentUpon>LeaveReturns.aspx</DependentUpon>
     </Compile>
     <Compile Include="MediaCategories.aspx.cs">
       <DependentUpon>MediaCategories.aspx</DependentUpon>

@@ -1407,4 +1407,7 @@
   <data name="PayrollBenefits" xml:space="preserve">
     <value>Benefits</value>
   </data>
+  <data name="LeaveReturn" xml:space="preserve">
+    <value>Return From Leave</value>
+  </data>
 </root>

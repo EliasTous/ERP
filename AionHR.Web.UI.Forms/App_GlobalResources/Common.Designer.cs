@@ -1951,6 +1951,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Return From Leave.
+        /// </summary>
+        internal static string LeaveReturn {
+            get {
+                return ResourceManager.GetString("LeaveReturn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leaves.
         /// </summary>
         internal static string Leaves {

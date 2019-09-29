@@ -993,6 +993,71 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
+        protected void leaveReturnStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            try
+            {
+
+                if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                    return;
+
+                string rep_params = "";
+                Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
+                if (parameters.ContainsKey("5"))
+                    parameters.ChangeKey("5", "7");
+                if (parameters.ContainsKey("4"))
+                    parameters.ChangeKey("4", "6");
+                if (parameters.ContainsKey("2"))
+                    parameters.ChangeKey("2", "5");
+                if (parameters.ContainsKey("1"))
+                    parameters.ChangeKey("1", "4");
+
+
+
+
+
+                //  parameters.Add("1", "1");
+                //  parameters.Add("8", "0");
+                parameters.Add("2", _systemService.SessionHelper.GetEmployeeId().ToString());
+
+                parameters.Add("1", "1");
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
+
+
+
+
+
+
+
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
+                ListResponse<AionHR.Model.LeaveManagement.LeaveReturn> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.LeaveReturn>(req);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return;
+                }
+                if (resp.Items != null)
+                {
+                    LeaveRequestsStore.DataSource = resp.Items;
+                    LeaveRequestsStore.DataBind();
+                }
+
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+        }
+
 
         protected void BirthdaysStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
@@ -1983,6 +2048,7 @@ namespace AionHR.Web.UI.Forms
             
 
         }
+        
         [DirectMethod]
         protected void leavePoPUP(object sender, DirectEventArgs e)
         {
@@ -2027,6 +2093,12 @@ namespace AionHR.Web.UI.Forms
                     leaveRequest1.Update(id);
                     break;
             }
+        }
+        [DirectMethod]
+        protected void leaveReturnPoPUP(object sender, DirectEventArgs e)
+        {
+           
+            
         }
 
         [DirectMethod]
