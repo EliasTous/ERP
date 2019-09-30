@@ -29,5 +29,6 @@ namespace AionHR.Model.LoadTracking
         public string apName { get; set; }
         public string arId { get; set; }
         public string arName { get; set; }
+        public string activityId { get; set; }
     }
 }

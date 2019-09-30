@@ -58,6 +58,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(LeaveSchedule), "setLS");
             ChildAddOrUpdateLookup.Add(typeof(LeaveSchedulePeriod), "setLP");
             ChildAddOrUpdateLookup.Add(typeof(LeaveReturn), "setRE");
+            ChildAddOrUpdateLookup.Add(typeof(LeaveReturnApproval), "setRA");
 
             ChildDeleteLookup.Add(typeof(VacationSchedulePeriod), "delVP");
             ChildDeleteLookup.Add(typeof(LeaveDay), "delLD");

@@ -41,6 +41,7 @@ using AionHR.Services.Messaging.DashBoard;
 using AionHR.Services.Messaging.Asset_Management;
 using AionHR.Model.AssetManagement;
 using AionHR.Services.Messaging.HelpFunction;
+using AionHR.Services.Messaging.LeaveManagement;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -191,7 +192,8 @@ namespace AionHR.Web.UI.Forms
                         alertStore.Reload();
                         ppTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "26");
                         ppTypeStore.DataBind();
-
+                        returnTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "41");
+                        returnTypeStore.DataBind();
 
                         //outStore.Reload();
                         //activeStore.Reload();
@@ -1039,7 +1041,7 @@ namespace AionHR.Web.UI.Forms
 
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
-                ListResponse<AionHR.Model.LeaveManagement.LeaveReturn> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.LeaveReturn>(req);
+                ListResponse<AionHR.Model.LeaveManagement.LeaveReturnApproval> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.LeaveReturnApproval>(req);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
@@ -1047,8 +1049,8 @@ namespace AionHR.Web.UI.Forms
                 }
                 if (resp.Items != null)
                 {
-                    LeaveRequestsStore.DataSource = resp.Items;
-                    LeaveRequestsStore.DataBind();
+                    leaveReturnStore.DataSource = resp.Items;
+                    leaveReturnStore.DataBind();
                 }
 
             }
@@ -2058,7 +2060,7 @@ namespace AionHR.Web.UI.Forms
             string seqNoParamter = e.ExtraParams["seqNo"];
             string status = e.ExtraParams["status"];
 
-            
+           
             switch (type)
             {
 
@@ -2094,11 +2096,126 @@ namespace AionHR.Web.UI.Forms
                     break;
             }
         }
+
+
+        protected void fillLeavesStore()
+        {
+
+
+            LeaveRequestListRequest req = new LeaveRequestListRequest();
+
+
+
+            req.BranchId = 0;
+            req.DepartmentId = 0;
+            req.raEmployeeId = 0;
+
+
+            req.EmployeeId = Convert.ToInt32(employeeId.SelectedItem.Value);
+
+
+
+
+
+            req.status = 2;
+
+
+
+            req.Size = "50";
+            req.StartAt = "0";
+            req.SortBy = "recordId";
+
+            req.Filter = "";
+            ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
+
+
+
+
+
+            //check if the insert failed
+            if (!resp.Success)//it maybe be another condition
+            {
+                //Show an error saving...
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                Common.errorMessage(resp);
+                return;
+            }
+            else
+            {
+
+                resp.Items.ForEach(x =>
+                {
+                    x.leaveRef = x.leaveRef + " " + x.startDate.ToString(_systemService.SessionHelper.GetDateformat()) + " " + x.endDate.ToString(_systemService.SessionHelper.GetDateformat());
+                });
+            }
+            leaveIdStore.DataSource = resp.Items;
+            leaveIdStore.DataBind();
+        }
+
+
         [DirectMethod]
+       
         protected void leaveReturnPoPUP(object sender, DirectEventArgs e)
         {
-           
-            
+
+
+            string id = e.ExtraParams["id"];
+
+            string seqNoParamter = e.ExtraParams["seqNo"];
+            string type = e.ExtraParams["type"];
+            //ApprovalsGridPanel.Disabled = false;
+            switch (type)
+            {
+                case "imgEdit":
+                    currentSeqNo.Text = seqNoParamter;
+
+                    leaveReturnForm.Reset();
+
+                   
+
+                    LeaveReturnRecordRequest r = new LeaveReturnRecordRequest();
+                    r.leaveId = id;
+                    RecordResponse<LeaveReturn> response = _leaveManagementService.ChildGetRecord<LeaveReturn>(r);
+                    if (!response.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        Common.errorMessage(response);
+                        return;
+                    }
+                    employeeId.GetStore().Add(new object[]
+                      {
+                                new
+                                {
+                                    recordId = response.result.employeeId,
+                                    fullName =response.result.employeeName
+                                }
+                      });
+                    employeeId.SetValue(response.result.employeeId);
+                    employeeId.Select(response.result.employeeId);
+                    seqNo.Text = seqNoParamter;
+                    leaveActivityId.Value = id;
+                    leaveActivityId.Text = id;
+
+                    fillLeavesStore();
+                    //Step 2 : call setvalues with the retrieved object
+                    this.leaveReturnForm.SetValues(response.result);
+                   // FillApprovalsStore(id, employeeIdParam, returnTypeParam);
+
+                    this.LeaveReturnWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.LeaveReturnWindow.Show();
+                    break;
+
+               
+
+                case "imgAttach":
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
+
+
         }
 
         [DirectMethod]
@@ -2144,7 +2261,7 @@ namespace AionHR.Web.UI.Forms
 
                 LA.status = Convert.ToInt16(LoanApprovalStatusControl.GetApprovalStatus());
                 LA.notes = notes;
-                LA.loanId = id;
+                LA.activityId = id;
                 LA.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
                 LA.arId = LoanApprovalReasonControl.getApprovalReason() == "0" ? null : LoanApprovalReasonControl.getApprovalReason();
                 LA.seqNo = currentSeqNo.Text;
@@ -2186,6 +2303,68 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+        protected void SaveLeaveReturnRecord(object sender, DirectEventArgs e)
+        {
+            string obj = e.ExtraParams["values"];
+            string id = e.ExtraParams["id"];
+
+            string notes = e.ExtraParams["notes"];
+           
+
+            try
+            {
+                //New Mode
+                //Step 1 : Fill The object and insert in the store 
+                LeaveReturnApproval LA = new LeaveReturnApproval();
+
+                LA.status = Convert.ToInt16(LeaveReturnApprovalControl.GetApprovalStatus());
+                LA.notes = notes;
+                LA.activityId = id;
+                LA.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+                LA.arId = LeaveReturnApprovalReasonControl.getApprovalReason() == "0" ? null : LeaveReturnApprovalReasonControl.getApprovalReason();
+                LA.seqNo = currentSeqNo.Text;
+                PostRequest<LeaveReturnApproval> request = new PostRequest<LeaveReturnApproval>();
+                request.entity = LA;
+
+
+                PostResponse<LeaveReturnApproval> r = _leaveManagementService.ChildAddOrUpdate<LeaveReturnApproval>(request);
+
+
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    Common.errorMessage(r); ;
+                    return;
+                }
+                else
+                {
+                    currentSeqNo.Text = "";
+                    leaveReturnStore.Reload();
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordSavingSucc
+                    });
+                    BindAlerts();
+                    this.LeaveReturnWindow.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
+
+        }
+
+
+
+        
         protected void SavePurchaseApprovalRecord(object sender, DirectEventArgs e)
         {
             string obj = e.ExtraParams["values"];
@@ -2196,7 +2375,7 @@ namespace AionHR.Web.UI.Forms
             AssetManagementPurchaseOrderApproval PA = JsonConvert.DeserializeObject<AssetManagementPurchaseOrderApproval>(obj);
 
             PA.status = string.IsNullOrEmpty(PurchaseApprovalStatusControl.GetApprovalStatus()) ? (Int16?)null : Convert.ToInt16(PurchaseApprovalStatusControl.GetApprovalStatus());
-            PA.poId = string.IsNullOrEmpty(poId) ? (Int32?)null : Convert.ToInt32(poId);
+            PA.activityId = string.IsNullOrEmpty(poId) ? null : poId;
             PA.arId = PurchasApprovalReasonControl.getApprovalReason() == "0" ? null : PurchasApprovalReasonControl.getApprovalReason();
             PA.approverId = _systemService.SessionHelper.GetEmployeeId();
             PA.seqNo = currentSeqNo.Text;
@@ -2256,7 +2435,7 @@ namespace AionHR.Web.UI.Forms
 
                 PostRequest<DashboardLeave> request = new PostRequest<DashboardLeave>();
                 request.entity = new DashboardLeave();
-                request.entity.leaveId = Convert.ToInt32(LV.recordId);
+                request.entity.activityId = LV.recordId;
                 if (_systemService.SessionHelper.GetEmployeeId() != null)
                     request.entity.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
                 else
@@ -2329,8 +2508,9 @@ namespace AionHR.Web.UI.Forms
                 
                 request.entity.status = Convert.ToInt16(TimeApprovalStatusControl.GetApprovalStatus());
                 request.entity.notes = notes;
-                
-                
+                request.entity.activityId = tvId;
+
+
 
                 PostResponse<Time> r = _timeAttendanceService.ChildAddOrUpdate<Time>(request);
 

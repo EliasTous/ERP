@@ -25,6 +25,7 @@ namespace AionHR.Model.Employees
         public string arName { get; set; }
         public string seqNo { get; set; }
         public string amount { get; set; }
+        public string activityId { get; set; }
 
     }
 }

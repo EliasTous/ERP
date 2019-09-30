@@ -702,4 +702,10 @@
   <data name="FieldHelpText" xml:space="preserve">
     <value>Help Text</value>
   </data>
+  <data name="FieldReturnType" xml:space="preserve">
+    <value>Return Type</value>
+  </data>
+  <data name="LeaveReturn" xml:space="preserve">
+    <value>Leave Return</value>
+  </data>
 </root>

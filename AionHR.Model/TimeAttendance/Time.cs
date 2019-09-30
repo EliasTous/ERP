@@ -16,6 +16,7 @@ namespace AionHR.Model.TimeAttendance
         public string seqNo { set; get; }
         public string approverName { set; get; }
         public string tvId { set; get; }
+        public string activityId { set; get; }
         public string fullName { get; set; }
         public string departmentName { get; set; }
         public string branchName { get; set; }

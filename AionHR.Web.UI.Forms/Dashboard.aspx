@@ -1121,6 +1121,7 @@
           <ext:Hidden ID="currentLanguage" runat="server" />
 
 
+
         <ext:Store
             ID="activeStore"
             runat="server" OnReadData="activeStore_refresh"
@@ -1642,7 +1643,7 @@
                                                                     RemoteFilter="false">
                                                                  
                                                                     <Model>
-                                                                        <ext:Model ID="Model10" runat="server" IDProperty="recordId">
+                                                                        <ext:Model ID="Model10" runat="server" IDProperty="activityId">
                                                                             <Fields>
 
                                                                                 <ext:ModelField Name="employeeId" />
@@ -1660,6 +1661,7 @@
                                                                                  <ext:ModelField Name="employeeName" />
                                                                                  <ext:ModelField Name="seqNo" />
                                                                                   <ext:ModelField Name="status" />
+                                                                                  <ext:ModelField Name="activityId" />
 
                                                                                 
                                                                             
@@ -1707,7 +1709,7 @@
                                                                 <CellClick OnEvent="leavePoPUP">
                                                                     <EventMask ShowMask="true" />
                                                                     <ExtraParams>
-                                                                        <ext:Parameter Name="id" Value="record.data['leaveId']" Mode="Raw" />
+                                                                        <ext:Parameter Name="id" Value="record.data['activityId']" Mode="Raw" />
                                                                         <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
                                                                            <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                                                          <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
@@ -1736,7 +1738,7 @@
                                                             runat="server"
                                                             PaddingSpec="0 0 1 0"
                                                             Header="false"
-                                                            Title="Leave Return"
+                                                            Title="<%$ Resources: LeaveReturn%>"
                                                             Layout="FitLayout"
                                                             Scroll="Vertical"
                                                             Border="false"
@@ -1749,24 +1751,27 @@
                                                                     RemoteFilter="false">
                                                                  
                                                                     <Model>
-                                                                        <ext:Model ID="Model8" runat="server" IDProperty="recordId">
+                                                                        <ext:Model ID="Model8" runat="server" >
                                                                             <Fields>
 
                                                                                 <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="recordId" />
-                                                                                <ext:ModelField Name="name"  />
-                                                                                <ext:ModelField Name="destination" />
+                                                                             
+                                                                                <ext:ModelField Name="employeeName"  />
+                                                                                <ext:ModelField Name="approverName" />
+                                                                                <ext:ModelField Name="departmentName" />
+                                                                                <ext:ModelField Name="branchName" />
                                                                                 <ext:ModelField Name="ltName" />
+                                                                                <ext:ModelField Name="arName" />
                                                                                 <ext:ModelField Name="startDate" />
                                                                                 <ext:ModelField Name="endDate" />
-                                                                                <ext:ModelField Name="branchName" />
-                                                                                <ext:ModelField Name="departmentName" />
-                                                                                <ext:ModelField Name="leaveId" />
-                                                                                 <ext:ModelField Name="arId" />
-                                                                                 <ext:ModelField Name="arName" />
-                                                                                 <ext:ModelField Name="employeeName" />
+                                                                                 <ext:ModelField Name="activityId" />
+                                                                                 <ext:ModelField Name="seqNo" />
+                                                                                 <ext:ModelField Name="approverId" />
                                                                                  <ext:ModelField Name="seqNo" />
                                                                                   <ext:ModelField Name="status" />
+                                                                                   <ext:ModelField Name="notes" />
+                                                                                    <ext:ModelField Name="arId" />
+                                                                              
 
                                                                                 
                                                                             
@@ -1800,7 +1805,7 @@
                                                                         MenuDisabled="true"
                                                                         Resizable="false">
 
-                                                                        <Renderer Handler="return editRender()+'&nbsp;&nbsp;' + attachRender(); " />
+                                                                        <Renderer Handler="return editRender(); " />
                                                                     </ext:Column>
 
 
@@ -1814,10 +1819,10 @@
                                                                 <CellClick OnEvent="leaveReturnPoPUP">
                                                                     <EventMask ShowMask="true" />
                                                                     <ExtraParams>
-                                                                        <ext:Parameter Name="id" Value="record.data['leaveId']" Mode="Raw" />
-                                                                        <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
+                                                                       <ext:Parameter Name="id" Value="record.data['activityId']" Mode="Raw" />
+                                                                      
                                                                            <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
-                                                                         <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
+                                                                      
                                                                         
                                                                         <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                                                     </ExtraParams>
@@ -1831,7 +1836,7 @@
                                                             </View>
 
                                                             <Listeners>
-                                                                <Activate Handler="#{LeaveRequestsStore}.reload();" />
+                                                                <Activate Handler="#{leaveReturnStore}.reload();" />
                                                             </Listeners>
                                                             <SelectionModel>
                                                                 <ext:RowSelectionModel ID="rowSelectionModel8" runat="server" Mode="Single" StopIDModeInheritance="true" />
@@ -1918,6 +1923,9 @@
                                                                                   <ext:ModelField Name="notes" />
                                                                                     <ext:ModelField Name="seqNo" />
                                                                                  <ext:ModelField Name="tvId" />
+                                                                                  <ext:ModelField Name="activityId" />
+
+                                                                                
                                                                                 
                                                                             </Fields>
                                                                         </ext:Model>
@@ -1979,7 +1987,7 @@
                                                                             
                                                                        
                                                                             <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
-                                                                             <ext:Parameter Name="tvId" Value="record.data['tvId']" Mode="Raw" />
+                                                                             <ext:Parameter Name="tvId" Value="record.data['activityId']" Mode="Raw" />
                                                                     
                                                                       
                                                                         
@@ -2056,6 +2064,7 @@
                                                                                  <ext:ModelField Name="arId" />
                                                                                   <ext:ModelField Name="seqNo" /> 
                                                                                 <ext:ModelField Name="arName" />
+                                                                                  <ext:ModelField Name="activityId" />
                                                                                 
                                                                             
 
@@ -2160,7 +2169,7 @@
                                                                 <CellClick OnEvent="ApprovalLoanPoPUP">
                                                                     <EventMask ShowMask="true" />
                                                                       <ExtraParams>
-                                                                        <ext:Parameter Name="id" Value="record.data['loanId']" Mode="Raw" />
+                                                                        <ext:Parameter Name="id" Value="record.data['activityId']" Mode="Raw" />
                                                                          <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
                                                                            <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                                                             <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
@@ -2213,6 +2222,7 @@
                                                  <ext:ModelField Name="date" />
                                                  <ext:ModelField Name="seqNo" />
                                                  <ext:ModelField Name="amount" />
+                                                     <ext:ModelField Name="activityId" />
                                                
                                                 
                                                 
@@ -2265,7 +2275,7 @@
                                                                 <CellClick OnEvent="EmployeePenaltyApprovalPoPUP">
                                                                     <EventMask ShowMask="true" />
                                                                     <ExtraParams>
-                                                                        <ext:Parameter Name="penaltyId" Value="record.data['penaltyId']" Mode="Raw" />
+                                                                        <ext:Parameter Name="penaltyId" Value="record.data['activityId']" Mode="Raw" />
                                                                          <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                                                            <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
                                                                           <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
@@ -2334,6 +2344,7 @@
                                                        <ext:ModelField Name="arId" />
                                                        <ext:ModelField Name="arName" />
                                                  <ext:ModelField Name="seqNo" />
+                                                  <ext:ModelField Name="activityId" />
                                                  
                                                 
                                                 
@@ -2390,7 +2401,7 @@
                                                                 <CellClick OnEvent="PurchasesApprovalPoPUP">
                                                                     <EventMask ShowMask="true" />
                                                                     <ExtraParams>
-                                                                          <ext:Parameter Name="poIdParameter" Value="record.data['poId']" Mode="Raw" />
+                                                                          <ext:Parameter Name="poIdParameter" Value="record.data['activityId']" Mode="Raw" />
                                                                     
                                                                            <ext:Parameter Name="qtyParameter" Value="record.data['qty']" Mode="Raw" />
                                                                            <ext:Parameter Name="statusParameter" Value="record.data['status']" Mode="Raw" />
@@ -5717,6 +5728,250 @@
                     </DirectEvents>
                 </ext:Button>
                 <ext:Button ID="Button8" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+
+
+
+
+           <ext:Window 
+            ID="LeaveReturnWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources: LeaveReturn%>"
+            Width="450"
+            Height="330"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+            
+            <Items>
+                <ext:TabPanel ID="TabPanel6" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                    <Items>
+                        <ext:FormPanel
+                            ID="leaveReturnForm" DefaultButton="SaveLeaveReturnButton"
+                            runat="server"
+                            Title="<%$ Resources: LeaveReturn %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" 
+                            BodyPadding="5">
+                            <Items>
+                                      <ext:TextField ID="leaveActivityId" runat="server"  Hidden="true" DataIndex="recordId"  />    
+                               <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" ReadOnly="true"
+                            DisplayField="fullName"
+                            ValueField="recordId"
+                            TypeAhead="false" Name="employeeId"
+                            FieldLabel="<%$ Resources: FieldEmployee%>"
+                            HideTrigger="true" SubmitValue="true"
+                            MinChars="3"
+                            TriggerAction="Query" ForceSelection="true" AllowBlank="true">
+                            <Store>
+                                <ext:Store runat="server" ID="employeeStore" AutoLoad="false">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="fullName" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                   <%-- <Proxy>
+                                        <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
+                                    </Proxy>--%>
+                                  
+                                </ext:Store>
+
+                            </Store>
+                                  <%-- <Listeners>
+                                       <Select Handler="App.leaveId.setValue('');" />
+                                   </Listeners>
+                                   <DirectEvents>
+                                       <Select OnEvent="fillLeaves" />
+                                   </DirectEvents>--%>
+                        </ext:ComboBox>
+                                                              
+
+                                
+                                
+                                <ext:ComboBox  ReadOnly="true"  AnyMatch="true" CaseSensitive="false"   runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="leaveRef" ID="leaveId" Name="leaveId" FieldLabel="<%$ Resources: LEAVE%>" >
+                                    <Store>
+                                        <ext:Store runat="server" ID="leaveIdStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="leaveRef" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                           
+                                        </ext:Store>
+                                    </Store>
+                                     <%-- <DirectEvents>
+                                       <Expand   OnEvent="fillLeaves" />
+                                   </DirectEvents>--%>
+                                    </ext:ComboBox>
+
+
+                                 <ext:ComboBox ReadOnly="true"  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldReturnType%>"  runat="server" DisplayField="value" ValueField="key"   Name="returnType" ID="returnType" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="returnTypeStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                    
+                                       </ext:ComboBox>
+                              <ext:DateField ReadOnly="true" ID="leaveReturnDate" runat="server"  Name="date"  FieldLabel="<%$ Resources: FieldDate%>"  />
+                               <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalStatusControl  runat="server" ID="LeaveReturnApprovalControl" FieldLabel="<%$ Resources:Common, status %>" InQueue="false" />
+                                            </Content>
+                                        </ext:Container>  
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalReasonControl  runat="server" ID="LeaveReturnApprovalReasonControl" FieldLabel="<%$ Resources:Common, ApprovalReason %>" />
+                                            </Content>
+                                        </ext:Container>  
+
+                              
+                                  
+                                   <ext:TextArea ID="leaveReturnComments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" AllowBlank="true"   MaxHeight="200"  Height="100"/>
+                            </Items>
+
+                        </ext:FormPanel>
+                      
+                 
+                   <%--     <ext:GridPanel
+                            ID="ApprovalsGridPanel"
+                            runat="server"
+                            PaddingSpec="0 0 1 0"
+                            Header="false"
+                            MaxHeight="350"
+                            Layout="FitLayout"
+                            Scroll="Vertical"
+                            Border="false"
+                            Icon="User" 
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True" Title="<%$ Resources:Approvals %>" >
+                            
+                            <Store>
+                               <ext:Store runat="server" ID="ApprovalsStore" >
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="employeeName"  />
+                                                   <ext:ModelField Name="approverName"  />
+                                                <ext:ModelField Name="departmentName" />
+                                                <ext:ModelField Name="stringStatus" />
+                                                <ext:ModelField Name="notes" />
+                                                 <ext:ModelField Name="leaveId" />
+                                                   <ext:ModelField Name="arName" />
+                                                
+                                                
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+
+
+                            <ColumnModel ID="ColumnModel12" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                <Columns>
+                                    <ext:Column ID="leaveIdCO" Visible="false" DataIndex="leaveId" runat="server">
+                                    </ext:Column>
+                                      <ext:Column ID="Column16" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="1">
+                                         
+                                          
+                                         </ext:Column>
+                                        <ext:Column ID="Column39" DataIndex="employeeName" Text="<%$ Resources: FieldEmployee%>" runat="server" Flex="1">
+                                       
+                                          
+                                         </ext:Column>
+                                    <ext:Column ID="Column40" DataIndex="departmentName" Text="<%$ Resources: Department%>" runat="server" Flex="1"/>
+                                    <ext:Column ID="stringStatus" Visible="true" DataIndex="stringStatus" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
+                                    </ext:Column>
+                                     <ext:Column ID="Column70" Visible="true" DataIndex="arName" runat="server" Width="100" text="<%$ Resources: Common,ApprovalReason%> " >
+                                    </ext:Column>
+                                      
+                                    <ext:Column ID="Column71" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
+                                       
+                                    </ext:Column>
+                                   
+
+
+
+                                </Columns>
+                            </ColumnModel>
+
+                            <%--  alert(last.dayId);
+                                                        if(App.leaveRequest1_shouldDisableLastDay.value=='1')
+                                                             if(last.dayId==rec.data['dayId'])  
+                                                                        this.setDisabled(false);
+                                                            else this.setDisabled(true); 
+                                                        else
+                                                            this.setDisabled(true); 
+                            <DockedItems>
+
+                                <ext:Toolbar ID="Toolbar3" runat="server" Dock="Bottom">
+                                    <Items>
+                                        <ext:StatusBar ID="StatusBar2" runat="server" />
+                                        <ext:ToolbarFill />
+
+                                    </Items>
+                                </ext:Toolbar>
+
+                            </DockedItems>
+
+
+                            <View>
+                                <ext:GridView ID="GridView12" runat="server" />
+                            </View>
+
+
+                            <SelectionModel>
+                                <ext:RowSelectionModel ID="rowSelectionModel11" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                               <ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />
+                         
+                        </ext:GridPanel>--%>
+
+
+                 
+
+              
+                        
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="SaveLeaveReturnButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{leaveReturnForm}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveLeaveReturnRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{LeaveReturnWindow}.body}" />
+                            <ExtraParams>
+                               <ext:Parameter Name="id" Value ="#{leaveActivityId}.getValue()" Mode="Raw"  />
+                                <ext:Parameter Name="values" Value ="#{leaveReturnForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button10" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>
