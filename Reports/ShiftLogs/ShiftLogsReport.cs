@@ -295,10 +295,11 @@ namespace Reports.ShiftLogs
 
         private void xrPivotGrid1_CustomCellDisplayText(object sender, PivotCellDisplayTextEventArgs e)
         {
-            e.GetFieldValue(fieldemployeeName1);
+           e.GetFieldValue(fieldemployeeName1);
            if ( e.RowValueType == PivotGridValueType.Total && e.ColumnIndex==0)
             {
-                e.DisplayText =time(items.Where(x => x.employeeName == e.GetFieldValue(fieldemployeeName1).ToString()).Sum(x => x.duration/2),true);
+                //e.DisplayText =time(items.Where(x => x.employeeName == e.GetFieldValue(fieldemployeeName1).ToString()).Sum(x => x.duration),true);
+                e.DisplayText = time(items.Where(x => x.employeeName == e.GetFieldValue(fieldemployeeName1).ToString() && x.shiftId == "shift  1").Sum(x => x.duration), true);
                 return;
 
             }
