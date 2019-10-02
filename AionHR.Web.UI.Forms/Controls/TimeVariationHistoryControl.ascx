@@ -6,7 +6,9 @@
 
 <script type="text/javascript">
 
-
+    var historeRender = function () {
+    return '<img class="imgHistory"  style="cursor:pointer;"  src="Images/Tools/history.png" />';
+};
 
 
 

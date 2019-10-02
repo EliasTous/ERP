@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure.Configuration;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model;
 using AionHR.Model.Attendance;
 using AionHR.Model.Dashboard;
 using AionHR.Model.HelpFunction;
@@ -92,6 +93,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(MailFlatShedule), "mailFS");
             ChildAddOrUpdateLookup.Add(typeof(OverrideTimeVariation), "overrideTV");
             ChildAddOrUpdateLookup.Add(typeof(processUnscheduledPunch), "processUP");
+            ChildAddOrUpdateLookup.Add(typeof(SyncActivity), "syncTV");
 
             ChildDeleteLookup.Add(typeof(AttendanceBreak), "delSB");
             ChildDeleteLookup.Add(typeof(AttendanceSchedule), "delSC");

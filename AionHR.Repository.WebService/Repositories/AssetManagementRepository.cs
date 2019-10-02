@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AionHR.Model.AssetManagementRepository;
 using AionHR.Model.AssetManagement;
+using AionHR.Model;
 
 namespace AionHR.Repository.WebService.Repositories
 {
@@ -62,7 +63,13 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(AssetManagementPurchaseOrderApproval), "setPA");
             ChildAddOrUpdateLookup.Add(typeof(AssetPropertyValue), "setAP");
 
+
+            
             ChildAddOrUpdateLookup.Add(typeof(AssetPOReception), "genAS");
+            ChildAddOrUpdateLookup.Add(typeof(SyncActivity), "syncPO");
+            
+
+
 
             ChildDeleteLookup.Add(typeof(AssetManagementSupplier), "delSU");
             ChildDeleteLookup.Add(typeof(AssetManagementCategory), "delCA");

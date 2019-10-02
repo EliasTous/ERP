@@ -415,7 +415,7 @@ namespace AionHR.Web.UI.Forms
                  string dateParam = e.ExtraParams["date"];
             string obj = e.ExtraParams["values"];
             LeaveReturn b = JsonConvert.DeserializeObject<LeaveReturn>(obj);
-            b.apStatus = "2";
+            b.apStatus = "1";
             DateTime temp = new DateTime();
             if (DateTime.TryParse(dateParam, out temp))
                 b.date = temp;

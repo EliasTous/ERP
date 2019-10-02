@@ -202,6 +202,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Store entsStore;
         
         /// <summary>
+        /// edCalcTypeStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store edCalcTypeStore;
+        
+        /// <summary>
         /// dedsStore control.
         /// </summary>
         /// <remarks>
@@ -1192,22 +1201,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Checkbox isTaxable;
         
         /// <summary>
-        /// edCalcType control.
+        /// entitlementCalcType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox edCalcType;
-        
-        /// <summary>
-        /// edCalcTypeStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store edCalcTypeStore;
+        protected global::Ext.Net.ComboBox entitlementCalcType;
         
         /// <summary>
         /// SaveENButton control.
@@ -1361,6 +1361,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Checkbox deIsTaxable;
+        
+        /// <summary>
+        /// deductionCalcType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox deductionCalcType;
         
         /// <summary>
         /// Button15 control.

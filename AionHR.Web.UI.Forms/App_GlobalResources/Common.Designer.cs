@@ -3463,6 +3463,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Synchronize Activity .
+        /// </summary>
+        internal static string SyncActivities {
+            get {
+                return ResourceManager.GetString("SyncActivities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Synchronize Attendance Days.
         /// </summary>
         internal static string SynchronizeAttendanceDays {
@@ -3477,6 +3486,15 @@ namespace Resources {
         internal static string SynchronizeDaySucc {
             get {
                 return ResourceManager.GetString("SynchronizeDaySucc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activity  Synchronized Successfully.
+        /// </summary>
+        internal static string SyncSucc {
+            get {
+                return ResourceManager.GetString("SyncSucc", resourceCulture);
             }
         }
         

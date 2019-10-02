@@ -161,9 +161,11 @@ namespace AionHR.Web.UI.Forms
         }
         protected void TimeVariationHistory_RefreshData(object sender, StoreReadDataEventArgs e)
         {
+            List<Ext.Net.Parameter> l = e.Parameters.ToList<Ext.Net.Parameter>();
+
             TimeVariationHistoryListRequest req = new TimeVariationHistoryListRequest();
-            req.classId = currentClassId.Text;
-            req.masterRef = currentMasterRef.Text;
+            req.classId = l[0].Value;
+            req.masterRef = l[1].Value;
             req.userId = "0";
             req.type = "0";
 
@@ -233,7 +235,13 @@ namespace AionHR.Web.UI.Forms
         {
             currentClassId.Text = classId;
             currentMasterRef.Text = masterRef;
-            TimeVariationHistoryStore.Reload();
+
+
+            Ext.Net.ParameterCollection col = new Ext.Net.ParameterCollection();
+            col.Add(new Ext.Net.Parameter() { Name = "ClassId", Value = classId });
+            col.Add(new Ext.Net.Parameter() { Name = "PrimaryKey", Value = masterRef });
+            //transactionLogStore.Reload(col);
+            TimeVariationHistoryStore.Reload(col);
             TimeVariationHistoryWindow.Show();
 
         }

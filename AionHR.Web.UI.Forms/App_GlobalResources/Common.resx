@@ -1410,4 +1410,10 @@
   <data name="LeaveReturn" xml:space="preserve">
     <value>Return From Leave</value>
   </data>
+  <data name="SyncActivities" xml:space="preserve">
+    <value>Synchronize Activity </value>
+  </data>
+  <data name="SyncSucc" xml:space="preserve">
+    <value>Activity  Synchronized Successfully</value>
+  </data>
 </root>

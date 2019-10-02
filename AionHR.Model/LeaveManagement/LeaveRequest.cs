@@ -40,7 +40,7 @@ namespace AionHR.Model.LeaveManagement
         [PropertyID("42020_08")]
         [ApplySecurity]
 
-        public short status { get; set; }
+        public short apStatus { get; set; }
         public string statusString { get; set; }
 
         [PropertyID("42020_09")]

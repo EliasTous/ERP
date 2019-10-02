@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure.Configuration;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model;
 using AionHR.Model.LeaveManagement;
 using AionHR.Model.LoadTracking;
 using AionHR.Model.SelfService;
@@ -34,6 +35,7 @@ namespace AionHR.Repository.WebService.Repositories
 
             ChildAddOrUpdateLookup.Add(typeof(LoanType), "setLT");
             ChildAddOrUpdateLookup.Add(typeof(LoanApproval), "setLA");
+            ChildAddOrUpdateLookup.Add(typeof(SyncActivity), "syncLR");
 
 
             ChildDeleteLookup.Add(typeof(LoanType), "delLT");

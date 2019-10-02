@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SynchronizeAttendanceDays.aspx.cs" Inherits="AionHR.Web.UI.Forms.SynchronizeAttendanceDays" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SyncActivities.aspx.cs" Inherits="AionHR.Web.UI.Forms.SyncActivities" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -26,39 +26,29 @@
                 <ext:TabPanel runat="server">
                     <Items>
                        
-                        <ext:FormPanel DefaultButton="SynchronizeAttendancebtn"
-                            ID="SynchronizeAttendanceForm"
+                        <ext:FormPanel DefaultButton="syncBtn"
+                            ID="syncActivityForm"
                             runat="server"
-                            Title="<%$ Resources: SynchronizeAttendanceDays%>"
+                            Title="<%$ Resources: syncActivityForm%>"
                             Icon="ApplicationSideList" AutoScroll="true"
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                <ext:ComboBox   FieldLabel="<%$ Resources: FilterEmployee%>"  MaxWidth="300" AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeFilter" 
-                                      DisplayField="fullName"
-                                      ValueField="recordId" AllowBlank="false"
-                                      TypeAhead="false"
-                                        HideTrigger="true" SubmitValue="true"
-                                      MinChars="3" 
-                                  TriggerAction="Query" ForceSelection="true" >
-                                        <Store>
-                                            <ext:Store runat="server" ID="Store2" AutoLoad="false">
-                                                <Model>
-                                                    <ext:Model runat="server">
-                                                        <Fields>
-                                                            <ext:ModelField Name="recordId" />
-                                                            <ext:ModelField Name="fullName" />
-                                                        </Fields>
-                                                    </ext:Model>
-                                                </Model>
-                                                <Proxy>
-                                                    <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
-                                                </Proxy>
-                                            </ext:Store>
-                                        </Store>
-         
-
-        </ext:ComboBox>    
+                                  <ext:ComboBox  AnyMatch="true" CaseSensitive="false" MaxWidth="300"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:FieldActivityId%>"  runat="server" DisplayField="value" ValueField="key"   Name="activityId" ID="activityId" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="activityStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       </ext:ComboBox>
+                           
                                 <ext:DateField AllowBlank="false" runat="server" ID="startingDate" MaxWidth="300" FieldLabel="<%$ Resources: date %>" Format="dd/MM/yyyy" >
                                      <Listeners> 
                                          <Change Handler="App.endingDate.setMinValue(this.value);"></Change>
@@ -68,10 +58,10 @@
                                          
                                     </ext:DateField>
                                     
-                                <ext:Button Hidden="false" ID="SynchronizeAttendanceBtn" runat="server" Text="<%$ Resources: Synchronize %>" Icon="ApplicationGo" MaxWidth="300">
+                                <ext:Button  ID="syncBtn" runat="server" Text="<%$ Resources: Synchronize %>" Icon="ApplicationGo" MaxWidth="300">
 
                                     <Listeners>
-                                        <Click Handler="CheckSession(); if(!#{SynchronizeAttendanceForm}.getForm().isValid()){return false;} " />
+                                        <Click Handler="CheckSession(); if(!#{syncActivityForm}.getForm().isValid()){return false;} " />
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="StartLongAction" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
@@ -110,8 +100,8 @@
                     TaskID="longactionprogress"
                     Interval="100" 
                     AutoRun="false" 
-                    OnStart="#{SynchronizeAttendanceBtn}.setDisabled(true);"
-                       OnStop="#{SynchronizeAttendanceBtn}.setDisabled(false);" >
+                    OnStart="#{syncBtn}.setDisabled(true);"
+                       OnStop="#{syncBtn}.setDisabled(false);" >
                  
                     <DirectEvents>
                         <Update OnEvent="RefreshProgress" />

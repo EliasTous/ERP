@@ -20,9 +20,7 @@ var rejectRender = function () {
 };
 
 
-var historeRender = function () {
-    return '<img class="imgHistory"  style="cursor:pointer;"  src="Images/Tools/error.png" />';
-};
+
 
 
 

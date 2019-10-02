@@ -128,6 +128,10 @@
     <ext:Hidden runat="server" ID="importLeavesTitle" Text="<%$Resources:Common , ImportLeaves %>" />
     <ext:Hidden runat="server" ID="importNotesTitle" Text="<%$Resources:Common , ImportNotes %>" />
     <ext:Hidden runat="server" ID="alsgTitle" Text="<%$Resources:Common , SecurityGroups %>" />
+    <ext:Hidden runat="server" ID="SYATitle" Text="<%$Resources:Common , SyncActivities %>" />
+
+
+    
     <ext:Hidden runat="server" ID="importEmployeesTitle" Text="<%$Resources:Common , ImportEmployees %>" />
     <ext:Hidden runat="server" ID="importJobInfoTitle" Text="<%$Resources:Common , ImportJobInfo %>" />
     <ext:Hidden runat="server" ID="importOTTitle" Text="<%$Resources:Common , ImportOvertimeSettings %>" />
@@ -169,8 +173,8 @@
 
     
 
-    <ext:Hidden runat="server" ID="CurrentClassRef" />
-    <ext:Hidden runat="server" ID="CurrentRecordId" />
+    <%--<ext:Hidden runat="server" ID="CurrentClassRef" />
+    <ext:Hidden runat="server" ID="CurrentRecordId" />--%>
     <ext:Hidden runat="server" ID="activeModule" />
     <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" IDMode="Explicit" AjaxTimeout="1200000" />
     <ext:Viewport ID="Viewport1" runat="server" Layout="border">
@@ -525,6 +529,12 @@
                                                                         </Items>
                                                                         </ext:Menu>
                                                                 </Menu>
+                                                                        </ext:MenuItem>
+
+                                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common , SyncActivities%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('SyncActivities', 'SyncActivities.aspx', #{SYATitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
                                                                         </ext:MenuItem>
                                                                     </Items>
                                                                 </ext:Menu>
@@ -1313,5 +1323,6 @@
             </ext:FormPanel>
         </Items>
     </ext:Window>
+     <uc:TimeVariationHistoryControl runat="server" ID="TimeVariationHistoryControl1" />
 </body>
 </html>

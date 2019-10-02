@@ -48,7 +48,7 @@ namespace AionHR.Services.Implementations
                     error.branchId+"," +
                     error.currencyRef + "," +
                     error.purpose + "," +
-                    error.status+","+
+                    error.apStatus+","+
                     error.date + "," +
                     error.effectiveDate + "," +
                     error.loanRef + "," +

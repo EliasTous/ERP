@@ -406,6 +406,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     oldENIncludeInFinal.Checked = detail.includeInTotal.Value;
                     ENForm.SetValues(detail);
                     entEdId.Select(detail.edId.ToString());
+                    deductionCalcType.Select(detail.edCalcType.ToString());
                     if (detail.pct != 0)
                     {
                         enPCT.Disabled = false;
@@ -478,7 +479,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     oldDEIncludeInFinal.Checked = dedDetail.includeInTotal.Value;
                     dedEdId.Select(dedDetail.edId.ToString());
-
+                    entitlementCalcType.Select(dedDetail.edCalcType.ToString());
                     if (dedDetail.pct != 0)
                     {
                         dePCT.Disabled = false;

@@ -2037,10 +2037,18 @@ namespace AionHR.Web.UI.Forms
                     //    totalLoansWindow.Show();
                     //    break;
                     case "10":
+                    CurrentItemId.Text = "10";
                         LeaveingSoonStore.Reload();
-                        LeaveingSoonWindow.Show();
+                    LeaveingSoonWindow.Title = GetLocalResourceObject("Vacation").ToString();
+                    LeaveingSoonWindow.Show();
                         break;
-                    case "1":
+                    case "11":
+                    CurrentItemId.Text = "11";
+                    LeaveingSoonStore.Reload();
+                    LeaveingSoonWindow.Title = GetLocalResourceObject("LeaveReturn").ToString();
+                    LeaveingSoonWindow.Show();
+                    break;
+                case "1":
                         CompanyRightToWorkStore.Reload();
                         CompanyRightToWorkWindow.Show();
                         break;
@@ -2440,7 +2448,7 @@ namespace AionHR.Web.UI.Forms
                     request.entity.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
                 else
                     return;
-                request.entity.status = LV.status;
+                request.entity.status = LV.apStatus;
                 if (!string.IsNullOrEmpty(LV.returnNotes))
                     request.entity.notes = LV.returnNotes;
                 else
@@ -3319,14 +3327,32 @@ namespace AionHR.Web.UI.Forms
                 string rep_params = vals.Text;
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
-                ListResponse<LeavingSoon> resp = _dashBoardService.ChildGetAll<LeavingSoon>(req);
-                if (!resp.Success)
+                if (CurrentItemId.Text == "11")
                 {
-                    Common.errorMessage(resp);
-                    return;
+                    ListResponse<ReturnFromLeave> resp = _dashBoardService.ChildGetAll<ReturnFromLeave>(req);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        return;
+                    }
+                    LeaveingSoonStore.DataSource = resp.Items;
+                    LeaveingSoonStore.DataBind();
                 }
-                LeaveingSoonStore.DataSource = resp.Items;
-                LeaveingSoonStore.DataBind();
+                else
+                {
+
+                    ListResponse<LeavingSoon> respLeave = _dashBoardService.ChildGetAll<LeavingSoon>(req);
+
+                    if (!respLeave.Success)
+                    {
+                        Common.errorMessage(respLeave);
+                        return;
+                    }
+                    LeaveingSoonStore.DataSource = respLeave.Items;
+                    LeaveingSoonStore.DataBind();
+                }
+               
+              
 
             }
             catch (Exception exp)

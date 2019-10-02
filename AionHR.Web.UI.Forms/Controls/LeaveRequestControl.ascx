@@ -412,27 +412,7 @@
                                 <ext:TextField runat="server" ID="yearsInService" FieldLabel="<%$Resources: YearsInService %>" Name="yearsInService" />
                             </Items>
                         </ext:FieldSet>
-                        <ext:FieldSet runat="server" Title="<%$ Resources:ReturnInfo%>" ID="returnFieldSet">
-                            <Items>
-                                <ext:DateField Disabled="true" runat="server" Name="returnDate" ID="returnDate" FieldLabel="<%$ Resources: FieldReturnDate %>">
-                                    <DirectEvents>
-                                        <Change OnEvent="CalcReturnDate">
-                                            <ExtraParams>
-                                                <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
-                                                <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
-                                                <ext:Parameter Name="returnDate" Value="#{returnDate}.getValue()" Mode="Raw" />
-                                            </ExtraParams>
-                                        </Change>
-                                    </DirectEvents>
-                                    <Listeners>
-                                        <FocusLeave Handler="if(App.leaveRequest1_returnDate.getValue()>=App.leaveRequest1_endDate.getValue()) App.leaveRequest1_shouldDisableLastDay.value='1'; else App.leaveRequest1_shouldDisableLastDay.value='0';" />
-                                    </Listeners>
-                                </ext:DateField>
-                                <ext:TextArea runat="server" FieldLabel="<%$Resources: ReturnNotes %>" ID="returnNotes" Name="returnNotes" />
-                                <ext:TextField  Visible="false" InputType="Password" ReadOnly="true" runat="server" FieldLabel="<%$Resources: ReturnNotes %>" ID="notesField" Name="returnNotes" />
-                            </Items>
-                        </ext:FieldSet>
-                        
+                   
                     </Items>
 
                 </ext:FormPanel>
@@ -818,15 +798,7 @@
                         <ext:DateField LabelWidth="150" Width="350" ID="DateField2" runat="server" FieldLabel="<%$ Resources:FieldEndDate%>" />
                     </Items>
                 </ext:FieldSet>
-                <ext:FieldSet runat="server" Title="<%$ Resources:ReturnInfo%>">
-                    <Items>
-                        <ext:TextField LabelWidth="150" Width="350" runat="server" Hidden="true" ID="leaveId" />
-                        <ext:DateField LabelWidth="150" Width="350" ID="DateField3" AllowBlank="false" runat="server" Name="DateField3" FieldLabel="<%$ Resources:FieldReturnDate%>" />
-                        <ext:TextField Visible="False" ReadOnly="true" InputType="Password" LabelWidth="150" Width="350" ID="textField1" AllowBlank="true" runat="server" Name="returnNotes" FieldLabel="<%$ Resources:ReturnNotes%>" />
-                        <ext:TextArea LabelWidth="150" Width="350" ID="textField2" AllowBlank="true" runat="server" Name="returnNotes" FieldLabel="<%$ Resources:ReturnNotes%>" />
-                    </Items>
-
-                </ext:FieldSet>
+           
 
             </Items>
             <Buttons>

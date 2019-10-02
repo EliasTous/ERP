@@ -393,7 +393,7 @@ namespace AionHR.Web.UI.Forms
             }
             routers.Items.ForEach(x =>
             {
-                x.statusString = statusList.Where(y => y.key == x.status).Count() != 0 ? statusList.Where(y => y.key == x.status).First().value : "";
+                x.statusString = statusList.Where(y => y.key == x.apStatus).Count() != 0 ? statusList.Where(y => y.key == x.apStatus).First().value : "";
 
             }
 
@@ -453,7 +453,7 @@ namespace AionHR.Web.UI.Forms
                 s.employeeId = "0";
                 s.endDate = DateTime.Now;
                 s.startDate = DateTime.Now;
-                s.status = 0;
+                s.apStatus = 0;
                 s.isPaid = false;
                 s.justification = "";
                 s.ltId = 0;

@@ -238,7 +238,8 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             string replApStatus = e.ExtraParams["replApStatus"];
             CurrentLeaveId.Text = id;
-
+            apStatus.disableApprovalStatus(true);
+            SaveButton.Hidden = true;
             switch (type)
             {
                 case "imgEdit":
@@ -264,9 +265,9 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-                    LeaveApprovalStatusControl.setApprovalStatus(response.result.status.ToString());
+                    LeaveApprovalStatusControl.setApprovalStatus(response.result.apStatus.ToString());
 
-
+                    
                     FillLeaveType();
 
                     ltId.Select(response.result.ltId.ToString());
@@ -319,7 +320,11 @@ namespace AionHR.Web.UI.Forms
                     employeeId.ResumeEvent("select");
                     startDate.ResumeEvent("change");
                     endDate.ResumeEvent("change");
-                   
+                    if (replApStatus == "1")
+                    {
+                        apStatus.disableApprovalStatus(false);
+                        SaveButton.Hidden = false;
+                    }
             
            
 
@@ -446,7 +451,7 @@ namespace AionHR.Web.UI.Forms
             LeaveReplacementApprovalListRequest req = new LeaveReplacementApprovalListRequest();
 
             req.employeeId = _systemService.SessionHelper.GetEmployeeId();
-            req.apStatus = "1";
+            req.apStatus = "0";
             req.StartAt = e.Start.ToString();
             req.Size = "50";
             req.SortBy = "recordId";
@@ -461,7 +466,7 @@ namespace AionHR.Web.UI.Forms
             }
             routers.Items.ForEach(x =>
             {
-                x.statusString = statusList.Where(y => y.key == x.status).Count() != 0 ? statusList.Where(y => y.key == x.status).First().value : "";
+                x.statusString = statusList.Where(y => y.key ==Convert.ToInt16( x.replApStatus)).Count() != 0 ? statusList.Where(y => y.key == Convert.ToInt16(x.replApStatus)).First().value : "";
 
             }
 
@@ -587,7 +592,7 @@ namespace AionHR.Web.UI.Forms
                 // res.AddRule("leaveRequest1_status", "status");
                 settings.ContractResolver = res;
                 LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
-                b.status = Convert.ToInt16(LeaveApprovalStatusControl.GetApprovalStatus());
+                b.apStatus = Convert.ToInt16(LeaveApprovalStatusControl.GetApprovalStatus());
                 //  b.leaveDays = Convert.ToDouble(leaveDaysField.Text);
                 //b.status = Convert.ToInt16(status1); 
                 string id = e.ExtraParams["id"];
@@ -699,7 +704,7 @@ namespace AionHR.Web.UI.Forms
                 s.employeeId = "0";
                 s.endDate = DateTime.Now;
                 s.startDate = DateTime.Now;
-                s.status = 0;
+                s.apStatus = 0;
                 s.isPaid = false;
                 s.justification = "";
                 s.ltId = 0;

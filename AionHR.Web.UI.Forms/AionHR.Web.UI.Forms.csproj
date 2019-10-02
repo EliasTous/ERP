@@ -600,7 +600,7 @@
     <Content Include="Sponsors.aspx" />
     <Content Include="States.aspx" />
     <Content Include="Status.aspx" />
-    <Content Include="SynchronizeAttendanceDays.aspx" />
+    <Content Include="SyncActivities.aspx" />
     <Content Include="SystemAlerts.aspx" />
     <Content Include="SystemDefaults.aspx" />
     <Content Include="TerminationReasons.aspx" />
@@ -1761,12 +1761,12 @@
     <Compile Include="Status.aspx.designer.cs">
       <DependentUpon>Status.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SynchronizeAttendanceDays.aspx.cs">
-      <DependentUpon>SynchronizeAttendanceDays.aspx</DependentUpon>
+    <Compile Include="SyncActivities.aspx.cs">
+      <DependentUpon>SyncActivities.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SynchronizeAttendanceDays.aspx.designer.cs">
-      <DependentUpon>SynchronizeAttendanceDays.aspx</DependentUpon>
+    <Compile Include="SyncActivities.aspx.designer.cs">
+      <DependentUpon>SyncActivities.aspx</DependentUpon>
     </Compile>
     <Compile Include="TerminationReasons.aspx.cs">
       <DependentUpon>TerminationReasons.aspx</DependentUpon>
@@ -2977,7 +2977,7 @@
     <Content Include="App_LocalResources\NationalQuotas.aspx.ar.resx" />
     <Content Include="App_LocalResources\DailySchedule.aspx.ar.resx" />
     <Content Include="App_LocalResources\DailySchedule.aspx.resx" />
-    <Content Include="App_LocalResources\SynchronizeAttendanceDays.aspx.resx" />
+    <Content Include="App_LocalResources\SyncActivities.aspx.resx" />
     <Content Include="App_LocalResources\SynchronizeAttendanceDays.aspx.ar.resx" />
     <Content Include="App_LocalResources\DaysAvailability.aspx.resx" />
     <Content Include="App_LocalResources\DaysAvailability.aspx.ar.resx" />

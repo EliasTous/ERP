@@ -141,6 +141,7 @@
     <Compile Include="Dashboard\LocalsRate.cs" />
     <Compile Include="Dashboard\ProbationEnd.cs" />
     <Compile Include="Dashboard\RetirementAge.cs" />
+    <Compile Include="Dashboard\ReturnFromLeave.cs" />
     <Compile Include="Dashboard\SalaryChange.cs" />
     <Compile Include="Dashboard\TermEndDate.cs" />
     <Compile Include="Dashboard\WorkAnniversary.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="LeaveManagement\LeaveReturn.cs" />
     <Compile Include="LeaveManagement\LeaveReturnApproval.cs" />
     <Compile Include="LeaveManagement\PendingLA.cs" />
+    <Compile Include="LeaveManagement\SyncLeaveReplacment.cs" />
     <Compile Include="LoadTracking\PendingLA.cs" />
     <Compile Include="Mathematical\IMathematicalRepository.cs" />
     <Compile Include="Payroll\CheckExpression.cs" />
@@ -220,6 +222,7 @@
     <Compile Include="SelfService\TimeSelfService.cs" />
     <Compile Include="SelfService\TimeVariationSelfService.cs" />
     <Compile Include="SelfService\UserInfoSelfService.cs" />
+    <Compile Include="SyncActivity.cs" />
     <Compile Include="System\ClassProperty.cs" />
     <Compile Include="System\ResetPassword.cs" />
     <Compile Include="Employees\ShareAttachment.cs" />

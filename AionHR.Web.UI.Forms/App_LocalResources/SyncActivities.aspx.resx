@@ -135,4 +135,10 @@
   <data name="processingSyn" xml:space="preserve">
     <value>Another synchronization is in progress. Please wait</value>
   </data>
+  <data name="FieldActivityId" xml:space="preserve">
+    <value>Activity </value>
+  </data>
+  <data name="syncActivityForm" xml:space="preserve">
+    <value>Synchronize activity</value>
+  </data>
 </root>

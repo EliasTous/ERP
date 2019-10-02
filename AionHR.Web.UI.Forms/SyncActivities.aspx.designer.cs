@@ -10,7 +10,7 @@
 namespace AionHR.Web.UI.Forms {
     
     
-    public partial class SynchronizeAttendanceDays {
+    public partial class SyncActivities {
         
         /// <summary>
         /// Form1 control.
@@ -49,31 +49,31 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Viewport Viewport1;
         
         /// <summary>
-        /// SynchronizeAttendanceForm control.
+        /// syncActivityForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel SynchronizeAttendanceForm;
+        protected global::Ext.Net.FormPanel syncActivityForm;
         
         /// <summary>
-        /// employeeFilter control.
+        /// activityId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox employeeFilter;
+        protected global::Ext.Net.ComboBox activityId;
         
         /// <summary>
-        /// Store2 control.
+        /// activityStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store Store2;
+        protected global::Ext.Net.Store activityStore;
         
         /// <summary>
         /// startingDate control.
@@ -94,13 +94,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.DateField endingDate;
         
         /// <summary>
-        /// SynchronizeAttendanceBtn control.
+        /// syncBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button SynchronizeAttendanceBtn;
+        protected global::Ext.Net.Button syncBtn;
         
         /// <summary>
         /// Progress1 control.

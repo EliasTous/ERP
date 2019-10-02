@@ -1119,6 +1119,7 @@
         <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=Dashboard&values="/>
         <ext:Hidden ID="currentSeqNo" runat="server" />
           <ext:Hidden ID="currentLanguage" runat="server" />
+          <ext:Hidden ID="CurrentItemId" runat="server" />
 
 
 

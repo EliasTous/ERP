@@ -79,6 +79,19 @@
             </Model>
 
         </ext:Store>
+
+       
+                                              <ext:Store runat="server" ID="edCalcTypeStore" >
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="key" />
+                                                                        <ext:ModelField Name="value" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                           
         <ext:Store runat="server" ID="dedsStore" OnReadData="dedsStore_ReadData" AutoLoad="true">
             <Model>
                 <ext:Model runat="server" IDProperty="recordId">
@@ -885,7 +898,7 @@
                                                         <ext:ModelField Name="pct" />
                                                         <ext:ModelField Name="pctOf" />
                                                         <ext:ModelField Name="fixedAmount" />
-
+                                                          <ext:ModelField Name="edCalcType" />
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
@@ -1287,19 +1300,8 @@
                                 <ext:TextArea runat="server" ID="enComment" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:TextField runat="server" InputType="Password" Visible="false" ID="enCommentField" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:Checkbox ID="isTaxable" FieldLabel="<%$ Resources: FieldIsTaxable %>" runat="server" DataIndex="isTaxable" Name="isTaxable" InputValue="true" />
-                                   <ext:ComboBox  AllowBlank="false"  AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="edCalcType"  FieldLabel="<%$ Resources:FieldEdCalcType%>" SubmitValue="true"  Name="edCalcType" >
-                                              <Store>
-                                              <ext:Store runat="server" ID="edCalcTypeStore" >
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="key" />
-                                                                        <ext:ModelField Name="value" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                            </Store>
+                                   <ext:ComboBox  AllowBlank="false"  AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="entitlementCalcType"  FieldLabel="<%$ Resources:FieldEdCalcType%>" SubmitValue="true"  Name="edCalcType" StoreID="edCalcTypeStore" >
+                                             
         
                                               </ext:ComboBox>
                             </Items>
@@ -1341,8 +1343,8 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:FieldDeduction %>"
-            Width="650"
-            Height="340"
+             Width="650"
+            Height="450"
             AutoShow="false"
             Modal="true"
             Closable="false"
@@ -1418,6 +1420,10 @@
                                 <ext:TextArea runat="server" Name="comment" DataIndex="comment" ID="deComment" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:TextField InputType="Password" Visible="false" runat="server" Name="comment" DataIndex="comment" ID="deCommentField" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:Checkbox ID="deIsTaxable" FieldLabel="<%$ Resources: FieldIsTaxable %>" runat="server" DataIndex="isTaxable" Name="isTaxable" InputValue="true" />
+                                  <ext:ComboBox  AllowBlank="false"  AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="key" DisplayField="value" ID="deductionCalcType"  FieldLabel="<%$ Resources:FieldEdCalcType%>" SubmitValue="true"  Name="edCalcType" StoreID="edCalcTypeStore" >
+                                             
+        
+                                              </ext:ComboBox>
                             </Items>
 
                         </ext:FormPanel>

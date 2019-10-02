@@ -9,6 +9,7 @@ using AionHR.Infrastructure.Configuration;
 using AionHR.Model.Employees.Profile;
 using AionHR.Infrastructure.WebService;
 using AionHR.Model.System;
+using AionHR.Model;
 
 namespace AionHR.Repository.WebService.Repositories
 {
@@ -157,8 +158,11 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(ShareAttachment), "share");
             ChildAddOrUpdateLookup.Add(typeof(UserProperty), "setUP");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeUserValue), "setUV");
+            ChildAddOrUpdateLookup.Add(typeof(SyncActivity), "syncPE");
 
-            
+
+
+
 
             ChildDeleteLookup.Add(typeof(Sponsor), "delSP");
             ChildDeleteLookup.Add(typeof(AllowanceType), "delAT");

@@ -443,14 +443,14 @@ namespace AionHR.Web.UI.Forms
                     ltId.Select(response.result.ltId.ToString());
                     CurrentAmountCurrency.Text = response.result.currencyRef;
                     currencyId.Select(response.result.currencyId.ToString());
-                    status.Select(response.result.status.ToString());
+                    status.Select(response.result.apStatus.ToString());
                     ldMethod.Select(response.result.ldMethod.ToString());
                     if (!string.IsNullOrEmpty(response.result.branchId))
                         branchId.Select(response.result.branchId);
                     loanComments_RefreshData(Convert.ToInt32(id));
                     //if (!response.result.effectiveDate.HasValue)
                     //    effectiveDate.SelectedDate = DateTime.Now;
-                    if (response.result.status == 2 || response.result.status==-1)
+                    if (response.result.apStatus == 2 || response.result.apStatus == -1)
                     {
 
 
@@ -621,7 +621,7 @@ namespace AionHR.Web.UI.Forms
                 s.purpose = "";
                 s.date = DateTime.Now;
                 s.effectiveDate = DateTime.Now;
-                s.status = 0;
+                s.apStatus = 0;
                 s.ltId = 0;
                 s.ltName = "";
                 s.amount = 0;
@@ -1202,7 +1202,9 @@ namespace AionHR.Web.UI.Forms
                         //New Mode
                         //Step 1 : Fill The object and insert in the store 
                         PostRequest<Loan> request = new PostRequest<Loan>();
+                        
                         request.entity = b;
+                        request.entity.apStatus = 1;
                         PostResponse<Loan> r = _loanService.AddOrUpdate<Loan>(request);
                         //check if the insert failed
                         if (!r.Success)//it maybe be another condition

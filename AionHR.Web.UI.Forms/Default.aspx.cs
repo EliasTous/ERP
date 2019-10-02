@@ -469,13 +469,10 @@ namespace AionHR.Web.UI.Forms
             request.Size = e.Limit.ToString();
             request.SoryBy = "eventDt";
             ListResponse<TransactionLog> logs = _systemService.ChildGetAll<TransactionLog>(request);
-            if (!logs.Success)
-            {
-                return;
-            }
+            
 
             e.Total = logs.count;
-            transactionLogStore.DataSource = logs.Items;
+            transactionLogStore.DataSource = new List<object>();
             transactionLogStore.DataBind();
             TransationLogScreen.Show();
         }
@@ -521,12 +518,14 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public void FillTransactionLogWindow(int classRef, int recordId)
         {
-            CurrentClassRef.Text = classRef.ToString();
-            CurrentRecordId.Text = recordId.ToString();
-            Ext.Net.ParameterCollection col = new Ext.Net.ParameterCollection();
-            col.Add(new Ext.Net.Parameter() { Name = "ClassId", Value = classRef.ToString() });
-            col.Add(new Ext.Net.Parameter() { Name = "PrimaryKey", Value = recordId.ToString() });
-            transactionLogStore.Reload(col);
+            //CurrentClassRef.Text = classRef.ToString();
+            //CurrentRecordId.Text = recordId.ToString();
+            //Ext.Net.ParameterCollection col = new Ext.Net.ParameterCollection();
+            //col.Add(new Ext.Net.Parameter() { Name = "ClassId", Value = classRef.ToString() });
+            //col.Add(new Ext.Net.Parameter() { Name = "PrimaryKey", Value = recordId.ToString() });
+            //transactionLogStore.Reload(col);
+
+            TimeVariationHistoryControl1.Show("31201", recordId.ToString());
 
         }
 

@@ -394,11 +394,11 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.ActiveTabIndex = 0;
 
             setNormal();
-            if (response.result.status == 2)
+            if (response.result.apStatus == 2)
 
                 setApproved(true);
 
-            else if (response.result.status == 3 || response.result.status == -1)
+            else if (response.result.apStatus == 3 || response.result.apStatus == -1)
                 setUsed(true);
             else
             { setNormal(); }

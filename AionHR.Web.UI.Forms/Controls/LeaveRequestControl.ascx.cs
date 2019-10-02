@@ -96,13 +96,7 @@ namespace AionHR.Web.UI.Forms.Controls
                         //{
                         //    ViewOnly.Text = "1";
                         //}
-                        if (returnNotes.InputType == InputType.Password)
-                        {
-                            returnNotes.Visible = false;
-                            notesField.Visible = true;
-                            textField1.Visible = false;
-                            textField2.Visible = true;
-                        }
+                     
                     }
 
                 }
@@ -186,7 +180,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 }
                 //Step 2 : call setvalues with the retrieved object
                 this.BasicInfoTab.SetValues(response.result);
-                LeaveApprovalStatusControl.setApprovalStatus(response.result.status.ToString());
+                LeaveApprovalStatusControl.setApprovalStatus(response.result.apStatus.ToString());
 
 
                 FillLeaveType();
@@ -228,7 +222,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
              
                 setApproved(true);
-                if (response.result.status == 1)
+                if (response.result.apStatus == 1)
                 {
                     setNormal();
 
@@ -329,7 +323,7 @@ namespace AionHR.Web.UI.Forms.Controls
             GridDisabled.Text = disabled.ToString();
             startDate.Disabled = disabled;
            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled = */ltId.Disabled = TotalText.Disabled = disabled;
-            returnDate.Disabled = !disabled;
+         //   returnDate.Disabled = !disabled;
             replacementIdCB.Disabled = disabled;
             approved.Text = disabled.ToString();
             //leavePeriod.Disabled = disabled;
@@ -352,7 +346,7 @@ namespace AionHR.Web.UI.Forms.Controls
             GridDisabled.Text = "False";
             startDate.Disabled = false;
             endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled =/* isPaid.Disabled = */ltId.Disabled = TotalText.Disabled = false;
-            returnDate.Disabled = true;
+           // returnDate.Disabled = true;
             replacementIdCB.Disabled = false;
             //leavePeriod.Disabled = false;
             approved.Text = "False";
@@ -371,7 +365,7 @@ namespace AionHR.Web.UI.Forms.Controls
             GridDisabled.Text = disabled.ToString();
             startDate.Disabled = disabled;
             endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled*/ ltId.Disabled = TotalText.Disabled = disabled;
-            returnDate.Disabled = disabled;
+           // returnDate.Disabled = disabled;
             SaveButton.Disabled = disabled;
             //leavePeriod.Disabled = disabled;
             calDays.Disabled = disabled;
@@ -444,7 +438,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 // res.AddRule("leaveRequest1_status", "status");
                 settings.ContractResolver = res;
                 LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
-                b.status = Convert.ToInt16(LeaveApprovalStatusControl.GetApprovalStatus());
+                b.apStatus = Convert.ToInt16(LeaveApprovalStatusControl.GetApprovalStatus());
               //  b.leaveDays = Convert.ToDouble(leaveDaysField.Text);
                 //b.status = Convert.ToInt16(status1); 
                 string id = e.ExtraParams["id"];
@@ -566,7 +560,7 @@ namespace AionHR.Web.UI.Forms.Controls
                             recordResponse.result.returnNotes = b.returnNotes;
                             //recordResponse.result.leavePeriod = leavePeriod.Text;
                             b = recordResponse.result;
-                            b.status = 3;
+                            b.apStatus = 3;
                             b.endDate = endDate;
 
                             //postReq.entity = recordResponse.result;
@@ -638,7 +632,7 @@ namespace AionHR.Web.UI.Forms.Controls
                                 BasicInfoTab.UpdateRecord(record);
                                 // record.Set("employeeName", b.employeeName.fullName);
                                 record.Set("ltName", b.ltName);
-                                record.Set("status", b.status);
+                                record.Set("status", b.apStatus);
                                 record.Commit();
                             }
                             else
@@ -1079,10 +1073,10 @@ namespace AionHR.Web.UI.Forms.Controls
             }
             if (resp.Items.Count == 0)
                 return;
-            if (resp.Items[0].returnDate.HasValue || resp.Items[0].status != 2)
+            if (resp.Items[0].returnDate.HasValue || resp.Items[0].apStatus != 2)
                 return;
 
-            leaveId.Text = resp.Items[0].recordId;
+        //    leaveId.Text = resp.Items[0].recordId;
             X.Call("FillReturnInfo", resp.Items[0].recordId, resp.Items[0].startDate, resp.Items[0].endDate);
         }
         protected void SaveLeaveReturn(object sender, DirectEventArgs e)
@@ -1110,7 +1104,7 @@ namespace AionHR.Web.UI.Forms.Controls
             req.entity = recordResponse.result;
             req.entity.returnDate = temp.returnDate;
             req.entity.returnNotes = temp.returnNotes;
-            req.entity.status = 3;
+            req.entity.apStatus = 3;
             PostResponse<LeaveRequest> resp = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(req);
             if (!resp.Success)
             {
@@ -1128,7 +1122,7 @@ namespace AionHR.Web.UI.Forms.Controls
             {
                 var d = Store1.GetById(id);
                 d.Set("returnDate", temp.returnDate);
-                d.Set("status", temp.status);
+                d.Set("status", temp.apStatus);
                 d.Commit();
             }
             else

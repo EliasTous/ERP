@@ -40,7 +40,7 @@ namespace AionHR.Model.LoadTracking
         public string purpose { get; set; }
         [PropertyID("45050_09")]
         [ApplySecurity]
-        public short status { get; set; }
+        public short apStatus { get; set; }
 
 
         [PropertyID("45050_10")]

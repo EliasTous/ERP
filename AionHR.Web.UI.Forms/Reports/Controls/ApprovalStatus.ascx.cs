@@ -98,5 +98,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             apStatusStore.DataBind();
           
         }
+
+
+        public void disableApprovalStatus(bool disabled)
+        {
+            apStatus.Disabled = disabled;
+        }
     }
 }

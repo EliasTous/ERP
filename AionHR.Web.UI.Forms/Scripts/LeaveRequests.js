@@ -10,9 +10,6 @@ var attachRender = function () {
     return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
 };
 
-var historeRender = function () {
-    return '<img class="imgHistory"  style="cursor:pointer;"  src="Images/Tools/error.png" />';
-};
 
 
 var commandName;

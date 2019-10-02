@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
 
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LoanRequests.js?id=20"></script>
+    <script type="text/javascript" src="Scripts/LoanRequests.js?id=21"></script>
 
 
     <script type="text/javascript" src="Scripts/common.js"></script>
@@ -170,7 +170,7 @@
                         <ext:ModelField Name="branchId" />
                         <ext:ModelField Name="branchName" />
                         <ext:ModelField Name="purpose" />
-                        <ext:ModelField Name="status" />
+                        <ext:ModelField Name="apStatus" />
                         <ext:ModelField Name="currencyId" />
                         <ext:ModelField Name="amount" />
                         <ext:ModelField Name="payments" />
@@ -316,7 +316,7 @@
 
 
                             <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Width="100">
-                                <Renderer Handler="return GetStatusName(record.data['status']);" />
+                                <Renderer Handler="return GetStatusName(record.data['apStatus']);" />
                             </ext:Column>
 
                            <%-- <ext:DateColumn ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="120" Align="Center">

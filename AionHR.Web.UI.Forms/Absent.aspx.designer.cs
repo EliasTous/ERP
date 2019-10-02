@@ -769,13 +769,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store inOutStore;
         
         /// <summary>
-        /// clockStamp control.
+        /// clockStamp1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateField clockStamp;
+        protected global::Ext.Net.DateField clockStamp1;
         
         /// <summary>
         /// SaveOverrideButton control.

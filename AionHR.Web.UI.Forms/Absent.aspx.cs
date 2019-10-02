@@ -30,6 +30,7 @@ using AionHR.Services.Messaging.Reports;
 using AionHR.Model.Dashboard;
 using AionHR.Services.Messaging.TimeAttendance;
 using AionHR.Web.UI.Forms.ConstClasses;
+using Newtonsoft.Json.Converters;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -680,7 +681,7 @@ namespace AionHR.Web.UI.Forms
 
                     case "imgHistory":
 
-                        TimeVariationHistoryControl1.Show("41204", id);
+                        TimeVariationHistoryControl1.Show("41203", id);
                         break;
 
                     default:
@@ -804,22 +805,22 @@ namespace AionHR.Web.UI.Forms
             if (DateTime.TryParse(dtFromParameter, out temp))
 
             {
-                clockStamp.MinDate = temp.AddDays(-1);
-                clockStamp.SelectedDate = temp; 
+                clockStamp1.MinDate = temp.AddDays(-1);
+                clockStamp1.SelectedDate = temp; 
 
             }
             if (DateTime.TryParse(dtToParameter, out temp))
 
             {
-                clockStamp.MaxDate = temp.AddDays(+1);
+                clockStamp1.MaxDate = temp.AddDays(+1);
 
 
             }
 
           
 
-            clockStamp.MinDate = new DateTime(1930, 01, 01);
-            clockStamp.MaxDate = new DateTime(2050, 01, 01);
+            clockStamp1.MinDate = new DateTime(1930, 01, 01);
+            clockStamp1.MaxDate = new DateTime(2050, 01, 01);
             switch (inOut)
             {
                 case "1":
@@ -831,8 +832,8 @@ namespace AionHR.Web.UI.Forms
                        
 
                         if (temp.TimeOfDay.Hours >= 6)
-                            clockStamp.MinDate = dtFrom.SelectedDate;
-                        clockStamp.Value = dtFromParameter;
+                            clockStamp1.MinDate = dtFrom.SelectedDate;
+                        clockStamp1.Value = dtFromParameter;
                     }
 
                     break;
@@ -841,8 +842,8 @@ namespace AionHR.Web.UI.Forms
                     {
                        
                         if (temp.TimeOfDay.Hours <= 6)
-                            clockStamp.MaxDate = dtTo.SelectedDate;
-                        clockStamp.Value = dtToParameter;
+                            clockStamp1.MaxDate = dtTo.SelectedDate;
+                        clockStamp1.Value = dtToParameter;
                     }
                    
                     break;
@@ -864,7 +865,8 @@ namespace AionHR.Web.UI.Forms
 
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-
+            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en");
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
             try
             {
 
@@ -927,8 +929,8 @@ namespace AionHR.Web.UI.Forms
                     Icon = Icon.Information,
                     Html = Resources.Common.RecordUpdatedSucc
                 });
-                overrideWindow.Close(); 
-
+                overrideWindow.Close();
+                InitializeCulture();
             }
 
 

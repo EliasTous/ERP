@@ -48,7 +48,7 @@ namespace AionHR.Services.Implementations
                    error.ltRef + "," +
                     error.destination + "," +
                     error.justification + "," +
-                    error.status +","+
+                    error.apStatus +","+
                     
                     errorMessages[i++].Replace('\r', ' ').Replace(',', ';')
 

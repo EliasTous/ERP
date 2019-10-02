@@ -125,7 +125,7 @@ namespace AionHR.Web.UI.Forms
                 dr["end"] = item.endDate.AddDays(1);
                 dr["name"] = item.employeeName;
                 dr["resource"] = item.employeeId;
-                switch (item.status)
+                switch (item.apStatus)
                 {
                     case -1:
                         dr["backColor"] = "#ccff00";

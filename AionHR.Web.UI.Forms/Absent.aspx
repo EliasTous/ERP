@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Absent.js?id=10" ></script>
+    <script type="text/javascript" src="Scripts/Absent.js?id=20" ></script>
      <script type="text/javascript" src="Scripts/ReportsCommon.js?id=10"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
@@ -269,13 +269,13 @@
                               <ext:Column runat="server"
                                 ID="Column2"  Visible="true"
                                 Text=""
-                                Width="100"
+                               Flex="3"
                                 Hideable="false"
                                 Align="Center"
-                                Fixed="true"
+                              
                                 Filterable="false"
                                 MenuDisabled="true"
-                                Resizable="false">
+                                Resizable="true">
                                       <Renderer handler="if ((record.data['timeCode']===41 || record.data['timeCode']===21) && record.data['apStatus']!=-1) { if (record.data['apStatus']==2) return editRender()+'&nbsp;&nbsp;' +attachRender()+'&nbsp;&nbsp;'+rejectRender()+'&nbsp;&nbsp;'+historeRender(); else return editRender()+'&nbsp;&nbsp;' +attachRender()+'&nbsp;&nbsp;'+historeRender();   }else { if ( record.data['apStatus']==2 && App.isSuperUser.getValue()=='true'){return rejectRender()+'&nbsp;&nbsp;'+ editRender()+'&nbsp;&nbsp;'+historeRender();  }else   return editRender()+'&nbsp;&nbsp;'+historeRender(); } " />
                                   </ext:Column>
 
@@ -713,7 +713,7 @@
                                        </ext:ComboBox>
 
 
-                                  <ext:DateField ID="clockStamp" runat="server" FieldLabel="<%$ Resources:FieldClockStamp%>" Format="dd/MM/yyyy HH:mm" Name="clockStamp"  />
+                                  <ext:DateField ID="clockStamp1" runat="server" FieldLabel="<%$ Resources:FieldClockStamp%>" Format="dd/MM/yyyy HH:mm" Name="clockStamp1"  />
                                 
                              
                             </Items>
@@ -735,7 +735,7 @@
                             <ExtraParams>
                               
                                    <ext:Parameter Name="shiftId" Value="App.shiftId.getValue()" Mode="Raw" />
-                                  <ext:Parameter Name="clockStamp" Value="App.clockStamp.getValue()" Mode="Raw" />
+                                  <ext:Parameter Name="clockStamp" Value="App.clockStamp1.getValue()" Mode="Raw" />
                                   <ext:Parameter Name="employeeId" Value="App.employeeId.getValue()" Mode="Raw" />
                                     <ext:Parameter Name="recordId" Value="App.ORId.getValue()" Mode="Raw" />
                               
