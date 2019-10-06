@@ -755,7 +755,7 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
 
     private void GroupHeader1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        e.Cancel = RowCount > 0; 
+        e.Cancel = this.RowCount == 0;
     }
 
     private void xrLabel5_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
