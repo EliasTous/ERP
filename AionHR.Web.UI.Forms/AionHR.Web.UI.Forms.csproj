@@ -663,6 +663,9 @@
     <Content Include="App_LocalResources\PayrollBenefitSchedules.aspx.resx" />
     <Content Include="App_LocalResources\PayrollBenefits.aspx.resx" />
     <Content Include="App_LocalResources\LeaveReturns.aspx.resx" />
+    <Content Include="App_LocalResources\LeaveReplacementApprovals.ar.resx" />
+    <Content Include="App_LocalResources\LeaveReplacementApprovals.de-DE.resx" />
+    <Content Include="App_LocalResources\LeaveReplacementApprovals.fr.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />

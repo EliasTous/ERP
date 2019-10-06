@@ -5745,7 +5745,7 @@
             Icon="PageEdit"
             Title="<%$ Resources: LeaveReturn%>"
             Width="450"
-            Height="330"
+            Height="450"
             AutoShow="false"
             Modal="true"
             Hidden="true"

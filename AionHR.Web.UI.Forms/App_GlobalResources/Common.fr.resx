@@ -1443,4 +1443,7 @@
   <data name="UnschedulePunches" xml:space="preserve">
     <value>Info.des poinçons sans horaire</value>
   </data>
+  <data name="leaveReplacementApproval" xml:space="preserve">
+    <value>approbation de congé de remplacement</value>
+  </data>
 </root>

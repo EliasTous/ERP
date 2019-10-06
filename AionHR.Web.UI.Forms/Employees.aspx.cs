@@ -38,6 +38,7 @@ using AionHR.Infrastructure.Tokens;
 using AionHR.Services.Implementations;
 using AionHR.Repository.WebService.Repositories;
 using AionHR.Services.Messaging.AdministrativeAffairs;
+using AionHR.Services.Messaging.Employees;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -657,8 +658,8 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                RecordRequest caRequest = new RecordRequest();
-                caRequest.RecordID = parameters["id"];
+                EmployeeTerminationRecordRequest caRequest = new EmployeeTerminationRecordRequest();
+                caRequest.employeeId = parameters["id"];
                 RecordResponse<EmployeeTermination> response = _employeeService.ChildGetRecord<EmployeeTermination>(caRequest);
 
                 if (!response.Success)

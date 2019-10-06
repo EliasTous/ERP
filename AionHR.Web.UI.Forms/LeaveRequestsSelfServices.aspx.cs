@@ -321,7 +321,7 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.ActiveTabIndex = 0;
             leaveDaysStore.DataSource = new List<LeaveDay>();
             leaveDaysStore.DataBind();
-            status.Select(0);
+            apStatus.Select(0);
             shouldDisableLastDay.Text = "0";
             this.EditRecordWindow.Show();
             //employeeId.GetStore().Add(new object[]
@@ -529,7 +529,7 @@ namespace AionHR.Web.UI.Forms
                 s.employeeId = "0";
                 s.endDate = DateTime.Now;
                 s.startDate = DateTime.Now;
-                s.status = 0;
+                s.apStatus = 0;
                 s.isPaid = false;
                 s.justification = "";
                 s.ltId = 0;
@@ -1018,7 +1018,7 @@ namespace AionHR.Web.UI.Forms
 
             settings.ContractResolver = res;
             leaveRequetsSelfservice b = JsonConvert.DeserializeObject<leaveRequetsSelfservice>(obj, settings);
-            b.status = Convert.ToInt16(status1);
+           // b.status = Convert.ToInt16(status1);
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
             if (!b.isPaid.HasValue)
@@ -1033,7 +1033,7 @@ namespace AionHR.Web.UI.Forms
                 b.ltId =Convert.ToInt32( ltId.SelectedItem.Value);
             }
             b.employeeId = employeeIdHF.Text;
-            b.status = 1;
+            b.apStatus = 1;
             List<LeaveDay> days = GenerateLeaveDays(e.ExtraParams["days"]);
 
             if (string.IsNullOrEmpty(id))
@@ -1120,7 +1120,7 @@ namespace AionHR.Web.UI.Forms
                         recordResponse.result.returnNotes = b.returnNotes;
                         recordResponse.result.leavePeriod = leavePeriod.Text;
                         //b = recordResponse.result;
-                        b.status = 3;
+                        b.apStatus = 3;
 
                         //postReq.entity = recordResponse.result;
                         //postReq.entity.returnDate = b.returnDate;
@@ -1184,7 +1184,7 @@ namespace AionHR.Web.UI.Forms
                             BasicInfoTab.UpdateRecord(record);
                             // record.Set("employeeName", b.employeeName.fullName);
                             record.Set("ltName", b.ltName);
-                            record.Set("status", b.status);
+                            record.Set("status", b.apStatus);
                             record.Commit();
                         }
                         else

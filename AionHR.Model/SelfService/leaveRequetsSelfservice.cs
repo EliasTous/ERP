@@ -38,7 +38,7 @@ namespace AionHR.Model.SelfService
 
         
 
-        public short status { get; set; }
+        public short apStatus { get; set; }
 
        
 

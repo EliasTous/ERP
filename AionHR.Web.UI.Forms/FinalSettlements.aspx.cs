@@ -30,6 +30,7 @@ using AionHR.Model.Payroll;
 using DevExpress.XtraReports.UI;
 using AionHR.Services.Messaging.LoanManagment;
 using AionHR.Model.LoadTracking;
+using AionHR.Services.Messaging.Employees;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -714,8 +715,8 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                RecordRequest caRequest = new RecordRequest();
-                caRequest.RecordID = employeeId.Value.ToString();
+                EmployeeTerminationRecordRequest caRequest = new EmployeeTerminationRecordRequest();
+                caRequest.employeeId = employeeId.Value.ToString();
                 RecordResponse<EmployeeTermination> response = _employeeService.ChildGetRecord<EmployeeTermination>(caRequest);
 
                 if (!response.Success)
@@ -1604,8 +1605,8 @@ namespace AionHR.Web.UI.Forms
 
 
 
-                RecordRequest caRequest = new RecordRequest();
-                caRequest.RecordID = FinalSettlementResponse.result.employeeId;
+                EmployeeTerminationRecordRequest caRequest = new EmployeeTerminationRecordRequest();
+                caRequest.employeeId = FinalSettlementResponse.result.employeeId;
                 RecordResponse<EmployeeTermination> response = _employeeService.ChildGetRecord<EmployeeTermination>(caRequest);
 
                 if (!response.Success)

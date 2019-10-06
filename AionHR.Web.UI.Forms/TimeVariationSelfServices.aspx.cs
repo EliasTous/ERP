@@ -700,7 +700,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-                ListResponse<DashBoardTimeVariation> r = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);                    //Step 1 Selecting the object or building up the object for update purpose
+                ListResponse<DashBoardTimeVariation> r = _selfServiceService.ChildGetAll<DashBoardTimeVariation>(req);                   //Step 1 Selecting the object or building up the object for update purpose
 
                 //Step 2 : saving to store
 
@@ -714,12 +714,12 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
 
-                    if (r.Items.Where(x => x.primaryKey == id).Count() == 0)
+                    if (r.Items.Where(x => x.recordId == id).Count() == 0)
                         return;
                     else
                     {
                         PostRequest<DashBoardTimeVariation> request = new PostRequest<DashBoardTimeVariation>();
-                        request.entity = r.Items.Where(x => x.primaryKey == id).First();
+                        request.entity = r.Items.Where(x => x.recordId == id).First();
                         request.entity.damageLevel = Convert.ToInt16(damage.Value);
                         request.entity.duration = Convert.ToInt16(duration.Text);
                         request.entity.justification = b.justification;

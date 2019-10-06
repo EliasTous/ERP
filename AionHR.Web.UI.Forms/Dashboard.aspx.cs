@@ -1857,7 +1857,7 @@ namespace AionHR.Web.UI.Forms
                     tvId.Text = tvIdParameter;
                     helpText.Text = response.result.helpText;
 
-                    FillTimeApproval(response.result.date, response.result.dtFrom, response.result.dtTo, response.result.employeeId, response.result.timeCode, response.result.shiftId, response.result.status.ToString());
+                    FillTimeApproval(tvIdParameter);
                 }
                 this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
                 this.TimeWindow.Show();
@@ -3197,7 +3197,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
-        private void FillTimeApproval(DateTime? date, DateTime? dtFrom, DateTime? dtTo, int employeeId, string timeCode, string shiftId, string apstatus)
+        private void FillTimeApproval(string tvId)
         {
 
          
@@ -3224,22 +3224,23 @@ namespace AionHR.Web.UI.Forms
 
 
                  
-                    parameters.Add("1", employeeId.ToString());
-                if (dtFrom != null)
-                    parameters.Add("2",((DateTime) dtFrom).ToString("yyyyMMdd"));
-                //else
-                //    parameters.Add("2", ((DateTime)date).ToString("yyyyMMdd"));
-                if (dtTo != null)
-                    parameters.Add("3", ((DateTime)dtTo).ToString("yyyyMMdd"));
+              
+                parameters.Add("12", tvId);
+                //if (dtFrom != null)
+                //    parameters.Add("2",((DateTime) dtFrom).ToString("yyyyMMdd"));
+                ////else
+                ////    parameters.Add("2", ((DateTime)date).ToString("yyyyMMdd"));
+                //if (dtTo != null)
+                //    parameters.Add("3", ((DateTime)dtTo).ToString("yyyyMMdd"));
                 //else
                 //    parameters.Add("3", ((DateTime)date).ToString("yyyyMMdd"));
-                if (!string.IsNullOrEmpty(shiftId))
-                    parameters.Add("4", shiftId);
-            
-                    parameters.Add("5", timeCode);
-                    parameters.Add("6", "0");
-                    parameters.Add("7", "0");
-                  
+                //if (!string.IsNullOrEmpty(shiftId))
+                //    parameters.Add("4", shiftId);
+
+                //parameters.Add("5", timeCode);
+                //parameters.Add("6", "0");
+                //parameters.Add("7", "0");
+
 
 
 

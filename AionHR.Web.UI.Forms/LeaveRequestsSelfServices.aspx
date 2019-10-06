@@ -73,7 +73,7 @@
         App.Button1.setDisabled(false);
     }
     function SetReturnDateState() {
-        if (App.status.value == 2) {
+        if (App.apStatus.value == 2) {
             App.returnDate.setDisabled(false);
             App.returnNotes.setDisabled(false);
         }
@@ -204,7 +204,7 @@
                         <ext:ModelField Name="endDate" />
                         <ext:ModelField Name="returnDate" />
                         <ext:ModelField Name="ltId" />
-                        <ext:ModelField Name="status" />
+                        <ext:ModelField Name="apStatus" />
                         <ext:ModelField Name="isPaid" />
                         <ext:ModelField Name="destination" />
                         <ext:ModelField Name="justification" />
@@ -278,8 +278,8 @@
                             <ext:Column runat="server" Width="70" Text="<%$ Resources: LateDays%>">
                                 <Renderer Handler="if(record.data['returnDate']!='') var d=moment(record.data['returnDate']).diff(moment(record.data['endDate']), 'days')+1; if(d>0) return d; else return '';" />
                             </ext:Column>--%>
-                        <ext:Column ID="Column10" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
-                                <Renderer Handler="return(GetStatusName(record.data['status']));" />
+                        <ext:Column ID="Column10" DataIndex="apStatus" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
+                                <Renderer Handler="return(GetStatusName(record.data['apStatus']));" />
                             </ext:Column>
 
                             <ext:Column ID="Column5" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="2" />
@@ -324,7 +324,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler="if(record.data['status']=='1') return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                <Renderer Handler="if(record.data['apStatus']=='1') return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
 
@@ -571,7 +571,7 @@
                         </ext:ComboBox>
 
 
-                        <ext:ComboBox Hidden="true" Disabled="true"  AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status" 
+                        <ext:ComboBox Hidden="true" Disabled="true"  AnyMatch="true" CaseSensitive="false"  runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status" 
                             FieldLabel="<%$ Resources: FieldStatus %>">
                             <Items>
 
@@ -773,7 +773,7 @@
                     <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                     <ExtraParams>
                         <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                         <ext:Parameter Name="status" Value="#{status}.getValue()" Mode="Raw" />
+                         <ext:Parameter Name="apStatus" Value="#{apStatus}.getValue()" Mode="Raw" />
                         
                         <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw"  />
                         <ext:Parameter Name="days" Value="Ext.encode(#{LeaveDaysGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />

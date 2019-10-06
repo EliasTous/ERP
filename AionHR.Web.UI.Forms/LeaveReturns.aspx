@@ -52,6 +52,7 @@
                             <ext:ModelField Name="leaveId" />
                          <ext:ModelField Name="employeeId" />
                         <ext:ModelField Name="returnType" />
+                          <ext:ModelField Name="apStatus" />
                         
 
                         
@@ -114,6 +115,7 @@
                         <ext:Column    CellCls="cellLink" ID="ColLrtName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReturnType%>" DataIndex="lrtName" Flex="1" Hideable="false" />
                               <ext:DateColumn    CellCls="cellLink" ID="ColDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="1" Hideable="false" />
                               <ext:Column    CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJustification%>" DataIndex="justification" Flex="1" Hideable="false" />
+                              <ext:Column    CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldStatus%>" DataIndex="apStatus" Flex="1" Hideable="false" />
                              
                         
                            

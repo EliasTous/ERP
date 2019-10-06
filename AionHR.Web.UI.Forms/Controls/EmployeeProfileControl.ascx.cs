@@ -31,6 +31,7 @@ using AionHR.Model.Access_Control;
 using AionHR.Model.NationalQuota;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Services.Messaging.CompanyStructure;
+using AionHR.Services.Messaging.Employees;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -1601,8 +1602,8 @@ namespace AionHR.Web.UI.Forms
         }
         private void FillTerminationReasons1(string id)
         {
-            RecordRequest caRequest = new RecordRequest();
-            caRequest.RecordID = id;
+            EmployeeTerminationRecordRequest caRequest = new EmployeeTerminationRecordRequest();
+            caRequest.employeeId = id;
             RecordResponse<EmployeeTermination> resp = _employeeService.ChildGetRecord<EmployeeTermination>(caRequest);
             if (!resp.Success)
             {

@@ -1443,4 +1443,7 @@
   <data name="UnschedulePunches" xml:space="preserve">
     <value>البصمات بدون دوام</value>
   </data>
+  <data name="leaveReplacementApproval" xml:space="preserve">
+    <value>موافقة البديل للاجازة</value>
+  </data>
 </root>

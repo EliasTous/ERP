@@ -27,7 +27,7 @@ namespace AionHR.Model.LeaveManagement
         public int employeeId { set; get; }
 
         public string replacementId { set; get; }
-        public EmployeeName replacementName { set; get; }
+        public string replacementName { set; get; }
         public string fullName { set; get; }
     }
 

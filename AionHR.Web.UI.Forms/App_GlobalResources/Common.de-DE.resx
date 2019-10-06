@@ -1350,4 +1350,7 @@
   <data name="UnschedulePunches" xml:space="preserve">
     <value>außerplanmäßige Schläge info</value>
   </data>
+  <data name="leaveReplacementApproval" xml:space="preserve">
+    <value>Ersatzurlaubsgenehmigung</value>
+  </data>
 </root>

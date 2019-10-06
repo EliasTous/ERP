@@ -245,9 +245,9 @@ namespace AionHR.Web.UI.Forms
                 case "imgEdit":
 
                     //Step 1 : get the object from the Web Service 
-                    employeeId.SuspendEvent("select");
-                    startDate.SuspendEvent("change");
-                    endDate.SuspendEvent("change");
+                
+                    //startDate.SuspendEvent("change");
+                    //endDate.SuspendEvent("change");
                     leaveDaysField.SetHidden(true);
                     leaveHours.SetHidden(true);
                     workingHours.SetHidden(true);
@@ -266,7 +266,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
                     LeaveApprovalStatusControl.setApprovalStatus(response.result.apStatus.ToString());
-
+                 //   calDays.Value = (response.result.endDate - response.result.startDate).Days + 1;
                     
                     FillLeaveType();
 
@@ -295,13 +295,14 @@ namespace AionHR.Web.UI.Forms
                     if (!resp.Success)
                     {
                         Common.errorMessage(resp);
+                        return;
                     }
 
                     ;
                     resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
-                   
-                   
-                   
+
+
+
                     panelRecordDetails.ActiveTabIndex = 0;
 
 
@@ -313,13 +314,13 @@ namespace AionHR.Web.UI.Forms
                     //else
                     //{ setNormal(); }
                     setApproved(true);
-                    calDays.Value = (response.result.startDate - response.result.endDate).Days + 3;
+                    calDays.Value = (response.result.endDate - response.result.startDate).Days + 1;
                     apStatus.setApprovalStatus(replApStatus);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
-                    employeeId.ResumeEvent("select");
-                    startDate.ResumeEvent("change");
-                    endDate.ResumeEvent("change");
+                    //employeeId.ResumeEvent("select");
+                    //startDate.ResumeEvent("change");
+                    //endDate.ResumeEvent("change");
                     if (replApStatus == "1")
                     {
                         apStatus.disableApprovalStatus(false);

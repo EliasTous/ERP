@@ -179,9 +179,9 @@ function calcEndDate() {
                             <ext:Column runat="server" Width="70" Text="<%$ Resources: CalDays%>">
                                 <Renderer Handler="return moment(record.data['endDate']).diff(moment(record.data['startDate']), 'days')+1" />
                             </ext:Column>
-                            <ext:Column runat="server" Width="70" Text="<%$ Resources: LateDays%>">
+                           <%-- <ext:Column runat="server" Width="70" Text="<%$ Resources: LateDays%>">
                                 <Renderer Handler="if(record.data['returnDate']!='') var d=moment(record.data['returnDate']).diff(moment(record.data['endDate']), 'days')+1; if(d>0) return d; else return '';" />
-                            </ext:Column>
+                            </ext:Column>--%>
                             <ext:Column ID="Column3" DataIndex="statusString" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
                             
                             </ext:Column>
@@ -352,21 +352,19 @@ function calcEndDate() {
                                             </Fields>
                                         </ext:Model>
                                     </Model>
-                                    <Proxy>
-                                        <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
-                                    </Proxy>
+                                   
 
                                 </ext:Store>
 
                             </Store>
-                            <DirectEvents>
+                         <%--   <DirectEvents>
                                 <Select OnEvent="MarkLeaveChanged">
                                     <ExtraParams>
                                         <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
                                         <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
                                     </ExtraParams>
                                 </Select>
-                            </DirectEvents>
+                            </DirectEvents>--%>
 
                         </ext:ComboBox>
 
@@ -401,7 +399,7 @@ function calcEndDate() {
                          <ext:Panel runat="server" Layout="HBoxLayout">
                             <Items>
                            <ext:DateField ID="startDate"    runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
-                            <DirectEvents>
+                         <%--   <DirectEvents>
                                 <change OnEvent="MarkLeaveChanged">
                                     <ExtraParams>
                                         <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
@@ -409,11 +407,11 @@ function calcEndDate() {
                                     </ExtraParams>
                                 </change>
                                 
-                            </DirectEvents>
-                         <Listeners>
+                            </DirectEvents>--%>
+                      <%--   <Listeners>
                                         <Change Handler="if(moment(this.value).isSame(moment( #{oldStart}.value) )) {return false;} #{oldStart}.value = this.value; calcDays();" />
 
-                                    </Listeners>
+                                    </Listeners>--%>
                             <%--          <Listeners>
                                         <Change Handler="alert(this.value);App.direct.MarkLeaveChanged(); CalcSum();" />
                                     </Listeners>--%>
@@ -421,21 +419,21 @@ function calcEndDate() {
                           
                                 <ext:DateField ID="endDate" LabelWidth="65"    runat="server" FieldLabel="<%$ Resources:FieldEndDate%>"  Name="endDate" AllowBlank="false">
                                  
-                                    <DirectEvents>
+                               <%--     <DirectEvents>
                                         <change OnEvent="MarkLeaveChanged">
                                             <ExtraParams>
                                                 <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
                                                 <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
                                             </ExtraParams>
                                         </change>
-                                    </DirectEvents>
+                                    </DirectEvents>--%>
                                    <%-- <Listeners>
                                         <Change Handler="App.direct.MarkLeaveChanged(); CalcSum(); " />
                                     </Listeners>--%>
-                                    <Listeners>
+                             <%--       <Listeners>
                                         <Change Handler="if(moment(this.value).isSame(moment( #{oldEnd}.value) )) {return false;} #{oldEnd}.value = this.value; calcDays();calcEndDate();" />
 
-                                    </Listeners>
+                                    </Listeners>--%>
                                 </ext:DateField>
                                 <ext:NumberField runat="server" ID="calDays" Width="150" Name="calDays" MinValue="1" FieldLabel="<%$Resources:CalDays %>" LabelWidth="30">
                                  

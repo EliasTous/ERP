@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace AionHR.Model.SelfService
 {
     [ClassIdentifier("60108", "60")]
-    public  class TimeVariationSelfService
+    public  class TimeVariationSelfService :ModelBase
     {
-        public string recordId { get { return employeeId.ToString() + dayId.ToString() + shiftId.ToString() + timeCode.ToString(); } }
+       
         public int employeeId { get; set; }
         public string dayId { get; set; }
         public DateTime dayIdDate { get; set; }

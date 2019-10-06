@@ -1193,16 +1193,23 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
 
         //(sender as DevExpress.XtraReports.UI.XRControl).Text = new TimeSpan(0, TotalMinutes, 0).ToString("c");
 
-        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+        if (string.IsNullOrEmpty((sender as XRLabel).Text))
+        {
+            return;
+        }
+
+            if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
             (sender as XRLabel).Text = "00:00";
         else
         {
             //int mins = Convert.ToInt32((sender as XRLabel).Text);
             //(sender as XRLabel).Text = (mins / 60).ToString().PadLeft(2, '0') + ":" + (mins % 60).ToString().PadLeft(2, '0');
-            (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0') 
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2,'0');
+           
+                (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                     + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                     
         }
-    }
+        } 
 
     private void xrLabel11_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
@@ -1252,6 +1259,10 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
 
     private void XrLabel54_SummaryCalculated(object sender, TextFormatEventArgs e)
     {
+        if (string.IsNullOrEmpty((sender as XRLabel).Text))
+        {
+            return;
+        }
         if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
             (sender as XRLabel).Text = "00:00";
         else
@@ -1282,6 +1293,10 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
 
     private void XrLabel50_BeforePrint(object sender, PrintEventArgs e)
     {
+        if (string.IsNullOrEmpty((sender as XRLabel).Text))
+        {
+            return;
+        }
         if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
             (sender as XRLabel).Text = "00:00";
         else
@@ -1293,6 +1308,10 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
 
     private void XrLabel53_SummaryCalculated(object sender, TextFormatEventArgs e)
     {
+        if (string.IsNullOrEmpty((sender as XRLabel).Text))
+        {
+            return;
+        }
         if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
             (sender as XRLabel).Text = "00:00";
         else
@@ -1306,6 +1325,10 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
 
     private void XrLabel46_BeforePrint(object sender, PrintEventArgs e)
     {
+        if (string.IsNullOrEmpty((sender as XRLabel).Text))
+        {
+            return;
+        }
         if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
             (sender as XRLabel).Text = "00:00";
         else
@@ -1317,6 +1340,10 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
 
     private void XrLabel52_SummaryCalculated(object sender, TextFormatEventArgs e)
     {
+        if (string.IsNullOrEmpty((sender as XRLabel).Text))
+        {
+            return;
+        }
         if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
             (sender as XRLabel).Text = "00:00";
         else
@@ -1330,7 +1357,10 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
 
     private void XrLabel44_BeforePrint(object sender, PrintEventArgs e)
     {
-
+        if (string.IsNullOrEmpty((sender as XRLabel).Text))
+        {
+            return;
+        }
         if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
             (sender as XRLabel).Text = "00:00";
         else
@@ -1342,6 +1372,10 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
 
     private void XrLabel47_SummaryCalculated(object sender, TextFormatEventArgs e)
     {
+        if (string.IsNullOrEmpty((sender as XRLabel).Text))
+        {
+            return;
+        }
         if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
             (sender as XRLabel).Text = "00:00";
         else

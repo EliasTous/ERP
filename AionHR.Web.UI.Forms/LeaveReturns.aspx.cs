@@ -396,10 +396,13 @@ namespace AionHR.Web.UI.Forms
                 Common.errorMessage(resp);
                 return;
             }
+            List<XMLDictionary> statusList = Common.XMLDictionaryList(_systemService, "13");
+            resp.Items.ForEach(x => x.apStatus = statusList.Where(y => y.key.ToString() == x.apStatus).Count() != 0 ? statusList.Where(y => y.key.ToString() == x.apStatus).First().value : "");
             this.Store1.DataSource = resp.Items;
-            e.Total = resp.Items.Count; ;
+                e.Total = resp.Items.Count; ;
 
-            this.Store1.DataBind();
+                this.Store1.DataBind();
+            
         }
 
 
@@ -644,7 +647,7 @@ namespace AionHR.Web.UI.Forms
                     x.leaveRef = x.leaveRef + " " + x.startDate.ToString(_systemService.SessionHelper.GetDateformat()) + " " + x.endDate.ToString(_systemService.SessionHelper.GetDateformat());
                 });
             }
-            leaveIdStore.DataSource = resp.Items.Where(x => x.startDate > DateTime.Today).ToList();
+            leaveIdStore.DataSource = resp.Items.Where(x => x.endDate < DateTime.Today).ToList();
             leaveIdStore.DataBind();
         }
        
