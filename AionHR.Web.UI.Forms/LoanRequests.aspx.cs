@@ -457,7 +457,7 @@ namespace AionHR.Web.UI.Forms
                         SetBasicInfoFormEnable(false);
                         effectiveDate.Disabled = true;
                         caseCommentsAddButton.Disabled = true;
-                        addDeduction.Disabled = true;
+                       // addDeduction.Disabled = true;
 
                     }
                     else
