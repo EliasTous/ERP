@@ -423,32 +423,32 @@ namespace AionHR.Web.UI.Forms
             CurrencyControl.setCurrency(_systemService.SessionHelper.GetDefaultCurrency());
             FillBranch();
             FillDepartment();
-            if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-            {
-                EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
-                req.RecordID = _systemService.SessionHelper.GetEmployeeId();
-                req.asOfDate = DateTime.Now;
-                RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
-                if (!resp.Success)
-                {
-                    Common.errorMessage(resp);
-                    return;
-                }
-                branchId.Select(resp.result.branchId);
-                departmentId.Select(resp.result.departmentId);
-                employeeId.GetStore().Add(new object[]
-                      {
-                                        new
-                                        {
-                                            recordId =_systemService.SessionHelper.GetEmployeeId(),
-                                            fullName =resp.result.name.fullName
+            //if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+            //{
+            //    EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
+            //    req.RecordID = _systemService.SessionHelper.GetEmployeeId();
+            //    req.asOfDate = DateTime.Now;
+            //    RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+            //    if (!resp.Success)
+            //    {
+            //        Common.errorMessage(resp);
+            //        return;
+            //    }
+            //    branchId.Select(resp.result.branchId);
+            //    departmentId.Select(resp.result.departmentId);
+            //    employeeId.GetStore().Add(new object[]
+            //          {
+            //                            new
+            //                            {
+            //                                recordId =_systemService.SessionHelper.GetEmployeeId(),
+            //                                fullName =resp.result.name.fullName
 
-                                        }
-                      });
+            //                            }
+            //          });
 
 
-            }
-            employeeId.SetValue(_systemService.SessionHelper.GetEmployeeId());
+            //}
+            //employeeId.SetValue(_systemService.SessionHelper.GetEmployeeId());
             status.Select("1");
             status.SetValue("1");
             qty.SetValue(1);

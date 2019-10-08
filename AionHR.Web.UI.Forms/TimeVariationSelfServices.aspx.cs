@@ -724,7 +724,7 @@ namespace AionHR.Web.UI.Forms
                         request.entity.duration = Convert.ToInt16(duration.Text);
                         request.entity.justification = b.justification;
                        // request.entity.recordId = null;
-                        PostResponse<DashBoardTimeVariation> response = _timeAttendanceService.ChildAddOrUpdate<DashBoardTimeVariation>(request);
+                        PostResponse<DashBoardTimeVariation> response = _selfServiceService.ChildAddOrUpdate<DashBoardTimeVariation>(request);
                         if (!response.Success)//it maybe another check
                         {
                             X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

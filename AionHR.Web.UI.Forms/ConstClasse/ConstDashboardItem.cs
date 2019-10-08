@@ -58,6 +58,7 @@ namespace AionHR.Web.UI.Forms.ConstClasses
         public const short APPROVAL_LEAVE = 402;
         public const short APPROVAL_LOAN = 403;
         public const short APPROVAL_PENALTY = 404;
+        public const short APPROVAL_LeaveReturn = 407;
 
     }
 }

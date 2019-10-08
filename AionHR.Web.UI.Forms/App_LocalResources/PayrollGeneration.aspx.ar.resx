@@ -142,7 +142,7 @@
     <value>الدقائق</value>
   </data>
   <data name="FieldDays" xml:space="preserve">
-    <value>أيام</value>
+    <value>ايام العمل</value>
   </data>
   <data name="FieldDeduction" xml:space="preserve">
     <value>الخصم</value>
@@ -314,5 +314,8 @@
   </data>
   <data name="paySlip" xml:space="preserve">
     <value>ايصال راتب الموظف </value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف</value>
   </data>
 </root>

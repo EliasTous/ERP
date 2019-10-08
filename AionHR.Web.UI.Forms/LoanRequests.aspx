@@ -947,7 +947,7 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar5" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                <ext:Button ID="addDeduction" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                <ext:Button ID="addDeduction" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add" Disabled="true">
                                     <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>

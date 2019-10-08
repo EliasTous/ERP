@@ -119,7 +119,8 @@ namespace AionHR.Web.UI.Forms
                 yearStore.DataBind();
                 salaryTypeId.setSalaryType("5");
                 salaryTypeId.ADDHandler("select", "App.payrollsStore.reload();");
-               
+                FillBranch();
+                FillDepartment();
                 status.Select("0");
                 payrollsStore.Reload();
 

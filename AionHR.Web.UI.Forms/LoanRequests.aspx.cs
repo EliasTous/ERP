@@ -158,7 +158,7 @@ namespace AionHR.Web.UI.Forms
 
                 SetBasicInfoFormEnable(true);
                 caseCommentsAddButton.Disabled = false;
-                addDeduction.Disabled = false;
+                addDeduction.Disabled = true;
                 effectiveDate.Disabled = false;
                 statusPref.Select("0");
                 ldMethod.Select("0");
@@ -387,7 +387,7 @@ namespace AionHR.Web.UI.Forms
             //SetTabPanelEnable(true);
             SetBasicInfoFormEnable(true);
             caseCommentsAddButton.Disabled = false;
-            addDeduction.Disabled = false;
+            addDeduction.Disabled = true;
             effectiveDate.Disabled = false;
             DeductionGridPanel.Disabled = false;
             ApprovalsGridPanel.Disabled = false;
@@ -450,6 +450,15 @@ namespace AionHR.Web.UI.Forms
                     loanComments_RefreshData(Convert.ToInt32(id));
                     //if (!response.result.effectiveDate.HasValue)
                     //    effectiveDate.SelectedDate = DateTime.Now;
+                    if (response.result.apStatus == 2 )
+                    {
+
+
+                       
+                         addDeduction.Disabled = false;
+
+                    }
+
                     if (response.result.apStatus == 2 || response.result.apStatus == -1)
                     {
 
@@ -465,7 +474,7 @@ namespace AionHR.Web.UI.Forms
                        
                         SetBasicInfoFormEnable(true);
                         caseCommentsAddButton.Disabled = false;
-                        addDeduction.Disabled = false;
+                       
                         effectiveDate.Disabled = false;
                     }
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
@@ -946,7 +955,7 @@ namespace AionHR.Web.UI.Forms
                 CurrentEmployee.Text = "";
                 effectiveDate.Disabled = false;
                 caseCommentsAddButton.Disabled = false;
-                addDeduction.Disabled = false;
+                addDeduction.Disabled = true;
                 SetBasicInfoFormEnable(true);
                 ListRequest req = new ListRequest();
                 ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);

@@ -41,6 +41,7 @@ namespace AionHR.Model.Reports
         public string ltName { get; set; }
         public string departmentName { get; set; }
         public string branchName { set; get; }
+        public string apStatusName { set; get; }
 
     }
 }

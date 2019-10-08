@@ -396,6 +396,7 @@ namespace AionHR.Web.UI.Forms
                 int APPROVAL_PENALTY = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PENALTY).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PENALTY).First().count : 0;
                 int APPROVAL_PURCHASE_ORDER = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PURCHASE_ORDER).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_PURCHASE_ORDER).First().count : 0;
                 int PENDING_PUNCHES = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.PENDING_PUNCHES).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.PENDING_PUNCHES).First().count : 0;
+                int APPROVAL_LeaveReturn = dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LeaveReturn).ToList().Count != 0 ? dashoard.Items.Where(x => x.itemId == ConstDashboardItem.APPROVAL_LeaveReturn).First().count : 0;
                 //List<DashboardItem> alert = new List<DashboardItem>();
                 //alert.Add(new DashboardItem() { itemString=GetLocalResourceObject("Anneversaries").ToString(),count=annev,itemId= ConstDashboardItem.WORK_ANNIVERSARY });
                 //alert.Add(new DashboardItem() { itemString = GetLocalResourceObject("Birthdays").ToString(), count = birth, itemId = ConstDashboardItem.BIRTHDAY });
@@ -427,6 +428,7 @@ namespace AionHR.Web.UI.Forms
                 TimeGridPanel.Title = GetLocalResourceObject("Time").ToString() + " " + (APPROVAL_TIME != 0 ? APPROVAL_TIME.ToString() : "");
                 EmployeePenaltyApprovalGrid.Title = GetLocalResourceObject("EmployeePenaltyApproval").ToString() + " " + (APPROVAL_PENALTY != 0 ? APPROVAL_PENALTY.ToString() : "");
                 PurchasesGrid.Title= GetLocalResourceObject("PurchasesApproval").ToString() + " " + (APPROVAL_PURCHASE_ORDER != 0 ? APPROVAL_PURCHASE_ORDER.ToString() : "");
+                leveReturnGrid.Title = GetLocalResourceObject("LeaveReturn").ToString() + " " + (APPROVAL_LeaveReturn != 0 ? APPROVAL_LeaveReturn.ToString() : "");
                 if (PENDING_PUNCHES != 0 )
                 {
                     PunchesGrid.Hidden = false;

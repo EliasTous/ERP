@@ -647,7 +647,7 @@ namespace AionHR.Web.UI.Forms
                     x.leaveRef = x.leaveRef + " " + x.startDate.ToString(_systemService.SessionHelper.GetDateformat()) + " " + x.endDate.ToString(_systemService.SessionHelper.GetDateformat());
                 });
             }
-            leaveIdStore.DataSource = resp.Items.Where(x => x.endDate < DateTime.Today).ToList();
+            leaveIdStore.DataSource = resp.Items.Where(x => x.endDate > DateTime.Today).ToList();
             leaveIdStore.DataBind();
         }
        
