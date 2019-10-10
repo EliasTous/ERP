@@ -11,12 +11,13 @@ namespace AionHR.Model.Payroll
     [ClassIdentifier("51021", "51")]
     public class EmployeePayroll
     {
+        public string employeeRef { get; set; }
         [PropertyID("51021_01")]
         [ApplySecurity]
         public string employeeName { get; set; }
         //[PropertyID("51021_02")]
         //[ApplySecurity]
-        //public string branchName { get; set; }
+        public string branchName { get; set; }
         [PropertyID("51021_03")]
         [ApplySecurity]
 

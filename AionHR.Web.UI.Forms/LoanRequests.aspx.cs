@@ -1158,7 +1158,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<LoanDeduction> response = _loanService.ChildGetAll<LoanDeduction>(request);
             if (!response.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                Common.errorMessage(response);
                 return;
             }
             this.Store3.DataSource = response.Items;

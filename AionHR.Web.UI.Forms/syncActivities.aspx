@@ -34,7 +34,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                  <ext:ComboBox  AnyMatch="true" CaseSensitive="false" MaxWidth="300"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:FieldActivityId%>"  runat="server" DisplayField="value" ValueField="key"   Name="activityId" ID="activityId" >
+                                  <ext:ComboBox  AnyMatch="true" CaseSensitive="false" MaxWidth="300"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:FieldActivityId%>"  runat="server" DisplayField="value" ValueField="key"   Name="activityId" ID="activityId" AllowBlank="false" >
                                              <Store>
                                                 <ext:Store runat="server" ID="activityStore">
                                                     <Model>
@@ -64,6 +64,7 @@
                                         <Click Handler="CheckSession(); if(!#{syncActivityForm}.getForm().isValid()){return false;} " />
                                     </Listeners>
                                     <DirectEvents>
+
                                         <Click OnEvent="StartLongAction" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                       <%--      <EventMask ShowMask="true"  />--%>
                                          </Click>

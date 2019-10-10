@@ -41,7 +41,7 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                X.Msg.Alert(Resources.Common.Error, Resources.Errors.Error_1).Show();
+             X.Msg.Alert(Resources.Common.Error, Resources.Errors.Error_1).Show();
             }
               
         }

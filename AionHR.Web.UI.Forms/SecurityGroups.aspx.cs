@@ -1045,7 +1045,7 @@ namespace AionHR.Web.UI.Forms
             UsersListRequest req = new UsersListRequest();
             req.Size = "100";
             req.StartAt = "0";
-            req.Filter = "";
+            req.Filter = "activeStatus=1";
             req.SortBy = "fullName";
             var s = jobInfo1.GetJobInfo();
             req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.ToString() : "0";

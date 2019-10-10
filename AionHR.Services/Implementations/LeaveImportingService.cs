@@ -26,19 +26,19 @@ namespace AionHR.Services.Implementations
                 
                 DateTime date = DateTime.Parse(row[1].ToString());
                 DateTime effectiveDate = DateTime.Parse(row[2].ToString());
-                DateTime returnDate= DateTime.Parse(row[3].ToString());
+               
                 //int bulk;
                 //int? ltId;
                 //if (int.TryParse(row[4].ToString(), out bulk))
                 //    ltId = bulk;
                 //else
                 //    ltId = null;
-                string ltRef = row[4].ToString();
-                string destination = row[5].ToString();
-                string justifcation = row[6].ToString();
-                string status = row[7].ToString();
+                string ltRef = row[3].ToString();
+                string destination = row[4].ToString();
+                string justifcation = row[5].ToString();
+             
 
-                leaves.Add(new LeaveRequest() { employeeRef = employeeRef, startDate = date, endDate = effectiveDate,returnDate=returnDate, ltRef = ltRef, destination = string.IsNullOrEmpty(destination)?" ":destination, justification = justifcation, apStatus = Convert.ToInt16(status) });
+                leaves.Add(new LeaveRequest() { employeeRef = employeeRef, startDate = date, endDate = effectiveDate, ltRef = ltRef, destination = string.IsNullOrEmpty(destination)?" ":destination, justification = justifcation ,apStatus=1,leaveRef=""});
                 
             }
             catch { }

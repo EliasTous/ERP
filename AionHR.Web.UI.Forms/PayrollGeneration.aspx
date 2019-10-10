@@ -580,6 +580,11 @@
                                                 <ext:ModelField Name="eAmount" />
                                                 <ext:ModelField Name="dAmount" />
                                                 <ext:ModelField Name="seqNo" />
+                                                  <ext:ModelField Name="employeeRef" />
+                                                  <ext:ModelField Name="branchName" />
+                                                 
+
+                                                 
                                             </Fields>
                                         </ext:Model>
                                     </Model>
@@ -591,11 +596,14 @@
                                   <%--    <ext:Column runat="server" DataIndex="name" Text="<%$ Resources: FieldRef %>" width="75">--%>
                                        
                                <%--     </ext:Column>--%>
+                                     <ext:Column runat="server" DataIndex="employeeRef" Text="<%$ Resources: FieldRef%>" Flex="1">
+                                        
+                                    </ext:Column>
                                     <ext:Column runat="server" DataIndex="employeeName" Text="<%$ Resources: FieldEmployee%>" Flex="2">
                                         
                                     </ext:Column>
                                       <ext:Column runat="server" ID="seqNoEM" DataIndex="seqNo" Hidden="true" />
-                         <%--           <ext:Column runat="server" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" Flex="1" />--%>
+                                    <ext:Column runat="server" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" Flex="1" />
                                     <ext:Column runat="server" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" Flex="1" />
                                     <ext:Column runat="server" DataIndex="calendarDays" Text="<%$ Resources: FieldCalDays%>" Width="100" />
                                     

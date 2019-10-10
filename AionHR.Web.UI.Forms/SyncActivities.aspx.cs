@@ -174,13 +174,10 @@ namespace AionHR.Web.UI.Forms
             //HttpRuntime.Cache.Insert("TotalRecords", 0);
             //HttpRuntime.Cache.Insert("LongActionProgress", 0);
             //HttpRuntime.Cache.Insert("finished", "0");
-            if (HttpRuntime.Cache["finishedSync"] == null)
-            {
-                ThreadPool.QueueUserWorkItem(LongAction, new object[] { h,activityId.SelectedItem.Value });
-                HttpRuntime.Cache.Insert("finishedSync", "0");
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("processingSyn")).Show();
-            }
+            HttpRuntime.Cache.Remove("isThreadSafe");
+            ThreadPool.QueueUserWorkItem(LongAction, new object[] { h,activityId.SelectedItem.Value });
+               
+                
             this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", TaskManager1.ClientID);
 
 
@@ -200,7 +197,7 @@ namespace AionHR.Web.UI.Forms
             LoanTrackingService _lt = new LoanTrackingService(new LoanTrackingRepository(), h);
             LeaveManagementService _lm = new LeaveManagementService( h,new LeaveManagementRepository());
             TimeAttendanceService _ta = new TimeAttendanceService(h, new TimeAttendanceRepository());
-            AdministrationService _am = new AdministrationService(new AdministrationRepository(), h);
+            AssetManagementService _am = new AssetManagementService(new AssetManagementRepository(), h);
             _system = new SystemService(new SystemRepository(), h);
             _help = new HelpFunctionService(new HelpFunctionRepository(), h);
 
@@ -373,6 +370,7 @@ namespace AionHR.Web.UI.Forms
                         deleteFromCash();
 
                         X.Msg.Alert("",  Resources.Common.SyncSucc).Show();
+                        this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(" {0}%", (int)(float.Parse(progress.ToString()) * 100)));
                     }
                     else
                     {
@@ -394,7 +392,7 @@ namespace AionHR.Web.UI.Forms
 
                         //payListWidow.Close();
                         X.Msg.Alert("", Resources.Common.operationCompleted).Show();
-
+                        this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format( " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
                     }
                 }
             }

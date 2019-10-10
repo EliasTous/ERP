@@ -214,10 +214,10 @@ namespace AionHR.Web.UI.Forms.Reports
             string format = _systemService.SessionHelper.GetDateformat();
             resp.Items.ForEach(s =>
             {
-                s.endDateString = s.endDate.ToString(format, CultureInfo.CurrentUICulture);
-                s.startDateString = s.startDate.ToString(format, CultureInfo.CurrentUICulture);
+                s.endDateString = s.endDate.ToString(format, _systemService.SessionHelper.getLangauge()=="ar"?new CultureInfo("ar"): CultureInfo.CurrentUICulture);
+                s.startDateString = s.startDate.ToString(format, _systemService.SessionHelper.getLangauge() == "ar" ? new CultureInfo("ar") : CultureInfo.CurrentUICulture);
                 if (s.returnDate.HasValue)
-                    s.returnDateString = s.returnDate.Value.ToString(format, CultureInfo.CurrentUICulture);
+                    s.returnDateString = s.returnDate.Value.ToString(format, _systemService.SessionHelper.getLangauge() == "ar" ? new CultureInfo("ar") : CultureInfo.CurrentUICulture);
 
                 s.isPaidString = s.isPaid ? GetLocalResourceObject("Paid1").ToString() : GetLocalResourceObject("Paid0").ToString();
                 s.statusString = statusList.Where(y => y.key == s.status).Count() != 0 ? statusList.Where(y => y.key == s.status).First().value : ""; 
