@@ -58,7 +58,8 @@
                                 <Click OnEvent="SaveProperties" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                     <EventMask ShowMask="true" Target="CustomTarget" />
                                     <ExtraParams>
-                                        <ext:Parameter Name="values" Value="#{propertiesForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                        <ext:Parameter Name="values" Value="Ext.encode(#{propertiesForm}.getForm().getValues(false, false, false, true))" Mode="Raw" />
+                                       
                                     </ExtraParams>
                                 </Click>
                             </DirectEvents>

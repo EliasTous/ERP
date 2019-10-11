@@ -176,9 +176,12 @@ namespace AionHR.Web.UI.Forms
                                 List<XMLDictionary> dict = Common.XMLDictionaryList(_systemService, item.data);
                                 box.Triggers.Add(new FieldTrigger() { Icon = TriggerIcon.Clear });
                                 box.Listeners.TriggerClick.Handler = "this.clearValue();";
-                                foreach(var xml_elem in dict)
+                              
+
+
+                                foreach (var xml_elem in dict)
                                 {
-                                    box.Items.Add(new Ext.Net.ListItem(xml_elem.value, xml_elem.key));
+                                    box.Items.Add(new Ext.Net.ListItem(Server.UrlDecode(xml_elem.value), xml_elem.key));
                                     
                                 }
                                 box.ID = "control_" + item.id;
@@ -280,6 +283,13 @@ namespace AionHR.Web.UI.Forms
                     if (pair[0] == "text")
                     {
                         string cont = pair[1];
+                        if(_systemService.SessionHelper.getLangauge()=="fr" && cont.Contains("u00e9"))
+                            {
+                            int pos = cont.IndexOf("u00e9");
+                            cont = cont.Insert(pos, "é");
+                            cont = cont.Remove(pos+1 , 5);
+                           
+                        }
                         if(cont.StartsWith("u")&& cont.Length>5&& cont[5]=='u')
                         {
                             string[] words = cont.Split(' ');

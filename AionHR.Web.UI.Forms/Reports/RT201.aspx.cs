@@ -225,7 +225,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 x.PaymentFrequencyString = x.paymentFrequency.HasValue? GetGlobalResourceObject("Common", ((PaymentFrequency)x.paymentFrequency).ToString()).ToString():"";
                 x.SalaryTypeString = x.salaryType.HasValue ? GetGlobalResourceObject("Common", ((SalaryType)x.salaryType).ToString()).ToString() : "";
-                x.EffectiveDateString = x.effectiveDate.ToString(_systemService.SessionHelper.GetDateformat(), _systemService.SessionHelper.getLangauge() == "ar" ? new CultureInfo("ar") : CultureInfo.CurrentUICulture);
+                x.EffectiveDateString = x.effectiveDate.ToString(_systemService.SessionHelper.GetDateformat(),  CultureInfo.CurrentCulture);
 
             });
          

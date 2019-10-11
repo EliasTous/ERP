@@ -79,6 +79,8 @@
                           <ext:ModelField Name="employeeName"  />
                           <ext:ModelField Name="employeeId"  />
                           <ext:ModelField Name="poRef"  />
+                           <ext:ModelField Name="departmentName"  />
+                        
       
         
 
@@ -559,9 +561,7 @@
                                                         else
                                                             this.setDisabled(true); --%>
                             
-                           <Listeners>
-                               <Activate Handler="#{ApprovalStore}.reload();" />
-                           </Listeners>
+                         
 
                             <View>
                                 <ext:GridView ID="GridView4" runat="server" />

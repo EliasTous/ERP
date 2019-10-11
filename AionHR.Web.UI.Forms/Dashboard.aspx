@@ -4182,9 +4182,9 @@
 
 
                                         <ext:ModelField Name="name" ServerMapping="name.fullName"  />
-                                        <ext:ModelField Name="hireDate" />
+                                        <ext:ModelField Name="birthDate" />
                                         <ext:ModelField Name="days" />
-                                         <ext:ModelField Name="hireDateString" />
+                                         <ext:ModelField Name="birthDateString" />
                                     </Fields>
                                 </ext:Model>
                             </Model>
@@ -4197,7 +4197,7 @@
 
                             <ext:Column Visible="false" ID="Column24" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" />
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayAnniversary(record.data);  ">
+                                <Renderer Handler=" return displayBirthday(record.data);  ">
                                 </Renderer>
                             </ext:Column>
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">

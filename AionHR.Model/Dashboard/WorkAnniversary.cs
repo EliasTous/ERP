@@ -13,12 +13,12 @@ namespace AionHR.Model.Dashboard
     {
         public EmployeeName name { get; set; }
 
-        public DateTime hireDate
+        public DateTime birthDate
         {
             get; set;
         }
 
         public int days { get; set; }
-        public string hireDateString { get; set; }
+        public string birthDateString { get; set; }
     }
 }

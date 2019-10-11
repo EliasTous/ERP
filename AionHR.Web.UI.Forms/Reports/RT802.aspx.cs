@@ -217,7 +217,7 @@ private void FillReport(bool throwException = true)
             ListResponse<AionHR.Model.Reports.RT802> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT802>(req);
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
-            resp.Items.ForEach(x => { x.TypeString = GetGlobalResourceObject("Common", "TrType" + x.type.ToString()).ToString(); x.ClassIdString = GetGlobalResourceObject("Classes", "Class" + x.classId.ToString()) != null ? GetGlobalResourceObject("Classes", "Class" + x.classId.ToString()).ToString() : "NA"; x.DateString = x.eventDt.ToString(_systemService.SessionHelper.GetDateformat() + " HH:mm", _systemService.SessionHelper.getLangauge() == "ar" ? new CultureInfo("ar") : CultureInfo.CurrentUICulture); });
+            resp.Items.ForEach(x => { x.TypeString = GetGlobalResourceObject("Common", "TrType" + x.type.ToString()).ToString(); x.ClassIdString = GetGlobalResourceObject("Classes", "Class" + x.classId.ToString()) != null ? GetGlobalResourceObject("Classes", "Class" + x.classId.ToString()).ToString() : "NA"; x.DateString = x.eventDt.ToString(_systemService.SessionHelper.GetDateformat() + " HH:mm", CultureInfo.CurrentCulture); });
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             AuditTrail h = new AuditTrail(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;

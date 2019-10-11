@@ -213,6 +213,7 @@ namespace AionHR.Web.UI.Forms
             switch (type)
             {
                 case "imgEdit":
+                    ApprovalStore.Reload();
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id.ToString();

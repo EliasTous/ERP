@@ -27,7 +27,7 @@
         <ext:Hidden runat="server" ID="texts" />
         <ext:Viewport ID="Viewport2" runat="server" Layout="Fit">
             <Items>
-                <ext:FormPanel
+                <ext:FormPanel AutoEncode="automatically"
                     ID="FormPanel1"
                     runat="server" 
                     Header="false" DefaultButton="Button1"
