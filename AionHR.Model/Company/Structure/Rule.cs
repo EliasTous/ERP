@@ -11,6 +11,7 @@ namespace AionHR.Model.Company.Structure
         public string actionTypeName { get; set; }
         public string actionType { get; set; }
         public string name { get; set; }
+        public string expressionId { get; set; }
         
 
     }

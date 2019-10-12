@@ -190,6 +190,7 @@ namespace AionHR.Web.UI.Forms
                     moduleId.Hidden = true;
                     classId.Hidden = true;
                     keyName.ReadOnly = true;
+                    expressionCombo2.setExpression(response.result.expressionId);
 
 
                     this.conditionWindow.Title = Resources.Common.EditWindowsTitle;
@@ -307,6 +308,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
+                    expressionCombo1.setExpression(response.result.expressionId);
                     currentRuId.Text = id;
                     FillConditionStore();
                     FillMessageStore();
@@ -760,6 +762,7 @@ namespace AionHR.Web.UI.Forms
                     request.entity = b;
                     request.entity.ruleId = currentRuId.Text;
                     request.entity.value = string.IsNullOrEmpty(request.entity.value) ? null : request.entity.value;
+                    request.entity.expressionId = expressionCombo2.getExpression();
                     PostResponse<Model.Company.Structure.RuleCondition> r = _companyStructureService.ChildAddOrUpdate<Model.Company.Structure.RuleCondition>(request);
 
 
@@ -985,6 +988,7 @@ namespace AionHR.Web.UI.Forms
                     PostRequest<Model.Company.Structure.Rule> request = new PostRequest<Model.Company.Structure.Rule>();
 
                     request.entity = b;
+                    request.entity.expressionId = expressionCombo1.getExpression();
                     PostResponse<Model.Company.Structure.Rule> r = _companyStructureService.ChildAddOrUpdate<Model.Company.Structure.Rule>(request);
 
 

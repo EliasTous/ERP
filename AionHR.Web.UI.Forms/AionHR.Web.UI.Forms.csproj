@@ -202,6 +202,7 @@
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
     <Content Include="ReportParameterBrowser.aspx" />
+    <Content Include="Reports\Controls\ExpressionFilter.ascx" />
     <Content Include="Reports\Controls\CertificateLevelFilter.ascx" />
     <Content Include="Reports\Controls\FiscalYearFilter.ascx" />
     <Content Include="Reports\Controls\DocumentTypeFilter.ascx" />
@@ -1024,6 +1025,13 @@
     </Compile>
     <Compile Include="ReportParameterBrowser.aspx.designer.cs">
       <DependentUpon>ReportParameterBrowser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\ExpressionFilter.ascx.cs">
+      <DependentUpon>ExpressionFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\ExpressionFilter.ascx.designer.cs">
+      <DependentUpon>ExpressionFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\CertificateLevelFilter.ascx.cs">
       <DependentUpon>CertificateLevelFilter.ascx</DependentUpon>
