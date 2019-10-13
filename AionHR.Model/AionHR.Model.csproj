@@ -190,6 +190,7 @@
     <Compile Include="LeaveManagement\LeaveReturn.cs" />
     <Compile Include="LeaveManagement\LeaveReturnApproval.cs" />
     <Compile Include="LeaveManagement\PendingLA.cs" />
+    <Compile Include="LeaveManagement\pendingRA.cs" />
     <Compile Include="LeaveManagement\SyncLeaveReplacment.cs" />
     <Compile Include="LoadTracking\PendingLA.cs" />
     <Compile Include="Mathematical\IMathematicalRepository.cs" />

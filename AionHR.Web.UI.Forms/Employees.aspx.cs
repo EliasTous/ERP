@@ -252,12 +252,12 @@ namespace AionHR.Web.UI.Forms
 
                 html += GetLocalResourceObject("usedLeaves").ToString() + " {usedLeaves} </td><td>";
                 html += GetLocalResourceObject("serviceDuration").ToString() + " {serviceDuration}</td><td>";
-                html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + "{lastLeave}  </td> </tr><tr><td>";
+                html += GetLocalResourceObject("leavesPayment").ToString() + "{leavePayments}  </td> </tr><tr><td>";
                 
                     //html += GetLocalResourceObject("LoansBalance").ToString() + " {loansBalance}   
                 html += GetLocalResourceObject("LoansBalance").ToString() + " {loansBalance}   </td><td>";
                 html += GetLocalResourceObject("EmployeeStatus").ToString() + " {status}  </td><td> </tr> <tr><td>";
-                //html += GetLocalResourceObject("usedLeavesLeg").ToString() + " {usedLeavesLeg}</td>";
+                html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + " {lastLeave}";
 
 
                 html += GetLocalResourceObject("earnedLeaves").ToString() + " {earnedLeaves}</td><td>";
@@ -714,7 +714,8 @@ namespace AionHR.Web.UI.Forms
 
                     lastLeave = qv.result.LastLeave(_systemService.SessionHelper.GetDateformat()),
                     status = qv.result.statusString,
-                    loansBalance = qv.result.loanBalance
+                    loansBalance = qv.result.loanBalance,
+                    leavePayments = qv.result.leavePayments
 
 
 

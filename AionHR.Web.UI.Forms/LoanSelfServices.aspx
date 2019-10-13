@@ -93,6 +93,8 @@
                          <ext:ModelField Name="ldMethod" />
                          <ext:ModelField Name="ldValue" />
                         <ext:ModelField Name="employeeName"  />
+                        <ext:ModelField Name="apStatus"  />
+
                     </Fields>
                 </ext:Model>
             </Model>
@@ -171,7 +173,7 @@
 
 
                             <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Width="100">
-                                <Renderer Handler="return GetStatusName(record.data['status']);" />
+                                <Renderer Handler="return GetStatusName(record.data['apStatus']);" />
                             </ext:Column>
 
                             <ext:DateColumn ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="120" Align="Center">
@@ -223,7 +225,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler="if (record.data['status']=='1') return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
+                                <Renderer Handler="if (record.data['apStatus']=='1') return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
 
                             </ext:Column>
 
@@ -434,7 +436,7 @@
 
                                 <ext:TextArea   ID="purpose" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />
                                  <ext:TextField Hidden="true"   ID="purposeField" InputType="Password" Visible="false" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="true" />
-                                <ext:ComboBox Hidden="true"   AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox Hidden="true"   AnyMatch="true" CaseSensitive="false"  runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="true" SubmitValue="true">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
@@ -468,12 +470,9 @@
                                             </Items>
                                           
                                         </ext:ComboBox>
-                                        <ext:NumberField Hidden="true" Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="true" >
+                                        <ext:NumberField Hidden="false" Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="true" >
                                         
-                                  <%--    <validator Handler="if(#{ldMethod}.getValue()!=5 && #{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else return false; } else return true; ">
-                                             
-                                       </validator>
-                                           --%>
+                               
                                             </ext:NumberField>
                                 
 

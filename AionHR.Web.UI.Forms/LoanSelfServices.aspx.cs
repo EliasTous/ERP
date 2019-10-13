@@ -355,7 +355,7 @@ namespace AionHR.Web.UI.Forms
                                 }
                        });
                     employeeId.SetValue(response.result.employeeId);
-                    effectiveDate.Disabled = response.result.status != 3;
+                    effectiveDate.Disabled = response.result.apStatus != "3";
                     //FillFilesStore(Convert.ToInt32(id));
 
                     //Step 2 : call setvalues with the retrieved object
@@ -366,7 +366,7 @@ namespace AionHR.Web.UI.Forms
                     ltId.Select(response.result.ltId.ToString());
                     CurrentAmountCurrency.Text = response.result.currencyRef;
                     currencyId.Select(response.result.currencyId.ToString());
-                    status.Select(response.result.status.ToString());
+                    apStatus.Select(response.result.apStatus.ToString());
                     ldMethod.Select(response.result.ldMethod.ToString());
                     //if (!string.IsNullOrEmpty(response.result.branchId))
                     //    branchId.Select(response.result.branchId);

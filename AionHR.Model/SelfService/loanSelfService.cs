@@ -15,8 +15,8 @@ namespace AionHR.Model.SelfService
      
         public string employeeId { get; set; }
 
+        public string apStatus { get; set; }
 
-        
         public string loanRef { get; set; }
         [PropertyID("60105_01")]
         [ApplySecurity]

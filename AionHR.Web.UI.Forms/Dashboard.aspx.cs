@@ -1043,7 +1043,7 @@ namespace AionHR.Web.UI.Forms
 
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
-                ListResponse<AionHR.Model.LeaveManagement.LeaveReturnApproval> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.LeaveReturnApproval>(req);
+                ListResponse<AionHR.Model.LeaveManagement.pendingRA> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.pendingRA>(req);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
